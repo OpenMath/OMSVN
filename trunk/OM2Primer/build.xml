@@ -2,7 +2,7 @@
 
 <!--
   
-    $Id: build.xml,v 1.2 2003/11/20 15:12:21 openmath Exp $
+    $Id: build.xml,v 1.3 2003/11/20 15:23:45 openmath Exp $
 
     Copyright (c) 2003, RISC-Linz, Mathbroker, Austria.
     All Rights Reserved.
@@ -41,6 +41,8 @@
   </target>  
 
 
+
+  <!-- primer in xhtml is generated using docbook xsl -->
   <target name="xhtml" depends="prepare"
 	  description="Produce the xhtml primer">
     <style basedir="${package.root}/src/xml"
@@ -53,11 +55,24 @@
   </target>
 
 
+  <!-- primer in xhtml is generated using omstd xsl -->
+  <target name="html" depends="prepare"
+	  description="Produce the xhtml primer">
+    <style basedir="${package.root}/src/xml"
+	   includes="**/*.xml"
+	   style="${package.src}/xsl/omstd20.xsl"
+	   destdir="${build.src}/xhtml/"
+	   extension=".html"
+	   force="true">
+    </style>    
+  </target>
 
+
+
+  <!-- I leave this here in case we want to use saxon -->
 
   <target name="doc" depends="prepare">
 
-    <!-- mathbook documentation is generated -->
 
     <java classname="com.icl.saxon.StyleSheet" fork="yes">
     <arg line="-o ${build.doc}/index.html ${package.doc}/main.xml ${package.doc}/driver.xsl"/>   
