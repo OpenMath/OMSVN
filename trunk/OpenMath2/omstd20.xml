@@ -1,6 +1,4 @@
-
-
-<!-- @version CVS $Id: omstd20.xml,v 1.52 2003/11/09 10:17:50 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.53 2003/11/09 18:14:31 openmath Exp $ -->
 
 <!--
  PUBLIC "-//OASIS//DTD DocBook XML V4.2CR1//EN"
@@ -760,7 +758,7 @@ they could also contain intermediate results of calculations, or
   definition in a Content Dictionary. Many Content Dictionaries may
   define differently a symbol with the same name (e.g. the symbol
   <systemitem>union</systemitem> is defined as
-  associative-commutativeset theoretic union in a Content Dictionary
+  associative-commutative set theoretic union in a Content Dictionary
   <systemitem>set1</systemitem> but another Content Dictionary,
   <systemitem>multiset1</systemitem> might define a symbol
   <systemitem>union</systemitem> as the union of multi-sets).
@@ -1266,10 +1264,9 @@ Relax NG has a number of advantages over the older XSD Schema format
 of attributes and has a modular, extensible structure.  Although we
 have made the &exml; form, which is given  in <xref
 linkend="app_openmath.rng"/> normative, it is generated from the
-using the compact syntax given below.
-It is also very easy to restrict the schema to allow a limited set of
-&OM; symbols as described in <xref linkend="app_relaxrestricted"/>.
-</para>
+ compact syntax given below.  It is also very easy to restrict the schema to allow
+a limited set of &OM; symbols as described in <xref
+linkend="app_relaxrestricted"/>.  </para>
 
 <para revisionflag="added"> Standard tools exist for generating a DTD
 or an XSD schema from a Relax NG Schema.  Examples of such documents
@@ -1889,15 +1886,13 @@ encoded as a child.  So for example the encoding
    of the object
   representing the variable
 <math><msub><mi>x</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub></math> is:
-<literallayout><![CDATA[
-            <OMV name="x">  
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="plus"/> 
-                <OMV name="i"/>  
-                <OMI>1</OMI>
-              </OMA>
-            </OMV> 
-            ]]></literallayout>
+<literallayout><![CDATA[<OMV name="x">  
+  <OMA>
+    <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="plus"/> 
+    <OMV name="i"/>  
+    <OMI>1</OMI>
+  </OMA>
+</OMV>]]></literallayout>
 </para>
 
   
@@ -1954,18 +1949,16 @@ encoded as a child.  So for example the encoding
 
 <variablelist>
 <varlistentry><term>Applications</term><listitem><para>are encoded using the <systemitem>OMA</systemitem> element. The
-  application whose root is the &OM; object <math><msub><mi>e</mi><mn>0</mn></msub></math> and whose arguments
+  application whose head is the &OM; object <math><msub><mi>e</mi><mn>0</mn></msub></math> and whose arguments
   are the &OM; objects <math><msub><mi>e</mi><mn>1</mn></msub></math>, <phrase>&#8230;</phrase>, <math><msub><mi>e</mi><mi>n</mi></msub></math> is encoded as <systemitem>&lt;OMA></systemitem>
   <math><msub><mi>C</mi><mn>0</mn></msub></math> <math><msub><mi>C</mi><mn>1</mn></msub></math><phrase>&#8230;</phrase> <math><msub><mi>C</mi><mi>n</mi></msub></math> <systemitem>&lt;/OMA></systemitem> where <math><msub><mi>C</mi><mi>i</mi></msub></math> is the encoding of
   <math><msub><mi>e</mi><mi>i</mi></msub></math>.</para>
 
 <para>For example, <math><mi mathvariant="bold">application</mi><mo>(</mo><mi>sin</mi><mo>,</mo><mi>x</mi> <mo>)</mo></math> is encoded as:
-<literallayout><![CDATA[
-            <OMA>  
-              <OMS cdbase="http://www.openmath.org/cd" cd="transc1" name="sin"/> 
-              <OMV name="x"/>  
-            </OMA> 
-            ]]></literallayout>
+<literallayout><![CDATA[<OMA>  
+  <OMS cdbase="http://www.openmath.org/cd" cd="transc1" name="sin"/> 
+  <OMV name="x"/>  
+</OMA>]]></literallayout>
   provided that the symbol <systemitem>sin</systemitem> is defined to be a function
   symbol in a Content Dictionary named <systemitem>transc1</systemitem>.</para>
 
@@ -1983,17 +1976,14 @@ encoded as a child.  So for example the encoding
        <mo>(</mo><mi>lambda</mi><mo>,</mo>
   <mi>x</mi><mo>,</mo><mi mathvariant="bold">application</mi>
      <mo>(</mo><mi>sin</mi><mo>,</mo> <mi>x</mi><mo>)</mo><mo>)</mo></math> is:
-<literallayout><![CDATA[ 
-      <OMBIND>
-        <OMS cdbase="http://www.openmath.org/cd" cd="fns1" name="lambda"/>  
-        <OMBVAR>
-          <OMV name="x"/>
-        </OMBVAR>  
-        <OMA>
-          <OMS cdbase="http://www.openmath.org/cd" cd="transc1" name="sin"/> 
-          <OMV name="x"/>  
-        </OMA>
-      </OMBIND>]]></literallayout></para>
+<literallayout><![CDATA[<OMBIND>
+  <OMS cdbase="http://www.openmath.org/cd" cd="fns1" name="lambda"/>  
+  <OMBVAR><OMV name="x"/></OMBVAR>  
+  <OMA>
+    <OMS cdbase="http://www.openmath.org/cd" cd="transc1" name="sin"/> 
+    <OMV name="x"/>  
+  </OMA>
+</OMBIND>]]></literallayout></para>
   
 <para>Binders are defined in  Content Dictionaries, in particular,
   the symbol <systemitem>lambda</systemitem> is defined in the Content Dictionary
@@ -2010,23 +2000,21 @@ encoded as a child.  So for example the encoding
 
 <para>Examples are the use of attribution to decorate a group by its
   automorphism group:
-<literallayout><![CDATA[
-          <OMATTR>    
-             <OMATP>
-                  <OMS cdbase="http://www.openmath.org/cd" cd="groups" name="automorphism_group" />  
-                  [..group-encoding..] 
-             </OMATP>  
-             [..group-encoding..] 
-          </OMATTR>]]></literallayout>
+<literallayout><![CDATA[<OMATTR>    
+  <OMATP>
+    <OMS cdbase="http://www.openmath.org/cd" cd="groups" name="automorphism_group" />  
+    [..group-encoding..] 
+  </OMATP>  
+  [..group-encoding..] 
+</OMATTR>]]></literallayout>
 or to express the type of a variable:
-<literallayout><![CDATA[ 
-          <OMATTR>    
-             <OMATP>
-                  <OMS cdbase="http://www.openmath.org/cd" cd="ecc" name="type" /> 
-                  <OMS cdbase="http://www.openmath.org/cd" cd="ecc" name="real" />
-             </OMATP> 
-             <OMV name="x" />
-           </OMATTR>]]></literallayout></para>
+<literallayout><![CDATA[<OMATTR>    
+  <OMATP>
+    <OMS cdbase="http://www.openmath.org/cd" cd="ecc" name="type" /> 
+    <OMS cdbase="http://www.openmath.org/cd" cd="ecc" name="real" />
+  </OMATP> 
+  <OMV name="x" />
+</OMATTR>]]></literallayout></para>
 
   
 <para revisionflag="added">
@@ -2038,39 +2026,35 @@ element must be well-formed &exml;.  For example the attribution of the
   <math>
      <mi>sin</mi><mfenced><mi>x</mi></mfenced></math> with its
 representation in Presentation MathML is:
-<literallayout><![CDATA[ 
-      <OMATTR>
-        <OMATP>
-          <OMS cd="presentation1" name="mathml"/>  
-          <OMFOREIGN>
-            <math xmlns="http://www.w3.org/1998/Math/MathML">
-              <mi>sin</mi><mfenced><mi>x</mi></mfenced>
-            </math>
-          </OMFOREIGN>  
-        </OMATP>
-        <OMA>
-          <OMS cdbase="http://www.openmath.org/cd" cd="transc1" name="sin"/> 
-          <OMV name="x"/>  
-        </OMA>
-      </OMATTR>]]></literallayout>
+<literallayout><![CDATA[<OMATTR>
+  <OMATP>
+    <OMS cd="presentation1" name="mathml"/>  
+    <OMFOREIGN>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <mi>sin</mi><mfenced><mi>x</mi></mfenced>
+      </math>
+    </OMFOREIGN>  
+  </OMATP>
+  <OMA>
+   <OMS cdbase="http://www.openmath.org/cd" cd="transc1" name="sin"/> 
+   <OMV name="x"/>  
+  </OMA>
+</OMATTR>]]></literallayout>
 Of course not everything has a natural XML encoding in this way and
 often the contents of a <systemitem>OMFOREIGN</systemitem> will just
 be data or some kind of encoded string.  For example the attribution
 of the previous object with its LaTeX representation could be achieved
 as follows:
-<literallayout><![CDATA[ 
-      <OMATTR>
-        <OMATP>
-          <OMS cd="presentation1" name="latex"/>  
-          <OMFOREIGN>
-            sin\,(x)
-          </OMFOREIGN>  
-        </OMATP>
-        <OMA>
-          <OMS cdbase="http://www.openmath.org/cd" cd="transc1" name="sin"/> 
-          <OMV name="x"/>  
-        </OMA>
-      </OMATTR>]]></literallayout>
+<literallayout><![CDATA[<OMATTR>
+  <OMATP>
+    <OMS cd="presentation1" name="latex"/>  
+    <OMFOREIGN>sin\,(x)</OMFOREIGN>  
+  </OMATP>
+  <OMA>
+    <OMS cdbase="http://www.openmath.org/cd" cd="transc1" name="sin"/> 
+    <OMV name="x"/>  
+  </OMA>
+</OMATTR>]]></literallayout>
 </para>
 </listitem>
 
@@ -2089,15 +2073,14 @@ as follows:
   <mo>(</mo><mi>divide</mi><mo>,</mo> 
   <mi>x</mi><mo>,</mo> <mn>0</mn><mo>)</mo><mo>)</mo></math> would be encoded as follows:
 
-<literallayout><![CDATA[ 
-            <OME>
-            <OMS cdbase="http://www.openmath.org/cd" cd="aritherror" name="DivisionByZero"/>  
-            <OMA>
-                 <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="divide" />
-                 <OMV name="x"/>  
-                 <OMI> 0 </OMI>
-            </OMA> 
-            </OME>]]></literallayout></para>
+<literallayout><![CDATA[<OME>
+  <OMS cdbase="http://www.openmath.org/cd" cd="aritherror" name="DivisionByZero"/>  
+  <OMA>
+    <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="divide" />
+    <OMV name="x"/>  
+    <OMI> 0 </OMI>
+  </OMA> 
+ </OME>]]></literallayout></para>
   
 </listitem>
 </varlistentry>
@@ -2183,9 +2166,8 @@ below (and some intermedidate versions as well).</para>
 <figure id="fig_shared_vs_unshared">
     <title>Shared vs. unshared representations</title>
     
- <literallayout><![CDATA[
- <OMOBJ>                                <OMOBJ>
-  <OMA>                                   <OMA>
+ <literallayout><![CDATA[<OMOBJ>                                <OMOBJ>
+  <OMA>                                   <OMA xmlns:xlink="http://www.w3.org/1999/xlink">
     <OMA>                                    <OMA id="t1">
       <OMV name="f"/>                           <OMV name="f"/>
       <OMA>                                     <OMA id="t11">
@@ -2234,8 +2216,7 @@ also the second <systemitem>OMR</systemitem> dominate the
 <emphasis>acyclicity constraint</emphasis>: An &OM; element may not dominate itself.</para>
 
 <para revisionflag="added">Consider for instance the following (illegal) &exml; representation
-<literallayout><![CDATA[
-<OMOBJ>
+<literallayout><![CDATA[<OMOBJ>
   <OMA id="foo">
     <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="divide"/>
     <OMI>1</OMI>
@@ -2278,8 +2259,7 @@ in section 3.</para>
 <para revisionflag="added">Note that the acyclicity constraints is not restricted to such simple
 cases, as the following example shows.</para>
 
-<para><literallayout><![CDATA[
-<OMOBJ>                                <OMOBJ>
+<para><literallayout><![CDATA[<OMOBJ>                                <OMOBJ>
   <OMA id="bar">                         <OMA id="baz">
     <OMS cd="arith1" name="plus"/>         <OMS cd="arith1" name="plus"/>
     <OMI>1</OMI>                           <OMI>1</OMI>
@@ -2311,8 +2291,7 @@ representation of an &OM; object.</para>
 element it points to. In particular, referencing does not interact
 with binding in a semantically intuitive way, since it allows for
 variable capture. Consider for instance the following &exml;
-representation: <literallayout><![CDATA[
-<OMBIND id="outer">
+representation: <literallayout><![CDATA[<OMBIND id="outer">
   <OMS cdbase="http://www.openmath.org/cd" cd="fns1" name="lambda"/>
   <OMBVAR><OMV name="X"/></OMBVAR>
   <OMA>
@@ -3286,7 +3265,7 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
 <varlistentry>
   <term>Integers</term><listitem><para>are encoded depending on how large they
       are. There are four possible formats.  Integers between -128 and 127 are
-      encoded as the small integer (<phrase revisionflag="added">token identifier</phrase> 1) followed by a single byte that is the
+      encoded as the small integer tags (<phrase revisionflag="added">token identifier</phrase> 1) followed by a single byte that is the
       value of the integer (interpreted as a signed character). For
       example 16 is encoded as <systemitem>0x01 0x10</systemitem>.  Integers between
       <math>
@@ -3362,7 +3341,7 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
   characters of the Content Dictionary name, followed by the
   characters of the symbol name.</phrase>
 <phrase revisionflag="added">. The symbol tags [8] and [8+128] are deprecated in &OM;2 since
-  symbols now have an optional role field, but are
+  symbols now have an optional <systemitem>cdbase</systemitem> field, but are
   kept for backwards compatibility. The symbol tag is  followed by the length <phrase
     revisionflag="added">in bytes in the UTF-8 encoding</phrase> of the
   Content Dictionary name, the symbol name, and the CD base as a byte (if the long flag was not set)
@@ -3599,11 +3578,11 @@ make sense), the shared flag signifies the encoding described here
 are treated exactly as in the binary encoding described in the last section.</para>
 
 <para>The binary encoding with references uses the additional reference tags [30]
-for (short) internal references, [30+128] for long internal references, [30] for
-(short) external references, [30+128] for long external references. Internal
+for (short) internal references, [30+128] for long internal references, [31] for
+(short) external references, [31+128] for long external references. Internal
 references are used to share sub-objects in the encoded object (see <xref
 linkend="fig_bin-enc2"/> for an example) by referencing their position; external
-references allow to reference &OM; objects in other documents by an URI.</para>
+references allow to reference &OM; objects in other documents by a URI.</para>
 
 <para>Identifiers [30+64] and [30+64+128] are not used, since they would encode
 references that are shared themselves. Chains of references are redundant, and
@@ -3737,8 +3716,7 @@ present in the table.</para>
 
 <para>As an example of this binary encoding, we can consider the &OM; object
 whose &exml; encoding is
-<literallayout><![CDATA[ 
-<OMOBJ>
+<literallayout><![CDATA[<OMOBJ>
   <OMA>
     <OMS cdbase="http://www.openmath.org/cd" name="times" cd="arith1"/>
     <OMA>
@@ -3752,8 +3730,7 @@ whose &exml; encoding is
       <OMV name="z"/>
     </OMA>
   </OMA>
-</OMOBJ>
-]]></literallayout> 
+</OMOBJ>]]></literallayout> 
 It is binary encoded as the sequence of bytes given by  the following table.</para>
 
 <informaltable>
@@ -3769,7 +3746,7 @@ It is binary encoded as the sequence of bytes given by  the following table.</pa
 </thead>
 <tbody>
 <row><entry>18</entry><entry>begin object tag</entry>
-  <entry>68</entry><entry>h  .)</entry></row>
+  <entry>68</entry><entry>h  .</entry></row>
 <row><entry>10</entry><entry> begin application tag</entry>
   <entry>31</entry><entry>1  .)</entry></row>
 <row><entry>08</entry><entry>symbol tag</entry>
@@ -4101,7 +4078,7 @@ giving transformations to MathML.</para>
 <para revisionflag="added">
 Some pieces of information which might logically be thought to be part
 of a Content Dictionary, such as the types or signatures of symbols,
-are better represented externally.  This allows for new varients to be
+are better represented externally.  This allows for new variants to be
 associated with Content Dictionaries without the Dictionaries
 themselves being changed.  A model for signatures is given in <xref
 linkend="sigfiles"/>.</para>
@@ -4553,18 +4530,17 @@ A Formal Mathematical Property.
 <title>Additional Information</title>
 
 
-<sidebar revision="1999/08/25" author="OC"><para>Introduction to
-splitting-up in files</para></sidebar> <sidebar revision="1999/10/04"
-author="DPC"><para>Rephrase slightly</para></sidebar> <para>Content
-Dictionaries contain just one part of the information that can be
-associated to a symbol in order to stepwise define its meaning and its
-functionality. &OM; Signature 
-<phrase revisionflag="deleted">files</phrase><phrase
-revisionflag="added">dictionaries</phrase>, CDGroups, and possibly
-<phrase revisionflag="deleted">files</phrase><phrase
-revisionflag="added">collections</phrase>
-of extra mathematical properties, are used to convey the different
-aspects that as a whole make up a mathematical definition.</para>
+<sidebar revision="1999/08/25" author="OC"><para>Introduction to splitting-up in
+files</para></sidebar> <sidebar revision="1999/10/04" author="DPC"><para>Rephrase
+slightly</para></sidebar> <para>Content Dictionaries contain just one part of the
+information that can be associated to a symbol in order to <phrase
+revisionflag="deleted">stepwise</phrase> define its meaning and its
+functionality. &OM; Signature <phrase revisionflag="deleted">files</phrase><phrase
+revisionflag="added">dictionaries</phrase>, CDGroups, and possibly <phrase
+revisionflag="deleted">files</phrase><phrase
+revisionflag="added">collections</phrase> of extra mathematical properties, are
+used to convey the different aspects that as a whole make up a mathematical
+definition.</para>
 
 <section id="sigfiles">
 <title>Signature
@@ -5120,22 +5096,20 @@ an application upon receiving ill-formed objects.</para>
 <title>Conclusion</title>
 
 
-<para>The goal of this document is to define the &OM; standard. The
-things are addressed by the &OM; standard are:
-<itemizedlist>
-<listitem><para>Informal and formal definition of the &OM; objects.</para>
-  
-</listitem>
-<listitem><para>Informal and formal definition of the notion of Content
-  Dictionaries.</para>
-</listitem>
-</itemizedlist>
-To do this, &OM; objects are precisely defined and two encodings are
-described to represent these objects using <acronym>xml</acronym> and
-binary code. Furthermore, the Document Type Definition for validating
-Content Dictionaries and &OM; objects is given.</para>
-
-
+<para>The goal of this document is to define the &OM; 2 standard. The issues
+  addressed by the &OM; 2 standard are:
+  <itemizedlist>
+    <listitem>
+      <para>Informal and formal definition of the &OM; objects.</para>
+    </listitem>
+    <listitem>
+      <para>Informal and formal definition of the notion of Content Dictionaries.</para>
+    </listitem>
+  </itemizedlist>
+  To do this, &OM; objects are precisely defined and two encodings are described
+to represent these objects using <acronym>xml</acronym> and binary
+code. Furthermore, the Document Type Definition for validating Content
+Dictionaries and &OM; objects is given.</para>
 </chapter>
 
 
@@ -5153,13 +5127,13 @@ Content Dictionaries and &OM; objects is given.</para>
   <Description> 
     
     This is a content dictionary to represent content dictionaries, so
-    that they may be passed between &OM; compliant application in a
+    that they may be passed between OpenMath compliant application in a
     similar way to mathematical objects.  It is acknowledged that this is
     not the only way to do this, but it seems a natural way.
     
     This can be viewed as updating the previous Meta-CD.
     
-    The information written here is taken from "The &OM; Standard".
+    The information written here is taken from "The Openmath Standard".
     This document is a slightly stronger statement than "the following
     symbols are defined as in the DTD at
     http://www.nag.co.uk/projects/OpenMath/omstd/dtds/cd.dtd", since the
@@ -5259,8 +5233,8 @@ Content Dictionaries and &OM; objects is given.</para>
     <Description>
       A tag which contains PCDATA to give information on the
       status of the CD. This can be either official (approved by the
-      &OM; steering committee), experimental (currently being tested),
-      private (used by a private group of &OM; users) or obsolete
+      OpenMath steering committee), experimental (currently being tested),
+      private (used by a private group of OpenMath users) or obsolete
       (an obsolete CD kept only for archival purposes).
     </Description>
   </CDDefinition>
@@ -5308,8 +5282,8 @@ be present here.
   <Description>
     An optional tag which contains PCDATA corresponding to
     the type of the symbol being defined. This type information will be
-    an &OM; type object as defined in chapter 5 of "First Draft of the
-    &OM; Standard".
+    an OpenMath type object as defined in chapter 5 of "First Draft of the
+    OpenMath Standard".
   </Description>
 </CDDefinition>
 
@@ -5335,7 +5309,7 @@ be present here.
   <Description>
     An optional tag (which may be repeated many times) which contains
     PCDATA corresponding to a property of the symbol being
-    defined. This property must be a valid &OM; object.
+    defined. This property must be a valid OpenMath object.
   </Description>
 </CDDefinition>
 
@@ -5347,227 +5321,223 @@ be present here.
   <title>The  <filename>arith1</filename> Content Dictionary File</title>
   
   
-  <literallayout><![CDATA[
-  <CD>
-    <CDName> arith1 </CDName>
-    <CDURL> http://www.openmath.org/cd/arith1.ocd </CDURL>
-    <CDReviewDate> 2003-04-01 </CDReviewDate>
-    <CDStatus> official </CDStatus>
-    <CDDate> 2001-03-12 </CDDate>
-    <CDVersion> 2 </CDVersion>
-    <CDRevision> 0 </CDRevision>
+  <literallayout><![CDATA[<CD>
+  <CDName> arith1 </CDName>
+  <CDURL> http://www.openmath.org/cd/arith1.ocd </CDURL>
+  <CDReviewDate> 2003-04-01 </CDReviewDate>
+  <CDStatus> official </CDStatus>
+  <CDDate> 2001-03-12 </CDDate>
+  <CDVersion> 2 </CDVersion>
+  <CDRevision> 0 </CDRevision>
+  
+  <Description> 
+    This CD defines symbols for common arithmetic functions.
+  </Description>
     
+  <CDDefinition>
+    <Name> lcm </Name>
     <Description> 
-      This CD defines symbols for common arithmetic functions.
+      The symbol to represent the n-ary function to return the least common
+      multiple of its arguments.
     </Description>
-    
-    <CDDefinition>
-      <Name> lcm </Name>
-      <Description> 
-	The symbol to represent the n-ary function to return the least common
-	multiple of its arguments.
-      </Description>
       
-      <CMP> lcm(a,b) = a*b/gcd(a,b) </CMP>
+    <CMP> lcm(a,b) = a*b/gcd(a,b) </CMP>
       
-      <FMP>
-	<OMOBJ>
+    <FMP>
+      <OMOBJ>
+	<OMA>
+	  <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
 	  <OMA>
-	    <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="lcm"/>
+	    <OMV name="a"/>
+	    <OMV name="b"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="divide"/>
 	    <OMA>
-	      <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="lcm"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="times"/>
 	      <OMV name="a"/>
 	      <OMV name="b"/>
 	    </OMA>
 	    <OMA>
-	      <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="divide"/>
-	      <OMA>
-		<OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="times"/>
-		<OMV name="a"/>
-		<OMV name="b"/>
-	      </OMA>
-	      <OMA>
-		<OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="gcd"/>
-		<OMV name="a"/>
-		<OMV name="b"/>
-	      </OMA>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="gcd"/>
+	      <OMV name="a"/>
+	      <OMV name="b"/>
 	    </OMA>
 	  </OMA>
-	</OMOBJ>
-      </FMP>
-      <CMP>
-	for all integers a,b |
+	</OMA>
+      </OMOBJ>
+    </FMP>
+    <CMP>for all integers a,b |
 	There does not exist a c>0 such that c/a is an Integer and c/b is an
 	Integer and lcm(a,b) > c.
-      </CMP>
+    </CMP>
       
-      <FMP>
-	<OMOBJ>
-	  <OMBIND>
-	    <OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="forall"/>
-	    <OMBVAR>
-	      <OMV name="a"/>
-	      <OMV name="b"/>
-	    </OMBVAR>
+    <FMP>
+      <OMOBJ>
+	<OMBIND>
+	  <OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="forall"/>
+	  <OMBVAR>
+	    <OMV name="a"/>
+	    <OMV name="b"/>
+          </OMBVAR>
+	  <OMA>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="implies"/>
 	    <OMA>
-	      <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="implies"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="and"/>
 	      <OMA>
-		<OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="and"/>
-		<OMA>
-		  <OMS cdbase="http://www.openmath.org/cd" cd="set1" name="in"/>
-		  <OMV name="a"/>
-		  <OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="Z"/>
-		</OMA>
-		<OMA>
-		  <OMS cdbase="http://www.openmath.org/cd" cd="set1" name="in"/>
-		  <OMV name="b"/>
-		  <OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="Z"/>
-		</OMA>
+		<OMS cdbase="http://www.openmath.org/cd" cd="set1" name="in"/>
+		<OMV name="a"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="Z"/>
 	      </OMA>
 	      <OMA>
-		<OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="not"/>
-		<OMBIND>
-		  <OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="exists"/>
-		  <OMBVAR>
-		    <OMV name="c"/>
-		  </OMBVAR>
+		<OMS cdbase="http://www.openmath.org/cd" cd="set1" name="in"/>
+		<OMV name="b"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="Z"/>
+	      </OMA>
+	    </OMA>
+	    <OMA>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="not"/>
+	      <OMBIND>
+		<OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="exists"/>
+		<OMBVAR><OMV name="c"/></OMBVAR>
+		<OMA>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="and"/>
 		  <OMA>
-		    <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="and"/>
+		    <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="gt"/>
+		    <OMV name="c"/>
+		    <OMI>0</OMI>
+		  </OMA>
+		  <OMA>
+		    <OMS cdbase="http://www.openmath.org/cd" cd="integer1" name="factorof"/>
+		    <OMV name="a"/>
+		    <OMV name="c"/>
+		  </OMA>
+		  <OMA>
+		    <OMS cdbase="http://www.openmath.org/cd" cd="integer1" name="factorof"/>
+		    <OMV name="b"/>
+		    <OMV name="c"/>
+		  </OMA>
+		  <OMA>
+		    <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="lt"/>
+		    <OMV name="c"/>
 		    <OMA>
-		      <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="gt"/>
-		      <OMV name="c"/>
-		      <OMI>0</OMI>
+		      <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="lcm"/>
+		      <OMV name="a"/>
+		      <OMV name="b"/>
 		    </OMA>
+		  </OMA>
+		</OMA>
+	      </OMBIND>
+	    </OMA>
+	  </OMA>
+	</OMBIND>
+      </OMOBJ>
+    </FMP>
+  </CDDefinition>
+  
+  <CDDefinition>
+    <Name> gcd </Name>
+    <Description> 
+      The symbol to represent the n-ary function to return the gcd (greatest
+      common divisor) of its arguments.
+    </Description>
+    
+    <CMP>
+      for all integers a,b |
+      There does not exist a c such that a/c is an Integer and b/c is an
+      Integer and c > gcd(a,b).
+      
+      Note that this implies that gcd(a,b) > 0
+    </CMP>
+    
+    <FMP>
+      <OMOBJ>
+	<OMBIND>
+	  <OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="forall"/>
+	  <OMBVAR>
+	    <OMV name="a"/>
+	    <OMV name="b"/>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="implies"/>
+	    <OMA>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="and"/>
+	      <OMA>
+		<OMS cdbase="http://www.openmath.org/cd" cd="set1" name="in"/>
+		<OMV name="a"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="Z"/>
+	      </OMA>
+	      <OMA>
+		<OMS cdbase="http://www.openmath.org/cd" cd="set1" name="in"/>
+		<OMV name="b"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="Z"/>
+	      </OMA>
+	    </OMA>
+	    <OMA>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="not"/>
+	      <OMBIND>
+		<OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="exists"/>
+		<OMBVAR>
+		  <OMV name="c"/>
+		</OMBVAR>
+		<OMA>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="and"/>
+		  <OMA>
+		    <OMS cdbase="http://www.openmath.org/cd" cd="set1" name="in"/>
 		    <OMA>
-		      <OMS cdbase="http://www.openmath.org/cd" cd="integer1" name="factorof"/>
+		      <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="divide"/>
 		      <OMV name="a"/>
 		      <OMV name="c"/>
 		    </OMA>
+		    <OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="Z"/>
+		  </OMA>
+		  <OMA>
+		    <OMS cdbase="http://www.openmath.org/cd" cd="set1" name="in"/>
 		    <OMA>
-		      <OMS cdbase="http://www.openmath.org/cd" cd="integer1" name="factorof"/>
+		      <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="divide"/>
 		      <OMV name="b"/>
 		      <OMV name="c"/>
 		    </OMA>
-		    <OMA>
-		      <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="lt"/>
-		      <OMV name="c"/>
-		      <OMA>
-			<OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="lcm"/>
-			<OMV name="a"/>
-			<OMV name="b"/>
-		      </OMA>
-		    </OMA>
+		    <OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="Z"/>
 		  </OMA>
-		</OMBIND>
-	      </OMA>
-	    </OMA>
-	  </OMBIND>
-	</OMOBJ>
-      </FMP>
-    </CDDefinition>
-    
-    <CDDefinition>
-      <Name> gcd </Name>
-      <Description> 
-	The symbol to represent the n-ary function to return the gcd (greatest
-	common divisor) of its arguments.
-      </Description>
-      
-      <CMP>
-	for all integers a,b |
-	There does not exist a c such that a/c is an Integer and b/c is an
-	Integer and c > gcd(a,b).
-	
-	Note that this implies that gcd(a,b) > 0
-      </CMP>
-      
-      <FMP>
-	<OMOBJ>
-	  <OMBIND>
-	    <OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="forall"/>
-	    <OMBVAR>
-	      <OMV name="a"/>
-	      <OMV name="b"/>
-	    </OMBVAR>
-	    <OMA>
-	      <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="implies"/>
-	      <OMA>
-		<OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="and"/>
-		<OMA>
-		  <OMS cdbase="http://www.openmath.org/cd" cd="set1" name="in"/>
-		  <OMV name="a"/>
-		  <OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="Z"/>
-		</OMA>
-		<OMA>
-		  <OMS cdbase="http://www.openmath.org/cd" cd="set1" name="in"/>
-		  <OMV name="b"/>
-		  <OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="Z"/>
-		</OMA>
-	      </OMA>
-	      <OMA>
-		<OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="not"/>
-		<OMBIND>
-		  <OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="exists"/>
-		  <OMBVAR>
-		    <OMV name="c"/>
-		  </OMBVAR>
 		  <OMA>
-		    <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="and"/>
+		    <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="gt"/>
+		    <OMV name="c"/>
 		    <OMA>
-		      <OMS cdbase="http://www.openmath.org/cd" cd="set1" name="in"/>
-		      <OMA>
-			<OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="divide"/>
-			<OMV name="a"/>
-			<OMV name="c"/>
-		      </OMA>
-		      <OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="Z"/>
-		    </OMA>
-		    <OMA>
-		      <OMS cdbase="http://www.openmath.org/cd" cd="set1" name="in"/>
-		      <OMA>
-			<OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="divide"/>
-			<OMV name="b"/>
-			<OMV name="c"/>
-		      </OMA>
-		      <OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="Z"/>
-		    </OMA>
-		    <OMA>
-		      <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="gt"/>
-		      <OMV name="c"/>
-		      <OMA>
-			<OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="gcd"/>
-			<OMV name="a"/>
-			<OMV name="b"/>
-		      </OMA>
+		      <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="gcd"/>
+		      <OMV name="a"/>
+		      <OMV name="b"/>
 		    </OMA>
 		  </OMA>
-		</OMBIND>
-	      </OMA>
+		</OMA>
+	      </OMBIND>
 	    </OMA>
-	  </OMBIND>
-	</OMOBJ>
-      </FMP>
-      
-      <Example>
-	gcd(6,9) = 3
-	<OMOBJ>
-	  <OMA>
-	    <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
-	    <OMA>
-	      <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="gcd"/>
-	      <OMI> 6 </OMI>
-	      <OMI> 9 </OMI>
-	    </OMA>
-	    <OMI> 3 </OMI>
 	  </OMA>
-	</OMOBJ>
-      </Example>
-    </CDDefinition>
+	</OMBIND>
+      </OMOBJ>
+    </FMP>
     
-    <CDDefinition>
-      <Name> plus </Name>
-      <Description>
-	The symbol representing an n-ary commutative function plus.
+    <Example>
+      gcd(6,9) = 3
+      <OMOBJ>
+	<OMA>
+	  <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="gcd"/>
+	    <OMI> 6 </OMI>
+	    <OMI> 9 </OMI>
+	  </OMA>
+	  <OMI> 3 </OMI>
+	</OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  
+  <CDDefinition>
+    <Name> plus </Name>
+    <Description>
+      The symbol representing an n-ary commutative function plus.
       </Description>
       <CMP> for all a,b | a + b = b + a </CMP>
       <FMP>
@@ -6196,162 +6166,161 @@ be present here.
   
   <sidebar revision="1999/07/16" author="DPC"><para>ADD arith1 signature file</para></sidebar>
   
-  <literallayout><![CDATA[
-  <CDSignatures type="sts" cd="arith1">
+  <literallayout><![CDATA[<CDSignatures type="sts" cd="arith1">
     
-    <CDSComment>
-      Date:  1999-11-26
-      Author: David Carlisle
-    </CDSComment>
-    
-    <Signature name="lcm" >
-      <OMOBJ>
+  <CDSComment>
+    Date:  1999-11-26
+    Author: David Carlisle
+  </CDSComment>
+  
+  <Signature name="lcm" >
+    <OMOBJ>
+      <OMA>
+	<OMS name="mapsto" cd="sts" />
 	<OMA>
-	  <OMS name="mapsto" cd="sts" />
-	  <OMA>
-	    <OMS name="nassoc" cd="sts"/>
-	    <OMV name="SemiGroup"/>
-	  </OMA>
-	  <OMV name="SemiGroup" />
-	</OMA>
-      </OMOBJ>
-    </Signature>
-    
-    <Signature name="gcd" >
-      <OMOBJ>
-	<OMA>
-	  <OMS name="mapsto" cd="sts" />
-	  <OMA>
-	    <OMS name="nassoc" cd="sts"/>
-	    <OMV name="SemiGroup"/>
-	  </OMA>
-	  <OMV name="SemiGroup" />
-	</OMA>
-      </OMOBJ>
-    </Signature>
-    
-    <Signature name="plus">
-      <OMOBJ>
-	<OMA>
-	  <OMS name="mapsto" cd="sts"/>
-	  <OMA>
-	    <OMS name="nassoc" cd="sts"/> 
-	    <OMV name="AbelianSemiGroup"/>
-	  </OMA>
-	  <OMV name="AbelianSemiGroup"/>
-	</OMA>
-      </OMOBJ>
-    </Signature>
-    
-    <Signature name="unary_minus">
-      <OMOBJ>
-	<OMA>
-	  <OMS name="mapsto" cd="sts"/>
-	  <OMV name="AbelianGroup"/> 
-	  <OMV name="AbelianGroup"/> 
-	</OMA>
-      </OMOBJ>
-    </Signature>
-    
-    <Signature name="minus">
-      <OMOBJ>
-	<OMA>
-	  <OMS name="mapsto" cd="sts"/>
-	  <OMV name="AbelianGroup"/> 
-	  <OMV name="AbelianGroup"/> 
-	  <OMV name="AbelianGroup"/> 
-	</OMA>
-      </OMOBJ>
-    </Signature>
-    
-    <Signature name="times">
-      <OMOBJ>
-	<OMA>
-	  <OMS name="mapsto" cd="sts"/>
-	  <OMA>
-	    <OMS name="nassoc" cd="sts"/> 
-	    <OMV name="SemiGroup"/>
-	  </OMA>
+	  <OMS name="nassoc" cd="sts"/>
 	  <OMV name="SemiGroup"/>
 	</OMA>
-      </OMOBJ>
-    </Signature>
-    
-    <Signature name="divide">
-      <OMOBJ>
+	<OMV name="SemiGroup" />
+      </OMA>
+    </OMOBJ>
+  </Signature>
+  
+  <Signature name="gcd" >
+    <OMOBJ>
+      <OMA>
+	<OMS name="mapsto" cd="sts" />
 	<OMA>
-	  <OMS name="mapsto" cd="sts"/>
-	  <OMV name="AbelianGroup"/> 
-	  <OMV name="AbelianGroup"/> 
-	  <OMV name="AbelianGroup"/> 
+	  <OMS name="nassoc" cd="sts"/>
+	  <OMV name="SemiGroup"/>
 	</OMA>
-      </OMOBJ>
-    </Signature>
-    
-    <Signature name="power">
-      <OMOBJ>
+	<OMV name="SemiGroup" />
+      </OMA>
+    </OMOBJ>
+  </Signature>
+  
+  <Signature name="plus">
+    <OMOBJ>
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
 	<OMA>
-	  <OMS name="mapsto" cd="sts"/>
-	  <OMS name="NumericalValue" cd="sts"/> 
-	  <OMS name="NumericalValue" cd="sts"/> 
-	  <OMS name="NumericalValue" cd="sts"/> 
+	  <OMS name="nassoc" cd="sts"/> 
+	  <OMV name="AbelianSemiGroup"/>
 	</OMA>
-      </OMOBJ>
-    </Signature>
-    
-    <Signature name="abs">
-      <OMOBJ>
+	<OMV name="AbelianSemiGroup"/>
+      </OMA>
+    </OMOBJ>
+  </Signature>
+  
+  <Signature name="unary_minus">
+    <OMOBJ>
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="AbelianGroup"/> 
+	<OMV name="AbelianGroup"/> 
+      </OMA>
+    </OMOBJ>
+  </Signature>
+  
+  <Signature name="minus">
+    <OMOBJ>
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="AbelianGroup"/> 
+	<OMV name="AbelianGroup"/> 
+	<OMV name="AbelianGroup"/> 
+      </OMA>
+    </OMOBJ>
+  </Signature>
+  
+  <Signature name="times">
+    <OMOBJ>
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
 	<OMA>
-	  <OMS name="mapsto" cd="sts"/>
-	  <OMS name="C" cd="setname1"/> 
-	  <OMS name="R" cd="setname1"/> 
+	  <OMS name="nassoc" cd="sts"/> 
+	  <OMV name="SemiGroup"/>
 	</OMA>
-      </OMOBJ>
-    </Signature>
-    
-    <Signature name="root">
-      <OMOBJ>
-	<OMA>
-	  <OMS name="mapsto" cd="sts"/>
-	  <OMS name="NumericalValue" cd="sts"/> 
-	  <OMS name="NumericalValue" cd="sts"/> 
-	  <OMS name="NumericalValue" cd="sts"/> 
-	</OMA>
-      </OMOBJ>
-    </Signature>
-    
-    
-    <Signature name="sum" >
-      <OMOBJ>
+	<OMV name="SemiGroup"/>
+      </OMA>
+    </OMOBJ>
+  </Signature>
+  
+  <Signature name="divide">
+    <OMOBJ>
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="AbelianGroup"/> 
+	<OMV name="AbelianGroup"/> 
+	<OMV name="AbelianGroup"/> 
+      </OMA>
+    </OMOBJ>
+  </Signature>
+  
+  <Signature name="power">
+    <OMOBJ>
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="NumericalValue" cd="sts"/> 
+	<OMS name="NumericalValue" cd="sts"/> 
+	<OMS name="NumericalValue" cd="sts"/> 
+      </OMA>
+    </OMOBJ>
+  </Signature>
+  
+  <Signature name="abs">
+    <OMOBJ>
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="C" cd="setname1"/> 
+	<OMS name="R" cd="setname1"/> 
+      </OMA>
+    </OMOBJ>
+  </Signature>
+  
+  <Signature name="root">
+    <OMOBJ>
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="NumericalValue" cd="sts"/> 
+	<OMS name="NumericalValue" cd="sts"/> 
+	<OMS name="NumericalValue" cd="sts"/> 
+      </OMA>
+    </OMOBJ>
+  </Signature>
+  
+  
+  <Signature name="sum" >
+    <OMOBJ>
+      <OMA>
+	<OMS name="mapsto" cd="sts" />
+	<OMV name="IntegerRange" />
 	<OMA>
 	  <OMS name="mapsto" cd="sts" />
-	  <OMV name="IntegerRange" />
-	  <OMA>
-	    <OMS name="mapsto" cd="sts" />
-	    <OMS name="Z" cd="setname1" />
-	    <OMV name="AbelianMonoid" />
-	  </OMA>
+	  <OMS name="Z" cd="setname1" />
 	  <OMV name="AbelianMonoid" />
 	</OMA>
-      </OMOBJ>
-    </Signature>
-    
-    <Signature name="product" >
-      <OMOBJ>
+	<OMV name="AbelianMonoid" />
+      </OMA>
+    </OMOBJ>
+  </Signature>
+  
+  <Signature name="product" >
+    <OMOBJ>
+      <OMA>
+	<OMS name="mapsto" cd="sts" />
+	<OMV name="IntegerRange" />
 	<OMA>
 	  <OMS name="mapsto" cd="sts" />
-	  <OMV name="IntegerRange" />
-	  <OMA>
-	    <OMS name="mapsto" cd="sts" />
-	    <OMS name="Z" cd="setname1" />
-	    <OMV name="AbelianMonoid" />
-	  </OMA>
+	  <OMS name="Z" cd="setname1" />
 	  <OMV name="AbelianMonoid" />
 	</OMA>
-      </OMOBJ>
-    </Signature>
-    
-  </CDSignatures>]]>
+	<OMV name="AbelianMonoid" />
+      </OMA>
+    </OMOBJ>
+  </Signature>
+  
+</CDSignatures>]]>
 </literallayout>
 
 </section>
@@ -6360,9 +6329,8 @@ be present here.
   <title>The  <filename>MathML</filename> CDGroup</title>
   <sidebar revision="1999/08/26" author="OC"><para>ADD MathML CDGroup</para></sidebar>
   
-  <literallayout><![CDATA[
-  <CDGroup>
-    <CDGroupName>mathml</CDGroupName>
+  <literallayout><![CDATA[<CDGroup>
+  <CDGroupName>mathml</CDGroupName>
     <CDGroupVersion> 2 </CDGroupVersion>
     <CDGroupRevision> 0 </CDGroupRevision>
     <CDGroupURL>
@@ -6497,88 +6465,87 @@ be present here.
 <section id="errorcd">
   <title>The <filename>error</filename> Content Dictionary</title>
   
-  <literallayout><![CDATA[
-  <CD>
-    <CDName> error </CDName>
-    <CDURL> http://www.openmath.org/cd/error.ocd </CDURL>
-    <CDReviewDate> 2003-04-01 </CDReviewDate>
-    <CDStatus> official </CDStatus>
-    <CDDate> 2001-03-12 </CDDate>
-    <CDVersion> 2 </CDVersion>
-    <CDRevision> 0 </CDRevision>
-    <CDUses>
-      <CDName> arith1 </CDName>
-      <CDName> specfun1 </CDName>
-    </CDUses>
-    
-    <CDDefinition>
-      <Name> unhandled_symbol </Name>
-      <Description>
-	This symbol represents the error which is raised when an application
-	reads a symbol which is present in the mentioned content
-	dictionary, but which it has not implemented.
-	
-	When receiving such a symbol, the application should act as if it had
-	received the &OM; error object constructed from unhandled_symbol
-	and the unhandled symbol as in the example below.
-      </Description>
+  <literallayout><![CDATA[<CD>
+  <CDName> error </CDName>
+  <CDURL> http://www.openmath.org/cd/error.ocd </CDURL>
+  <CDReviewDate> 2003-04-01 </CDReviewDate>
+  <CDStatus> official </CDStatus>
+  <CDDate> 2001-03-12 </CDDate>
+  <CDVersion> 2 </CDVersion>
+  <CDRevision> 0 </CDRevision>
+  <CDUses>
+    <CDName> arith1 </CDName>
+    <CDName> specfun1 </CDName>
+  </CDUses>
+  
+  <CDDefinition>
+    <Name> unhandled_symbol </Name>
+    <Description>
+      This symbol represents the error which is raised when an application
+      reads a symbol which is present in the mentioned content
+      dictionary, but which it has not implemented.
       
-      <Example>
-	The application does not implement the Complex numbers:
-	<OMOBJ>
-	  <OME>
-	    <OMS cdbase="http://www.openmath.org/cd" cd="error" name="unhandled_symbol"/>
-	    <OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="C"/>
-	  </OME>
-	</OMOBJ>
-      </Example>
-    </CDDefinition>
+      When receiving such a symbol, the application should act as if it had
+      received the OpenMath error object constructed from unhandled_symbol
+      and the unhandled symbol as in the example below.
+    </Description>
     
-    <CDDefinition>
-      <Name> unexpected_symbol </Name>
-      <Description>
-	This symbol represents the error which is raised when an application
-	reads a symbol which is not present in the mentioned content dictionary.
-	
-	When receiving such a symbol, the application should act as if it had
-	received the &OM; error object constructed from unexpected_symbol
-	and the unexpected symbol as in the example below.
-      </Description>
-      <Example>
-	The application received a mistyped symbol
-	<OMOBJ>
-	  <OME>
-	    <OMS cdbase="http://www.openmath.org/cd" cd="error" name="unexpected_symbol"/>
-	    <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="plurse"/>
-	  </OME>
-	</OMOBJ>
-      </Example>
-    </CDDefinition>
-    
-    <CDDefinition>
-      <Name> unsupported_CD </Name>
-      <Description>
-	This symbol represents the error which is raised when an application
-	reads a symbol where the mentioned content dictionary is not
-	present.
-	
-	When receiving such a symbol, the application should act as if it had
-	received the &OM; error object constructed from unsupported_CD and
-	the symbol from the unsupported Content Dictionary as in the example
-	below.
-      </Description>
-      <Example>
-	The application does not know about the CD specfun1
-	<OMOBJ>
-	  <OME>
-	    <OMS cdbase="http://www.openmath.org/cd" cd="error" name="unsupported_CD"/>
-	    <OMS cdbase="http://www.openmath.org/cd" cd="specfun1" name="BesselJ"/>
-	  </OME>
-	</OMOBJ>
-      </Example>
-    </CDDefinition>
-    
-  </CD>]]>
+    <Example>
+      The application does not implement the Complex numbers:
+      <OMOBJ>
+	<OME>
+	  <OMS cdbase="http://www.openmath.org/cd" cd="error" name="unhandled_symbol"/>
+	  <OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="C"/>
+	</OME>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  
+  <CDDefinition>
+    <Name> unexpected_symbol </Name>
+    <Description>
+      This symbol represents the error which is raised when an application
+      reads a symbol which is not present in the mentioned content dictionary.
+      
+      When receiving such a symbol, the application should act as if it had
+      received the OpenMath error object constructed from unexpected_symbol
+      and the unexpected symbol as in the example below.
+    </Description>
+    <Example>
+      The application received a mistyped symbol
+      <OMOBJ>
+	<OME>
+	  <OMS cdbase="http://www.openmath.org/cd" cd="error" name="unexpected_symbol"/>
+	  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="plurse"/>
+	</OME>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  
+  <CDDefinition>
+    <Name> unsupported_CD </Name>
+    <Description>
+      This symbol represents the error which is raised when an application
+      reads a symbol where the mentioned content dictionary is not
+      present.
+      
+      When receiving such a symbol, the application should act as if it had
+      received the OpenMath error object constructed from unsupported_CD and
+      the symbol from the unsupported Content Dictionary as in the example
+      below.
+    </Description>
+    <Example>
+      The application does not know about the CD specfun1
+      <OMOBJ>
+	<OME>
+	  <OMS cdbase="http://www.openmath.org/cd" cd="error" name="unsupported_CD"/>
+	  <OMS cdbase="http://www.openmath.org/cd" cd="specfun1" name="BesselJ"/>
+	</OME>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  
+</CD>]]>
 </literallayout>
 
 </section>
@@ -6601,29 +6568,29 @@ be present here.
   <title>Restricting the &OM; Schema (Non-Normative)</title>
   
   <para> Relax NG allows one to state constraints such as <emphasis>
-if the cd attribute of OMS is arith1 then the name attribute must be
-one of lcm, gcd, plus etc.</emphasis> Thus it is easy to use a
-stylesheet to generate for any given CD, a Relax NG schema that
-expresses the constraint that an <systemitem>OMS</systemitem> naming
-that CD must only use symbols defined in the specified dictionary.
-Similarly it is possible to use the <emphasis>role</emphasis>
-information contained in the CD to restrict which symbols can be the
-first child of an <systemitem>OMBIND</systemitem> or the odd-numbered
-children of an <systemitem>OMATP</systemitem>. 
-</para>
-
-<para> The modularisation mechanisms of Relax NG then allow one to
-include these schema for all the CDs that you want to allow and, for
-example, to replace the regexp-based validation of the
-<systemitem>OMS</systemitem> attributes by explicit lists of allowed
-CD names, and for each CD Name, a list of allowed symbol names.
-</para>
-
-<para>
-For example, a CD-specific Relax NG Schema for the arith1 CD shown in
-<xref linkend="arith1.ocd"/> would look like:
-<literallayout>
-<![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+      if the cd attribute of OMS is arith1 then the name attribute must be
+      one of lcm, gcd, plus etc.</emphasis> Thus it is easy to use a
+    stylesheet to generate for any given CD, a Relax NG schema that
+    expresses the constraint that an <systemitem>OMS</systemitem> naming
+    that CD must only use symbols defined in the specified dictionary.
+    Similarly it is possible to use the <emphasis>role</emphasis>
+    information contained in the CD to restrict which symbols can be the
+    first child of an <systemitem>OMBIND</systemitem> or the odd-numbered
+    children of an <systemitem>OMATP</systemitem>. 
+  </para>
+  
+  <para> The modularisation mechanisms of Relax NG then allow one to
+    include these schema for all the CDs that you want to allow and, for
+    example, to replace the regexp-based validation of the
+    <systemitem>OMS</systemitem> attributes by explicit lists of allowed
+    CD names, and for each CD Name, a list of allowed symbol names.
+  </para>
+  
+  <para>
+    For example, a CD-specific Relax NG Schema for the arith1 CD shown in
+    <xref linkend="arith1.ocd"/> would look like:
+    <literallayout>
+      <![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="">
   <define name="cd.attlist.OMS" combine="choice">
     <attribute name="cd">
@@ -6631,18 +6598,18 @@ For example, a CD-specific Relax NG Schema for the arith1 CD shown in
     </attribute>
     <attribute name="name">
       <choice>
-        <value type="string">lcm</value>
-        <value type="string">gcd</value>
-        <value type="string">plus</value>
-        <value type="string">unary_minus</value>
-        <value type="string">minus</value>
-        <value type="string">times</value>
-        <value type="string">divide</value>
-        <value type="string">power</value>
-        <value type="string">abs</value>
-        <value type="string">root</value>
-        <value type="string">sum</value>
-        <value type="string">product</value>
+	<value type="string">lcm</value>
+	<value type="string">gcd</value>
+	<value type="string">plus</value>
+	<value type="string">unary_minus</value>
+	<value type="string">minus</value>
+	<value type="string">times</value>
+	<value type="string">divide</value>
+	<value type="string">power</value>
+	<value type="string">abs</value>
+	<value type="string">root</value>
+	<value type="string">sum</value>
+	<value type="string">product</value>
       </choice>
     </attribute>
   </define>
@@ -6650,48 +6617,48 @@ For example, a CD-specific Relax NG Schema for the arith1 CD shown in
 </literallayout>
 or, using the Relax NG compact syntax:
 <literallayout>
-cd.attlist.OMS |= 
+  cd.attlist.OMS |= 
   attribute cd {string "arith1" },
   attribute name {
-    string "lcm" |
-    string "gcd" |
-    string "plus" |
-    string "unary_minus" |
-    string "minus" |
-    string "times" |
-    string "divide" |
-    string "power" |
-    string "abs" |
-    string "root" |
-    string "sum" |
-    string "product" }
+  string "lcm" |
+  string "gcd" |
+  string "plus" |
+  string "unary_minus" |
+  string "minus" |
+  string "times" |
+  string "divide" |
+  string "power" |
+  string "abs" |
+  string "root" |
+  string "sum" |
+  string "product" }
 </literallayout>
 </para>
 
 <para> To build a schema that allows only symbols from arith1 we just
-need to include the &OM; schema described in <xref
-linkend="ssec_xml"/>, override the attribute declarations for
-OMS, and then include the schema for arith1.  For example:
-<literallayout>
-<![CDATA[<?xml version="1.0" encoding="UTF-8"?>
-<grammar xmlns="http://relaxng.org/ns/structure/1.0">
-  <include href="openmath.rng">
-    <define name="attlist.OMS">
-      <ref name="cd.attlist.OMS"/>
-    </define>
-  </include>
-  <include href="arith1.rng"/>
-</grammar>]]>
-</literallayout>
-or, in the compact syntax:
-<literallayout>
-include "openmath.rnc" {
- attlist.OMS = cd.attlist.OMS}
-
-include "arith1.rnc"
-</literallayout>
-Using this approach it is possible to include as many files as
-required.
+  need to include the &OM; schema described in <xref
+						     linkend="ssec_xml"/>, override the attribute declarations for
+  OMS, and then include the schema for arith1.  For example:
+  <literallayout>
+    <![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+    <grammar xmlns="http://relaxng.org/ns/structure/1.0">
+      <include href="openmath.rng">
+	<define name="attlist.OMS">
+	  <ref name="cd.attlist.OMS"/>
+	</define>
+      </include>
+      <include href="arith1.rng"/>
+    </grammar>]]>
+  </literallayout>
+  or, in the compact syntax:
+  <literallayout>
+    include "openmath.rnc" {
+    attlist.OMS = cd.attlist.OMS}
+    
+    include "arith1.rnc"
+  </literallayout>
+  Using this approach it is possible to include as many files as
+  required.
 </para>
 
 </appendix>
@@ -6700,7 +6667,7 @@ required.
   <title>&OM; Schema in XSD Syntax (Non-Normative)</title>
   
   <para>This is an XSD Schema generated from the Relax NG Schema described in 
-        <xref linkend="sec_xml"/>.
+    <xref linkend="sec_xml"/>.
   </para>
   <literallayout>
     &omxsd;
@@ -6711,162 +6678,162 @@ required.
   <title>&OM; DTD (Non-Normative)</title>
   
   <para>This is a DTD generated from the Relax NG Schema described in 
-        <xref linkend="sec_xml"/>.  Note that we cannot express the 
-        fact that the <systemitem>OMFOREIGN</systemitem> element can
-        contain any well-formed XML, so we have simply restricted it to
-        contain any XML defined in the DTD.
+    <xref linkend="sec_xml"/>.  Note that we cannot express the 
+    fact that the <systemitem>OMFOREIGN</systemitem> element can
+    contain any well-formed XML, so we have simply restricted it to
+    contain any XML defined in the DTD.
   </para>
   <literallayout>
     &omdtd;
   </literallayout>
 </appendix>
 
-  <appendix revisionflag="added" id="app_whats_new">
-    <title>Changes between &OM; 1.1 and &OM; 2 (Non-Normative)</title>
-
-
-    <para>In this appendix we describe the major changes that occurred
-between version 1.1 and version 2 of the &OM; standard. All changes to
-the encodings and content dictionaries have been designed to be
-backward compatibile, in other words all existing &OM; objects and
-Content Dictionaries are still valid in &OM; 2.  On the other hand an
-existing  &OM; 1.1 application may not be able to process &OM; 2
-objects.
-</para>
-
-    <section>
-      <title>Changes to the Formal Definition of Objects</title>
-      
-      <para>Additional features of abstract objects have been
+<appendix revisionflag="added" id="app_whats_new">
+  <title>Changes between &OM; 1.1 and &OM; 2 (Non-Normative)</title>
+  
+  
+  <para>In this appendix we describe the major changes that occurred
+    between version 1.1 and version 2 of the &OM; standard. All changes to
+    the encodings and content dictionaries have been designed to be
+    backward compatibile, in other words all existing &OM; objects and
+    Content Dictionaries are still valid in &OM; 2.  On the other hand an
+    existing  &OM; 1.1 application may not be able to process &OM; 2
+    objects.
+  </para>
+  
+  <section>
+    <title>Changes to the Formal Definition of Objects</title>
+    
+    <para>Additional features of abstract objects have been
       introduced:</para>
-      <itemizedlist>
-	<listitem>
-	  <para>&OM; symbols have an optional rôle qualifier which restricts the
+    <itemizedlist>
+      <listitem>
+	<para>&OM; symbols have an optional rôle qualifier which restricts the
 	  place where they may occur within compound objects.
-Although part of the abstract description of a symbol this information
-is intended to be stored in the CD.  In the &exml; encoding it may be
-used to provide a more restricted schema leading to tighter
-validation.
-</para>
-	</listitem>
-	<listitem>
-	  <para>
-In addition to their <emphasis>name</emphasis> and
-<emphasis>cd</emphasis> properties, symbols now have an optional
-<emphasis>cdbase</emphasis> property.  This can be used to
-disambiguate between two CDs which are produced independently but have
-the same name, and can also be used to produce a canonical URI for any
-&OM; symbol for use in frameworks such as RDFS or MathML which
-need one.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>&OM; variables can be indexed, in which case they
+	  Although part of the abstract description of a symbol this information
+	  is intended to be stored in the CD.  In the &exml; encoding it may be
+	  used to provide a more restricted schema leading to tighter
+	  validation.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  In addition to their <emphasis>name</emphasis> and
+	  <emphasis>cd</emphasis> properties, symbols now have an optional
+	  <emphasis>cdbase</emphasis> property.  This can be used to
+	  disambiguate between two CDs which are produced independently but have
+	  the same name, and can also be used to produce a canonical URI for any
+	  &OM; symbol for use in frameworks such as RDFS or MathML which
+	  need one.
+	</para>
+      </listitem>
+      <listitem>
+	<para>&OM; variables can be indexed, in which case they
 	  carry information about their enumerator.  Since &OM; only
-allows variables and not objects to be bound, it was not possible to
-produce indexed variables by defining an appropriate symbol in a CD.
-Also, although it would be possible to produce an indexed variable
-using the new <emphasis>semantic-attribute</emphasis> role, it was
-felt that attributes describe or modify an object, whereas in this
-case we were constructing an atomic object.
-</para>
-	</listitem>
-	<listitem>
-	  <para>An &OM; object may be attributed with a non-&OM; object
-using the new
+	  allows variables and not objects to be bound, it was not possible to
+	  produce indexed variables by defining an appropriate symbol in a CD.
+	  Also, although it would be possible to produce an indexed variable
+	  using the new <emphasis>semantic-attribute</emphasis> role, it was
+	  felt that attributes describe or modify an object, whereas in this
+	  case we were constructing an atomic object.
+	</para>
+      </listitem>
+      <listitem>
+	<para>An &OM; object may be attributed with a non-&OM; object
+	  using the new
 	  <emphasis>foreign</emphasis>constructor.  This allows an
-&exml;-encoded &OM; object to be attributed with appropriate
-Presentation MathML, for example, or a base-64 encoded MPEG file of
-its aural rendering.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>the new role property can be used to indicate that a
-symbol is an <emphasis>attribution</emphasis>, in which case an
-application may ignore or remove it, or a <emphasis>semantic
-attribution</emphasis> in which case removing it is no longer
-guarenteed to produce an equivalent object.  
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>restrictions on the names of symbols, variables and
-content dictionaries have been relaxed to be compatible with XML and
-to be less Anglo-Saxon.
-	  </para>
-	</listitem>
-      </itemizedlist>
-
-    </section>
-
-    <section>
-      <title>Changes to the encodings</title>
-
-      <para>The &OM; version 2 standard still mandantes two encodings:
+	  &exml;-encoded &OM; object to be attributed with appropriate
+	  Presentation MathML, for example, or a base-64 encoded MPEG file of
+	  its aural rendering.
+	</para>
+      </listitem>
+      <listitem>
+	<para>the new role property can be used to indicate that a
+	  symbol is an <emphasis>attribution</emphasis>, in which case an
+	  application may ignore or remove it, or a <emphasis>semantic
+	    attribution</emphasis> in which case removing it is no longer
+	  guarenteed to produce an equivalent object.  
+	</para>
+      </listitem>
+      <listitem>
+	<para>restrictions on the names of symbols, variables and
+	  content dictionaries have been relaxed to be compatible with XML and
+	  to be less Anglo-Saxon.
+	</para>
+      </listitem>
+    </itemizedlist>
+    
+  </section>
+  
+  <section>
+    <title>Changes to the encodings</title>
+    
+    <para>The &OM; version 2 standard still mandantes two encodings:
       &exml; and binary. The &exml; encoding in particular has been
       updated to reflect the latest development of &exml; and is now a
-full &exml; application.  Version 2
+      full &exml; application.  Version 2
       encodings are backward compatible with version 1.1 encodings.
-      </para>
-      <itemizedlist>
-	<listitem>
-	  <para>both encodings have been updated to support the
-changes to the model of abstract objects described above.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>encodings support internal and external sharing of
+    </para>
+    <itemizedlist>
+      <listitem>
+	<para>both encodings have been updated to support the
+	  changes to the model of abstract objects described above.
+	</para>
+      </listitem>
+      <listitem>
+	<para>encodings support internal and external sharing of
 	  objects</para>
-	</listitem>
-	<listitem>
-	  <para>the &exml; encoding in version 2 is defined by a Relax
+      </listitem>
+      <listitem>
+	<para>the &exml; encoding in version 2 is defined by a Relax
 	  NG schema and the mandated character-based grammar of
 	  version 1 has been removed, while the DTD has been relegated
-to an Appendix.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>an optional attribute defining the version of the
+	  to an Appendix.
+	</para>
+      </listitem>
+      <listitem>
+	<para>an optional attribute defining the version of the
 	  encoding can be specified for the encoded object</para>
-	</listitem>
-      </itemizedlist>
-      
-
-    </section>
-
+      </listitem>
+    </itemizedlist>
     
-    <section>
-      <title>Changes to Content Dictionaries</title>
-
-      <itemizedlist>
-	<listitem>
-      <para>In &OM; version 2 Content Dictionaries are defined in
-terms of 
-	the abstract information content that needs
-	to be specified for defining &OM; symbols. The current
-	implementation is thus just one possible encoding of this abstract model.
-      </para>
-	</listitem>
-	<listitem>
-<para> The <emphasis>CDUses</emphasis> element is not part of this
-information model and has been made optional and deprecated in the reference encoding
-since it is trivial to extract its content automatically from the CD.
-</para>
-	</listitem>
-	<listitem>
-<para>
-A CD may now, optionally, define its cdbase.
-</para>
-	</listitem>
-	<listitem>
-<para>
-A CD symbol definition may now, optionally, define its role.
-</para>
-	</listitem>
-      </itemizedlist>
-      
-    </section>
-
-  </appendix>
+    
+  </section>
+  
+  
+  <section>
+    <title>Changes to Content Dictionaries</title>
+    
+    <itemizedlist>
+      <listitem>
+	<para>In &OM; version 2 Content Dictionaries are defined in
+	  terms of 
+	  the abstract information content that needs
+	  to be specified for defining &OM; symbols. The current
+	  implementation is thus just one possible encoding of this abstract model.
+	</para>
+      </listitem>
+      <listitem>
+	<para> The <emphasis>CDUses</emphasis> element is not part of this
+	  information model and has been made optional and deprecated in the reference encoding
+	  since it is trivial to extract its content automatically from the CD.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  A CD may now, optionally, define its cdbase.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  A CD symbol definition may now, optionally, define its role.
+	</para>
+      </listitem>
+    </itemizedlist>
+    
+  </section>
+  
+</appendix>
 
 
 <bibliography id="bibliography">
@@ -6875,18 +6842,18 @@ A CD symbol definition may now, optionally, define its role.
   <biblioentry id="POSIX" role="book" revisionflag="added">
     <author><othername>IEEE</othername></author>
     <title>Std 1003.1-2001 (Open Group Technical Standard, Issue 6),
-Standard for Information Technology-Portable Operating System Interface (POSIX)</title>
+      Standard for Information Technology-Portable Operating System Interface (POSIX)</title>
     <pubdate>2001</pubdate>
   </biblioentry>
   
   <biblioentry id="IETF2396" role="misc" revisionflag="added">
-  <author><othername>IETF</othername></author>
+    <author><othername>IETF</othername></author>
     <title>RFC 2396 - Uniform Resource Identifiers (URI): Generic Syntax</title>
     <pubdate>August 1998</pubdate>
   </biblioentry>
   
   <biblioentry id="XSD" role="book" revisionflag="added">
-  <author><othername>World Wide Web Consortium</othername></author>
+    <author><othername>World Wide Web Consortium</othername></author>
     <title>XSD Schema Parts 1 &amp; 2</title>
     <pubdate>May 2001</pubdate>
   </biblioentry>
@@ -7117,9 +7084,7 @@ Standard for Information Technology-Portable Operating System Interface (POSIX)<
     <publisher><publishername>Cambridge University Press</publishername></publisher>
     <pubdate>1993</pubdate>
   </biblioentry>
-  
-  
-  
+
   <biblioentry id="harrison-fais" role="INPROCEEDINGS">
     <author><firstname>John</firstname> <surname>Harrison</surname></author>
     <title>Pure Mathematics in a Mechanized Logic</title>
@@ -7204,7 +7169,7 @@ Standard for Information Technology-Portable Operating System Interface (POSIX)<
     <title>Classification of Communication and Cooperation
       Mechanisms for Logical and Symbolic Computation
       Systems</title> 
-    <editor><othername>F. Baader and K.U. Schulz</othername></editor>
+    <editor><othername>Franz Baader and Klaus U. Schulz</othername></editor>
     <bibliomisc role="series">Applied Logic</bibliomisc>
     <title role="book">Proceedings of First International Workshop
       "Frontiers of Combining Systems" (FroCoS'96)</title> 
@@ -7213,10 +7178,10 @@ Standard for Information Technology-Portable Operating System Interface (POSIX)<
   </biblioentry>
   
   <biblioentry id="OM1.2" role="Misc">
-    <author><firstname>S.</firstname> <surname>Buswell</surname></author>
-    <author><firstname>S.</firstname> <surname>Dalmas</surname></author>
-    <author><firstname>J.</firstname> <surname>Davenport</surname></author>
-    <author><firstname>N.</firstname> <surname>Howgrave-Graham</surname></author>
+    <author><firstname>Stephen</firstname> <surname>Buswell</surname></author>
+    <author><firstname>Stephane</firstname> <surname>Dalmas</surname></author>
+    <author><firstname>James</firstname> <surname>Davenport</surname></author>
+    <author><firstname>Nick</firstname> <surname>Howgrave-Graham</surname></author>
     <title>Emerging Technologies</title>
     <bibliomisc>&OM; WP 1.2 Deliverable</bibliomisc>
     <pubdate>1998</pubdate>
@@ -7228,7 +7193,7 @@ Standard for Information Technology-Portable Operating System Interface (POSIX)<
   <biblioentry id="Abbott_Leeuwen_Strotmann_98" role="Article">
     <author><firstname>John</firstname> <othername>A.</othername> <surname>Abbott</surname></author>
     <author><firstname>Andr&#233;</firstname> <surname>van Leeuwen</surname></author>
-    <author><firstname>A.</firstname> <surname>Strotmann</surname></author>
+    <author><firstname>Andreas</firstname> <surname>Strotmann</surname></author>
     <title>&OM;: Communicating Mathematical Information 
       between Co-operating Agents in a Knowledge Network</title>
     <pubdate>1998</pubdate>
@@ -7242,890 +7207,895 @@ Standard for Information Technology-Portable Operating System Interface (POSIX)<
   
   <biblioentry id="Robbiano_98" role="InProceedings">
     <author><firstname>L.</firstname> <surname>Robbiano</surname></author>
-  <title>Gr&#246;bner Bases and Statistics</title>
-  <editor><othername>Bruno Buchberger and Franz Winkler</othername></editor>
-  <bibliomisc role="volume">251</bibliomisc>
-  <bibliomisc role="series">London Mathematical Society Lecture Bibliomisc Series</bibliomisc>
-  <bibliomisc role="pages">179&#8211;204</bibliomisc>
-  <title role="book">Gr&#246;bner Bases and Applications</title>
-  <pubdate>1998</pubdate>
-  <publisher><publishername>Cambridge University Press</publishername></publisher>
-</biblioentry>
-
-<biblioentry id="Moller_98" role="InProceedings">
-  <author><firstname>H.M.</firstname> <surname>M&#246;ller</surname></author>
-  <title>Gr&#246;bner Bases and Numerical Analysis</title>
-  <editor><othername>Bruno Buchberger and Franz Winkler</othername></editor>
-  <bibliomisc role="volume">251</bibliomisc>
-  <bibliomisc role="series">London Mathematical Society Lecture Bibliomisc Series</bibliomisc>
-  <bibliomisc role="pages">159&#8211;179</bibliomisc>
-  <title role="book">Gr&#246;bner Bases and Applications</title>
-  <pubdate>1998</pubdate>
-  <publisher><publishername>Cambridge University Press</publishername></publisher>
-</biblioentry>
-
-<biblioentry id="Canny_Manocha_93" role="Article">
-  <author><firstname>J.F.</firstname> <surname>Canny</surname></author>
-  <author><firstname>D.</firstname> <surname>Manocha</surname></author>
-  <title>Multipolynomial resultant algorithms</title>
-  <bibliomisc role="journal">Journal of Symbolic Computation</bibliomisc>
-  <pubdate>1993</pubdate>
-  <bibliomisc role="volume">15</bibliomisc>
-  <bibliomisc role="pages">99&#8211;122</bibliomisc>
-</biblioentry>
-
-
-
-
-<biblioentry id="Arnon_Beach_McIsaac_Waldspurger_88" role="InProceedings">
-  <author><firstname>D.</firstname> <surname>Arnon</surname></author>
-  <author><firstname>R.</firstname> <surname>McIsaac</surname></author>
-  <author><firstname>K.</firstname> <surname>Waldspurger</surname></author>
-  <title>CaminoReal: an Interactive Mathematical Bibliomiscbook</title>
-  <bibliomisc role="booktitle">International Conference on Electronic Publishing,
-		  Document Manipulation and Typography</bibliomisc>
-  <pubdate>1988</pubdate>
-  <publisher><publishername>Cambridge University Press</publishername></publisher>
-  <address>Nice</address>
-</biblioentry>
-
-<biblioentry id="Dalmas_Gaetano_Sausse_94a" role="TechReport">
-  <author><firstname>S.</firstname> <surname>Dalmas</surname></author>
-  <author><firstname>M.</firstname> <surname>Ga&#235;tano</surname></author>
-  <author><firstname>A.</firstname> <surname>Sausse</surname></author>
-  <title>ASAP: a protocol for symbolic computation systems</title>
-  <publisher><publishername>INRIA</publishername></publisher>
-  <pubdate>1994</pubdate>
-  <bibliomisc role="number">162</bibliomisc>
-</biblioentry>
-
-<biblioentry id="Abbott_Dalmas_Dewar_Diaz_Gray_Sheridan_Strotmann_Vorkoetter_96" role="Misc">
-  <author><firstname>J.</firstname> <surname>Abbott</surname></author>
-  <author><firstname>S.</firstname> <surname>Dalmas</surname></author>
-  <author><firstname>M.</firstname> <surname>Dewar</surname></author>
-  <author><firstname>A.</firstname> <surname>Diaz</surname></author>
-  <author><firstname>S.</firstname> <surname>Gray</surname></author>
-  <author><firstname>S.</firstname> <surname>Sheridan</surname></author>
-  <author><firstname>A.</firstname> <surname>Strotmann</surname></author>
-  <author><firstname>S.</firstname> <surname>Vorkoetter</surname></author>
-  <title>Report of the &OM; Communications Committee</title>
-  <pubdate>1995</pubdate>
-  <pubdate role="month">13 November</pubdate>
-</biblioentry>
-
-<biblioentry id="LEGOmanual" role="manual">
-  <author><firstname>Z.</firstname> <surname>Luo</surname></author>
-  <author><firstname>R.</firstname> <surname>Pollack</surname></author>
-  <title>LEGO Proof Development System: User's Manual</title>
-  <bibliomisc role="organization">Department of Compter Science, University of Edinburgh</bibliomisc>
-  <bibliomisc role="year">1992</bibliomisc>
-</biblioentry>
-
-<biblioentry id="luo_thesis" role="PhdThesis"> 
-  <author><firstname>Z.</firstname> <surname>Luo</surname></author> 
-  <title>An Extended Calculus of Constructions</title> 
-  <bibliomisc role="school">Edinburgh University</bibliomisc> 
-  <bibliomisc role="year">1990</bibliomisc> 
-</biblioentry>
-
-
-<biblioentry id="Martin_Shand_97" role="TechReport">
-  <author><firstname>U.</firstname> <surname>Martin</surname></author>
-  <author><firstname>D.</firstname> <surname>Shand</surname></author>
-  <title>Investigating some Embedded Verification Techniques
-		  for Computer Algebra Tools</title>
-  <publisher><publishername>RISC-Linz, Research Institute for Symbolic Computation</publishername></publisher>
-  <pubdate>1997</pubdate>
-  <bibliomisc role="number">No. 97-20</bibliomisc>
-  <address>J. Kepler University, Linz (A)</address>
-  <bibliomisc>http://www-theory.dcs.st-and.ac.uk/~ddshand/Papers/pub.html</bibliomisc>
-</biblioentry>
-
-<biblioentry id="Barendregt_Barendsen_97" role="Misc">
-  <author><firstname>H.</firstname> <surname>Barendregt</surname></author>
-  <author><firstname>E.</firstname> <surname>Barendsen</surname></author>
-  <title>Efficient Computations in Formal Proofs</title>
-  <bibliomisc>To Appear.</bibliomisc>
-</biblioentry>
-
-<biblioentry id="CA_industry_93" role="Book">
-  <title>Computer Algebra in Industry,</title>
-  <publisher><publishername>Wiley Chichester</publishername></publisher>
-  <pubdate>1993</pubdate>
-  <editor><othername>A. M. Cohen</othername></editor>
-  <bibliomisc role="series">Problem Solving in Practice</bibliomisc>
-</biblioentry>
-
-
-<biblioentry id="vrmlspec97" role="unpublished">
-  <author><firstname>R.</firstname> <surname>Carey</surname></author>
-  <author><firstname>C.</firstname> <surname>Marrin</surname></author>
-  <author><firstname>G.</firstname> <surname>Bell</surname></author>
-  <title>The Virtual Reality Modelling Language</title>
-  <bibliomisc>International Standard ISO/IEC 14772-1:1997</bibliomisc>
-  <bibliomisc>http://www.vrml.org/Specifications/VRML97/</bibliomisc>
-  <bibliomisc role="year">1997</bibliomisc>
-</biblioentry>
-
-<biblioentry id="vrmlarm97" role="book">
-  <author><firstname>R.</firstname> <surname>Carey</surname></author>
-  <author><firstname>G.</firstname> <surname>Bell</surname></author>
-  <title>The Annotated VRML Reference Manual</title>
-  <publisher><publishername>Addison-Wesley</publishername></publisher>
-  <bibliomisc role="year">1997</bibliomisc>
-</biblioentry>
-
-<biblioentry id="eaispec97" role="unpublished">
-  <author><firstname>C.</firstname> <surname>Marrin</surname></author>
-  <title>External Authoring Interface Reference</title>
-  <bibliomisc>Proposal for a VRML 2.0 Informative Annex</bibliomisc>
-  <bibliomisc>http://www.vrml.org/WorkingGroups/vrml-eai/ExternalInterface.html</bibliomisc>
-  <pubdate>1997</pubdate>
-  <pubdate role="month">November</pubdate>
-</biblioentry>
-
-<biblioentry id="harrison-form" role="TECHREPORT">
-  <author><firstname>John</firstname> <surname>Harrison</surname></author>
-  <title>Formalized Mathematics</title>
-  <publisher><publishername>Turku Centre for Computer Science (TUCS)</publishername></publisher>
-  <address>Lemmink&#228;isenkatu 14 A, FIN-20520 Turku,
-                           Finland</address>
-  <pubdate>1996</pubdate>
-  <bibliomisc role="number">36</bibliomisc>
-  <bibliomisc>http://www.cl.cam.ac.uk/users/jrh/papers/form-math3.html</bibliomisc>
-</biblioentry>
-		  
-		  
-		  
-<biblioentry id="Dunstan_Kelsey_Linton_Martin_98" role="InProceedings">
-  <author><firstname>Martin</firstname> <surname>Dunstan</surname></author>
-  <author><firstname>Tom</firstname> <surname>Kelsey</surname></author>
-  <author><firstname>Steve</firstname> <surname>Linton</surname></author>
-  <author><firstname>Ursula</firstname> <surname>Martin</surname></author>
-  <title>Lightweight Formal Methods for Computer Algebra Systems</title>
-  <title role="book">ISSAC'98: International Symposium on Symbolic and Algebraic Computation</title>
-  <pubdate>1998</pubdate>
-  <editor><othername>O. Gloor</othername></editor>
-  <address>Rostock, Germany</address>
-  <pubdate role="month">August</pubdate>
-  <publisher><publishername>ACM Press</publishername></publisher>
-</biblioentry>
-
-<biblioentry id="Jackson_95" role="PhdThesis">
-  <author><firstname>Paul</firstname> <surname>Jackson</surname></author>
-  <title>Enhancing the Nuprl Proof Development System and 
-Applying it to Computational Abstract Algebra</title>
-  <bibliomisc role="school">Cornell University</bibliomisc>
-  <pubdate>1995</pubdate>
-  <bibliomisc role="series">TR95-1509</bibliomisc>
-</biblioentry>
-
-<biblioentry id="Thery_98" role="InProceedings">
-  <author><firstname>Laurent</firstname> <surname>Th&#233;ry</surname></author>
-  <title>A Certified Version of Buchberger Algorithm</title>
-  <title role="book">Automated Deduction - CADE 15: 
-15th International Conference on Automated Deduction</title>
-  <pubdate>1998</pubdate>
-  <editor><othername>C. Kirchner and H. Kirchner</othername></editor>
-  <bibliomisc role="volume">1421</bibliomisc>
-  <bibliomisc role="series">Lecture Bibliomiscs in Artificial Intelligence</bibliomisc>
-  <address>Landau, Germany</address>
-  <pubdate role="month">July</pubdate>
-  <publisher><publishername>Springer Verlag</publishername></publisher>
-</biblioentry>
-
-<biblioentry id="PolyMath_JAVA" role="Misc">
-  <author><othername>PolyMath &OM; Development Team</othername></author>
-  <title>Java &OM; Library: Version 0.7c</title>
-  <bibliomisc>http://pdg.cecm.sfu.ca/openmath/</bibliomisc>
-  <pubdate role="month">June</pubdate>
-  <pubdate>1999</pubdate>
-</biblioentry>
-
-<biblioentry id="STARS" role="Misc">
-  <author><firstname>Stephen</firstname> <surname>Buswell</surname></author>
-  <title>STARS</title>
-  <bibliomisc>Available from Stilo Technologies</bibliomisc>
-  <bibliomisc>http://www.stilo.com</bibliomisc>
-  <pubdate role="month">April</pubdate>
-  <pubdate>1999</pubdate>
-</biblioentry>
-
-
-<biblioentry id="OMurl" role="Misc">
-  <author><othername>&OM; Society Website</othername></author>
-  <title>www.openmath.org</title>
-</biblioentry>
-
-<biblioentry id="Dalmas_Gaetano_Watt_97" role="InProceedings">
-  <author><firstname>S.</firstname> <surname>Dalmas</surname></author>
-  <author><firstname>M.</firstname> <surname>Ga&#235;tano</surname></author>
-  <author><firstname>S.</firstname> <surname>Watt</surname></author>
-  <title>An &OM; 1.0 Implementation</title>
-  <bibliomisc role="pages">241&#8211;248</bibliomisc>
-  <bibliomisc role="booktitle">Proceedings of ISSAC 97</bibliomisc>
-  <pubdate>1997</pubdate>
-  <publisher><publishername>ACM Press</publishername></publisher>
-</biblioentry>
-
-<biblioentry id="OM_96" role="Misc">
-  <author><othername>&OM; Steering Committee</othername></author>
-  <title>&OM; Version 1.0 released</title>
-  <pubdate>1996</pubdate>
-  <pubdate role="month">December</pubdate>
-  <bibliomisc>http://www.openmath.org</bibliomisc>
-</biblioentry>
-
-<biblioentry id="OM_98" role="Misc">
-  <author><othername>&OM; Consortium</othername></author>
-  <title>&OM; Version 1 - Draft</title>
-  <pubdate>1998</pubdate>
-  <pubdate role="month">June</pubdate>
-  <bibliomisc>ftp://ftp-sop.inria.fr/safir/OM/v1.ps</bibliomisc>
-</biblioentry>
-
-		  
-		  
-		 
-<biblioentry id="Gonnet_Seppala_Watt_96" role="Misc">
-  <author><firstname>G.</firstname> <surname>Gonnet</surname></author>
-  <author><firstname>M.</firstname> <surname>Seppala</surname></author>
-  <author><firstname>S.</firstname> <surname>Watt</surname></author>
-  <title>Semantic Dictionaries for &OM;</title>
-  <bibliomisc>Presented at the 6th &OM; Workshop, Z&#252;rich</bibliomisc>
-  <pubdate>1996</pubdate>
-  <pubdate role="month">July 27-28</pubdate>
-  <bibliomisc>http://www.inf.ethz.ch/personal/gonnet/ContDict.html</bibliomisc>
-</biblioentry>
-
-<biblioentry id="Constable_98" role="Misc">
-  <author><firstname>Robert</firstname> <surname>Constable</surname></author>
-  <bibliomisc>Personal Communication</bibliomisc>
-  <pubdate>1998</pubdate>
-  <pubdate role="month">July</pubdate>
-</biblioentry>
-
-		  
-		  
-		  
-		  
-<biblioentry id="Caprotti_Cohen_Elbers_Geuvers_98" role="Misc">
-  <author><firstname>O.</firstname> <surname>Caprotti</surname></author>
-  <author><firstname>A.</firstname> <othername>M.</othername> <surname>Cohen</surname></author>
-  <author><firstname>H.</firstname> <surname>Elbers</surname></author>
-  <author><firstname>H.</firstname> <surname>Geuvers</surname></author>
-  <title>Connecting &OM; to Formal Math</title>
-  <bibliomisc>Calculemus and Types '98</bibliomisc>
-  <pubdate>1998</pubdate>
-  <pubdate role="month">July</pubdate>
-</biblioentry>
-
-
-<biblioentry id="UNICODE" role="Book">
-  <author><othername>Unicode Consortium</othername></author>
-  <title>The Unicode Standard: Version <phrase revisionflag="deleted">2.0</phrase><phrase revisionflag="added">4.0</phrase></title>
-  <publisher><publishername>Addison-Wesley Developers Press</publishername></publisher>
-  <pubdate revisionflag="deleted">1996</pubdate>
-  <pubdate revisionflag="added">2003</pubdate>
-</biblioentry>
-
-<biblioentry id="ieee754_85" role="Misc">
-  <bibliomisc role="key">ieee</bibliomisc>
-  <title>IEEE Standard for binary Floating-Point Arithmetic</title>
-  <bibliomisc>ANSI/IEEE Standard 754</bibliomisc>
-  <bibliomisc role="year">1985</bibliomisc>
-</biblioentry>
-
-<biblioentry id="rfc1642" role="Misc">
-  <author><firstname>D.</firstname> <surname>Goldsmith</surname></author>
-  <author><firstname>M.</firstname> <surname>Davis</surname></author>
-  <title>UTF-7: A Mail Safe Transformation Format of Unicode</title>
-  <bibliomisc>RFC: 1642</bibliomisc>
-  <pubdate role="month">July</pubdate>
-  <pubdate>1994</pubdate>
-</biblioentry>
-
-<biblioentry id="rfc1521" role="Misc">
-  <author><firstname>N.</firstname> <surname>Borenstein</surname></author>
-  <author><firstname>N</firstname> <surname>Freed</surname></author>
-  <title>MIME (Multipurpose Internet Mail Extensions) Part One: Mechanism for Specifying and Describing the Format of Internet Message Bodies</title>
-  <bibliomisc>RFC: 1521</bibliomisc>
-  <pubdate role="month">September</pubdate>
-  <pubdate>1993</pubdate>
-  <bibliomisc>http://www.math-inf.uni-greifswald.de/~teumer/mime/1521/rfc1521ToC.html</bibliomisc>
-</biblioentry>
-
-<biblioentry id="iso646_83" role="Misc">
-  <bibliomisc role="key">iso 646</bibliomisc>
-  <title>ISO 7-bit coded character set for information interchange</title>
-  <bibliomisc>ISO 646:1983</bibliomisc>
-  <pubdate>1983</pubdate>
-</biblioentry>
-
-<biblioentry id="rfc2152" role="Misc">
-  <author><firstname>D.</firstname> <surname>Goldsmith</surname></author>
-  <author><firstname>M.</firstname> <surname>Davis</surname></author>
-  <title>UTF-7: A Mail Safe Transformation Format of Unicode</title>
-  <bibliomisc>RFC: 2152</bibliomisc>
-  <pubdate role="month">May</pubdate>
-  <pubdate>1997</pubdate>
-  <bibliomisc>http://www.cis.ohio-state.edu/htbin/rfc/rfc2152.html</bibliomisc>
-</biblioentry>
-
-
-
-<biblioentry id="xmlns" role="Misc">
-  <author><othername>World Wide Web Consortium</othername></author>
-  <title>Namespaces in XML</title>
-  <bibliomisc>REC-xml-names-19990114</bibliomisc>
-  <pubdate role="month">January</pubdate>
-  <pubdate>1999</pubdate>
-  <bibliomisc>http://www.w3.org/TR/REC-xml-names</bibliomisc>
-</biblioentry>
-
-<biblioentry id="xml" role="Misc">
-  <author><othername>World Wide Web Consortium</othername></author>
-  <title>Extensible Markup Language XML 1.0</title>
-  <bibliomisc>REC-xml-19980210</bibliomisc>
-  <pubdate role="month">February</pubdate>
-  <pubdate>1998</pubdate>
-  <bibliomisc>http://www.w3.org/TR/REC-xml</bibliomisc>
-</biblioentry>
-
-
-<biblioentry id="xml-stylesheet" role="Misc">
-  <author><othername>World Wide Web Consortium</othername></author>
-  <title>Associating Style Sheets with XML documents Version 1.0</title>
-  <bibliomisc>W3C Recommendation</bibliomisc>
-  <pubdate role="month">June</pubdate>
-  <pubdate>1998</pubdate>
-  <bibliomisc>http://www.w3.org/TR/xml-stylesheet/</bibliomisc>
-</biblioentry>
-
-
-<biblioentry id="utf8" role="Misc">
-  <author><firstname>F.</firstname> <surname>Yergeau</surname></author>
-  <title>UTF-8, a transformation format of ISO 10646</title>
-  <bibliomisc>RFC 2279</bibliomisc>
-  <pubdate role="month">January</pubdate>
-  <pubdate>1998</pubdate>
-  <bibliomisc>Alis Technologies</bibliomisc>
-</biblioentry>
-
-<biblioentry id="iso9660" role="Misc">
-  <author><othername>Technical committee / subcommittee: JTC 1</othername></author>
-  <title>ISO 9660:1988 Information processing &#8211; Volume and File Structure of CDROM for Information Interchange</title>
-  <bibliomisc>ISO 9660</bibliomisc>
-  <pubdate>1988</pubdate>
-</biblioentry>
-
-<biblioentry id="OM_D122" role="Misc">
-  <author><firstname>S.</firstname> <surname>Buswell</surname></author>
-  <author><firstname>S.</firstname> <surname>Dalmas</surname></author>
-  <author><firstname>J.</firstname> <surname>Davenport</surname></author>
-  <title>&OM; task 1.2: Emerging Technologies</title>
-  <bibliomisc>&OM; Deliverable 1.2.2</bibliomisc>
-  <pubdate role="month">September</pubdate>
-  <pubdate>1998</pubdate>
-  <bibliomisc>Confidential</bibliomisc>
-</biblioentry>
-
-<biblioentry id="xml_98" role="Misc">
-  <author><othername>World Wide Web Consortium</othername></author>
-  <title>Extensible Markup Language (XML) 1.0.</title>
-  <bibliomisc>W3C Recommendation REC-xml-19980210</bibliomisc>
-  <pubdate role="month">February</pubdate>
-  <pubdate>1998</pubdate>
-  <bibliomisc>http://www.w3.org/TR/1998/REC-xml-19980210</bibliomisc>
-</biblioentry>
-
-<biblioentry id="OM_D131a" role="Misc">
-  <author><othername>&OM; Consortium</othername></author>
-  <title>The &OM; Standard</title>
-  <bibliomisc>&OM; Deliverable 1.3.1a</bibliomisc>
-  <pubdate role="month">September</pubdate>
-  <pubdate>1998</pubdate>
-  <bibliomisc>http://www.nag.co.uk/projects/OpenMath.html</bibliomisc>
-</biblioentry>
-
-<biblioentry id="OM_D131b" role="Misc">
-  <author><firstname>O.</firstname> <surname>Caprotti</surname></author>
-  <author><firstname>A.</firstname> <othername>M.</othername> <surname>Cohen</surname></author>
-  <title>A Type System for &OM;</title>
-  <bibliomisc>&OM; Deliverable 1.3.1b</bibliomisc>
-  <pubdate role="month">September</pubdate>
-  <pubdate>1998</pubdate>
-  <bibliomisc>http://www.nag.co.uk/projects/OpenMath.html</bibliomisc>
-</biblioentry>
-
-<biblioentry id="OM_D132c" role="Misc">
-  <author><firstname>J.</firstname> <surname>Davenport</surname></author>
-  <title>A Small &OM; Type System</title>
-  <bibliomisc>&OM; Deliverable 1.3.2b</bibliomisc>
-  <pubdate role="month">April</pubdate>
-  <pubdate>1999</pubdate>
-  <bibliomisc>http://www.nag.co.uk/projects/OpenMath/omstd/</bibliomisc>
-</biblioentry>
-
-
-<biblioentry id="OMD132a" role="TechReport">
-  <author><othername>The &OM; Consortium</othername></author>
-  <title>The &OM; Standard</title>
-  <publisher><publishername>&OM; Esprit Consortium</publishername></publisher>
-  <pubdate>1999</pubdate>
-  <bibliomisc role="number">1.3.2a</bibliomisc>
-  <bibliomisc>http://www.nag.co.uk/projects/OpenMath.html</bibliomisc>
-  <pubdate role="month">February</pubdate>
-  <bibliomisc>O. Caprotti and A. M. Cohen Eds.</bibliomisc>
-</biblioentry>
-
-<biblioentry id="OMD132b" role="TechReport">
-  <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
-  <author><firstname>Arjeh</firstname> <othername>M.</othername> <surname>Cohen</surname></author>
-  <title>A Type System for &OM;</title>
-  <publisher><publishername>&OM; Esprit Consortium</publishername></publisher>
-  <pubdate>1999</pubdate>
-  <bibliomisc role="number">1.3.2b</bibliomisc>
-  <bibliomisc>http://www.nag.co.uk/projects/OpenMath.html</bibliomisc>
-  <pubdate role="month">February</pubdate>
-</biblioentry>
-
-<biblioentry id="OM_D133b" role="TechReport">
-  <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
-  <author><firstname>Arjeh</firstname> <othername>M.</othername> <surname>Cohen</surname></author>
-  <title>Development of Strong &OM;</title>
-  <publisher><publishername>&OM; Esprit Consortium</publishername></publisher>
-  <pubdate>1999</pubdate>
-  <bibliomisc role="number">1.3.3b</bibliomisc>
-  <bibliomisc>http://www.nag.co.uk/projects/OpenMath.html</bibliomisc>
-  <pubdate role="month">October</pubdate>
-</biblioentry>
-
-
-<biblioentry id="ida" role="Book">
-  <author><firstname>A.</firstname> <othername>M.</othername> <surname>Cohen</surname></author>
-  <author><firstname></firstname> <othername>H.</othername> <surname>Cuypers</surname></author>
-  <author><firstname>H.</firstname> <surname>Sterk</surname></author>
-  <title>Algebra Interactive, interactive course material</title>
-  <publisher><publishername>SV</publishername></publisher>
-  <pubdate>1999</pubdate>
-  <bibliomisc role="number">ISBN 3-540-65368-6</bibliomisc>
-</biblioentry>
-
-<biblioentry id="CaprottiCohen99" role="Misc">
-  <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
-  <author><firstname>Arjeh</firstname> <othername>M.</othername> <surname>Cohen</surname></author>
-  <title>Integrating Computational and Deduction Systems Using &OM;</title>
-  <bibliomisc>Calculemus'99: Systems for Integrated Computation and Deduction</bibliomisc>
-  <pubdate role="month">July 11-12</pubdate>
-  <pubdate>1999</pubdate>
-  <address>Trento, Italy</address>
-</biblioentry>
-
-<biblioentry id="Buchberger_Jebelan_Kriftner_Marin_Tomuta_Vasaru_97" role="InProceedings">
-  <author><firstname>B.</firstname> <surname>Buchberger</surname></author>
-  <author><firstname>T.</firstname> <surname>Jebelean</surname></author>
-  <author><firstname>F.</firstname> <surname>Kriftner</surname></author>
-  <author><firstname>M.</firstname> <surname>Marin</surname></author>
-  <author><firstname>E.</firstname> <surname>Tomuta</surname></author>
-  <author><firstname>D.</firstname> <surname>Vasaru</surname></author>
-  <title>A Survey of the Theorema Project</title>
-  <title role="book">Proceedings of ISSAC'97</title>
-  <pubdate>1997</pubdate>
-  <address>Maui, Hawaii</address>
-  <pubdate role="month">July</pubdate>
-  <publisher><publishername>Association for Computing Machinery</publishername></publisher>
-</biblioentry>
-
-
-<biblioentry id="Clarke_Zhao_92" role="InProceedings">
-  <author><firstname>E.</firstname> <surname>Clarke</surname></author>
-  <author><firstname>X.</firstname> <surname>Zhao</surname></author>
-  <title>Analytica - a theorem prover in Mathematica</title>
-  <title role="book">11th Conference on Automated Deduction</title>
-  <bibliomisc role="pages">761&#8211;765</bibliomisc>
-  <pubdate>1992</pubdate>
-  <editor><othername>D. Kapur</othername></editor>
-  <bibliomisc role="volume">607</bibliomisc>
-  <bibliomisc role="series">Lecture Bibliomiscs in Computer Science</bibliomisc>
-  <publisher><publishername>Springer Verlag</publishername></publisher>
-</biblioentry>
-
-
-
-<biblioentry id="MathML_98" role="Misc">
-  <author><firstname>Stephen</firstname> <surname>Buswell</surname></author>
-  <author><firstname>Stan</firstname> <surname>Devitt</surname></author>
-  <author><firstname>Angel</firstname> <surname>Diaz</surname></author>
-  <author><firstname>Nico</firstname> <surname>Poppelier</surname></author>
-  <author><firstname>Bruce</firstname> <surname>Smith</surname></author>
-  <author><firstname>Neil</firstname> <surname>Soiffer</surname></author>
-  <author><firstname>Robert</firstname> <surname>Sutor</surname></author>
-  <author><firstname>Stephen</firstname> <surname>Watt</surname></author>
-  <title>Mathematical Markup Language (MathML) 1.0 Specification</title>
-  <bibliomisc>W3C Recommendation 19980407</bibliomisc>
-  <pubdate role="month">April</pubdate>
-  <pubdate>1998</pubdate>
-  <bibliomisc>Available at http://www.w3.org/TR/REC-MathML/</bibliomisc>
-</biblioentry>
-
-
-
-
-<biblioentry id="MathML_99" role="Misc">
-  <author><firstname>Patrick</firstname> <surname>Ion</surname></author>
-  <author><firstname>Robert</firstname> <surname>Miner</surname></author>
-  <author><firstname>Stephen</firstname> <surname>Buswell</surname></author>
-  <author><firstname>Stan</firstname> <surname>Devitt</surname></author>
-  <author><firstname>Angel</firstname> <surname>Diaz</surname></author>
-  <author><firstname>Nico</firstname> <surname>Poppelier</surname></author>
-  <author><firstname>Bruce</firstname> <surname>Smith</surname></author>
-  <author><firstname>Neil</firstname> <surname>Soiffer</surname></author>
-  <author><firstname>Robert</firstname> <surname>Sutor</surname></author>
-  <author><firstname>Stephen</firstname> <surname>Watt</surname></author>
-  <title>Mathematical Markup Language (MathML[tm]) 1.01 Specification</title>
-  <bibliomisc>REC-MathML-19980407; revised 19990707 </bibliomisc>
-  <pubdate role="month">July</pubdate>
-  <pubdate>1999</pubdate>
-  <bibliomisc>http://www.w3.org/TR/REC-MathML/</bibliomisc>
-</biblioentry>
-
-
-<biblioentry id="MathML_2000" role="Misc" revisionflag="added">
-  <author><othername>World Wide Web Consortium</othername></author>
-  <title>Mathematical Markup Language (MathML) 2.0 Specification</title>
-  <bibliomisc>REC-MathML2-20010221/</bibliomisc>
-  <pubdate role="month">February</pubdate>
-  <pubdate>2001</pubdate>
-  <bibliomisc>Available at http://www.w3.org/TR/REC-MathML2/</bibliomisc>
-</biblioentry>
-
-<biblioentry id="CTCOQMATH" role="Manual">
-  <title>CtCoqmath</title>
-  <bibliomisc role="organization">INRIA</bibliomisc>
-  <address>Sophia Antipolis</address>
-  <bibliomisc>Available at http://www-sop.inria.fr/croap/CFC/Ctcoqmath.html</bibliomisc>
-</biblioentry>
-
-
-
-<biblioentry id="Pottier_Thery_98" role="InProceedings">
-  <author><firstname>L.</firstname> <surname>Pottier</surname></author>
-  <author><firstname>L.</firstname> <surname>Th&#233;ry</surname></author>
-  <title>Certifier Computer Algebra</title>
-  <title role="book">Calculemus and Types '98</title>
-  <address>Eindhoven</address>
-  <pubdate role="month">July</pubdate>
-  <pubdate>1998</pubdate>
-  <bibliomisc>http://www-sop.inria.fr/croap/CFC/</bibliomisc>
-</biblioentry>
-
-<biblioentry id="LAG" role="Manual">
-  <title>The Lego Algebra Group</title>
-  <bibliomisc>See http://www.cs.man.ac.uk/~petera/LAG/</bibliomisc>
-</biblioentry>
-
-<biblioentry id="Bailey_98" role="PhdThesis">
-  <author><firstname>Anthony</firstname> <surname>Bailey</surname></author>
-  <title>The Machine-Checked Literate Formalisation
-                  of Algebra in Type Theory</title>
-  <bibliomisc role="school">University of Manchester</bibliomisc>
-  <pubdate>January 15th 1998</pubdate>
-  <pubdate role="month">January 15</pubdate>
-</biblioentry>
-
-
-
-<biblioentry id="OMRS" role="Misc">
-  <author><othername>Open Mechanized Reasoning System Project</othername></author>
-  <bibliomisc>http://www.mrg.dist.unige.it/omrs</bibliomisc>
-</biblioentry>
-
-
-<biblioentry id="Giunchiglia_Pecchiari_Talcott_96" role="InProceedings">
-  <author><firstname>Fausto</firstname> <surname>Giunchiglia</surname></author>
-  <author><firstname>Paolo</firstname> <surname>Pecchiari</surname></author>
-  <author><firstname>Carolyn</firstname> <surname>Talcott</surname></author>
-  <title>Reasoning Theories: Towards an Architecture for Open
+    <title>Gr&#246;bner Bases and Statistics</title>
+    <editor><othername>Bruno Buchberger and Franz Winkler</othername></editor>
+    <bibliomisc role="volume">251</bibliomisc>
+    <bibliomisc role="series">London Mathematical Society Lecture Bibliomisc Series</bibliomisc>
+    <bibliomisc role="pages">179&#8211;204</bibliomisc>
+    <title role="book">Gr&#246;bner Bases and Applications</title>
+    <pubdate>1998</pubdate>
+    <publisher><publishername>Cambridge University Press</publishername></publisher>
+  </biblioentry>
+  
+  <biblioentry id="Moller_98" role="InProceedings">
+    <author><firstname>H.M.</firstname> <surname>M&#246;ller</surname></author>
+    <title>Gr&#246;bner Bases and Numerical Analysis</title>
+    <editor><othername>Bruno Buchberger and Franz Winkler</othername></editor>
+    <bibliomisc role="volume">251</bibliomisc>
+    <bibliomisc role="series">London Mathematical Society Lecture Bibliomisc Series</bibliomisc>
+    <bibliomisc role="pages">159&#8211;179</bibliomisc>
+    <title role="book">Gr&#246;bner Bases and Applications</title>
+    <pubdate>1998</pubdate>
+    <publisher><publishername>Cambridge University Press</publishername></publisher>
+  </biblioentry>
+  
+  <biblioentry id="Canny_Manocha_93" role="Article">
+    <author><firstname>J.F.</firstname> <surname>Canny</surname></author>
+    <author><firstname>D.</firstname> <surname>Manocha</surname></author>
+    <title>Multipolynomial resultant algorithms</title>
+    <bibliomisc role="journal">Journal of Symbolic Computation</bibliomisc>
+    <pubdate>1993</pubdate>
+    <bibliomisc role="volume">15</bibliomisc>
+    <bibliomisc role="pages">99&#8211;122</bibliomisc>
+  </biblioentry>
+  
+  
+  
+  
+  <biblioentry id="Arnon_Beach_McIsaac_Waldspurger_88" role="InProceedings">
+    <author><firstname>D.</firstname> <surname>Arnon</surname></author>
+    <author><firstname>R.</firstname> <surname>McIsaac</surname></author>
+    <author><firstname>K.</firstname> <surname>Waldspurger</surname></author>
+    <title>CaminoReal: an Interactive Mathematical Bibliomiscbook</title>
+    <bibliomisc role="booktitle">International Conference on Electronic Publishing,
+      Document Manipulation and Typography</bibliomisc>
+    <pubdate>1988</pubdate>
+    <publisher><publishername>Cambridge University Press</publishername></publisher>
+    <address>Nice</address>
+  </biblioentry>
+  
+  <biblioentry id="Dalmas_Gaetano_Sausse_94a" role="TechReport">
+    <author><firstname>S.</firstname> <surname>Dalmas</surname></author>
+    <author><firstname>M.</firstname> <surname>Ga&#235;tano</surname></author>
+    <author><firstname>A.</firstname> <surname>Sausse</surname></author>
+    <title>ASAP: a protocol for symbolic computation systems</title>
+    <publisher><publishername>INRIA</publishername></publisher>
+    <pubdate>1994</pubdate>
+    <bibliomisc role="number">162</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="Abbott_Dalmas_Dewar_Diaz_Gray_Sheridan_Strotmann_Vorkoetter_96" role="Misc">
+    <author><firstname>J.</firstname> <surname>Abbott</surname></author>
+    <author><firstname>S.</firstname> <surname>Dalmas</surname></author>
+    <author><firstname>M.</firstname> <surname>Dewar</surname></author>
+    <author><firstname>A.</firstname> <surname>Diaz</surname></author>
+    <author><firstname>S.</firstname> <surname>Gray</surname></author>
+    <author><firstname>S.</firstname> <surname>Sheridan</surname></author>
+    <author><firstname>A.</firstname> <surname>Strotmann</surname></author>
+    <author><firstname>S.</firstname> <surname>Vorkoetter</surname></author>
+    <title>Report of the &OM; Communications Committee</title>
+    <pubdate>1995</pubdate>
+    <pubdate role="month">13 November</pubdate>
+  </biblioentry>
+  
+  <biblioentry id="LEGOmanual" role="manual">
+    <author><firstname>Z.</firstname> <surname>Luo</surname></author>
+    <author><firstname>R.</firstname> <surname>Pollack</surname></author>
+    <title>LEGO Proof Development System: User's Manual</title>
+    <bibliomisc role="organization">Department of Compter Science, University of Edinburgh</bibliomisc>
+    <bibliomisc role="year">1992</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="luo_thesis" role="PhdThesis"> 
+    <author><firstname>Z.</firstname> <surname>Luo</surname></author> 
+    <title>An Extended Calculus of Constructions</title> 
+    <bibliomisc role="school">Edinburgh University</bibliomisc> 
+    <bibliomisc role="year">1990</bibliomisc> 
+  </biblioentry>
+  
+  
+  <biblioentry id="Martin_Shand_97" role="TechReport">
+    <author><firstname>U.</firstname> <surname>Martin</surname></author>
+    <author><firstname>D.</firstname> <surname>Shand</surname></author>
+    <title>Investigating some Embedded Verification Techniques
+      for Computer Algebra Tools</title>
+    <publisher><publishername>RISC-Linz, Research Institute for Symbolic Computation</publishername></publisher>
+    <pubdate>1997</pubdate>
+    <bibliomisc role="number">No. 97-20</bibliomisc>
+    <address>J. Kepler University, Linz (A)</address>
+    <bibliomisc>http://www-theory.dcs.st-and.ac.uk/~ddshand/Papers/pub.html</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="Barendregt_Barendsen_97" role="Misc">
+    <author><firstname>H.</firstname> <surname>Barendregt</surname></author>
+    <author><firstname>E.</firstname> <surname>Barendsen</surname></author>
+    <title>Efficient Computations in Formal Proofs</title>
+    <bibliomisc>To Appear.</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="CA_industry_93" role="Book">
+    <title>Computer Algebra in Industry,</title>
+    <publisher><publishername>Wiley Chichester</publishername></publisher>
+    <pubdate>1993</pubdate>
+    <editor><othername>A. M. Cohen</othername></editor>
+    <bibliomisc role="series">Problem Solving in Practice</bibliomisc>
+  </biblioentry>
+  
+  
+  <biblioentry id="vrmlspec97" role="unpublished">
+    <author><firstname>R.</firstname> <surname>Carey</surname></author>
+    <author><firstname>C.</firstname> <surname>Marrin</surname></author>
+    <author><firstname>G.</firstname> <surname>Bell</surname></author>
+    <title>The Virtual Reality Modelling Language</title>
+    <bibliomisc>International Standard ISO/IEC 14772-1:1997</bibliomisc>
+    <bibliomisc>http://www.vrml.org/Specifications/VRML97/</bibliomisc>
+    <bibliomisc role="year">1997</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="vrmlarm97" role="book">
+    <author><firstname>R.</firstname> <surname>Carey</surname></author>
+    <author><firstname>G.</firstname> <surname>Bell</surname></author>
+    <title>The Annotated VRML Reference Manual</title>
+    <publisher><publishername>Addison-Wesley</publishername></publisher>
+    <bibliomisc role="year">1997</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="eaispec97" role="unpublished">
+    <author><firstname>C.</firstname> <surname>Marrin</surname></author>
+    <title>External Authoring Interface Reference</title>
+    <bibliomisc>Proposal for a VRML 2.0 Informative Annex</bibliomisc>
+    <bibliomisc>http://www.vrml.org/WorkingGroups/vrml-eai/ExternalInterface.html</bibliomisc>
+    <pubdate>1997</pubdate>
+    <pubdate role="month">November</pubdate>
+  </biblioentry>
+  
+  <biblioentry id="harrison-form" role="TECHREPORT">
+    <author><firstname>John</firstname> <surname>Harrison</surname></author>
+    <title>Formalized Mathematics</title>
+    <publisher><publishername>Turku Centre for Computer Science (TUCS)</publishername></publisher>
+    <address>Lemmink&#228;isenkatu 14 A, FIN-20520 Turku,
+      Finland</address>
+    <pubdate>1996</pubdate>
+    <bibliomisc role="number">36</bibliomisc>
+    <bibliomisc>http://www.cl.cam.ac.uk/users/jrh/papers/form-math3.html</bibliomisc>
+  </biblioentry>
+  
+  
+  
+  <biblioentry id="Dunstan_Kelsey_Linton_Martin_98" role="InProceedings">
+    <author><firstname>Martin</firstname> <surname>Dunstan</surname></author>
+    <author><firstname>Tom</firstname> <surname>Kelsey</surname></author>
+    <author><firstname>Steve</firstname> <surname>Linton</surname></author>
+    <author><firstname>Ursula</firstname> <surname>Martin</surname></author>
+    <title>Lightweight Formal Methods for Computer Algebra Systems</title>
+    <title role="book">ISSAC'98: International Symposium on Symbolic and Algebraic Computation</title>
+    <pubdate>1998</pubdate>
+    <editor><othername>O. Gloor</othername></editor>
+    <address>Rostock, Germany</address>
+    <pubdate role="month">August</pubdate>
+    <publisher><publishername>ACM Press</publishername></publisher>
+  </biblioentry>
+  
+  <biblioentry id="Jackson_95" role="PhdThesis">
+    <author><firstname>Paul</firstname> <surname>Jackson</surname></author>
+    <title>Enhancing the Nuprl Proof Development System and 
+      Applying it to Computational Abstract Algebra</title>
+    <bibliomisc role="school">Cornell University</bibliomisc>
+    <pubdate>1995</pubdate>
+    <bibliomisc role="series">TR95-1509</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="Thery_98" role="InProceedings">
+    <author><firstname>Laurent</firstname> <surname>Th&#233;ry</surname></author>
+    <title>A Certified Version of Buchberger Algorithm</title>
+    <title role="book">Automated Deduction - CADE 15: 
+      15th International Conference on Automated Deduction</title>
+    <pubdate>1998</pubdate>
+    <editor><othername>C. Kirchner and H. Kirchner</othername></editor>
+    <bibliomisc role="volume">1421</bibliomisc>
+    <bibliomisc role="series">Lecture Bibliomiscs in Artificial Intelligence</bibliomisc>
+    <address>Landau, Germany</address>
+    <pubdate role="month">July</pubdate>
+    <publisher><publishername>Springer Verlag</publishername></publisher>
+  </biblioentry>
+  
+  <biblioentry id="PolyMath_JAVA" role="Misc">
+    <author><othername>PolyMath &OM; Development Team</othername></author>
+    <title>Java &OM; Library: Version 0.7c</title>
+    <bibliomisc>http://pdg.cecm.sfu.ca/openmath/</bibliomisc>
+    <pubdate role="month">June</pubdate>
+    <pubdate>1999</pubdate>
+  </biblioentry>
+  
+  <biblioentry id="STARS" role="Misc">
+    <author><firstname>Stephen</firstname> <surname>Buswell</surname></author>
+    <title>STARS</title>
+    <bibliomisc>Available from Stilo Technologies</bibliomisc>
+    <bibliomisc>http://www.stilo.com</bibliomisc>
+    <pubdate role="month">April</pubdate>
+    <pubdate>1999</pubdate>
+  </biblioentry>
+  
+  
+  <biblioentry id="OMurl" role="Misc">
+    <author><othername>&OM; Society Website</othername></author>
+    <title>www.openmath.org</title>
+  </biblioentry>
+  
+  <biblioentry id="Dalmas_Gaetano_Watt_97" role="InProceedings">
+    <author><firstname>S.</firstname> <surname>Dalmas</surname></author>
+    <author><firstname>M.</firstname> <surname>Ga&#235;tano</surname></author>
+    <author><firstname>S.</firstname> <surname>Watt</surname></author>
+    <title>An &OM; 1.0 Implementation</title>
+    <bibliomisc role="pages">241&#8211;248</bibliomisc>
+    <bibliomisc role="booktitle">Proceedings of ISSAC 97</bibliomisc>
+    <pubdate>1997</pubdate>
+    <publisher><publishername>ACM Press</publishername></publisher>
+  </biblioentry>
+  
+  <biblioentry id="OM_96" role="Misc">
+    <author><othername>&OM; Steering Committee</othername></author>
+    <title>&OM; Version 1.0 released</title>
+    <pubdate>1996</pubdate>
+    <pubdate role="month">December</pubdate>
+    <bibliomisc>http://www.openmath.org</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="OM_98" role="Misc">
+    <author><othername>&OM; Consortium</othername></author>
+    <title>&OM; Version 1 - Draft</title>
+    <pubdate>1998</pubdate>
+    <pubdate role="month">June</pubdate>
+    <bibliomisc>ftp://ftp-sop.inria.fr/safir/OM/v1.ps</bibliomisc>
+  </biblioentry>
+  
+  
+  
+  
+  <biblioentry id="Gonnet_Seppala_Watt_96" role="Misc">
+    <author><firstname>G.</firstname> <surname>Gonnet</surname></author>
+    <author><firstname>M.</firstname> <surname>Seppala</surname></author>
+    <author><firstname>S.</firstname> <surname>Watt</surname></author>
+    <title>Semantic Dictionaries for &OM;</title>
+    <bibliomisc>Presented at the 6th &OM; Workshop, Z&#252;rich</bibliomisc>
+    <pubdate>1996</pubdate>
+    <pubdate role="month">July 27-28</pubdate>
+    <bibliomisc>http://www.inf.ethz.ch/personal/gonnet/ContDict.html</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="Constable_98" role="Misc">
+    <author><firstname>Robert</firstname> <surname>Constable</surname></author>
+    <bibliomisc>Personal Communication</bibliomisc>
+    <pubdate>1998</pubdate>
+    <pubdate role="month">July</pubdate>
+  </biblioentry>
+  
+  
+  
+  
+  
+  <biblioentry id="Caprotti_Cohen_Elbers_Geuvers_98" role="Misc">
+    <author><firstname>O.</firstname> <surname>Caprotti</surname></author>
+    <author><firstname>A.</firstname> <othername>M.</othername> <surname>Cohen</surname></author>
+    <author><firstname>H.</firstname> <surname>Elbers</surname></author>
+    <author><firstname>H.</firstname> <surname>Geuvers</surname></author>
+    <title>Connecting &OM; to Formal Math</title>
+    <bibliomisc>Calculemus and Types '98</bibliomisc>
+    <pubdate>1998</pubdate>
+    <pubdate role="month">July</pubdate>
+  </biblioentry>
+  
+  
+  <biblioentry id="UNICODE" role="Book">
+    <author><othername>Unicode Consortium</othername></author>
+    <title>The Unicode Standard: Version <phrase revisionflag="deleted">2.0</phrase><phrase revisionflag="added">4.0</phrase></title>
+    <publisher><publishername>Addison-Wesley Developers Press</publishername></publisher>
+    <pubdate revisionflag="deleted">1996</pubdate>
+    <pubdate revisionflag="added">2003</pubdate>
+  </biblioentry>
+  
+  <biblioentry id="ieee754_85" role="Misc">
+    <bibliomisc role="key">ieee</bibliomisc>
+    <title>IEEE Standard for binary Floating-Point Arithmetic</title>
+    <bibliomisc>ANSI/IEEE Standard 754</bibliomisc>
+    <bibliomisc role="year">1985</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="rfc1642" role="Misc">
+    <author><firstname>D.</firstname> <surname>Goldsmith</surname></author>
+    <author><firstname>M.</firstname> <surname>Davis</surname></author>
+    <title>UTF-7: A Mail Safe Transformation Format of Unicode</title>
+    <bibliomisc>RFC: 1642</bibliomisc>
+    <pubdate role="month">July</pubdate>
+    <pubdate>1994</pubdate>
+  </biblioentry>
+  
+  <biblioentry id="rfc1521" role="Misc">
+    <author><firstname>N.</firstname> <surname>Borenstein</surname></author>
+    <author><firstname>N</firstname> <surname>Freed</surname></author>
+    <title>MIME (Multipurpose Internet Mail Extensions) Part One: Mechanism for Specifying and Describing the Format of Internet Message Bodies</title>
+    <bibliomisc>RFC: 1521</bibliomisc>
+    <pubdate role="month">September</pubdate>
+    <pubdate>1993</pubdate>
+    <bibliomisc>http://www.math-inf.uni-greifswald.de/~teumer/mime/1521/rfc1521ToC.html</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="iso646_83" role="Misc">
+    <bibliomisc role="key">iso 646</bibliomisc>
+    <title>ISO 7-bit coded character set for information interchange</title>
+    <bibliomisc>ISO 646:1983</bibliomisc>
+    <pubdate>1983</pubdate>
+  </biblioentry>
+  
+  <biblioentry id="rfc2152" role="Misc">
+    <author><firstname>D.</firstname> <surname>Goldsmith</surname></author>
+    <author><firstname>M.</firstname> <surname>Davis</surname></author>
+    <title>UTF-7: A Mail Safe Transformation Format of Unicode</title>
+    <bibliomisc>RFC: 2152</bibliomisc>
+    <pubdate role="month">May</pubdate>
+    <pubdate>1997</pubdate>
+    <bibliomisc>http://www.cis.ohio-state.edu/htbin/rfc/rfc2152.html</bibliomisc>
+  </biblioentry>
+  
+  
+  
+  <biblioentry id="xmlns" role="Misc">
+    <author><othername>World Wide Web Consortium</othername></author>
+    <title>Namespaces in XML</title>
+    <bibliomisc>REC-xml-names-19990114</bibliomisc>
+    <pubdate role="month">January</pubdate>
+    <pubdate>1999</pubdate>
+    <bibliomisc>http://www.w3.org/TR/REC-xml-names</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="xml" role="Misc">
+    <author><othername>World Wide Web Consortium</othername></author>
+    <title>Extensible Markup Language XML 1.0</title>
+    <bibliomisc>REC-xml-19980210</bibliomisc>
+    <pubdate role="month">February</pubdate>
+    <pubdate>1998</pubdate>
+    <bibliomisc>http://www.w3.org/TR/REC-xml</bibliomisc>
+  </biblioentry>
+  
+  
+  <biblioentry id="xml-stylesheet" role="Misc">
+    <author><othername>World Wide Web Consortium</othername></author>
+    <title>Associating Style Sheets with XML documents Version 1.0</title>
+    <bibliomisc>W3C Recommendation</bibliomisc>
+    <pubdate role="month">June</pubdate>
+    <pubdate>1998</pubdate>
+    <bibliomisc>http://www.w3.org/TR/xml-stylesheet/</bibliomisc>
+  </biblioentry>
+  
+  
+  <biblioentry id="utf8" role="Misc">
+    <author><firstname>F.</firstname> <surname>Yergeau</surname></author>
+    <title>UTF-8, a transformation format of ISO 10646</title>
+    <bibliomisc>RFC 2279</bibliomisc>
+    <pubdate role="month">January</pubdate>
+    <pubdate>1998</pubdate>
+    <bibliomisc>Alis Technologies</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="iso9660" role="Misc">
+    <author><othername>Technical committee / subcommittee: JTC 1</othername></author>
+    <title>ISO 9660:1988 Information processing &#8211; Volume and File Structure of CDROM for Information Interchange</title>
+    <bibliomisc>ISO 9660</bibliomisc>
+    <pubdate>1988</pubdate>
+  </biblioentry>
+  
+  <biblioentry id="OM_D122" role="Misc">
+    <author><firstname>S.</firstname> <surname>Buswell</surname></author>
+    <author><firstname>S.</firstname> <surname>Dalmas</surname></author>
+    <author><firstname>J.</firstname> <surname>Davenport</surname></author>
+    <title>&OM; task 1.2: Emerging Technologies</title>
+    <bibliomisc>&OM; Deliverable 1.2.2</bibliomisc>
+    <pubdate role="month">September</pubdate>
+    <pubdate>1998</pubdate>
+    <bibliomisc>Confidential</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="xml_98" role="Misc">
+    <author><othername>World Wide Web Consortium</othername></author>
+    <title>Extensible Markup Language (XML) 1.0.</title>
+    <bibliomisc>W3C Recommendation REC-xml-19980210</bibliomisc>
+    <pubdate role="month">February</pubdate>
+    <pubdate>1998</pubdate>
+    <bibliomisc>http://www.w3.org/TR/1998/REC-xml-19980210</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="OM_D131a" role="Misc">
+    <author><othername>&OM; Consortium</othername></author>
+    <title>The &OM; Standard</title>
+    <bibliomisc>&OM; Deliverable 1.3.1a</bibliomisc>
+    <pubdate role="month">September</pubdate>
+    <pubdate>1998</pubdate>
+    <bibliomisc>http://www.nag.co.uk/projects/OpenMath.html</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="OM_D131b" role="Misc">
+    <author><firstname>O.</firstname> <surname>Caprotti</surname></author>
+    <author><firstname>A.</firstname> <othername>M.</othername> <surname>Cohen</surname></author>
+    <title>A Type System for &OM;</title>
+    <bibliomisc>&OM; Deliverable 1.3.1b</bibliomisc>
+    <pubdate role="month">September</pubdate>
+    <pubdate>1998</pubdate>
+    <bibliomisc>http://www.nag.co.uk/projects/OpenMath.html</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="OM_D132c" role="Misc">
+    <author><firstname>J.</firstname> <surname>Davenport</surname></author>
+    <title>A Small &OM; Type System</title>
+    <bibliomisc>&OM; Deliverable 1.3.2b</bibliomisc>
+    <pubdate role="month">April</pubdate>
+    <pubdate>1999</pubdate>
+    <bibliomisc>http://www.nag.co.uk/projects/OpenMath/omstd/</bibliomisc>
+  </biblioentry>
+  
+  
+  <biblioentry id="OMD132a" role="TechReport">
+    <author><othername>The &OM; Consortium</othername></author>
+    <title>The &OM; Standard</title>
+    <publisher><publishername>&OM; Esprit Consortium</publishername></publisher>
+    <pubdate>1999</pubdate>
+    <bibliomisc role="number">1.3.2a</bibliomisc>
+    <bibliomisc>http://www.nag.co.uk/projects/OpenMath.html</bibliomisc>
+    <pubdate role="month">February</pubdate>
+    <bibliomisc>O. Caprotti and A. M. Cohen Eds.</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="OMD132b" role="TechReport">
+    <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
+    <author><firstname>Arjeh</firstname> <othername>M.</othername> <surname>Cohen</surname></author>
+    <title>A Type System for &OM;</title>
+    <publisher><publishername>&OM; Esprit Consortium</publishername></publisher>
+    <pubdate>1999</pubdate>
+    <bibliomisc role="number">1.3.2b</bibliomisc>
+    <bibliomisc>http://www.nag.co.uk/projects/OpenMath.html</bibliomisc>
+    <pubdate role="month">February</pubdate>
+  </biblioentry>
+  
+  <biblioentry id="OM_D133b" role="TechReport">
+    <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
+    <author><firstname>Arjeh</firstname> <othername>M.</othername> <surname>Cohen</surname></author>
+    <title>Development of Strong &OM;</title>
+    <publisher><publishername>&OM; Esprit Consortium</publishername></publisher>
+    <pubdate>1999</pubdate>
+    <bibliomisc role="number">1.3.3b</bibliomisc>
+    <bibliomisc>http://www.nag.co.uk/projects/OpenMath.html</bibliomisc>
+    <pubdate role="month">October</pubdate>
+  </biblioentry>
+  
+  
+  <biblioentry id="ida" role="Book">
+    <author><firstname>A.</firstname> <othername>M.</othername> <surname>Cohen</surname></author>
+    <author><firstname></firstname> <othername>H.</othername> <surname>Cuypers</surname></author>
+    <author><firstname>H.</firstname> <surname>Sterk</surname></author>
+    <title>Algebra Interactive, interactive course material</title>
+    <publisher><publishername>SV</publishername></publisher>
+    <pubdate>1999</pubdate>
+    <bibliomisc role="number">ISBN 3-540-65368-6</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="CaprottiCohen99" role="Misc">
+    <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
+    <author><firstname>Arjeh</firstname> <othername>M.</othername> <surname>Cohen</surname></author>
+    <title>Integrating Computational and Deduction Systems Using &OM;</title>
+    <bibliomisc>Calculemus'99: Systems for Integrated Computation and Deduction</bibliomisc>
+    <pubdate role="month">July 11-12</pubdate>
+    <pubdate>1999</pubdate>
+    <address>Trento, Italy</address>
+  </biblioentry>
+  
+  <biblioentry id="Buchberger_Jebelan_Kriftner_Marin_Tomuta_Vasaru_97" role="InProceedings">
+    <author><firstname>B.</firstname> <surname>Buchberger</surname></author>
+    <author><firstname>T.</firstname> <surname>Jebelean</surname></author>
+    <author><firstname>F.</firstname> <surname>Kriftner</surname></author>
+    <author><firstname>M.</firstname> <surname>Marin</surname></author>
+    <author><firstname>E.</firstname> <surname>Tomuta</surname></author>
+    <author><firstname>D.</firstname> <surname>Vasaru</surname></author>
+    <title>A Survey of the Theorema Project</title>
+    <title role="book">Proceedings of ISSAC'97</title>
+    <pubdate>1997</pubdate>
+    <address>Maui, Hawaii</address>
+    <pubdate role="month">July</pubdate>
+    <publisher><publishername>Association for Computing Machinery</publishername></publisher>
+  </biblioentry>
+  
+  
+  <biblioentry id="Clarke_Zhao_92" role="InProceedings">
+    <author><firstname>E.</firstname> <surname>Clarke</surname></author>
+    <author><firstname>X.</firstname> <surname>Zhao</surname></author>
+    <title>Analytica - a theorem prover in Mathematica</title>
+    <title role="book">11th Conference on Automated Deduction</title>
+    <bibliomisc role="pages">761&#8211;765</bibliomisc>
+    <pubdate>1992</pubdate>
+    <editor><othername>D. Kapur</othername></editor>
+    <bibliomisc role="volume">607</bibliomisc>
+    <bibliomisc role="series">Lecture Bibliomiscs in Computer Science</bibliomisc>
+    <publisher><publishername>Springer Verlag</publishername></publisher>
+  </biblioentry>
+  
+  
+  
+  <biblioentry id="MathML_98" role="Misc">
+    <author><firstname>Stephen</firstname> <surname>Buswell</surname></author>
+    <author><firstname>Stan</firstname> <surname>Devitt</surname></author>
+    <author><firstname>Angel</firstname> <surname>Diaz</surname></author>
+    <author><firstname>Nico</firstname> <surname>Poppelier</surname></author>
+    <author><firstname>Bruce</firstname> <surname>Smith</surname></author>
+    <author><firstname>Neil</firstname> <surname>Soiffer</surname></author>
+    <author><firstname>Robert</firstname> <surname>Sutor</surname></author>
+    <author><firstname>Stephen</firstname> <surname>Watt</surname></author>
+    <title>Mathematical Markup Language (MathML) 1.0 Specification</title>
+    <bibliomisc>W3C Recommendation 19980407</bibliomisc>
+    <pubdate role="month">April</pubdate>
+    <pubdate>1998</pubdate>
+    <bibliomisc>Available at http://www.w3.org/TR/REC-MathML/</bibliomisc>
+  </biblioentry>
+  
+  
+  
+  
+  <biblioentry id="MathML_99" role="Misc">
+    <author><firstname>Patrick</firstname> <surname>Ion</surname></author>
+    <author><firstname>Robert</firstname> <surname>Miner</surname></author>
+    <author><firstname>Stephen</firstname> <surname>Buswell</surname></author>
+    <author><firstname>Stan</firstname> <surname>Devitt</surname></author>
+    <author><firstname>Angel</firstname> <surname>Diaz</surname></author>
+    <author><firstname>Nico</firstname> <surname>Poppelier</surname></author>
+    <author><firstname>Bruce</firstname> <surname>Smith</surname></author>
+    <author><firstname>Neil</firstname> <surname>Soiffer</surname></author>
+    <author><firstname>Robert</firstname> <surname>Sutor</surname></author>
+    <author><firstname>Stephen</firstname> <surname>Watt</surname></author>
+    <title>Mathematical Markup Language (MathML[tm]) 1.01 Specification</title>
+    <bibliomisc>REC-MathML-19980407; revised 19990707 </bibliomisc>
+    <pubdate role="month">July</pubdate>
+    <pubdate>1999</pubdate>
+    <bibliomisc>http://www.w3.org/TR/REC-MathML/</bibliomisc>
+  </biblioentry>
+  
+  
+  <biblioentry id="MathML_2000" role="Misc" revisionflag="added">
+    <author><othername>World Wide Web Consortium</othername></author>
+    <title>Mathematical Markup Language (MathML) 2.0 Specification</title>
+    <bibliomisc>REC-MathML2-20010221/</bibliomisc>
+    <pubdate role="month">February</pubdate>
+    <pubdate>2001</pubdate>
+    <bibliomisc>Available at http://www.w3.org/TR/REC-MathML2/</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="CTCOQMATH" role="Manual">
+    <title>CtCoqmath</title>
+    <bibliomisc role="organization">INRIA</bibliomisc>
+    <address>Sophia Antipolis</address>
+    <bibliomisc>Available at http://www-sop.inria.fr/croap/CFC/Ctcoqmath.html</bibliomisc>
+  </biblioentry>
+  
+  
+  
+  <biblioentry id="Pottier_Thery_98" role="InProceedings">
+    <author><firstname>L.</firstname> <surname>Pottier</surname></author>
+    <author><firstname>L.</firstname> <surname>Th&#233;ry</surname></author>
+    <title>Certifier Computer Algebra</title>
+    <title role="book">Calculemus and Types '98</title>
+    <address>Eindhoven</address>
+    <pubdate role="month">July</pubdate>
+    <pubdate>1998</pubdate>
+    <bibliomisc>http://www-sop.inria.fr/croap/CFC/</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="LAG" role="Manual">
+    <title>The Lego Algebra Group</title>
+    <bibliomisc>See http://www.cs.man.ac.uk/~petera/LAG/</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="Bailey_98" role="PhdThesis">
+    <author><firstname>Anthony</firstname> <surname>Bailey</surname></author>
+    <title>The Machine-Checked Literate Formalisation
+      of Algebra in Type Theory</title>
+    <bibliomisc role="school">University of Manchester</bibliomisc>
+    <pubdate>January 15th 1998</pubdate>
+    <pubdate role="month">January 15</pubdate>
+  </biblioentry>
+  
+  
+  
+  <biblioentry id="OMRS" role="Misc">
+    <author><othername>Open Mechanized Reasoning System Project</othername></author>
+    <bibliomisc>http://www.mrg.dist.unige.it/omrs</bibliomisc>
+  </biblioentry>
+  
+  
+  <biblioentry id="Giunchiglia_Pecchiari_Talcott_96" role="InProceedings">
+    <author><firstname>Fausto</firstname> <surname>Giunchiglia</surname></author>
+    <author><firstname>Paolo</firstname> <surname>Pecchiari</surname></author>
+    <author><firstname>Carolyn</firstname> <surname>Talcott</surname></author>
+    <title>Reasoning Theories: Towards an Architecture for Open
       Mechanized Reasoning Systems</title>
-  <title role="book">"Frontiers of Combining Systems - First International Workshop" (FroCoS'96)</title>
-  <bibliomisc role="pages">157-174</bibliomisc>
-  <pubdate>1996</pubdate>
-  <editor><othername>F. Baader and K.U. Schulz</othername></editor>
-  <bibliomisc role="series">Applied Logic Series</bibliomisc>
-  <address>Munich, Germany</address>
-  <pubdate role="month">26-29 March</pubdate>
-  <publisher><publishername>Kluwer</publishername></publisher>
-</biblioentry>
-
-
-
-<biblioentry id="Bertoli_Calmet_Giunchiglia_Homann_98" role="InProceedings">
-  <author><firstname>P.</firstname> <surname>Bertoli</surname></author>
-  <author><firstname>J.</firstname> <surname>Calmet</surname></author>
-  <author><firstname>F.</firstname> <surname>Giunchiglia</surname></author>
-  <author><firstname>K.</firstname> <surname>Homann</surname></author>
-  <title>Specification and Integration of Theorem Provers and Computer Algebra Systems</title>
-  <title role="book">Artificial Intelligence and Symbolic Computation: International Conference AISC'98</title>
-  <pubdate>1998</pubdate>
-  <editor><othername>J. Calmet and J. Plaza</othername></editor>
-  <bibliomisc role="volume">1476</bibliomisc>
-  <bibliomisc role="series">Lecture Notes in Artificial Intelligence</bibliomisc>
-  <address>Plattsburgh, New York, USA</address>
-  <pubdate role="month">September</pubdate>
-</biblioentry>
-
-
-
-<biblioentry id="FIPA" role="Misc">
-  <author><othername>Foundation for Intellingent Physical Agents</othername></author>
-  <bibliomisc>http://www.fipa.org</bibliomisc>
-</biblioentry>
-
-
-<biblioentry id="Franke_Hess_Jung_Kohlhase_Sorge_99" role="Article">
-  <author><firstname>A.</firstname> <surname>Franke</surname></author>
-  <author><firstname>S.</firstname> <surname>Hess</surname></author>
-  <author><firstname>Ch.</firstname> <surname>Jung</surname></author>
-  <author><firstname>M.</firstname> <surname>Kohlhase</surname></author>
-  <author><firstname>V.</firstname> <surname>Sorge</surname></author>
-  <title>Agent-Oriented Integration of Distributed Mathematical Services</title>
-  <pubdate>1999</pubdate>
-  <bibliomisc role="volume">5</bibliomisc>
-  <bibliomisc role="number">3</bibliomisc>
-  <bibliomisc role="pages">156&#8211;187</bibliomisc>
-  <pubdate role="month">March</pubdate>
-  <bibliomisc role="journal">Journal of Universal Computer Science</bibliomisc>
-  <bibliomisc>Special issue on Integration of Deduction System</bibliomisc>
-  <bibliomisc>http://medoc.springer.de:8000/jucs_5_3/agent_oriented_integration_of;internal&amp;sk=060C4837</bibliomisc>
-</biblioentry>
-
-<biblioentry id="Franke_Hess_Jung_Kohlhase_Sorge_98" role="InProceedings">
-  <author><firstname>A.</firstname> <surname>Franke</surname></author>
-  <author><firstname>S.</firstname> <surname>Hess</surname></author>
-  <author><firstname>Ch.</firstname> <surname>Jung</surname></author>
-  <author><firstname>M.</firstname> <surname>Kohlhase</surname></author>
-  <author><firstname>V.</firstname> <surname>Sorge</surname></author>
-  <title>An Implementation of Distributed Mathematical Services</title>
-  <title role="book">Calculemus and Types 98</title>
-  <pubdate>1998</pubdate>
-  <address>Eindhoven</address>
-  <pubdate role="month">July</pubdate>
-</biblioentry>
-
-
-<biblioentry id="Bertot_Thery_98" role="Article">
-  <author><firstname>Yves</firstname> <surname>Bertot</surname></author>
-  <author><firstname>Laurent</firstname> <surname>Th&#233;ry</surname></author>
-  <title>A Generic Approach to Building User Interfaces for Theorem Provers</title>
-  <bibliomisc role="journal">Journal of Symbolic Computation</bibliomisc>
-  <pubdate>1998</pubdate>
-  <bibliomisc role="volume">25</bibliomisc>
-  <bibliomisc role="pages">161-194</bibliomisc>
-</biblioentry>
-
-<biblioentry id="Luo_Callaghan_97" role="InProceedings">
-  <author><firstname>Z.</firstname> <surname>Luo</surname></author>
-  <author><firstname>P.</firstname> <surname>Callaghan</surname></author>
-  <title>Mathematical Vernacular and Conceptual Well-formedness in Mathematical Language</title>
-  <title role="book">Proceedings of the 2nd International Conference on Logical Aspects of Computational Linguistics 97</title>
-  <pubdate>1997</pubdate>
-  <bibliomisc role="volume">1582</bibliomisc>
-  <bibliomisc role="series">Lecture Bibliomiscs in Computer Science</bibliomisc>
-  <address>Nancy</address>
-</biblioentry>
-
-
-
-<biblioentry id="Finin_Labrou_Mayfield_97" role="InCollection">
-  <author><firstname>Tim</firstname> <surname>Finin</surname></author>
-  <author><firstname>Yannis</firstname> <surname>Labrou</surname></author>
-  <author><firstname>James</firstname> <surname>Mayfield</surname></author>
-  <title>KQML as an agent communication language</title>
-  <title role="book">Software Agents</title>
-  <publisher><publishername>MIT Press</publishername></publisher>
-  <pubdate>1997</pubdate>
-  <editor><othername>Jeff Bradshaw</othername></editor>
-  <address>Cambridge</address>
-</biblioentry>
-
-<biblioentry id="FIPA_99" role="Misc">
-  <author><othername>Foundation for Intelligent Physical Agents</othername></author>
-  <title>The FIPA '99 Baselines</title>
-  <bibliomisc>http://www.fipa.org/spec/fipa99.html</bibliomisc>
-</biblioentry>
-
-<biblioentry id="Linton_Solomon_99" role="Misc">
-  <author><firstname>Steve</firstname> <surname>Linton</surname></author>
-  <author><firstname>Andrew</firstname> <surname>Solomon</surname></author>
-  <title>GAP, &OM;, and MCP</title>
-  <bibliomisc>ISSAC Workshop: Internet Accessible Mathematical Computation</bibliomisc>
-  <pubdate role="month">July</pubdate>
-  <pubdate>99</pubdate>
-</biblioentry>
-
-<biblioentry id="IAMC" role="TechReport">
-  <author><firstname>Paul</firstname> <surname>Wang</surname></author>
-  <title>Design and Protocol for Internet Accessible Mathematical Computation</title>
-  <publisher><publishername>ICM/Kent State University</publishername></publisher>
-  <pubdate>1999</pubdate>
-  <bibliomisc role="number">ICM-199901-001</bibliomisc>
-  <pubdate role="month">January</pubdate>
-</biblioentry>
-
-
-<biblioentry id="Harvey_99context" role="TechReport">
-  <author><firstname>Vilya</firstname> <surname>Harvey</surname></author>
-  <title>&OM; in Context</title>
-  <publisher><publishername>&OM; Esprit Consortium</publishername></publisher>
-  <pubdate>1999</pubdate>
-  <bibliomisc>http://www.nag.co.uk/projects/OpenMath/papers/context.pdf</bibliomisc>
-  <pubdate role="month">June</pubdate>
-</biblioentry>
-
-<biblioentry id="SDMGCHDISCO96" role="InCollection">
-  <author><firstname>St&#233;phane</firstname> <surname>Dalmas</surname></author>
-  <author><firstname>Marc</firstname> <surname>Ga&#235;tano</surname></author>
-  <author><firstname>Claude</firstname> <surname>Huchet</surname></author>
-  <title>A Deductive Database for Mathematical formulas</title>
-  <title role="book">Design and Implementation of Symbolic Computation Systems</title>
-  <publisher><publishername>Springer Verlag</publishername></publisher>
-  <editor><othername>Jacques Calmet and Carla Limongelli</othername></editor>
-  <bibliomisc role="number">1128</bibliomisc>
-  <bibliomisc role="series">LNCS</bibliomisc>
-  <bibliomisc role="pages">287-296</bibliomisc>
-  <pubdate>1996</pubdate>
-</biblioentry>
-
-
-
-<biblioentry id="DOM_98" role="Misc">
-  <title>Document Object Model (DOM) Level 1 Specification</title>
-  <bibliomisc>REC-DOM-Level-1-19981001</bibliomisc>
-  <pubdate role="month">October</pubdate>
-  <pubdate>1998</pubdate>
-  <bibliomisc>http://www.w3.org/TR/REC-DOM-Level-1/</bibliomisc>
-  <bibliomisc>W3C Recommendation</bibliomisc>
-</biblioentry>
-
-
-
-<biblioentry id="XSL_99" role="Misc">
-  <author><othername>World Wide Web Consortium</othername></author>
-  <title>Extensible Stylesheet Language (XSL) Specification</title>
-  <bibliomisc>W3C Working Draft</bibliomisc>
-  <pubdate role="month">21 Apr</pubdate>
-  <pubdate>1999</pubdate>
-  <bibliomisc>http://www.w3.org/TR/WD-xsl/</bibliomisc>
-</biblioentry>
-
-<biblioentry id="Kohlhase_99" role="InProceedings">
-  <author><firstname>M.</firstname> <surname>Kohlhase</surname></author>
-  <title>&OM; for knowledge-based automated theorem proving</title>
-  <title role="book">Electronic Proceedings of the 12th &OM; Workshop</title>
-  <pubdate>1999</pubdate>
-  <address>Eindhoven, Netherlands</address>
-  <pubdate role="month">June</pubdate>
-  <bibliomisc>http://www.riaca.win.tue.nl/projects/OpenMath/workshop</bibliomisc>
-</biblioentry>
-
-
-
-<biblioentry id="Cohen_Kohlhase_99om" role="Misc">
-  <author><firstname>Arjeh</firstname> <surname>Cohen</surname></author>
-  <author><firstname>Michael</firstname> <surname>Kohlhase</surname></author>
-  <title>Proposal of an Extension to &OM; by Defining
-                  Mathematical Properties</title>
-  <bibliomisc>12th &OM; Workshop</bibliomisc>
-  <pubdate role="month">June</pubdate>
-  <pubdate>1999</pubdate>
-  <bibliomisc>http://www.win.tue.nl/~amc/kohlhase.dvi</bibliomisc>
-</biblioentry>
-
-
-<biblioentry id="Caprotti_99CFCa" role="Misc">
-  <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
-  <title>&OM;: Accessing and Using Mathematical Information Electronically</title>
-  <bibliomisc>CFC meeting talk</bibliomisc>
-  <pubdate role="month">May</pubdate>
-  <pubdate>1999</pubdate>
-  <bibliomisc>Slide presentation available at http://www.riaca.win.tue.nl/~olga/om/CFCom.ps</bibliomisc>
-</biblioentry>
-
-<biblioentry id="Caprotti_99CFCb" role="Misc">
-  <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
-  <title>&OM; and COQ: Communicating Certified Mathematical Content</title>
-  <bibliomisc>CFC meeting talk</bibliomisc>
-  <pubdate role="month">May</pubdate>
-  <pubdate>1999</pubdate>
-  <bibliomisc>http://www.riaca.win.tue.nl/~olga/om/cfcCOCOM.ps</bibliomisc>
-</biblioentry>
-
-<biblioentry id="Caprotti_99imacs" role="Misc">
-  <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
-  <title>Interfacing CA and Proof Checkers with &OM;</title>
-  <bibliomisc>IMACA-ACA 99</bibliomisc>
-  <pubdate role="month">June</pubdate>
-  <pubdate>1999</pubdate>
-</biblioentry>
-
-
-<biblioentry id="Caprotti_Carlisle_99" role="Article">
-  <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
-  <author><firstname>David</firstname> <surname>Carlisle</surname></author>
-  <title>&OM; and MathML: Semantic Mark Up for Mathematics</title>
-  <bibliomisc role="journal">Crossroad</bibliomisc>
-  <pubdate>1999</pubdate>
-  <bibliomisc role="volume">Special Issue on Markup Languages</bibliomisc>
-  <bibliomisc>http://www.acm.org/crossroads</bibliomisc>
-</biblioentry>
-
-<biblioentry id="Caprotti_Cohen_99calc" role="InProceedings">
-  <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
-  <author><firstname>Arjeh</firstname> <surname>Cohen</surname></author>
-  <title>Integrating Computational and Deduction Systems Using &OM;</title>
-  <title role="book">Proceedings of Calculemus 99</title>
-  <pubdate>1999</pubdate>
-  <address>Trento</address>
-  <pubdate role="month">July</pubdate>
-</biblioentry>
-
-<biblioentry id="Caprotti_Cohen_99iamc" role="InProceedings">
-  <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
-  <author><firstname>Arjeh</firstname> <surname>Cohen</surname></author>
-  <title>Interactive Mathematics with Strong &OM;</title>
-  <title role="book">Internet Accessible Mathematical Computation</title>
-  <pubdate>1999</pubdate>
-  <address>Vancouver, Canada</address>
-  <pubdate role="month">July 28</pubdate>
-  <bibliomisc>http://symbolicnet.mcs.kent.edu/icm/research/iamc99proceedings.html</bibliomisc>
-</biblioentry>
-
-<biblioentry id="url_OMsem99" role="Misc">
-  <title>Seminar on &OM; for Industry</title>
-  <bibliomisc>http://www.riaca.win.tue.nl/projects/OpenMath/convention.html</bibliomisc>
-  <pubdate role="month">June</pubdate>
-  <pubdate>1999</pubdate>
-</biblioentry>
-
-<biblioentry id="url_OMworkshop12" role="Misc">
-  <title>12th  &OM; Workshop</title>
-  <bibliomisc>http://www.riaca.win.tue.nl/projects/OpenMath/workshop/</bibliomisc>
-  <pubdate role="month">June 15-16</pubdate>
-  <pubdate>1999</pubdate>
-</biblioentry>
-
-
+    <title role="book">"Frontiers of Combining Systems - First International Workshop" (FroCoS'96)</title>
+    <bibliomisc role="pages">157-174</bibliomisc>
+    <pubdate>1996</pubdate>
+    <editor><othername>F. Baader and K.U. Schulz</othername></editor>
+    <bibliomisc role="series">Applied Logic Series</bibliomisc>
+    <address>Munich, Germany</address>
+    <pubdate role="month">26-29 March</pubdate>
+    <publisher><publishername>Kluwer</publishername></publisher>
+  </biblioentry>
+  
+  
+  
+  <biblioentry id="Bertoli_Calmet_Giunchiglia_Homann_98" role="InProceedings">
+    <author><firstname>P.</firstname> <surname>Bertoli</surname></author>
+    <author><firstname>J.</firstname> <surname>Calmet</surname></author>
+    <author><firstname>F.</firstname> <surname>Giunchiglia</surname></author>
+    <author><firstname>K.</firstname> <surname>Homann</surname></author>
+    <title>Specification and Integration of Theorem Provers and Computer Algebra Systems</title>
+    <title role="book">Artificial Intelligence and Symbolic Computation: International Conference AISC'98</title>
+    <pubdate>1998</pubdate>
+    <editor><othername>J. Calmet and J. Plaza</othername></editor>
+    <bibliomisc role="volume">1476</bibliomisc>
+    <bibliomisc role="series">Lecture Notes in Artificial Intelligence</bibliomisc>
+    <address>Plattsburgh, New York, USA</address>
+    <pubdate role="month">September</pubdate>
+  </biblioentry>
+  
+  
+  
+  <biblioentry id="FIPA" role="Misc">
+    <author><othername>Foundation for Intellingent Physical Agents</othername></author>
+    <bibliomisc>http://www.fipa.org</bibliomisc>
+  </biblioentry>
+  
+  
+  <biblioentry id="Franke_Hess_Jung_Kohlhase_Sorge_99" role="Article">
+    <author><firstname>A.</firstname> <surname>Franke</surname></author>
+    <author><firstname>S.</firstname> <surname>Hess</surname></author>
+    <author><firstname>Ch.</firstname> <surname>Jung</surname></author>
+    <author><firstname>M.</firstname> <surname>Kohlhase</surname></author>
+    <author><firstname>V.</firstname> <surname>Sorge</surname></author>
+    <title>Agent-Oriented Integration of Distributed Mathematical Services</title>
+    <pubdate>1999</pubdate>
+    <bibliomisc role="volume">5</bibliomisc>
+    <bibliomisc role="number">3</bibliomisc>
+    <bibliomisc role="pages">156&#8211;187</bibliomisc>
+    <pubdate role="month">March</pubdate>
+    <bibliomisc role="journal">Journal of Universal Computer Science</bibliomisc>
+    <bibliomisc>Special issue on Integration of Deduction System</bibliomisc>
+    <bibliomisc>http://medoc.springer.de:8000/jucs_5_3/agent_oriented_integration_of;internal&amp;sk=060C4837</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="Franke_Hess_Jung_Kohlhase_Sorge_98" role="InProceedings">
+    <author><firstname>A.</firstname> <surname>Franke</surname></author>
+    <author><firstname>S.</firstname> <surname>Hess</surname></author>
+    <author><firstname>Ch.</firstname> <surname>Jung</surname></author>
+    <author><firstname>M.</firstname> <surname>Kohlhase</surname></author>
+    <author><firstname>V.</firstname> <surname>Sorge</surname></author>
+    <title>An Implementation of Distributed Mathematical Services</title>
+    <title role="book">Calculemus and Types 98</title>
+    <pubdate>1998</pubdate>
+    <address>Eindhoven</address>
+    <pubdate role="month">July</pubdate>
+  </biblioentry>
+  
+  
+  <biblioentry id="Bertot_Thery_98" role="Article">
+    <author><firstname>Yves</firstname> <surname>Bertot</surname></author>
+    <author><firstname>Laurent</firstname> <surname>Th&#233;ry</surname></author>
+    <title>A Generic Approach to Building User Interfaces for Theorem Provers</title>
+    <bibliomisc role="journal">Journal of Symbolic Computation</bibliomisc>
+    <pubdate>1998</pubdate>
+    <bibliomisc role="volume">25</bibliomisc>
+    <bibliomisc role="pages">161-194</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="Luo_Callaghan_97" role="InProceedings">
+    <author><firstname>Z.</firstname> <surname>Luo</surname></author>
+    <author><firstname>P.</firstname> <surname>Callaghan</surname></author>
+    <title>Mathematical Vernacular and Conceptual Well-formedness in Mathematical Language</title>
+    <title role="book">Proceedings of the 2nd International Conference on Logical Aspects of Computational Linguistics 97</title>
+    <pubdate>1997</pubdate>
+    <bibliomisc role="volume">1582</bibliomisc>
+    <bibliomisc role="series">Lecture Bibliomiscs in Computer Science</bibliomisc>
+    <address>Nancy</address>
+  </biblioentry>
+  
+  
+  
+  <biblioentry id="Finin_Labrou_Mayfield_97" role="InCollection">
+    <author><firstname>Tim</firstname> <surname>Finin</surname></author>
+    <author><firstname>Yannis</firstname> <surname>Labrou</surname></author>
+    <author><firstname>James</firstname> <surname>Mayfield</surname></author>
+    <title>KQML as an agent communication language</title>
+    <title role="book">Software Agents</title>
+    <publisher><publishername>MIT Press</publishername></publisher>
+    <pubdate>1997</pubdate>
+    <editor><othername>Jeff Bradshaw</othername></editor>
+    <address>Cambridge</address>
+  </biblioentry>
+  
+  <biblioentry id="FIPA_99" role="Misc">
+    <author><othername>Foundation for Intelligent Physical Agents</othername></author>
+    <title>The FIPA '99 Baselines</title>
+    <bibliomisc>http://www.fipa.org/spec/fipa99.html</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="Linton_Solomon_99" role="Misc">
+    <author><firstname>Steve</firstname> <surname>Linton</surname></author>
+    <author><firstname>Andrew</firstname> <surname>Solomon</surname></author>
+    <title>GAP, &OM;, and MCP</title>
+    <bibliomisc>ISSAC Workshop: Internet Accessible Mathematical Computation</bibliomisc>
+    <pubdate role="month">July</pubdate>
+    <pubdate>99</pubdate>
+  </biblioentry>
+  
+  <biblioentry id="IAMC" role="TechReport">
+    <author><firstname>Paul</firstname> <surname>Wang</surname></author>
+    <title>Design and Protocol for Internet Accessible Mathematical Computation</title>
+    <publisher><publishername>ICM/Kent State University</publishername></publisher>
+    <pubdate>1999</pubdate>
+    <bibliomisc role="number">ICM-199901-001</bibliomisc>
+    <pubdate role="month">January</pubdate>
+  </biblioentry>
+  
+  
+  <biblioentry id="Harvey_99context" role="TechReport">
+    <author><firstname>Vilya</firstname> <surname>Harvey</surname></author>
+    <title>&OM; in Context</title>
+    <publisher><publishername>&OM; Esprit Consortium</publishername></publisher>
+    <pubdate>1999</pubdate>
+    <bibliomisc>http://www.nag.co.uk/projects/OpenMath/papers/context.pdf</bibliomisc>
+    <pubdate role="month">June</pubdate>
+  </biblioentry>
+  
+  <biblioentry id="SDMGCHDISCO96" role="InCollection">
+    <author><firstname>St&#233;phane</firstname> <surname>Dalmas</surname></author>
+    <author><firstname>Marc</firstname> <surname>Ga&#235;tano</surname></author>
+    <author><firstname>Claude</firstname> <surname>Huchet</surname></author>
+    <title>A Deductive Database for Mathematical formulas</title>
+    <title role="book">Design and Implementation of Symbolic Computation Systems</title>
+    <publisher><publishername>Springer Verlag</publishername></publisher>
+    <editor><othername>Jacques Calmet and Carla Limongelli</othername></editor>
+    <bibliomisc role="number">1128</bibliomisc>
+    <bibliomisc role="series">LNCS</bibliomisc>
+    <bibliomisc role="pages">287-296</bibliomisc>
+    <pubdate>1996</pubdate>
+  </biblioentry>
+  
+  
+  
+  <biblioentry id="DOM_98" role="Misc">
+    <title>Document Object Model (DOM) Level 1 Specification</title>
+    <bibliomisc>REC-DOM-Level-1-19981001</bibliomisc>
+    <pubdate role="month">October</pubdate>
+    <pubdate>1998</pubdate>
+    <bibliomisc>http://www.w3.org/TR/REC-DOM-Level-1/</bibliomisc>
+    <bibliomisc>W3C Recommendation</bibliomisc>
+  </biblioentry>
+  
+  
+  
+  <biblioentry id="XSL_99" role="Misc">
+    <author><othername>World Wide Web Consortium</othername></author>
+    <title>Extensible Stylesheet Language (XSL) Specification</title>
+    <bibliomisc>W3C Working Draft</bibliomisc>
+    <pubdate role="month">21 Apr</pubdate>
+    <pubdate>1999</pubdate>
+    <bibliomisc>http://www.w3.org/TR/WD-xsl/</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="Kohlhase_99" role="InProceedings">
+    <author><firstname>M.</firstname> <surname>Kohlhase</surname></author>
+    <title>&OM; for knowledge-based automated theorem proving</title>
+    <title role="book">Electronic Proceedings of the 12th &OM; Workshop</title>
+    <pubdate>1999</pubdate>
+    <address>Eindhoven, Netherlands</address>
+    <pubdate role="month">June</pubdate>
+    <bibliomisc>http://www.riaca.win.tue.nl/projects/OpenMath/workshop</bibliomisc>
+  </biblioentry>
+  
+  
+  
+  <biblioentry id="Cohen_Kohlhase_99om" role="Misc">
+    <author><firstname>Arjeh</firstname> <surname>Cohen</surname></author>
+    <author><firstname>Michael</firstname> <surname>Kohlhase</surname></author>
+    <title>Proposal of an Extension to &OM; by Defining
+      Mathematical Properties</title>
+    <bibliomisc>12th &OM; Workshop</bibliomisc>
+    <pubdate role="month">June</pubdate>
+    <pubdate>1999</pubdate>
+    <bibliomisc>http://www.win.tue.nl/~amc/kohlhase.dvi</bibliomisc>
+  </biblioentry>
+  
+  
+  <biblioentry id="Caprotti_99CFCa" role="Misc">
+    <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
+    <title>&OM;: Accessing and Using Mathematical Information Electronically</title>
+    <bibliomisc>CFC meeting talk</bibliomisc>
+    <pubdate role="month">May</pubdate>
+    <pubdate>1999</pubdate>
+    <bibliomisc>Slide presentation available at http://www.riaca.win.tue.nl/~olga/om/CFCom.ps</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="Caprotti_99CFCb" role="Misc">
+    <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
+    <title>&OM; and COQ: Communicating Certified Mathematical Content</title>
+    <bibliomisc>CFC meeting talk</bibliomisc>
+    <pubdate role="month">May</pubdate>
+    <pubdate>1999</pubdate>
+    <bibliomisc>http://www.riaca.win.tue.nl/~olga/om/cfcCOCOM.ps</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="Caprotti_99imacs" role="Misc">
+    <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
+    <title>Interfacing CA and Proof Checkers with &OM;</title>
+    <bibliomisc>IMACA-ACA 99</bibliomisc>
+    <pubdate role="month">June</pubdate>
+    <pubdate>1999</pubdate>
+  </biblioentry>
+  
+  
+  <biblioentry id="Caprotti_Carlisle_99" role="Article">
+    <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
+    <author><firstname>David</firstname> <surname>Carlisle</surname></author>
+    <title>&OM; and MathML: Semantic Mark Up for Mathematics</title>
+    <bibliomisc role="journal">Crossroad</bibliomisc>
+    <pubdate>1999</pubdate>
+    <bibliomisc role="volume">Special Issue on Markup Languages</bibliomisc>
+    <bibliomisc>http://www.acm.org/crossroads</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="Caprotti_Cohen_99calc" role="InProceedings">
+    <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
+    <author><firstname>Arjeh</firstname> <surname>Cohen</surname></author>
+    <title>Integrating Computational and Deduction Systems Using &OM;</title>
+    <title role="book">Proceedings of Calculemus 99</title>
+    <pubdate>1999</pubdate>
+    <address>Trento</address>
+    <pubdate role="month">July</pubdate>
+  </biblioentry>
+  
+  <biblioentry id="Caprotti_Cohen_99iamc" role="InProceedings">
+    <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
+    <author><firstname>Arjeh</firstname> <surname>Cohen</surname></author>
+    <title>Interactive Mathematics with Strong &OM;</title>
+    <title role="book">Internet Accessible Mathematical Computation</title>
+    <pubdate>1999</pubdate>
+    <address>Vancouver, Canada</address>
+    <pubdate role="month">July 28</pubdate>
+    <bibliomisc>http://symbolicnet.mcs.kent.edu/icm/research/iamc99proceedings.html</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="url_OMsem99" role="Misc">
+    <title>Seminar on &OM; for Industry</title>
+    <bibliomisc>http://www.riaca.win.tue.nl/projects/OpenMath/convention.html</bibliomisc>
+    <pubdate role="month">June</pubdate>
+    <pubdate>1999</pubdate>
+  </biblioentry>
+  
+  <biblioentry id="url_OMworkshop12" role="Misc">
+    <title>12th  &OM; Workshop</title>
+    <bibliomisc>http://www.riaca.win.tue.nl/projects/OpenMath/workshop/</bibliomisc>
+    <pubdate role="month">June 15-16</pubdate>
+    <pubdate>1999</pubdate>
+  </biblioentry>
+  
+  
 </bibliography>
 </book>
 
 <!-- LocalWords:  xsl href omstd DocBook docbook olga's dtds customisations sidebar
- LocalWords:  ATTLIST mrow mn mi mo msub msup mtext mspace mfrac mml xmlns exml
- LocalWords:  revisionflag varname systemitem PCDATA mathcolor mathvariant dpc
- LocalWords:  exadigits lcalpha ucalpha regxp zsp longrightarrow varnamechar OC
- LocalWords:  omrnc openmath rnc omxsd xsd omrng rng bookinfo releaseinfo xref
- LocalWords:  firstname Buswell othername Gaetano linkend cha toc formalised cd
- LocalWords:  Leeuwen Strotmann Dalmas omsoc ulink url int fileref obj enco gt
- LocalWords:  addnfiles CDGroup DefMP phrasebooks Phrasebook behaviour omin
- LocalWords:  omabs labelled itemizedlist listitem bignums ieee Unicode mfenced
- LocalWords:  Bytearray -->
+LocalWords:  ATTLIST mrow mn mi mo msub msup mtext mspace mfrac mml xmlns exml
+LocalWords:  revisionflag varname systemitem PCDATA mathcolor mathvariant dpc
+LocalWords:  exadigits lcalpha ucalpha regxp zsp longrightarrow varnamechar OC
+LocalWords:  omrnc openmath rnc omxsd xsd omrng rng bookinfo releaseinfo xref
+LocalWords:  firstname Buswell othername Gaetano linkend cha toc formalised cd
+LocalWords:  Leeuwen Strotmann Dalmas omsoc ulink url int fileref obj enco gt
+LocalWords:  addnfiles CDGroup DefMP phrasebooks Phrasebook behaviour omin Exp
+LocalWords:  omabs labelled itemizedlist listitem bignums ieee Unicode mfenced
+LocalWords:  Bytearray --> xs processContents attributeGroup elementFormDefault
+LocalWords:  targetNamespace xlink maxOccurs minOccurs complexType ns dtd
+LocalWords:  schemaLocation simpleType simpleContent datatypeLibrary omcd
+LocalWords:  anyName zeroOrMore oneOrMore nsName param cdrnc sigrnc omdtd
+LocalWords:  omcdsig cdgrouprnc omcdgroup cdrng sigrng cdbase
+ -->
