@@ -1,6 +1,6 @@
 
 
-<!-- @version CVS $Id: omstd20.xml,v 1.50 2003/11/05 14:59:43 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.51 2003/11/05 17:38:11 openmath Exp $ -->
 
 <!--
  PUBLIC "-//OASIS//DTD DocBook XML V4.2CR1//EN"
@@ -227,7 +227,7 @@ PUBLIC "-//OASIS//DTD DocBook XML V4.2CR1//EN"
 <book xml:space="preserve">
 <title>The &OM; Standard</title>
 <bookinfo>
-<releaseinfo>2.0 Public Draft 2 (31 October 2003)</releaseinfo>
+<releaseinfo>2.0 Public Draft 3 (5 November 2003)</releaseinfo>
 <author><firstname>The &OM; Society</firstname></author>
 
 
@@ -1430,7 +1430,7 @@ author="DPC"><para>Restrict empty element
 syntax</para></sidebar> 
 
 <para  revisionflag="deleted">The &exml; empty element form
-<systemitem>&lt;|&#8230;/&gt;</systemitem> should
+<systemitem>&lt;|#8230;/&gt;</systemitem> should
 always be used to encode elements such as <acronym>omf</acronym> which
 are specified in the <acronym>dtd</acronym> as being
 <acronym>empty</acronym>. It should never be used for elements that
@@ -1821,7 +1821,12 @@ encoded as <systemitem>&lt;OMI> 10 &lt;/OMI> </systemitem> or as
   <systemitem>name</systemitem> is the name of the symbol.
   <phrase revisionflag="added">The optional <systemitem>cdbase</systemitem>
     attribute is a URI that can be used to disambiguate between two  content
-    dictionaries with the same name.</phrase>
+    dictionaries with the same name. The
+  <systemitem>cdbase</systemitem> attribute may be used on any parent
+  element, any <systemitem>OMS</systemitem> elements without an
+  explict  <systemitem>cdbase</systemitem> attribute which is a
+  descendent of such an element is taken to
+  encode an OpenMath symbol with this CD base.</phrase>
 <phrase revisionflag="deleted">
   The name
   of the Content Dictionary is compulsory, but a future revision of
@@ -3197,7 +3202,8 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
 <term>Symbols</term>
 <listitem><para>are encoded as the symbol tags
     (<phrase revisionflag="added">token identifier</phrase> 8) with the long flag
-    set if the maximum of the length of the Content Dictionary name,
+    set if the maximum of the length <phrase
+    revisionflag="added">in bytes in the UTF-8 encoding</phrase> of the Content Dictionary name,
     <phrase revisionflag="deleted">and</phrase>
   the symbol name <phrase revisionflag="added">or the CD base </phrase>
   is greater than or equal to 256<phrase revisionflag="deleted"> (note that this
@@ -3206,15 +3212,17 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
   Content Dictionary name as a byte (if the long flag was not set)
   or a four byte integer (in network byte order) followed by the
   length of the symbol name as a byte (if the long flag was not set)
-  or a four byte integer (in network byte order),, followed by the
+  or a four byte integer (in network byte order), followed by the
   characters of the Content Dictionary name, followed by the
   characters of the symbol name.</phrase>
 <phrase revisionflag="added">. The symbol tags [8] and [8+128] are deprecated in &OM;2 since
   symbols now have an optional role field, but are
-  kept for backwards compatibility. The symbol tag is  followed by the length of the
+  kept for backwards compatibility. The symbol tag is  followed by the length <phrase
+    revisionflag="added">in bytes in the UTF-8 encoding</phrase> of the
   Content Dictionary name, the symbol name, and the CD base as a byte (if the long flag was not set)
   or a four byte integers (in network byte order). These are followed by the
-  characters of the Content Dictionary name, the symbol name, and the CD base.</phrase></para>
+  <phrase revisionflag="deleted">characters</phrase>
+  <phrase revisionflag="added">bytes of the UTF-8 encoding</phrase> of the Content Dictionary name, the symbol name, and the CD base.</phrase></para>
 </listitem>
 </varlistentry>
 
@@ -3222,7 +3230,7 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
 <term>Variables</term>
 <listitem><para>are encoded using the variable tags
     (<phrase revisionflag="added">token identifiers</phrase> 5) with the long
-  flag set if the number of bytes (characters) in the variable name is
+  flag set if the number of bytes in the UTF-8 encoding of the variable name is
   greater than or equal to 256 (this should never happen if the rules
   on variables are followed).  Then, there is the number of characters
   as a byte (if the long flag was not set) or a four byte integer
@@ -3237,11 +3245,11 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
 <listitem><para>are encoded using the indexed variable tags
     (token identifiers 10 and 11) as begin and end tags. The long
   flag set on the begin tag if the number of bytes (characters) in the variable name is
-  greater than or equal to 256 (this should never happen if the rules
-  on variables are followed).  The start tag is followed by the number of
-  characters
+  greater than or equal to 256.  The start tag is followed by the number of
+  bytes
   as a byte (if the long flag was not set) or a four byte integer
-  (in network byte order), followed by the characters of the name of
+  (in network byte order), followed by the bytes 
+  of  the UTF-8 encoding of the name of
   the variable. This is followed by the encoding of an &OM; object and the end tag
   [11].</para>
 </listitem>
@@ -3260,17 +3268,25 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
 <varlistentry>
 <term>Character string</term>
 <listitem><para>are encoded in two ways depending on whether
-  the string contains <acronym>utf-16</acronym> characters or not. If the
-  string contains only 8 bit characters, it is encoded as the one
+  <phrase revisionflag="deleted">the string contains <acronym>utf-16</acronym> characters or not. If the
+  string contains only 8 bit characters</phrase>,
+  <phrase revisionflag="added">The string is encoded in
+  <acronym>utf-16</acronym> or <acronym>iso-859-1</acronym>
+  (<acronym>latin-1</acronym>).
+  In the case of <acronym>latin-1</acronym></phrase> it is encoded as the one
   byte character string tags (<phrase revisionflag="added">token identifier</phrase> 6) with the long flag set if the number
   of bytes (characters) in the string is greater than or equal to 256.
   Then, there is the number of characters as a byte (if the length
   flag was not set) or a four byte integer (in network byte order),
-  followed by the characters in the string. If the string contains two
-  byte characters, it is encoded as the two byte character string
+  followed by the characters in the string. If the string <phrase revisionflag="deleted">contains two
+  byte characters</phrase><phrase revisionflag="added"> is encoded in
+  <acronym>utf-16</acronym></phrase>, it is encoded as the two byte character string
   tags (<phrase revisionflag="added">token identifier</phrase> 7) with the long flag set if the number of characters in the
   string is greater or equal to 256. Then, there is the number of
-  characters as a byte (if the long flag was not set) or a four byte
+  <phrase revisionflag="deleted">characters</phrase><phrase
+  revisionflag="added"><acronym>utf-16</acronym> units, which will be the
+  number of characters unless characters in the higher planes of
+  Unicode are used.</phrase> as a byte (if the long flag was not set) or a four byte
   integer (in network byte order), followed by the characters
   (<acronym>utf-16</acronym> encoded  Unicode).</para>
 </listitem>

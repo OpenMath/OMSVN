@@ -7,7 +7,7 @@
 
 <xsl:param name="changelog">no</xsl:param>
 <xsl:param name="showdiffs" select="false()"/>
-<xsl:output method="text" encoding="iso-8859-1"/>
+<xsl:output method="text"/>
 
 
 <xsl:key name="new"  match="*[@revisionflag='added']" use="ancestor-or-self::section[1]/@id"/>
