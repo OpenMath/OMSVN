@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.122 2004/04/07 10:41:48 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.123 2004/04/07 11:00:40 openmath Exp $ -->
 
 
 <!DOCTYPE book 
@@ -5491,31 +5491,33 @@ according to the specified schema, and so will use the namespaces
 <systemitem>http://www.openmath.org/OpenMath</systemitem>
 and 
 <systemitem>http://www.openmath.org/OpenMathCD</systemitem>
-respectively. and similarly CD Group and Signature files will use
+respectively. Similarly CD Group and Signature files will use
 <systemitem>http://www.openmath.org/OpenMathCDG</systemitem>
 and
 <systemitem>http://www.openmath.org/OpenMathCDS</systemitem>.
 </para>
 
 <para> Applications may also support &OM;&#160;1.
-&exml; encoded &OM;&#160;1 documents may be in either the 
+&exml;-encoded &OM;&#160;1 documents may be in either the 
 <systemitem>http://www.openmath.org/OpenMath</systemitem>
-namespace or in no-namespace. An application may accept either of
+namespace or in no-namespace (i.e., do not have any xmlns
+declarations).
+An application may accept either of
 these forms. Note however that &OM;  documents that have a version attribute
 should validate against the schema for &OM;&#160;2 (or later versions) and
 so should always use the &OM; namespace.
-&exml; encoded &OM;&#160;1 CD files, CD Group files and CD Signature
+&exml;-encoded &OM;&#160;1 CD files, CD Group files and CD Signature
 files must be in no-namespace. An &OM;&#160;2 application may support
 these files by implicitly converting the documents to their respective
-namespace. Apart from this change of namespace (and teh addition of a
+namespace. Apart from this change of namespace (and the addition of a
 version attribute on <systemitem>OMOBJ</systemitem>) the &OM;&#160;1
 documents should conform to the schema specified in this standard.
 </para>
 
-<para>An &OM;&#160;2 application that is generating documents in
-these encodings should generate documents in the namespaces specified
-for  &OM;&#160;2. The use of documents in no-namespace should be
-restricted to reading existing  &OM;&#160;1 files.</para>
+<para>The use of documents in no-namespace should be
+restricted to reading existing  &OM;&#160;1 files.
+No &OM;&#160;2 application should generate documents in this form.
+</para>
 </section>
 
 </chapter>
@@ -6567,7 +6569,7 @@ details of how this attribute is used are not mandated by the standard.
     <bibliomisc role="key">ieee</bibliomisc>
     <title>IEEE Standard for binary Floating-Point Arithmetic</title>
     <subtitle>ANSI/IEEE Standard 754</subtitle>
-    <pubdate role="year">1985</pubdate>
+    <pubdate>1985</pubdate>
     <bibliomisc revisionflag="added">http://standards.ieee.org/reading/ieee/std_public/description/busarch/754-1985_desc.html</bibliomisc>
   </biblioentry>
   
