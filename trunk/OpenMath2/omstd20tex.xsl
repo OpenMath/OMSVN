@@ -4,6 +4,7 @@
                 xmlns="http://www.w3.org/1999/xhtml">
 
 <xsl:param name="changelog">no</xsl:param>
+<xsl:param name="showdiffs" select="false()"/>
 <xsl:output method="text" encoding="iso-8859-1"/>
 
 
@@ -11,7 +12,7 @@
 <xsl:key name="ids" match="*[@id]" use="@id"/>
 
 <xsl:template match="*">
-\textcolor{red}{[[[<xsl:value-of select="name()"/>]]]}
+\xxxxxx\textcolor{red}{[[[<xsl:value-of select="name()"/>]]]}
 </xsl:template>
 
 <xsl:template match="book">
@@ -56,7 +57,7 @@
 
 \maketitle
 
-
+<xsl:if test="$showdiffs">
 \subsection*£Change-marked edition notesﬂ
 This edition contains colour coded change markings
 relative to the OpenMath 1.0 document\ldots
@@ -76,6 +77,8 @@ relative to the OpenMath 1.0 document\ldots
 </xsl:if>
 </xsl:for-each>
 \end£itemizeﬂ
+</xsl:if>
+
 <xsl:apply-templates/>
 \catcode`\{=1
 \catcode`\}=2
@@ -89,18 +92,22 @@ relative to the OpenMath 1.0 document\ldots
 
 
 <xsl:template match="para">
-
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 £<xsl:apply-templates select="@revisionflag|node()"/>ﬂ
-
+</xsl:if>
 </xsl:template>
 
 
 <xsl:template match="@revisionflag[.='deleted']">
+<xsl:if test="$showdiffs">
 <xsl:text>\color£redﬂ</xsl:text>
+</xsl:if>
 </xsl:template>
 
 <xsl:template match="@revisionflag[.='added']">
+<xsl:if test="$showdiffs">
 <xsl:text>\color£greenﬂ</xsl:text>
+</xsl:if>
 </xsl:template>
 
 
@@ -173,7 +180,9 @@ relative to the OpenMath 1.0 document\ldots
 
 
 <xsl:template match="phrase">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <xsl:text/>£<xsl:apply-templates select="@*|node()"/>ﬂ<xsl:text/>
+</xsl:if>
 </xsl:template>
 
 
@@ -186,9 +195,11 @@ relative to the OpenMath 1.0 document\ldots
 </xsl:template>
 
 <xsl:template match="itemizedlist">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 \begin£itemizeﬂ
 <xsl:apply-templates/>
 \end£itemizeﬂ
+</xsl:if>
 </xsl:template>
 
 
@@ -212,8 +223,10 @@ relative to the OpenMath 1.0 document\ldots
 </xsl:template>
 
 <xsl:template match="listitem">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 \item
 <xsl:apply-templates select="@*|*"/>
+</xsl:if>
 </xsl:template>
 
 <xsl:template match="varlistentry">
@@ -329,7 +342,9 @@ changelog entry here
 </xsl:template>
 
 <xsl:template match="footnote">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <xsl:text/>\footnote£<xsl:apply-templates select="para/node()"/>ﬂ<xsl:text/>
+</xsl:if>
 </xsl:template>
 
 
@@ -400,8 +415,12 @@ changelog entry here
 
 
 <!-- MathML -->
-<xsl:template match="math">\protect\(<xsl:apply-templates/>\protect\)</xsl:template>
-<xsl:template match="math[@display='block']">\protect\[<xsl:apply-templates/>\protect\]</xsl:template>
+<xsl:template match="math">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')"
+>\protect\(<xsl:apply-templates/>\protect\)</xsl:if></xsl:template>
+<xsl:template match="math[@display='block']">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')"
+>\protect\[<xsl:apply-templates/>\protect\]</xsl:if></xsl:template>
 
 
 <xsl:template match="mi|mn|mo">
