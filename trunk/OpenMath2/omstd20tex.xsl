@@ -20,6 +20,12 @@
 <xsl:template match="book">
 \documentclass[11pt,twoside,chapter,a4paper,keylogo]{openmath}
 \makeatletter
+\hfuzz30pt
+
+\let\vvvvv\verbatim
+{\catcode`\ =\active%
+\gdef\verbatim{\vvvvv\def {~\hskip\z@\@plus20em\penalty-100\hskip\z@\@plus-20em\relax}}}
+
 \renewenvironment{thebibliography}[1]
      {\chapter{\bibname
         \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}}%

@@ -26,6 +26,7 @@ match="*[*]|*[text()]|*[comment()]|*[processing-instruction()]" priority="2">
   <xsl:for-each select="namespace::*">
   <xsl:choose>
    <xsl:when test="name()='xml'"/>
+   <xsl:when test="string(../../namespace::*[name()=name(current())])=concat(.,'G')"/>
    <xsl:when test="string(../../namespace::*[name()=name(current())])=."/>
    <xsl:when test="name()=''">&#10; xmlns="<xsl:value-of select="."/>"</xsl:when>
    <xsl:otherwise>&#10; xmlns:<xsl:value-of select="name()"/>="<xsl:value-of select="."/>"</xsl:otherwise>
