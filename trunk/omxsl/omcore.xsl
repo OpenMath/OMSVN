@@ -252,6 +252,30 @@ select="@name"/>]</xsl:message>
 </xsl:template>
 
 
+<xsl:template name="msub">
+  <xsl:param name="base">
+   <xsl:apply-templates select="following-sibling::*[1]">
+     <xsl:with-param name="p" select="100"/>
+   </xsl:apply-templates>
+  </xsl:param>
+  <xsl:param name="script">
+   <xsl:apply-templates select="following-sibling::*[2]">
+     <xsl:with-param name="p" select="100"/>
+   </xsl:apply-templates>
+  </xsl:param>
+   <xsl:choose>
+  <xsl:when test="parent::om:OMA and not(preceding-sibling::*)">
+   <msub>
+    <xsl:copy-of select="$base"/>
+    <xsl:copy-of select="$script"/>
+   </msub>
+   </xsl:when>
+   <xsl:otherwise>
+   <mi><xsl:value-of select="@name"/></mi>
+   </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <xsl:template name="fenced">
   <xsl:param name="open"><mo>(</mo></xsl:param>
   <xsl:param name="close"><mo>)</mo></xsl:param>

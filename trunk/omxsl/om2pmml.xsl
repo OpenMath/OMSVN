@@ -34,6 +34,7 @@
 <xsl:include href="linalg3.xsl"/>
 <xsl:include href="set1.xsl"/>
 <xsl:include href="setname1.xsl"/>
+<xsl:include href="setname2.xsl"/>
 <xsl:include href="combinat1.xsl"/>
 <xsl:include href="piece1.xsl"/>
 <!-- -->
