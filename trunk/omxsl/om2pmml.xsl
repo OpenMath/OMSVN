@@ -10,6 +10,7 @@
 
 <xsl:include href="omcore.xsl"/>
 
+<xsl:include href="altenc.xsl"/>
 <xsl:include href="arith1.xsl"/>
 <xsl:include href="arith2.xsl"/>
  <xsl:include href="transc1.xsl"/>
