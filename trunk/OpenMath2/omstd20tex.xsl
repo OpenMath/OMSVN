@@ -18,7 +18,7 @@
 </xsl:template>
 
 <xsl:template match="book">
-\documentclass[11pt,twoside,chapter,a4paper]{openmath}
+\documentclass[11pt,twoside,chapter,a4paper,keylogo]{openmath}
 \setcounter{secnumdepth}{4}
 \usepackage[latin1]{inputenc}
 \usepackage[T1]{fontenc}
@@ -36,7 +36,7 @@
 \catcode`\$=12
 \catcode`\£=1
 \catcode`\ß=2
-\let\omlogo\relax
+
 \begin{document}
 \catcode`\%=12
 \catcode`\{=12

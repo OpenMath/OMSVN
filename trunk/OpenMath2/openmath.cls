@@ -145,11 +145,14 @@
 \ifx\@wpkg\@empty\else Task:& \@workpackage\\\fi
 \@version
 \@date
-\end{tabular}}%
-\hfill
-\omlogo
+\end{tabular}%
 
-\vspace{1.5in}%
+\vspace{5mm}
+
+\omlogo
+}
+
+\vspace{10mm}%
 \LARGE\bfseries\@title
 %\normalsize
 \normalfont
@@ -316,6 +319,8 @@ Editor\ifnum\om@ed>\@ne s\fi
     \hbox{}\thispagestyle{empty}\newpage
     \if@twocolumn\hbox{}\newpage\fi\fi\fi}
 
+% basic hyperref support in case hyperref package not loaded
+\def\href#1#2{#2}
 \endinput
 
 ===============================================================
