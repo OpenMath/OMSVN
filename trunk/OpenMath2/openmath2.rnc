@@ -1,4 +1,4 @@
-# Schema for OpenMath 2
+# RELAX NG Schema for OpenMath 2
 
 
 default namespace om = "http://www.openmath.org/OpenMath"
@@ -11,18 +11,19 @@ omel =
 # things which can be variables
 omvar = OMV | attvar
 
-attvar = element OMATTR { common.attributes,(OMATP , (OMV| attvar))}
+attvar = element OMATTR { common.attributes,(OMATP , (OMV | attvar))}
 
-#OM2: common.attributes attributes
-common.attributes = 
-  (attribute id { xsd:ID })?
+#OM2: common attributes
+cdbase = attribute cdbase { xsd:anyURI}
+common.attributes = (attribute id { xsd:ID })?
+compound.attributes = common.attributes,cdbase
 
 # symbol
 OMS = element OMS { common.attributes, attlist.OMS}
 attlist.OMS =
   attribute name { xsd:NCName},
   attribute cd { xsd:NCName},
-  attribute uristub { xsd:anyURI}
+  cdbase
 
 # variable
 OMV = element OMV { common.attributes, attlist.OMV}
@@ -43,36 +44,32 @@ attlist.OMF =
   attribute hex { xsd:string {pattern = "[0-9A-F]+"}}
 
 # apply constructor
-OMA = element OMA { common.attributes, omel+ }
+OMA = element OMA { compound.attributes, omel+ }
 # binding constructor and variable
-OMBIND = element OMBIND { common.attributes, omel, OMBVAR, omel }
+OMBIND = element OMBIND { compound.attributes, omel, OMBVAR, omel }
 OMBVAR = element OMBVAR { common.attributes, omvar+ }
 
 # error
 OME = element OME { common.attributes, OMS, omel* }
+
 # attribution constructor and attribute pair constructor
-OMATTR = element OMATTR { common.attributes, OMATP, omel }
+OMATTR = element OMATTR { compound.attributes, OMATP, omel }
 
 # OM2: allow OMFOREIGN 
-OMATP = element OMATP { common.attributes, (OMS, (omel | OMFOREIGN) )+ }
+OMATP = element OMATP { compound.attributes, (OMS, (omel | OMFOREIGN) )+ }
 
 # OM2: OMFOREIGN 
-OMFOREIGN =  element OMFOREIGN { common.attributes, (omel|notom)* }
+OMFOREIGN =  element OMFOREIGN { compound.attributes, (omel|notom)* }
 
 # Any elements not in the om namespace (valid om is allowed as a descendant)
 notom =
-  (element * - om:* {
-     attribute * { text }*,
-     (omel|notom)*
-   }
+  (element * - om:* {attribute * { text }*,(omel|notom)*}
    | text)
 
-
-
 # OM object constructor
-OMOBJ = element OMOBJ { common.attributes, omel }
+OMOBJ = element OMOBJ { compound.attributes, omel }
  attlist.OMOBJ = attribute version { "1.0" | "1.2" | "2.0" }
-start = OMOBJ
+
 
 # OM2: OMR
 OMR = element OMR { common.attributes, attlist.OMR }
@@ -80,3 +77,5 @@ attlist.OMR =
         attribute xlink:href { text },
         attribute xlink:type {"simple"},
         attribute xlink:show {"embed"}
+
+start = OMOBJ

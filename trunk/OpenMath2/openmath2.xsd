@@ -1,12 +1,6 @@
-<![CDATA[
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Schema for OpenMath 2 -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           elementFormDefault="qualified"
-           targetNamespace="http://www.openmath.org/OpenMath"
-           xmlns:xlink="http://www.w3.org/1999/xlink"
-           xmlns:om="http://www.openmath.org/OpenMath">
-
+<!-- RELAX NG Schema for OpenMath 2 -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:om="http://www.openmath.org/OpenMath">
   <xs:import namespace="http://www.w3.org/1999/xlink" schemaLocation="xlink.xsd"/>
   <!-- OM2: allow OMR -->
   <xs:group name="omel">
@@ -47,9 +41,16 @@
       </xs:element>
     </xs:sequence>
   </xs:group>
-  <!-- OM2: common.attributes attributes -->
+  <!-- OM2: common attributes -->
+  <xs:attributeGroup name="cdbase">
+    <xs:attribute name="cdbase" use="required" type="xs:anyURI"/>
+  </xs:attributeGroup>
   <xs:attributeGroup name="common.attributes">
     <xs:attribute name="id" type="xs:ID"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="compound.attributes">
+    <xs:attributeGroup ref="om:common.attributes"/>
+    <xs:attributeGroup ref="om:cdbase"/>
   </xs:attributeGroup>
   <!-- symbol -->
   <xs:element name="OMS">
@@ -61,7 +62,7 @@
   <xs:attributeGroup name="attlist.OMS">
     <xs:attribute name="name" use="required" type="xs:NCName"/>
     <xs:attribute name="cd" use="required" type="xs:NCName"/>
-    <xs:attribute name="uristub" use="required" type="xs:anyURI"/>
+    <xs:attributeGroup ref="om:cdbase"/>
   </xs:attributeGroup>
   <!-- variable -->
   <xs:element name="OMV">
@@ -131,7 +132,7 @@
   <xs:element name="OMA">
     <xs:complexType>
       <xs:group maxOccurs="unbounded" ref="om:omel"/>
-      <xs:attributeGroup ref="om:common.attributes"/>
+      <xs:attributeGroup ref="om:compound.attributes"/>
     </xs:complexType>
   </xs:element>
   <!-- binding constructor and variable -->
@@ -142,7 +143,7 @@
         <xs:element ref="om:OMBVAR"/>
         <xs:group ref="om:omel"/>
       </xs:sequence>
-      <xs:attributeGroup ref="om:common.attributes"/>
+      <xs:attributeGroup ref="om:compound.attributes"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="OMBVAR">
@@ -170,7 +171,7 @@
             <xs:element ref="om:OMATP"/>
             <xs:group ref="om:omel"/>
           </xs:sequence>
-          <xs:attributeGroup ref="om:common.attributes"/>
+          <xs:attributeGroup ref="om:compound.attributes"/>
         </xs:complexType>
       </xs:element>
     </xs:sequence>
@@ -185,7 +186,7 @@
           <xs:element ref="om:OMFOREIGN"/>
         </xs:choice>
       </xs:sequence>
-      <xs:attributeGroup ref="om:common.attributes"/>
+      <xs:attributeGroup ref="om:compound.attributes"/>
     </xs:complexType>
   </xs:element>
   <!-- OM2: OMFOREIGN -->
@@ -195,7 +196,7 @@
         <xs:group ref="om:omel"/>
         <xs:group ref="om:notom"/>
       </xs:choice>
-      <xs:attributeGroup ref="om:common.attributes"/>
+      <xs:attributeGroup ref="om:compound.attributes"/>
     </xs:complexType>
   </xs:element>
   <!-- Any elements not in the om namespace (valid om is allowed as a descendant) -->
@@ -211,7 +212,7 @@
   <xs:element name="OMOBJ">
     <xs:complexType>
       <xs:group ref="om:omel"/>
-      <xs:attributeGroup ref="om:common.attributes"/>
+      <xs:attributeGroup ref="om:compound.attributes"/>
     </xs:complexType>
   </xs:element>
   <xs:attributeGroup name="attlist.OMOBJ">
@@ -238,4 +239,3 @@
     <xs:attribute ref="xlink:show" use="required"/>
   </xs:attributeGroup>
 </xs:schema>
-]]>

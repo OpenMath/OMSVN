@@ -1,10 +1,6 @@
-<![CDATA[
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Schema for OpenMath 2 -->
-<grammar xmlns:xlink="http://www.w3.org/1999/xlink"
-         ns="http://www.openmath.org/OpenMath"
-         xmlns="http://relaxng.org/ns/structure/1.0"
-         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+<!-- RELAX NG Schema for OpenMath 2 -->
+<grammar xmlns:xlink="http://www.w3.org/1999/xlink" ns="http://www.openmath.org/OpenMath" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
   <!-- OM2: allow OMR -->
   <define name="omel">
     <choice>
@@ -40,13 +36,22 @@
       </group>
     </element>
   </define>
-  <!-- OM2: common.attributes attributes -->
+  <!-- OM2: common attributes -->
+  <define name="cdbase">
+    <attribute name="cdbase">
+      <data type="anyURI"/>
+    </attribute>
+  </define>
   <define name="common.attributes">
     <optional>
       <attribute name="id">
         <data type="ID"/>
       </attribute>
     </optional>
+  </define>
+  <define name="compound.attributes">
+    <ref name="common.attributes"/>
+    <ref name="cdbase"/>
   </define>
   <!-- symbol -->
   <define name="OMS">
@@ -62,9 +67,7 @@
     <attribute name="cd">
       <data type="NCName"/>
     </attribute>
-    <attribute name="uristub">
-      <data type="anyURI"/>
-    </attribute>
+    <ref name="cdbase"/>
   </define>
   <!-- variable -->
   <define name="OMV">
@@ -125,7 +128,7 @@
   <!-- apply constructor -->
   <define name="OMA">
     <element name="OMA">
-      <ref name="common.attributes"/>
+      <ref name="compound.attributes"/>
       <oneOrMore>
         <ref name="omel"/>
       </oneOrMore>
@@ -134,7 +137,7 @@
   <!-- binding constructor and variable -->
   <define name="OMBIND">
     <element name="OMBIND">
-      <ref name="common.attributes"/>
+      <ref name="compound.attributes"/>
       <ref name="omel"/>
       <ref name="OMBVAR"/>
       <ref name="omel"/>
@@ -161,7 +164,7 @@
   <!-- attribution constructor and attribute pair constructor -->
   <define name="OMATTR">
     <element name="OMATTR">
-      <ref name="common.attributes"/>
+      <ref name="compound.attributes"/>
       <ref name="OMATP"/>
       <ref name="omel"/>
     </element>
@@ -169,7 +172,7 @@
   <!-- OM2: allow OMFOREIGN -->
   <define name="OMATP">
     <element name="OMATP">
-      <ref name="common.attributes"/>
+      <ref name="compound.attributes"/>
       <oneOrMore>
         <ref name="OMS"/>
         <choice>
@@ -182,7 +185,7 @@
   <!-- OM2: OMFOREIGN -->
   <define name="OMFOREIGN">
     <element name="OMFOREIGN">
-      <ref name="common.attributes"/>
+      <ref name="compound.attributes"/>
       <zeroOrMore>
         <choice>
           <ref name="omel"/>
@@ -218,7 +221,7 @@
   <!-- OM object constructor -->
   <define name="OMOBJ">
     <element name="OMOBJ">
-      <ref name="common.attributes"/>
+      <ref name="compound.attributes"/>
       <ref name="omel"/>
     </element>
   </define>
@@ -231,9 +234,6 @@
       </choice>
     </attribute>
   </define>
-  <start>
-    <ref name="OMOBJ"/>
-  </start>
   <!-- OM2: OMR -->
   <define name="OMR">
     <element name="OMR">
@@ -250,5 +250,7 @@
       <value>embed</value>
     </attribute>
   </define>
+  <start>
+    <ref name="OMOBJ"/>
+  </start>
 </grammar>
-]]>
