@@ -29,12 +29,31 @@
   <xsl:for-each select="following-sibling::*">
    <xsl:choose>
    <xsl:when test="position() &gt; 1 and 
+             self::om:OMI[translate(.,' ','') &lt; 0]">
+    <mo>-</mo>
+    <mn><xsl:value-of select="translate(.,' -','')"/></mn>
+   </xsl:when>
+   <xsl:when test="position() &gt; 1 and 
              self::om:OMA/*[1][self::om:OMS[@name='unary_minus']]">
     <mo>-</mo>
    <xsl:apply-templates select="*[2]">
      <xsl:with-param name="p" select="1"/>
    </xsl:apply-templates>
    </xsl:when>
+
+   <xsl:when test="position() &gt; 1 and 
+             self::om:OMA[*[position()=1 and last()=3]
+                         [self::om:OMS and @name='times']]/
+              *[2][self::om:OMI[translate(.,' ','') &lt; 0]]">
+    <mo>-</mo>
+   <mrow>
+   <mn><xsl:value-of select="translate(*[2],' -','')"/></mn>
+   <xsl:apply-templates select="*[3]">
+     <xsl:with-param name="p" select="1"/>
+   </xsl:apply-templates>
+   </mrow>
+   </xsl:when>
+
    <xsl:when test="position() &gt; 1 and 
              self::om:OMA[*[position()=1 and last()=3]
                          [self::om:OMS and @name='times']]/
