@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.56 2003/11/10 20:21:39 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.57 2003/11/11 12:47:27 openmath Exp $ -->
 
 <!--
  PUBLIC "-//OASIS//DTD DocBook XML V4.2CR1//EN"
@@ -1449,11 +1449,9 @@ character, <quote>cr</quote> for the carriage return character,
 <quote>nl</quote> for the line feed character and <quote>tab</quote>
 for the horizontal tabulation character.</para>
 
-
 <para revisionflag="deleted" id="fig_xml">
 <!--<sidebar revision="1999/07/16" author="DPC"><para>White space allowed in integer strings</para></sidebar>-->
     <phrase revisionflag="deleted">Grammar for the &exml; encoding of &OM; objects.</phrase>
-
 
 
 <informaltable revisionflag="deleted">
@@ -4228,58 +4226,48 @@ arithmetic functions.</para>
 <figure id="fig_cd-dtd">
     <title>DTD Specification of  Content Dictionaries</title>
 <literallayout><![CDATA[
-<!-- DTD for OpenMath object -sb-29.10.1998 ->
-
-<!--  general list of embeddable elements
-      : excludes OMATP as this is only embeddable in OMATTR
-      : excludes OMBVAR as this is only embeddable in OMBIND
--->
-<!ENTITY % omel "OMS | OMV | OMI | OMB | OMSTR
-                     | OMF | OMA | OMBIND | OME  | OMATTR  ">
-
-<!-- things which can be variables -->
-<!ENTITY % omvar        "OMV | OMATTR" >
-
-<!-- symbol -->
-<!ELEMENT OMS EMPTY>
-<!ATTLIST OMS name CDATA #REQUIRED  cd CDATA #REQUIRED >
-
-<!-- variable -->
-<!ELEMENT OMV EMPTY>
-<!ATTLIST OMV name CDATA #REQUIRED >
-
-<!-- integer -->
-<!ELEMENT OMI (#PCDATA) >
-
-<!-- byte array -->
-<!ELEMENT OMB (#PCDATA) >
-
-<!-- string -->
-<!ELEMENT OMSTR (#PCDATA) >
-
-<!-- floating point -->
-<!ELEMENT OMF EMPTY>
-<!ATTLIST OMF dec CDATA #IMPLIED  hex CDATA #IMPLIED>
-
-<!-- apply constructor -->
-<!ELEMENT OMA (%omel;)+ >
-
-<!-- binding constructor & variable -->
-<!ELEMENT OMBIND ((%omel;), OMBVAR, (%omel;)) >
-<!ELEMENT OMBVAR (%omvar;)+ >
-
-<!-- error -->
-<!ELEMENT OME    (OMS, (%omel;)* ) >
-
-<!-- attribution constructor & attribute pair constructor -->
-<!ELEMENT OMATTR (OMATP, (%omel;)) >
-<!ELEMENT OMATP (OMS, (%omel;))+ >
-
-<!-- OM object constructor -->
-<!ELEMENT OMOBJ (%omel;) >
-
-<!-- end of DTD for OM object -->
-
+<!-- omcd.dtd -->
+<!-- ********************************************* -->
+<!--                                               -->
+<!-- DTD for OpenMath CD                           -->
+<!-- (c) EP24969 the ESPRIT OpenMath Consortium    -->
+<!-- date = 28.aug.1998                            -->
+<!-- author = s.buswell sb@stilo.demon.co.uk       -->
+<!--                                               -->
+<!-- edited by n.howgrave-graham 30.aug.98         -->
+<!-- edited by sb 4.sep.98                         -->
+<!-- edited by nh-g 4.sep.98                       -->
+<!-- edited by sb 1.nov.98                         -->
+<!-- edited by sb 1.nov.98                         -->
+<!-- edited by dpc 1999-04-13                      -->
+<!--                                               -->
+<!--                                               -->
+<!-- ********************************************* -->
+<!ELEMENT CDComment      (#PCDATA) >
+<!ELEMENT CDName         (#PCDATA) >
+<!ELEMENT CDURL          (#PCDATA) >
+<!ELEMENT CDUses         (CDName)*  >
+<!ENTITY % inhel        "(#PCDATA)" >
+<!ENTITY % inhel2       "(#PCDATA | OMOBJ)*" >
+<!ELEMENT CDReviewDate   %inhel; >
+<!ELEMENT CDStatus       %inhel; >
+<!ELEMENT Description    %inhel; >
+<!ELEMENT Name           %inhel; >
+<!ELEMENT Signature      %inhel; >
+<!ELEMENT Presentation   %inhel; >
+<!ELEMENT CMP            %inhel; >
+<!-- include dtd for OM objects -->
+<!ENTITY  % omobjectdtd SYSTEM "omobj.dtd" >
+%omobjectdtd;
+<!ELEMENT FMP            %inhel2; >             <!-- allow embedded OM -->
+<!ELEMENT Example        %inhel2; >
+<!ELEMENT CDDefinition    (CDComment | Name | Description |  PartOf |
+                          FunctorClass | Signature | Example | FMP |
+                          CMP | Presentation)* >
+<!ELEMENT CD             (CDComment | CDName | Description | CDReviewDate |
+                         CDStatus | CDURL | CDUses |  CDDefinition |
+Example)* >
+<!-- end of DTD for OM CD -->
 ]]>
 </literallayout>
 
