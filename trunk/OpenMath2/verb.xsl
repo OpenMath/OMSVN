@@ -51,7 +51,7 @@ match="*[*]|*[text()]|*[comment()]|*[processing-instruction()]" priority="2">
      Output always surrounds attribute value by "
      so we need to make sure no literal " appear in the value  -->
 <xsl:template mode="verb" match="@*" priority="1.5">
-  <xsl:if test="(../@*)[string-length(.)&gt;10]">
+  <xsl:if test="(../@*)[string-length(.)&gt;50]">
   <xsl:text>&#10;</xsl:text>
   </xsl:if>
   <xsl:value-of select="concat(' ',name(.),'=')"/>

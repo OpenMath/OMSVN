@@ -19,7 +19,29 @@
 
 <xsl:template match="book">
 \documentclass[11pt,twoside,chapter,a4paper,keylogo]{openmath}
+\makeatletter
+\renewenvironment{thebibliography}[1]
+     {\chapter{\bibname
+        \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}}%
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{#1}}%
+            \leftmargin\labelwidth
+            \advance\leftmargin\labelsep
+            \@openbib@code
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+      \sloppy
+      \clubpenalty4000
+      \@clubpenalty \clubpenalty
+      \widowpenalty4000%
+      \sfcode`\.\@m}
+     {\def\@noitemerr
+       {\@latex@warning{Empty `thebibliography' environment}}%
+      \endlist}
+\makeatother
 \setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
 \usepackage[latin1]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{longtable}
@@ -216,6 +238,7 @@ relative to the OpenMath 1.0 document\ldots
 <xsl:text/>``<xsl:apply-templates/>''<xsl:text/>
 </xsl:template>
 
+<xsl:template match="phrase[.='LaTeX']">\LaTeX </xsl:template>
 
 <xsl:template match="phrase">
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
@@ -297,7 +320,14 @@ relative to the OpenMath 1.0 document\ldots
 
 <xsl:template match="systemitem">
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
+<xsl:choose>
+<xsl:when test="starts-with(.,'http')">
+<xsl:text/>\url|<xsl:apply-templates select="@revisionflag|node()"/>|<xsl:text/>
+</xsl:when>
+<xsl:otherwise>
 <xsl:text/>\texttt£<xsl:apply-templates select="@revisionflag|node()"/>ﬂ<xsl:text/>
+</xsl:otherwise>
+</xsl:choose>
 </xsl:if>
 </xsl:template>
 
@@ -356,8 +386,11 @@ relative to the OpenMath 1.0 document\ldots
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <xsl:text>£</xsl:text>
 <xsl:apply-templates select="@revisionflag"/>
-<xsl:if test="@role='small'">£\footnotesize</xsl:if>
-\begin£verbatimﬂ<xsl:apply-templates/>\end{verbatim}<xsl:if test="@role='small'">\par\vspace£-10ptﬂﬂ</xsl:if>
+<xsl:choose>
+<xsl:when test="@role='small'">£\footnotesize</xsl:when>
+<xsl:otherwise>£\small</xsl:otherwise>
+</xsl:choose>
+\begin£verbatimﬂ<xsl:apply-templates/>\end{verbatim}\par\vspace£-10ptﬂﬂ<xsl:text/>
 <xsl:text>&#10;</xsl:text>
 <xsl:text>ﬂ</xsl:text>
 </xsl:if>

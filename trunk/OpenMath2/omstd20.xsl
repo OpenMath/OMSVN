@@ -113,6 +113,8 @@ Version: <xsl:apply-templates select="bookinfo/releaseinfo"/>
 <xsl:value-of select="bookinfo/date"/>
 </div>
 
+<div>&#169; <xsl:value-of select="bookinfo/copyright/year"/> <xsl:value-of select="bookinfo/copyright/holder"/></div>
+
 <div>
 <h3>Abstract</h3>
 <xsl:apply-templates select="bookinfo/abstract/*"/>

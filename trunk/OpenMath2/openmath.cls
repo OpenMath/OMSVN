@@ -254,7 +254,7 @@ Editor\ifnum\om@ed>\@ne s\fi
   \def\@oddfoot{%
    \parbox\hsize{\hrule\par\smallskip
     \@@line{\strut
-   \copyright\  \theyear\ The OpenMath Thematic Network\hfill}}}}
+   \copyright\  \theyear\ \consortium\hfill}}}}
 
 \edef\theyear{\number\year}
 \def\copyrightyear#1{\gdef\theyear{#1}}
