@@ -168,50 +168,14 @@
 </xsl:template>
 
 <xsl:template match="om:OMS[@cd='arith1' and @name='abs']"  >
+   <mrow>
    <mo>|</mo>
    <xsl:apply-templates select="following-sibling::*[1]"/>
    <mo>|</mo>
-</xsl:template>
-
-
-<!-- mozilla doesn't support sqrt or mover yet
-<xsl:template match="om:OMS[@cd='arith1' and @name='root']"  >
-   <xsl:choose>
-   <xsl:when test="following-sibling::*[2]/self::om:OMI[normalize-space(.)='2']">
-   <msqrt>
-   <xsl:apply-templates select="following-sibling::*[1]"/>
-   </msqrt>
-   </xsl:when>
-   <xsl:otherwise>
-   <mroot>
-   <xsl:apply-templates select="following-sibling::*[1]"/>
-   <xsl:apply-templates select="following-sibling::*[2]"/>
-   </mroot>
-   </xsl:otherwise>
-   </xsl:choose>
-</xsl:template>
-
-so do this, but now Vilya has added sqrt so do this:
-
-
-<xsl:template match="om:OMS[@cd='arith1' and @name='root']"  >
-   <mrow>
-   <msup>
-   <mi>-</mi>
-   <mrow>
-   <xsl:if test="following-sibling::*[2]/self::om:OMI[normalize-space(.)!='2']">
-    <xsl:apply-templates select="following-sibling::*[2]"/>
-   </xsl:if>
-    /</mrow>
-   </msup>
-   <html:span xmlns:html="http://www.w3.org/TR/REC-html40"
-          style="text-decoration: overline">
-   <xsl:apply-templates select="following-sibling::*[1]"/>
-   </html:span>
    </mrow>
 </xsl:template>
 
--->
+
 
 <xsl:template match="om:OMS[@cd='arith1' and @name='root']"  >
    <xsl:choose>
@@ -221,14 +185,9 @@ so do this, but now Vilya has added sqrt so do this:
    /></msqrt>
    </xsl:when>
    <xsl:otherwise>
-   <msup>
-   <mi other="hide">.</mi>
-   <xsl:apply-templates select="following-sibling::*[2]"/>   
-   </msup>
-   <mi></mi>
-   <msqrt
-    ><xsl:apply-templates select="following-sibling::*[1]"
-   /></msqrt>
+   <mroot>
+   <xsl:apply-templates select="following-sibling::*"/>
+   </mroot>
    </xsl:otherwise>
    </xsl:choose>
 </xsl:template>
