@@ -1,6 +1,6 @@
 
 
-<!-- @version CVS $Id -->
+<!-- @version CVS $Id: omstd20.xml,v 1.50 2003/11/05 14:59:43 openmath Exp $ -->
 
 <!--
  PUBLIC "-//OASIS//DTD DocBook XML V4.2CR1//EN"
@@ -10,6 +10,8 @@ olga's setup for editing with emacs
 SYSTEM "dtds/docbookx.dtd"
 -->
 <!DOCTYPE book 
+PUBLIC "-//OASIS//DTD DocBook XML V4.2CR1//EN"
+                    "/tei-emacs/xml/dtds/docbook/docbookx.dtd"
 [
 <!-- 
  docbook customisations:
@@ -18,6 +20,8 @@ SYSTEM "dtds/docbookx.dtd"
     add author attribute to sidebar
     add xml:space (to correct for IE bug, dropping spaces)
 -->
+
+<!ENTITY % local.para.char.mix "|xs:schema|comment|string|grammar">
 <!ENTITY % inlineobj.char.class	"math">
 <!ENTITY % local.figure.mix "|sidebar">
 <!ATTLIST sidebar author CDATA #IMPLIED>
@@ -25,7 +29,8 @@ SYSTEM "dtds/docbookx.dtd"
 <!--
   MathML DTD (somewhat simplified)
 -->
-<!ELEMENT math (mrow|mn|mi|mo|msub|msup|mtext|mspace|mfrac)+>
+
+<!ELEMENT math (mrow|mn|mi|mo|msub|msup|mtext|mspace|mfrac|mfenced)+>
 <!--
   IE Bug doesn't allow this, so switch to mml namespace via stylesheet
   xmlns CDATA #FIXED "http://www.w3.org/1998/Math/MathML" 
@@ -35,7 +40,10 @@ SYSTEM "dtds/docbookx.dtd"
   class CDATA #IMPLIED
   revisionflag CDATA #IMPLIED
 >
-<!ELEMENT mrow (mrow|mn|mi|mo|msub|msup|mtext|mspace|mfrac|varname|systemitem)+>
+
+
+<!ELEMENT mfenced (mrow|mn|mi|mo|msub|msup|mtext|mspace|mfrac|mfenced)+>
+<!ELEMENT mrow (mrow|mn|mi|mo|msub|msup|mtext|mspace|mfrac|mfenced)+>
 <!ELEMENT mn (#PCDATA)>
 <!ELEMENT mi (#PCDATA)>
 <!ATTLIST mi
@@ -51,6 +59,140 @@ SYSTEM "dtds/docbookx.dtd"
 <!ELEMENT mtext (#PCDATA)>
 <!ELEMENT mspace EMPTY>
 <!ATTLIST mspace width CDATA #IMPLIED>
+
+
+
+<!ELEMENT comment (#PCDATA|token)*>
+<!ELEMENT string (#PCDATA|token)*>
+
+<!ELEMENT xs:any ANY>
+<!ATTLIST xs:any
+    processContents CDATA #IMPLIED
+    namespace CDATA #IMPLIED
+>
+<!ELEMENT xs:enumeration ANY>
+<!ATTLIST xs:enumeration
+    value CDATA #IMPLIED
+>
+
+<!ELEMENT xs:attributeGroup ANY>
+<!ATTLIST xs:attributeGroup
+    ref CDATA #IMPLIED
+    name CDATA #IMPLIED
+>
+<!ELEMENT xs:schema ANY>
+<!ATTLIST xs:schema
+    elementFormDefault CDATA #IMPLIED
+    targetNamespace CDATA #IMPLIED
+    xmlns CDATA #IMPLIED
+    xmlns:xlink CDATA #IMPLIED
+    xmlns:xs CDATA #IMPLIED
+    xmlns:om CDATA #IMPLIED
+>
+
+<!ELEMENT xs:choice ANY>
+<!ATTLIST xs:choice
+    maxOccurs CDATA #IMPLIED
+    minOccurs CDATA #IMPLIED
+>
+<!ELEMENT xs:sequence ANY>
+<!ATTLIST xs:sequence
+    maxOccurs CDATA #IMPLIED
+    minOccurs CDATA #IMPLIED
+>
+<!ELEMENT xs:group ANY>
+<!ATTLIST xs:group
+    ref CDATA #IMPLIED
+    name CDATA #IMPLIED
+    maxOccurs CDATA #IMPLIED
+    minOccurs CDATA #IMPLIED
+>
+<!ELEMENT xs:complexType ANY>
+<!ATTLIST xs:complexType
+  mixed CDATA #IMPLIED
+>
+<!ELEMENT xs:import ANY>
+<!ATTLIST xs:import
+    namespace CDATA #IMPLIED
+    schemaLocation CDATA #IMPLIED
+>
+<!ELEMENT xs:pattern ANY>
+<!ATTLIST xs:pattern
+  value CDATA #IMPLIED
+>
+<!ELEMENT xs:simpleType ANY>
+<!ELEMENT xs:simpleContent ANY>
+<!ELEMENT xs:restriction ANY>
+<!ATTLIST xs:restriction
+  base CDATA #IMPLIED
+>
+<!ELEMENT xs:extension ANY>
+<!ATTLIST xs:extension
+  base CDATA #IMPLIED
+>
+<!ELEMENT xs:element ANY>
+<!ATTLIST xs:element
+    ref CDATA #IMPLIED
+    name CDATA #IMPLIED
+>
+<!ELEMENT xs:attribute ANY>
+<!ATTLIST xs:attribute
+    ref CDATA #IMPLIED
+    type CDATA #IMPLIED
+    use CDATA #IMPLIED
+    name CDATA #IMPLIED
+>
+
+<!ELEMENT grammar ANY>
+<!ATTLIST grammar
+    datatypeLibrary CDATA #IMPLIED
+    name CDATA #IMPLIED
+    xmlns CDATA #IMPLIED
+    xmlns:xlink CDATA #IMPLIED
+    ns CDATA #IMPLIED>
+<!ELEMENT define ANY>
+<!ATTLIST define
+    name CDATA #IMPLIED
+>
+<!ELEMENT choice ANY>
+<!ELEMENT ref EMPTY>
+<!ATTLIST ref
+    name CDATA #IMPLIED
+>
+<!ELEMENT anyName ANY>
+<!ELEMENT zeroOrMore ANY>
+<!ELEMENT oneOrMore ANY>
+<!ELEMENT nsName ANY>
+<!ELEMENT value ANY>
+<!ELEMENT start ANY>
+
+<!ELEMENT except ANY>
+<!ELEMENT text ANY>
+<!ELEMENT param ANY>
+<!ATTLIST param
+    name CDATA #IMPLIED
+>
+<!ELEMENT data ANY>
+<!ATTLIST data
+    type CDATA #IMPLIED
+>
+<!ELEMENT element ANY>
+<!ATTLIST element
+    name CDATA #IMPLIED
+>
+<!ELEMENT attribute ANY>
+<!ATTLIST attribute
+    name CDATA #IMPLIED
+>
+
+<!ENTITY % group.module "IGNORE">
+<!ELEMENT group ANY>
+<!ENTITY % optional.module "IGNORE">
+<!ELEMENT optional ANY>
+<!ATTLIST element
+    name CDATA #IMPLIED
+>
+
 
 <!--
   Abbreviations used in this document
@@ -625,15 +767,14 @@ they could also contain intermediate results of calculations, or
 <phrase revisionflag="deleted">The name
   of a symbol can only contain alphanumeric characters and
   underscores.  More precisely, a symbol name matches the following
-  regular expression:
-<blockquote><para>
+  regular expression:</phrase>
+<blockquote revisionflag="deleted"><para>
   [<systemitem>A</systemitem>-<systemitem>Z</systemitem><systemitem>a</systemitem>-<systemitem>z</systemitem>]
   [<systemitem>A</systemitem>-<systemitem>Z</systemitem><systemitem>a</systemitem>-<systemitem>z</systemitem><systemitem>0</systemitem>-<systemitem>9</systemitem><systemitem>_</systemitem>]*
   </para></blockquote>
-  <para>Notice that these symbol names are case sensitive.  &OM;
+  <phrase revisionflag="deleted">Notice that these symbol names are case sensitive.  &OM;
   <emphasis>recommends</emphasis> that symbol names should be no longer than
-  100 characters.</para>
-</phrase>
+  100 characters.</phrase>
 </para>
   
  <sidebar revision="1999/09/10" author="DPC"><para>Removed suggestion to utf7 hint variable names</para></sidebar>
@@ -645,8 +786,8 @@ they could also contain intermediate results of calculations, or
   integrals, independent variables of derivatives).  <phrase
   revisionflag="deleted">Plain variable names are restricted to use a
   subset of the printable ASCII characters.  Formally the names must
-  match the regular expression: <blockquote><para>
-  [A-Za-z0-9=+(),-./:?!#$%*;=@[]^_`{|}]+ </para></blockquote></phrase>
+  match the regular expression:</phrase> <blockquote   revisionflag="deleted"><para>
+  [A-Za-z0-9=+(),-./:?!#$%*;=@[]^_`{|}]+ </para></blockquote>
 </para>
 <para revisionflag="added">
 A variable may have one or more children which are themselves &OM;
@@ -659,11 +800,11 @@ variable with cardinality such as
 </varlistentry>
 </variablelist> </para>
 
-<phrase revisionflag="added">
-<para>Currently there is one way of making a
+
+<para revisionflag="added">Currently there is one way of making a
 derived &OM; object.</para>
 
-<variablelist>
+<variablelist revisionflag="added">
 <varlistentry><term>Foreign</term><listitem><para>is used to import a
 non-&OM; object into an &OM; attribution.  Examples of its use could
 be to annotate a formula with a visual or aural rendering, an
@@ -672,7 +813,7 @@ animation etc.
 </listitem>
 </varlistentry>
 </variablelist>
-</phrase>
+
 
 <para>The four following constructs can be used to make compound
  &OM; objects.</para>
@@ -974,15 +1115,15 @@ Then a legal &OM; name is defined by the following grammar:
 
 <formalpara><title>CD Base</title>
 
-A cdbase must conform to the grammar for URIs described in
+<para>A cdbase must conform to the grammar for URIs described in
 <citation>IETF2396</citation>.  Note that if non-ASCII characters are
 used in a CD or symbol name then when a URI for that symbol is
 constructed it will be necessary to map the non-ASCII characters to a
 sequence of octets.  The precise mechanism for doing this depends on
-the URI scheme.</formalpara>
+the URI scheme.</para></formalpara>
 
 <formalpara><title>Note on content dictionary names</title>
-
+<para>
 It is a common convention to store a Content Dictionary in a file of
 the same name, which can cause difficulties on many file systems.  If
 this convention is to be followed then &OM;
@@ -1016,7 +1157,7 @@ subset of the above grammar which is a legal POSIX
 </tgroup>
 </informaltable>
 </blockquote>
-
+</para>
 </formalpara>
 
 </section>
@@ -1289,7 +1430,7 @@ author="DPC"><para>Restrict empty element
 syntax</para></sidebar> 
 
 <para  revisionflag="deleted">The &exml; empty element form
-<systemitem>&lt;|<phrase>&#8230;</phrase>/&gt;</systemitem> should
+<systemitem>&lt;|&#8230;/&gt;</systemitem> should
 always be used to encode elements such as <acronym>omf</acronym> which
 are specified in the <acronym>dtd</acronym> as being
 <acronym>empty</acronym>. It should never be used for elements that
@@ -1312,10 +1453,11 @@ character, <quote>cr</quote> for the carriage return character,
 for the horizontal tabulation character.</para>
 
 
-<para revisionflag="deleted">
+<para revisionflag="deleted" id="fig_xml">
+<!--<sidebar revision="1999/07/16" author="DPC"><para>White space allowed in integer strings</para></sidebar>-->
     <phrase revisionflag="deleted">Grammar for the &exml; encoding of &OM; objects.</phrase>
 
-<sidebar revision="1999/07/16" author="DPC"><para>White space allowed in integer strings</para></sidebar>
+
 
 <informaltable revisionflag="deleted">
 <tgroup cols="3">
@@ -1389,7 +1531,7 @@ cdname      </entry>
 </tbody>
 </tgroup>
 </informaltable>
-<sidebar revision="1999/09/09" author="DPC"><para>removed ' from varname</para></sidebar>
+<!--<sidebar revision="1999/09/09" author="DPC"><para>removed ' from varname</para></sidebar>-->
 
 
 
@@ -1686,8 +1828,11 @@ encoded as <systemitem>&lt;OMI> 10 &lt;/OMI> </systemitem> or as
   the &OM; standard might introduce a defaulting mechanism.w
 </phrase> For
   example:
-<blockquote><systemitem>&lt;OMS 
-<phrase revisionflag="added">cdbase="http://www.openmath.org/cd"</phrase> cd="transc" name="sin"/></systemitem>
+<blockquote revisionflag="deleted"><para><systemitem>&lt;OMS
+ cd="transc" name="sin"/></systemitem></para>
+</blockquote>
+<blockquote revisionflag="added"><para><systemitem>&lt;OMS
+ cdbase="http://www.openmath.org/cd" cd="transc" name="sin"/></systemitem></para>
 </blockquote>
   is the encoding of the symbol named <systemitem>sin</systemitem> in
   the Content Dictionary named <systemitem>transc</systemitem>,
@@ -1716,11 +1861,11 @@ MathML document <citation>MathML_2000</citation>.</para>
                 definitionURL="http://www.openmath.org/cd/arith1#plus"&gt;Z&lt;/csymbol&gt;
   </literallayout>
 </blockquote>
-</listitem>
 <para revisionflag="added">
 Note that the role attribute described in <xref
 linkend="sec_roles"/> is contained in the Content Dictionary and is not
 part of the encoding of a symbol.</para>
+</listitem>
 </varlistentry>
 <varlistentry><term>Variables</term><listitem><para>are encoded using
   the <systemitem>OMV</systemitem> element, with only one
@@ -1879,8 +2024,6 @@ or to express the type of a variable:
            </OMATTR>]]></literallayout></para>
 
   
-</listitem>
-
 <para revisionflag="added">
 A special use of attributions is to associate non-&OM; data with an
 &OM; object.  This is done using the
@@ -1924,6 +2067,8 @@ as follows:
         </OMA>
       </OMATTR>]]></literallayout>
 </para>
+</listitem>
+
 </varlistentry>
 
 <varlistentry>
@@ -2538,7 +2683,7 @@ implementations).</para>
 	      varname:<math><mi>n</mi></math>
 	      object [11]
 	    </entry>
-	    <entry><math>|</math></entry>
+	    <entry><math><mo>|</mo></math></entry>
 	    <entry> [10+64]
 	      [<math><mi>n</mi></math>]
 	      [<math><mi>m</mi></math>]
@@ -2551,13 +2696,13 @@ implementations).</para>
 	  
 	  <row revisionflag="added">
 	    <entry/>
-	    <entry><math>|</math></entry>
+	    <entry><math><mo>|</mo></math></entry>
 	    <entry> [10+128]
 	      {<math><mi>n</mi></math>}
 	      varname:<math><mi>n</mi></math>
 	      object [11]
 	    </entry>
-	    <entry><math>|</math></entry>
+	    <entry><math><mo>|</mo></math></entry>
 	    <entry> [10+64+128]
 	      {<math><mi>n</mi></math>}
 	      {<math><mi>m</mi></math>}
@@ -2649,8 +2794,8 @@ implementations).</para>
 	      {<math><mi>l</mi></math>}
 	      cdname:<math><mi>n</mi></math>
 	      symbname:<math><mi>m</mi></math>
-	      uri:<math><mi>k</mi></math></entry>
-	    id:<math><mi>l</mi></math>
+	      uri:<math><mi>k</mi></math>
+	    id:<math><mi>l</mi></math></entry>
 	  </row>
 	  
 	  <row>
@@ -3807,7 +3952,7 @@ encodings.  The detailed structure of a CDGroup is described in
 <section revisionflag="added" id="sec_status">
 <title>Content Dictionary Status</title>
 
-  The status of a Content Dictionary can be either
+  <para>The status of a Content Dictionary can be either
 <itemizedlist>
 <listitem><para>
   <systemitem>official</systemitem>: approved by the &OM; Society
@@ -3827,6 +3972,7 @@ liable to change;
   Dictionary kept only for archival purposes.
 </para></listitem>
 </itemizedlist>
+</para>
 </section>
 
 <section revisionflag="added" id="sec_version">
@@ -3990,7 +4136,7 @@ CDATA, must actually make sense to, say, a Phrasebook designer. In
 this section we define exactly the format of the elements used in
 Content Dictionaries.</para>
 
-<para revisonflag="added">
+<para revisionflag="added">
 We now describe the elements used in the above schema in terms of the
 abstract description of CDs in <xref linkend="sect_func"/>.  Unless
 stated otherwise the information is encoded as the content of the
@@ -4589,8 +4735,7 @@ requirements on the content of the elements described by the DTD in
 </listitem>
 </varlistentry>
 <varlistentry revisionflag="added"><term><systemitem>CDGroupVersion</systemitem></term>
-</varlistentry>
-<varlistentry revisionflag="added"><term><systemitem>CDGroupRevision</systemitem></term>
+<term><systemitem>CDGroupRevision</systemitem></term>
 <listitem>
 <para>The text occurring in these elements contains the major and minor
 version numbers of the CDGroup.
@@ -6269,7 +6414,7 @@ be present here.
 </appendix>
 
 
-<appendix id="app_relaxcompact" revisionflag="added">
+<appendix id="app_openmath.rng" revisionflag="added">
   <title>&OM; Schema in Relax NG XML Syntax (Non-Normative)</title>
   
   <para>This is the Relax NG Schema described in <xref linkend="sec_xml"/>
@@ -6353,7 +6498,7 @@ cd.attlist.OMS |=
 
 <para> To build a schema that allows only symbols from arith1 we just
 need to include the &OM; schema described in <xref
-linkend="app_relaxcompact"/>, override the attribute declarations for
+linkend="ssec_xml"/>, override the attribute declarations for
 OMS, and then include the schema for arith1.  For example:
 <literallayout>
 <![CDATA[<?xml version="1.0" encoding="UTF-8"?>
@@ -7208,8 +7353,8 @@ Applying it to Computational Abstract Algebra</title>
   <author><othername>Unicode Consortium</othername></author>
   <title>The Unicode Standard: Version <phrase revisionflag="deleted">2.0</phrase><phrase revisionflag="added">4.0</phrase></title>
   <publisher><publishername>Addison-Wesley Developers Press</publishername></publisher>
-  <pubdate><phrase revisionflag="deleted">1996</phrase><phrase
-revisionflag="added">2003</phrase></pubdate>
+  <pubdate revisionflag="deleted">1996</pubdate>
+  <pubdate revisionflag="added">2003</pubdate>
 </biblioentry>
 
 <biblioentry id="ieee754_85" role="Misc">
