@@ -99,7 +99,7 @@ David Carlisle
 <xsl:if test="$om2 and translate(@cd,'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_','') != ''">
  <p>Illegal character in CD name: <xsl:value-of select="@cd"/></p>
 </xsl:if>
-<xsl:if test="$om2 and translate(@name,'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_','') != ''">
+<xsl:if test="$om2 and translate(@name,'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+=(),-./:?!#$&#37;*;@[]^_`{|}','') != ''">
 <p>Illegal character in Symbol name: <xsl:value-of select="@name"/></p>
 </xsl:if>
 
@@ -115,7 +115,7 @@ David Carlisle
  </xsl:when>
  <xsl:when test=
   "not((document(concat($cdhome,'cd/',@cd,'.ocd'))|document(concat($cdhome,'contrib/cd/',@cd,'.ocd')))
-     /CD/CDDefinition[normalize-space(Name) = current()/@name])">
+     /*/*[normalize-space(*[local-name()='Name']) = current()/@name])">
  <p> Bad Symbol: <xsl:text/>
   <xsl:value-of select="@name"/>
  <xsl:text> not in </xsl:text>
@@ -158,7 +158,7 @@ David Carlisle
  <xsl:if test="*">
  <p>OMI should only have character data</p>
  </xsl:if>
-<xsl:if test="translate(.,'0123456789 ','') != ''">
+<xsl:if test="translate(.,'-0123456789 ','') != ''">
  <p>Illegal character in OMI: <xsl:value-of select="."/></p>
 </xsl:if>
 </xsl:template>
@@ -171,10 +171,10 @@ David Carlisle
  <xsl:if test="* or not(. = '')">
  <p> OMF must be EMPTY</p>
  </xsl:if>
-<xsl:if test="not($om2) and translate(@dec,'+-012345679. ','') != ''">
+<xsl:if test="not($om2) and translate(@dec,'+-0123456789. ','') != ''">
  <p>Illegal character in OMF dec attribute: <xsl:value-of select="@dec"/></p>
 </xsl:if>
-<xsl:if test="$om2 and translate(@dec,'+-012345679EINFa. ','') != ''">
+<xsl:if test="$om2 and translate(@dec,'+-0123456789EeINFa. ','') != ''">
  <p>Illegal character in OMF dec attribute: <xsl:value-of select="@dec"/></p>
 </xsl:if>
 <xsl:if test="translate(@hex,'ABCDEF0123456789 ','') != ''">
@@ -282,7 +282,7 @@ on line <xsl:value-of select="saxon:line-number()"/></xsl:if>
  <xsl:if test="not(*[position() mod 2 =1 and self::om:OMS])">
   <p>OMATP must have odd children OMS</p>
  </xsl:if>
-  <xsl:if test="not(parent::om:OMATTTR)">
+  <xsl:if test="not(parent::om:OMATTR)">
    <p>OMATP must be a child of OMATTR</p>
  </xsl:if>
  <xsl:apply-templates/>
@@ -309,9 +309,9 @@ on line <xsl:value-of select="saxon:line-number()"/></xsl:if>
   <xsl:if test="not(parent::om:OMATP)">
    <p>OMFOREIGN must be a child of OMATP</p>
  </xsl:if>
-  <xsl:if test="@*">
-  <p>OMFOREIGN does not take attributes</p>
- </xsl:if>
+ <xsl:for-each select="@*[not(name()='encoding')]">
+  <p>Bad attribute on OMFORIE<xsl:value-of select="name()"/>="<xsl:value-of select="."/>"</p>
+ </xsl:for-each>
  </xsl:otherwise>
  </xsl:choose>
  <!-- dont check inside omforeign (could check om is correct) -->
