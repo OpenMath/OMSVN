@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.89 2004/03/26 11:09:41 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.90 2004/03/26 17:13:05 openmath Exp $ -->
 
 
 <!DOCTYPE book 
@@ -1158,7 +1158,7 @@ Some of the character values or <emphasis>code points</emphasis> in the
 following productions are currently unassigned, but this is
 likely to change in the future as Unicode evolves<footnote id="xml1">
 <para>
-We note that in XML 1 the name production explictly listed 
+We note that in XML 1 the name production explicitly listed 
 the characters that were allowed, so all the characters added in
 versions of Unicode after 2.0 (which amounted to tens of thousands of
 characters) were not allowed in names.
@@ -1205,7 +1205,10 @@ characters) were not allowed in names.
 used in a CD or symbol name then when a URI for that symbol is
 constructed it will be necessary to map the non-ASCII characters to a
 sequence of octets.  The precise mechanism for doing this depends on
-the URI scheme.</para></formalpara>
+the URI scheme.</para>
+
+
+</formalpara>
 
 <formalpara><title>Note on content dictionary names</title>
 <para>
@@ -1242,6 +1245,33 @@ subset of the above grammar which is a legal POSIX
 </tgroup>
 </informaltable>
 </blockquote>
+</para>
+</formalpara>
+
+<formalpara><title>Canonical URIs for Symbols</title>
+<para>
+To facilitate the use of &OM; within a URI-based framework (such as RDF
+<citation>rdf</citation> or OWL <citation>owl</citation>), we provide the
+following scheme for constructing a canonical URI
+for an &OM; Symbol:
+<blockquote>
+  <para><systemitem>URI = cdbase-value + '/' + cd-value + '#' + name-value</systemitem></para>
+</blockquote>
+So for example the URI for the symbol with cdbase
+<systemitem>http://www.openmath.org/cd</systemitem>, cd
+<systemitem>transc1</systemitem> and name <systemitem>sin</systemitem>
+is:
+<blockquote>
+  <para><systemitem>http://www.openmath.org/cd/transc1#sin</systemitem></para>
+</blockquote>
+In particular, this now allows us to refer uniquely to an &OM; symbol from a
+MathML document <citation>MathML_2003</citation>:
+<literallayout>
+&lt;mathml:csymbol xmlns:mathml="http://www.w3.org/1998/Math/MathML/"
+                definitionURL="http://www.openmath.org/cd/transc1#sin"&gt;
+  &lt;mo&gt; sin &lt;/mo&gt; 
+&lt;/csymbol&gt;
+</literallayout>
 </para>
 </formalpara>
 
@@ -1311,7 +1341,7 @@ documents or to have &OM; objects processed by &exml;-aware
 applications.</para>
 
 <para>The second encoding is a binary encoding that is meant to be
-used when the compactness of the encoding is important (interprocess
+used when the compactness of the encoding is important (inter-process
 communications over a network is an example).</para>
 
 <para>Note that these two encodings are sufficiently different for
@@ -1324,7 +1354,7 @@ very easily determine which encoding is used.</para>
 <para>This encoding has been designed with two main goals in mind:
 <orderedlist>
 <listitem><para>to provide an encoding that uses common character sets
-  (so that it can be easily included in most documents and transport
+  (so that it can easily be included in most documents and transport
   protocols) and that is both readable and writable by a human.</para>
 </listitem>
 <listitem><para>to provide an encoding that can be included (embedded) in
@@ -1345,8 +1375,8 @@ defined by the Relax NG schema <citation>RELAX</citation> given below.
 Relax NG has a number of advantages over the older XSD Schema format
 <citation>XSD</citation>, in particular it allows for tighter control
 of attributes and has a modular, extensible structure.  Although we
-have made the &exml; form, which is given  in <xref
-linkend="app_openmath.rng"/> normative, it is generated from the
+have made the &exml; form, which is given in <xref
+linkend="app_openmath.rng"/>, normative, it is generated from the
  compact syntax given below.  It is also very easy to restrict the schema to allow
 a limited set of &OM; symbols as described in <xref
 linkend="app_relaxrestricted"/>.  </para>
@@ -1864,11 +1894,11 @@ revisionflag="added">&exml; Encoding</phrase></title>
 <para>An encoded &OM; object is placed inside an <systemitem>OMOBJ</systemitem> element.  This 
 element can contain the elements (and integers) described above.
 <phrase revisionflag="added"> It can take an optional
-<systemitem>version</systemitem> &exml;-attribute which indicates to which
+<systemitem>version</systemitem> (&exml;) attribute which indicates to which
 version of the &OM; standard it conforms.  This would allow an older
 &OM; application which, for example, could not parse the full &exml;
 syntax, to accept objects with version "1" or "1.1" but reject objects
-with version "2".
+with version "2.0".
 </phrase></para>
 
 <para>We briefly discuss the &exml; encoding for each type of &OM; object
@@ -1902,7 +1932,7 @@ encoded as <systemitem>&lt;OMI> 10 &lt;/OMI> </systemitem> or as
   the <systemitem>OMS</systemitem> element. This element has
   <phrase revisionflag="deleted">two</phrase>
   <phrase revisionflag="added">three</phrase>
-  &exml;-attributes <systemitem>cd</systemitem>,
+  (&exml;) attributes <systemitem>cd</systemitem>,
   <systemitem>name</systemitem><phrase revisionflag="added">,  and
     <systemitem>cdbase</systemitem></phrase>. The value of
   <systemitem>cd</systemitem> is the name of the Content Dictionary in
@@ -1910,12 +1940,12 @@ encoded as <systemitem>&lt;OMI> 10 &lt;/OMI> </systemitem> or as
   <systemitem>name</systemitem> is the name of the symbol.
   <phrase revisionflag="added">The optional <systemitem>cdbase</systemitem>
     attribute is a URI that can be used to disambiguate between two  content
-    dictionaries with the same name. The
-  <systemitem>cdbase</systemitem> attribute may be used on any ancester
-  element of the current <systemitem>OMS</systemitem>, any <systemitem>OMS</systemitem> elements without an
-  explict  <systemitem>cdbase</systemitem> attribute which is a
-  descendent of such an element is taken to
-  encode an OpenMath symbol with this CD base.</phrase>
+    dictionaries with the same name.
+  If a symbol does not have an explicit <systemitem>cdbase</systemitem>
+attribute, then it inherits its <systemitem>cdbase</systemitem> from the
+first ancestor in the &exml; tree with one, should such an element
+exist.
+  </phrase>
 <phrase revisionflag="deleted">
   The name
   of the Content Dictionary is compulsory, but a future revision of
@@ -1933,41 +1963,24 @@ encoded as <systemitem>&lt;OMI> 10 &lt;/OMI> </systemitem> or as
 <phrase revisionflag="added">which is part of the collection
 maintained by the &OM; Society</phrase>.</para>
 
-<para revisionflag="added">The three attributes of the
+<para revisionflag="added">As described in <xref linkend="sec_names"/>,
+the three attributes of the
   <systemitem>OMS</systemitem> can be used to build a URI reference for the symbol,
-for use in contexts where URI-based referencing mechanisms are used. This
-canonical URI reference is constructed as follows:</para>
-<blockquote  revisionflag="added">
-  <para><systemitem>URI = cdbase-value + '/' + cd-value + '#' + name-value</systemitem></para>
-</blockquote>
-
-<para revisionflag="added">For example</para>
-<blockquote  revisionflag="added">
-  <literallayout><![CDATA[<OMS name="plus" cd="arith1" cdbase="http://www.openmath.org/cd"/>]]></literallayout>
-</blockquote>
-<para revisionflag="added">
-  gives the URI <systemitem>"http://www.openmath.org/cd/arith1#plus"</systemitem>
-  This would allow us to refer uniquely to an openmath symbol from a
-MathML document <citation>MathML_2003</citation>.</para>
-<blockquote  revisionflag="added">
-  <literallayout>
-&lt;mathml:csymbol xmlns:mathml="http://www.w3.org/1998/Math/MathML/"
-                definitionURL="http://www.openmath.org/cd/arith1#plus"&gt;
-  Z
-&lt;/csymbol&gt;
-  </literallayout>
-</blockquote>
+for use in contexts where URI-based referencing mechanisms are used.
+For example the URI for the above symbol is
+ <systemitem>http://www.openmath.org/cd/transc1#sin</systemitem>.
+</para>
 <para revisionflag="added">
 Note that the role attribute described in <xref
 linkend="sec_roles"/> is contained in the Content Dictionary and is not
 part of the encoding of a symbol, also the <systemitem>cdbase</systemitem> attribute need not
-be explict on each <systemitem>OMS</systemitem> as it is inherited
+be explicit on each <systemitem>OMS</systemitem> as it is inherited
 from any ancestor element.</para>
 </listitem>
 </varlistentry>
 <varlistentry><term>Variables</term><listitem><para>are encoded using
   the <systemitem>OMV</systemitem> element, with only one
-  &exml;-attribute, <systemitem>name</systemitem>, whose value is the
+  (&exml;) attribute, <systemitem>name</systemitem>, whose value is the
   variable name. <phrase revisionflag="deleted">
 The variable name is a subset of the printable
   <acronym>ascii</acronym> set of characters.  In particular, neither
@@ -1981,9 +1994,9 @@ The variable name is a subset of the printable
 </varlistentry>
 <varlistentry><term>Floating-point numbers</term><listitem><para>are
   encoded using the <systemitem>OMF</systemitem> element that has
-  either the &exml;-attribute <systemitem>dec</systemitem> or the
-  &exml;-attribute <systemitem>hex</systemitem>. The two
-  &exml;-attributes cannot be present simultaneously. The value of
+  either the (&exml;) attribute <systemitem>dec</systemitem> or the
+  (&exml;) attribute <systemitem>hex</systemitem>. The two
+  (&exml;) attributes cannot be present simultaneously. The value of
   <systemitem>dec</systemitem> is the floating-point number expressed
   in base 10, using the common syntax:</para>
   
@@ -2001,14 +2014,16 @@ Note that the syntax NaN  (and also +/- INF) is used to
   <systemitem>hex</systemitem> attribute should be used, as described below.</para>
   <para revisionflag="changed">The value of
   <systemitem>hex</systemitem> is a base 16 representation of the 
- 32 bits of the <acronym>ieee</acronym> Double.
+ 64 bits of the <acronym>ieee</acronym> Double.
  Thus the number represents mantissa, exponent, and sign from lowest
   to highest bits using a  least significant byte ordering.
  This consists of a string of 16 digits <systemitem>0</systemitem>-<systemitem>9</systemitem>, <systemitem>A</systemitem>-<systemitem>F</systemitem>.
   </para>
-  <para revisionflag="changed">For example, <systemitem>&lt;OMF
-    dec="1.0e-10"/></systemitem> is a valid floating-point
-  representation of the floating point number
+  <para revisionflag="changed">For example, both <systemitem>&lt;OMF
+    dec="1.0e-10"/&gt;</systemitem> and 
+   <systemitem>&lt;OMF hex="00000000D9D7BDBB"/&gt;</systemitem>
+  are valid floating-point
+  representations of the floating point number
   <math><mn>1</mn><mo>&#215;</mo>
 <msup><mn>10</mn><mn>-10</mn></msup></math>.</para>
   
