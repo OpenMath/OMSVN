@@ -45,6 +45,7 @@
 <!-- non empty elements and other nodes. -->
 <xsl:template mode="verb" match="*[*]|*[text()]|*[comment()]|*[processing-instruction()]">
   <xsl:value-of select="concat('&lt;',name(.))"/>
+  <xsl:call-template name="ns"/>
   <xsl:apply-templates mode="verb" select="@*"/>
   <xsl:text>&gt;</xsl:text>
   <xsl:apply-templates mode="verb"/>
@@ -54,8 +55,18 @@
 <!-- empty elements -->
 <xsl:template mode="verb" match="*">
   <xsl:value-of select="concat('&lt;',name(.))"/>
-  <xsl:apply-templates mode="verb" select="@*"/>
+  <xsl:call-template name="ns"/>
+  <xsl:apply-templates mode="verb" select="namespace::*|@*"/>
   <xsl:text>/&gt;</xsl:text>
+</xsl:template>
+
+<xsl:template name="ns">
+  <xsl:for-each select="namespace::*[not(name()='xml')]">
+  <xsl:if test="not(../../namespace::*[name()=name(current()) and (. = current())])">
+  <xsl:text/> xmlns<xsl:if test="name()">:</xsl:if><xsl:value-of
+  select="name()"/>="<xsl:value-of select="."/>"<xsl:text/>
+  </xsl:if>
+  </xsl:for-each>
 </xsl:template>
 
 <!-- attributes
@@ -71,6 +82,7 @@
   </xsl:call-template>
   <xsl:text>"</xsl:text>
 </xsl:template>
+
 
 <!-- pis -->
 <xsl:template mode="verb" match="processing-instruction()">
