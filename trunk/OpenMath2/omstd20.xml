@@ -304,7 +304,7 @@ objects of the application.</para>
 
 <sidebar revision="2000/04/10"
 author="DPC"><para>Reword</para></sidebar> <para>&OM; objects do not
-specify any compuational behaviour, they merely represent mathematical
+specify any computational behaviour, they merely represent mathematical
 expressions.  Part of the &OM; philosophy is to leave it to the
 application to decide what it does with an object once it has received
 it.  &OM; is not a query or programming language. Because of this,
@@ -3243,10 +3243,10 @@ efficient binary encoding specified in this section) only symbols,
 variables, and short strings could be shared. In this section, we will
 present a second binary encoding, which shares most of the identifiers
 with the one in the last one, but handles sharing differently. This
-  encoding is signaled by identifier [88].</para>
+  encoding is signaled by the shared object tags [88].</para>
 
   <para>The main difference is the interpretation of the sharing flag (bit 7),
-which can be set on all objects. Instead of encoding a reference to a
+which can be set on all objects that allow it. Instead of encoding a reference to a
 previous occurrence of an object of the same type, it indicates
 whether an object will be referenced later in the encoding. This
   corresponds to the information, whether an <systemitem>id</systemitem>
@@ -3259,16 +3259,23 @@ make sense), the shared flag signifies the encoding described here
 <para>Otherwise integers, floats, variables, symbols, strings, bytearrays, and constructs
 are treated exactly as in the binary encoding described in the last section.</para>
 
-<para>The binary encoding with references uses the additional identifiers
-[30] for (short) references and [30+128] for long
-references. Identifiers [30+64] and [30+64+128] are not used, since
-they would encode references that are shared themselves. Chains of
-references are redundant, and decrease both space and time efficiency,
-therefore they are not allowed in the &OM; binary encoding.</para>
+<para>The binary encoding with references uses the additional reference tags [30]
+for (short) internal references, [30+128] for long internal references, [30] for
+(short) external references, [30+128] for long external references. Internal
+references are used to share sub-objects in the encoded object (see <xref
+linkend="fig_bin-enc2"/> for an example) by referencing their position; external
+references allow to reference &OM; objects in other documents by an URI.</para>
+
+<para>Identifiers [30+64] and [30+64+128] are not used, since they would encode
+references that are shared themselves. Chains of references are redundant, and
+decrease both space and time efficiency, therefore they are not allowed in the
+&OM; binary encoding.</para>
 
 <para>References consist of the identifier [30] ([30+128] for long references)
-followed by a positive integer $n$ coded on one byte (4 bytes for long
-references). This integer references the $n+1$th shared sub-object (one where the
+followed by a positive integer <math><mi>n</mi></math> coded on one byte (4 bytes for long
+references). This integer references the
+<math><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></math>th shared sub-object (one
+where the 
 shared flag is set) in the current object (counted in the order they are generated
 in the encoding). For example <systemitem>Ox7E Ox01</systemitem> references the
 second shared sub-object. Figure <xref linkend="fig_bin-enc2"/> shows the binary
@@ -3315,7 +3322,7 @@ above.</para>
   <entry>00</entry><entry>to the second shared object</entry></row>
 <row><entry>66</entry><entry>f  (variable name)</entry>
   <entry>11</entry><entry>end application tag</entry></row>
-<row><entry>19</entry><entry>end object tag</entry></row>
+<row><entry/><entry/><entry>19</entry><entry>end object tag</entry></row>
 </tbody>
 </tgroup>
 </informaltable>
@@ -3362,7 +3369,8 @@ binary encoding with sharing.</para>
   wrote the object chose not to share optimally).
 </para>
 
-<para revisionflag="added">The part for the shared representations of &OM; objects uses an unbounded
+<para revisionflag="added">
+  The part for the shared representations of &OM; objects uses an unbounded
   array for storing shared sub-objects. Whenever an object has the shared flag
   set, then it is read and a pointer to the generated data structure is stored at
   the next position of the array. Whenever a reference of the form 
@@ -3371,8 +3379,11 @@ binary encoding with sharing.</para>
   and analogously for or <systemitem>[30+128] {_}</systemitem>. Note that the
   application can decide to copy the value or share it among subterms as long as
   it respects the identity conditions given by the tree-nature of the &OM;
-  objects.  Furthermore implementation must take care to ensure that no variables
-  are captured during this process (see section <xref linkend="sec_sharing_bvars"/>)
+  objects.  The implementation must take care to ensure that no variables
+  are captured during this process (see section
+  <xref linkend="sec_sharing_bvars"/>), and possibly have methods for recovering
+  from cyclic dependency relations (this can be done by standard loop-checking
+  methods).
 </para>
 
 <para>Writing an object is simple. The tables are first flushed. Each time a
@@ -3470,6 +3481,25 @@ It is binary encoded as the sequence of bytes given by  the following table.</pa
 </tgroup>
 </informaltable> 
 
+</section>
+
+<section id="sec_relation_OM1_binary" revisionflag="added">
+  <title>Relation to the &OM;1 binary encoding</title>
+  <para>The &OM;2 binary encoding significantly extends the
+    &OM;1 binary encoding to accomodate the new features and in particular sharing of
+    sub-objects. The tags and structure of the  &OM;1 binary encoding are still
+    present in the current &OM; binary encoding, so that binary encoded &OM;1 objects
+    are still valid in the &OM;2 binary encoding and correspond to the same abstract
+    &OM; objects. In some cases, the binary encoding tags without the shared flag
+    can still be used as more compact representations of the objects (which are
+    not shared, and do not have an identifier).
+  </para>
+  <para>As the binary encoding is geared towards compactness, &OM; objects should
+    be maximally internally shared (if computationally feasible). Note that since
+    sharing is done only at the
+    encoding level, this does not alter the meaning of an &OM; object, only allow
+    to represent it more compactly.
+  </para>
 </section>
 </section>
 
@@ -7679,9 +7709,13 @@ revisionflag="added">2003</phrase></pubdate>
 </bibliography>
 </book>
 
-<!-- ***********************  TODO LIST ************************** -->
-<!-- say something about recovering from cyclic references  in the
-     implementation note -->
-     
-
-
+<!-- LocalWords:  xsl href omstd DocBook docbook olga's dtds customisations sidebar
+ LocalWords:  ATTLIST mrow mn mi mo msub msup mtext mspace mfrac mml xmlns exml
+ LocalWords:  revisionflag varname systemitem PCDATA mathcolor mathvariant dpc
+ LocalWords:  exadigits lcalpha ucalpha regxp zsp longrightarrow varnamechar OC
+ LocalWords:  omrnc openmath rnc omxsd xsd omrng rng bookinfo releaseinfo xref
+ LocalWords:  firstname Buswell othername Gaetano linkend cha toc formalised cd
+ LocalWords:  Leeuwen Strotmann Dalmas omsoc ulink url int fileref obj enco gt
+ LocalWords:  addnfiles CDGroup DefMP phrasebooks Phrasebook behaviour omin
+ LocalWords:  omabs labelled itemizedlist listitem bignums ieee Unicode mfenced
+ LocalWords:  Bytearray -->
