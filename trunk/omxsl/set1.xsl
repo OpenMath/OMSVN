@@ -11,6 +11,15 @@
 
 
 
+<xsl:template match="om:OMS[(@cd='set1' or @cd='multiset1') and @name='cartesian_product']" >
+   <xsl:param name="p"/>
+  <xsl:call-template name="infix">
+    <xsl:with-param name="mo"><mo>&#xD7;</mo></xsl:with-param>
+    <xsl:with-param name="p" select="$p"/>
+    <xsl:with-param name="this-p" select="2"/>
+  </xsl:call-template>
+</xsl:template>
+
 <xsl:template match="om:OMS[(@cd='set1' or @cd='multiset1') and @name='emptyset']" >
   <mi>&#x2205;</mi>
 </xsl:template>
