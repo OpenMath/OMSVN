@@ -25,10 +25,10 @@
      var thisLevela = document.getElementById(_Id.concat("a"))
      if(thisLevel.style.display != "none"){ 
       thisLevel.style.display = "none";
-      thisLevela.style.backgroundColor = "gray";} 
+      thisLevela.style.backgroundColor = "#CCCCCC";} 
      else{
       thisLevel.style.display = "block";
-      thisLevela.style.backgroundColor = "green";}  
+      thisLevela.style.backgroundColor = "#AAFFAA";}  
        }
      </script>
      <title><xsl:value-of select="$cd"/>
@@ -228,9 +228,11 @@
 
 <xsl:template match="om:OMOBJ">
 <div>
-[<span id="{generate-id()}xmla" style="background-color:gray" onclick="divfold('{generate-id()}xml')">xml</span>]
-[<span id="{generate-id()}prefa" style="background-color:gray" onclick="divfold('{generate-id()}pref')">prefix</span>]
-[<span id="{generate-id()}mmla" style="background-color:green" onclick="divfold('{generate-id()}mml')">mathml</span>]
+<button id="{generate-id()}xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('{generate-id()}xml')">xml</button>
+<xsl:text>&#160;</xsl:text>
+<button id="{generate-id()}prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('{generate-id()}pref')">prefix</button>
+<xsl:text>&#160;</xsl:text>
+<button id="{generate-id()}mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('{generate-id()}mml')">mathml</button>
 </div>
 <pre id="{generate-id()}xml" style="display:none">
 <xsl:apply-templates mode="verb" select="."/>
