@@ -28,8 +28,7 @@ echo DTD
 for i in openmath2.rnc
 do
 echo $i
-sed -e "s/default namespace/# default namespace/" \
-    -e "s/attvar =[^}]*}/attvar = OMATTR/" \
+sed -e "s/attvar =[^}]*}/attvar = OMATTR/" \
     -e "s/notom =.*$//" \
     -e "s/^.*element \*.*$//" \
     -e "s/, (omel|notom)\*//" \
@@ -41,6 +40,7 @@ sed -e "s/default namespace/# default namespace/" \
  trang tmp.rnc tmp.dtd 2>> trang.txt
  
  sed -e "s/OMFOREIGN EMPTY/OMFOREIGN ANY/" \
+     -e "s/:*ns1:*//g" \
      -e "s/\# OMDTD/<!ENTITY % omdtd SYSTEM \"openmath2.dtd\"> %omdtd;/"\
         tmp.dtd > ${i%%rnc}dtd
  sed -e "s/</\&lt;/g" ${i%%rnc}dtd > ${i%%.rnc}dtd.xml
@@ -55,6 +55,7 @@ sed -e  "s/| OMOBJ//" \
     -e "s/OMOBJ/text/" \
     -e "s/include .openmath2.rnc. {.*}/# OMDTD/" \
     -e "s/\(CDRevision\)[)],/\\1)+,/" \
+    -e "s/\(Description\)[)],/\\1)+,/" \
     -e "s/ & / | /g" \
         $i >tmp.rnc
 
