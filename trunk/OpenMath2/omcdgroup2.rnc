@@ -3,10 +3,9 @@
 
 # info on the CD group itself
 
-CDGroupName = element CDGroupName { text }
-CDGroupVersion = element CDGroupVersion { text }
-attlist.CDGroupVersion &= empty
-CDGroupRevision = element CDGroupRevision { text }
+CDGroupName = element CDGroupName { xsd:NCName }
+CDGroupVersion = element CDGroupVersion { xsd:nonNegativeInteger }
+CDGroupRevision = element CDGroupRevision { xsd:nonNegativeInteger }
 CDGroupURL = element CDGroupURL { text }
 CDGroupDescription = element CDGroupDescription { text }
 # info on the CDs in the group
@@ -15,8 +14,8 @@ CDGroupMember =
   element CDGroupMember {
     attlist.CDGroupMember, CDComment?, CDName, CDVersion?, CDURL?
   }
-CDName = element CDName { text }
-CDVersion = element CDVersion { text }
+CDName = element CDName { xsd:NCName }
+CDVersion = element CDVersion { xsd:nonNegativeInteger }
 CDURL = element CDURL { text }
 # structure of the group
 CDGroup =
