@@ -462,7 +462,9 @@ changelog entry here
 </xsl:template>
 
 <xsl:template match="@revisionflag[.='changed']">
+<xsl:if test="$showdiffs">
  <xsl:attribute name="class">chg</xsl:attribute>
+</xsl:if>
 </xsl:template>
 
 

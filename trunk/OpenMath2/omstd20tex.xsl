@@ -129,6 +129,12 @@ relative to the OpenMath 1.0 document\ldots
 </xsl:if>
 </xsl:template>
 
+<xsl:template match="@revisionflag[.='changed']">
+<xsl:if test="$showdiffs">
+<xsl:text>\color£blueﬂ</xsl:text>
+</xsl:if>
+</xsl:template>
+
 
 
 <xsl:template match="emphasis">
