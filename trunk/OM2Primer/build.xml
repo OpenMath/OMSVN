@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+
+<!--
+  
+    $Id: build.xml,v 1.1 2003/11/20 13:53:31 openmath Exp $
+
+    Copyright (c) 2003, RISC-Linz, Mathbroker, Austria.
+    All Rights Reserved.
+
+    Note: you need to have the JWSDP 1.1 developer pack to compile this;
+          set the property 'jwsdp.home' to point to your installation.
+          
+  -->
+
+<project basedir="." default="run">
+
+  <property environment="myenv" />
+  <property name="docbook.xsl" value="${myenv.DOCBOOK_XSL}"/>
+  
+  <target name="init">
+    <tstamp/>
+        
+    <property name="package.root" value="."/>
+    <property name="package.doc"  value="doc"/>
+    <property name="package.src"  value="src"/>
+    
+    <property name="build.root"   value="build"/>
+    <property name="build.doc"    value="${build.root}/doc"/>
+    <property name="build.src"    value="${build.root}/src"/>
+ </target>
+
+  <target name="prepare" depends="init">
+    <mkdir dir="${build.root}"/>
+    <mkdir dir="${build.doc}"/>
+    <mkdir dir="${build.src}"/>
+    <mkdir dir="${build.src}/xhtml"/>
+    <copy todir="${build.src}/xhtml" 
+      file="${package.src}/xsl/pmathml.xsl"/>
+ 
+
+  </target>  
+
+
+  <target name="xhtml" depends="prepare"
+	  description="Produce the xhtml primer">
+    <style basedir="${package.root}/src/xml"
+	   includes="**/*.xml"
+	   style="${docbook.xsl}/xhtml/docbook.xsl"
+	   destdir="${build.src}/xhtml/"
+	   extension=".xhtml"
+	   force="true">
+    </style>    
+  </target>
+
+
+
+
+  <target name="doc" depends="prepare">
+
+    <!-- mathbook documentation is generated -->
+
+    <java classname="com.icl.saxon.StyleSheet" fork="yes">
+    <arg line="-o ${build.doc}/index.html ${package.doc}/main.xml ${package.doc}/driver.xsl"/>   
+      <classpath>
+        <pathelement location="/usr/local/src/saxon.6.5.3/saxon.jar"/>
+        <pathelement location="/home/olga/lib/saxon-fop.jar"/>
+        <pathelement location="/usr/local/src/saxon.6.5.3/saxon-jdom.jar"/>
+      </classpath>
+    </java>
+  </target>
+
+
+</project>
