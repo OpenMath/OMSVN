@@ -305,7 +305,7 @@ relative to the OpenMath 1.0 document...</p>
 
 
 <xsl:template match="systemitem">
-<code><xsl:apply-templates/></code>
+<small><code><xsl:apply-templates/></code></small>
 </xsl:template>
 
 
