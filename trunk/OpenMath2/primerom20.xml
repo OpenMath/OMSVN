@@ -1,11 +1,9 @@
 <?xml-stylesheet type="text/xsl" href="primer.xsl"?>
 
-<!-- @version CVS $Id: primerom20.xml,v 1.5 2003/10/15 15:14:07 openmath Exp $ -->
+<!-- @version CVS $Id: primerom20.xml,v 1.6 2004/05/22 08:12:11 openmath Exp $ -->
 
-<!--
- PUBLIC "-//OASIS//DTD DocBook XML V4.2CR1//EN"
-                    "docbook/docbookx.dtd"
--->
+<!-- <!DOCTYPE PUBLIC book "-//OASIS//DTD DocBook XML V4.2CR1//EN"
+                    "docbook/docbookx.dtd" -->
 <!DOCTYPE book SYSTEM "dtds/docbookx.dtd"
 [
 <!-- 
@@ -461,10 +459,7 @@ semantical annotation by fixing the rôle of symbol
 
 
     <section id="omobjenco">
-      <title>Encodings of &OM; Objects</title>
-      <section id="xml">
-      <title>XML Encoding</title>
-      
+      <title>An &exml; Encoding of &OM; Objects</title>
       <para>This encoding has been designed with the goals of
       providing an encoding that:
 	<orderedlist>
@@ -1120,15 +1115,33 @@ represented) and one with <systemitem>id="copy"</systemitem>, represented by the
       </section>
 
       <section id="bin">
-	<title>Binary Encoding</title>
-	<para>How the binary encoding is structured and used</para>
+	<title>The Binary Encoding for &OM; Objects</title>
+	<para>The binary encoding of &OM; encodes &OM; objects as special byte
+	streams that are not geared towards human readability, but towards storage
+	space and parse time efficiency.</para>
+	<para>Such an encoding is needed, since    content Objects can get rather
+	large, think e.g. of finite group representations, or proof terms from
+	theorem provers like the Coq
+	system<citation>MoGLI_Coq_Terms</citation>: in the rather verbose &exml;
+	encoding, such objects can require gigabytes of storage space. Even if
+	storage space or bandwidth is not a problem, then parse-time may be,
+	since it is proportional to file size.</para>
+      <para> Finally, in some applications (e.g. mathematical knowledge bases
+	based on relational or &exml; databases <citation>MBase_technical</citation>),
+	&OM; objects are better stored as binary blobs, in order not to overload
+	the structuring mechanism with the extremely fine-grained structure of
+	&exml;-encoded &OM; objects. Therefore &OM; provides a standard solution
+	to ensure interoperability of mathematical software systems (if it would
+	not, ad-hoc solutions would bloom).</para>
+      <para>In a nutshell, the binary encoding, saves space by substituting
+	single-byte tokens for the start- and end tags used in the &exm; encoding.
+	</para> 
       </section>
 
       <section id="other">
-	<title>Other Encoding</title>
+	<title>Other Encodings</title>
 	<para>How it is possible to devise other encodings</para>
       </section>
-    </section>
 
 
   <section id="cdenco">

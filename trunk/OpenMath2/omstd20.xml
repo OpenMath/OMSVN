@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.136 2004/05/21 14:41:16 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.137 2004/05/22 08:12:11 openmath Exp $ -->
 
 
 
@@ -12,6 +12,9 @@ SYSTEM "docbook/docbookx.dtd"
     add author attribute to sidebar
     add xml:space (to correct for IE bug, dropping spaces)
 -->
+
+<!-- allow style attribute everywhere -->
+<!ENTITY % local.common.attrib "style CDATA #IMPLIED">
 
 <!ENTITY % local.para.char.mix "|xs:schema|comment|string|grammar|CD|CDSignatures|CDGroup">
 <!ENTITY % inlineobj.char.class "math">
@@ -265,7 +268,7 @@ aware) so include subset of the DTD inline below.
 </copyright>
 
 <abstract>
-<para revisionflag="deleted">This document proposes &OM; as a standard for the communication of
+<para revisionflag="deleted"  style="color:red">This document proposes &OM; as a standard for the communication of
   semantically rich mathematical objects. This draft of the &OM; 
   standard comprises the following: a description of &OM; objects, the
   grammar of &exml; and of the binary encoding of objects, a
@@ -1817,13 +1820,13 @@ cdname      </entry>
 </row>
 
 <row><entry/>
-<entry></entry>
+<entry/>
 <entry> <systemitem>&lt;OMBVAR</systemitem>  S?<systemitem>&gt;</systemitem> SC? variables SC? <systemitem>&lt;/OMBVAR</systemitem> S?<systemitem>&gt;</systemitem> 
 </entry>
 </row>
 
 <row><entry/>
-<entry></entry>
+<entry/>
 <entry> SC? object SC? <systemitem>&lt;/OMBIND</systemitem> S?<systemitem>&gt;</systemitem>
 </entry>
 </row>
@@ -1843,7 +1846,7 @@ cdname      </entry>
 </row>
 
 <row><entry/>
-<entry></entry>
+<entry/>
 <entry>SC? object SC? <systemitem>&lt;/OMATTR</systemitem> S?<systemitem>&gt;</systemitem>  
 </entry>
 </row>
@@ -3641,26 +3644,35 @@ The identifier is stored in the first <phrase revisionflag="deleted">6 bits (1 t
     <figure id="fig_bin-enc_stream" revisionflag="added">
       <title>Streaming a large Integer in the Binary Encoding.</title>
       <informaltable>
-	<tgroup cols="2">
+	<tgroup cols="9">
 	  <thead>
 	    <row>
-	      <entry>Hex </entry>
-	      <entry>Meaning </entry>
+	      <entry>Byte</entry><entry>Hex</entry><entry>Meaning</entry>
+	      <entry>Byte</entry><entry>Hex</entry><entry>Meaning</entry>
+	      <entry>Byte</entry><entry>Hex</entry><entry>Meaning</entry>
 	    </row>
 	  </thead>
 	  <tbody>
-	    <row><entry>22</entry><entry>begin streamed big integer tag</entry></row>
-	    <row><entry>FF</entry><entry>255 digits in packet</entry></row>
-	    <row><entry>2B</entry><entry>sign +</entry></row>
-	    <row><entry>...</entry><entry> the 255 digits as characters</entry></row>
-	    <row><entry>22</entry><entry>begin streamed big integer tag</entry></row>
-	    <row><entry>FF</entry><entry>255 digits in packet</entry></row>
-	    <row><entry>2B</entry><entry>sign + (disregarded)</entry></row>
-	    <row><entry>...</entry><entry> the 255 digits as characters</entry></row>
-	    <row><entry>2</entry><entry>begin final big integer tag</entry></row>
-	    <row><entry>42</entry><entry>68 digits in packet</entry></row>
-	    <row><entry>2B</entry><entry>sign + (disregarded)</entry></row>
-	    <row><entry>...</entry><entry> the 68 digits as characters</entry></row>
+	    <row>
+	      <entry>1</entry><entry>22</entry><entry>begin streamed big integer tag</entry>
+	      <entry>5</entry><entry>22</entry><entry>begin streamed big integer tag</entry>
+	      <entry>9</entry><entry>2</entry><entry>begin final big integer tag</entry>
+	    </row>
+	    <row>
+	      <entry>2</entry><entry>FF</entry><entry>255 digits in packet</entry>
+	      <entry>6</entry><entry>FF</entry><entry>255 digits in packet</entry>
+	      <entry>10</entry><entry>42</entry><entry>68 digits in packet</entry>
+	    </row>
+	    <row>
+	      <entry>3</entry><entry>2B</entry><entry>sign +</entry>
+	      <entry>7</entry><entry>2B</entry><entry>sign + (disregarded)</entry>
+	      <entry>11</entry><entry>2B</entry><entry>sign + (disregarded)</entry>
+	    </row>
+	    <row>
+	      <entry>4</entry><entry>...</entry><entry> the 255 digits as characters</entry>
+	      <entry>8</entry><entry>...</entry><entry> the 255 digits as characters</entry>
+	      <entry>12</entry><entry>...</entry><entry> the 68 digits as characters</entry>
+	    </row>
 	  </tbody>
 	</tgroup>
       </informaltable>
@@ -3962,255 +3974,344 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
 <figure id="fig_bin-enc_ex">
     <title>A Simple example of the &OM; binary encoding.</title>
 
-<informaltable>
-<tgroup cols="4">
-<thead>
-<row>
-<entry>Hex </entry>
-<entry>Meaning </entry>
-<entry>Hex </entry>
-<entry>Meaning </entry>
-</row>
-</thead>
-<tbody>
-<row><entry>58</entry><entry>begin object tag</entry>
-<entry>10</entry><entry>begin application tag </entry></row>
-<row><entry>2</entry><entry> version 2.0 (major)</entry>
-<entry>48</entry><entry>symbol tag (with share bit on) </entry></row>
-<row><entry>0</entry><entry> version 2.0 (minor)</entry>
-<entry>01</entry><entry>reference to second symbol seen (arith1:plus)</entry></row>
-<row><entry>10</entry><entry>begin application tag</entry><entry>45</entry><entry>variable tag (with share bit on) </entry></row>
-<row><entry>08</entry><entry>symbol tag</entry><entry>00</entry><entry>reference to first variable seen (x) </entry></row>
-<row><entry>06</entry><entry>cd length </entry><entry>05</entry><entry>variable tag </entry></row>
-<row><entry>05</entry><entry>name length</entry><entry>01</entry><entry>name length </entry></row>
-<row><entry>61</entry><entry>a (cd name begin</entry><entry>7a</entry><entry>z (variable name) </entry></row>
-<row><entry>72</entry><entry>r  .</entry><entry>11</entry><entry>end application tag </entry></row>
-<row><entry>69</entry><entry>i  .</entry><entry>11</entry><entry>end application tag </entry></row>
-<row><entry>74</entry><entry>t  .</entry><entry>19</entry><entry>end object tag </entry></row>
-<row><entry>68</entry><entry>h  .</entry><entry></entry><entry></entry></row>
-<row><entry>31</entry><entry>1  .)</entry><entry></entry><entry></entry></row>
-<row><entry>74</entry><entry>t (symbol name begin</entry><entry></entry><entry></entry></row>
-<row><entry>69</entry><entry>i  .</entry><entry></entry><entry></entry></row>
-<row><entry>6d</entry><entry>m  .</entry><entry></entry><entry></entry></row>
-<row><entry>65</entry><entry>e  .</entry><entry></entry><entry></entry></row>
-<row><entry>73</entry><entry>s  .)</entry><entry></entry><entry></entry></row>
-<row><entry>10</entry><entry>begin application tag</entry><entry></entry><entry></entry></row>
-<row><entry>08</entry><entry>symbol tag</entry><entry></entry><entry></entry></row>
-<row><entry>06</entry><entry>cd length</entry><entry></entry><entry></entry></row>
-<row><entry>04</entry><entry>name length</entry><entry></entry><entry></entry></row>
-<row><entry>61</entry><entry>a (cd name begin</entry><entry></entry><entry></entry></row>
-<row><entry>72</entry><entry>r  .</entry><entry></entry><entry></entry></row>
-<row><entry>69</entry><entry>i  .</entry><entry></entry><entry></entry></row>
-<row><entry>74</entry><entry>t  .</entry><entry></entry><entry></entry></row>
-<row><entry>68</entry><entry>h  .</entry><entry></entry><entry></entry></row>
-<row><entry>31</entry><entry>1  .)</entry><entry></entry><entry></entry></row>
-<row><entry>70</entry><entry>p (symbol name begin</entry><entry></entry><entry></entry></row>
-<row><entry>6c</entry><entry>l  .</entry><entry></entry><entry></entry></row>
-<row><entry>75</entry><entry>u  . </entry><entry></entry><entry></entry></row>
-<row><entry>73</entry><entry>s  .) </entry><entry></entry><entry></entry></row>
-<row><entry>05</entry><entry>variable tag </entry><entry></entry><entry></entry></row>
-<row><entry>01</entry><entry>name length </entry><entry></entry><entry></entry></row>
-<row><entry>78</entry><entry>x (name) </entry><entry></entry><entry></entry></row>
-<row><entry>05</entry><entry>variable tag </entry><entry></entry><entry></entry></row>
-<row><entry>01</entry><entry>name length </entry><entry></entry><entry></entry></row>
-<row><entry>79</entry><entry>y (variable name) </entry><entry></entry><entry></entry></row>
-<row><entry>11</entry><entry>end application tag </entry><entry></entry><entry></entry></row>
-</tbody>
-</tgroup>
-</informaltable> 
-</figure>
-
+    <informaltable>
+      <tgroup cols="9">
+	<thead>
+	  <row>
+	    <entry>Byte</entry><entry>Hex</entry><entry>Meaning</entry>
+	    <entry>Byte</entry><entry>Hex</entry><entry>Meaning</entry>
+	    <entry>Byte</entry><entry>Hex</entry><entry>Meaning</entry>
+	  </row>
+	</thead>
+	<tbody>
+	  <row>
+	    <entry>1</entry><entry>58</entry><entry>begin object tag</entry>
+	    <entry>19</entry><entry>10</entry><entry>begin application tag</entry>
+	    <entry>40</entry><entry>10</entry><entry>begin application tag </entry>
+	  </row>
+	  <row>
+	    <entry>2</entry><entry>2</entry><entry> version 2.0 (major)</entry>
+	    <entry>20</entry><entry>08</entry><entry>symbol tag</entry>
+	    <entry>41</entry><entry>48</entry><entry>symbol tag (with share bit on) </entry>
+	  </row>
+	  <row>
+	    <entry>3</entry><entry>0</entry><entry> version 2.0 (minor)</entry>
+	    <entry>21</entry><entry>06</entry><entry>cd length</entry>
+	    <entry>42</entry><entry>01</entry><entry>reference to second symbol seen (arith1:plus)</entry>
+	  </row>
+	  <row>
+	    <entry>4</entry><entry>10</entry><entry>begin application tag</entry>
+	    <entry>22</entry><entry>04</entry><entry>name length</entry>
+	    <entry>43</entry><entry>45</entry><entry>variable tag (with share bit on) </entry>
+	  </row>
+	  <row>
+	    <entry>5</entry><entry>08</entry><entry>symbol tag</entry>
+	    <entry>23</entry><entry>61</entry><entry>a (cd name begin</entry>
+	    <entry>44</entry><entry>00</entry><entry>reference to first variable seen (x) </entry>
+	  </row>
+	  <row>
+	    <entry>6</entry><entry>06</entry><entry>cd length </entry>
+	    <entry>24</entry><entry>72</entry><entry>r  .</entry>
+	    <entry>45</entry><entry>05</entry><entry>variable tag </entry>
+	  </row>
+	  <row>
+	    <entry>7</entry><entry>05</entry><entry>name length</entry>
+	    <entry>25</entry><entry>69</entry><entry>i  .</entry>
+	    <entry>46</entry><entry>01</entry><entry>name length </entry>
+	  </row>
+	  <row>
+	    <entry>8</entry><entry>61</entry><entry>a (cd name begin</entry>
+	    <entry>26</entry><entry>74</entry><entry>t  .</entry>
+	    <entry>47</entry><entry>7a</entry><entry>z (variable name) </entry>
+	  </row>
+	  <row>
+	    <entry>9</entry><entry>72</entry><entry>r  .</entry>
+	    <entry>27</entry><entry>68</entry><entry>h  .</entry>
+	    <entry>48</entry><entry>11</entry><entry>end application tag </entry>
+	  </row>
+	  <row>
+	    <entry>10</entry><entry>69</entry><entry>i  .</entry>
+	    <entry>28</entry><entry>31</entry><entry>1  .)</entry>
+	    <entry>49</entry><entry>11</entry><entry>end application tag </entry>
+	  </row>
+	  <row>
+	    <entry>11</entry><entry>74</entry><entry>t  .</entry>
+	    <entry>29</entry><entry>70</entry><entry>p (symbol name begin</entry>
+	    <entry>50</entry><entry>11</entry><entry>end application tag </entry>
+	  </row>
+	  <row>
+	    <entry>12</entry><entry>68</entry><entry>h  .</entry>
+	    <entry>30</entry><entry>6c</entry><entry>l  .</entry>
+	    <entry/><entry/><entry/>
+	  </row>
+	  <row>
+	    <entry>13</entry><entry>31</entry><entry>1  .)</entry>
+	    <entry>31</entry><entry>75</entry><entry>u  . </entry>
+	    <entry/><entry/><entry/>
+	  </row>
+	  <row>
+	    <entry>14</entry><entry>74</entry><entry>t (symbol name begin</entry>
+	    <entry>32</entry><entry>73</entry><entry>s  .) </entry>
+	    <entry/><entry/><entry/>
+	  </row>
+	  <row>
+	    <entry>15</entry><entry>69</entry><entry>i  .</entry>
+	    <entry>33</entry><entry>05</entry><entry>variable tag</entry>
+	    <entry/><entry/><entry/>
+	  </row>
+	  <row>
+	    <entry>16</entry><entry>6d</entry><entry>m  .</entry>
+	    <entry>34</entry><entry>01</entry><entry>name length </entry>
+	    <entry/><entry/><entry/>
+	  </row>
+	  <row>
+	    <entry>17</entry><entry>65</entry><entry>e  .</entry>
+	    <entry>35</entry><entry>78</entry><entry>x (name) </entry>
+	    <entry/><entry/><entry/>
+	  </row>
+	  <row>
+	    <entry>18</entry><entry>73</entry><entry>s  .)</entry>
+	    <entry>36</entry><entry>05</entry><entry>variable tag </entry>
+	    <entry/><entry/><entry/>
+	  </row>
+	  <row>
+	    <entry/><entry/><entry/>
+	    <entry>37</entry><entry>01</entry><entry>name length </entry>
+	    <entry/><entry/><entry/>
+	  </row>
+	  <row>
+	    <entry/><entry/><entry/>
+	    <entry>38</entry><entry>79</entry><entry>y (variable name) </entry>
+	    <entry/><entry/><entry/>
+	  </row>
+	  <row>
+	    <entry/><entry/><entry/>
+	    <entry>39</entry><entry>11</entry><entry>end application tag </entry>
+	    <entry/><entry/><entry/>
+	  </row>
+	</tbody>
+      </tgroup>
+    </informaltable> 
+  </figure>
+  
 </section>
 
 <section id="sec_both_sharing">
-<title>Sharing</title>
-
-<para revisionflag="added">
-&OM;&#160;2 introduced a new sharing mechanism, described below.  First however
-we describe the original &OM;&#160;1 mechanism.
-</para>
-
-<section id="sec_sharing">
-<title>Sharing <phrase revisionflag="added">in Objects beginning with the identifier [24]</phrase></title>
- 
-<para>This
-<phrase revisionflag="added">form of sharing is deprecated but included for
-backwards compatibility with &OM;&#160;1.  It</phrase>
-<phrase revisionflag="deleted">binary encoding</phrase>
-supports the sharing of symbols, variables and strings
-(up to a certain length for strings) within one object. That is, sharing between
-objects is not supported.  A reference to a shared symbol, variable or string is
-encoded as the corresponding tag with the long flag not set and the shared flag
-set, followed by a positive integer <math><mi>n</mi></math> encoded as one byte (0
-to 255). This integer references the <math><mi>n</mi> <mo>+</mo>
-<mn>1</mn></math>-th such sharable sub-object (symbol, variable or string up to
-255 characters) in the current &OM; object (counted in the order they are
-generated by the encoding).  For example, <systemitem>0x48 0x01</systemitem>
-references a symbol that is identical to the second symbol that was found in the
-current object.  Strings with 8 bit characters and strings with 16 bit characters
-are two different kinds of objects for this sharing. Only strings containing less
-than 256 characters can be shared (i.e. only strings up to 255 characters).</para>
-</section>
-
-<section id="sec_sharing_references" revisionflag="added">
-  <title>Sharing with References (beginning with [24+64])</title>
-
-  <para>In the binary encoding specified in the last section (which we keep
-for compatibility reasons, but deprecate in favor of the more
-efficient binary encoding specified in this section) only symbols,
-variables, and short strings could be shared. In this section, we will
-present a second binary encoding, which shares most of the identifiers
-with the one in the last one, but handles sharing differently. This
-  encoding is signaled by the shared object tag [88].</para>
-
-  <para>The main difference is the interpretation of the sharing flag (bit 7),
-which can be set on all objects that allow it. Instead of encoding a reference to a
-previous occurrence of an object of the same type, it indicates
-whether an object will be referenced later in the encoding. This
-  corresponds to the information, whether an <systemitem>id</systemitem>
- attribute is set
-in the &exml; encoding. On the object identifier (where sharing does not
-make sense), the shared flag signifies the encoding described here
-([88]=[24+64]).
-</para>
-
-<para>Otherwise integers, floats, variables, symbols, strings, bytearrays, and constructs
-are treated exactly as in the binary encoding described in the last section.</para>
-
-<para>The binary encoding with references uses the additional reference tags [30]
-for (short) internal references, [30+128] for long internal references, [31] for
-(short) external references, [31+128] for long external references. Internal
-references are used to share sub-objects in the encoded object (see <xref
-linkend="fig_bin-enc2"/> for an example) by referencing their position; external
-references allow to reference &OM; objects in other documents by a URI.</para>
-
-<para>Identifiers [30+64] and [30+64+128] are not used, since they would encode
-references that are shared themselves. Chains of references are redundant, and
-decrease both space and time efficiency, therefore they are not allowed in the
-&OM; binary encoding.</para>
-
-<para>References consist of the identifier [30] ([30+128] for long references)
-followed by a positive integer <math><mi>n</mi></math> coded on one byte (4 bytes for long
-references). This integer references the
-<math><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></math>th shared sub-object (one
-where the 
-shared flag is set) in the current object (counted in the order they are generated
-in the encoding). For example <systemitem>Ox7E Ox01</systemitem> references the
-second shared sub-object. <xref linkend="fig_bin-enc2"/> shows the binary
-encoding of the object in <xref linkend="fig_shared_vs_unshared"/>
-above.</para>
-
-<figure id="fig_bin-enc2">
-    <title>A binary encoding of the &OM; object from <xref linkend="fig_shared_vs_unshared"/>.</title>
-<informaltable>
-<tgroup cols="2">
-<thead>
-<row>
-<entry>Hex </entry>
-<entry>Meaning </entry>
-</row>
-</thead>
-<tbody>
-<row><entry>58</entry><entry>begin object tag</entry></row>
-<row><entry>2</entry><entry> version 2.0 (major)</entry></row>
-<row><entry>0</entry><entry> version 2.0 (minor)</entry></row>
-<row><entry>10</entry><entry>begin application tag</entry></row>
-<row><entry>05</entry><entry>variable tag</entry></row>
-<row><entry>01</entry><entry>variable length</entry></row>
-<row><entry>66</entry><entry>f  (variable name)</entry></row>
-<row><entry>50</entry><entry>begin application tag (shared)</entry></row>
-<row><entry>05</entry><entry>variable tag</entry></row>
-<row><entry>01</entry><entry>variable length</entry></row>
-<row><entry>66</entry><entry>f  (variable name)</entry></row>
-<row><entry>50</entry><entry>begin application tag (shared)</entry></row>
-<row><entry>05</entry><entry>variable tag</entry></row>
-<row><entry>01</entry><entry>variable length</entry></row>
-<row><entry>66</entry><entry>f  (variable name)</entry></row>
-<row><entry>19</entry><entry>end object tag</entry></row>
-<row><entry>05</entry><entry>variable tag</entry></row>
-<row><entry>01</entry><entry>variable length</entry></row>
-<row><entry>61</entry><entry>a  (variable name)</entry></row>
-<row><entry>05</entry><entry>variable tag</entry></row>
-<row><entry>01</entry><entry>variable length</entry></row>
-<row><entry>61</entry><entry>a  (variable name)</entry></row>
-<row><entry>11</entry><entry>end application tag</entry></row>
-<row><entry>1E</entry><entry>short reference</entry></row>
-<row><entry>00</entry><entry>to the first shared object</entry></row>
-<row><entry>11</entry><entry>end application tag</entry></row>
-<row><entry>1E</entry><entry>short reference</entry></row>
-<row><entry>00</entry><entry>to the second shared object</entry></row>
-<row><entry>11</entry><entry>end application tag</entry></row>
-</tbody>
-</tgroup>
-</informaltable>
-</figure>
-
-<para>It is easy to see that in this binary encoding, the size of the encoding is
-<math><mn>13</mn><mo>+</mo><mn>7</mn><mo
-fence="true">(</mo><mi>d</mi><mo>-</mo><mn>1</mn><mo fence="true">)</mo></math> bytes,
-where <math><mi>d</mi></math> is the depth of the tree, while a totally unshared encoding
-is <math><mn>8</mn><mo>*</mo><msup><mn>2</mn><mi>d</mi></msup><mo>-</mo><mn>8</mn></math>
-bytes (sharing variables saves up to 256 bytes for trees up to depth 8 and wastes space
-for greater depths). The shared &exml; encoding only uses
-<math><mn>32</mn><mi>d</mi><mo>+</mo><mn>29</mn></math> bytes, which is more space
-efficient starting at depth 9.</para>
-
-<para>Note that in the conversion from the &exml; to the
-binary encoding the identifiers on the
-objects are not preserved. Moreover, even though the &exml; encoding
-allows references across objects, as in <xref linkend="fig_sharing_between"/>, the binary
-encoding does not (the binary encoding has no notion of a multi-object
-collection, while in the &exml; encoding this would naturally correspond to
-e.g.&#160;the embedding of multiple &OM; objects into a single &exml;
-document).</para>
-
-<para>Note that objects need not be fully shared (or shared at all) in the
-binary encoding with sharing.</para>
-</section>
+  <title>Sharing</title>
+  
+  <para revisionflag="added">
+    &OM;&#160;2 introduced a new sharing mechanism, described below.  First however
+    we describe the original &OM;&#160;1 mechanism.
+  </para>
+  
+  <section id="sec_sharing">
+    <title>Sharing <phrase revisionflag="added">in Objects beginning with the identifier [24]</phrase></title>
+    
+    <para>This
+      <phrase revisionflag="added">form of sharing is deprecated but included for
+	backwards compatibility with &OM;&#160;1.  It</phrase>
+      <phrase revisionflag="deleted">binary encoding</phrase>
+      supports the sharing of symbols, variables and strings
+      (up to a certain length for strings) within one object. That is, sharing between
+      objects is not supported.  A reference to a shared symbol, variable or string is
+      encoded as the corresponding tag with the long flag not set and the shared flag
+      set, followed by a positive integer <math><mi>n</mi></math> encoded as one byte (0
+      to 255). This integer references the <math><mi>n</mi> <mo>+</mo>
+	<mn>1</mn></math>-th such sharable sub-object (symbol, variable or string up to
+      255 characters) in the current &OM; object (counted in the order they are
+      generated by the encoding).  For example, <systemitem>0x48 0x01</systemitem>
+      references a symbol that is identical to the second symbol that was found in the
+      current object.  Strings with 8 bit characters and strings with 16 bit characters
+      are two different kinds of objects for this sharing. Only strings containing less
+      than 256 characters can be shared (i.e. only strings up to 255 characters).</para>
+  </section>
+  
+  <section id="sec_sharing_references" revisionflag="added">
+    <title>Sharing with References (beginning with [24+64])</title>
+    
+    <para>In the binary encoding specified in the last section (which we keep
+      for compatibility reasons, but deprecate in favor of the more
+      efficient binary encoding specified in this section) only symbols,
+      variables, and short strings could be shared. In this section, we will
+      present a second binary encoding, which shares most of the identifiers
+      with the one in the last one, but handles sharing differently. This
+      encoding is signaled by the shared object tag [88].</para>
+    
+    <para>The main difference is the interpretation of the sharing flag (bit 7),
+      which can be set on all objects that allow it. Instead of encoding a reference to a
+      previous occurrence of an object of the same type, it indicates
+      whether an object will be referenced later in the encoding. This
+      corresponds to the information, whether an <systemitem>id</systemitem>
+      attribute is set
+      in the &exml; encoding. On the object identifier (where sharing does not
+      make sense), the shared flag signifies the encoding described here
+      ([88]=[24+64]).
+    </para>
+    
+    <para>Otherwise integers, floats, variables, symbols, strings, bytearrays, and constructs
+      are treated exactly as in the binary encoding described in the last section.</para>
+    
+    <para>The binary encoding with references uses the additional reference tags [30]
+      for (short) internal references, [30+128] for long internal references, [31] for
+      (short) external references, [31+128] for long external references. Internal
+      references are used to share sub-objects in the encoded object (see <xref
+										linkend="fig_bin-enc2"/> for an example) by referencing their position; external
+      references allow to reference &OM; objects in other documents by a URI.</para>
+    
+    <para>Identifiers [30+64] and [30+64+128] are not used, since they would encode
+      references that are shared themselves. Chains of references are redundant, and
+      decrease both space and time efficiency, therefore they are not allowed in the
+      &OM; binary encoding.</para>
+    
+    <para>References consist of the identifier [30] ([30+128] for long references)
+      followed by a positive integer <math><mi>n</mi></math> coded on one byte (4 bytes for long
+      references). This integer references the
+      <math><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></math>th shared sub-object (one
+      where the 
+      shared flag is set) in the current object (counted in the order they are generated
+      in the encoding). For example <systemitem>Ox7E Ox01</systemitem> references the
+      second shared sub-object. <xref linkend="fig_bin-enc2"/> shows the binary
+      encoding of the object in <xref linkend="fig_shared_vs_unshared"/>
+      above.</para>
+    
+    <figure id="fig_bin-enc2">
+      <title>A binary encoding of the &OM; object from <xref linkend="fig_shared_vs_unshared"/>.</title>
+      <informaltable>
+	<tgroup cols="9">
+	  <thead>
+	    <row>
+	      <entry>Byte</entry><entry>Hex</entry><entry>Meaning</entry>
+	      <entry>Byte</entry><entry>Hex</entry><entry>Meaning</entry>
+	      <entry>Byte</entry><entry>Hex</entry><entry>Meaning</entry>
+	    </row>
+	  </thead>
+	  <tbody>
+	    <row>
+	      <entry>1</entry><entry>58</entry><entry>begin object tag</entry>
+	      <entry>12</entry><entry>50</entry><entry>begin application tag (shared)</entry>
+	      <entry>23</entry><entry>1E</entry><entry>short reference</entry>
+	    </row>
+	    <row>
+	      <entry>2</entry><entry>2</entry><entry> version 2.0 (major)</entry>
+	      <entry>13</entry><entry>05</entry><entry>variable tag</entry>
+	      <entry>24</entry><entry>00</entry><entry>to the first shared object</entry>
+	    </row>
+	    <row>
+	      <entry>3</entry><entry>0</entry><entry> version 2.0 (minor)</entry>
+	      <entry>14</entry><entry>01</entry><entry>variable length</entry>
+	      <entry>25</entry><entry>11</entry><entry>end application tag</entry>
+	    </row>
+	    <row>
+	      <entry>4</entry><entry>10</entry><entry>begin application tag</entry>
+	      <entry>15</entry><entry>66</entry><entry>f  (variable name)</entry>
+	      <entry>26</entry><entry>1E</entry><entry>short reference</entry>
+	    </row>
+	    <row>
+	      <entry>5</entry><entry>05</entry><entry>variable tag</entry>
+	      <entry>16</entry><entry>05</entry><entry>variable tag</entry>
+	      <entry>27</entry><entry>00</entry><entry>to the second shared object</entry>
+	    </row>
+	    <row>
+	      <entry>6</entry><entry>01</entry><entry>variable length</entry>
+	      <entry>17</entry><entry>01</entry><entry>variable length</entry>
+	      <entry>28</entry><entry>11</entry><entry>end application tag</entry>
+	    </row>
+	    <row>
+	      <entry>7</entry><entry>66</entry><entry>f  (variable name)</entry>
+	      <entry>18</entry><entry>61</entry><entry>a  (variable name)</entry>
+	      <entry/>
+	    </row>
+	    <row>
+	      <entry>8</entry><entry>50</entry><entry>begin application tag (shared)</entry>
+	      <entry>19</entry><entry>05</entry><entry>variable tag</entry>
+	      <entry/>
+	    </row>
+	    <row>
+	      <entry>9</entry><entry>05</entry><entry>variable tag</entry>
+	      <entry>20</entry><entry>01</entry><entry>variable length</entry>
+	      <entry/>
+	    </row>
+	    <row>
+	      <entry>10</entry><entry>01</entry><entry>variable length</entry>
+	      <entry>21</entry><entry>61</entry><entry>a  (variable name)</entry>
+	      <entry/>
+	    </row>
+	    <row>
+	      <entry>11</entry><entry>66</entry><entry>f  (variable name)</entry>
+	      <entry>22</entry><entry>11</entry><entry>end application tag</entry>
+	      <entry/>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </informaltable>
+    </figure>
+    
+    <para>It is easy to see that in this binary encoding, the size of the encoding is
+      <math><mn>13</mn><mo>+</mo><mn>7</mn>
+	<mo fence="true">(</mo><mi>d</mi><mo>-</mo><mn>1</mn><mo fence="true">)</mo></math> bytes,
+      where <math><mi>d</mi></math> is the depth of the tree, while a totally unshared encoding
+      is <math><mn>8</mn><mo>*</mo><msup><mn>2</mn><mi>d</mi></msup><mo>-</mo><mn>8</mn></math>
+      bytes (sharing variables saves up to 256 bytes for trees up to depth 8 and wastes space
+      for greater depths). The shared &exml; encoding only uses
+      <math><mn>32</mn><mi>d</mi><mo>+</mo><mn>29</mn></math> bytes, which is more space
+      efficient starting at depth 9.</para>
+    
+    <para>Note that in the conversion from the &exml; to the
+      binary encoding the identifiers on the
+      objects are not preserved. Moreover, even though the &exml; encoding
+      allows references across objects, as in <xref linkend="fig_sharing_between"/>, the binary
+      encoding does not (the binary encoding has no notion of a multi-object
+      collection, while in the &exml; encoding this would naturally correspond to
+      e.g.&#160;the embedding of multiple &OM; objects into a single &exml;
+      document).</para>
+    
+    <para>Note that objects need not be fully shared (or shared at all) in the
+      binary encoding with sharing.</para>
+  </section>
 </section>
 
 <section id="sec_impl_note">
-<title>Implementation Note</title>
-
-<para>A typical implementation of the binary encoding comes in two parts. The
-  first part deals with the unshared encodings, i.e. objects starting with the
-  identifier <systemitem>[24]</systemitem>.</para>
-
-<para>This part uses four tables, each of 256 entries, for symbol, variables, 8
-  bit character strings whose lengths are less than 256 characters and 16 bit
-  character strings whose lengths are less than 256 characters.  When an object is
-  read, all the tables are first flushed. Each time a sharable sub-object is read,
-  it is entered in the corresponding table if it is not full. When a reference to
-  the shared <math><mi>i</mi></math>-th object of a given type is read, it stands
-  for the <math><mi>i</mi></math>-th entry in the corresponding table. It is an
-  encoding error if the <math><mi>i</mi></math>-th position in the table has not
-  already been assigned (i.e. forward references are not allowed).  Sharing is not
-  mandatory, there may be duplicate entries in the tables (if the application that
-  wrote the object chose not to share optimally).
-</para>
-
-<para revisionflag="added">
-  The part for the shared representations of &OM; objects uses an unbounded
-  array for storing shared sub-objects. Whenever an object has the shared flag
-  set, then it is read and a pointer to the generated data structure is stored at
-  the next position of the array. Whenever a reference of the form 
-  <systemitem>[30] [_]</systemitem> is
-  encountered, the array is queried for the value at <systemitem>[_]</systemitem>
-  and analogously for <systemitem>[30+128] {_}</systemitem>. Note that the
-  application can decide to copy the value or share it among sub-terms as long as
-  it respects the identity conditions given by the tree-nature of the &OM;
-  objects.  The implementation must take care to ensure that no variables
-  are captured during this process (see section
-  <xref linkend="sec_sharing_bvars"/>), and possibly have methods for recovering
-  from cyclic dependency relations (this can be done by standard loop-checking
-  methods).
-</para>
-
-<para>Writing an object is simple. The tables are first flushed. Each time a
-sharable sub-object is encountered (in the natural order of output given by the
-encoding), it is either entered in the corresponding table (if it is not full) and
-output in the normal way or replaced by the right reference if it is already
-present in the table.</para>
+  <title>Implementation Note</title>
+  
+  <para>A typical implementation of the binary encoding comes in two parts. The
+    first part deals with the unshared encodings, i.e. objects starting with the
+    identifier <systemitem>[24]</systemitem>.</para>
+  
+  <para>This part uses four tables, each of 256 entries, for symbol, variables, 8
+    bit character strings whose lengths are less than 256 characters and 16 bit
+    character strings whose lengths are less than 256 characters.  When an object is
+    read, all the tables are first flushed. Each time a sharable sub-object is read,
+    it is entered in the corresponding table if it is not full. When a reference to
+    the shared <math><mi>i</mi></math>-th object of a given type is read, it stands
+    for the <math><mi>i</mi></math>-th entry in the corresponding table. It is an
+    encoding error if the <math><mi>i</mi></math>-th position in the table has not
+    already been assigned (i.e. forward references are not allowed).  Sharing is not
+    mandatory, there may be duplicate entries in the tables (if the application that
+    wrote the object chose not to share optimally).
+  </para>
+  
+  <para revisionflag="added">
+    The part for the shared representations of &OM; objects uses an unbounded
+    array for storing shared sub-objects. Whenever an object has the shared flag
+    set, then it is read and a pointer to the generated data structure is stored at
+    the next position of the array. Whenever a reference of the form 
+    <systemitem>[30] [_]</systemitem> is
+    encountered, the array is queried for the value at <systemitem>[_]</systemitem>
+    and analogously for <systemitem>[30+128] {_}</systemitem>. Note that the
+    application can decide to copy the value or share it among sub-terms as long as
+    it respects the identity conditions given by the tree-nature of the &OM;
+    objects.  The implementation must take care to ensure that no variables
+    are captured during this process (see section
+    <xref linkend="sec_sharing_bvars"/>), and possibly have methods for recovering
+    from cyclic dependency relations (this can be done by standard loop-checking
+    methods).
+  </para>
+  
+  <para>Writing an object is simple. The tables are first flushed. Each time a
+    sharable sub-object is encountered (in the natural order of output given by the
+    encoding), it is either entered in the corresponding table (if it is not full) and
+    output in the normal way or replaced by the right reference if it is already
+    present in the table.</para>
 </section>
 
 
@@ -4236,400 +4337,400 @@ present in the table.</para>
 </section>
 
 <section id="sec_enc_summary">
-<title>Summary</title>
-
-<para>The key points of this chapter are:
-<itemizedlist>
-<listitem><para>The &exml; encoding for &OM; objects uses most common
-  character sets.</para>
-</listitem>
-<listitem><para>The &exml; encoding is readable, writable and can be
-  embedded in most documents and transport protocols.</para>
-</listitem>
-<listitem><para>The binary encoding for &OM; objects should be used when
-  efficiency is a key issue. It is compact yet simple enough to allow
-  fast encoding and decoding of objects.</para>
-</listitem>
-</itemizedlist>
-</para>
+  <title>Summary</title>
+  
+  <para>The key points of this chapter are:
+    <itemizedlist>
+      <listitem><para>The &exml; encoding for &OM; objects uses most common
+	  character sets.</para>
+      </listitem>
+      <listitem><para>The &exml; encoding is readable, writable and can be
+	  embedded in most documents and transport protocols.</para>
+      </listitem>
+      <listitem><para>The binary encoding for &OM; objects should be used when
+	  efficiency is a key issue. It is compact yet simple enough to allow
+	  fast encoding and decoding of objects.</para>
+      </listitem>
+    </itemizedlist>
+  </para>
 </section>
 </chapter>
 
 <chapter id="cha_cd">
-<title>Content Dictionaries</title>
-
-
-<para>In this chapter we give a brief overview of Content Dictionaries
-before explicitly stating their functionality and encoding.</para>
-<section id="sec_cd_summary">
-<title>Introduction</title>
-
-<para>Content Dictionaries (CDs) are central to the &OM; philosophy of
-transmitting mathematical information. It is the &OM; Content
-Dictionaries which actually hold the meanings of the objects being
-transmitted.</para>
-
-<para>For example if application <math><mi>A</mi></math> is talking to
-application <math><mi>B</mi></math>, and sends, say, an equation
-involving multiplication of matrices, then <math><mi>A</mi></math> and
-<math><mi>B</mi></math> must agree on what a matrix is, and on what
-matrix multiplication is, and even on what constitutes an
-equation. All this information is held within some Content
-Dictionaries which both applications agree upon.</para>
-
-<para>A <emphasis> Content Dictionary</emphasis> holds the meanings of
-(various) mathematical <quote>words</quote>. These words are &OM;
-basic objects referred to as <emphasis>symbols</emphasis> in <xref
-linkend="sec_omabs"/>.</para>
-
-<para>With a set of symbol definitions (perhaps from several Content
-Dictionaries), <math><mi>A</mi></math> and <math><mi>B</mi></math> can
-now talk in a common <quote>language</quote>.</para>
-
-<para>It is important to stress that it is not Content Dictionaries
-themselves which are being transmitted, but some <quote>mathematics</quote>
-whose definitions are held within the Content Dictionaries. This means
-that the applications must have already agreed on a set of Content
-Dictionaries which they <quote>understand</quote> (i.e., can cope with
-to some degree).</para>
-
- <para>In many cases, the Content
-Dictionaries that an application understands will be constant, and be
-intrinsic to the application's mathematical use. However the above
-approach can also be used for applications which can handle every
-Content Dictionary (such as an &OM; parser, or perhaps a typesetting
-system), or alternatively for applications which understand a
-changeable number of Content Dictionaries (perhaps after being sent
-Content Dictionaries in some way).</para>
-
-<para>The primary use of Content Dictionaries is thought to be for
-designers of Phrasebooks, the programs which translate between the &OM;
-mathematical object and the corresponding (often internal) structure
-of the particular application in question. For such a use the Content
-Dictionaries have themselves been designed to be as readable and
-precise as possible.</para>
-
-<para>Another possible use for &OM; Content Dictionaries could rely on
-their automatic comprehension by a machine (e.g., when given
-definitions of objects defined in terms of previously understood
-ones), in which case Content Dictionaries may have to be passed as
-data. Towards this end, a Content Dictionary has been written which
-contains a set of symbols sufficient to represent any other Content
-Dictionary. This means that Content Dictionaries may be passed in the
-same way as other (&OM;) mathematical data.</para>
-
- <para>Finally, the syntax of the
-<phrase revisionflag="added">reference encoding for</phrase>
-Content Dictionaries has been designed to be relatively easy to learn
-and to write, and also free from the need for any specialist
-software. This is because it is acknowledged that there is an enormous
-amount of mathematical information to represent, and so most 
-<phrase revisionflag="deleted">of the</phrase>
-Content Dictionaries 
-<phrase revisionflag="deleted">will be</phrase>
-<phrase revisionflag="added">are</phrase> 
-written by <quote>ordinary</quote>
-mathematicians, encoding their particular fields of expertise.  A
-further reason is that the mathematics conveyed by a specific Content
-Dictionary should be understandable independently of any
-application.</para>
-
-<para>The key points from this section are:
-<itemizedlist>
-<listitem><para>Content Dictionaries should be readable and precise to help
-  Phrasebook designers,</para>
-</listitem>
-<listitem><para>Content Dictionaries should be readily write-able to encourage
-  widespread use,</para>
-</listitem>
-<listitem><para>It ought to be possible for a machine to understand a Content
-  Dictionary to some degree.</para>
-</listitem>
-</itemizedlist>
-</para>
-</section>
-
-<section id="sect_func">
-<title>Abstract Content Dictionaries</title>
-
-<para>In this section we define the <phrase revisionflag="deleted">overall</phrase><phrase revisionflag="added">abstract</phrase> structure of Content
-Dictionaries.</para>
-
-
-<para revisionflag="deleted">Other than Content Dictionary comments (which have no real semantics),
-Content Dictionaries have been designed to hold two types of
-information: that which is pertinent to the whole Content Dictionary,
-and that which is restricted to a particular symbol definition.
-Specific information pertaining to the symbols like the signature and
-the defining mathematical properties is conveyed in additional files
-associated to Content Dictionaries.</para>
-
-<para revisionflag="deleted">Information that is pertinent to the whole Content Dictionary
-includes:
-<itemizedlist revisionflag="deleted">
-<listitem><para>The name of the Content Dictionary.</para>
-</listitem>
-<listitem><para>A description of the Content Dictionary.</para>
-</listitem>
-<listitem><para>A date when the Content Dictionary is next planned to be reviewed.</para>
-</listitem>
-<listitem><para>A date on which the Content Dictionary was last edited.</para>
-</listitem>
-<listitem><para>The current version and revision  numbers of the Content Dictionary.</para>
-</listitem>
-<listitem><para>The status of the Content Dictionary.</para>
-</listitem>
-<listitem><para>An optional URL for this Content Dictionary.</para>
-</listitem>
-<listitem><para>An optional list of Content Dictionaries on which this Content
-  Dictionary depends. That is, those named in Examples and FMPs
-  in this Content Dictionary.</para>
-</listitem>
-<listitem><para>An optional comment, possibly containing the author's name.</para>
-</listitem>
-</itemizedlist>
-</para>
-
-<para revisionflag="deleted">Information that is restricted to a particular symbol includes:
-<itemizedlist revisionflag="deleted">
-<listitem><para>The name of the symbol.</para>
-</listitem>
-<listitem><para>A description of this symbol.</para>
-</listitem>
-<listitem><para>An optional comment.</para>
-</listitem>
-<listitem><para>Optional properties that this symbol should obey.</para>
-</listitem>
-<listitem><para>Optional examples of the use of this symbol.</para>
- </listitem>
-</itemizedlist>
-</para>
-
-
-
-
-
-<para revisionflag="added">A Content Dictionary consists of the
-following mandatory pieces of information:
-<orderedlist revisionflag="added">
-<listitem><para>A <emphasis>name</emphasis> corresponding to the rules
-described in <xref linkend="sec_names"/>.</para>
-</listitem>
-<listitem><para>A <emphasis>description</emphasis> of the Content
-Dictionary.
-</para>
-</listitem>
-<listitem><para>A <emphasis>revision date</emphasis>, the date of the
-last change to the Content Dictionary.  Dates should be stored in the
-ISO-compliant format YYYY-MM-DD, e.g. 1966-02-03. 
-</para>
-</listitem>
-<listitem><para>A <emphasis>review date</emphasis>, a date until which
-the content dictionary is guaranteed to remain unchanged. 
-</para>
-</listitem>
-<listitem><para>A <emphasis>version number</emphasis> which consists
-of a major and minor part (see <xref linkend="sec_version"/>). 
-</para>
-</listitem>
-<listitem><para>A <emphasis>status</emphasis>, as described in <xref
-linkend="sec_status"/>. 
-</para>
-</listitem>
-<listitem><para>A <emphasis>CD base</emphasis> which, when combined
-with the CD name, forms a unique
-identifier for the Content Dictionary. It may or may not refer to an
-actual location from which it can be retrieved.   
-</para>
-</listitem>
-<listitem><para>A series of one or more
-<emphasis>symbol definitions</emphasis> as
-described below.
-</para>
-</listitem>
-</orderedlist>
-</para>
-
-<para revisionflag="added">A symbol definition consists of the
-following pieces of information:
-<orderedlist revisionflag="added">
-<listitem><para>A mandatory <emphasis>name</emphasis> corresponding to the rules
-described in <xref linkend="sec_names"/>.</para>
-</listitem>
-<listitem><para>A mandatory <emphasis>description</emphasis> of the symbol,
-which can be as formal or informal as the author likes.
-</para>
-</listitem>
-<listitem><para>An optional <emphasis>role</emphasis> as described in
-<xref linkend="sec_roles"/>.
-</para>
-</listitem>
-<listitem><para>Zero or more <emphasis>commented mathematical
-properties</emphasis> which are mathematical properties of the symbol
-expressed in a mechanism other than &OM;.
-</para>
-</listitem>
-<listitem><para>Zero or more <emphasis>formal mathematical
-properties</emphasis> which are mathematical properties of the symbol
-expressed in &OM;.  Note that it is common for commented and formal
-mathematical properties to be introduced in pairs, with the former
-describing the latter.
-</para>
-
-<para>A Formal Mathematical Property may be given an optional
-<emphasis>kind</emphasis> attribute.  An author of a Content Dictionary
-may use this to indicate whether, for example, the property provides an
-algorithm for evaluation of the concept it is associated with.  At
-present no fixed scheme is mandated for how this information should be
-encoded or used by an application.
-</para>
-
-</listitem>
-<listitem><para>Zero or more <emphasis>examples</emphasis> which are
-intended to demonstrate the use of the symbol within an &OM; object.
-</para>
-</listitem>
-</orderedlist>
-</para>
-
-<para revisionflag="deleted">As mentioned earlier, certain kinds of data pertaining to
-symbols may be conveyed in files other than a Content Dictionary.  In
-particular, information on signatures according to a type system may
-be described in <emphasis>Signature Files</emphasis> whose format is
-given in <xref linkend="sigfiles"/>. Other information such as
-presentation forms, extra defining mathematical properties may be
-associated with Content Dictionaries using files whose format is not
-specified by this standard. It is expected that a common method of
-defining the presentation for &OM; symbols is via
-<acronym>xsl</acronym>&#160;<citation>XSLT_99</citation> stylesheets
-giving transformations to MathML.</para>
-
-<para revisionflag="added">
-Some pieces of information which might logically be thought to be part
-of a Content Dictionary, such as the types or signatures of symbols,
-are better represented externally.  This allows for new variants to be
-associated with Content Dictionaries without the Dictionaries
-themselves being changed.  A model for signatures is given in <xref
-linkend="sigfiles"/>.</para>
-
-
-<para>Content Dictionaries may be grouped into <emphasis>CD
-Groups</emphasis>. These groups allow applications to easily refer to
-collections of Content Dictionaries. One particular CDGroup of
-interest is the <quote>MathML CDGroup</quote>. This group consists of
-the collection of core Content Dictionaries that is designed to
-have the same semantic scope as the content elements of
-MathML&#160;2&#160;<citation>MathML_2003</citation>.  &OM; objects
-built from symbols that come from Content Dictionaries in this CDGroup
-may be expected to be easily transformed between &OM; and MathML
-encodings.  The detailed structure of a CDGroup is described in
-<xref linkend="ssec_cdgroups"/> below.</para>
-
-<section revisionflag="added" id="sec_status">
-<title>Content Dictionary Status</title>
-
-  <para>The status of a Content Dictionary can be either
-<itemizedlist>
-<listitem><para>
-  <systemitem>official</systemitem>: approved by the &OM; Society
-  according to the procedure outlined in <xref linkend="cdapprove"/>;
-</para></listitem>
-
-<listitem><para>
-  <systemitem>experimental</systemitem>: under development and thus
-liable to change;
-</para></listitem>
-<listitem><para>
-  <systemitem>private</systemitem>: used by a private group of &OM;
-  users;
-</para></listitem>
-<listitem><para>
-<systemitem>obsolete</systemitem>: an obsolete Content
-  Dictionary kept only for archival purposes.
-</para></listitem>
-</itemizedlist>
-</para>
-</section>
-
-<section revisionflag="added" id="sec_version">
-<title>Content Dictionary Version Numbers</title>
-
-<para>A version number must consist of two parts, a major version and
-a revision, both of which should be non-negative integers.  In CDs
-that do not have status <emphasis>experimental</emphasis>, the version
-number should be a positive integer.</para>
-
-<para>Unless a CD has status <emphasis>experimental</emphasis>,
-no changes should ever be
-  introduced that invalidate objects built with previous versions.
-  Any change that influences phrasebook compliance, like adding a new
-  symbol to a Content Dictionary, is considered a major change
-  and should be reflected by an increase in the major version number. Other
-  changes, like adding an example or correcting a description, are
-  considered minor changes. For minor changes the version number is not
-  changed, but an increase should be made to the revision number.
-  Note that a change such as removing a symbol should
-  not be made unless the CD has status
-<emphasis>experimental</emphasis>.
-Should this be required then a new CD with a different name should be
-  produced so as not to invalidate existing objects.</para>
-
-<para>
-   When the major version number
-   is increased, the revision number is normally reset to zero.</para>
-
-<para>As detailed in <xref linkend="cha_comp"/>, &OM;
-compliant applications state which versions of which CDs they support.
-</para>
-
-</section>
-
-</section>
-
-<section id="sec_xml_cd">
-<title>The <phrase
-revisionflag="deleted">&exml;</phrase><phrase revisionflag="added">Reference</phrase> Encoding for Content Dictionaries</title>
-
-
-
-
-<para><phrase revisionflag="added">The reference encoding of</phrase>
-Content Dictionaries are as &exml; documents.  A valid Content Dictionary
-document should 
-        <itemizedlist revisionflag="deleted">
-          <listitem><para>be valid according to the DTD given in <xref
-                linkend="fig_cd-dtd"/>,</para>
-          </listitem>
-          <listitem><para>adhere to the extra conditions on the
-              content of the elements given in <xref
-              linkend="sect_pcdata"/>.</para>
-          </listitem>
-        </itemizedlist>
-<phrase revisionflag="added">conform to the Relax NG Schema for
-Content Dictionaries given in <xref linkend="sec_cd_schema"/>.
-</phrase>
-</para>
-
-
-
-<para>An example of a complete Content Dictionary is given in
-Appendix&#160;<xref linkend="app_cdcd"/>, which is the
-<systemitem>Meta</systemitem> Content Dictionary for describing
-Content Dictionaries themselves. A more typical Content Dictionary is
-given in <xref linkend="arith1.ocd"/>, the
-<systemitem>arith1</systemitem> Content Dictionary for basic
-arithmetic functions.</para>
-
-<section id="sec_cd_schema" revisionflag="added">
-<title>The Relax NG Schema for Content Dictionaries</title>
-
-<literallayout>
-&cdrnc;
-</literallayout>
-
-</section>
-<section id="sec_dtd_cd" revisionflag="deleted">
-<title>The DTD Specification of  Content Dictionaries</title>
+  <title>Content Dictionaries</title>
+  
+  
+  <para>In this chapter we give a brief overview of Content Dictionaries
+    before explicitly stating their functionality and encoding.</para>
+  <section id="sec_cd_summary">
+    <title>Introduction</title>
+    
+    <para>Content Dictionaries (CDs) are central to the &OM; philosophy of
+      transmitting mathematical information. It is the &OM; Content
+      Dictionaries which actually hold the meanings of the objects being
+      transmitted.</para>
+    
+    <para>For example if application <math><mi>A</mi></math> is talking to
+      application <math><mi>B</mi></math>, and sends, say, an equation
+      involving multiplication of matrices, then <math><mi>A</mi></math> and
+      <math><mi>B</mi></math> must agree on what a matrix is, and on what
+      matrix multiplication is, and even on what constitutes an
+      equation. All this information is held within some Content
+      Dictionaries which both applications agree upon.</para>
+    
+    <para>A <emphasis> Content Dictionary</emphasis> holds the meanings of
+      (various) mathematical <quote>words</quote>. These words are &OM;
+      basic objects referred to as <emphasis>symbols</emphasis> in <xref
+									 linkend="sec_omabs"/>.</para>
+    
+    <para>With a set of symbol definitions (perhaps from several Content
+      Dictionaries), <math><mi>A</mi></math> and <math><mi>B</mi></math> can
+      now talk in a common <quote>language</quote>.</para>
+    
+    <para>It is important to stress that it is not Content Dictionaries
+      themselves which are being transmitted, but some <quote>mathematics</quote>
+      whose definitions are held within the Content Dictionaries. This means
+      that the applications must have already agreed on a set of Content
+      Dictionaries which they <quote>understand</quote> (i.e., can cope with
+      to some degree).</para>
+    
+    <para>In many cases, the Content
+      Dictionaries that an application understands will be constant, and be
+      intrinsic to the application's mathematical use. However the above
+      approach can also be used for applications which can handle every
+      Content Dictionary (such as an &OM; parser, or perhaps a typesetting
+      system), or alternatively for applications which understand a
+      changeable number of Content Dictionaries (perhaps after being sent
+      Content Dictionaries in some way).</para>
+    
+    <para>The primary use of Content Dictionaries is thought to be for
+      designers of Phrasebooks, the programs which translate between the &OM;
+      mathematical object and the corresponding (often internal) structure
+      of the particular application in question. For such a use the Content
+      Dictionaries have themselves been designed to be as readable and
+      precise as possible.</para>
+    
+    <para>Another possible use for &OM; Content Dictionaries could rely on
+      their automatic comprehension by a machine (e.g., when given
+      definitions of objects defined in terms of previously understood
+      ones), in which case Content Dictionaries may have to be passed as
+      data. Towards this end, a Content Dictionary has been written which
+      contains a set of symbols sufficient to represent any other Content
+      Dictionary. This means that Content Dictionaries may be passed in the
+      same way as other (&OM;) mathematical data.</para>
+    
+    <para>Finally, the syntax of the
+      <phrase revisionflag="added">reference encoding for</phrase>
+      Content Dictionaries has been designed to be relatively easy to learn
+      and to write, and also free from the need for any specialist
+      software. This is because it is acknowledged that there is an enormous
+      amount of mathematical information to represent, and so most 
+      <phrase revisionflag="deleted">of the</phrase>
+      Content Dictionaries 
+      <phrase revisionflag="deleted">will be</phrase>
+      <phrase revisionflag="added">are</phrase> 
+      written by <quote>ordinary</quote>
+      mathematicians, encoding their particular fields of expertise.  A
+      further reason is that the mathematics conveyed by a specific Content
+      Dictionary should be understandable independently of any
+      application.</para>
+    
+    <para>The key points from this section are:
+      <itemizedlist>
+	<listitem><para>Content Dictionaries should be readable and precise to help
+	    Phrasebook designers,</para>
+	</listitem>
+	<listitem><para>Content Dictionaries should be readily write-able to encourage
+	    widespread use,</para>
+	</listitem>
+	<listitem><para>It ought to be possible for a machine to understand a Content
+	    Dictionary to some degree.</para>
+	</listitem>
+      </itemizedlist>
+    </para>
+  </section>
+  
+  <section id="sect_func">
+    <title>Abstract Content Dictionaries</title>
+    
+    <para>In this section we define the <phrase revisionflag="deleted">overall</phrase><phrase revisionflag="added">abstract</phrase> structure of Content
+      Dictionaries.</para>
+    
+    
+    <para revisionflag="deleted">Other than Content Dictionary comments (which have no real semantics),
+      Content Dictionaries have been designed to hold two types of
+      information: that which is pertinent to the whole Content Dictionary,
+      and that which is restricted to a particular symbol definition.
+      Specific information pertaining to the symbols like the signature and
+      the defining mathematical properties is conveyed in additional files
+      associated to Content Dictionaries.</para>
+    
+    <para revisionflag="deleted">Information that is pertinent to the whole Content Dictionary
+      includes:
+      <itemizedlist revisionflag="deleted">
+	<listitem><para>The name of the Content Dictionary.</para>
+	</listitem>
+	<listitem><para>A description of the Content Dictionary.</para>
+	</listitem>
+	<listitem><para>A date when the Content Dictionary is next planned to be reviewed.</para>
+	</listitem>
+	<listitem><para>A date on which the Content Dictionary was last edited.</para>
+	</listitem>
+	<listitem><para>The current version and revision  numbers of the Content Dictionary.</para>
+	</listitem>
+	<listitem><para>The status of the Content Dictionary.</para>
+	</listitem>
+	<listitem><para>An optional URL for this Content Dictionary.</para>
+	</listitem>
+	<listitem><para>An optional list of Content Dictionaries on which this Content
+	    Dictionary depends. That is, those named in Examples and FMPs
+	    in this Content Dictionary.</para>
+	</listitem>
+	<listitem><para>An optional comment, possibly containing the author's name.</para>
+	</listitem>
+      </itemizedlist>
+    </para>
+    
+    <para revisionflag="deleted">Information that is restricted to a particular symbol includes:
+      <itemizedlist revisionflag="deleted">
+	<listitem><para>The name of the symbol.</para>
+	</listitem>
+	<listitem><para>A description of this symbol.</para>
+	</listitem>
+	<listitem><para>An optional comment.</para>
+	</listitem>
+	<listitem><para>Optional properties that this symbol should obey.</para>
+	</listitem>
+	<listitem><para>Optional examples of the use of this symbol.</para>
+	</listitem>
+      </itemizedlist>
+    </para>
+    
+    
+    
+    
+    
+    <para revisionflag="added">A Content Dictionary consists of the
+      following mandatory pieces of information:
+      <orderedlist revisionflag="added">
+	<listitem><para>A <emphasis>name</emphasis> corresponding to the rules
+	    described in <xref linkend="sec_names"/>.</para>
+	</listitem>
+	<listitem><para>A <emphasis>description</emphasis> of the Content
+	    Dictionary.
+	  </para>
+	</listitem>
+	<listitem><para>A <emphasis>revision date</emphasis>, the date of the
+	    last change to the Content Dictionary.  Dates should be stored in the
+	    ISO-compliant format YYYY-MM-DD, e.g. 1966-02-03. 
+	  </para>
+	</listitem>
+	<listitem><para>A <emphasis>review date</emphasis>, a date until which
+	    the content dictionary is guaranteed to remain unchanged. 
+	  </para>
+	</listitem>
+	<listitem><para>A <emphasis>version number</emphasis> which consists
+	    of a major and minor part (see <xref linkend="sec_version"/>). 
+	  </para>
+	</listitem>
+	<listitem><para>A <emphasis>status</emphasis>, as described in <xref
+									     linkend="sec_status"/>. 
+	  </para>
+	</listitem>
+	<listitem><para>A <emphasis>CD base</emphasis> which, when combined
+	    with the CD name, forms a unique
+	    identifier for the Content Dictionary. It may or may not refer to an
+	    actual location from which it can be retrieved.   
+	  </para>
+	</listitem>
+	<listitem><para>A series of one or more
+	    <emphasis>symbol definitions</emphasis> as
+	    described below.
+	  </para>
+	</listitem>
+      </orderedlist>
+    </para>
+    
+    <para revisionflag="added">A symbol definition consists of the
+      following pieces of information:
+      <orderedlist revisionflag="added">
+	<listitem><para>A mandatory <emphasis>name</emphasis> corresponding to the rules
+	    described in <xref linkend="sec_names"/>.</para>
+	</listitem>
+	<listitem><para>A mandatory <emphasis>description</emphasis> of the symbol,
+	    which can be as formal or informal as the author likes.
+	  </para>
+	</listitem>
+	<listitem><para>An optional <emphasis>role</emphasis> as described in
+	    <xref linkend="sec_roles"/>.
+	  </para>
+	</listitem>
+	<listitem><para>Zero or more <emphasis>commented mathematical
+	      properties</emphasis> which are mathematical properties of the symbol
+	    expressed in a mechanism other than &OM;.
+	  </para>
+	</listitem>
+	<listitem><para>Zero or more <emphasis>formal mathematical
+	      properties</emphasis> which are mathematical properties of the symbol
+	    expressed in &OM;.  Note that it is common for commented and formal
+	    mathematical properties to be introduced in pairs, with the former
+	    describing the latter.
+	  </para>
+	  
+	  <para>A Formal Mathematical Property may be given an optional
+	    <emphasis>kind</emphasis> attribute.  An author of a Content Dictionary
+	    may use this to indicate whether, for example, the property provides an
+	    algorithm for evaluation of the concept it is associated with.  At
+	    present no fixed scheme is mandated for how this information should be
+	    encoded or used by an application.
+	  </para>
+	  
+	</listitem>
+	<listitem><para>Zero or more <emphasis>examples</emphasis> which are
+	    intended to demonstrate the use of the symbol within an &OM; object.
+	  </para>
+	</listitem>
+      </orderedlist>
+    </para>
+    
+    <para revisionflag="deleted">As mentioned earlier, certain kinds of data pertaining to
+      symbols may be conveyed in files other than a Content Dictionary.  In
+      particular, information on signatures according to a type system may
+      be described in <emphasis>Signature Files</emphasis> whose format is
+      given in <xref linkend="sigfiles"/>. Other information such as
+      presentation forms, extra defining mathematical properties may be
+      associated with Content Dictionaries using files whose format is not
+      specified by this standard. It is expected that a common method of
+      defining the presentation for &OM; symbols is via
+      <acronym>xsl</acronym>&#160;<citation>XSLT_99</citation> stylesheets
+      giving transformations to MathML.</para>
+    
+    <para revisionflag="added">
+      Some pieces of information which might logically be thought to be part
+      of a Content Dictionary, such as the types or signatures of symbols,
+      are better represented externally.  This allows for new variants to be
+      associated with Content Dictionaries without the Dictionaries
+      themselves being changed.  A model for signatures is given in <xref
+									  linkend="sigfiles"/>.</para>
+    
+    
+    <para>Content Dictionaries may be grouped into <emphasis>CD
+	Groups</emphasis>. These groups allow applications to easily refer to
+      collections of Content Dictionaries. One particular CDGroup of
+      interest is the <quote>MathML CDGroup</quote>. This group consists of
+      the collection of core Content Dictionaries that is designed to
+      have the same semantic scope as the content elements of
+      MathML&#160;2&#160;<citation>MathML_2003</citation>.  &OM; objects
+      built from symbols that come from Content Dictionaries in this CDGroup
+      may be expected to be easily transformed between &OM; and MathML
+      encodings.  The detailed structure of a CDGroup is described in
+      <xref linkend="ssec_cdgroups"/> below.</para>
+    
+    <section revisionflag="added" id="sec_status">
+      <title>Content Dictionary Status</title>
+      
+      <para>The status of a Content Dictionary can be either
+	<itemizedlist>
+	  <listitem><para>
+	      <systemitem>official</systemitem>: approved by the &OM; Society
+	      according to the procedure outlined in <xref linkend="cdapprove"/>;
+	    </para></listitem>
+	  
+	  <listitem><para>
+	      <systemitem>experimental</systemitem>: under development and thus
+	      liable to change;
+	    </para></listitem>
+	  <listitem><para>
+	      <systemitem>private</systemitem>: used by a private group of &OM;
+	      users;
+	    </para></listitem>
+	  <listitem><para>
+	      <systemitem>obsolete</systemitem>: an obsolete Content
+	      Dictionary kept only for archival purposes.
+	    </para></listitem>
+	</itemizedlist>
+      </para>
+    </section>
+    
+    <section revisionflag="added" id="sec_version">
+      <title>Content Dictionary Version Numbers</title>
+      
+      <para>A version number must consist of two parts, a major version and
+	a revision, both of which should be non-negative integers.  In CDs
+	that do not have status <emphasis>experimental</emphasis>, the version
+	number should be a positive integer.</para>
+      
+      <para>Unless a CD has status <emphasis>experimental</emphasis>,
+	no changes should ever be
+	introduced that invalidate objects built with previous versions.
+	Any change that influences phrasebook compliance, like adding a new
+	symbol to a Content Dictionary, is considered a major change
+	and should be reflected by an increase in the major version number. Other
+	changes, like adding an example or correcting a description, are
+	considered minor changes. For minor changes the version number is not
+	changed, but an increase should be made to the revision number.
+	Note that a change such as removing a symbol should
+	not be made unless the CD has status
+	<emphasis>experimental</emphasis>.
+	Should this be required then a new CD with a different name should be
+	produced so as not to invalidate existing objects.</para>
+      
+      <para>
+	When the major version number
+	is increased, the revision number is normally reset to zero.</para>
+      
+      <para>As detailed in <xref linkend="cha_comp"/>, &OM;
+	compliant applications state which versions of which CDs they support.
+      </para>
+      
+    </section>
+    
+  </section>
+  
+  <section id="sec_xml_cd">
+    <title>The <phrase
+		       revisionflag="deleted">&exml;</phrase><phrase revisionflag="added">Reference</phrase> Encoding for Content Dictionaries</title>
+    
+    
+    
+    
+    <para><phrase revisionflag="added">The reference encoding of</phrase>
+      Content Dictionaries are as &exml; documents.  A valid Content Dictionary
+      document should 
+      <itemizedlist revisionflag="deleted">
+	<listitem><para>be valid according to the DTD given in <xref
+								     linkend="fig_cd-dtd"/>,</para>
+	</listitem>
+	<listitem><para>adhere to the extra conditions on the
+	    content of the elements given in <xref
+						   linkend="sect_pcdata"/>.</para>
+	</listitem>
+      </itemizedlist>
+      <phrase revisionflag="added">conform to the Relax NG Schema for
+	Content Dictionaries given in <xref linkend="sec_cd_schema"/>.
+      </phrase>
+    </para>
+    
+    
+    
+    <para>An example of a complete Content Dictionary is given in
+      Appendix&#160;<xref linkend="app_cdcd"/>, which is the
+      <systemitem>Meta</systemitem> Content Dictionary for describing
+      Content Dictionaries themselves. A more typical Content Dictionary is
+      given in <xref linkend="arith1.ocd"/>, the
+      <systemitem>arith1</systemitem> Content Dictionary for basic
+      arithmetic functions.</para>
+    
+    <section id="sec_cd_schema" revisionflag="added">
+      <title>The Relax NG Schema for Content Dictionaries</title>
+      
+      <literallayout>
+	&cdrnc;
+      </literallayout>
+      
+    </section>
+    <section id="sec_dtd_cd" revisionflag="deleted">
+      <title>The DTD Specification of  Content Dictionaries</title>
 
 
 <figure id="fig_cd-dtd">
