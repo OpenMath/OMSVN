@@ -1,0 +1,135 @@
+<![CDATA[
+<?xml encoding="UTF-8"?>
+
+<!-- DTD for OpenMath 2 -->
+
+<!-- OM2: allow OMR -->
+
+<!ENTITY % omel "OMS|OMV|OMI|OMB|OMSTR|OMF|OMA|OMBIND|OME|OMATTR|OMR">
+
+<!ENTITY % attvar "OMATTR">
+
+<!-- things which can be variables -->
+
+<!ENTITY % omvar "OMV|%attvar;">
+
+<!-- OM2: common.attributes attributes -->
+
+<!ENTITY % common.attributes "
+  id ID #IMPLIED">
+
+<!ENTITY % attlist.OMS "
+  name NMTOKEN #REQUIRED
+  cd NMTOKEN #REQUIRED
+  uristub CDATA #REQUIRED">
+
+<!-- symbol -->
+
+<!ELEMENT OMS EMPTY>
+<!ATTLIST OMS
+  %common.attributes;
+  %attlist.OMS;>
+
+<!ENTITY % attlist.OMV "
+  name NMTOKEN #REQUIRED">
+
+<!-- variable -->
+
+<!ELEMENT OMV EMPTY>
+<!ATTLIST OMV
+  %common.attributes;
+  %attlist.OMV;>
+
+<!-- integer -->
+
+<!ELEMENT OMI (#PCDATA)>
+<!ATTLIST OMI
+  %common.attributes;>
+
+<!-- byte array -->
+
+<!ELEMENT OMB (#PCDATA)>
+<!ATTLIST OMB
+  %common.attributes;>
+
+<!-- string -->
+
+<!ELEMENT OMSTR (#PCDATA)>
+<!ATTLIST OMSTR
+  %common.attributes;>
+
+<!ENTITY % attlist.OMF "
+  dec CDATA #IMPLIED
+  hex CDATA #IMPLIED">
+
+<!-- floating point -->
+
+<!ELEMENT OMF EMPTY>
+<!ATTLIST OMF
+  %common.attributes;
+  %attlist.OMF;>
+
+<!-- apply constructor -->
+
+<!ELEMENT OMA (%omel;)+>
+<!ATTLIST OMA
+  %common.attributes;>
+
+<!-- binding constructor and variable -->
+
+<!ELEMENT OMBIND ((%omel;),OMBVAR,(%omel;))>
+<!ATTLIST OMBIND
+  %common.attributes;>
+
+<!ELEMENT OMBVAR (%omvar;)+>
+<!ATTLIST OMBVAR
+  %common.attributes;>
+
+<!-- error -->
+
+<!ELEMENT OME (OMS,(%omel;)*)>
+<!ATTLIST OME
+  %common.attributes;>
+
+<!-- attribution constructor and attribute pair constructor -->
+
+<!ELEMENT OMATTR (OMATP,(%omel;))>
+<!ATTLIST OMATTR
+  %common.attributes;>
+
+<!-- OM2: allow OMFOREIGN  -->
+
+<!ELEMENT OMATP (OMS,(%omel;|OMFOREIGN))+>
+<!ATTLIST OMATP
+  %common.attributes;>
+
+<!-- OM2: OMFOREIGN - note that for this DTD the content is restricted
+                      to OpenMath -->
+
+<!ELEMENT OMFOREIGN (%omel;)*>
+<!ATTLIST OMFOREIGN
+  %common.attributes;>
+
+<!-- OM object constructor -->
+
+<!ELEMENT OMOBJ (%omel;)>
+<!ATTLIST OMOBJ
+  %common.attributes;>
+
+<!ENTITY % attlist.OMOBJ "
+  version (1.0|1.2|2.0) #REQUIRED">
+
+<!ENTITY % attlist.OMR "
+  xlink:href CDATA #REQUIRED
+  xlink:type (simple) #REQUIRED
+  xlink:show (embed) #REQUIRED">
+
+<!-- OM2: OMR -->
+
+<!ELEMENT OMR EMPTY>
+<!ATTLIST OMR
+  xmlns:xlink CDATA #FIXED 'http://www.w3.org/1999/xlink'
+  %common.attributes;
+  %attlist.OMR;>
+<!ATTLIST OMOBJ xmlns CDATA  #FIXED "http://www.openmath.org/OpenMath">
+]]>
