@@ -36,6 +36,25 @@ border-color: black;
 font-size: 75%;
 font-style: italic;
 }
+.delliteral {
+font-size: 75%;
+background-color: #cfcfcf;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+color: red;
+text-decoration: line-through;
+}
+.newliteral {
+font-size: 75%;
+background-color: #cfcfcf;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+color: green;
+}
 .literal {
 font-size: 75%;
 background-color: #cfcfcf;
@@ -102,8 +121,8 @@ relative to the OpenMath 1.0 document...</p>
 
 <p>Sections with new text</p>
 <ul>
-<xsl:for-each select="//section">
-<xsl:if test="key('new',@id)">
+<xsl:for-each select="//*[self::section or self::appendix]">
+<xsl:if test="key('new',@id) or @revisionflag='added'">
 <a href="#{@id}" class="new">
 <xsl:apply-templates mode="number" select="."/>&#160;<xsl:value-of select="title[1]"/>
 </a><br/>
@@ -164,12 +183,15 @@ relative to the OpenMath 1.0 document...</p>
 </xsl:template>
 
 <xsl:template match="appendix">
+ <div>
+  <xsl:apply-templates select="@revisionflag"/>
 <h2 name="{@id}" id="{@id}">
   Appendix&#160;<xsl:apply-templates mode="number" select="."/>
   <br/>
   <xsl:apply-templates select="title/node()"/>
 </h2>
 <xsl:apply-templates/>
+</div>
 </xsl:template>
 
 <xsl:template match="appendix" mode="number">
@@ -224,6 +246,7 @@ relative to the OpenMath 1.0 document...</p>
 
 <xsl:template match="itemizedlist">
 <ul>
+<xsl:apply-templates select="@revisionflag"/>
 <xsl:apply-templates/>
 </ul>
 </xsl:template>
@@ -231,6 +254,7 @@ relative to the OpenMath 1.0 document...</p>
 
 <xsl:template match="orderedlist">
 <ol>
+<xsl:apply-templates select="@revisionflag"/>
 <xsl:apply-templates select="@numeration"/>
 <xsl:apply-templates/>
 </ol>
@@ -242,6 +266,7 @@ relative to the OpenMath 1.0 document...</p>
 
 <xsl:template match="variablelist">
 <dl>
+<xsl:apply-templates select="@revisionflag"/>
 <xsl:apply-templates/>
 </dl>
 </xsl:template>
@@ -321,7 +346,20 @@ relative to the OpenMath 1.0 document...</p>
 </xsl:template>
 
 <xsl:template match="programlisting|literallayout">
-<div class="literal">
+<xsl:variable name="c">
+<xsl:choose>
+  <xsl:when test="@revisionflag='added'">
+    <xsl:value-of select="'newliteral'"/>
+  </xsl:when>
+  <xsl:when test="@revisionflag='deleted'">
+    <xsl:value-of select="'delliteral'"/>
+  </xsl:when>
+  <xsl:otherwise>
+    <xsl:value-of select="'literal'"/>
+  </xsl:otherwise>
+</xsl:choose>
+</xsl:variable>
+<div class="{$c}">
 <pre>
 <xsl:apply-templates/>
 </pre>
@@ -337,7 +375,7 @@ changelog entry here
 
 <xsl:template match="informaltable">
 <table>
-<xsl:apply-templates select="tgroup/*"/>
+<xsl:apply-templates select="@revisionflag|tgroup/*"/>
 </table>
 </xsl:template>
 
