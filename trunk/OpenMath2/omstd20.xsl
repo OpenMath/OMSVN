@@ -3,7 +3,7 @@
                 xmlns="http://www.w3.org/1999/xhtml">
 
 <xsl:param name="changelog">no</xsl:param>
-<xsl:output method="xml"/>
+<xsl:output method="xml" encoding="iso-8859-1"/>
 
 <xsl:key name="new"  match="*[@revisionflag='added']" use="ancestor::section[1]/@id"/>
 <xsl:key name="ids" match="*[@id]" use="@id"/>
@@ -46,6 +46,7 @@ padding: 1em;
 }
 .del {
 color: red;
+text-decoration: line-through;
 }
 .new {
 color: green;
