@@ -1,13 +1,16 @@
 
 <?xml-stylesheet type="text/xsl" href="omstd20.xsl"?>
 
-<!-- @version CVS $Id: -->
+<!-- @version CVS $Id -->
 
 <!--
  PUBLIC "-//OASIS//DTD DocBook XML V4.2CR1//EN"
                     "docbook/docbookx.dtd"
+
+olga's setup for editing with emacs
+SYSTEM "dtds/docbookx.dtd"
 -->
-<!DOCTYPE book
+<!DOCTYPE book 
 [
 <!-- 
  docbook customisations:
@@ -499,8 +502,14 @@ is an &OM; <emphasis>binding object</emphasis>.</para>
 
 </listitem>
 <listitem><para><phrase>(v)</phrase> If <math><mi>S</mi></math> is an
-&OM; symbol and <math><msub><mi>A</mi><mn>1</mn></msub></math>, <phrase>&#8230;</phrase>, <math><msub><mi>A</mi><mi>n</mi></msub></math> <math><mo>(</mo><mi>n</mi> <mo>&#8805;</mo> <mn>0</mn><mo>)</mo></math> are &OM; objects, then
-  <math display="block"><mi mathvariant="bold">error</mi> <mo>(</mo><mi>S</mi><mo>,</mo> <msub><mi>A</mi><mn>1</mn></msub><mo>,</mo><mi>&#8230;</mi><mo>,</mo><msub><mi>A</mi><mi>n</mi></msub><mo>)</mo>
+&OM; symbol and <math><msub><mi>A</mi><mn>1</mn></msub></math>,
+<phrase>&#8230;</phrase>,
+<math><msub><mi>A</mi><mi>n</mi></msub></math>
+<math><mo>(</mo><mi>n</mi> <mo>&#8805;</mo>
+<mn>0</mn><mo>)</mo></math> are &OM; objects, then <math
+display="block"><mi mathvariant="bold">error</mi>
+<mo>(</mo><mi>S</mi><mo>,</mo>
+<msub><mi>A</mi><mn>1</mn></msub><mo>,</mo><mi>&#8230;</mi><mo>,</mo><msub><mi>A</mi><mi>n</mi></msub><mo>)</mo>
   </math>
   is an &OM; <emphasis>error object</emphasis>.</para>
 </listitem>
@@ -509,7 +518,7 @@ is an &OM; <emphasis>binding object</emphasis>.</para>
 </section>
 
 <section id="sec_roles" revisionflag="added">
-<title>&OM; Symbol Roles</title>
+<title>&OM; Symbol Rôles</title>
 
 <para>The <emphasis>rôle</emphasis> of an &OM; symbol is a restriction
 on where it can appear in an &OM; object.  A symbol cannot have more
@@ -664,8 +673,8 @@ animation etc.
   the remaining objects are called <quote>arguments</quote>.  An &OM;
   application object can be used to convey the mathematical notion of
   application of a function to a set of arguments.  For instance,
-  suppose that the &OM; symbol <systemitem>sin</systemitem> is defined
-  in a Content Dictionary for trigonometry, then <math><mi
+  suppose that the &OM; symbol <math><mi>sin</mi></math> is defined in
+  a Content Dictionary for trigonometry, then <math><mi
   mathvariant="bold">application</mi><mo>(</mo><mi>sin</mi><mo>,</mo>
   <mi>x</mi> <mo>)</mo></math> is the abstract &OM; object
   corresponding to <math><mi>sin</mi> <mo>(</mo><mi>x</mi>
@@ -679,7 +688,7 @@ animation etc.
   &OM; application object <math><mi
   mathvariant="bold">application</mi><mo>(</mo><mi>Rational</mi><mo>,</mo>
   <mn>1</mn><mo>,</mo> <mn>2</mn><mo>)</mo></math>. The symbol
-  <systemitem>Rational</systemitem> must be defined, by a Content
+  <math><mi>Rational</mi></math> must be defined, by a Content
   Dictionary, as a constructor symbol for the rational numbers.</para>
    
 <figure id="fig_obj">
@@ -708,7 +717,7 @@ width="600" depth="190"/>
   <mi>x</mi><mo>.</mo><mi>x</mi> <mo>+</mo><mn>2</mn></math>, in which
   the variable <math><mi>x</mi></math> is bound by
   <math><mi>&#955;</mi></math>, corresponds to a binding object having
-  as binder the &OM; symbol <systemitem>lambda</systemitem>: <math
+  as binder the &OM; symbol <math><mi>lambda</mi></math>: <math
   display="block"><mi
   mathvariant="bold">binding</mi><mo>(</mo><mi>lambda</mi><mo>,</mo>
   <mi>x</mi> <mo>,</mo> <mi
@@ -4453,8 +4462,9 @@ requirements on the content of the elements described by the DTD in
 </listitem>
 </varlistentry>
 <varlistentry><term><systemitem>CDGroupDescription</systemitem></term>
-<listitem><para>The text occurring in the <systemitem>CDGroupDescription</systemitem> element describes the mathematical area of the
-  CDGroup.</para>
+<listitem><para>The text occurring in the
+<systemitem>CDGroupDescription</systemitem> element describes the
+mathematical area of the CDGroup.</para>
   
 </listitem>
 </varlistentry>
@@ -4464,19 +4474,21 @@ requirements on the content of the elements described by the DTD in
   
 </listitem>
 </varlistentry>
-<varlistentry><term><systemitem>CDName</systemitem></term><listitem><para>The text occurring in the <systemitem>CDName</systemitem> element
+<varlistentry><term><systemitem>CDName</systemitem></term><listitem><para>The
+  text occurring in the <systemitem>CDName</systemitem> element
   corresponds to the name of a Content Dictionary in the CDGroup. For
   the syntactical requirements, see <systemitem>CDName</systemitem> in
   <xref linkend="sect_pcdata"/>.</para>
   
 </listitem>
 </varlistentry>
-<varlistentry><term><systemitem>CDVersion</systemitem></term><listitem><para>The text occurring in the <systemitem>CDVersion</systemitem>
-  element identifies which version of the Content Dictionary isto be
-  taken as member of the CDGroup. This element is optional. In case it
-  is missing, the latest version is the one included in the CDGroup.
-  For the syntactical requirements, see <systemitem>CDVersion</systemitem> in
-  <xref linkend="sect_pcdata"/>.</para>
+<varlistentry><term><systemitem>CDVersion</systemitem></term><listitem><para>The
+  text occurring in the <systemitem>CDVersion</systemitem> element
+  identifies which version of the Content Dictionary isto be taken as
+  member of the CDGroup. This element is optional. In case it is
+  missing, the latest version is the one included in the CDGroup.  For
+  the syntactical requirements, see <systemitem>CDVersion</systemitem>
+  in <xref linkend="sect_pcdata"/>.</para>
   
 </listitem>
 </varlistentry>
@@ -4489,14 +4501,15 @@ requirements on the content of the elements described by the DTD in
   identifies the location of the Content Dictionary to be taken as
   member of the CDGroup. This element is optional. In case it is
   missing, the location of the CDGroup identified by the element
-  <systemitem>CDGroupURL</systemitem> is assumed.
-  For the syntactical requirements, see <systemitem>CDURL</systemitem>
-  in <xref linkend="sect_pcdata"/>.</para>
+  <systemitem>CDGroupURL</systemitem> is assumed.  For the syntactical
+  requirements, see <systemitem>CDURL</systemitem> in <xref
+  linkend="sect_pcdata"/>.</para>
   
 </listitem>
 </varlistentry>
-<varlistentry><term><systemitem>CDComment</systemitem></term><listitem><para>See <systemitem>CDComment</systemitem> in
-  <xref linkend="sect_pcdata"/>.</para>
+<varlistentry><term><systemitem>CDComment</systemitem></term><listitem><para>See
+  <systemitem>CDComment</systemitem> in <xref
+  linkend="sect_pcdata"/>.</para>
 
 
 
@@ -4564,8 +4577,9 @@ The ability to use other encodings is optional.</para>
 <section id="sec_compl_cd">
 <title>Content Dictionaries</title>
 
-<para>An &OM; compliant application  <emphasis>must</emphasis> be able to support the error
-Content Dictionary defined in <xref linkend="errorcd"/>.</para>
+<para>An &OM; compliant application <emphasis>must</emphasis> be able
+to support the error Content Dictionary defined in <xref
+linkend="errorcd"/>.</para>
 
 <para>A compliant application must declare the names and version numbers of
 the Content Dictionaries that it supports. Equivalently it may declare
@@ -4579,54 +4593,62 @@ explicitly declare any symbols in the Content Dictionaries that are not
 supported. Phrasebooks are encouraged to support every symbol in the 
 Content Dictionaries.</para>
 
-<para>Symbols which are not listed as unsupported are <emphasis>supported</emphasis> by
-the application. The meaning of <emphasis>supported</emphasis> will depend on the
-application domain. For example an &OM; renderer should provide a
-default display for any &OM; object that only references supported
-symbols, whereas a Computer Algebra System will be expected to map
-such an object to a suitable internal representation, in this system,
-of this mathematical object. It is expected that the application's
-<emphasis>phrasebooks</emphasis> for supported Content Dictionaries will be
-constructed such that propertes of the symbol expressed in the Content
-Dictionary are respected as far as possible for the given application
-domain. However &OM; compliance does <emphasis>not</emphasis> imply
-any guarantee by the &OM; Society on the accuracy of these representations.</para>
+<para>Symbols which are not listed as unsupported are
+<emphasis>supported</emphasis> by the application. The meaning of
+<emphasis>supported</emphasis> will depend on the application
+domain. For example an &OM; renderer should provide a default display
+for any &OM; object that only references supported symbols, whereas a
+Computer Algebra System will be expected to map such an object to a
+suitable internal representation, in this system, of this mathematical
+object. It is expected that the application's
+<emphasis>phrasebooks</emphasis> for supported Content Dictionaries
+will be constructed such that propertes of the symbol expressed in the
+Content Dictionary are respected as far as possible for the given
+application domain. However &OM; compliance does
+<emphasis>not</emphasis> imply any guarantee by the &OM; Society on
+the accuracy of these representations.</para>
 
 
-<para>Content Dictionaries available from the official &OM; repository at
-www.openmath.org need only be referenced by name, other Content
-Dictionaries <emphasis>should</emphasis> be referenced by the URL declared in the
-<systemitem>CDURL</systemitem> field of the Dictionary. This URL may be used to
-retrieve the Content Dictionary.</para>
-
-<para>When receiving an &OM; symbol, e.g. <math><mi>s</mi></math>,  that is not supported from a
- supported Content Dictionary,  a compliant
-application will act as if it had received the &OM; object
-<math display="block"><mi mathvariant="bold">error</mi><mo>(</mo><mi>Unhandled_Symbol</mi><mo separator="true">,</mo><mi>s</mi><mo>)</mo></math>
-where <systemitem>Unhandled_Symbol</systemitem> is the symbol from the error Content
+<para>Content Dictionaries available from the official &OM; repository
+at www.openmath.org need only be referenced by name, other Content
+Dictionaries <emphasis>should</emphasis> be referenced by the URL
+declared in the <systemitem>CDURL</systemitem> field of the
+Dictionary. This URL may be used to retrieve the Content
 Dictionary.</para>
 
+<para>When receiving an &OM; symbol, e.g. <math><mi>s</mi></math>,
+ that is not supported from a supported Content Dictionary, a
+ compliant application will act as if it had received the &OM; object
+ <math display="block"><mi
+ mathvariant="bold">error</mi><mo>(</mo><mi>Unhandled_Symbol</mi><mo
+ separator="true">,</mo><mi>s</mi><mo>)</mo></math> where
+ <systemitem>Unhandled_Symbol</systemitem> is the symbol from the
+ error Content Dictionary.</para>
 
-<para>Similarly if it receives a symbol, e.g. <math><mi>s</mi></math>, from an unsupported Content
-Dictionary,
-it  will act as if it had received the &OM; object
-<math display="block"><mi mathvariant="bold">error</mi><mo>(</mo><mi>Unsupported_CD</mi><mo separator="true">,</mo><mi>s</mi><mo>)</mo></math></para>
 
-<para>Finally if the compliant application receives a symbol from a supported
-Content Dictionary but with an unknown name, then this must either be
-an incorrect object, or possibly the object has been built using a
-later version of the Content Dictionary. In either case, the
-application will act as if it had received the &OM; object
-<math display="block"><mi mathvariant="bold">error</mi><mo>(</mo><mi>Unexpected_Symbol</mi><mo separator="true">,</mo><mi>s</mi><mo>)</mo></math></para>
+<para>Similarly if it receives a symbol, e.g. <math><mi>s</mi></math>,
+from an unsupported Content Dictionary, it will act as if it had
+received the &OM; object <math display="block"><mi
+mathvariant="bold">error</mi><mo>(</mo><mi>Unsupported_CD</mi><mo
+separator="true">,</mo><mi>s</mi><mo>)</mo></math></para>
+
+<para>Finally if the compliant application receives a symbol from a
+supported Content Dictionary but with an unknown name, then this must
+either be an incorrect object, or possibly the object has been built
+using a later version of the Content Dictionary. In either case, the
+application will act as if it had received the &OM; object <math
+display="block"><mi
+mathvariant="bold">error</mi><mo>(</mo><mi>Unexpected_Symbol</mi><mo
+separator="true">,</mo><mi>s</mi><mo>)</mo></math></para>
 </section>
 
 <section id="sec_comp_lex">
 <title>Lexical Errors</title>
 
-<para>The previous section defines the behaviour of a compliant application
-upon receiving well formed &OM; objects containing unexpected symbols.
-This standard does not specify any behaviour for an application upon
-receiving ill-formed objects.</para>
+<para>The previous section defines the behaviour of a compliant
+application upon receiving well formed &OM; objects containing
+unexpected symbols.  This standard does not specify any behaviour for
+an application upon receiving ill-formed objects.</para>
 </section>
 </chapter>
 
@@ -4634,8 +4656,8 @@ receiving ill-formed objects.</para>
 <title>Conclusion</title>
 
 
-<para>The goal of this document is to define the &OM; standard. The things
-are addressed by the &OM; standard are:
+<para>The goal of this document is to define the &OM; standard. The
+things are addressed by the &OM; standard are:
 <itemizedlist>
 <listitem><para>Informal and formal definition of the &OM; objects.</para>
   
@@ -4645,12 +4667,101 @@ are addressed by the &OM; standard are:
 </listitem>
 </itemizedlist>
 To do this, &OM; objects are precisely defined and two encodings are
-described to represent these objects using <acronym>xml</acronym> and binary
-code. Furthermore, the Document Type Definition for validating Content
-Dictionaries and &OM; objects is given.</para>
+described to represent these objects using <acronym>xml</acronym> and
+binary code. Furthermore, the Document Type Definition for validating
+Content Dictionaries and &OM; objects is given.</para>
 
 
 </chapter>
+
+  <appendix>
+    <title>Changes between &OM; 1 and &OM; 2</title>
+
+
+    <para>In this appendix we document the changes that occurred
+    between version 1 and version 2 of the &OM; standard. Changes
+    preserve backward compatibility of &OM; objects, namely version 1
+    &OM; objects are also version 2 &OM; objects. The converse does
+    not hold.</para>
+
+    <section>
+      <title>Changes in the abstract level</title>
+      
+      <para>Additional features of abstract objects have been
+      introduced:</para>
+      <itemizedlist>
+	<listitem>
+	  <para>&OM; symbols have a rôle qualifier which restricts the
+	  place where they may occur within compound objects</para>
+	</listitem>
+	<listitem>
+	  <para>&OM; variables can be indexed, in which case they
+	  carry information about their enumerator</para>
+	</listitem>
+	<listitem>
+	  <para>non-&OM; objects may appear inside
+	  <emphasis>foreign</emphasis> objects which are a class of
+	  derived objects</para>
+	</listitem>
+	<listitem>
+	  <para>attributions can be enforced as semantical annotation,
+	  that cannot be stripped, by specifying the role of the
+	  symbol acting as attribute key</para>
+	</listitem>
+      </itemizedlist>
+
+    </section>
+
+    <section>
+      <title>Changes in the encodings</title>
+
+      <para>The &OM; version 2 standard still mandantes two encodings:
+      &exml; and binary. The &exml; encoding in particular has been
+      updated to reflect the latest development of &exml;. Version 2
+      encodings are backward compatible with version 1 encodings.
+      </para>
+      <itemizedlist>
+	<listitem>
+	  <para>encodings support internal and external sharing of
+	  objects</para>
+	</listitem>
+	<listitem>
+	  <para>the &exml; encoding in version 2 is defined by a Relax
+	  NG schema and the mandated character-based grammar of
+	  version 1 has been removed.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>an optional attribute defining the version of the
+	  encoding can be specified for the encoded object</para>
+	</listitem>
+      </itemizedlist>
+      
+
+    </section>
+
+    
+    <section>
+      <title>Changes in the Content Dictionaries</title>
+
+      <para>In &OM; version 2 Content Dictionaries have an abstract
+	definition which describes the information content that needs
+	to be specified for defining &OM; symbols. The current
+	implementation is a possible encoding of the abstract model.
+      </para>
+      
+      
+      <para>TODO: take care of defmp</para>
+    </section>
+
+
+    <section>
+      <title>Changes in the compliance</title>
+      
+      <para>TODO</para>
+    </section>
+
+  </appendix>
 
 
 <appendix id="app_cdfiles">
