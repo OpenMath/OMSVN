@@ -23,7 +23,7 @@
 \usepackage[latin1]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{soul,longtable}
-\usepackage{ae,amsfonts,amssymb,url,graphics,color,
+\usepackage{amsfonts,amssymb,url,graphics,color,pslatex,
 %hyperref
 }
 \definecolor{green}{rgb}{0,0.3,0}
@@ -75,6 +75,7 @@ relative to the OpenMath 1.0 document\ldots
 
 \subsubsection*£Sections with new textﬂ
 \begin£itemizeﬂ
+\parskip0pt
 <xsl:for-each select="//section">
 <xsl:if test="key('new',@id)">
 \item
@@ -117,7 +118,7 @@ relative to the OpenMath 1.0 document\ldots
 
 <xsl:template match="@revisionflag[.='deleted']">
 <xsl:if test="$showdiffs">
-<xsl:text>\color[rgb]£1,0.7,0.7ﬂ</xsl:text>
+<xsl:text>\color[rgb]£1,0.5,0.5ﬂ</xsl:text>
 </xsl:if>
 </xsl:template>
 
@@ -290,13 +291,15 @@ relative to the OpenMath 1.0 document\ldots
 
 
 <xsl:template match="figure">
+<xsl:if test="$showdiffs or not(ancestor-or-self::*/@revisionflag='deleted')">
 \begin£figureﬂ
-
+<xsl:apply-templates select="(ancestor-or-self::*/@revisionflag)[last()]"/>
 <xsl:apply-templates/>
 
 \caption£<xsl:apply-templates select="title/node()"
         />ﬂ\label£<xsl:value-of select="@id"/>ﬂ
 \end£figureﬂ
+</xsl:if>
 </xsl:template>
 
 
@@ -304,10 +307,17 @@ relative to the OpenMath 1.0 document\ldots
 <xsl:number level="multiple" count="chapter"/>.<xsl:number level="any"  from="chapter"/>
 </xsl:template>
 
+<xsl:template match="para" mode="number"/>
+
+<xsl:template match="*" mode="number">
+<xsl:message>no number for <xsl:value-of select="name()"
+/>: <xsl:value-of select="@id"/>
+</xsl:message>
+</xsl:template>
 
 
-<xsl:template match="xref">
-<a href="#£@linkendﬂ">
+
+<xsl:template match="xref">!!
 <xsl:variable name="n" select="key('ids',@linkend)"/>
 <xsl:choose>
 <xsl:when test="$n/ancestor::appendix">Appendix</xsl:when>
@@ -318,16 +328,17 @@ relative to the OpenMath 1.0 document\ldots
 </xsl:choose>
 <xsl:text>&#160;</xsl:text>
 <xsl:apply-templates mode="number" select="$n"/>
-</a>
 </xsl:template>
 
 <xsl:template match="programlisting|literallayout">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <xsl:text>£</xsl:text>
 <xsl:apply-templates select="@revisionflag"/>
 <xsl:if test="@role='small'">£\footnotesize</xsl:if>
 \begin£verbatimﬂ<xsl:apply-templates/>\end{verbatim}<xsl:if test="@role='small'">\par\vspace£-10ptﬂﬂ</xsl:if>
 <xsl:text>&#10;</xsl:text>
 <xsl:text>ﬂ</xsl:text>
+</xsl:if>
 </xsl:template>
 
 <xsl:template match="sidebar">
@@ -337,7 +348,7 @@ changelog entry here
 </xsl:template>
 
 
-<xsl:template match="informaltable">
+<xsl:template match="informaltable"><xsl:text>!!</xsl:text>
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 £<xsl:apply-templates select="@revisionflag"/>
 <xsl:if test="@role='small'">\footnotesize</xsl:if>
@@ -394,19 +405,23 @@ changelog entry here
 <!-- toc -->
 
 <xsl:template match="toc">
+\begingroup
 \catcode`\{=1
 \catcode`\}=2
+\parskip0pt
 \tableofcontents
-\catcode`\{=12
-\catcode`\}=12
+\par
+\endgroup
 </xsl:template>
 
 <xsl:template match="lot">
+\begingroup
 \catcode`\{=1
 \catcode`\}=2
+\parskip0pt
 \listoffigures
-\catcode`\{=12
-\catcode`\}=12
+\par
+\endgroup
 </xsl:template>
 
 
