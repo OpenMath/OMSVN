@@ -356,6 +356,13 @@ count="figure[not(ancestor-or-self::*/@revisionflag='deleted')]" level="any"  fr
 </xsl:template>
 
 
+<xsl:template match="para" mode="number"/>
+
+<xsl:template match="*" mode="number">
+<xsl:message>no number for <xsl:value-of select="name()"
+/>: <xsl:value-of select="@id"/>
+</xsl:message>
+</xsl:template>
 
 <xsl:template match="xref">
 <a href="#{@linkend}">
