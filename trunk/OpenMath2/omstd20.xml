@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.93 2004/03/30 12:46:20 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.94 2004/03/30 13:09:07 openmath Exp $ -->
 
 
 <!DOCTYPE book 
@@ -611,7 +611,9 @@ A derived &OM; object is built as follows:
 <listitem><para><phrase>(i)</phrase> If <math><mi>A</mi></math> is
 <emphasis>not</emphasis> an &OM; object, then <math><mi
 mathvariant="bold">foreign</mi><mfenced><mi>A</mi></mfenced></math> is an &OM;
-<emphasis>foreign object</emphasis>.</para> 
+<emphasis>foreign object</emphasis>.  An &OM; foreign object may optionally
+have an <emphasis>encoding</emphasis> field which describes how its contents
+should be interpreted.</para> 
 </listitem>
 </itemizedlist>
 </para>
@@ -2145,8 +2147,8 @@ element must be well-formed &exml;.  For example the attribution of the
 representation in Presentation MathML is:
 <literallayout><![CDATA[<OMATTR>
   <OMATP>
-    <OMS cd="presentation1" name="mathml"/>  
-    <OMFOREIGN>
+    <OMS cd="annotations1" name="presentation-form"/>  
+    <OMFOREIGN encoding="MathML-Presentation">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <mi>sin</mi><mfenced><mi>x</mi></mfenced>
       </math>
@@ -2164,8 +2166,8 @@ of the previous object with its LaTeX representation could be achieved
 as follows:
 <literallayout><![CDATA[<OMATTR>
   <OMATP>
-    <OMS cd="presentation1" name="latex"/>  
-    <OMFOREIGN>\sin(x)</OMFOREIGN>  
+    <OMS cd="annotations1" name="presentation-form"/>  
+    <OMFOREIGN encoding="LaTeX">\sin(x)</OMFOREIGN>  
   </OMATP>
   <OMA>
     <OMS cd="transc1" name="sin"/> 
@@ -2207,7 +2209,7 @@ If a <systemitem>mathml</systemitem> Content Dictionary contained an
 MathML translater might return an error such as:
 <literallayout><![CDATA[<OME>
   <OMS cd="mathml" name="unhandled_csymbol"/>  
-  <OMFOREIGN>
+  <OMFOREIGN encoding="MathML-Content">
     <mathml:csymbol xmlns:mathml="http://www.w3.org/1998/Math/MathML/"
                     definitionURL="http://www.nag.co.uk/Airy#A">
       <mathml:mo>Ai</mathml:mo>
