@@ -363,7 +363,7 @@ changelog entry here
 
 <xsl:template match="id('fig_bin-enc')/informaltable">
 \tiny
-\noindent\rlap£\begin£tabularﬂ£llp£5cmﬂlp£5cmﬂlﬂ
+\noindent£\begin£tabularﬂ£llp£5cmﬂlp£5cmﬂlﬂ
 <xsl:apply-templates select="tgroup/*"/>
 \end£tabularﬂﬂ<xsl:text>&#10;</xsl:text>
 </xsl:template>
