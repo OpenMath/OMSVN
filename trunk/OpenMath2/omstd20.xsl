@@ -202,16 +202,20 @@ relative to the OpenMath 1.0 document...</p>
 </xsl:template>
 
 <xsl:template match="chapter">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <h2 name="{@id}" id="{@id}">
   Chapter&#160;<xsl:apply-templates mode="number" select="."/>
   <br/>
   <xsl:apply-templates select="title/node()"/>
 </h2>
 <xsl:apply-templates/>
+</xsl:if>
 </xsl:template>
 
 <xsl:template match="chapter" mode="number">
-<xsl:number/>
+<xsl:if test="not(@revisionflag='deleted')">
+<xsl:number count="chapter[not(@revisionflag='deleted')]"/>
+</xsl:if>
 </xsl:template>
 
 <xsl:template match="appendix">
@@ -379,8 +383,8 @@ relative to the OpenMath 1.0 document...</p>
 
 <xsl:template match="figure" mode="number">
 <xsl:if test="not(ancestor-or-self::*/@revisionflag='deleted')">
-<xsl:number level="multiple" count="chapter"/>.<xsl:number
-count="figure[not(ancestor-or-self::*/@revisionflag='deleted')]" level="any"  from="chapter"/>
+<xsl:number level="multiple" count="chapter[$showdiffs or not(@revisionflag='deleted')]"/>.<xsl:number
+count="figure[not(ancestor-or-self::*/@revisionflag='deleted')]" level="any"  from="chapter[$showdiffs or not(@revisionflag='deleted')]"/>
 </xsl:if>
 </xsl:template>
 
@@ -523,7 +527,7 @@ changelog entry here
 <xsl:template match="toc">
 <h2>Contents</h2>
 <xsl:for-each
-select="/book/chapter|/book/bibliography|/book/appendix">
+select="(/book/chapter|/book/bibliography|/book/appendix)[$showdiffs or not(@revisionflag='deleted')]">
 <xsl:if test="not(@id)">
 <xsl:message>
 No id on <xsl:value-of select="title"/>
