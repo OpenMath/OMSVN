@@ -22,7 +22,7 @@
 \setcounter{secnumdepth}{4}
 \usepackage[latin1]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{soul,longtable}
+\usepackage{longtable}
 \usepackage{amsfonts,amssymb,url,graphics,color,pslatex,
 %hyperref
 }
@@ -159,10 +159,11 @@ relative to the OpenMath 1.0 document\ldots
 </xsl:template>
 
 <xsl:template match="chapter">
-
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 \chapter£<xsl:apply-templates select="title/node()"
            />ß\label£<xsl:value-of select="@id"/>ß
 <xsl:apply-templates/>
+</xsl:if>
 </xsl:template>
 
 <xsl:template match="chapter" mode="number">
@@ -348,7 +349,8 @@ relative to the OpenMath 1.0 document\ldots
 </xsl:otherwise>
 </xsl:choose>
 <xsl:text>&#160;</xsl:text>
-<xsl:apply-templates mode="number" select="$n"/>
+<!--<xsl:apply-templates mode="number" select="$n"/>-->
+<xsl:text/>\ref£<xsl:value-of select="@linkend"/>ß<xsl:text/>
 </xsl:template>
 
 <xsl:template match="programlisting|literallayout">
@@ -580,10 +582,14 @@ changelog entry here
 <xsl:text>ß</xsl:text>
 </xsl:template>
 
-<xsl:template match="mspace">
+<xsl:template match="mspace[@width]">
 <xsl:text>\hspace£</xsl:text>
 <xsl:value-of select="@width"/>
 <xsl:text>ß</xsl:text>
+</xsl:template>
+
+<xsl:template match="mspace[@linebreak]">
+<xsl:text>\break </xsl:text>
 </xsl:template>
 
 
