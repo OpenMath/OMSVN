@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   Schema for OpenMath 2
-  DPC 2003-09-27
+  $Id: openmath2.rng,v 1.2 2003/10/01 13:15:09 openmath Exp $
 -->
 <grammar xmlns:xlink="http://www.w3.org/1999/xlink" ns="http://www.openmath.org/OpenMath" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
   <!-- OM2: allow OMR -->
@@ -29,7 +29,7 @@
   </define>
   <define name="attvar">
     <element name="OMATTR">
-      <ref name="common"/>
+      <ref name="common.attributes"/>
       <group>
         <ref name="OMATP"/>
         <choice>
@@ -39,49 +39,45 @@
       </group>
     </element>
   </define>
-  <!-- OM2: common attributes (should be xs:ID but jing complains) -->
-  <define name="common">
+  <!-- OM2: common.attributes attributes -->
+  <define name="common.attributes">
     <optional>
-      <attribute name="id"/>
+      <attribute name="id">
+        <data type="ID"/>
+      </attribute>
     </optional>
   </define>
   <!-- symbol -->
   <define name="OMS">
     <element name="OMS">
-      <ref name="common"/>
+      <ref name="common.attributes"/>
       <ref name="attlist.OMS"/>
     </element>
   </define>
   <define name="attlist.OMS">
     <attribute name="name">
-      <data type="string">
-        <param name="pattern">[A-Za-z][A-Za-z0-9_]*</param>
-      </data>
+      <data type="NCName"/>
     </attribute>
     <attribute name="cd">
-      <data type="string">
-        <param name="pattern">[a-z][a-z0-9_]*</param>
-      </data>
+      <data type="NCName"/>
     </attribute>
   </define>
   <!-- variable -->
   <define name="OMV">
     <element name="OMV">
-      <ref name="common"/>
+      <ref name="common.attributes"/>
       <ref name="attlist.OMV"/>
     </element>
   </define>
   <define name="attlist.OMV">
     <attribute name="name">
-      <data type="string">
-        <param name="pattern">([A-Za-z0-9\+=(),\-\./:\?!#$%\*;@\[\]\^_`\{\|\}])+</param>
-      </data>
+      <data type="NCName"/>
     </attribute>
   </define>
   <!-- integer -->
   <define name="OMI">
     <element name="OMI">
-      <ref name="common"/>
+      <ref name="common.attributes"/>
       <data type="string">
         <param name="pattern">\s*(-\s?)?[0-9]+(\s[0-9]+)*\s*</param>
       </data>
@@ -90,21 +86,21 @@
   <!-- byte array -->
   <define name="OMB">
     <element name="OMB">
-      <ref name="common"/>
+      <ref name="common.attributes"/>
       <data type="base64Binary"/>
     </element>
   </define>
   <!-- string -->
   <define name="OMSTR">
     <element name="OMSTR">
-      <ref name="common"/>
+      <ref name="common.attributes"/>
       <text/>
     </element>
   </define>
   <!-- floating point -->
   <define name="OMF">
     <element name="OMF">
-      <ref name="common"/>
+      <ref name="common.attributes"/>
       <ref name="attlist.OMF"/>
     </element>
   </define>
@@ -125,7 +121,7 @@
   <!-- apply constructor -->
   <define name="OMA">
     <element name="OMA">
-      <ref name="common"/>
+      <ref name="common.attributes"/>
       <oneOrMore>
         <ref name="omel"/>
       </oneOrMore>
@@ -134,7 +130,7 @@
   <!-- binding constructor & variable -->
   <define name="OMBIND">
     <element name="OMBIND">
-      <ref name="common"/>
+      <ref name="common.attributes"/>
       <ref name="omel"/>
       <ref name="OMBVAR"/>
       <ref name="omel"/>
@@ -142,7 +138,7 @@
   </define>
   <define name="OMBVAR">
     <element name="OMBVAR">
-      <ref name="common"/>
+      <ref name="common.attributes"/>
       <oneOrMore>
         <ref name="omvar"/>
       </oneOrMore>
@@ -151,7 +147,7 @@
   <!-- error -->
   <define name="OME">
     <element name="OME">
-      <ref name="common"/>
+      <ref name="common.attributes"/>
       <ref name="OMS"/>
       <zeroOrMore>
         <ref name="omel"/>
@@ -161,7 +157,7 @@
   <!-- attribution constructor & attribute pair constructor -->
   <define name="OMATTR">
     <element name="OMATTR">
-      <ref name="common"/>
+      <ref name="common.attributes"/>
       <ref name="OMATP"/>
       <ref name="omel"/>
     </element>
@@ -169,7 +165,7 @@
   <!-- OM2: allow OMBOX -->
   <define name="OMATP">
     <element name="OMATP">
-      <ref name="common"/>
+      <ref name="common.attributes"/>
       <oneOrMore>
         <ref name="OMS"/>
         <choice>
@@ -182,26 +178,43 @@
   <!-- OM2: OMBOX -->
   <define name="OMBOX">
     <element name="OMBOX">
-      <ref name="anyXML"/>
-    </element>
-  </define>
-  <define name="anyXML">
-    <element>
-      <anyName/>
+      <ref name="common.attributes"/>
       <zeroOrMore>
         <choice>
-          <attribute>
-            <anyName/>
-          </attribute>
-          <ref name="anyXML"/>
+          <ref name="omel"/>
+          <ref name="notom"/>
         </choice>
       </zeroOrMore>
     </element>
   </define>
+  <!-- Any elements not in the om namespace (valid om is allowed as a descendant) -->
+  <define name="notom">
+    <choice>
+      <element>
+        <anyName>
+          <except>
+            <nsName/>
+          </except>
+        </anyName>
+        <zeroOrMore>
+          <attribute>
+            <anyName/>
+          </attribute>
+        </zeroOrMore>
+        <zeroOrMore>
+          <choice>
+            <ref name="omel"/>
+            <ref name="notom"/>
+          </choice>
+        </zeroOrMore>
+      </element>
+      <text/>
+    </choice>
+  </define>
   <!-- OM object constructor -->
   <define name="OMOBJ">
     <element name="OMOBJ">
-      <ref name="common"/>
+      <ref name="common.attributes"/>
       <ref name="omel"/>
     </element>
   </define>
@@ -211,7 +224,7 @@
   <!-- OM2: OMR -->
   <define name="OMR">
     <element name="OMR">
-      <ref name="common"/>
+      <ref name="common.attributes"/>
       <ref name="attlist.OMR"/>
     </element>
   </define>
