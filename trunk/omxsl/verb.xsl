@@ -56,17 +56,31 @@
 <xsl:template mode="verb" match="*">
   <xsl:value-of select="concat('&lt;',name(.))"/>
   <xsl:call-template name="ns"/>
-  <xsl:apply-templates mode="verb" select="namespace::*|@*"/>
+  <xsl:apply-templates mode="verb" select="@*"/>
   <xsl:text>/&gt;</xsl:text>
 </xsl:template>
 
 <xsl:template name="ns">
+<xsl:variable name="a" select="../namespace::*"/>
+<xsl:variable name="b" select="namespace::*"/>
+<xsl:for-each select="$b[not(name()='xml')]">
+<xsl:variable name="n" select="name()"/>
+<xsl:variable name="v" select="."/>
+<xsl:if test="not($a[name()=$n and . = $v])">
+<xsl:text/> xmlns<xsl:if test="$n">:</xsl:if><xsl:value-of
+  select="$n"/>="<xsl:value-of select="$v"/>"<xsl:text/>
+</xsl:if>
+</xsl:for-each>
+<!--
+ This should work (and does with saxon, but not with xalan) so instead do the above.
+
   <xsl:for-each select="namespace::*[not(name()='xml')]">
   <xsl:if test="not(../../namespace::*[name()=name(current()) and (. = current())])">
   <xsl:text/> xmlns<xsl:if test="name()">:</xsl:if><xsl:value-of
   select="name()"/>="<xsl:value-of select="."/>"<xsl:text/>
   </xsl:if>
   </xsl:for-each>
+-->
 </xsl:template>
 
 <!-- attributes
