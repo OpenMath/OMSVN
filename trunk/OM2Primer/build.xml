@@ -2,7 +2,7 @@
 
 <!--
   
-    $Id: build.xml,v 1.6 2003/11/25 13:40:13 openmath Exp $
+    $Id: build.xml,v 1.7 2004/05/19 11:07:11 openmath Exp $
 
     Copyright (c) 2003, RISC-Linz, Mathbroker, Austria.
     All Rights Reserved.
@@ -38,22 +38,33 @@
       file="${package.src}/xsl/pmathml.xsl"/>
     <copy todir="${build.src}/xhtml" 
       file="${package.src}/xsl/primer.css"/>
+     <copy todir="${build.src}/xhtml" 
+      file="${package.src}/xsl/primer.xsl"/>
  
+
 
   </target>  
 
 
 
-  <!-- primer in xhtml is generated using docbook xsl -->
+  <!-- primer in html chunck is generated using docbook xsl -->
   <target name="xhtml" depends="prepare"
 	  description="Produce the xhtml primer">
+
+   <replace file="${build.src}/xhtml/primer.xsl"
+      token="@stylesheet.uri"
+      value="${docbook.xsl}/html/chunk.xsl"/>
+     
     <style basedir="${package.root}/src/xml"
 	   includes="**/*.xml"
-	   style="${docbook.xsl}/xhtml/docbook.xsl"
+	   style="${build.src}/xhtml/primer.xsl"
 	   destdir="${build.src}/xhtml/"
 	   extension=".xhtml"
 	   force="true">
     </style>    
+    <copy todir="${build.src}/xhtml"> 
+      <fileset dir="${package.src}/xml/" includes="*.png"/>
+    </copy>
   </target>
 
 

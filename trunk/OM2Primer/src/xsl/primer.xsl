@@ -4,8 +4,7 @@
 
 
 
-
-<xsl:import href="/usr/share/xml/docbook/xsl-stylesheets/xhtml/docbook.xsl"/>
+<xsl:import href="@stylesheet.uri"/>
 
 <xsl:variable name="toc.section.depth">3</xsl:variable>
 <xsl:param name="htmlhelp.encoding" select="'windows-1250'"/>
@@ -19,5 +18,7 @@
 <xsl:param name="section.autolabel" select="1"/>
  
 <xsl:param name="shade.verbatim" select="1"/>
+
+
 </xsl:stylesheet>
 
