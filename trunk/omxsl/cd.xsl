@@ -50,12 +50,19 @@
   <xsl:value-of select="normalize-space(./cd:CDURL)"/>
   </a></dd>
 
-<dt><span class="dt">cd:CD File:</span></dt> 
+<xsl:if test="cd:CDBase">
+<dt><span class="dt">CD Base:</span></dt>
+<dd><a href="{normalize-space(./cd:CDBase)}">
+  <xsl:value-of select="normalize-space(./cd:CDBase)"/>
+  </a></dd>
+</xsl:if>
+
+<dt><span class="dt">CD File:</span></dt> 
 <dd><a href="{$cd}.ocd">
     <xsl:value-of select="$cd"/>.ocd
   </a></dd>
 
-<dt><span class="dt">cd:CD as XML Encoded OpenMath:</span></dt>  
+<dt><span class="dt">CD as XML Encoded OpenMath:</span></dt>  
 <dd><a href="{$cd}.omcd">
     <xsl:value-of select="$cd"/>.omcd
   </a>
@@ -110,7 +117,7 @@
 
 
 
-<xsl:template match="cd:CDURL|cd:CDName|cd:CDDate|cd:CDReviewDate|cd:CDStatus|
+<xsl:template match="cd:CDURL|cd:CDBase|cd:CDName|cd:CDDate|cd:CDReviewDate|cd:CDStatus|
                     cd:CDVersion|cd:CDRevision|cd:CDUses">
 </xsl:template>
 
@@ -183,6 +190,15 @@
 
 <xsl:template match="cd:CDDefinition/cd:Name">
 <h2><a name="{normalize-space(.)}"><xsl:apply-templates/></a></h2>
+</xsl:template>
+
+
+<xsl:template match="cd:CDDefinition/cd:Role">
+<dl>
+<dt><span class="dt">Role:</span></dt>
+<dd>
+<xsl:apply-templates/>
+</dd></dl>
 </xsl:template>
 
 
