@@ -48,8 +48,8 @@ done
 
 for i in omcd2.rnc 
 do
-echo $i
 echo DTD
+echo $i
 sed -e  "s/| OMOBJ//" \
     -e "s/OMOBJ/text/" \
     -e "s/include .openmath2.rnc. {.*}/# OMDTD/" \
@@ -73,11 +73,15 @@ sed -e  "s/| OMOBJ//" \
 
 done
 
+echo DTD
+echo omcdgroup2.rnc
+ java -jar trang.jar  omcdgroup2.rnc omcdgroup2.dtd 2>> trang.txt
+
 
 for i in  omcdsig2.rnc
 do
-echo $i
 echo DTD
+echo $i
 sed -e  "s/| OMOBJ//" \
     -e "s/OMOBJ/text/" \
     -e "s/include .openmath2.rnc. {.*}/# OMDTD/" \

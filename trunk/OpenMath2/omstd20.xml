@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.120 2004/04/07 04:46:01 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.121 2004/04/07 10:21:54 openmath Exp $ -->
 
 
 <!DOCTYPE book 
@@ -12,7 +12,7 @@ SYSTEM "docbook/docbookx.dtd"
     add xml:space (to correct for IE bug, dropping spaces)
 -->
 
-<!ENTITY % local.para.char.mix "|xs:schema|comment|string|grammar|CD|CDSignatures">
+<!ENTITY % local.para.char.mix "|xs:schema|comment|string|grammar|CD|CDSignatures|CDGroup">
 <!ENTITY % inlineobj.char.class "math">
 <!ATTLIST book xml:space (default|preserve) #IMPLIED >
 <!--
@@ -203,6 +203,7 @@ SYSTEM "docbook/docbookx.dtd"
 <!ENTITY cdrnc SYSTEM "omcd2rnc.xml">
 <!ENTITY sigrnc SYSTEM "omcdsig2rnc.xml">
 <!ENTITY cdgrouprnc SYSTEM "omcdgroup2rnc.xml">
+<!ENTITY mathmlcdg SYSTEM "mathml.cdg">
 
 <!ENTITY omxsd SYSTEM "openmath2.xsd">
 <!ENTITY omdtd SYSTEM "openmath2dtd.xml">
@@ -217,6 +218,25 @@ SYSTEM "docbook/docbookx.dtd"
 %omcd2;
 <!ENTITY % omcdsig2 SYSTEM "omcdsig2.dtd">
 %omcdsig2;
+
+<!--
+Can't include this as name clashes with CD dtd (as DTD not namespace
+aware) so include subset of the DTD inline below.
+<!ENTITY % omcdgroup2 SYSTEM "omcdgroup2.dtd">
+%omcdgroup2;
+-->
+<!ELEMENT CDGroupName (#PCDATA)>
+<!ELEMENT CDGroupVersion (#PCDATA)>
+<!ELEMENT CDGroupRevision (#PCDATA)>
+<!ELEMENT CDGroupURL (#PCDATA)>
+<!ELEMENT CDGroupDescription (#PCDATA)>
+<!ELEMENT CDGroupMember (CDComment?,CDName,CDVersion?,CDURL?)>
+<!ELEMENT CDGroup (CDGroupName,CDGroupVersion,CDGroupRevision?,
+                   CDGroupURL,CDGroupDescription,
+                   (CDGroupMember|CDComment)*)>
+<!ATTLIST CDGroup
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCDG'>
+
 
 <!ENTITY metacd SYSTEM "meta.ocd">
 <!ENTITY arith1cd SYSTEM "arith1.ocd">
@@ -5539,135 +5559,8 @@ Dictionaries and &OM; objects is given.</para>
   <title>The  <filename>MathML</filename> CDGroup</title>
   
   
-<literallayout><![CDATA[<CDGroup>
-<CDGroupName>mathml</CDGroupName>
-  <CDGroupVersion> 2 </CDGroupVersion>
-  <CDGroupRevision> 0 </CDGroupRevision>
-  <CDGroupURL>
-    http://www.openmath.org/cdfiles/cdgroups/mathml.ocd</CDGroupURL>
-  <CDGroupDescription> MathML compatibility CD Group </CDGroupDescription>
-  <CDComment>Algebra</CDComment>
-  <CDGroupMember>
-    <CDName>alg1</CDName>
-    <CDURL>http://www.openmath.org/cd/alg1.ocd</CDURL></CDGroupMember>
-  <CDComment>Arithmetic</CDComment>
-  <CDGroupMember>
-    <CDName>arith1</CDName>
-    <CDURL>http://www.openmath.org/cd/arith1.ocd</CDURL></CDGroupMember>
-  <CDComment>Constructor for Floating Point Numbers</CDComment>
-  <CDGroupMember>
-    <CDName>bigfloat1</CDName>
-    <CDURL>http://www.openmath.org/cd/bigfloat1.ocd</CDURL></CDGroupMember>
-  <CDComment>Calculus</CDComment>
-  <CDGroupMember>
-    <CDName>calculus1</CDName>
-    <CDURL>http://www.openmath.org/cd/calculus1.ocd</CDURL></CDGroupMember>
-  <CDComment>Operations on and constructors for complex numbers</CDComment>
-  <CDGroupMember>
-    <CDName>complex1</CDName>
-    <CDURL>http://www.openmath.org/cd/complex1.ocd</CDURL></CDGroupMember>
-  <CDComment>Functions on functions</CDComment>
-  <CDGroupMember>
-    <CDName>fns1</CDName>
-    <CDURL>http://www.openmath.org/cd/fns1.ocd</CDURL></CDGroupMember>
-  <CDComment>Integer arithmetic</CDComment>
-  <CDGroupMember>
-    <CDName>integer1</CDName>
-    <CDURL>http://www.openmath.org/cd/integer1.ocd</CDURL></CDGroupMember>
-  <CDComment>Intervals</CDComment>
-  <CDGroupMember>
-    <CDName>interval1</CDName>
-    <CDURL>http://www.openmath.org/cd/interval1.ocd</CDURL></CDGroupMember>
-  <CDComment>Linear Algebra - vector &amp; matrix constructors,
-             those symbols which are independent of orientation,
-             but in MathML</CDComment>
-  <CDGroupMember>
-    <CDName>linalg1</CDName>
-    <CDURL>http://www.openmath.org/cd/linalg1.ocd</CDURL></CDGroupMember>
-  <CDComment>Linear Algebra - vector &amp; matrix constructors,
-             those symbols which are dependent of orientation,
-             and in MathML</CDComment>
-  <CDGroupMember>
-    <CDName>linalg2</CDName>
-    <CDURL>http://www.openmath.org/cd/linalg2.ocd</CDURL></CDGroupMember>
-  <CDComment>Limits of unary functions</CDComment>
-  <CDGroupMember>
-    <CDName>limit1</CDName>
-    <CDURL>http://www.openmath.org/cd/limit1.ocd</CDURL></CDGroupMember>
-  <CDComment>List constructors</CDComment>
-  <CDGroupMember>
-    <CDName>list1</CDName>
-    <CDURL>http://www.openmath.org/cd/list1.ocd</CDURL></CDGroupMember>
-  <CDComment>Basic logical operators</CDComment>
-  <CDGroupMember>
-    <CDName>logic1</CDName>
-    <CDURL>http://www.openmath.org/cd/logic1.ocd</CDURL></CDGroupMember>
-  <CDComment>
-    MathML Numerical Types
-  </CDComment>
-  <CDGroupMember>
-    <CDName>mathmltypes</CDName>
-    <CDURL>http://www.openmath.org/cd/mathmltypes.ocd</CDURL>
-  </CDGroupMember>
-  <CDComment>Minima and maxima</CDComment>
-  <CDGroupMember>
-    <CDName>minmax1</CDName>
-    <CDURL>http://www.openmath.org/cd/minmax1.ocd</CDURL></CDGroupMember>
-  <CDComment>Multset-theoretic operators and constructors</CDComment>
-  <CDGroupMember>
-    <CDName>multiset1</CDName>
-    <CDURL>http://www.openmath.org/cd/multiset1.ocd</CDURL></CDGroupMember>
-  <CDComment>Symbols for creating numbers, including some defined constants
-    (which can be seen as nullary constructors)</CDComment>
-  <CDGroupMember>
-    <CDName>nums1</CDName>
-    <CDURL>http://www.openmath.org/cd/nums1.ocd</CDURL></CDGroupMember>
-  <CDComment>Symbols for creating piecewise definitions</CDComment>
-  <CDGroupMember>
-    <CDName>piece1</CDName>
-    <CDURL>http://www.openmath.org/cd/piece1.ocd</CDURL></CDGroupMember>
-  <CDComment>The basic quantifiers forall and exists.</CDComment>
-  <CDGroupMember>
-    <CDName>quant1</CDName>
-    <CDURL>http://www.openmath.org/cd/quant1.ocd</CDURL></CDGroupMember>
-  <CDComment>Common arithmetic relations</CDComment>
-  <CDGroupMember>
-    <CDName>relation1</CDName>
-    <CDURL>http://www.openmath.org/cd/relation1.ocd</CDURL></CDGroupMember>
-  <CDComment>Number sets</CDComment>
-  <CDGroupMember>
-    <CDName>setname1</CDName>
-    <CDURL>http://www.openmath.org/cd/setname1.ocd</CDURL></CDGroupMember>
-  <CDComment>Rounding</CDComment>
-  <CDGroupMember>
-    <CDName>rounding1</CDName>
-    <CDURL>http://www.openmath.org/cd/rounding1.ocd</CDURL></CDGroupMember>
-  <CDComment>Set-theoretic operators and constructors</CDComment>
-  <CDGroupMember>
-    <CDName>set1</CDName>
-    <CDURL>http://www.openmath.org/cd/set1.ocd</CDURL></CDGroupMember>
-  <CDComment>Basic data orientated statistical operators</CDComment>
-  <CDGroupMember>
-    <CDName>s_data1</CDName>
-    <CDURL>http://www.openmath.org/cd/s_data1.ocd</CDURL></CDGroupMember>
-  <CDComment>Basic random variable orientated statistical operators</CDComment>
-  <CDGroupMember>
-    <CDName>s_dist1</CDName>
-    <CDURL>http://www.openmath.org/cd/s_dist1.ocd</CDURL></CDGroupMember>
-  <CDComment>Basic transcendental functions</CDComment>
-  <CDGroupMember>
-    <CDName>transc1</CDName>
-    <CDURL>http://www.openmath.org/cd/transc1.ocd</CDURL></CDGroupMember>
-  <CDComment>Vector calculus functions</CDComment>
-  <CDGroupMember>
-    <CDName>veccalc1</CDName>
-    <CDURL>http://www.openmath.org/cd/veccalc1.ocd</CDURL></CDGroupMember>
-  <CDComment>Alternative encoding symbols for compatibility with the MathML
-    Semantic mapping constructs.</CDComment>
-  <CDGroupMember>
-    <CDName>altenc</CDName>
-    <CDURL>http://www.openmath.org/cd/altenc.ocd</CDURL></CDGroupMember>
-</CDGroup>]]>
+<literallayout>
+&mathmlcdg;
 </literallayout>
 
 
@@ -7288,66 +7181,3 @@ Types</title>
 </book>
 
 
-<!--  LocalWords:  omstd openmath Exp docbook customisations sidebar xs CDSignatures
- LocalWords:  ATTLIST mrow mn mi mo msub msup mtext mspace mfrac mfenced mml om
- LocalWords:  xmlns revisionflag PCDATA mathcolor mathvariant linebreak ref ns
- LocalWords:  processContents attributeGroup elementFormDefault targetNamespace
- LocalWords:  maxOccurs minOccurs complexType schemaLocation simpleType anyName
- LocalWords:  simpleContent datatypeLibrary zeroOrMore oneOrMore nsName param
- LocalWords:  exml exadigits lcalpha ucalpha dpc regxp zsp longrightarrow omrnc
- LocalWords:  varnamechar rnc cdrnc omcd sigrnc omcdsig cdgrouprnc omcdgroup cd
- LocalWords:  omxsd xsd omdtd dtd omrng rng cdrng sigrng metacd ocd arith sts
- LocalWords:  errorcd bookinfo releaseinfo firstname Buswell othername Carlisle
- LocalWords:  Gaetano para xref linkend cha generatable ulink url toc sec hist
- LocalWords:  formalised Abbott Leeuwen Strotmann Dalmas omsoc int fileref obj
- LocalWords:  enco addnfiles CDGroup phrasebooks Phrasebook behaviour omabs gt
- LocalWords:  omin labelled itemizedlist listitem bignums ieee Unicode cdbase
- LocalWords:  Bytearray em orderedlist lowerroman sl variablelist varlistentry
- LocalWords:  Bytearrays bytearray bytearrays systemitem blockquote Za varname
- LocalWords:  phrasebook automorphism lt OMD colour informaltable tgroup cols
- LocalWords:  tbody NameStartChar NameChar xC xD xF FF FFF FEF xFDCF xFDF xFFFD
- LocalWords:  xEFFFF xB formalpara IETF octets PosixLetter RDF rdf transc iso
- LocalWords:  literallayout mathml csymbol definitionURL ascii autodetection NG
- LocalWords:  ssec app relaxrestricted OMB objdtd embeddable OMATP omel OMSTR
- LocalWords:  OMF OME omvar dec xlmns xlink linearised utf apos quot omf omstr
- LocalWords:  linearisation cr nl cdname symbname fpdec fphex ABCDEF cdnameatt
- LocalWords:  symbnameatt varnameatt fpdecatt fphexatt OMATTRx omatp attrs desc
- LocalWords:  NCName xA eE INF NaN DDB CDFD BDBB NaNs rfc fns ecc OMFOREIGN Ai
- LocalWords:  aritherror DivisionByZero unhandled OMERROR ltOMA cos OMR href BB
- LocalWords:  nestedap foo baz bvars orig xmldoc lang tt XLink enc uri vars xf
- LocalWords:  attrpairs attrvar xxxx endian latin thead impl func FMPs YYYY DD
- LocalWords:  sigfiles xsl cdgroups cdapprove comp pcdata cdcd EP buswell nh Li
- LocalWords:  howgrave CDComment CDName CDURL CDUses inhel CDReviewDate omobj
- LocalWords:  CDStatus omobjectdtd PartOf FunctorClass CDDate CDVersion CDBase
- LocalWords:  CDRevision ftn addfiles CDGroups sigpcdata CDSComment CDSStatus
- LocalWords:  CDSReviewDate CDSreviewDate CDSignature sigex cfg sigschema cdg
- LocalWords:  mapsto nassoc AbelianSemiGroup cdgroup cdgpcdata CDGroupName val
- LocalWords:  CDGroupVersion CDGroupRevision CDGroupURL CDGroupDescription conc
- LocalWords:  CDGroupMember compl recognise cdfiles alg bigfloat linalg minmax
- LocalWords:  mathmltypes Multset nums quant setname orientated dist veccalc CB
- LocalWords:  altenc lcm gcd modularisation regexp abs attlist whats chgformal
- LocalWords:  RDFS chgenc chgcd biblioentry Std pubdate misc bibliomisc Geddes
- LocalWords:  Datatypes Gonnet publishername WATCOM Lisser LiE MuPAD Benno isbn
- LocalWords:  Fuchssteiner Chichester Teubner NuPRL Bromley Cleaveland Cremer
- LocalWords:  Knoblock Mendler Panangaden Sasaki PDFbook TeXBook TeXbook PPML
- LocalWords:  Ppml Projet MetaFontBook MetaFont Spivak AMSTeXBook AmSTeX Rhode
- LocalWords:  PVM Geist Beguelin Dongarra Jiang Manchek Sunderam Janusz Kowalik
- LocalWords:  CoCoA Capani Niesi Robbiano Giovini InProceedings Bibliomiscs cme
- LocalWords:  Visigenic Yael Pingali Vavasis Zippel hol Melham harrison fais QG
- LocalWords:  Christoffer Gefwert Pekka Orponen Juoko Sepp nen Suomen Teko ry
- LocalWords:  lyseuran julkaisuja TECHREPORT Pembroke Thery Seger Voronkov WP
- LocalWords:  Ballarin Levelt FroCoS Stephane Andr Gr bner Winkler Moller ller
- LocalWords:  Manocha Multipolynomial Arnon McIsaac Waldspurger CaminoReal Ga
- LocalWords:  Bibliomiscbook booktitle Sausse TechReport tano Diaz Vorkoetter
- LocalWords:  LEGOmanual Luo Pollack luo PhdThesis Shand vrmlspec Carey Marrin
- LocalWords:  Modelling IEC vrmlarm VRML eaispec Turku Centre TUCS Lemmink TR
- LocalWords:  isenkatu Dunstan Kelsey Linton Gloor Rostock Laurent Kirchner REC
- LocalWords:  PolyMath Stilo OMurl Website Seppala Elbers Borenstein Yergeau SV
- LocalWords:  Alis JTC CDROM Eds ida Cuypers Sterk CaprottiCohen Trento Jebelan
- LocalWords:  Kriftner Vasaru Jebelean Maui Zhao Analytica Kapur Devitt Nico tm
- LocalWords:  Poppelier Neil Soiffer Sutor CTCOQMATH CtCoqmath Pottier Bertoli
- LocalWords:  Plattsburgh Jung Ch sk Callaghan Finin Labrou Mayfield Yannis MCP
- LocalWords:  InCollection IAMC ICM Vilya SDMGCHDISCO phane Marc Huchet LNCS ci
- LocalWords:  Limongelli DOM CFCa CFC CFCb imacs IMACA ACA calc iamc OMsem
- LocalWords:  OMworkshop omforeign maximise documentclass maketitle convertor
--->

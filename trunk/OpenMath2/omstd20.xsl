@@ -572,12 +572,12 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
   Appendix&#160;<xsl:apply-templates mode="number" select="."/>
   <br/>Bibliography</h2>
 <xsl:for-each select="biblioentry[key('cite',@id)][$showdiffs or not(@revisionflag='deleted')]">
-<xsl:sort select="(author[1]/surname|author[1]/othername|bibliomisc[@role='key'])[1]"/>
+<xsl:sort select="(author[$showdiffs or not(@revisionflag='deleted')][1]/surname|author[$showdiffs or not(@revisionflag='deleted')][1]/othername|bibliomisc[$showdiffs or not(@revisionflag='deleted')][@role='key'])[1]"/>
 <p>
 <xsl:apply-templates select="@revisionflag"/>
 <a name="{@id}" id="{@id}"/><b>[<xsl:value-of select="position()"/>]</b>
 <xsl:text>&#160;&#160;</xsl:text>
-<xsl:for-each select="author">
+<xsl:for-each select="author[$showdiffs or not(@revisionflag='deleted')]">
  <xsl:choose>
    <xsl:when test="position() = last() and last() &gt; 1"> and </xsl:when>
    <xsl:when test="position() &lt; last() and position() &gt; 1">, </xsl:when>
@@ -585,27 +585,27 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
  <xsl:value-of select="."/>
 </xsl:for-each>
   <xsl:text> </xsl:text>
- <i><xsl:apply-templates select="title/node()"/>
-    <xsl:if test="subtitle">
+ <i><xsl:apply-templates select="title[$showdiffs or not(@revisionflag='deleted')]/node()"/>
+    <xsl:if test="subtitle[$showdiffs or not(@revisionflag='deleted')]">
     <xsl:text> </xsl:text>
-    <xsl:apply-templates select="subtitle/node()"/>
+    <xsl:apply-templates select="subtitle[$showdiffs or not(@revisionflag='deleted')]/node()"/>
     </xsl:if>
 </i>
- <xsl:for-each select="seriesvolnums">
+ <xsl:for-each select="seriesvolnums[$showdiffs or not(@revisionflag='deleted')]">
   <xsl:text> </xsl:text>
    <xsl:value-of select="."/>
   </xsl:for-each>
- <xsl:for-each select="publisher">
+ <xsl:for-each select="publisher[$showdiffs or not(@revisionflag='deleted')]">
   <xsl:text> </xsl:text>
    <xsl:apply-templates/>
   </xsl:for-each>
-<xsl:if test="pubdate">
+<xsl:if test="pubdate[$showdiffs or not(@revisionflag='deleted')]">
   <xsl:text>, </xsl:text>
- <xsl:if test="pubdate[@role]">
-   <xsl:apply-templates select="pubdate[@role]/node()"/>
+ <xsl:if test="pubdate[$showdiffs or not(@revisionflag='deleted')][@role]">
+   <xsl:apply-templates select="pubdate[$showdiffs or not(@revisionflag='deleted')][@role]/node()"/>
    <xsl:text> </xsl:text>
  </xsl:if>
- <xsl:apply-templates select="pubdate[not(@role)]/node()"/>
+ <xsl:apply-templates select="pubdate[$showdiffs or not(@revisionflag='deleted')][not(@role)]/node()"/>
 </xsl:if>
 <xsl:text>.</xsl:text>
 <xsl:for-each select="bibliomisc[$showdiffs or not(@revisionflag='deleted')][contains(.,'http')]">
@@ -720,6 +720,10 @@ select="substring-before(.,':')"/>:</a>
 <xsl:apply-templates mode="verb" select="."/>
 </xsl:template>
 
+<xsl:template match="cdg:CDGroup" xmlns:cdg="http://www.openmath.org/OpenMathCDG">
+<xsl:apply-templates mode="verb" select="."/>
+</xsl:template>
+
 <xsl:template match="cds:CDSignatures" xmlns:cds="http://www.openmath.org/OpenMathCDS">
 <xsl:apply-templates mode="verb" select="."/>
 </xsl:template>
@@ -732,6 +736,12 @@ select="substring-before(.,':')"/>:</a>
 </xsl:template>
 
 <xsl:template match="cds:*" mode="name"  xmlns:cds="http://www.openmath.org/OpenMathCDS">
+<span style="font-weight: bold; color: blue">
+<xsl:value-of select="local-name()"/>
+</span>
+</xsl:template>
+
+<xsl:template match="cdg:*" mode="name"  xmlns:cdg="http://www.openmath.org/OpenMathCDG">
 <span style="font-weight: bold; color: blue">
 <xsl:value-of select="local-name()"/>
 </span>
