@@ -15,6 +15,7 @@
 </xsl:template>
 
 <xsl:template match="book">
+<xsl:text>&#10;</xsl:text>
 <xsl:processing-instruction name="xml-stylesheet"
 > type="text/xsl" href="pmathml.xsl"</xsl:processing-instruction>
 <html  xml:space="preserve" xmlns:m="http://www.w3.org/1998/Math/MathML">
@@ -125,16 +126,20 @@ relative to the OpenMath 1.0 document...</p>
 <li class="del">Deleted text is marked with css class "del" (red).</li>
 </ul>
 
-<p>Sections with new text</p>
-<ul>
+<p>Sections with modified text</p>
 <xsl:for-each select="//*[self::section or self::appendix]">
 <xsl:if test="key('new',@id)">
+<span>
+<xsl:for-each select="ancestor::section">&#160;</xsl:for-each>
 <a href="#{@id}" class="new">
-<xsl:apply-templates mode="number" select="."/>&#160;<xsl:value-of select="title[1]"/>
-</a><br/>
+<xsl:apply-templates mode="number" select="."/>&#160;<span>
+<xsl:apply-templates select="title[1]/@revisionflag|title[1]/node()"/>
+</span>
+</a>
+</span>
+<br/>
 </xsl:if>
 </xsl:for-each>
-</ul>
 </div>
 </xsl:if>
 

@@ -73,16 +73,17 @@ relative to the OpenMath 1.0 document\ldots
 \item Deleted text is marked in red.
 \end£itemizeﬂ
 
-\subsubsection*£Sections with new textﬂ
-\begin£itemizeﬂ
-\parskip0pt
+\subsubsection*£Sections with modified textﬂ
+£\parskip=0pt
 <xsl:for-each select="//section">
 <xsl:if test="key('new',@id)">
-\item
-\ref£<xsl:value-of select="@id"/>ﬂ <xsl:value-of select="title[1]"/>\\
+\par
+\noindent
+<xsl:for-each select="ancestor::section">\quad</xsl:for-each>\ref£<xsl:value-of select="@id"/>ﬂ £<xsl:apply-templates select="title[1]/@revisionflag|title[1]/node()"/>ﬂ
 </xsl:if>
 </xsl:for-each>
-\end£itemizeﬂ
+
+ﬂ
 </xsl:if>
 
 <xsl:apply-templates/>
