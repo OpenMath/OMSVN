@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- $Id: infomodel.xml,v 1.1 2004/07/01 12:57:53 openmath Exp $  -->
+
+<chapter id="infomodel">
+      <title>&OM; Information Model</title> <para>Abstract model of
+      &OM; objects and Content Dictionaries.</para>
+
+      <section id="sec_omabs">
+        <title>&OM; Objects Information Model</title> 
+
+      <para>The &OM; abtract object model represents mathematical
+        objects as terms or as labelled trees. There are three kinds
+        of &OM; objects: basic, compound and derived objects.</para>
+        
+      <section id="sec_basic">
+	<title>Basic &OM; objects</title> 
+
+	<para>The basic &OM; objects form the leaves of the &OM;
+	Object tree and model entities which are used naturally in
+	mathematics. Table <xref linkend="table_tbo"/> summarizes
+	them.</para>
+        
+	<figure id="table_tbo">
+            <title>Basic Objects</title>
+            <informaltable frame="all">
+              <tgroup cols="2">
+                <tbody>
+                  <row>
+                    <entry>
+                      <emphasis>Integers</emphasis>
+                    </entry>
+                    <entry>Arbitrary precision integers</entry>
+                  </row>
+                  <row>
+                    <entry>
+                      <emphasis>Floating Point Numbers</emphasis>
+                    </entry>
+                    <entry>IEEE 754 double-precision floating point numbers</entry>
+                  </row>
+                  <row>
+                    <entry>
+                      <emphasis>Character Strings</emphasis>
+                    </entry>
+                    <entry>Unicode character sequences</entry>
+                  </row>
+                  <row>
+                    <entry>
+                      <emphasis>Bytearrays</emphasis>
+                    </entry>
+                    <entry>Sequences of bytes</entry>
+                  </row>
+                  <row>
+                    <entry>
+                      <emphasis>Symbols</emphasis>
+                    </entry>
+                    <entry>Function symbols, connectives, quantifiers, error messages, attribute keys</entry>
+                  </row>
+                  <row>
+                    <entry>
+                      <emphasis>Variables</emphasis>
+                    </entry>
+                    <entry>Parameters, indeterminates, indexed variables</entry>
+                  </row>
+                </tbody>
+              </tgroup>
+            </informaltable>
+          </figure>
+        
+	<para>&OM; floats are <acronym>IEEE</acronym> 754 Double
+	  precision floating-point numbers. Other types of floating
+	  point number, for instance <quote>bigfloats</quote> in a
+	  mantissa/ radix/exponent format or with precision in a
+	  different radix, may be encoded in &OM; as
+	  <emphasis>application</emphasis> objects by the use of
+	  suitable Content Dictionaries (see <ulink
+	  url="#sec_compound">below</ulink>).</para> <para>Bytearrays
+	  are uninterpreted sequences of bytes with no intrinsic
+	  meaning, unlike for instance strings where bytes are
+	  interpred as characters.  A single byte can be represented
+	  by a bytearray of length 1.  Bytearrays could be used, for
+	  instance, inside &OM; errors to provide information to a
+	  debugger; could contain intermediate results of
+	  calculations, or <quote>handles</quote> into computations or
+	  databases.</para> 
+
+<para>A Symbol has three fields of information, a <emphasis>symbol
+  name</emphasis>, a <emphasis>Content Dictionary name</emphasis>, and
+  (optionally) a <emphasis>role</emphasis>.The <ulink
+  url="#cdinfo">Content Dictionary</ulink> is the source of the
+  definition of the symbol, Names of symbols and CDs match regular
+  expressions described in the &OM; standard.  The role further
+  modifies the semantics of a symbol in context within an &OM; object.
+  The possible roles are described in the &OM; standard.</para>
+  <para>A Variable has a <emphasis>name</emphasis> matching a regular
+  expression, as described in the &OM; standard. A variable
+  representing a member of an enumerated set also has an information
+  item which is an &OM; object representing its indices.</para>
+        </section>
+
+        <section id="sec_compound">
+          <title>Compound &OM; Objects</title>
+
+	<para>Compound &OM; objects are built out of basic, compound
+          and derived &OM; objects using the constructs:
+          <emphasis>application</emphasis>,
+          <emphasis>binding</emphasis>,
+          <emphasis>attribution</emphasis> and
+          <emphasis>error</emphasis>.
+	  </para>
+          <blockquote>
+            <informaltable>
+              <tgroup cols="2">
+                <tbody>
+                  <row>
+                    <entry>
+                      <emphasis>application</emphasis>
+                    </entry>
+                    <entry>functional application</entry>
+                  </row>
+                  <row>
+                    <entry>
+                      <emphasis>binding</emphasis>
+                    </entry>
+                    <entry>function construction and quantification of logical statements</entry>
+                  </row>
+                  <row>
+                    <entry>
+                      <emphasis>attribution</emphasis>
+                    </entry>
+                    <entry>annotation or modification by key-value pairs</entry>
+                  </row>
+                  <row>
+                    <entry>
+                      <emphasis>error</emphasis>
+                    </entry>
+                    <entry>debugging information</entry>
+                  </row>
+                </tbody>
+              </tgroup>
+            </informaltable>
+          </blockquote>
+
+          <variablelist>
+            <varlistentry>
+              <term>Application</term>
+              <listitem>
+                <para>An &OM; application can be used to convey the
+		mathematical notion of application of a function to a
+		set of arguments.  It constructs an &OM; object from a
+		sequence of one or more &OM; objects. For instance it
+		can be used to represent notion of
+		<inlineequation><mml:math
+		display="inline"><mml:mi>sin</mml:mi><mml:mo>(</mml:mo><mml:mi>x</mml:mi><mml:mo>)</mml:mo></mml:math></inlineequation>. 
+		<mediaobject id="fig_sin" >
+		  <imageobject>
+		    <imagedata fileref="sinx.png" format="PNG"
+		    align="center"/>
+		  </imageobject>
+		  <caption>
+		    <para>The &OM; application object in tree-like notation.</para>
+		  </caption>
+		</mediaobject>
+		It can also represent the notion of a rational number
+		or a polynomial constructed from a set of
+		monomials. The rational number, usually denoted as
+		<inlineequation><mml:math
+		display="inline"><mml:mn>1</mml:mn><mml:mo>/</mml:mo><mml:mn>2</mml:mn></mml:math></inlineequation>
+		is represented by the &OM; application object
+		<equation><mml:math display="display"><mml:mi
+		mathvariant="bold">application</mml:mi><mml:mo>(</mml:mo><mml:mi>rational</mml:mi><mml:mo>,</mml:mo><mml:mn>1</mml:mn><mml:mo>,</mml:mo><mml:mn>2</mml:mn><mml:mo>)</mml:mo></mml:math>.</equation>
+		The symbol
+		<inlineequation><mml:math><mml:mi>rational</mml:mi></mml:math></inlineequation>
+		used here stands for a triple consisting of the symbol
+		name, the Content Dictionary name in which it is
+		defined to construct rationals, and the role.</para>
+                <figure id="fig_rational">
+                  <title>The &OM; application object in tree-like
+		  notation.</title> <graphic fileref="rational.png" format="PNG" align="center"/>
+                </figure>
+                
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Binding</term>
+              <listitem>
+                <para>Binding can be used to express functions or
+	    quantified logical statements. A binding object is
+	    constructed from an &OM; object, the
+	    <quote>binder</quote>, and a sequence of zero or more
+	    variables to be bound, followed by another &OM; object,
+	    the <quote>body</quote>.  It is allowed to have no bound
+	    variables, but the binder object and the body should be
+	    present.  </para>
+                <figure id="fig_lam">
+                  <title>The &OM; binding objects in tree-like
+                  notation.</title> <graphic fileref="lambda-alone.png" format="PNG" align="center"/>
+                </figure>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Attribution</term>
+	    <listitem>
+	      <para>decorates an object with a sequence of one or more
+  pairs made up of an &OM; symbol, the <quote>attribute</quote>, and
+  an associated object, the <quote>value of the attribute</quote>.
+  The value of the attribute can be an &OM; attribution object
+  itself. As an example of this, consider the &OM; objects
+  representing groups, automorphism groups, and group dimensions. It
+  is then possible to attribute an &OM; object representing a group by
+  its automorphism group, itself attributed by its dimension.</para>
+  <para>&OM; objects can be attributed with &OM; derived objects,
+  which are containers for non-&OM; structures.  For example a
+  mathematical expression could be attributed with its spoken or
+  visual rendering.
+</para>
+	      
+<para>Multiple attributes with the same name are allowed.  While the
+  order of the given attributes does not imply any notion of priority,
+  potentially it could be significant.  &OM; however does not mandate
+  that an application preserves the attributes or their order.</para>
+  <para>Attribution acts as either adornment annotation or as
+  semantical annotation. When the key has role <emphasis>
+  attribution</emphasis>, then replacement of the attributed object by
+  the object itself is not harmful and preserves the semantics. When
+  the key has role <emphasis>semantic-attribution</emphasis> then the
+  attributed object is modified by the attribution and cannot be
+  viewed as semantically equivalent to the stripped object. If the
+  attribute lacks the role specification then attribution is acting as
+  adornment annotation.
+  </para>
+
+	      <para>The object <equation><mml:math
+style="display"><mml:mi
+mathvariant="bold">attribution</mml:mi><mml:mo>(</mml:mo><mml:mi>A</mml:mi><mml:mo>,</mml:mo><mml:mi>type</mml:mi><mml:mspace
+width=".3em"/><mml:mi>t</mml:mi><mml:mo>)</mml:mo></mml:math></equation>
+represents the judgment stating that object
+<inlineequation><mml:math><mml:mi>A</mml:mi></mml:math></inlineequation>
+has type
+<inlineequation><mml:math><mml:mi>t</mml:mi></mml:math></inlineequation>. The
+attribution can be enforced as semantical annotation by fixing the
+role of symbol
+<inlineequation><mml:math><mml:mi>t</mml:mi></mml:math></inlineequation>.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Error</term>
+              <listitem>
+              
+	      <para>This object has no direct mathematical meaning.
+		Errors occur as the result of processing an &OM;
+		object and may occur inside other objects and also
+		inside other errors. An error is made up of an &OM;
+		symbol and a sequence of zero or more &OM; objects.
+		Error objects might consist only of a symbol as in the
+		object: <inlineequation><mml:math><mml:mi
+		mathvariant="bold">error</mml:mi><mml:mo>(</mml:mo><mml:mi>S</mml:mi><mml:mo>)</mml:mo></mml:math></inlineequation>. Note
+		that the rôle of the symbol
+		<inlineequation><mml:math><mml:mi>S</mml:mi></mml:math></inlineequation>
+		restricts its usage to <emphasis>error</emphasis>
+		constructs.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+
+        <section id="sec_derived">
+          <title>Derived &OM; Objects</title> 
+
+	<para>A derived &OM; object is built using data extraneous to
+          &OM; and the construct <emphasis>foreign</emphasis>.</para>
+          <blockquote>
+            <informaltable>
+              <tgroup cols="2">
+                <tbody>
+                  <row>
+                    <entry>
+                      <emphasis>foreign</emphasis>
+                    </entry>
+                    <entry>wrapper for non-&OM; content</entry>
+                  </row>
+                </tbody>
+              </tgroup>
+            </informaltable>
+          </blockquote>
+        </section>
+      </section>
+
+      <section id="cdinfo">
+        <title>CD Information Model</title> 
+
+      <para>CD Metadata</para> 
+
+      <para>CD Symbol Definitions</para>
+      
+  <section id="sec_roles">
+	<title>&OM; Symbol Roles</title> 
+
+	<para>The <emphasis>rôle</emphasis> of an &OM; symbol
+          is a restriction on where it can appear in an &OM; object.
+          A symbol cannot have more than one rôle.  If no
+          rôle is indicated then the symbol can be used
+          anywhere.  Possible rôles are: <orderedlist
+          numeration="lowerroman"><listitem><para><emphasis>binder</emphasis>
+          The symbol may only appear as the first child of an &OM;
+          binding object.
+          </para></listitem><listitem><para><emphasis>attribution</emphasis>
+          The symbol may only be used as key in an &OM; attribution
+          object, i.e. as the first element of a key-value pair, or in
+          an equivalent context (for example to refer to the value of
+          an attribution).  This form of attribution may be ignored by
+          an application, so should be used for information which does
+          not change the meaning of the attributed &OM; object.
+          </para></listitem><listitem><para><emphasis>semantic-attribution</emphasis>
+          This is the same as <emphasis>attribution</emphasis> except
+          that it modifies the meaning of the attributed &OM; object
+          and thus cannot be ignored by an application.
+          </para></listitem><listitem><para><emphasis>error</emphasis>
+          The symbol can only appear as the first child of an &OM;
+          error object.
+          </para></listitem><listitem><para><emphasis>default</emphasis>
+          The symbol can appear anywhere not defined in the previous
+          four cases.  </para></listitem></orderedlist></para>
+        </section>
+      </section>
+    </chapter>
