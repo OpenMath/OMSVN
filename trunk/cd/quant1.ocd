@@ -1,10 +1,44 @@
 <CD xmlns='http://www.openmath.org/OpenMathCD'>
+
+<CDComment>
+
+     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+</CDComment>
+
 <CDName> quant1 </CDName>
 <CDURL> http://www.openmath.org/cd/quant1.ocd </CDURL>
-<CDReviewDate> 2003-04-01 </CDReviewDate>
-<CDDate> 2001-03-12 </CDDate>
+<CDReviewDate> 2005-12-04 </CDReviewDate>
+<CDDate> 2003-12-04 </CDDate>
 <CDVersion> 2 </CDVersion>
-<CDRevision> 0 </CDRevision>
+<CDRevision> 1 </CDRevision>
 <CDStatus> official </CDStatus>
 <CDUses>
   <CDName>arith1</CDName>
@@ -28,13 +62,20 @@ arguments. It must be placed within an OMBIND element. The first argument is the
 bound variables (placed within an OMBVAR element), and the second is an expression. 
 </Description>
 <Example>
-An example to represents the statement for all x | |sin(x)| &lt;= 1
+An example to represent the statement for all real x, |sin(x)| &lt;= 1
 <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
   <OMBIND>
     <OMS cd="quant1" name="forall"/>
     <OMBVAR>
       <OMV name="x"/>
     </OMBVAR>
+    <OMA>
+    <OMS name="implies" cd="logic1"/>
+    <OMA>
+      <OMS name="in" cd="set1"/>
+      <OMV name="x"/>
+      <OMS name="R" cd="setname1"/>
+    </OMA>
     <OMA>
       <OMS cd="relation1" name="leq"/>
       <OMA>
@@ -45,6 +86,7 @@ An example to represents the statement for all x | |sin(x)| &lt;= 1
         </OMA>
       </OMA>
       <OMF dec="1.0"/>
+    </OMA>
     </OMA>
   </OMBIND>
 </OMOBJ>

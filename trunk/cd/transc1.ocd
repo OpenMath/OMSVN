@@ -1,10 +1,44 @@
 <CD xmlns='http://www.openmath.org/OpenMathCD'>
+
+<CDComment>
+
+     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+</CDComment>
+
 <CDName> transc1 </CDName>
 <CDURL> http://www.openmath.org/cd/transc1.ocd </CDURL>
 <CDReviewDate> 2003-04-01 </CDReviewDate>
-<CDDate> 2001-03-12 </CDDate>
+<CDDate> 2002-09-11 </CDDate>
 <CDVersion> 2 </CDVersion>
-<CDRevision> 0 </CDRevision>
+<CDRevision> 1 </CDRevision>
 <CDStatus> official </CDStatus>
 <CDUses>
 <CDName>alg1</CDName>
@@ -913,7 +947,7 @@ takes one argument.
 </Description>
 
 <CMP>
-arctan(z) = (ln(1+iz)-ln(1-iz))/2i
+arctan(z) = (i/2)ln((1-iz)/(1+iz))
 </CMP>
 <FMP>
   <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
@@ -924,11 +958,25 @@ arctan(z) = (ln(1+iz)-ln(1-iz))/2i
         <OMV name="z"/>
       </OMA>
       <OMA>
-        <OMS name="divide" cd="arith1"/>
+        <OMS name="times" cd="arith1"/>
         <OMA>
-          <OMS name="minus" cd="arith1"/>
-          <OMA>
-            <OMS name="ln" cd="transc1"/>
+          <OMS name="divide" cd="arith1"/>
+          <OMS name="i" cd="nums1"/>
+          <OMI> 2 </OMI>
+        </OMA>
+        <OMA>
+          <OMS name="ln" cd="transc1"/>
+	  <OMA>
+            <OMS name="divide" cd="arith1"/>
+            <OMA>
+              <OMS name="minus" cd="arith1"/>
+              <OMS name="one" cd="alg1"/>
+              <OMA>
+                <OMS name="times" cd="arith1"/>
+                <OMS name="i" cd="nums1"/>
+                <OMV name="z"/>
+              </OMA>
+            </OMA>
             <OMA>
               <OMS name="plus" cd="arith1"/>
               <OMS name="one" cd="alg1"/>
@@ -939,23 +987,6 @@ arctan(z) = (ln(1+iz)-ln(1-iz))/2i
               </OMA>
             </OMA>
           </OMA>
-          <OMA>
-            <OMS name="ln" cd="transc1"/>
-            <OMA>
-              <OMS name="minus" cd="arith1"/>
-              <OMS name="one" cd="alg1"/>
-              <OMA>
-                <OMS name="times" cd="arith1"/>
-                <OMS name="i" cd="nums1"/>
-                <OMV name="z"/>
-              </OMA>
-            </OMA>
-          </OMA>
-        </OMA>
-        <OMA>
-          <OMS name="times" cd="arith1"/>
-          <OMI> 2 </OMI>
-          <OMS name="i" cd="nums1"/>
         </OMA>
       </OMA>
     </OMA>
@@ -1221,14 +1252,10 @@ and Stegun, section 4.4.
 </OMA>
 </OMOBJ></FMP>
 
-<CMP> for all real x | arccot(x) = 1/(2*i) * ln ((x + i)/(x - i)) </CMP>
+<CMP> arccot(x) = (i/2) * ln ((x - i)/(x + i)) </CMP>
 
-<FMP><OMOBJ xmlns='http://www.openmath.org/OpenMath'>
-<OMBIND>
-  <OMS cd="quant1" name="forall"/>
-  <OMBVAR>
-    <OMV name="x"/>
-  </OMBVAR>
+<FMP>
+<OMOBJ xmlns='http://www.openmath.org/OpenMath'>
   <OMA>
     <OMS cd="relation1" name="eq"/>
     <OMA>
@@ -1239,24 +1266,20 @@ and Stegun, section 4.4.
       <OMS cd="arith1" name="times"/>
       <OMA>
         <OMS cd="arith1" name="divide"/>
-	<OMS cd="alg1" name="one"/>
-	<OMA>
-	  <OMS cd="arith1" name="times"/>
-	  <OMI> 2 </OMI>
-	  <OMS cd="nums1" name="i"/>
-	</OMA>
+	<OMS cd="nums1" name="i"/>
+	<OMI> 2 </OMI>
       </OMA>
       <OMA>
         <OMS cd="transc1" name="ln"/>
         <OMA>
           <OMS cd="arith1" name="divide"/>
 	  <OMA>
-	    <OMS cd="arith1" name="plus"/>
+	    <OMS cd="arith1" name="minus"/>
 	    <OMV name="x"/>
 	    <OMS cd="nums1" name="i"/>
 	  </OMA>
 	  <OMA>
-	    <OMS cd="arith1" name="minus"/>
+	    <OMS cd="arith1" name="plus"/>
 	    <OMV name="x"/>
 	    <OMS cd="nums1" name="i"/>
 	  </OMA>
@@ -1264,8 +1287,8 @@ and Stegun, section 4.4.
       </OMA>
     </OMA>
   </OMA>
-</OMBIND>
-</OMOBJ></FMP>
+</OMOBJ>
+</FMP>
 </CDDefinition>
 
 <CDDefinition>
@@ -1506,12 +1529,12 @@ arctanh(x) = 1/2 * ln((1 + x)/(1 - x))
 	    <OMA>
 	      <OMS cd="arith1" name="plus"/>
 	      <OMV name="x"/>
-	      <OMS cd="nums1" name="i"/>
+	      <OMS cd="alg1" name="one"/>
 	    </OMA>
 	    <OMA>
 	      <OMS cd="arith1" name="minus"/>
+	      <OMS cd="alg1" name="one"/>
 	      <OMV name="x"/>
-	      <OMS cd="nums1" name="i"/>
 	    </OMA>
           </OMA>
         </OMA>

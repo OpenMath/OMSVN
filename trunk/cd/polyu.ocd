@@ -1,5 +1,4 @@
 <CD xmlns='http://www.openmath.org/OpenMathCD'>
-
 <CDComment>
 
      This document is distributed in the hope that it will be useful, 
@@ -33,35 +32,33 @@
      society at http://www.openmath.org.
 </CDComment>
 
-   <CDName> polyr </CDName> 
-   <CDURL> http://www.openmath.org/cd/polyd.ocd </CDURL>
-   <CDReviewDate> 2003-04-01 </CDReviewDate> 
-   <CDDate> 1999-11-19 </CDDate> 
+   <CDName> polyu </CDName> 
+   <CDURL> http://www.openmath.org/cd/polyu.ocd </CDURL>
+   <CDReviewDate> 2005-08-06 </CDReviewDate> 
+   <CDDate> 2003-08-06 </CDDate> 
    <CDStatus> experimental </CDStatus>
-   <CDVersion> 2 </CDVersion>
+   <CDVersion> 1 </CDVersion>
    <CDRevision> 0 </CDRevision>
 <CDUses>
+  <CDName>polyr</CDName>
+  <CDName>relation1</CDName>
   <CDName>setname1</CDName>
 </CDUses>
    <Description>
      This CD contains operators to deal with polynomials and more precisely 
-     Recursive Polynomials.
-     Note that polynomials are regarded as univariates in their most
+     Univariate Polynomials.
+     Note that recursive polynomials are regarded as univariates in their most
      significant variable (as defined by the order in PolynomialRingR:
      the first variable to appear is the most significant),
      with monomials in decreasing order of exponent, and coefficients
-     being polynomials in the rest of the variables. This means that 
-     polynomials have a unique representation, except for the fact that
-     yz \in Z[x,y,z] could also be represented as x^0yz. This latter is
-     discouraged, but currently not expressly forbidden.
+     being polynomials in the rest of the variables, and therefore univariates
+     are a special case. This is provided as a separate CD to allow for 
+     univariate-only operations (e.g. composition) and for systems that only
+     understand univariates, e.g. NTL.
    </Description>
 
 <CDComment>
-Original OpenMath v1.1 Poly 1997
-Update to Current Format 1999-07-07 DPC
-Move the names of rings to setname1.ocd 1999-11-09 JHD
-Delete those items moved to the new poly.ocd 1999-11-14 JHD
-Convert to recursive polynomials 1999-11-20 JHD
+Based on recursive polynomials 2003-08-06 JHD
 </CDComment>
 
 <CDComment>
@@ -69,21 +66,12 @@ Convert to recursive polynomials 1999-11-20 JHD
 </CDComment>
 
 <CDComment>
-     The polynomial x^2*y^6 + 3*y^5 can be conceptually encoded as
-     poly_r_rep(x,
-           term(2,poly_r_rep(y,
-                            term(6,1))),
-           term(0,poly_r_rep(y,
-                            term(5,3))))
-     It lies in polynomial_ring_r(Z,x,y) (and other rings, of course)
-
-     The polynomial 2*y^3*z^5 + x + 1 can be conceptually encoded as
-     poly_r_rep(x,
-           term(1,1),
-           term(0,poly_r_rep(y,
-                            term(3,poly_r_rep(z,
-                                             term(5,2))),
-                            term(0,1))))
+     The polynomial x^6 + 3*x^5 +2 can be conceptually encoded as
+     poly_u_rep(x,
+           term(6,1),
+           term(5,3),
+	   term(0,2))
+     It lies in polynomial_ring_u(Z,x)
 </CDComment>
 
     <CDDefinition>
@@ -92,14 +80,13 @@ Convert to recursive polynomials 1999-11-20 JHD
           A constructor for monomials, that is products of powers and
           elements of the base ring.
           First argument is from N (the exponent of the variable
-          implied by an outer poly_r_rep)
-          second argument is a coefficient (from the ground field, or a
-          polynomial in lesser variables).
+          implied by an outer poly_u_rep)
+          second argument is a coefficient (from the ground field)
        </Description>
     </CDDefinition>
 
     <CDDefinition>
-       <Name> poly_r_rep </Name>
+       <Name> poly_u_rep </Name>
        <Description>
          A constructor for the representation of polynomials.
          The first argument is the polynomial variable, the rest are
@@ -107,38 +94,26 @@ Convert to recursive polynomials 1999-11-20 JHD
        </Description>
        <Example>
 
-         The polynomial x^2*y^6 + 3*x^0*y^5 = x^2*y^6 + 3*y^5 may be 
-         encoded as:
+       The polynomial x^6 + 3*x^5 + 2 may be encoded as:
 
          <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
            <OMA>
-             <OMS name="poly_r_rep" cd="polyr"/>
+             <OMS name="poly_u_rep" cd="polyu"/>
              <OMV name="x"/>
              <OMA>
-               <OMS name="term" cd="polyr"/>
-               <OMI> 2 </OMI>
-               <OMA>
-                 <OMS name="poly_r_rep" cd="polyr"/>
-                 <OMV name="y"/>
-                 <OMA>
-                   <OMS name="term" cd="polyr"/>
-                   <OMI> 6 </OMI>
-                   <OMI> 1 </OMI>
-                 </OMA>
-               </OMA>
+               <OMS name="term" cd="polyu"/>
+               <OMI> 6 </OMI>
+               <OMI> 1 </OMI>
              </OMA>
              <OMA>
-               <OMS name="term" cd="polyr"/>
+               <OMS name="term" cd="polyu"/>
+               <OMI> 5 </OMI>
+               <OMI> 3 </OMI>
+             </OMA>
+             <OMA>
+               <OMS name="term" cd="polyu"/>
                <OMI> 0 </OMI>
-               <OMA>
-                 <OMS name="poly_r_rep" cd="polyr"/>
-                 <OMV name="y"/>
-                 <OMA>
-                   <OMS name="term" cd="polyr"/>
-                   <OMI> 5 </OMI>
-                   <OMI> 3 </OMI>
-                 </OMA>
-               </OMA>
+               <OMI> 2 </OMI>
              </OMA>
            </OMA>
          </OMOBJ>
@@ -146,55 +121,43 @@ Convert to recursive polynomials 1999-11-20 JHD
     </CDDefinition>
 
     <CDDefinition>
-       <Name> polynomial_r </Name>
+       <Name> polynomial_u </Name>
        <Description>
          The constructor of Recursive Polynomials. The first argument
          is the polynomial ring containing the polynomial and the second
-         is a "poly_r_rep". 
+         is a "poly_u_rep". 
        </Description>
 
        <Example>
-         The polynomial x^2*y^6 + 3*x^0*y^5 = x^2*y^6 + 3*y^5 in the 
+         The polynomial x^6 + 3*x^5 + 2 in the 
          polynomial ring with the integers as the coefficient ring and 
-         variables x,y in that order may be encoded as:
+         variable x may be encoded as:
 
          <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
            <OMA>
-             <OMS name="polynomial_r" cd="polyr"/>
+             <OMS name="polynomial_u" cd="polyu"/>
              <OMA>
-               <OMS name="polynomial_ring_r" cd="polyr"/>
+               <OMS name="polynomial_ring_u" cd="polyu"/>
                <OMS name="Z" cd="setname1"/>
                <OMV name="x"/>
-               <OMV name="y"/>
              </OMA>
              <OMA>
-               <OMS name="poly_r_rep" cd="polyr"/>
+               <OMS name="poly_u_rep" cd="polyu"/>
                <OMV name="x"/>
                <OMA>
-                 <OMS name="term" cd="polyr"/>
-                 <OMI> 2 </OMI>
-                 <OMA>
-                   <OMS name="poly_r_rep" cd="polyr"/>
-                   <OMV name="y"/>
-                   <OMA>
-                     <OMS name="term" cd="polyr"/>
-                     <OMI> 6 </OMI>
-                     <OMI> 1 </OMI>
-                   </OMA>
-                 </OMA>
+                 <OMS name="term" cd="polyu"/>
+                 <OMI> 6 </OMI>
+                 <OMI> 1 </OMI>
                </OMA>
                <OMA>
-                 <OMS name="term" cd="polyr"/>
+                 <OMS name="term" cd="polyu"/>
+                 <OMI> 5 </OMI>
+                 <OMI> 3 </OMI>
+               </OMA>
+               <OMA>
+                 <OMS name="term" cd="polyu"/>
                  <OMI> 0 </OMI>
-                 <OMA>
-                   <OMS name="poly_r_rep" cd="polyr"/>
-                   <OMV name="y"/>
-                   <OMA>
-                     <OMS name="term" cd="polyr"/>
-                     <OMI> 5 </OMI>
-                     <OMI> 3 </OMI>
-                   </OMA>
-                 </OMA>
+                 <OMI> 2 </OMI>
                </OMA>
              </OMA>
            </OMA>
@@ -208,19 +171,38 @@ Convert to recursive polynomials 1999-11-20 JHD
 
 
     <CDDefinition>
-       <Name> polynomial_ring_r </Name>
+       <Name> polynomial_ring_u </Name>
        <Description> 
-         The constructor of a recursive polynomial ring. The first argument
-         is a ring (the ring of the coefficients), the rest are the 
-         variables (in order).
+         The constructor of a univariate polynomial ring. The first argument
+         is a ring (the ring of the coefficients), the second is the variable.
        </Description>
+       <CMP>
+         Univariates are just recursive polynomials in one variable (though
+	 constructed using isomorphic, but different, constructors).
+       </CMP>
+       <FMP>
+         <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+           <OMA>
+             <OMS name="eq" cd="relation1"/>
+             <OMA>
+               <OMS name="polynomial_ring_u" cd="polyu"/>
+               <OMV name="R"/>
+               <OMV name="x"/>
+             </OMA>
+             <OMA>
+               <OMS name="polynomial_ring_r" cd="polyr"/>
+               <OMV name="R"/>
+               <OMV name="x"/>
+             </OMA>
+           </OMA>
+         </OMOBJ>
+       </FMP>
        <Example>
          <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
            <OMA>
-             <OMS name="polynomial_ring_r" cd="polyr"/>
+             <OMS name="polynomial_ring_u" cd="polyu"/>
              <OMS name="Z" cd="setname1"/>
              <OMV name="x"/>
-             <OMV name="y"/>
            </OMA>
          </OMOBJ>
        </Example>

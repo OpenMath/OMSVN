@@ -1,10 +1,44 @@
 <CD xmlns='http://www.openmath.org/OpenMathCD'>
+
+<CDComment>
+
+     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+</CDComment>
+
 <CDName> complex1 </CDName>
 <CDURL> http://www.openmath.org/cd/complex1.ocd </CDURL>
 <CDReviewDate> 2003-04-01 </CDReviewDate>
-<CDDate> 2001-03-12 </CDDate>
+<CDDate> 2002-09-17 </CDDate>
 <CDVersion> 2 </CDVersion>
-<CDRevision> 0 </CDRevision>
+<CDRevision> 1 </CDRevision>
 <CDStatus> official </CDStatus>
 <CDUses>
   <CDName>quant1</CDName>
@@ -12,6 +46,7 @@
   <CDName>arith1</CDName>
   <CDName>nums1</CDName>
   <CDName>transc1</CDName>
+  <CDName>transc2</CDName>
   <CDName>logic1</CDName>
   <CDName>set1</CDName>
   <CDName>setname1</CDName>
@@ -341,7 +376,43 @@ argument is being taken.
 </OMOBJ>
 </FMP>
 
-<CMP> the argument of x+i*y = tan(y/x) </CMP>
+<CMP> the argument of x+i*y = arctan(y/x) (if x is positive) </CMP>
+
+<FMP>
+<OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+  <OMA>
+    <OMS cd="logic1" name="implies"/>
+    <OMA>
+      <OMS cd="relation1" name="gt"/>
+      <OMV name="x"/>
+      <OMS cd="alg1" name="zero"/>
+    </OMA>
+    <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMA>
+        <OMS cd="complex1" name="argument"/>
+        <OMA>
+          <OMS cd="complex1" name="complex_cartesian"/>
+          <OMV name="x"/>
+          <OMV name="y"/>
+        </OMA>
+      </OMA>
+      <OMA>
+        <OMS cd="transc1" name="arctan"/>
+        <OMA>
+          <OMS cd="arith1" name="divide"/>
+	  <OMV name="y"/>
+	  <OMV name="x"/>
+        </OMA>
+      </OMA>
+    </OMA>
+  </OMA>
+</OMOBJ>
+</FMP>
+
+<CMP>
+  the argument of x+i*y = arctan(y,x) (two-argument arctan from transc2)
+</CMP>
 
 <FMP>
 <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
@@ -356,12 +427,9 @@ argument is being taken.
       </OMA>
     </OMA>
     <OMA>
-      <OMS cd="transc1" name="tan"/>
-      <OMA>
-        <OMS cd="arith1" name="divide"/>
-	<OMV name="y"/>
-	<OMV name="x"/>
-      </OMA>
+      <OMS cd="transc2" name="arctan"/>
+      <OMV name="y"/>
+      <OMV name="x"/>
     </OMA>
   </OMA>
 </OMOBJ>

@@ -1,12 +1,49 @@
 <CD xmlns='http://www.openmath.org/OpenMathCD'>
+
+<CDComment>
+
+     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+</CDComment>
+
    <CDName> polyd </CDName> 
    <CDURL> http://www.openmath.org/cd/polyd.ocd </CDURL>
-   <CDReviewDate> 2003-04-01 </CDReviewDate> 
-   <CDDate> 1999-07-07 </CDDate> 
+   <CDReviewDate> 2004-01-22 </CDReviewDate> 
+   <CDDate> 2003-01-22 </CDDate> 
    <CDStatus> experimental </CDStatus>
-   <CDVersion> 2 </CDVersion>
+   <CDVersion> 3 </CDVersion>
    <CDRevision> 0 </CDRevision>
 <CDUses>
+  <CDName>list1</CDName>
+  <CDName>setname1</CDName>
+  <CDName>relation1</CDName>
 </CDUses>
    <Description>
      This CD contains operators to deal with polynomials and more precisely 
@@ -18,6 +55,8 @@ Original OpenMath v1.1 Poly 1997
 Update to Current Format 1999-07-07 DPC
 Move the names of rings to setname.ocd 1999-11-09 JHD
 Delete those items moved to the new poly.ocd 1999-11-14 JHD
+Update following Abbott/Davenport/Strotmann at Dagstuhl 2001-10-12 JHD
+Added example to weighted_degree 2002-09-17 JHD
 </CDComment>
 
 <CDComment>
@@ -92,7 +131,7 @@ Delete those items moved to the new poly.ocd 1999-11-14 JHD
  "computing" ones) should return (the form of the result) everytime
  compliance to this specification is simple enough because it is obviously
  very useful. We have tried to express this idea in this CD through some
- comments and the use of symbols such as "factored" or "groebner_basis" that
+ comments and the use of symbols such as "factored" or "groebnered" that
  describe the required results of some functions. 
  
  The general "compliance" rule can be stated as:
@@ -117,6 +156,8 @@ Delete those items moved to the new poly.ocd 1999-11-14 JHD
 <CDComment>
      The polynomial x^2*y^6 + 3*y^5 can be encoded as
      DMP(poly_ring_d(Z, 2), SDMP(term(1, 2, 6), term(3, 0, 5)))
+     if the variables are anonymous, or if they are named, as
+     DMP(poly_ring_d_named(Z, x,y), SDMP(term(1, 2, 6), term(3, 0, 5)))
 
      The polynomial 2*y^3*z^5 + x + 1 can be
      DMP(poly_ring_d(Q, 3), 
@@ -154,23 +195,27 @@ Delete those items moved to the new poly.ocd 1999-11-14 JHD
        <Description>
          The constructor for multivariate polynomials without
          any indication of variables or domain for the coefficients.
-	 Its arguments are just "monomial"s. No monomials should differ only by
+	 Its arguments are just "term"s. No terms should differ only by
          the coefficient (i.e it is not permitted to have both "2*x*y" and
-         "x*y" as monomials in a SDMP). SDMP can be attributed with 
+         "x*y" as terms in a SDMP). SDMP can be attributed with 
          the "ordering" symbol to indicate a particular ordering of its
-         monomials. This attribute shall not be set if the SDMP is part of 
-         DMPL that has this attribute set. 
+         terms. This attribute shall not be set if the SDMP is part of 
+         DMPL that has this attribute set. If the SDMP is ordered, explicitly
+         or implicitly via an outer ordering, the terms must be in decreasing
+         order with respect to this order. The zero polynomial is represented
+         by an SDMP with no terms.
        </Description>
     </CDDefinition>
 
     <CDDefinition>
        <Name> term </Name>
        <Description>
-         The constructor of monomials. Valid applications are of the form
+         The constructor of terms. Valid applications are of the form
          Term(coeff, exp1, exp2, ... expn)
-	 which represents the monomial 
+	 which represents the term 
          coeff * var1^exp1*...varn^expn
          where n is the number of variables, expi are non-negative integers.
+         coeff should be non-zero.
        </Description>
     </CDDefinition>
 
@@ -188,6 +233,24 @@ Delete those items moved to the new poly.ocd 1999-11-14 JHD
        </Description>
     </CDDefinition>
 
+    <CDDefinition>
+       <Name> poly_ring_d_named </Name>
+       <Description> 
+         The constructor of polynomial ring. The first argument is a ring
+         (the ring of the coefficients), the remaining arguments are the 
+         names of the variables. The first variable given is the most
+         important from the point of view of lexicographic ordering, then
+         the second, and so on.
+       </Description>
+    </CDDefinition>
+
+    <CDDefinition>
+       <Name> anonymous </Name>
+       <Description> 
+         Indicates a variable that we do not want to name
+       </Description>
+    </CDDefinition>
+
 <CDComment>
      Definitions related to orderings
 </CDComment>
@@ -196,14 +259,14 @@ Delete those items moved to the new poly.ocd 1999-11-14 JHD
     <CDDefinition>
        <Name> ordering </Name>
        <Description> 
-          Used as an attribute to indicate an ordering of the monomials in a
+          Used as an attribute to indicate an ordering of the terms in a
           polynomial or list of polynomials. The value of this attribute
           should be one of the constructors specifying ordering. 
        </Description>
     </CDDefinition>
 
 <CDComment>
-          The following orders on monomials have their standards definitions, 
+          The following orders on terms have their standards definitions, 
          see, for example, "Ideals, Varieties and Algorithms", D. Cox, 
          J.B. Little and D. O'Shea, Springer Verlag.
 </CDComment>
@@ -211,14 +274,20 @@ Delete those items moved to the new poly.ocd 1999-11-14 JHD
     <CDDefinition>
        <Name> lexicographic </Name>
        <Description> 
-          The lexicographic ordering of monomials.
+          The lexicographic ordering of terms.
+          Note that, if a poly_ring_d_named is used, lexigographic refers
+          to the order of the variables in the poly_ring_d_named, not to 
+          their order as strings.
        </Description>
     </CDDefinition>
 
     <CDDefinition>
        <Name> reverse_lexicographic </Name>
        <Description> 
-          The reverse lexicographic ordering of monomials
+          The reverse lexicographic ordering of terms.
+          Note that, if a poly_ring_d_named is used, lexigographic refers
+          to the order of the variables in the poly_ring_d_named, not to 
+          their order as strings.
        </Description>
     </CDDefinition>
 
@@ -226,6 +295,9 @@ Delete those items moved to the new poly.ocd 1999-11-14 JHD
        <Name> graded_lexicographic </Name>
        <Description> 
           Total degree order, graded with the lexicographic ordering.
+          Note that, if a poly_ring_d_named is used, lexigographic refers
+          to the order of the variables in the poly_ring_d_named, not to 
+          their order as strings.
        </Description>
     </CDDefinition>
 
@@ -233,6 +305,9 @@ Delete those items moved to the new poly.ocd 1999-11-14 JHD
        <Name> graded_reverse_lexicographic </Name>
        <Description> 
           Total degree order, graded with the reverse lexicographic ordering.
+          Note that, if a poly_ring_d_named is used, lexigographic refers
+          to the order of the variables in the poly_ring_d_named, not to 
+          their order as strings.
        </Description>
     </CDDefinition>
 
@@ -257,6 +332,23 @@ Delete those items moved to the new poly.ocd 1999-11-14 JHD
        </Example>
     </CDDefinition>
 
+    <CDDefinition>
+       <Name> matrix_ordering </Name>
+       <Description> 
+          The argument is a matrix with as many columns as indeterminates
+          (= rank). Each row in turm is multiplied by the column vector of
+          exponents to produce a weighting for comparison purposes.
+       </Description> 
+    </CDDefinition>
+
+    <CDDefinition>
+       <Name> weighted </Name>
+       <Description> 
+          The first argument is a list of integers to act as variable weights,
+          and the second is an ordering. The result is an ordering.
+       </Description> 
+    </CDDefinition>
+
 <CDComment>
   We need a few more orderings... 
 </CDComment>
@@ -265,12 +357,95 @@ Delete those items moved to the new poly.ocd 1999-11-14 JHD
      Definition of some other constructors
 </CDComment>
 
+    <CDDefinition>
+      <Name> weighted_degree </Name>
+      <Description> 
+        The total degree of its argument, taking into account any weights 
+        declared. The value returned is an integer: non-negative if the 
+        weights are. We note that the degree of 0 is undefined.
+      </Description>
+      <Example>
+        <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+          <OMA>
+            <OMS name="eq" cd="relation1"/>
+            <OMA>
+              <OMS name="weighted_degree" cd="polyd"/>
+              <OMA>
+                <OMS name="DMP" cd="polyd"/>
+                <OMA>
+                  <OMS name="poly_ring_d" cd="polyd"/>
+                  <OMS name="Q" cd="setname1"/>
+                  <OMI> 3 </OMI>
+                </OMA>
+                <OMATTR>
+                  <OMATP>
+                    <OMS name="ordering" cd="polyd"/>
+                    <OMA>
+                      <OMS name="weighted" cd="polyd"/>
+                      <OMA>
+                        <OMS name="list" cd="list1"/>
+                        <OMI> 1 </OMI>
+                        <OMI> 2 </OMI>
+                        <OMI> 3 </OMI>
+                      </OMA>
+                      <OMS name="graded_lexicographic" cd="polyd"/>
+                    </OMA>
+                  </OMATP>
+                  <OMA>
+                    <OMS name="SDMP" cd="polyd"/>
+                    <OMA>
+                      <OMS name="term" cd="polyd"/>
+                      <OMI> 1 </OMI>
+                      <OMI> 0 </OMI>
+                      <OMI> 0 </OMI>
+                      <OMI> 1 </OMI>
+                    </OMA>
+                    <OMA>
+                      <OMS name="term" cd="polyd"/>
+                      <OMI> 2 </OMI>
+                      <OMI> 2 </OMI>
+                      <OMI> 0 </OMI>
+                      <OMI> 0 </OMI>
+                    </OMA>
+                    <OMA>
+                      <OMS name="term" cd="polyd"/>
+                      <OMI> 3 </OMI>
+                      <OMI> 0 </OMI>
+                      <OMI> 1 </OMI>
+                      <OMI> 0 </OMI>
+                    </OMA>
+                    <OMA>
+                      <OMS name="term" cd="polyd"/>
+                      <OMI> 4 </OMI>
+                      <OMI> 1 </OMI>
+                      <OMI> 0 </OMI>
+                      <OMI> 0 </OMI>
+                    </OMA>
+                  </OMA>
+                </OMATTR>
+              </OMA>
+            </OMA>
+            <OMI> 3 </OMI>
+          </OMA>
+        </OMOBJ>
+      </Example>
+    </CDDefinition>
+
    <CDDefinition>
-       <Name> groebner_basis </Name>
+       <Name> groebnered </Name>
        <Description> 
           The constructor for a Groebner basis (reduced, minimal). The first
           argument is an ordering, the second is the Groebner Basis itself
           (with respect to the ordering) that should be represented as a DMPL.
+       </Description>
+    </CDDefinition>
+
+    <CDDefinition>
+       <Name> completely_reduced </Name>
+       <Description> 
+          This attribute, attached to a groebnered object, says 'true' if
+          the base is fully reduced, i.e. no monomial is divisible by the
+          leading monomial of any other polynomial.
        </Description>
     </CDDefinition>
 
@@ -284,7 +459,8 @@ Delete those items moved to the new poly.ocd 1999-11-14 JHD
        <Description>
          The sum. The argument is a DMPL. The sum lies within the same
          "PolyRingD" i.e. a program implementing this operation
-         should return a DMP with the same "poly_ring_d".
+         should return a DMP with the same "poly_ring_d" 
+         (or "poly_ring_d_named").
        </Description>
     </CDDefinition>
 
@@ -293,7 +469,8 @@ Delete those items moved to the new poly.ocd 1999-11-14 JHD
        <Description>
          The product. The argument is a DMPL. The product lies within the same
          "PolyRingD" i.e. a program implementing this operation
-         should return a DMP with the same "poly_ring_d".
+         should return a DMP with the same "poly_ring_d"
+         (or "poly_ring_d_named").
        </Description>
     </CDDefinition>
 
@@ -302,17 +479,18 @@ Delete those items moved to the new poly.ocd 1999-11-14 JHD
        <Description> The power. First argument is a DMP, second
           argument is the integer power. The power lies within the same
           "PolyRingD"  i.e. a program implementing this operation 
-          should return a DMP with the same "poly_ring_d".
+          should return a DMP with the same "poly_ring_d"
+          (or "poly_ring_d_named").
        </Description>
     </CDDefinition>
 
     <CDDefinition>
        <Name> groebner </Name>
        <Description> 
-         The groebner basis (reduced, minimal) of a set of polynomials, with
-         respect to a given ordering. First argument is an ordering, the
+         The groebner basis (lt-reduced, minimal) of a set of polynomials, 
+         with respect to a given ordering. First argument is an ordering, the
          second is a list of polynomials. A program that can compute
-         the basis is required to return a "groebner_basis" object.
+         the basis is required to return a "groebnered" object.
        </Description>
     </CDDefinition>
 
@@ -320,7 +498,7 @@ Delete those items moved to the new poly.ocd 1999-11-14 JHD
        <Name> reduce </Name>
        <Description>
          The reduction of a polynomial with respect to a Groebner basis. 
-         First argument is a DMP, the second argument is a groebner_basis 
+         First argument is a DMP, the second argument is a "groebnered" 
          object.
          i.e. a program implementing this operation should return a DMP which
          represents the polynomial reduced with respect to the Groebner basis.

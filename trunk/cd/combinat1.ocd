@@ -1,11 +1,44 @@
-
 <CD xmlns='http://www.openmath.org/OpenMathCD'>
+
+<CDComment>
+
+     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+</CDComment>
+
 <CDName> combinat1 </CDName>
 <CDURL> http://www.openmath.org/cd/combinat1.ocd </CDURL>
-<CDReviewDate> 2003-04-01 </CDReviewDate>
-<CDDate> 1999-05-17 </CDDate>
+<CDReviewDate> 2005-03-25 </CDReviewDate>
+<CDDate> 2003-03-25 </CDDate>
 <CDVersion> 2 </CDVersion>
-<CDRevision> 0 </CDRevision>
+<CDRevision> 2 </CDRevision>
 <CDStatus> experimental </CDStatus>
 <CDUses>
   <CDName>alg1</CDName>
@@ -92,14 +125,14 @@ binomial(n,m) = n!/(m!*(n-m)!)
 <CDDefinition>
 <Name> multinomial </Name>
 <Description>
-The multinomial coefficients. multinomial(n, n1, ... nk) is the number of
+The multinomial coefficient, multinomial(n, n1, ... nk) is the number of
 ways of choosing ni objects of type i (i from 1 to k) without regard to
 order, in such a way that the total number of objects chosen is n.
-multimomial(n, n1, ... nk) is equal to n!/(n1!*n2! ...*nk!).
+multinomial(n, n1, ... nk) is equal to n!/(n1!*n2! ...*nk!).
 </Description>
 
 <CMP>
-multimomial(n, n1, ... nk) is equal to n!/(n1!*n2! ...*nk!) where n=n1+...+nk
+multinomial(n, n1, ... nk) is equal to n!/(n1!*n2! ...*nk!) where n=n1+...+nk
 </CMP>
 
 <FMP>
@@ -123,32 +156,34 @@ multimomial(n, n1, ... nk) is equal to n!/(n1!*n2! ...*nk!) where n=n1+...+nk
 	  <OMS cd="integer1" name="factorial"/>
 	  <OMV name="n"/>
 	</OMA>
-        <OMS cd="fns2" name="apply_to_list"/>
-	<OMS cd="arith1" name="times"/>
-	<OMV name="nList2"/>
+        <OMA>
+          <OMS cd="fns2" name="apply_to_list"/>
+          <OMS cd="arith1" name="times"/>
+          <OMV name="nList2"/>
+        </OMA>
       </OMA>
     </OMA>
     <OMA>
       <OMS cd="relation1" name="eq"/>
       <OMA>
         <OMS cd="linalg1" name="vector_selector"/>
+	<OMV name="i"/>
 	<OMA>
 	  <OMS cd="fns2" name="apply_to_list"/>
 	  <OMS cd="linalg2" name="vector"/>
 	  <OMV name="nlist2"/>
 	</OMA>
-	<OMV name="i"/>
       </OMA>
       <OMA>
         <OMS cd="integer1" name="factorial"/>
 	<OMA>
 	  <OMS cd="linalg1" name="vector_selector"/>
+	  <OMV name="i"/>
 	  <OMA>
 	    <OMS cd="fns2" name="apply_to_list"/>
 	    <OMS cd="linalg2" name="vector"/>
 	    <OMV name="nList"/>
 	  </OMA>
-	  <OMV name="i"/>
 	</OMA>
       </OMA>
     </OMA>
@@ -475,7 +510,7 @@ of n elements.
 </Description>
 
 <CMP>
-Bell(n) = the sum from k=0 to n of Sterling2(n,k)
+Bell(n) = the sum from k=0 to n of Stirling2(n,k)
 </CMP>
 
 <FMP>
@@ -499,7 +534,7 @@ Bell(n) = the sum from k=0 to n of Sterling2(n,k)
 	  <OMV name="k"/>
 	</OMBVAR>
 	<OMA>
-<!--	  <OMS cd="combinat1" name="Sterling2"/> -->
+	  <OMS cd="combinat1" name="Stirling2"/>
 	  <OMV name="n"/>
 	  <OMV name="k"/>
 	</OMA>
@@ -524,4 +559,3 @@ Bell(n) = the sum from k=0 to n of Sterling2(n,k)
 </CDDefinition>
 
 </CD>
-
