@@ -723,7 +723,7 @@ No id on <xsl:value-of select="title"/>
 <xsl:variable name="c">
 <xsl:if test="$chunk">
 <xsl:value-of select="$prefix"/>
-<xsl:apply-templates mode="number" select="ancestor-or-self::appendix|ancestor-or-self::chapter"/>
+<xsl:apply-templates mode="number" select="ancestor-or-self::appendix|ancestor-or-self::chapter|ancestor-or-self::bibliography"/>
 <xsl:text>.xml</xsl:text>
 </xsl:if>
 </xsl:variable>
