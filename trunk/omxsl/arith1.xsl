@@ -87,12 +87,13 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="om:OMS[(@cd='arith1' or @cd='artith2') and @name='times']"  >
+<xsl:template match="om:OMS[(@cd='arith1' or @cd='arith2') and @name='times']"  >
   <xsl:param name="p"/>
   <xsl:call-template name="infix">
     <xsl:with-param name="mo">
     <mo>
     <xsl:choose>
+    <xsl:when test="following-sibling::om:OMS[string-length(@name)!=1][2]">&#xD7;</xsl:when>
     <xsl:when test="following-sibling::*[not(self::om:OMI or
   self::om:OMF or self::om:OMS[@cd='alg1'])]"
     >&#x2062;<!-- IT --></xsl:when>
