@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.100 2004/04/01 06:39:02 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.101 2004/04/01 18:46:11 openmath Exp $ -->
 
 
 <!DOCTYPE book 
@@ -2650,7 +2650,11 @@ implementations).</para>
             <entry><math>&longrightarrow;</math></entry>
             <entry> [24] object [25] </entry>
             <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [24+64] object [25]</entry>
+            <entry revisionflag="added">
+	      [24+64]
+	      [<math><mi>m</mi></math>]
+              [<math><mi>n</mi></math>]
+	      object [25]</entry>
           </row>
           
           <row>
@@ -2848,25 +2852,6 @@ implementations).</para>
               {<math><mi>m</mi></math>}
               varname:<math><mi>n</mi></math>
               id:<math><mi>m</mi></math>
-            </entry>
-          </row>
-          
-         
-          <row revisionflag="added">
-            <entry/>
-            <entry><math><mo>|</mo></math></entry>
-            <entry> [10+128]
-              {<math><mi>n</mi></math>}
-              varname:<math><mi>n</mi></math>
-              object [11]
-            </entry>
-            <entry><math><mo>|</mo></math></entry>
-            <entry> [10+64+128]
-              {<math><mi>n</mi></math>}
-              {<math><mi>m</mi></math>}
-              varname:<math><mi>n</mi></math>
-              id:<math><mi>m</mi></math>
-              object [11]
             </entry>
           </row>
           
@@ -3369,7 +3354,12 @@ implementations).</para>
 <phrase revisionflag="added">values 24 and 88</phrase>) and ending with the end
 object tag (value&#160;25). These are similar to
 the <systemitem>&lt;OMOBJ></systemitem> and <systemitem>&lt;/OMOBJ></systemitem> tags of
-the &exml; encoding.</para>
+the &exml; encoding. <phrase revisionflag="added">Objects with start token [88]
+  have two additional bytes <math><mi>m</mi></math> and <math><mi>n</mi></math>
+that characterize the version
+(<math><mrow><mi>m</mi><mo>.</mo><mi>n</mi></mrow></math>) of the encoding
+directly after the start token. This is similar to <systemitem>&lt;OMOBJ
+  version="m.n"></systemitem></phrase></para> 
 
 <para>The encoding of each kind of &OM; object begins with a tag that is a single byte,
 holding a <phrase role="sl">token identifier</phrase>
@@ -3379,12 +3369,22 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
 <phrase revisionflag="added">and the shared flag is the seventh bit. If the long
   flag is set, this signifies that  the names, strings, and data fields in the
   encoded &OM; object are longer than 255 byte or characters. The sharing flag
-  indicates that the encoded object is shared in another (part of an) object
+  indicates that the encoded object may be shared in another (part of an) object
   somewhere else (see <xref linkend="sec_sharing_references"/>). Note that if the sharing
   flag is set (in the right column of the grammar in Figure
   <xref linkend="fig_bin-enc"/>, then the encoding includes a representation of
-  the identifier.</phrase>
+  an identifier that serves as the target of a reference (internal with token
+  identifier 30 or external with token identifier 31).</phrase>
 </para>
+
+<para revisionflag="added">The concept of structure sharing in &OM; encoding and
+  in particular the sharing bit in the binary encoding has been
+  introduced in &OM;2 (see section <xref linkend="sec_sharing_references"/> for
+  details). The binary encoding in &OM;2 leaves the tokens with sharing flag 0
+  unchanged to ensure &OM;1 compatibility. To make use of functionality like the
+  <systemitem>cdbase</systemitem> URI or the version attribute on the &OM; object
+  introduced in &OM;2, the tokens with sharing flag 1 should be used.</para>
+
 <para revisionflag="added">To facilitate the streaming &OM; objects, some basic
   objects (integers, strings, bytearrays, and foreign objects) have variant
   token identifiers with the fifth bit set. The idea behind this is that these
@@ -3738,7 +3738,6 @@ second shared sub-object. Figure <xref linkend="fig_bin-enc2"/> shows the binary
 encoding of the object in figure <xref linkend="fig_shared_vs_unshared"/>
 above.</para>
 
-
 <figure id="fig_bin-enc2">
     <title>A binary encoding of the &OM; object from <xref linkend="fig_shared_vs_unshared"/>.</title>
 <informaltable>
@@ -3747,38 +3746,38 @@ above.</para>
 <row>
 <entry>Hex </entry>
 <entry>Meaning </entry>
-<entry>Hex </entry>
-<entry>Meaning </entry>
 </row>
 </thead>
 <tbody>
-<row><entry>58</entry><entry>begin object tag</entry>
-   <entry>05</entry><entry>variable tag</entry></row>
-<row><entry>10</entry><entry>begin application tag</entry>
-  <entry>01</entry><entry>variable length</entry></row>
-<row><entry>05</entry><entry>variable tag</entry>
-  <entry>61</entry><entry>a  (variable name)</entry></row>
-<row><entry>01</entry><entry>variable length</entry>
-  <entry>05</entry><entry>variable tag</entry></row>
-<row><entry>66</entry><entry>f  (variable name)</entry>
-  <entry>01</entry><entry>variable length</entry></row>
-<row><entry>50</entry><entry>begin application tag (shared)</entry>
-  <entry>61</entry><entry>a  (variable name)</entry></row>
-<row><entry>05</entry><entry>variable tag</entry>
-  <entry>11</entry><entry>end application tag</entry></row>
-<row><entry>01</entry><entry>variable length</entry>
-  <entry>1E</entry><entry>short reference</entry></row>
-<row><entry>66</entry><entry>f  (variable name)</entry>
-  <entry>00</entry><entry>to the first shared object</entry></row>
-<row><entry>50</entry><entry>begin application tag (shared)</entry>
-  <entry>11</entry><entry>end application tag</entry></row>
-<row><entry>05</entry><entry>variable tag</entry>
-  <entry>1E</entry><entry>short reference</entry></row>
-<row><entry>01</entry><entry>variable length</entry>
-  <entry>00</entry><entry>to the second shared object</entry></row>
-<row><entry>66</entry><entry>f  (variable name)</entry>
-  <entry>11</entry><entry>end application tag</entry></row>
-<row><entry/><entry/><entry>19</entry><entry>end object tag</entry></row>
+<row><entry>58</entry><entry>begin object tag</entry></row>
+<row><entry>2</entry><entry> version 2.0 (major)</entry></row>
+<row><entry>0</entry><entry> cvrsion 2.0 (minor)</entry></row>
+<row><entry>10</entry><entry>begin application tag</entry></row>
+<row><entry>05</entry><entry>variable tag</entry></row>
+<row><entry>01</entry><entry>variable length</entry></row>
+<row><entry>66</entry><entry>f  (variable name)</entry></row>
+<row><entry>50</entry><entry>begin application tag (shared)</entry></row>
+<row><entry>05</entry><entry>variable tag</entry></row>
+<row><entry>01</entry><entry>variable length</entry></row>
+<row><entry>66</entry><entry>f  (variable name)</entry></row>
+<row><entry>50</entry><entry>begin application tag (shared)</entry></row>
+<row><entry>05</entry><entry>variable tag</entry></row>
+<row><entry>01</entry><entry>variable length</entry></row>
+<row><entry>66</entry><entry>f  (variable name)</entry></row>
+<row><entry>19</entry><entry>end object tag</entry></row>
+<row><entry>05</entry><entry>variable tag</entry></row>
+<row><entry>01</entry><entry>variable length</entry></row>
+<row><entry>61</entry><entry>a  (variable name)</entry></row>
+<row><entry>05</entry><entry>variable tag</entry></row>
+<row><entry>01</entry><entry>variable length</entry></row>
+<row><entry>61</entry><entry>a  (variable name)</entry></row>
+<row><entry>11</entry><entry>end application tag</entry></row>
+<row><entry>1E</entry><entry>short reference</entry></row>
+<row><entry>00</entry><entry>to the first shared object</entry></row>
+<row><entry>11</entry><entry>end application tag</entry></row>
+<row><entry>1E</entry><entry>short reference</entry></row>
+<row><entry>00</entry><entry>to the second shared object</entry></row>
+<row><entry>11</entry><entry>end application tag</entry></row>
 </tbody>
 </tgroup>
 </informaltable>
@@ -3877,60 +3876,59 @@ It is binary encoded as the sequence of bytes given by  the following table.</pa
 <row>
 <entry>Hex </entry>
 <entry>Meaning </entry>
-<entry> Hex </entry>
-<entry>Meaning 
-</entry>
 </row>
 </thead>
 <tbody>
-<row><entry>18</entry><entry>begin object tag</entry>
-  <entry>68</entry><entry>h  .</entry></row>
-<row><entry>10</entry><entry> begin application tag</entry>
-  <entry>31</entry><entry>1  .)</entry></row>
-<row><entry>08</entry><entry>symbol tag</entry>
-  <entry>70</entry><entry>p (symbol name begin</entry></row>
-<row><entry>06</entry><entry>cd length </entry>
-  <entry>6c</entry><entry>   l  .</entry></row>
-<row><entry>05  </entry><entry>   name length</entry>
-  <entry>75  </entry><entry>   u  . </entry></row>
-<row><entry>61  </entry><entry>    a (cd name begin</entry>
-  <entry>73  </entry><entry>   s  .) </entry></row>
-<row><entry>72  </entry><entry>    r  .</entry>
-  <entry>05  </entry><entry>   variable tag </entry></row>
-<row><entry>69  </entry><entry>   i  .</entry>
-  <entry>01  </entry><entry>   name length </entry></row>
-<row><entry>74  </entry><entry>   t  .</entry>
-  <entry>78  </entry><entry>   x (name) </entry></row>
-<row><entry>68  </entry><entry>   h  .</entry>
-  <entry>05  </entry><entry>   variable tag </entry></row>
-<row><entry>31  </entry><entry>   1  .)</entry>
-  <entry>01  </entry><entry>   name length </entry></row>
-<row><entry>74  </entry><entry>   t (symbol name begin</entry>
-  <entry>79  </entry><entry>   y (variable name) </entry></row>
-<row><entry>69  </entry><entry>   i  .</entry>
-  <entry>11  </entry><entry>   end application tag </entry></row>
-<row><entry>6d  </entry><entry>   m  .</entry>
-  <entry>10  </entry><entry>   begin application tag </entry></row>
-<row><entry>65  </entry><entry>   e  .</entry>
-  <entry>48  </entry><entry>   symbol tag (with share bit on) </entry></row>
-<row><entry>73  </entry><entry>   s  .)</entry>
-  <entry>01</entry><entry>reference to second symbol seen (arith1:plus)</entry></row>
-<row><entry>10  </entry><entry>   begin application tag</entry>
-  <entry>45  </entry><entry>   variable tag (with share bit on) </entry></row>
-<row><entry>08  </entry><entry>   symbol tag</entry>
-  <entry>00  </entry><entry>   reference to first variable seen (x) </entry></row>
-<row><entry>06  </entry><entry>   cd length</entry>
-  <entry>05  </entry><entry>   variable tag </entry></row>
-<row><entry>04  </entry><entry>   name length</entry>
-  <entry>01  </entry><entry>   name length </entry></row>
-<row><entry>61  </entry><entry>   a (cd name begin</entry>
-  <entry>7a  </entry><entry>   z (variable name) </entry></row>
-<row><entry>72  </entry><entry>   r  .</entry>
-  <entry>11  </entry><entry>   end application tag </entry></row>
-<row><entry>69  </entry><entry>   i  .</entry>
-  <entry>11  </entry><entry>   end application tag </entry></row>
-<row><entry>74  </entry><entry>   t  .</entry>
-  <entry>19  </entry><entry>   end object tag </entry></row>
+<row><entry>58</entry><entry>begin object tag</entry></row>
+<row><entry>2</entry><entry> version 2.0 (major)</entry></row>
+<row><entry>0</entry><entry> cvrsion 2.0 (minor)</entry></row>
+<row><entry>10</entry><entry>begin application tag</entry></row>
+<row><entry>08</entry><entry>symbol tag</entry></row>
+<row><entry>06</entry><entry>cd length </entry></row>
+<row><entry>05</entry><entry>name length</entry></row>
+<row><entry>61</entry><entry>a (cd name begin</entry></row>
+<row><entry>72</entry><entry>r  .</entry></row>
+<row><entry>69</entry><entry>i  .</entry></row>
+<row><entry>74</entry><entry>t  .</entry></row>
+<row><entry>68</entry><entry>h  .</entry></row>
+<row><entry>31</entry><entry>1  .)</entry></row>
+<row><entry>74</entry><entry>t (symbol name begin</entry></row>
+<row><entry>69</entry><entry>i  .</entry></row>
+<row><entry>6d</entry><entry>m  .</entry></row>
+<row><entry>65</entry><entry>e  .</entry></row>
+<row><entry>73</entry><entry>s  .)</entry></row>
+<row><entry>10</entry><entry>begin application tag</entry></row>
+<row><entry>08</entry><entry>symbol tag</entry></row>
+<row><entry>06</entry><entry>cd length</entry></row>
+<row><entry>04</entry><entry>name length</entry></row>
+<row><entry>61</entry><entry>a (cd name begin</entry></row>
+<row><entry>72</entry><entry>r  .</entry></row>
+<row><entry>69</entry><entry>i  .</entry></row>
+<row><entry>74</entry><entry>t  .</entry></row>
+<row><entry>68</entry><entry>h  .</entry></row>
+<row><entry>31</entry><entry>1  .)</entry></row>
+<row><entry>70</entry><entry>p (symbol name begin</entry></row>
+<row><entry>6c</entry><entry>l  .</entry></row>
+<row><entry>75</entry><entry>u  . </entry></row>
+<row><entry>73</entry><entry>s  .) </entry></row>
+<row><entry>05</entry><entry>variable tag </entry></row>
+<row><entry>01</entry><entry>name length </entry></row>
+<row><entry>78</entry><entry>x (name) </entry></row>
+<row><entry>05</entry><entry>variable tag </entry></row>
+<row><entry>01</entry><entry>name length </entry></row>
+<row><entry>79</entry><entry>y (variable name) </entry></row>
+<row><entry>11</entry><entry>end application tag </entry></row>
+<row><entry>10</entry><entry>begin application tag </entry></row>
+<row><entry>48</entry><entry>symbol tag (with share bit on) </entry></row>
+<row><entry>01</entry><entry>reference to second symbol seen (arith1:plus)</entry></row>
+<row><entry>45</entry><entry>variable tag (with share bit on) </entry></row>
+<row><entry>00</entry><entry>reference to first variable seen (x) </entry></row>
+<row><entry>05</entry><entry>variable tag </entry></row>
+<row><entry>01</entry><entry>name length </entry></row>
+<row><entry>7a</entry><entry>z (variable name) </entry></row>
+<row><entry>11</entry><entry>end application tag </entry></row>
+<row><entry>11</entry><entry>end application tag </entry></row>
+<row><entry>19</entry><entry>end object tag </entry></row>
 </tbody>
 </tgroup>
 </informaltable> 
