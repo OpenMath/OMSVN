@@ -2,7 +2,7 @@
 
 <!--
   
-    $Id: build.xml,v 1.3 2003/11/20 15:23:45 openmath Exp $
+    $Id: build.xml,v 1.4 2003/11/24 08:50:41 openmath Exp $
 
     Copyright (c) 2003, RISC-Linz, Mathbroker, Austria.
     All Rights Reserved.
@@ -36,6 +36,8 @@
     <mkdir dir="${build.src}/xhtml"/>
     <copy todir="${build.src}/xhtml" 
       file="${package.src}/xsl/pmathml.xsl"/>
+    <copy todir="${build.src}/xhtml" 
+      file="${package.src}/xsl/primer.css"/>
  
 
   </target>  
@@ -75,7 +77,8 @@
 
 
     <java classname="com.icl.saxon.StyleSheet" fork="yes">
-    <arg line="-o ${build.doc}/index.html ${package.doc}/main.xml ${package.doc}/driver.xsl"/>   
+    <arg line="-o ${build.src}/xhtml/primer.xhtml
+	${package.src}/xml/primerom20.xml ${package.src}/xsl/primer.xsl"/>
       <classpath>
         <pathelement location="/usr/local/src/saxon.6.5.3/saxon.jar"/>
         <pathelement location="/home/olga/lib/saxon-fop.jar"/>
