@@ -1,5 +1,5 @@
 
-<?xml-stylesheet type="text/xsl" href="../om11/omstd11.xsl"?>
+<?xml-stylesheet type="text/xsl" href="omstd20.xsl"?>
 <!--
  PUBLIC "-//OASIS//DTD DocBook XML V4.2CR1//EN"
                     "docbook/docbookx.dtd"
@@ -28,6 +28,7 @@
 <!ATTLIST math
   display CDATA #IMPLIED
   class CDATA #IMPLIED
+  revisionflag CDATA #IMPLIED
 >
 <!ELEMENT mrow (mrow|mn|mi|mo|msub|msup|mtext|mspace|mfrac|varname|systemitem)+>
 <!ELEMENT mn (#PCDATA)>
@@ -68,12 +69,15 @@
 <title>The &OM; Standard</title>
 <bookinfo>
 <releaseinfo>2.0a</releaseinfo>
-<author><firstname>The &OM; Esprit Consortium</firstname></author>
+<author><firstname>The &OM; Society</firstname></author>
 
 
+<editor><firstname>S.</firstname><surname>Buswell</surname></editor>
 <editor><firstname>O.</firstname><surname>Caprotti</surname></editor>
 <editor><firstname>D.</firstname><othername>P.</othername><surname>Carlisle</surname></editor>
-<editor><firstname>A.</firstname><othername>M.</othername><surname>Cohen</surname></editor>
+<editor><firstname>M.</firstname><othername>C.</othername><surname>Dewar</surname></editor>
+<editor><firstname>M.</firstname><surname>Gaetano</surname></editor>
+<editor><firstname>M.</firstname><surname>Kohlhase</surname></editor>
 <date>April 2002</date>
 
 <copyright>
@@ -375,12 +379,28 @@ characters matching a regular expression, as described below.</para>
 </itemizedlist>
 </section>
 
+<section id="sec_derived" revisionflag="added">
+<title>Derived &OM; Objects</title>
+
+<para>A derived &OM; object is built as follows: 
+<itemizedlist>
+<listitem><para><phrase>(i)</phrase> If <math><mi>A</mi> is
+<emphasise>not</emphasise> an &OM; object, then <mi
+mathvariant="bold">box</mi>(<mi>A</mi>)</math> is an &OM;
+<emphasis>boxed object</emphasis>.</para> 
+</listitem>
+</itemizedlist>
+</para>
+</section>
+
 <section id="sec_compound">
 <title>Compound &OM; Objects</title>
   
 <para>&OM; objects are built recursively as follows.
 <itemizedlist>
-<listitem><para><phrase>(i)</phrase> Basic &OM; objects are &OM; objects.</para>
+<listitem><para><phrase>(i)</phrase> Basic &OM; objects are &OM; objects.
+<phrase revisionflag="added">Derived &OM; objects are <emphasis>not</emphasis>
+&OM; objects.</phrase></para>
 </listitem>
 
 <listitem>
@@ -399,9 +419,18 @@ characters matching a regular expression, as described below.</para>
 Attribution</para></sidebar> </listitem> <listitem><para><phrase>(iii)</phrase> If
   <math><msub><mi>S</mi><mn>1</mn></msub><mo>,</mo>
   <mi>&#8230;</mi><mo>,</mo> <msub><mi>S</mi><mi>n</mi></msub></math>
-  are &OM; symbols, and <math><mi>A</mi></math>,
+  are &OM; symbols, and
+<phrase revisionflag="deleted">
+<math><mi>A</mi></math>,
   <math><msub><mi>A</mi><mn>1</mn></msub></math>,
   <phrase>&#8230;</phrase>, <math><msub><mi>A</mi><mi>n</mi></msub></math>, <math><mo>(</mo><mi>n</mi><mo>&gt;</mo><mn>0</mn><mo>)</mo></math> are &OM; objects, then
+</phrase>
+<phrase revisionflag="added">
+<math><mi>A</mi></math> is an &OM; object, and
+  <math><msub><mi>A</mi><mn>1</mn></msub></math>,
+  <phrase>&#8230;</phrase>, <math><msub><mi>A</mi><mi>n</mi></msub></math>, <math><mo>(</mo><mi>n</mi><mo>&gt;</mo><mn>0</mn><mo>)</mo></math> are &OM; objects or &OM; derived objects, then
+</phrase>
+
   <math display="block"><mi mathvariant="bold">attribution</mi>
   <mo>(</mo><mi>A</mi><mo>,</mo> <msub><mi>S</mi><mn>1</mn></msub>
   <mspace width=".3em"/>
@@ -414,8 +443,8 @@ Attribution</para></sidebar> </listitem> <listitem><para><phrase>(iii)</phrase> 
     of the attribution</emphasis>. When  the stripped object after flattening
   is a  variable, the attributed object is called <emphasis>attributed
     variable</emphasis>.</para>
-
 </listitem>
+
 <listitem><para><phrase>(iv)</phrase> If <math><mi>B</mi></math> and <math><mi>C</mi></math> are &OM; objects, and <math><msub><mi>v</mi><mn>1</mn></msub></math>, <math><mi>&#8230;</mi></math>,
   <math><msub><mi>v</mi><mi>n</mi></msub></math> <math><mo>(</mo><mi>n</mi> <mo>&#8805;</mo> <mn>0</mn><mo>)</mo></math> are &OM; variables or attributed variables, then
   <math display="block">
@@ -603,14 +632,14 @@ width="600" depth="190"/>
   of <math><mi>v</mi></math> by <math><mi>z</mi></math>.  This
   operation preserves the semantics of the object
   <math><mi>&#937;</mi></math>. In the above example, a phrasebook is
-  thus allowed to transform the object to, e.g.  <math class="del"
+  thus allowed to transform the object to, e.g.  <math revisionflag="deleted"
   display="block"><mi mathvariant="bold">binding</mi>
   <mo>(</mo><mi>lambda</mi><mo>,</mo> <mi>v</mi> <mo>,</mo> <mi
   mathvariant="bold">binding</mi> <mo>(</mo><mi>lambda</mi><mo>,</mo>
   <mi>z</mi> <mo>,</mo><mi mathvariant="bold">application</mi>
   <mo>(</mo><mi>times</mi><mo>,</mo><mi>z</mi>
   <mo>,</mo><mi>z</mi><mo>)</mo><mo>)</mo><mo>)</mo><mtext>.</mtext></math>
-  <math class="new" display="block"><mi
+  <math revisionflag="added" display="block"><mi
   mathvariant="bold">binding</mi><mo>(</mo><mi>lambda</mi><mo>,</mo>
   <mi>z</mi> <mo>,</mo> <mi
   mathvariant="bold">application</mi><mo>(</mo><mi>plus</mi><mo>,</mo>
@@ -1139,7 +1168,7 @@ cdname      </entry>
 <row>
 <entry>comment</entry>
 <entry> <math>&longrightarrow;</math></entry>
-<entry> &lt;<systemitem>!-&zsp;-</systemitem> char <systemitem>-&zsp;-</systemitem><systemitem>></systemitem>
+<entry> &lt;<systemitem>!-&zsp;-</systemitem> char <systemitem>-&zsp;-</systemitem><systemitem>&gt;</systemitem>
 </entry>
 </row>
 
