@@ -410,6 +410,7 @@ changelog entry here
 \begingroup
 \catcode`\{=1
 \catcode`\}=2
+\catcode`\^=7
 \parskip0pt
 \tableofcontents
 \par
@@ -420,6 +421,7 @@ changelog entry here
 \begingroup
 \catcode`\{=1
 \catcode`\}=2
+\catcode`\^=7
 \parskip0pt
 \listoffigures
 \par
@@ -580,6 +582,9 @@ changelog entry here
 <xsl:apply-templates mode="verb" select="."/>
 </xsl:template>
 
+<xsl:template match="CD" xmlns="http://www.openmath.org/OpenMathCD">
+<xsl:apply-templates mode="verb" select="."/>
+</xsl:template>
 
 </xsl:stylesheet>
 
