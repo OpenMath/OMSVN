@@ -10,12 +10,11 @@
 
 
 <xsl:template match="om:OMS[@cd='arith2' and @name='inverse']" >
-<msup>
-<xsl:apply-templates select="following-sibling::*">
-<xsl:with-param name="p" select="5"/>
-</xsl:apply-templates>
-<mn>-1</mn>
-</msup>
+<xsl:call-template name="msup">
+ <xsl:with-param name="script">
+  <mn>-1</mn>
+  </xsl:with-param>
+</xsl:call-template>
 </xsl:template>
 
 <!-- times added to arith1 -->
