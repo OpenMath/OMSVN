@@ -41,6 +41,42 @@ zap the lambda.
 </xsl:template>
 
 
+<xsl:template match="om:OMS[@cd='calculus1' and @name='nthdiff']"  >
+   <xsl:choose>
+<!--
+If the body is a lambda expression, put the bound variable in the
+subscript, and just typeset the body of the lambda expression,
+zap the lambda.
+-->
+   <xsl:when test="following-sibling::*[2]/self::om:OMBIND/*[1][self::om:OMS[@name='lambda']]">
+    <mfrac>
+     <msup><mi>d</mi><xsl:apply-templates select="following-sibling::*[1]"/></msup>
+    <mrow>
+     <mi>d</mi>
+     <msup>
+        <xsl:apply-templates select="following-sibling::om:OMBIND/om:OMBVAR"/>
+        <xsl:apply-templates select="following-sibling::*[1]"/>
+     </msup>
+    </mrow>
+    </mfrac>
+    <mrow>
+     <mo>(</mo>
+     <xsl:apply-templates select="following-sibling::om:OMBIND/*[3]"/>
+     <mo>)</mo>
+    </mrow>
+   </xsl:when>
+   <xsl:otherwise>
+   <msup><mo>D</mo><xsl:apply-templates select="following-sibling::*[1]"/></msup>
+   <mrow>
+     <mo>(</mo>
+     <xsl:apply-templates select="following-sibling::*[2]"/>
+     <mo>)</mo>
+   </mrow>
+   </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+
 
 <xsl:template match="om:OMS[@cd='calculus1' and @name='int']"  >
    <xsl:choose>
