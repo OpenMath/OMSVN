@@ -14,7 +14,7 @@ omvar = OMV | attvar
 attvar = element OMATTR { common.attributes,(OMATP , (OMV | attvar))}
 
 #OM2: common attributes
-cdbase = attribute cdbase { xsd:anyURI}
+cdbase = attribute cdbase { xsd:anyURI}?
 common.attributes = (attribute id { xsd:ID })?
 compound.attributes = common.attributes,cdbase
 
@@ -26,11 +26,12 @@ attlist.OMS =
   cdbase
 
 # variable
-OMV = element OMV { common.attributes, attlist.OMV}
+OMV = element OMV { common.attributes, attlist.OMV,omel?}
 attlist.OMV = attribute name { xsd:NCName}
 
 # integer
-OMI = element OMI { common.attributes, xsd:string {pattern = "\s*(-\s?)?[0-9]+(\s[0-9]+)*\s*"}}
+OMI = element OMI { common.attributes,
+                    xsd:string {pattern = "\s*(-\s?)?[0-9]+(\s[0-9]+)*\s*"}}
 # byte array
 OMB = element OMB { common.attributes, xsd:base64Binary }
 
@@ -40,7 +41,8 @@ OMSTR = element OMSTR { common.attributes, text }
 # floating point
 OMF = element OMF { common.attributes, attlist.OMF}
 attlist.OMF =
-  attribute dec { xsd:string {pattern = "(-?)([0-9]+)?(\.[0-9]+)?(e([+\-]?)[0-9]+)?"}}|
+  attribute dec { xsd:string 
+           {pattern = "(-?)([0-9]+)?(\.[0-9]+)?(e([+\-]?)[0-9]+)?"}}|
   attribute hex { xsd:string {pattern = "[0-9A-F]+"}}
 
 # apply constructor
