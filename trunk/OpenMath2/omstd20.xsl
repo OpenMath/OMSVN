@@ -174,7 +174,11 @@ relative to the OpenMath 1.0 document...</p>
 <xsl:template match="para">
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <p>
-<xsl:apply-templates select="@revisionflag|node()"/>
+<xsl:if test="@id">
+<xsl:apply-templates select="@revisionflag"/>
+<a name="{@id}" id="{@id}"/>
+</xsl:if>
+<xsl:apply-templates select="node()"/>
 </p>
 </xsl:if>
 </xsl:template>
@@ -499,7 +503,7 @@ changelog entry here
 <th><xsl:apply-templates/></th>
 </xsl:template>
 
-<xsl:key name="cite" match="citation[not(ancestor-or-self::*/@revisionflag='deleted')]" use="."/>
+<xsl:key name="cite" match="citation" use="."/>
 
 <xsl:template match="graphic">
 <xsl:choose>
@@ -519,10 +523,10 @@ changelog entry here
 <sup><a href="#{@id}">*<xsl:number level="any"/></a></sup>
 </xsl:template>
 
-<xsl:template match="para[footnote]">
+<xsl:template match="para[.//footnote]">
 <p><xsl:apply-templates/></p>
-<xsl:for-each select="footnote">
-<p class="footnote"><a name="{@id}"/><sup>*<xsl:number level="any"/></sup> <xsl:apply-templates select="para/node()"/></p>
+<xsl:for-each select=".//footnote[$showdiffs or not(ancestor-or-self::*/@revisionflag='deleted')]">
+<p class="footnote"><a name="{@id}" id="{@id}"/><sup>*<xsl:number level="any"/></sup> <xsl:apply-templates select="para/node()"/></p>
 </xsl:for-each>
 </xsl:template>
 <!-- toc -->
@@ -573,9 +577,14 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 <h2 name="bibliography" id="bibliography">
   Appendix&#160;<xsl:apply-templates mode="number" select="."/>
   <br/>Bibliography</h2>
-<xsl:for-each select="biblioentry[key('cite',@id)][$showdiffs or not(@revisionflag='deleted')]">
+<xsl:for-each select="biblioentry[key('cite',@id)[$showdiffs or not(ancestor-or-self::*/@revisionflag='deleted')]][$showdiffs or not(@revisionflag='deleted')]">
+<xsl:sort select="@revisionflag='deleted'"/>
+<xsl:sort select="not(key('cite',@id)[not(ancestor-or-self::*[@revisionflag='deleted'])])"/>
 <xsl:sort select="(author[$showdiffs or not(@revisionflag='deleted')][1]/surname|author[$showdiffs or not(@revisionflag='deleted')][1]/othername|bibliomisc[$showdiffs or not(@revisionflag='deleted')][@role='key'])[1]"/>
 <p>
+<xsl:if test="$showdiffs and not(key('cite',@id)[not(ancestor-or-self::*[@revisionflag='deleted'])])">
+ <xsl:attribute name="class">del</xsl:attribute>
+</xsl:if>
 <xsl:apply-templates select="@revisionflag"/>
 <a name="{@id}" id="{@id}"/><b>[<xsl:value-of select="position()"/>]</b>
 <xsl:text>&#160;&#160;</xsl:text>
@@ -628,11 +637,14 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 <xsl:number format="A" value="1+count(preceding-sibling::appendix)"/>
 </xsl:template>
 
-<xsl:variable name="bib" select="/book/bibliography/biblioentry[key('cite',@id)][$showdiffs or not(@revisionflag='deleted')]"/>
+<xsl:variable name="bib" select="/book/bibliography/biblioentry[key('cite',@id)[$showdiffs or not(ancestor-or-self::*/@revisionflag='deleted')]][$showdiffs or not(@revisionflag='deleted')]"/>
+
 <xsl:template match="citation">
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <xsl:variable name="x" select="."/>
 <a href="#{.}">[<xsl:for-each select="$bib">
+<xsl:sort select="@revisionflag='deleted'"/>
+<xsl:sort select="not(key('cite',@id)[not(ancestor-or-self::*[@revisionflag='deleted'])])"/>
 <xsl:sort select="(author[1]/surname|author[1]/othername|bibliomisc[@role='key'])[1]"/>
 <xsl:if test="@id=$x"><xsl:value-of select="position()"/></xsl:if>
 </xsl:for-each>]</a>
@@ -688,7 +700,7 @@ match="text()[starts-with(.,'&#10;')][preceding-sibling::node()[1][self::math[no
 
 <xsl:template match="token[not(preceding-sibling::*[1]='element' 
 or preceding-sibling::*[1]='attribute')]" priority="2">
-<a href="#rnc{.}"><xsl:value-of select="."/></a>
+<a href="#rnc{ancestor::section[1]/@id[not(current()='OMOBJ')]}{.}"><xsl:value-of select="."/></a>
 </xsl:template>
 
 <xsl:template match="token[.='element' or .='attribute'
@@ -701,13 +713,13 @@ priority="4">
 <xsl:template
 match="token[starts-with(normalize-space(following-sibling::node()[1]),'=')]"
 priority="3">
-<a name="rnc{preceding-sibling::*[1][.='namespace']}{.}" style="color:blue;"><xsl:value-of select="."/></a>
+<a name="rnc{ancestor::section[1]/@id[not(current()='OMOBJ')]}{preceding-sibling::*[1][.='namespace']}{.}" style="color:blue;"><xsl:value-of select="."/></a>
 </xsl:template>
 
 
 <xsl:template
 match="token[contains(.,':')]" priority="5">
-<a href="#rncnamespace{substring-before(.,':')}"><xsl:value-of
+<a href="#rnc{ancestor::section[1]/@id}namespace{substring-before(.,':')}"><xsl:value-of
 select="substring-before(.,':')"/>:</a>
 <xsl:value-of select="substring-after(.,':')"/>
 </xsl:template>

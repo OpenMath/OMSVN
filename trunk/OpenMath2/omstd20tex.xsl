@@ -450,7 +450,7 @@ changelog entry here
 </xsl:template>
 
 
-<xsl:key name="cite" match="citation[not(ancestor-or-self::*/@revisionflag='deleted')]" use="."/>
+<xsl:key name="cite" match="citation" use="."/>
 
 <xsl:template match="graphic">
 <xsl:text/>\includegraphics£<xsl:value-of select="@fileref"/>ﬂ<xsl:text/>
@@ -493,11 +493,16 @@ changelog entry here
 <!-- bibliography -->
 <xsl:template match="bibliography">
 \begin£thebibliographyﬂ£99ﬂ
-<xsl:for-each select="biblioentry[key('cite',@id)][$showdiffs or not(@revisionflag='deleted')]">
-<xsl:sort select="(author[$showdiffs or not(@revisionflag='deleted')][1]/surname|author[$showdiffs or not(@revisionflag='deleted')][1]/othername|bibliomisc[$showdiffs or not(@revisionflag='deleted')][@role='key'])[1]"/>
+<xsl:for-each select="biblioentry[key('cite',@id)[$showdiffs or not(ancestor-or-self::*/@revisionflag='deleted')]][$showdiffs or not(@revisionflag='deleted')]">
+<xsl:sort select="@revisionflag='deleted'"/>
+<xsl:sort select="not(key('cite',@id)[not(ancestor-or-self::*[@revisionflag='deleted'])])"/>
+<xsl:sort select="(author[1]/surname|author[1]/othername|bibliomisc[@role='key'])[1]"/>
 <xsl:text>
 
 £</xsl:text>
+<xsl:if test="$showdiffs and not(key('cite',@id)[not(ancestor-or-self::*[@revisionflag='deleted'])])">
+<xsl:text>\color[rgb]£1,0.5,0.5ﬂ</xsl:text>
+</xsl:if>
 <xsl:apply-templates select="@revisionflag"/>
 \bibitem£<xsl:value-of select="@id"/>ﬂ
 <xsl:for-each select="author[$showdiffs or not(@revisionflag='deleted')]">
@@ -552,7 +557,8 @@ changelog entry here
 <xsl:number format="A" value="1+count(preceding-sibling::appendix)"/>
 </xsl:template>
 
-<xsl:variable name="bib" select="/book/bibliography/biblioentry[key('cite',@id)]"/>
+<xsl:variable name="bib" select="/book/bibliography/biblioentry[key('cite',@id)[$showdiffs or not(ancestor-or-self::*/@revisionflag='deleted')]][$showdiffs or not(@revisionflag='deleted')]"/>
+
 
 <xsl:template match="citation">
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
