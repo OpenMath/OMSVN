@@ -122,6 +122,15 @@ relative to the OpenMath 1.0 document...</p>
 
 
 
+<xsl:template match="formalpara">
+<p>
+<b>
+<xsl:value-of select="title"/>
+</b>
+<xsl:apply-templates select="@revisionflag|node()[not(title)]"/>
+</p>
+</xsl:template>
+
 <xsl:template match="para">
 <p>
 <xsl:apply-templates select="@revisionflag|node()"/>

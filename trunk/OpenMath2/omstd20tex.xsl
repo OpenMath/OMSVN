@@ -91,6 +91,15 @@ relative to the OpenMath 1.0 document\ldots
 
 
 
+<xsl:template match="formalpara">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
+<xsl:text>\paragraph£</xsl:text>
+<xsl:value-of select="title"/>
+<xsl:text>ß</xsl:text>
+£<xsl:apply-templates select="@revisionflag|node()[not(title)]"/>ß
+</xsl:if>
+</xsl:template>
+
 <xsl:template match="para">
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 £<xsl:apply-templates select="@revisionflag|node()"/>ß

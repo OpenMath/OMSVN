@@ -563,67 +563,6 @@ variable with cardinality such as
 </varlistentry>
 </variablelist> </para>
 
-<phrase revisionflag="added">
-<para>
-
-The names of symbols and variables must conform to the following
-rules, which are designed to be compatible with standards such as
-Unicode and XML.  These standards group individual characters into
-letters, digits, combining characters and extenders.  Informally,
-these are defined as follows:
-
-<variablelist>
-
-<varlistentry><term>Letters</term><listitem><para> are elements of an
-alphabet such as latin, cyrillic, kanji etc.</para></listitem></varlistentry>
-
-<varlistentry><term>Digits</term><listitem><para> are atomic numbers,
-from which compound numbers can be constructed (for example `1' is a
-digit but `11' is not).</para></listitem></varlistentry>
-
-<varlistentry><term>Combining Characters</term><listitem><para> are
-used to combine several characters to produce a new one, for example
-an accented character.
-</para></listitem></varlistentry>
-
-<varlistentry><term>Extenders</term><listitem><para> are characters
-which are neither letters nor combining characters but modify the
-appearance of other characters in some way.
-</para></listitem></varlistentry>
-
-</variablelist>
-Formally, we use the precise definitions given in the Unicode
-standard&#160;<citation>UNICODE</citation>.
-</para>
-
-<para>
-
-Then a legal symbol or variable name is defined by the following
-grammar:
-<blockquote>
-<informaltable>
-<tgroup cols="3">
-<tbody>
-<row>
-<entry>Name </entry>
-<entry> <math>&longrightarrow;</math> </entry>
-<entry> (Letter | '_') (Char)*
-</entry>
-</row>
-<row>
-<entry>Char</entry>
-<entry> <math>&longrightarrow;</math> </entry>
-<entry> Letter | Digit | '.' | '-' | '_' | CombiningChar | Extender
-</entry>
-</row>
-</tbody>
-</tgroup>
-</informaltable>
-</blockquote>
-
-</para>
-</phrase>
-
 <para>The four following constructs can be used to make compound &OM;
 objects.</para>
 
@@ -845,6 +784,105 @@ objects.</para>
 </listitem>
 </varlistentry>
 </variablelist> 
+</section>
+
+<section id="sec_names" revisionflag="added">
+<title>Names</title>
+<para>
+
+The names of symbols, variables and content dictionaries must conform to the
+following rules, which are designed to be compatible with standards such as
+Unicode and XML.  These standards group individual characters into letters,
+digits, combining characters and extenders.  Informally, these are defined as
+follows:
+
+<variablelist>
+
+<varlistentry><term>Letters</term><listitem><para> are elements of an
+alphabet such as latin, cyrillic, kanji etc.</para></listitem></varlistentry>
+
+<varlistentry><term>Digits</term><listitem><para> are atomic numbers,
+from which compound numbers can be constructed (for example `1' is a
+digit but `11' is not).</para></listitem></varlistentry>
+
+<varlistentry><term>Combining Characters</term><listitem><para> are
+used to combine several characters to produce a new one, for example
+an accented character.
+</para></listitem></varlistentry>
+
+<varlistentry><term>Extenders</term><listitem><para> are characters
+which are neither letters nor combining characters but modify the
+appearance of other characters in some way.
+</para></listitem></varlistentry>
+
+</variablelist>
+Formally, we use the precise definitions given in the Unicode
+standard&#160;<citation>UNICODE</citation>.
+</para>
+
+<para>
+
+Then a legal OpenMath name is defined by the following grammar:
+<blockquote>
+<informaltable>
+<tgroup cols="3">
+<tbody>
+<row>
+<entry>Name </entry>
+<entry> <math>&longrightarrow;</math> </entry>
+<entry> (Letter | '_') (Char)*
+</entry>
+</row>
+<row>
+<entry>Char</entry>
+<entry> <math>&longrightarrow;</math> </entry>
+<entry> Letter | Digit | '.' | '-' | '_' | CombiningChar | Extender
+</entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</blockquote>
+
+</para>
+
+<formalpara><title>Note on content dictionary names</title>
+
+It is a common convention to store a content dictionary in a file of
+the same name, which can cause difficulties on many file systems.  If
+this convention is to be followed then &OM; <emphasis>recommends</emphasis>
+that the name be restricted to the subset of the above grammar which is a
+legal POSIX <citation>POSIX</citation> filename, namely:
+<blockquote>
+<informaltable>
+<tgroup cols="3">
+<tbody>
+<row>
+<entry>Name </entry>
+<entry> <math>&longrightarrow;</math> </entry>
+<entry> (PosixLetter | '_') (Char)*
+</entry>
+</row>
+<row>
+<entry>Char</entry>
+<entry> <math>&longrightarrow;</math> </entry>
+<entry> PosixLetter | Digit | '.' | '-' | '_' 
+</entry>
+</row>
+<row>
+<entry>PosixLetter</entry>
+<entry> <math>&longrightarrow;</math> </entry>
+<entry> 
+'a' | 'b' | ... | 'z' | 'A' | 'B' | ... | 'Z'
+</entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</blockquote>
+
+</formalpara>
+
 </section>
 
 <section id="sec_summary">
