@@ -3797,7 +3797,7 @@ Content Dictionaries.</para>
 
 <para revisonflag="added">
 We now describe the elements used in the above schema in terms of the
-abstract description of CDs in <xlink linkend="sect_funct"/>.  Unless
+abstract description of CDs in <xref linkend="sect_func"/>.  Unless
 stated otherwise the information is encoded as the content of the
 element.
 </para>
@@ -3962,6 +3962,25 @@ the information can easily be extracted automatically.</phrase></para>
    
  </listitem>
 </varlistentry>
+<varlistentry revisionflag="added"><term><systemitem>CDDefinition</systemitem></term><listitem><para>The
+element which contains the definition of an individual symbol.
+</para>
+  
+</listitem>
+</varlistentry>
+<varlistentry><term><systemitem>Name</systemitem></term><listitem><para>The
+<phrase revisionflag="deleted">
+  text occurring in the <systemitem>Name</systemitem> element
+  corresponds to the
+</phrase>
+name of a symbol.
+<phrase revisionflag="deleted">
+, and is specified as in <xref linkend="cha_enco"/>.
+</phrase>
+</para>
+  
+</listitem>
+</varlistentry>
 <varlistentry><term><systemitem>Example</systemitem></term>
 <listitem>
 <sidebar revision="1999/06/23" author="OC"><para>new
@@ -3975,29 +3994,40 @@ and cannot be <quote>loose</quote> in the Content Dictionary.</para>
   
 </listitem>
 </varlistentry>
-<varlistentry><term><systemitem>Name</systemitem></term><listitem><para>The
-  text occurring in the <systemitem>Name</systemitem> element
-  corresponds to the name of the symbol, and is specified as in <xref
-  linkend="cha_enco"/>.</para>
-  
-</listitem>
-</varlistentry>
 <varlistentry><term><systemitem>CMP</systemitem></term>
-<listitem><para>The text occurring in the <systemitem>CMP</systemitem> element
+<listitem><para>
+
+<phrase revisionflag="deleted">
+The text occurring in the <systemitem>CMP</systemitem> element
   corresponds to a property of the symbol. An application which says
   it understands a Content Dictionary symbol need not understand a
-  commented property of the symbol.</para>
+  commented property of the symbol.
+</phrase>
+<phrase revisionflag="added">
+A Commented Mathematical Property.
+</phrase>
+
+</para>
   
 </listitem>
 </varlistentry>
-<varlistentry><term><systemitem>FMP</systemitem></term><listitem><para>The
+<varlistentry><term><systemitem>FMP</systemitem></term><listitem><para>
+
+<phrase revisionflag="deleted">
+The
   content of the <systemitem>FMP</systemitem> element also corresponds
   to a property<footnote id="ftn_theory"><para>It corresponds to a
   theorem of a theory in some formal system.</para></footnote> of the
   symbol, however the content of this element must be a valid &OM;
   object in the &exml; encoding.  An application which says it
   understands a Content Dictionary symbol need not understand a formal
-  property of the symbol.</para>
+  property of the symbol.
+</phrase>
+<phrase revisionflag="added">
+A Formal Mathematical Property.
+</phrase>
+
+</para>
 </listitem>
 </varlistentry>
 </variablelist>
@@ -4014,12 +4044,19 @@ splitting-up in files</para></sidebar> <sidebar revision="1999/10/04"
 author="DPC"><para>Rephrase slightly</para></sidebar> <para>Content
 Dictionaries contain just one part of the information that can be
 associated to a symbol in order to stepwise define its meaning and its
-functionality. &OM; Signature files, CDGroups, and possibly files of
-extra mathematical properties, are used to convey the different
+functionality. &OM; Signature 
+<phrase revisionflag="deleted">files</phrase><phrase
+revisionflag="added">dictionaries</phrase>, CDGroups, and possibly
+<phrase revisionflag="deleted">files</phrase><phrase
+revisionflag="added">collections</phrase>
+of extra mathematical properties, are used to convey the different
 aspects that as a whole make up a mathematical definition.</para>
 
 <section id="sigfiles">
-<title>Signature Files</title>
+<title>Signature
+<phrase revisionflag="deleted">Files</phrase><phrase
+revisionflag="added">Dictionaries</phrase>
+</title>
 
 
 <sidebar revision="1999/08/25" author="OC"><para>Introduced Signature
@@ -4044,7 +4081,7 @@ same mechanism, <citation>OMD132b</citation> shows how pure type
 systems can also be employed to assign types to &OM; symbols.</para>
 
 
-<section id="sec_dtd_sig">
+<section id="sec_dtd_sig" revisionflag="deleted">
 <title>The  DTD Specification of Signature Files</title>
 
 <para>Signature Files are &exml; documents, hence a valid Signature
@@ -4105,11 +4142,22 @@ object.</para>
 </section>
 
 <section id="sect_sigpcdata">
-<title>Further Requirements of a Signature File</title>
+<title><phrase revisionflag="deleted">Further
+Requirements
+</phrase>
+<phrase revisionflag="added">
+Abstract Specification</phrase>
+ of a Signature File</title>
 
 <sidebar revision="1999/08/26" author="OC"><para>Added PCDATA for Additional Files</para></sidebar>
 
-<para>The notion of being a valid Signature File is stronger than
+<para revisionflag="added">Signature files have a header which specifies the
+type system being used, and the Content
+Dictionary which contains the symbols for which the signatures are
+being given. Each signature takes the form of an &OM;
+object in an appropriate encoding.</para>
+
+<para revisionflag="deleted">The notion of being a valid Signature File is stronger than
 merely being successfully parsed by the <acronym>dtd</acronym> in
 <xref linkend="fig_omcdsig.dtd"/>.  In this section we define exactly
 the format of the elements used in Signature Files. Several of the
@@ -4117,7 +4165,7 @@ requirements are the same as those on elements of Contents
 Dictionaries.</para>
 
 
-<variablelist>
+<variablelist revisionflag="deleted">
 <varlistentry><term><systemitem>CDSignatures</systemitem></term><listitem><para>The
   outermost element of the Signature File is characterized by two
   required attributes that identify the type system and the Content
@@ -4176,6 +4224,51 @@ possibly</para>
 </listitem>
 </varlistentry>
 </variablelist>
+
+<orderedlist revisionflag="added">
+<listitem><para>
+A <emphasis>type definition</emphasis>: the
+  name of the Content
+  Dictionary or of the CDGroup (cfg. <xref linkend="ssec_cdgroups"/>)
+  that represents the type system being used.
+
+</para></listitem>
+<listitem><para>
+A <emphasis>CD name</emphasis>: the name of the CD for which
+signatures are being defined.
+
+</para></listitem>
+<listitem><para>
+A <emphasis>review date</emphasis>
+as defined in <xref linkend="sect_func"/>.
+</para></listitem>
+<listitem><para>
+A <emphasis>status</emphasis>:
+as defined in <xref linkend="sect_func"/>.
+</para></listitem>
+<listitem><para>
+A series of <emphasis>signatures</emphasis> which are &OM; objects in
+some encoding.  The objects must represent types as defined by the
+type definition.
+</para>
+</listitem>
+</orderedlist>
+
+</section>
+
+
+<section id="sect_sigschema" revisionflag="added">
+<title>A RelaxNG Schema for a Signature File</title>
+
+<para>
+The following is a reference encoding of a signature dictionary,
+designed to be used with Content Dictionaries in the &exml; encoding.
+</para>
+
+<para>
+TO DO
+</para>
+
 </section>
 
 
@@ -4204,6 +4297,9 @@ name="plus"/></systemitem>: <literallayout><![CDATA[
 ]]></literallayout>
 </para>
 </section>
+
+
+
 </section>
 
 <section id="ssec_cdgroups">
