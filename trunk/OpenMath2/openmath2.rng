@@ -1,8 +1,6 @@
 <![CDATA[
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Schema for OpenMath 2
--->
+<!-- Schema for OpenMath 2 -->
 <grammar xmlns:xlink="http://www.w3.org/1999/xlink"
          ns="http://www.openmath.org/OpenMath"
          xmlns="http://relaxng.org/ns/structure/1.0"
@@ -63,6 +61,9 @@
     </attribute>
     <attribute name="cd">
       <data type="NCName"/>
+    </attribute>
+    <attribute name="uristub">
+      <data type="anyURI"/>
     </attribute>
   </define>
   <!-- variable -->
@@ -130,7 +131,7 @@
       </oneOrMore>
     </element>
   </define>
-  <!-- binding constructor & variable -->
+  <!-- binding constructor and variable -->
   <define name="OMBIND">
     <element name="OMBIND">
       <ref name="common.attributes"/>
@@ -157,7 +158,7 @@
       </zeroOrMore>
     </element>
   </define>
-  <!-- attribution constructor & attribute pair constructor -->
+  <!-- attribution constructor and attribute pair constructor -->
   <define name="OMATTR">
     <element name="OMATTR">
       <ref name="common.attributes"/>
@@ -220,6 +221,15 @@
       <ref name="common.attributes"/>
       <ref name="omel"/>
     </element>
+  </define>
+  <define name="attlist.OMOBJ">
+    <attribute name="version">
+      <choice>
+        <value>1.0</value>
+        <value>1.2</value>
+        <value>2.0</value>
+      </choice>
+    </attribute>
   </define>
   <start>
     <ref name="OMOBJ"/>
