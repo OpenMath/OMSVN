@@ -6,15 +6,15 @@
 <xsl:import href="verb.xsl"/>
 
 <xsl:param name="changelog">no</xsl:param>
-<xsl:param name="showdiffs" select="true()"/>
+<xsl:param name="showdiffs" select="false()"/>
 <xsl:output method="text" encoding="iso-8859-1"/>
 
 
-<xsl:key name="new"  match="*[@revisionflag='added']" use="ancestor::section[1]/@id"/>
+<xsl:key name="new"  match="*[@revisionflag='added']" use="ancestor-or-self::section[1]/@id"/>
 <xsl:key name="ids" match="*[@id]" use="@id"/>
 
 <xsl:template match="*">
-\xxxxxx\textcolor{red}{[[[<xsl:value-of select="name()"/>]]]}
+\xxxxxx\textcolor£redﬂ[[[<xsl:value-of select="name()"/>]]]}
 </xsl:template>
 
 <xsl:template match="book">
@@ -176,7 +176,7 @@ relative to the OpenMath 1.0 document\ldots
   <xsl:text>£</xsl:text>
   <xsl:apply-templates select="@revisionflag"/>
 \<xsl:for-each select="ancestor::section">sub</xsl:for-each>
-  <xsl:text/>section£<xsl:apply-templates select="title/node()"
+  <xsl:text/>section<xsl:if test="@revisionflag='deleted'">*</xsl:if>£<xsl:apply-templates select="title/node()"
            />ﬂ<xsl:if test="@id">\label£<xsl:value-of select="@id"/>ﬂ</xsl:if>
 <xsl:apply-templates/>
   <xsl:text>ﬂ</xsl:text>

@@ -226,9 +226,11 @@ relative to the OpenMath 1.0 document...</p>
 </xsl:template>
 
 <xsl:template match="section" mode="number">
+<xsl:if test="not(@revisionflag='deleted')">
 <xsl:apply-templates mode="number" select="ancestor::chapter|ancestor::appendix"/>
 <xsl:text>.</xsl:text>
-<xsl:number level="multiple" format="1.1" from="chapter|appendix"/>
+<xsl:number count="section[not(@revisionflag='deleted')]" level="multiple" format="1.1" from="chapter|appendix"/>
+</xsl:if>
 </xsl:template>
 
 
@@ -490,10 +492,14 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 
 
 <xsl:template match="section" mode="toc">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 &#160;&#160;&#160;&#160;<xsl:for-each select="ancestor::section">&#160;&#160;&#160;&#160;</xsl:for-each>
-<a href="#{@id}"><xsl:apply-templates select="." mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
+<a href="#{@id}">
+<xsl:apply-templates select="@revisionflag"/>
+<xsl:apply-templates select="." mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 </a><br/>
 <xsl:apply-templates select="section" mode="toc"/>
+</xsl:if>
 </xsl:template>
 
 
