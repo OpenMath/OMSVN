@@ -27,7 +27,7 @@ match="*[*]|*[text()]|*[comment()]|*[processing-instruction()]" priority="2">
   <xsl:choose>
    <xsl:when test="name()='xml'"/>
    <xsl:when test="string(../../namespace::*[name()=name(current())])=."/>
-   <xsl:when test="name()=''"> xmlns="<xsl:value-of select="."/>"</xsl:when>
+   <xsl:when test="name()=''">&#10; xmlns="<xsl:value-of select="."/>"</xsl:when>
    <xsl:otherwise>&#10; xmlns:<xsl:value-of select="name()"/>="<xsl:value-of select="."/>"</xsl:otherwise>
   </xsl:choose>
 </xsl:for-each>
@@ -51,7 +51,10 @@ match="*[*]|*[text()]|*[comment()]|*[processing-instruction()]" priority="2">
      Output always surrounds attribute value by "
      so we need to make sure no literal " appear in the value  -->
 <xsl:template mode="verb" match="@*" priority="1.5">
-  <xsl:value-of select="concat(' ',local-name(.),'=')"/>
+  <xsl:if test="(../@*)[string-length(.)&gt;10]">
+  <xsl:text>&#10;</xsl:text>
+  </xsl:if>
+  <xsl:value-of select="concat(' ',name(.),'=')"/>
   <xsl:text>"</xsl:text>
   <xsl:call-template name="string-replace">
     <xsl:with-param name="from" select="'&quot;'"/>
