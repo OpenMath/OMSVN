@@ -13,14 +13,14 @@ echo RNG
 for i in omcd2.rnc omcdsig2.rnc openmath2.rnc
 do
 echo $i
-trang $i ${i%%rnc}rng
+java -jar trang.jar  $i ${i%%rnc}rng
 done
 
 echo XSD
 for i in openmath2.rnc
 do
 echo $i
-trang $i ${i%%rnc}xsd
+java -jar trang.jar  $i ${i%%rnc}xsd
 done
 
 >trang.txt
@@ -37,7 +37,7 @@ sed -e "s/attvar =[^}]*}/attvar = OMATTR/" \
     -e "s/include .openmath2.rnc. {.*}/# OMDTD/" \
         $i >tmp.rnc
 
- trang tmp.rnc tmp.dtd 2>> trang.txt
+ java -jar trang.jar  tmp.rnc tmp.dtd 2>> trang.txt
  
  sed -e "s/OMFOREIGN EMPTY/OMFOREIGN ANY/" \
      -e "s/:*ns1:*//g" \
@@ -60,7 +60,7 @@ sed -e  "s/| OMOBJ//" \
     -e "s/ &/ |/g" \
         $i >tmp.rnc
 
- trang tmp.rnc tmp.dtd  2>> trang.txt
+ java -jar trang.jar  tmp.rnc tmp.dtd  2>> trang.txt
  
 
  sed -e "s/text-or-om \"(#PCDATA/text-or-om \"(#PCDATA|OMOBJ/" \
@@ -85,7 +85,7 @@ sed -e  "s/| OMOBJ//" \
     -e "s/ &/ |/g" \
         $i >tmp.rnc
 
- trang tmp.rnc tmp.dtd  2>> trang.txt
+ java -jar trang.jar  tmp.rnc tmp.dtd  2>> trang.txt
  
 
  sed -e "s/Signature ..#PCDATA..../Signature (OMOBJ)/" \
