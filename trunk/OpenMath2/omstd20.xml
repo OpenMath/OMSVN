@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.101 2004/04/01 18:46:11 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.102 2004/04/01 20:36:55 openmath Exp $ -->
 
 
 <!DOCTYPE book 
@@ -268,7 +268,7 @@ and machine-readable, rather than written by hand.
 <para revisionflag="added">The &OM; Standard is the official reference for
 the &OM; language and has been approved by the &OM; Society.  It is not
 intended as an introductory document or a user's guide, for the latest
-available material of this nature please consult the &OM; website at
+available material of this nature please consult the &OM; web-site at
 <ulink url="http://www.openmath.org">http://www.openmath.org</ulink>.</para>
 
 <para revisionflag="added">This document includes an overview of the
@@ -373,7 +373,7 @@ society. The official web page of the society is
 
 <para revisionflag="added">The &OM; Society continues to provide
 long-term coordination of &OM; activities.  Membership is open to
-anybody who is active in &OM;; for further details see the website
+anybody who is active in &OM;; for further details see the web-site
 at 
 <ulink url="http://www.openmath.org/society/index.html">
 http://www.openmath.org/society/index.html</ulink>.</para>
@@ -2243,7 +2243,7 @@ an &exml; document.
  <term>References</term>
  <listitem><para>
  &OM; integers, floating point numbers, character strings,
- byearrays, applications, binding, attributions can also be encoded
+ bytearrays, applications, binding, attributions can also be encoded
  as an empty <systemitem>OMR</systemitem> element with an <systemitem>href</systemitem>
  attribute whose value is the value of an id attribute of an &OM; object of
  that type. The &OM; element represented by this <systemitem>OMR</systemitem>
@@ -2595,7 +2595,8 @@ to accept or produce.</para>
 <para>When embedding &exml; encoded &OM; objects into a larger &exml; document
 one may wish, or need, to use other &exml; features. For example use of
 extra &exml; attributes to specify &exml; Namespaces&#160;<citation>xmlns</citation>
-or xml:lang attributes to specify the language used in strings&#160;<citation>xml</citation>.
+or <systemitem>xml:lang</systemitem> attributes to specify the language used in
+strings&#160;<citation>xml</citation>. 
 <phrase revisionflag="deleted">
 Also, the encoding used in the larger document may not be
 <acronym>utf-8</acronym>.</phrase>
@@ -3116,14 +3117,18 @@ implementations).</para>
             <entry><math>&longrightarrow;</math></entry>
             <entry> [12]
               [<math><mi>n</mi></math>]
+              [<math><mi>m</mi></math>]
               bytes:<math><mi>n</mi></math>
+              uri:<math><mi>m</mi></math>
             </entry>
             <entry revisionflag="added">|</entry>
             <entry revisionflag="added"> [12+64]
               [<math><mi>n</mi></math>]
               [<math><mi>m</mi></math>]
+              [<math><mi>k</mi></math>]
               bytes:<math><mi>n</mi></math>
-              id:<math><mi>m</mi></math>
+              uri:<math><mi>m</mi></math>
+              id:<math><mi>k</mi></math>
             </entry>
           </row>
           
@@ -3143,14 +3148,18 @@ implementations).</para>
             <entry>|</entry>
             <entry> [12+128]
               {<math><mi>n</mi></math>}
+              {<math><mi>m</mi></math>}
               bytes:<math><mi>n</mi></math>
+              uri:<math><mi>m</mi></math>
             </entry>
             <entry revisionflag="added">|</entry>
             <entry revisionflag="added"> [12+64+128]
               {<math><mi>n</mi></math>}
               {<math><mi>m</mi></math>}
+              {<math><mi>k</mi></math>}
               bytes:<math><mi>n</mi></math>
-              id:<math><mi>m</mi></math>
+              uri:<math><mi>m</mi></math>
+              id:<math><mi>k</mi></math>
             </entry>
           </row>
           
@@ -3386,14 +3395,14 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
   introduced in &OM;2, the tokens with sharing flag 1 should be used.</para>
 
 <para revisionflag="added">To facilitate the streaming &OM; objects, some basic
-  objects (integers, strings, bytearrays, and foreign objects) have variant
-  token identifiers with the fifth bit set. The idea behind this is that these
-  basic objects can be split into packets. If the fifth bit is not set, this
-  packet is the final packet of the basic object. If the bit is set, then more
-  packets of the basic object will follow directly after this one. Note that all
-  packets making up a basic object must have the same token identifier (up to the
-  fifth bit). 
-</para>
+  objects (integers, strings, bytearrays, and foreign objects) have variant token
+  identifiers with the fifth bit set. The idea behind this is that these basic
+  objects can be split into packets. If the fifth bit is not set, this packet is
+  the final packet of the basic object. If the bit is set, then more packets of
+  the basic object will follow directly after this one. Note that all packets
+  making up a basic object must have the same token identifier (up to the fifth
+  bit). In <xref linkend="fig_bin-enc_stream"/> we have represented an integer
+  that is split up into three packets.  </para>
 
 <para>Here is a description of the binary encodings of every kind of &OM; object:
 
@@ -3456,6 +3465,34 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
       the sequence-initial packet may contain a signed
       integer. The sign of this packet determines the sign of the overall
       integer.</para>
+
+    <figure id="fig_bin-enc_stream" revisionflag="added">
+      <title>Streaming a large Integer in the Binary Encoding.</title>
+      <informaltable>
+	<tgroup cols="2">
+	  <thead>
+	    <row>
+	      <entry>Hex </entry>
+	      <entry>Meaning </entry>
+	    </row>
+	  </thead>
+	  <tbody>
+	    <row><entry>22</entry><entry>begin streamed big integer tag</entry></row>
+	    <row><entry>FF</entry><entry>255 digits in packet</entry></row>
+	    <row><entry>2B</entry><entry>sign +</entry></row>
+	    <row><entry>...</entry><entry> the 255 digits as characters</entry></row>
+	    <row><entry>22</entry><entry>begin streamed big integer tag</entry></row>
+	    <row><entry>FF</entry><entry>255 digits in packet</entry></row>
+	    <row><entry>2B</entry><entry>sign + (disregarded)</entry></row>
+	    <row><entry>...</entry><entry> the 255 digits as characters</entry></row>
+	    <row><entry>2</entry><entry>begin final big integer tag</entry></row>
+	    <row><entry>42</entry><entry>68 digits in packet</entry></row>
+	    <row><entry>2B</entry><entry>sign + (disregarded)</entry></row>
+	    <row><entry>...</entry><entry> the 68 digits as charactres</entry></row>
+	  </tbody>
+	</tgroup>
+      </informaltable>
+    </figure>
 </listitem>
 </varlistentry>
 
@@ -3556,20 +3593,20 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
 </listitem>
 </varlistentry>
 
-<varlistentry revisionflag="added">
-<term>Foreign Objects</term>
-<listitem>
-  <para>are encoded using the foreign object tags (token identifier 12) with the
-  long flag set if the number of bytes is
-  greater than or equal to 256. Then, there is the number of elements,
-  as a byte (if the long flag was not set) or a four byte integer
-  (in network byte order), followed by the elements of the arrays in
-  their normal order.</para>
-<para revisionflag="added">Sequences of foreign object packets are assembled into
-  foreign objects by 
-      concatenating the bytes in the packets in sequence order.</para>
-</listitem>
-</varlistentry>
+<varlistentry revisionflag="added"> <term>Foreign Objects</term> <listitem>
+<para>are encoded using the foreign object tags (token identifier 12) with the
+long flag set if the number of bytes is greater than or equal to 256 and the
+streaming bit set for dividing it up into packets. Then, there is the number
+<math><mn>n</mn></math> of bytes used to encode the foreign object, and the number
+<math><mn>m</mn></math> of bytes used to encode the encoding
+attribute. <math><mn>n</mn></math> and <math><mn>m</mn></math> are represented as
+a byte (if the long flag was not set) or a four byte integer (in network byte
+order). These numbers are followed by an <math><mn>n</mn></math> byte sequence of
+bytes encoding the foreign object and an <math><mn>m</mn></math>-byte sequence
+representation of the encoding attribute in their normal order.</para> <para
+revisionflag="added">Sequences of foreign object packets are assembled into
+foreign objects by concatenating the bytes in the packets in sequence
+order. </para> </listitem> </varlistentry>
 
 <varlistentry>
   <term>Applications</term>
@@ -3741,7 +3778,7 @@ above.</para>
 <figure id="fig_bin-enc2">
     <title>A binary encoding of the &OM; object from <xref linkend="fig_shared_vs_unshared"/>.</title>
 <informaltable>
-<tgroup cols="4">
+<tgroup cols="2">
 <thead>
 <row>
 <entry>Hex </entry>
@@ -3751,7 +3788,7 @@ above.</para>
 <tbody>
 <row><entry>58</entry><entry>begin object tag</entry></row>
 <row><entry>2</entry><entry> version 2.0 (major)</entry></row>
-<row><entry>0</entry><entry> cvrsion 2.0 (minor)</entry></row>
+<row><entry>0</entry><entry> version 2.0 (minor)</entry></row>
 <row><entry>10</entry><entry>begin application tag</entry></row>
 <row><entry>05</entry><entry>variable tag</entry></row>
 <row><entry>01</entry><entry>variable length</entry></row>
@@ -3871,7 +3908,7 @@ whose &exml; encoding is
 It is binary encoded as the sequence of bytes given by  the following table.</para>
 
 <informaltable>
-<tgroup cols="4">
+<tgroup cols="2">
 <thead>
 <row>
 <entry>Hex </entry>
@@ -3881,7 +3918,7 @@ It is binary encoded as the sequence of bytes given by  the following table.</pa
 <tbody>
 <row><entry>58</entry><entry>begin object tag</entry></row>
 <row><entry>2</entry><entry> version 2.0 (major)</entry></row>
-<row><entry>0</entry><entry> cvrsion 2.0 (minor)</entry></row>
+<row><entry>0</entry><entry> version 2.0 (minor)</entry></row>
 <row><entry>10</entry><entry>begin application tag</entry></row>
 <row><entry>08</entry><entry>symbol tag</entry></row>
 <row><entry>06</entry><entry>cd length </entry></row>
@@ -5111,7 +5148,7 @@ Dictionary may change as a result of this review process.</para>
 
 
 <para>Applications that meet the requirements specified in this chapter may
-label themselves as <emphasis>OpenMath compliant</emphasis>. &OM; compliancy is
+label themselves as <emphasis>OpenMath compliant</emphasis>. &OM; compliance is
 defined so as to maximize the potential for interoperability amongst
 &OM; applications.</para>
 
@@ -7034,3 +7071,67 @@ details of how this attribute is used are not mandated by the standard.
 </bibliography>
 </book>
 
+
+<!--  LocalWords:  omstd openmath Exp docbook customisations sidebar xs CDSignatures
+ LocalWords:  ATTLIST mrow mn mi mo msub msup mtext mspace mfrac mfenced mml om
+ LocalWords:  xmlns revisionflag PCDATA mathcolor mathvariant linebreak ref ns
+ LocalWords:  processContents attributeGroup elementFormDefault targetNamespace
+ LocalWords:  maxOccurs minOccurs complexType schemaLocation simpleType anyName
+ LocalWords:  simpleContent datatypeLibrary zeroOrMore oneOrMore nsName param
+ LocalWords:  exml exadigits lcalpha ucalpha dpc regxp zsp longrightarrow omrnc
+ LocalWords:  varnamechar rnc cdrnc omcd sigrnc omcdsig cdgrouprnc omcdgroup cd
+ LocalWords:  omxsd xsd omdtd dtd omrng rng cdrng sigrng metacd ocd arith sts
+ LocalWords:  errorcd bookinfo releaseinfo firstname Buswell othername Carlisle
+ LocalWords:  Gaetano para xref linkend cha generatable ulink url toc sec hist
+ LocalWords:  formalised Abbott Leeuwen Strotmann Dalmas omsoc int fileref obj
+ LocalWords:  enco addnfiles CDGroup phrasebooks Phrasebook behaviour omabs gt
+ LocalWords:  omin labelled itemizedlist listitem bignums ieee Unicode cdbase
+ LocalWords:  Bytearray em orderedlist lowerroman sl variablelist varlistentry
+ LocalWords:  Bytearrays bytearray bytearrays systemitem blockquote Za varname
+ LocalWords:  phrasebook automorphism lt OMD colour informaltable tgroup cols
+ LocalWords:  tbody NameStartChar NameChar xC xD xF FF FFF FEF xFDCF xFDF xFFFD
+ LocalWords:  xEFFFF xB formalpara IETF octets PosixLetter RDF rdf transc iso
+ LocalWords:  literallayout mathml csymbol definitionURL ascii autodetection NG
+ LocalWords:  ssec app relaxrestricted OMB objdtd embeddable OMATP omel OMSTR
+ LocalWords:  OMF OME omvar dec xlmns xlink linearised utf apos quot omf omstr
+ LocalWords:  linearisation cr nl cdname symbname fpdec fphex ABCDEF cdnameatt
+ LocalWords:  symbnameatt varnameatt fpdecatt fphexatt OMATTRx omatp attrs desc
+ LocalWords:  NCName xA eE INF NaN DDB CDFD BDBB NaNs rfc fns ecc OMFOREIGN Ai
+ LocalWords:  aritherror DivisionByZero unhandled OMERROR ltOMA cos OMR href BB
+ LocalWords:  nestedap foo baz bvars orig xmldoc lang tt XLink enc uri vars xf
+ LocalWords:  attrpairs attrvar xxxx endian latin thead impl func FMPs YYYY DD
+ LocalWords:  sigfiles xsl cdgroups cdapprove comp pcdata cdcd EP buswell nh Li
+ LocalWords:  howgrave CDComment CDName CDURL CDUses inhel CDReviewDate omobj
+ LocalWords:  CDStatus omobjectdtd PartOf FunctorClass CDDate CDVersion CDBase
+ LocalWords:  CDRevision ftn addfiles CDGroups sigpcdata CDSComment CDSStatus
+ LocalWords:  CDSReviewDate CDSreviewDate CDSignature sigex cfg sigschema cdg
+ LocalWords:  mapsto nassoc AbelianSemiGroup cdgroup cdgpcdata CDGroupName val
+ LocalWords:  CDGroupVersion CDGroupRevision CDGroupURL CDGroupDescription conc
+ LocalWords:  CDGroupMember compl recognise cdfiles alg bigfloat linalg minmax
+ LocalWords:  mathmltypes Multset nums quant setname orientated dist veccalc CB
+ LocalWords:  altenc lcm gcd modularisation regexp abs attlist whats chgformal
+ LocalWords:  RDFS chgenc chgcd biblioentry Std pubdate misc bibliomisc Geddes
+ LocalWords:  Datatypes Gonnet publishername WATCOM Lisser LiE MuPAD Benno isbn
+ LocalWords:  Fuchssteiner Chichester Teubner NuPRL Bromley Cleaveland Cremer
+ LocalWords:  Knoblock Mendler Panangaden Sasaki PDFbook TeXBook TeXbook PPML
+ LocalWords:  Ppml Projet MetaFontBook MetaFont Spivak AMSTeXBook AmSTeX Rhode
+ LocalWords:  PVM Geist Beguelin Dongarra Jiang Manchek Sunderam Janusz Kowalik
+ LocalWords:  CoCoA Capani Niesi Robbiano Giovini InProceedings Bibliomiscs cme
+ LocalWords:  Visigenic Yael Pingali Vavasis Zippel hol Melham harrison fais QG
+ LocalWords:  Christoffer Gefwert Pekka Orponen Juoko Sepp nen Suomen Teko ry
+ LocalWords:  lyseuran julkaisuja TECHREPORT Pembroke Thery Seger Voronkov WP
+ LocalWords:  Ballarin Levelt FroCoS Stephane Andr Gr bner Winkler Moller ller
+ LocalWords:  Manocha Multipolynomial Arnon McIsaac Waldspurger CaminoReal Ga
+ LocalWords:  Bibliomiscbook booktitle Sausse TechReport tano Diaz Vorkoetter
+ LocalWords:  LEGOmanual Luo Pollack luo PhdThesis Shand vrmlspec Carey Marrin
+ LocalWords:  Modelling IEC vrmlarm VRML eaispec Turku Centre TUCS Lemmink TR
+ LocalWords:  isenkatu Dunstan Kelsey Linton Gloor Rostock Laurent Kirchner REC
+ LocalWords:  PolyMath Stilo OMurl Website Seppala Elbers Borenstein Yergeau SV
+ LocalWords:  Alis JTC CDROM Eds ida Cuypers Sterk CaprottiCohen Trento Jebelan
+ LocalWords:  Kriftner Vasaru Jebelean Maui Zhao Analytica Kapur Devitt Nico tm
+ LocalWords:  Poppelier Neil Soiffer Sutor CTCOQMATH CtCoqmath Pottier Bertoli
+ LocalWords:  Plattsburgh Jung Ch sk Callaghan Finin Labrou Mayfield Yannis MCP
+ LocalWords:  InCollection IAMC ICM Vilya SDMGCHDISCO phane Marc Huchet LNCS
+ LocalWords:  Limongelli DOM CFCa CFC CFCb imacs IMACA ACA calc iamc OMsem
+ LocalWords:  OMworkshop
+-->
