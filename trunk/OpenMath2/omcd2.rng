@@ -6,8 +6,12 @@
   
   *********************************************
 -->
-<grammar ns="http://www.openmath.org/OpenMathCD" xmlns="http://relaxng.org/ns/structure/1.0">
-  <include href="openmath2.rng"/>
+<grammar ns="http://www.openmath.org/OpenMathCD" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <include href="openmath2.rng">
+    <start>
+      <ref name="CD"/>
+    </start>
+  </include>
   <define name="CDComment">
     <element name="CDComment">
       <text/>
@@ -15,7 +19,14 @@
   </define>
   <define name="CDName">
     <element name="CDName">
-      <text/>
+      <data type="NCName"/>
+    </element>
+  </define>
+  <define name="CDUses">
+    <element name="CDUses">
+      <zeroOrMore>
+        <ref name="CDName"/>
+      </zeroOrMore>
     </element>
   </define>
   <define name="CDURL">
@@ -38,12 +49,32 @@
   </define>
   <define name="CDReviewDate">
     <element name="CDReviewDate">
-      <text/>
+      <data type="date"/>
+    </element>
+  </define>
+  <define name="CDDate">
+    <element name="CDDate">
+      <data type="date"/>
+    </element>
+  </define>
+  <define name="CDVersion">
+    <element name="CDVersion">
+      <data type="nonNegativeInteger"/>
+    </element>
+  </define>
+  <define name="CDRevision">
+    <element name="CDRevision">
+      <data type="nonNegativeInteger"/>
     </element>
   </define>
   <define name="CDStatus">
     <element name="CDStatus">
-      <text/>
+      <choice>
+        <value>official</value>
+        <value>experimental</value>
+        <value>private</value>
+        <value>obsolete</value>
+      </choice>
     </element>
   </define>
   <define name="Description">
@@ -53,12 +84,18 @@
   </define>
   <define name="Name">
     <element name="Name">
-      <text/>
+      <data type="NCName"/>
     </element>
   </define>
   <define name="Role">
     <element name="Role">
-      <text/>
+      <choice>
+        <value>binder</value>
+        <value>attribution</value>
+        <value>semantic-attribution</value>
+        <value>error</value>
+        <value>default</value>
+      </choice>
     </element>
   </define>
   <define name="CMP">
@@ -68,7 +105,7 @@
   </define>
   <define name="FMP">
     <element name="FMP">
-      <ref name="text-or-om"/>
+      <ref name="OMOBJ"/>
     </element>
   </define>
   <!-- allow embedded OM -->
@@ -80,10 +117,15 @@
   <define name="CDDefinition">
     <element name="CDDefinition">
       <zeroOrMore>
+        <ref name="CDComment"/>
+      </zeroOrMore>
+      <interleave>
+        <ref name="Name"/>
+        <ref name="Description"/>
+      </interleave>
+      <zeroOrMore>
         <choice>
           <ref name="CDComment"/>
-          <ref name="Name"/>
-          <ref name="Description"/>
           <ref name="Example"/>
           <ref name="FMP"/>
           <ref name="CMP"/>
@@ -100,7 +142,11 @@
         <ref name="CDName"/>
         <ref name="CDURL"/>
         <ref name="CDReviewDate"/>
+        <ref name="CDDate"/>
         <ref name="CDStatus"/>
+        <ref name="CDUses"/>
+        <ref name="CDVersion"/>
+        <ref name="CDRevision"/>
       </interleave>
       <zeroOrMore>
         <choice>
@@ -112,7 +158,4 @@
       </zeroOrMore>
     </element>
   </define>
-  <start>
-    <ref name="CD"/>
-  </start>
 </grammar>

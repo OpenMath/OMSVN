@@ -38,9 +38,11 @@
   </define>
   <!-- OM2: common attributes -->
   <define name="cdbase">
-    <attribute name="cdbase">
-      <data type="anyURI"/>
-    </attribute>
+    <optional>
+      <attribute name="cdbase">
+        <data type="anyURI"/>
+      </attribute>
+    </optional>
   </define>
   <define name="common.attributes">
     <optional>
@@ -57,29 +59,26 @@
   <define name="OMS">
     <element name="OMS">
       <ref name="common.attributes"/>
-      <ref name="attlist.OMS"/>
+      <attribute name="name">
+        <data type="NCName"/>
+      </attribute>
+      <attribute name="cd">
+        <data type="NCName"/>
+      </attribute>
+      <ref name="cdbase"/>
     </element>
-  </define>
-  <define name="attlist.OMS">
-    <attribute name="name">
-      <data type="NCName"/>
-    </attribute>
-    <attribute name="cd">
-      <data type="NCName"/>
-    </attribute>
-    <ref name="cdbase"/>
   </define>
   <!-- variable -->
   <define name="OMV">
     <element name="OMV">
       <ref name="common.attributes"/>
-      <ref name="attlist.OMV"/>
+      <attribute name="name">
+        <data type="NCName"/>
+      </attribute>
+      <optional>
+        <ref name="omel"/>
+      </optional>
     </element>
-  </define>
-  <define name="attlist.OMV">
-    <attribute name="name">
-      <data type="NCName"/>
-    </attribute>
   </define>
   <!-- integer -->
   <define name="OMI">
@@ -108,22 +107,17 @@
   <define name="OMF">
     <element name="OMF">
       <ref name="common.attributes"/>
-      <ref name="attlist.OMF"/>
+      <choice>
+        <attribute name="dec">
+          <data type="double"/>
+        </attribute>
+        <attribute name="hex">
+          <data type="string">
+            <param name="pattern">[0-9A-F]+</param>
+          </data>
+        </attribute>
+      </choice>
     </element>
-  </define>
-  <define name="attlist.OMF">
-    <choice>
-      <attribute name="dec">
-        <data type="string">
-          <param name="pattern">(-?)([0-9]+)?(\.[0-9]+)?(e([+\-]?)[0-9]+)?</param>
-        </data>
-      </attribute>
-      <attribute name="hex">
-        <data type="string">
-          <param name="pattern">[0-9A-F]+</param>
-        </data>
-      </attribute>
-    </choice>
   </define>
   <!-- apply constructor -->
   <define name="OMA">
@@ -222,33 +216,36 @@
   <define name="OMOBJ">
     <element name="OMOBJ">
       <ref name="compound.attributes"/>
+      <optional>
+        <attribute name="version">
+          <choice>
+            <value>1.0</value>
+            <value>1.1</value>
+            <value>2.0</value>
+          </choice>
+        </attribute>
+      </optional>
       <ref name="omel"/>
     </element>
-  </define>
-  <define name="attlist.OMOBJ">
-    <attribute name="version">
-      <choice>
-        <value>1.0</value>
-        <value>1.2</value>
-        <value>2.0</value>
-      </choice>
-    </attribute>
   </define>
   <!-- OM2: OMR -->
   <define name="OMR">
     <element name="OMR">
       <ref name="common.attributes"/>
-      <ref name="attlist.OMR"/>
+      <attribute name="xlink:href">
+        <data type="anyURI"/>
+      </attribute>
+      <optional>
+        <attribute name="xlink:type">
+          <value>simple</value>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="xlink:show">
+          <value>embed</value>
+        </attribute>
+      </optional>
     </element>
-  </define>
-  <define name="attlist.OMR">
-    <attribute name="xlink:href"/>
-    <attribute name="xlink:type">
-      <value>simple</value>
-    </attribute>
-    <attribute name="xlink:show">
-      <value>embed</value>
-    </attribute>
   </define>
   <start>
     <ref name="OMOBJ"/>

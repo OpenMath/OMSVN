@@ -43,7 +43,7 @@
   </xs:group>
   <!-- OM2: common attributes -->
   <xs:attributeGroup name="cdbase">
-    <xs:attribute name="cdbase" use="required" type="xs:anyURI"/>
+    <xs:attribute name="cdbase" type="xs:anyURI"/>
   </xs:attributeGroup>
   <xs:attributeGroup name="common.attributes">
     <xs:attribute name="id" type="xs:ID"/>
@@ -56,24 +56,19 @@
   <xs:element name="OMS">
     <xs:complexType>
       <xs:attributeGroup ref="om:common.attributes"/>
-      <xs:attributeGroup ref="om:attlist.OMS"/>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="cd" use="required" type="xs:NCName"/>
+      <xs:attributeGroup ref="om:cdbase"/>
     </xs:complexType>
   </xs:element>
-  <xs:attributeGroup name="attlist.OMS">
-    <xs:attribute name="name" use="required" type="xs:NCName"/>
-    <xs:attribute name="cd" use="required" type="xs:NCName"/>
-    <xs:attributeGroup ref="om:cdbase"/>
-  </xs:attributeGroup>
   <!-- variable -->
   <xs:element name="OMV">
     <xs:complexType>
+      <xs:group minOccurs="0" ref="om:omel"/>
       <xs:attributeGroup ref="om:common.attributes"/>
-      <xs:attributeGroup ref="om:attlist.OMV"/>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
     </xs:complexType>
   </xs:element>
-  <xs:attributeGroup name="attlist.OMV">
-    <xs:attribute name="name" use="required" type="xs:NCName"/>
-  </xs:attributeGroup>
   <!-- integer -->
   <xs:element name="OMI">
     <xs:complexType>
@@ -109,25 +104,16 @@
   <xs:element name="OMF">
     <xs:complexType>
       <xs:attributeGroup ref="om:common.attributes"/>
-      <xs:attributeGroup ref="om:attlist.OMF"/>
+      <xs:attribute name="dec" type="xs:double"/>
+      <xs:attribute name="hex">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9A-F]+"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
     </xs:complexType>
   </xs:element>
-  <xs:attributeGroup name="attlist.OMF">
-    <xs:attribute name="dec">
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:pattern value="(-?)([0-9]+)?(\.[0-9]+)?(e([+\-]?)[0-9]+)?"/>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:attribute>
-    <xs:attribute name="hex">
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:pattern value="[0-9A-F]+"/>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:attribute>
-  </xs:attributeGroup>
   <!-- apply constructor -->
   <xs:element name="OMA">
     <xs:complexType>
@@ -213,29 +199,24 @@
     <xs:complexType>
       <xs:group ref="om:omel"/>
       <xs:attributeGroup ref="om:compound.attributes"/>
+      <xs:attribute name="version">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="1.0"/>
+            <xs:enumeration value="1.1"/>
+            <xs:enumeration value="2.0"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
     </xs:complexType>
   </xs:element>
-  <xs:attributeGroup name="attlist.OMOBJ">
-    <xs:attribute name="version" use="required">
-      <xs:simpleType>
-        <xs:restriction base="xs:token">
-          <xs:enumeration value="1.0"/>
-          <xs:enumeration value="1.2"/>
-          <xs:enumeration value="2.0"/>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:attribute>
-  </xs:attributeGroup>
   <!-- OM2: OMR -->
   <xs:element name="OMR">
     <xs:complexType>
       <xs:attributeGroup ref="om:common.attributes"/>
-      <xs:attributeGroup ref="om:attlist.OMR"/>
+      <xs:attribute ref="xlink:href" use="required"/>
+      <xs:attribute ref="xlink:type"/>
+      <xs:attribute ref="xlink:show"/>
     </xs:complexType>
   </xs:element>
-  <xs:attributeGroup name="attlist.OMR">
-    <xs:attribute ref="xlink:href" use="required"/>
-    <xs:attribute ref="xlink:type" use="required"/>
-    <xs:attribute ref="xlink:show" use="required"/>
-  </xs:attributeGroup>
 </xs:schema>
