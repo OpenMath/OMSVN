@@ -1,0 +1,141 @@
+\newif\iflemma
+\lemmafalse
+\def\OMEGA{{$\Omega${\sc mega}}}    
+\def\CALCULEMUS{Calculemus}
+
+\def\ednoteshape{\sf}
+\newif\ifshowednotes\showednotesfalse
+\def\edshownotes{\showednotestrue}
+\DeclareOption{show}{\showednotestrue}
+\DeclareOption{hide}{\showednotesfalse}
+\ProcessOptions
+
+\newcounter{ednote}
+\def\ed@foot#1#2#3% text, type, label
+{\def\test{#3}\def\empty{}\footnotetext[\value{ednote}]%
+{{\sc{#2}\if\test\empty\else\label{ed:#3}[{#3}]\fi:} \ednoteshape #1}}
+\def\ed@note#1#2#3% text, type, label
+{\addtocounter{ednote}{1}\message{#2!}%
+\ifshowednotes%
+\footnotemark[\arabic{ednote}]\ed@foot{#1}{#2}{#3}%
+\marginpar{#2(\arabic{ednote})}%
+\fi}
+\newcommand{\ednote}[2][]{\ed@note{#2}{EdNote}{#1}}
+\newcommand{\issue}[2][]{\ed@note{#2}{Issue}{#1}}
+\newenvironment{newpart}[1]% text
+{\addtocounter{ednote}{1}\edef\new@number{\theednote}\message{New Part!\new@number}
+\ifshowednotes\ed@foot{#1}{New Part}{}\marginpar{BegNP(\new@number)}\fi}
+{\ifshowednotes\marginpar{EndNP(\new@number)}\fi}
+
+\def\ednotemessage{\ifnum\value{ednote}>0\typeout{}%
+\typeout{There are still \arabic{ednote} EdNotes and Issues to resolve!}%
+\typeout{}\fi}
+
+\documentclass{euproposal}
+\usepackage{paralist}
+
+\begin{document}
+\setcounter{part}{2}% part B
+
+
+\title{Mathematical Content Dictionaries Coordination Action\\
+  Acronym: MCD\\
+  Date of Preparation: 17 June 2004\\
+  Future and Emerging Technologies: FET Open\\
+  Coordination Action}
+\author{University of Bremen\\
+  Coordinator: Professor Michael Kohlhase\\
+  \\
+  email: \texttt{}\\
+  fax: } \titlepage \maketitle
+
+\setcounter{tocdepth}{1}\tableofcontents\newpage
+\begin{center}\bf
+Mathematical Content Dictionaries\\
+MCD
+\end{center}
+\newpage\setcounter{chapter}{0}
+
+\chapter{Objectives of the Action}
+
+
+\begin{quote}\sf
+% ##### short incisive abstract
+\end{quote}
+
+%%%% some prose 
+
+The ability to use computers for performing mathematical tasks has
+undoubtely been one of the key factor in the progress witnessed in the
+last decade in the scientific, engineering, and economics fields. Even
+if it might seem that no further advances can be expected in the
+electronic processing of mathematics, this impression is easily
+contradicted by considering how emerging web technologies might once
+more revolutionize the way we do and use computer mathematics.
+
+As scientists, engineers, economists, and mathematicians become more
+and more dependant on computers in their daily activities, the
+mathematical tasks they perform grow more sophisticated. Supporting
+this trend involves a constant improvement in the software, in the
+interfaces, but mostly, in the way mathematics is represented
+electronically. 
+
+Mathematical knowledge representation is an old problem dating back to
+..., however first the computers, and now the world wide web add
+several new challenges to what seemed to be a solved issue.
+%%% list the challenges
+
+The shift towards doing mathematics on the Internet has emphasized the
+need for a portable, extensible, reusable and shareable format for
+expressing mathematical objects. Collaborative problem solving,
+mathematical web services, and e-learning notes are only a few of the
+activities that greatly benefit from a standardized electronic
+language for mathematics.
+
+%% MATHML
+This need has been recognized some years ago both by the World Wide
+Web Consortium and by the European Community. The W3C promoted  geared exclusively to Math and resulted in the MathML
+language.
+
+%% OpenMath from MKM proposal
+%% 
+OpenMath is a standard for representing mathematical formulae,
+allowing them to be exchanged between computer programs, stored in
+databases, or published on the worldwide web.  While the original
+designers were mainly developers of computer algebra systems, it is
+now attracting interest from other areas of scientific computation and
+from many publishers of electronic documents with a significant
+mathematical content. 
+
+
+
+
+
+
+
+%Unfortunately, not all items of mathematical knowledge are simple
+%formulae: a typical theorem of calculus might be ``If $(a_n)$ and
+%$(b_n)$ are two convergent sequences, then $(a_n+b_n)$ is also a
+%convergent sequence.'' This can only be converted into a single
+%formula by unpacking all the definitions, which would lead to massive
+%growth in the formulae, as well as unreadability, as one tackled more
+%complicated enunciations. The OMDoc\footnote{{\tt
+%    http:/www.mathweb.org/omdoc}.  The author of OMDoc is in the
+%  consortium.}  mechanism is an attempt to extend OpenMath to cover
+%these sorts of concepts and contexts. It is clear that more work will
+%need to be done on Knowledge Representation.
+
+%Ever since the pioneering AUTOMATH\footnote{de Bruijn,N.G., The mathematical
+%  language AUTOMATH, its usage and some of its extensions. In: {\it Proc. Symp.
+%    Automated Deduction\/}, Springer Lecture Notes in Mathematics 125,
+%  Springer-Verlag, 1968.} project, there have been significant projects aimed at
+%automating or semi-automating mathematical knowledge and proof.  Some of this has
+%led to theorem-provers, such as COQ, Isabelle, THEOREMA, VSE and Omega, others to
+%mathematical representations such as MIZAR\footnote{{\tt http://mizar.org}.}, also
+%represented in the consortium.
+
+\section{CD Format Development}
+\section{CD Content Development}
+\section{CD Tools  Development}
+\section{CD Community Building}
+\end{document}
