@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.92 2004/03/30 12:33:53 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.93 2004/03/30 12:46:20 openmath Exp $ -->
 
 
 <!DOCTYPE book 
@@ -74,7 +74,6 @@ SYSTEM "docbook/docbookx.dtd"
     elementFormDefault CDATA #IMPLIED
     targetNamespace CDATA #IMPLIED
     xmlns CDATA #IMPLIED
-    xmlns:xlink CDATA #IMPLIED
     xmlns:xs CDATA #IMPLIED
     xmlns:om CDATA #IMPLIED
 >
@@ -137,7 +136,6 @@ SYSTEM "docbook/docbookx.dtd"
     datatypeLibrary CDATA #IMPLIED
     name CDATA #IMPLIED
     xmlns CDATA #IMPLIED
-    xmlns:xlink CDATA #IMPLIED
     ns CDATA #IMPLIED>
 <!ELEMENT define ANY>
 <!ATTLIST define
@@ -2243,11 +2241,11 @@ an &exml; document.
  <listitem><para>
  &OM; integers, floating point numbers, character strings,
  byearrays, applications, binding, attributions can also be encoded
- as an empty <systemitem>OMR</systemitem> element with an <systemitem>xlink:href</systemitem>
+ as an empty <systemitem>OMR</systemitem> element with an <systemitem>href</systemitem>
  attribute whose value is the value of an id attribute of an &OM; object of
  that type. The &OM; element represented by this <systemitem>OMR</systemitem>
  element is a copy of the &OM; element pointed to in the
- <systemitem>xlink:xref</systemitem> attribute. Note that the representation of the
+ <systemitem>xref</systemitem> attribute. Note that the representation of the
  <systemitem>OMR</systemitem>
  element is <emphasis>structurally equal</emphasis>, but not identical
  to the element it points to. </para>
@@ -2323,7 +2321,7 @@ an &exml; document.
     <title>Shared vs. unshared representations</title>
     
  <literallayout><![CDATA[<OMOBJ version="2.0">         <OMOBJ version="2.0">
-  <OMA>                         <OMA xmlns:xlink="http://www.w3.org/1999/xlink">
+  <OMA>                         <OMA>
     <OMV name="f"/>               <OMV name="f"/> 
     <OMA>                         <OMA id="t1">
       <OMV name="f"/>               <OMV name="f"/>
@@ -2332,13 +2330,13 @@ an &exml; document.
         <OMV name="a"/>               <OMV name="a"/>
         <OMV name="a"/>               <OMV name="a"/>
       </OMA>                        </OMA>
-      <OMA>                         <OMR xlink:href="t11"/>
+      <OMA>                         <OMR href="t11"/>
         <OMV name="f"/>
         <OMV name="a"/> 
         <OMV name="a"/>
       </OMA>                                
     </OMA>                      </OMA>
-    <OMA>                       <OMR xlink:href="t1"/>
+    <OMA>                       <OMR href="t1"/>
       <OMV name="f"/>
       <OMA>
         <OMV name="f"/>
@@ -2460,7 +2458,7 @@ representation: <literallayout><![CDATA[<OMBIND id="outer">
     <OMBIND id="inner">
       <OMS cd="fns1" name="lambda"/>
       <OMBVAR><OMV name="X"/></OMBVAR>
-      <OMR id="copy" xlink:href="orig"/>
+      <OMR id="copy" href="orig"/>
     </OMBIND>
     <OMA id="orig"><OMV name="g"/><OMV name="X"/></OMA>
   </OMA>
