@@ -123,28 +123,7 @@ relative to the OpenMath 1.0 document...</p>
 
 <xsl:template match="para">
 <p>
-<xsl:apply-templates/>
-</p>
-</xsl:template>
-
-
-<xsl:template match="@revisionflag[.='deleted']">
-<xsl:attribute name="class">del</xsl:attribute>
-</xsl:template>
-
-<xsl:template match="@revisionflag[.='added']">
-<xsl:attribute name="class">new</xsl:attribute>
-</xsl:template>
-
-<xsl:template match="para[@revisionflag='deleted']">
-<p class="del">
-<xsl:apply-templates/>
-</p>
-</xsl:template>
-
-<xsl:template match="para[@revisionflag='added']">
-<p class="new">
-<xsl:apply-templates/>
+<xsl:apply-templates select="@revisionflag|node()"/>
 </p>
 </xsl:template>
 
@@ -358,33 +337,27 @@ changelog entry here
 </xsl:template>
 
 <xsl:template match="row">
-<tr><xsl:apply-templates/></tr>
+<tr><xsl:apply-templates select="@revisionflag|node()"/></tr>
 </xsl:template>
 
-<xsl:template match="row[@revisionflag='added']">
-<tr class="new"><xsl:apply-templates/></tr>
+<xsl:template match="@revisionflag[.='added']">
+ <xsl:attribute name="class">new</xsl:attribute>
 </xsl:template>
 
-<xsl:template match="row[@revisionflag='deleted']">
-<tr class="del"><xsl:apply-templates/></tr>
+<xsl:template match="@revisionflag[.='deleted']">
+ <xsl:attribute name="class">del</xsl:attribute>
 </xsl:template>
 
-<xsl:template match="row[@revisionflag='changed']">
-<tr class="dhg"><xsl:apply-templates/></tr>
+<xsl:template match="@revisionflag[.='changed']">
+ <xsl:attribute name="class">chg</xsl:attribute>
 </xsl:template>
+
 
 
 <xsl:template match="entry">
-<td><xsl:apply-templates/></td>
+<td><xsl:apply-templates select="@revisionflag|node()"/></td>
 </xsl:template>
 
-<xsl:template match="entry[@revisionflag='added']">
-<td class="new"><xsl:apply-templates/></td>
-</xsl:template>
-
-<xsl:template match="entry[@revisionflag='deleted']">
-<td class="del"><xsl:apply-templates/></td>
-</xsl:template>
 
 <xsl:template match="thead/row/entry" priority="2">
 <th><xsl:apply-templates/></th>
