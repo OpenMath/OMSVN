@@ -50,6 +50,9 @@ color: red;
 .new {
 color: green;
 }
+.chg {
+color: blue;
+}
 .changetoc {
 border-style: solid;
 border-color: black;
@@ -364,6 +367,10 @@ changelog entry here
 
 <xsl:template match="row[@revisionflag='deleted']">
 <tr class="del"><xsl:apply-templates/></tr>
+</xsl:template>
+
+<xsl:template match="row[@revisionflag='changed']">
+<tr class="dhg"><xsl:apply-templates/></tr>
 </xsl:template>
 
 
