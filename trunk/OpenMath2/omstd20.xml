@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.87 2004/02/25 17:04:10 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.88 2004/03/25 17:31:27 openmath Exp $ -->
 
 
 <!DOCTYPE book 
@@ -300,8 +300,10 @@ as non-normative.</para>
 <para>&OM; is a standard for representing mathematical objects,
 allowing them to be exchanged between computer programs, stored in
 databases, or published on the worldwide web.  While the original
-designers were mainly developers of computer algebra systems, it is
-now attracting interest from other areas of scientific computation and
+designers were mainly developers of computer algebra systems, it
+<phrase revisionflag="deleted">is now attracting</phrase>
+<phrase revisionflag="added">has since attracted</phrase>
+interest from other areas of scientific computation and
 from many publishers of electronic documents with a significant
 mathematical content.  There is a strong relationship to the MathML
 recommendation <citation>MathML_2003</citation> from the Worldwide Web
@@ -327,11 +329,13 @@ and ad-hoc working parties.  This loose arrangement has been
 formalised through the establishment of an &OM; Society.  Up until the
 end of 1996 much of the work of the community was funded through a
 grant from the Human Capital and Mobility program of the European
-Union, the contributions of several institutions and individuals.  A
+Union, 
+<phrase revisionflag="added"> and by</phrase>
+the contributions of several institutions and individuals.  A
 document outlining the objectives and basic design of &OM; was
 produced (later published as
 <citation>Abbott_Leeuwen_Strotmann_98</citation>).  By the end of 1996
-a simplified specification had been agreed on and some prototype
+a simplified specification had been agreed upon and some prototype
 implementations had come about
 <citation>Dalmas_Gaetano_Watt_97</citation>.</para>
 
@@ -347,7 +351,7 @@ workshops in Tallahassee (November 1998) and Eindhoven (June
 
 <para revisionflag="added">In November 1998 the &OM; Society was established to coordinate
 all &OM; activities. The society is based in Helsinki, Finland and is
-steered by the executive committee whose members are elected by the
+coordinated by the executive committee whose members are elected by the
 society. The official web page of the society is
 <ulink url="http://www.openmath.org">http://www.openmath.org</ulink>.</para>
 
@@ -355,8 +359,8 @@ society. The official web page of the society is
 under its Fifth Framework programme to coordinate further work on
 &OM; and MathML, and in particular to support a further series of workshops.  
 This document is one outcome of that project, and seeks to update &OM;
-in the light of recent evelopments in XML and of experience working
-with the old standard.</para>
+in the light of recent developments in XML and of the &OM; community's
+colective experience working with the old standard.</para>
 </section>
 
 <section id="sec_omsoc">
@@ -400,10 +404,14 @@ referred to in the rest of this document.</para>
 <para>The architecture of &OM; is described in <xref
 linkend="fig_om"/> and summarizes the interactions among the different
 &OM; components.  There are three layers of representation of a
-mathematical object <citation>OM_98</citation>. A private layer that
-is the internal representation used by an application.  An abstract
-layer that is the representation as an &OM; object. Third is a
-communication layer that translates the &OM; object representation to
+mathematical object <citation>OM_98</citation>. The first is
+a  private layer that
+is the internal representation used by an application.  The second is
+an abstract layer that is the representation as an &OM; object.
+<phrase revisionflag="added">Note that these
+two layers may, in some cases, be the same.</phrase>
+The third is a
+communication layer that translates the &OM; object representation into
 a stream of bytes. An application dependent program manipulates the
 mathematical objects using its internal representation, it can convert
 them to &OM; objects and communicate them by using the byte stream
@@ -423,12 +431,26 @@ meaningful way, that is, preserving their
 linkend="cha_obj"/> and <xref linkend="cha_enco"/>.</para>
 
 
-<para>The standard endorses encodings in &exml; and binary
-format. These are the encodings supported by the official &OM;
-libraries. However they are not the only possible encodings of &OM;
-objects. Users that wish to define their own encoding using some other
-specific language (e.g.  Lisp) may do so provided there is an
-effective translation of this encoding to an official one.</para>
+<para>The standard endorses two encodings in &exml; and binary
+formats.
+<phrase revisionflag="added">At the time of writing, these are the encodings
+supported by most existing &OM; tools and applications,</phrase>
+<phrase revisionflag="deleted"> These are the encodings supported by 
+the official &OM; libraries</phrase>
+however they are not the only possible encodings of &OM;
+objects. Users who wish to define their own encoding
+<phrase revisionflag="deleted">using some other
+specific language (e.g. Lisp) may</phrase>
+<phrase revisionflag="added">, are free to</phrase>
+do so provided that there is
+<phrase revisionflag="deleted">an
+effective translation from this encoding to an official one
+</phrase>
+<phrase revisionflag="added">a well-defined correspondence
+between the new encoding and the abstract model defined in <xref
+linkend="cha_obj"/>. </phrase>
+</para>
+
 </section>
 
 <section id="sec_intro-cd">
@@ -456,8 +478,8 @@ additional files are related to Content Dictionaries.  Signature files
 contain the signatures of symbols defined in some &OM; Content
 Dictionary and their format is endorsed by this standard.</para>
 
-<para>Furthermore, the standard fixes how to define as a CDGroup a specific
-set of Content Dictionaries.</para>
+<para>Furthermore, the standard fixes how to define a specific
+set of Content Dictionaries as a CDGroup.</para>
 
 <para>Auxiliary files that define presentation and rendering or that
 are used for manipulating and processing Content Dictionaries are not
@@ -471,14 +493,15 @@ discussed by the standard.</para>
 
 <para>The conversion of an &OM; object to/from the internal
 representation in a software application is performed by an interface
-program called <emphasis>Phrasebook</emphasis>. The translation is
+program called a <emphasis>Phrasebook</emphasis>. The translation is
 governed by the Content Dictionaries and the specifics of the
 application. It is envisioned that a software application dealing with
 a specific area of mathematics declares which Content Dictionaries it
 understands. As a consequence, it is expected that the Phrasebook of
 the application is able to translate &OM; objects built using symbols
 from these Content Dictionaries to/from the internal mathematical
-objects of the application.</para>
+objects of the application.
+</para>
 
  <para>&OM; objects do not
 specify any computational behaviour, they merely represent mathematical
@@ -583,7 +606,9 @@ regular expression, as described in <xref linkend="sec_names"/>.
 <section id="sec_derived" revisionflag="added">
 <title>Derived &OM; Objects</title>
 
-<para>A derived &OM; object is built as follows: 
+<para>Derived &OM; objects are currently used as a way by which non-&OM;
+data is embedded inside an &OM; object.
+A derived &OM; object is built as follows: 
 <itemizedlist>
 <listitem><para><phrase>(i)</phrase> If <math><mi>A</mi></math> is
 <emphasis>not</emphasis> an &OM; object, then <math><mi
@@ -595,13 +620,14 @@ mathvariant="bold">foreign</mi><mfenced><mi>A</mi></mfenced></math> is an &OM;
 </section>
 
 <section id="sec_compound">
-<title>Compound &OM; Objects</title>
+<title><phrase revisionflag="deleted">Compound</phrase>&OM; Objects</title>
   
 <para>&OM; objects are built recursively as follows.
 <itemizedlist>
 <listitem><para><phrase>(i)</phrase> Basic &OM; objects are &OM; objects.
-<phrase revisionflag="added">Derived &OM; objects are <emphasis>not</emphasis>
-&OM; objects.</phrase></para>
+(<phrase revisionflag="added">Note that derived &OM; objects are
+<emphasis>not</emphasis> &OM; objects, but are used to construct &OM;
+objects as described below.)</phrase></para>
 </listitem>
 
 <listitem>
@@ -701,12 +727,16 @@ display="block"><mi mathvariant="bold">error</mi>
 <section id="sec_roles" revisionflag="added">
 <title>&OM; Symbol Roles</title>
 
-<para>The <emphasis>role</emphasis> of an &OM; symbol is a restriction
-on how it may be used to construct a compound &OM; object, by which we
-mean whether it can be the first child of an &OM; application,
+<para>
+We say that an &OM; symbol is used to <emphasis>construct</emphasis>
+an &OM; object if it is the first child of an &OM; application,
 binding or error object, or an even-indexed child of an &OM;
-attribution object.  In the latter case it also indicates how the
-application should be interpreted.  Possible roles are:
+attribution object (i.e. the <emphasis>key</emphasis> in a
+<emphasis>(key, value)</emphasis> pair).
+The <emphasis>role</emphasis> of an &OM; symbol is a restriction
+on how it may be used to construct a compound &OM; object and, in the
+case of the key in an attribution object, a clarification of how that
+attribution should be interpreted.  Possible roles are:
 <orderedlist numeration="lowerroman">
 
 <listitem><para><emphasis>binder</emphasis> The symbol may 
@@ -715,7 +745,7 @@ appear as the first child of an &OM; binding object.
 
 <listitem><para> <emphasis>attribution</emphasis> The symbol may 
 be used as key in an &OM; attribution object, i.e. as the first
-element of a key-value pair, or in an equivalent context (for example
+element of a (key, value) pair, or in an equivalent context (for example
 to refer to the value of an attribution).  This form of attribution
 may be ignored by an application, so should be used for information
 which does not change the meaning of the attributed &OM; object.
@@ -739,15 +769,16 @@ used to construct an &OM; compound object.
 
 </orderedlist>
 
-A symbol cannot have more than one role, and if a role is indicated
-then it cannot be used to construct a compound &OM; object in a way
-which requires another role (using the definition of construct given
+A symbol cannot have more than one role and 
+cannot be used to construct a compound &OM; object in a way
+which requires a different role (using the definition of construct given
 earlier in this section).
 This means that one cannot use a symbol which binds some variables to
 construct, say, an application object.  However it does not prevent
 the use of that symbol as an <emphasis>argument</emphasis> in an
 application object (where by argument we mean a child with index
-greater than 1).  </para>
+greater than 1). 
+</para>
 
 <para> 
 If no role is indicated then the symbol can be used anywhere.  Note
@@ -847,8 +878,10 @@ they could also contain intermediate results of calculations, or
 </variablelist> </para>
 
 
-<para revisionflag="added">Currently there is one way of making a
-derived &OM; object.</para>
+<para revisionflag="added">Derived &OM; objects are constructed from
+non-&OM; data.  They differ from bytearrays in that they can have any
+structure.  Currently there is only one way of making a derived &OM;
+object.</para>
 
 <variablelist revisionflag="added">
 <varlistentry><term>Foreign</term><listitem><para>is used to import a
@@ -864,16 +897,18 @@ an object.
 
 
 <para>The four following constructs can be used to make compound
- &OM; objects.</para>
+ &OM; objects <phrase revisionflag="added"> out of basic or derived &OM;
+objects</phrase>.</para>
 <variablelist>
 <varlistentry><term>Application</term><listitem><para>constructs an
   &OM; object from a sequence of one or more &OM; objects. The first
-  argument of application is referred to as <quote>head</quote> while
-  the remaining objects are called <quote>arguments</quote>.  An &OM;
+  argument of an application is referred to as its <quote>head</quote> while
+  the remaining objects are called its <quote>arguments</quote>.  An &OM;
   application object can be used to convey the mathematical notion of
   application of a function to a set of arguments.  For instance,
   suppose that the &OM; symbol <math><mi>sin</mi></math> is defined in
-  a Content Dictionary for trigonometry, then <math><mi
+  a <phrase revisionflag="added">suitable</phrase> Content Dictionary,
+  <phrase revisionflag="deleted">for trigonometry</phrase> then <math><mi
   mathvariant="bold">application</mi><mo>(</mo><mi>sin</mi><mo>,</mo>
   <mi>x</mi> <mo>)</mo></math> is the abstract &OM; object
   corresponding to <math><mi>sin</mi> <mo>(</mo><mi>x</mi>
@@ -1044,7 +1079,7 @@ expression could be attributed with its spoken or visual rendering.
 
 <para revisionflag="added">Attribution acts as either adornment
   annotation or as semantical annotation. When the key has role
-  <emphasis> attribution</emphasis>, then replacement of the
+  <emphasis>attribution</emphasis>, then replacement of the
   attributed object by the object itself is not harmful and preserves
   the semantics. When the key has role
   <emphasis>semantic-attribution</emphasis> then the attributed
@@ -1055,9 +1090,20 @@ expression could be attributed with its spoken or visual rendering.
   </para>
 
 
-<para>Objects can be decorated in a multitude of
-ways. In&#160;<citation>OM_D132b</citation>, typing of &OM; objects is
-expressed by using an attribution. The object <math><mi
+<para>Objects can be decorated in a multitude of ways.
+<phrase revisionflag="deleted">In&#160;<citation>OMD132b</citation>, typing of &OM; objects is
+expressed by using an attribution.
+</phrase>
+<phrase revisionflag="added">An example of the use of an adornment attribution
+would be to indicate the colour in which an &OM; object should be
+displayed, for example <math><mi
+mathvariant="bold">attribution</mi><mo>(</mo><mi>A</mi><mo>,</mo>
+<mi>colour</mi> <mspace width=".3em"/> <mi>red</mi> <mo>)</mo></math>.
+Note that both <math><mi>A</mi></math> and <math><mi>red</mi></math> are &OM;
+objects.
+An example of the use of a semantic attribution would be to indicate the
+type of an object.  For example</phrase>
+the object <math><mi
 mathvariant="bold">attribution</mi><mo>(</mo><mi>A</mi><mo>,</mo>
 <mi>type</mi> <mspace width=".3em"/> <mi>t</mi> <mo>)</mo></math>
 represents the judgment stating that object <math><mi>A</mi></math>
@@ -1098,26 +1144,29 @@ objects.</para>
 <section id="sec_names" revisionflag="added">
 <title>Names</title>
 
-<para>The names of symbols, variables and content dictionaries must conform to the
-production Name specified in the following  grammar, which is
-identical to the grammar for &exml; names in XML 1.1, <citation>xml_04</citation>.</para>
+<para>The names of symbols, variables and content dictionaries must
+conform to the production <systemitem>Name</systemitem> specified in the following
+grammar
+(which is identical to that for &exml; names in XML 1.1,
+<citation>xml_04</citation>). Informally speaking, a name is a sequence
+of Unicode <citation>UNICODE</citation>
+characters which begins with a letter and cannot contain
+certain punctuation and combining  characters.  The notation
+<systemitem>#x...</systemitem> represents the hexadecimal value of 
+the encoding of a Unicode character. 
+Some of the character values or <emphasis>code points</emphasis> in the
+following productions are currently unassigned, but this is
+likely to change in the future as Unicode evolves<footnote id="xml1">
+<para>
+We note that in XML 1 the name production explictly listed 
+the characters that were allowed, so all the characters added in
+versions of Unicode after 2.0 (which amounted to tens of thousands of
+characters) were not allowed in names.
+</para>
+</footnote>.
 
-<para>Note that the schema for OpenMath 
-described in <xref linkend="ssec_xml"/> specifies the names as xsd:Name
-type. At the time of writing, W3C Schema types are defined in terms of
-<citation>xml_98</citation> which uses a more restrictive set of name
-characters, based on the characters available in Unicode 2.0.
-It is expected that W3C Schema types will be augmented to match the
-new XML recommendation, but for portability reasons applications
-should avoid  using the new XML 1.1 name characters unless they are
-absolutely required. Note the XML 1 name production listed explictly
-th echaracters that were allowed, so all characters added in later
-versions since Unicode 2.0 (which amounts to 10's of thousands of
-characters) are not allowed in names. XML 1.1 name production as shown
-below excludes certain punctuation and combining  characters, but
-includes all other code points including codepoints that are currently
-unassigned. The XML 1.1 specification has a useful appendix giving
-advice on good strategies to use when naminmg identifiers.</para>
+</para>
+
 <blockquote>
 <informaltable>
 <tgroup cols="3">
@@ -1130,19 +1179,35 @@ advice on good strategies to use when naminmg identifiers.</para>
 <row>
 <entry>NameStartChar</entry>
 <entry> <math>&longrightarrow;</math> </entry>
-<entry>  ":" | [A-Z] | "_" | [a-z] | [#xC0-#xD6] | [#xD8-#xF6] | [#xF8-#x2FF] | [#x370-#x37D] | [#x37F-#x1FFF] | [#x200C-#x200D] | [#x2070-#x218F] | [#x2C00-#x2FEF] | [#x3001-#xD7FF] | [#xF900-#xFDCF] | [#xFDF0-#xFFFD] | [#x10000-#xEFFFF] 
+<entry>  ":" | [A-Z] | "_" | [a-z] | [#xC0-#xD6] | [#xD8-#xF6] |</entry></row>
+<row><entry/><entry/><entry>[#xF8-#x2FF] | [#x370-#x37D] | [#x37F-#x1FFF] |</entry></row>
+<row><entry/><entry/><entry>[#x200C-#x200D] | [#x2070-#x218F] | [#x2C00-#x2FEF] |</entry></row>
+<row><entry/><entry/><entry>[#x3001-#xD7FF] | [#xF900-#xFDCF] | [#xFDF0-#xFFFD] |</entry></row>
+<row><entry/><entry/><entry>[#x10000-#xEFFFF] 
 </entry>
 </row>
 <row>
 <entry>NameChar</entry>
 <entry> <math>&longrightarrow;</math> </entry>
-<entry>  NameStartChar | "-" | "." | [0-9] | #xB7 | [#x0300-#x036F] | [#x203F-#x2040] </entry>
+<entry>  NameStartChar | "-" | "." | [0-9] | #xB7 | [#x0300-#x036F] |</entry></row>
+<row><entry/><entry/><entry>[#x203F-#x2040] </entry>
 </row>
 </tbody>
 </tgroup>
 </informaltable>
 </blockquote>
 
+<para><emphasis role="bold">Note:</emphasis> The schema for the &exml; encoding of OpenMath 
+described in <xref linkend="ssec_xml"/> specifies the names as xsd:Name
+type. At the time of writing, W3C Schema types are defined in terms of
+<citation>xml_98</citation> which uses a more restrictive set of name
+characters, based on the characters available in Unicode 2.0.
+It is expected that W3C Schema types will be augmented to match the
+new XML recommendation, but for portability reasons applications
+should avoid  using the new XML 1.1 name characters unless they are
+absolutely required.
+The XML 1.1 specification has a useful appendix giving
+advice on good strategies to use when naming identifiers.</para>
 
 
 <formalpara><title>CD Base</title>
