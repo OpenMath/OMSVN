@@ -170,7 +170,7 @@ relative to the OpenMath 1.0 document...</p>
 <xsl:template match="emphasis">
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <i>
-<xsl:apply-templates/>
+<xsl:apply-templates select="@revisionflag|node()"/>
 </i>
 </xsl:if>
 </xsl:template>
@@ -331,14 +331,14 @@ relative to the OpenMath 1.0 document...</p>
 
 <xsl:template match="systemitem">
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
-<small><code><xsl:apply-templates/></code></small>
+<small><code><xsl:apply-templates select="@revisionflag|node()"/></code></small>
 </xsl:if>
 </xsl:template>
 
 
 <xsl:template match="blockquote">
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
-<blockquote><xsl:apply-templates/></blockquote>
+<blockquote><xsl:apply-templates select="@revisionflag|node()"/></blockquote>
 </xsl:if>
 </xsl:template>
 
@@ -346,6 +346,7 @@ relative to the OpenMath 1.0 document...</p>
 <xsl:template match="figure">
 <xsl:if test="$showdiffs or  not(ancestor-or-self::*/@revisionflag='deleted')">
 <div class="figure">
+<xsl:apply-templates select="(ancestor-or-self::*/@revisionflag)[last()]"/>
 <a name="{@id}" id="{@id}"/>
 <xsl:apply-templates/>
 <div>

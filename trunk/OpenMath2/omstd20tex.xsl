@@ -222,7 +222,7 @@ relative to the OpenMath 1.0 document\ldots
 <xsl:template match="itemizedlist">
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 \begin£itemizeﬂ
-<xsl:apply-templates/>
+<xsl:apply-templates  select="@revisionflag|node()"/>
 \end£itemizeﬂ
 </xsl:if>
 </xsl:template>
@@ -278,7 +278,7 @@ relative to the OpenMath 1.0 document\ldots
 
 <xsl:template match="systemitem">
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
-<xsl:text/>\texttt£<xsl:apply-templates/>ﬂ<xsl:text/>
+<xsl:text/>\texttt£<xsl:apply-templates select="@revisionflag|node()"/>ﬂ<xsl:text/>
 </xsl:if>
 </xsl:template>
 
@@ -286,7 +286,7 @@ relative to the OpenMath 1.0 document\ldots
 <xsl:template match="blockquote">
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 \begin£quotationﬂ
-<xsl:apply-templates/>
+<xsl:apply-templates select="@revisionflag|node()"/>
 \end£quotationﬂ
 </xsl:if>
 </xsl:template>
