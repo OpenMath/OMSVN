@@ -332,11 +332,13 @@ changelog entry here
 
 
 <xsl:template match="informaltable">
-<xsl:if test="@role='small'">£\footnotesize</xsl:if>
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
+£<xsl:apply-templates select="@revisionflag"/>
+<xsl:if test="@role='small'">\footnotesize</xsl:if>
 \begin£tabularﬂ£cccccccccccccﬂ
 <xsl:apply-templates select="tgroup/*"/>
-\end£tabularﬂ<xsl:if test="@role='small'">ﬂ</xsl:if>
-<xsl:text>&#10;</xsl:text>
+\end£tabularﬂ<xsl:text>ﬂ&#10;</xsl:text>
+</xsl:if>
 </xsl:template>
 
 
