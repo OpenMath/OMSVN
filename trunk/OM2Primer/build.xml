@@ -2,7 +2,7 @@
 
 <!--
   
-    $Id: build.xml,v 1.9 2004/07/01 12:57:53 openmath Exp $
+    $Id: build.xml,v 1.10 2004/07/14 13:14:57 openmath Exp $
 
     Copyright (c) 2003, RISC-Linz, Mathbroker, Austria.
     All Rights Reserved.
@@ -68,23 +68,56 @@
   </target>
 
 
+  <!-- primer in xhtml is generated using davids xsl - no chunks -->
+
+  <target name="david" depends="prepare"
+	  description="Produce the xhtml primer using David Carlisle xslt">
+
+    <style basedir="${package.root}/src/xml"
+	   includes="**/primerom20.xml"
+	   style="${package.src}/xsl/omprimer.xsl"
+	   destdir="${build.obj}/xhtml/"
+	   extension=".xml"
+	   force="true">
+    </style>    
+
+    <copy todir="${build.obj}/xhtml"> 
+      <fileset dir="${package.src}/xml/" includes="*.png"/>
+    </copy>
+
+    <copy todir="${build.obj}/xhtml"> 
+      <fileset dir="${package.src}/xsl/" includes="pmathml.xsl"/>
+    </copy>
+
+  </target>
+
 
 
   <!-- I leave this here in case we want to use saxon -->
 
   <target name="saxon" depends="prepare">
 
-   <replace file="${build.obj}/xhtml/primer.xsl"
-      token="@stylesheet.uri"
-      value="${docbook.xsl}/xhtml/chunk.xsl"/>
-
     <java classname="com.icl.saxon.StyleSheet" fork="yes">
-    <arg line="-o ${build.obj}/xhtml/primer.xhtml
-	${package.src}/xml/primerom20.xml ${build.obj}/xhtml/primer.xsl"/>
+    <arg line="${package.src}/xml/primerom20.xml ${package.src}/xsl/omprimer.xsl chunk=true"/>
       <classpath>
         <pathelement location="lib/saxon.jar"/>
       </classpath>
     </java>
+
+ <!-- bug: files are produced in root directory -->
+
+    <move todir="${build.obj}/xhtml" verbose="true"> 
+      <fileset dir="${package.root}" >
+          <include name="omprimer20html-*.xml"/>
+      </fileset>
+    </move>
+
+
+    <copy todir="${build.obj}/xhtml"> 
+      <fileset dir="${package.src}/xsl/" includes="pmathml.xsl"/>
+    </copy>
+
+ 
   </target>
 
 
