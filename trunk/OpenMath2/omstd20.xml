@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.53 2003/11/09 18:14:31 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.54 2003/11/10 15:53:03 openmath Exp $ -->
 
 <!--
  PUBLIC "-//OASIS//DTD DocBook XML V4.2CR1//EN"
@@ -1819,8 +1819,8 @@ encoded as <systemitem>&lt;OMI> 10 &lt;/OMI> </systemitem> or as
   <phrase revisionflag="added">The optional <systemitem>cdbase</systemitem>
     attribute is a URI that can be used to disambiguate between two  content
     dictionaries with the same name. The
-  <systemitem>cdbase</systemitem> attribute may be used on any parent
-  element, any <systemitem>OMS</systemitem> elements without an
+  <systemitem>cdbase</systemitem> attribute may be used on any ancester
+  element of the current <systemitem>OMS</systemitem>, any <systemitem>OMS</systemitem> elements without an
   explict  <systemitem>cdbase</systemitem> attribute which is a
   descendent of such an element is taken to
   encode an OpenMath symbol with this CD base.</phrase>
@@ -1866,7 +1866,9 @@ MathML document <citation>MathML_2000</citation>.</para>
 <para revisionflag="added">
 Note that the role attribute described in <xref
 linkend="sec_roles"/> is contained in the Content Dictionary and is not
-part of the encoding of a symbol.</para>
+part of the encoding of a symbol, also the <systemitem>cdbase</systemitem> attribute need not
+be explict on each <systemitem>OMS</systemitem> as it is inherited
+from any ancestor element.</para>
 </listitem>
 </varlistentry>
 <varlistentry><term>Variables</term><listitem><para>are encoded using
@@ -3534,7 +3536,7 @@ tags (<phrase revisionflag="added">token identifier</phrase> 18). More
 </para>
 
 <section id="sec_sharing">
-<title>Sharing <phrase revisionflag="added">in Objects begining with the identifier [24]</phrase></title>
+<title>Sharing <phrase revisionflag="added">in Objects beginning with the identifier [24]</phrase></title>
  
 <para>This binary encoding supports the sharing of symbols, variables and strings
 (up to a certain length for strings) within one object. That is, sharing between
