@@ -65,6 +65,7 @@
 <!ENTITY varnamechar "+=(),-./:?!#$&#37;*;@[]^_`{|}"><!-- dpc: remove `TeX error?  -->
 
 <!ENTITY omrnc SYSTEM "openmath2.rnc">
+<!ENTITY omrng SYSTEM "openmath2.rng">
 ]>
 <book xml:space="preserve">
 <title>The &OM; Standard</title>
@@ -1029,7 +1030,7 @@ representation that can be easily exchanged between processes (via
 almost any communication method) or stored and retrieved from files.</para>
 
 
-<para>The first encoding uses ISO 646:1983
+<para revisionflag="deleted">The first encoding uses ISO 646:1983
 characters&#160;<citation>iso646_83</citation> (also known as
 <acronym>ascii</acronym> characters) and is an &exml;
 application. Although the &exml; markup of the encoding uses only
@@ -1038,6 +1039,16 @@ Unicode/ISO 10646:1988 characters&#160;<citation>UNICODE</citation>.
 It can be used, for example, to send &OM; objects via e-mail, news,
 cut-and-paste, etc. The texts produced by this encoding can be part of
 &exml; documents.</para>
+
+<para revisionflag="added">The first encoding is a character-based
+encoding in &exml; format.  In previous versions of the &OM; Standard
+this encoding was a restricted subset of the full legal &exml; syntax.
+In this version, however, we have removed all these restrictions so that
+the earlier encoding is a strict subset of the existing one.  The
+&exml; encoding can be used, for example, to send &OM; objects via
+e-mail, cut-and-paste, etc. and to embed &OM; objects in &exml;
+documents or to have &OM; objects processed by &exml;-aware
+applications.</para>
 
 <para>The second encoding is a binary encoding that is meant to be
 used when the compactness of the encoding is important (interprocess
@@ -1052,18 +1063,19 @@ very easily determine which encoding is used.</para>
 
 <para>This encoding has been designed with two main goals in mind:
 <orderedlist>
-<listitem><para>to provide an encoding that uses the most common character set
+<listitem><para>to provide an encoding that uses common character sets
   (so that it can be easily included in most documents and transport
   protocols) and that is both readable and writable by a human.</para>
 </listitem>
 <listitem><para>to provide an encoding that can be included (embedded) in
-  &exml; documents.</para>
+  &exml; documents or processed by &exml;-aware applications.</para>
 </listitem>
 </orderedlist> 
 </para>
 
 <section id="ssec_xml">
-<title>A Grammar for the &exml; Encoding</title>
+<title>A <phrase
+revisionflag="deleted">Grammar</phrase><phrase>Schema</phrase> for the &exml; Encoding</title>
 
 
 <sidebar revision="1999/09/09" author="DPC"><para>Modify description
@@ -1071,11 +1083,29 @@ very easily determine which encoding is used.</para>
     other changes to increase portability to &exml;
     applications.</para></sidebar>
 
-<para revisionflag="changed">The &exml; encoding of an &OM; object is
-defined by the Relax NG schema (<acronym>RNC</acronym>) below. XSLT
-stylesheets allow to generate a DTD and an XSD schema from it.<phrase
-revisionflag="deleted">with the following additional rules not implied
-by the &exml; <acronym>dtd</acronym>.</phrase></para>
+<para revisionflag="added">The &exml; encoding of an &OM; object is
+defined by the Relax NG schema <citation>RELAX</citation> given below.
+Relax NG has a number of advantages over the older XSD Schema format
+<citation>XSD</citation>, in particular it allows for tighter control
+of attributes and has a modular, extensible structure.  Although we
+have made the &exml; form of the schema normative it can be generated
+using the compact syntax given in <xref linkend="app_relaxcompact"/>.
+It is also very easy to restrict the schema to allow a limited set of
+&OM; symbols as described in <xref linkend="app_relaxrestricted"/>.
+</para>
+
+<para revisionflag="added"> Standard tools exist for generating a DTD
+or an XSD schema from a Relax NG Schema.  Examples of such documents
+are given in <xref linkend="app_dtd"/> and <xref linkend="app_xsd"/>
+respectively.</para>
+
+<literallayout>
+&omrng;
+</literallayout>
+<para><phrase revisionflag="deleted">the &exml; encoding of an
+&OM; object is defined by the dtd given in Figure 4.1 below with the
+following additional rules not implied by the &exml;
+<acronym>dtd</acronym>.</phrase></para>
 
 <itemizedlist revisionflag="deleted">
 <listitem><para revisionflag="deleted" >Comments are permitted only between
@@ -1097,14 +1127,10 @@ of <xref linkend="fig_xml"/>.</para>
 </itemizedlist>
 
 
-<literallayout revisionflag="added">
-&omrnc;
-</literallayout>
-
 
 <para id="fig_objdtd" revisionflag="deleted">
     <phrase>DTD for the &OM; &exml; encoding of objects.</phrase>
-<literallayout><![CDATA[
+<literallayout revisionflag="deleted"><![CDATA[
 <!-- DTD for OM Objects - sb 29.10.98 -->
 <!-- sb 3.2.99 -->
 
@@ -1563,10 +1589,19 @@ cdname      </entry>
 </section>
 
 <section id="sec_xml-desc">
-<title>Description of the Grammar</title>
+<title><phrase revisionflag="added">Informal</phrase> description of
+the <phrase revisionflag="deleted">Grammar</phrase><phrase
+revisionflag="added">&exml; Encoding</phrase></title>
 
 <para>An encoded &OM; object is placed inside an <systemitem>OMOBJ</systemitem> element.  This 
-element can contain the elements (and integers) as described above.</para>
+element can contain the elements (and integers) described above.
+<phrase revisionflag="added"> It can take an optional
+<systemitem>version</systemitem> &exml;-attribute which indicates to which
+version of the &OM; standard it conforms.  This would allow an older
+&OM; application which, for example, could not parse the full &exml;
+syntax, to accept objects with version "1" or "1.1" but reject objects
+with version "2".
+</phrase></para>
 
 <para>We briefly discuss the &exml; encoding for each type of &OM; object
 starting from the basic objects.</para>
@@ -1609,16 +1644,22 @@ encoded as <systemitem>&lt;OMI> 10 &lt;/OMI> </systemitem> or as
   <phrase revisionflag="added">The optional <systemitem>uristub</systemitem>
     attribute is a URI that can be used to disambiguate between two  content
     dictionaries with the same name.</phrase>
-
+<phrase revisionflag="deleted">
   The name
   of the Content Dictionary is compulsory, but a future revision of
-  the &OM; standard might introduce a defaulting mechanism.  For
-  example, <systemitem>&lt;OMS cd="transc" name="sin"/></systemitem>
+  the &OM; standard might introduce a defaulting mechanism.w
+</phrase> For
+  example:
+<blockquote><systemitem>&lt;OMS 
+<phrase revisionflag="added">uristub="http://www.openmath.org/cd"</phrase> cd="transc" name="sin"/></systemitem>
+</blockquote>
   is the encoding of the symbol named <systemitem>sin</systemitem> in
-  the Content Dictionary named <systemitem>transc</systemitem>.</para>
+  the Content Dictionary named <systemitem>transc</systemitem>,
+<phrase revisionflag="added">which is part of the collection
+maintained by the &OM; Society</phrase>.</para>
 
 <para revisionflag="added">The three attributes of the
-  <systemitem>OMS</systemitem> are used in order to build a URI for the symbol,
+  <systemitem>OMS</systemitem> can be used to build a URI for the symbol,
 for use in contexts where URI-based referencing mechanisms are used. This
 canonical URI is constructed as follows:</para>
 <blockquote  revisionflag="added">
@@ -1627,11 +1668,12 @@ canonical URI is constructed as follows:</para>
 
 <para revisionflag="added">For example</para>
 <blockquote  revisionflag="added">
-  <literallayout><![CDATA[<OMS name="plus" cd="arith1" uristub="http://www.openmath.org/CDs"/>]]></literallayout>
+  <literallayout><![CDATA[<OMS name="plus" cd="arith1" uristub="http://www.openmath.org/cd"/>]]></literallayout>
 </blockquote>
 <para revisionflag="added">
-  gives the URI <systemitem>"http://www.openmath.org/CDs/arith1/plus"</systemitem>
-  This allows us to refer uniquely to an openmath symbol from a MathML document.</para>
+  gives the URI <systemitem>"http://www.openmath.org/cd/arith1/plus"</systemitem>
+  This would allow us to refer uniquely to an openmath symbol from a
+MathML document <citation>MathML_2000</citation>.</para>
 <blockquote  revisionflag="added">
   <literallayout>
 &lt;mathml:csymbol xmlns:mathml="http://www.w3.org/TR/MathML2/"
@@ -1639,16 +1681,38 @@ canonical URI is constructed as follows:</para>
   </literallayout>
 </blockquote>
 </listitem>
+<para revisionflag="added">
+Note that the role attribute described in <xref
+linkend="sec_roles"/> is contained in the Content Dictionary and is not
+part of the encoding of a symbol.</para>
 </varlistentry>
 <varlistentry><term>Variables</term><listitem><para>are encoded using
   the <systemitem>OMV</systemitem> element, with only one
   &exml;-attribute, <systemitem>name</systemitem>, whose value is the
-  variable name.  The variable name is a subset of the printable
+  variable name. <phrase revisionflag="deleted">
+The variable name is a subset of the printable
   <acronym>ascii</acronym> set of characters.  In particular, neither
   spaces nor double-quote <systemitem>&quot;</systemitem> are allowed
-  in variable names.  For instance, the encoding of the object
+  in variable names.</phrase>  For instance, the encoding of the object
   representing the variable <math><mi>x</mi></math> is:
   <systemitem>&lt;OMV name="x"/></systemitem></para>
+
+<para revisionflag="added">
+For an enumerated variable the index or indices of the variable are
+encoded as a child.  So for example the encoding
+   of the object
+  representing the variable
+<math><msub><mi>x</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub></math> is:
+<literallayout><![CDATA[
+            <OMV name="x">  
+              <OMA>
+                <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="plus"/> 
+                <OMV name="i"/>  
+                <OMI>1</OMI>
+              </OMA>
+            </OMV> 
+            ]]></literallayout>
+</para>
 
   
 </listitem>
@@ -1675,12 +1739,13 @@ canonical URI is constructed as follows:</para>
 </listitem>
 </varlistentry>
 <varlistentry><term>Character strings</term><listitem><para>are encoded using the <systemitem>OMSTR</systemitem> element.
-  Its content is  a Unicode text (The default encoding 
+  Its content is  a Unicode text <phrase revisionflag="deleted">(The default encoding 
   is <acronym>utf-8</acronym><citation>utf8</citation>, although &exml; encoded &OM; may be embedded
  in a containing &exml; document that specifies alternative encoding in
-  the &exml; declaration. Note that as always in &exml; the
+  the &exml; declaration</phrase>. Note that as always in &exml; the
   characters <systemitem>&lt;</systemitem> and <systemitem>&amp;</systemitem>  need to be represented by the
-  entity references <systemitem>&lt;</systemitem> and <systemitem>&amp;</systemitem> respectively.</para>
+  entity references <systemitem>&amp;lt;</systemitem> and
+<systemitem>&amp;amp;</systemitem> respectively.</para>
   
 </listitem>
 </varlistentry>
@@ -1711,8 +1776,8 @@ canonical URI is constructed as follows:</para>
 <para>For example, <math><mi mathvariant="bold">application</mi><mo>(</mo><mi>sin</mi><mo>,</mo><mi>x</mi> <mo>)</mo></math> is encoded as:
 <literallayout><![CDATA[
             <OMA>  
-            <OMS cd="transc1" name="sin"/> 
-            <OMV name="x"/>  
+              <OMS uristub="http://www.openmath.org/cd" cd="transc1" name="sin"/> 
+              <OMV name="x"/>  
             </OMA> 
             ]]></literallayout>
   provided that the symbol <systemitem>sin</systemitem> is defined to be a function
@@ -1734,12 +1799,12 @@ canonical URI is constructed as follows:</para>
      <mo>(</mo><mi>sin</mi><mo>,</mo> <mi>x</mi><mo>)</mo><mo>)</mo></math> is:
 <literallayout><![CDATA[ 
       <OMBIND>
-        <OMS cd="fns1" name="lambda"/>  
+        <OMS uristub="http://www.openmath.org/cd" cd="fns1" name="lambda"/>  
         <OMBVAR>
           <OMV name="x"/>
         </OMBVAR>  
         <OMA>
-          <OMS cd="transc1" name="sin"/> 
+          <OMS uristub="http://www.openmath.org/cd" cd="transc1" name="sin"/> 
           <OMV name="x"/>  
         </OMA>
       </OMBIND>]]></literallayout></para>
@@ -1762,7 +1827,7 @@ canonical URI is constructed as follows:</para>
 <literallayout><![CDATA[
           <OMATTR>    
              <OMATP>
-                  <OMS cd="groups" name="automorphism_group" />  
+                  <OMS uristub="http://www.openmath.org/cd" cd="groups" name="automorphism_group" />  
                   [..group-encoding..] 
              </OMATP>  
              [..group-encoding..] 
@@ -1771,14 +1836,61 @@ or to express the type of a variable:
 <literallayout><![CDATA[ 
           <OMATTR>    
               <OMATP>
-                   <OMS cd="ecc" name="type" /> 
-                   <OMS cd="ecc" name="real" />
+                   <OMS uristub="http://www.openmath.org/cd" cd="ecc" name="type" /> 
+                   <OMS uristub="http://www.openmath.org/cd" cd="ecc" name="real" />
               </OMATP> 
               <OMV name="x" />
             </OMATTR>]]></literallayout></para>
 
   
 </listitem>
+
+<para revisionflag="added">
+A special use of attributions is to associate non-&OM; data with an
+&OM; object.  This is done using the
+<systemitem>OMFOREIGN</systemitem> element.  The children of this
+element must be well-formed &exml;.  For example the attribution of the
+&OM; object 
+  <math>
+     <mi>sin</mi><mfenced><mi>x</mi></mfenced></math> with its
+representation in Presentation MathML is:
+<literallayout><![CDATA[ 
+      <OMATTR>
+        <OMATP>
+          <OMS cd="presentation1" name="mathml"/>  
+          <OMFOREIGN>
+            <math xmlns="http://www.w3.org/TR/MathML2">
+              <mi>sin</mi><mfenced><mi>x</mi></mfenced>
+            </math>
+          </OMFOREIGN>  
+        </OMATP>
+        <OMA>
+          <OMS uristub="http://www.openmath.org/cd" cd="transc1" name="sin"/> 
+          <OMV name="x"/>  
+        </OMA>
+      </OMATTR>]]></literallayout>
+Of course not everything has a natural XML encoding in this way and
+often the contents of a <systemitem>OMFOREIGN</systemitem> will just
+be data or some kind of encoded string.  For example the attribution
+of the previous object with its LaTeX representation could be achieved
+as follows:
+<literallayout><![CDATA[ 
+      <OMATTR>
+        <OMATP>
+          <OMS cd="presentation1" name="latex"/>  
+          <OMFOREIGN>
+            <OMS>sin\,(x)</OMS>
+          </OMFOREIGN>  
+        </OMATP>
+        <OMA>
+          <OMS uristub="http://www.openmath.org/cd" cd="transc1" name="sin"/> 
+          <OMV name="x"/>  
+        </OMA>
+      </OMATTR>]]></literallayout>
+We have used the <systemitem>OMSTR</systemitem> element here for
+convenience to encode a string, but any element understood by the
+application receiving this object could have been used.
+</para>
 </varlistentry>
 
 <varlistentry>
@@ -1796,9 +1908,9 @@ or to express the type of a variable:
 
 <literallayout><![CDATA[ 
             <OME>
-            <OMS cd="aritherror" name="DivisionByZero"/>  
+            <OMS uristub="http://www.openmath.org/cd" cd="aritherror" name="DivisionByZero"/>  
             <OMA>
-                 <OMS cd="arith1" name="divide" />
+                 <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="divide" />
                  <OMV name="x"/>  
                  <OMI> 0 </OMI>
             </OMA> 
@@ -1930,9 +2042,9 @@ in Figure <xref linkend="fig_shared_vs_unshared"/>, the
 <systemitem>OMA</systemitem> element with <systemitem>id="t1"</systemitem> and
 also the second <systemitem>OMR</systemitem> dominate the
 <systemitem>OMA</systemitem> element with <systemitem>id="t11"</systemitem>.
-</para> </listitem> </varlistentry> </variablelist> </section>
+</para> </listitem> </varlistentry> </variablelist>
 
-<section id="sec_acyclicity">
+<section id="sec_acyclicity" revisionflag="added">
 <title>An Acyclicity Constraint</title>
 
 <para revisionflag="added">The occurrences of the <systemitem>OMR</systemitem> element must obey the following global
@@ -1942,10 +2054,10 @@ also the second <systemitem>OMR</systemitem> dominate the
 <literallayout><![CDATA[
 <OMOBJ>
   <OMA id="foo">
-    <OMS cd="arith1" name="divide"/>
+    <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="divide"/>
     <OMI>1</OMI>
     <OMA>
-       <OMS cd="arith1" name="plus"/>
+       <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="plus"/>
        <OMI>1</OMI>
        <OMR xref="foo"/>
     </OMA> 
@@ -2018,12 +2130,12 @@ with binding in a semantically intuitive way, since it allows for
 variable capture. Consider for instance the following &exml;
 representation: <literallayout><![CDATA[
 <OMBIND id="outer">
-  <OMS cd="fns1" name="lambda"/>
+  <OMS uristub="http://www.openmath.org/cd" cd="fns1" name="lambda"/>
   <OMBVAR><OMV name="X"/></OMBVAR>
   <OMA>
     <OMV name="f"/>
     <OMBIND id="inner">
-      <OMS cd="fns1" name="lambda"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="fns1" name="lambda"/>
       <OMBVAR><OMV name="X"/></OMBVAR>
       <OMR id="copy" xlink:href="orig"/>
     </OMBIND>
@@ -2146,6 +2258,7 @@ capture variables in this way can easily lead to representation errors, and is n
   recommended.
 </para>
 </section>
+</section>
 
 <section id="xmldoc">
 <title>Embedding &OM; in &exml; Documents</title>
@@ -2160,12 +2273,16 @@ to accept or produce.</para>
 one may wish, or need, to use other &exml; features. For example use of
 extra &exml; attributes to specify &exml; Namespaces&#160;<citation>xmlns</citation>
 or xml:lang attributes to specify the language used in strings&#160;<citation>xml</citation>.
-Also, the encoding used in the larger document may not be <acronym>utf-8</acronym>.</para>
+<phrase revisionflag="deleted">
+Also, the encoding used in the larger document may not be
+<acronym>utf-8</acronym>.</phrase>
+</para>
 
 <sidebar revision="2000/03/20" author="DPC"><para>Namespace URI, as discussed on&OM;Soc
 list</para></sidebar> <para>In particular, if &OM; is used with applications that use the
 &exml; Namespace Recommendation &#160;<citation>xmlns</citation> then they should ensure
-that &OM; elements are in the <phrase role="tt">http://www.openmath.org/OpenMath</phrase>
+that &OM; elements are in the <phrase revisionflag="added">namespace
+</phrase> <phrase role="tt">http://www.openmath.org/OpenMath</phrase>.
 This is most conveniently achieved by adding the namespace declaration <literallayout>
 xmlns="http://www.openmath.org/OpenMath" </literallayout> as an attribute to each
 <systemitem>OMOBJ</systemitem> element in the document.</para>
@@ -2915,14 +3032,14 @@ whose &exml; encoding is
 <literallayout><![CDATA[ 
 <OMOBJ>
   <OMA>
-    <OMS name="times" cd="arith1"/>
+    <OMS uristub="http://www.openmath.org/cd" name="times" cd="arith1"/>
     <OMA>
-      <OMS name="plus" cd="arith1"/>
+      <OMS uristub="http://www.openmath.org/cd" name="plus" cd="arith1"/>
       <OMV name="x"/>
       <OMV name="y"/>
     </OMA>
     <OMA>
-      <OMS name="plus" cd="arith1"/>
+      <OMS uristub="http://www.openmath.org/cd" name="plus" cd="arith1"/>
       <OMV name="x"/>
       <OMV name="z"/>
     </OMA>
@@ -3667,9 +3784,9 @@ name="plus"/></systemitem>: <literallayout><![CDATA[
 <Signature name="plus">
 <OMOBJ>
  <OMA>
-  <OMS name="mapsto" cd="sts"/>
+  <OMS uristub="http://www.openmath.org/cd" name="mapsto" cd="sts"/>
   <OMA>
-   <OMS name="nassoc" cd="sts"/> 
+   <OMS uristub="http://www.openmath.org/cd" name="nassoc" cd="sts"/> 
    <OMV name="AbelianSemiGroup"/>
   </OMA>
   <OMV name="AbelianSemiGroup"/>
@@ -4262,21 +4379,21 @@ multiple of its arguments.
 <FMP>
 <OMOBJ>
   <OMA>
-    <OMS cd="relation1" name="eq"/>
+    <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
     <OMA>
-      <OMS cd="arith1" name="lcm"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="lcm"/>
       <OMV name="a"/>
       <OMV name="b"/>
     </OMA>
     <OMA>
-      <OMS cd="arith1" name="divide"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="divide"/>
       <OMA>
-        <OMS cd="arith1" name="times"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="times"/>
 	<OMV name="a"/>
 	<OMV name="b"/>
       </OMA>
       <OMA>
-        <OMS cd="arith1" name="gcd"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="gcd"/>
         <OMV name="a"/>
         <OMV name="b"/>
       </OMA>
@@ -4293,55 +4410,55 @@ Integer and lcm(a,b) > c.
 <FMP>
 <OMOBJ>
 <OMBIND>
-  <OMS cd="quant1" name="forall"/>
+  <OMS uristub="http://www.openmath.org/cd" cd="quant1" name="forall"/>
   <OMBVAR>
     <OMV name="a"/>
     <OMV name="b"/>
   </OMBVAR>
   <OMA>
-    <OMS cd="logic1" name="implies"/>
+    <OMS uristub="http://www.openmath.org/cd" cd="logic1" name="implies"/>
     <OMA>
-      <OMS cd="logic1" name="and"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="logic1" name="and"/>
       <OMA>
-        <OMS cd="set1" name="in"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="set1" name="in"/>
 	<OMV name="a"/>
-	<OMS cd="setname1" name="Z"/>
+	<OMS uristub="http://www.openmath.org/cd" cd="setname1" name="Z"/>
       </OMA>
       <OMA>
-        <OMS cd="set1" name="in"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="set1" name="in"/>
 	<OMV name="b"/>
-	<OMS cd="setname1" name="Z"/>
+	<OMS uristub="http://www.openmath.org/cd" cd="setname1" name="Z"/>
       </OMA>
     </OMA>
     <OMA>
-      <OMS cd="logic1" name="not"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="logic1" name="not"/>
       <OMBIND>
-        <OMS cd="quant1" name="exists"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="quant1" name="exists"/>
         <OMBVAR>
           <OMV name="c"/>
         </OMBVAR>
         <OMA>
-          <OMS cd="logic1" name="and"/>
+          <OMS uristub="http://www.openmath.org/cd" cd="logic1" name="and"/>
           <OMA>
-            <OMS cd="relation1" name="gt"/>
+            <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="gt"/>
               <OMV name="c"/>
               <OMI>0</OMI>
           </OMA>
           <OMA>
-            <OMS cd="integer1" name="factorof"/>
+            <OMS uristub="http://www.openmath.org/cd" cd="integer1" name="factorof"/>
               <OMV name="a"/>
               <OMV name="c"/>
           </OMA>
           <OMA>
-            <OMS cd="integer1" name="factorof"/>
+            <OMS uristub="http://www.openmath.org/cd" cd="integer1" name="factorof"/>
               <OMV name="b"/>
               <OMV name="c"/>
           </OMA>
           <OMA>
-            <OMS cd="relation1" name="lt"/>
+            <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="lt"/>
             <OMV name="c"/>
             <OMA>
-              <OMS cd="arith1" name="lcm"/>
+              <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="lcm"/>
               <OMV name="a"/>
               <OMV name="b"/>
             </OMA>
@@ -4373,58 +4490,58 @@ Note that this implies that gcd(a,b) > 0
 <FMP>
 <OMOBJ>
 <OMBIND>
-  <OMS cd="quant1" name="forall"/>
+  <OMS uristub="http://www.openmath.org/cd" cd="quant1" name="forall"/>
   <OMBVAR>
     <OMV name="a"/>
     <OMV name="b"/>
   </OMBVAR>
   <OMA>
-    <OMS cd="logic1" name="implies"/>
+    <OMS uristub="http://www.openmath.org/cd" cd="logic1" name="implies"/>
     <OMA>
-      <OMS cd="logic1" name="and"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="logic1" name="and"/>
       <OMA>
-        <OMS cd="set1" name="in"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="set1" name="in"/>
 	<OMV name="a"/>
-	<OMS cd="setname1" name="Z"/>
+	<OMS uristub="http://www.openmath.org/cd" cd="setname1" name="Z"/>
       </OMA>
       <OMA>
-        <OMS cd="set1" name="in"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="set1" name="in"/>
 	<OMV name="b"/>
-	<OMS cd="setname1" name="Z"/>
+	<OMS uristub="http://www.openmath.org/cd" cd="setname1" name="Z"/>
       </OMA>
     </OMA>
     <OMA>
-      <OMS cd="logic1" name="not"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="logic1" name="not"/>
       <OMBIND>
-        <OMS cd="quant1" name="exists"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="quant1" name="exists"/>
         <OMBVAR>
           <OMV name="c"/>
         </OMBVAR>
         <OMA>
-          <OMS cd="logic1" name="and"/>
+          <OMS uristub="http://www.openmath.org/cd" cd="logic1" name="and"/>
           <OMA>
-            <OMS cd="set1" name="in"/>
+            <OMS uristub="http://www.openmath.org/cd" cd="set1" name="in"/>
             <OMA>
-              <OMS cd="arith1" name="divide"/>
+              <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="divide"/>
               <OMV name="a"/>
               <OMV name="c"/>
             </OMA>
-            <OMS cd="setname1" name="Z"/>
+            <OMS uristub="http://www.openmath.org/cd" cd="setname1" name="Z"/>
           </OMA>
           <OMA>
-            <OMS cd="set1" name="in"/>
+            <OMS uristub="http://www.openmath.org/cd" cd="set1" name="in"/>
             <OMA>
-              <OMS cd="arith1" name="divide"/>
+              <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="divide"/>
               <OMV name="b"/>
               <OMV name="c"/>
             </OMA>
-            <OMS cd="setname1" name="Z"/>
+            <OMS uristub="http://www.openmath.org/cd" cd="setname1" name="Z"/>
           </OMA>
           <OMA>
-            <OMS cd="relation1" name="gt"/>
+            <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="gt"/>
             <OMV name="c"/>
             <OMA>
-              <OMS cd="arith1" name="gcd"/>
+              <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="gcd"/>
               <OMV name="a"/>
               <OMV name="b"/>
             </OMA>
@@ -4441,9 +4558,9 @@ Note that this implies that gcd(a,b) > 0
 gcd(6,9) = 3
 <OMOBJ>
   <OMA>
-    <OMS cd="relation1" name="eq"/>
+    <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
     <OMA>
-      <OMS cd="arith1" name="gcd"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="gcd"/>
       <OMI> 6 </OMI>
       <OMI> 9 </OMI>
     </OMA>
@@ -4462,20 +4579,20 @@ The symbol representing an n-ary commutative function plus.
 <FMP>
 <OMOBJ>
   <OMBIND>
-    <OMS cd="quant1" name="forall"/>
+    <OMS uristub="http://www.openmath.org/cd" cd="quant1" name="forall"/>
     <OMBVAR>
        <OMV name="a"/>
        <OMV name="b"/>
     </OMBVAR>
     <OMA>
-      <OMS cd="relation1" name="eq"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
       <OMA>
-        <OMS cd="arith1" name="plus"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="plus"/>
         <OMV name="a"/>
         <OMV name="b"/>
       </OMA>
       <OMA>
-        <OMS cd="arith1" name="plus"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="plus"/>
         <OMV name="b"/>
         <OMV name="a"/>
       </OMA>
@@ -4494,21 +4611,21 @@ This symbol denotes unary minus, i.e. the additive inverse.
 <FMP>
 <OMOBJ>
   <OMBIND>
-    <OMS cd="quant1" name="forall"/>
+    <OMS uristub="http://www.openmath.org/cd" cd="quant1" name="forall"/>
     <OMBVAR>
        <OMV name="a"/>
     </OMBVAR>
     <OMA>
-      <OMS cd="relation1" name="eq"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
       <OMA>
-        <OMS cd="arith1" name="plus"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="plus"/>
         <OMV name="a"/>
         <OMA>
-           <OMS cd="arith1" name="unary_minus"/>
+           <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="unary_minus"/>
            <OMV name="a"/>
         </OMA>
       </OMA>
-      <OMS cd="alg1" name="zero"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="alg1" name="zero"/>
     </OMA>
   </OMBIND>
 </OMOBJ>
@@ -4525,23 +4642,23 @@ adding the additive inverse.
 <FMP>
 <OMOBJ>
   <OMBIND>
-    <OMS cd="quant1" name="forall"/>
+    <OMS uristub="http://www.openmath.org/cd" cd="quant1" name="forall"/>
     <OMBVAR>
        <OMV name="a"/>
        <OMV name="b"/>
     </OMBVAR>
     <OMA>
-      <OMS cd="relation1" name="eq"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
       <OMA>
-        <OMS cd="arith1" name="minus"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="minus"/>
         <OMV name="a"/>
         <OMV name="b"/>
       </OMA>
       <OMA>
-        <OMS cd="arith1" name="plus"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="plus"/>
         <OMV name="a"/>
         <OMA>
-          <OMS cd="arith1" name="unary_minus"/>
+          <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="unary_minus"/>
           <OMV name="b"/>
         </OMA>
       </OMA>
@@ -4559,45 +4676,45 @@ The symbol representing an n-ary multiplication function.
 <Example>
 <OMOBJ>
 <OMA>
-  <OMS cd="relation1" name="eq"/>
+  <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
   <OMA>
-    <OMS cd="arith1" name="times"/>
+    <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="times"/>
     <OMA>
-      <OMS cd="linalg2" name="matrix"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="linalg2" name="matrix"/>
       <OMA>
-        <OMS cd="linalg2" name="matrixrow"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
         <OMI> 1 </OMI>
         <OMI> 2 </OMI>
       </OMA>
       <OMA>
-        <OMS cd="linalg2" name="matrixrow"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
         <OMI> 3 </OMI>
         <OMI> 4 </OMI>
       </OMA>
     </OMA>
     <OMA>
-      <OMS cd="linalg2" name="matrix"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="linalg2" name="matrix"/>
       <OMA>
-        <OMS cd="linalg2" name="matrixrow"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
         <OMI> 5 </OMI>
         <OMI> 6 </OMI>
       </OMA>
       <OMA>
-        <OMS cd="linalg2" name="matrixrow"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
         <OMI> 7 </OMI>
         <OMI> 8 </OMI>
       </OMA>
     </OMA>
   </OMA>
   <OMA>
-    <OMS cd="linalg2" name="matrix"/>
+    <OMS uristub="http://www.openmath.org/cd" cd="linalg2" name="matrix"/>
     <OMA>
-      <OMS cd="linalg2" name="matrixrow"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
       <OMI> 19 </OMI>
       <OMI> 20 </OMI>
     </OMA>
     <OMA>
-      <OMS cd="linalg2" name="matrixrow"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
       <OMI> 43 </OMI>
       <OMI> 50 </OMI>
     </OMA>
@@ -4609,38 +4726,38 @@ The symbol representing an n-ary multiplication function.
 
 <FMP><OMOBJ>
 <OMBIND>
-  <OMS cd="quant1" name="forall"/>
+  <OMS uristub="http://www.openmath.org/cd" cd="quant1" name="forall"/>
   <OMBVAR>
     <OMV name="a"/>
     <OMV name="b"/>
   </OMBVAR>
   <OMA>
-    <OMS cd="logic1" name="and"/>
+    <OMS uristub="http://www.openmath.org/cd" cd="logic1" name="and"/>
     <OMA>
-      <OMS cd="relation1" name="eq"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
       <OMA>
-        <OMS cd="arith1" name="times"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="times"/>
         <OMV name="a"/>
-        <OMS cd="alg1" name="zero"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="alg1" name="zero"/>
       </OMA>
-      <OMS cd="alg1" name="zero"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="alg1" name="zero"/>
     </OMA>
     <OMA>
-      <OMS cd="relation1" name="eq"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
       <OMA>
-        <OMS cd="arith1" name="times"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="times"/>
 	<OMV name="a"/>
 	<OMV name="b"/>
       </OMA>
       <OMA>
-        <OMS cd="arith1" name="plus"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="plus"/>
 	<OMA>
-	  <OMS cd="arith1" name="times"/>
+	  <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="times"/>
 	  <OMV name="a"/>
 	  <OMA>
-	    <OMS cd="arith1" name="minus"/>
+	    <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="minus"/>
 	    <OMV name="b"/>
-	    <OMS cd="alg1" name="one"/>
+	    <OMS uristub="http://www.openmath.org/cd" cd="alg1" name="one"/>
 	  </OMA>
 	</OMA>
 	<OMV name="a"/>
@@ -4653,32 +4770,32 @@ The symbol representing an n-ary multiplication function.
 <CMP> for all a,b,c | a*(b+c) = a*b + a*c </CMP>
 <FMP><OMOBJ>
 <OMBIND>
-  <OMS cd="quant1" name="forall"/>
+  <OMS uristub="http://www.openmath.org/cd" cd="quant1" name="forall"/>
   <OMBVAR>
     <OMV name="a"/>
     <OMV name="b"/>
     <OMV name="c"/>
   </OMBVAR>
   <OMA>
-    <OMS cd="relation1" name="eq"/>
+    <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
     <OMA>
-      <OMS cd="arith1" name="times"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="times"/>
       <OMV name="a"/>
       <OMA>
-        <OMS cd="arith1" name="plus"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="plus"/>
 	<OMV name="b"/>
 	<OMV name="c"/>
       </OMA>
     </OMA>
     <OMA>
-      <OMS cd="arith1" name="plus"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="plus"/>
       <OMA>
-        <OMS cd="arith1" name="times"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="times"/>
 	<OMV name="a"/>
 	<OMV name="b"/>
       </OMA>
       <OMA>
-        <OMS cd="arith1" name="times"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="times"/>
 	<OMV name="a"/>
 	<OMV name="c"/>
       </OMA>
@@ -4699,25 +4816,25 @@ inverse of the multiplication function defined by the symbol times in this CD.
 <FMP>
 <OMOBJ>
   <OMBIND>
-    <OMS cd="quant1" name="forall"/>
+    <OMS uristub="http://www.openmath.org/cd" cd="quant1" name="forall"/>
     <OMBVAR>
        <OMV name="a"/>
     </OMBVAR>
     <OMA>
-      <OMS cd="logic1" name="implies"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="logic1" name="implies"/>
       <OMA>
-        <OMS cd="relation1" name="neq"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="neq"/>
         <OMV name="a"/>
-        <OMS cd="alg1" name="zero"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="alg1" name="zero"/>
       </OMA>
       <OMA>
-        <OMS cd="relation1" name="eq"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
         <OMA>
-          <OMS cd="arith1" name="divide"/>
+          <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="divide"/>
           <OMV name="a"/>
           <OMV name="a"/>
         </OMA>
-        <OMS cd="alg1" name="one"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="alg1" name="one"/>
       </OMA>
     </OMA>
   </OMBIND>
@@ -4742,26 +4859,26 @@ x\in C implies x^a = exp(a ln x)
 <FMP>
 <OMOBJ>
   <OMA>
-    <OMS cd="logic1" name="implies"/>
+    <OMS uristub="http://www.openmath.org/cd" cd="logic1" name="implies"/>
     <OMA>
-      <OMS cd="set1" name="in"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="set1" name="in"/>
       <OMV name="x"/>
-      <OMS cd="setname1" name="C"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="setname1" name="C"/>
     </OMA>
     <OMA>
-      <OMS cd="relation1" name="eq"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
       <OMA>
-        <OMS name="power" cd="arith1"/>
+        <OMS uristub="http://www.openmath.org/cd" name="power" cd="arith1"/>
         <OMV name="x"/>
         <OMV name="a"/>
       </OMA>
       <OMA>
-        <OMS name="exp" cd="transc1"/>
+        <OMS uristub="http://www.openmath.org/cd" name="exp" cd="transc1"/>
         <OMA>
-          <OMS name="times" cd="arith1"/>
+          <OMS uristub="http://www.openmath.org/cd" name="times" cd="arith1"/>
           <OMV name="a"/>
           <OMA>
-            <OMS name="ln" cd="transc1"/>
+            <OMS uristub="http://www.openmath.org/cd" name="ln" cd="transc1"/>
             <OMV name="x"/>
           </OMA>
         </OMA>
@@ -4779,38 +4896,38 @@ x\in C implies x^a = exp(a ln x)
 <FMP>
 <OMOBJ>
   <OMA>
-    <OMS cd="logic1" name="implies"/>
+    <OMS uristub="http://www.openmath.org/cd" cd="logic1" name="implies"/>
     <OMA>
-      <OMS cd="set1" name="in"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="set1" name="in"/>
       <OMV name="n"/>
-      <OMS cd="setname1" name="Z"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="setname1" name="Z"/>
     </OMA>
     <OMA>
-      <OMS cd="logic1" name="and"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="logic1" name="and"/>
       <OMA>
-        <OMS cd="relation1" name="eq"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
         <OMA>
-          <OMS cd="arith1" name="power"/>
+          <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="power"/>
           <OMV name="x"/>
           <OMI>0</OMI>
         </OMA>
-        <OMS cd="alg1" name="one"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="alg1" name="one"/>
       </OMA>
       <OMA>
-        <OMS cd="relation1" name="eq"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
         <OMA>
-          <OMS cd="arith1" name="power"/>
+          <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="power"/>
           <OMV name="x"/>
           <OMV name="n"/>
         </OMA>
         <OMA>
-          <OMS cd="arith1" name="times"/>
+          <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="times"/>
           <OMV name="x"/>
           <OMA>
-            <OMS cd="arith1" name="power"/>
+            <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="power"/>
             <OMV name="x"/>
             <OMA>
-              <OMS cd="arith1" name="minus"/>
+              <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="minus"/>
               <OMV name="n"/>
               <OMI>1</OMI>
             </OMA>
@@ -4824,18 +4941,18 @@ x\in C implies x^a = exp(a ln x)
 <Example>
 <OMOBJ>
 <OMA>
-  <OMS cd="relation1" name="eq"/>
+  <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
   <OMA>
-    <OMS cd="arith1" name="power"/>
+    <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="power"/>
     <OMA>
-      <OMS cd="linalg2" name="matrix"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="linalg2" name="matrix"/>
       <OMA>
-        <OMS cd="linalg2" name="matrixrow"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
         <OMI> 1 </OMI>
         <OMI> 2 </OMI>
       </OMA>
       <OMA>
-        <OMS cd="linalg2" name="matrixrow"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
         <OMI> 3 </OMI>
         <OMI> 4 </OMI>
       </OMA>
@@ -4843,14 +4960,14 @@ x\in C implies x^a = exp(a ln x)
     <OMI>3</OMI>
   </OMA>
   <OMA>
-    <OMS cd="linalg2" name="matrix"/>
+    <OMS uristub="http://www.openmath.org/cd" cd="linalg2" name="matrix"/>
     <OMA>
-      <OMS cd="linalg2" name="matrixrow"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
       <OMI> 37 </OMI>
       <OMI> 54 </OMI>
     </OMA>
     <OMA>
-      <OMS cd="linalg2" name="matrixrow"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
       <OMI> 81 </OMI>
       <OMI> 118 </OMI>
     </OMA>
@@ -4861,19 +4978,19 @@ x\in C implies x^a = exp(a ln x)
 <Example>
 <OMOBJ>
 <OMA>
-  <OMS cd="relation1" name="eq"/>
+  <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
   <OMA>
-    <OMS cd="arith1" name="power"/>
-    <OMS cd="nums1" name="e"/>
+    <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="power"/>
+    <OMS uristub="http://www.openmath.org/cd" cd="nums1" name="e"/>
     <OMA>
-      <OMS cd="arith1" name="times"/>
-      <OMS cd="nums1" name="i"/>
-      <OMS cd="nums1" name="pi"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="times"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="nums1" name="i"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="nums1" name="pi"/>
     </OMA>
   </OMA>
   <OMA>
-    <OMS cd="arith1" name="unary_minus"/>
-    <OMS cd="alg1" name="one"/>
+    <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="unary_minus"/>
+    <OMS uristub="http://www.openmath.org/cd" cd="alg1" name="one"/>
   </OMA>
 </OMA>
 </OMOBJ>
@@ -4891,30 +5008,30 @@ In the complex case this is often referred to as the modulus.
 <FMP>
 <OMOBJ>
   <OMBIND>
-    <OMS cd="quant1" name="forall"/>
+    <OMS uristub="http://www.openmath.org/cd" cd="quant1" name="forall"/>
     <OMBVAR>
       <OMV name="x"/>
       <OMV name="y"/>
     </OMBVAR>
     <OMA>
-      <OMS cd="relation1" name="geq"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="geq"/>
       <OMA>
-        <OMS cd="arith1" name="plus"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="plus"/>
         <OMA>
-          <OMS cd="arith1" name="abs"/>
+          <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="abs"/>
             <OMV name="x"/>
             <OMV name="y"/>
         </OMA>
         <OMA>
-          <OMS cd="arith1" name="abs"/>
+          <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="abs"/>
             <OMV name="x"/>
             <OMV name="y"/>
         </OMA>
       </OMA>
       <OMA>
-        <OMS cd="arith1" name="abs"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="abs"/>
         <OMA>
-          <OMS cd="arith1" name="plus"/>
+          <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="plus"/>
           <OMV name="x"/>
           <OMV name="y"/>
         </OMA>
@@ -4945,16 +5062,16 @@ CMP is not valid in general.
 <FMP>
   <OMOBJ>
     <OMA>
-      <OMS cd="logic1" name="implies"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="logic1" name="implies"/>
       <OMA>
-        <OMS cd="set1" name="in"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="set1" name="in"/>
         <OMV name="x"/>
-        <OMS cd="setname1" name="C"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="setname1" name="C"/>
       </OMA>
       <OMA>
-        <OMS cd="relation1" name="eq"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
         <OMA>
-          <OMS cd="arith1" name="root"/>
+          <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="root"/>
           <OMV name="x"/>
           <OMV name="n"/>          
         </OMA>
@@ -4978,17 +5095,17 @@ CMP is not valid in general.
 <FMP>
   <OMOBJ>
     <OMBIND>
-      <OMS cd="quant1" name="forall"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="quant1" name="forall"/>
       <OMBVAR>
          <OMV name="a"/>
          <OMV name="n"/>
       </OMBVAR>
       <OMA>
-        <OMS cd="relation1" name="eq"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
         <OMA>
-          <OMS cd="arith1" name="power"/>
+          <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="power"/>
           <OMA>
-            <OMS cd="arith1" name="root"/>
+            <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="root"/>
             <OMV name="a"/>
             <OMV name="n"/>
           </OMA>
@@ -5016,19 +5133,19 @@ summed. Note that the sum may be over an infinite interval.
   1 and 10 inclusive.
 <OMOBJ>
   <OMA>
-    <OMS cd="arith1" name="sum"/>
+    <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="sum"/>
       <OMA>
-        <OMS cd="interval1" name="integer_interval"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="interval1" name="integer_interval"/>
         <OMI> 1 </OMI>
         <OMI> 10 </OMI>
       </OMA>
     <OMBIND>
-      <OMS cd="fns1" name="lambda"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="fns1" name="lambda"/>
         <OMBVAR>
           <OMV name="x"/>
         </OMBVAR>
         <OMA>
-          <OMS cd="arith1" name="divide"/>
+          <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="divide"/>
           <OMI> 1 </OMI>
           <OMV name="x"/>
         </OMA>
@@ -5050,20 +5167,20 @@ This represents the statement that the factorial of n is equal to the product
 of all the integers between 1 and n inclusive.
 <OMOBJ>
   <OMA>
-    <OMS cd="relation1" name="eq"/>
+    <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
     <OMA>
-      <OMS cd="integer1" name="factorial"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="integer1" name="factorial"/>
       <OMV name="n" />
     </OMA>
     <OMA>
-      <OMS cd="arith1" name="product"/>
+      <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="product"/>
         <OMA>
-          <OMS cd="interval1" name="integer_interval"/>
+          <OMS uristub="http://www.openmath.org/cd" cd="interval1" name="integer_interval"/>
           <OMI> 1 </OMI>
           <OMV name="n"/>
         </OMA>
       <OMBIND>
-        <OMS cd="fns1" name="lambda"/>
+        <OMS uristub="http://www.openmath.org/cd" cd="fns1" name="lambda"/>
           <OMBVAR>
             <OMV name="i"/>
           </OMBVAR>
@@ -5416,8 +5533,8 @@ and the unhandled symbol as in the example below.
 The application does not implement the Complex numbers:
 <OMOBJ>
   <OME>
-    <OMS cd="error" name="unhandled_symbol"/>
-    <OMS cd="setname1" name="C"/>
+    <OMS uristub="http://www.openmath.org/cd" cd="error" name="unhandled_symbol"/>
+    <OMS uristub="http://www.openmath.org/cd" cd="setname1" name="C"/>
   </OME>
 </OMOBJ>
 </Example>
@@ -5437,8 +5554,8 @@ and the unexpected symbol as in the example below.
 The application received a mistyped symbol
 <OMOBJ>
   <OME>
-    <OMS cd="error" name="unexpected_symbol"/>
-    <OMS cd="arith1" name="plurse"/>
+    <OMS uristub="http://www.openmath.org/cd" cd="error" name="unexpected_symbol"/>
+    <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="plurse"/>
   </OME>
 </OMOBJ>
 </Example>
@@ -5460,8 +5577,8 @@ below.
 The application does not know about the CD specfun1
 <OMOBJ>
   <OME>
-    <OMS cd="error" name="unsupported_CD"/>
-    <OMS cd="specfun1" name="BesselJ"/>
+    <OMS uristub="http://www.openmath.org/cd" cd="error" name="unsupported_CD"/>
+    <OMS uristub="http://www.openmath.org/cd" cd="specfun1" name="BesselJ"/>
   </OME>
 </OMOBJ>
 </Example>
@@ -5475,9 +5592,39 @@ The application does not know about the CD specfun1
 </appendix>
 
 
+<appendix id="app_relaxcompact" revisionflag="added">
+<title>OpenMath Schema in Relax NG Compact Syntax</title>
+
+<para>This is the Relax NG Schema described in <xref linkend="sec_xml"/>
+expressed according to the Relax NG Compact Syntax described in
+<citation>RELAX-COMPACT</citation>.
+</para>
+<literallayout>
+&omrnc;
+</literallayout>
+</appendix>
+
 
 <bibliography id="bibliography">
 <title>Bibliography</title>
+
+<biblioentry id="XSD" role="book" revisionflag="added">
+  <author><othername>W3C</othername></author>
+  <title>XSD Schema Parts 1 &amp; 2</title>
+  <pubdate>2 May 2001</pubdate>
+</biblioentry>
+
+<biblioentry id="RELAX-COMPACT" role="book" revisionflag="added">
+  <author><othername>OASIS Committee Specification</othername></author>
+  <title>RELAX NG Compact Syntax</title>
+  <pubdate>21 November 2002</pubdate>
+</biblioentry>
+
+<biblioentry id="RELAX" role="book" revisionflag="added">
+  <author><othername>OASIS Committee Specification</othername></author>
+  <title>RELAX NG Specification</title>
+  <pubdate>3 December 2001</pubdate>
+</biblioentry>
 
 <biblioentry id="MAPLE" role="book">
   <author><firstname>B.</firstname> <othername>W.</othername> <surname>Char</surname></author>
