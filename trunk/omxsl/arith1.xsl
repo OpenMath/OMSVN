@@ -118,6 +118,14 @@
    <xsl:apply-templates select="following-sibling::*[2]"/>
    </mrow>
   </xsl:when>
+  <xsl:when test="$p &gt; 2">
+  <mfenced>
+  <mfrac>
+   <xsl:apply-templates select="following-sibling::*[1]"/>
+   <xsl:apply-templates select="following-sibling::*[2]"/>
+  </mfrac>
+  </mfenced>
+  </xsl:when>
   <xsl:otherwise>
   <mfrac>
    <xsl:apply-templates select="following-sibling::*[1]"/>
