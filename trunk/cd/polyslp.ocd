@@ -1,5 +1,4 @@
-
-<CD xmlns='http://www.openmath.org/OpenMathCD'>
+<CD xmlns="http://www.openmath.org/OpenMathCD">
 
 <CDComment>
 
@@ -34,7 +33,8 @@
      society at http://www.openmath.org.
 </CDComment>
 
-  <CDName> polyslp </CDName> 
+  <CDName> polyslp </CDName>
+<CDBase>http://www.openmath.org/cd</CDBase> 
   <CDURL> http://www.openmath.org/cd/polyslp.ocd </CDURL>
   <CDReviewDate> 2004-01-23 </CDReviewDate>
   <CDDate> 2003-01-23 </CDDate>
@@ -68,19 +68,19 @@
         line 2 : InputNode	y
         line 3 : OperationNode 	times line 1, line 1
         line 4 : OperationNode 	times line 2, line 2
-        line 5 : OperationNode 	plus line 3, line 4 >
+        line 5 : OperationNode 	plus line 3, line 4 &gt;
 
     may be encoded as :
 
 
-  <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
     <OMA>
       <OMS cd="polyslp" name="polynomial_SLP"/>
       <OMA>
         <OMS cd="polyslp" name="poly_ring_SLP"/>
-        <OMS cd = "setname1" name = "Z"/>
-        <OMV name="x" />
-        <OMV name="y" />
+        <OMS cd="setname1" name="Z"/>
+        <OMV name="x"/>
+        <OMV name="y"/>
       </OMA>
       <OMA>
         <OMS cd="polyslp" name="prog_body"/>
@@ -186,10 +186,10 @@
       any cancellation.
     </Description>
 
-    <CMP> The slp_degree of the polynomial x >= degree(x) </CMP>
+    <CMP> The slp_degree of the polynomial x &gt;= degree(x) </CMP>
 
     <FMP>
-      <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
         <OMA>
 	  <OMS cd="relation1" name="geq"/>
 	  <OMA>
@@ -206,7 +206,7 @@
 
     <Example>
       slpDegree(convert(x^2)@poly_ring_SLP - convert(x^2)@poly_ring_SLP) = 2
-      <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
       <OMA>
         <OMS cd="relation1" name="eq"/>
 	<OMA>
@@ -314,7 +314,7 @@
 An example to represent a polynomial ring over the integers, with the
 two variables x,y. viz. Z[x,y]
 
-         <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+         <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
            <OMA>
              <OMS name="poly_ring_SLP" cd="polyslp"/>
              <OMS name="Z" cd="setname1"/>
