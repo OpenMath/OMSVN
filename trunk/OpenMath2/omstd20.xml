@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.105 2004/04/05 10:34:40 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.106 2004/04/05 13:19:08 openmath Exp $ -->
 
 
 <!DOCTYPE book 
@@ -3360,7 +3360,7 @@ implementations).</para>
     <emphasis>bytes</emphasis> denotes a sequence of <math><mi>n</mi></math> bytes
     that conforms to the constraints on <emphasis>xxxx</emphasis> strings. For
     instance, for <emphasis>symbname</emphasis>, <emphasis>varname</emphasis>, or
-    <emphasis>cdname</emphasis>this is the regular expression described in
+    <emphasis>cdname</emphasis> this is the regular expression described in
     <xref linkend="sec_names"/>, for <emphasis>uri</emphasis> it is the grammar for
     URIs in <citation>IETF2396</citation>.</para>
 </section>
@@ -3387,7 +3387,7 @@ role="sl">long</phrase> flag and the <phrase role="sl">shared</phrase> flag. The
 identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth bit
 <phrase revisionflag="added">and the shared flag is the seventh bit. If the long
   flag is set, this signifies that  the names, strings, and data fields in the
-  encoded &OM; object are longer than 255 byte or characters. The sharing flag
+  encoded &OM; object are longer than 255 bytes or characters. The sharing flag
   indicates that the encoded object may be shared in another (part of an) object
   somewhere else (see <xref linkend="sec_sharing_references"/>). Note that if the sharing
   flag is set (in the right column of the grammar in Figure
@@ -3396,7 +3396,7 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
   identifier 30 or external with token identifier 31).</phrase>
 </para>
 
-<para revisionflag="added">The concept of structure sharing in &OM; encoding and
+<para revisionflag="added">The concept of structure sharing in &OM; encodings and
   in particular the sharing bit in the binary encoding has been
   introduced in &OM;2 (see section <xref linkend="sec_sharing_references"/> for
   details). The binary encoding in &OM;2 leaves the tokens with sharing flag 0
@@ -3404,7 +3404,7 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
   <systemitem>cdbase</systemitem> URI or the version attribute on the &OM; object
   introduced in &OM;2, the tokens with sharing flag 1 should be used.</para>
 
-<para revisionflag="added">To facilitate the streaming &OM; objects, some basic
+<para revisionflag="added">To facilitate the streaming of &OM; objects, some basic
   objects (integers, strings, bytearrays, and foreign objects) have variant token
   identifiers with the fifth bit set. The idea behind this is that these basic
   objects can be split into packets. If the fifth bit is not set, this packet is
@@ -3440,7 +3440,7 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
       </math>
       (<math><mn>2147483647</mn></math>) are encoded as
       the small integer tag with the long flag set followed by the integer
-      encoded in little endian format on four bytes (network byte order:
+      encoded in little endian format in four bytes (network byte order:
       the most significant byte comes first). For example, 128 is encoded
       as <systemitem>0x81</systemitem> <systemitem>0x00000080</systemitem>.  The most
       general encoding begins 
@@ -3525,12 +3525,15 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
   characters of the symbol name.</phrase>
 <phrase revisionflag="added">. The symbol tags [8] and [8+128] are deprecated in &OM;2 since
   symbols now have an optional <systemitem>cdbase</systemitem> field, but are
-  kept for backwards compatibility. The symbol tag is  followed by the length <phrase
-    revisionflag="added">in bytes in the UTF-8 encoding</phrase> of the
+  kept for backwards compatibility. The symbol tag is  followed by the
+length 
+    in bytes in the UTF-8 encoding of the
   Content Dictionary name, the symbol name, and the CD base as a byte (if the long flag was not set)
-  or a four byte integers (in network byte order). These are followed by the
-  <phrase revisionflag="deleted">characters</phrase>
-  <phrase revisionflag="added">bytes of the UTF-8 encoding</phrase> of the Content Dictionary name, the symbol name, and the CD base.</phrase></para>
+  or a four byte integer (in network byte order). These are followed by the
+  bytes of the UTF-8 encoding of
+the Content Dictionary name, the symbol name, and the CD base.</phrase>
+
+</para>
 </listitem>
 </varlistentry>
 
@@ -3539,8 +3542,7 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
 <listitem><para>are encoded using the variable tags
     (<phrase revisionflag="added">token identifiers</phrase> 5) with the long
   flag set if the number of bytes in the UTF-8 encoding of the variable name is
-  greater than or equal to 256 (this should never happen if the rules
-  on variables are followed).  Then, there is the number of characters
+  greater than or equal to 256.  Then, there is the number of characters
   as a byte (if the long flag was not set) or a four byte integer
   (in network byte order), followed by the characters of the name of
   the variable. For example, the variable x is encoded as <systemitem>0x05
@@ -3618,7 +3620,7 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
       byte (if the long flag was not set) or a four byte integer (in network byte
       order). These numbers are followed by an <math><mn>n</mn></math>-byte sequence
       representation of the encoding attribute and an <math><mn>m</mn></math> byte
-      sequence of bytes encoding the foreign object in their normal order (we call this
+      sequence of bytes encoding the foreign object in their normal order (we call these
       the payload bytes).</para>
     <para revisionflag="added">Sequences of foreign object
       packets are assembled into foreign objects by concatenating the payload bytes in
@@ -3648,7 +3650,7 @@ revisionflag="added">token identifiers</phrase> 16 and 17). More
  the binding by <math><mi>B</mi></math> of variables
  <math><msub><mi>V</mi><mn>1</mn></msub></math><phrase>&#8230;</phrase>
  <math><msub><mi>V</mi><mi>n</mi></msub></math> in <math><mi>C</mi></math> is
- encoded as the binding tags (<phrase revisionflag="added">token
+ encoded as the binding tag (<phrase revisionflag="added">token
  identifier</phrase> 26), followed by the encoding of <math><mi>B</mi></math>,
  followed by the binding variables tags (<phrase revisionflag="added">token
  identifier</phrase> 28), followed by the encodings of the variables
@@ -3660,7 +3662,7 @@ revisionflag="added">token identifiers</phrase> 16 and 17). More
  </listitem> </varlistentry>
 
 <varlistentry>
- <term>Attribution</term>
+ <term>Attributions</term>
  <listitem><para>are encoded using the attribution
      tags (<phrase revisionflag="added">token identifiers </phrase> 18 and 19). More
      precisely, attribution of the object <math><mi>E</mi></math> with
@@ -3670,28 +3672,28 @@ revisionflag="added">token identifiers</phrase> 16 and 17). More
      (<math><msub><mi>S</mi><mi>n</mi></msub></math>,
      <math><msub><mi>E</mi><mi>n</mi></msub></math>) pairs (where
      <math><msub><mi>S</mi><mi>i</mi></msub></math> are the attributes) is 
-     encoded as the attributed object tags (<phrase revisionflag="added">token
+     encoded as the attributed object tag (<phrase revisionflag="added">token
        identifier</phrase> 18), followed by the encoding 
      of the attribute pairs as the attribute pairs tags
      (<phrase revisionflag="added">token identifier</phrase> 20), followed by 
      the encoding of each symbol and value, followed by the end attribute
-     pairs tags (<phrase revisionflag="added">token identifier</phrase> 21),
+     pairs tag (<phrase revisionflag="added">token identifier</phrase> 21),
      followed by the encoding of <math><mi>E</mi></math>, followed by the end 
-     attributed object tags (<phrase revisionflag="added">token identifier</phrase> 19).</para>
+     attributed object tag (<phrase revisionflag="added">token identifier</phrase> 19).</para>
  </listitem>
 </varlistentry>
 
 <varlistentry>
-  <term>Error</term>
+  <term>Errors</term>
   <listitem><para>are encoded using the error tags
       (<phrase revisionflag="added">token identifiers</phrase> 22 and 23). More precisely, 
   <math><msub><mi>S</mi><mn>0</mn></msub></math> applied to
   <math><msub><mi>E</mi><mn>1</mn></msub></math><phrase>&#8230;</phrase>
-  <math><msub><mi>E</mi><mi>n</mi></msub></math> is encoded as the error tags
+  <math><msub><mi>E</mi><mi>n</mi></msub></math> is encoded as the error tag
   (<phrase revisionflag="added">token identifier</phrase> 22), 
   the encoding of <math><msub><mi>S</mi><mn>0</mn></msub></math>, the sequence of
   the encodings of <math><msub><mi>E</mi><mn>0</mn></msub></math> to
-  <math><msub><mi>E</mi><mi>n</mi></msub></math> and the end error tags
+  <math><msub><mi>E</mi><mi>n</mi></msub></math> and the end error tag
   (<phrase revisionflag="added">token identifier</phrase> 23).</para> 
 </listitem>
 </varlistentry>
@@ -3701,7 +3703,7 @@ revisionflag="added">token identifiers</phrase> 16 and 17). More
 <listitem>
   <para>are encoded using the internal reference tags [30] and [30+128] (the sharing flag cannot
   be set on this tag, since chains of references are not allowed in the &OM;
-  binary encoding.) with   long flag set if the number of &OM; sub-objects in the
+  binary encoding) with long flag set if the number of &OM; sub-objects in the
   encoded &OM; is
   greater than or equal to 256. Then, there is the ordinal number of the
   referenced &OM; object as a byte (if the long flag was not set) or a four byte integer
@@ -3726,14 +3728,113 @@ revisionflag="added">token identifiers</phrase> 16 and 17). More
 </variablelist> 
 </para>
 
+</section>
+
+<section id="sec_bin_example">
+<title>Example of Binary Encoding</title>
+
+<para>As an example of this binary encoding, we can consider the &OM; object
+whose &exml; encoding is
+<literallayout><![CDATA[<OMOBJ version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS name="times" cd="arith1"/>
+    <OMA>
+      <OMS name="plus" cd="arith1"/>
+      <OMV name="x"/>
+      <OMV name="y"/>
+    </OMA>
+    <OMA>
+      <OMS name="plus" cd="arith1"/>
+      <OMV name="x"/>
+      <OMV name="z"/>
+    </OMA>
+  </OMA>
+</OMOBJ>]]></literallayout> 
+It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-enc_ex"/>.</para>
+
+<figure id="fig_bin-enc_ex">
+    <title>A Simple example of the &OM; binary encoding.</title>
+
+<informaltable>
+<tgroup cols="4">
+<thead>
+<row>
+<entry>Hex </entry>
+<entry>Meaning </entry>
+<entry>Hex </entry>
+<entry>Meaning </entry>
+</row>
+</thead>
+<tbody>
+<row><entry>58</entry><entry>begin object tag</entry>
+<entry>10</entry><entry>begin application tag </entry></row>
+<row><entry>2</entry><entry> version 2.0 (major)</entry>
+<entry>48</entry><entry>symbol tag (with share bit on) </entry></row>
+<row><entry>0</entry><entry> version 2.0 (minor)</entry>
+<entry>01</entry><entry>reference to second symbol seen (arith1:plus)</entry></row>
+<row><entry>10</entry><entry>begin application tag</entry><entry>45</entry><entry>variable tag (with share bit on) </entry></row>
+<row><entry>08</entry><entry>symbol tag</entry><entry>00</entry><entry>reference to first variable seen (x) </entry></row>
+<row><entry>06</entry><entry>cd length </entry><entry>05</entry><entry>variable tag </entry></row>
+<row><entry>05</entry><entry>name length</entry><entry>01</entry><entry>name length </entry></row>
+<row><entry>61</entry><entry>a (cd name begin</entry><entry>7a</entry><entry>z (variable name) </entry></row>
+<row><entry>72</entry><entry>r  .</entry><entry>11</entry><entry>end application tag </entry></row>
+<row><entry>69</entry><entry>i  .</entry><entry>11</entry><entry>end application tag </entry></row>
+<row><entry>74</entry><entry>t  .</entry><entry>19</entry><entry>end object tag </entry></row>
+<row><entry>68</entry><entry>h  .</entry><entry></entry><entry></entry></row>
+<row><entry>31</entry><entry>1  .)</entry><entry></entry><entry></entry></row>
+<row><entry>74</entry><entry>t (symbol name begin</entry><entry></entry><entry></entry></row>
+<row><entry>69</entry><entry>i  .</entry><entry></entry><entry></entry></row>
+<row><entry>6d</entry><entry>m  .</entry><entry></entry><entry></entry></row>
+<row><entry>65</entry><entry>e  .</entry><entry></entry><entry></entry></row>
+<row><entry>73</entry><entry>s  .)</entry><entry></entry><entry></entry></row>
+<row><entry>10</entry><entry>begin application tag</entry><entry></entry><entry></entry></row>
+<row><entry>08</entry><entry>symbol tag</entry><entry></entry><entry></entry></row>
+<row><entry>06</entry><entry>cd length</entry><entry></entry><entry></entry></row>
+<row><entry>04</entry><entry>name length</entry><entry></entry><entry></entry></row>
+<row><entry>61</entry><entry>a (cd name begin</entry><entry></entry><entry></entry></row>
+<row><entry>72</entry><entry>r  .</entry><entry></entry><entry></entry></row>
+<row><entry>69</entry><entry>i  .</entry><entry></entry><entry></entry></row>
+<row><entry>74</entry><entry>t  .</entry><entry></entry><entry></entry></row>
+<row><entry>68</entry><entry>h  .</entry><entry></entry><entry></entry></row>
+<row><entry>31</entry><entry>1  .)</entry><entry></entry><entry></entry></row>
+<row><entry>70</entry><entry>p (symbol name begin</entry><entry></entry><entry></entry></row>
+<row><entry>6c</entry><entry>l  .</entry><entry></entry><entry></entry></row>
+<row><entry>75</entry><entry>u  . </entry><entry></entry><entry></entry></row>
+<row><entry>73</entry><entry>s  .) </entry><entry></entry><entry></entry></row>
+<row><entry>05</entry><entry>variable tag </entry><entry></entry><entry></entry></row>
+<row><entry>01</entry><entry>name length </entry><entry></entry><entry></entry></row>
+<row><entry>78</entry><entry>x (name) </entry><entry></entry><entry></entry></row>
+<row><entry>05</entry><entry>variable tag </entry><entry></entry><entry></entry></row>
+<row><entry>01</entry><entry>name length </entry><entry></entry><entry></entry></row>
+<row><entry>79</entry><entry>y (variable name) </entry><entry></entry><entry></entry></row>
+<row><entry>11</entry><entry>end application tag </entry><entry></entry><entry></entry></row>
+</tbody>
+</tgroup>
+</informaltable> 
+</figure>
+
+</section>
+
+<section id="sec_both_sharing">
+<title>Sharing</title>
+
+<para revisionflag="added">
+&OM; 2 introduced a new sharing mechanism, described below.  First however
+we describe the original &OM; 1 mechanism.
+</para>
+
 <section id="sec_sharing">
 <title>Sharing <phrase revisionflag="added">in Objects beginning with the identifier [24]</phrase></title>
  
-<para>This binary encoding supports the sharing of symbols, variables and strings
+<para>This
+<phrase revisionflag="added">form of sharing is deprecated but included for
+backwards compatibility with &OM; 1.  It</phrase>
+<phrase revisionflag="deleted">binary encoding</phrase>
+supports the sharing of symbols, variables and strings
 (up to a certain length for strings) within one object. That is, sharing between
 objects is not supported.  A reference to a shared symbol, variable or string is
 encoded as the corresponding tag with the long flag not set and the shared flag
-set, followed by a positive integer <math><mi>n</mi></math> coded on one byte (0
+set, followed by a positive integer <math><mi>n</mi></math> encoded as one byte (0
 to 255). This integer references the <math><mi>n</mi> <mo>+</mo>
 <mn>1</mn></math>-th such sharable sub-object (symbol, variable or string up to
 255 characters) in the current &OM; object (counted in the order they are
@@ -3742,7 +3843,6 @@ references a symbol that is identical to the second symbol that was found in the
 current object.  Strings with 8 bit characters and strings with 16 bit characters
 are two different kinds of objects for this sharing. Only strings containing less
 than 256 characters can be shared (i.e. only strings up to 255 characters).</para>
-</section>
 </section>
 
 <section id="sec_sharing_references" revisionflag="added">
@@ -3754,7 +3854,7 @@ efficient binary encoding specified in this section) only symbols,
 variables, and short strings could be shared. In this section, we will
 present a second binary encoding, which shares most of the identifiers
 with the one in the last one, but handles sharing differently. This
-  encoding is signaled by the shared object tags [88].</para>
+  encoding is signaled by the shared object tag [88].</para>
 
   <para>The main difference is the interpretation of the sharing flag (bit 7),
 which can be set on all objects that allow it. Instead of encoding a reference to a
@@ -3848,15 +3948,18 @@ for greater depths). The shared &exml; encoding only uses
 <math><mn>32</mn><mi>d</mi><mo>+</mo><mn>29</mn></math> bytes, which is more space
 efficient starting at depth 9.</para>
 
-<para>Note that in conversion to binary encoding the identifiers on the
+<para>Note that in conversion from the &exml; to the
+binary encoding the identifiers on the
 objects are not preserved. Moreover, even though the &exml; encoding
 allows references across objects, as in figure ???, the binary
 encoding does not (the binary encoding has no notion of a multi-object
-collection, which is implicit by embedding &OM; objects into &exml;
-documents in the &exml; encoding.).</para>
+collection, which corresponds to the embedding of multiple &OM; objects
+into a single &exml;
+document in the &exml; encoding).</para>
 
 <para>Note that objects need not be fully shared (or shared at all) in the
 binary encoding with sharing.</para>
+</section>
 </section>
 
 <section id="sec_impl_note">
@@ -3903,92 +4006,6 @@ output in the normal way or replaced by the right reference if it is already
 present in the table.</para>
 </section>
 
-<section id="sec_bin_example">
-<title>Example of Binary Encoding</title>
-
-<para>As an example of this binary encoding, we can consider the &OM; object
-whose &exml; encoding is
-<literallayout><![CDATA[<OMOBJ version="2.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS name="times" cd="arith1"/>
-    <OMA>
-      <OMS name="plus" cd="arith1"/>
-      <OMV name="x"/>
-      <OMV name="y"/>
-    </OMA>
-    <OMA>
-      <OMS name="plus" cd="arith1"/>
-      <OMV name="x"/>
-      <OMV name="z"/>
-    </OMA>
-  </OMA>
-</OMOBJ>]]></literallayout> 
-It is binary encoded as the sequence of bytes given by  the following table.</para>
-
-<informaltable>
-<tgroup cols="2">
-<thead>
-<row>
-<entry>Hex </entry>
-<entry>Meaning </entry>
-</row>
-</thead>
-<tbody>
-<row><entry>58</entry><entry>begin object tag</entry></row>
-<row><entry>2</entry><entry> version 2.0 (major)</entry></row>
-<row><entry>0</entry><entry> version 2.0 (minor)</entry></row>
-<row><entry>10</entry><entry>begin application tag</entry></row>
-<row><entry>08</entry><entry>symbol tag</entry></row>
-<row><entry>06</entry><entry>cd length </entry></row>
-<row><entry>05</entry><entry>name length</entry></row>
-<row><entry>61</entry><entry>a (cd name begin</entry></row>
-<row><entry>72</entry><entry>r  .</entry></row>
-<row><entry>69</entry><entry>i  .</entry></row>
-<row><entry>74</entry><entry>t  .</entry></row>
-<row><entry>68</entry><entry>h  .</entry></row>
-<row><entry>31</entry><entry>1  .)</entry></row>
-<row><entry>74</entry><entry>t (symbol name begin</entry></row>
-<row><entry>69</entry><entry>i  .</entry></row>
-<row><entry>6d</entry><entry>m  .</entry></row>
-<row><entry>65</entry><entry>e  .</entry></row>
-<row><entry>73</entry><entry>s  .)</entry></row>
-<row><entry>10</entry><entry>begin application tag</entry></row>
-<row><entry>08</entry><entry>symbol tag</entry></row>
-<row><entry>06</entry><entry>cd length</entry></row>
-<row><entry>04</entry><entry>name length</entry></row>
-<row><entry>61</entry><entry>a (cd name begin</entry></row>
-<row><entry>72</entry><entry>r  .</entry></row>
-<row><entry>69</entry><entry>i  .</entry></row>
-<row><entry>74</entry><entry>t  .</entry></row>
-<row><entry>68</entry><entry>h  .</entry></row>
-<row><entry>31</entry><entry>1  .)</entry></row>
-<row><entry>70</entry><entry>p (symbol name begin</entry></row>
-<row><entry>6c</entry><entry>l  .</entry></row>
-<row><entry>75</entry><entry>u  . </entry></row>
-<row><entry>73</entry><entry>s  .) </entry></row>
-<row><entry>05</entry><entry>variable tag </entry></row>
-<row><entry>01</entry><entry>name length </entry></row>
-<row><entry>78</entry><entry>x (name) </entry></row>
-<row><entry>05</entry><entry>variable tag </entry></row>
-<row><entry>01</entry><entry>name length </entry></row>
-<row><entry>79</entry><entry>y (variable name) </entry></row>
-<row><entry>11</entry><entry>end application tag </entry></row>
-<row><entry>10</entry><entry>begin application tag </entry></row>
-<row><entry>48</entry><entry>symbol tag (with share bit on) </entry></row>
-<row><entry>01</entry><entry>reference to second symbol seen (arith1:plus)</entry></row>
-<row><entry>45</entry><entry>variable tag (with share bit on) </entry></row>
-<row><entry>00</entry><entry>reference to first variable seen (x) </entry></row>
-<row><entry>05</entry><entry>variable tag </entry></row>
-<row><entry>01</entry><entry>name length </entry></row>
-<row><entry>7a</entry><entry>z (variable name) </entry></row>
-<row><entry>11</entry><entry>end application tag </entry></row>
-<row><entry>11</entry><entry>end application tag </entry></row>
-<row><entry>19</entry><entry>end object tag </entry></row>
-</tbody>
-</tgroup>
-</informaltable> 
-
-</section>
 
 <section id="sec_relation_OM1_binary" revisionflag="added">
   <title>Relation to the &OM;1 binary encoding</title>
@@ -4001,11 +4018,12 @@ It is binary encoded as the sequence of bytes given by  the following table.</pa
     can still be used as more compact representations of the objects (which are
     not shared, and do not have an identifier).
   </para>
-  <para>As the binary encoding is geared towards compactness, &OM; objects should
-    be maximally internally shared (if computationally feasible). Note that since
+  <para>As the binary encoding is geared towards compactness, &OM; objects
+    should be constructed so as to maximise internal sharing
+    (if computationally feasible). Note that since
     sharing is done only at the
-    encoding level, this does not alter the meaning of an &OM; object, only allow
-    to represent it more compactly.
+    encoding level, this does not alter the meaning of an &OM; object, only
+    allows it to be represented more compactly.
   </para>
 </section>
 </section>
