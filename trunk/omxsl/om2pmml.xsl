@@ -52,11 +52,9 @@
 
 <xsl:template match="om:OMA">
   <xsl:param name="p" select="0"/>
-  <mrow>
     <xsl:apply-templates select="*[1]">
       <xsl:with-param name="p" select="$p"/>
     </xsl:apply-templates>
-  </mrow>
 </xsl:template>
 
 <xsl:template match="om:OMBIND">
