@@ -1626,7 +1626,28 @@ encoded as <systemitem>&lt;OMI> 10 &lt;/OMI> </systemitem> or as
   example, <systemitem>&lt;OMS cd="transc" name="sin"/></systemitem>
   is the encoding of the symbol named <systemitem>sin</systemitem> in
   the Content Dictionary named <systemitem>transc</systemitem>.</para>
-  
+
+<para revisionflag="added">The three attributes of the
+  <systemitem>OMS</systemitem> are used in order to build a URI for the symbol,
+for use in contexts where URI-based referencing mechanisms are used. This
+canonical URI is constructed as follows:</para>
+<blockquote  revisionflag="added">
+  <para><systemitem>URI = URIStub-value + '/' + cd-value + '/' + name-value</systemitem></para>
+</blockquote>
+
+<para revisionflag="added">For example</para>
+<blockquote  revisionflag="added">
+  <literallayout><![CDATA[<OMS name="plus" cd="arith1" URIStub="http://www.openmath.org/CDs"/>]]></literallayout>
+</blockquote>
+<para revisionflag="added">
+  gives the URI <systemitem>"http://www.openmath.org/CDs/arith1/plus"</systemitem>
+  This allows us to refer uniquely to an openmath symbol from a MathML document.</para>
+<blockquote  revisionflag="added">
+  <literallayout>
+&lt;mathml:csymbol xmlns:mathml="http://www.w3.org/TR/MathML2/"
+                definitionURL="http://www.openmath.org/CDs/arith1/plus"&gt;Z&lt;/csymbol&gt;
+  </literallayout>
+</blockquote>
 </listitem>
 </varlistentry>
 <varlistentry><term>Variables</term><listitem><para>are encoded using
