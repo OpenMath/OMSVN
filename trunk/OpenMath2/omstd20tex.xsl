@@ -138,9 +138,18 @@ relative to the OpenMath 1.0 document\ldots
 
 
 <xsl:template match="emphasis">
-<xsl:text>\emph£</xsl:text>
-<xsl:apply-templates/>
-<xsl:text>ß</xsl:text>
+  <xsl:choose>
+    <xsl:when test="@role='bold' or @role='Bold'">
+      <xsl:text>£\bf </xsl:text>
+      <xsl:apply-templates/>
+      <xsl:text>ß</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>\emph£</xsl:text>
+      <xsl:apply-templates/>
+      <xsl:text>ß</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="acronym">

@@ -176,9 +176,18 @@ relative to the OpenMath 1.0 document...</p>
 
 <xsl:template match="emphasis">
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
+<xsl:choose>
+  <xsl:when test="@role='bold' or @role='Bold'">
+<b>
+<xsl:apply-templates select="@revisionflag|node()"/>
+</b>
+  </xsl:when>
+  <xsl:otherwise>
 <i>
 <xsl:apply-templates select="@revisionflag|node()"/>
 </i>
+  </xsl:otherwise>
+</xsl:choose>
 </xsl:if>
 </xsl:template>
 
