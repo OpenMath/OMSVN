@@ -2331,600 +2331,647 @@ implementations).</para>
 <figure id="fig_bin-enc">
     <title>Grammar of the binary encoding of &OM; objects.</title>
     
-<informaltable>
-<tgroup cols="6">
-<tbody>
-<row>
-<entry>start </entry>
-<entry><math>&longrightarrow;</math></entry>
-<entry> [24] object [25] </entry>
-<entry revisionflag="added">|</entry>
-<entry revisionflag="added"> [24+64] object [25]</entry>
-</row>
-
-<row>
-<entry>object </entry>
-<entry><math>&longrightarrow;</math></entry>
-<entry> integer </entry>
-</row>
-
-<row>
-<entry/>
-<entry>|</entry>
-<entry> float</entry>
-</row>
-
-<row>
-<entry/>
-<entry>|</entry>
-<entry> variable</entry>
-</row>
-
-<row>
-<entry/>
-<entry>|</entry>
-<entry> symbol</entry>
-</row>
-
-<row>
-<entry/>
-<entry>|</entry>
-<entry> string</entry>
-</row>
-
-<row>
-<entry/>
-<entry>|</entry>
-<entry> bytearray</entry>
-</row>
-
-<row revisionflag="added">
-<entry/>
-<entry>|</entry>
-<entry> derived</entry>
-</row>
-
-<row>
-<entry/>
-<entry>|</entry>
-<entry> construct</entry>
-</row>
-
-<row>
-<entry/>
-<entry>|</entry>
-<entry> reference</entry>
-</row>
-
-<row>
-<entry>integer </entry>
-<entry><math>&longrightarrow;</math></entry>
-<entry> [1] [_] </entry>
-<entry revisionflag="added">|</entry>
-<entry revisionflag="added"> [1+64]
-  [<math><mi>n</mi></math>]
-  id:<math><mi>n</mi></math>
-  [_]
-</entry>
-</row>
-
-<row>
-<entry/>
-<entry>|</entry>
-<entry> [1+128] {_} </entry>
-<entry revisionflag="added">|</entry>
-<entry revisionflag="added"> [1+64+128]
-  {<math><mi>n</mi></math>}
-  id:<math><mi>n</mi></math>
-  {_}
-</entry>
-</row>
-
-<row>
-<entry/>
-<entry>|</entry>
-<entry> [2]
-  [<math><mi>n</mi></math>]
-  [_] digits:<math><mi>n</mi></math>
-</entry>
-<entry revisionflag="added">|</entry>
-<entry revisionflag="added"> [2+64]
-  [<math><mi>n</mi></math>]
-  [<math><mi>m</mi></math>]
-  [_] digits:<math><mi>n</mi></math>
-  id:<math><mi>m</mi></math>
-</entry>
-</row>
-
-<row>
-<entry/>
-<entry>|</entry>
-<entry> [2+128]
-  {<math><mi>n</mi></math>}
-  [_] digits:<math><mi>n</mi></math>
-</entry>
-<entry revisionflag="added">|</entry>
-<entry revisionflag="added"> [2+64+128]
-  {<math><mi>n</mi></math>}
-  {<math><mi>n</mi></math>}
-  [_]
-  digits:<math><mi>n</mi></math>
-  id:<math><mi>n</mi></math>
-</entry>
-</row>
-
-<row>
-<entry>float </entry>
-<entry><math>&longrightarrow;</math></entry>
-<entry> [3] {_}{_} </entry>
-<entry revisionflag="added">|</entry>
-<entry revisionflag="added"> [3+64]
-  [<math><mi>n</mi></math>]
-  id:<math><mi>n</mi></math>
-  {_}{_}</entry>
-</row>
-
-<row>
-<entry>variable </entry>
-<entry><math>&longrightarrow;</math></entry>
-<entry> [5]
-  [<math><mi>n</mi></math>]
-  varname:<math><mi>n</mi></math>
-</entry>
-<entry revisionflag="added">|</entry>
-<entry revisionflag="added"> [5+64]
-  [<math><mi>n</mi></math>]
-  [<math><mi>m</mi></math>]
-  varname:<math><mi>n</mi></math>
-  id:<math><mi>m</mi></math>
-</entry>
-</row>
-
-<row>
-<entry/>
-<entry>|</entry>
-<entry> [5+128]
-  {<math><mi>n</mi></math>}
-  varname:<math><mi>n</mi></math>
-</entry>
-<entry>|</entry>
-<entry revisionflag="added"> [5+64+128]
-  {<math><mi>n</mi></math>}
-  {<math><mi>m</mi></math>}
-  varname:<math><mi>n</mi></math>
-  id:<math><mi>m</mi></math>
-</entry>
-</row>
-
-<row revisionflag="added">
-<entry/>
-<entry><math>|</math></entry>
-<entry> [10]
-  [<math><mi>n</mi></math>]
-  varname:<math><mi>n</mi></math>
-  object? [11]
-</entry>
-<entry><math>|</math></entry>
-<entry> [10+64]
-  [<math><mi>n</mi></math>]
-  [<math><mi>m</mi></math>]
-  varname:<math><mi>n</mi></math>
-  id:<math><mi>m</mi></math>
-  object? [11]
-</entry>
-</row>
-
-
-<row revisionflag="added">
-<entry/>
-<entry><math>|</math></entry>
-<entry> [10+128]
-  {<math><mi>n</mi></math>}
-  varname:<math><mi>n</mi></math>
-  object? [11]
-</entry>
-<entry><math>|</math></entry>
-<entry> [10+64+128]
-  {<math><mi>n</mi></math>}
-  {<math><mi>m</mi></math>}
-  varname:<math><mi>n</mi></math>
-  id:<math><mi>m</mi></math>
-  object? [11]
-</entry>
-</row>
-
-<row>
-<entry>symbol</entry>
-<entry><math>&longrightarrow;</math></entry>
-<entry> [8]
-  [<math><mi>n</mi></math>]
-  [<math><mi>m</mi></math>]
-  cdname:<math><mi>n</mi></math>
-  symbname:<math><mi>m</mi></math>
-</entry>
-<entry revisionflag="added">|</entry>
-<entry revisionflag="added"> [8+64]
-  [<math><mi>n</mi></math>]
-  [<math><mi>m</mi></math>]
-  [<math><mi>k</mi></math>]
-  cdname:<math><mi>n</mi></math>
-  symbname:<math><mi>m</mi></math>
-  id:<math><mi>k</mi></math>
-</entry>
-</row>
-
-<row>
-<entry/>
-<entry>|</entry>
-<entry> [8+128]
-  {<math><mi>n</mi></math>}
-  {<math><mi>m</mi></math>}
-  cdname:<math><mi>n</mi></math>
-  symbname:<math><mi>m</mi></math>
-</entry>
-<entry revisionflag="added">|</entry>
-<entry revisionflag="added"> [8+64+128]
-  {<math><mi>n</mi></math>}
-  {<math><mi>m</mi></math>}
-  {<math><mi>k</mi></math>}
-  cdname:<math><mi>n</mi></math>
-  symbname:<math><mi>m</mi></math>
-  id:<math><mi>k</mi></math></entry>
-</row>
-
-<row revisionflag="added">
-<entry/>
-<entry>|</entry>
-<entry> [9]
-  [<math><mi>n</mi></math>]
-  [<math><mi>m</mi></math>]
-  [<math><mi>k</mi></math>]
-  cdname:<math><mi>n</mi></math>
-  symbname:<math><mi>m</mi></math>
-  uri:<math><mi>k</mi></math>
-</entry>
-<entry revisionflag="added">|</entry>
-<entry revisionflag="added"> [9+64]
-  [<math><mi>n</mi></math>]
-  [<math><mi>m</mi></math>]
-  [<math><mi>k</mi></math>]
-  [<math><mi>l</mi></math>]
-  cdname:<math><mi>n</mi></math>
-  symbname:<math><mi>m</mi></math>
-  uri:<math><mi>k</mi></math>
-  id:<math><mi>l</mi></math>
-</entry>
-</row>
-
-<row revisionflag="added">
-<entry/>
-<entry>|</entry>
-<entry> [9+128]
-  {<math><mi>n</mi></math>}
-  {<math><mi>m</mi></math>}
-  {<math><mi>k</mi></math>}
-  cdname:<math><mi>n</mi></math>
-  symbname:<math><mi>m</mi></math>
-  uri:<math><mi>k</mi></math>
-</entry>
-<entry revisionflag="added">|</entry>
-<entry revisionflag="added"> [9+64+128]
-  {<math><mi>n</mi></math>}
-  {<math><mi>m</mi></math>}
-  {<math><mi>k</mi></math>}
-  {<math><mi>l</mi></math>}
-  cdname:<math><mi>n</mi></math>
-  symbname:<math><mi>m</mi></math>
-  uri:<math><mi>k</mi></math></entry>
-  id:<math><mi>l</mi></math>
-</row>
-
-<row>
-<entry>string </entry>
-<entry><math>&longrightarrow;</math></entry>
-<entry> [6]
-  [<math><mi>n</mi></math>]
-  <phrase revisionflag="deleted">chars</phrase><phrase revisionflag="added">bytes</phrase>:<math><mi>n</mi></math>
-</entry>
-<entry revisionflag="added">|</entry>
-<entry revisionflag="added"> [6+64]
-  [<math><mi>n</mi></math>]
-  <phrase revisionflag="deleted">chars</phrase><phrase revisionflag="added">bytes</phrase>:<math><mi>n</mi></math>
-</entry>
-</row>
-
-<row>
-<entry/>
-<entry>|</entry>
-<entry> [6+128]
-  {<math><mi>n</mi></math>}
-  <phrase revisionflag="deleted">chars</phrase><phrase revisionflag="added">bytes</phrase>:<math><mi>n</mi></math>
-</entry>
-<entry revisionflag="added">|</entry>
-<entry revisionflag="added"> [6+64+128]
-  {<math><mi>n</mi></math>}
-  {<math><mi>m</mi></math>}
-  <phrase revisionflag="deleted">chars</phrase><phrase revisionflag="added">bytes</phrase>:<math><mi>n</mi></math>
-  id:<math><mi>m</mi></math>
-</entry>
-</row>
-
-<row>
-  <entry/>
-  <entry>|</entry>
-  <entry> [7]
-    [<math><mi>n</mi></math>]
-    <phrase revisionflag="deleted">chars</phrase><phrase revisionflag="added">bytes</phrase>:<math><mn>2</mn><mi>n</mi></math>
-  </entry>
-  <entry  revisionflag="added">|</entry>
-  <entry revisionflag="added"> [7+64]
-    [<math><mi>n</mi></math>]
-    [<math><mi>m</mi></math>]
-    <phrase revisionflag="deleted">chars</phrase><phrase revisionflag="added">bytes</phrase>:<math><mn></mn><mi>n</mi></math>
-    id:<math><mi>m</mi></math>
-  </entry>
-</row>
-
-<row>
-<entry/>
-<entry>|</entry>
-<entry> [7+128]
-  {<math><mi>n</mi></math>}
-  <phrase revisionflag="deleted">chars</phrase><phrase revisionflag="added">bytes</phrase>:<math><mn>2</mn><mi>n</mi></math>
-</entry>
-<entry revisionflag="added">|</entry>
-<entry revisionflag="added"> [7+64+128]
-  {<math><mi>n</mi></math>}
-  {<math><mi>m</mi></math>}
-  <phrase revisionflag="deleted">chars</phrase><phrase revisionflag="added">bytes</phrase>:<math><mn>2</mn><mi>n</mi></math>
-  id:<math><mi>m</mi></math>
-</entry>
-</row>
-
-<row>
-<entry>bytearray </entry>
-<entry><math>&longrightarrow;</math></entry>
-<entry> [4]
-  [<math><mi>n</mi></math>]
-  bytes:<math><mi>n</mi></math>
-</entry>
-<entry revisionflag="added">|</entry>
-<entry revisionflag="added"> [4+64]
-  [<math><mi>n</mi></math>]
-  [<math><mi>m</mi></math>]
-  bytes:<math><mi>n</mi></math>
-  id:<math><mi>m</mi></math>
-</entry>
-</row>
-
-<row>
-<entry/>
-<entry>|</entry>
-<entry> [4+128]
-  {<math><mi>n</mi></math>}
-  bytes:<math><mi>n</mi></math>
-</entry>
-<entry revisionflag="added">|</entry>
-<entry revisionflag="added"> [4+64+128]
-  {<math><mi>n</mi></math>}
-  {<math><mi>m</mi></math>}
-  bytes:<math><mi>n</mi></math>
-  id:<math><mi>m</mi></math>
-</entry>
-</row>
-
-
-<row revisionflag="added">
-<entry>derived</entry>
-<entry><math>&longrightarrow;</math></entry>
-<entry> [12]
-  [<math><mi>n</mi></math>]
-  bytes:<math><mi>n</mi></math>
-</entry>
-<entry revisionflag="added">|</entry>
-<entry revisionflag="added"> [12+64]
-  [<math><mi>n</mi></math>]
-  [<math><mi>m</mi></math>]
-  bytes:<math><mi>n</mi></math>
-  id:<math><mi>m</mi></math>
-</entry>
-</row>
-
-<row revisionflag="added">
-<entry/>
-<entry>|</entry>
-<entry> [12+128]
-  {<math><mi>n</mi></math>}
-  bytes:<math><mi>n</mi></math>
-</entry>
-<entry revisionflag="added">|</entry>
-<entry revisionflag="added"> [12+64+128]
-  {<math><mi>n</mi></math>}
-  {<math><mi>m</mi></math>}
-  bytes:<math><mi>n</mi></math>
-  id:<math><mi>m</mi></math>
-</entry>
-</row>
-
-<row>
-<entry>construct </entry>
-<entry><math>&longrightarrow;</math></entry>
-<entry> [16] object objects [17] </entry>
-<entry revisionflag="added">|</entry>
-<entry revisionflag="added"> [16+64]
-  {<math><mi>m</mi></math>}
-  id:<math><mi>m</mi></math>
-  object objects [17]
-</entry>
-</row>
-
-<row>
-<entry/>
-<entry>|</entry>
-<entry> [22] symbol objects [23] </entry>
-<entry revisionflag="added">|</entry>
-<entry revisionflag="added"> [22+64]
-  {<math><mi>m</mi></math>}
-  id:<math><mi>m</mi></math>
-  symbol objects [23]</entry>
-</row>
-
-<row>
-<entry/>
-<entry>|</entry>
-<entry> [18] attrpairs object [19] </entry>
-<entry revisionflag="added">|</entry>
-<entry revisionflag="added"> [18+64]
-  {<math><mi>m</mi></math>}
-  id:<math><mi>m</mi></math>
-  attrpairs object [19]
-</entry>
-</row>
-
-<row>
-<entry/>
-<entry>|</entry>
-<entry> [26] object bvars object [27] </entry>
-<entry revisionflag="added">|</entry>
-<entry revisionflag="added"> [26+64]
-  {<math><mi>m</mi></math>}
-  id:<math><mi>m</mi></math>
-  object bvars object [27]
-</entry>
-</row>
-
-<row>
-<entry>attrpairs </entry>
-<entry><math>&longrightarrow;</math></entry>
-<entry> [20] pairs [21] </entry>
-<entry revisionflag="added">|</entry>
-<entry revisionflag="added"> [20+64]
-  {<math><mi>m</mi></math>}
-  id:<math><mi>m</mi></math>
-  pairs [21]
-</entry>
-</row>
-
-<row>
-<entry>pairs </entry>
-<entry><math>&longrightarrow;</math></entry>
-<entry> symbol object</entry>
-</row>
-
-<row>
-<entry/>
-<entry>|</entry>
-<entry> symbol object pairs</entry>
-</row>
-
-<row>
-<entry>bvars </entry>
-<entry><math>&longrightarrow;</math></entry>
-<entry> [28] vars [29] </entry>
-<entry revisionflag="added">|</entry>
-<entry revisionflag="added"> [28+64]
-  {<math><mi>m</mi></math>}
-  id:<math><mi>m</mi></math>
-  vars [29]
-</entry>
-</row>
-
-<row>
-<entry>vars </entry>
-<entry><math>&longrightarrow;</math></entry>
-<entry> attrvar</entry>
-</row>
-
-<row>
-<entry/>
-<entry>|</entry>
-<entry> attrvar vars</entry>
-</row>
-
-<row>
-<entry>attrvar </entry>
-<entry><math>&longrightarrow;</math></entry>
-<entry> variable</entry>
-</row>
-
-<row>
-<entry/>
-<entry>|</entry>
-<entry> [18] attrpairs attrvar [19] </entry>
-<entry revisionflag="added">|</entry>
-<entry revisionflag="added"> [18+64]
-  {<math><mi>m</mi></math>}
-  id:<math><mi>m</mi></math>
-  attrpairs attrvar [19]
-</entry>
-</row>
-
-<row>
-<entry>objects </entry>
-<entry><math>&longrightarrow;</math></entry>
-<entry> object objects</entry>
-</row>
-
-<row revisionflag="added">
-<entry>reference </entry>
-<entry><math>&longrightarrow;</math></entry>
-<entry> [30] [_] </entry>
-</row>
-
-<row revisionflag="added">
-<entry/>
-<entry>|</entry>
-<entry> [30+128] {_}</entry>
-</row>
-</tbody>
-</tgroup>
-</informaltable>
-</figure>
-
-<para>Figure <xref linkend="fig_bin-enc"/> gives a grammar for the binary
-encoding.  The following conventions are used in this section:
-[<math><mi>n</mi></math>] denotes a byte whose value is the integer
-<math><mi>n</mi></math> (<math><mi>n</mi></math> can range from 0 to 255),
-{<math><mi>m</mi></math>} denotes four bytes representing the (unsigned) integer
-<math><mi>m</mi></math> in network byte order, [_] denotes an arbitrary byte, {_}
-denotes an arbitrary sequence of four bytes.
-<phrase revisionflag="deleted">
-  <emphasis>name</emphasis>:<math><mi>n</mi></math> denotes a sequence of
-<math><mi>n</mi></math> bytes named <emphasis>name</emphasis>.
-<emphasis>name</emphasis>:2<math><mi>n</mi></math> denotes a sequence of
-<math><mn>2</mn><mi>n</mi></math> bytes.  <quote>start</quote> is the start symbol of the
-grammar.</phrase></para>
-
-<para revisionflag="added"><emphasis>xxxx</emphasis>:<math><mi>n</mi></math>,
-where <emphasis>xxxx</emphasis> is one of <emphasis>symbname</emphasis>,
-<emphasis>cdname</emphasis>, <emphasis>varname</emphasis>,
-<emphasis>uri</emphasis>, <emphasis>id</emphasis>, <emphasis>digits</emphasis>, or
-<emphasis>bytes</emphasis> denotes a sequence of <math><mi>n</mi></math> bytes
-named that conforms to the constraints on <emphasis>xxx</emphasis> strings. For
-instance, for <emphasis>symbname</emphasis>, <emphasis>varname</emphasis>, or
-<emphasis>cdname</emphasis>this is the regular expression described in
-<xref linkend="sec_names"/>, for <emphasis>uri</emphasis> it is the grammar for
-URIs in <citation>IETF2396</citation>.</para>
-
-<para> <quote>start</quote> is the start symbol of the grammar.</para> </section>
+    <informaltable>
+      <tgroup cols="6">
+	<tbody>
+	  <row>
+	    <entry>start </entry>
+	    <entry><math>&longrightarrow;</math></entry>
+	    <entry> [24] object [25] </entry>
+	    <entry revisionflag="added">|</entry>
+	    <entry revisionflag="added"> [24+64] object [25]</entry>
+	  </row>
+	  
+	  <row>
+	    <entry>object </entry>
+	    <entry><math>&longrightarrow;</math></entry>
+	    <entry> integer </entry>
+	  </row>
+	  
+	  <row>
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> float</entry>
+	  </row>
+	  
+	  <row>
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> variable</entry>
+	  </row>
+	  
+	  <row revisionflag="added">
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> indexed_variable</entry>
+	  </row>
+	  
+	  <row>
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> symbol</entry>
+	  </row>
+	  
+	  <row>
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> string</entry>
+	  </row>
+	  
+	  <row>
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> bytearray</entry>
+	  </row>
+	  
+	  <row revisionflag="added">
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> derived</entry>
+	  </row>
+	  
+	  <row>
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> construct</entry>
+	  </row>
+	  
+	  <row revisionflag="added">
+	    <entry/>
+	    <entry>|</entry>
+	    <entry>internal_reference</entry>
+	  </row>
+	  
+	  <row revisionflag="added">
+	    <entry/>
+	    <entry>|</entry>
+	    <entry>external_reference</entry>
+	  </row>
+	  
+	  <row>
+	    <entry>integer </entry>
+	    <entry><math>&longrightarrow;</math></entry>
+	    <entry> [1] [_] </entry>
+	    <entry revisionflag="added">|</entry>
+	    <entry revisionflag="added"> [1+64]
+	      [<math><mi>n</mi></math>]
+	      id:<math><mi>n</mi></math>
+	      [_]
+	    </entry>
+	  </row>
+	  
+	  <row>
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> [1+128] {_} </entry>
+	    <entry revisionflag="added">|</entry>
+	    <entry revisionflag="added"> [1+64+128]
+	      {<math><mi>n</mi></math>}
+	      id:<math><mi>n</mi></math>
+	      {_}
+	    </entry>
+	  </row>
+	  
+	  <row>
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> [2]
+	      [<math><mi>n</mi></math>]
+	      [_] digits:<math><mi>n</mi></math>
+	    </entry>
+	    <entry revisionflag="added">|</entry>
+	    <entry revisionflag="added"> [2+64]
+	      [<math><mi>n</mi></math>]
+	      [<math><mi>m</mi></math>]
+	      [_] digits:<math><mi>n</mi></math>
+	      id:<math><mi>m</mi></math>
+	    </entry>
+	  </row>
+	  
+	  <row>
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> [2+128]
+	      {<math><mi>n</mi></math>}
+	      [_] digits:<math><mi>n</mi></math>
+	    </entry>
+	    <entry revisionflag="added">|</entry>
+	    <entry revisionflag="added"> [2+64+128]
+	      {<math><mi>n</mi></math>}
+	      {<math><mi>n</mi></math>}
+	      [_]
+	      digits:<math><mi>n</mi></math>
+	      id:<math><mi>n</mi></math>
+	    </entry>
+	  </row>
+	  
+	  <row>
+	    <entry>float </entry>
+	    <entry><math>&longrightarrow;</math></entry>
+	    <entry> [3] {_}{_} </entry>
+	    <entry revisionflag="added">|</entry>
+	    <entry revisionflag="added"> [3+64]
+	      [<math><mi>n</mi></math>]
+	      id:<math><mi>n</mi></math>
+	      {_}{_}</entry>
+	  </row>
+	  
+	  <row>
+	    <entry>variable </entry>
+	    <entry><math>&longrightarrow;</math></entry>
+	    <entry> [5]
+	      [<math><mi>n</mi></math>]
+	      varname:<math><mi>n</mi></math>
+	    </entry>
+	    <entry revisionflag="added">|</entry>
+	    <entry revisionflag="added"> [5+64]
+	      [<math><mi>n</mi></math>]
+	      [<math><mi>m</mi></math>]
+	      varname:<math><mi>n</mi></math>
+	      id:<math><mi>m</mi></math>
+	    </entry>
+	  </row>
+	  
+	  <row>
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> [5+128]
+	      {<math><mi>n</mi></math>}
+	      varname:<math><mi>n</mi></math>
+	    </entry>
+	    <entry>|</entry>
+	    <entry revisionflag="added"> [5+64+128]
+	      {<math><mi>n</mi></math>}
+	      {<math><mi>m</mi></math>}
+	      varname:<math><mi>n</mi></math>
+	      id:<math><mi>m</mi></math>
+	    </entry>
+	  </row>
+	  
+	  <row revisionflag="added">
+	    <entry>indexed_variable</entry>
+	    <entry><math>&longrightarrow;</math></entry>
+	    <entry> [10]
+	      [<math><mi>n</mi></math>]
+	      varname:<math><mi>n</mi></math>
+	      object [11]
+	    </entry>
+	    <entry><math>|</math></entry>
+	    <entry> [10+64]
+	      [<math><mi>n</mi></math>]
+	      [<math><mi>m</mi></math>]
+	      varname:<math><mi>n</mi></math>
+	      id:<math><mi>m</mi></math>
+	      object [11]
+	    </entry>
+	  </row>
+	  
+	  
+	  <row revisionflag="added">
+	    <entry/>
+	    <entry><math>|</math></entry>
+	    <entry> [10+128]
+	      {<math><mi>n</mi></math>}
+	      varname:<math><mi>n</mi></math>
+	      object [11]
+	    </entry>
+	    <entry><math>|</math></entry>
+	    <entry> [10+64+128]
+	      {<math><mi>n</mi></math>}
+	      {<math><mi>m</mi></math>}
+	      varname:<math><mi>n</mi></math>
+	      id:<math><mi>m</mi></math>
+	      object [11]
+	    </entry>
+	  </row>
+	  
+	  <row>
+	    <entry>symbol</entry>
+	    <entry><math>&longrightarrow;</math></entry>
+	    <entry> [8]
+	      [<math><mi>n</mi></math>]
+	      [<math><mi>m</mi></math>]
+	      cdname:<math><mi>n</mi></math>
+	      symbname:<math><mi>m</mi></math>
+	    </entry>
+	    <entry revisionflag="added">|</entry>
+	    <entry revisionflag="added"> [8+64]
+	      [<math><mi>n</mi></math>]
+	      [<math><mi>m</mi></math>]
+	      [<math><mi>k</mi></math>]
+	      cdname:<math><mi>n</mi></math>
+	      symbname:<math><mi>m</mi></math>
+	      id:<math><mi>k</mi></math>
+	    </entry>
+	  </row>
+	  
+	  <row>
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> [8+128]
+	      {<math><mi>n</mi></math>}
+	      {<math><mi>m</mi></math>}
+	      cdname:<math><mi>n</mi></math>
+	      symbname:<math><mi>m</mi></math>
+	    </entry>
+	    <entry revisionflag="added">|</entry>
+	    <entry revisionflag="added"> [8+64+128]
+	      {<math><mi>n</mi></math>}
+	      {<math><mi>m</mi></math>}
+	      {<math><mi>k</mi></math>}
+	      cdname:<math><mi>n</mi></math>
+	      symbname:<math><mi>m</mi></math>
+	      id:<math><mi>k</mi></math></entry>
+	  </row>
+	  
+	  <row revisionflag="added">
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> [9]
+	      [<math><mi>n</mi></math>]
+	      [<math><mi>m</mi></math>]
+	      [<math><mi>k</mi></math>]
+	      cdname:<math><mi>n</mi></math>
+	      symbname:<math><mi>m</mi></math>
+	      uri:<math><mi>k</mi></math>
+	    </entry>
+	    <entry revisionflag="added">|</entry>
+	    <entry revisionflag="added"> [9+64]
+	      [<math><mi>n</mi></math>]
+	      [<math><mi>m</mi></math>]
+	      [<math><mi>k</mi></math>]
+	      [<math><mi>l</mi></math>]
+	      cdname:<math><mi>n</mi></math>
+	      symbname:<math><mi>m</mi></math>
+	      uri:<math><mi>k</mi></math>
+	      id:<math><mi>l</mi></math>
+	    </entry>
+	  </row>
+	  
+	  <row revisionflag="added">
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> [9+128]
+	      {<math><mi>n</mi></math>}
+	      {<math><mi>m</mi></math>}
+	      {<math><mi>k</mi></math>}
+	      cdname:<math><mi>n</mi></math>
+	      symbname:<math><mi>m</mi></math>
+	      uri:<math><mi>k</mi></math>
+	    </entry>
+	    <entry revisionflag="added">|</entry>
+	    <entry revisionflag="added"> [9+64+128]
+	      {<math><mi>n</mi></math>}
+	      {<math><mi>m</mi></math>}
+	      {<math><mi>k</mi></math>}
+	      {<math><mi>l</mi></math>}
+	      cdname:<math><mi>n</mi></math>
+	      symbname:<math><mi>m</mi></math>
+	      uri:<math><mi>k</mi></math></entry>
+	    id:<math><mi>l</mi></math>
+	  </row>
+	  
+	  <row>
+	    <entry>string </entry>
+	    <entry><math>&longrightarrow;</math></entry>
+	    <entry> [6]
+	      [<math><mi>n</mi></math>]
+	      <phrase revisionflag="deleted">chars</phrase>
+	      <phrase revisionflag="added">bytes</phrase>:<math><mi>n</mi></math>
+	    </entry>
+	    <entry revisionflag="added">|</entry>
+	    <entry revisionflag="added"> [6+64]
+	      [<math><mi>n</mi></math>]
+	      <phrase revisionflag="deleted">chars</phrase>
+	      <phrase revisionflag="added">bytes</phrase>:<math><mi>n</mi></math>
+	    </entry>
+	  </row>
+	  
+	  <row>
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> [6+128]
+	      {<math><mi>n</mi></math>}
+	      <phrase revisionflag="deleted">chars</phrase>
+	      <phrase revisionflag="added">bytes</phrase>:<math><mi>n</mi></math>
+	    </entry>
+	    <entry revisionflag="added">|</entry>
+	    <entry revisionflag="added"> [6+64+128]
+	      {<math><mi>n</mi></math>}
+	      {<math><mi>m</mi></math>}
+	      <phrase revisionflag="deleted">chars</phrase>
+	      <phrase revisionflag="added">bytes</phrase>:<math><mi>n</mi></math>
+	      id:<math><mi>m</mi></math>
+	    </entry>
+	  </row>
+	  
+	  <row>
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> [7]
+	      [<math><mi>n</mi></math>]
+	      <phrase revisionflag="deleted">chars</phrase>
+	      <phrase revisionflag="added">bytes</phrase>:<math><mn>2</mn><mi>n</mi></math>
+	    </entry>
+	    <entry  revisionflag="added">|</entry>
+	    <entry revisionflag="added"> [7+64]
+	      [<math><mi>n</mi></math>]
+	      [<math><mi>m</mi></math>]
+	      <phrase revisionflag="deleted">chars</phrase>
+	      <phrase revisionflag="added">bytes</phrase>:<math><mn></mn><mi>n</mi></math>
+	      id:<math><mi>m</mi></math>
+	    </entry>
+	  </row>
+	  
+	  <row>
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> [7+128]
+	      {<math><mi>n</mi></math>}
+	      <phrase revisionflag="deleted">chars</phrase>
+	      <phrase revisionflag="added">bytes</phrase>:<math><mn>2</mn><mi>n</mi></math>
+	    </entry>
+	    <entry revisionflag="added">|</entry>
+	    <entry revisionflag="added"> [7+64+128]
+	      {<math><mi>n</mi></math>}
+	      {<math><mi>m</mi></math>}
+	      <phrase revisionflag="deleted">chars</phrase>
+	      <phrase revisionflag="added">bytes</phrase>:<math><mn>2</mn><mi>n</mi></math>
+	      id:<math><mi>m</mi></math>
+	    </entry>
+	  </row>
+	  
+	  <row>
+	    <entry>bytearray </entry>
+	    <entry><math>&longrightarrow;</math></entry>
+	    <entry> [4]
+	      [<math><mi>n</mi></math>]
+	      bytes:<math><mi>n</mi></math>
+	    </entry>
+	    <entry revisionflag="added">|</entry>
+	    <entry revisionflag="added"> [4+64]
+	      [<math><mi>n</mi></math>]
+	      [<math><mi>m</mi></math>]
+	      bytes:<math><mi>n</mi></math>
+	      id:<math><mi>m</mi></math>
+	    </entry>
+	  </row>
+	  
+	  <row>
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> [4+128]
+	      {<math><mi>n</mi></math>}
+	      bytes:<math><mi>n</mi></math>
+	    </entry>
+	    <entry revisionflag="added">|</entry>
+	    <entry revisionflag="added"> [4+64+128]
+	      {<math><mi>n</mi></math>}
+	      {<math><mi>m</mi></math>}
+	      bytes:<math><mi>n</mi></math>
+	      id:<math><mi>m</mi></math>
+	    </entry>
+	  </row>
+	  
+	  
+	  <row revisionflag="added">
+	    <entry>derived</entry>
+	    <entry><math>&longrightarrow;</math></entry>
+	    <entry> [12]
+	      [<math><mi>n</mi></math>]
+	      bytes:<math><mi>n</mi></math>
+	    </entry>
+	    <entry revisionflag="added">|</entry>
+	    <entry revisionflag="added"> [12+64]
+	      [<math><mi>n</mi></math>]
+	      [<math><mi>m</mi></math>]
+	      bytes:<math><mi>n</mi></math>
+	      id:<math><mi>m</mi></math>
+	    </entry>
+	  </row>
+	  
+	  <row revisionflag="added">
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> [12+128]
+	      {<math><mi>n</mi></math>}
+	      bytes:<math><mi>n</mi></math>
+	    </entry>
+	    <entry revisionflag="added">|</entry>
+	    <entry revisionflag="added"> [12+64+128]
+	      {<math><mi>n</mi></math>}
+	      {<math><mi>m</mi></math>}
+	      bytes:<math><mi>n</mi></math>
+	      id:<math><mi>m</mi></math>
+	    </entry>
+	  </row>
+	  
+	  <row>
+	    <entry>construct </entry>
+	    <entry><math>&longrightarrow;</math></entry>
+	    <entry> [16] object objects [17] </entry>
+	    <entry revisionflag="added">|</entry>
+	    <entry revisionflag="added"> [16+64]
+	      {<math><mi>m</mi></math>}
+	      id:<math><mi>m</mi></math>
+	      object objects [17]
+	    </entry>
+	  </row>
+	  
+	  <row>
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> [22] symbol objects [23] </entry>
+	    <entry revisionflag="added">|</entry>
+	    <entry revisionflag="added"> [22+64]
+	      {<math><mi>m</mi></math>}
+	      id:<math><mi>m</mi></math>
+	      symbol objects [23]</entry>
+	  </row>
+	  
+	  <row>
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> [18] attrpairs object [19] </entry>
+	    <entry revisionflag="added">|</entry>
+	    <entry revisionflag="added"> [18+64]
+	      {<math><mi>m</mi></math>}
+	      id:<math><mi>m</mi></math>
+	      attrpairs object [19]
+	    </entry>
+	  </row>
+	  
+	  <row>
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> [26] object bvars object [27] </entry>
+	    <entry revisionflag="added">|</entry>
+	    <entry revisionflag="added"> [26+64]
+	      {<math><mi>m</mi></math>}
+	      id:<math><mi>m</mi></math>
+	      object bvars object [27]
+	    </entry>
+	  </row>
+	  
+	  <row>
+	    <entry>attrpairs </entry>
+	    <entry><math>&longrightarrow;</math></entry>
+	    <entry> [20] pairs [21] </entry>
+	    <entry revisionflag="added">|</entry>
+	    <entry revisionflag="added"> [20+64]
+	      {<math><mi>m</mi></math>}
+	      id:<math><mi>m</mi></math>
+	      pairs [21]
+	    </entry>
+	  </row>
+	  
+	  <row>
+	    <entry>pairs </entry>
+	    <entry><math>&longrightarrow;</math></entry>
+	    <entry> symbol object</entry>
+	  </row>
+	  
+	  <row>
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> symbol object pairs</entry>
+	  </row>
+	  
+	  <row>
+	    <entry>bvars </entry>
+	    <entry><math>&longrightarrow;</math></entry>
+	    <entry> [28] vars [29] </entry>
+	    <entry revisionflag="added">|</entry>
+	    <entry revisionflag="added"> [28+64]
+	      {<math><mi>m</mi></math>}
+	      id:<math><mi>m</mi></math>
+	      vars [29]
+	    </entry>
+	  </row>
+	  
+	  <row>
+	    <entry>vars </entry>
+	    <entry><math>&longrightarrow;</math></entry>
+	    <entry> attrvar</entry>
+	  </row>
+	  
+	  <row>
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> attrvar vars</entry>
+	  </row>
+	  
+	  <row>
+	    <entry>attrvar </entry>
+	    <entry><math>&longrightarrow;</math></entry>
+	    <entry> variable</entry>
+	  </row>
+	  
+	  <row>
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> [18] attrpairs attrvar [19] </entry>
+	    <entry revisionflag="added">|</entry>
+	    <entry revisionflag="added"> [18+64]
+	      {<math><mi>m</mi></math>}
+	      id:<math><mi>m</mi></math>
+	      attrpairs attrvar [19]
+	    </entry>
+	  </row>
+	  
+	  <row>
+	    <entry>objects </entry>
+	    <entry><math>&longrightarrow;</math></entry>
+	    <entry> object objects</entry>
+	  </row>
+	  
+	  <row revisionflag="added">
+	    <entry>internal_reference </entry>
+	    <entry><math>&longrightarrow;</math></entry>
+	    <entry> [30] [_] </entry>
+	  </row>
+	  
+	  <row revisionflag="added">
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> [30+128] {_}</entry>
+	  </row>
+	  
+	  <row revisionflag="added">
+	    <entry>external_reference </entry>
+	    <entry><math>&longrightarrow;</math></entry>
+	    <entry> [31]
+	      [<math><mi>n</mi></math>]
+	      uri:<math><mi>n</mi></math>
+	    </entry>
+	  </row>
+	  
+	  <row revisionflag="added">
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> [31+128]
+	      {<math><mi>n</mi></math>}
+	      uri:<math><mi>n</mi></math>
+	    </entry>
+	  </row>
+	</tbody>
+      </tgroup>
+    </informaltable>
+  </figure>
+  
+  <para>Figure <xref linkend="fig_bin-enc"/> gives a grammar for the binary
+    encoding <phrase revisionflag="added"> (<quote>start</quote> is the start
+      symbol).</phrase>.</para>
+  <para>The following conventions are used in this section:
+    [<math><mi>n</mi></math>] denotes a byte whose value is the integer
+    <math><mi>n</mi></math> (<math><mi>n</mi></math> can range from 0 to 255),
+    {<math><mi>m</mi></math>} denotes four bytes representing the (unsigned) integer
+    <math><mi>m</mi></math> in network byte order, [_] denotes an arbitrary byte, {_}
+    denotes an arbitrary sequence of four bytes.
+    <phrase revisionflag="deleted">
+      <emphasis>name</emphasis>:<math><mi>n</mi></math> denotes a sequence of
+      <math><mi>n</mi></math> bytes named <emphasis>name</emphasis>.
+      <emphasis>name</emphasis>:2<math><mi>n</mi></math> denotes a sequence of
+      <math><mn>2</mn><mi>n</mi></math> bytes.  <quote>start</quote> is the start symbol of the
+      grammar.</phrase></para>
+  
+  <para revisionflag="added"><emphasis>xxxx</emphasis>:<math><mi>n</mi></math>,
+    where <emphasis>xxxx</emphasis> is one of <emphasis>symbname</emphasis>,
+    <emphasis>cdname</emphasis>, <emphasis>varname</emphasis>,
+    <emphasis>uri</emphasis>, <emphasis>id</emphasis>, <emphasis>digits</emphasis>, or
+    <emphasis>bytes</emphasis> denotes a sequence of <math><mi>n</mi></math> bytes
+    named that conforms to the constraints on <emphasis>xxx</emphasis> strings. For
+    instance, for <emphasis>symbname</emphasis>, <emphasis>varname</emphasis>, or
+    <emphasis>cdname</emphasis>this is the regular expression described in
+    <xref linkend="sec_names"/>, for <emphasis>uri</emphasis> it is the grammar for
+    URIs in <citation>IETF2396</citation>.</para>
+</section>
 
 <section id="sec_bin-desc">
-<title>Description of the Grammar</title>
-
+  <title>Description of the Grammar</title>
+  
 <para>An &OM; object is encoded as a sequence of bytes starting with the begin object tag
-(value&#160;24) and ending with the end object tag (value&#160;25). These are similar to
+(<phrase revisionflag="deleted">value&#160;24</phrase>
+<phrase revisionflag="added">values 24 and 88</phrase>) and ending with the end
+object tag (<phrase revisionflag="deleted">value&#160;25</phrase>
+<phrase revisionflag="added">values 25 and 89</phrase>). These are similar to
 the <systemitem>&lt;OMOBJ></systemitem> and <systemitem>&lt;/OMOBJ></systemitem> tags of
 the &exml; encoding.</para>
 
 <para>The encoding of each kind of &OM; object begins with a tag that is a single byte,
-holding a <phrase role="sl">token identifier</phrase> and two flags, the <phrase
+holding a <phrase role="sl">token identifier</phrase>
+<phrase revisionflag="added"> that describes the kind of object</phrase> and two flags, the <phrase
 role="sl">long</phrase> flag and the <phrase role="sl">shared</phrase> flag. The
 identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth bit
 <phrase revisionflag="added">and the shared flag is the seventh bit. If the long
   flag is set, this signifies that  the names, strings, and data fields in the
   encoded &OM; object are longer than 255 byte or characters. The sharing flag
   indicates that the encoded object is shared in another (part of an) object
-  somewhere else (see <xref linkend="sec_sharing_references"/>).</phrase> </para>
+  somewhere else (see <xref linkend="sec_sharing_references"/>). Note that if the sharing
+  flag is set (in the right column of the grammar in Figure
+  <xref linkend="fig_bin-enc"/>, then the encoding includes a representation of
+  the identifier.</phrase>
+</para> 
 
 <para>Here is a description of the binary encodings of every kind of &OM; object:
 
@@ -2933,7 +2980,7 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
 <varlistentry>
   <term>Integers</term><listitem><para>are encoded depending on how large they
       are. There are four possible formats.  Integers between -128 and 127 are
-      encoded as the small integer tag (1) followed by a single byte that is the
+      encoded as the small integer (<phrase revisionflag="added">token identifier</phrase> 1) followed by a single byte that is the
       value of the integer (interpreted as a signed character). For
       example 16 is encoded as <systemitem>0x01 0x10</systemitem>.  Integers between
       <math>
@@ -2981,23 +3028,33 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
 
 <varlistentry>
 <term>Symbols</term>
-<listitem><para>are encoded as the symbol tag (8) with the long flag
-  set if the maximum of the length of the Content Dictionary name and
-  the symbol name is greater than or equal to 256 (note that this
+<listitem><para>are encoded as the symbol tags
+    (<phrase revisionflag="added">token identifier</phrase> 8) with the long flag
+    set if the maximum of the length of the Content Dictionary name,
+    <phrase revisionflag="deleted">and</phrase>
+  the symbol name <phrase revisionflag="added">or the URI stub </phrase>
+  is greater than or equal to 256<phrase revisionflag="deleted"> (note that this
   should never be the case if the rules on symbols and Content
-  Dictionary names are applied), then followed by the length of the
+  Dictionary names are applied), followed by the length of the
   Content Dictionary name as a byte (if the long flag was not set)
   or a four byte integer (in network byte order) followed by the
   length of the symbol name as a byte (if the long flag was not set)
-  or a four byte integer (in network byte order), followed by the
+  or a four byte integer (in network byte order),, followed by the
   characters of the Content Dictionary name, followed by the
-  characters of the symbol name.</para>
+  characters of the symbol name.</phrase>
+<phrase revisionflag="added">. The symbol tags [8] and [8+128] are deprecated in &OM;2 since
+  symbols now have an optional role field, but are
+  kept for backwards compatibility. The symbol tag is  followed by the length of the
+  Content Dictionary name, the symbol name, and the URI stub as a bytes (if the long flag was not set)
+  or a four byte integers (in network byte order). These are followed by the
+  characters of the Content Dictionary name, the symbol name, and the URI stub.</phrase></para>
 </listitem>
 </varlistentry>
 
 <varlistentry>
 <term>Variables</term>
-<listitem><para>are encoded using the variable tag (5) with the long
+<listitem><para>are encoded using the variable tags
+    (<phrase revisionflag="added">token identifiers</phrase> 5) with the long
   flag set if the number of bytes (characters) in the variable name is
   greater than or equal to 256 (this should never happen if the rules
   on variables are followed).  Then, there is the number of characters
@@ -3008,10 +3065,26 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
 </listitem>
 </varlistentry>
 
+<varlistentry revisionflag="added">
+<term>Indexed Variables</term>
+<listitem><para>are encoded using the indexed variable tags
+    (token identifiers 10 and 11) as begin and end tags. The long
+  flag set on the begin tag if the number of bytes (characters) in the variable name is
+  greater than or equal to 256 (this should never happen if the rules
+  on variables are followed).  The start tag is followed by the number of
+  characters
+  as a byte (if the long flag was not set) or a four byte integer
+  (in network byte order), followed by the characters of the name of
+  the variable. This is followed by the encoding of an &OM; object and the end tag
+  [11].</para>
+</listitem>
+</varlistentry>
+
+
 <varlistentry>
 <term>Floating-point number</term>
 <listitem><para>are encoded using the floating-point
-  number tag (3) followed by eight bytes that are the IEEE 754
+  number tags (<phrase revisionflag="added">token identifier</phrase> 3) followed by eight bytes that are the IEEE 754
   representation&#160;<citation>ieee754_85</citation>, most significant bytes first. For
   example, 0.1 is encoded as <systemitem>0x03 0x000000000000f03f</systemitem>.</para>
 </listitem>
@@ -3022,13 +3095,13 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
 <listitem><para>are encoded in two ways depending on whether
   the string contains <acronym>utf-16</acronym> characters or not. If the
   string contains only 8 bit characters, it is encoded as the one
-  byte character string tag (6) with the long flag set if the number
+  byte character string tags (<phrase revisionflag="added">token identifier</phrase> 6) with the long flag set if the number
   of bytes (characters) in the string is greater than or equal to 256.
   Then, there is the number of characters as a byte (if the length
   flag was not set) or a four byte integer (in network byte order),
   followed by the characters in the string. If the string contains two
   byte characters, it is encoded as the two byte character string
-  tag (7) with the long flag set if the number of characters in the
+  tags (<phrase revisionflag="added">token identifier</phrase> 7) with the long flag set if the number of characters in the
   string is greater or equal to 256. Then, there is the number of
   characters as a byte (if the long flag was not set) or a four byte
   integer (in network byte order), followed by the characters
@@ -3038,8 +3111,21 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
 
 <varlistentry>
 <term>Bytearrays</term>
-<listitem><para>are encoded using the bytearray tag (4) with the
-  long flag set if the number of bytes in the number of elements is
+<listitem><para>are encoded using the bytearray tags (<phrase revisionflag="added">token identifier</phrase> 4) with the
+  long flag set if the number <phrase revisionflag="deleted">of bytes in the
+    number of </phrase> elements is
+  greater than or equal to 256. Then, there is the number of elements,
+  as a byte (if the long flag was not set) or a four byte integer
+  (in network byte order), followed by the elements of the arrays in
+  their normal order.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry revisionflag="added">
+<term>Derived Objects</term>
+<listitem>
+  <para>are encoded using the derived object tags (token identifier 12) with the
+  long flag set if the number of bytes is
   greater than or equal to 256. Then, there is the number of elements,
   as a byte (if the long flag was not set) or a four byte integer
   (in network byte order), followed by the elements of the arrays in
@@ -3049,55 +3135,83 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
 
 <varlistentry>
 <term>Applications</term>
-<listitem><para>are encoded using the application tag (16). More
+<listitem><para>are encoded using the application tags (<phrase revisionflag="added">token identifier</phrase> 16). More
   precisely, the application of <math><msub><mi>E</mi><mn>0</mn></msub></math> to
   <math><msub><mi>E</mi><mn>1</mn></msub></math><phrase>&#8230;</phrase>
   <math><msub><mi>E</mi><mi>n</mi></msub></math> is encoded
-  using the application tag (16), the sequence of the encodings of
+  using the application tags (<phrase revisionflag="added">token identifier</phrase> 16), the sequence of the encodings of
   <math><msub><mi>E</mi><mn>0</mn></msub></math> to
-  <math><msub><mi>E</mi><mi>n</mi></msub></math> and the end application tag (17).</para>
+  <math><msub><mi>E</mi><mi>n</mi></msub></math> and the end application tags (<phrase revisionflag="added">token identifier</phrase> 17).</para>
 </listitem>
 </varlistentry>
 
 <varlistentry>
  <term>Bindings</term>
- <listitem><para>are encoded using the binding tag (26). More
+ <listitem><para>are encoded using the binding tags (<phrase revisionflag="added">token identifier</phrase> 26). More
   precisely, the binding by <math><mi>B</mi></math> of variables <math><msub><mi>V</mi><mn>1</mn></msub></math><phrase>&#8230;</phrase> <math><msub><mi>V</mi><mi>n</mi></msub></math> in
-  <math><mi>C</mi></math> is encoded as the binding tag (26), followed by the encoding of
-  <math><mi>B</mi></math>, followed by the binding variables tag (28), followed by the
+  <math><mi>C</mi></math> is encoded as the binding tags (<phrase revisionflag="added">token identifier</phrase> 26), followed by the encoding of
+  <math><mi>B</mi></math>, followed by the binding variables tags (<phrase revisionflag="added">token identifier</phrase> 28), followed by the
   encodings of the variables <math><msub><mi>V</mi><mn>1</mn></msub></math> <phrase>&#8230;</phrase> <math><msub><mi>V</mi><mi>n</mi></msub></math>, followed by the end
-  binding variables tag (29), followed by the encoding of <math><mi>C</mi></math>,
-  followed by the end binding tag (27).</para>
+  binding variables tags (<phrase revisionflag="added">token identifier</phrase> 29), followed by the encoding of <math><mi>C</mi></math>,
+  followed by the end binding tags (<phrase revisionflag="added">token identifier</phrase> 27).</para>
 </listitem>
 </varlistentry>
 
 <varlistentry>
  <term>Attribution</term>
  <listitem><para>are encoded using the attribution
-tag (18). More
+tags (<phrase revisionflag="added">token identifier</phrase> 18). More
   precisely, attribution of the object <math><mi>E</mi></math> with
   (<math><msub><mi>S</mi><mn>1</mn></msub></math>,
   <math><msub><mi>E</mi><mn>1</mn></msub></math>),
   <math><mi>&#8230;</mi></math> (<math><msub><mi>S</mi><mi>n</mi></msub></math>, <math><msub><mi>E</mi><mi>n</mi></msub></math>) pairs (where <math><msub><mi>S</mi><mi>i</mi></msub></math> are the attributes) is
-  encoded as the attributed object tag (18), followed by the encoding
-  of the attribute pairs as the attribute pairs tag (20), followed by
+  encoded as the attributed object tags (<phrase revisionflag="added">token identifier</phrase> 18), followed by the encoding
+  of the attribute pairs as the attribute pairs tags (<phrase revisionflag="added">token identifier</phrase> 20), followed by
   the encoding of each symbol and value, followed by the end attribute
-  pairs tag (21), followed by the encoding of <math><mi>E</mi></math>, followed by the end
-  attributed object tag (19).</para>
+  pairs tags (<phrase revisionflag="added">token identifier</phrase> 21), followed by the encoding of <math><mi>E</mi></math>, followed by the end
+  attributed object tags (<phrase revisionflag="added">token identifier</phrase> 19).</para>
 </listitem>
 </varlistentry>
 
 <varlistentry>
 <term>Error</term>
-<listitem><para>are encoded using the error tag (22). More precisely,
+<listitem><para>are encoded using the error tags (<phrase revisionflag="added">token identifier</phrase> 22). More precisely,
   <math><msub><mi>S</mi><mn>0</mn></msub></math> applied to
   <math><msub><mi>E</mi><mn>1</mn></msub></math><phrase>&#8230;</phrase>
-  <math><msub><mi>E</mi><mi>n</mi></msub></math> is encoded as the error tag (22),
+  <math><msub><mi>E</mi><mi>n</mi></msub></math> is encoded as the error tags (<phrase revisionflag="added">token identifier</phrase> 22),
   the encoding of <math><msub><mi>S</mi><mn>0</mn></msub></math>, the sequence of the
   encodings of <math><msub><mi>E</mi><mn>0</mn></msub></math> to
-  <math><msub><mi>E</mi><mi>n</mi></msub></math> and the end error tag (23).</para>
+  <math><msub><mi>E</mi><mi>n</mi></msub></math> and the end error tags (<phrase revisionflag="added">token identifier</phrase> 23).</para>
 </listitem>
 </varlistentry>
+
+<varlistentry revisionflag="added">
+<term>Internal References</term>
+<listitem>
+  <para>are encoded using the internal reference tags [30] and [30+128] (the sharing flag cannot
+  be set on this tag, since chains of references are not allowed in the &OM;
+  binary encoding.) with   long flag set if the number of &OM; sub-objects in the
+  encoded &OM; is
+  greater than or equal to 256. Then, there is the ordinal number of the
+  referenced &OM; object as a byte (if the long flag was not set) or a four byte integer
+  (in network byte order).</para>
+</listitem>
+</varlistentry>
+
+<varlistentry revisionflag="added">
+<term>External References</term>
+<listitem>
+  <para>are encoded using the external reference tags [31] and [31+128] (the sharing flag cannot
+  be set on this tag, since chains of references are not allowed in the &OM;
+  binary encoding) with the
+  long flag set if the number of bytes in the reference URI is
+  greater than or equal to 256. Then, there is the number of bytes in the URI used
+  for the external reference 
+  as a byte (if the long flag was not set) or a four byte integer
+  (in network byte order), followed by the URI.</para>
+</listitem>
+</varlistentry>
+
 </variablelist> 
 </para>
 
