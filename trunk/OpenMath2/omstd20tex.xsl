@@ -3,6 +3,8 @@
                 version="1.0"
                 xmlns="http://www.w3.org/1999/xhtml">
 
+<xsl:import href="verb.xsl"/>
+
 <xsl:param name="changelog">no</xsl:param>
 <xsl:param name="showdiffs" select="true()"/>
 <xsl:output method="text" encoding="iso-8859-1"/>
@@ -16,13 +18,15 @@
 </xsl:template>
 
 <xsl:template match="book">
-\documentclass[11pt,twoside,chapter,a4paper]{openmathTN}
+\documentclass[11pt,twoside,chapter,a4paper]{openmath}
 \setcounter{secnumdepth}{4}
 \usepackage[latin1]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{soul}
-\usepackage{ae,amsfonts,amssymb,url,graphics,color,hyperref}
-
+\usepackage{ae,amsfonts,amssymb,url,graphics,color,
+%hyperref
+}
+\definecolor{green}{rgb}{0,0.3,0}
 \let\cellsep&amp;
 
 \catcode`\&amp;=12
@@ -113,7 +117,7 @@ relative to the OpenMath 1.0 document\ldots
 
 <xsl:template match="@revisionflag[.='deleted']">
 <xsl:if test="$showdiffs">
-<xsl:text>\color£redﬂ\st</xsl:text>
+<xsl:text>\color[rgb]£1,0.7,0.7ﬂ</xsl:text>
 </xsl:if>
 </xsl:template>
 
@@ -173,7 +177,7 @@ relative to the OpenMath 1.0 document\ldots
   <xsl:apply-templates select="@revisionflag"/>
 \<xsl:for-each select="ancestor::section">sub</xsl:for-each>
   <xsl:text/>section£<xsl:apply-templates select="title/node()"
-           />ﬂ\label£<xsl:value-of select="@id"/>ﬂ
+           />ﬂ<xsl:if test="@id">\label£<xsl:value-of select="@id"/>ﬂ</xsl:if>
 <xsl:apply-templates/>
   <xsl:text>ﬂ</xsl:text>
 
@@ -521,6 +525,21 @@ changelog entry here
 <xsl:text>\hspace£</xsl:text>
 <xsl:value-of select="@width"/>
 <xsl:text>ﬂ</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="token|comment|string">
+  <xsl:value-of select="."/>
+</xsl:template>
+
+
+<xsl:template match="rng:grammar" xmlns:rng="http://relaxng.org/ns/structure/1.0">
+<xsl:apply-templates mode="verb" select="."/>
+</xsl:template>
+
+
+<xsl:template match="xsd:schema" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsl:apply-templates mode="verb" select="."/>
 </xsl:template>
 
 

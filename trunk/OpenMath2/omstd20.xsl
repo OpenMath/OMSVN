@@ -2,10 +2,12 @@
                 version="1.0"
                 xmlns="http://www.w3.org/1999/xhtml">
 
+<xsl:import href="verb.xsl"/>
 <xsl:param name="changelog">no</xsl:param>
+<xsl:param name="showdiffs" select="false()"/>
 <xsl:output method="xml" encoding="iso-8859-1"/>
 
-<xsl:key name="new"  match="*[@revisionflag='added']" use="ancestor::section[1]/@id"/>
+<xsl:key name="new"  match="*[@revisionflag='added']" use="ancestor-or-self::section[1]/@id"/>
 <xsl:key name="ids" match="*[@id]" use="@id"/>
 
 <xsl:template match="*">
@@ -13,17 +15,18 @@
 </xsl:template>
 
 <xsl:template match="book">
-<html xmlns:m="http://www.w3.org/1998/Math/MathML">
+<xsl:processing-instruction name="xml-stylesheet"
+> type="text/xsl" href="pmathml.xsl"</xsl:processing-instruction>
+<html  xml:space="preserve" xmlns:m="http://www.w3.org/1998/Math/MathML">
 <head>
 <title><xsl:value-of select="title"/></title>
+<!--
 <object id="mmlFactory" 
-        classid="clsid:32F66A20-7614-11D4-BD11-00104BD3F987">
-<!-- Stop Saxon using empty element syntax -->
-<p>Failed to load MathML renderer</p>
-</object>
+        classid="clsid:32F66A20-7614-11D4-BD11-00104BD3F987"/>
 <xsl:processing-instruction name="import">
  namespace="m" implementation="#mmlFactory"
 </xsl:processing-instruction>
+-->
 <style>
 p {text-align:justify;	   
   }
@@ -111,6 +114,7 @@ Version: <xsl:apply-templates select="bookinfo/releaseinfo"/>
 <xsl:apply-templates select="bookinfo/abstract/*"/>
 </div>
 
+<xsl:if test="$showdiffs">
 <div class="changetoc">
 <h3>Change-marked edition notes</h3>
 <p>
@@ -124,7 +128,7 @@ relative to the OpenMath 1.0 document...</p>
 <p>Sections with new text</p>
 <ul>
 <xsl:for-each select="//*[self::section or self::appendix]">
-<xsl:if test="key('new',@id) or @revisionflag='added'">
+<xsl:if test="key('new',@id)">
 <a href="#{@id}" class="new">
 <xsl:apply-templates mode="number" select="."/>&#160;<xsl:value-of select="title[1]"/>
 </a><br/>
@@ -132,6 +136,8 @@ relative to the OpenMath 1.0 document...</p>
 </xsl:for-each>
 </ul>
 </div>
+</xsl:if>
+
 <xsl:apply-templates/>
 </body>
 
@@ -153,9 +159,11 @@ relative to the OpenMath 1.0 document...</p>
 </xsl:template>
 
 <xsl:template match="para">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <p>
 <xsl:apply-templates select="@revisionflag|node()"/>
 </p>
+</xsl:if>
 </xsl:template>
 
 
@@ -185,6 +193,7 @@ relative to the OpenMath 1.0 document...</p>
 </xsl:template>
 
 <xsl:template match="appendix">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
  <div>
   <xsl:apply-templates select="@revisionflag"/>
 <h2 name="{@id}" id="{@id}">
@@ -194,6 +203,7 @@ relative to the OpenMath 1.0 document...</p>
 </h2>
 <xsl:apply-templates/>
 </div>
+</xsl:if>
 </xsl:template>
 
 <xsl:template match="appendix" mode="number">
@@ -202,6 +212,7 @@ relative to the OpenMath 1.0 document...</p>
 
 
 <xsl:template match="section">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
  <div>
   <xsl:apply-templates select="@revisionflag"/>
 <xsl:element name="h{count(ancestor::section)+3}">
@@ -211,6 +222,7 @@ relative to the OpenMath 1.0 document...</p>
 </xsl:element>
 <xsl:apply-templates/>
  </div>
+</xsl:if>
 </xsl:template>
 
 <xsl:template match="section" mode="number">
@@ -230,7 +242,9 @@ relative to the OpenMath 1.0 document...</p>
 
 
 <xsl:template match="phrase">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <span><xsl:apply-templates select="@*|node()"/></span>
+</xsl:if>
 </xsl:template>
 
 <xsl:template match="@role">
@@ -247,19 +261,23 @@ relative to the OpenMath 1.0 document...</p>
 </xsl:template>
 
 <xsl:template match="itemizedlist">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <ul>
 <xsl:apply-templates select="@revisionflag"/>
 <xsl:apply-templates/>
 </ul>
+</xsl:if>
 </xsl:template>
 
 
 <xsl:template match="orderedlist">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <ol>
 <xsl:apply-templates select="@revisionflag"/>
 <xsl:apply-templates select="@numeration"/>
 <xsl:apply-templates/>
 </ol>
+</xsl:if>
 </xsl:template>
 
 <xsl:template match="@numeration">
@@ -267,10 +285,12 @@ relative to the OpenMath 1.0 document...</p>
 </xsl:template>
 
 <xsl:template match="variablelist">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <dl>
 <xsl:apply-templates select="@revisionflag"/>
 <xsl:apply-templates/>
 </dl>
+</xsl:if>
 </xsl:template>
 
 <xsl:template match="listitem">
@@ -348,12 +368,13 @@ relative to the OpenMath 1.0 document...</p>
 </xsl:template>
 
 <xsl:template match="programlisting|literallayout">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <xsl:variable name="c">
 <xsl:choose>
-  <xsl:when test="@revisionflag='added'">
+  <xsl:when test="$showdiffs and @revisionflag='added'">
     <xsl:value-of select="'newliteral'"/>
   </xsl:when>
-  <xsl:when test="@revisionflag='deleted'">
+  <xsl:when test="$showdiffs and @revisionflag='deleted'">
     <xsl:value-of select="'delliteral'"/>
   </xsl:when>
   <xsl:otherwise>
@@ -366,6 +387,7 @@ relative to the OpenMath 1.0 document...</p>
 <xsl:apply-templates/>
 </pre>
 </div>
+</xsl:if>
 </xsl:template>
 
 <xsl:template match="sidebar">
@@ -376,9 +398,11 @@ changelog entry here
 
 
 <xsl:template match="informaltable">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <table>
 <xsl:apply-templates select="@revisionflag|tgroup/*"/>
 </table>
+</xsl:if>
 </xsl:template>
 
 
@@ -387,15 +411,25 @@ changelog entry here
 </xsl:template>
 
 <xsl:template match="row">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <tr><xsl:apply-templates select="@revisionflag|node()"/></tr>
+</xsl:if>
 </xsl:template>
 
 <xsl:template match="@revisionflag[.='added']">
+<xsl:if test="$showdiffs">
  <xsl:attribute name="class">new</xsl:attribute>
+</xsl:if>
 </xsl:template>
 
 <xsl:template match="@revisionflag[.='deleted']">
+<xsl:if test="$showdiffs">
  <xsl:attribute name="class">del</xsl:attribute>
+</xsl:if>
+<xsl:if test="not($showdiffs)">
+<xsl:message>!!!<xsl:value-of select="name(..)"/>
+</xsl:message>
+</xsl:if>
 </xsl:template>
 
 <xsl:template match="@revisionflag[.='changed']">
@@ -405,7 +439,9 @@ changelog entry here
 
 
 <xsl:template match="entry">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <td><xsl:apply-templates select="@revisionflag|node()"/></td>
+</xsl:if>
 </xsl:template>
 
 
@@ -543,6 +579,59 @@ following-sibling::node()[1][starts-with(.,' ') or starts-with(.,'&#10;')]">&#16
 <xsl:apply-templates mode="math"/>
 </xsl:element>
 </xsl:template>
+
+<xsl:template match="comment">
+<span style="color:brown;"><xsl:value-of select="."/></span></xsl:template>
+
+<xsl:template match="token">
+  <xsl:value-of select="."/>
+</xsl:template>
+<xsl:template match="string">
+  <xsl:value-of select="."/>
+</xsl:template>
+
+
+<xsl:template match="token[not(preceding-sibling::*[1]='element' 
+or preceding-sibling::*[1]='attribute')]" priority="2">
+<a href="#rnc{.}"><xsl:value-of select="."/></a>
+</xsl:template>
+
+<xsl:template match="token[.='element' or .='attribute'
+or .='default' or .='namespace' or .='pattern' or .='text' 
+or .='include']"
+priority="4">
+  <span style="font-weight:bold;"><xsl:value-of select="."/></span>
+</xsl:template>
+
+<xsl:template
+match="token[starts-with(normalize-space(following-sibling::node()[1]),'=')]"
+priority="3">
+<a name="rnc{preceding-sibling::*[1][.='namespace']}{.}" style="color:blue;"><xsl:value-of select="."/></a>
+</xsl:template>
+
+
+<xsl:template
+match="token[contains(.,':')]" priority="5">
+<a href="#rncnamespace{substring-before(.,':')}"><xsl:value-of
+select="substring-before(.,':')"/>:</a>
+<xsl:value-of select="substring-after(.,':')"/>
+</xsl:template>
+
+<xsl:template match="token[starts-with(.,'xsd:')]" priority="6">
+  <span style="font-weight:bold;"><xsl:value-of select="."/></span>
+</xsl:template>
+
+
+
+<xsl:template match="rng:grammar" xmlns:rng="http://relaxng.org/ns/structure/1.0">
+<xsl:apply-templates mode="verb" select="."/>
+</xsl:template>
+
+
+<xsl:template match="xsd:schema" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsl:apply-templates mode="verb" select="."/>
+</xsl:template>
+
 
 
 </xsl:stylesheet>
