@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.70 2003/12/18 12:02:23 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.71 2003/12/18 17:30:19 openmath Exp $ -->
 
 <!--
  PUBLIC "-//OASIS//DTD DocBook XML V4.2CR1//EN"
@@ -509,7 +509,7 @@ objects</para></sidebar>
   <quote>bignums</quote> in computer algebra).</para>
 
 </listitem>
-<listitem><para><phrase>(ii)</phrase> IEEE floating point
+<listitem><para><phrase>(ii)</phrase> <acronym>ieee</acronym> floating point
     number.</para> <para>Double precision floating-point numbers
     following the <acronym>ieee</acronym> 754-1985
     standard&#160;<citation>ieee754_85</citation>.</para>
@@ -566,7 +566,7 @@ representing its indices.  </phrase></para>
 <section id="sec_derived" revisionflag="added">
 <title>Derived &OM; Objects</title>
 
-<para>A derived&OM; object is built as follows: 
+<para>A derived &OM; object is built as follows: 
 <itemizedlist>
 <listitem><para><phrase>(i)</phrase> If <math><mi>A</mi></math> is
 <emphasis>not</emphasis> an &OM; object, then <math><mi
@@ -622,8 +622,10 @@ Attribution</para></sidebar> </listitem> <listitem><para><phrase>(iii)</phrase> 
   <mspace width=".3em"/> <mi>&#8230;</mi> <mspace width=".3em"/>
   <mo>,</mo> <msub><mi>S</mi><mi>n</mi></msub> <mspace width=".3em"/>
   <msub><mi>A</mi><mi>n</mi></msub><mo>)</mo></math> is an &OM;
-  <emphasis>attribution object</emphasis>. 
+  <emphasis>attribution object</emphasis>.
+  </para> 
 
+  <para>
   <phrase revisionflag="deleted">and</phrase> <math><mi>A</mi></math>
   is the object <emphasis>stripped of attributions</emphasis>. <phrase
   revisionflag="added">
@@ -633,13 +635,20 @@ Attribution</para></sidebar> </listitem> <listitem><para><phrase>(iii)</phrase> 
   <math><msub><mi>A</mi><mn>1</mn></msub></math>,
   <phrase>&#8230;</phrase>,
   <math><msub><mi>A</mi><mi>n</mi></msub></math> as their associated
-  <emphasis>values</emphasis></phrase>. The operation of recursively
+  <emphasis>values</emphasis></phrase>.
+  <phrase revisionflag="deleted">The operation of recursively
   applying stripping to the stripped object is called
   <emphasis>flattening of the attribution</emphasis>.
 
                   When the stripped object after flattening is a
   variable, the attributed object is called <emphasis>attributed
-  variable</emphasis>.</para>
+  variable</emphasis>.</phrase>
+  <phrase revisionflag="added">If, after  recursively
+  applying stripping to remove attributions, the resulting
+  un-attributed object is a 
+  variable, the original attributed object is called an <emphasis>attributed
+  variable</emphasis>.</phrase>
+  </para>
 </listitem>
 
 <listitem><para><phrase>(iv)</phrase> If <math><mi>B</mi></math> and
@@ -673,9 +682,9 @@ display="block"><mi mathvariant="bold">error</mi>
 </section>
 
 <section id="sec_roles" revisionflag="added">
-<title>&OM; Symbol Rôles</title>
+<title>&OM; Symbol R&#xf4;les</title>
 
-<para>The <emphasis>rôle</emphasis> of an &OM; symbol is a restriction
+<para>The <emphasis>r&#xf4;le</emphasis> of an &OM; symbol is a restriction
 on where it can appear in an &OM; object.  A symbol cannot have more
 than one role.  If no role is indicated
 then the symbol can be used anywhere.  Possible roles are:
@@ -1000,14 +1009,14 @@ expression could be attributed with its spoken or visual rendering.
   order.)</para>
 
 <para revisionflag="added">Attribution acts as either adornment
-  annotation or as semantical annotation. When the key has rôle
+  annotation or as semantical annotation. When the key has r&#xf4;le
   <emphasis> attribution</emphasis>, then replacement of the
   attributed object by the object itself is not harmful and preserves
-  the semantics. When the key has rôle
+  the semantics. When the key has r&#xf4;le
   <emphasis>semantic-attribution</emphasis> then the attributed
   object is modified by the attribution and cannot be viewed as
   semantically equivalent to the stripped object. If the attribute
-  lacks the rôle specification then attribution is acting as adornment
+  lacks the r&#xf4;le specification then attribution is acting as adornment
   annotation.
   </para>
 
@@ -1914,13 +1923,23 @@ encoded as a child.  So for example the encoding
   in base 10, using the common syntax:</para>
   
   <blockquote><para>
-  <systemitem>(-?)([0-9]+)?("."[0-9]+)?(e(-?)[0-9]+)?</systemitem>.
-  </para></blockquote>
-  
+  <systemitem>(-?)([0-9]+)?("."[0-9]+)?(<phrase 
+revisionflag="added">[</phrase>e<phrase revisionflag="added">E]</phrase>(-?)[0-9]+)?</systemitem>.
+  </para>
+  <para revisionflag="added">or one of the special values: INF, -INF or
+  NaN.</para>
+</blockquote>
+ <para revisionflag="added">
+Note that the syntax NaN  (and also +/- INF) may be used used to
+  denote several values.
+  If precise control is required over the exact
+  value represented in the <acronym>ieee</acronym> Double, the
+  <systemitem>hex</systemitem> attribute should be used, as described below.</para>
   <para>The value of <systemitem>hex</systemitem> is the digits of the floating-point number
   expressed in base 16, with digits <systemitem>0</systemitem>-<systemitem>9</systemitem>, <systemitem>A</systemitem>-<systemitem>F</systemitem>
   (mantissa, exponent, and sign from lowest to highest bits) using a
-  least significant byte ordering.  For example, <systemitem>&lt;OMF
+  least significant byte ordering.</para>
+  <para>For example, <systemitem>&lt;OMF
     dec="1.0e-10"/></systemitem> is a valid floating-point number.</para>
   
 
@@ -3404,7 +3423,7 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
   <phrase revisionflag="deleted">the string contains <acronym>utf-16</acronym> characters or not. If the
   string contains only 8 bit characters</phrase>,
   <phrase revisionflag="added">the string is encoded in
-  <acronym>utf-16</acronym> or <acronym>iso-859-1</acronym>
+  <acronym>utf-16</acronym> or <acronym>iso-8859-1</acronym>
   (<acronym>latin-1</acronym>).
   In the case of <acronym>latin-1</acronym></phrase> it is encoded as the one
   byte character string tags (<phrase revisionflag="added">token identifier</phrase> 6) with the long flag set if the number
@@ -5616,7 +5635,7 @@ or, using the Relax NG compact syntax:
       introduced:</para>
     <itemizedlist>
       <listitem>
-        <para>&OM; symbols have an optional rôle qualifier which restricts the
+        <para>&OM; symbols have an optional r&#xf4;le qualifier which restricts the
           place where they may occur within compound objects.
           Although part of the abstract description of a symbol this information
           is intended to be stored in the CD.  In the &exml; encoding it may be
