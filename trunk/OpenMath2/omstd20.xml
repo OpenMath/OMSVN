@@ -202,16 +202,17 @@ referred to in the rest of this document.</para>
     <graphic fileref="om-arch" depth="500" width="700"/>
 </figure>
 
-<para>The architecture of &OM; is described in <xref linkend="fig_om"/> and
-summarizes the interactions among the different &OM; components.
-There are three layers of representation of a mathematical object
-<citation>OM_98</citation>. A private layer that is the internal representation used
-by an application.  An abstract layer that is the representation as an
-&OM; object. Third is a communication layer that translates the &OM; 
-object representation to a stream of bytes. An application dependent
-program manipulates the mathematical objects using its internal
-representation, it can convert them to &OM; objects and communicate
-them by using the byte stream representation of &OM; objects.</para>
+<para>The architecture of &OM; is described in <xref
+linkend="fig_om"/> and summarizes the interactions among the different
+&OM; components.  There are three layers of representation of a
+mathematical object <citation>OM_98</citation>. A private layer that
+is the internal representation used by an application.  An abstract
+layer that is the representation as an &OM; object. Third is a
+communication layer that translates the &OM; object representation to
+a stream of bytes. An application dependent program manipulates the
+mathematical objects using its internal representation, it can convert
+them to &OM; objects and communicate them by using the byte stream
+representation of &OM; objects.</para>
 </section>
 
 <section id="sec_intro-obj">
@@ -410,10 +411,11 @@ mathvariant="bold">foreign</mi><mfenced><mi>A</mi></mfenced></math> is an &OM;
 <listitem>
   <para>
     <phrase>(ii)</phrase> If
-    <math><msub><mi>A</mi><mn>1</mn></msub></math>, <phrase>&#8230;</phrase>,
+    <math><msub><mi>A</mi><mn>1</mn></msub></math>,
+    <phrase>&#8230;</phrase>,
     <math><msub><mi>A</mi><mi>n</mi></msub></math>
-    <math><mo>(</mo><mi>n</mi><mo>&gt;</mo><mn>0</mn><mo>)</mo></math> are &OM;
-    objects, then 
+    <math><mo>(</mo><mi>n</mi><mo>&gt;</mo><mn>0</mn><mo>)</mo></math>
+    are &OM; objects, then
   <math display="block">
   <mi mathvariant="bold">application</mi><mo>(</mo><msub><mi>A</mi><mn>1</mn></msub><mo>,</mo> <mi>&#8230;</mi><mo>,</mo> <msub><mi>A</mi><mi>n</mi></msub><mo>)</mo>
   </math>
@@ -496,17 +498,17 @@ by the use of suitable content dictionaries.</para>
   standard&#160;<citation>UNICODE</citation>.</para>
   
 </listitem></varlistentry>
-<varlistentry><term>Bytearrays</term><listitem><para>are sequences of bytes. There is no <quote>byte</quote> in &OM; 
-  as an object of its own. However, a single byte can of course be
-  represented by a bytearray of length 1.  The difference between
-  strings and bytearrays is the following: a character string is a
-  sequence of bytes with a fixed interpretation (as characters,
-  Unicode texts may require several bytes to code one character),
-  whereas a bytearray is an uninterpreted sequence of bytes with no
-  intrinsic meaning.  Bytearrays could be used inside &OM; errors to
-  provide information to, for example, a debugger; they could also
-  contain intermediate results of calculations, or `handles' into
-  computations or databases.</para>
+<varlistentry><term>Bytearrays</term><listitem><para>are sequences of
+bytes. There is no <quote>byte</quote> in &OM; as an object of its
+own. However, a single byte can of course be represented by a
+bytearray of length 1.  The difference between strings and bytearrays
+is the following: a character string is a sequence of bytes with a
+fixed interpretation (as characters, Unicode texts may require several
+bytes to code one character), whereas a bytearray is an uninterpreted
+sequence of bytes with no intrinsic meaning.  Bytearrays could be used
+inside &OM; errors to provide information to, for example, a debugger;
+they could also contain intermediate results of calculations, or
+`handles' into computations or databases.</para>
 </listitem>
 </varlistentry>
 <varlistentry><term>Symbols</term><listitem>
@@ -546,11 +548,11 @@ by the use of suitable content dictionaries.</para>
 <varlistentry><term>Variables</term><listitem><para>are meant to
   denote parameters, variables or indeterminates (such as bound
   variables of function definitions, variables in summations and
-  integrals, independent variables of derivatives).  <phrase revisionflag="deleted">Plain variable
-  names are restricted to use a subset of the printable ASCII
-  characters.  Formally the names must match the regular expression:
-  <blockquote><para> [A-Za-z0-9=+(),-./:?!#$%*;=@[]^_`{|}]+
-  </para></blockquote></phrase> 
+  integrals, independent variables of derivatives).  <phrase
+  revisionflag="deleted">Plain variable names are restricted to use a
+  subset of the printable ASCII characters.  Formally the names must
+  match the regular expression: <blockquote><para>
+  [A-Za-z0-9=+(),-./:?!#$%*;=@[]^_`{|}]+ </para></blockquote></phrase>
 </para>
 <para revisionflag="added">
 A variable may have one or more children which are themselves OpenMath
@@ -675,12 +677,12 @@ width="600" depth="190"/>
   <mi>z</mi> <mo>,</mo>
   <mn>2</mn><mo>)</mo><mo>)</mo><mtext>.</mtext></math>
 </para>
-<para>Repeated occurrences of the same variable in a
-  binding operator are allowed. An OpenMath application should treat a
-  binding with multiple occurrences of the same variable as equivalent
-  to the binding in which all but the last occurrence of each variable
-  is replaced by a new variable which does not occur free in the body
-  of the binding.  <math display="block"><mi
+<para>Repeated occurrences of the same variable in a binding operator
+  are allowed. An OpenMath application should treat a binding with
+  multiple occurrences of the same variable as equivalent to the
+  binding in which all but the last occurrence of each variable is
+  replaced by a new variable which does not occur free in the body of
+  the binding.  <math display="block"><mi
   mathvariant="bold">binding</mi> <mo>(</mo><mi>lambda</mi><mo>,</mo>
   <mi>v</mi> <mo>,</mo> <mi>v</mi> <mo>,</mo><mi
   mathvariant="bold">application</mi>
@@ -703,20 +705,19 @@ width="600" depth="190"/>
 </varlistentry>
 <varlistentry><term>Attribution</term><listitem><para>decorates an
   object with a sequence of one or more pairs made up of an &OM;
-  symbol, the <quote>attribute</quote>, and an associated 
-  <phrase revisionflag="deleted">&OM;</phrase> object,
-  the <quote>value of the attribute</quote>.  The value of the
-  attribute can be an <phrase revisionflag="added">&OM;</phrase>
-  attribution object itself. As an example of this,
-  consider the &OM; objects representing groups, automorphism groups,
-  and group dimensions. It is then possible to attribute an &OM;
-  object representing a group by its automorphism group, itself
-  attributed by its dimension.</para>
+  symbol, the <quote>attribute</quote>, and an associated <phrase
+  revisionflag="deleted">&OM;</phrase> object, the <quote>value of the
+  attribute</quote>.  The value of the attribute can be an <phrase
+  revisionflag="added">&OM;</phrase> attribution object itself. As an
+  example of this, consider the &OM; objects representing groups,
+  automorphism groups, and group dimensions. It is then possible to
+  attribute an &OM; object representing a group by its automorphism
+  group, itself attributed by its dimension.</para>
 
 <para revisionflag="added">
 &OM; objects can be attributed with &OM; derived objects, which are
-containers for non-&OM; structures.  For example a mathematical expression
-could be attributed with its spoken or visual rendering.  
+containers for non-&OM; structures.  For example a mathematical
+expression could be attributed with its spoken or visual rendering.
 </para>
 
 <para>Composition of attributions, as in
@@ -748,15 +749,17 @@ could be attributed with its spoken or visual rendering.
   The operation that produces an object with a single layer of
   attribution is called <systemitem>flattening</systemitem>.</para>
 
-<para>Multiple attributes with the same name are allowed.  While the order
-  of the given attributes does not imply any notion of priority,
+<para>Multiple attributes with the same name are allowed.  While the
+  order of the given attributes does not imply any notion of priority,
   potentially it could be significant. For instance, consider the case
   in which <math><msub><mi>S</mi><mi>h</mi></msub> <mo>=</mo>
-  <msub><mi>S</mi><mi>n</mi></msub></math>
- (<math><mi>h</mi> <mo>&lt;</mo> <mi>n</mi></math>) in the example above. Then, the
-  object is to be interpreted as if the value <math><msub><mi>A</mi><mi>n</mi></msub></math> overwrites the
-  value <math><msub><mi>A</mi><mi>h</mi></msub></math>.  (&OM; however does not mandate that an application
-  preserves the attributes or their order.)</para>
+  <msub><mi>S</mi><mi>n</mi></msub></math> (<math><mi>h</mi>
+  <mo>&lt;</mo> <mi>n</mi></math>) in the example above. Then, the
+  object is to be interpreted as if the value
+  <math><msub><mi>A</mi><mi>n</mi></msub></math> overwrites the value
+  <math><msub><mi>A</mi><mi>h</mi></msub></math>.  (&OM; however does
+  not mandate that an application preserves the attributes or their
+  order.)</para>
 
 <sidebar revision="1999/08/24" author="OC">
 <para>Removed reference to syntactic class of an attributed variable</para>
@@ -771,16 +774,29 @@ has type <math><mi>t</mi></math>. Note that both
 <math><mi>A</mi></math> and <math><mi>t</mi></math> are &OM;
 objects.</para>
 
-<para>Attribution can act as either annotation, in the sense of adornment,
-  or as modifier. In the former case, replacement of the adorned
-  object by the object itself is probably not harmful (preserves the
-  semantics). In the latter case however, it may very well be.
-  Therefore, attribution in general should by default be treated as a
-  construct rather than as adornment. Only when the CD definitions of
-  the attributes make it clear that they are adornments, can the
-  attributed object be viewed as semantically equivalent to the
-  stripped object.</para>
 
+<para revisionflag="deleted">Attribution can act as either annotation,
+  in the sense of adornment, or as modifier. In the former case,
+  replacement of the adorned object by the object itself is probably
+  not harmful (preserves the semantics). In the latter case however,
+  it may very well be.  Therefore, attribution in general should by
+  default be treated as a construct rather than as adornment. Only
+  when the CD definitions of the attributes make it clear that they
+  are adornments, can the attributed object be viewed as semantically
+  equivalent to the stripped object.</para>
+
+<para revisionflag="added">Attribution acts as either adorning
+  annotation or as semantical annotation. When the attribute has r\ôle
+  attribution, then replacement of the attributed object by the object
+  itself is not harmful and preserves the semantics. When the
+  attribute has r\ôle semantic-attribution then the attributed object
+  is modified by the attribution and cannot be viewed as semantically
+  equivalent to the stripped object. If the attribute lacks the r\^ole
+  specification then attribution is acting as adorning annotation.
+  </para>
+
+  	    
+  
   
 </listitem>
 </varlistentry>
