@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.77 2004/02/12 13:47:38 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.78 2004/02/12 14:27:13 openmath Exp $ -->
 
 
 <!DOCTYPE book 
@@ -644,19 +644,21 @@ display="block"><mi mathvariant="bold">error</mi>
 </section>
 
 <section id="sec_roles" revisionflag="added">
-<title>&OM; Symbol R&#xf4;les</title>
+<title>&OM; Symbol Roles</title>
 
-<para>The <emphasis>r&#xf4;le</emphasis> of an &OM; symbol is a restriction
-on where it can appear in an &OM; object.  A symbol cannot have more
-than one role.  If no role is indicated
-then the symbol can be used anywhere.  Possible roles are:
+<para>The <emphasis>role</emphasis> of an &OM; symbol is a restriction
+on how it may be used to construct a compound &OM; object.  In effect
+this decides whether it can be the first child of an &OM; application,
+binding or error object, or an even-indexed child of an &OM;
+attribution object.  In the latter case it also indicates how the
+application should be interpreted.  Possible roles are:
 <orderedlist numeration="lowerroman">
 
-<listitem><para><emphasis>binder</emphasis> The symbol may only
+<listitem><para><emphasis>binder</emphasis> The symbol may 
 appear as the first child of an &OM; binding object.
 </para></listitem>
 
-<listitem><para> <emphasis>attribution</emphasis> The symbol may only
+<listitem><para> <emphasis>attribution</emphasis> The symbol may 
 be used as key in an &OM; attribution object, i.e. as the first
 element of a key-value pair, or in an equivalent context (for example
 to refer to the value of an attribution).  This form of attribution
@@ -669,12 +671,25 @@ same as <emphasis>attribution</emphasis> except that it modifies the
 meaning of the attributed &OM; object and thus cannot be ignored by an
 application.  </para></listitem> 
 
-<listitem><para> <emphasis>error</emphasis> The symbol can only appear
+<listitem><para> <emphasis>error</emphasis> The symbol can appear
 as the first child of an &OM; error object.  </para></listitem>
-<listitem><para> <emphasis>default</emphasis> The symbol can appear
-anywhere not defined in the previous four cases.  </para></listitem>
+<listitem><para> <emphasis>application</emphasis> The symbol can appear
+as the first child of an &OM; application object.  </para></listitem>
 </orderedlist>
+A symbol cannot have more than one role, and if a role is indicated
+then it cannot be used in a context which requires another role.  This
+means that one cannot use a symbol which binds some variables to
+construct, say, an application object.  However it does not prevent
+the use of that symbol as an <emphasis>argument</emphasis> in an
+application object (where by argument we mean a child with index
+greater than 1).
 </para>
+
+<para> 
+If no role is indicated then the symbol can be used anywhere.
+</para>
+
+
 </section>
 
 </section>
@@ -960,14 +975,14 @@ expression could be attributed with its spoken or visual rendering.
   order.)</para>
 
 <para revisionflag="added">Attribution acts as either adornment
-  annotation or as semantical annotation. When the key has r&#xf4;le
+  annotation or as semantical annotation. When the key has role
   <emphasis> attribution</emphasis>, then replacement of the
   attributed object by the object itself is not harmful and preserves
-  the semantics. When the key has r&#xf4;le
+  the semantics. When the key has role
   <emphasis>semantic-attribution</emphasis> then the attributed
   object is modified by the attribution and cannot be viewed as
   semantically equivalent to the stripped object. If the attribute
-  lacks the r&#xf4;le specification then attribution is acting as adornment
+  lacks the role specification then attribution is acting as adornment
   annotation.
   </para>
 
@@ -5480,7 +5495,7 @@ or, using the Relax NG compact syntax:
       introduced:</para>
     <itemizedlist>
       <listitem>
-        <para>&OM; symbols have an optional r&#xf4;le qualifier which restricts the
+        <para>&OM; symbols have an optional role qualifier which restricts the
           place where they may occur within compound objects.
           Although part of the abstract description of a symbol this information
           is intended to be stored in the CD.  In the &exml; encoding it may be
