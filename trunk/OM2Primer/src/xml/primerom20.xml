@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<!-- @version CVS $Id: primerom20.xml,v 1.2 2003/11/20 15:23:45 openmath Exp $ -->
+<!-- @version CVS $Id: primerom20.xml,v 1.3 2003/11/20 16:36:00 openmath Exp $ -->
 
 
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook MathML Module V1.0//EN"
@@ -233,7 +233,7 @@ a member of an enumerated set also has an information item which is an
 		  width="600" depth="190"/>
 </figure>
 
-
+	      
 	      <important>
 		<para>put picture here for rational(1,2)</para>
 	      </important>
@@ -318,11 +318,14 @@ rôle of symbol
 		also inside other errors. An error is made up of an
 		&OM; symbol and a sequence of zero or more &OM;
 		objects.  Error objects might consist only of a symbol
-		as in the object: <math><mi
-		mathvariant="bold">error</mi> <mo>(</mo><mi>S</mi>
-		<mo>)</mo></math>. Note that the rôle of the symbol
-		<math><mi>S</mi></math> restricts its usage to
-		<emphasis>error</emphasis> constructs.</para>
+		as in the object: <inlineequation><mml:math><mml:mi
+		mathvariant="bold">error</mml:mi>
+		<mml:mo>(</mml:mo><mml:mi>S</mml:mi>
+		<mml:mo>)</mml:mo></mml:math> </inlineequation> . Note
+		that the rôle of the symbol
+		<inlineequation><mml:math><mml:mi>S</mml:mi></mml:math></inlineequation>
+		restricts its usage to <emphasis>error</emphasis>
+		constructs.</para>
 	    </listitem>
 	  </varlistentry>
 	</variablelist> 
@@ -454,18 +457,17 @@ digit go first.
 
 Integers written in base 16 match
 <systemitem>-?x[0-9A-F]+</systemitem>.  The integer 10 can be thus
-encoded as 
-		<screen>
-<systemitem>&lt;OMI> 10 &lt;/OMI> </systemitem>
-	</screen>
- or as <systemitem>&lt;OMI> xA &lt;/OMI> </systemitem> but neither
-<systemitem>&lt;OMI> +10 &lt;/OMI></systemitem> nor
-<systemitem>&lt;OMI> +xA &lt;/OMI></systemitem> can be used.</para>
+encoded as <screen><systemitem>&lt;OMI> 10 &lt;/OMI>
+</systemitem></screen> or as <systemitem>&lt;OMI> xA &lt;/OMI>
+</systemitem> but neither <systemitem>&lt;OMI> +10
+&lt;/OMI></systemitem> nor <systemitem>&lt;OMI> +xA
+&lt;/OMI></systemitem> can be used.</para>
 
-<para>The negative integer <math><mn>-120</mn></math> can be encoded
-       as either as decimal <systemitem>&lt;OMI> -120
-       &lt;/OMI></systemitem> or as hexadecimal <systemitem>&lt;OMI>
-       -x78 &lt;/OMI></systemitem>.</para>
+	      <para>The negative integer
+<inlineequation><mml:math><mml:mn>-120</mml:mn></mml:math>
+</inlineequation> can be encoded as either as decimal
+<systemitem>&lt;OMI> -120 &lt;/OMI></systemitem> or as hexadecimal
+<systemitem>&lt;OMI> -x78 &lt;/OMI></systemitem>.</para>
 
   
 </listitem>
@@ -531,8 +533,9 @@ encoded as
   <acronym>ascii</acronym> set of characters.  In particular, neither
   spaces nor double-quote <systemitem>&quot;</systemitem> are allowed
   in variable names.  For instance, the encoding of the object
-  representing the variable <math><mi>x</mi></math> is:
-  <systemitem>&lt;OMV name="x"/></systemitem></para>
+  representing the variable
+  <inlineequation><mml:math><mml:mi>x</mml:mi></mml:math></inlineequation>
+  is: <systemitem>&lt;OMV name="x"/></systemitem></para>
 
   
 </listitem>
@@ -599,61 +602,69 @@ encoded as
 
 <variablelist>
 <varlistentry><term>Applications</term><listitem><para>are encoded
-		using the <systemitem>OMA</systemitem> element. The
-		application whose root is the &OM; object
-		<math><msub><mi>e</mi><mn>0</mn></msub></math> and
-		whose arguments are the &OM; objects
-		<math><msub><mi>e</mi><mn>1</mn></msub></math>,
-		<phrase>&#8230;</phrase>,
-		<math><msub><mi>e</mi><mi>n</mi></msub></math> is
-		encoded as <systemitem>&lt;OMA></systemitem>
-		<math><msub><mi>C</mi><mn>0</mn></msub></math>
-		<math><msub><mi>C</mi><mn>1</mn></msub></math><phrase>&#8230;</phrase>
-		<math><msub><mi>C</mi><mi>n</mi></msub></math>
-		<systemitem>&lt;/OMA></systemitem> where
-		<math><msub><mi>C</mi><mi>i</mi></msub></math> is the
-		encoding of
-		<math><msub><mi>e</mi><mi>i</mi></msub></math>.</para>
-
-<para>For example, <math><mi mathvariant="bold">application</mi><mo>(</mo><mi>sin</mi><mo>,</mo><mi>x</mi> <mo>)</mo></math> is encoded as:
-<literallayout><![CDATA[
-            <OMA>  
-            <OMS cd="transc1" name="sin"/> 
-            <OMV name="x"/>  
-            </OMA> 
-            ]]></literallayout>
-  provided that the symbol <systemitem>sin</systemitem> is defined to be a function
-  symbol in a Content Dictionary named <systemitem>transc1</systemitem>.</para>
+using the <systemitem>OMA</systemitem> element. The application whose
+root is the &OM; object
+<inlineequation><mml:math><mml:msub><mml:mi>e</mml:mi><mml:mn>0</mml:mn></mml:msub></mml:math></inlineequation>
+and whose arguments are the &OM; objects
+<inlineequation><mml:math><mml:msub><mml:mi>e</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></inlineequation>,
+<phrase>&#8230;</phrase>,
+<inlineequation><mml:math><mml:msub><mml:mi>e</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></inlineequation>
+is encoded as <systemitem>&lt;OMA></systemitem>
+<inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mn>0</mml:mn></mml:msub></mml:math></inlineequation>
+<inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></inlineequation>
+<phrase>&#8230;</phrase>
+<inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></inlineequation>
+<systemitem>&lt;/OMA></systemitem> where
+<inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:math></inlineequation>
+is the encoding of
+<inlineequation><mml:math><mml:msub><mml:mi>e</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:math></inlineequation>.
+</para>
+	      
+	      
+<para>For example, <inlineequation><mml:math><mml:mi
+mathvariant="bold">application</mml:mi><mml:mo>(</mml:mo><mml:mi>sin</mml:mi><mml:mo>,</mml:mo><mml:mi>x</mml:mi>
+<mml:mo>)</mml:mo></mml:math></inlineequation> is encoded as:
+<literallayout><![CDATA[ <OMA> <OMS cd="transc1" name="sin"/> <OMV
+name="x"/> </OMA> ]]></literallayout> provided that the symbol
+<systemitem>sin</systemitem> is defined to be a function symbol in a
+Content Dictionary named <systemitem>transc1</systemitem>.</para>
 
   
 </listitem>
 </varlistentry>
 <varlistentry><term>Binding</term><listitem><para>is encoded using the
   <systemitem>OMBIND</systemitem> element.  The binding by the &OM;
-  object <math><mi>b</mi></math> of the &OM; variables
-  <math><msub><mi>x</mi><mn>1</mn></msub></math>,
-  <math><msub><mi>x</mi><mn>2</mn></msub></math>,
-  <math><mi>&#8230;</mi></math>,
-  <math><msub><mi>x</mi><mi>n</mi></msub></math> in the object
-  <math><mi>c</mi></math> is encoded as
-  <systemitem>&lt;OMBIND></systemitem> <math><mi>B</mi></math>
+  object <mml:math><mml:mi>b</mml:mi></mml:math> of the &OM; variables
+  <mml:math><mml:msub><mml:mi>x</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math>,
+  <mml:math><mml:msub><mml:mi>x</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:math>,
+  <mml:math><mml:mi>&#8230;</mml:mi></mml:math>,
+  <mml:math><mml:msub><mml:mi>x</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math>
+  in the object <mml:math><mml:mi>c</mml:mi></mml:math> is encoded as
+  <systemitem>&lt;OMBIND></systemitem>
+  <mml:math><mml:mi>B</mml:mi></mml:math>
   <systemitem>&lt;OMBVAR></systemitem>
-  <math><msub><mi>X</mi><mn>1</mn></msub></math>
-  <math><mi>&#8230;</mi></math>
-  <math><msub><mi>X</mi><mi>n</mi></msub></math>
-  <systemitem>&lt;/OMBVAR></systemitem> <math><mi>C</mi></math>
-  <systemitem>&lt;/OMBIND></systemitem> where <math><mi>B</mi></math>,
-  <math><mi>C</mi></math>, and
-  <math><msub><mi>X</mi><mi>i</mi></msub></math> are the encodings of
-  <math><mi>b</mi></math>, <math><mi>c</mi></math> and
-  <math><msub><mi>x</mi><mi>i</mi></msub></math>, respectively.</para>
+  <mml:math><mml:msub><mml:mi>X</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math>
+  <mml:math><mml:mi>&#8230;</mml:mi></mml:math>
+  <mml:math><mml:msub><mml:mi>X</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math>
+  <systemitem>&lt;/OMBVAR></systemitem>
+  <mml:math><mml:mi>C</mml:mi></mml:math>
+  <systemitem>&lt;/OMBIND></systemitem> where
+  <mml:math><mml:mi>B</mml:mi></mml:math>,
+  <mml:math><mml:mi>C</mml:mi></mml:math>, and
+  <mml:math><mml:msub><mml:mi>X</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:math>
+  are the encodings of <mml:math><mml:mi>b</mml:mi></mml:math>,
+  <mml:math><mml:mi>c</mml:mi></mml:math> and
+  <mml:math><mml:msub><mml:mi>x</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:math>,
+  respectively.</para>
 
-<para>For instance the encoding of
-  <math><mi mathvariant="bold">binding</mi>
-       <mo>(</mo><mi>lambda</mi><mo>,</mo>
-  <mi>x</mi><mo>,</mo><mi mathvariant="bold">application</mi>
-     <mo>(</mo><mi>sin</mi><mo>,</mo> <mi>x</mi><mo>)</mo><mo>)</mo></math> is:
-<literallayout><![CDATA[ 
+	      <para>For instance the encoding of <inlineequation>
+<mml:math><mml:mi mathvariant="bold">binding</mml:mi>
+<mml:mo>(</mml:mo><mml:mi>lambda</mml:mi><mml:mo>,</mml:mo>
+<mml:mi>x</mml:mi><mml:mo>,</mml:mo><mml:mi
+mathvariant="bold">application</mml:mi>
+<mml:mo>(</mml:mo><mml:mi>sin</mml:mi><mml:mo>,</mml:mo>
+<mml:mi>x</mml:mi><mml:mo>)</mml:mo><mml:mo>)</mml:mo></mml:math>
+</inlineequation> is: <literallayout><![CDATA[
       <OMBIND>
         <OMS cd="fns1" name="lambda"/>  
         <OMBVAR>
@@ -671,12 +682,39 @@ encoded as
   
 </listitem>
 </varlistentry>
-<varlistentry><term>Attributions</term><listitem><para>are encoded using the <systemitem>OMATTR</systemitem> element.  If
-  the &OM; object <math><mi>e</mi></math> is attributed with (<math><msub><mi>s</mi><mn>1</mn></msub></math>, <math><msub><mi>e</mi><mn>1</mn></msub></math>), <phrase>&#8230;</phrase>, 
-  (<math><msub><mi>s</mi><mi>n</mi></msub></math>, <math><msub><mi>e</mi><mi>n</mi></msub></math>) pairs (where <math><msub><mi>s</mi><mi>i</mi></msub></math> are the attributes), it is encoded
-  as <systemitem>&lt;OMATTR></systemitem> <systemitem>&lt;OMATP></systemitem> <math><msub><mi>S</mi><mn>1</mn></msub></math> <math><msub><mi>C</mi><mn>1</mn></msub></math> <phrase>&#8230;</phrase> <math><msub><mi>S</mi><mi>n</mi></msub></math> <math><msub><mi>C</mi><mi>n</mi></msub></math> <systemitem>&lt;/OMATP></systemitem> <math><mi>E</mi></math> <systemitem>&lt;/OMATTR></systemitem> where <math><msub><mi>S</mi><mi>i</mi></msub></math> is the encoding of the
-  symbol <math><msub><mi>s</mi><mi>i</mi></msub></math>, <math><msub><mi>C</mi><mi>i</mi></msub></math> of the object <math><msub><mi>e</mi><mi>i</mi></msub></math> and <math><mi>E</mi></math> is the encoding of
-  <math><mi>e</mi></math>.</para>
+<varlistentry><term>Attributions</term><listitem><para>are encoded
+  using the <systemitem>OMATTR</systemitem> element.  If the &OM;
+  object
+  <inlineequation><mml:math><mml:mi>e</mml:mi></mml:math></inlineequation>
+  is attributed with (<inlineequation>
+  <mml:math><mml:msub><mml:mi>s</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math>,
+  <mml:math><mml:msub><mml:mi>e</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math>
+  </inlineequation> ), <phrase>&#8230;</phrase>, (<inlineequation>
+  <mml:math><mml:msub><mml:mi>s</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math>,
+  <mml:math><mml:msub><mml:mi>e</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math>
+  </inlineequation> ) pairs (where
+  <inlineequation><mml:math><mml:msub><mml:mi>s</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:math></inlineequation>
+  are the attributes), it is encoded as
+  <systemitem>&lt;OMATTR></systemitem>
+  <systemitem>&lt;OMATP></systemitem>
+  <inlineequation><mml:math><mml:msub><mml:mi>S</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></inlineequation>
+  <inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></inlineequation>
+  <phrase>&#8230;</phrase>
+  <inlineequation><mml:math><mml:msub><mml:mi>S</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></inlineequation>
+  <inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></inlineequation>
+  <systemitem>&lt;/OMATP></systemitem>
+  <inlineequation><mml:math><mml:mi>E</mml:mi></mml:math></inlineequation>
+  <systemitem>&lt;/OMATTR></systemitem> where
+  <inlineequation><mml:math><mml:msub><mml:mi>S</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:math></inlineequation>
+  is the encoding of the symbol
+  <inlineequation><mml:math><mml:msub><mml:mi>s</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:math></inlineequation>,
+  <inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:math></inlineequation>
+  of the object
+  <inlineequation><mml:math><mml:msub><mml:mi>e</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:math></inlineequation>
+  and
+  <inlineequation><mml:math><mml:mi>E</mml:mi></mml:math></inlineequation>
+  is the encoding of
+  <inlineequation><mml:math><mml:mi>e</mml:mi></mml:math></inlineequation>.</para>
 
 <para>Examples are the use of attribution to decorate a group by its
   automorphism group:
@@ -705,27 +743,33 @@ or to express the type of a variable:
 <varlistentry>
  <term>Errors</term> <listitem><para>are encoded using the
  <systemitem>OME</systemitem> element. The error whose symbol is
- <math><mi>s</mi></math> and whose arguments are the &OM; objects
- <math><msub><mi>e</mi><mn>1</mn></msub></math>,
+ <inlineequation><mml:math><mml:mi>s</mml:mi></mml:math></inlineequation>
+ and whose arguments are the &OM; objects
+ <inlineequation><mml:math><mml:msub><mml:mi>e</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></inlineequation>,
  <phrase>&#8230;</phrase>,
- <math><msub><mi>e</mi><mi>n</mi></msub></math> is encoded as
- <systemitem>&lt;OME></systemitem>
- <math><msub><mi>C</mi><mi>s</mi></msub></math>
- <math><msub><mi>C</mi><mn>1</mn></msub></math><phrase>&#8230;</phrase>
- <math><msub><mi>C</mi><mi>n</mi></msub></math>
+ <inlineequation><mml:math><mml:msub><mml:mi>e</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></inlineequation>
+ is encoded as <systemitem>&lt;OME></systemitem>
+ <inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mi>s</mml:mi></mml:msub></mml:math></inlineequation>
+ <inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></inlineequation><phrase>&#8230;</phrase>
+ <inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></inlineequation>
  <systemitem>&lt;/OME></systemitem> where
- <math><msub><mi>C</mi><mi>s</mi></msub></math> is the encoding of
- <math><mi>s</mi></math> and
- <math><msub><mi>C</mi><mi>i</mi></msub></math> the encoding of
- <math><msub><mi>e</mi><mi>i</mi></msub></math>.</para>
+ <inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mi>s</mml:mi></mml:msub></mml:math></inlineequation>
+ is the encoding of
+ <inlineequation><mml:math><mml:mi>s</mml:mi></mml:math></inlineequation> and
+ <inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:math></inlineequation>
+ the encoding of
+ <inlineequation><mml:math><mml:msub><mml:mi>e</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:math></inlineequation>.</para>
 
 <para>If an <systemitem>aritherror</systemitem> Content Dictionary
-contained a <math><mi>DivisionByZero</mi></math> symbol, then the
-object <math><mi
-mathvariant="bold">error</mi><mo>(</mo><mi>DivisionByZero</mi><mo>,</mo>
-<mi mathvariant="bold">application</mi>
-<mo>(</mo><mi>divide</mi><mo>,</mo> <mi>x</mi><mo>,</mo>
-<mn>0</mn><mo>)</mo><mo>)</mo></math> would be encoded as follows:
+contained a
+<inlineequation><mml:math><mml:mi>DivisionByZero</mml:mi></mml:math></inlineequation>
+symbol, then the object <inlineequation><mml:math><mml:mi
+mathvariant="bold">error</mml:mi><mml:mo>(</mml:mo><mml:mi>DivisionByZero</mml:mi><mml:mo>,</mml:mo>
+<mml:mi mathvariant="bold">application</mml:mi>
+<mml:mo>(</mml:mo><mml:mi>divide</mml:mi><mml:mo>,</mml:mo>
+<mml:mi>x</mml:mi><mml:mo>,</mml:mo>
+<mml:mn>0</mml:mn><mml:mo>)</mml:mo><mml:mo>)</mml:mo></mml:math></inlineequation>
+would be encoded as follows:
 
 <literallayout><![CDATA[ 
             <OME>
@@ -756,64 +800,69 @@ mathvariant="bold">error</mi><mo>(</mo><mi>DivisionByZero</mi><mo>,</mo>
 
  <para>For instance, the &OM; object
 
- <math display="block">
-   <mrow>
-     <mi mathvariant="bold">application</mi>
-     <mrow>
-       <mo fence="true">(</mo>
-       <mrow>
-         <mi>f</mi>
-         <mo separator="true">,</mo>
-         <mi mathvariant="bold">application</mi>
-         <mrow>
-           <mo fence="true">(</mo>
-           <mrow>
-             <mi>f</mi>
-             <mo separator="true">,</mo>
-             <mi mathvariant="bold">application</mi>
-             <mrow>
-               <mo fence="true">(</mo>
-               <mrow><mi>f</mi><mo separator="true">,</mo><mi>a</mi><mo separator="true">,</mo><mi>a</mi></mrow>
-               <mo fence="true">)</mo>
-             </mrow>
-             <mo separator="true">,</mo>
-             <mi mathvariant="bold">application</mi>
-             <mrow>
-               <mo fence="true">(</mo>
-               <mrow><mi>f</mi><mo separator="true">,</mo><mi>a</mi><mo separator="true">,</mo><mi>a</mi></mrow>
-               <mo fence="true">)</mo>
-             </mrow>
-             <mo fence="true">)</mo>
-           </mrow>
-           <mo separator="true">,</mo>
-           <mi mathvariant="bold">application</mi>
-           <mrow>
-             <mo fence="true">(</mo>
-             <mrow>
-               <mi>f</mi>
-               <mo separator="true">,</mo>
-               <mi mathvariant="bold">application</mi>
-               <mrow>
-                 <mo fence="true">(</mo>
-                 <mrow><mi>f</mi><mo separator="true">,</mo><mi>a</mi><mo separator="true">,</mo><mi>a</mi></mrow>
-                 <mo fence="true">)</mo>
-               </mrow>
-               <mo separator="true">,</mo>
-               <mi mathvariant="bold">application</mi>
-               <mrow>
-                 <mo fence="true">(</mo>
-                 <mrow><mi>f</mi><mo separator="true">,</mo><mi>a</mi><mo separator="true">,</mo><mi>a</mi></mrow>
-                 <mo fence="true">)</mo>
-               </mrow>
-               <mo fence="true">)</mo>
-             </mrow>
-           </mrow>
-           <mo fence="true">)</mo>
-         </mrow>
-       </mrow>
-     </mrow>
-   </mrow>
- </math>
+ <mml:math display="block">
+   <mml:mrow>
+     <mml:mi mathvariant="bold">application</mml:mi>
+     <mml:mrow>
+       <mml:mo fence="true">(</mml:mo>
+       <mml:mrow>
+         <mml:mi>f</mml:mi> <mml:mo separator="true">,</mml:mo>
+         <mml:mi mathvariant="bold">application</mml:mi>
+         <mml:mrow>
+           <mml:mo fence="true">(</mml:mo>
+           <mml:mrow>
+             <mml:mi>f</mml:mi> <mml:mo separator="true">,</mml:mo>
+             <mml:mi mathvariant="bold">application</mml:mi>
+             <mml:mrow>
+               <mml:mo fence="true">(</mml:mo>
+               <mml:mrow><mml:mi>f</mml:mi><mml:mo
+               separator="true">,</mml:mo><mml:mi>a</mml:mi><mml:mo
+               separator="true">,</mml:mo><mml:mi>a</mml:mi></mml:mrow>
+               <mml:mo fence="true">)</mml:mo>
+             </mml:mrow>
+             <mml:mo separator="true">,</mml:mo>
+             <mml:mi mathvariant="bold">application</mml:mi>
+             <mml:mrow>
+               <mml:mo fence="true">(</mml:mo>
+               <mml:mrow><mml:mi>f</mml:mi><mml:mo
+               separator="true">,</mml:mo><mml:mi>a</mml:mi><mml:mo
+               separator="true">,</mml:mo><mml:mi>a</mml:mi></mml:mrow>
+               <mml:mo fence="true">)</mml:mo>
+             </mml:mrow>
+             <mml:mo fence="true">)</mml:mo>
+           </mml:mrow>
+           <mml:mo separator="true">,</mml:mo> <mml:mi
+           mathvariant="bold">application</mml:mi>
+           <mml:mrow>
+             <mml:mo fence="true">(</mml:mo>
+             <mml:mrow>
+               <mml:mi>f</mml:mi> <mml:mo separator="true">,</mml:mo>
+               <mml:mi mathvariant="bold">application</mml:mi>
+               <mml:mrow>
+                 <mml:mo fence="true">(</mml:mo>
+                 <mml:mrow><mml:mi>f</mml:mi><mml:mo
+                 separator="true">,</mml:mo><mml:mi>a</mml:mi><mml:mo
+                 separator="true">,</mml:mo><mml:mi>a</mml:mi></mml:mrow>
+                 <mml:mo fence="true">)</mml:mo>
+               </mml:mrow>
+               <mml:mo separator="true">,</mml:mo>
+               <mml:mi mathvariant="bold">application</mml:mi>
+               <mml:mrow>
+                 <mml:mo fence="true">(</mml:mo>
+                 <mml:mrow><mml:mi>f</mml:mi><mml:mo
+                 separator="true">,</mml:mo><mml:mi>a</mml:mi><mml:mo
+                 separator="true">,</mml:mo><mml:mi>a</mml:mi></mml:mrow>
+                 <mml:mo fence="true">)</mml:mo>
+               </mml:mrow>
+               <mml:mo fence="true">)</mml:mo>
+             </mml:mrow>
+           </mml:mrow>
+           <mml:mo fence="true">)</mml:mo>
+         </mml:mrow>
+       </mml:mrow>
+     </mml:mrow>
+   </mml:mrow>
+ </mml:math>
 </para>
 <para>can be encoded in the &exml; encoding as either one of the &exml; encodings
 below (and some intermedidate versions as well).</para>
@@ -854,239 +903,19 @@ below (and some intermedidate versions as well).</para>
  </OMOBJ>                                 </OMOBJ>]]>
 </literallayout>
 </figure>
-
-<para>We say that an &OM; element dominates all its children and all
-elements they dominate. An <systemitem>OMR</systemitem> element
-dominates its target, i.e. the element that carries the
-<systemitem>id</systemitem> attribute pointed to by the
-<systemitem>xref</systemitem> attribute. For instance in the
-representation in Figure <xref linkend="fig_shared_vs_unshared"/>, the
-<systemitem>OMA</systemitem> element with
-<systemitem>id="t1"</systemitem> and also the second
-<systemitem>OMR</systemitem> dominate the <systemitem>OMA</systemitem>
-element with <systemitem>id="t11"</systemitem>.  </para> </listitem>
-</varlistentry> </variablelist> </section>
-
-<section id="sec_acyclicity">
-<title>An Acyclicity Constraint</title>
-
-<para>The occurrences of the <systemitem>OMR</systemitem> element must
-obey the following global <emphasis>acyclicity constraint</emphasis>:
-An &OM; element may not dominate itself.</para>
-
-<para>Consider for instance the following (illegal) &exml;
-representation <literallayout><![CDATA[
-<OMOBJ>
-  <OMA id="foo">
-    <OMS cd="arith1" name="divide"/>
-    <OMI>1</OMI>
-    <OMA>
-       <OMS cd="arith1" name="plus"/>
-       <OMI>1</OMI>
-       <OMR xref="foo"/>
-    </OMA> 
-  </OMA>
-</OMOBJ>]]>
-</literallayout>
-</para>
-
-<para>Here, the <systemitem>OMA</systemitem> element with
-<systemitem>id="foo"</systemitem> dominates its second child, which
-dominates the <systemitem>OMR</systemitem> element, which dominates
-its target: the element with <systemitem>id="foo"</systemitem>. So by
-transitivity, this element dominates itself, and by the acyclicity
-constraint, it is not the &exml; representation of an &OM;
-element. Even though it could be given the interpretation of the
-continued fraction
-<math display="block">
- <mfrac>
-   <mn>1</mn>
-   <mrow>
-     <mn>1</mn>
-     <mo>+</mo>
-     <mfrac>
-       <mn>1</mn>
-       <mrow>
-	 <mn>1</mn>
-	 <mo>+</mo>
-	 <mfrac><mn>1</mn><mi>...</mi></mfrac>
-       </mrow>
-     </mfrac>
-   </mrow>
- </mfrac>
-</math> this would correspond to an infinite tree of applications,
-which is not admitted by the structure of &OM; objects described
-in section 3.</para>
-
-<para revisionflag="added">Note that the acyclicity constraints is not restricted to such simple
-cases, as the following example shows.</para>
-
-<para><literallayout><![CDATA[
-<OMOBJ>                                <OMOBJ>
-  <OMA id="bar">                         <OMA id="baz">
-    <OMS cd="arith1" name="plus"/>         <OMS cd="arith1" name="plus"/>
-    <OMI>1</OMI>                           <OMI>1</OMI>
-    <OMR xref="baz"/>                      <OMR xref="bar"/>
-  </OMA>                                 </OMA>
-</OMOBJ>                               </OMOBJ>]]>
-</literallayout></para>
-
-<para revisionflag="added"> Here, the <systemitem>OMA</systemitem> with
-<systemitem>id="bar"</systemitem> dominates its second child, the
-<systemitem>OMR</systemitem> with <systemitem>xref="baz"</systemitem>,
-which dominates its target <systemitem>OMA</systemitem> with
-<systemitem>id="baz"</systemitem>, which in turn dominates its second
-child, the <systemitem>OMR</systemitem> with
-<systemitem>xref="bar"</systemitem>, this finally dominates its
-target, the original <systemitem>OMA</systemitem> element with
-<systemitem>id="bar"</systemitem>. So this pair of &OM; objects
-violates the acyclicity constraint and is not the &exml;
-representation of an &OM; object.</para>
-</section>
-
-
-<section id="sec_sharing_bvars" revisionflag="added">
-<title>Sharing and Bound Variables</title>
-
-<para>Note that the <systemitem>OMR</systemitem> element is a
-<emphasis>syntactic</emphasis> referencing mechanism: an
-<systemitem>OMR</systemitem> element stands for the exact &exml;
-element it points to. In particular, referencing does not interact
-with binding in a semantically intuitive way, since it allows for
-variable capture. Consider for instance the following &exml;
-representation: <literallayout><![CDATA[
-<OMBIND id="outer">
-  <OMS cd="fns1" name="lambda"/>
-  <OMBVAR><OMV name="X"/></OMBVAR>
-  <OMA>
-    <OMV name="f"/>
-    <OMBIND id="inner">
-      <OMS cd="fns1" name="lambda"/>
-      <OMBVAR><OMV name="X"/></OMBVAR>
-      <OMR id="copy" xlink:href="orig"/>
-    </OMBIND>
-    <OMA id="orig"><OMV name="g"/><OMV name="X"/></OMA>
-  </OMA>
-</OMBIND>]]>
-</literallayout>
-it represents the &OM; object
-<math display="block">
-  <mi mathvariant="bold">binding</mi>
-  <mrow>
-    <mo fence="true">(</mo>
-    <mo>&#x003BB;</mo>
-      <mo separator="true">,</mo>
-    <mi>X</mi>
-    <mo separator="true">,</mo>
-    <mrow>
-      <mi mathvariant="bold">application</mi>
-      <mo fence="true">(</mo>
-      <mi>f</mi>
-      <mo separator="true">,</mo>
-      <mi mathvariant="bold">binding</mi>
-      <mrow>
-	<mo fence="true">(</mo>
-	<mo>&#x003BB;</mo>
-	<mo separator="true">,</mo>
-	<mi>X</mi>
-	<mo separator="true">,</mo>
-	<mrow>
-	  <mi mathvariant="bold">application</mi>
-	  <mo fence="true">(</mo>
-	  <mi>g</mi>
-	  <mo separator="true">,</mo>
-	  <mi>X</mi>
-	  <mo fence="true">)</mo>
-	</mrow>
-	<mo fence="true">)</mo>
-      </mrow>
-      <mo separator="true">,</mo>
-      <mrow>
-	<mi mathvariant="bold">application</mi>
-	<mo fence="true">(</mo>
-	<mi>g</mi>
-	<mo separator="true">,</mo>
-	<mi>X</mi>
-	<mo fence="true">)</mo>
-      </mrow>
-      <mo fence="true">)</mo>
-    </mrow>
-    <mo fence="true">)</mo>
-  </mrow>
-  <mo fence="true">)</mo> </math> which has two subterms of the form
-<math>
-  <mi mathvariant="bold">application</mi>
-  <mo fence="true">(</mo>
-  <mi>g</mi>
-  <mo separator="true">,</mo>
-  <mi>X</mi>
-  <mo fence="true">)
-  </mo> </math>, one with <systemitem>id="orig"</systemitem> (the one explicitly
-represented) and one with <systemitem>id="copy"</systemitem>, represented by the
-<systemitem>OMR</systemitem> element. In the original, the variable
-<math><mi>X</mi></math> is bound by the <emphasis>outer</emphasis>
-<systemitem>OMBIND</systemitem> element, and in the copy, the variable
-<math><mi>X</mi></math> is bound by the <emphasis>inner</emphasis>
-<systemitem>OMBIND</systemitem> element. We say that the inner
-<systemitem>OMBIND</systemitem> has captured the variable <math><mi>X</mi></math>.
-</para>
-
-<para>It is well-known that variable capture does not conserve semantics. For
-  instance, we could use <math><mi>&#x003B1;</mi></math>-conversion to rename the inner occurrence of
-  <math><mi>x</mi></math> into - say - 
-  <math><mi>y</mi></math> arriving at the (same) object
-<math display="block">
-  <mi mathvariant="bold">binding</mi>
-  <mrow>
-    <mo fence="true">(</mo>
-    <mo>&#x003BB;</mo>
-      <mo separator="true">,</mo>
-    <mi>X</mi>
-    <mo separator="true">,</mo>
-    <mrow>
-      <mi mathvariant="bold">application</mi>
-      <mo fence="true">(</mo>
-      <mi>f</mi>
-      <mo separator="true">,</mo>
-      <mi mathvariant="bold">binding</mi>
-      <mrow>
-	<mo fence="true">(</mo>
-	<mo>&#x003BB;</mo>
-	<mo separator="true">,</mo>
-	<mi mathcolor="red">Y</mi>
-	<mo separator="true">,</mo>
-	<mrow>
-	  <mi mathvariant="bold">application</mi>
-	  <mo fence="true">(</mo>
-	  <mi>g</mi>
-	  <mo separator="true">,</mo>
-	  <mi mathcolor="red">Y</mi>
-	  <mo fence="true">)</mo>
-	</mrow>
-	<mo fence="true">)</mo>
-      </mrow>
-      <mo separator="true">,</mo>
-      <mrow>
-	<mi mathvariant="bold">application</mi>
-	<mo fence="true">(</mo>
-	<mi>g</mi>
-	<mo separator="true">,</mo>
-	<mi>X</mi>
-	<mo fence="true">)</mo>
-      </mrow>
-      <mo fence="true">)</mo>
-    </mrow>
-    <mo fence="true">)</mo>
-  </mrow>
-  <mo fence="true">)</mo> </math> Using references that capture
- variables in this way can easily lead to representation errors, and
- is not recommended.
-</para>
+	      
+	      <para> Using references that capture variables in this
+ way can easily lead to representation errors, and is not recommended.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	</variablelist>
       </section>
 
+
       <section id="bin">
-	<title>Binary Encoding</title>
-	<para>How the binary encoding is structured and used</para>
+	<title>Binary Encoding</title> <para>How the binary encoding
+	is structured and used</para>
       </section>
 
       <section id="other">
@@ -1421,8 +1250,8 @@ objects</phrase>.  The basic objects supported by &OM; are:
 A variable may have one or more children which are themselves &OM;
 objects and are treated as scripts.  Thus it is possible to create a
 variable with cardinality such as
-<math><msub><mi>x</mi><mn>1</mn></msub></math> or
-<math><msub><mi>x</mi><mi>i</mi></msub></math>.
+<mml:math><mml:msub></mml:mi>x</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math> or
+<mml:math><mml:msub></mml:mi>x</mml:mi></mml:mi>i</mml:mi></mml:msub></mml:math>.
 </para>
 </listitem>
 </varlistentry>
@@ -1510,7 +1339,7 @@ whereas a Phrasebook that understands the semantics of the symbols, as
 defined in the Content Dictionaries, should interpret the object as
 functional application, constructor, or binding accordingly. Thus, for
 example, for some applications, the &OM; object corresponding
-to <math><mn>2</mn><mo>+</mo><mn>5</mn></math> may result in a command that writes <math><mn>7</mn></math>.</para>
+to <mml:math><mml:mn>2</mml:mn><mo>+</mml:mo><mml:mn>5</mml:mn></mml:math> may result in a command that writes <mml:math><mml:mn>7</mml:mn></mml:math>.</para>
 </section>
 </chapter>
 
@@ -1603,15 +1432,15 @@ implementations).</para>
 <sidebar revision="1999/06/24" author="DPC"><para>New attrvar production</para></sidebar>     
 
 <para>Figure <xref linkend="fig_bin-enc"/> gives a grammar for the binary encoding.  The
-following conventions are used in this section: [<math><mi>n</mi></math>] denotes a byte
-whose value is the integer <math><mi>n</mi></math> (<math><mi>n</mi></math> can range from
-0 to 255), {<math><mi>m</mi></math>} denotes four bytes representing the (unsigned)
-integer <math><mi>m</mi></math> in network byte order, [_] denotes an arbitrary byte, {_}
+following conventions are used in this section: [<mml:math></mml:mi>n</mml:mi></mml:math>] denotes a byte
+whose value is the integer <mml:math></mml:mi>n</mml:mi></mml:math> (<mml:math></mml:mi>n</mml:mi></mml:math> can range from
+0 to 255), {<mml:math></mml:mi>m</mml:mi></mml:math>} denotes four bytes representing the (unsigned)
+integer <mml:math></mml:mi>m</mml:mi></mml:math> in network byte order, [_] denotes an arbitrary byte, {_}
 denotes an arbitrary sequence of four bytes.
-<emphasis>name</emphasis>:<math><mi>n</mi></math> denotes a sequence of
-<math><mi>n</mi></math> bytes named <emphasis>name</emphasis>.
-<emphasis>name</emphasis>:2<math><mi>n</mi></math> denotes a sequence of
-<math><mn>2</mn><mi>n</mi></math> bytes.  <quote>start</quote> is the start symbol of the
+<emphasis>name</emphasis>:<mml:math></mml:mi>n</mml:mi></mml:math> denotes a sequence of
+<mml:math></mml:mi>n</mml:mi></mml:math> bytes named <emphasis>name</emphasis>.
+<emphasis>name</emphasis>:2<mml:math></mml:mi>n</mml:mi></mml:math> denotes a sequence of
+<mml:math><mml:mn>2</mml:mn></mml:mi>n</mml:mi></mml:math> bytes.  <quote>start</quote> is the start symbol of the
 grammar.</para>
 </section>
 
@@ -1638,7 +1467,7 @@ shared flag is the seventh bit.</para>
   the small integer tag (1) followed by a single byte that is the
   value of the integer (interpreted as a signed character). For
   example 16 is encoded as <systemitem>0x01 0x10</systemitem>.  Integers between
-  <math><msup><mn>-2</mn><mn>31</mn></msup></math> (<math><mn>-2147483648</mn></math>) and <math><msup><mn>2</mn><mn>31</mn></msup> <mo>-</mo> <mn>1</mn></math> (<math><mn>2147483647</mn></math>) are encoded as
+  <mml:math><msup><mml:mn>-2</mml:mn><mml:mn>31</mml:mn></msup></mml:math> (<mml:math><mml:mn>-2147483648</mml:mn></mml:math>) and <mml:math><msup><mml:mn>2</mml:mn><mml:mn>31</mml:mn></msup> <mo>-</mml:mo> <mml:mn>1</mml:mn></mml:math> (<mml:math><mml:mn>2147483647</mml:mn></mml:math>) are encoded as
   the small integer tag with the long flag set followed by the integer
   encoded in little endian format on four bytes (network byte order:
   the most significant byte comes first). For example, 128 is encoded
@@ -1653,7 +1482,7 @@ shared flag is the seventh bit.</para>
   for the sign ored with the base mask bits that can be 0 for base 10
   or 0x40 for base 16.  It is followed by the strings of digits (as
   characters) in their natural order (as in the &exml;
-  encoding).  For example, 8589934592 (<math><msup><mn>2</mn><mn>33</mn></msup></math>) is encoded <systemitem>0x02
+  encoding).  For example, 8589934592 (<mml:math><msup><mml:mn>2</mml:mn><mml:mn>33</mml:mn></msup></mml:math>) is encoded <systemitem>0x02
     0x0A 0x2B 0x38353839393334353932</systemitem> and xf&zsp;f&zsp;f&zsp;f&zsp;f&zsp;f&zsp;f1 is
   encoded as <systemitem>0x02 0x08 0x6b 0x6666666666666631</systemitem>.  Note that it is
   permitted to encode a <quote>small</quote> integer in any <quote>bigger</quote> format.</para>
@@ -1732,23 +1561,23 @@ shared flag is the seventh bit.</para>
 <varlistentry>
 <term>Applications</term>
 <listitem><para>are encoded using the application tag (16). More
-  precisely, the application of <math><msub><mi>E</mi><mn>0</mn></msub></math> to
-  <math><msub><mi>E</mi><mn>1</mn></msub></math><phrase>&#8230;</phrase>
-  <math><msub><mi>E</mi><mi>n</mi></msub></math> is encoded
+  precisely, the application of <mml:math><mml:msub></mml:mi>E</mml:mi><mml:mn>0</mml:mn></mml:msub></mml:math> to
+  <mml:math><mml:msub></mml:mi>E</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math><phrase>&#8230;</phrase>
+  <mml:math><mml:msub></mml:mi>E</mml:mi></mml:mi>n</mml:mi></mml:msub></mml:math> is encoded
   using the application tag (16), the sequence of the encodings of
-  <math><msub><mi>E</mi><mn>0</mn></msub></math> to
-  <math><msub><mi>E</mi><mi>n</mi></msub></math> and the end application tag (17).</para>
+  <mml:math><mml:msub></mml:mi>E</mml:mi><mml:mn>0</mml:mn></mml:msub></mml:math> to
+  <mml:math><mml:msub></mml:mi>E</mml:mi></mml:mi>n</mml:mi></mml:msub></mml:math> and the end application tag (17).</para>
 </listitem>
 </varlistentry>
 
 <varlistentry>
  <term>Bindings</term>
  <listitem><para>are encoded using the binding tag (26). More
-  precisely, the binding by <math><mi>B</mi></math> of variables <math><msub><mi>V</mi><mn>1</mn></msub></math><phrase>&#8230;</phrase> <math><msub><mi>V</mi><mi>n</mi></msub></math> in
-  <math><mi>C</mi></math> is encoded as the binding tag (26), followed by the encoding of
-  <math><mi>B</mi></math>, followed by the binding variables tag (28), followed by the
-  encodings of the variables <math><msub><mi>V</mi><mn>1</mn></msub></math> <phrase>&#8230;</phrase> <math><msub><mi>V</mi><mi>n</mi></msub></math>, followed by the end
-  binding variables tag (29), followed by the encoding of <math><mi>C</mi></math>,
+  precisely, the binding by <mml:math></mml:mi>B</mml:mi></mml:math> of variables <mml:math><mml:msub></mml:mi>V</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math><phrase>&#8230;</phrase> <mml:math><mml:msub></mml:mi>V</mml:mi></mml:mi>n</mml:mi></mml:msub></mml:math> in
+  <mml:math></mml:mi>C</mml:mi></mml:math> is encoded as the binding tag (26), followed by the encoding of
+  <mml:math></mml:mi>B</mml:mi></mml:math>, followed by the binding variables tag (28), followed by the
+  encodings of the variables <mml:math><mml:msub></mml:mi>V</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math> <phrase>&#8230;</phrase> <mml:math><mml:msub></mml:mi>V</mml:mi></mml:mi>n</mml:mi></mml:msub></mml:math>, followed by the end
+  binding variables tag (29), followed by the encoding of <mml:math></mml:mi>C</mml:mi></mml:math>,
   followed by the end binding tag (27).</para>
 </listitem>
 </varlistentry>
@@ -1757,14 +1586,14 @@ shared flag is the seventh bit.</para>
  <term>Attribution</term>
  <listitem><para>are encoded using the attribution
 tag (18). More
-  precisely, attribution of the object <math><mi>E</mi></math> with
-  (<math><msub><mi>S</mi><mn>1</mn></msub></math>,
-  <math><msub><mi>E</mi><mn>1</mn></msub></math>),
-  <math><mi>&#8230;</mi></math> (<math><msub><mi>S</mi><mi>n</mi></msub></math>, <math><msub><mi>E</mi><mi>n</mi></msub></math>) pairs (where <math><msub><mi>S</mi><mi>i</mi></msub></math> are the attributes) is
+  precisely, attribution of the object <mml:math></mml:mi>E</mml:mi></mml:math> with
+  (<mml:math><mml:msub></mml:mi>S</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math>,
+  <mml:math><mml:msub></mml:mi>E</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math>),
+  <mml:math></mml:mi>&#8230;</mml:mi></mml:math> (<mml:math><mml:msub></mml:mi>S</mml:mi></mml:mi>n</mml:mi></mml:msub></mml:math>, <mml:math><mml:msub></mml:mi>E</mml:mi></mml:mi>n</mml:mi></mml:msub></mml:math>) pairs (where <mml:math><mml:msub></mml:mi>S</mml:mi></mml:mi>i</mml:mi></mml:msub></mml:math> are the attributes) is
   encoded as the attributed object tag (18), followed by the encoding
   of the attribute pairs as the attribute pairs tag (20), followed by
   the encoding of each symbol and value, followed by the end attribute
-  pairs tag (21), followed by the encoding of <math><mi>E</mi></math>, followed by the end
+  pairs tag (21), followed by the encoding of <mml:math></mml:mi>E</mml:mi></mml:math>, followed by the end
   attributed object tag (19).</para>
 </listitem>
 </varlistentry>
@@ -1772,12 +1601,12 @@ tag (18). More
 <varlistentry>
 <term>Error</term>
 <listitem><para>are encoded using the error tag (22). More precisely,
-  <math><msub><mi>S</mi><mn>0</mn></msub></math> applied to
-  <math><msub><mi>E</mi><mn>1</mn></msub></math><phrase>&#8230;</phrase>
-  <math><msub><mi>E</mi><mi>n</mi></msub></math> is encoded as the error tag (22),
-  the encoding of <math><msub><mi>S</mi><mn>0</mn></msub></math>, the sequence of the
-  encodings of <math><msub><mi>E</mi><mn>0</mn></msub></math> to
-  <math><msub><mi>E</mi><mi>n</mi></msub></math> and the end error tag (23).</para>
+  <mml:math><mml:msub></mml:mi>S</mml:mi><mml:mn>0</mml:mn></mml:msub></mml:math> applied to
+  <mml:math><mml:msub></mml:mi>E</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math><phrase>&#8230;</phrase>
+  <mml:math><mml:msub></mml:mi>E</mml:mi></mml:mi>n</mml:mi></mml:msub></mml:math> is encoded as the error tag (22),
+  the encoding of <mml:math><mml:msub></mml:mi>S</mml:mi><mml:mn>0</mml:mn></mml:msub></mml:math>, the sequence of the
+  encodings of <mml:math><mml:msub></mml:mi>E</mml:mi><mml:mn>0</mml:mn></mml:msub></mml:math> to
+  <mml:math><mml:msub></mml:mi>E</mml:mi></mml:mi>n</mml:mi></mml:msub></mml:math> and the end error tag (23).</para>
 </listitem>
 </varlistentry>
 </variablelist> 
@@ -1790,9 +1619,9 @@ tag (18). More
 (up to a certain length for strings) within one object. That is, sharing between
 objects is not supported.  A reference to a shared symbol, variable or string is
 encoded as the corresponding tag with the long flag not set and the shared flag
-set, followed by a positive integer <math><mi>n</mi></math> coded on one byte (0
-to 255). This integer references the <math><mi>n</mi> <mo>+</mo>
-<mn>1</mn></math>-th such sharable sub-object (symbol, variable or string up to
+set, followed by a positive integer <mml:math></mml:mi>n</mml:mi></mml:math> coded on one byte (0
+to 255). This integer references the <mml:math></mml:mi>n</mml:mi> <mo>+</mml:mo>
+<mml:mn>1</mml:mn></mml:math>-th such sharable sub-object (symbol, variable or string up to
 255 characters) in the current &OM; object (counted in the order they are
 generated by the encoding).  For example, <systemitem>0x48 0x01</systemitem>
 references a symbol that is identical to the second symbol that was found in the
@@ -1890,13 +1719,13 @@ above.</para>
 </figure>
 
 <para>It is easy to see that in this binary encoding, the size of the encoding is
-<math><mn>13</mn><mo>+</mo><mn>7</mn><mo
-fence="true">(</mo><mi>d</mi><mo>-</mo><mn>1</mn><mo fence="true">)</mo></math> bytes,
-where <math><mi>d</mi></math> is the depth of the tree, while a totally unshared encoding
-is <math><mn>8</mn><mo>*</mo><msup><mn>2</mn><mi>d</mi></msup><mo>-</mo><mn>8</mn></math>
+<mml:math><mml:mn>13</mml:mn><mo>+</mml:mo><mml:mn>7</mml:mn><mo
+fence="true">(</mml:mo></mml:mi>d</mml:mi><mo>-</mml:mo><mml:mn>1</mml:mn><mml:mo fence="true">)</mml:mo></mml:math> bytes,
+where <mml:math></mml:mi>d</mml:mi></mml:math> is the depth of the tree, while a totally unshared encoding
+is <mml:math><mml:mn>8</mml:mn><mo>*</mml:mo><msup><mml:mn>2</mml:mn></mml:mi>d</mml:mi></msup><mo>-</mml:mo><mml:mn>8</mml:mn></mml:math>
 bytes (sharing variables saves up to 256 bytes for trees up to depth 8 and wastes space
 for greater depths). The shared &exml; encoding only uses
-<math><mn>32</mn><mi>d</mi><mo>+</mo><mn>29</mn></math> bytes, which is more space
+<mml:math><mml:mn>32</mml:mn></mml:mi>d</mml:mi><mo>+</mml:mo><mml:mn>29</mml:mn></mml:math> bytes, which is more space
 efficient starting at depth 9.</para>
 
 <para>Note that in conversion to binary encoding the identifiers on the
@@ -1922,9 +1751,9 @@ binary encoding with sharing.</para>
   character strings whose lengths are less than 256 characters.  When an object is
   read, all the tables are first flushed. Each time a sharable sub-object is read,
   it is entered in the corresponding table if it is not full. When a reference to
-  the shared <math><mi>i</mi></math>-th object of a given type is read, it stands
-  for the <math><mi>i</mi></math>-th entry in the corresponding table. It is an
-  encoding error if the <math><mi>i</mi></math>-th position in the table has not
+  the shared <mml:math></mml:mi>i</mml:mi></mml:math>-th object of a given type is read, it stands
+  for the <mml:math></mml:mi>i</mml:mi></mml:math>-th entry in the corresponding table. It is an
+  encoding error if the <mml:math></mml:mi>i</mml:mi></mml:math>-th position in the table has not
   already been assigned (i.e. forward references are not allowed).  Sharing is not
   mandatory, there may be duplicate entries in the tables (if the application that
   wrote the object chose not to share optimally).
@@ -2075,10 +1904,10 @@ transmitting mathematical information. It is the &OM; Content
 Dictionaries which actually hold the meanings of the objects being
 transmitted.</para>
 
-<para>For example if application <math><mi>A</mi></math> is talking to
-application <math><mi>B</mi></math>, and sends, say, an equation
-involving multiplication of matrices, then <math><mi>A</mi></math> and
-<math><mi>B</mi></math> must agree on what a matrix is, and on what
+<para>For example if application <mml:math></mml:mi>A</mml:mi></mml:math> is talking to
+application <mml:math></mml:mi>B</mml:mi></mml:math>, and sends, say, an equation
+involving multiplication of matrices, then <mml:math></mml:mi>A</mml:mi></mml:math> and
+<mml:math></mml:mi>B</mml:mi></mml:math> must agree on what a matrix is, and on what
 matrix multiplication is, and even on what constitutes an
 equation. All this information is held within some Content
 Dictionaries which both applications agree upon.</para>
@@ -2089,7 +1918,7 @@ basic objects referred to as <emphasis>symbols</emphasis> in <xref
 linkend="sec_omabs"/>.</para>
 
 <para>With a set of symbol definitions (perhaps from several Content
-Dictionaries), <math><mi>A</mi></math> and <math><mi>B</mi></math> can
+Dictionaries), <mml:math></mml:mi>A</mml:mi></mml:math> and <mml:math></mml:mi>B</mml:mi></mml:math> can
 now talk in a common <quote>language</quote>.</para>
 
 <para>It is important to stress that it is not Content Dictionaries
@@ -2647,12 +2476,16 @@ groups.</para>
 compliancy?</para></sidebar> <para>For an application to declare that
 it <quote>understands CDGroup G</quote> is exactly equivalent to, and
 interchangable with, the declaration that it <quote>understands
-Content Dictionaries <math><msub><mi>x</mi><mn>1</mn></msub></math>,
-<math><msub><mi>x</mi><mn>2</mn></msub></math>, <phrase>&#8230;</phrase>
-<math><msub><mi>x</mi><mi>n</mi></msub></math></quote>, where
-<math><msub><mi>x</mi><mn>1</mn></msub></math>, <phrase>&#8230;</phrase>
-<math><msub><mi>x</mi><mi>n</mi></msub></math> are the members of
-CDGroup G.</para>
+Content Dictionaries
+<mml:math><mml:msub></mml:mi>x</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math>,
+<mml:math><mml:msub></mml:mi>x</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:math>,
+<phrase>&#8230;</phrase>
+<mml:math><mml:msub></mml:mi>x</mml:mi></mml:mi>n</mml:mi></mml:msub></mml:math></quote>,
+where
+<mml:math><mml:msub></mml:mi>x</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math>,
+<phrase>&#8230;</phrase>
+<mml:math><mml:msub></mml:mi>x</mml:mi></mml:mi>n</mml:mi></mml:msub></mml:math>
+are the members of CDGroup G.</para>
 
 
 <section id="sec_dtd_cdg">
@@ -2861,25 +2694,31 @@ Dictionaries <emphasis>should</emphasis> be referenced by the URL declared in th
 <systemitem>CDURL</systemitem> field of the Dictionary. This URL may be used to
 retrieve the Content Dictionary.</para>
 
-<para>When receiving an &OM; symbol, e.g. <math><mi>s</mi></math>,  that is not supported from a
- supported Content Dictionary,  a compliant
-application will act as if it had received the &OM; object
-<math display="block"><mi mathvariant="bold">error</mi><mo>(</mo><mi>Unhandled_Symbol</mi><mo separator="true">,</mo><mi>s</mi><mo>)</mo></math>
-where <systemitem>Unhandled_Symbol</systemitem> is the symbol from the error Content
-Dictionary.</para>
+<para>When receiving an &OM; symbol,
+ e.g. <mml:math></mml:mi>s</mml:mi></mml:math>, that is not supported from
+ a supported Content Dictionary, a compliant application will act as
+ if it had received the &OM; object <math display="block"><mml:mi
+ mathvariant="bold">error</mml:mi><mo>(</mml:mo></mml:mi>Unhandled_Symbol</mml:mi><mml:mo
+ separator="true">,</mml:mo></mml:mi>s</mml:mi><mo>)</mml:mo></mml:math>
+ where <systemitem>Unhandled_Symbol</systemitem> is the symbol from
+ the error Content Dictionary.</para>
 
 
-<para>Similarly if it receives a symbol, e.g. <math><mi>s</mi></math>, from an unsupported Content
-Dictionary,
-it  will act as if it had received the &OM; object
-<math display="block"><mi mathvariant="bold">error</mi><mo>(</mo><mi>Unsupported_CD</mi><mo separator="true">,</mo><mi>s</mi><mo>)</mo></math></para>
+<para>Similarly if it receives a symbol,
+e.g. <mml:math></mml:mi>s</mml:mi></mml:math>, from an unsupported Content
+Dictionary, it will act as if it had received the &OM; object <math
+display="block"><mi
+mathvariant="bold">error</mml:mi><mo>(</mml:mo></mml:mi>Unsupported_CD</mml:mi><mo
+separator="true">,</mml:mo></mml:mi>s</mml:mi><mo>)</mml:mo></mml:math></para>
 
-<para>Finally if the compliant application receives a symbol from a supported
-Content Dictionary but with an unknown name, then this must either be
-an incorrect object, or possibly the object has been built using a
-later version of the Content Dictionary. In either case, the
-application will act as if it had received the &OM; object
-<math display="block"><mi mathvariant="bold">error</mi><mo>(</mo><mi>Unexpected_Symbol</mi><mo separator="true">,</mo><mi>s</mi><mo>)</mo></math></para>
+<para>Finally if the compliant application receives a symbol from a
+supported Content Dictionary but with an unknown name, then this must
+either be an incorrect object, or possibly the object has been built
+using a later version of the Content Dictionary. In either case, the
+application will act as if it had received the &OM; object <math
+display="block"><mi
+mathvariant="bold">error</mml:mi><mo>(</mml:mo></mml:mi>Unexpected_Symbol</mml:mi><mo
+separator="true">,</mml:mo></mml:mi>s</mml:mi><mo>)</mml:mo></mml:math></para>
 </section>
 
 <section id="sec_comp_lex">
