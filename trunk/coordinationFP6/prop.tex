@@ -34,33 +34,46 @@
 \typeout{There are still \arabic{ednote} EdNotes and Issues to resolve!}%
 \typeout{}\fi}
 
-\documentclass{euproposal}
+% a bit wider
+\advance\evensidemargin-.5in
+\advance\oddsidemargin-.5in
+\advance\textwidth1in
+% Vertical space mods from Mike's old 2.09 version.
+% Separate paragraphs, and subvert \item to leave less space!
+%
+\parskip=0.5\baselineskip
+\parindent=0pt
+
+
+\documentclass[draft]{artikel3}
 \usepackage{paralist,enumerate}
 
 \begin{document}
-\setcounter{part}{2}% part B
+
 
 
 \title{Development of OpenMath CDs Coordination Action\\
-  Acronym: \cdca\\
-  Date of Preparation: \date{\today} \\
-  Future and Emerging Technologies Open\\
-  Coordination Action}
+  \normalfont{\normalsize Acronym: \cdca}}
+Future and Emerging Technologies Open Coordination Action
 \author{International University  Bremen\\
   Coordinator: Professor Michael Kohlhase\\
-%    School of Engineering \& Sciences\\
-%    International University Bremen, \\
-%    Campus Ring 12\\
-%    D-28759 Bremen,    Germany\\
+  School of Engineering \& Sciences\\
+  International University Bremen, \\
+  Campus Ring 12\\
+  D-28759 Bremen,    Germany\\
   email: \texttt{m.kohlhase@iu-bremen.de}\\
   tel: +49 421 200 3140
   fax: +49 421 200 3103}
+\date{Date of Preparation: \date{\today}} \\
 
-\setcounter{tocdepth}{1}\tableofcontents
+
 \titlepage 
+
 \maketitle
 
-\chapter{Objectives of the Action}
+\setcounter{tocdepth}{1}\tableofcontents
+
+\section{Objectives of the Action}
 
 
 \begin{quote}\sf
@@ -126,23 +139,23 @@ sponsor activities such as
 \section{Strengthening the OpenMath Community} 
 \label{community}
 
-%This task is at the core of the coordination action since it aims at
-%strenghtening the user base of OpenMath by promoting Content
-%Dictionaries. Dissemination and training, setting up editorial board
-%for CDs, ....
+This task is at the core of the coordination action since it aims at
+strenghtening the user base of OpenMath by promoting Content
+Dictionaries. Dissemination and training, setting up editorial board
+for CDs, ....
 
 
-%% I think that it would be good to have a section after the introduction
-%% describing the existing OpenMath Community.  This could be structured as
-%% follows:
-%% - Mathematical Software (NAG, ORCCA/Maple, Axiom, Cocoa ...)
-%% - Mathematical Publishing (OMDoc, Algebra Interactive, NAG)
-%% - E-Learning (Eindhoven, LeActiveMath, Helsinki)
-%% - Semantic Web (MONET, Stilo)
-%% - Web Services (MONET, ORCCA/Maple)
-%% Obviously the more groups and the wider the coverage of topics the
-%% better.  We might want to think about who we could bring "into the fold"
-%% as well.
+% I think that it would be good to have a section after the introduction
+% describing the existing OpenMath Community.  This could be structured as
+% follows:
+% - Mathematical Software (NAG, ORCCA/Maple, Axiom, Cocoa ...)
+% - Mathematical Publishing (OMDoc, Algebra Interactive, NAG)
+% - E-Learning (Eindhoven, LeActiveMath, Helsinki)
+% - Semantic Web (MONET, Stilo)
+% - Web Services (MONET, ORCCA/Maple)
+% Obviously the more groups and the wider the coverage of topics the
+% better.  We might want to think about who we could bring "into the fold"
+% as well.
 
 
 
@@ -156,7 +169,7 @@ lists and organising regular workshops.
 
 \subsection{Mathematical Software}
 \label{sec:msw}
-%% - Mathematical Software (NAG, ORCCA/Maple, Axiom, Cocoa ...)
+% - Mathematical Software (NAG, ORCCA/Maple, Axiom, Cocoa ...)
 
 The original and primary target user group for OpenMath was the
 community of mathematical users and developers. OpenMath has been
@@ -165,7 +178,7 @@ mathematical software packages with different yet compatible
 functionalities. Examples of systems that speak OpenMath include
 AXIOM, Aldor, Maple, REDUCE, CoCoA, and NAG's Fortran library (?).
 
-%what to do to strenghten this community
+%what to do to strenghten this community 
 The coordination action intends to strenghten this community by adding
 more visibility to the OpenMath compliant software via the web page,
 by collecting and disseminating guidelines for implementors and by
@@ -173,32 +186,42 @@ active support for the upgrade to OpenMath version 2.0.
 
 \subsection{Mathematical Publishing}
 \label{sec:mpubl}
-%% - Mathematical Publishing (OMDoc, Algebra Interactive, NAG)
+% - Mathematical Publishing (OMDoc, Algebra Interactive, NAG)
 
-The mathematical publishing community broadly intended includes
-publishing companies of scientific literature, software companies
-distributing documentation and training material, down to the
-researchers that distribute results and lectures online.
+The mathematical publishing community broadly includes publishing
+companies of scientific literature, software companies distributing
+documentation and training material, down to the researchers that
+distribute results and lectures online.
 
 Publishers of mathematical books are interested in the inclusion of
-OpenMath in the electronic version of the texts because it enhances
+OpenMath in electronic versions of texts because it enhances
 interactivity: with a mouse click, a mathematical object can be
-transferred to a program that computes with it or maybe produces a
-graph to visualize it. 
+transferred to a computational program or to visualization software.
+The same reason holds true for OpenMath to be incorporated in other
+publishing activities: the mathematics in published material becomes
+truly interactive whether it is demonstrating usage of third-party
+algorithms or giving hands-on examples to students. The publishing
+community can follow the examples set by Algebra Interactive, by OMDoc
+activities and by NAG (hypertextual documentation?).
+
+%what to do to strenghten this community
+The coordination action intends to strenghten this community by
+supporting activities such as the DLMF
+
 
 \subsection{E-Learning}
 \label{sec:e-learn}
-%% - E-Learning (Eindhoven, LeActiveMath, Helsinki)
+% - E-Learning (Eindhoven, LeActiveMath, Helsinki)
 
 
 \subsection{Semantic Web}
 \label{sec:semw}
-%% - Semantic Web (MONET, Stilo)
+% - Semantic Web (MONET, Stilo)
 
 
 \subsection{Web Services}
 \label{sec:ws}
-%% - Web Services (MONET, ORCCA/Maple,RISC)
+% - Web Services (MONET, ORCCA/Maple,RISC)
 
 
 
@@ -273,7 +296,7 @@ mechanisms, archiving and searching facilities fall under this task.
 
 
 
-\chapter{Work Plan}
+\section{Work Plan}
 We define a work plan containing a
 whole range of medium- to long-term types of networking or co-ordination
 activities.
