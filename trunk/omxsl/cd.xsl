@@ -87,7 +87,7 @@
   <dt><span class="dt">Review Date:</span></dt><dd> <xsl:value-of select="cd:CDReviewDate"/></dd>
   <dt><span class="dt">Status:</span></dt><dd><xsl:value-of select="cd:CDStatus"/></dd>
   <xsl:if test="not(normalize-space(cd:CDUses)='')">
-  <dt><span class="dt">Uses cd:CD:</span></dt><dd>
+  <dt><span class="dt">Uses CD:</span></dt><dd>
   <xsl:for-each select="cd:CDUses/cd:CDName">
     <xsl:variable name="p">
 <xsl:if test="not(document(concat(.,'.ocd'),.))">../../../cd/</xsl:if>
