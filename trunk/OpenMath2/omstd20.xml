@@ -3672,7 +3672,7 @@ of a major and minor part (see <xref linkend="sec_version"/>).
 linkend="sec_status"/>. 
 </para>
 </listitem>
-<listitem><para>A <emphasis>uri</emphasis> which is a unique
+<listitem><para>A <emphasis>uri stub</emphasis> which is a unique
 identifier for the Content Dictionary, and may or may not refer to an
 actual location from which it can be retrieved.   
 </para>
@@ -4064,16 +4064,17 @@ status of the Content Dictionary.
   
 </listitem>
 </varlistentry>
+<varlistentry revisionflag="added"><term><systemitem>CDURISTUB</systemitem></term><listitem><para>The
+uri stub of the CD.
+
+</para>
+</listitem>
+</varlistentry>
 <varlistentry><term><systemitem>CDURL</systemitem></term><listitem><para>The
-<phrase revisionflag="deleted">
   text occurring in the <systemitem>CDURL</systemitem> element should
   be a valid URL where the source file for the Content Dictionary
   encoding can be found (if it exists). The filename should conform to
   ISO 9660&#160;<citation>iso9660</citation>.
-</phrase>
-<phrase revisionflag="added">
-URI of the CD.
-</phrase>
 
 </para>
 
@@ -4789,53 +4790,98 @@ Content Dictionaries and &OM; objects is given.</para>
 
 </chapter>
 
-  <appendix>
-    <title>Changes between &OM; 1 and &OM; 2</title>
+  <appendix revisionflag="added" id="app_whats_new">
+    <title>Changes between &OM; 1.1 and &OM; 2</title>
 
 
-    <para>In this appendix we document the changes that occurred
-    between version 1 and version 2 of the &OM; standard. Changes
-    preserve backward compatibility of &OM; objects, namely version 1
-    &OM; objects are also version 2 &OM; objects. The converse does
-    not hold.</para>
+    <para>In this appendix we describe the major changes that occurred
+between version 1.1 and version 2 of the &OM; standard. All changes to
+the encodings and content dictionaries have been designed to be
+backward compatibile, in other words all existing &OM; objects and
+Content Dictionaries are still valid in &OM; 2.  On the other hand an
+existing  &OM; 1.1 application may not be able to process &OM; 2
+objects.
+</para>
 
     <section>
-      <title>Changes in the abstract level</title>
+      <title>Changes to the Formal Definition of Objects</title>
       
       <para>Additional features of abstract objects have been
       introduced:</para>
       <itemizedlist>
 	<listitem>
-	  <para>&OM; symbols have a rôle qualifier which restricts the
-	  place where they may occur within compound objects</para>
+	  <para>&OM; symbols have an optional rôle qualifier which restricts the
+	  place where they may occur within compound objects.
+Although part of the abstract description of a symbol this information
+is intended to be stored in the CD.  In the &exml; encoding it may be
+used to provide a more restricted schema leading to tighter
+validation.
+</para>
+	</listitem>
+	<listitem>
+	  <para>
+In addition to their <emphasis>name</emphasis> and
+<emphasis>cd</emphasis> properties, symbols now have an optional
+<emphasis>uristub</emphasis> property.  This can be used to
+disambiguate between two CDs which are produced independently but have
+the same name, and can also be used to produce a canonical URI for any
+OpenMath symbol for use in frameworks such as RDFS or MathML which
+need one.
+	  </para>
 	</listitem>
 	<listitem>
 	  <para>&OM; variables can be indexed, in which case they
-	  carry information about their enumerator</para>
+	  carry information about their enumerator.  Since &OM; only
+allows variables and not objects to be bound, it was not possible to
+produce indexed variables by defining an appropriate symbol in a CD.
+Also, although it would be possible to produce an indexed variable
+using the new <emphasis>semantic-attribute</emphasis> role, it was
+felt that attributes describe or modify an object, whereas in this
+case we were constructing an atomic object.
+</para>
 	</listitem>
 	<listitem>
-	  <para>non-&OM; objects may appear inside
-	  <emphasis>foreign</emphasis> objects which are a class of
-	  derived objects</para>
+	  <para>An &OM; object may be attributed with a non-&OM; object
+using the new
+	  <emphasis>foreign</emphasis>constructor.  This allows an
+&exml;-encoded &OM; object to be attributed with appropriate
+Presentation MathML, for example, or a base-64 encoded MPEG file of
+its aural rendering.
+	  </para>
 	</listitem>
 	<listitem>
-	  <para>attributions can be enforced as semantical annotation,
-	  that cannot be stripped, by specifying the role of the
-	  symbol acting as attribute key</para>
+	  <para>the new role property can be used to indicate that a
+symbol is an <emphasis>attribution</emphasis>, in which case an
+application may ignore or remove it, or a <emphasis>semantic
+attribution</emphasis> in which case removing it is no longer
+guarenteed to produce an equivalent object.  
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>restrictions on the names of symbols, variables and
+content dictionaries have been relaxed to be compatible with XML and
+to be less Anglo-Saxon.
+	  </para>
 	</listitem>
       </itemizedlist>
 
     </section>
 
     <section>
-      <title>Changes in the encodings</title>
+      <title>Changes to the encodings</title>
 
       <para>The &OM; version 2 standard still mandantes two encodings:
       &exml; and binary. The &exml; encoding in particular has been
-      updated to reflect the latest development of &exml;. Version 2
-      encodings are backward compatible with version 1 encodings.
+      updated to reflect the latest development of &exml; and is now a
+full &exml; application.  Version 2
+      encodings are backward compatible with version 1.1 encodings.
       </para>
       <itemizedlist>
+	<listitem>
+	  <para>both encodings have been updated to support the
+changes to the model of abstract objects described above.
+	  </para>
+	</listitem>
 	<listitem>
 	  <para>encodings support internal and external sharing of
 	  objects</para>
@@ -4843,7 +4889,8 @@ Content Dictionaries and &OM; objects is given.</para>
 	<listitem>
 	  <para>the &exml; encoding in version 2 is defined by a Relax
 	  NG schema and the mandated character-based grammar of
-	  version 1 has been removed.
+	  version 1 has been removed, while the DTD has been relegated
+to an Appendix.
 	  </para>
 	</listitem>
 	<listitem>
@@ -4857,13 +4904,32 @@ Content Dictionaries and &OM; objects is given.</para>
 
     
     <section>
-      <title>Changes in the Content Dictionaries</title>
+      <title>Changes to Content Dictionaries</title>
 
-      <para>In &OM; version 2 Content Dictionaries have an abstract
-	definition which describes the information content that needs
+      <itemizedlist>
+	<listitem>
+      <para>In &OM; version 2 Content Dictionaries are defined in
+terms of 
+	the abstract information content that needs
 	to be specified for defining &OM; symbols. The current
-	implementation is a possible encoding of the abstract model.
+	implementation is thus just one possible encoding of this abstract model.
       </para>
+	</listitem>
+	<listitem>
+<para> The <emphasis>CDUses</emphasis> element is not part of this
+information model and has been made optional and deprecated in the reference encoding
+since it is trivial to extract its content automatically from the CD.
+</para>
+	</listitem>
+	<listitem>
+<para>
+A CD may now, optionally, define its uristub.
+</para>
+<para>
+A CD symbol definition may now, optionally, define its role.
+</para>
+	</listitem>
+      </itemizedlist>
       
       
       <para>TODO: take care of defmp</para>
