@@ -454,7 +454,7 @@ changelog entry here
 <!-- bibliography -->
 <xsl:template match="bibliography">
 \begin£thebibliographyﬂ£99ﬂ
-<xsl:for-each select="biblioentry[key('cite',@id)]">
+<xsl:for-each select="biblioentry[key('cite',@id)][$showdiffs or not(@revisionflag='deleted')]">
 <xsl:sort select="(author[1]/surname|author[1]/othername|bibliomisc[@role='key'])[1]"/>
 <xsl:text>£</xsl:text>
 <xsl:apply-templates select="@revisionflag"/>
@@ -482,7 +482,9 @@ changelog entry here
 <xsl:variable name="bib" select="/book/bibliography/biblioentry[key('cite',@id)]"/>
 
 <xsl:template match="citation">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <xsl:text/>\cite£<xsl:value-of select="."/>ﬂ<xsl:text/>
+</xsl:if>
 </xsl:template>
 
 <xsl:template match="releaseinfo|firstname|surname|othername">

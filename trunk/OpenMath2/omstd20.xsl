@@ -600,13 +600,15 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 <xsl:number format="A" value="1+count(preceding-sibling::appendix)"/>
 </xsl:template>
 
-<xsl:variable name="bib" select="/book/bibliography/biblioentry[key('cite',@id)]"/>
+<xsl:variable name="bib" select="/book/bibliography/biblioentry[key('cite',@id)][$showdiffs or not(@revisionflag='deleted')]"/>
 <xsl:template match="citation">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <xsl:variable name="x" select="."/>
 <a href="#{.}">[<xsl:for-each select="$bib">
 <xsl:sort select="(author[1]/surname|author[1]/othername|bibliomisc[@role='key'])[1]"/>
 <xsl:if test="@id=$x"><xsl:value-of select="position()"/></xsl:if>
 </xsl:for-each>]</a>
+</xsl:if>
 </xsl:template>
 
 <xsl:template match="releaseinfo|firstname|surname|othername">
