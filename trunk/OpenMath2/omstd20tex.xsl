@@ -7,7 +7,7 @@
 
 <xsl:param name="changelog">no</xsl:param>
 <xsl:param name="showdiffs" select="false()"/>
-<xsl:output method="text"/>
+<xsl:output method="text" encoding="iso-8859-1"/>
 
 
 <xsl:key name="new"  match="*[@revisionflag='added']" use="ancestor-or-self::section[1]/@id"/>
@@ -22,7 +22,7 @@
 \setcounter{secnumdepth}{4}
 \usepackage[latin1]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{soul}
+\usepackage{soul,longtable}
 \usepackage{ae,amsfonts,amssymb,url,graphics,color,
 %hyperref
 }
@@ -172,6 +172,7 @@ relative to the OpenMath 1.0 document\ldots
 
 
 <xsl:template match="section">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
   <xsl:if test="parent::appendix">\clearpage</xsl:if>
   <xsl:text>£</xsl:text>
   <xsl:apply-templates select="@revisionflag"/>
@@ -180,7 +181,7 @@ relative to the OpenMath 1.0 document\ldots
            />ﬂ<xsl:if test="@id">\label£<xsl:value-of select="@id"/>ﬂ</xsl:if>
 <xsl:apply-templates/>
   <xsl:text>ﬂ</xsl:text>
-
+</xsl:if>
 </xsl:template>
 
 <xsl:template match="section" mode="number">
@@ -205,6 +206,9 @@ relative to the OpenMath 1.0 document\ldots
 </xsl:if>
 </xsl:template>
 
+<xsl:template match="para/text()">
+<xsl:value-of select="translate(.,'&#10;',' ')"/>
+</xsl:template>
 
 <xsl:template match="phrase[@role='sl']">
 <xsl:text/>\textsl£<xsl:apply-templates/>ﬂ<xsl:text/>
@@ -277,9 +281,11 @@ relative to the OpenMath 1.0 document\ldots
 
 
 <xsl:template match="blockquote">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 \begin£quotationﬂ
 <xsl:apply-templates/>
 \end£quotationﬂ
+</xsl:if>
 </xsl:template>
 
 
@@ -335,10 +341,17 @@ changelog entry here
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 £<xsl:apply-templates select="@revisionflag"/>
 <xsl:if test="@role='small'">\footnotesize</xsl:if>
-\begin£tabularﬂ£cccccccccccccﬂ
+\begin£tabularﬂ£lllllllllllllﬂ
 <xsl:apply-templates select="tgroup/*"/>
 \end£tabularﬂ<xsl:text>ﬂ&#10;</xsl:text>
 </xsl:if>
+</xsl:template>
+
+<xsl:template match="id('fig_bin-enc')/informaltable">
+\footnotesize
+\begin£longtableﬂ£llp£5cmﬂlp£5cmﬂ|lﬂ
+<xsl:apply-templates select="tgroup/*"/>
+\end£longtableﬂ<xsl:text>&#10;</xsl:text>
 </xsl:template>
 
 
@@ -347,16 +360,21 @@ changelog entry here
 </xsl:template>
 
 <xsl:template match="row">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <xsl:apply-templates/>
 <xsl:if test="parent::head or position() &lt; last()">\\
+</xsl:if>
 </xsl:if>
 </xsl:template>
 
 
 <xsl:template match="entry">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <xsl:apply-templates select="@revisionflag|../@revisionflag"/>
+<xsl:if test="../parent::thead">\bfseries </xsl:if>
 <xsl:apply-templates/>
 <xsl:if test="position() &lt; last()"> \cellsep </xsl:if>
+</xsl:if>
 </xsl:template>
 
 
@@ -469,6 +487,7 @@ changelog entry here
 </xsl:template>
 
 <xsl:template match="mo[.='&#8594;']">\longrightarrow </xsl:template>
+<xsl:template match="mo[.='&#8594;']" mode="number">\longrightarrow </xsl:template>
 <xsl:template match="mi[.='&#937;']">\Omega </xsl:template>
 <xsl:template match="mo[.='&#955;']">\lambda </xsl:template>
 <xsl:template match="mi[.='&#955;']">\lambda </xsl:template>
