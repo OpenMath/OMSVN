@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.124 2004/04/07 13:21:10 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.125 2004/04/07 14:32:00 openmath Exp $ -->
 
 
 <!DOCTYPE book 
@@ -246,7 +246,7 @@ aware) so include subset of the DTD inline below.
 <book xml:space="preserve">
 <title>The &OM; Standard</title>
 <bookinfo>
-<releaseinfo>2.0 Public Draft 5 (31 March 2004)</releaseinfo>
+<releaseinfo>2.0 Public Draft 5a (07 April 2004)</releaseinfo>
 <author><firstname>The &OM; Society</firstname></author>
 
 
@@ -256,7 +256,7 @@ aware) so include subset of the DTD inline below.
 <editor><firstname>M.</firstname><othername>C.</othername><surname>Dewar</surname></editor>
 <editor><firstname>M.</firstname><surname>Gaetano</surname></editor>
 <editor><firstname>M.</firstname><surname>Kohlhase</surname></editor>
-<date>March 2004</date>
+<date>April 2004</date>
 
 <copyright>
 <year>2000&#8211;2004</year>
@@ -3126,7 +3126,7 @@ implementations).</para>
             <entry> [12]
               [<math><mi>n</mi></math>]
               [<math><mi>m</mi></math>]
-              bytes:<math><mn>2</mn><mn>m</mn></math>
+              bytes:<math><mi>n</mi></math>
               bytes:<math><mi>m</mi></math>
             </entry>
             <entry revisionflag="added">|</entry>
@@ -3134,7 +3134,7 @@ implementations).</para>
               [<math><mi>n</mi></math>]
               [<math><mi>m</mi></math>]
               [<math><mi>k</mi></math>]
-              bytes:<math><mn>2</mn><mn>m</mn></math>
+              bytes:<math><mn>2</mn><mi>m</mi></math>
               bytes:<math><mi>m</mi></math>
               id:<math><mi>k</mi></math>
             </entry>
@@ -3146,7 +3146,7 @@ implementations).</para>
             <entry> [12+32]
               [<math><mi>n</mi></math>]
               [<math><mi>m</mi></math>]
-              bytes:<math><mn>2</mn><mn>m</mn></math>
+              bytes:<math><mn>2</mn><mi>m</mi></math>
               bytes:<math><mi>m</mi></math>
             </entry>
             <entry/>
@@ -3159,7 +3159,7 @@ implementations).</para>
             <entry> [12+128]
               {<math><mi>n</mi></math>}
               {<math><mi>m</mi></math>}
-              bytes:<math><mn>2</mn><mn>m</mn></math>
+              bytes:<math><mn>2</mn><mi>m</mi></math>
               bytes:<math><mi>m</mi></math>
             </entry>
             <entry revisionflag="added">|</entry>
@@ -3167,7 +3167,7 @@ implementations).</para>
               {<math><mi>n</mi></math>}
               {<math><mi>m</mi></math>}
               {<math><mi>k</mi></math>}
-              bytes:<math><mn>2</mn><mn>m</mn></math>
+              bytes:<math><mn>2</mn><mi>m</mi></math>
               bytes:<math><mi>m</mi></math>
               id:<math><mi>k</mi></math>
             </entry>
@@ -3179,7 +3179,7 @@ implementations).</para>
             <entry> [12+32+128]
               {<math><mi>n</mi></math>}
               {<math><mi>m</mi></math>}
-              bytes:<math><mn>2</mn><mn>m</mn></math>
+              bytes:<math><mn>2</mn><mi>m</mi></math>
               bytes:<math><mi>n</mi></math>
             </entry>
             <entry/>
@@ -3513,7 +3513,7 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
 <listitem><para>are encoded as the symbol tags
     (<phrase revisionflag="added">token identifier</phrase> 8) with the long flag
     set if the maximum of the length <phrase
-    revisionflag="added">in bytes in the UTF-8 encoding</phrase> of the Content Dictionary name
+    revisionflag="added">in bytes in the <acronym>utf-8</acronym> encoding</phrase> of the Content Dictionary name
     or the symbol name is greater than or equal to 256<phrase revisionflag="deleted"> (note that this
   should never be the case if the rules on symbols and Content
   Dictionary names are applied), followed by the length of the
@@ -3524,10 +3524,10 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
   characters of the Content Dictionary name, followed by the
   characters of the symbol name.</phrase>
 <phrase revisionflag="added">. The symbol tag is  followed by the
-  length in bytes in the UTF-8 encoding of the Content Dictionary name, the symbol
+  length in bytes in the <acronym>utf-8</acronym> encoding of the Content Dictionary name, the symbol
   name, and the <systemitem>id</systemitem> (if the shared bit was set) as a byte
   (if the long flag was not set) or a four byte integer (in network byte
-  order). These are followed by the bytes of the UTF-8 encoding of the Content
+  order). These are followed by the bytes of the <acronym>utf-8</acronym> encoding of the Content
   Dictionary name, the symbol name, and the <systemitem>id</systemitem>.</phrase>
 </para>
 </listitem>
@@ -3537,7 +3537,7 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
 <term>Variables</term>
 <listitem><para>are encoded using the variable tags
     (<phrase revisionflag="added">token identifiers</phrase> 5) with the long
-  flag set if the number of bytes in the UTF-8 encoding of the variable name is
+  flag set if the number of bytes in the <acronym>utf-8</acronym> encoding of the variable name is
   greater than or equal to 256.  Then, there is the number of characters
   as a byte (if the long flag was not set) or a four byte integer
   (in network byte order), followed by the characters of the name of
@@ -3569,8 +3569,8 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
   Then, there is the number of characters as a byte (if the length
   flag was not set) or a four byte integer (in network byte order),
   followed by the characters in the string. If the string <phrase revisionflag="deleted">contains two
-  byte characters</phrase><phrase revisionflag="added"> is encoded in
-  <acronym>utf-16</acronym></phrase>, it is encoded as the two byte character string
+  byte characters, it is encoded as the two byte</phrase><phrase revisionflag="added"> is encoded in
+  <acronym>utf-16</acronym>, it is encoded as the <acronym>utf-16</acronym></phrase> character string
   tags (<phrase revisionflag="added">token identifier</phrase> 7) with the long flag set if the number of characters in the
   string is greater or equal to 256. Then, there is the number of
   <phrase revisionflag="deleted">characters</phrase><phrase
@@ -3610,19 +3610,21 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
     <para>are encoded using the foreign object tags (token identifier 12) with the
       long flag set if the number of bytes is greater than or equal to 256 and the
       streaming bit set for dividing it up into packets. Then, there is the number
-      <math><mn>n</mn></math> of bytes used to encode the encoding attribute, and the
-      number <math><mn>m</mn></math> of bytes used to encode the foreign
-      object. <math><mn>n</mn></math> and <math><mn>m</mn></math> are represented as a
+      <math><mi>n</mi></math> of bytes used to encode the encoding attribute, and the
+      number <math><mi>m</mi></math> of bytes used to encode the foreign
+      object. <math><mi>n</mi></math> and <math><mi>m</mi></math> are represented as a
       byte (if the long flag was not set) or a four byte integer (in network byte
-      order). These numbers are followed by an <math><mn>n</mn></math>-character
-   sequence
-      representation of the encoding attribute and an <math><mn>m</mn></math> byte
+      order). These numbers are followed by an <math><mi>n</mi></math>-byte
+      representation of the encoding attribute and an <math><mi>m</mi></math> byte
       sequence of bytes encoding the foreign object in their normal order (we call these
-      the payload bytes). The encoding attribute is encoded in UTF-16, so it is
-      represented by a <math><mn>2</mn><mn>m</mn></math> byte sequence.</para>
+      the payload bytes). The encoding attribute is encoded in <acronym>utf-8</acronym>.</para>
     <para>Sequences of foreign object
       packets are assembled into foreign objects by concatenating the payload bytes in
       the packets in sequence order.</para>
+     <para>Note that the foreign object is encoded as a stream of
+      bytes, not a stream of characters. Character based formats
+  (including XML based formats) should be encoded in <acronym>utf-8</acronym> to produce
+  a stream of bytes to use as the payload of the foreign object.</para>
   </listitem>
 </varlistentry>
 
@@ -3635,9 +3637,9 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
       by a single-byte (or 4-byte- if the long flag is set) number
       <math><mi>n</mi></math> and then by a seqence of <math><mi>n</mi></math>
       bytes that represent the value of the <systemitem>cdbase</systemitem>
-      attribute (a URI) in utf-8 encoding. This is then followed by the binary
-      encoding of a single object: the object, this <systemitem>cdbase</systemitem> attribute has
-      scope over. </para>
+      attribute (a URI) in <acronym>utf-8</acronym> encoding. This is then followed by the binary
+      encoding of a single object: the object over which this
+  <systemitem>cdbase</systemitem> attribute has scope. </para>
   </listitem>
 </varlistentry>
 

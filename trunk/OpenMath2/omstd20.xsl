@@ -657,6 +657,15 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 following-sibling::node()[1][starts-with(.,' ') or starts-with(.,'&#10;')]">&#160;</xsl:if>
 </xsl:template>
 
+<xsl:template
+match="text()[starts-with(.,' ')][preceding-sibling::node()[1][self::math[not(@display='block')]]]">
+ <xsl:value-of select="substring-after(.,' ')"/>
+</xsl:template>
+<xsl:template
+match="text()[starts-with(.,'&#10;')][preceding-sibling::node()[1][self::math[not(@display='block')]]]">
+ <xsl:value-of select="substring-after(.,'&#10;')"/>
+</xsl:template>
+
 <xsl:template mode="math" match="*">
 <xsl:element name="m:{local-name(.)}" namespace="http://www.w3.org/1998/Math/MathML">
 <xsl:copy-of select="@*"/>
