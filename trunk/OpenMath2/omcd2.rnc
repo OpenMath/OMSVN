@@ -6,13 +6,18 @@
 
 default namespace = "http://www.openmath.org/OpenMathCD"
 
-include "openmath2.rnc"
+include "openmath2.rnc" {start = CD}
+
 CDComment = element CDComment { text }
 CDName = element CDName { text }
+CDUses = element CDUses { CDName* }
 CDURL = element CDURL { text }
 CDBASE = element CDBASE { text }
 text-or-om = (text | OMOBJ)*
 CDReviewDate = element CDReviewDate { text }
+CDDate = element CDDate { text }
+CDVersion = element CDVersion { text }
+CDRevision = element CDRevision { text }
 CDStatus = element CDStatus { text }
 Description = element Description { text }
 Name = element Name { text }
@@ -28,7 +33,10 @@ CDDefinition =
 CD =
   element CD {
     CDComment*,
-    (CDName & CDURL & CDReviewDate & CDStatus),
+    (CDName & CDURL & 
+     CDReviewDate & CDDate & CDStatus & 
+     CDUses & 
+     CDVersion & CDRevision),
     (CDComment | Description | CDDefinition | Example)*
   }
-start = CD
+
