@@ -153,7 +153,9 @@ select="@name"/>]</xsl:message>
 
 <xsl:template name="prefix">
   <xsl:param name="p" select="0"/>
-  <xsl:param name="mo" select="/.."/>
+  <xsl:param name="mo">
+    <mi><xsl:value-of select="@name"/></mi>
+  </xsl:param>
   <xsl:choose>
   <xsl:when test="parent::om:OMA and not(preceding-sibling::*)">
   <mrow>
