@@ -18,6 +18,7 @@
 <title><xsl:value-of select="title"/></title>
 <object id="mmlFactory" 
         classid="clsid:32F66A20-7614-11D4-BD11-00104BD3F987">
+<xsl:text>&lt;!-- Stop Saxon using empty element syntax --&gt;</xsl:text>
 </object>
 <xsl:processing-instruction name="import">
  namespace="m" implementation="#mmlFactory"
