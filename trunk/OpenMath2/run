@@ -47,7 +47,7 @@ sed -e "s/attvar =[^}]*}/attvar = OMATTR/" \
 done
 
 
-for i in omcd2.rnc omcdsig2.rnc
+for i in omcd2.rnc 
 do
 echo $i
 echo DTD
@@ -65,6 +65,8 @@ sed -e  "s/| OMOBJ//" \
 
  sed -e "s/text-or-om \"(#PCDATA/text-or-om \"(#PCDATA|OMOBJ/" \
      -e "s/FMP (#PCDATA)/FMP (OMOBJ)/" \
+     -e "s/:ns1//g" \
+     -e "s/ns1://g" \
      -e "s/<!-- OMDTD -->/<!ENTITY % omdtd SYSTEM \"openmath2.dtd\"> %omdtd;/"\
         tmp.dtd > ${i%%rnc}dtd
  sed -e "s/</\&lt;/g" ${i%%rnc}dtd > ${i%%.rnc}dtd.xml
@@ -72,7 +74,7 @@ sed -e  "s/| OMOBJ//" \
 
 done
 
-
+exit
 for i in  omcdsig2.rnc
 do
 echo $i
