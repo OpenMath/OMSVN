@@ -14,7 +14,7 @@
 <xsl:key name="new"  match="*[@revisionflag='added']" use="ancestor-or-self::section[1]/@id"/>
 <xsl:key name="ids" match="*[@id]" use="@id"/>
 
-<xsl:variable name="prefix" select="'omstd20html-'"/>
+<xsl:variable name="prefix" select="'omprimer20html-'"/>
 
 <xsl:variable name="chapterlevel">
  <xsl:choose>
