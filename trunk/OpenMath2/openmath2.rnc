@@ -1,6 +1,6 @@
 # Schema for OpenMath 2
 # DPC
-# $Id: openmath2.rnc,v 1.3 2003/10/01 15:40:34 openmath Exp $
+# $Id: openmath2.rnc,v 1.4 2003/10/08 14:52:44 openmath Exp $
 
 
 default namespace om = "http://www.openmath.org/OpenMath"
@@ -54,11 +54,11 @@ OME = element OME { common.attributes, OMS, omel* }
 # attribution constructor and attribute pair constructor
 OMATTR = element OMATTR { common.attributes, OMATP, omel }
 
-# OM2: allow OMBOX 
-OMATP = element OMATP { common.attributes, (OMS, (omel | OMBOX) )+ }
+# OM2: allow OMFOREIGN 
+OMATP = element OMATP { common.attributes, (OMS, (omel | OMFOREIGN) )+ }
 
-# OM2: OMBOX 
-OMBOX =  element OMBOX { common.attributes, (omel|notom)* }
+# OM2: OMFOREIGN 
+OMFOREIGN =  element OMFOREIGN { common.attributes, (omel|notom)* }
 
 # Any elements not in the om namespace (valid om is allowed as a descendant)
 notom =
