@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.102 2004/04/01 20:36:55 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.103 2004/04/02 12:42:17 openmath Exp $ -->
 
 
 <!DOCTYPE book 
@@ -3118,16 +3118,16 @@ implementations).</para>
             <entry> [12]
               [<math><mi>n</mi></math>]
               [<math><mi>m</mi></math>]
-              bytes:<math><mi>n</mi></math>
-              uri:<math><mi>m</mi></math>
+              uri:<math><mi>n</mi></math>
+              bytes:<math><mi>m</mi></math>
             </entry>
             <entry revisionflag="added">|</entry>
             <entry revisionflag="added"> [12+64]
               [<math><mi>n</mi></math>]
               [<math><mi>m</mi></math>]
               [<math><mi>k</mi></math>]
-              bytes:<math><mi>n</mi></math>
-              uri:<math><mi>m</mi></math>
+              uri:<math><mi>n</mi></math>
+              bytes:<math><mi>m</mi></math>
               id:<math><mi>k</mi></math>
             </entry>
           </row>
@@ -3137,7 +3137,9 @@ implementations).</para>
             <entry><math><mo>|</mo></math></entry>
             <entry> [12+32]
               [<math><mi>n</mi></math>]
-              bytes:<math><mi>n</mi></math>
+              [<math><mi>m</mi></math>]
+              uri:<math><mi>n</mi></math>
+              bytes:<math><mi>m</mi></math>
             </entry>
             <entry/>
             <entry/>
@@ -3149,16 +3151,16 @@ implementations).</para>
             <entry> [12+128]
               {<math><mi>n</mi></math>}
               {<math><mi>m</mi></math>}
-              bytes:<math><mi>n</mi></math>
-              uri:<math><mi>m</mi></math>
+              uri:<math><mi>n</mi></math>
+              bytes:<math><mi>m</mi></math>
             </entry>
             <entry revisionflag="added">|</entry>
             <entry revisionflag="added"> [12+64+128]
               {<math><mi>n</mi></math>}
               {<math><mi>m</mi></math>}
               {<math><mi>k</mi></math>}
-              bytes:<math><mi>n</mi></math>
-              uri:<math><mi>m</mi></math>
+              uri:<math><mi>n</mi></math>
+              bytes:<math><mi>m</mi></math>
               id:<math><mi>k</mi></math>
             </entry>
           </row>
@@ -3168,7 +3170,9 @@ implementations).</para>
             <entry>|</entry>
             <entry> [12+32+128]
               {<math><mi>n</mi></math>}
+              {<math><mi>m</mi></math>}
               bytes:<math><mi>n</mi></math>
+              uri:<math><mi>m</mi></math>
             </entry>
             <entry/>
             <entry/>
@@ -3579,34 +3583,41 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
 </varlistentry>
 
 <varlistentry>
-<term>Bytearrays</term>
-<listitem><para>are encoded using the bytearray tags (<phrase revisionflag="added">token identifier</phrase> 4) with the
-  long flag set if the number <phrase revisionflag="deleted">of bytes in the
-    number of </phrase> elements is
-  greater than or equal to 256. Then, there is the number of elements,
-  as a byte (if the long flag was not set) or a four byte integer
-  (in network byte order), followed by the elements of the arrays in
-  their normal order.</para>
-<para revisionflag="added">Sequences of bytearray packets are assembled into byte arrays by 
-      concatenating the bytearrays in the packets in sequence order.</para>
+  <term>Bytearrays</term>
+  <listitem><para>are encoded using the bytearray tags (<phrase revisionflag="added">token identifier</phrase> 4) with the
+      long flag set if the number <phrase revisionflag="deleted">of bytes in the
+	number of </phrase> elements is
+      greater than or equal to 256. Then, there is the number of elements,
+      as a byte (if the long flag was not set) or a four byte integer
+      (in network byte order), followed by the elements of the arrays in
+      their normal order.</para>
 
-</listitem>
+    <para revisionflag="added">Sequences of bytearray packets are assembled into
+      byte arrays by
+      concatenating the bytearrays in the packets in sequence order.
+    </para>
+
+  </listitem>
 </varlistentry>
 
-<varlistentry revisionflag="added"> <term>Foreign Objects</term> <listitem>
-<para>are encoded using the foreign object tags (token identifier 12) with the
-long flag set if the number of bytes is greater than or equal to 256 and the
-streaming bit set for dividing it up into packets. Then, there is the number
-<math><mn>n</mn></math> of bytes used to encode the foreign object, and the number
-<math><mn>m</mn></math> of bytes used to encode the encoding
-attribute. <math><mn>n</mn></math> and <math><mn>m</mn></math> are represented as
-a byte (if the long flag was not set) or a four byte integer (in network byte
-order). These numbers are followed by an <math><mn>n</mn></math> byte sequence of
-bytes encoding the foreign object and an <math><mn>m</mn></math>-byte sequence
-representation of the encoding attribute in their normal order.</para> <para
-revisionflag="added">Sequences of foreign object packets are assembled into
-foreign objects by concatenating the bytes in the packets in sequence
-order. </para> </listitem> </varlistentry>
+<varlistentry revisionflag="added"> <term>Foreign Objects</term>
+  <listitem>
+    <para>are encoded using the foreign object tags (token identifier 12) with the
+      long flag set if the number of bytes is greater than or equal to 256 and the
+      streaming bit set for dividing it up into packets. Then, there is the number
+      <math><mn>n</mn></math> of bytes used to encode the encoding attribute, and the
+      number <math><mn>m</mn></math> of bytes used to encode the foreign
+      object. <math><mn>n</mn></math> and <math><mn>m</mn></math> are represented as a
+      byte (if the long flag was not set) or a four byte integer (in network byte
+      order). These numbers are followed by an <math><mn>n</mn></math>-byte sequence
+      representation of the encoding attribute and an <math><mn>m</mn></math> byte
+      sequence of bytes encoding the foreign object in their normal order (we call this
+      the payload bytes).</para>
+    <para revisionflag="added">Sequences of foreign object
+      packets are assembled into foreign objects by concatenating the payload bytes in
+      the packets in sequence order.</para>
+  </listitem>
+</varlistentry>
 
 <varlistentry>
   <term>Applications</term>
