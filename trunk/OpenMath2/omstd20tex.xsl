@@ -411,7 +411,7 @@ changelog entry here
 </xsl:template>
 
 
-<xsl:key name="cite" match="citation" use="."/>
+<xsl:key name="cite" match="citation[not(ancestor-or-self::*/@revisionflag='deleted')]" use="."/>
 
 <xsl:template match="graphic">
 <xsl:text/>\includegraphics£<xsl:value-of select="@fileref"/>ﬂ<xsl:text/>
@@ -456,7 +456,9 @@ changelog entry here
 \begin£thebibliographyﬂ£99ﬂ
 <xsl:for-each select="biblioentry[key('cite',@id)][$showdiffs or not(@revisionflag='deleted')]">
 <xsl:sort select="(author[1]/surname|author[1]/othername|bibliomisc[@role='key'])[1]"/>
-<xsl:text>£</xsl:text>
+<xsl:text>
+
+£</xsl:text>
 <xsl:apply-templates select="@revisionflag"/>
 \bibitem£<xsl:value-of select="@id"/>ﬂ
 <xsl:for-each select="author">
@@ -467,9 +469,30 @@ changelog entry here
  <xsl:value-of select="."/>
 </xsl:for-each>
   <xsl:text> </xsl:text>
- <i><xsl:apply-templates select="title/node()"/></i>
+ \textit£<xsl:apply-templates select="title/node()"/>
+        <xsl:if test="subtitle">
+    <xsl:text> </xsl:text>
+    <xsl:apply-templates select="subtitle/node()"/>
+    </xsl:if>
+    <xsl:text>ﬂ</xsl:text>
 <xsl:text>&#10;</xsl:text>
-<xsl:text>ﬂ</xsl:text>
+<xsl:if test="pubdate">
+  <xsl:text>, </xsl:text>
+ <xsl:if test="pubdate[@role]">
+   <xsl:apply-templates select="pubdate[@role]/node()"/>
+   <xsl:text> </xsl:text>
+ </xsl:if>
+ <xsl:apply-templates select="pubdate[not(@role)]/node()"/>
+</xsl:if>
+<xsl:text>.</xsl:text>
+<xsl:for-each select="bibliomisc[$showdiffs or not(@revisionflag='deleted')][contains(.,'http')]">
+ <xsl:text>\\</xsl:text>
+   £<xsl:apply-templates select="@revisionflag"/>
+   <xsl:text/>\url;<xsl:value-of select="."/>;ﬂ<xsl:text/>
+</xsl:for-each>
+<xsl:text>ﬂ
+
+</xsl:text>
 </xsl:for-each>
 \end£thebibliographyﬂ
 </xsl:template>

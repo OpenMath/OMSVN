@@ -11,6 +11,7 @@
 <xsl:key name="ids" match="*[@id]" use="@id"/>
 
 <xsl:template match="*">
+<xsl:message>[<xsl:value-of select="local-name()"/>]</xsl:message>
 <font color="red">[[[<xsl:value-of select="name()"/>]]]</font>
 </xsl:template>
 
@@ -496,7 +497,7 @@ changelog entry here
 <th><xsl:apply-templates/></th>
 </xsl:template>
 
-<xsl:key name="cite" match="citation" use="."/>
+<xsl:key name="cite" match="citation[not(ancestor-or-self::*/@revisionflag='deleted')]" use="."/>
 
 <xsl:template match="graphic">
 <xsl:choose>
@@ -584,7 +585,12 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
  <xsl:value-of select="."/>
 </xsl:for-each>
   <xsl:text> </xsl:text>
- <i><xsl:apply-templates select="title/node()"/></i>
+ <i><xsl:apply-templates select="title/node()"/>
+    <xsl:if test="subtitle">
+    <xsl:text> </xsl:text>
+    <xsl:apply-templates select="subtitle/node()"/>
+    </xsl:if>
+</i>
 <xsl:if test="pubdate">
   <xsl:text>, </xsl:text>
  <xsl:if test="pubdate[@role]">
@@ -594,8 +600,9 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
  <xsl:apply-templates select="pubdate[not(@role)]/node()"/>
 </xsl:if>
 <xsl:text>.</xsl:text>
-<xsl:for-each select="bibliomisc[contains(.,'http')]">
+<xsl:for-each select="bibliomisc[$showdiffs or not(@revisionflag='deleted')][contains(.,'http')]">
  <br/><a href="http{substring-after(.,'http')}">
+   <xsl:apply-templates select="@revisionflag"/>
    <xsl:value-of select="."/>
   </a>
 </xsl:for-each>
