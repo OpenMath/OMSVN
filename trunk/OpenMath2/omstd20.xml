@@ -1,6 +1,6 @@
 
 
-<!-- @version CVS $Id: omstd20.xml,v 1.51 2003/11/05 17:38:11 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.52 2003/11/09 10:17:50 openmath Exp $ -->
 
 <!--
  PUBLIC "-//OASIS//DTD DocBook XML V4.2CR1//EN"
@@ -560,10 +560,10 @@ representing its indices.  </phrase></para>
 </itemizedlist>
 </section>
 
-<section id="sec_derived" revisionflag="added">
-<title>Derived &OM; Objects</title>
+<section id="sec_foreign" revisionflag="added">
+<title>Foreign &OM; Objects</title>
 
-<para>A derived &OM; object is built as follows: 
+<para>A foreign &OM; object is built as follows: 
 <itemizedlist>
 <listitem><para><phrase>(i)</phrase> If <math><mi>A</mi></math> is
 <emphasis>not</emphasis> an &OM; object, then <math><mi
@@ -580,7 +580,7 @@ mathvariant="bold">foreign</mi><mfenced><mi>A</mi></mfenced></math> is an &OM;
 <para>&OM; objects are built recursively as follows.
 <itemizedlist>
 <listitem><para><phrase>(i)</phrase> Basic &OM; objects are &OM; objects.
-<phrase revisionflag="added">Derived &OM; objects are <emphasis>not</emphasis>
+<phrase revisionflag="added">Foreign &OM; objects are <emphasis>not</emphasis>
 &OM; objects.</phrase></para>
 </listitem>
 
@@ -610,7 +610,7 @@ Attribution</para></sidebar> </listitem> <listitem><para><phrase>(iii)</phrase> 
 <phrase revisionflag="added">
 <math><mi>A</mi></math> is an &OM; object, and
   <math><msub><mi>A</mi><mn>1</mn></msub></math>,
-  <phrase>&#8230;</phrase>, <math><msub><mi>A</mi><mi>n</mi></msub></math>, <math><mo>(</mo><mi>n</mi><mo>&gt;</mo><mn>0</mn><mo>)</mo></math> are &OM; objects or &OM; derived objects, then
+  <phrase>&#8230;</phrase>, <math><msub><mi>A</mi><mi>n</mi></msub></math>, <math><mo>(</mo><mi>n</mi><mo>&gt;</mo><mn>0</mn><mo>)</mo></math> are &OM; objects or &OM; foreign objects, then
 </phrase>
 
   <math display="block"><mi mathvariant="bold">attribution</mi>
@@ -802,7 +802,7 @@ variable with cardinality such as
 
 
 <para revisionflag="added">Currently there is one way of making a
-derived &OM; object.</para>
+foreign &OM; object.</para>
 
 <variablelist revisionflag="added">
 <varlistentry><term>Foreign</term><listitem><para>is used to import a
@@ -950,7 +950,7 @@ width="600" depth="190"/>
   group, itself attributed by its dimension.</para>
 
 <para revisionflag="added">
-&OM; objects can be attributed with &OM; derived objects, which are
+&OM; objects can be attributed with &OM; foreign objects, which are
 containers for non-&OM; structures.  For example a mathematical
 expression could be attributed with its spoken or visual rendering.
 </para>
@@ -1174,7 +1174,7 @@ subset of the above grammar which is a legal POSIX
   applications, bindings, errors, and attributions.</para>
 </listitem>
 <listitem revisionflag="added"> <para>&OM; objects may be attributed
-with non-&OM; objects via the use of derived &OM; objects.
+with non-&OM; objects via the use of foreign &OM; objects.
   </para>
 </listitem>
 <listitem> <para>&OM; objects have the expressive power to cover all
@@ -2559,7 +2559,7 @@ implementations).</para>
 	  <row revisionflag="added">
 	    <entry/>
 	    <entry>|</entry>
-	    <entry> derived</entry>
+	    <entry>foreign</entry>
 	  </row>
 	  
 	  <row>
@@ -2591,6 +2591,14 @@ implementations).</para>
 	      [_]
 	    </entry>
 	  </row>
+
+	  <row revisionflag="added">
+	    <entry/>
+	    <entry><math>|</math></entry>
+	    <entry> [1+32] [_] </entry>
+	    <entry/>
+	    <entry/>
+	  </row>
 	  
 	  <row>
 	    <entry/>
@@ -2603,7 +2611,15 @@ implementations).</para>
 	      {_}
 	    </entry>
 	  </row>
-	  
+
+  	  <row revisionflag="added">
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> [1+32+128] {_} </entry>
+	    <entry/>
+	    <entry/>
+	  </row>
+
 	  <row>
 	    <entry/>
 	    <entry>|</entry>
@@ -2618,6 +2634,17 @@ implementations).</para>
 	      [_] digits:<math><mi>n</mi></math>
 	      id:<math><mi>m</mi></math>
 	    </entry>
+	  </row>
+
+	  <row revisionflag="added">
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> [2+32]
+	      [<math><mi>n</mi></math>]
+	      [_] digits:<math><mi>n</mi></math>
+	    </entry>
+	    <entry/>
+	    <entry/>
 	  </row>
 	  
 	  <row>
@@ -2635,6 +2662,17 @@ implementations).</para>
 	      digits:<math><mi>n</mi></math>
 	      id:<math><mi>n</mi></math>
 	    </entry>
+	  </row>
+	  
+	  <row revisionflag="added">
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> [2+32+128]
+	      {<math><mi>n</mi></math>}
+	      [_] digits:<math><mi>n</mi></math>
+	    </entry>
+	    <entry/>
+	    <entry/>
 	  </row>
 	  
 	  <row>
@@ -2819,6 +2857,17 @@ implementations).</para>
 	    </entry>
 	  </row>
 	  
+	  <row revisionflag="added">
+	    <entry/>
+	    <entry><math>|</math></entry>
+	    <entry> [6+32]
+	      [<math><mi>n</mi></math>]
+	      <phrase>bytes</phrase>:<math><mi>n</mi></math>
+	    </entry>
+	    <entry/>
+	    <entry/>
+	  </row>
+	  
 	  <row>
 	    <entry/>
 	    <entry>|</entry>
@@ -2835,6 +2884,17 @@ implementations).</para>
 	      <phrase revisionflag="added">bytes</phrase>:<math><mi>n</mi></math>
 	      id:<math><mi>m</mi></math>
 	    </entry>
+	  </row>
+	  
+	  <row revisionflag="added">
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> [6+32+128]
+	      {<math><mi>n</mi></math>}
+	      <phrase>bytes</phrase>:<math><mi>n</mi></math>
+	    </entry>
+	    <entry/>
+	    <entry/>
 	  </row>
 	  
 	  <row>
@@ -2855,6 +2915,17 @@ implementations).</para>
 	    </entry>
 	  </row>
 	  
+	  <row revisionflag="added">
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> [7+32]
+	      [<math><mi>n</mi></math>]
+	      <phrase>bytes</phrase>:<math><mn>2</mn><mi>n</mi></math>
+	    </entry>
+	    <entry/>
+	    <entry/>
+	  </row>
+	  
 	  <row>
 	    <entry/>
 	    <entry>|</entry>
@@ -2873,6 +2944,18 @@ implementations).</para>
 	    </entry>
 	  </row>
 	  
+	  
+	  <row revisionflag="added">
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> [7+32+128]
+	      {<math><mi>n</mi></math>}
+	      <phrase>bytes</phrase>:<math><mn>2</mn><mi>n</mi></math>
+	    </entry>
+	    <entry/>
+	    <entry/>
+	  </row>
+	  
 	  <row>
 	    <entry>bytearray </entry>
 	    <entry><math>&longrightarrow;</math></entry>
@@ -2887,6 +2970,17 @@ implementations).</para>
 	      bytes:<math><mi>n</mi></math>
 	      id:<math><mi>m</mi></math>
 	    </entry>
+	  </row>
+	  
+	  <row revisionflag="added">
+	    <entry/>
+	    <entry><math>|</math></entry>
+	    <entry> [4+32]
+	      [<math><mi>n</mi></math>]
+	      bytes:<math><mi>n</mi></math>
+	    </entry>
+	    <entry/>
+	    <entry/>
 	  </row>
 	  
 	  <row>
@@ -2907,7 +3001,18 @@ implementations).</para>
 	  
 	  
 	  <row revisionflag="added">
-	    <entry>derived</entry>
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> [4+32+128]
+	      {<math><mi>n</mi></math>}
+	      bytes:<math><mi>n</mi></math>
+	    </entry>
+	    <entry/>
+	    <entry/>
+	  </row>
+	  
+	  <row revisionflag="added">
+	    <entry>foreign</entry>
 	    <entry><math>&longrightarrow;</math></entry>
 	    <entry> [12]
 	      [<math><mi>n</mi></math>]
@@ -2924,6 +3029,17 @@ implementations).</para>
 	  
 	  <row revisionflag="added">
 	    <entry/>
+	    <entry><math>|</math></entry>
+	    <entry> [12+32]
+	      [<math><mi>n</mi></math>]
+	      bytes:<math><mi>n</mi></math>
+	    </entry>
+	    <entry/>
+	    <entry/>
+	  </row>
+	  
+	  <row revisionflag="added">
+	    <entry/>
 	    <entry>|</entry>
 	    <entry> [12+128]
 	      {<math><mi>n</mi></math>}
@@ -2936,6 +3052,17 @@ implementations).</para>
 	      bytes:<math><mi>n</mi></math>
 	      id:<math><mi>m</mi></math>
 	    </entry>
+	  </row>
+	  
+	  <row revisionflag="added">
+	    <entry/>
+	    <entry>|</entry>
+	    <entry> [12+32+128]
+	      {<math><mi>n</mi></math>}
+	      bytes:<math><mi>n</mi></math>
+	    </entry>
+	    <entry/>
+	    <entry/>
 	  </row>
 	  
 	  <row>
@@ -3125,8 +3252,7 @@ implementations).</para>
 <para>An &OM; object is encoded as a sequence of bytes starting with the begin object tag
 (<phrase revisionflag="deleted">value&#160;24</phrase>
 <phrase revisionflag="added">values 24 and 88</phrase>) and ending with the end
-object tag (<phrase revisionflag="deleted">value&#160;25</phrase>
-<phrase revisionflag="added">values 25 and 89</phrase>). These are similar to
+object tag (value&#160;25). These are similar to
 the <systemitem>&lt;OMOBJ></systemitem> and <systemitem>&lt;/OMOBJ></systemitem> tags of
 the &exml; encoding.</para>
 
@@ -3143,10 +3269,18 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
   flag is set (in the right column of the grammar in Figure
   <xref linkend="fig_bin-enc"/>, then the encoding includes a representation of
   the identifier.</phrase>
-</para> 
+</para>
+<para revisionflag="added">To facilitate the stremaing &OM; objects, some basic
+  objects (integers, strings, bytearrays, and foreign objects) have variant
+  token identifiers with the fifth bit set. The idea behind this is that these
+  basic objects can be split into packets. If the fifth bit is not set, this
+  packet is the final packet of the basic object. If the bit is set, then more
+  packets of the basic object will follow directly after this one. Note that all
+  packets making up a basic object must have the same token identifier (up to the
+  fifth bit). 
+</para>
 
 <para>Here is a description of the binary encodings of every kind of &OM; object:
-
 
 <variablelist>
 <varlistentry>
@@ -3195,6 +3329,18 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
       permitted to encode a <quote>small</quote> integer in any <quote>bigger</quote>
       format.
     </para>
+    <para revisionflag="added">To splice sequences of integer packets into
+      integers, we have to consider three cases: In the case of token identifiers
+      1, 33, and 65 the sequence of packets is treated as a sequence of integer digits
+      to the base of <math><msup><mn>2</mn><mn>7</mn></msup></math> (most
+      significant first). The case of token identifiers 129, 161, and 193 is analogous
+      with digits of base <math><msup><mn>2</mn><mn>31</mn></msup></math>. In the
+      case of token identifiers 2, 34, 66, 130, 162, and 194 the integer is assembled by 
+      concatenating the string of decimal digits in the packets in sequence order
+      (which corresponds to most significant first).  Note that in all cases only
+      the sequence-initial packet may contain a signed
+      integer. The sign of this packet determines the sign of the overall
+      integer.</para>
 </listitem>
 </varlistentry>
 
@@ -3289,6 +3435,10 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
   Unicode are used.</phrase> as a byte (if the long flag was not set) or a four byte
   integer (in network byte order), followed by the characters
   (<acronym>utf-16</acronym> encoded  Unicode).</para>
+
+<para revisionflag="added">Sequences of string packets are assembled into strings by 
+      concatenating the strings in the packets in sequence order.</para>
+
 </listitem>
 </varlistentry>
 
@@ -3301,18 +3451,24 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
   as a byte (if the long flag was not set) or a four byte integer
   (in network byte order), followed by the elements of the arrays in
   their normal order.</para>
+<para revisionflag="added">Sequences of bytearray packets are assembled into byte arrays by 
+      concatenating the bytearrays in the packets in sequence order.</para>
+
 </listitem>
 </varlistentry>
 
 <varlistentry revisionflag="added">
-<term>Derived Objects</term>
+<term>Foreign Objects</term>
 <listitem>
-  <para>are encoded using the derived object tags (token identifier 12) with the
+  <para>are encoded using the foreign object tags (token identifier 12) with the
   long flag set if the number of bytes is
   greater than or equal to 256. Then, there is the number of elements,
   as a byte (if the long flag was not set) or a four byte integer
   (in network byte order), followed by the elements of the arrays in
   their normal order.</para>
+<para revisionflag="added">Sequences of foreign object packets are assembled into
+  foreign objects by 
+      concatenating the bytes in the packets in sequence order.</para>
 </listitem>
 </varlistentry>
 
