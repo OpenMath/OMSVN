@@ -62,5 +62,14 @@
   </xsl:call-template>
 </xsl:template>
 
+<xsl:template match="om:OMS[@cd='relation1' and @name='approx']"  >
+  <xsl:param name="p"/>
+  <xsl:call-template name="infix">
+    <xsl:with-param name="mo"><mo>&#x2248;</mo></xsl:with-param>
+    <xsl:with-param name="p" select="$p"/>
+    <xsl:with-param name="this-p" select="1"/>
+  </xsl:call-template>
+</xsl:template>
+
 </xsl:stylesheet>
 
