@@ -626,7 +626,7 @@ they could also contain intermediate results of calculations, or
   [A-Za-z0-9=+(),-./:?!#$%*;=@[]^_`{|}]+ </para></blockquote></phrase>
 </para>
 <para revisionflag="added">
-A variable may have one or more children which are themselves OpenMath
+A variable may have one or more children which are themselves &OM;
 objects and are treated as scripts.  Thus it is possible to create a
 variable with cardinality such as
 <math><msub><mi>x</mi><mn>1</mn></msub></math> or
@@ -749,7 +749,7 @@ width="600" depth="190"/>
   <mn>2</mn><mo>)</mo><mo>)</mo><mtext>.</mtext></math>
 </para>
 <para>Repeated occurrences of the same variable in a binding operator
-  are allowed. An OpenMath application should treat a binding with
+  are allowed. An &OM; application should treat a binding with
   multiple occurrences of the same variable as equivalent to the
   binding in which all but the last occurrence of each variable is
   replaced by a new variable which does not occur free in the body of
@@ -925,7 +925,7 @@ standard&#160;<citation>UNICODE</citation>.
 
 <para>
 
-Then a legal OpenMath name is defined by the following grammar:
+Then a legal &OM; name is defined by the following grammar:
 <blockquote>
 <informaltable>
 <tgroup cols="3">
@@ -1032,7 +1032,7 @@ almost any communication method) or stored and retrieved from files.</para>
 <para>The first encoding uses  ISO 646:1983 characters&#160;<citation>iso646_83</citation>
 (also known as <acronym>ascii</acronym> characters) and is  an &exml;
 application. Although the &exml; markup of the encoding uses only <acronym>ascii</acronym>
-characters, OpenMath strings may use
+characters, &OM; strings may use
 arbitrary Unicode/ISO 10646:1988 
 characters&#160;<citation>UNICODE</citation>. 
 It can be used, for example, to send &OM; objects via
@@ -1071,7 +1071,7 @@ very easily determine which encoding is used.</para>
      normative, and other changes to increase portability to &exml;
 applications.</para></sidebar>
 
-<para revisionflag="changed">The &exml; encoding of an OpenMath object is defined by the Relax
+<para revisionflag="changed">The &exml; encoding of an &OM; object is defined by the Relax
 NG schema (<acronym>RNC</acronym>)  below.<phrase revisionflag="deleted">with the following additional rules
 not implied by the &exml; <acronym>dtd</acronym>.</phrase></para>
 <itemizedlist revisionflag="deleted">
@@ -1634,8 +1634,8 @@ encoded as <systemitem>&lt;OMI> 10 &lt;/OMI> </systemitem> or as
   which the symbol is defined and the value of
   <systemitem>name</systemitem> is the name of the symbol.
   <phrase revisionflag="added">The optional <systemitem>uristub</systemitem>
-    attribute is a URI that specifies the instance of the content
-    dictionary.</phrase>
+    attribute is a URI that can be used to disambiguate between two  content
+    dictionaries with the same name.</phrase>
 
   The name
   of the Content Dictionary is compulsory, but a future revision of
@@ -1649,12 +1649,12 @@ encoded as <systemitem>&lt;OMI> 10 &lt;/OMI> </systemitem> or as
 for use in contexts where URI-based referencing mechanisms are used. This
 canonical URI is constructed as follows:</para>
 <blockquote  revisionflag="added">
-  <para><systemitem>URI = URIStub-value + '/' + cd-value + '/' + name-value</systemitem></para>
+  <para><systemitem>URI = uristub-value + '/' + cd-value + '/' + name-value</systemitem></para>
 </blockquote>
 
 <para revisionflag="added">For example</para>
 <blockquote  revisionflag="added">
-  <literallayout><![CDATA[<OMS name="plus" cd="arith1" URIStub="http://www.openmath.org/CDs"/>]]></literallayout>
+  <literallayout><![CDATA[<OMS name="plus" cd="arith1" uristub="http://www.openmath.org/CDs"/>]]></literallayout>
 </blockquote>
 <para revisionflag="added">
   gives the URI <systemitem>"http://www.openmath.org/CDs/arith1/plus"</systemitem>
@@ -1703,7 +1703,7 @@ canonical URI is constructed as follows:</para>
 </varlistentry>
 <varlistentry><term>Character strings</term><listitem><para>are encoded using the <systemitem>OMSTR</systemitem> element.
   Its content is  a Unicode text (The default encoding 
-  is <acronym>utf-8</acronym><citation>utf8</citation>, although &exml; encoded OpenMath may be embedded
+  is <acronym>utf-8</acronym><citation>utf8</citation>, although &exml; encoded &OM; may be embedded
  in a containing &exml; document that specifies alternative encoding in
   the &exml; declaration. Note that as always in &exml; the
   characters <systemitem>&lt;</systemitem> and <systemitem>&amp;</systemitem>  need to be represented by the
@@ -1837,18 +1837,18 @@ or to express the type of a variable:
 <varlistentry revisionflag="added">
  <term>References</term>
  <listitem><para>
- OpenMath integers, floating point numbers, character strings,
+ &OM; integers, floating point numbers, character strings,
  byearrays, applications, binding, attributions can also be encoded
  as an empty <systemitem>OMR</systemitem> element with an <systemitem>xlink:href</systemitem>
- attribute whose value is the value of an id attribute of an OpenMath object of
- that type. The OpenMath element represented by this <systemitem>OMR</systemitem>
- element is a copy of the OpenMath element pointed to in the
+ attribute whose value is the value of an id attribute of an &OM; object of
+ that type. The &OM; element represented by this <systemitem>OMR</systemitem>
+ element is a copy of the &OM; element pointed to in the
  <systemitem>xlink:xref</systemitem> attribute. Note that the representation of the
  <systemitem>OMR</systemitem>
  element is <emphasis>structurally equal</emphasis>, but not identical
  to the element it points to. </para>
 
- <para>For instance, the OpenMath object
+ <para>For instance, the &OM; object
 
  <math display="block">
    <mrow>
@@ -1949,7 +1949,7 @@ below (and some intermedidate versions as well).</para>
 </literallayout>
 </figure>
 
-<para>We say that an OpenMath element dominates all its children and all elements
+<para>We say that an &OM; element dominates all its children and all elements
 they dominate. An <systemitem>OMR</systemitem> element dominates its target,
 i.e. the element that carries the <systemitem>id</systemitem> attribute pointed to
 by the <systemitem>xref</systemitem> attribute. For instance in the representation
@@ -1963,7 +1963,7 @@ also the second <systemitem>OMR</systemitem> dominate the
 <title>An Acyclicity Constraint</title>
 
 <para revisionflag="added">The occurrences of the <systemitem>OMR</systemitem> element must obey the following global
-<emphasis>acyclicity constraint</emphasis>: An OpenMath element may not dominate itself.</para>
+<emphasis>acyclicity constraint</emphasis>: An &OM; element may not dominate itself.</para>
 
 <para revisionflag="added">Consider for instance the following (illegal) &exml; representation
 <literallayout><![CDATA[
@@ -1985,7 +1985,7 @@ also the second <systemitem>OMR</systemitem> dominate the
 <systemitem>id="foo"</systemitem> dominates its second child, which dominates the
 <systemitem>OMR</systemitem> element, which dominates its target: the element with
 <systemitem>id="foo"</systemitem>. So by transitivity, this element dominates itself, and
-by the acyclicity constraint, it is not the &exml; representation of an OpenMath
+by the acyclicity constraint, it is not the &exml; representation of an &OM;
 element. Even though it could be given the interpretation of the continued fraction
 <math display="block">
  <mfrac>
@@ -2004,7 +2004,7 @@ element. Even though it could be given the interpretation of the continued fract
    </mrow>
  </mfrac>
 </math> this would correspond to an infinite tree of applications,
-which is not admitted by the structure of OpenMath objects described
+which is not admitted by the structure of &OM; objects described
 in section 3.</para>
 
 <para revisionflag="added">Note that the acyclicity constraints is not restricted to such simple
@@ -2030,7 +2030,7 @@ child, the <systemitem>OMR</systemitem> with
 target, the original <systemitem>OMA</systemitem> element with
 <systemitem>id="bar"</systemitem>. So this pair of &OM; objects
 violates the acyclicity constraint and is not the &exml;
-representation of an OpenMath object.</para>
+representation of an &OM; object.</para>
 </section>
 
 
@@ -2745,7 +2745,7 @@ are treated exactly as in the binary encoding described in the last section.</pa
 references. Identifiers [30+64] and [30+64+128] are not used, since
 they would encode references that are shared themselves. Chains of
 references are redundant, and decrease both space and time efficiency,
-therefore they are not allowed in the OpenMath binary encoding.</para>
+therefore they are not allowed in the &OM; binary encoding.</para>
 
 <para>References consist of the identifier [30] ([30+128] for long references)
 followed by a positive integer $n$ coded on one byte (4 bytes for long
@@ -2816,7 +2816,7 @@ efficient starting at depth 9.</para>
 objects are not preserved. Morever, even though the &exml; encoding
 allows references across objects, as in figure ???, the binary
 encoding does not (the binary encoding has no notion of a multi-object
-collection, which is implicit by embedding OpenMath objects into &exml;
+collection, which is implicit by embedding &OM; objects into &exml;
 documents in the &exml; encoding.).</para>
 
 <para>Note that objects need not be fully shared (or shared at all) in the
@@ -3862,10 +3862,10 @@ Dictionary may change as a result of this review process.</para>
 <title>&OM; Compliance</title>
 
 <sidebar revision="1999/11/24" author="DPC/OC">
-<para>New chapter, after discussions at Esprit OpenMath meeting in Bath</para>
+<para>New chapter, after discussions at Esprit &OM; meeting in Bath</para>
 </sidebar>
 <para>Applications that meet the requirements specified in this chapter may
-label themselves as <emphasis>OpenMath compliant</emphasis>. &OM; compliancy is
+label themselves as <emphasis>&OM; compliant</emphasis>. &OM; compliancy is
 defined so as to maximize the potential for interoperability amongst
 &OM; applications.</para>
 
@@ -3985,13 +3985,13 @@ Dictionaries and &OM; objects is given.</para>
 <Description> 
 
 This is a content dictionary to represent content dictionaries, so
-that they may be passed between OpenMath compliant application in a
+that they may be passed between &OM; compliant application in a
 similar way to mathematical objects.  It is acknowledged that this is
 not the only way to do this, but it seems a natural way.
 
 This can be viewed as updating the previous Meta-CD.
 
-The information written here is taken from "The OpenMath Standard".
+The information written here is taken from "The &OM; Standard".
 This document is a slightly stronger statement than "the following
 symbols are defined as in the DTD at
 http://www.nag.co.uk/projects/OpenMath/omstd/dtds/cd.dtd", since the
@@ -4091,8 +4091,8 @@ the CD.  It should be in the form of ISO-8601, i.e. YYYY-MM-DD
 <Description>
 A tag which contains PCDATA to give information on the
 status of the CD. This can be either official (approved by the
-OpenMath steering committee), experimental (currently being tested),
-private (used by a private group of OpenMath users) or obsolete
+&OM; steering committee), experimental (currently being tested),
+private (used by a private group of &OM; users) or obsolete
 (an obsolete CD kept only for archival purposes).
 </Description>
 </CDDefinition>
@@ -4140,8 +4140,8 @@ the symbol being defined.
 <Description>
 An optional tag which contains PCDATA corresponding to
 the type of the symbol being defined. This type information will be
-an OpenMath type object as defined in chapter 5 of "First Draft of the
-OpenMath Standard".
+an &OM; type object as defined in chapter 5 of "First Draft of the
+&OM; Standard".
 </Description>
 </CDDefinition>
 
@@ -4167,7 +4167,7 @@ defined.
 <Description>
 An optional tag (which may be repeated many times) which contains
 PCDATA corresponding to a property of the symbol being
-defined. This property must be a valid OpenMath object.
+defined. This property must be a valid &OM; object.
 </Description>
 </CDDefinition>
 
@@ -5364,7 +5364,7 @@ reads a symbol which is present in the mentioned content
 dictionary, but which it has not implemented.
 
 When receiving such a symbol, the application should act as if it had
-received the OpenMath error object constructed from unhandled_symbol
+received the &OM; error object constructed from unhandled_symbol
 and the unhandled symbol as in the example below.
 </Description>
 
@@ -5386,7 +5386,7 @@ This symbol represents the error which is raised when an application
 reads a symbol which is not present in the mentioned content dictionary.
 
 When receiving such a symbol, the application should act as if it had
-received the OpenMath error object constructed from unexpected_symbol
+received the &OM; error object constructed from unexpected_symbol
 and the unexpected symbol as in the example below.
 </Description>
 <Example>
@@ -5408,7 +5408,7 @@ reads a symbol where the mentioned content dictionary is not
 present.
 
 When receiving such a symbol, the application should act as if it had
-received the OpenMath error object constructed from unsupported_CD and
+received the &OM; error object constructed from unsupported_CD and
 the symbol from the unsupported Content Dictionary as in the example
 below.
 </Description>
@@ -5750,7 +5750,7 @@ The application does not know about the CD specfun1
   <author><firstname>J.</firstname> <surname>Davenport</surname></author>
   <author><firstname>N.</firstname> <surname>Howgrave-Graham</surname></author>
   <title>Emerging Technologies</title>
-  <bibliomisc>OpenMath WP 1.2 Deliverable</bibliomisc>
+  <bibliomisc>&OM; WP 1.2 Deliverable</bibliomisc>
   <pubdate>1998</pubdate>
 </biblioentry>
 
@@ -5761,7 +5761,7 @@ The application does not know about the CD specfun1
   <author><firstname>John</firstname> <othername>A.</othername> <surname>Abbott</surname></author>
   <author><firstname>Andr&#233;</firstname> <surname>van Leeuwen</surname></author>
   <author><firstname>A.</firstname> <surname>Strotmann</surname></author>
-  <title>OpenMath: Communicating Mathematical Information 
+  <title>&OM;: Communicating Mathematical Information 
 between Co-operating Agents in a Knowledge Network.</title>
   <pubdate>1998</pubdate>
   <bibliomisc>http://www.brunel.ac.uk/~hssrjis/issue/index8.html</bibliomisc>
@@ -5840,7 +5840,7 @@ Systems: Outstanding Problems and Some Methods for their Solution."</bibliomisc>
   <author><firstname>S.</firstname> <surname>Sheridan</surname></author>
   <author><firstname>A.</firstname> <surname>Strotmann</surname></author>
   <author><firstname>S.</firstname> <surname>Vorkoetter</surname></author>
-  <title>Report of the OpenMath Communications Committee</title>
+  <title>Report of the &OM; Communications Committee</title>
   <pubdate>1995</pubdate>
   <pubdate role="month">13 November</pubdate>
 </biblioentry>
@@ -5967,8 +5967,8 @@ Applying it to Computational Abstract Algebra</title>
 </biblioentry>
 
 <biblioentry id="PolyMath_JAVA" role="Misc">
-  <author><othername>PolyMath OpenMath Development Team</othername></author>
-  <title>Java OpenMath Library: Version 0.7c</title>
+  <author><othername>PolyMath &OM; Development Team</othername></author>
+  <title>Java &OM; Library: Version 0.7c</title>
   <bibliomisc>http://pdg.cecm.sfu.ca/openmath/</bibliomisc>
   <pubdate role="month">June</pubdate>
   <pubdate>1999</pubdate>
@@ -5985,7 +5985,7 @@ Applying it to Computational Abstract Algebra</title>
 
 
 <biblioentry id="OMurl" role="Misc">
-  <author><othername>OpenMath Society Website</othername></author>
+  <author><othername>&OM; Society Website</othername></author>
   <title>www.openmath.org</title>
 </biblioentry>
 
@@ -5993,7 +5993,7 @@ Applying it to Computational Abstract Algebra</title>
   <author><firstname>S.</firstname> <surname>Dalmas</surname></author>
   <author><firstname>M.</firstname> <surname>Ga&#235;tano</surname></author>
   <author><firstname>S.</firstname> <surname>Watt</surname></author>
-  <title>An OpenMath 1.0 Implementation</title>
+  <title>An &OM; 1.0 Implementation</title>
   <bibliomisc role="pages">241&#8211;248</bibliomisc>
   <bibliomisc role="booktitle">Proceedings of ISSAC 97</bibliomisc>
   <pubdate>1997</pubdate>
@@ -6001,16 +6001,16 @@ Applying it to Computational Abstract Algebra</title>
 </biblioentry>
 
 <biblioentry id="OM_96" role="Misc">
-  <author><othername>OpenMath Steering Committee</othername></author>
-  <title>OpenMath Version 1.0 released</title>
+  <author><othername>&OM; Steering Committee</othername></author>
+  <title>&OM; Version 1.0 released</title>
   <pubdate>1996</pubdate>
   <pubdate role="month">December</pubdate>
   <bibliomisc>http://www.openmath.org</bibliomisc>
 </biblioentry>
 
 <biblioentry id="OM_98" role="Misc">
-  <author><othername>OpenMath Consortium</othername></author>
-  <title>OpenMath Version 1 - Draft</title>
+  <author><othername>&OM; Consortium</othername></author>
+  <title>&OM; Version 1 - Draft</title>
   <pubdate>1998</pubdate>
   <pubdate role="month">June</pubdate>
   <bibliomisc>ftp://ftp-sop.inria.fr/safir/OM/v1.ps</bibliomisc>
@@ -6023,8 +6023,8 @@ Applying it to Computational Abstract Algebra</title>
   <author><firstname>G.</firstname> <surname>Gonnet</surname></author>
   <author><firstname>M.</firstname> <surname>Seppala</surname></author>
   <author><firstname>S.</firstname> <surname>Watt</surname></author>
-  <title>Semantic Dictionaries for OpenMath</title>
-  <bibliomisc>Presented at the 6th OpenMath Workshop, Z&#252;rich</bibliomisc>
+  <title>Semantic Dictionaries for &OM;</title>
+  <bibliomisc>Presented at the 6th &OM; Workshop, Z&#252;rich</bibliomisc>
   <pubdate>1996</pubdate>
   <pubdate role="month">July 27-28</pubdate>
   <bibliomisc>http://www.inf.ethz.ch/personal/gonnet/ContDict.html</bibliomisc>
@@ -6046,7 +6046,7 @@ Applying it to Computational Abstract Algebra</title>
   <author><firstname>A.</firstname> <othername>M.</othername> <surname>Cohen</surname></author>
   <author><firstname>H.</firstname> <surname>Elbers</surname></author>
   <author><firstname>H.</firstname> <surname>Geuvers</surname></author>
-  <title>Connecting OpenMath to Formal Math</title>
+  <title>Connecting &OM; to Formal Math</title>
   <bibliomisc>Calculemus and Types '98</bibliomisc>
   <pubdate>1998</pubdate>
   <pubdate role="month">July</pubdate>
@@ -6155,8 +6155,8 @@ revisionflag="added">2003</phrase></pubdate>
   <author><firstname>S.</firstname> <surname>Buswell</surname></author>
   <author><firstname>S.</firstname> <surname>Dalmas</surname></author>
   <author><firstname>J.</firstname> <surname>Davenport</surname></author>
-  <title>OpenMath task 1.2: Emerging Technologies</title>
-  <bibliomisc>OpenMath Deliverable 1.2.2</bibliomisc>
+  <title>&OM; task 1.2: Emerging Technologies</title>
+  <bibliomisc>&OM; Deliverable 1.2.2</bibliomisc>
   <pubdate role="month">September</pubdate>
   <pubdate>1998</pubdate>
   <bibliomisc>Confidential</bibliomisc>
@@ -6172,9 +6172,9 @@ revisionflag="added">2003</phrase></pubdate>
 </biblioentry>
 
 <biblioentry id="OM_D131a" role="Misc">
-  <author><othername>OpenMath Consortium</othername></author>
-  <title>The OpenMath Standard</title>
-  <bibliomisc>OpenMath Deliverable 1.3.1a</bibliomisc>
+  <author><othername>&OM; Consortium</othername></author>
+  <title>The &OM; Standard</title>
+  <bibliomisc>&OM; Deliverable 1.3.1a</bibliomisc>
   <pubdate role="month">September</pubdate>
   <pubdate>1998</pubdate>
   <bibliomisc>http://www.nag.co.uk/projects/OpenMath.html</bibliomisc>
@@ -6183,8 +6183,8 @@ revisionflag="added">2003</phrase></pubdate>
 <biblioentry id="OM_D131b" role="Misc">
   <author><firstname>O.</firstname> <surname>Caprotti</surname></author>
   <author><firstname>A.</firstname> <othername>M.</othername> <surname>Cohen</surname></author>
-  <title>A Type System for OpenMath</title>
-  <bibliomisc>OpenMath Deliverable 1.3.1b</bibliomisc>
+  <title>A Type System for &OM;</title>
+  <bibliomisc>&OM; Deliverable 1.3.1b</bibliomisc>
   <pubdate role="month">September</pubdate>
   <pubdate>1998</pubdate>
   <bibliomisc>http://www.nag.co.uk/projects/OpenMath.html</bibliomisc>
@@ -6192,8 +6192,8 @@ revisionflag="added">2003</phrase></pubdate>
 
 <biblioentry id="OM_D132c" role="Misc">
   <author><firstname>J.</firstname> <surname>Davenport</surname></author>
-  <title>A Small OpenMath Type System</title>
-  <bibliomisc>OpenMath Deliverable 1.3.2b</bibliomisc>
+  <title>A Small &OM; Type System</title>
+  <bibliomisc>&OM; Deliverable 1.3.2b</bibliomisc>
   <pubdate role="month">April</pubdate>
   <pubdate>1999</pubdate>
   <bibliomisc>http://www.nag.co.uk/projects/OpenMath/omstd/</bibliomisc>
@@ -6201,9 +6201,9 @@ revisionflag="added">2003</phrase></pubdate>
 
 
 <biblioentry id="OMD132a" role="TechReport">
-  <author><othername>The OpenMath Consortium</othername></author>
-  <title>The OpenMath Standard</title>
-  <publisher><publishername>OpenMath Esprit Consortium</publishername></publisher>
+  <author><othername>The &OM; Consortium</othername></author>
+  <title>The &OM; Standard</title>
+  <publisher><publishername>&OM; Esprit Consortium</publishername></publisher>
   <pubdate>1999</pubdate>
   <bibliomisc role="number">1.3.2a</bibliomisc>
   <bibliomisc>http://www.nag.co.uk/projects/OpenMath.html</bibliomisc>
@@ -6214,8 +6214,8 @@ revisionflag="added">2003</phrase></pubdate>
 <biblioentry id="OMD132b" role="TechReport">
   <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
   <author><firstname>Arjeh</firstname> <othername>M.</othername> <surname>Cohen</surname></author>
-  <title>A Type System for OpenMath</title>
-  <publisher><publishername>OpenMath Esprit Consortium</publishername></publisher>
+  <title>A Type System for &OM;</title>
+  <publisher><publishername>&OM; Esprit Consortium</publishername></publisher>
   <pubdate>1999</pubdate>
   <bibliomisc role="number">1.3.2b</bibliomisc>
   <bibliomisc>http://www.nag.co.uk/projects/OpenMath.html</bibliomisc>
@@ -6225,8 +6225,8 @@ revisionflag="added">2003</phrase></pubdate>
 <biblioentry id="OM_D133b" role="TechReport">
   <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
   <author><firstname>Arjeh</firstname> <othername>M.</othername> <surname>Cohen</surname></author>
-  <title>Development of Strong OpenMath</title>
-  <publisher><publishername>OpenMath Esprit Consortium</publishername></publisher>
+  <title>Development of Strong &OM;</title>
+  <publisher><publishername>&OM; Esprit Consortium</publishername></publisher>
   <pubdate>1999</pubdate>
   <bibliomisc role="number">1.3.3b</bibliomisc>
   <bibliomisc>http://www.nag.co.uk/projects/OpenMath.html</bibliomisc>
@@ -6247,7 +6247,7 @@ revisionflag="added">2003</phrase></pubdate>
 <biblioentry id="CaprottiCohen99" role="Misc">
   <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
   <author><firstname>Arjeh</firstname> <othername>M.</othername> <surname>Cohen</surname></author>
-  <title>Integrating Computational and Deduction Systems Using OpenMath</title>
+  <title>Integrating Computational and Deduction Systems Using &OM;</title>
   <bibliomisc>Calculemus'99: Systems for Integrated Computation and Deduction</bibliomisc>
   <pubdate role="month">July 11-12</pubdate>
   <pubdate>1999</pubdate>
@@ -6503,7 +6503,7 @@ revisionflag="added">2003</phrase></pubdate>
 <biblioentry id="Linton_Solomon_99" role="Misc">
   <author><firstname>Steve</firstname> <surname>Linton</surname></author>
   <author><firstname>Andrew</firstname> <surname>Solomon</surname></author>
-  <title>GAP, OpenMath, and MCP</title>
+  <title>GAP, &OM;, and MCP</title>
   <bibliomisc>ISSAC Workshop: Internet Accessible Mathematical Computation</bibliomisc>
   <pubdate role="month">July</pubdate>
   <pubdate>99</pubdate>
@@ -6521,8 +6521,8 @@ revisionflag="added">2003</phrase></pubdate>
 
 <biblioentry id="Harvey_99context" role="TechReport">
   <author><firstname>Vilya</firstname> <surname>Harvey</surname></author>
-  <title>OpenMath in Context</title>
-  <publisher><publishername>OpenMath Esprit Consortium</publishername></publisher>
+  <title>&OM; in Context</title>
+  <publisher><publishername>&OM; Esprit Consortium</publishername></publisher>
   <pubdate>1999</pubdate>
   <bibliomisc>http://www.nag.co.uk/projects/OpenMath/papers/context.pdf</bibliomisc>
   <pubdate role="month">June</pubdate>
@@ -6566,8 +6566,8 @@ revisionflag="added">2003</phrase></pubdate>
 
 <biblioentry id="Kohlhase_99" role="InProceedings">
   <author><firstname>M.</firstname> <surname>Kohlhase</surname></author>
-  <title>OpenMath for knowledge-based automated theorem proving</title>
-  <title role="book">Electronic Proceedings of the 12th OpenMath Workshop</title>
+  <title>&OM; for knowledge-based automated theorem proving</title>
+  <title role="book">Electronic Proceedings of the 12th &OM; Workshop</title>
   <pubdate>1999</pubdate>
   <address>Eindhoven, Netherlands</address>
   <pubdate role="month">June</pubdate>
@@ -6579,9 +6579,9 @@ revisionflag="added">2003</phrase></pubdate>
 <biblioentry id="Cohen_Kohlhase_99om" role="Misc">
   <author><firstname>Arjeh</firstname> <surname>Cohen</surname></author>
   <author><firstname>Michael</firstname> <surname>Kohlhase</surname></author>
-  <title>Proposal of an Extension to OpenMath by Defining
+  <title>Proposal of an Extension to &OM; by Defining
                   Mathematical Properties</title>
-  <bibliomisc>12th OpenMath Workshop</bibliomisc>
+  <bibliomisc>12th &OM; Workshop</bibliomisc>
   <pubdate role="month">June</pubdate>
   <pubdate>1999</pubdate>
   <bibliomisc>http://www.win.tue.nl/~amc/kohlhase.dvi</bibliomisc>
@@ -6590,7 +6590,7 @@ revisionflag="added">2003</phrase></pubdate>
 
 <biblioentry id="Caprotti_99CFCa" role="Misc">
   <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
-  <title>OpenMath: Accessing and Using Mathematical Information Electronically</title>
+  <title>&OM;: Accessing and Using Mathematical Information Electronically</title>
   <bibliomisc>CFC meeting talk</bibliomisc>
   <pubdate role="month">May</pubdate>
   <pubdate>1999</pubdate>
@@ -6599,7 +6599,7 @@ revisionflag="added">2003</phrase></pubdate>
 
 <biblioentry id="Caprotti_99CFCb" role="Misc">
   <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
-  <title>OpenMath and COQ: Communicating Certified Mathematical Content</title>
+  <title>&OM; and COQ: Communicating Certified Mathematical Content</title>
   <bibliomisc>CFC meeting talk</bibliomisc>
   <pubdate role="month">May</pubdate>
   <pubdate>1999</pubdate>
@@ -6608,7 +6608,7 @@ revisionflag="added">2003</phrase></pubdate>
 
 <biblioentry id="Caprotti_99imacs" role="Misc">
   <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
-  <title>Interfacing CA and Proof Checkers with OpenMath</title>
+  <title>Interfacing CA and Proof Checkers with &OM;</title>
   <bibliomisc>IMACA-ACA 99</bibliomisc>
   <pubdate role="month">June</pubdate>
   <pubdate>1999</pubdate>
@@ -6618,7 +6618,7 @@ revisionflag="added">2003</phrase></pubdate>
 <biblioentry id="Caprotti_Carlisle_99" role="Article">
   <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
   <author><firstname>David</firstname> <surname>Carlisle</surname></author>
-  <title>OpenMath and MathML: Semantic Mark Up for Mathematics</title>
+  <title>&OM; and MathML: Semantic Mark Up for Mathematics</title>
   <bibliomisc role="journal">Crossroad</bibliomisc>
   <pubdate>1999</pubdate>
   <bibliomisc role="volume">Special Issue on Markup Languages</bibliomisc>
@@ -6628,7 +6628,7 @@ revisionflag="added">2003</phrase></pubdate>
 <biblioentry id="Caprotti_Cohen_99calc" role="InProceedings">
   <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
   <author><firstname>Arjeh</firstname> <surname>Cohen</surname></author>
-  <title>Integrating Computational and Deduction Systems Using OpenMath</title>
+  <title>Integrating Computational and Deduction Systems Using &OM;</title>
   <title role="book">Proceedings of Calculemus 99</title>
   <pubdate>1999</pubdate>
   <address>Trento</address>
@@ -6638,7 +6638,7 @@ revisionflag="added">2003</phrase></pubdate>
 <biblioentry id="Caprotti_Cohen_99iamc" role="InProceedings">
   <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
   <author><firstname>Arjeh</firstname> <surname>Cohen</surname></author>
-  <title>Interactive Mathematics with Strong OpenMath</title>
+  <title>Interactive Mathematics with Strong &OM;</title>
   <title role="book">Internet Accessible Mathematical Computation</title>
   <pubdate>1999</pubdate>
   <address>Vancouver, Canada</address>
@@ -6647,14 +6647,14 @@ revisionflag="added">2003</phrase></pubdate>
 </biblioentry>
 
 <biblioentry id="url_OMsem99" role="Misc">
-  <title>Seminar on OpenMath for Industry</title>
+  <title>Seminar on &OM; for Industry</title>
   <bibliomisc>http://www.riaca.win.tue.nl/projects/OpenMath/convention.html</bibliomisc>
   <pubdate role="month">June</pubdate>
   <pubdate>1999</pubdate>
 </biblioentry>
 
 <biblioentry id="url_OMworkshop12" role="Misc">
-  <title>12th  OpenMath Workshop</title>
+  <title>12th  &OM; Workshop</title>
   <bibliomisc>http://www.riaca.win.tue.nl/projects/OpenMath/workshop/</bibliomisc>
   <pubdate role="month">June 15-16</pubdate>
   <pubdate>1999</pubdate>
