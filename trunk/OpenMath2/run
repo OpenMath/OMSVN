@@ -47,7 +47,7 @@ sed -e "s/attvar =[^}]*}/attvar = OMATTR/" \
 done
 
 
-for i in omcd2.rnc
+for i in omcd2.rnc omcdsig2.rnc
 do
 echo $i
 echo DTD
@@ -73,9 +73,34 @@ sed -e  "s/| OMOBJ//" \
 done
 
 
+for i in  omcdsig2.rnc
+do
+echo $i
+echo DTD
+sed -e  "s/| OMOBJ//" \
+    -e "s/OMOBJ/text/" \
+    -e "s/include .openmath2.rnc. {.*}/# OMDTD/" \
+    -e "s/ &/ |/g" \
+        $i >tmp.rnc
+
+ trang tmp.rnc tmp.dtd  2>> trang.txt
+ 
+
+ sed -e "s/Signature ..#PCDATA..../Signature (OMOBJ)/" \
+     -e "s/CDSignatures .CDSComment./CDSignatures (CDSComment/" \
+     -e "s/:ns1//g" \
+     -e "s/ns1://g" \
+     -e "s/<!-- OMDTD -->/<!ENTITY % omdtd SYSTEM \"openmath2.dtd\"> %omdtd;/"\
+        tmp.dtd > ${i%%rnc}dtd
+ sed -e "s/</\&lt;/g" ${i%%rnc}dtd > ${i%%.rnc}dtd.xml
+
+
+done
+
 
 echo validate
 rxp -sxV omstd20.xml
+
 
 echo html
 saxon  -o omstd20html.xml omstd20.xml omstd20.xsl

@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.86 2004/02/24 16:00:48 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.87 2004/02/25 17:04:10 openmath Exp $ -->
 
 
 <!DOCTYPE book 
@@ -12,7 +12,7 @@ SYSTEM "docbook/docbookx.dtd"
     add xml:space (to correct for IE bug, dropping spaces)
 -->
 
-<!ENTITY % local.para.char.mix "|xs:schema|comment|string|grammar|CD">
+<!ENTITY % local.para.char.mix "|xs:schema|comment|string|grammar|CD|CDSignatures">
 <!ENTITY % inlineobj.char.class "math">
 <!ATTLIST book xml:space (default|preserve) #IMPLIED >
 <!--
@@ -211,11 +211,17 @@ SYSTEM "docbook/docbookx.dtd"
 <!ENTITY cdrng SYSTEM "omcd2.rng">
 <!ENTITY sigrng SYSTEM "omcdsig2.rng">
 
+<!ENTITY % openmath2 SYSTEM "openmath2.dtd">
+%openmath2;
+<!ENTITY % omdtd "">
 <!ENTITY % omcd2 SYSTEM "omcd2.dtd">
 %omcd2;
+<!ENTITY % omcdsig2 SYSTEM "omcdsig2.dtd">
+%omcdsig2;
 
 <!ENTITY metacd SYSTEM "meta.ocd">
 <!ENTITY arith1cd SYSTEM "arith1.ocd">
+<!ENTITY arith1sts SYSTEM "arith1.sts">
 <!ENTITY errorcd SYSTEM "error.ocd">
 ]>
 <book xml:space="preserve">
@@ -326,7 +332,7 @@ document outlining the objectives and basic design of &OM; was
 produced (later published as
 <citation>Abbott_Leeuwen_Strotmann_98</citation>).  By the end of 1996
 a simplified specification had been agreed on and some prototype
-implementations have come about
+implementations had come about
 <citation>Dalmas_Gaetano_Watt_97</citation>.</para>
 
 <para>In 1996 a group of European participants in &OM; decided to bid
@@ -363,8 +369,8 @@ society. The official web page of the society is
 <ulink url="http://www.openmath.org">http://www.openmath.org</ulink>.</para>
 
 <para revisionflag="added">The &OM; Society continues to provide
-long-term coordination of OpenMath activities.  Membership is open to
-anybody who is active in Openmath; for further details see the website
+long-term coordination of &OM; activities.  Membership is open to
+anybody who is active in &OM;; for further details see the website
 at 
 <ulink url="http://www.openmath.org/society/index.html">
 http://www.openmath.org/society/index.html</ulink>.</para>
@@ -5098,161 +5104,8 @@ Dictionaries and &OM; objects is given.</para>
   
   
   
-  <literallayout><![CDATA[<CDSignatures type="sts" cd="arith1">
-    
-  <CDSComment>
-    Date:  1999-11-26
-    Author: David Carlisle
-  </CDSComment>
-  
-  <Signature name="lcm" >
-    <OMOBJ>
-      <OMA>
-        <OMS name="mapsto" cd="sts" />
-        <OMA>
-          <OMS name="nassoc" cd="sts"/>
-          <OMV name="SemiGroup"/>
-        </OMA>
-        <OMV name="SemiGroup" />
-      </OMA>
-    </OMOBJ>
-  </Signature>
-  
-  <Signature name="gcd" >
-    <OMOBJ>
-      <OMA>
-        <OMS name="mapsto" cd="sts" />
-        <OMA>
-          <OMS name="nassoc" cd="sts"/>
-          <OMV name="SemiGroup"/>
-        </OMA>
-        <OMV name="SemiGroup" />
-      </OMA>
-    </OMOBJ>
-  </Signature>
-  
-  <Signature name="plus">
-    <OMOBJ>
-      <OMA>
-        <OMS name="mapsto" cd="sts"/>
-        <OMA>
-          <OMS name="nassoc" cd="sts"/> 
-          <OMV name="AbelianSemiGroup"/>
-        </OMA>
-        <OMV name="AbelianSemiGroup"/>
-      </OMA>
-    </OMOBJ>
-  </Signature>
-  
-  <Signature name="unary_minus">
-    <OMOBJ>
-      <OMA>
-        <OMS name="mapsto" cd="sts"/>
-        <OMV name="AbelianGroup"/> 
-        <OMV name="AbelianGroup"/> 
-      </OMA>
-    </OMOBJ>
-  </Signature>
-  
-  <Signature name="minus">
-    <OMOBJ>
-      <OMA>
-        <OMS name="mapsto" cd="sts"/>
-        <OMV name="AbelianGroup"/> 
-        <OMV name="AbelianGroup"/> 
-        <OMV name="AbelianGroup"/> 
-      </OMA>
-    </OMOBJ>
-  </Signature>
-  
-  <Signature name="times">
-    <OMOBJ>
-      <OMA>
-        <OMS name="mapsto" cd="sts"/>
-        <OMA>
-          <OMS name="nassoc" cd="sts"/> 
-          <OMV name="SemiGroup"/>
-        </OMA>
-        <OMV name="SemiGroup"/>
-      </OMA>
-    </OMOBJ>
-  </Signature>
-  
-  <Signature name="divide">
-    <OMOBJ>
-      <OMA>
-        <OMS name="mapsto" cd="sts"/>
-        <OMV name="AbelianGroup"/> 
-        <OMV name="AbelianGroup"/> 
-        <OMV name="AbelianGroup"/> 
-      </OMA>
-    </OMOBJ>
-  </Signature>
-  
-  <Signature name="power">
-    <OMOBJ>
-      <OMA>
-        <OMS name="mapsto" cd="sts"/>
-        <OMS name="NumericalValue" cd="sts"/> 
-        <OMS name="NumericalValue" cd="sts"/> 
-        <OMS name="NumericalValue" cd="sts"/> 
-      </OMA>
-    </OMOBJ>
-  </Signature>
-  
-  <Signature name="abs">
-    <OMOBJ>
-      <OMA>
-        <OMS name="mapsto" cd="sts"/>
-        <OMS name="C" cd="setname1"/> 
-        <OMS name="R" cd="setname1"/> 
-      </OMA>
-    </OMOBJ>
-  </Signature>
-  
-  <Signature name="root">
-    <OMOBJ>
-      <OMA>
-        <OMS name="mapsto" cd="sts"/>
-        <OMS name="NumericalValue" cd="sts"/> 
-        <OMS name="NumericalValue" cd="sts"/> 
-        <OMS name="NumericalValue" cd="sts"/> 
-      </OMA>
-    </OMOBJ>
-  </Signature>
-  
-  
-  <Signature name="sum" >
-    <OMOBJ>
-      <OMA>
-        <OMS name="mapsto" cd="sts" />
-        <OMV name="IntegerRange" />
-        <OMA>
-          <OMS name="mapsto" cd="sts" />
-          <OMS name="Z" cd="setname1" />
-          <OMV name="AbelianMonoid" />
-        </OMA>
-        <OMV name="AbelianMonoid" />
-      </OMA>
-    </OMOBJ>
-  </Signature>
-  
-  <Signature name="product" >
-    <OMOBJ>
-      <OMA>
-        <OMS name="mapsto" cd="sts" />
-        <OMV name="IntegerRange" />
-        <OMA>
-          <OMS name="mapsto" cd="sts" />
-          <OMS name="Z" cd="setname1" />
-          <OMV name="AbelianMonoid" />
-        </OMA>
-        <OMV name="AbelianMonoid" />
-      </OMA>
-    </OMOBJ>
-  </Signature>
-  
-</CDSignatures>]]>
+<literallayout>
+&arith1sts;
 </literallayout>
 
 </section>
