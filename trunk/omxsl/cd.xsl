@@ -15,7 +15,7 @@
 <xsl:template match="cd:CD">
   <xsl:variable name="cd" select="normalize-space(./cd:CDName)"/>
 <xsl:processing-instruction name="xml-stylesheet"
-> type="text/xsl"  href="../omxsl/pmathml.xsl"</xsl:processing-instruction>
+> type="text/xsl"  href="../xsl/pmathml.xsl"</xsl:processing-instruction>
 <xsl:text>&#10;</xsl:text>
   <html>
   <head>
