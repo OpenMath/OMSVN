@@ -1,0 +1,86 @@
+#!/usr/bin/bash
+
+
+echo RNC/xml
+for i in omcd2.rnc omcdsig2.rnc openmath2.rnc omcdgroup2.rnc
+do
+echo $i
+perl rnc2dbk $i > ${i%%.rnc}rnc.xml
+done
+
+
+echo RNG
+for i in omcd2.rnc omcdsig2.rnc openmath2.rnc
+do
+echo $i
+trang $i ${i%%rnc}rng
+done
+
+echo XSD
+for i in openmath2.rnc
+do
+echo $i
+trang $i ${i%%rnc}xsd
+done
+
+>trang.txt
+echo DTD
+for i in openmath2.rnc
+do
+echo $i
+sed -e "s/default namespace/# default namespace/" \
+    -e "s/attvar =[^}]*}/attvar = OMATTR/" \
+    -e "s/notom =.*$//" \
+    -e "s/^.*element \*.*$//" \
+    -e "s/, (omel|notom)\*//" \
+    -e "s/^.* text.$//" \
+    -e "s/{pattern.*}}/}/" \
+        $i >tmp.rnc
+
+ trang tmp.rnc tmp.dtd 2>> trang.txt
+ 
+ sed -e "s/OMFOREIGN EMPTY/OMFOREIGN ANY/"  tmp.dtd > ${i%%rnc}dtd
+ sed -e "s/</\&lt;/g" ${i%%rnc}dtd > ${i%%.rnc}dtd.xml
+done
+
+
+
+echo html
+saxon  -o omstd20html.xml omstd20.xml omstd20.xsl
+echo html-d
+saxon  -o omstd20html-d.xml omstd20.xml omstd20.xsl showdiffs=true
+echo tex
+saxon  -o omstd20.tex omstd20.xml omstd20tex.xsl 
+echo tex-d
+saxon  -o omstd20-d.tex omstd20.xml omstd20tex.xsl showdiffs=true
+
+echo pdf
+pdflatex \\batchmode \\input omstd20.tex
+if (grep -i rerun omstd20.log)
+  then
+  pdflatex \\batchmode \\input omstd20.tex
+  if (grep -i rerun omstd20.log)
+    then 
+    pdflatex \\batchmode \\input omstd20.tex
+    if (grep -i rerun omstd20.log)
+      then
+      pdflatex \\batchmode \\input omstd20.tex
+    fi
+  fi
+fi
+
+echo pdf-d
+pdflatex \\batchmode \\input omstd20-d.tex
+if (grep -i rerun omstd20-d.log)
+  then
+  pdflatex \\batchmode \\input omstd20-d.tex
+  if (grep -i rerun omstd20-d.log)
+    then 
+    pdflatex \\batchmode \\input omstd20-d.tex
+    if (grep -i rerun omstd20-d.log)
+      then
+      pdflatex \\batchmode \\input omstd20-d.tex
+    fi
+  fi
+fi
+
