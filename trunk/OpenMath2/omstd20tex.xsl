@@ -258,9 +258,12 @@ relative to the OpenMath 1.0 document\ldots
 
 
 <xsl:template match="variablelist">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 \begin£descriptionﬂ
+<xsl:apply-templates select="@revisionflag"/>
 <xsl:apply-templates/>
 \end£descriptionﬂ
+</xsl:if>
 </xsl:template>
 
 <xsl:template match="listitem">
