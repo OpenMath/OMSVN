@@ -28,7 +28,6 @@
 }
 \definecolor{green}{rgb}{0,0.3,0}
 \let\cellsep&amp;
-
 \catcode`\&amp;=12
 \catcode`\_=12
 \catcode`\^=12
@@ -507,6 +506,12 @@ changelog entry here
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')"
 >\protect\[<xsl:apply-templates/>\protect\]</xsl:if></xsl:template>
 
+<xsl:template match="id('nestedap')" priority="3">
+\begin£centerﬂ\(\displaystyle
+\def\\£\hfill\break\hfillﬂ
+\mathbf£applicationﬂ(f,\mathbf£applicationﬂ(f,\mathbf£applicationﬂ(f,a,a),\mathbf£applicationﬂ(f,a,a)),\mathbf£applicationﬂ(f,\\
+\mathbf£applicationﬂ(f,a,a),\mathbf£applicationﬂ(f,a,a)))
+\)\end£centerﬂ</xsl:template>
 
 <xsl:template match="mfenced">
 <xsl:text>(</xsl:text>
