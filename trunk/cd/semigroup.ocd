@@ -1,0 +1,71 @@
+<CD>
+<CDName>semigroup</CDName>
+<CDURL> http://www.openmath.org/cd/semigroup.ocd </CDURL>
+<CDReviewDate> 2003-04-01 </CDReviewDate> 
+<CDStatus> experimental </CDStatus>
+<CDDate> 1999-09-29 </CDDate>
+<CDVersion> 1 </CDVersion>
+<CDRevision> 1 </CDRevision>
+<CDUses>
+</CDUses>
+
+    <Description> The definition of a semigroup as setoid with a
+    binary operation.
+    
+    Initial version: O. Caprotti 
+    </Description>
+
+
+<CDDefinition>
+ <Name>	associative </Name>
+ <Description> The type of associative binary operation.
+ </Description>
+<CMP> Is defined as  
+        Lambda {sg_Carrier:> Setoid; 
+                sg_op: mapsto(sg_Carrier sg_Carrier sg_Carrier)}.
+        PiType{ x,y,z: sg_Carrier }.
+        eq(sg_op(x, sg_op(y,z)), sg_op( sg_op(x,y),z))
+</CMP>
+    <Example>
+    </Example>
+
+</CDDefinition>
+
+
+
+<CDDefinition>
+ <Name>	Semigroup </Name>
+ <Description> The contructor for the type of semigroups as a Setoid 
+ with a binary operation.
+ </Description>
+<CMP> Is defined as  
+        Lambda {sg_Carrier:> Setoid; 
+                sg_op: mapsto(sg_Carrier sg_Carrier sg_Carrier)}.
+        SigmaType{ sg_Carrier:> Setoid; 	
+	sg_op: 	mapsto(sg_Carrier sg_Carrier sg_Carrier);	
+   	(associative sg_Carrier sg_op) }
+</CMP>
+
+</CDDefinition>
+
+
+
+<CDDefinition>
+ <Name>	make_Semigroup </Name>
+ <Description> The contructor for the tuples consisting of a setoid, 
+ and an associative binary operation.
+ </Description>
+<CMP> Is defined as  
+        Lambda {sg_Carrier:> Setoid; 
+        sg_op: 	mapsto(sg_Carrier sg_Carrier sg_Carrier);
+        proof: (associative sg_Carrier sg_op)}.
+        Tuple (Setoid,	sg_op, proof)
+</CMP>
+
+</CDDefinition>
+
+
+
+
+</CD>
+

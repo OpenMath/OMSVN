@@ -1,0 +1,120 @@
+<!DOCTYPE xsl:stylesheet [
+<!ENTITY % om2pmml.ent SYSTEM "om2pmml.ent" >
+%om2pmml.ent;
+]>
+
+
+<xsl:stylesheet 
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:om="http://www.openmath.org/OpenMath"
+  xmlns="http://www.w3.org/1998/Math/MathML"
+  version="1.0"
+>
+
+
+
+
+<xsl:template match="om:OMS[(@cd='set1' or @cd='multiset1') and @name='emptyset']" >
+  <mi>&empty;</mi>
+</xsl:template>
+
+
+<xsl:template match="om:OMS[(@cd='set1' or @cd='multiset1') and @name='in']" >
+  <xsl:param name="p"/>
+  <xsl:call-template name="binary">
+    <xsl:with-param name="mo"><mo>&in;</mo></xsl:with-param>
+    <xsl:with-param name="p" select="$p"/>
+    <xsl:with-param name="this-p" select="2"/>
+  </xsl:call-template>
+</xsl:template>
+
+
+<xsl:template match="om:OMS[(@cd='set1' or @cd='multiset1') and @name='subset']" >
+  <xsl:param name="p"/>
+  <xsl:call-template name="binary">
+    <xsl:with-param name="mo"><mo>&#x2282;</mo></xsl:with-param>
+    <xsl:with-param name="p" select="$p"/>
+    <xsl:with-param name="this-p" select="2"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template match="om:OMS[(@cd='set1' or @cd='multiset1') and @name='prsubset']" >
+  <xsl:param name="p"/>
+  <xsl:call-template name="binary">
+    <xsl:with-param name="mo"><mo>&#x2282;</mo></xsl:with-param>
+    <xsl:with-param name="p" select="$p"/>
+    <xsl:with-param name="this-p" select="2"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template match="om:OMS[(@cd='set1' or @cd='multiset1') and @name='notprsubset']" >
+  <xsl:param name="p"/>
+  <xsl:call-template name="binary">
+    <xsl:with-param name="mo"><mo>&#x2284;</mo></xsl:with-param>
+    <xsl:with-param name="p" select="$p"/>
+    <xsl:with-param name="this-p" select="2"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template match="om:OMS[(@cd='set1' or @cd='multiset1') and @name='notsubset']" >
+  <xsl:param name="p"/>
+  <xsl:call-template name="binary">
+    <xsl:with-param name="mo"><mo>&#x2284;</mo></xsl:with-param>
+    <xsl:with-param name="p" select="$p"/>
+    <xsl:with-param name="this-p" select="2"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template match="om:OMS[(@cd='set1' or @cd='multiset1') and @name='setdiff']" >
+  <xsl:param name="p"/>
+  <xsl:call-template name="binary">
+    <xsl:with-param name="mo"><mo>&#x2216;</mo></xsl:with-param>
+    <xsl:with-param name="p" select="$p"/>
+    <xsl:with-param name="this-p" select="2"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template match="om:OMS[(@cd='set1' or @cd='multiset1') and @name='notin']" >
+  <xsl:param name="p"/>
+  <xsl:call-template name="binary">
+    <xsl:with-param name="mo"><mo>&notin;</mo></xsl:with-param>
+    <xsl:with-param name="p" select="$p"/>
+    <xsl:with-param name="this-p" select="2"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template match="om:OMS[(@cd='set1' or @cd='multiset1') and @name='union']" >
+  <xsl:param name="p"/>
+  <xsl:call-template name="infix">
+    <xsl:with-param name="mo"><mo>&#x222A;</mo></xsl:with-param>
+    <xsl:with-param name="p" select="$p"/>
+    <xsl:with-param name="this-p" select="2"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template match="om:OMS[(@cd='set1' or @cd='multiset1') and @name='intersect']" >
+  <xsl:param name="p"/>
+  <xsl:call-template name="infix">
+    <xsl:with-param name="mo"><mo>&#x2229;</mo></xsl:with-param>
+    <xsl:with-param name="p" select="$p"/>
+    <xsl:with-param name="this-p" select="2"/>
+  </xsl:call-template>
+</xsl:template>
+
+
+<xsl:template match="om:OMS[(@cd='set1' or @cd='multiset1') and @name='set']" >
+<mrow>
+<mo>{</mo>
+<xsl:for-each  select="following-sibling::*">
+ <xsl:apply-templates select="."/>
+ <xsl:if test="not(position()=last())"><mo>,</mo></xsl:if>
+</xsl:for-each>
+<mo>}</mo>
+</mrow>
+</xsl:template>
+
+
+</xsl:stylesheet>
+
+
+

@@ -1,0 +1,184 @@
+<CD>
+<CDName> fns2 </CDName>
+<CDURL> http://www.openmath.org/cd/fns2.ocd </CDURL>
+<CDReviewDate> 2003-04-01 </CDReviewDate>
+<CDDate> 2002-05-26 </CDDate>
+<CDVersion> 2 </CDVersion>
+<CDRevision> 1 </CDRevision>
+<CDStatus> official </CDStatus>
+<CDUses>
+  <CDName>arith1</CDName>
+  <CDName>fns1</CDName>
+  <CDName>list1</CDName>
+  <CDName>quant1</CDName>
+  <CDName>relation1</CDName>
+  <CDName>set1</CDName>
+  <CDName>logic1</CDName>
+  <CDName>alg1</CDName>
+</CDUses>
+
+<Description>
+    This CD holds further functions concerning functions themselves. A
+    particularly interesting function is
+
+    apply_to_list
+
+    which applies an nary function to all the elements in a specified
+    list. For example, such a function can be used to form sums and
+    products in conjunction with plus and times respectively.
+</Description>
+
+<CDDefinition>
+<Name> kernel </Name>
+<Description> 
+This symbol denotes the kernel of a given function. This may be
+defined as the subset of the range of the given function which maps to
+the identity element of the image of the given function, however no
+semantics are assumed. The kernel of a function is also known as the
+null space of the function.
+</Description>
+
+<CMP> x in the kernal of f implies that f(x) = 0 </CMP>
+
+<FMP>
+<OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+  <OMA>
+    <OMS cd="logic1" name="implies"/>
+    <OMA>
+      <OMS cd="set1" name="in"/>
+      <OMV name="x"/>
+      <OMA>
+        <OMS cd="fns2" name="kernel"/>
+        <OMV name="f"/>
+      </OMA>
+    </OMA>
+    <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMA>
+        <OMV name="f"/>
+	<OMV name="x"/>
+      </OMA>
+      <OMS cd="alg1" name="zero"/>
+    </OMA>
+  </OMA>
+</OMOBJ>
+</FMP>
+</CDDefinition>
+
+<CDDefinition>
+<Name> apply_to_list </Name>
+<Description> 
+This symbol is used to denote the repeated application of an n-ary
+function on the elements of a given list. For example when used with
+plus or times this can represent sums and products.
+
+The symbol takes two arguments; the first of which is the n-ary
+function, the second a list.
+</Description>
+<Example>
+For all n 1 + 2 + ... + n = n(n+1)/2.
+<OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+  <OMBIND>
+    <OMS cd="quant1" name="forall"/>
+    <OMBVAR>
+      <OMV name="n"/>
+    </OMBVAR>
+    <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMA>
+        <OMS cd="fns2" name="apply_to_list"/>
+        <OMS cd="arith1" name="plus"/>
+        <OMA>
+          <OMS cd="list1" name="make_list"/>
+          <OMI> 1 </OMI>
+          <OMV name="n"/>
+          <OMS cd="fns1" name="identity"/>
+        </OMA>
+      </OMA>
+      <OMA>
+        <OMS cd="arith1" name="divide"/>
+        <OMA>
+  	<OMS cd="arith1" name="times"/>
+          <OMV name="n"/>
+          <OMA>
+            <OMS cd="arith1" name="plus"/>
+            <OMV name="n"/>
+            <OMI> 1 </OMI>
+          </OMA>
+        </OMA>
+        <OMI> 2 </OMI>
+      </OMA>
+    </OMA>
+  </OMBIND>
+</OMOBJ>
+</Example>
+
+<Example>
+One may form a set in the following way. This gives the set {1^2, 2^2,
+... , 10^2 }
+<OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+  <OMA>
+    <OMS cd="fns2" name="apply_to_list"/>
+    <OMS cd="set1" name="set"/>
+    <OMA>
+      <OMS cd="list1" name="make_list"/>
+      <OMI> 1 </OMI>
+      <OMI> 10 </OMI>
+      <OMBIND>
+        <OMS cd="fns1" name="lambda"/>
+        <OMBVAR>
+          <OMV name="x"/>
+        </OMBVAR>
+        <OMA>
+         <OMS cd="arith1" name="power"/>
+          <OMV name="x"/>
+          <OMI> 2 </OMI>
+        </OMA>
+      </OMBIND>
+    </OMA>
+  </OMA>
+</OMOBJ>
+</Example>
+</CDDefinition>
+
+<CDDefinition>
+<Name> right_compose </Name>
+<Description> 
+This symbol represents a function forming the right-composition of its
+two functional arguments.
+</Description>
+<CMP> right_compose(f,g)(x) = g(f(x)) </CMP>
+<FMP>
+  <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+    <OMBIND>
+      <OMS cd="quant1" name="forall"/>
+      <OMBVAR>
+        <OMV name="f"/>
+        <OMV name="g"/>
+        <OMV name="x"/>
+      </OMBVAR>
+      <OMA>
+        <OMS cd="relation1" name="eq"/>
+        <OMA>
+          <OMA>
+            <OMS cd="fns2" name="right_compose"/>
+            <OMV name="f"/>
+            <OMV name="g"/>
+          </OMA>
+          <OMV name="x"/>
+        </OMA>
+        <OMA>
+          <OMV name="g"/>
+          <OMA>
+            <OMV name="f"/>
+            <OMV name="x"/>
+          </OMA>
+        </OMA>
+      </OMA>
+    </OMBIND>
+  </OMOBJ>
+</FMP>
+</CDDefinition>
+
+</CD>
+

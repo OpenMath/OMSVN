@@ -1,0 +1,127 @@
+<CD>
+
+    <CDName> ecc </CDName>
+    <CDURL> http://http://www.openmath.org/cd/ecc.ocd </CDURL>
+    <CDReviewDate>  2000-09-01  </CDReviewDate>
+    <CDStatus> experimental </CDStatus>
+    <CDDate> 1999-09-07 </CDDate>
+    <CDVersion> 1 </CDVersion>
+<CDRevision> 1 </CDRevision>
+    <CDUses><CDName>relation1</CDName></CDUses>
+    <Description> Extended Calculus of Constructions Primitives </Description>    
+    <Description>Initial version: O. Caprotti (July 1, 1999) </Description>
+    <Description>Revised: O. Caprotti (September 8, 1999) </Description>
+    
+  
+   <CDDefinition>
+        <Name> type </Name>
+        <Description> Attribution tag to denote type-judgement
+        </Description>
+    </CDDefinition>
+
+   <CDDefinition>
+        <Name> typecoerce </Name>
+        <Description> Attribution tag to denote type-judgement with coercion
+        </Description>
+    </CDDefinition>
+
+ 
+
+ <CDDefinition>
+        <Name> SigmaType </Name>
+        <Description> The binder symbol used to construct the
+  	type of Cartesian products.  The (either plain or attributed)
+  	variables might occur in the body \OM\ object.
+         </Description>
+    </CDDefinition>
+
+ 
+<CDDefinition>
+        <Name> Pair </Name>
+        <Description> The pairing constructor. It takes two 
+               OpenMath objects as first element and second 
+               element of the pair, and a third optional 
+               OpenMath object that represents the type of 
+               the pair.  
+        </Description>    
+    <Example>
+    <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+    <OMA>
+    <OMS cd="ecc" name="Pair"/>
+    <OMI>0</OMI>
+    <OMI>1</OMI>
+    </OMA>
+    </OMOBJ>
+    </Example>
+    </CDDefinition>
+
+<CDDefinition>
+        <Name> PairProj1 </Name>
+        <Description> The first projection function that extracts the first
+	component of a Pair. It satisfies the sigma-reduction rule.
+        </Description>
+        <Example>
+	<OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+	<OMA><OMS cd="relation1" name="eq"/>
+	<OMA><OMS cd="ecc" name="PairProj1"/>
+	<OMA><OMS cd="ecc" name="Pair"/>
+	     <OMI>0</OMI>
+             <OMI>1</OMI>
+	</OMA>
+	</OMA>
+	<OMI>0</OMI>
+	</OMA>
+	</OMOBJ>	
+	</Example>
+    </CDDefinition>
+
+<CDDefinition>
+        <Name> PairProj2 </Name>
+        <Description> The second projection function that extracts the second
+	component of a Pair. It satisfies sigma-reduction rule.
+        </Description>
+        <Example>
+	<OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+	<OMA><OMS cd="relation1" name="eq"/>
+	<OMA><OMS cd="ecc" name="PairProj2"/>
+	<OMA><OMS cd="ecc" name="Pair"/>
+	     <OMI>0</OMI>
+             <OMI>1</OMI>
+	</OMA>
+	</OMA>
+	<OMI>1</OMI>
+	</OMA>
+	</OMOBJ>	
+	</Example>
+
+    </CDDefinition>
+
+
+<CDDefinition>
+        <Name> Tuple </Name> 
+	<Description> The n-ary tupling constructor when n>2.  The
+        arguments are the element of the tuple. Tuple objects can also
+        be constructed by successive nesting of Pair.
+        </Description>	
+	<Example>
+	<OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+	<OMA><OMS cd="relation1" name="eq"/>
+	     <OMA><OMS cd="ecc" name="Pair"/>
+	          <OMI>0</OMI>
+	          <OMA><OMS cd="ecc" name="Pair"/>
+                  <OMI>1</OMI>
+	          <OMI>2</OMI>
+	          </OMA>
+	     </OMA>
+       	     <OMA><OMS cd="ecc" name="Tuple"/>
+	          <OMI>0</OMI>	
+		  <OMI>1</OMI>	
+		  <OMI>2</OMI>
+             </OMA>
+	</OMA>
+	</OMOBJ>		
+	</Example>	
+    </CDDefinition>
+</CD>
+
+

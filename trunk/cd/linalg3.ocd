@@ -1,0 +1,83 @@
+<CD>
+<CDName> linalg3 </CDName>
+<CDURL> http://www.openmath.org/cd/linalg3.ocd </CDURL>
+<CDReviewDate> 2003-04-01 </CDReviewDate>
+<CDDate> 2000-04-14 </CDDate>
+<CDVersion> 2 </CDVersion>
+<CDRevision> 0 </CDRevision>
+<CDStatus> experimental </CDStatus>
+<CDUses>
+</CDUses>
+<Description>
+    This CD  treats matrices and vectors in a column oriented fashion
+    (using matrixcolumn's).
+</Description>
+
+<CDDefinition>
+<Name> vector </Name>
+<Description>
+This symbol represents an n-ary function used to construct (or describe)
+vectors.  Vectors in this CD are considered to be column vectors, and must 
+therefore be transposed to be considered as row vectors.
+</Description>
+<Example>
+An example of vector using n arguments. 
+The specific vector constructed in this example is transpose of [3,6,9].
+<OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+  <OMA>
+    <OMS cd="linalg3" name="vector"/>
+    <OMI> 3 </OMI>
+    <OMI> 6 </OMI>
+    <OMI> 9 </OMI>
+  </OMA>
+</OMOBJ>
+</Example>
+
+</CDDefinition>
+
+<CDDefinition>
+<Name> matrixcolumn </Name>
+<Description> 
+This symbol is an n-ary constructor used to represent columns of
+matrices. Its arguments should be members of a ring.
+</Description>
+<Example>
+Representation of a column of a matrix of length two containing the integers
+[1,0]
+<OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+  <OMA>
+    <OMS cd="linalg3" name="matrixcolumn"/>
+    <OMI> 1 </OMI>
+    <OMI> 0 </OMI>
+  </OMA>
+</OMOBJ>
+</Example>
+</CDDefinition>
+
+<CDDefinition>
+<Name> matrix </Name>
+<Description>
+This symbol is an n-ary matrix constructor which requires matrixcolumn's
+as arguments. It is used to represent matrices.
+</Description>
+<Example>
+Representation of a 2x2 identity matrix
+<OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+  <OMA>
+    <OMS cd="linalg3" name="matrix"/>
+    <OMA>
+      <OMS cd="linalg3" name="matrixcolumn"/>
+      <OMI> 1 </OMI>
+      <OMI> 0 </OMI>
+    </OMA>
+    <OMA>
+      <OMS cd="linalg3" name="matrixcolumn"/>
+      <OMI> 0 </OMI>
+      <OMI> 1 </OMI>
+    </OMA>
+  </OMA>
+</OMOBJ>
+</Example>
+</CDDefinition>
+
+</CD>

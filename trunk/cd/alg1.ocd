@@ -1,0 +1,188 @@
+<CD>
+<CDName> alg1 </CDName>
+<CDURL> http://www.openmath.org/cd/alg1.ocd </CDURL>
+<CDReviewDate> 2003-04-01 </CDReviewDate>
+<CDStatus> official </CDStatus>
+<CDDate> 2001-03-12 </CDDate>
+<CDVersion> 2 </CDVersion>
+<CDRevision> 0 </CDRevision>
+<CDUses>
+  <CDName>arith1</CDName>
+  <CDName>logic1</CDName>
+  <CDName>quant1</CDName>
+  <CDName>relation1</CDName>
+  <CDName>set1</CDName>
+  <CDName>setname1</CDName>
+</CDUses>
+
+<Description> 
+A CD of basic algebraic concepts
+
+At present this CD only holds definitions of zero and one. They are
+deliberately defined here without specifying any particular structure
+(e.g. a group) to which they correspond.
+</Description>
+
+
+<CDDefinition>
+<Name> zero </Name>
+<Description>
+This symbol represents the additive identity element.
+</Description>
+<CMP> for all a | a + 0 = a </CMP>
+<FMP>
+<OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+  <OMBIND>
+    <OMS cd="quant1" name="forall"/>
+    <OMBVAR>
+       <OMV name="a"/>
+    </OMBVAR>
+    <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMA>
+        <OMS cd="arith1" name="plus"/>
+        <OMV name="a"/>
+        <OMS cd="alg1" name="zero"/>
+      </OMA>
+      <OMV name="a"/>
+    </OMA>
+  </OMBIND>
+</OMOBJ>
+</FMP>
+<CMP> for all a | 0 * a = 0 </CMP>
+<FMP>
+<OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+  <OMBIND>
+    <OMS cd="quant1" name="forall"/>
+    <OMBVAR>
+       <OMV name="a"/>
+    </OMBVAR>
+    <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMA>
+        <OMS cd="arith1" name="times"/>
+        <OMS cd="alg1" name="zero"/>
+        <OMV name="a"/>
+      </OMA>
+      <OMS cd="alg1" name="zero"/>
+    </OMA>
+  </OMBIND>
+</OMOBJ>
+</FMP>
+<CMP>The zero of the integers is 0</CMP>
+<FMP>
+<OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+  <OMBIND>
+    <OMS cd="quant1" name="forall"/>
+    <OMBVAR>
+       <OMV name="x"/>
+    </OMBVAR>
+    <OMA>
+      <OMS cd="logic1" name="implies"/>
+      <OMA>
+        <OMS cd="logic1" name="and"/>
+        <OMA>
+          <OMS cd="set1" name="in"/>
+          <OMV name="x"/>
+          <OMS cd="setname1" name="Z"/>
+        </OMA>
+        <OMA>
+          <OMS cd="relation1" name="eq"/>
+          <OMV name="x"/>
+          <OMS cd="alg1" name="zero"/>
+        </OMA>
+      </OMA>
+      <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMV name="x"/>
+      <OMI>0</OMI>
+      </OMA>
+    </OMA>
+  </OMBIND>
+</OMOBJ>
+</FMP>
+</CDDefinition>
+
+<CDDefinition>
+<Name> one </Name>
+<Description>
+This symbol represents the multiplicative identity element.
+</Description>
+
+<CMP> for all a | 1 * a = a </CMP>
+<FMP>
+<OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+  <OMBIND>
+    <OMS cd="quant1" name="forall"/>
+    <OMBVAR>
+       <OMV name="a"/>
+    </OMBVAR>
+    <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMA>
+        <OMS cd="arith1" name="times"/>
+        <OMS cd="alg1" name="one"/>
+        <OMV name="a"/>
+      </OMA>
+      <OMV name="a"/>
+    </OMA>
+  </OMBIND>
+</OMOBJ>
+</FMP>
+
+<CMP> for all a | a * 1 = a </CMP>
+<FMP>
+<OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+  <OMBIND>
+    <OMS cd="quant1" name="forall"/>
+    <OMBVAR>
+       <OMV name="a"/>
+    </OMBVAR>
+    <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMA>
+        <OMS cd="arith1" name="times"/>
+        <OMV name="a"/>
+        <OMS cd="alg1" name="one"/>
+      </OMA>
+      <OMV name="a"/>
+    </OMA>
+  </OMBIND>
+</OMOBJ>
+</FMP>
+<CMP>The one of the integers is 1</CMP>
+<FMP>
+<OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+  <OMBIND>
+    <OMS cd="quant1" name="forall"/>
+    <OMBVAR>
+       <OMV name="x"/>
+    </OMBVAR>
+    <OMA>
+      <OMS cd="logic1" name="implies"/>
+      <OMA>
+        <OMS cd="logic1" name="and"/>
+        <OMA>
+          <OMS cd="set1" name="in"/>
+          <OMV name="x"/>
+          <OMS cd="setname1" name="Z"/>
+        </OMA>
+        <OMA>
+          <OMS cd="relation1" name="eq"/>
+          <OMV name="x"/>
+          <OMS cd="alg1" name="one"/>
+        </OMA>
+      </OMA>
+      <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMV name="x"/>
+      <OMI>1</OMI>
+      </OMA>
+    </OMA>
+  </OMBIND>
+</OMOBJ>
+</FMP>
+</CDDefinition>
+
+</CD>
+

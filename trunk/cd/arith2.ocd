@@ -1,0 +1,90 @@
+<CD>
+<CDName> arith2 </CDName>
+<CDURL> http://www.openmath.org/cd/arith2.ocd </CDURL>
+<CDReviewDate> 2003-04-01 </CDReviewDate>
+<CDStatus> experimental </CDStatus>
+<CDDate> 1999-05-10 </CDDate>
+<CDVersion> 1 </CDVersion>
+<CDRevision> 1 </CDRevision>
+<CDUses>
+  <CDName>arith1</CDName>
+  <CDName>quant1</CDName>
+  <CDName>relation1</CDName>
+  <CDName>nums1</CDName>
+  <CDName>alg1</CDName>
+  <CDName>set1</CDName>
+  <CDName>setname1</CDName>
+</CDUses>
+<Description>
+Further to the basic arithmetic functions, we define some more common
+arithmetic operations. This includes a commutative times which
+exhibits the use of inheritance within the CD's.
+</Description>
+
+
+<CDDefinition>
+<Name> times </Name>
+<Description>
+The symbol representing an n-ary multiplication function inheriting
+from the times in arith1, but with the extra property that here it must
+be commutative.
+</Description>
+<CMP> for all a,b | a * b = b * a </CMP>
+<FMP>
+  <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+    <OMBIND>
+      <OMS cd="quant1" name="forall"/>
+      <OMBVAR>
+         <OMV name="a"/>
+         <OMV name="b"/>
+      </OMBVAR>
+      <OMA>
+        <OMS cd="relation1" name="eq"/>
+        <OMA>
+          <OMS cd="arith1" name="times"/>
+          <OMV name="a"/>
+          <OMV name="b"/>
+        </OMA>
+        <OMA>
+          <OMS cd="arith1" name="times"/>
+          <OMV name="b"/>
+          <OMV name="a"/>
+        </OMA>
+      </OMA>
+    </OMBIND>
+  </OMOBJ>
+</FMP>
+</CDDefinition>
+
+<CDDefinition>
+<Name> inverse </Name>
+<Description>
+A unary operator which represents the inverse of an element of a set. This
+symbol could be used to represent additive or multiplicative inverses.
+</Description>
+<CMP> inverse(inverse(a))=a </CMP>
+<FMP>
+  <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+    <OMBIND>
+      <OMS cd="quant1" name="forall"/>
+      <OMBVAR>
+         <OMV name="a"/>
+      </OMBVAR>
+      <OMA>
+        <OMS cd="relation1" name="eq"/>
+        <OMA>
+          <OMS cd="arith2" name="inverse"/>
+          <OMA>
+            <OMS cd="arith2" name="inverse"/>
+            <OMV name="a"/>
+          </OMA>
+        </OMA>
+        <OMV name="a"/>
+      </OMA>
+    </OMBIND>
+  </OMOBJ>
+</FMP>
+</CDDefinition>
+
+</CD>
+

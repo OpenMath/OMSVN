@@ -1,0 +1,533 @@
+<CD>
+   <CDName> poly </CDName> 
+   <CDURL> http://www.openmath.org/cd/polyd.ocd </CDURL>
+   <CDReviewDate> 2003-04-01 </CDReviewDate> 
+   <CDDate> 1999-12-10 </CDDate> 
+   <CDStatus> experimental </CDStatus>
+   <CDVersion> 2 </CDVersion>
+   <CDRevision> 0 </CDRevision>
+<CDUses>
+  <CDName>quant1</CDName>
+  <CDName>logic1</CDName>
+  <CDName>relation1</CDName>
+  <CDName>alg1</CDName>
+  <CDName>polyr</CDName>
+  <CDName>set1</CDName>
+  <CDName>arith1</CDName>
+</CDUses>
+   <Description>
+     This CD contains generic operators to deal with various forms
+     of polynomials. The arithmetic operators from arith1 etc. are valid
+     on these polynomials: there is also the operator "power" from this
+     CD, which creates formal powers. 
+     More specific operations for Distributed Multivariate Polynomials
+     can be found in polyd.ocd, and for Recursive polynomials in polyr.ocd.
+   </Description>
+
+<CDComment>
+Original OpenMath v1.1 Poly 1997
+Update to Current Format 1999-07-07 DPC
+Move the names of rings to setname.ocd 1999-11-09 JHD
+Split into poly{,d,r} 1999-11-14 JHD
+</CDComment>
+
+<CDComment>
+     Definition of some constructors
+</CDComment>
+
+    <CDDefinition>
+      <Name> power </Name>
+      <Description>
+         Takes a polynomial and a (non-negative) integer and produces a
+         formal power. Although OpenMath does not specify operational
+         semantics, the idea here is that these powers are not
+         evaluated. We note that the power from arith1 would suggest
+         the expanded form.
+      </Description> 
+      <Example>
+        <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+          <OMA>
+            <OMS name="power" cd="poly"/>
+            <OMV name="x"/>
+            <OMI> 2 </OMI>
+          </OMA>
+        </OMOBJ>
+      </Example>
+    </CDDefinition>
+
+    <CDDefinition>
+      <Name> factored </Name>
+      <Description> 
+         The constructor for a factorization. Its arguments are formal
+         powers (see previous operator), where the polynomials are supposed
+         to be irreducible (except possibly for a content from the ground
+         ring).
+         Note that "factored" is not a call to factorise something, rather
+         a statement that we know a factorisation.
+      </Description>
+      <Example>
+        <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+          <OMA>
+            <OMS name="factored" cd="poly"/>
+            <OMA>
+              <OMS name="power" cd="poly"/>
+              <OMV name="x"/>
+              <OMI> 2 </OMI>
+            </OMA>
+            <OMA>
+              <OMS name="power" cd="poly"/>
+              <OMA>
+                <OMS name="plus" cd="arith1"/>
+                <OMV name="x"/>
+                <OMI> 2 </OMI>
+              </OMA>
+              <OMI> 1 </OMI>
+            </OMA>
+            <OMA>
+              <OMS name="power" cd="poly"/>
+              <OMA>
+                <OMS name="minus" cd="arith1"/>
+                <OMV name="x"/>
+                <OMI> 2 </OMI>
+              </OMA>
+              <OMI> 1 </OMI>
+            </OMA>
+          </OMA>
+        </OMOBJ>
+      </Example>
+    </CDDefinition>
+
+    <CDDefinition>
+      <Name> squarefreed </Name>
+      <Description> 
+         The constructor for a square-free factorization. Its arguments
+         should have the structure of the above "factored", where the
+         polynomials should be square-free.
+         Again, this is a statement that we have a square-free factorisation,
+         rather than a request to compute one.
+      </Description>
+      <Example>
+        <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+          <OMA>
+            <OMS name="squarefreed" cd="poly"/>
+            <OMA>
+              <OMS name="power" cd="poly"/>
+              <OMV name="x"/>
+              <OMI> 2 </OMI>
+            </OMA>
+            <OMA>
+              <OMS name="power" cd="poly"/>
+              <OMA>
+                <OMS name="minus" cd="arith1"/>
+                <OMA>
+                  <OMS name="power" cd="arith1"/>
+                  <OMV name="x"/>
+                  <OMI> 2 </OMI>
+                </OMA>
+                <OMI> 4 </OMI>
+              </OMA>
+              <OMI> 1 </OMI>
+            </OMA>
+          </OMA>
+        </OMOBJ>
+      </Example>
+    </CDDefinition>
+
+<CDComment>
+     Definition of operations
+</CDComment>
+
+    <CDDefinition>
+      <Name> expand </Name>
+      <Description> 
+        Converts a factored or squarefreed form into the expanded
+        polynomial over the same ring, so that factored(recursive)
+        -> recursive, etc.
+      </Description>
+      <Example>
+        <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+          <OMA>
+            <OMS name="eq" cd="relation1"/>
+            <OMA>
+              <OMS name="factored" cd="poly"/>
+              <OMA>
+                <OMS name="power" cd="poly"/>
+                <OMV name="x"/>
+                <OMI> 2 </OMI>
+              </OMA>
+              <OMA>
+                <OMS name="power" cd="poly"/>
+                <OMA>
+                  <OMS name="plus" cd="arith1"/>
+                  <OMV name="x"/>
+                  <OMI> 2 </OMI>
+                </OMA>
+                <OMI> 1 </OMI>
+              </OMA>
+              <OMA>
+                <OMS name="power" cd="poly"/>
+                <OMA>
+                  <OMS name="minus" cd="arith1"/>
+                  <OMV name="x"/>
+                  <OMI> 2 </OMI>
+                </OMA>
+                <OMI> 1 </OMI>
+              </OMA>
+            </OMA>
+            <OMA>
+              <OMS name="plus" cd="arith1"/>
+              <OMA>
+                <OMS name="power" cd="arith1"/>
+                <OMV name="x"/>
+                <OMI> 4 </OMI>
+              </OMA>
+              <OMA>
+                <OMS name="times" cd="arith1"/>
+                <OMI> -4 </OMI>
+                <OMA>
+                  <OMS name="power" cd="arith1"/>
+                  <OMV name="x"/>
+                  <OMI> 2 </OMI>
+                </OMA>
+              </OMA>
+            </OMA>
+          </OMA>
+        </OMOBJ>
+      </Example>
+    </CDDefinition>
+
+    <CDDefinition>
+      <Name> degree </Name>
+      <Description> 
+        The total degree of its argument. The value returned is a
+        non-negative integer. We note that the degree of 0 is undefined.
+      </Description>
+      <CMP> degree(x^n)=n </CMP>
+      <FMP>
+        <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+          <OMA>
+            <OMS name="eq" cd="relation1"/>
+            <OMA>
+              <OMS name="degree" cd="poly"/>
+              <OMA>
+                <OMS name="power" cd="arith1"/>
+                <OMV name="x"/>
+                <OMV name="n"/>
+              </OMA>
+            </OMA>
+            <OMV name="n"/>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </CDDefinition>
+
+    <CDDefinition>
+       <Name> degree_wrt </Name>
+       <Description> 
+         The degree with respect to a variable (the second
+         argument). We note that the degree of 0 is undefined.
+       </Description>
+      <CMP> degreeWrt(x^ny^m,x)=n </CMP>
+      <FMP>
+        <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+          <OMA>
+            <OMS name="eq" cd="relation1"/>
+            <OMA>
+              <OMS name="degree_wrt" cd="poly"/>
+              <OMA>
+                <OMS name="times" cd="arith1"/>
+                <OMA>
+                  <OMS name="power" cd="arith1"/>
+                  <OMV name="x"/>
+                  <OMV name="n"/>
+                </OMA>
+                <OMA>
+                  <OMS name="power" cd="arith1"/>
+                  <OMV name="y"/>
+                  <OMV name="m"/>
+                </OMA>
+              </OMA>
+              <OMV name="x"/>
+            </OMA>
+            <OMV name="n"/>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </CDDefinition>
+
+    <CDDefinition>
+      <Name> factor </Name>
+      <Description> 
+         The decomposition of its argument into irreducible
+         factors. A program that can compute the factorization is required
+         to return a "factored" object - see above.
+      </Description>
+      <Example>
+        <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+          <OMA>
+            <OMS name="eq" cd="relation1"/> 
+            <OMA>
+              <OMS name="factor" cd="poly"/>
+              <OMA>
+                <OMS name="plus" cd="arith1"/>
+                <OMA>
+                  <OMS name="power" cd="arith1"/>
+                  <OMV name="x"/>
+                  <OMI> 4 </OMI>
+                </OMA>
+                <OMA>
+                  <OMS name="times" cd="arith1"/>
+                  <OMI> -4 </OMI>
+                  <OMA>
+                    <OMS name="power" cd="arith1"/>
+                    <OMV name="x"/>
+                    <OMI> 2 </OMI>
+                  </OMA>
+                </OMA>
+              </OMA>
+            </OMA>
+            <OMA>
+              <OMS name="factored" cd="poly"/>
+              <OMA>
+                <OMS name="power" cd="poly"/>
+                <OMV name="x"/>
+                <OMI> 2 </OMI>
+              </OMA>
+              <OMA>
+                <OMS name="power" cd="poly"/>
+                <OMA>
+                  <OMS name="plus" cd="arith1"/>
+                  <OMV name="x"/>
+                  <OMI> 2 </OMI>
+                </OMA>
+                <OMI> 1 </OMI>
+              </OMA>
+              <OMA>
+                <OMS name="power" cd="poly"/>
+                <OMA>
+                  <OMS name="minus" cd="arith1"/>
+                  <OMV name="x"/>
+                  <OMI> 2 </OMI>
+                </OMA>
+                <OMI> 1 </OMI>
+              </OMA>
+            </OMA>
+          </OMA>
+        </OMOBJ>
+      </Example>
+    </CDDefinition>
+
+    <CDDefinition>
+      <Name> squarefree </Name>
+      <Description>  
+         The square-free decomposition of its argument. A program that can
+         compute the factorization is required to return a "squarefreed"
+         object. 
+      </Description>
+      <Example>
+        <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+          <OMA>
+            <OMS name="eq" cd="relation1"/> 
+            <OMA>
+              <OMS name="squarefree" cd="poly"/>
+              <OMA>
+                <OMS name="plus" cd="arith1"/>
+                <OMA>
+                  <OMS name="power" cd="arith1"/>
+                  <OMV name="x"/>
+                  <OMI> 4 </OMI>
+                </OMA>
+                <OMA>
+                  <OMS name="times" cd="arith1"/>
+                  <OMI> -4 </OMI>
+                  <OMA>
+                    <OMS name="power" cd="arith1"/>
+                    <OMV name="x"/>
+                    <OMI> 2 </OMI>
+                  </OMA>
+                </OMA>
+              </OMA>
+            </OMA>
+            <OMA>
+              <OMS name="squarefreed" cd="poly"/>
+              <OMA>
+                <OMS name="power" cd="poly"/>
+                <OMV name="x"/>
+                <OMI> 2 </OMI>
+              </OMA>
+              <OMA>
+                <OMS name="power" cd="poly"/>
+                <OMA>
+                  <OMS name="minus" cd="arith1"/>
+                  <OMA>
+                    <OMS name="power" cd="arith1"/>
+                    <OMV name="x"/>
+                    <OMI> 2 </OMI>
+                  </OMA>
+                  <OMI> 4 </OMI>
+                </OMA>
+                <OMI> 1 </OMI>
+              </OMA>
+            </OMA>
+          </OMA>
+        </OMOBJ>
+      </Example>
+    </CDDefinition>
+
+    <CDDefinition>
+       <Name> gcd </Name>
+       <Description> 
+          The greatest common divisor of its polynomial arguments.
+       </Description>
+    </CDDefinition>
+
+    <CDDefinition>
+       <Name> lcm </Name>
+       <Description> 
+          The least common multiple of its polynomial arguments.
+       </Description>
+       <CMP>
+         for all x,y lcm(x,y) = (x*y)/gcd(x,y)
+       </CMP>
+       <FMP><OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+       <OMBIND>
+         <OMS cd="quant1" name="forall"/>
+	 <OMBVAR>
+	   <OMV name="x"/>
+	   <OMV name="y"/>
+	 </OMBVAR>
+	 <OMA>
+	   <OMS name="eq" cd="relation1"/>
+	   <OMA>
+	     <OMS name="lcm" cd="poly"/>
+	     <OMV name="x"/>
+	     <OMV name="y"/>
+	   </OMA>
+	   <OMA>
+	     <OMS name="divide" cd="arith1"/>
+	     <OMA>
+	       <OMS name="times" cd="arith1"/>
+	       <OMV name="x"/>
+	       <OMV name="y"/>
+	     </OMA>
+	     <OMA>
+	       <OMS name="gcd" cd="poly"/>
+	       <OMV name="x"/>
+	       <OMV name="y"/>
+	     </OMA>
+	   </OMA>
+	 </OMA>
+       </OMBIND>
+       </OMOBJ></FMP>
+    </CDDefinition>
+
+    <CDDefinition>
+       <Name> resultant </Name>
+       <Description> 
+         Function taking three arguments, it represents the resultant
+         of two polynomials, which are the first two arguments, with
+         respect to the given variable which is the third argument.
+       </Description>
+
+       <CMP>
+         if for all f,g in R[x] | if there exists an a in R 
+         s.t. f(a) = g(a) = 0 then resultant(f,g,x) = 0
+       </CMP>
+
+     <CDComment>
+       We note that the polynomials utilised in the following FMP are
+       recursive in nature, however the resultant symbol may be used
+       also on dense polynomials.
+     </CDComment>
+
+       <FMP><OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+           <OMBIND>
+	     <OMS name="forall" cd="quant1"/>
+	     <OMBVAR>
+	       <OMV name="f"/>
+	       <OMV name="g"/>
+	     </OMBVAR>
+	     <OMA>
+	       <OMS name="implies" cd="logic1"/>
+	       <OMA>
+	         <OMS name="and" cd="logic1"/>
+		 <OMA>
+	           <OMS name="in" cd="set1"/>
+		   <OMV name="f"/>
+		   <OMA>
+		     <OMS name="polynomial_ring_r" cd="polyr"/>
+		     <OMV name="R"/>
+		     <OMV name="x"/>
+		   </OMA>
+		 </OMA>
+		 <OMA>
+	           <OMS name="in" cd="set1"/>
+		   <OMV name="g"/>
+		   <OMA>
+		     <OMS name="polynomial_ring_r" cd="polyr"/>
+		     <OMV name="R"/>
+		     <OMV name="x"/>
+		   </OMA>
+		 </OMA>
+	       </OMA>
+	       <OMA>
+		 <OMS name="implies" cd="logic1"/>
+		 <OMBIND>
+	           <OMS name="exists" cd="quant1"/>
+		   <OMBVAR>
+		     <OMV name="a"/>
+		   </OMBVAR>
+		   <OMA>
+		     <OMS name="and" cd="logic1"/>
+		     <OMA>
+		       <OMS name="in" cd="set1"/>
+		       <OMV name="a"/>
+		       <OMV name="R"/>
+		     </OMA>
+		     <OMA>
+		       <OMS name="eq" cd="relation1"/>
+		       <OMA>
+			 <OMV name="f"/>
+			 <OMV name="a"/>
+		       </OMA>
+		       <OMS name="zero" cd="alg1"/>
+		     </OMA>
+		     <OMA>
+		       <OMS name="eq" cd="relation1"/>
+		       <OMA>
+			 <OMV name="g"/>
+			 <OMV name="a"/>
+		       </OMA>
+		       <OMS name="zero" cd="alg1"/>
+		     </OMA>
+		   </OMA>
+		 </OMBIND>
+		 <OMA>
+		   <OMS name="eq" cd="relation1"/>
+		   <OMA>
+		     <OMS name="resultant" cd="poly"/>
+		     <OMV name="f"/>
+		     <OMV name="g"/>
+		     <OMV name="x"/>
+		   </OMA>
+		   <OMS name="zero" cd="alg1"/>
+		 </OMA>
+	       </OMA>
+	     </OMA>
+  	   </OMBIND>
+       </OMOBJ></FMP>
+
+    </CDDefinition>
+
+    <CDDefinition>
+       <Name> convert </Name>
+       <Description> 
+         Conversion between polynomial rings. The first argument is a
+         polynomial and the second is a polynomial ring. This represents the 
+         conversion of the given polynomial as an element of the given ring.
+         A program that can compute the conversion is required to return
+         a polynomial in the given ring.
+       </Description>
+    </CDDefinition>
+
+</CD>

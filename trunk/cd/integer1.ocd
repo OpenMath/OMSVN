@@ -1,0 +1,283 @@
+<CD>
+<CDName> integer1 </CDName>
+<CDURL> http://www.openmath.org/cd/integer1.ocd </CDURL>
+<CDReviewDate> 2003-04-01 </CDReviewDate>
+<CDDate> 2001-03-12 </CDDate>
+<CDVersion> 2 </CDVersion>
+<CDRevision> 0 </CDRevision>
+<CDStatus> official </CDStatus>
+<CDUses>
+  <CDName>logic1</CDName>
+  <CDName>quant1</CDName>
+  <CDName>set1</CDName>
+  <CDName>arith1</CDName>
+  <CDName>setname1</CDName>
+  <CDName>relation1</CDName>
+  <CDName>fns1</CDName>
+  <CDName>alg1</CDName>
+  <CDName>interval1</CDName>
+</CDUses>
+<Description>
+    This CD holds a collection of basic integer functions.
+
+    This CD is intended to be `compatible' with the corresponding elements
+    in Content MathML.
+</Description>
+
+<CDDefinition>
+<Name>factorof</Name>
+<Description>
+   This is the binary OpenMath operator that is used to indicate the
+   mathematical relationship a "is a factor of" b, where a is the
+   first argument and b is the second. This relationship is
+   true if and only if b mod a = 0.
+</Description>
+
+<CMP> b is a factor of a iff remainder of a divided by b = 0 </CMP>
+
+<FMP>
+  <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+    <OMA>
+      <OMS cd="logic1" name="implies"/>
+      <OMA>
+        <OMS cd="integer1" name="factorof"/>
+	<OMV name="b"/>
+	<OMV name="a"/>
+      </OMA>
+      <OMA>
+        <OMS cd="relation1" name="eq"/>
+	<OMA>
+	  <OMS cd="integer1" name="remainder"/>
+	  <OMV name="a"/>
+	  <OMV name="b"/>
+	</OMA>
+	<OMS cd="alg1" name="zero"/>
+      </OMA>
+    </OMA>
+  </OMOBJ>
+</FMP>
+</CDDefinition>
+
+<CDDefinition>
+<Name> factorial </Name>
+<Description> 
+The symbol to represent a unary factorial function on non-negative integers.
+</Description>
+<CMP>
+factorial n = product [1..n]
+</CMP>
+<FMP>
+  <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+    <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMA>
+        <OMS cd="integer1" name="factorial"/>
+        <OMV name="n"/>
+      </OMA>
+      <OMA>
+        <OMS cd="arith1" name="product"/>
+          <OMA>
+            <OMS cd="interval1" name="integer_interval"/>
+            <OMI> 1 </OMI>
+            <OMV name="n"/>
+          </OMA>
+        <OMBIND>
+          <OMS cd="fns1" name="lambda"/>
+            <OMBVAR>
+              <OMV name="i"/>
+            </OMBVAR>
+            <OMV name="i"/>
+        </OMBIND>
+      </OMA>
+    </OMA>
+  </OMOBJ>
+</FMP>
+</CDDefinition>
+
+<CDDefinition>
+<Name> quotient </Name>
+<Description>
+The symbol to represent the integer (binary) division operator. That is,
+for integers a and b, quotient(a,b) denotes q such that a=b*q+r, with |r|
+less than |b| and a*r positive.
+</Description>
+<CMP>
+for all a,b with a,b Integers |
+  a = b * quotient(a,b) + remainder(a,b) and abs(remainder(a,b)) is less than abs(b) and 
+a*remainder(a,b) >= 0
+</CMP>
+<FMP>
+   <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+     <OMBIND>
+       <OMS cd="quant1" name="forall"/>
+       <OMBVAR>
+         <OMV name="a"/>
+         <OMV name="b"/>
+       </OMBVAR>
+       <OMA>
+         <OMS cd="logic1" name="implies"/>
+         <OMA>
+           <OMS cd="logic1" name="and"/>
+           <OMA>
+             <OMS cd="set1" name="in"/>
+             <OMV name="a"/>
+             <OMS cd="setname1" name="Z"/>
+           </OMA>
+           <OMA>
+             <OMS cd="set1" name="in"/>
+             <OMV name="b"/>
+             <OMS cd="setname1" name="Z"/>
+           </OMA>
+         </OMA>
+         <OMA>
+	   <OMS cd="logic1" name="and"/>
+	   <OMA>
+             <OMS cd="relation1" name="eq"/>
+             <OMV name="a"/>
+             <OMA>
+               <OMS cd="arith1" name="plus"/>
+               <OMA>
+                 <OMS cd="arith1" name="times"/>
+                 <OMV name="b"/>
+                 <OMA>
+                   <OMS cd="integer1" name="quotient"/>
+                   <OMV name="a"/>
+                   <OMV name="b"/>
+                 </OMA>
+               </OMA>
+               <OMA>
+                 <OMS cd="integer1" name="remainder"/>
+                 <OMV name="a"/>
+                 <OMV name="b"/>
+               </OMA>
+             </OMA>
+           </OMA>
+           <OMA>
+             <OMS cd="relation1" name="lt"/>
+             <OMA>
+               <OMS cd="arith1" name="abs"/>
+               <OMA>
+                 <OMS cd="integer1" name="remainder"/>
+                 <OMV name="a"/>
+                 <OMV name="b"/>
+               </OMA>
+             </OMA>
+             <OMA>
+               <OMS cd="arith1" name="abs"/>
+               <OMV name="b"/>
+             </OMA>
+           </OMA>
+           <OMA>
+             <OMS cd="relation1" name="geq"/>
+             <OMA>
+               <OMS cd="arith1" name="times"/>
+               <OMV name="a"/>
+	       <OMA>
+	         <OMS cd="integer1" name="remainder"/>
+		 <OMV name="a"/>
+		 <OMV name="b"/>
+	       </OMA>
+             </OMA>
+             <OMS cd="alg1" name="zero"/>
+           </OMA>
+         </OMA>
+       </OMA>
+     </OMBIND>
+   </OMOBJ>
+</FMP>
+</CDDefinition>
+
+<CDDefinition>
+<Name> remainder </Name>
+<Description> 
+The symbol to represent the integer remainder after (binary) division.
+For integers a and b, remainder(a,b) denotes r such that a=b*q+r, with |r| less
+than |b| and a*r positive.
+</Description>
+<CMP>
+for all a,b with a,b Integers | 
+  a = b * quotient(a,b) + remainder(a,b) and abs(remainder(a,b)) is less than abs(b) and a*remainder(a,b) >= 0
+</CMP>
+<FMP>
+   <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+     <OMBIND>
+       <OMS cd="quant1" name="forall"/>
+       <OMBVAR>
+         <OMV name="a"/>
+         <OMV name="b"/>
+       </OMBVAR>
+       <OMA>
+         <OMS cd="logic1" name="implies"/>
+         <OMA>
+           <OMS cd="logic1" name="and"/>
+           <OMA>
+             <OMS cd="set1" name="in"/>
+             <OMV name="a"/>
+             <OMS cd="setname1" name="Z"/>
+           </OMA>
+           <OMA>
+             <OMS cd="set1" name="in"/>
+             <OMV name="b"/>
+             <OMS cd="setname1" name="Z"/>
+           </OMA>
+         </OMA>
+         <OMA>
+	   <OMS cd="logic1" name="and"/>
+	   <OMA>
+             <OMS cd="relation1" name="eq"/>
+             <OMV name="a"/>
+             <OMA>
+               <OMS cd="arith1" name="plus"/>
+               <OMA>
+                 <OMS cd="arith1" name="times"/>
+                 <OMV name="b"/>
+                 <OMA>
+                   <OMS cd="integer1" name="quotient"/>
+                   <OMV name="a"/>
+                   <OMV name="b"/>
+                 </OMA>
+               </OMA>
+               <OMA>
+                 <OMS cd="integer1" name="remainder"/>
+                 <OMV name="a"/>
+                 <OMV name="b"/>
+               </OMA>
+             </OMA>
+           </OMA>
+           <OMA>
+             <OMS cd="relation1" name="lt"/>
+             <OMA>
+               <OMS cd="arith1" name="abs"/>
+               <OMA>
+                 <OMS cd="integer1" name="remainder"/>
+                 <OMV name="a"/>
+                 <OMV name="b"/>
+               </OMA>
+             </OMA>
+             <OMA>
+               <OMS cd="arith1" name="abs"/>
+               <OMV name="b"/>
+             </OMA>
+           </OMA>
+           <OMA>
+             <OMS cd="relation1" name="geq"/>
+             <OMA>
+               <OMS cd="arith1" name="times"/>
+               <OMV name="a"/>
+	       <OMA>
+	         <OMS cd="integer1" name="remainder"/>
+		 <OMV name="a"/>
+		 <OMV name="b"/>
+	       </OMA>
+             </OMA>
+             <OMS cd="alg1" name="zero"/>
+           </OMA>
+         </OMA>
+       </OMA>
+     </OMBIND>
+   </OMOBJ>
+</FMP>
+</CDDefinition>
+
+</CD>
+

@@ -1,0 +1,58 @@
+<CD>
+<CDName>setoid</CDName>
+<CDURL> http://www.openmath.org/cd/setoid.ocd </CDURL>
+<CDReviewDate> 2003-04-01 </CDReviewDate> 
+<CDStatus> experimental </CDStatus>
+<CDDate> 1999-06-01 </CDDate>
+<CDVersion> 1 </CDVersion>
+<CDRevision> 1 </CDRevision>
+<CDUses>
+</CDUses>
+
+
+    <Description> 
+     The definition of a setoid as a set with an equivalence relations
+    defined on its elements.		
+    
+    Initial version: O. Caprotti 
+    </Description>
+
+
+<CDDefinition>
+ <Name>	Setoid </Name>
+ <Description> The contructor for the type of set 
+ with an equivalence relation on it.
+ </Description>
+<CMP> Is defined as  
+        Lambda {Carrier:> symtype; Eq: 	(relation Carrier)}.
+        SigmaType{ Carrier:> symtype; 	
+	Eq: 	(relation Carrier);	
+   	(equivalence Carrier Eq) }
+</CMP>
+    <Example>
+    </Example>
+
+</CDDefinition>
+
+<CDDefinition>
+ <Name>	make_Setoid </Name>
+ <Description> The contructor for the tuples consisting of a set, 
+ an equivalence relation on the set, and a proof that the relation 
+ is actually an equivalence relation.
+ </Description>
+<CMP> Is defined as  
+        Lambda {Carrier:> symtype; 
+        Eq: 	(relation Carrier)
+        proof: (equivalence Carrier Eq)}.
+        Tuple (Carrier,	Eq, proof)
+</CMP>
+    <Example>
+    </Example>
+
+</CDDefinition>
+
+
+
+
+</CD>
+

@@ -1,0 +1,101 @@
+<CD>
+  <CDName> indnat </CDName>
+  <CDURL>  http://www.openmath.org/cd/indnat.ocd </CDURL>
+  <CDReviewDate>  2000-09-01 </CDReviewDate>
+  <CDStatus> experimental </CDStatus>
+  <CDVersion> 1 </CDVersion>	
+  <CDRevision> 1 </CDRevision>	
+  <CDUses>
+  <CDName>relation1</CDName>
+  </CDUses>
+
+  <Description> 
+     Inductive definition of natural numbers
+     Initial version: O.C (Jan. 2000)
+    </Description>
+
+
+  <CDDefinition>
+    <Name> indNat </Name> 
+    <Description> Attribution tag to denote the
+    type of inductively defined natural numbers. It is also denoted as
+    setname1:N.
+    </Description>
+  </CDDefinition>
+
+  
+
+  <CDDefinition>
+    <Name> zero </Name>
+    <Description> The natural number 0, also constant base function
+          for the inductive definition of the type of natural numbers
+        </Description>
+  </CDDefinition>
+
+  <CDDefinition>
+    <Name> succ </Name>
+    <Description> Successor function on the natural number. 
+           Constructor for the inductively defined natural numbers. 
+           Takes argument a a natural number and returns a natural
+           number.
+        </Description>
+  </CDDefinition>
+
+  <CDDefinition>
+    <Name> plus </Name>
+    <Description> Addition of natural numbers defined recursively
+           by using the successor.
+        </Description>
+    <Example>        
+        <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+	<OMA><OMS name="eq" cd="relation1"/>
+	  <OMA><OMS cd="indnat" name="plus"/>
+	    <OMV name="n"/>
+	    <OMA><OMS name="succ" cd="indnat"/> 
+	      <OMV name="m"/>
+	    </OMA>
+	  </OMA>
+	  <OMA><OMS name="succ" cd="indnat"/> 
+	    <OMA><OMS cd="indnat" name="plus"/>
+	      <OMV name="n"/>                        
+	      <OMV name="m"/>
+	    </OMA>
+	  </OMA>
+	</OMA>
+      </OMOBJ>
+        </Example>
+
+  </CDDefinition>
+
+  <CDDefinition>
+    <Name> times </Name>
+    <Description> Multiplication of natural numbers defined recursively
+           by using the successor and plus.
+        </Description>
+    <Example>        
+        <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+	<OMA><OMS name="eq" cd="relation1"/>
+	  <OMA><OMS cd="indnat" name="times"/>
+	    <OMV name="n"/>
+	    <OMA>
+	      <OMS name="succ" cd="indnat"/> 
+	      <OMV name="m"/>
+	    </OMA>
+	  </OMA>
+	  <OMA><OMS cd="indnat" name="plus"/>
+	    <OMA><OMS cd="indnat" name="times"/>
+	      <OMV name="n"/>
+	      <OMV name="m"/>
+	    </OMA>
+	    <OMV name="n"/>                
+	  </OMA>
+	</OMA>
+      </OMOBJ>
+        </Example>
+
+  </CDDefinition>
+
+  
+
+</CD>
+

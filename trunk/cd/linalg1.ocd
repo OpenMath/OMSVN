@@ -1,0 +1,494 @@
+<CD>
+<CDName> linalg1 </CDName>
+<CDURL> http://www.openmath.org/cd/linalg1.ocd </CDURL>
+<CDReviewDate> 2003-04-01 </CDReviewDate>
+<CDDate> 2001-03-12 </CDDate>
+<CDVersion> 2 </CDVersion>
+<CDRevision> 0 </CDRevision>
+<CDStatus> official </CDStatus>
+<CDUses>
+  <CDName>alg1</CDName>
+  <CDName>arith1</CDName>
+  <CDName>linalg2</CDName>
+  <CDName>logic1</CDName>
+  <CDName>relation1</CDName>
+  <CDName>transc1</CDName>
+</CDUses>
+<Description>
+   Operations on Matrices (independent of the matrix representation).
+</Description>
+
+<CDDefinition>
+<Name> vectorproduct </Name>
+<Description>
+This symbol represents the vector product function. It takes two
+three dimensional vector arguments and returns a three dimensional
+vector. It is defined as follows: if we write a as [a_1,a_2,a_3] and
+b as [b_1,b_2,b_3] then the vector product denoted 
+a x b = [a_2b_3 - a_3b_2 , a_3b_1 - a_1b_3 , a_1b_2 - a_2b_1].
+Note that the vector product is often referred to as the cross product.
+</Description>
+<CMP>
+if we write a as [a_1,a_2,a_3] and
+b as [b_1,b_2,b_3] then the vector product denoted 
+a x b = [a_2b_3 - a_3b_2 , a_3b_1 - a_1b_3 , a_1b_2 - a_2b_1]
+</CMP>
+<FMP>
+<OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+  <OMA>
+    <OMS cd="relation1" name="eq"/>
+    <OMA>
+      <OMS cd="linalg1" name="vectorproduct"/>
+      <OMV name="A"/>
+      <OMV name="B"/>
+    </OMA>
+    <OMA>
+      <OMS cd="logic1" name="and"/>
+      <OMA>
+        <OMS cd="arith1" name="minus"/>
+	<OMA>
+	  <OMS cd="arith1" name="times"/>
+	  <OMA>
+	    <OMS cd="linalg1" name="vector_selector"/>
+	    <OMI> 2 </OMI>
+	    <OMV name="A"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="linalg1" name="vector_selector"/>
+	    <OMI> 3 </OMI>
+	    <OMV name="B"/>
+	  </OMA>
+	</OMA>
+	<OMA>
+	  <OMS cd="arith1" name="times"/>
+	  <OMA>
+	    <OMS cd="linalg1" name="vector_selector"/>
+	    <OMI> 3 </OMI>
+	    <OMV name="A"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="linalg1" name="vector_selector"/>
+	    <OMI> 2 </OMI>
+	    <OMV name="B"/>
+	  </OMA>
+	</OMA>
+      </OMA>
+      <OMA>
+        <OMS cd="arith1" name="minus"/>
+	<OMA>
+	  <OMS cd="arith1" name="times"/>
+	  <OMA>
+	    <OMS cd="linalg1" name="vector_selector"/>
+	    <OMI> 3 </OMI>
+	    <OMV name="A"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="linalg1" name="vector_selector"/>
+	    <OMI> 1 </OMI>
+	    <OMV name="B"/>
+	  </OMA>
+	</OMA>
+	<OMA>
+	  <OMS cd="arith1" name="times"/>
+	  <OMA>
+	    <OMS cd="linalg1" name="vector_selector"/>
+	    <OMI> 1 </OMI>
+	    <OMV name="A"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="linalg1" name="vector_selector"/>
+	    <OMI> 3 </OMI>
+	    <OMV name="B"/>
+	  </OMA>
+	</OMA>
+      </OMA>
+      <OMA>
+        <OMS cd="arith1" name="minus"/>
+	<OMA>
+	  <OMS cd="arith1" name="times"/>
+	  <OMA>
+	    <OMS cd="linalg1" name="vector_selector"/>
+	    <OMI> 1 </OMI>
+	    <OMV name="A"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="linalg1" name="vector_selector"/>
+	    <OMI> 2 </OMI>
+	    <OMV name="B"/>
+	  </OMA>
+	</OMA>
+	<OMA>
+	  <OMS cd="arith1" name="times"/>
+	  <OMA>
+	    <OMS cd="linalg1" name="vector_selector"/>
+	    <OMI> 2 </OMI>
+	    <OMV name="A"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="linalg1" name="vector_selector"/>
+	    <OMI> 1 </OMI>
+	    <OMV name="B"/>
+	  </OMA>
+	</OMA>
+      </OMA>
+    </OMA>
+  </OMA>
+</OMOBJ>
+</FMP>
+</CDDefinition>
+
+<CDDefinition>
+<Name> scalarproduct </Name>
+<Description>
+This symbol represents the scalar product function. It takes two
+vector arguments and returns a scalar value. The scalar product of two
+vectors a, b is defined as |a| * |b| * cos(\theta), where \theta is
+the angle between the two vectors and |.| is a euclidean size
+function. Note that the scalar product is often referred to as the dot
+product.
+</Description>
+<CMP>
+a.b = |a| * |b| * cos(\theta), where \theta is the angle between the
+two vectors
+that is |atan(a_2/a_1)-atan(b_2/b_1)|.
+N.B. The FMP displays the two dimensional case only.
+</CMP>
+<FMP>
+<OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+  <OMA>
+    <OMS cd="relation1" name="eq"/>
+    <OMA>
+      <OMS cd="linalg1" name="scalarproduct"/>
+      <OMV name="a"/>
+      <OMV name="b"/>
+    </OMA>
+    <OMA>
+      <OMS cd="arith1" name="times"/>
+      <OMA>
+        <OMS cd="arith1" name="root"/>
+	<OMA>
+	  <OMS cd="arith1" name="plus"/>
+	  <OMA>
+	    <OMS cd="arith1" name="power"/>
+	    <OMA>
+	      <OMS cd="linalg1" name="vector_selector"/>
+	      <OMI> 1 </OMI>
+	      <OMV name="a"/>
+	    </OMA>
+	    <OMI> 2 </OMI>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="arith1" name="power"/>
+	    <OMA>
+	      <OMS cd="linalg1" name="vector_selector"/>
+	      <OMI> 2 </OMI>
+	      <OMV name="a"/>
+	    </OMA>
+	    <OMI> 2 </OMI>
+	  </OMA>
+	</OMA>
+	<OMI> 2 </OMI>
+      </OMA>
+      <OMA>
+        <OMS cd="arith1" name="root"/>
+	<OMA>
+	  <OMS cd="arith1" name="plus"/>
+	  <OMA>
+	    <OMS cd="arith1" name="power"/>
+	    <OMA>
+	      <OMS cd="linalg1" name="vector_selector"/>
+	      <OMI> 1 </OMI>
+	      <OMV name="b"/>
+	    </OMA>
+	    <OMI> 2 </OMI>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="arith1" name="power"/>
+	    <OMA>
+	      <OMS cd="linalg1" name="vector_selector"/>
+	      <OMI> 2 </OMI>
+	      <OMV name="b"/>
+	    </OMA>
+	    <OMI> 2 </OMI>
+	  </OMA>
+	</OMA>
+	<OMI> 2 </OMI>
+      </OMA>
+      <OMA>
+        <OMS cd="transc1" name="cos"/>
+	<OMA>
+	  <OMS cd="arith1" name="abs"/>
+	  <OMA>
+	    <OMS cd="arith1" name="minus"/>
+	    <OMA>
+	      <OMS cd="transc1" name="arctan"/>
+	      <OMA>
+	        <OMS cd="arith1" name="divide"/>
+		<OMA>
+		  <OMS cd="linalg1" name="vector_selector"/>
+		  <OMI> 2 </OMI>
+		  <OMV name="a"/>
+		</OMA>
+		<OMA>
+		  <OMS cd="linalg1" name="vector_selector"/>
+		  <OMI> 1 </OMI>
+		  <OMV name="a"/>
+		</OMA>
+	      </OMA>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="transc1" name="arctan"/>
+	      <OMA>
+	        <OMS cd="arith1" name="divide"/>
+		<OMA>
+		  <OMS cd="linalg1" name="vector_selector"/>
+		  <OMI> 2 </OMI>
+		  <OMV name="b"/>
+		</OMA>
+		<OMA>
+		  <OMS cd="linalg1" name="vector_selector"/>
+		  <OMI> 1 </OMI>
+		  <OMV name="b"/>
+		</OMA>
+	      </OMA>
+	    </OMA>
+	  </OMA>
+	</OMA>
+      </OMA>
+    </OMA>
+  </OMA>
+</OMOBJ>
+</FMP>
+</CDDefinition>
+
+<CDDefinition>
+<Name> outerproduct </Name>
+<Description>
+This symbol represents the outer product function. It takes two vector
+arguments and returns a matrix. It is defined as follows: if we write
+the {i,j}'th element of the matrix to be returned as m_{i,j}, then:
+m_{i,j}=a_i * b_j where a_i,b_j are the i'th and j'th elements of a, b
+respectively.
+</Description>
+<CMP>
+outerproduct(a,b)_{i,j} = a_i * b_j
+</CMP>
+<FMP>
+<OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+  <OMA>
+    <OMS cd="relation1" name="eq"/>
+    <OMA>
+      <OMS cd="linalg1" name="matrix_selector"/>
+      <OMV name="i"/>
+      <OMV name="j"/>
+      <OMA>
+        <OMS cd="linalg1" name="outerproduct"/>
+	<OMV name="a"/>
+	<OMV name="b"/>
+      </OMA>
+    </OMA>
+    <OMA>
+      <OMS cd="arith1" name="times"/>
+      <OMA>
+        <OMS cd="linalg1" name="vector_selector"/>
+	<OMV name="i"/>
+	<OMV name="a"/>
+      </OMA>
+      <OMA>
+        <OMS cd="linalg1" name="vector_selector"/>
+	<OMV name="j"/>
+	<OMV name="b"/>
+      </OMA>
+    </OMA>
+  </OMA>
+</OMOBJ>
+</FMP>
+</CDDefinition>
+
+<CDDefinition>
+<Name> transpose </Name>
+<Description> 
+This symbol represents a unary function that denotes the transpose of
+the given matrix or vector
+</Description>
+<Example>
+A representation of the equation 
+transpose matrix([0,1],[2,3]) = matrix([0,2],[1,3])
+N.B. in this example the row oriented view of matrix construction is being 
+assumed.
+<OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+  <OMA>
+    <OMS cd="relation1" name="eq"/>
+    <OMA>
+      <OMS cd="linalg1" name="transpose"/>
+      <OMA>
+        <OMS cd="linalg2" name="matrix"/>
+        <OMA>
+          <OMS cd="linalg2" name="matrixrow"/>
+          <OMI> 0 </OMI>
+          <OMI> 1 </OMI>
+        </OMA>
+        <OMA>
+          <OMS cd="linalg2" name="matrixrow"/>
+          <OMI> 2 </OMI>
+          <OMI> 3 </OMI>
+        </OMA>
+      </OMA>
+    </OMA>
+    <OMA>
+      <OMS cd="linalg2" name="matrix"/>
+      <OMA>
+        <OMS cd="linalg2" name="matrixrow"/>
+        <OMI> 0 </OMI>
+        <OMI> 2 </OMI>
+      </OMA>
+      <OMA>
+        <OMS cd="linalg2" name="matrixrow"/>
+        <OMI> 1 </OMI>
+        <OMI> 3 </OMI>
+      </OMA>
+    </OMA>
+  </OMA>
+</OMOBJ>
+</Example>
+</CDDefinition>
+
+<CDDefinition>
+<Name> determinant </Name>
+<Description> 
+This symbol denotes the unary function which returns the determinant
+of its argument, the argument should be a square matrix.
+</Description>
+<CMP>
+The determinant of an identity matrix is 1
+</CMP>
+
+<FMP>
+<OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+  <OMA>
+    <OMS cd="logic1" name="implies"/>
+    <OMA>
+      <OMS cd="logic1" name="and"/>
+      <OMA>
+        <OMS cd="logic1" name="implies"/>
+	<OMA>
+	  <OMS cd="relation1" name="neq"/>
+	  <OMV name="i"/>
+	  <OMV name="j"/>
+	</OMA>
+	<OMA>
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMS cd="linalg1" name="matrix_selector"/>
+	    <OMV name="i"/>
+	    <OMV name="j"/>
+	    <OMV name="M"/>
+	  </OMA>
+	  <OMS cd="alg1" name="zero"/>
+	</OMA>
+      </OMA>
+      <OMA>
+        <OMS cd="logic1" name="implies"/>
+	<OMA>
+	  <OMS cd="relation1" name="eq"/>
+	  <OMV name="i"/>
+	  <OMV name="j"/>
+	</OMA>
+	<OMA>
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMS cd="linalg1" name="matrix_selector"/>
+	    <OMV name="i"/>
+	    <OMV name="j"/>
+	    <OMV name="M"/>
+	  </OMA>
+	  <OMS cd="alg1" name="one"/>
+	</OMA>
+      </OMA>
+    </OMA>
+    <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMA>
+        <OMS cd="linalg1" name="determinant"/>
+	<OMV name="M"/>
+      </OMA>
+      <OMS cd="alg1" name="one"/>
+    </OMA>
+  </OMA>
+</OMOBJ>
+</FMP>
+</CDDefinition>
+
+<CDDefinition>
+<Name> vector_selector </Name>
+<Description>
+This symbol represents the function which allows individual entries to
+be selected from a vector, or a matrixrow. It takes two arguments. The
+first argument is the position in the vector (or matrixrow) of the
+required entry, the second argument is the vector (or matrixrow) in
+question. The indexing is one based, i.e. the first element is indexed by one.
+</Description>
+<Example>
+Representation of a specification of selection of the second element of the
+specific vector [3,6,9].
+N.B. in this example the row oriented view of vector construction is being 
+assumed
+<OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+  <OMA>
+  <OMS cd="linalg1" name="vector_selector"/>
+    <OMI>2</OMI>
+    <OMA>
+    <OMS cd="linalg2" name="vector"/>
+      <OMI> 3 </OMI>
+      <OMI> 6 </OMI>
+      <OMI> 9 </OMI>
+    </OMA>     
+  </OMA>
+</OMOBJ>     
+</Example>
+<Example>
+Representation of a specification of selection of the second element of the
+specific matrixrow [0,1,0].
+N.B. in this example the row oriented view of matrixrow construction is being 
+assumed
+<OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+  <OMA>
+  <OMS cd="linalg1" name="vector_selector"/>
+    <OMI>2</OMI>
+    <OMA>
+    <OMS cd="linalg2" name="matrixrow"/>
+      <OMI> 0 </OMI>
+      <OMI> 1 </OMI>
+      <OMI> 0 </OMI>
+    </OMA>     
+  </OMA>
+</OMOBJ>     
+</Example>
+</CDDefinition>
+
+<CDDefinition>
+<Name> matrix_selector </Name>
+<Description>
+This symbol represents the function which allows individual entries to
+be selected from a matrix. It takes three arguments, the first is the
+index of the row and the second is the index of the column of the
+required element, the third argument is the matrix in question. The
+indexing is one based, i.e. the element in the top left hand corner is
+indexed by (1,1).
+</Description>
+<Example>
+Representation of a specification of selection of the top left hand entry to
+the matrix M.
+<OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+  <OMA>
+    <OMS cd="linalg1" name="matrix_selector"/>
+    <OMI> 1 </OMI>
+    <OMI> 1 </OMI>
+    <OMV name="M"/>
+  </OMA>     
+</OMOBJ>     
+</Example>
+</CDDefinition>
+
+</CD>
+

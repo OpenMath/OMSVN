@@ -1,0 +1,82 @@
+<CD>
+
+    <CDName> icc </CDName>
+    <CDURL> http://www.openmath.org/cd/icc.ocd </CDURL>
+    <CDReviewDate>  2000-09-01 </CDReviewDate>
+    <CDStatus> experimental </CDStatus>
+    <CDVersion> 1 </CDVersion>
+    <CDRevision> 1 </CDRevision>
+	
+    <CDUses>
+      <CDName>lc</CDName>
+      <CDName>setname1</CDName>
+    </CDUses>
+    <Description> 
+    ICC Typing Attributes for OM
+    
+     Initial version: O. Caprotti (July 1, 1999) 
+    </Description>
+
+<CDComment>
+Revised by W.A. Naylor on 2000-02-02 to reflect the name change of setname,
+also adding CDUses.
+</CDComment>
+
+
+   <CDDefinition>
+        <Name> type </Name>
+        <Description> Attribution tag to denote type-judgement
+        </Description>
+    </CDDefinition>
+
+   <CDDefinition>
+        <Name> typecoerce </Name>
+        <Description> Attribution tag to denote type-judgement with coercion
+        </Description>
+   </CDDefinition>
+
+ 
+   <CDDefinition>
+        <Name> IndType </Name>
+        <Description> Constructor for Inductive Types. 
+        Takes arguments the constructor functions for the
+        inhabitants of the type and their signatures.  
+        </Description>
+        <Example>
+         
+
+      <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+              <OMA>
+              <OMS name="IndType" cd="icc"/>
+              <OMATTR>
+                    <OMATP>
+                    <OMS name="type" cd="icc"/>        
+                    <OMS cd="setname1" name="N"/>
+                    </OMATP>
+                    <OMI> 0 </OMI>
+                    </OMATTR>
+              
+              <OMATTR>
+                    <OMATP>
+                    <OMS name="type" cd="icc"/>
+                    <OMA>
+                    <OMS name="mapsto" cd="lc"/>
+                    <OMS name="N" cd="setname1"/>
+                    <OMS name="N" cd="setname1"/>
+                    </OMA>
+                    </OMATP>
+                    <OMS name="succ" cd="indnat"/> 
+                    </OMATTR>
+              </OMA>
+              </OMOBJ>
+        is the defining mathematical property for the 
+        symbolic type nat of the inductively defined 
+        natural numbers with 0 and succ as constructor
+        functions.            
+        </Example>
+   </CDDefinition>
+
+ 
+
+</CD>
+

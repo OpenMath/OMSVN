@@ -1,0 +1,114 @@
+<CD>
+<CDName> quant1 </CDName>
+<CDURL> http://www.openmath.org/cd/quant1.ocd </CDURL>
+<CDReviewDate> 2003-04-01 </CDReviewDate>
+<CDDate> 2001-03-12 </CDDate>
+<CDVersion> 2 </CDVersion>
+<CDRevision> 0 </CDRevision>
+<CDStatus> official </CDStatus>
+<CDUses>
+  <CDName>arith1</CDName>
+  <CDName>logic1</CDName>
+  <CDName>relation1</CDName>
+  <CDName>transc1</CDName>
+</CDUses>
+<Description>
+    This CD holds the definitions of the basic universal ("for all")
+    quantifier and existential ("there exists") quantifier. It is
+    intended to be `compatible' with the MathML elements representing
+    these quantifiers. 
+</Description>
+
+
+<CDDefinition>
+<Name> forall </Name>
+<Description> 
+This symbol represents the universal ("for all") quantifier which takes two
+arguments. It must be placed within an OMBIND element. The first argument is the
+bound variables (placed within an OMBVAR element), and the second is an expression. 
+</Description>
+<Example>
+An example to represents the statement for all x | |sin(x)| &lt;= 1
+<OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+  <OMBIND>
+    <OMS cd="quant1" name="forall"/>
+    <OMBVAR>
+      <OMV name="x"/>
+    </OMBVAR>
+    <OMA>
+      <OMS cd="relation1" name="leq"/>
+      <OMA>
+        <OMS cd="arith1" name="abs"/>
+        <OMA>
+          <OMS cd="transc1" name="sin"/>
+          <OMV name="x"/>
+        </OMA>
+      </OMA>
+      <OMF dec="1.0"/>
+    </OMA>
+  </OMBIND>
+</OMOBJ>
+</Example>
+</CDDefinition>
+
+<CDDefinition>
+<Name> exists </Name>
+<Description> 
+This symbol represents the existential ("there exists") quantifier
+which takes two arguments. It must be placed within an OMBIND element. The first
+argument is the bound variables (placed within an OMBVAR element), and the second
+is an expression.
+</Description>
+<Example>
+An example  which represents the statement that there is no solution
+to x^n+y^n=z^n for n>2, that is:
+it is not true that there exists x,y,z,n | n>2 and x^n+y^n=z^n
+
+<OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+  <OMA>
+    <OMS cd="logic1" name="not"/>
+    <OMBIND>
+      <OMS cd="quant1" name="exists"/>
+      <OMBVAR>
+        <OMV name="x"/>
+        <OMV name="y"/>
+        <OMV name="z"/>
+        <OMV name="n"/>
+      </OMBVAR>
+      <OMA>
+        <OMS cd="logic1" name="and"/>
+        <OMA>
+          <OMS cd="relation1" name="gt"/>
+          <OMV name="n"/>
+          <OMI> 2 </OMI>
+        </OMA>
+        <OMA>
+          <OMS cd="relation1" name="eq"/>
+          <OMA>
+            <OMS cd="arith1" name="plus"/>
+            <OMA>
+               <OMS cd="arith1" name="power"/>
+               <OMV name="x"/>
+               <OMV name="n"/>
+            </OMA>
+            <OMA>
+               <OMS cd="arith1" name="power"/>
+               <OMV name="y"/>
+               <OMV name="n"/>
+            </OMA>
+          </OMA>
+          <OMA>
+             <OMS cd="arith1" name="power"/>
+             <OMV name="z"/>
+             <OMV name="n"/>
+          </OMA>
+        </OMA>
+      </OMA>
+    </OMBIND>
+  </OMA>
+</OMOBJ>
+</Example>
+</CDDefinition>
+
+</CD>
+

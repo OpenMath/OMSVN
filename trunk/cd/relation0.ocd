@@ -1,0 +1,112 @@
+<CD>
+<CDName>       relation0    </CDName>
+<CDURL> 
+               http://www.openmath.org/cd/relation0.ocd 
+</CDURL>
+<CDReviewDate> 2003-04-01 </CDReviewDate>
+<CDStatus>     experimental </CDStatus>
+<CDDate>       1999-06-01   </CDDate>
+<CDVersion> 1 </CDVersion>
+<CDRevision> 1 </CDRevision>
+<CDUses>
+</CDUses>
+<Description> 
+    Binary relations properties, equivalence relation, orders, up
+    to the definition of a setoid as a set with an equivalence relations
+    defined on its elements.		
+    Initial version: O. Caprotti
+</Description>
+    
+
+
+<CDDefinition>
+ <Name> relation </Name>
+<Description> Type constructor; returns the type of binary relations on a set.
+</Description>	
+<CMP>Is defined as "[A:Set] A -> A -> Prop" </CMP>
+
+</CDDefinition>
+
+
+<CDDefinition>
+ <Name> reflexive </Name>
+<Description> Proposition; the type of reflexive binary relations.
+</Description>	
+<CMP>Defined as [A:symtype][R: (relation A)](x:A)(R x x)</CMP>
+</CDDefinition>
+
+<CDDefinition>
+ <Name> irreflexive </Name>
+<Description> Proposition; the type of irreflexive binary relations.
+</Description>	
+<CMP>Defined as  [A:symtype][R: (relation A)](x:A) ~(R x x)</CMP>
+
+
+</CDDefinition>
+
+
+<CDDefinition>
+ <Name> transitive </Name>
+<Description> Proposition; the type of transitive binary relations.
+</Description>	
+<CMP>Defined as [A:symtype][R: (relation A)](x,y,z:A)(R x y) -> (R y z) -> (R x z)</CMP>
+</CDDefinition>
+
+
+<CDDefinition>
+ <Name> symmetric </Name>
+<Description> Proposition; the type of symmetric binary relations.
+</Description>	
+<CMP>Defined as [A:symtype][R: (relation A)](x,y:A)(R x y) -> (R y x)</CMP>
+</CDDefinition>
+
+<CDDefinition>
+ <Name> antisymmetric </Name>
+<Description> Proposition; the type of antisymmetric binary relations.
+</Description>	
+<CMP> Defined as [A:symtype][R: (relation A)](x,y:A)(R x y) -> (R y x) -> (relation1::eq x y)</CMP>
+</CDDefinition>
+
+<CDDefinition>
+ <Name> partial_equivalence </Name>
+<Description> Proposition; the type of partial_equivalence relations, 
+              namely relations that are symmetric, and transitive.
+</Description>	
+<CMP>Defined as [A:symtype][R: (relation A)] (symmetric R) /\ (transitive R)</CMP>
+</CDDefinition>
+
+<CDDefinition>
+ <Name> equivalence </Name>
+<Description> Proposition; the type of equivalence relations, 
+              namely relations that are reflexive, symmetric and transitive.
+</Description>	
+<CMP>Defined as [A:symtype][R: (relation A)] (reflexive R) /\ (symmetric R) /\ (transitive R)</CMP>
+</CDDefinition>
+
+<CDDefinition>
+ <Name> order </Name>
+<Description> Proposition; the type of order relations, 
+              namely relations that are reflexive, antisymmetric and transitive.
+</Description>	
+<CMP>Defined as [A:symtype][R: (relation A)] (reflexive R) /\ (antisymmetric R) /\ (transitive R)</CMP>
+</CDDefinition>
+
+<CDDefinition>
+ <Name> strict_order </Name>
+<Description> Proposition; the type of strict order relations, 
+              namely relations that are irreflexive, antisymmetric and transitive.
+</Description>	
+<CMP>Defined as  [A:symtype][R: (relation A)] (irreflexive R) /\ (antisymmetric R) /\ (transitive R)</CMP>
+</CDDefinition>
+
+<CDDefinition>
+ <Name> pre_order </Name>
+<Description> Proposition; the type of preorder relations, 
+              namely relations that are reflexive and transitive.
+</Description>	
+<CMP>Defined as  [A:symtype][R: (relation A)] (reflexive R) /\ (transitive R)</CMP>
+</CDDefinition>
+
+</CD>
+
+
