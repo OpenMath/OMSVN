@@ -19,7 +19,7 @@
 
 <xsl:template match="book">
 \documentclass[11pt,twoside,chapter,a4paper,keylogo]{openmath}
-\setcounter{secnumdepth}{4}
+\setcounter{secnumdepth}{3}
 \usepackage[latin1]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{longtable}
