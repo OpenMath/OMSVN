@@ -32,6 +32,7 @@
 <xsl:include href="linalg1.xsl"/>
 <xsl:include href="linalg2.xsl"/>
 <xsl:include href="linalg3.xsl"/>
+<xsl:include href="linalg5.xsl"/>
 <xsl:include href="set1.xsl"/>
 <xsl:include href="setname1.xsl"/>
 <xsl:include href="setname2.xsl"/>
