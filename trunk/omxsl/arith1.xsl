@@ -93,10 +93,8 @@
     <xsl:with-param name="mo">
     <mo>
     <xsl:choose>
-    <xsl:when test="following-sibling::*[2][self::om:OMI or
-  self::om:OMF or self::om:OMS[@cd='alg1']]"
-    >&#xD7;</xsl:when>
-    <xsl:when test="following-sibling::*[1][not(self::om:OMI or self::om:OMF)]"
+    <xsl:when test="following-sibling::*[not(self::om:OMI or
+  self::om:OMF or self::om:OMS[@cd='alg1'])]"
     >&#x2062;<!-- IT --></xsl:when>
     <xsl:otherwise>&#xD7;</xsl:otherwise>
     </xsl:choose>
@@ -171,11 +169,18 @@
 </xsl:template>
 
 <xsl:template match="om:OMS[@cd='arith1' and @name='abs']"  >
+  <xsl:choose>
+  <xsl:when test="parent::om:OMA and not(preceding-sibling::*)">
    <mrow>
    <mo>|</mo>
    <xsl:apply-templates select="following-sibling::*[1]"/>
    <mo>|</mo>
    </mrow>
+  </xsl:when>
+  <xsl:otherwise>
+    <mi>abs</mi>
+  </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 
@@ -183,9 +188,9 @@
 <xsl:template match="om:OMS[@cd='arith1' and @name='root']"  >
    <xsl:choose>
    <xsl:when test="following-sibling::*[2]/self::om:OMI[normalize-space(.)='2']">
-   <msqrt
-   ><xsl:apply-templates select="following-sibling::*[1]"
-   /></msqrt>
+   <msqrt>
+     <xsl:apply-templates select="following-sibling::*[1]"/>
+   </msqrt>
    </xsl:when>
    <xsl:otherwise>
    <mroot>

@@ -10,6 +10,12 @@
 <xsl:import href="verb.xsl"/>
 <xsl:import href="om2pmml.xsl"/>
 
+<xsl:output encoding="iso-8859-1"/>
+
+<xsl:template mode="attrib" match="om:OMS[@cd='attributions1' and
+@name='MathML-Presentation']">
+<xsl:copy-of select="following-sibling::om:OMFOREIGN[1]/*"/>
+</xsl:template>
 
 <xsl:template match="/">
 <xsl:processing-instruction name="xml-stylesheet"

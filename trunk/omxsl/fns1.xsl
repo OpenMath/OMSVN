@@ -39,13 +39,10 @@
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="om:OMS[@cd='fns1' and @name='lambda']" mode="ombind">
- <mrow>
-  <mo>&#x3BB;</mo>
-  <xsl:apply-templates select="following-sibling::OMBVAR[1]"/>
-  <mo>.</mo>
-  <xsl:apply-templates select="following-sibling::*[2]"/>
- </mrow>
+<xsl:template match="om:OMS[@cd='fns1' and @name='lambda']">
+  <xsl:call-template name="prefix">
+    <xsl:with-param name="mo"><mo>&#x3BB;</mo></xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 

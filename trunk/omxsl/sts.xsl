@@ -8,6 +8,15 @@
 >
 
 
+<xsl:template mode="attrib" match="om:OMS[@cd='sts1' and
+@name='type']">
+<mrow>
+<xsl:apply-templates select="../../*[2]"/>
+<msub><mo>&#x2208;</mo><mi>sts</mi></msub>
+<xsl:apply-templates select="following-sibling::*[1]"/>
+</mrow>
+</xsl:template>
+
 <xsl:template match="om:OMS[@cd='sts' and @name='mapsto']"  >
   <xsl:param name="p"/>
    <mrow>
