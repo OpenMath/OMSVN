@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.88 2004/03/25 17:31:27 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.89 2004/03/26 11:09:41 openmath Exp $ -->
 
 
 <!DOCTYPE book 
@@ -1197,18 +1197,6 @@ characters) were not allowed in names.
 </informaltable>
 </blockquote>
 
-<para><emphasis role="bold">Note:</emphasis> The schema for the &exml; encoding of OpenMath 
-described in <xref linkend="ssec_xml"/> specifies the names as xsd:Name
-type. At the time of writing, W3C Schema types are defined in terms of
-<citation>xml_98</citation> which uses a more restrictive set of name
-characters, based on the characters available in Unicode 2.0.
-It is expected that W3C Schema types will be augmented to match the
-new XML recommendation, but for portability reasons applications
-should avoid  using the new XML 1.1 name characters unless they are
-absolutely required.
-The XML 1.1 specification has a useful appendix giving
-advice on good strategies to use when naming identifiers.</para>
-
 
 <formalpara><title>CD Base</title>
 
@@ -1850,6 +1838,22 @@ cdname      </entry>
 
 
 </para>
+
+<para><emphasis role="bold">Note:</emphasis> This schema 
+specifies names as being of the <systemitem>xsd:NCName</systemitem>
+type. At the time of writing, W3C Schema types are defined in terms of
+XML 1 <citation>xml_98</citation>.  This limits the characters allowed
+in a name to a subset of the characters available in Unicode 2.0, which
+is far more restrictive than the definition for an
+&OM; name given in <xref linkend="sec_names"/>.
+It is expected that W3C Schema types will be augmented to match the
+new XML 1.1 recommendation <citation>xml_04</citation>, but for portability
+reasons applications
+should avoid  using the new XML 1.1 name characters unless they are
+absolutely required.
+The XML 1.1 specification has a useful appendix giving
+advice on good strategies to use when naming identifiers.</para>
+
 </section>
 
 <section id="sec_xml-desc">
