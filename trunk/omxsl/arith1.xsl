@@ -93,6 +93,7 @@
     <xsl:with-param name="mo">
     <mo>
     <xsl:choose>
+    <xsl:when test="preceding-sibling::*">&#xD7;</xsl:when>
     <xsl:when test="following-sibling::om:OMS[string-length(@name)!=1][2]">&#xD7;</xsl:when>
     <xsl:when test="following-sibling::*[not(self::om:OMI or
   self::om:OMF or self::om:OMS[@cd='alg1'])]"
