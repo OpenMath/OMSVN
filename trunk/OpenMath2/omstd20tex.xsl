@@ -4,7 +4,7 @@
                 xmlns="http://www.w3.org/1999/xhtml">
 
 <xsl:param name="changelog">no</xsl:param>
-<xsl:param name="showdiffs" select="false()"/>
+<xsl:param name="showdiffs" select="true()"/>
 <xsl:output method="text" encoding="iso-8859-1"/>
 
 
@@ -16,10 +16,11 @@
 </xsl:template>
 
 <xsl:template match="book">
-\documentclass[11pt,twoside,chapter]{openmath}
+\documentclass[11pt,twoside,chapter,a4paper]{openmathTN}
 \setcounter{secnumdepth}{4}
 \usepackage[latin1]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{soul}
 \usepackage{ae,amsfonts,amssymb,url,graphics,color,hyperref}
 
 \let\cellsep&amp;
@@ -93,10 +94,13 @@ relative to the OpenMath 1.0 document\ldots
 
 <xsl:template match="formalpara">
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
+<xsl:text>£</xsl:text>
+<xsl:apply-templates select="@revisionflag"/>
 <xsl:text>\paragraph£</xsl:text>
 <xsl:value-of select="title"/>
 <xsl:text>ﬂ</xsl:text>
 £<xsl:apply-templates select="@revisionflag|node()[not(title)]"/>ﬂ
+<xsl:text>ﬂ</xsl:text>
 </xsl:if>
 </xsl:template>
 
@@ -109,7 +113,7 @@ relative to the OpenMath 1.0 document\ldots
 
 <xsl:template match="@revisionflag[.='deleted']">
 <xsl:if test="$showdiffs">
-<xsl:text>\color£redﬂ</xsl:text>
+<xsl:text>\color£redﬂ\st</xsl:text>
 </xsl:if>
 </xsl:template>
 
@@ -150,9 +154,12 @@ relative to the OpenMath 1.0 document\ldots
 \appendix
 
 </xsl:if>
+<xsl:text>£</xsl:text>
+<xsl:apply-templates select="@revisionflag"/>
 \chapter£<xsl:apply-templates select="title/node()"
            />ﬂ\label£<xsl:value-of select="@id"/>ﬂ
 <xsl:apply-templates/>
+<xsl:text>ﬂ</xsl:text>
 </xsl:template>
 
 <xsl:template match="appendix" mode="number">
@@ -305,9 +312,12 @@ relative to the OpenMath 1.0 document\ldots
 </xsl:template>
 
 <xsl:template match="programlisting|literallayout">
+<xsl:text>£</xsl:text>
+<xsl:apply-templates select="@revisionflag"/>
 <xsl:if test="@role='small'">£\footnotesize</xsl:if>
 \begin£verbatimﬂ<xsl:apply-templates/>\end{verbatim}<xsl:if test="@role='small'">\par\vspace£-10ptﬂﬂ</xsl:if>
 <xsl:text>&#10;</xsl:text>
+<xsl:text>ﬂ</xsl:text>
 </xsl:template>
 
 <xsl:template match="sidebar">
@@ -383,7 +393,8 @@ changelog entry here
 \begin£thebibliographyﬂ£99ﬂ
 <xsl:for-each select="biblioentry[key('cite',@id)]">
 <xsl:sort select="(author[1]/surname|author[1]/othername|bibliomisc[@role='key'])[1]"/>
-
+<xsl:text>£</xsl:text>
+<xsl:apply-templates select="@revisionflag"/>
 \bibitem£<xsl:value-of select="@id"/>ﬂ
 <xsl:for-each select="author">
  <xsl:choose>
@@ -395,6 +406,7 @@ changelog entry here
   <xsl:text> </xsl:text>
  <i><xsl:apply-templates select="title/node()"/></i>
 <xsl:text>&#10;</xsl:text>
+<xsl:text>ﬂ</xsl:text>
 </xsl:for-each>
 \end£thebibliographyﬂ
 </xsl:template>
@@ -431,6 +443,12 @@ changelog entry here
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')"
 >\protect\[<xsl:apply-templates/>\protect\]</xsl:if></xsl:template>
 
+
+<xsl:template match="mfenced">
+<xsl:text>(</xsl:text>
+<xsl:apply-templates/>
+<xsl:text>)</xsl:text>
+</xsl:template>
 
 <xsl:template match="mi|mn|mo">
 <xsl:value-of select="."/>
