@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.123 2004/04/07 11:00:40 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.124 2004/04/07 13:21:10 openmath Exp $ -->
 
 
 <!DOCTYPE book 
@@ -2710,6 +2710,12 @@ implementations).</para>
             <entry>|</entry>
             <entry> symbol</entry>
           </row>
+
+          <row>
+            <entry/>
+            <entry>|</entry>
+            <entry>cdbase</entry>
+          </row>
           
           <row>
             <entry/>
@@ -2924,53 +2930,6 @@ implementations).</para>
               id:<math><mi>k</mi></math></entry>
           </row>
           
-          <row revisionflag="added">
-            <entry/>
-            <entry>|</entry>
-            <entry> [9]
-              [<math><mi>n</mi></math>]
-              [<math><mi>m</mi></math>]
-              [<math><mi>k</mi></math>]
-              cdname:<math><mi>n</mi></math>
-              symbname:<math><mi>m</mi></math>
-              uri:<math><mi>k</mi></math>
-            </entry>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [9+64]
-              [<math><mi>n</mi></math>]
-              [<math><mi>m</mi></math>]
-              [<math><mi>k</mi></math>]
-              [<math><mi>l</mi></math>]
-              cdname:<math><mi>n</mi></math>
-              symbname:<math><mi>m</mi></math>
-              uri:<math><mi>k</mi></math>
-              id:<math><mi>l</mi></math>
-            </entry>
-          </row>
-          
-          <row revisionflag="added">
-            <entry/>
-            <entry>|</entry>
-            <entry> [9+128]
-              {<math><mi>n</mi></math>}
-              {<math><mi>m</mi></math>}
-              {<math><mi>k</mi></math>}
-              cdname:<math><mi>n</mi></math>
-              symbname:<math><mi>m</mi></math>
-              uri:<math><mi>k</mi></math>
-            </entry>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [9+64+128]
-              {<math><mi>n</mi></math>}
-              {<math><mi>m</mi></math>}
-              {<math><mi>k</mi></math>}
-              {<math><mi>l</mi></math>}
-              cdname:<math><mi>n</mi></math>
-              symbname:<math><mi>m</mi></math>
-              uri:<math><mi>k</mi></math>
-            id:<math><mi>l</mi></math></entry>
-          </row>
-          
           <row>
             <entry>string </entry>
             <entry><math>&longrightarrow;</math></entry>
@@ -3141,6 +3100,26 @@ implementations).</para>
             <entry/>
           </row>
           
+          <row revisionflag="added">
+            <entry>cdbase</entry>
+            <entry><math>&longrightarrow;</math></entry>
+            <entry> [9]
+              [<math><mi>n</mi></math>]
+              uri:<math><mi>n</mi></math>
+	      object
+            </entry>
+	  </row>
+
+	  <row revisionflag="added">
+            <entry/>
+            <entry>|</entry>
+            <entry> [9+128]
+              {<math><mi>n</mi></math>}
+              uri:<math><mi>n</mi></math>
+	      object
+            </entry>
+          </row>
+
           <row revisionflag="added">
             <entry>foreign</entry>
             <entry><math>&longrightarrow;</math></entry>
@@ -3423,8 +3402,8 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
   in particular the sharing bit in the binary encoding has been
   introduced in &OM;&#160;2 (see section <xref linkend="sec_sharing_references"/> for
   details). The binary encoding in &OM;&#160;2 leaves the tokens with sharing flag 0
-  unchanged to ensure &OM;&#160;1 compatibility. To make use of functionality like the
-  <systemitem>cdbase</systemitem> URI or the version attribute on the &OM; object
+  unchanged to ensure &OM;&#160;1 compatibility. To make use of functionality like
+  the version attribute on the &OM; object
   introduced in &OM;&#160;2, the tokens with sharing flag 1 should be used.</para>
 
 <para revisionflag="added">To facilitate the streaming of &OM; objects, some basic
@@ -3534,10 +3513,8 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
 <listitem><para>are encoded as the symbol tags
     (<phrase revisionflag="added">token identifier</phrase> 8) with the long flag
     set if the maximum of the length <phrase
-    revisionflag="added">in bytes in the UTF-8 encoding</phrase> of the Content Dictionary name,
-    <phrase revisionflag="deleted">and</phrase>
-  the symbol name <phrase revisionflag="added">or the CD base </phrase>
-  is greater than or equal to 256<phrase revisionflag="deleted"> (note that this
+    revisionflag="added">in bytes in the UTF-8 encoding</phrase> of the Content Dictionary name
+    or the symbol name is greater than or equal to 256<phrase revisionflag="deleted"> (note that this
   should never be the case if the rules on symbols and Content
   Dictionary names are applied), followed by the length of the
   Content Dictionary name as a byte (if the long flag was not set)
@@ -3546,16 +3523,12 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
   or a four byte integer (in network byte order), followed by the
   characters of the Content Dictionary name, followed by the
   characters of the symbol name.</phrase>
-<phrase revisionflag="added">. The symbol tags [8] and [8+128] are deprecated in &OM;&#160;2 since
-  symbols now have an optional <systemitem>cdbase</systemitem> field, but are
-  kept for backwards compatibility. The symbol tag is  followed by the
-length 
-    in bytes in the UTF-8 encoding of the
-  Content Dictionary name, the symbol name, and the CD base as a byte (if the long flag was not set)
-  or a four byte integer (in network byte order). These are followed by the
-  bytes of the UTF-8 encoding of
-the Content Dictionary name, the symbol name, and the CD base.</phrase>
-
+<phrase revisionflag="added">. The symbol tag is  followed by the
+  length in bytes in the UTF-8 encoding of the Content Dictionary name, the symbol
+  name, and the <systemitem>id</systemitem> (if the shared bit was set) as a byte
+  (if the long flag was not set) or a four byte integer (in network byte
+  order). These are followed by the bytes of the UTF-8 encoding of the Content
+  Dictionary name, the symbol name, and the <systemitem>id</systemitem>.</phrase>
 </para>
 </listitem>
 </varlistentry>
@@ -3652,6 +3625,22 @@ the Content Dictionary name, the symbol name, and the CD base.</phrase>
       the packets in sequence order.</para>
   </listitem>
 </varlistentry>
+
+<varlistentry revisionflag="added">
+  <term>cdbase scopes</term>
+  <listitem>
+    <para>are encoded using the token identifier 9. The purpose of these
+      scoping devices is to associate a <systemitem>cdbase</systemitem> with an
+      object. The start token [9] (or [137] if the long flag is set) is followed
+      by a single-byte (or 4-byte- if the long flag is set) number
+      <math><mi>n</mi></math> and then by a seqence of <math><mi>n</mi></math>
+      bytes that represent the value of the <systemitem>cdbase</systemitem>
+      attribute (a URI) in utf-8 encoding. This is then followed by the binary
+      encoding of a single object: the object, this <systemitem>cdbase</systemitem> attribute has
+      scope over. </para>
+  </listitem>
+</varlistentry>
+
 
 <varlistentry>
   <term>Applications</term>
