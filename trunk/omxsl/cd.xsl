@@ -109,7 +109,7 @@
 
 
 
-<xsl:template match="Description">
+<xsl:template match="cd:Description">
   <xsl:call-template name="grab-para">
     <xsl:with-param name="string" select="."/>
   </xsl:call-template>
