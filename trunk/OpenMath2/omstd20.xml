@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.111 2004/04/06 11:08:09 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.112 2004/04/06 12:28:52 openmath Exp $ -->
 
 
 <!DOCTYPE book 
@@ -3398,11 +3398,11 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
 
 <para revisionflag="added">The concept of structure sharing in &OM; encodings and
   in particular the sharing bit in the binary encoding has been
-  introduced in &OM;2 (see section <xref linkend="sec_sharing_references"/> for
-  details). The binary encoding in &OM;2 leaves the tokens with sharing flag 0
-  unchanged to ensure &OM;1 compatibility. To make use of functionality like the
+  introduced in &OM;&#160;2 (see section <xref linkend="sec_sharing_references"/> for
+  details). The binary encoding in &OM;&#160;2 leaves the tokens with sharing flag 0
+  unchanged to ensure &OM;&#160;1 compatibility. To make use of functionality like the
   <systemitem>cdbase</systemitem> URI or the version attribute on the &OM; object
-  introduced in &OM;2, the tokens with sharing flag 1 should be used.</para>
+  introduced in &OM;&#160;2, the tokens with sharing flag 1 should be used.</para>
 
 <para revisionflag="added">To facilitate the streaming of &OM; objects, some basic
   objects (integers, strings, bytearrays, and foreign objects) have variant token
@@ -3523,7 +3523,7 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
   or a four byte integer (in network byte order), followed by the
   characters of the Content Dictionary name, followed by the
   characters of the symbol name.</phrase>
-<phrase revisionflag="added">. The symbol tags [8] and [8+128] are deprecated in &OM;2 since
+<phrase revisionflag="added">. The symbol tags [8] and [8+128] are deprecated in &OM;&#160;2 since
   symbols now have an optional <systemitem>cdbase</systemitem> field, but are
   kept for backwards compatibility. The symbol tag is  followed by the
 length 
@@ -3850,8 +3850,8 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
 <title>Sharing</title>
 
 <para revisionflag="added">
-&OM; 2 introduced a new sharing mechanism, described below.  First however
-we describe the original &OM; 1 mechanism.
+&OM;&#160;2 introduced a new sharing mechanism, described below.  First however
+we describe the original &OM;&#160;1 mechanism.
 </para>
 
 <section id="sec_sharing">
@@ -3859,7 +3859,7 @@ we describe the original &OM; 1 mechanism.
  
 <para>This
 <phrase revisionflag="added">form of sharing is deprecated but included for
-backwards compatibility with &OM; 1.  It</phrase>
+backwards compatibility with &OM;&#160;1.  It</phrase>
 <phrase revisionflag="deleted">binary encoding</phrase>
 supports the sharing of symbols, variables and strings
 (up to a certain length for strings) within one object. That is, sharing between
@@ -3984,9 +3984,9 @@ binary encoding the identifiers on the
 objects are not preserved. Moreover, even though the &exml; encoding
 allows references across objects, as in figure ???, the binary
 encoding does not (the binary encoding has no notion of a multi-object
-collection, which corresponds to the embedding of multiple &OM; objects
-into a single &exml;
-document in the &exml; encoding).</para>
+collection, while in the &exml; encoding this would naturally correspond to
+e.g.&#160;the embedding of multiple &OM; objects into a single &exml;
+document).</para>
 
 <para>Note that objects need not be fully shared (or shared at all) in the
 binary encoding with sharing.</para>
@@ -4039,12 +4039,12 @@ present in the table.</para>
 
 
 <section id="sec_relation_OM1_binary" revisionflag="added">
-  <title>Relation to the &OM;1 binary encoding</title>
-  <para>The &OM;2 binary encoding significantly extends the
-    &OM;1 binary encoding to accommodate the new features and in particular sharing of
-    sub-objects. The tags and structure of the  &OM;1 binary encoding are still
-    present in the current &OM; binary encoding, so that binary encoded &OM;1 objects
-    are still valid in the &OM;2 binary encoding and correspond to the same abstract
+  <title>Relation to the &OM;&#160;1 binary encoding</title>
+  <para>The &OM;&#160;2 binary encoding significantly extends the
+    &OM;&#160;1 binary encoding to accommodate the new features and in particular sharing of
+    sub-objects. The tags and structure of the  &OM;&#160;1 binary encoding are still
+    present in the current &OM; binary encoding, so that binary encoded &OM;&#160;1 objects
+    are still valid in the &OM;&#160;2 binary encoding and correspond to the same abstract
     &OM; objects. In some cases, the binary encoding tags without the shared flag
     can still be used as more compact representations of the objects (which are
     not shared, and do not have an identifier).
@@ -5290,7 +5290,7 @@ respectively.</para>
 &exml; encoded &OM;&#160;1 documents may be in either the 
 <systemitem>http://www.openmath.org/OpenMath</systemitem>
 namespace or in no-namespace. An application may accept either of
-these forms. Note however that &OM;  documents the have a version attribute
+these forms. Note however that &OM;  documents that have a version attribute
 should validate against the schema for &OM;&#160;2 (or later versions) and
 so should always use the &OM; namespace.
 &exml; encoded &OM;&#160;1 CD files must be in no-namespace.
@@ -5481,8 +5481,8 @@ an application upon receiving ill-formed objects.</para>
 <title>Conclusion</title>
 
 
-<para>The goal of this document is to define the &OM; 2 standard. The issues
-  addressed by the &OM; 2 standard are:
+<para>The goal of this document is to define the &OM;&#160;2 standard. The issues
+  addressed by the &OM;&#160;2 standard are:
   <itemizedlist>
     <listitem>
       <para>Informal and formal definition of the &OM; objects.</para>
@@ -5815,15 +5815,15 @@ or, using the Relax NG compact syntax:
 </appendix>
 
 <appendix revisionflag="added" id="app_whats_new">
-  <title>Changes between &OM; 1.1 and &OM; 2 (Non-Normative)</title>
+  <title>Changes between &OM;&#160;1.1 and &OM;&#160;2 (Non-Normative)</title>
   
   
   <para>In this appendix we describe the major changes that occurred
     between version 1.1 and version 2 of the &OM; standard. All changes to
     the encodings and content dictionaries have been designed to be
     backward compatible, in other words all existing &OM; objects and
-    Content Dictionaries are still valid in &OM; 2.  On the other hand an
-    existing  &OM; 1.1 application may not be able to process &OM; 2
+    Content Dictionaries are still valid in &OM;&#160;2.  On the other hand an
+    existing  &OM;&#160;1.1 application may not be able to process &OM;&#160;2
     objects.
   </para>
   
@@ -6566,7 +6566,7 @@ details of how this attribute is used are not mandated by the standard.
     <author><firstname>S.</firstname> <surname>Dalmas</surname></author>
     <author><firstname>M.</firstname> <surname>Ga&#235;tano</surname></author>
     <author><firstname>S.</firstname> <surname>Watt</surname></author>
-    <title>An &OM; 1.0 Implementation</title>
+    <title>An &OM;&#160;1.0 Implementation</title>
     <bibliomisc role="pages">241&#8211;248</bibliomisc>
     <bibliomisc role="booktitle">Proceedings of ISSAC 97</bibliomisc>
     <pubdate>1997</pubdate>
