@@ -344,7 +344,7 @@ relative to the OpenMath 1.0 document...</p>
 
 
 <xsl:template match="figure">
-<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
+<xsl:if test="$showdiffs or  not(ancestor-or-self::*/@revisionflag='deleted')">
 <div class="figure">
 <a name="{@id}" id="{@id}"/>
 <xsl:apply-templates/>

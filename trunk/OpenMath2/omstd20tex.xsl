@@ -277,7 +277,9 @@ relative to the OpenMath 1.0 document\ldots
 
 
 <xsl:template match="systemitem">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <xsl:text/>\texttt£<xsl:apply-templates/>ß<xsl:text/>
+</xsl:if>
 </xsl:template>
 
 
@@ -317,7 +319,7 @@ relative to the OpenMath 1.0 document\ldots
 
 
 
-<xsl:template match="xref">!!
+<xsl:template match="xref">
 <xsl:variable name="n" select="key('ids',@linkend)"/>
 <xsl:choose>
 <xsl:when test="$n/ancestor::appendix">Appendix</xsl:when>
@@ -348,7 +350,7 @@ changelog entry here
 </xsl:template>
 
 
-<xsl:template match="informaltable"><xsl:text>!!</xsl:text>
+<xsl:template match="informaltable">
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 £<xsl:apply-templates select="@revisionflag"/>
 <xsl:if test="@role='small'">\footnotesize</xsl:if>
