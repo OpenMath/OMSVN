@@ -9,15 +9,17 @@ perl rnc2dbk $i > ${i%%.rnc}rnc.xml
 done
 
 
+# openmath2.rnc has to be last
 echo RNG
-for i in omcd2.rnc omcdsig2.rnc openmath2.rnc omcdgroup2.rnc
+for i in omcd2.rnc omcdsig2.rnc  omcdgroup2.rnc openmath2.rnc
 do
 echo $i
 java -jar trang.jar  $i ${i%%rnc}rng
 done
 
+# openmath2.rnc has to be last
 echo XSD
-for i in openmath2.rnc omcd2.rnc omcdsig2.rnc omcdgroup2.rnc
+for i in omcd2.rnc omcdsig2.rnc omcdgroup2.rnc  openmath2.rnc
 do
 echo $i
 java -jar trang.jar  $i ${i%%rnc}xsd
