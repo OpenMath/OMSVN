@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.104 2004/04/02 12:43:39 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.105 2004/04/05 10:34:40 openmath Exp $ -->
 
 
 <!DOCTYPE book 
@@ -2052,14 +2052,18 @@ hexadecimal representations of NaNs.
 </varlistentry>
 <varlistentry><term>Bytearrays</term><listitem><para>are encoded using the <systemitem>OMB</systemitem> element. Its content
   is a sequence of characters that is a base64 encoding of the data.
-  The base64 encoding is defined in <acronym>rfc</acronym> 1521 <citation>rfc1521</citation>.
+  The base64 encoding is defined in <acronym>rfc</acronym>
+<phrase revisionflag="deleted">1521 <citation>rfc1521</citation></phrase>
+<phrase revisionflag="added">2045 <citation>rfc2045</citation></phrase>.
   Basically, it represents an arbitrary sequence of octets using 64
   <quote>digits</quote> (<systemitem>A</systemitem> through <systemitem>Z</systemitem>, <systemitem>a</systemitem> through <systemitem>z</systemitem>, <systemitem>0</systemitem> through <systemitem>9</systemitem>, <systemitem>+</systemitem> and /, in order of increasing
   value). Three octets are represented as four digits (the <systemitem>=</systemitem>
   character is used for padding at the end of the data). All line
   breaks and carriage return, space, form feed and horizontal
   tabulation characters are ignored. The reader is referred to
-  <citation>rfc1521</citation> for more detailed information.</para>
+  <citation revisionflag="deleted">rfc1521</citation>
+  <citation revisionflag="added">rfc2045</citation>
+for more detailed information.</para>
 
 </listitem>
 </varlistentry>
@@ -2168,13 +2172,15 @@ as follows:
 <literallayout><![CDATA[<OMATTR>
   <OMATP>
     <OMS cd="annotations1" name="presentation-form"/>  
-    <OMFOREIGN encoding="LaTeX">\sin(x)</OMFOREIGN>  
+    <OMFOREIGN encoding="text/latex">\sin(x)</OMFOREIGN>  
   </OMATP>
   <OMA>
     <OMS cd="transc1" name="sin"/> 
     <OMV name="x"/>  
   </OMA>
 </OMATTR>]]></literallayout>
+For a discussion on the use of the <systemitem>encoding</systemitem>
+attribute see <xref linkend="sec_compl_omforeign"/>.
 </para>
 </listitem>
 
@@ -2596,7 +2602,7 @@ to accept or produce.</para>
 one may wish, or need, to use other &exml; features. For example use of
 extra &exml; attributes to specify &exml; Namespaces&#160;<citation>xmlns</citation>
 or <systemitem>xml:lang</systemitem> attributes to specify the language used in
-strings&#160;<citation>xml</citation>. 
+strings&#160;<citation>xml_04</citation>. 
 <phrase revisionflag="deleted">
 Also, the encoding used in the larger document may not be
 <acronym>utf-8</acronym>.</phrase>
@@ -5227,6 +5233,99 @@ she must recognise that this process is not an identity transformation.
 
 </section>
 
+<section id="sec_compl_omforeign">
+<title>&OM; Foreign Objects</title>
+
+<para> An &OM; Foreign Object may be attributed with a string indicating
+the format of its contents.  Although this information is optional, an
+&OM;-compliant application which generates &OM; Foreign Objects should
+always include it where possible (see the discussion of MathML conversion
+below for an example of a situation where it is not always possible).  It is
+recommended that, where the contents of the Foreign Object are in an
+&exml; dialect, the namespace <citation>xmlns</citation> of the
+&exml; dialect is used as the value of the encoding.  For example
+(using the &exml; encoding):
+<literallayout><![CDATA[<OMATTR>
+  <OMATP>
+    <OMS cd="annotations1" name="description"/>
+    <OMFOREIGN encoding="http://www.w3.org/1999/xhtml">
+      <html xmlns="http://www.w3.org/1999/xhtml">
+        <head><title>E</title></head>
+        <body>
+          <p>
+            The base of the natural logarithms, approximately 2.71828.
+          </p>
+        </body>
+      </html>
+    </OMFOREIGN>
+  </OMATP>
+  <OMS cd="nums1" name="e"/>
+</OMATTR>]]></literallayout>
+Where the contents of the Foreign Object is a format other than &exml;,
+it is recommended that its MIME type <citation>rfc2046</citation> is
+used as the value of the encoding.
+For example (again using the &exml; encoding):
+<literallayout><![CDATA[<OMATTR>
+  <OMATP>
+    <OMS cd="annotations1" name="description"/>
+    <OMFOREIGN encoding="text/latex">
+      \documentclass{article}
+      \begin{document}
+      \title{E}
+      \maketitle
+      The base of the natural logarithms, approximately 2.71828.
+      \end{document}
+    </OMFOREIGN>
+  </OMATP>
+  <OMS cd="nums1" name="e"/>
+</OMATTR>]]></literallayout>
+</para>
+
+<para> An exception to the above guidelines occurs when a MathML object
+is converted to &OM;.  MathML also has an
+<systemitem>encoding</systemitem> attribute which can appear in various
+places and whose format is a string.  Only two values are predefined,
+<systemitem>MathML-Content</systemitem> and
+<systemitem>MathML-Presentation</systemitem>, and these may appear in
+the resulting &OM; object despite the fact that they are not namespaces
+as recommended above. For example the following MathML expression:
+<literallayout><![CDATA[<semantics xmlns="xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <sin/>
+    <ci>x</ci>
+  </apply>
+  <annotation encoding="MathML-Presentation">
+    <math>
+      <mi>sin</mi><mfenced><mi>x</mi></mfenced>
+    </math>
+  </annotation>
+</semantics>]]></literallayout>
+is equivalent to the &OM; expression:
+<literallayout><![CDATA[<OMATTR>
+  <OMATP>
+    <OMS cd="altenc" name="MathML_encoding"/>
+    <OMFOREIGN encoding="MathML-Presentation">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <mi>sin</mi><mfenced><mi>x</mi></mfenced>
+      </math>
+    </OMFOREIGN>
+  </OMATP>
+  <OMA>
+   <OMS cd="transc1" name="sin"/>
+   <OMV name="x"/>
+  </OMA>
+</OMATTR>]]></literallayout>
+
+Since in MathML the <systemitem>encoding</systemitem> attribute is in
+effect optional (its default value is the empty string), a convertor
+program may not in fact be able to provide a value for the &OM;
+<systemitem>encoding</systemitem> attribute.  This is unfortunate but
+unavoidable.
+
+</para>
+
+</section>
+
 <section id="sec_compl_cd">
 <title>Content Dictionaries</title>
 
@@ -6485,7 +6584,28 @@ details of how this attribute is used are not mandated by the standard.
     <pubdate>1994</pubdate>
   </biblioentry>
   
-  <biblioentry id="rfc1521" role="Misc">
+  <biblioentry id="rfc2045" role="Misc" revisionflag="added">
+    <author><firstname>N.</firstname> <surname>Borenstein</surname></author>
+    <author><firstname>N</firstname> <surname>Freed</surname></author>
+    <title>MIME (Multipurpose Internet Mail Extensions) Part One: Format of Internet Message Bodies</title>
+    <bibliomisc>RFC: 2045</bibliomisc>
+    <pubdate role="month">November</pubdate>
+    <pubdate>1996</pubdate>
+    <bibliomisc>Available from: http://www.mhonarc.org/~ehood/MIME/2045/rfc2045.html</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="rfc2046" role="Misc" revisionflag="added">
+    <author><firstname>N.</firstname> <surname>Borenstein</surname></author>
+    <author><firstname>N</firstname> <surname>Freed</surname></author>
+    <title>MIME (Multipurpose Internet Mail Extensions) Part Two: Media
+Types</title>
+    <bibliomisc>RFC: 2046</bibliomisc>
+    <pubdate role="month">November</pubdate>
+    <pubdate>1996</pubdate>
+    <bibliomisc>Available from: http://www.mhonarc.org/~ehood/MIME/2046/rfc2046.html</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="rfc1521" role="Misc" revisionflag="deleted">
     <author><firstname>N.</firstname> <surname>Borenstein</surname></author>
     <author><firstname>N</firstname> <surname>Freed</surname></author>
     <title>MIME (Multipurpose Internet Mail Extensions) Part One: Mechanism for Specifying and Describing the Format of Internet Message Bodies</title>
@@ -6521,16 +6641,6 @@ details of how this attribute is used are not mandated by the standard.
     <pubdate>1999</pubdate>
     <bibliomisc>http://www.w3.org/TR/REC-xml-names</bibliomisc>
   </biblioentry>
-  
-  <biblioentry id="xml" role="Misc">
-    <author><othername>World Wide Web Consortium</othername></author>
-    <title>Extensible Markup Language XML 1.0</title>
-    <bibliomisc>REC-xml-19980210</bibliomisc>
-    <pubdate role="month">February</pubdate>
-    <pubdate>1998</pubdate>
-    <bibliomisc>http://www.w3.org/TR/REC-xml</bibliomisc>
-  </biblioentry>
-  
   
   <biblioentry id="xml-stylesheet" role="Misc">
     <author><othername>World Wide Web Consortium</othername></author>
@@ -6756,7 +6866,7 @@ details of how this attribute is used are not mandated by the standard.
     <pubdate>2003</pubdate>
     <bibliomisc>Available at http://www.w3.org/TR/MathML2/</bibliomisc>
   </biblioentry>
-  
+
   <biblioentry id="CTCOQMATH" role="Manual">
     <title>CtCoqmath</title>
     <bibliomisc role="organization">INRIA</bibliomisc>
@@ -6967,6 +7077,22 @@ details of how this attribute is used are not mandated by the standard.
   
   
   
+  <biblioentry id="owl" role="Misc" revisionflag="added">
+    <author><othername>World Wide Web Consortium</othername></author>
+    <title> OWL Web Ontology Language Overview </title>
+    <pubdate role="month">February</pubdate>
+    <pubdate>2004</pubdate>
+    <bibliomisc>http://www.w3.org/TR/2004/REC-owl-features-20040210/</bibliomisc>
+  </biblioentry>
+
+  <biblioentry id="rdf" role="Misc" revisionflag="added">
+    <author><othername>World Wide Web Consortium</othername></author>
+    <title>Resource Description Framework (RDF): Concepts and Abstract Syntax</title>
+    <pubdate role="month">February</pubdate>
+    <pubdate>2004</pubdate>
+    <bibliomisc>http://www.w3.org/TR/2004/REC-rdf-concepts-20040210/</bibliomisc>
+  </biblioentry>
+
   <biblioentry id="XSL_2001" role="Misc">
     <author><othername>World Wide Web Consortium</othername></author>
     <title>Extensible Stylesheet Language (XSL) Specification</title>
