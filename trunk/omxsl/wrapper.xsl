@@ -7,7 +7,7 @@
   version="1.0"
 >
 
-<xsl:import href="verbxml.xsl"/>
+<xsl:import href="verb.xsl"/>
 <xsl:import href="om2pmml.xsl"/>
 
 
