@@ -64,6 +64,7 @@
 
 <!ENTITY varnamechar "+=(),-./:?!#$&#37;*;@[]^_`{|}"><!-- dpc: remove `TeX error?  -->
 
+<!ENTITY omrnc SYSTEM "openmath2.rnc">
 ]>
 <book xml:space="preserve">
 <title>The &OM; Standard</title>
@@ -929,10 +930,10 @@ very easily determine which encoding is used.</para>
      normative, and other changes to increase portability to &exml;
 applications.</para></sidebar>
 
-<para>The &exml; encoding of an OpenMath object is defined by the <acronym>dtd</acronym> given
-in <xref linkend="fig_objdtd"/> below, with the following additional rules
-not implied by the &exml; <acronym>dtd</acronym>.</para>
-<itemizedlist>
+<para revisionflag="changed">The &exml; encoding of an OpenMath object is defined by the Relax
+NG schema (<acronym>RNC</acronym>)  below.<phrase revisionflag="deleted">with the following additional rules
+not implied by the &exml; <acronym>dtd</acronym>.</phrase></para>
+<itemizedlist revisionflag="deleted">
 <listitem>
 <para>Comments are permitted only between
 elements, not within element character data.</para>
@@ -953,8 +954,13 @@ matches the regular expressions of <xref linkend="fig_xml"/>.</para>
 </itemizedlist>
 
 
-<figure id="fig_objdtd">
-    <title>DTD for the &OM; &exml; encoding of objects.</title>
+<literallayout revisionflag="added">
+&omrnc;
+</literallayout>
+
+
+<para id="fig_objdtd" revisionflag="deleted">
+    <phrase>DTD for the &OM; &exml; encoding of objects.</phrase>
 <literallayout><![CDATA[
 <!-- DTD for OM Objects - sb 29.10.98 -->
 <!-- sb 3.2.99 -->
@@ -1042,15 +1048,15 @@ matches the regular expressions of <xref linkend="fig_xml"/>.</para>
 <!ATTLIST OMOBJ ]]><phrase revisionflag="added">%common.att;</phrase><![CDATA[
 	        xlmns:xlink CDATA #FIXED 'http://www.w3.org/1999/xlink'>]]>
 </literallayout>
-</figure>
+</para>
 
 
-<para>In addition, if the &exml; document encoding the &OM; object is
+<para revisionflag="deleted">In addition, if the &exml; document encoding the &OM; object is
 linearised into the &exml; concrete syntax, the following further
 constraints apply, which ensure thet the encoding may be read by &OM;
 applications that may not include a full &exml; parser.</para>
-<sidebar revision="1999/09/09" author="DPC"><para>Restrictions on not using foo='xxxx' dropped</para></sidebar>
-<itemizedlist>
+<sidebar revisionflag="deleted" revision="1999/09/09" author="DPC"><para>Restrictions on not using foo='xxxx' dropped</para></sidebar>
+<itemizedlist revisionflag="deleted" >
 <listitem>
 <para>The document should use <acronym>utf-8</acronym> encoding.</para>
 
@@ -1061,7 +1067,7 @@ applications that may not include a full &exml; parser.</para>
 </listitem>
 
 <listitem>
-<para>Character references should not be used. As <systemitem>&lt;!DOCTYPE</systemitem>
+<para revisionflag="deleted">Character references should not be used. As <systemitem>&lt;!DOCTYPE</systemitem>
 is not used, the only entity references that are allowed are the five predefined entity
 references: 
 <systemitem>&amp;apos;</systemitem> (&apos;),
@@ -1072,7 +1078,7 @@ references:
 </para>
 </listitem>
 <listitem>
-<sidebar revision="1999/09/21" author="DPC"><para>Restrict empty
+<sidebar revisionflag="deleted" revision="1999/09/21" author="DPC"><para>Restrict empty
 element syntax</para></sidebar> <para>The &exml; empty element form
 <systemitem>&lt;|<phrase>&#8230;</phrase>/&gt;</systemitem> should always be used to
 encode elements such as <acronym>omf</acronym> which are specified in
@@ -1098,8 +1104,8 @@ return character, <quote>nl</quote> for the line feed character and
 <quote>tab</quote> for the horizontal tabulation character.</para>
 
 
-<figure id="fig_xml">
-    <title>Grammar for the &exml; encoding of &OM; objects.</title>
+<para revisionflag="deleted">
+    <phrase revisionflag="deleted">Grammar for the &exml; encoding of &OM; objects.</phrase>
 
 <sidebar revision="1999/07/16" author="DPC"><para>White space allowed in integer strings</para></sidebar>
 
@@ -1439,7 +1445,7 @@ cdname      </entry>
 </informaltable>
 
 
-</figure>
+</para>
 </section>
 
 <section id="sec_xml-desc">
