@@ -68,7 +68,7 @@
 <book xml:space="preserve">
 <title>The &OM; Standard</title>
 <bookinfo>
-<releaseinfo>2.0a</releaseinfo>
+<releaseinfo>2.0</releaseinfo>
 <author><firstname>The &OM; Society</firstname></author>
 
 
@@ -78,7 +78,7 @@
 <editor><firstname>M.</firstname><othername>C.</othername><surname>Dewar</surname></editor>
 <editor><firstname>M.</firstname><surname>Gaetano</surname></editor>
 <editor><firstname>M.</firstname><surname>Kohlhase</surname></editor>
-<date>April 2002</date>
+<date>October 2003</date>
 
 <copyright>
 <year>2000&#8211;2002</year>
@@ -371,9 +371,12 @@ characters matching a regular expression, as described below.</para>
 <listitem><para><phrase>(vi)</phrase> Variable.</para>
 
 
-<para>A Variable consists of a <emphasis>name</emphasis> which is a
- sequence of characters matching a regular expression, as described
- below.</para>
+<para>A Variable <phrase revisionflag="deleted">consists of</phrase>
+<phrase revisionflag="added">must have</phrase> a
+<emphasis>name</emphasis> which is a sequence of characters matching a
+regular expression, as described below.  <phrase
+revisionflag="added">It may also have one or more optional &OM;
+objects as children which are treated as scripts.</phrase></para>
 
 </listitem>
 </itemizedlist>
@@ -516,37 +519,109 @@ by the use of suitable content dictionaries.</para>
   Content Dictionary. The form of these definitions is explained in
   <xref linkend="cha_cd"/>.  Each symbol has no more than one
   definition in a Content Dictionary. Many Content Dictionaries may
-  define differently a symbol with the same name (e.g., the symbol
+  define differently a symbol with the same name (e.g. the symbol
   <systemitem>union</systemitem> is defined as
   associative-commutativeset theoretic union in a Content Dictionary
   <systemitem>set1</systemitem> but another Content Dictionary,
   <systemitem>multiset1</systemitem> might define a symbol
-  <systemitem>union</systemitem> as the union of multi-sets.  The name
+  <systemitem>union</systemitem> as the union of multi-sets).
+<phrase revisionflag="deleted">The name
   of a symbol can only contain alphanumeric characters and
   underscores.  More precisely, a symbol name matches the following
-  regular expression: <blockquote><para>
+  regular expression:
+<blockquote><para>
   [<systemitem>A</systemitem>-<systemitem>Z</systemitem><systemitem>a</systemitem>-<systemitem>z</systemitem>]
   [<systemitem>A</systemitem>-<systemitem>Z</systemitem><systemitem>a</systemitem>-<systemitem>z</systemitem><systemitem>0</systemitem>-<systemitem>9</systemitem><systemitem>_</systemitem>]*
-  </para></blockquote></para>
-  
+  </para></blockquote>
   <para>Notice that these symbol names are case sensitive.  &OM;
   <emphasis>recommends</emphasis> that symbol names should be no longer than
   100 characters.</para>
+</phrase>
+</para>
+  
  <sidebar revision="1999/09/10" author="DPC"><para>Removed suggestion to utf7 hint variable names</para></sidebar>
   </listitem>
 </varlistentry>
 <varlistentry><term>Variables</term><listitem><para>are meant to
   denote parameters, variables or indeterminates (such as bound
   variables of function definitions, variables in summations and
-  integrals, independent variables of derivatives).  Plain variable
+  integrals, independent variables of derivatives).  <phrase revisionflag="deleted">Plain variable
   names are restricted to use a subset of the printable ASCII
   characters.  Formally the names must match the regular expression:
   <blockquote><para> [A-Za-z0-9=+(),-./:?!#$%*;=@[]^_`{|}]+
-  </para></blockquote></para>
-   
+  </para></blockquote></phrase> 
+</para>
+<para revisionflag="added">
+A variable may have one or more children which are themselves OpenMath
+objects and are treated as scripts.  Thus it is possible to create a
+variable with cardinality such as
+<math><msub><mi>x</mi><mn>1</mn></msub></math> or
+<math><msub><mi>x</mi><mi>i</mi></msub></math>.
+</para>
 </listitem>
 </varlistentry>
 </variablelist> </para>
+
+<phrase revisionflag="added">
+<para>
+
+The names of symbols and variables must conform to the following
+rules, which are designed to be compatible with standards such as
+Unicode and XML.  These standards group individual characters into
+letters, digits, combining characters and extenders.  Informally,
+these are defined as follows:
+
+<variablelist>
+
+<varlistentry><term>Letters</term><listitem><para> are elements of an
+alphabet such as latin, cyrillic, kanji etc.</para></listitem></varlistentry>
+
+<varlistentry><term>Digits</term><listitem><para> are atomic numbers,
+from which compound numbers can be constructed (for example `1' is a
+digit but `11' is not).</para></listitem></varlistentry>
+
+<varlistentry><term>Combining Characters</term><listitem><para> are
+used to combine several characters to produce a new one, for example
+an accented character.
+</para></listitem></varlistentry>
+
+<varlistentry><term>Extenders</term><listitem><para> are characters
+which are neither letters nor combining characters but modify the
+appearance of other characters in some way.
+</para></listitem></varlistentry>
+
+</variablelist>
+Formally, we use the precise definitions given in the Unicode
+standard&#160;<citation>UNICODE</citation>.
+</para>
+
+<para>
+
+Then a legal symbol or variable name is defined by the following
+grammar:
+<blockquote>
+<informaltable>
+<tgroup cols="3">
+<tbody>
+<row>
+<entry>Name </entry>
+<entry> <math>&longrightarrow;</math> </entry>
+<entry> (Letter | '_') (Char)*
+</entry>
+</row>
+<row>
+<entry>Char</entry>
+<entry> <math>&longrightarrow;</math> </entry>
+<entry> Letter | Digit | '.' | '-' | '_' | CombiningChar | Extender
+</entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</blockquote>
+
+</para>
+</phrase>
 
 <para>The four following constructs can be used to make compound &OM;
 objects.</para>
@@ -5804,9 +5879,10 @@ Applying it to Computational Abstract Algebra</title>
 
 <biblioentry id="UNICODE" role="Book">
   <author><othername>Unicode Consortium</othername></author>
-  <title>The Unicode Standard: Version 2.0</title>
+  <title>The Unicode Standard: Version <phrase revisionflag="deleted">2.0</phrase><phrase revisionflag="added">4.0</phrase></title>
   <publisher><publishername>Addison-Wesley Developers Press</publishername></publisher>
-  <pubdate>1996</pubdate>
+  <pubdate><phrase revisionflag="deleted">1996</phrase><phrase
+revisionflag="added">2003</phrase></pubdate>
 </biblioentry>
 
 <biblioentry id="ieee754_85" role="Misc">
