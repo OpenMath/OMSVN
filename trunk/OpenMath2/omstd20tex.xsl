@@ -24,7 +24,7 @@
 
 \let\vvvvv\verbatim
 {\catcode`\ =\active%
-\gdef\verbatim{\vvvvv\def {~\hskip\z@\@plus20em\penalty-100\hskip\z@\@plus-20em\relax}}}
+\gdef\verbatim{\vvvvv\def {~\hskip\z@\@plus20em\penalty100\hskip\z@\@plus-20em\relax}}}
 
 \renewenvironment{thebibliography}[1]
      {\chapter{\bibname
