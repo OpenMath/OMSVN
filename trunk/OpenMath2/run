@@ -109,12 +109,15 @@ rxp -sxV omstd20.xml
 
 echo html
 saxon  -o omstd20html.xml omstd20.xml omstd20.xsl
-echo html-d
-saxon  -o omstd20html-d.xml omstd20.xml omstd20.xsl showdiffs=true
+echo chunked html
+saxon  -o omstd20html.xml omstd20.xml omstd20.xsl chunk="true"
+echo html-diff
+saxon  -o omstd20html-diff.xml omstd20.xml omstd20.xsl showdiffs=true
+
 echo tex
 saxon  -o omstd20.tex omstd20.xml omstd20tex.xsl 
-echo tex-d
-saxon  -o omstd20-d.tex omstd20.xml omstd20tex.xsl showdiffs=true
+echo tex-diff
+saxon  -o omstd20-diff.tex omstd20.xml omstd20tex.xsl showdiffs=true
 
 echo pdf
 pdflatex \\batchmode \\input omstd20.tex
@@ -131,17 +134,17 @@ if (grep -i rerun omstd20.log)
   fi
 fi
 
-echo pdf-d
-pdflatex \\batchmode \\input omstd20-d.tex
-if (grep -i rerun omstd20-d.log)
+echo pdf-diff
+pdflatex \\batchmode \\input omstd20-diff.tex
+if (grep -i rerun omstd20-diff.log)
   then
-  pdflatex \\batchmode \\input omstd20-d.tex
-  if (grep -i rerun omstd20-d.log)
+  pdflatex \\batchmode \\input omstd20-diff.tex
+  if (grep -i rerun omstd20-diff.log)
     then 
-    pdflatex \\batchmode \\input omstd20-d.tex
-    if (grep -i rerun omstd20-d.log)
+    pdflatex \\batchmode \\input omstd20-diff.tex
+    if (grep -i rerun omstd20-diff.log)
       then
-      pdflatex \\batchmode \\input omstd20-d.tex
+      pdflatex \\batchmode \\input omstd20-diff.tex
     fi
   fi
 fi
