@@ -476,7 +476,9 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
   <br/>Bibliography</h2>
 <xsl:for-each select="biblioentry[key('cite',@id)]">
 <xsl:sort select="(author[1]/surname|author[1]/othername|bibliomisc[@role='key'])[1]"/>
-<p><a name="{@id}" id="{@id}"/><b>[<xsl:value-of select="position()"/>]</b>
+<p>
+<xsl:apply-templates select="@revisionflag"/>
+<a name="{@id}" id="{@id}"/><b>[<xsl:value-of select="position()"/>]</b>
 <xsl:text>&#160;&#160;</xsl:text>
 <xsl:for-each select="author">
  <xsl:choose>
@@ -487,6 +489,15 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 </xsl:for-each>
   <xsl:text> </xsl:text>
  <i><xsl:apply-templates select="title/node()"/></i>
+<xsl:if test="pubdate">
+  <xsl:text>, </xsl:text>
+ <xsl:if test="pubdate[@role]">
+   <xsl:apply-templates select="pubdate[@role]/node()"/>
+   <xsl:text> </xsl:text>
+ </xsl:if>
+ <xsl:apply-templates select="pubdate[not(@role)]/node()"/>
+</xsl:if>
+<xsl:text>.</xsl:text>
 </p>
 </xsl:for-each>
 </xsl:template>
