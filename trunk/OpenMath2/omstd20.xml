@@ -6325,8 +6325,34 @@ CD names, and for each CD Name, a list of allowed symbol names.
 
 <para>
 For example, a CD-specific Relax NG Schema for the arith1 CD shown in
-<xref linkend="arith1.ocd"/> would look (using the Relax NG compact
-syntax) like:
+<xref linkend="arith1.ocd"/> would look like:
+<literallayout>
+<![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="">
+  <define name="cd.attlist.OMS" combine="choice">
+    <attribute name="cd">
+      <value type="string">arith1</value>
+    </attribute>
+    <attribute name="name">
+      <choice>
+        <value type="string">lcm</value>
+        <value type="string">gcd</value>
+        <value type="string">plus</value>
+        <value type="string">unary_minus</value>
+        <value type="string">minus</value>
+        <value type="string">times</value>
+        <value type="string">divide</value>
+        <value type="string">power</value>
+        <value type="string">abs</value>
+        <value type="string">root</value>
+        <value type="string">sum</value>
+        <value type="string">product</value>
+      </choice>
+    </attribute>
+  </define>
+</grammar>]]>
+</literallayout>
+or, using the Relax NG compact syntax:
 <literallayout>
 cd.attlist.OMS |= 
   attribute cd {string "arith1" },
@@ -6350,6 +6376,18 @@ cd.attlist.OMS |=
 need to include the &OM; schema described in <xref
 linkend="app_relaxcompact"/>, override the attribute declarations for
 OMS, and then include the schema for arith1.  For example:
+<literallayout>
+<![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0">
+  <include href="openmath.rng">
+    <define name="attlist.OMS">
+      <ref name="cd.attlist.OMS"/>
+    </define>
+  </include>
+  <include href="arith1.rng"/>
+</grammar>]]>
+</literallayout>
+or, in the compact syntax:
 <literallayout>
 include "openmath.rnc" {
  attlist.OMS = cd.attlist.OMS}
