@@ -578,6 +578,11 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
  <xsl:apply-templates select="pubdate[not(@role)]/node()"/>
 </xsl:if>
 <xsl:text>.</xsl:text>
+<xsl:for-each select="bibliomisc[contains(.,'http')]">
+ <br/><a href="http{substring-after(.,'http')}">
+   <xsl:value-of select="."/>
+  </a>
+</xsl:for-each>
 </p>
 </xsl:for-each>
 </xsl:template>
@@ -675,6 +680,10 @@ select="substring-before(.,':')"/>:</a>
 </xsl:template>
 
 <xsl:template match="cd:CD" xmlns:cd="http://www.openmath.org/OpenMathCD">
+<xsl:apply-templates mode="verb" select="."/>
+</xsl:template>
+
+<xsl:template match="cds:CDSignatures" xmlns:cds="http://www.openmath.org/OpenMathCDS">
 <xsl:apply-templates mode="verb" select="."/>
 </xsl:template>
 

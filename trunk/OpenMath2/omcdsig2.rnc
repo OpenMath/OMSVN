@@ -6,7 +6,8 @@
 
 default namespace = "http://www.openmath.org/OpenMathCDS"
 
-include "openmath2.rnc"
+include "openmath2.rnc" { start = CDSignatures }
+
 CDSComment = element CDSComment { text }
 CDSReviewDate = element CDSReviewDate { text }
 CDSStatus = element CDSStatus {
@@ -17,13 +18,13 @@ CDSStatus = element CDSStatus {
 CDSignatures =
   element CDSignatures {
     attlist.CDSignatures,
-    (CDComment | CDSComment)*,
-    (CDSReviewDate? & CDSStatus?),
-    (CDComment | CDSComment | Signature)*
+    (CDSComment)*,
+    (CDSReviewDate? & CDSStatus),
+    (CDSComment | Signature)*
   }
 attlist.CDSignatures =
   attribute cd { xsd:NCName },
   attribute type { xsd:NCName }
 Signature = element Signature { attlist.Signature, OMOBJ? }
 attlist.Signature = attribute name { text }
-start = CDSignatures
+

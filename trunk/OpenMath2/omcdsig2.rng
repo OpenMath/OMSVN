@@ -7,7 +7,11 @@
   *********************************************
 -->
 <grammar ns="http://www.openmath.org/OpenMathCDS" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
-  <include href="openmath2.rng"/>
+  <include href="openmath2.rng">
+    <start>
+      <ref name="CDSignatures"/>
+    </start>
+  </include>
   <define name="CDSComment">
     <element name="CDSComment">
       <text/>
@@ -32,22 +36,16 @@
     <element name="CDSignatures">
       <ref name="attlist.CDSignatures"/>
       <zeroOrMore>
-        <choice>
-          <ref name="CDComment"/>
-          <ref name="CDSComment"/>
-        </choice>
+        <ref name="CDSComment"/>
       </zeroOrMore>
       <interleave>
         <optional>
           <ref name="CDSReviewDate"/>
         </optional>
-        <optional>
-          <ref name="CDSStatus"/>
-        </optional>
+        <ref name="CDSStatus"/>
       </interleave>
       <zeroOrMore>
         <choice>
-          <ref name="CDComment"/>
           <ref name="CDSComment"/>
           <ref name="Signature"/>
         </choice>
@@ -73,7 +71,4 @@
   <define name="attlist.Signature">
     <attribute name="name"/>
   </define>
-  <start>
-    <ref name="CDSignatures"/>
-  </start>
 </grammar>

@@ -142,7 +142,10 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="om:OMS"/>
-        <xs:group minOccurs="0" maxOccurs="unbounded" ref="om:omel"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:group ref="om:omel"/>
+          <xs:element ref="om:OMFOREIGN"/>
+        </xs:choice>
       </xs:sequence>
       <xs:attributeGroup ref="om:common.attributes"/>
     </xs:complexType>
