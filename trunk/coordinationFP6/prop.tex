@@ -34,10 +34,10 @@
 \typeout{There are still \arabic{ednote} EdNotes and Issues to resolve!}%
 \typeout{}\fi}
 
-% a bit wider
-\advance\evensidemargin-.7in
-\advance\oddsidemargin-.7in
-\advance\textwidth1.4in
+%% a bit wider
+%\advance\evensidemargin-.8in
+%\advance\oddsidemargin-.8in
+%\advance\textwidth1.6in
 % Vertical space mods from Mike's old 2.09 version.
 % Separate paragraphs, and subvert \item to leave less space!
 %
@@ -46,53 +46,63 @@
 
 
 \documentclass[draft]{artikel3}
-\usepackage{paralist,enumerate,url}
+\usepackage{paralist,enumerate,url,fullpage}
 
 \begin{document}
 
-
-
-
-\title{DOC: Development of OpenMath CDs\\
+\title{Realizing the Potential of Semantic  Markup for Mathematics\\
   \normalfont\large Future and Emerging Technologies Open Coordination
   Action}
+\date{Date of Preparation: \today} 
+\author{\normalfont\large  Coordinator: Professor Michael Kohlhase\\
+  \parbox[t]{.5\textwidth}{
+    \normalfont\normalsize School of Engineering \& Sciences\\
+    \normalfont\normalsize International University Bremen, \\
+    \normalfont\normalsize Campus Ring 12, D-28759 Bremen, Germany}
+\hfill
+ \parbox[t]{.5\textwidth}{\raggedleft
+  \normalfont\normalsize \texttt{m.kohlhase@iu-bremen.de}\\
+\normalfont\normalsize tel: +49 421 200 3140\\
+\normalfont\normalsize fax: +49 421 200 3103}
+}
 
-\author{\normalfont\Large International University  Bremen\\
-  \normalfont\large Coordinator: Professor Michael Kohlhase\\
-  \normalfont\large School of Engineering \& Sciences\\
-  \normalfont\large International University Bremen, \\
-  \normalfont\large Campus Ring 12, D-28759 Bremen,    Germany\\
-  \normalfont\large \texttt{m.kohlhase@iu-bremen.de}\\
-  \normalfont\large tel: +49 421 200 3140
-  \normalfont\large fax: +49 421 200 3103}
-\date{Date of Preparation: \date{\today}} 
 
 \titlepage 
 
 \maketitle
 \showednotestrue
-\setcounter{tocdepth}{2}\tableofcontents
 
 \section{Objectives of the Action}
 
+In the 21st Century one of the great challenges facing the scientific
+community will be to manage increasingly large bodies of
+digitally-encoded information.  To allow this information to be
+\emph{re-used} in different contexts, and to be \emph{processed} by
+software assistants, it will need to be encoded using appropriate
+semantic markup.  As a result there has in recent years been an
+explosion of interest in the semantic web and related technologies.
 
-\begin{quote}\sf
-% ##### short incisive abstract
-\end{quote}
+In the OpenMath Project and the Thematic Network that followed it, the
+European Union supported the development of OpenMath and MathML, two
+complementary standards for content and presentation markup of
+mathematics.  The original intention was that these would be used to
+exchange mathematical objects between software systems, facilitate the
+development of ``active'' texts where the mathematical components
+could be extracted, manipulated and checked.  As such, these
+technologies have been a great success and are now beginning to be
+used in a wide range of areas.  However now we see the potential to
+combine our existing markup mechanisms with emerging semantic web
+technologies to allow for digital mathematical content to be managed,
+searched, indexed, validated etc.~in a mathematically meaningful way.
 
-\section*{TO KEEP IN MIND}
-Co-ordination actions are meant to complement other Framework
-Programme instruments in contributing toward integrating research at
-european level through well-planned networking or coordination
-activities.
-
-This means, we need to list to which projects we are adding bells and
-whistles.
-
-GOAL: This document should become the big-picture visionary paper to
-rally the OM crowd around for the next part of the OM initiative.  We
-need a \emph{new vision} that can be sold to the OM crowd (target 1)
-and funding bodies (target 2).
+The two key objectives of this proposal are:
+\begin{itemize}
+\item To foster and extend the use of OpenMath and MathML within the
+  European scientific community.
+\item To embed these technologies into the semantic web by providing
+  views of them grounded in suitable ontologies.  This will enable
+  them to be used by applications based on RDF and OWL.
+\end{itemize}
 
 
 \section{Introduction}
@@ -118,7 +128,7 @@ to be transmitted and processed by computers in a mathematically
 meaningful way, as well as rendered in the current generation of web
 browsers.
 
-The coordination action focuses on strenghtening OpenMath support for
+The coordination action focuses on strengthening OpenMath support for
 mathematical communication in the scientific, engineering, and
 economics communities, and on supporting European involvement in the
 newly-chartered W3C Math Interest Group.  The coordination action will
@@ -146,12 +156,12 @@ of publishing, e-learning, web services and conventional mathematical
 software are all in progress.  The main aim of this task is to provide
 a basic infrastructure in which these groups can collaborate, This
 includes providing web-based and hands-on training, supporting mailing
-lists and organising regular workshops.
+lists and organizing regular workshops.
 
 This task is at the core of the coordination action since it aims at
-strenghtening the user base of OpenMath by promoting Content
+strengthening the user base of OpenMath by promoting Content
 Dictionaries. Dissemination and training, setting up editorial board
-for CDs, expert consulting, easy to follow and good practise
+for CDs, expert consulting, easy to follow and good practice
 guidelines.
 
 
@@ -183,7 +193,7 @@ Examples of systems that speak OpenMath include AXIOM, Aldor, Maple,
 REDUCE, CoCoA, and NAG's Fortran library (?).
 
 %what to do to strenghten this community 
-The coordination action intends to strenghten this community by adding
+The coordination action intends to strengthen this community by adding
 more visibility to the OpenMath compliant software via the web page,
 by collecting and disseminating guidelines for implementors, by active
 support for the upgrade to OpenMath version 2.0, by the development
@@ -196,7 +206,7 @@ and exchange of Content Dictionaries and Phrasebooks.
 The mathematical publishing community broadly includes publishing
 companies of scientific literature, software companies distributing
 documentation and training material, down to the researchers that
-distribute results and lectures online.
+distribute results and lectures on-line.
 
 Publishers of mathematical books are interested in the inclusion of
 OpenMath in electronic versions of texts because it enhances
@@ -208,16 +218,16 @@ truly interactive whether it is demonstrating usage of third-party
 algorithms or giving hands-on examples to students.
 
 The publishing community can follow the examples set by Algebra
-Interactive, by OMDoc activities and by NAG (hypertextual
+Interactive, by OM Doc activities and by NAG (hyper-textual
 documentation?).
 
 %what to do to strenghten this community
-The coordination action intends to strenghten this community by
-supporting activities such as NIST's Digital Library of Mathematical
+The coordination action intends to strengthen this community by
+supporting activities such as Mist's Digital Library of Mathematical
 Functions\footnote{\url{http://www.openmath.org/cocoon/openmath//meetings/helsinki2004/Miller/slides.pdf}},
 collect tools that simplify inclusion of OpenMath in published
 material, include OpenMath in accepted formats such as
-DocBook\ednote{Please think about this}
+Doc-Book\ednote{Please think about this}
 
 
 \subsection{E-Learning}
@@ -234,13 +244,13 @@ or dynamically adapted to the user profile. The mathematical
 expressions can be directly fed to a variety of software packages and
 to mathematical web services.
 
-(Eindhoven, LeActiveMath, Helsinki)
+*****(Eindhoven, LeActiveMath, Helsinki)****
 
 %what to do to strenghten this community
-The coordination action intends to strenghten this community by
+The coordination action intends to strengthen this community by
 increasing dissemination in relevant conferences (IMACS-ACA,
 technology conference in mathematics), by producing easy-to-follow
-examples, by enlarging the numer of authors to scientific and
+examples, by enlarging the number of authors to scientific and
 engineering fields.
 
 
@@ -274,9 +284,27 @@ available service which performs definite integration and costs
 nothing for me to use'') and a mathematical broker to find the
 suitable services that match the request.
 
+****(e-science,BATH,RISC MONET follow-up)****
+
 Web service technology is a fundamental development towards
 distributed collaboration on the computational grid (often called
 \emph{e-science}).  
+
+
+
+%what to do to strenghten this community
+The coordination action intends to strengthen this community by
+building a MONET expert group that developes and maintains standards
+for mathematical service descriptions. The group will monitor the new
+web service technologies developed by Worldwide Web Consortium and
+OASIS to ascertain their compatibility with the universe of
+mathematical applications. To foster collaboration, the action will
+set up a public registry of mathematical services along with the
+necessary Problem and Algorithm Description Libraries.
+
+
+
+
 
 % from MKM proposal
 %In this network we will seek to build on the work of the MONET project
@@ -325,9 +353,9 @@ co-chairs of the Math Interest Group.
 
 CML, chemical markup language and STMML, scientific, technical and
 medical a markup language, RoboML, Robotic Markup Language, are at
-present a few examples of markup langauges that only support OpenMath
+present a few examples of markup languages that only support OpenMath
 indirectly through MathML.  Public awareness will increase by crafting
-examples in these langages which are representable in MathML only by
+examples in these languages which are representable in MathML only by
 resorting to OpenMath CDs.
 
 \section{Evolving the OpenMath Vocabulary}
@@ -336,7 +364,7 @@ resorting to OpenMath CDs.
 The mathematical knowledge is provided in OpenMath by means of
 symbols, defined in `OpenMath Content Dictionaries' (CDs).  OpenMath
 Content Dictionaries make available mathematical definitions and
-symbols in an extensible, machine-readible way.
+symbols in an extensible, machine-readable way.
 
 For OpenMath to become widespread it is important to have a critical
 mass of CDs. This task is centered on identifying and producing CDs
@@ -386,17 +414,33 @@ provers.
 \section{CD Tools Development} 
 \label{tools}
 
-This task realises the need for tools to facilitate the creation and
+This task realizes the need for tools to facilitate the creation and
 usage of CDs. Activities that develop editors, stylesheets, validation
 mechanisms, archiving and searching facilities fall under this task.
 
 \newpage
+\setcounter{tocdepth}{2}\tableofcontents
+
+\section{NOT PART OF THE PROPOSAL:  Keep In Mind}
+Co-ordination actions are meant to complement other Framework
+Program instruments in contributing toward integrating research at
+European level through well-planned networking or coordination
+activities.
+
+This means, we need to list to which projects we are adding bells and
+whistles.
+
+GOAL: This document should become the big-picture visionary paper to
+rally the OM crowd around for the next part of the OM initiative.  We
+need a \emph{new vision} that can be sold to the OM crowd (target 1)
+and funding bodies (target 2).
+
 
 \section{NOT PART OF THE PROPOSAL: Work Plan}
 We define a work plan containing a whole range of medium- to long-term
 types of networking or co-ordination activities.
 \begin{itemize}
-\item Performance of studies, analyses, benchmarking exercises;
+\item Performance of studies, analyzes, benchmarking exercises;
 
 test sets for  solving simple problems phrased in OM
 
@@ -405,7 +449,7 @@ test sets for  solving simple problems phrased in OM
 
 \item exchange and dissemination of good practices
 
-exchanging phrasebooks from oine package to another.
+exchanging phrasebooks from one package to another.
 
 Sharing OCDs.
 Test each on 3 applications / software systems
@@ -417,7 +461,7 @@ offer young researchers for writing phrasebooks;
 (small  budget)
 
 
-\item organisation of conference, seminar and meetings;
+\item organization of conference, seminar and meetings;
 
 OpenMath workshop series, and satellites for ISSAC or similar, and
 possibly further out, eg economics.
@@ -440,7 +484,7 @@ particular sets of OCDs.
 
 editorial board for OCD submission, editing, validation, etc.
 
-\item definition, organisation and management of joint or common
+\item definition, organization and management of joint or common
   initiatives.
 
 GAP-MAGMA for matrix recognition project
