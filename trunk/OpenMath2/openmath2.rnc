@@ -20,9 +20,13 @@ omvar = OMV | attvar
 
 attvar = element OMATTR { common.attributes,(OMATP , (OMV | attvar))}
 
-# attributes common to all elements
+
 cdbase = attribute cdbase { xsd:anyURI}?
+
+# attributes common to all elements
 common.attributes = (attribute id { xsd:ID })?
+
+# attributes common to all elements that construct compount OM objects.
 compound.attributes = common.attributes,cdbase
 
 # symbol
@@ -67,10 +71,12 @@ OMATTR = element OMATTR { compound.attributes, OMATP, omel }
 OMATP = element OMATP { compound.attributes, (OMS, (omel | OMFOREIGN) )+ }
 
 # foreign constructor
-OMFOREIGN =  element OMFOREIGN { compound.attributes,
-                                 attribute encoding {xsd:string}?, (omel|notom)* }
+OMFOREIGN =  element OMFOREIGN {
+    compound.attributes, attribute encoding {xsd:string}?,
+   (omel|notom)* }
 
-# Any elements not in the om namespace (valid om is allowed as a descendant)
+# Any elements not in the om namespace
+# (valid om is allowed as a descendant)
 notom =
   (element * - om:* {attribute * { text }*,(omel|notom)*}
    | text)

@@ -31,7 +31,7 @@ echo $i
 sed -e "s/attvar =[^}]*}/attvar = OMATTR/" \
     -e "s/notom =.*$//" \
     -e "s/^.*element \*.*$//" \
-    -e "s/, (omel|notom)\*//" \
+    -e "s/ (omel|notom)\*/omel/" \
     -e "s/^.* text.$//" \
     -e "s/{pattern.*}}/}/" \
     -e "s/include .openmath2.rnc. {.*}/# OMDTD/" \
@@ -39,13 +39,12 @@ sed -e "s/attvar =[^}]*}/attvar = OMATTR/" \
 
  java -jar trang.jar  tmp.rnc tmp.dtd 2>> trang.txt
  
- sed -e "s/OMFOREIGN EMPTY/OMFOREIGN ANY/" \
+ sed -e "s/OMFOREIGN .*>/OMFOREIGN ANY>/" \
      -e "s/:*ns1:*//g" \
      -e "s/\# OMDTD/<!ENTITY % omdtd SYSTEM \"openmath2.dtd\"> %omdtd;/"\
         tmp.dtd > ${i%%rnc}dtd
  sed -e "s/</\&lt;/g" ${i%%rnc}dtd > ${i%%.rnc}dtd.xml
 done
-
 
 for i in omcd2.rnc 
 do
