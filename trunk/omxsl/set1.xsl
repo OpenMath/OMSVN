@@ -116,7 +116,7 @@
       <mo>&#x2208;</mo>
       <xsl:apply-templates select="following-sibling::*[1]"/>
     </mrow>
-    <mo>&#x2223;</mo>
+    <mo>|<!--&#x2223;--></mo>
     <xsl:apply-templates select="following-sibling::om:OMBIND/*[3]"/>
    <mo>}</mo>
 </mrow>
@@ -130,7 +130,7 @@
   <mrow>
     <mo>{</mo>
     <xsl:apply-templates select="following-sibling::om:OMBIND/*[3]"/>
-    <mo>&#x2223;</mo>
+    <mo>|<!--&#x2223;--></mo>
     <mrow>
       <xsl:apply-templates select="following-sibling::om:OMBIND/om:OMBVAR/om:OMV"/>
       <mo>&#x2208;</mo>
