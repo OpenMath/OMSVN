@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.72 2004/01/27 17:27:30 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.73 2004/01/29 17:28:06 openmath Exp $ -->
 
 <!--
  PUBLIC "-//OASIS//DTD DocBook XML V4.2CR1//EN"
@@ -20,8 +20,6 @@ SYSTEM "/tei-emacs/xml/dtds/docbook/docbookx.dtd"
 
 <!ENTITY % local.para.char.mix "|xs:schema|comment|string|grammar|CD">
 <!ENTITY % inlineobj.char.class "math">
-<!ENTITY % local.figure.mix "|sidebar">
-<!ATTLIST sidebar author CDATA #IMPLIED>
 <!ATTLIST book xml:space (default|preserve) #IMPLIED >
 <!--
   MathML DTD (somewhat simplified)
@@ -263,7 +261,6 @@ SYSTEM "/tei-emacs/xml/dtds/docbook/docbookx.dtd"
 
 <chapter id="cha_his">
 <title>&OM; Movement</title>
-<sidebar revision="1999/08/24" author="OC"><para>Changed title</para></sidebar>
 
 <para>This chapter is a historical account of &OM; and should be regarded
 as non-normative.</para>
@@ -288,9 +285,6 @@ complementary.</para>
 <section id="sec_hist">
 <title>History</title>
 
-<sidebar revision="1999/07/16" author="DPC">
-<para>Reword to reflect birth of&OM;Society</para>
-</sidebar>
 <para>&OM; was originally developed through a series of workshops held
 in Zurich (1993 and 1996), Oxford (1994), Amsterdam (1995), Copenhagen
 (1995), Bath (1996), Dublin (1996), Nice (1997), Yorktown Heights
@@ -309,9 +303,6 @@ a simplified specification had been agreed on and some prototype
 implementations have come about
 <citation>Dalmas_Gaetano_Watt_97</citation>.</para>
 
-<sidebar revision="1999/07/16" author="DPC">
-<para>Extend History slightly</para>
-</sidebar>
 <para>In 1996 a group of European participants in &OM; decided to bid
 for funding under the European Union's Fourth Framework Programme for
 strategic research in information technology.  This bid was successful
@@ -326,15 +317,11 @@ recent workshops in Tallahassee (November 1998) and Eindhoven (June
 
 
 
-<sidebar revision="1999/07/16" author="DPC"><para>Final conclusion paragraph removed</para></sidebar>
 </section>
 
 <section id="sec_omsoc">
 <title>&OM; Society</title>
 
-<sidebar revision="1999/08/24" author="OC">
-<para>New section</para>
-</sidebar>
 <para>In November 1998 the &OM; Society has been established to coordinate
 all &OM; activities. The society is based in Helsinki, Finland and is
 steered by the executive committee whose members are elected by the
@@ -379,10 +366,6 @@ representation of &OM; objects.</para>
 <title>&OM; Objects and Encodings</title>
 
 
-<sidebar revision="1999/08/26" author="OC"><para>Moved this section
-up, to mirror chapter sequence</para></sidebar>
-
-
 <para>&OM; objects are representations of mathematical entities that
 can be communicated among various software applications in a
 meaningful way, that is, preserving their
@@ -391,9 +374,6 @@ meaningful way, that is, preserving their
 <para>&OM; objects and encodings are described in detail in <xref
 linkend="cha_obj"/> and <xref linkend="cha_enco"/>.</para>
 
-
-<sidebar revision="1999/08/24" author="OC"><para>Note on encodings and
-possibility of other encodings</para></sidebar>
 
 <para>The standard endorses encodings in &exml; and binary
 format. These are the encodings supported by the official &OM;
@@ -422,8 +402,8 @@ corresponding internal representation used by the application.</para>
 </section>
 
 <section id="sec_addnfiles">
-<title>Additional Files</title> <sidebar revision="1999/06/23"
-author="OC"><para>This is new</para></sidebar> <para>Several
+<title>Additional Files</title> 
+<para>Several
 additional files are related to Content Dictionaries.  Signature files
 contain the signatures of symbols defined in some &OM; Content
 Dictionary and their format is endorsed by this standard.</para>
@@ -435,8 +415,6 @@ set of Content Dictionaries.</para>
 are used for manipulating and processing Content Dictionaries are not
 discussed by the standard.</para>
 
-<sidebar revision="1999/10/01" author="OC"><para>Removed mention to
-DefMP files</para></sidebar>
 </section>
 <section id="sec_phrasebooks">
 <title>Phrasebooks</title>
@@ -454,8 +432,7 @@ the application is able to translate &OM; objects built using symbols
 from these Content Dictionaries to/from the internal mathematical
 objects of the application.</para>
 
-<sidebar revision="2000/04/10"
-author="DPC"><para>Reword</para></sidebar> <para>&OM; objects do not
+ <para>&OM; objects do not
 specify any computational behaviour, they merely represent mathematical
 expressions.  Part of the &OM; philosophy is to leave it to the
 application to decide what it does with an object once it has received
@@ -475,9 +452,7 @@ typesetting tool.</para>
 <title>&OM; Objects</title>
 
 
-<sidebar revision="1999/08/24" author="OC">
-<para>Reshuffled the sections on &OM; Objects</para>
-</sidebar>
+
 <para>In this chapter we provide a self-contained description of &OM;
 objects. We first do so by means of an abstract grammar
 description (<xref linkend="sec_omabs"/>)
@@ -488,9 +463,7 @@ linkend="sec_omin"/>).</para>
 <section id="sec_omabs">
 <title>Formal Definition of &OM; Objects</title>
 
-<sidebar revision="1999/07/16" author="DPC">
-<para>Restructure the definition of &OM; Objects</para>
-</sidebar>
+
 <para>&OM; represents mathematical objects as terms or as labelled
 trees that are called &OM; objects or &OM; expressions. The definition
 of an abstract &OM; object is then the following.</para>
@@ -499,9 +472,7 @@ of an abstract &OM; object is then the following.</para>
 <section id="sec_basic">
 <title>Basic &OM; objects</title> <para>The Basic &OM; Objects form
 the leaves of the &OM; Object tree.  A Basic &OM; Object is of one of
-the following.</para> <sidebar revision="1999/09/10"
-author="DPC"><para>Expand descriptions of basic
-objects</para></sidebar>
+the following.</para> 
 <itemizedlist>
 <listitem><para><phrase>(i)</phrase> Integer.</para> <para>Integers in
   the mathematical sense, with no predefined range.  They are
@@ -598,8 +569,7 @@ mathvariant="bold">foreign</mi><mfenced><mi>A</mi></mfenced></math> is an &OM;
   </math>
   is an &OM; <emphasis>application object</emphasis>.</para>
     
-<sidebar revision="1999/08/24" author="OC"><para>Cleaned up
-Attribution</para></sidebar> </listitem> <listitem><para><phrase>(iii)</phrase> If
+ </listitem> <listitem><para><phrase>(iii)</phrase> If
   <math><msub><mi>S</mi><mn>1</mn></msub><mo>,</mo>
   <mi>&#8230;</mi><mo>,</mo> <msub><mi>S</mi><mi>n</mi></msub></math>
   are &OM; symbols, and
@@ -718,11 +688,9 @@ anywhere not defined in the previous four cases.  </para></listitem>
 <title>Further Description of &OM; Objects</title>
 
 
-<sidebar revision="1999/08/24" author="OC"><para>Condensed Informal and Notes</para></sidebar>
+
   
-<sidebar revision="2000/04/10" author="DPC">
-<para>Add integer and float</para>
-</sidebar>
+
 <para>Informally, an &OM; <phrase role="sl">object</phrase> can be
 viewed as a tree and is also referred to as a term.  The objects at
 the leaves of &OM; trees are called <phrase role="sl">basic
@@ -756,8 +724,8 @@ they could also contain intermediate results of calculations, or
 </listitem>
 </varlistentry>
 <varlistentry><term>Symbols</term><listitem>
-  <sidebar revision="2000/04/10" author="DPC"><para>Change Example</para></sidebar>
-  <sidebar revision="1999/09/10" author="DPC"><para>Remove ' from regexp</para></sidebar>
+  
+  
   <para>
  are uniquely defined by the Content Dictionary in which they occur
   and by a name.
@@ -787,7 +755,7 @@ they could also contain intermediate results of calculations, or
   100 characters.</phrase>
 </para>
   
- <sidebar revision="1999/09/10" author="DPC"><para>Removed suggestion to utf7 hint variable names</para></sidebar>
+ 
   </listitem>
 </varlistentry>
 <varlistentry><term>Variables</term><listitem><para>are meant to
@@ -849,9 +817,7 @@ animation etc.
     <title>The &OM; application and binding objects for
 <math><mi>sin</mi> <mo>(</mo><mi>x</mi> <mo>)</mo></math> and
 <math><mi>&#955;</mi> <mi>x</mi><mo>.</mo><mi>x</mi> <mo>+</mo>
-<mn>2</mn></math> in tree-like notation.</title> <sidebar
-revision="1999/10/21" author="OC"><para>New tree figure, suggested by
-Andreas Strotmann</para></sidebar> <graphic fileref="lambda"
+<mn>2</mn></math> in tree-like notation.</title>  <graphic fileref="lambda"
 width="600" depth="190"/>
 </figure>
 
@@ -1011,9 +977,7 @@ expression could be attributed with its spoken or visual rendering.
   annotation.
   </para>
 
-<sidebar revision="1999/08/24" author="OC">
-<para>Removed reference to syntactic class of an attributed variable</para>
-</sidebar>
+
 <para>Objects can be decorated in a multitude of
 ways. In&#160;<citation>OM_D131b</citation>, typing of &OM; objects is
 expressed by using an attribution. The object <math><mi
@@ -1048,9 +1012,7 @@ objects.</para>
   other objects and also inside other errors.  Error objects might
   consist only of a symbol as in the object: <math><mi
   mathvariant="bold">error</mi> <mo>(</mo><mi>S</mi>
-  <mo>)</mo></math>.</para> <sidebar revision="1999/09/22"
-  author="DPC"><para>Remove classification of suggested error types,
-  does not fit current CD scheme</para></sidebar>
+  <mo>)</mo></math>.</para> 
 </listitem>
 </varlistentry>
 </variablelist> 
@@ -1185,8 +1147,7 @@ with non-&OM; objects via the use of foreign &OM; objects.
 </listitem>
 </itemizedlist>
 
-<sidebar revision="1999/09/22" author="DPC"><para>Paragraph moved from
-previous section</para></sidebar> <para>Observe that an &OM;
+ <para>Observe that an &OM;
 application object is viewed as a <quote>tree</quote> by software
 applications that do not understand Content Dictionaries, whereas a
 Phrasebook that understands the semantics of the symbols, as defined
@@ -1257,10 +1218,7 @@ very easily determine which encoding is used.</para>
 revisionflag="deleted">Grammar</phrase><phrase>Schema</phrase> for the &exml; Encoding</title>
 
 
-<sidebar revision="1999/09/09" author="DPC"><para>Modify description
-    of &exml; encoding to make <acronym>dtd</acronym> normative, and
-    other changes to increase portability to &exml;
-    applications.</para></sidebar>
+
 
 <para revisionflag="added">The &exml; encoding of an &OM; object is
 defined by the Relax NG schema <citation>RELAX</citation> given below.
@@ -1399,9 +1357,7 @@ syntax, the following further constraints apply, which ensure thet the
 encoding may be read by &OM; applications that may not include a full
 &exml; parser.</para> 
 
-<sidebar revisionflag="deleted" revision="1999/09/09"
-author="DPC"><para>Restrictions on not using foo='xxxx'
-dropped</para></sidebar>
+
 
 
 <itemizedlist revisionflag="deleted" >
@@ -1427,9 +1383,7 @@ references that are allowed are the five predefined entity references:
 </listitem>
 
 <listitem>
-<sidebar revisionflag="deleted" revision="1999/09/21"
-author="DPC"><para>Restrict empty element
-syntax</para></sidebar> 
+ 
 
 <para  revisionflag="deleted">The &exml; empty element form
 <systemitem>&lt;|#8230;/&gt;</systemitem> should
@@ -1455,7 +1409,7 @@ character, <quote>cr</quote> for the carriage return character,
 for the horizontal tabulation character.</para>
 
 <para revisionflag="deleted" id="fig_xml">
-<!--<sidebar revision="1999/07/16" author="DPC"><para>White space allowed in integer strings</para></sidebar>-->
+<!---->
     <phrase revisionflag="deleted">Grammar for the &exml; encoding of &OM; objects.</phrase>
 
 
@@ -1531,7 +1485,7 @@ cdname      </entry>
 </tbody>
 </tgroup>
 </informaltable>
-<!--<sidebar revision="1999/09/09" author="DPC"><para>removed ' from varname</para></sidebar>-->
+<!---->
 
 
 
@@ -1787,8 +1741,7 @@ starting from the basic objects.</para>
 <variablelist>
 <varlistentry><term>Integers</term>
 <listitem>
-<sidebar revision="1999/09/22" author="DPC"><para>White space allowed
-in integer strings</para></sidebar> <para>are encoded using the
+ <para>are encoded using the
 <systemitem>OMI</systemitem> element around the sequence of their
 digits in base 10 or 16 (most significant digit first).  White space
 may be inserted between the characters of the integer representation,
@@ -1899,8 +1852,7 @@ The variable name is a subset of the printable
   in base 10, using the common syntax:</para>
   
   <blockquote><para>
-  <systemitem>(-?)([0-9]+)?("."[0-9]+)?(<phrase 
-revisionflag="added">[</phrase>e<phrase revisionflag="added">E]</phrase>(-?)[0-9]+)?</systemitem>.
+  <systemitem revisionflag="changed">(-?)([0-9]+)?("."[0-9]+)?([eE](-?)[0-9]+)?</systemitem>.
   </para>
   <para revisionflag="added">or one of the special values: INF, -INF or
   NaN.</para>
@@ -2428,7 +2380,7 @@ capture variables in this way can easily lead to representation errors, and is n
 <section id="xmldoc">
 <title>Embedding &OM; in &exml; Documents</title>
 
-<sidebar revision="1999/09/21" author="DPC"><para>New section on embedding &OM; in &exml; documents</para></sidebar>     
+     
 <para>The above encoding of &exml; encoded &OM; specifies the grammar to be
 used in files that encode a single &OM; object, and specifies the
 character streams that a conforming &OM; application should be able
@@ -2443,8 +2395,7 @@ Also, the encoding used in the larger document may not be
 <acronym>utf-8</acronym>.</phrase>
 </para>
 
-<sidebar revision="2000/03/20" author="DPC"><para>Namespace URI, as discussed on&OM;Soc
-list</para></sidebar> <para revisionflag="deleted">In particular, if &OM; is used with applications that use the
+ <para revisionflag="deleted">In particular, if &OM; is used with applications that use the
 &exml; Namespace Recommendation &#160;<citation>xmlns</citation> then they should ensure
 that &OM; elements are in the <phrase revisionflag="added">namespace
 </phrase> <phrase role="tt">http://www.openmath.org/OpenMath</phrase>.
@@ -2480,7 +2431,7 @@ implementations).</para>
 <section id="sec_binary_grammar">
 <title>A Grammar for the Binary Encoding</title>
 
-<sidebar revision="1999/06/24" author="DPC"><para>New attrvar production</para></sidebar>     
+     
 
 <figure id="fig_bin-enc">
     <title>Grammar of the binary encoding of &OM; objects.</title>
@@ -3858,8 +3809,7 @@ that the applications must have already agreed on a set of Content
 Dictionaries which they <quote>understand</quote> (i.e., can cope with
 to some degree).</para>
 
-<sidebar revision="1999/10/04" author="DPC"><para>Rephrase
-slightly</para></sidebar> <para>In many cases, the Content
+ <para>In many cases, the Content
 Dictionaries that an application understands will be constant, and be
 intrinsic to the application's mathematical use. However the above
 approach can also be used for applications which can handle every
@@ -3884,8 +3834,7 @@ contains a set of symbols sufficient to represent any other Content
 Dictionary. This means that Content Dictionaries may be passed in the
 same way as other (&OM;) mathematical data.</para>
 
-<sidebar revision="1999/08/24" author="OC"><para>More motivation on
-design of CDs</para></sidebar> <para>Finally, the syntax of the
+ <para>Finally, the syntax of the
 <phrase revisionflag="added">reference encoding for</phrase>
 Content Dictionaries has been designed to be relatively easy to learn
 and to write, and also free from the need for any specialist
@@ -3918,7 +3867,7 @@ application.</para>
 <para>In this section we define the <phrase revisionflag="deleted">overall</phrase><phrase revisionflag="added">abstract</phrase> structure of Content
 Dictionaries.</para>
 
-<sidebar revision="1999/08/24" author="OC"><para>New paragraph to reflect recent changes</para></sidebar>
+
 <para revisionflag="deleted">Other than Content Dictionary comments (which have no real semantics),
 Content Dictionaries have been designed to hold two types of
 information: that which is pertinent to the whole Content Dictionary,
@@ -3967,10 +3916,10 @@ includes:
  </listitem>
 </itemizedlist>
 </para>
-<sidebar revision="1999/08/24" author="OC"><para>removed refs to old changes</para></sidebar>
-<sidebar revision="1999/06/22" author="OC"><para>new paragraph</para></sidebar>
-<sidebar revision="1999/08/24" author="OC"><para>Defmp added</para></sidebar>
-<sidebar revision="1999/10/04" author="DPC"><para>Rephrase slightly</para></sidebar>
+
+
+
+
 
 <para revisionflag="added">A Content Dictionary consists of the
 following mandatory pieces of information:
@@ -4064,9 +4013,7 @@ associated with Content Dictionaries without the Dictionaries
 themselves being changed.  A model for signatures is given in <xref
 linkend="sigfiles"/>.</para>
 
-<sidebar revision="2000/04/10" author="DPC">
-<para>MathML 2</para>
-</sidebar>
+
 <para>Content Dictionaries may be grouped into <emphasis>CD
 Groups</emphasis>. These groups allow applications to easily refer to
 collections of Content Dictionaries. One particular CDGroup of
@@ -4264,9 +4211,7 @@ element.
 </para>
 
 
-<sidebar revision="1999/06/20" author="OC">
-<para>now we have this numbering mechanism, should it be documented?</para>
-</sidebar>
+
 <variablelist>
 <varlistentry><term><systemitem>CDName</systemitem></term><listitem><para>The
 <phrase revisionflag="deleted">
@@ -4311,8 +4256,8 @@ revision date of this version of the Content Dictionary.
 </listitem>
 </varlistentry>
 <varlistentry><term><systemitem>CDVersion</systemitem></term><listitem>
-   <sidebar revision="1999/06/23" author="DPC"><para>new paragraph</para></sidebar>
-   <sidebar revision="1999/11/24" author="DPC"><para>Now just an integre</para></sidebar>
+   
+   
 
 <para revisionflag="added">The major version number of the CD.</para>
    <para revisionflag="deleted">The text occurring in the <systemitem>CDVersion</systemitem> element corresponds to
@@ -4346,9 +4291,7 @@ revision date of this version of the Content Dictionary.
 </listitem>
 </varlistentry>
 <varlistentry><term><systemitem>CDRevision</systemitem></term><listitem>
-   <sidebar revision="1999/11/24" author="DPC"><para
-revisionflag="deleted">New field,
-   formally `.y' of version number</para></sidebar> <para
+    <para
 revisionflag="deleted">The text
    occurring in the <systemitem>CDRevision</systemitem> element
    corresponds to the revision, or `minor version number' of the
@@ -4401,8 +4344,7 @@ CD base of the CD.
 </listitem>
 </varlistentry>
 <varlistentry><term><systemitem>CDUses</systemitem></term><listitem>
-   <sidebar revision="1999/06/23" author="DPC"><para>new
-   wording</para></sidebar> <para>The content of this element should
+    <para>The content of this element should
    be a series of <systemitem>CDName</systemitem> elements, each
    naming a Content Dictionary used in the
    <systemitem>Example</systemitem> and <systemitem>FMP</systemitem>s
@@ -4418,9 +4360,7 @@ the information can easily be extracted automatically.</phrase></para>
    can be used in the Content Dictionary header to report the author
    of the Content Dictionary and to log change information. In the
    body of the Content Dictionary, it can be used to attach extra
-   remarks to certain symbols.</para> <sidebar revision="1999/10/01"
-   author="OC"><para>Due to lack of inspiration, I added only these
-   few lines</para></sidebar>
+   remarks to certain symbols.</para> 
    
  </listitem>
 </varlistentry>
@@ -4445,8 +4385,7 @@ name of a symbol.
 </varlistentry>
 <varlistentry><term><systemitem>Example</systemitem></term>
 <listitem>
-<sidebar revision="1999/06/23" author="OC"><para>new
-description</para></sidebar> <para>The text occurring in the
+ <para>The text occurring in the
 <systemitem>Example</systemitem> element is used to give examples of
 the enclosing symbol, and can be any &exml; text. In addition to text
 the element may contain examples as &exml; encoded &OM;, inside
@@ -4501,9 +4440,7 @@ A Formal Mathematical Property.
 <title>Additional Information</title>
 
 
-<sidebar revision="1999/08/25" author="OC"><para>Introduction to splitting-up in
-files</para></sidebar> <sidebar revision="1999/10/04" author="DPC"><para>Rephrase
-slightly</para></sidebar> <para>Content Dictionaries contain just one part of the
+  <para>Content Dictionaries contain just one part of the
 information that can be associated to a symbol in order to <phrase
 revisionflag="deleted">stepwise</phrase> define its meaning and its
 functionality. &OM; Signature <phrase revisionflag="deleted">files</phrase><phrase
@@ -4520,13 +4457,7 @@ revisionflag="added">Dictionaries</phrase>
 </title>
 
 
-<sidebar revision="1999/08/25" author="OC"><para>Introduced Signature
-  Files. Early drafts of the &OM; standard specified that Content
-  Dictionaries had a Signature element in which the
-  <emphasis>signature</emphasis> of the symbol was defined. The
-  disadvantage of this approach is that the signature would need to
-  reference a specific type system. Signature Files allow for more
-  generality.</para></sidebar>
+
 
 <para>&OM; may be used with any type system. One just needs to produce
 a Content Dictionary which gives the constructors of the type system,
@@ -4608,7 +4539,7 @@ Requirements</phrase><phrase
  revisionflag="added">Abstract Specification</phrase>
  of a Signature File</title>
 
-<sidebar revision="1999/08/26" author="OC"><para>Added PCDATA for Additional Files</para></sidebar>
+
 
 <para revisionflag="added">Signature files have a header which specifies the
 type system being used, and the Content
@@ -4668,10 +4599,7 @@ Dictionaries.</para>
 </varlistentry>
 <varlistentry><term><systemitem>Signature</systemitem></term>
 <listitem>
-<sidebar revision="1999/08/01" author="OC">
-<para>This notion might be too strict, it also need CDUses
-possibly</para>
-</sidebar>
+
 <para>The content of the <systemitem>Signature</systemitem> element
   has to be a valid &OM; object in &exml; encoding as specified in
   <xref linkend="cha_enco"/>. Additionally, the object must represent
@@ -4733,9 +4661,7 @@ designed to be used with Content Dictionaries in the &exml; encoding.
 
 <section id="sect_sigex">
 <title>Examples</title>
-<sidebar revision="1999/08/01" author="OC">
-<para>arith1.sts is not valid wrt DTD</para>
-</sidebar>
+
 <para>An example of a signature file for the type system STS and the
 <systemitem>arith1</systemitem> Content Dictionary is given in <xref
 linkend="arith1.sts"/>. Each signature entry is similar to the
@@ -4766,9 +4692,7 @@ name="plus"/></systemitem>: <literallayout><![CDATA[
 
 
 
-<sidebar revision="1999/06/20" author="OC"><para>All new, partly taken
-from SB paper</para></sidebar> <sidebar revision="1999/10/04"
-author="DPC"><para>Rephrase slightly</para></sidebar> <para>The CD
+  <para>The CD
 Group mechanism is a convenience mechanism for identifying collections
 of CDs.  A CD Group file is an &exml; document used in the (static or
 dynamic) negotiation phase where communicating applications declare
@@ -4779,8 +4703,7 @@ Groups do <emphasis>not</emphasis> affect the &OM; objects themselves.
 Symbols in an object always refer to content dictionaries, not
 groups.</para>
 
-<sidebar revision="1999/06/20" author="OC"><para>Does this go to
-compliancy?</para></sidebar> <para>For an application to declare that
+ <para>For an application to declare that
 it <quote>understands CDGroup G</quote> is exactly equivalent to, and
 interchangable with, the declaration that it <quote>understands
 Content Dictionaries <math><msub><mi>x</mi><mn>1</mn></msub></math>,
@@ -4826,7 +4749,7 @@ CDs, identified by name and optionally version number and URL.</para>
 <title>Further Requirements of a CDGroup</title>
 
 
-<sidebar revision="1999/08/26" author="OC"><para>Added PCDATA for CDGroup</para></sidebar>
+
 
 <para>The notion of being a valid CDGroup implies that the following
 requirements on the content of the elements described by the <phrase revisionflag="deleted">DTD</phrase><phrase revisionflag="added">schema</phrase> given in
@@ -4842,9 +4765,7 @@ requirements on the content of the elements described by the <phrase revisionfla
 </varlistentry>
 <varlistentry><term><systemitem>CDGroupName</systemitem></term>
 <listitem>
-<sidebar revision="1999/08/01" author="OC">
- <para>For consistency, CDGName would be better</para>
-</sidebar>
+
 <para>The text occurring in the <systemitem>CDGroupName</systemitem>
   element corresponds to the name of the CDGroup. For the syntactical
   requirements, see <systemitem>CDName</systemitem> in <xref linkend="sect_pcdata"/>.</para>
@@ -4900,9 +4821,7 @@ mathematical area of the CDGroup.</para>
 </varlistentry>
 <varlistentry><term><systemitem>CDURL</systemitem></term>
 <listitem>
-<sidebar revision="1999/08/01" author="OC">
-<para>Or the official CD repository?</para>
-</sidebar>
+
 <para>The text occurring in the <systemitem>CDURL</systemitem> element
   identifies the location of the Content Dictionary to be taken as
   member of the CDGroup. This element is optional. In case it is
@@ -4926,18 +4845,10 @@ mathematical area of the CDGroup.</para>
 
 
 
-<sidebar revision="1999/10/04" author="DPC">
-<para>Delete subsec: Note on Symbols, CDs and CDGroups</para>
-</sidebar>
-<sidebar revision="2000/04/10" author="DPC">
-<para>Delete examples (MathML CDGroup is in appendix, core CDGroup no longer exists</para>
-</sidebar>
-<sidebar revision="1999/08/25" author="OC">
-<para>This section to be added</para>
-</sidebar>
-<sidebar revision="1999/10/04" author="DPC">
-<para>Delete subsec: DefMP Files and XSL</para>
-</sidebar>
+
+
+
+
 </section>
 </section>
 </section>
@@ -4946,7 +4857,7 @@ mathematical area of the CDGroup.</para>
 <title>Content Dictionaries Reviewing Process</title>
 
 
-<sidebar revision="1999/10/04" author="DPC"><para>Rephrase slightly</para></sidebar>
+
 <para>The &OM; Society is responsible  for implementing a
 review and referee process to assess the accuracy of the mathematical
 content of Content Dictionaries.  The status (see <systemitem>CDStatus</systemitem>)
@@ -4962,9 +4873,7 @@ Dictionary may change as a result of this review process.</para>
 <chapter id="cha_comp">
 <title>&OM; Compliance</title>
 
-<sidebar revision="1999/11/24" author="DPC/OC">
-<para>New chapter, after discussions at Esprit &OM; meeting in Bath</para>
-</sidebar>
+
 <para>Applications that meet the requirements specified in this chapter may
 label themselves as <emphasis>&OM; compliant</emphasis>. &OM; compliancy is
 defined so as to maximize the potential for interoperability amongst
@@ -5106,7 +5015,7 @@ Dictionaries and &OM; objects is given.</para>
 <section id="arith1.sts">
   <title>The  <filename>arith1</filename> STS Signature File</title>
   
-  <sidebar revision="1999/07/16" author="DPC"><para>ADD arith1 signature file</para></sidebar>
+  
   
   <literallayout><![CDATA[<CDSignatures type="sts" cd="arith1">
     
@@ -5269,7 +5178,7 @@ Dictionaries and &OM; objects is given.</para>
 
 <section id="mathml.cdg">
   <title>The  <filename>MathML</filename> CDGroup</title>
-  <sidebar revision="1999/08/26" author="OC"><para>ADD MathML CDGroup</para></sidebar>
+  
   
   <literallayout><![CDATA[<CDGroup>
   <CDGroupName>mathml</CDGroupName>
