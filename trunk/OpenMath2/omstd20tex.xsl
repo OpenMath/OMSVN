@@ -593,5 +593,9 @@ changelog entry here
 <xsl:apply-templates mode="verb" select="."/>
 </xsl:template>
 
+<xsl:template match="cds:CDSignatures" xmlns:cds="http://www.openmath.org/OpenMathCDS">
+<xsl:apply-templates mode="verb" select="."/>
+</xsl:template>
+
 </xsl:stylesheet>
 
