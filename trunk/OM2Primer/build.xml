@@ -2,7 +2,7 @@
 
 <!--
   
-    $Id: build.xml,v 1.7 2004/05/19 11:07:11 openmath Exp $
+    $Id: build.xml,v 1.8 2004/05/24 08:23:48 openmath Exp $
 
     Copyright (c) 2003, RISC-Linz, Mathbroker, Austria.
     All Rights Reserved.
@@ -12,7 +12,7 @@
           
   -->
 
-<project basedir="." default="xhtml">
+<project basedir="." default="chunk">
 
   <property environment="myenv" />
   <property name="docbook.xsl" value="${myenv.DOCBOOK_XSL}"/>
@@ -26,19 +26,19 @@
     
     <property name="build.root"   value="build"/>
     <property name="build.doc"    value="${build.root}/doc"/>
-    <property name="build.src"    value="${build.root}/src"/>
+    <property name="build.obj"    value="${build.root}/obj"/>
  </target>
 
   <target name="prepare" depends="init">
     <mkdir dir="${build.root}"/>
     <mkdir dir="${build.doc}"/>
-    <mkdir dir="${build.src}"/>
-    <mkdir dir="${build.src}/xhtml"/>
-    <copy todir="${build.src}/xhtml" 
+    <mkdir dir="${build.obj}"/>
+    <mkdir dir="${build.obj}/xhtml"/>
+    <copy todir="${build.obj}/xhtml" 
       file="${package.src}/xsl/pmathml.xsl"/>
-    <copy todir="${build.src}/xhtml" 
+    <copy todir="${build.obj}/xhtml" 
       file="${package.src}/xsl/primer.css"/>
-     <copy todir="${build.src}/xhtml" 
+     <copy todir="${build.obj}/xhtml" 
       file="${package.src}/xsl/primer.xsl"/>
  
 
@@ -47,49 +47,40 @@
 
 
 
-  <!-- primer in html chunck is generated using docbook xsl -->
-  <target name="xhtml" depends="prepare"
+  <!-- primer in xhtml chunk is generated using docbook xsl -->
+  <target name="chunk" depends="prepare"
 	  description="Produce the xhtml primer">
 
-   <replace file="${build.src}/xhtml/primer.xsl"
+   <replace file="${build.obj}/xhtml/primer.xsl"
       token="@stylesheet.uri"
-      value="${docbook.xsl}/html/chunk.xsl"/>
+      value="${docbook.xsl}/xhtml/chunk.xsl"/>
      
     <style basedir="${package.root}/src/xml"
 	   includes="**/*.xml"
-	   style="${build.src}/xhtml/primer.xsl"
-	   destdir="${build.src}/xhtml/"
+	   style="${build.obj}/xhtml/primer.xsl"
+	   destdir="${build.obj}/xhtml/"
 	   extension=".xhtml"
 	   force="true">
     </style>    
-    <copy todir="${build.src}/xhtml"> 
+    <copy todir="${build.obj}/xhtml"> 
       <fileset dir="${package.src}/xml/" includes="*.png"/>
     </copy>
   </target>
 
 
-  <!-- primer in xhtml is generated using omstd xsl -->
-  <target name="html" depends="prepare"
-	  description="Produce the xhtml primer">
-    <style basedir="${package.root}/src/xml"
-	   includes="**/*.xml"
-	   style="${docbook.xsl}/html/docbook.xsl"
-	   destdir="${build.src}/xhtml/"
-	   extension=".html"
-	   force="true">
-    </style>    
-  </target>
-
 
 
   <!-- I leave this here in case we want to use saxon -->
 
-  <target name="doc" depends="prepare">
+  <target name="saxon" depends="prepare">
 
+   <replace file="${build.obj}/xhtml/primer.xsl"
+      token="@stylesheet.uri"
+      value="${docbook.xsl}/xhtml/chunk.xsl"/>
 
     <java classname="com.icl.saxon.StyleSheet" fork="yes">
-    <arg line="-o ${build.src}/xhtml/primer.xhtml
-	${package.src}/xml/primerom20.xml ${package.root}/src/xsl/primer.xsl"/>
+    <arg line="-o ${build.obj}/xhtml/primer.xhtml
+	${package.src}/xml/primerom20.xml ${build.obj}/xhtml/primer.xsl"/>
       <classpath>
         <pathelement location="lib/saxon.jar"/>
       </classpath>
