@@ -109,6 +109,15 @@
 </pre>
 </xsl:template>
 
+<xsl:template match="cd:CDDefinition/cd:Description">
+<dl>
+<dt><span class="dt">Description:</span></dt>
+<dd>
+  <xsl:call-template name="grab-para">
+    <xsl:with-param name="string" select="."/>
+  </xsl:call-template>
+</dd></dl>
+</xsl:template>
 
 
 <xsl:template match="cd:Description">
