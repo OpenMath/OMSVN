@@ -310,7 +310,7 @@ on line <xsl:value-of select="saxon:line-number()"/></xsl:if>
    <p>OMFOREIGN must be a child of OMATP</p>
  </xsl:if>
  <xsl:for-each select="@*[not(name()='encoding')]">
-  <p>Bad attribute on OMFORIE<xsl:value-of select="name()"/>="<xsl:value-of select="."/>"</p>
+  <p>Bad attribute on OMFOREIGN: <xsl:value-of select="name()"/>="<xsl:value-of select="."/>"</p>
  </xsl:for-each>
  </xsl:otherwise>
  </xsl:choose>
