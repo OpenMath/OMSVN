@@ -4,7 +4,7 @@
 <CDReviewDate>  2006-07-12  </CDReviewDate>
 <CDDate> 2004-07-12   </CDDate>
 <CDVersion> 0 </CDVersion>
-<CDRevision> 0 </CDRevision>
+<CDRevision> 1 </CDRevision>
 <CDStatus> experimental </CDStatus>
 <CDUses>
   <CDName>alg1</CDName>
@@ -26,6 +26,11 @@ This CD holds a collection of basic modular arithmetic for polynomials over fiel
 The data structures for polynomials can be arithmetic expressions, for
 instance using the ring1.expression symbol, or DMP as
 in the CD polyd1.
+
+In revision 1,
+*  a faulty reference to remainder in the definition of
+   remainder  has been corrected to a reference to quotient;
+*  the symbol lcm has been added.
 </Description>
 
 <CDDefinition>
@@ -44,6 +49,55 @@ in the CD polyd1.
      </OMOBJ>
     </Example>
 </CDDefinition>
+
+    <CDDefinition>
+       <Name> lcm </Name>
+<Role>application</Role>
+       <Description> 
+          The least common multiple of its polynomial arguments.
+          This is unique up to units, but the choice must be compatible with
+          that made for gcd, so that the product of the gcd and the lcm equals
+       the
+       product of all arguments.
+       </Description>
+       <CMP>
+         for all x,y we have lcm(x,y) = (x*y)/gcd(x,y)
+       </CMP>
+       <FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+       <OMBIND>
+         <OMS cd="quant1" name="forall"/>
+	 <OMBVAR>
+	   <OMV name="x"/>
+	   <OMV name="y"/>
+	 </OMBVAR>
+	 <OMA>
+	   <OMS name="eq" cd="relation1"/>
+	   <OMA>
+	     <OMS name="lcm" cd="polynomial3"/>
+	     <OMV name="x"/>
+	     <OMV name="y"/>
+	   </OMA>
+	   <OMA>
+	     <OMS name="divide" cd="arith1"/>
+	     <OMA>
+	       <OMS name="times" cd="arith1"/>
+	       <OMV name="x"/>
+	       <OMV name="y"/>
+	     </OMA>
+	     <OMA>
+	       <OMS name="gcd" cd="polynomial3"/>
+	       <OMV name="x"/>
+	       <OMV name="y"/>
+	     </OMA>
+	   </OMA>
+	 </OMA>
+       </OMBIND>
+       </OMOBJ></FMP>
+    </CDDefinition>
+
+
+
+
 
 <CDDefinition>
     <Name> factors </Name>
@@ -155,9 +209,12 @@ of a by b.
 <CDComment>
 For univariate polynomials a and b, remainder(a,b) denotes r such that a=b*q+r, with degree(r) less
 than degree(b).
-See remainder for a formal statement of this property.
+See the definition of the symbol quotient for a formal statement of this property.
 </CDComment>
 </CDDefinition>
+
+
+
 
 
 <!--
