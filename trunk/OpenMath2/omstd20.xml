@@ -1029,19 +1029,19 @@ representation that can be easily exchanged between processes (via
 almost any communication method) or stored and retrieved from files.</para>
 
 
-<para>The first encoding uses  ISO 646:1983 characters&#160;<citation>iso646_83</citation>
-(also known as <acronym>ascii</acronym> characters) and is  an &exml;
-application. Although the &exml; markup of the encoding uses only <acronym>ascii</acronym>
-characters, &OM; strings may use
-arbitrary Unicode/ISO 10646:1988 
-characters&#160;<citation>UNICODE</citation>. 
-It can be used, for example, to send &OM; objects via
-e-mail, news, cut-and-paste, etc. The texts produced by this encoding
-can be part of &exml; documents.</para>
+<para>The first encoding uses ISO 646:1983
+characters&#160;<citation>iso646_83</citation> (also known as
+<acronym>ascii</acronym> characters) and is an &exml;
+application. Although the &exml; markup of the encoding uses only
+<acronym>ascii</acronym> characters, &OM; strings may use arbitrary
+Unicode/ISO 10646:1988 characters&#160;<citation>UNICODE</citation>.
+It can be used, for example, to send &OM; objects via e-mail, news,
+cut-and-paste, etc. The texts produced by this encoding can be part of
+&exml; documents.</para>
 
-<para>The second encoding is a binary encoding that is meant to be used when 
-the compactness of the encoding is important (interprocess communications 
-over a network is an example).</para>
+<para>The second encoding is a binary encoding that is meant to be
+used when the compactness of the encoding is important (interprocess
+communications over a network is an example).</para>
 
 <para>Note that these two encodings are sufficiently different for
 autodetection to be effective: an application reading the bytes can
@@ -1066,31 +1066,33 @@ very easily determine which encoding is used.</para>
 <title>A Grammar for the &exml; Encoding</title>
 
 
-<sidebar revision="1999/09/09" author="DPC"><para>Modify description of &exml; encoding to make 
-    <acronym>dtd</acronym>
-     normative, and other changes to increase portability to &exml;
-applications.</para></sidebar>
+<sidebar revision="1999/09/09" author="DPC"><para>Modify description
+    of &exml; encoding to make <acronym>dtd</acronym> normative, and
+    other changes to increase portability to &exml;
+    applications.</para></sidebar>
 
-<para revisionflag="changed">The &exml; encoding of an &OM; object is defined by the Relax
-NG schema (<acronym>RNC</acronym>)  below.<phrase revisionflag="deleted">with the following additional rules
-not implied by the &exml; <acronym>dtd</acronym>.</phrase></para>
+<para revisionflag="changed">The &exml; encoding of an &OM; object is
+defined by the Relax NG schema (<acronym>RNC</acronym>) below. XSLT
+stylesheets allow to generate a DTD and an XSD schema from it.<phrase
+revisionflag="deleted">with the following additional rules not implied
+by the &exml; <acronym>dtd</acronym>.</phrase></para>
+
 <itemizedlist revisionflag="deleted">
-<listitem>
-<para>Comments are permitted only between
+<listitem><para revisionflag="deleted" >Comments are permitted only between
 elements, not within element character data.</para>
+</listitem>
 
+<listitem><para revisionflag="deleted">Processing Instructions are
+ only allowed before the <acronym>OMOBJ</acronym> element.</para>
 </listitem>
-<listitem> <para>Processing Instructions are only allowed before the <acronym>OMOBJ</acronym>
- element.</para>
- 
-</listitem>
-<listitem>
-<para>The content of an <acronym>OMB</acronym> element, is a valid base64-encoded text.</para>
 
+<listitem><para revisionflag="deleted">The content of an
+<acronym>OMB</acronym> element, is a valid base64-encoded text.</para>
 </listitem>
-<listitem> 
-<para>The character data forming element content and attribute values
-matches the regular expressions of <xref linkend="fig_xml"/>.</para>
+
+<listitem><para revisionflag="deleted">The character data forming
+element content and attribute values matches the regular expressions
+of <xref linkend="fig_xml"/>.</para>
 </listitem>
 </itemizedlist>
 
@@ -1114,103 +1116,103 @@ matches the regular expressions of <xref linkend="fig_xml"/>.</para>
 
 <!ENTITY % omel "OMS | OMV | OMI | OMB | OMSTR
                                 | OMF | OMA | OMBIND | OME
-                                | OMATTR | ]]><phrase revisionflag="added">OMR</phrase><![CDATA[">
+                                | OMATTR | ]]><![CDATA[">
 
 
 <!-- things which can be variables -->
 
 <!ENTITY % omvar "OMV | OMATTR" >
 
-]]><phrase revisionflag="added"><![CDATA[<!-- the attributes common to all OM elements -->
-<!ENTITY % common.att "id ID #IMPLIED">]]></phrase><![CDATA[
+]]><![CDATA[
 
 <!-- symbol -->
 <!ELEMENT OMS EMPTY>
 
-  <!ATTLIST OMS ]]><phrase revisionflag="added">%common.att;</phrase><![CDATA[
+  <!ATTLIST OMS ]]><![CDATA[
               name CDATA #REQUIRED
               cd CDATA #REQUIRED >
 
 <!-- variable -->
 <!ELEMENT OMV EMPTY>
-<!ATTLIST OMV  ]]><phrase revisionflag="added">%common.att;</phrase><![CDATA[
+<!ATTLIST OMV  ]]><![CDATA[
               name CDATA #REQUIRED >
 
 <!-- integer -->
 <!ELEMENT OMI (#PCDATA) >
-]]><phrase revisionflag="added"><![CDATA[<!ATTLIST OMI %common.att; >]]></phrase><![CDATA[
+]]><![CDATA[
 
 <!-- byte array -->
 <!ELEMENT OMB (#PCDATA) >
-]]><phrase revisionflag="added"><![CDATA[<!ATTLIST OMB %common.att; >]]></phrase><![CDATA[
+]]><![CDATA[
 
 <!-- string -->
 <!ELEMENT OMSTR (#PCDATA) >
-]]><phrase revisionflag="added"><![CDATA[<!ATTLIST OMSTR %common.att; >]]></phrase><![CDATA[
+]]><![CDATA[
 
 <!-- floating point -->
 <!ELEMENT OMF EMPTY>
-<!ATTLIST OMF  ]]><phrase revisionflag="added">%common.att;</phrase><![CDATA[
+<!ATTLIST OMF  ]]><![CDATA[
               dec CDATA #IMPLIED
                hex CDATA #IMPLIED>
 
 <!-- apply constructor -->
 <!ELEMENT OMA (%omel;)+ >
-]]><phrase revisionflag="added"><![CDATA[<!ATTLIST OMA %common.att; >]]></phrase><![CDATA[
+]]><![CDATA[
 
 
 <!-- binding constructor & bound variables -->
 <!ELEMENT OMBIND ((%omel;), OMBVAR, (%omel;)) >
-]]><phrase revisionflag="added"><![CDATA[<!ATTLIST OMBIND %common.att; >]]></phrase><![CDATA[
+]]><![CDATA[
 
 <!ELEMENT OMBVAR (%omvar;)+ >
-]]><phrase revisionflag="added"><![CDATA[<!ATTLIST OMBVAR %common.att; >]]></phrase><![CDATA[
+]]><![CDATA[
 
 <!-- error -->
 <!ELEMENT OME (OMS, (%omel;)* ) >
-]]><phrase revisionflag="added"><![CDATA[<!ATTLIST OME %common.att; >]]></phrase><![CDATA[
+]]><![CDATA[
 
 <!-- attribution constructor & attribute pair constructor -->
 <!ELEMENT OMATTR (OMATP, (%omel;)) >
-]]><phrase revisionflag="added"><![CDATA[<!ATTLIST OMATTR %common.att; >]]></phrase><![CDATA[
+]]><![CDATA[
 
 <!ELEMENT OMATP (OMS, (%omel;))+ >
-]]><phrase revisionflag="added"><![CDATA[<!ATTLIST OMATP %common.att; >]]></phrase><![CDATA[
+]]><![CDATA[
 
-]]><phrase revisionflag="added"><![CDATA[<!-- OM references -->
-<!ELEMENT OMR EMPTY>
-<!ATTLIST OMR %common.att; 
-              xlink:href CDATA #REQUIRED
-              xlink:type CDATA #FIXED 'simple'
-              xlink:show CDATA #FIXED 'embed'>]]></phrase><![CDATA[
+]]><![CDATA[
 
 <!-- OM object constructor -->
 <!ELEMENT OMOBJ (%omel;) >
-<!ATTLIST OMOBJ ]]><phrase revisionflag="added">%common.att;</phrase><![CDATA[
+<!ATTLIST OMOBJ ]]><![CDATA[
 	        xlmns:xlink CDATA #FIXED 'http://www.w3.org/1999/xlink'>]]>
 </literallayout>
 </para>
 
 
-<para revisionflag="deleted">In addition, if the &exml; document encoding the &OM; object is
-linearised into the &exml; concrete syntax, the following further
-constraints apply, which ensure thet the encoding may be read by &OM;
-applications that may not include a full &exml; parser.</para>
-<sidebar revisionflag="deleted" revision="1999/09/09" author="DPC"><para>Restrictions on not using foo='xxxx' dropped</para></sidebar>
+<para revisionflag="deleted">In addition, if the &exml; document
+encoding the &OM; object is linearised into the &exml; concrete
+syntax, the following further constraints apply, which ensure thet the
+encoding may be read by &OM; applications that may not include a full
+&exml; parser.</para> 
+
+<sidebar revisionflag="deleted" revision="1999/09/09"
+author="DPC"><para>Restrictions on not using foo='xxxx'
+dropped</para></sidebar>
+
+
 <itemizedlist revisionflag="deleted" >
 <listitem>
-<para>The document should use <acronym>utf-8</acronym> encoding.</para>
+<para revisionflag="deleted">The document should use <acronym>utf-8</acronym> encoding.</para>
 
 </listitem>
 <listitem>
-<para>A <systemitem>&lt;!DOCTYPE</systemitem> declaration should not be used.</para>
+<para revisionflag="deleted">A <systemitem>&lt;!DOCTYPE</systemitem> declaration should not be used.</para>
 
 </listitem>
 
 <listitem>
-<para revisionflag="deleted">Character references should not be used. As <systemitem>&lt;!DOCTYPE</systemitem>
-is not used, the only entity references that are allowed are the five predefined entity
-references: 
+<para  revisionflag="deleted">Character references should not be used. As
+<systemitem>&lt;!DOCTYPE</systemitem> is not used, the only entity
+references that are allowed are the five predefined entity references:
 <systemitem>&amp;apos;</systemitem> (&apos;),
 <systemitem>&amp;quot;</systemitem> (&quot;),
 <systemitem>&amp;lt;</systemitem> (&lt;),
@@ -1218,31 +1220,34 @@ references:
 <systemitem>&amp;amp;</systemitem> (&amp;).
 </para>
 </listitem>
+
 <listitem>
-<sidebar revisionflag="deleted" revision="1999/09/21" author="DPC"><para>Restrict empty
-element syntax</para></sidebar> <para>The &exml; empty element form
-<systemitem>&lt;|<phrase>&#8230;</phrase>/&gt;</systemitem> should always be used to
-encode elements such as <acronym>omf</acronym> which are specified in
-the <acronym>dtd</acronym> as being <acronym>empty</acronym>. It
-should never be used for elements that may sometimes be empty, such as
-<acronym>omstr</acronym>.</para>
+<sidebar revisionflag="deleted" revision="1999/09/21"
+author="DPC"><para>Restrict empty element
+syntax</para></sidebar> 
+
+<para  revisionflag="deleted">The &exml; empty element form
+<systemitem>&lt;|<phrase>&#8230;</phrase>/&gt;</systemitem> should
+always be used to encode elements such as <acronym>omf</acronym> which
+are specified in the <acronym>dtd</acronym> as being
+<acronym>empty</acronym>. It should never be used for elements that
+may sometimes be empty, such as <acronym>omstr</acronym>.</para>
 
 </listitem>
 </itemizedlist>
 
-<para>Such a linearisation of an &exml; encoded &OM; Object would
+<para revisionflag="deleted">Such a linearisation of an &exml; encoded &OM; Object would
 match the match the character based grammar given in <xref
 linkend="fig_xml"/>.</para>
 
-<para>The notation used in this section and in <xref
-linkend="fig_xml"/> should be quite straightforward (+ meaning
+<para revisionflag="deleted">The notation used in this section and in
+<xref linkend="fig_xml"/> should be quite straightforward (+ meaning
 <quote>one or more</quote>, ? meaning zero or one, and | meaning
-<quote>or</quote>). <phrase revisionflag="added">We will use [[ ... ]]  for
-<quote>Any permutation of the contents</quote></phrase>. The start
-symbol of the grammar is <quote>start</quote>, <quote>space</quote>
-stands for the space character, <quote>cr</quote> for the carriage
-return character, <quote>nl</quote> for the line feed character and
-<quote>tab</quote> for the horizontal tabulation character.</para>
+<quote>or</quote>).  The start symbol of the grammar is
+<quote>start</quote>, <quote>space</quote> stands for the space
+character, <quote>cr</quote> for the carriage return character,
+<quote>nl</quote> for the line feed character and <quote>tab</quote>
+for the horizontal tabulation character.</para>
 
 
 <para revisionflag="deleted">
@@ -1365,33 +1370,6 @@ cdname      </entry>
 </entry>
 </row>
 
-<row revisionflag="added">
-<entry>hrefatt</entry>
-<entry> <math>&longrightarrow;</math></entry>
-<entry><systemitem>xlink:href</systemitem> <systemitem>?</systemitem>S = <systemitem>?</systemitem>S (<systemitem>"</systemitem> uriref <systemitem>"</systemitem> | <systemitem>'</systemitem> uriref <systemitem>'</systemitem>)
-</entry>
-</row>
-
-<row revisionflag="added">
-<entry>typeatt</entry>
-<entry> <math>&longrightarrow;</math></entry>
-<entry><systemitem>xlink:type</systemitem> <systemitem>?</systemitem>S = <systemitem>?</systemitem>S (<systemitem>"</systemitem>simple<systemitem>"</systemitem> | <systemitem>'</systemitem>simple<systemitem>'</systemitem>)
-</entry>
-</row>
-
-<row revisionflag="added">
-<entry>showatt</entry>
-<entry> <math>&longrightarrow;</math></entry>
-<entry><systemitem>xlink:show</systemitem> <systemitem>?</systemitem>S = <systemitem>?</systemitem>S (<systemitem>"</systemitem>simple<systemitem>"</systemitem> | <systemitem>'</systemitem>embed<systemitem>'</systemitem>)
-</entry>
-</row>
-
-<row revisionflag="added">
-<entry>idatt</entry>
-<entry> <math>&longrightarrow;</math></entry>
-<entry><systemitem>id</systemitem> <systemitem>?</systemitem>S = <systemitem>?</systemitem>S (<systemitem>"</systemitem> symbname <systemitem>"</systemitem> | <systemitem>'</systemitem> symbname <systemitem>'</systemitem>)
-</entry>
-</row>
 
 <row>
 <entry>PI </entry>
@@ -1425,7 +1403,7 @@ cdname      </entry>
 <entry>symbol</entry>
 <entry> <math>&longrightarrow;</math> </entry>
 <entry> 
-  <systemitem>&lt;OMS</systemitem> [[(S  symbnameatt) (S cdnameatt) <phrase revisionflag="added">(S idatt)?</phrase>]] S? <systemitem>/&gt;</systemitem>
+  <systemitem>&lt;OMS</systemitem> [[(S  symbnameatt) (S cdnameatt) ]] S? <systemitem>/&gt;</systemitem>
 </entry>
 </row>
 
@@ -1433,20 +1411,20 @@ cdname      </entry>
 <row>
 <entry>variable</entry>
 <entry> <math>&longrightarrow;</math> </entry>
-<entry><systemitem>&lt;OMV</systemitem> <phrase revisionflag="added">(S idatt)?</phrase> varnameatt S? <systemitem>/&gt;</systemitem>
+<entry><systemitem>&lt;OMV</systemitem>  varnameatt S? <systemitem>/&gt;</systemitem>
 </entry>
 </row>
 
 <row><entry/>
 <entry>|</entry>
-<entry> <systemitem>&lt;OMATTRx</systemitem><phrase revisionflag="added">(S idatt)?</phrase> S?<systemitem>&gt;</systemitem> SC? omatp SC? variable SC? <systemitem>&lt;/OMATTR</systemitem> S?<systemitem>&gt;</systemitem>
+<entry> <systemitem>&lt;OMATTRx</systemitem> S?<systemitem>&gt;</systemitem> SC? omatp SC? variable SC? <systemitem>&lt;/OMATTR</systemitem> S?<systemitem>&gt;</systemitem>
 </entry>
 </row>
 
 <row>
 <entry>omatp </entry>
 <entry> <math>&longrightarrow;</math> </entry>
-<entry>     <systemitem>&lt;OMATP</systemitem> <phrase revisionflag="added">(S idatt)?</phrase> S?<systemitem>&gt;</systemitem> SC? attrs SC? <systemitem>&lt;/#1</systemitem> S?<systemitem>&gt;</systemitem> 
+<entry>     <systemitem>&lt;OMATP</systemitem>  S?<systemitem>&gt;</systemitem> SC? attrs SC? <systemitem>&lt;/#1</systemitem> S?<systemitem>&gt;</systemitem> 
 </entry>
 </row>
 
@@ -1461,55 +1439,50 @@ cdname      </entry>
 <entry>|</entry><entry>variable</entry>
 </row>
 
-<row revisionflag="added"><entry/>
-<entry>|</entry>
-<entry><systemitem>&lt;OMR</systemitem>[[(S hrefatt)? (S typeatt)? (S showatt)? (S idatt)?]] S?/></entry>
-</row>
-
 <row><entry/>
 <entry>|</entry>
-<entry><systemitem>&lt;OMI</systemitem> S <phrase revisionflag="added">(idatt S)?</phrase><systemitem>&gt;</systemitem> S? integer S? <systemitem>&lt;/OMI</systemitem> S?<systemitem>&gt;</systemitem>
+<entry><systemitem>&lt;OMI</systemitem> S <systemitem>&gt;</systemitem> S? integer S? <systemitem>&lt;/OMI</systemitem> S?<systemitem>&gt;</systemitem>
 </entry>
 </row>
 
 <row><entry/>
-<entry>|</entry><entry> <systemitem>&lt;OMF</systemitem> S fpdecatt <phrase revisionflag="added">(S idatt)?</phrase> S?<systemitem>/&gt;</systemitem>
+<entry>|</entry><entry> <systemitem>&lt;OMF</systemitem> S fpdecatt  S?<systemitem>/&gt;</systemitem>
 </entry>
 </row>
 
 <row>
   <entry/>
-  <entry>|</entry><entry> <systemitem>&lt;OMF</systemitem> S fphexatt <phrase revisionflag="added">(S idatt)?</phrase> S?<systemitem>/&gt;</systemitem>
+  <entry>|</entry><entry> <systemitem>&lt;OMF</systemitem> S fphexatt  S?<systemitem>/&gt;</systemitem>
 </entry>
 </row>
 
 <row>
   <entry/>  
-  <entry>|</entry><entry> <systemitem>&lt;OMSTR</systemitem> <phrase revisionflag="added">(S idatt)?</phrase> S?<systemitem>&gt;</systemitem> char <systemitem>&lt;/OMSTR</systemitem> S?<systemitem>&gt;</systemitem> 
+  <entry>|</entry><entry> <systemitem>&lt;OMSTR</systemitem>  S?<systemitem>&gt;</systemitem> char <systemitem>&lt;/OMSTR</systemitem> S?<systemitem>&gt;</systemitem> 
 </entry>
 </row>
 
 <row>
   <entry/>  
-  <entry>|</entry><entry> <systemitem>&lt;OMB</systemitem> <phrase revisionflag="added">(S  idatt)?</phrase> S?<systemitem>&gt;</systemitem> base64  <systemitem>&lt;/OMB</systemitem> S?<systemitem>&gt;</systemitem> 
+  <entry>|</entry><entry> <systemitem>&lt;OMB</systemitem>  S?<systemitem>&gt;</systemitem> base64  <systemitem>&lt;/OMB</systemitem> S?<systemitem>&gt;</systemitem> 
 </entry>
 </row>
 
 <row>
   <entry/>
 <entry>|</entry>
-<entry> <systemitem>&lt;OMA</systemitem> <phrase revisionflag="added">(S idatt)?</phrase> S?<systemitem>&gt;</systemitem> SC? object SC? objects SC? <systemitem>&lt;/OMA</systemitem> S?<systemitem>&gt;</systemitem>
+<entry> <systemitem>&lt;OMA</systemitem>  S?<systemitem>&gt;</systemitem> SC? object SC? objects SC? <systemitem>&lt;/OMA</systemitem> S?<systemitem>&gt;</systemitem>
 </entry>
 </row>
 
 <row><entry/>
-<entry>|</entry><entry> <systemitem>&lt;OMBIND</systemitem> <phrase revisionflag="added">(S idatt)?</phrase> S?<systemitem>&gt;</systemitem> SC? object SC? 
+<entry>|</entry><entry> <systemitem>&lt;OMBIND</systemitem>  S?<systemitem>&gt;</systemitem> SC? object SC? 
 </entry>
 </row>
 
 <row><entry/>
 <entry></entry>
-<entry> <systemitem>&lt;OMBVAR</systemitem> <phrase revisionflag="added">(S idatt)?</phrase> S?<systemitem>&gt;</systemitem> SC? variables SC? <systemitem>&lt;/OMBVAR</systemitem> S?<systemitem>&gt;</systemitem> 
+<entry> <systemitem>&lt;OMBVAR</systemitem>  S?<systemitem>&gt;</systemitem> SC? variables SC? <systemitem>&lt;/OMBVAR</systemitem> S?<systemitem>&gt;</systemitem> 
 </entry>
 </row>
 
@@ -1522,14 +1495,14 @@ cdname      </entry>
 <row>
   <entry/>
 <entry>|</entry>
-<entry> <systemitem>&lt;OME</systemitem> <phrase revisionflag="added">(S idatt)?</phrase> S?<systemitem>&gt;</systemitem> SC? symbol SC? objects SC? <systemitem>&lt;/OME</systemitem> S?<systemitem>&gt;</systemitem> 
+<entry> <systemitem>&lt;OME</systemitem>  S?<systemitem>&gt;</systemitem> SC? symbol SC? objects SC? <systemitem>&lt;/OME</systemitem> S?<systemitem>&gt;</systemitem> 
 </entry>
 </row>
 
 <row>
   <entry/>
 <entry>|</entry>
-<entry> <systemitem>&lt;OMATTR</systemitem> <phrase revisionflag="added">(S idatt)?</phrase> S?<systemitem>&gt;</systemitem> SC?  <systemitem>&lt;OMATP</systemitem> S?<systemitem>&gt;</systemitem> SC? attrs SC? <systemitem>&lt;/OMBVAR</systemitem> S?<systemitem>&gt;</systemitem>   
+<entry> <systemitem>&lt;OMATTR</systemitem>  S?<systemitem>&gt;</systemitem> SC?  <systemitem>&lt;OMATP</systemitem> S?<systemitem>&gt;</systemitem> SC? attrs SC? <systemitem>&lt;/OMBVAR</systemitem> S?<systemitem>&gt;</systemitem>   
 </entry>
 </row>
 
