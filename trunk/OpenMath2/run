@@ -56,6 +56,7 @@ sed -e  "s/| OMOBJ//" \
     -e "s/include .openmath2.rnc. {.*}/# OMDTD/" \
     -e "s/\(CDRevision[^,]*\)[)],/\\1)+,/" \
     -e "s/\(Description\)[)],/\\1)+,/" \
+    -e "s/\(Role\)[?]/\\1/" \
     -e "s/ &/ |/g" \
         $i >tmp.rnc
 
@@ -69,13 +70,6 @@ sed -e  "s/| OMOBJ//" \
  sed -e "s/</\&lt;/g" ${i%%rnc}dtd > ${i%%.rnc}dtd.xml
 
 
- trang tmp.rnc tmp.dtd  2>> trang.txt
- 
- sed -e "s/text-or-om \"(#PCDATA/text-or-om \"(#PCDATA|OMOBJ/" \
-     -e "s/FMP (#PCDATA)/FMP (OMOBJ)/" \
-     -e "s/<!-- OMDTD -->/<!ENTITY % omdtd SYSTEM \"openmath2.dtd\"> %omdtd;/"\
-        tmp.dtd > ${i%%rnc}dtd
- sed -e "s/</\&lt;/g" ${i%%rnc}dtd > ${i%%.rnc}dtd.xml
 done
 
 
