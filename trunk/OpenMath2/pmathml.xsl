@@ -13,7 +13,7 @@
 >
 
 <!--
-$Id: pmathml.xsl,v 1.1 2003/10/31 13:51:34 openmath Exp $
+$Id: pmathml.xsl,v 1.2 2003/10/31 15:13:24 openmath Exp $
 
 Copyright David Carlisle 2001, 2002.
 
@@ -37,7 +37,7 @@ href="http://www.w3.org/Consortium/Legal/copyright-software-19980720"
 <object id="mmlFactory" 
         classid="clsid:32F66A20-7614-11D4-BD11-00104BD3F987">
 </object>
-<?import namespace="m" implementation="#mmlFactory"?>
+<?import namespace="mml" implementation="#mmlFactory"?>
 </fns:x>
 
 <fns:x name="techexplorer" o="techexplorer.AxTchExpCtrl.1">
@@ -47,8 +47,12 @@ href="http://www.w3.org/Consortium/Legal/copyright-software-19980720"
 </fns:x>
 
 
+<!-- SCRIPT not script due to weird mozilla bug
+http://bugzilla.mozilla.org/show_bug.cgi?id=158457
+-->
+
 <fns:x name="css" o="Microsoft.FreeThreadedXMLDOM">
-<script for="window" event="onload">
+<SCRIPT for="window" event="onload">
 var xsl = new ActiveXObject("Microsoft.FreeThreadedXMLDOM");
 xsl.async = false;
 xsl.validateOnParse = false;
@@ -59,9 +63,12 @@ var xslProc = xslTemplate.createProcessor();
 xslProc.input = document.XMLDocument;
 xslProc.transform();
 var str = xslProc.output;
-var newDoc = document.open("text/html", "replace");
+<!-- work around bug in IE6 under Win XP, RM 6/5/2002 -->
+var repl = "replace";
+if (window.navigator.appVersion.match(/Windows NT 5.1/)) { repl = ""; }
+var newDoc = document.open("text/html", repl);
 newDoc.write(str);
-</script>
+</SCRIPT>
 </fns:x>
 
 
@@ -177,7 +184,10 @@ xslProc.input = document.XMLDocument;
 
 xslProc.transform();
 var str = xslProc.output;
-var newDoc = document.open("text/html", "replace");
+<!-- work around bug in IE6 under Win XP, RM 6/5/2002 -->
+var repl = "replace";
+if (window.navigator.appVersion.match(/Windows NT 5.1/)) { repl = ""; }
+var newDoc = document.open("text/html", repl);
 newDoc.write(str);
 document.close();
 }
@@ -187,18 +197,25 @@ document.close();
 
 <fns:x name="techexplorer-plugin" >techexplorer-plugin</fns:x>
 
-<xsl:variable name="docpref" select="document('')/*/fns:x[@name=current()/*/@fns:renderer][1]"/>
+<xsl:variable name="root" select="/"/>
+
+
 
 <xsl:param name="activex">
    <xsl:choose>
-     <xsl:when test="$docpref='techexplorer-plugin'">techexplorer-plugin</xsl:when>
+     <xsl:when test="/*/@fns:renderer='techexplorer-plugin'">techexplorer-plugin</xsl:when>
      <xsl:when test="system-property('xsl:vendor')!='Microsoft'"/>
+     <xsl:otherwise>
+<xsl:variable name="docpref" select="document('')/*/fns:x[@name=$root/*/@fns:renderer][1]"/>
+     <xsl:choose>
      <xsl:when test="$docpref='mathplayer-dl'">mathplayer-dl</xsl:when>
      <xsl:when test="$docpref and fns:isinstalled(string($docpref/@o))='true'">
            <xsl:copy-of select="$docpref/node()"/>
      </xsl:when>
      <xsl:otherwise>
        <xsl:copy-of select="(document('')/*/fns:x[fns:isinstalled(string(@o))='true'])[1]/node()"/>
+     </xsl:otherwise>
+  </xsl:choose>
      </xsl:otherwise>
   </xsl:choose>
 </xsl:param>
@@ -236,7 +253,7 @@ components.</h:p>
 </msxsl:script>
 
 <h:p>The main bulk of this stylesheet is an identity transformation so...</h:p>
-<xsl:template match="*">
+<xsl:template match="*|comment()">
 <xsl:copy>
 <xsl:copy-of select="@*"/>
 <xsl:apply-templates/>
@@ -254,6 +271,23 @@ here, so these elements will still be in XHTML namespace</h:p>
 </xsl:element>
 </xsl:template>
 
+<h:p>IE's treatment of XHTML as HTML needs a little help here...</h:p>
+<xsl:template match="h:br|h:hr">
+<xsl:choose>
+<xsl:when test="system-property('xsl:vendor')='Microsoft'">
+  <xsl:value-of disable-output-escaping="yes" select="concat('&lt;',local-name(.))"/>
+  <xsl:apply-templates mode="verb" select="@*"/>
+  <xsl:text disable-output-escaping="yes">&gt;</xsl:text>
+</xsl:when>
+<xsl:otherwise>
+<xsl:element name="{local-name(.)}">
+ <xsl:copy-of select="@*"/>
+<xsl:apply-templates/>
+</xsl:element>
+</xsl:otherwise>
+</xsl:choose>
+</xsl:template>
+
 <h:p>This just ensures the mathml prefix declaration isn't copied from
 the source at this stage, so that the system will use the mml prefix
 coming from this stylesheet</h:p>
@@ -262,10 +296,6 @@ coming from this stylesheet</h:p>
 <xsl:copy-of select="@*[not(namespace-uri(.)='http://www.w3.org/2002/Math/preference')]"/>
 <xsl:apply-templates/>
 </html>
-</xsl:template>
-
-<xsl:template match="h:br|br">
- <br><xsl:copy-of select="@*"/></br>
 </xsl:template>
 
 <h:p>We modify the head element to add code to specify a Microsoft
@@ -282,12 +312,25 @@ stylesheet.</h:div></h:span>
 be added here if necessary</h:span>
 <xsl:template match="h:head|head">
 <head>
+
+<!-- new if for IE frames bug -->
+<xsl:if test="system-property('xsl:vendor')='Microsoft'">
+<xsl:if test="name(msxsl:node-set($activex)/*)=''">
+<object id="mmlFactory" 
+        classid="clsid:32F66A20-7614-11D4-BD11-00104BD3F987">
+</object>
+<xsl:processing-instruction name="import">
+ namespace="mml" implementation="#mmlFactory"
+</xsl:processing-instruction>
+</xsl:if>
+</xsl:if>
+
 <xsl:choose>
 <xsl:when doc:id="mp" test="$activex='mathplayer-dl'">
     <xsl:if test="fns:isinstalled('MathPlayer.Factory.1')='false'">
-     <script for="window" event="onload">
+     <SCRIPT for="window" event="onload">
        <xsl:value-of select="$mpdialog" disable-output-escaping="yes"/>
-     </script>
+     </SCRIPT>
     </xsl:if>
    <xsl:copy-of select="document('')/*/fns:x[@name='mathplayer']"/>
 </xsl:when>
@@ -307,7 +350,7 @@ be added here if necessary</h:span>
 <xsl:when test="$activex='techexplorer-plugin'">
 <embed  type="text/mathml" height="75" width="300">
 <xsl:attribute name="mmldata">
-<xsl:apply-templates mode="verb" select="."/>
+<xsl:apply-templates mode="verb" select="*"/>
 </xsl:attribute>
 </embed>
 </xsl:when>
@@ -319,6 +362,10 @@ be added here if necessary</h:span>
 </xsl:otherwise>
 </xsl:choose>
 </xsl:template>
+
+
+<!-- squash annotation elements -->
+
 
 
 <h:p>Somewhat bizarrely in an otherwise namespace aware system,
@@ -334,6 +381,24 @@ that actually gets used in the output.</h:p>
 </xsl:element>
 </xsl:template>
 
+<h:p>Copy semantics element through in IE (so mathplayer gets to see
+mathplayer annotations, otherwise use first child or a presentation annotation.</h:p>
+<xsl:template match="mml:semantics">
+<xsl:choose>
+ <xsl:when test="system-property('xsl:vendor')='Microsoft'">
+   <xsl:element name="mml:{local-name(.)}">
+    <xsl:copy-of select="@*"/>
+    <xsl:apply-templates/>
+   </xsl:element>
+ </xsl:when>
+ <xsl:when test="mml:annotation-xml[@encoding='MathML-Presentation']">
+   <xsl:apply-templates select="mml:annotation-xml[@encoding='MathML-Presentation']/node()"/>  
+ </xsl:when>
+ <xsl:otherwise>
+   <xsl:apply-templates select="*[1]"/>  
+ </xsl:otherwise>
+</xsl:choose>
+</xsl:template>
 
 <!-- a version of my old verb.xsl -->
 
@@ -377,7 +442,6 @@ that actually gets used in the output.</h:p>
 <!-- text elements
      need to replace & and < by entity references-->
 <xsl:template mode="verb" match="text()">
-  <a name="{generate-id(.)}"/>
   <xsl:call-template name="string-replace">
     <xsl:with-param name="to" select="'&amp;gt;'"/>
     <xsl:with-param name="from" select="'&gt;'"/> 
