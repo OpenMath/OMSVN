@@ -70,12 +70,18 @@ SYSTEM "dtds/docbookx.dtd"
 
 <!ENTITY varnamechar "+=(),-./:?!#$&#37;*;@[]^_`{|}"><!-- dpc: remove `TeX error?  -->
 
-<!ENTITY omrnc SYSTEM "openmath2.rnc">
+<!ENTITY omrnc SYSTEM "openmath2rnc.xml">
+<!ENTITY cdrnc SYSTEM "omcd2rnc.xml">
+<!ENTITY sigrnc SYSTEM "omcdsig2rnc.xml">
+<!ENTITY cdgrouprnc SYSTEM "omcdgroup2rnc.xml">
+
 <!ENTITY omxsd SYSTEM "openmath2.xsd">
-<!ENTITY omdtd SYSTEM "openmath2.dtd">
+<!ENTITY omdtd SYSTEM "openmath2dtd.xml">
 <!ENTITY omrng SYSTEM "openmath2.rng">
-<!ENTITY cdrng SYSTEM "omcd.rng">
-<!ENTITY sigrng SYSTEM "omcdsig.rng">
+<!ENTITY cdrng SYSTEM "omcd2.rng">
+<!ENTITY sigrng SYSTEM "omcdsig2.rng">
+
+
 ]>
 <book xml:space="preserve">
 <title>The &OM; Standard</title>
@@ -390,7 +396,7 @@ in <xref linkend="sec_names"/>.  The Content Dictionary is the
 location of the definition of the symbol, consisting of a name (a
 sequence of characters matching the regular expression described in
 <xref linkend="sec_names"/>) and, optionally, a unique prefix called
-a <emphasis>uristub</emphasis> which is used to
+a <emphasis>cdbase</emphasis> which is used to
 disambiguate multiple Content Dictionaries of the same name.  The role
 is a restriction on where the symbol may appear in an &OM; object.
 The possible roles are described in <xref linkend="sec_roles"/>.
@@ -967,9 +973,9 @@ Then a legal &OM; name is defined by the following grammar:
 
 </para>
 
-<formalpara><title>Uristubs</title>
+<formalpara><title>CD Base</title>
 
-Uristubs must conform to the grammar described in
+A cdbase must conform to the grammar for URIs described in
 <citation>IETF2396</citation>.  Note that if non-ASCII characters are
 used in a CD or symbol name then when a URI for that symbol is
 constructed it will be necessary to map the non-ASCII characters to a
@@ -1118,8 +1124,9 @@ defined by the Relax NG schema <citation>RELAX</citation> given below.
 Relax NG has a number of advantages over the older XSD Schema format
 <citation>XSD</citation>, in particular it allows for tighter control
 of attributes and has a modular, extensible structure.  Although we
-have made the &exml; form of the schema normative it can be generated
-using the compact syntax given in <xref linkend="app_relaxcompact"/>.
+have made the &exml; form, which is given  in <xref
+linkend="app_openmath.rng"/> normative, it is generated from the
+using the compact syntax given below.
 It is also very easy to restrict the schema to allow a limited set of
 &OM; symbols as described in <xref linkend="app_relaxrestricted"/>.
 </para>
@@ -1130,7 +1137,7 @@ are given in <xref linkend="app_dtd"/> and <xref linkend="app_xsd"/>
 respectively.</para>
 
 <literallayout revisionflag="added">
-&omrng;
+&omrnc;
 </literallayout>
 <para><phrase revisionflag="deleted">the &exml; encoding of an
 &OM; object is defined by the dtd given in Figure 4.1 below with the
@@ -1667,11 +1674,11 @@ encoded as <systemitem>&lt;OMI> 10 &lt;/OMI> </systemitem> or as
   <phrase revisionflag="added">three</phrase>
   &exml;-attributes <systemitem>cd</systemitem>,
   <systemitem>name</systemitem><phrase revisionflag="added">,  and
-    <systemitem>uristub</systemitem></phrase>. The value of
+    <systemitem>cdbase</systemitem></phrase>. The value of
   <systemitem>cd</systemitem> is the name of the Content Dictionary in
   which the symbol is defined and the value of
   <systemitem>name</systemitem> is the name of the symbol.
-  <phrase revisionflag="added">The optional <systemitem>uristub</systemitem>
+  <phrase revisionflag="added">The optional <systemitem>cdbase</systemitem>
     attribute is a URI that can be used to disambiguate between two  content
     dictionaries with the same name.</phrase>
 <phrase revisionflag="deleted">
@@ -1681,7 +1688,7 @@ encoded as <systemitem>&lt;OMI> 10 &lt;/OMI> </systemitem> or as
 </phrase> For
   example:
 <blockquote><systemitem>&lt;OMS 
-<phrase revisionflag="added">uristub="http://www.openmath.org/cd"</phrase> cd="transc" name="sin"/></systemitem>
+<phrase revisionflag="added">cdbase="http://www.openmath.org/cd"</phrase> cd="transc" name="sin"/></systemitem>
 </blockquote>
   is the encoding of the symbol named <systemitem>sin</systemitem> in
   the Content Dictionary named <systemitem>transc</systemitem>,
@@ -1689,25 +1696,25 @@ encoded as <systemitem>&lt;OMI> 10 &lt;/OMI> </systemitem> or as
 maintained by the &OM; Society</phrase>.</para>
 
 <para revisionflag="added">The three attributes of the
-  <systemitem>OMS</systemitem> can be used to build a URI for the symbol,
+  <systemitem>OMS</systemitem> can be used to build a URI reference for the symbol,
 for use in contexts where URI-based referencing mechanisms are used. This
-canonical URI is constructed as follows:</para>
+canonical URI reference is constructed as follows:</para>
 <blockquote  revisionflag="added">
-  <para><systemitem>URI = uristub-value + '/' + cd-value + '/' + name-value</systemitem></para>
+  <para><systemitem>URI = cdbase-value + '/' + cd-value + '#' + name-value</systemitem></para>
 </blockquote>
 
 <para revisionflag="added">For example</para>
 <blockquote  revisionflag="added">
-  <literallayout><![CDATA[<OMS name="plus" cd="arith1" uristub="http://www.openmath.org/cd"/>]]></literallayout>
+  <literallayout><![CDATA[<OMS name="plus" cd="arith1" cdbase="http://www.openmath.org/cd"/>]]></literallayout>
 </blockquote>
 <para revisionflag="added">
-  gives the URI <systemitem>"http://www.openmath.org/cd/arith1/plus"</systemitem>
+  gives the URI <systemitem>"http://www.openmath.org/cd/arith1#plus"</systemitem>
   This would allow us to refer uniquely to an openmath symbol from a
 MathML document <citation>MathML_2000</citation>.</para>
 <blockquote  revisionflag="added">
   <literallayout>
-&lt;mathml:csymbol xmlns:mathml="http://www.w3.org/TR/MathML2/"
-                definitionURL="http://www.openmath.org/CDs/arith1/plus"&gt;Z&lt;/csymbol&gt;
+&lt;mathml:csymbol xmlns:mathml="http://www.w3.org/1998/Math/MathML/"
+                definitionURL="http://www.openmath.org/cd/arith1#plus"&gt;Z&lt;/csymbol&gt;
   </literallayout>
 </blockquote>
 </listitem>
@@ -1736,7 +1743,7 @@ encoded as a child.  So for example the encoding
 <literallayout><![CDATA[
             <OMV name="x">  
               <OMA>
-                <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="plus"/> 
+                <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="plus"/> 
                 <OMV name="i"/>  
                 <OMI>1</OMI>
               </OMA>
@@ -1806,7 +1813,7 @@ encoded as a child.  So for example the encoding
 <para>For example, <math><mi mathvariant="bold">application</mi><mo>(</mo><mi>sin</mi><mo>,</mo><mi>x</mi> <mo>)</mo></math> is encoded as:
 <literallayout><![CDATA[
             <OMA>  
-              <OMS uristub="http://www.openmath.org/cd" cd="transc1" name="sin"/> 
+              <OMS cdbase="http://www.openmath.org/cd" cd="transc1" name="sin"/> 
               <OMV name="x"/>  
             </OMA> 
             ]]></literallayout>
@@ -1829,12 +1836,12 @@ encoded as a child.  So for example the encoding
      <mo>(</mo><mi>sin</mi><mo>,</mo> <mi>x</mi><mo>)</mo><mo>)</mo></math> is:
 <literallayout><![CDATA[ 
       <OMBIND>
-        <OMS uristub="http://www.openmath.org/cd" cd="fns1" name="lambda"/>  
+        <OMS cdbase="http://www.openmath.org/cd" cd="fns1" name="lambda"/>  
         <OMBVAR>
           <OMV name="x"/>
         </OMBVAR>  
         <OMA>
-          <OMS uristub="http://www.openmath.org/cd" cd="transc1" name="sin"/> 
+          <OMS cdbase="http://www.openmath.org/cd" cd="transc1" name="sin"/> 
           <OMV name="x"/>  
         </OMA>
       </OMBIND>]]></literallayout></para>
@@ -1857,7 +1864,7 @@ encoded as a child.  So for example the encoding
 <literallayout><![CDATA[
           <OMATTR>    
              <OMATP>
-                  <OMS uristub="http://www.openmath.org/cd" cd="groups" name="automorphism_group" />  
+                  <OMS cdbase="http://www.openmath.org/cd" cd="groups" name="automorphism_group" />  
                   [..group-encoding..] 
              </OMATP>  
              [..group-encoding..] 
@@ -1866,8 +1873,8 @@ or to express the type of a variable:
 <literallayout><![CDATA[ 
           <OMATTR>    
              <OMATP>
-                  <OMS uristub="http://www.openmath.org/cd" cd="ecc" name="type" /> 
-                  <OMS uristub="http://www.openmath.org/cd" cd="ecc" name="real" />
+                  <OMS cdbase="http://www.openmath.org/cd" cd="ecc" name="type" /> 
+                  <OMS cdbase="http://www.openmath.org/cd" cd="ecc" name="real" />
              </OMATP> 
              <OMV name="x" />
            </OMATTR>]]></literallayout></para>
@@ -1889,13 +1896,13 @@ representation in Presentation MathML is:
         <OMATP>
           <OMS cd="presentation1" name="mathml"/>  
           <OMFOREIGN>
-            <math xmlns="http://www.w3.org/TR/MathML2">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
               <mi>sin</mi><mfenced><mi>x</mi></mfenced>
             </math>
           </OMFOREIGN>  
         </OMATP>
         <OMA>
-          <OMS uristub="http://www.openmath.org/cd" cd="transc1" name="sin"/> 
+          <OMS cdbase="http://www.openmath.org/cd" cd="transc1" name="sin"/> 
           <OMV name="x"/>  
         </OMA>
       </OMATTR>]]></literallayout>
@@ -1913,7 +1920,7 @@ as follows:
           </OMFOREIGN>  
         </OMATP>
         <OMA>
-          <OMS uristub="http://www.openmath.org/cd" cd="transc1" name="sin"/> 
+          <OMS cdbase="http://www.openmath.org/cd" cd="transc1" name="sin"/> 
           <OMV name="x"/>  
         </OMA>
       </OMATTR>]]></literallayout>
@@ -1935,9 +1942,9 @@ as follows:
 
 <literallayout><![CDATA[ 
             <OME>
-            <OMS uristub="http://www.openmath.org/cd" cd="aritherror" name="DivisionByZero"/>  
+            <OMS cdbase="http://www.openmath.org/cd" cd="aritherror" name="DivisionByZero"/>  
             <OMA>
-                 <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="divide" />
+                 <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="divide" />
                  <OMV name="x"/>  
                  <OMI> 0 </OMI>
             </OMA> 
@@ -2081,10 +2088,10 @@ also the second <systemitem>OMR</systemitem> dominate the
 <literallayout><![CDATA[
 <OMOBJ>
   <OMA id="foo">
-    <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="divide"/>
+    <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="divide"/>
     <OMI>1</OMI>
     <OMA>
-       <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="plus"/>
+       <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="plus"/>
        <OMI>1</OMI>
        <OMR xref="foo"/>
     </OMA> 
@@ -2157,12 +2164,12 @@ with binding in a semantically intuitive way, since it allows for
 variable capture. Consider for instance the following &exml;
 representation: <literallayout><![CDATA[
 <OMBIND id="outer">
-  <OMS uristub="http://www.openmath.org/cd" cd="fns1" name="lambda"/>
+  <OMS cdbase="http://www.openmath.org/cd" cd="fns1" name="lambda"/>
   <OMBVAR><OMV name="X"/></OMBVAR>
   <OMA>
     <OMV name="f"/>
     <OMBIND id="inner">
-      <OMS uristub="http://www.openmath.org/cd" cd="fns1" name="lambda"/>
+      <OMS cdbase="http://www.openmath.org/cd" cd="fns1" name="lambda"/>
       <OMBVAR><OMV name="X"/></OMBVAR>
       <OMR id="copy" xlink:href="orig"/>
     </OMBIND>
@@ -2306,7 +2313,7 @@ Also, the encoding used in the larger document may not be
 </para>
 
 <sidebar revision="2000/03/20" author="DPC"><para>Namespace URI, as discussed on&OM;Soc
-list</para></sidebar> <para>In particular, if &OM; is used with applications that use the
+list</para></sidebar> <para revisionflag="deleted">In particular, if &OM; is used with applications that use the
 &exml; Namespace Recommendation &#160;<citation>xmlns</citation> then they should ensure
 that &OM; elements are in the <phrase revisionflag="added">namespace
 </phrase> <phrase role="tt">http://www.openmath.org/OpenMath</phrase>.
@@ -2314,11 +2321,13 @@ This is most conveniently achieved by adding the namespace declaration <literall
 xmlns="http://www.openmath.org/OpenMath" </literallayout> as an attribute to each
 <systemitem>OMOBJ</systemitem> element in the document.</para>
 
+<!--
 <para revisionflag="added">
  Furthermore, for any &OM; object that contains the <systemitem>OMR</systemitem> element,
  we have to add the <systemitem>XLink</systemitem> namespace declaration
   <phrase role="tt">xmlns:xlink="http://www.w3.org/1999/xlink"</phrase>.
 </para>
+-->
 
 <para>If such &exml; features are used then the &exml; application controlling the
 document must, if passing the &OM; fragment to an &OM; application,
@@ -3046,7 +3055,7 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
     (<phrase revisionflag="added">token identifier</phrase> 8) with the long flag
     set if the maximum of the length of the Content Dictionary name,
     <phrase revisionflag="deleted">and</phrase>
-  the symbol name <phrase revisionflag="added">or the URI stub </phrase>
+  the symbol name <phrase revisionflag="added">or the CD base </phrase>
   is greater than or equal to 256<phrase revisionflag="deleted"> (note that this
   should never be the case if the rules on symbols and Content
   Dictionary names are applied), followed by the length of the
@@ -3059,9 +3068,9 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
 <phrase revisionflag="added">. The symbol tags [8] and [8+128] are deprecated in &OM;2 since
   symbols now have an optional role field, but are
   kept for backwards compatibility. The symbol tag is  followed by the length of the
-  Content Dictionary name, the symbol name, and the URI stub as a bytes (if the long flag was not set)
+  Content Dictionary name, the symbol name, and the CD base as a byte (if the long flag was not set)
   or a four byte integers (in network byte order). These are followed by the
-  characters of the Content Dictionary name, the symbol name, and the URI stub.</phrase></para>
+  characters of the Content Dictionary name, the symbol name, and the CD base.</phrase></para>
 </listitem>
 </varlistentry>
 
@@ -3415,14 +3424,14 @@ whose &exml; encoding is
 <literallayout><![CDATA[ 
 <OMOBJ>
   <OMA>
-    <OMS uristub="http://www.openmath.org/cd" name="times" cd="arith1"/>
+    <OMS cdbase="http://www.openmath.org/cd" name="times" cd="arith1"/>
     <OMA>
-      <OMS uristub="http://www.openmath.org/cd" name="plus" cd="arith1"/>
+      <OMS cdbase="http://www.openmath.org/cd" name="plus" cd="arith1"/>
       <OMV name="x"/>
       <OMV name="y"/>
     </OMA>
     <OMA>
-      <OMS uristub="http://www.openmath.org/cd" name="plus" cd="arith1"/>
+      <OMS cdbase="http://www.openmath.org/cd" name="plus" cd="arith1"/>
       <OMV name="x"/>
       <OMV name="z"/>
     </OMA>
@@ -3716,7 +3725,7 @@ of a major and minor part (see <xref linkend="sec_version"/>).
 linkend="sec_status"/>. 
 </para>
 </listitem>
-<listitem><para>A <emphasis>uri stub</emphasis> which is a unique
+<listitem><para>A <emphasis>CD base</emphasis> which is a unique
 identifier for the Content Dictionary, and may or may not refer to an
 actual location from which it can be retrieved.   
 </para>
@@ -3894,7 +3903,7 @@ arithmetic functions.</para>
 <title>The RelaxNG Schema for Content Dictionaries</title>
 
 <literallayout>
-&cdrng;
+&cdrnc;
 </literallayout>
 
 </section>
@@ -4110,8 +4119,8 @@ status of the Content Dictionary.
   
 </listitem>
 </varlistentry>
-<varlistentry revisionflag="added"><term><systemitem>CDURISTUB</systemitem></term><listitem><para>The
-uri stub of the CD.
+<varlistentry revisionflag="added"><term><systemitem>CDCDBASE</systemitem></term><listitem><para>The
+CD base of the CD.
 
 </para>
 </listitem>
@@ -4454,7 +4463,7 @@ designed to be used with Content Dictionaries in the &exml; encoding.
 </para>
 
 <literallayout>
-&sigrng;
+&sigrnc;
 </literallayout>
 
 </section>
@@ -4473,9 +4482,9 @@ name="plus"/></systemitem>: <literallayout><![CDATA[
 <Signature name="plus">
 <OMOBJ>
  <OMA>
-  <OMS uristub="http://www.openmath.org/cd" name="mapsto" cd="sts"/>
+  <OMS cdbase="http://www.openmath.org/cd" name="mapsto" cd="sts"/>
   <OMA>
-   <OMS uristub="http://www.openmath.org/cd" name="nassoc" cd="sts"/> 
+   <OMS cdbase="http://www.openmath.org/cd" name="nassoc" cd="sts"/> 
    <OMV name="AbelianSemiGroup"/>
   </OMA>
   <OMV name="AbelianSemiGroup"/>
@@ -4542,41 +4551,10 @@ CDs, identified by name and optionally version number and URL.</para>
 
 
 <figure id="fig_cdgroup.dtd">
-    <title>DTD Specification of CDGroups</title>
-<literallayout><![CDATA[
-<!-- CDgroup.dtd -->
-<!-- ********************************************* -->
-<!--                                               -->
-<!-- DTD for OpenMath CD group                     -->
-<!-- (c) EP24969 the ESPRIT OpenMath Consortium    -->
-<!-- date = 18.Feb.1999                            -->
-<!-- author = s.buswell sb@stilo.demon.co.uk       -->
-<!--                                               -->
-<!-- ********************************************* -->
-
-<!-- info on the CD group itself -->
-
-<!ELEMENT CDGroupName      (#PCDATA) >
-<!ELEMENT CDGroupVersion     (#PCDATA) >
-<!ELEMENT CDGroupRevision     (#PCDATA) >
-<!ELEMENT CDGroupURL          (#PCDATA) >
-<!ELEMENT CDGroupDescription  (#PCDATA) >
-
-<!-- info on the CDs in the group  -->
-
-<!ELEMENT CDComment     (#PCDATA) >
-<!ELEMENT CDGroupMember (CDComment?,CDName, CDVersion?, CDURL?) >
-<!ELEMENT CDName     (#PCDATA) >
-<!ELEMENT CDVersion     (#PCDATA) >
-<!ELEMENT CDURL         (#PCDATA) >
-
-<!-- structure of the group -->
-<!ELEMENT CDGroup 
-   (CDGroupName, CDGroupVersion, CDGroupRevision?,
-    CDGroupURL, CDGroupDescription,
-     (CDGroupMember  | CDComment )* ) >
-
-<!-- end of DTD for OM CDGroup -->]]>
+    <title><phrase revisonflag="deleted">DTD</phrase><phrase
+    revisoonflag="new">Relax NG</phrase>Specification of CDGroups</title>
+<literallayout>
+&cdgrouprnc;
 </literallayout>
 
 </figure>
@@ -4783,7 +4761,7 @@ revisionflag="deleted">by the URL declared in the
 <systemitem>CDURL</systemitem> field of the Dictionary. This URL may
 be used to retrieve the Content Dictionary.</phrase> <phrase
 revisionflag="added"></phrase> using the
-<systemitem>URISTUB</systemitem> and the
+<systemitem>CDBASE</systemitem> and the
 <systemitem>CDName</systemitem>.  </para>
 
 <para>When receiving an &OM; symbol, e.g. <math><mi>s</mi></math>,
@@ -5079,21 +5057,21 @@ be present here.
       <FMP>
 	<OMOBJ>
 	  <OMA>
-	    <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
 	    <OMA>
-	      <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="lcm"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="lcm"/>
 	      <OMV name="a"/>
 	      <OMV name="b"/>
 	    </OMA>
 	    <OMA>
-	      <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="divide"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="divide"/>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="arith1" name="times"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="times"/>
 		<OMV name="a"/>
 		<OMV name="b"/>
 	      </OMA>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="arith1" name="gcd"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="gcd"/>
 		<OMV name="a"/>
 		<OMV name="b"/>
 	      </OMA>
@@ -5110,55 +5088,55 @@ be present here.
       <FMP>
 	<OMOBJ>
 	  <OMBIND>
-	    <OMS uristub="http://www.openmath.org/cd" cd="quant1" name="forall"/>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="forall"/>
 	    <OMBVAR>
 	      <OMV name="a"/>
 	      <OMV name="b"/>
 	    </OMBVAR>
 	    <OMA>
-	      <OMS uristub="http://www.openmath.org/cd" cd="logic1" name="implies"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="implies"/>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="logic1" name="and"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="and"/>
 		<OMA>
-		  <OMS uristub="http://www.openmath.org/cd" cd="set1" name="in"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="set1" name="in"/>
 		  <OMV name="a"/>
-		  <OMS uristub="http://www.openmath.org/cd" cd="setname1" name="Z"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="Z"/>
 		</OMA>
 		<OMA>
-		  <OMS uristub="http://www.openmath.org/cd" cd="set1" name="in"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="set1" name="in"/>
 		  <OMV name="b"/>
-		  <OMS uristub="http://www.openmath.org/cd" cd="setname1" name="Z"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="Z"/>
 		</OMA>
 	      </OMA>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="logic1" name="not"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="not"/>
 		<OMBIND>
-		  <OMS uristub="http://www.openmath.org/cd" cd="quant1" name="exists"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="exists"/>
 		  <OMBVAR>
 		    <OMV name="c"/>
 		  </OMBVAR>
 		  <OMA>
-		    <OMS uristub="http://www.openmath.org/cd" cd="logic1" name="and"/>
+		    <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="and"/>
 		    <OMA>
-		      <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="gt"/>
+		      <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="gt"/>
 		      <OMV name="c"/>
 		      <OMI>0</OMI>
 		    </OMA>
 		    <OMA>
-		      <OMS uristub="http://www.openmath.org/cd" cd="integer1" name="factorof"/>
+		      <OMS cdbase="http://www.openmath.org/cd" cd="integer1" name="factorof"/>
 		      <OMV name="a"/>
 		      <OMV name="c"/>
 		    </OMA>
 		    <OMA>
-		      <OMS uristub="http://www.openmath.org/cd" cd="integer1" name="factorof"/>
+		      <OMS cdbase="http://www.openmath.org/cd" cd="integer1" name="factorof"/>
 		      <OMV name="b"/>
 		      <OMV name="c"/>
 		    </OMA>
 		    <OMA>
-		      <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="lt"/>
+		      <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="lt"/>
 		      <OMV name="c"/>
 		      <OMA>
-			<OMS uristub="http://www.openmath.org/cd" cd="arith1" name="lcm"/>
+			<OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="lcm"/>
 			<OMV name="a"/>
 			<OMV name="b"/>
 		      </OMA>
@@ -5190,58 +5168,58 @@ be present here.
       <FMP>
 	<OMOBJ>
 	  <OMBIND>
-	    <OMS uristub="http://www.openmath.org/cd" cd="quant1" name="forall"/>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="forall"/>
 	    <OMBVAR>
 	      <OMV name="a"/>
 	      <OMV name="b"/>
 	    </OMBVAR>
 	    <OMA>
-	      <OMS uristub="http://www.openmath.org/cd" cd="logic1" name="implies"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="implies"/>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="logic1" name="and"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="and"/>
 		<OMA>
-		  <OMS uristub="http://www.openmath.org/cd" cd="set1" name="in"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="set1" name="in"/>
 		  <OMV name="a"/>
-		  <OMS uristub="http://www.openmath.org/cd" cd="setname1" name="Z"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="Z"/>
 		</OMA>
 		<OMA>
-		  <OMS uristub="http://www.openmath.org/cd" cd="set1" name="in"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="set1" name="in"/>
 		  <OMV name="b"/>
-		  <OMS uristub="http://www.openmath.org/cd" cd="setname1" name="Z"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="Z"/>
 		</OMA>
 	      </OMA>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="logic1" name="not"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="not"/>
 		<OMBIND>
-		  <OMS uristub="http://www.openmath.org/cd" cd="quant1" name="exists"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="exists"/>
 		  <OMBVAR>
 		    <OMV name="c"/>
 		  </OMBVAR>
 		  <OMA>
-		    <OMS uristub="http://www.openmath.org/cd" cd="logic1" name="and"/>
+		    <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="and"/>
 		    <OMA>
-		      <OMS uristub="http://www.openmath.org/cd" cd="set1" name="in"/>
+		      <OMS cdbase="http://www.openmath.org/cd" cd="set1" name="in"/>
 		      <OMA>
-			<OMS uristub="http://www.openmath.org/cd" cd="arith1" name="divide"/>
+			<OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="divide"/>
 			<OMV name="a"/>
 			<OMV name="c"/>
 		      </OMA>
-		      <OMS uristub="http://www.openmath.org/cd" cd="setname1" name="Z"/>
+		      <OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="Z"/>
 		    </OMA>
 		    <OMA>
-		      <OMS uristub="http://www.openmath.org/cd" cd="set1" name="in"/>
+		      <OMS cdbase="http://www.openmath.org/cd" cd="set1" name="in"/>
 		      <OMA>
-			<OMS uristub="http://www.openmath.org/cd" cd="arith1" name="divide"/>
+			<OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="divide"/>
 			<OMV name="b"/>
 			<OMV name="c"/>
 		      </OMA>
-		      <OMS uristub="http://www.openmath.org/cd" cd="setname1" name="Z"/>
+		      <OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="Z"/>
 		    </OMA>
 		    <OMA>
-		      <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="gt"/>
+		      <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="gt"/>
 		      <OMV name="c"/>
 		      <OMA>
-			<OMS uristub="http://www.openmath.org/cd" cd="arith1" name="gcd"/>
+			<OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="gcd"/>
 			<OMV name="a"/>
 			<OMV name="b"/>
 		      </OMA>
@@ -5258,9 +5236,9 @@ be present here.
 	gcd(6,9) = 3
 	<OMOBJ>
 	  <OMA>
-	    <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
 	    <OMA>
-	      <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="gcd"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="gcd"/>
 	      <OMI> 6 </OMI>
 	      <OMI> 9 </OMI>
 	    </OMA>
@@ -5279,20 +5257,20 @@ be present here.
       <FMP>
 	<OMOBJ>
 	  <OMBIND>
-	    <OMS uristub="http://www.openmath.org/cd" cd="quant1" name="forall"/>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="forall"/>
 	    <OMBVAR>
 	      <OMV name="a"/>
 	      <OMV name="b"/>
 	    </OMBVAR>
 	    <OMA>
-	      <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="arith1" name="plus"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="plus"/>
 		<OMV name="a"/>
 		<OMV name="b"/>
 	      </OMA>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="arith1" name="plus"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="plus"/>
 		<OMV name="b"/>
 		<OMV name="a"/>
 	      </OMA>
@@ -5311,21 +5289,21 @@ be present here.
       <FMP>
 	<OMOBJ>
 	  <OMBIND>
-	    <OMS uristub="http://www.openmath.org/cd" cd="quant1" name="forall"/>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="forall"/>
 	    <OMBVAR>
 	      <OMV name="a"/>
 	    </OMBVAR>
 	    <OMA>
-	      <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="arith1" name="plus"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="plus"/>
 		<OMV name="a"/>
 		<OMA>
-		  <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="unary_minus"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="unary_minus"/>
 		  <OMV name="a"/>
 		</OMA>
 	      </OMA>
-	      <OMS uristub="http://www.openmath.org/cd" cd="alg1" name="zero"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="alg1" name="zero"/>
 	    </OMA>
 	  </OMBIND>
 	</OMOBJ>
@@ -5342,23 +5320,23 @@ be present here.
       <FMP>
 	<OMOBJ>
 	  <OMBIND>
-	    <OMS uristub="http://www.openmath.org/cd" cd="quant1" name="forall"/>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="forall"/>
 	    <OMBVAR>
 	      <OMV name="a"/>
 	      <OMV name="b"/>
 	    </OMBVAR>
 	    <OMA>
-	      <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="arith1" name="minus"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="minus"/>
 		<OMV name="a"/>
 		<OMV name="b"/>
 	      </OMA>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="arith1" name="plus"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="plus"/>
 		<OMV name="a"/>
 		<OMA>
-		  <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="unary_minus"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="unary_minus"/>
 		  <OMV name="b"/>
 		</OMA>
 	      </OMA>
@@ -5376,45 +5354,45 @@ be present here.
       <Example>
 	<OMOBJ>
 	  <OMA>
-	    <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
 	    <OMA>
-	      <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="times"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="times"/>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="linalg2" name="matrix"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="linalg2" name="matrix"/>
 		<OMA>
-		  <OMS uristub="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
 		  <OMI> 1 </OMI>
 		  <OMI> 2 </OMI>
 		</OMA>
 		<OMA>
-		  <OMS uristub="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
 		  <OMI> 3 </OMI>
 		  <OMI> 4 </OMI>
 		</OMA>
 	      </OMA>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="linalg2" name="matrix"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="linalg2" name="matrix"/>
 		<OMA>
-		  <OMS uristub="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
 		  <OMI> 5 </OMI>
 		  <OMI> 6 </OMI>
 		</OMA>
 		<OMA>
-		  <OMS uristub="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
 		  <OMI> 7 </OMI>
 		  <OMI> 8 </OMI>
 		</OMA>
 	      </OMA>
 	    </OMA>
 	    <OMA>
-	      <OMS uristub="http://www.openmath.org/cd" cd="linalg2" name="matrix"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="linalg2" name="matrix"/>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
 		<OMI> 19 </OMI>
 		<OMI> 20 </OMI>
 	      </OMA>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
 		<OMI> 43 </OMI>
 		<OMI> 50 </OMI>
 	      </OMA>
@@ -5426,38 +5404,38 @@ be present here.
       
       <FMP><OMOBJ>
 	  <OMBIND>
-	    <OMS uristub="http://www.openmath.org/cd" cd="quant1" name="forall"/>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="forall"/>
 	    <OMBVAR>
 	      <OMV name="a"/>
 	      <OMV name="b"/>
 	    </OMBVAR>
 	    <OMA>
-	      <OMS uristub="http://www.openmath.org/cd" cd="logic1" name="and"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="and"/>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
 		<OMA>
-		  <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="times"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="times"/>
 		  <OMV name="a"/>
-		  <OMS uristub="http://www.openmath.org/cd" cd="alg1" name="zero"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="alg1" name="zero"/>
 		</OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="alg1" name="zero"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="alg1" name="zero"/>
 	      </OMA>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
 		<OMA>
-		  <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="times"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="times"/>
 		  <OMV name="a"/>
 		  <OMV name="b"/>
 		</OMA>
 		<OMA>
-		  <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="plus"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="plus"/>
 		  <OMA>
-		    <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="times"/>
+		    <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="times"/>
 		    <OMV name="a"/>
 		    <OMA>
-		      <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="minus"/>
+		      <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="minus"/>
 		      <OMV name="b"/>
-		      <OMS uristub="http://www.openmath.org/cd" cd="alg1" name="one"/>
+		      <OMS cdbase="http://www.openmath.org/cd" cd="alg1" name="one"/>
 		    </OMA>
 		  </OMA>
 		  <OMV name="a"/>
@@ -5470,32 +5448,32 @@ be present here.
       <CMP> for all a,b,c | a*(b+c) = a*b + a*c </CMP>
       <FMP><OMOBJ>
 	  <OMBIND>
-	    <OMS uristub="http://www.openmath.org/cd" cd="quant1" name="forall"/>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="forall"/>
 	    <OMBVAR>
 	      <OMV name="a"/>
 	      <OMV name="b"/>
 	      <OMV name="c"/>
 	    </OMBVAR>
 	    <OMA>
-	      <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="arith1" name="times"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="times"/>
 		<OMV name="a"/>
 		<OMA>
-		  <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="plus"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="plus"/>
 		  <OMV name="b"/>
 		  <OMV name="c"/>
 		</OMA>
 	      </OMA>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="arith1" name="plus"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="plus"/>
 		<OMA>
-		  <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="times"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="times"/>
 		  <OMV name="a"/>
 		  <OMV name="b"/>
 		</OMA>
 		<OMA>
-		  <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="times"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="times"/>
 		  <OMV name="a"/>
 		  <OMV name="c"/>
 		</OMA>
@@ -5516,25 +5494,25 @@ be present here.
       <FMP>
 	<OMOBJ>
 	  <OMBIND>
-	    <OMS uristub="http://www.openmath.org/cd" cd="quant1" name="forall"/>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="forall"/>
 	    <OMBVAR>
 	      <OMV name="a"/>
 	    </OMBVAR>
 	    <OMA>
-	      <OMS uristub="http://www.openmath.org/cd" cd="logic1" name="implies"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="implies"/>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="relation1" name="neq"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="neq"/>
 		<OMV name="a"/>
-		<OMS uristub="http://www.openmath.org/cd" cd="alg1" name="zero"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="alg1" name="zero"/>
 	      </OMA>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
 		<OMA>
-		  <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="divide"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="divide"/>
 		  <OMV name="a"/>
 		  <OMV name="a"/>
 		</OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="alg1" name="one"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="alg1" name="one"/>
 	      </OMA>
 	    </OMA>
 	  </OMBIND>
@@ -5559,26 +5537,26 @@ be present here.
       <FMP>
 	<OMOBJ>
 	  <OMA>
-	    <OMS uristub="http://www.openmath.org/cd" cd="logic1" name="implies"/>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="implies"/>
 	    <OMA>
-	      <OMS uristub="http://www.openmath.org/cd" cd="set1" name="in"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="set1" name="in"/>
 	      <OMV name="x"/>
-	      <OMS uristub="http://www.openmath.org/cd" cd="setname1" name="C"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="C"/>
 	    </OMA>
 	    <OMA>
-	      <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" name="power" cd="arith1"/>
+		<OMS cdbase="http://www.openmath.org/cd" name="power" cd="arith1"/>
 		<OMV name="x"/>
 		<OMV name="a"/>
 	      </OMA>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" name="exp" cd="transc1"/>
+		<OMS cdbase="http://www.openmath.org/cd" name="exp" cd="transc1"/>
 		<OMA>
-		  <OMS uristub="http://www.openmath.org/cd" name="times" cd="arith1"/>
+		  <OMS cdbase="http://www.openmath.org/cd" name="times" cd="arith1"/>
 		  <OMV name="a"/>
 		  <OMA>
-		    <OMS uristub="http://www.openmath.org/cd" name="ln" cd="transc1"/>
+		    <OMS cdbase="http://www.openmath.org/cd" name="ln" cd="transc1"/>
 		    <OMV name="x"/>
 		  </OMA>
 		</OMA>
@@ -5596,38 +5574,38 @@ be present here.
       <FMP>
 	<OMOBJ>
 	  <OMA>
-	    <OMS uristub="http://www.openmath.org/cd" cd="logic1" name="implies"/>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="implies"/>
 	    <OMA>
-	      <OMS uristub="http://www.openmath.org/cd" cd="set1" name="in"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="set1" name="in"/>
 	      <OMV name="n"/>
-	      <OMS uristub="http://www.openmath.org/cd" cd="setname1" name="Z"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="Z"/>
 	    </OMA>
 	    <OMA>
-	      <OMS uristub="http://www.openmath.org/cd" cd="logic1" name="and"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="and"/>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
 		<OMA>
-		  <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="power"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="power"/>
 		  <OMV name="x"/>
 		  <OMI>0</OMI>
 		</OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="alg1" name="one"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="alg1" name="one"/>
 	      </OMA>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
 		<OMA>
-		  <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="power"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="power"/>
 		  <OMV name="x"/>
 		  <OMV name="n"/>
 		</OMA>
 		<OMA>
-		  <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="times"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="times"/>
 		  <OMV name="x"/>
 		  <OMA>
-		    <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="power"/>
+		    <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="power"/>
 		    <OMV name="x"/>
 		    <OMA>
-		      <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="minus"/>
+		      <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="minus"/>
 		      <OMV name="n"/>
 		      <OMI>1</OMI>
 		    </OMA>
@@ -5641,18 +5619,18 @@ be present here.
       <Example>
 	<OMOBJ>
 	  <OMA>
-	    <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
 	    <OMA>
-	      <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="power"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="power"/>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="linalg2" name="matrix"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="linalg2" name="matrix"/>
 		<OMA>
-		  <OMS uristub="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
 		  <OMI> 1 </OMI>
 		  <OMI> 2 </OMI>
 		</OMA>
 		<OMA>
-		  <OMS uristub="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
 		  <OMI> 3 </OMI>
 		  <OMI> 4 </OMI>
 		</OMA>
@@ -5660,14 +5638,14 @@ be present here.
 	      <OMI>3</OMI>
 	    </OMA>
 	    <OMA>
-	      <OMS uristub="http://www.openmath.org/cd" cd="linalg2" name="matrix"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="linalg2" name="matrix"/>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
 		<OMI> 37 </OMI>
 		<OMI> 54 </OMI>
 	      </OMA>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
 		<OMI> 81 </OMI>
 		<OMI> 118 </OMI>
 	      </OMA>
@@ -5678,19 +5656,19 @@ be present here.
       <Example>
 	<OMOBJ>
 	  <OMA>
-	    <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
 	    <OMA>
-	      <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="power"/>
-	      <OMS uristub="http://www.openmath.org/cd" cd="nums1" name="e"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="power"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="nums1" name="e"/>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="arith1" name="times"/>
-		<OMS uristub="http://www.openmath.org/cd" cd="nums1" name="i"/>
-		<OMS uristub="http://www.openmath.org/cd" cd="nums1" name="pi"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="times"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="nums1" name="i"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="nums1" name="pi"/>
 	      </OMA>
 	    </OMA>
 	    <OMA>
-	      <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="unary_minus"/>
-	      <OMS uristub="http://www.openmath.org/cd" cd="alg1" name="one"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="unary_minus"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="alg1" name="one"/>
 	    </OMA>
 	  </OMA>
 	</OMOBJ>
@@ -5708,30 +5686,30 @@ be present here.
       <FMP>
 	<OMOBJ>
 	  <OMBIND>
-	    <OMS uristub="http://www.openmath.org/cd" cd="quant1" name="forall"/>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="forall"/>
 	    <OMBVAR>
 	      <OMV name="x"/>
 	      <OMV name="y"/>
 	    </OMBVAR>
 	    <OMA>
-	      <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="geq"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="geq"/>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="arith1" name="plus"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="plus"/>
 		<OMA>
-		  <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="abs"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="abs"/>
 		  <OMV name="x"/>
 		  <OMV name="y"/>
 		</OMA>
 		<OMA>
-		  <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="abs"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="abs"/>
 		  <OMV name="x"/>
 		  <OMV name="y"/>
 		</OMA>
 	      </OMA>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="arith1" name="abs"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="abs"/>
 		<OMA>
-		  <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="plus"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="plus"/>
 		  <OMV name="x"/>
 		  <OMV name="y"/>
 		</OMA>
@@ -5762,16 +5740,16 @@ be present here.
       <FMP>
 	<OMOBJ>
 	  <OMA>
-	    <OMS uristub="http://www.openmath.org/cd" cd="logic1" name="implies"/>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="implies"/>
 	    <OMA>
-	      <OMS uristub="http://www.openmath.org/cd" cd="set1" name="in"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="set1" name="in"/>
 	      <OMV name="x"/>
-	      <OMS uristub="http://www.openmath.org/cd" cd="setname1" name="C"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="C"/>
 	    </OMA>
 	    <OMA>
-	      <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="arith1" name="root"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="root"/>
 		<OMV name="x"/>
 		<OMV name="n"/>          
 	      </OMA>
@@ -5795,17 +5773,17 @@ be present here.
       <FMP>
 	<OMOBJ>
 	  <OMBIND>
-	    <OMS uristub="http://www.openmath.org/cd" cd="quant1" name="forall"/>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="forall"/>
 	    <OMBVAR>
 	      <OMV name="a"/>
 	      <OMV name="n"/>
 	    </OMBVAR>
 	    <OMA>
-	      <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="arith1" name="power"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="power"/>
 		<OMA>
-		  <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="root"/>
+		  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="root"/>
 		  <OMV name="a"/>
 		  <OMV name="n"/>
 		</OMA>
@@ -5833,19 +5811,19 @@ be present here.
 	1 and 10 inclusive.
 	<OMOBJ>
 	  <OMA>
-	    <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="sum"/>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="sum"/>
 	    <OMA>
-	      <OMS uristub="http://www.openmath.org/cd" cd="interval1" name="integer_interval"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="interval1" name="integer_interval"/>
 	      <OMI> 1 </OMI>
 	      <OMI> 10 </OMI>
 	    </OMA>
 	    <OMBIND>
-	      <OMS uristub="http://www.openmath.org/cd" cd="fns1" name="lambda"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="fns1" name="lambda"/>
 	      <OMBVAR>
 		<OMV name="x"/>
 	      </OMBVAR>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="arith1" name="divide"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="divide"/>
 		<OMI> 1 </OMI>
 		<OMV name="x"/>
 	      </OMA>
@@ -5867,20 +5845,20 @@ be present here.
 	of all the integers between 1 and n inclusive.
 	<OMOBJ>
 	  <OMA>
-	    <OMS uristub="http://www.openmath.org/cd" cd="relation1" name="eq"/>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
 	    <OMA>
-	      <OMS uristub="http://www.openmath.org/cd" cd="integer1" name="factorial"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="integer1" name="factorial"/>
 	      <OMV name="n" />
 	    </OMA>
 	    <OMA>
-	      <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="product"/>
+	      <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="product"/>
 	      <OMA>
-		<OMS uristub="http://www.openmath.org/cd" cd="interval1" name="integer_interval"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="interval1" name="integer_interval"/>
 		<OMI> 1 </OMI>
 		<OMV name="n"/>
 	      </OMA>
 	      <OMBIND>
-		<OMS uristub="http://www.openmath.org/cd" cd="fns1" name="lambda"/>
+		<OMS cdbase="http://www.openmath.org/cd" cd="fns1" name="lambda"/>
 		<OMBVAR>
 		  <OMV name="i"/>
 		</OMBVAR>
@@ -6233,8 +6211,8 @@ be present here.
 	The application does not implement the Complex numbers:
 	<OMOBJ>
 	  <OME>
-	    <OMS uristub="http://www.openmath.org/cd" cd="error" name="unhandled_symbol"/>
-	    <OMS uristub="http://www.openmath.org/cd" cd="setname1" name="C"/>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="error" name="unhandled_symbol"/>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="C"/>
 	  </OME>
 	</OMOBJ>
       </Example>
@@ -6254,8 +6232,8 @@ be present here.
 	The application received a mistyped symbol
 	<OMOBJ>
 	  <OME>
-	    <OMS uristub="http://www.openmath.org/cd" cd="error" name="unexpected_symbol"/>
-	    <OMS uristub="http://www.openmath.org/cd" cd="arith1" name="plurse"/>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="error" name="unexpected_symbol"/>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="plurse"/>
 	  </OME>
 	</OMOBJ>
       </Example>
@@ -6277,8 +6255,8 @@ be present here.
 	The application does not know about the CD specfun1
 	<OMOBJ>
 	  <OME>
-	    <OMS uristub="http://www.openmath.org/cd" cd="error" name="unsupported_CD"/>
-	    <OMS uristub="http://www.openmath.org/cd" cd="specfun1" name="BesselJ"/>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="error" name="unsupported_CD"/>
+	    <OMS cdbase="http://www.openmath.org/cd" cd="specfun1" name="BesselJ"/>
 	  </OME>
 	</OMOBJ>
       </Example>
@@ -6293,14 +6271,13 @@ be present here.
 
 
 <appendix id="app_relaxcompact" revisionflag="added">
-  <title>&OM; Schema in Relax NG Compact Syntax (Non-Normative)</title>
+  <title>&OM; Schema in Relax NG XML Syntax (Non-Normative)</title>
   
   <para>This is the Relax NG Schema described in <xref linkend="sec_xml"/>
-    expressed according to the Relax NG Compact Syntax described in
-    <citation>RELAX-COMPACT</citation>.
+    expressed according to the Relax NG XML Syntax.
   </para>
   <literallayout>
-    &omrnc;
+    &omrng;
   </literallayout>
 </appendix>
 
@@ -6460,7 +6437,7 @@ validation.
 	  <para>
 In addition to their <emphasis>name</emphasis> and
 <emphasis>cd</emphasis> properties, symbols now have an optional
-<emphasis>uristub</emphasis> property.  This can be used to
+<emphasis>cdbase</emphasis> property.  This can be used to
 disambiguate between two CDs which are produced independently but have
 the same name, and can also be used to produce a canonical URI for any
 &OM; symbol for use in frameworks such as RDFS or MathML which
@@ -6561,7 +6538,7 @@ since it is trivial to extract its content automatically from the CD.
 	</listitem>
 	<listitem>
 <para>
-A CD may now, optionally, define its uristub.
+A CD may now, optionally, define its cdbase.
 </para>
 	</listitem>
 	<listitem>
