@@ -1,6 +1,5 @@
-<?xml version="1.0"?>
-<!DOCTYPE book PUBLIC  "-//OASIS//DTD DocBook MathML Module V1.0//EN" "
-../dtd/dbmathml.dtd"
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE book PUBLIC  "-//OASIS//DTD DocBook MathML Module V1.0//EN" "../dtd/dbmathml.dtd"
 [
 <!--  Abbreviations used in this document -->
 <!ENTITY OM "<emphasis>OpenMath</emphasis>">
@@ -9,7 +8,7 @@
 <!ENTITY zsp "">
 ]>
 
-<!-- @version CVS $Id: primerom20.xml,v 1.4 2003/11/24 08:50:41 openmath Exp $ -->
+<!-- @version CVS $Id: primerom20.xml,v 1.5 2003/11/25 13:12:48 openmath Exp $ -->
 
 
 <book>
@@ -304,7 +303,7 @@ represents the judgment stating that object
 <equation><mml:math><mml:mi>A</mml:mi></mml:math></equation> has type
 <equation><mml:math><mml:mi>t</mml:mi></mml:math></equation>. The
 attribution can be enforced as semantical annotation by fixing the
-rÃ´le of symbol
+rôle of symbol
 <equation><mml:math><mml:mi>t</mml:mi></mml:math></equation>.</para>
               </listitem>
             </varlistentry>
@@ -318,8 +317,8 @@ rÃ´le of symbol
 		symbol and a sequence of zero or more &OM; objects.
 		Error objects might consist only of a symbol as in the
 		object: <inlineequation><mml:math><mml:mi
-		mathvariant="bold">error</mml:mi><mml:mo>(</mml:mo><mml:mi>S</mml:mi><mml:mo>)</mml:mo></mml:math></inlineequation>
-		. Note that the rÃ´le of the symbol
+		mathvariant="bold">error</mml:mi><mml:mo>(</mml:mo><mml:mi>S</mml:mi><mml:mo>)</mml:mo></mml:math></inlineequation>. Note
+		that the rôle of the symbol
 		<inlineequation><mml:math><mml:mi>S</mml:mi></mml:math></inlineequation>
 		restricts its usage to <emphasis>error</emphasis>
 		constructs.</para>
@@ -360,11 +359,11 @@ rÃ´le of symbol
   <section id="sec_roles">
 	<title>&OM; Symbol Roles</title> 
 
-	<para>The <emphasis>rÃ´le</emphasis> of an &OM; symbol is a
+	<para>The <emphasis>rôle</emphasis> of an &OM; symbol is a
           restriction on where it can appear in an &OM; object.  A
-          symbol cannot have more than one role.  If no role is
+          symbol cannot have more than one rôle.  If no rôle is
           indicated then the symbol can be used anywhere.  Possible
-          roles are: <orderedlist
+          rôles are: <orderedlist
           numeration="lowerroman"><listitem><para><emphasis>binder</emphasis>
           The symbol may only appear as the first child of an &OM;
           binding object.
@@ -403,65 +402,73 @@ rÃ´le of symbol
           <title>XML Encoding</title> 
 
 	<para>This encoding has been designed with the goals of
-providing an encoding that: <orderedlist><listitem><para>uses the most
-common character set (so that it can be easily included in most
-documents and transport protocols). In principle this format is both
-readable and writable by a human however in general is intended as a
-machine processable format.</para></listitem><listitem><para>can be
-included (embedded) in &exml; documents, see Section <xref
-linkend="usingxml"/> for
-details.</para></listitem></orderedlist></para> <para>This encoding is
-defined by a Relax NG &exml; schema in the &OM; standard. The default
-namespace for &OM; objects is
-<quote>http://www.openmath.org/OpenMath</quote>.
+	  providing an encoding that:
+	  <orderedlist><listitem><para>uses the most common character
+	  set (so that it can be easily included in most documents and
+	  transport protocols). In principle this format is both
+	  readable and writable by a human however in general is
+	  intended as a machine processable
+	  format.</para></listitem><listitem><para>can be included
+	  (embedded) in &exml; documents, see Section <xref
+	  linkend="usingxml"/> for
+	  details.</para></listitem></orderedlist></para> <para>This
+	  encoding is defined by a Relax NG &exml; schema in the &OM;
+	  standard. The default namespace for &OM; objects is
+	  <quote>http://www.openmath.org/OpenMath</quote>.
       </para>
           <para>The root element for the encoded &OM; object is the
-<systemitem>OMOBJ</systemitem> element.  This element can contain the
+	  <systemitem>OMOBJ</systemitem> element.  This element can contain the
 elements described in what follows.</para>
           <variablelist>
             <varlistentry>
               <term>Integers</term>
               <listitem>
-                <para>are encoded using the <systemitem>OMI</systemitem> element
-around the sequence of their digits in base 10 or 16. Most significant
-digit go first.  
+                <para>are encoded using the
+<systemitem>OMI</systemitem> element around the sequence of their
+digits in base 10 or 16. Most significant digit go first.  Integers
+written in base 16 match<screen>
+<systemitem>-?x[0-9A-F]+</systemitem>.</screen>
 
-Integers written in base 16 match
-<systemitem>-?x[0-9A-F]+</systemitem>.  The integer 10 can be thus
-encoded as <screen><systemitem>&lt;OMI> 10 &lt;/OMI>
-</systemitem></screen> or as <systemitem>&lt;OMI> xA &lt;/OMI>
-</systemitem> but neither <systemitem>&lt;OMI> +10
-&lt;/OMI></systemitem> nor <systemitem>&lt;OMI> +xA
-&lt;/OMI></systemitem> can be used.</para> <para>The negative integer
+The integer 10 can be thus encoded as 
+<screen><systemitem>&lt;OMI> 10 &lt;/OMI></systemitem></screen> or as
+<screen><systemitem>&lt;OMI> xA &lt;/OMI></systemitem></screen> but neither
+<screen><systemitem>&lt;OMI> +10 &lt;/OMI></systemitem></screen> nor 
+<screen><systemitem>&lt;OMI> +xA &lt;/OMI></systemitem></screen> can be used.</para>
+	      
+<para>The negative integer
 <inlineequation><mml:math><mml:mn>-120</mml:mn></mml:math></inlineequation>
-can be encoded as either as decimal <systemitem>&lt;OMI> -120
-&lt;/OMI></systemitem> or as hexadecimal <systemitem>&lt;OMI> -x78
-&lt;/OMI></systemitem>.</para>
-              </listitem>
-            </varlistentry>
-            <varlistentry>
-              <term>Symbols</term>
-              <listitem>
-                <para>are encoded using
-  the <systemitem>OMS</systemitem> element. This element has <phrase revisionflag="deleted">two</phrase><phrase revisionflag="added">three</phrase> &exml;-attributes
-  <systemitem>cd</systemitem>, <systemitem>name</systemitem><phrase revisionflag="added">, and
-  <systemitem>uristub</systemitem></phrase>. The value of
-  <systemitem>cd</systemitem> is the name of the Content Dictionary in
-  which the symbol is defined and the value of
-  <systemitem>name</systemitem> is the name of the symbol.  <phrase revisionflag="added">The optional <systemitem>uristub</systemitem>
-  attribute is a URI that can be used to disambiguate between two
-  content dictionaries with the same name.</phrase>
+can be encoded as either as decimal <screen><systemitem>&lt;OMI> -120
+&lt;/OMI></systemitem></screen> or as hexadecimal
+<screen><systemitem>&lt;OMI> -x78
+&lt;/OMI></systemitem></screen>.</para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term>Symbols</term>
+	    <listitem>
+	      <para>are encoded using the <systemitem>OMS</systemitem>
+		element. This element has three &exml;-attributes
+		<systemitem>cd</systemitem>,
+		<systemitem>name</systemitem>, and
+		<systemitem>uristub</systemitem>. The value of
+		<systemitem>cd</systemitem> is the name of the Content
+		Dictionary in which the symbol is defined and the
+		value of <systemitem>name</systemitem> is the name of
+		the symbol.  The optional
+		<systemitem>uristub</systemitem> attribute is a URI
+		that can be used to disambiguate between two content
+		dictionaries with the same name.
 
   The name of the Content Dictionary is compulsory, but a future
   revision of the &OM; standard might introduce a defaulting
-  mechanism.  For example, <systemitem>&lt;OMS cd="transc"
-  name="sin"/></systemitem> is the encoding of the symbol named
-  <systemitem>sin</systemitem> in the Content Dictionary named
+  mechanism.  For example, <screen><systemitem>&lt;OMS cd="transc"
+  name="sin"/></systemitem></screen> is the encoding of the symbol
+  named <systemitem>sin</systemitem> in the Content Dictionary named
   <systemitem>transc</systemitem>.</para> <para>The three attributes
   of the <systemitem>OMS</systemitem> are used in order to build a URI
   for the symbol, for use in contexts where URI-based referencing
   mechanisms are used. This canonical URI is constructed as
-  follows:</para> 
+  follows:</para>
 <screen>
 <systemitem>URI = uristub-value + '/' + cd-value + '/' + name-value</systemitem> 
 </screen>
@@ -474,15 +481,15 @@ can be encoded as either as decimal <systemitem>&lt;OMI> -120
                     ]]></screen>
                            
                 <para>gives the URI
-  <systemitem>"http://www.openmath.org/CDs/arith1/plus"</systemitem>.
-  This allows us to refer uniquely to an openmath symbol from a MathML
-  document.</para></example>
+		  <screen><systemitem>"http://www.openmath.org/CDs/arith1/plus"</systemitem>.</screen>
+		  This allows us to refer uniquely to an openmath
+		  symbol from a MathML document.</para></example>
 
-                <example>
-                  <title></title>
-		  <screen>
-                    <literallayout>
-&lt;mathml:csymbol xmlns:mathml="http://www.w3.org/TR/MathML2/" definitionURL="http://www.openmath.org/CDs/arith1/plus"&gt;Z&lt;/csymbol&gt;
+	      <example>
+		<title/>
+		<screen>
+		<literallayout>
+		  &lt;mathml:csymbol xmlns:mathml="http://www.w3.org/TR/MathML2/" definitionURL="http://www.openmath.org/CDs/arith1/plus"&gt;Z&lt;/csymbol&gt;
 		</literallayout>
 	      </screen>
 	      </example>
@@ -499,35 +506,32 @@ can be encoded as either as decimal <systemitem>&lt;OMI> -120
   <acronym>ascii</acronym> set of characters.  In particular, neither
   spaces nor double-quote <systemitem>&quot;</systemitem> are allowed
   in variable names.  For instance, the encoding of the object
-  representing the variable
-  <inlineequation><mml:math ><mml:mi>x</mml:mi></mml:math></inlineequation>
-  is: <systemitem>&lt;OMV name="x"/></systemitem></para>
+  representing the variable <inlineequation><mml:math
+  ><mml:mi>x</mml:mi></mml:math></inlineequation> is:
+  <screen><systemitem>&lt;OMV name="x"/></systemitem></screen></para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>Floating-point numbers</term>
               <listitem>
-                <para>are
-  encoded using the <systemitem>OMF</systemitem> element that has
-  either the &exml;-attribute <systemitem>dec</systemitem> or the
+                <para>are encoded using the
+  <systemitem>OMF</systemitem> element that has either the
+  &exml;-attribute <systemitem>dec</systemitem> or the
   &exml;-attribute <systemitem>hex</systemitem>. The two
   &exml;-attributes cannot be present simultaneously. The value of
   <systemitem>dec</systemitem> is the floating-point number expressed
   in base 10, using the common syntax:</para>
-                <blockquote>
-                  <para>
-                    <systemitem>(-?)([0-9]+)?("."[0-9]+)?(e(-?)[0-9]+)?</systemitem>.
-  </para>
-                </blockquote>
-                <para>The value of <systemitem>hex</systemitem> is the digits of the
-  floating-point number expressed in base 16, with digits
-  <systemitem>0</systemitem>-<systemitem>9</systemitem>,
+	      <screen><systemitem>(-?)([0-9]+)?("."[0-9]+)?(e(-?)[0-9]+)?</systemitem>.</screen>
+
+                <para>The value of <systemitem>hex</systemitem> is the
+  digits of the floating-point number expressed in base 16, with
+  digits <systemitem>0</systemitem>-<systemitem>9</systemitem>,
   <systemitem>A</systemitem>-<systemitem>F</systemitem> (mantissa,
   exponent, and sign from lowest to highest bits) using a least
-  significant byte ordering.  For example, <systemitem>&lt;OMF
-  dec="1.0e-10"/></systemitem> is a valid floating-point
+  significant byte ordering.  For example, <screen><systemitem>&lt;OMF
+  dec="1.0e-10"/></systemitem></screen> is a valid floating-point
   number.</para>
-              </listitem>
+	    </listitem>
             </varlistentry>
             <varlistentry>
               <term>Character strings</term>
@@ -571,24 +575,30 @@ can be encoded as either as decimal <systemitem>&lt;OMI> -120
             <varlistentry>
               <term>Applications</term>
               <listitem>
-                <para>are encoded
-using the <systemitem>OMA</systemitem> element. The application whose
-root is the &OM; object
+                <para>are encoded using the
+<systemitem>OMA</systemitem> element. The application whose root is
+the &OM; object
 <inlineequation><mml:math><mml:msub><mml:mi>e</mml:mi><mml:mn>0</mml:mn></mml:msub></mml:math></inlineequation>
 and whose arguments are the &OM; objects
 <inlineequation><mml:math><mml:msub><mml:mi>e</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></inlineequation>,
 <phrase>&#8230;</phrase>,
 <inlineequation><mml:math><mml:msub><mml:mi>e</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></inlineequation>
-is encoded as <systemitem>&lt;OMA></systemitem><inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mn>0</mml:mn></mml:msub></mml:math></inlineequation><inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></inlineequation><phrase>&#8230;</phrase><inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></inlineequation><systemitem>&lt;/OMA></systemitem> where
+is encoded as
+<systemitem>&lt;OMA></systemitem><inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mn>0</mml:mn></mml:msub></mml:math></inlineequation><inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></inlineequation><phrase>&#8230;</phrase><inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></inlineequation><systemitem>&lt;/OMA></systemitem>
+where
 <inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:math></inlineequation>
 is the encoding of
 <inlineequation><mml:math><mml:msub><mml:mi>e</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:math></inlineequation>.
 </para>
                 <para>For example, <inlineequation><mml:math><mml:mi mathvariant="bold">application</mml:mi><mml:mo>(</mml:mo><mml:mi>sin</mml:mi><mml:mo>,</mml:mo><mml:mi>x</mml:mi><mml:mo>)</mml:mo></mml:math></inlineequation> is encoded as:
-<literallayout><![CDATA[ <OMA> <OMS cd="transc1" name="sin"/> <OMV
-name="x"/> </OMA> ]]></literallayout> provided that the symbol
-<systemitem>sin</systemitem> is defined to be a function symbol in a
-Content Dictionary named <systemitem>transc1</systemitem>.</para>
+		<screen><literallayout>
+		  <![CDATA[<OMA><OMS cd="transc1" name="sin"/> <OMV name="x"/> </OMA> ]]>
+		</literallayout> 
+	      </screen>
+		provided that the symbol <systemitem>sin</systemitem>
+		is defined to be a function symbol in a Content
+		Dictionary named
+		<systemitem>transc1</systemitem>.</para>
               </listitem>
             </varlistentry>
             <varlistentry>
