@@ -35,6 +35,7 @@
 <!-- -->
 <!-- -->
 <xsl:include href="fns2.xsl"/>
+<xsl:include href="sts.xsl"/>
 
 
 
