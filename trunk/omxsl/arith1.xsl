@@ -188,9 +188,17 @@
 </xsl:template>
 
 <xsl:template match="om:OMS[@cd='arith1' and @name='conjugate']"  >
+  <xsl:choose>
+  <xsl:when test="parent::om:OMA and not(preceding-sibling::*)">
    <mover>
    <xsl:apply-templates select="following-sibling::*[1]"/>
+   <mo>&#xaf;</mo>
    </mover>
+   </xsl:when>
+   <xsl:otherwise>
+   <mi><xsl:value-of select="@name"/></mi>
+   </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="om:OMS[@cd='arith1' and @name='abs']"  >
