@@ -1,37 +1,6 @@
 \documentclass{euproposal}
 \usepackage{paralist,enumerate,url}
-
-\makeatletter
-\def\ednoteshape{\sf}
-\newif\ifshowednotes\showednotesfalse
-\def\edshownotes{\showednotestrue}
-\DeclareOption{show}{\showednotestrue}
-\DeclareOption{hide}{\showednotesfalse}
-\ProcessOptions
-
-\newcounter{ednote}
-\def\ed@foot#1#2#3% text, type, label
-{\def\test{#3}\def\empty{}\footnotetext[\value{ednote}]%
-{{\sc{#2}\if\test\empty\else\label{ed:#3}[{#3}]\fi:} \ednoteshape #1}}
-\def\ed@note#1#2#3% text, type, label
-{\addtocounter{ednote}{1}\message{#2!}%
-\ifshowednotes%
-\footnotemark[\arabic{ednote}]\ed@foot{#1}{#2}{#3}%
-\marginpar{#2(\arabic{ednote})}%
-\fi}
-\newcommand{\ednote}[2][]{\ed@note{#2}{EdNote}{#1}}
-\newcommand{\issue}[2][]{\ed@note{#2}{Issue}{#1}}
-\newenvironment{newpart}[1]% text
-{\addtocounter{ednote}{1}\edef\new@number{\theednote}\message{New Part!\new@number}
-\ifshowednotes\ed@foot{#1}{New Part}{}\marginpar{BegNP(\new@number)}\fi}
-{\ifshowednotes\marginpar{EndNP(\new@number)}\fi}
-
-\def\ednotemessage{\ifnum\value{ednote}>0\typeout{}%
-\typeout{There are still \arabic{ednote} EdNotes and Issues to resolve!}%
-\typeout{}\fi}
-\makeatother
-\showednotestrue
-
+\usepackage[show]{ed}
 
 \def\omcoa{{\sc{OMCoA}}}
 \begin{document}
@@ -156,74 +125,64 @@ standard.
 
 \chapter{Potential Impact}\label{cha:impact}
 
-Coordination of the wide range of activities that involve semantic
-markup of mathematics, the maintenance of agreed standards, the
-establishments of expert groups and usage guidelines will have
-tremendous long-term benefits for the scientific and technical
+Coordination of the wide range of activities that involve semantic markup of mathematics,
+the maintenance of agreed standards, the establishments of expert groups and usage
+guidelines will have tremendous long-term benefits for the scientific and technical
 community in Europe and the wider world.
 
 
 \chapter{Consortium and Project Resources}\label{cha:consortium}
 
 \begin{description}
-\item[International University of Bremen (Coordinator)] Bremen is the
-  lead developer of the OMDoc system for representing complete
-  mathematical documents in a machine-processable form.  They are
-  involved in the W3C Math Working group and were involved in the
-  development of OpenMath~2.
+\item[International University of Bremen (Coordinator)] Bremen is the lead developer of
+  the OMDoc system for representing complete mathematical documents in a
+  machine-processable form.  They are involved in the W3C Math Working group and were
+  involved in the development of OpenMath~2.
   
-\item[NAG Ltd] NAG is Europe's largest vendor of mathematical
-  software.  It is involved heavily in the W3C Math Working Group,
-  providing one of the current co-chairs.  NAG uses semantic markup to
-  tailor documentation for specific user communities, and to generate
-  software components from abstract specifications.  In addition to
-  coordinating the Thematic Network is ran the website and developed a
-  range of validation tools for OpenMath documents and Content
-  Dictionaries.  It also led the development of the OpenMath~2
-  Standard.
+\item[NAG Ltd] NAG is Europe's largest vendor of mathematical software.  It is involved
+  heavily in the W3C Math Working Group, providing one of the current co-chairs.  NAG uses
+  semantic markup to tailor documentation for specific user communities, and to generate
+  software components from abstract specifications.  In addition to coordinating the
+  Thematic Network is ran the website and developed a range of validation tools for
+  OpenMath documents and Content Dictionaries.  It also led the development of the
+  OpenMath~2 Standard.
   
-\item[University of Bath] The Computing Department at the University
-  of Bath has a long history of involvement in Computer Algebra, and
-  until recently was part of the School of Mathematical Sciences.  It
-  coordinated the development of Content Dictionaries during the
-  former projects: OpenMath and OpenMath Thematic Network.
+\item[University of Bath] The Computing Department at the University of Bath has a long
+  history of involvement in Computer Algebra, and until recently was part of the School of
+  Mathematical Sciences.  It coordinated the development of Content Dictionaries during
+  the former projects: OpenMath and OpenMath Thematic Network.
   
-\item[Stilo Technology Ltd] Stilo is an SME providing XML-based
-  services in a broad range of areas.  It is involved in a number of
-  W3C activities (including MathML) and was heavily involved in the
-  development of OpenMath~2.
+\item[Stilo Technology Ltd] Stilo is an SME providing XML-based services in a broad range
+  of areas.  It is involved in a number of W3C activities (including MathML) and was
+  heavily involved in the development of OpenMath~2.
   
-\item[INRIA Sophia-Antipolis] INRIA is one of the three original W3C
-  host institutions and the group at Sophia-Antipolis has been
-  involved in the Math Working group from its inception.  They also
-  have a long history in the development of mathematical software and
-  have been a key developer within the MONET project.
+\item[INRIA Sophia-Antipolis] INRIA is one of the three original W3C host institutions and
+  the group at Sophia-Antipolis has been involved in the Math Working group from its
+  inception.  They also have a long history in the development of mathematical software
+  and have been a key developer within the MONET project.
   
-\item[Technical University of Eindhoven] The group at Eindhoven has
-  been involved in the development of electronic mathematical
-  textbooks, notably \emph{Algebra Interactive} for some years, and
-  are using OpenMath to communicate between user interfaces and a
-  range of mathematical engines.  They contributed a significant
-  number of Content Dictionaries during the OpenMath Thematic Network
-  project and have played a key design and development role for the
-  MONET project.
+\item[Technical University of Eindhoven] The group at Eindhoven has been involved in the
+  development of electronic mathematical textbooks, notably \emph{Algebra Interactive} for
+  some years, and are using OpenMath to communicate between user interfaces and a range of
+  mathematical engines.  They contributed a significant number of Content Dictionaries
+  during the OpenMath Thematic Network project and have played a key design and
+  development role for the MONET project.
   
-\item[University of Nice] The M@INLINE Project at the University of
-  Nice is interested in e-learning and the development of tools for
-  delivering interactive courses in Mathematics.  They have developed
-  various OpenMath tools including an editor and a rendering agent.
+\item[University of Nice] The M@INLINE Project at the University of Nice is interested in
+  e-learning and the development of tools for delivering interactive courses in
+  Mathematics.  They have developed various OpenMath tools including an editor and a
+  rendering agent.
   
-\item[Konrad-Zuse Zentrum fur Informationstechnik] ZIB is one of the
-  main developers of the Reduce Computer Algebra System.
-  
-\item[Johannes Kepler University Linz] \ednote{need something new
-    here, was: RISC is one of the largest research centers for
-    Computer Algebra in the world.  It played a substantial part in
-    the development of the OpenMath~2 Standard and of the MONET
+\item[Konrad-Zuse Zentrum fur Informationstechnik] ZIB is one of the main developers of
+  the Reduce Computer Algebra System.
+
+\item[Johannes Kepler University Linz] \ednote{need something new here, was: RISC is one
+    of the largest research centers for Computer Algebra in the world.  It played a
+    substantial part in the development of the OpenMath~2 Standard and of the MONET
     protocols.}
   
-\item[German Research Centre for Artificial Intelligence (DFKI)] Based
-  at the DFKI, the ActiveMath project is developing technology for
+\item[German Research Centre for Artificial Intelligence (DFKI)] Based at the
+  DFKI, the ActiveMath project is developing technology for
   e-learning.  They make substantial use of OMDoc, a mechanism for
   representing mathematical documents which is built on OpenMath.
   
@@ -422,11 +381,6 @@ more visibility to the OpenMath compliant software via the web page,
 by collecting and disseminating guidelines for implementors, by active
 support for the upgrade to OpenMath version 2.0, by the development
 and exchange of Content Dictionaries and Phrasebooks.
-
-%Coordination of activities
-
-
-
 
 \subsubsection{Mathematical Publishing}\label{sec:mpubl}
 % - Mathematical Publishing (OMDoc, Algebra Interactive, NAG)
