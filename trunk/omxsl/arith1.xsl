@@ -152,9 +152,19 @@
   <xsl:when test="parent::om:OMA and not(preceding-sibling::*)">
    <mrow>
    <mo>-</mo>
+   <xsl:variable name="t">
    <xsl:apply-templates select="following-sibling::*[1]">
      <xsl:with-param name="p" select="100"/>
    </xsl:apply-templates>
+   </xsl:variable>
+   <xsl:choose>
+   <xsl:when test="starts-with(normalize-space($t),'-')">
+     <mfenced><xsl:copy-of select="$t"/></mfenced>
+   </xsl:when>
+   <xsl:otherwise>
+     <xsl:copy-of select="$t"/>
+   </xsl:otherwise>
+   </xsl:choose>
    </mrow>
   </xsl:when>
   <xsl:otherwise>

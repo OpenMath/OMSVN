@@ -325,7 +325,20 @@
     <mtd>
     <xsl:choose>
     <xsl:when test="$z and $y &lt; $x">
-          <mo>-</mo><xsl:apply-templates select="$z"/>
+          <mo>-</mo>
+   <xsl:variable name="t">
+          <xsl:apply-templates select="$z">
+            <xsl:with-param name="p" select="100"/>
+          </xsl:apply-templates>
+   </xsl:variable>
+   <xsl:choose>
+   <xsl:when test="starts-with(normalize-space($t),'-')">
+     <mfenced><xsl:copy-of select="$t"/></mfenced>
+   </xsl:when>
+   <xsl:otherwise>
+     <xsl:copy-of select="$t"/>
+   </xsl:otherwise>
+   </xsl:choose>
     </xsl:when>
     <xsl:when test="$z">
           <xsl:apply-templates select="$z"/>
