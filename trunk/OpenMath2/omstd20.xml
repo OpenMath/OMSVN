@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.71 2003/12/18 17:30:19 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.72 2004/01/27 17:27:30 openmath Exp $ -->
 
 <!--
  PUBLIC "-//OASIS//DTD DocBook XML V4.2CR1//EN"
@@ -555,9 +555,7 @@ The possible roles are described in <xref linkend="sec_roles"/>.
 <phrase revisionflag="added">must have</phrase> a
 <emphasis>name</emphasis> which is a sequence of characters matching a
 regular expression, as described in <xref linkend="sec_names"/>.
-<phrase revisionflag="added">Where the variable is a member of an
-enumerated set it also has a child which is an &OM; object
-representing its indices.  </phrase></para>
+</para>
 
 </listitem>
 </itemizedlist>
@@ -800,13 +798,6 @@ they could also contain intermediate results of calculations, or
   subset of the printable ASCII characters.  Formally the names must
   match the regular expression:</phrase> <blockquote   revisionflag="deleted"><para>
   [A-Za-z0-9=+(),-./:?!#$%*;=@[]^_`{|}]+ </para></blockquote>
-</para>
-<para revisionflag="added">
-A variable may have one or more children which are themselves &OM;
-objects and are treated as scripts.  Thus it is possible to create a
-variable with cardinality such as
-<math><msub><mi>x</mi><mn>1</mn></msub></math> or
-<math><msub><mi>x</mi><mi>i</mi></msub></math>.
 </para>
 </listitem>
 </varlistentry>
@@ -1896,22 +1887,7 @@ The variable name is a subset of the printable
   representing the variable <math><mi>x</mi></math> is:
   <systemitem>&lt;OMV name="x"/></systemitem></para>
 
-<para revisionflag="added">
-For an enumerated variable the index or indices of the variable are
-encoded as a child.  So for example the encoding
-   of the object
-  representing the variable
-<math><msub><mi>x</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub></math> is:
-<literallayout><![CDATA[<OMV name="x">  
-  <OMA>
-    <OMS cd="arith1" name="plus"/> 
-    <OMV name="i"/>  
-    <OMI>1</OMI>
-  </OMA>
-</OMV>]]></literallayout>
-</para>
-
-  
+ 
 </listitem>
 </varlistentry>
 <varlistentry><term>Floating-point numbers</term><listitem><para>are
@@ -2538,12 +2514,6 @@ implementations).</para>
             <entry> variable</entry>
           </row>
           
-          <row revisionflag="added">
-            <entry/>
-            <entry>|</entry>
-            <entry> indexed_variable</entry>
-          </row>
-          
           <row>
             <entry/>
             <entry>|</entry>
@@ -2724,25 +2694,7 @@ implementations).</para>
             </entry>
           </row>
           
-          <row revisionflag="added">
-            <entry>indexed_variable</entry>
-            <entry><math>&longrightarrow;</math></entry>
-            <entry> [10]
-              [<math><mi>n</mi></math>]
-              varname:<math><mi>n</mi></math>
-              object [11]
-            </entry>
-            <entry><math><mo>|</mo></math></entry>
-            <entry> [10+64]
-              [<math><mi>n</mi></math>]
-              [<math><mi>m</mi></math>]
-              varname:<math><mi>n</mi></math>
-              id:<math><mi>m</mi></math>
-              object [11]
-            </entry>
-          </row>
-          
-          
+         
           <row revisionflag="added">
             <entry/>
             <entry><math><mo>|</mo></math></entry>
@@ -3391,22 +3343,6 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
     0x01 0x78</systemitem>.</para>
 </listitem>
 </varlistentry>
-
-<varlistentry revisionflag="added">
-<term>Indexed Variables</term>
-<listitem><para>are encoded using the indexed variable tags
-    (token identifiers 10 and 11) as begin and end tags. The long
-  flag set on the begin tag if the number of bytes (characters) in the variable name is
-  greater than or equal to 256.  The start tag is followed by the number of
-  bytes
-  as a byte (if the long flag was not set) or a four byte integer
-  (in network byte order), followed by the bytes 
-  of  the UTF-8 encoding of the name of
-  the variable. This is followed by the encoding of an &OM; object and the end tag
-  [11].</para>
-</listitem>
-</varlistentry>
-
 
 <varlistentry>
 <term>Floating-point number</term>
@@ -5652,17 +5588,6 @@ or, using the Relax NG compact syntax:
           the same name, and can also be used to produce a canonical URI for any
           &OM; symbol for use in frameworks such as RDFS or MathML which
           need one.
-        </para>
-      </listitem>
-      <listitem>
-        <para>&OM; variables can be indexed, in which case they
-          carry information about their enumerator.  Since &OM; only
-          allows variables and not objects to be bound, it was not possible to
-          produce indexed variables by defining an appropriate symbol in a CD.
-          Also, although it would be possible to produce an indexed variable
-          using the new <emphasis>semantic-attribute</emphasis> role, it was
-          felt that attributes describe or modify an object, whereas in this
-          case we were constructing an atomic object.
         </para>
       </listitem>
       <listitem>

@@ -13,12 +13,15 @@ href="http://www.w3.org/Consortium/Legal/copyright-software-19980720"
 >W3C Software Notice and License</a>.
 -->
 
-
+<xsl:template match="node()" mode="name">
+  <xsl:value-of select="local-name(.)"/>
+</xsl:template>
 
 <!-- non empty elements and other nodes. -->
 <xsl:template mode="verb"
 match="*[*]|*[text()]|*[comment()]|*[processing-instruction()]" priority="2">
-  <xsl:value-of select="concat('&lt;',local-name(.))"/>
+  <xsl:value-of select="'&lt;'"/>
+  <xsl:apply-templates select="." mode="name"/>
   <xsl:for-each select="namespace::*">
   <xsl:choose>
    <xsl:when test="name()='xml'"/>
@@ -30,12 +33,15 @@ match="*[*]|*[text()]|*[comment()]|*[processing-instruction()]" priority="2">
   <xsl:apply-templates mode="verb" select="@*"/>
   <xsl:text>&gt;</xsl:text>
   <xsl:apply-templates mode="verb"/>
-  <xsl:value-of select="concat('&lt;/',local-name(.),'&gt;')"/>
+  <xsl:value-of select="'&lt;/'"/>
+  <xsl:apply-templates select="." mode="name"/>
+  <xsl:value-of select="'&gt;'"/>
 </xsl:template>
 
 <!-- empty elements -->
 <xsl:template mode="verb" match="*" priority="1.5">
-  <xsl:value-of select="concat('&lt;',local-name(.))"/>
+  <xsl:value-of select="'&lt;'"/>
+  <xsl:apply-templates select="." mode="name"/>
   <xsl:apply-templates mode="verb" select="@*"/>
   <xsl:text>/&gt;</xsl:text>
 </xsl:template>

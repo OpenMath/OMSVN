@@ -18,7 +18,9 @@
 <xsl:text>&#10;</xsl:text>
 <xsl:processing-instruction name="xml-stylesheet"
 > type="text/xsl" href="pmathml.xsl"</xsl:processing-instruction>
+<xsl:text>&#10;</xsl:text>
 <html  xml:space="preserve" xmlns:m="http://www.w3.org/1998/Math/MathML">
+<xsl:text>&#10;</xsl:text>
 <head>
 <title><xsl:value-of select="title"/></title>
 <!--
@@ -181,9 +183,10 @@ relative to the OpenMath 1.0 document...</p>
 </xsl:template>
 
 <xsl:template match="acronym">
-<span>
-<xsl:value-of select="."/>
-</span>
+<acronym>
+<xsl:value-of select=
+"translate(.,'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>
+</acronym>
 </xsl:template>
 
 <xsl:template match="chapter">
@@ -672,6 +675,32 @@ select="substring-before(.,':')"/>:</a>
 <xsl:template match="cd:CD" xmlns:cd="http://www.openmath.org/OpenMathCD">
 <xsl:apply-templates mode="verb" select="."/>
 </xsl:template>
+
+
+<xsl:template match="cd:*" mode="name"  xmlns:cd="http://www.openmath.org/OpenMathCD">
+<span style="font-weight: bold; color: blue">
+<xsl:value-of select="local-name()"/>
+</span>
+</xsl:template>
+
+<xsl:template match="cds:*" mode="name"  xmlns:cds="http://www.openmath.org/OpenMathCDS">
+<span style="font-weight: bold; color: blue">
+<xsl:value-of select="local-name()"/>
+</span>
+</xsl:template>
+
+<xsl:template match="om:*" mode="name"  xmlns:om="http://www.openmath.org/OpenMath">
+<span style="font-weight: bold; color: green">
+<xsl:value-of select="local-name()"/>
+</span>
+</xsl:template>
+
+<xsl:template match="*" mode="name" >
+<span style="font-weight: bold; color: red">
+<xsl:value-of select="local-name()"/>
+</span>
+</xsl:template>
+
 
 
 
