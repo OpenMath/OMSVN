@@ -29,12 +29,11 @@
 <xsl:include href="list1.xsl"/>
 <xsl:include href="linalg1.xsl"/>
 <xsl:include href="linalg2.xsl"/>
+<xsl:include href="linalg3.xsl"/>
 <xsl:include href="set1.xsl"/>
 <xsl:include href="setname1.xsl"/>
 <xsl:include href="combinat1.xsl"/>
-<!-- -->
-<xsl:include href="omvar.xsl"/>
-<!-- -->
+<xsl:include href="piece1.xsl"/>
 <!-- -->
 <!-- -->
 <xsl:include href="fns2.xsl"/>
@@ -42,4 +41,7 @@
 <xsl:include href="sts2.xsl"/>
 <xsl:include href="list2.xsl"/>
 
+<!-- -->
+<xsl:include href="omvar.xsl"/>
+<!-- -->
 </xsl:stylesheet>

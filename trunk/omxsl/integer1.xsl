@@ -10,10 +10,17 @@
 
 
 <xsl:template match="om:OMS[@cd='integer1' and @name='factorial']" >
+  <xsl:choose>
+  <xsl:when test="parent::om:OMA and not(preceding-sibling::*)">
 <xsl:apply-templates select="following-sibling::*">
 <xsl:with-param name="p" select="5"/>
 </xsl:apply-templates>
 <mo>!</mo>
+   </xsl:when>
+   <xsl:otherwise>
+   <mi><xsl:value-of select="@name"/></mi>
+   </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 

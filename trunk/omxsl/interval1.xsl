@@ -10,60 +10,45 @@
 
 
 <xsl:template match="om:OMS[@cd='interval1' and @name='integer_interval']" >
-   <mo>[</mo>
-   <xsl:apply-templates select="following-sibling::*[1]"/>
-   <mo>,</mo>
-   <xsl:apply-templates select="following-sibling::*[2]"/>
-   <mo>]</mo>
+   <xsl:call-template name="fenced">
+   <xsl:with-param name="open"><mo>[</mo></xsl:with-param>
+   <xsl:with-param name="close"><mo>]</mo></xsl:with-param>
+   </xsl:call-template>
 </xsl:template>
 
 
-
 <xsl:template match="om:OMS[@cd='interval1' and @name='interval']" >
-   <mo>(</mo>
-   <xsl:apply-templates select="following-sibling::*[1]"/>
-   <mo>,</mo>
-   <xsl:apply-templates select="following-sibling::*[2]"/>
-   <mo>)</mo>
+   <xsl:call-template name="fenced"/>
 </xsl:template>
 
 
 
 <xsl:template match="om:OMS[@cd='interval1' and @name='interval_oo']" >
-   <mo>(</mo>
-   <xsl:apply-templates select="following-sibling::*[1]"/>
-   <mo>,</mo>
-   <xsl:apply-templates select="following-sibling::*[2]"/>
-   <mo>)</mo>
+   <xsl:call-template name="fenced"/>
 </xsl:template>
 
 
 <xsl:template match="om:OMS[@cd='interval1' and @name='interval_cc']" >
-   <mo>[</mo>
-   <xsl:apply-templates select="following-sibling::*[1]"/>
-   <mo>,</mo>
-   <xsl:apply-templates select="following-sibling::*[2]"/>
-   <mo>]</mo>
+   <xsl:call-template name="fenced">
+   <xsl:with-param name="open"><mo>[</mo></xsl:with-param>
+   <xsl:with-param name="close"><mo>]</mo></xsl:with-param>
+   </xsl:call-template>
 </xsl:template>
 
 
 
 <xsl:template match="om:OMS[@cd='interval1' and @name='interval_oc']" >
-   <mo>(</mo>
-   <xsl:apply-templates select="following-sibling::*[1]"/>
-   <mo>,</mo>
-   <xsl:apply-templates select="following-sibling::*[2]"/>
-   <mo>]</mo>
+   <xsl:call-template name="fenced">
+   <xsl:with-param name="open"><mo>(</mo></xsl:with-param>
+   <xsl:with-param name="close"><mo>]</mo></xsl:with-param>
+   </xsl:call-template>
 </xsl:template>
 
-
-
 <xsl:template match="om:OMS[@cd='interval1' and @name='interval_co']" >
-   <mo>[</mo>
-   <xsl:apply-templates select="following-sibling::*[1]"/>
-   <mo>,</mo>
-   <xsl:apply-templates select="following-sibling::*[2]"/>
-   <mo>)</mo>
+   <xsl:call-template name="fenced">
+   <xsl:with-param name="open"><mo>[</mo></xsl:with-param>
+   <xsl:with-param name="close"><mo>)</mo></xsl:with-param>
+   </xsl:call-template>
 </xsl:template>
 
 </xsl:stylesheet>

@@ -118,10 +118,26 @@
   </mn>
 </xsl:template>
 
-<xsl:template match="om:OMF">
+<xsl:template match="om:OMF[@dec]">
   <mn>
     <xsl:value-of select="@dec"/>
   </mn>
+</xsl:template>
+
+<xsl:template match="om:OMF[@dec='INF']" priority="2">
+  <mn>&#x221E;</mn>
+</xsl:template>
+<xsl:template match="om:OMF[@dec='-INF']" priority="2">
+  <mn>-&#x221E;</mn>
+</xsl:template>
+
+<xsl:template match="om:OMF[@hex]">
+  <mrow>
+    <mi>double</mi>
+    <mfenced>
+    <mn>0x<xsl:value-of select="@hex"/></mn>
+   </mfenced>
+  </mrow>
 </xsl:template>
 
 
@@ -208,6 +224,57 @@ select="@name"/>]</xsl:message>
   </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
+
+
+
+<xsl:template name="msup">
+  <xsl:param name="base">
+   <xsl:apply-templates select="following-sibling::*[1]">
+     <xsl:with-param name="p" select="100"/>
+   </xsl:apply-templates>
+  </xsl:param>
+  <xsl:param name="script">
+   <xsl:apply-templates select="following-sibling::*[2]">
+     <xsl:with-param name="p" select="100"/>
+   </xsl:apply-templates>
+  </xsl:param>
+   <xsl:choose>
+  <xsl:when test="parent::om:OMA and not(preceding-sibling::*)">
+   <msup>
+    <xsl:copy-of select="$base"/>
+    <xsl:copy-of select="$script"/>
+   </msup>
+   </xsl:when>
+   <xsl:otherwise>
+   <mi><xsl:value-of select="@name"/></mi>
+   </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+
+<xsl:template name="fenced">
+  <xsl:param name="open"><mo>(</mo></xsl:param>
+  <xsl:param name="close"><mo>)</mo></xsl:param>
+  <xsl:param name="sep"><mo separator="true">,</mo></xsl:param>
+  <xsl:choose>
+  <xsl:when test="parent::om:OMA and not(preceding-sibling::*)">
+  <mrow>
+    <xsl:copy-of select="$open"/>
+    <xsl:for-each select="following-sibling::*">
+    <xsl:apply-templates select="."/>
+    <xsl:if test="position()!=last()">
+        <xsl:copy-of select="$sep"/>
+    </xsl:if>
+    </xsl:for-each>
+    </mrow>
+   <xsl:copy-of select="$close"/>
+    </xsl:when>
+    <xsl:otherwise>
+   <mi><xsl:value-of select="@name"/></mi>
+   </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 
 <xsl:template match="*" mode="ombind">
  <xsl:call-template name="ombind">

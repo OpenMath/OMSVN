@@ -11,23 +11,20 @@
 
 
 <xsl:template match="om:OMS[@cd='fns1' and @name='identity']" >
-  <mrow>
-  <mi>Id</mi>
-  <mo><!-- AF --></mo>
-  <mo>(</mo>
-  <xsl:apply-templates select="following-sibling::*[1]"/>
-  <mo>)</mo>
-  </mrow>
+  <xsl:call-template name="prefix">
+   <xsl:with-param name="mo">
+    <mi>Id</mi>
+   </xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 
 <xsl:template match="om:OMS[@cd='fns1' and @name='inverse']" >
-<msup>
-<xsl:apply-templates select="following-sibling::*">
-<xsl:with-param name="p" select="5"/>
-</xsl:apply-templates>
-<mn>-1</mn>
-</msup>
+<xsl:call-template name="msup">
+ <xsl:with-param name="script">
+   <mn>-1</mn>
+  </xsl:with-param>
+</xsl:call-template>
 </xsl:template>
 
 <xsl:template match="om:OMS[@cd='fns1' and @name='left_compose']" >

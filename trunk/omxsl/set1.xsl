@@ -100,15 +100,12 @@
 
 
 <xsl:template match="om:OMS[(@cd='set1' or @cd='multiset1') and @name='set']" >
-<mrow>
-<mo>{</mo>
-<xsl:for-each  select="following-sibling::*">
- <xsl:apply-templates select="."/>
- <xsl:if test="not(position()=last())"><mo>,</mo></xsl:if>
-</xsl:for-each>
-<mo>}</mo>
-</mrow>
+   <xsl:call-template name="fenced">
+   <xsl:with-param name="open"><mo>{</mo></xsl:with-param>
+   <xsl:with-param name="close"><mo>}</mo></xsl:with-param>
+   </xsl:call-template>
 </xsl:template>
+
 
 
 </xsl:stylesheet>

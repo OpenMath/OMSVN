@@ -147,20 +147,25 @@
 </xsl:template>
 
 <xsl:template match="om:OMS[@cd='arith1' and @name='unary_minus']"  >
+  <xsl:choose>
+  <xsl:when test="parent::om:OMA and not(preceding-sibling::*)">
    <mrow>
    <mo>-</mo>
-   <xsl:apply-templates select="following-sibling::*[1]"/>
+   <xsl:apply-templates select="following-sibling::*[1]">
+     <xsl:with-param name="p" select="100"/>
+   </xsl:apply-templates>
    </mrow>
+  </xsl:when>
+  <xsl:otherwise>
+   <mo>-</mo>
+  </xsl:otherwise>
+ </xsl:choose>
 </xsl:template>
 
 
 <xsl:template match="om:OMS[@cd='arith1' and @name='power']"  >
-   <msup>
-   <xsl:apply-templates select="following-sibling::*[1]"/>
-   <xsl:apply-templates select="following-sibling::*[2]"/>
-   </msup>
+  <xsl:call-template name="msup"/>
 </xsl:template>
-
 
 <xsl:template match="om:OMS[@cd='arith1' and @name='conjugate']"  >
    <mover>
@@ -186,6 +191,8 @@
 
 
 <xsl:template match="om:OMS[@cd='arith1' and @name='root']"  >
+  <xsl:choose>
+  <xsl:when test="parent::om:OMA and not(preceding-sibling::*)">
    <xsl:choose>
    <xsl:when test="following-sibling::*[2]/self::om:OMI[normalize-space(.)='2']">
    <msqrt>
@@ -198,6 +205,11 @@
    </mroot>
    </xsl:otherwise>
    </xsl:choose>
+   </xsl:when>
+   <xsl:otherwise>
+   <mi><xsl:value-of select="@name"/></mi>
+   </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 

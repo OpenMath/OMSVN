@@ -10,9 +10,7 @@
 >
 
 <xsl:template match="om:OMS[@cd='list1' and @name='list']" >
-<mfenced>
-<xsl:apply-templates select="following-sibling::*"/>
-</mfenced>
+  <xsl:call-template name="fenced"/>
 </xsl:template>
 
 <xsl:template match="om:OMS[@cd='list1' and @name='list'][following-sibling::*/*/*]" priority="2">

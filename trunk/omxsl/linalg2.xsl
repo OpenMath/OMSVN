@@ -14,19 +14,28 @@
 </xsl:template>
 
 <xsl:template match="om:OMS[@cd='linalg2'  and @name='matrixrow']" >
+  <xsl:choose>
+  <xsl:when test="../preceding-sibling::*[last()]/@name='matrix'">
   <mtr>
    <xsl:for-each select="following-sibling::*">
    <mtd><xsl:apply-templates select="."/></mtd>
    </xsl:for-each>
   </mtr>
+  </xsl:when>
+  <xsl:otherwise>
+  <mfenced><mtable>
+  <mtr>
+   <xsl:for-each select="following-sibling::*">
+   <mtd><xsl:apply-templates select="."/></mtd>
+   </xsl:for-each>
+  </mtr>
+  </mtable></mfenced>
+  </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="om:OMS[@cd='linalg2'  and @name='vector']" >
-   <mfenced>
-   <xsl:for-each select="following-sibling::*">
-   <mrow><xsl:apply-templates select="."/></mrow>
-   </xsl:for-each>
-  </mfenced>>
+  <xsl:call-template name="fenced"/>
 </xsl:template>
 
 
