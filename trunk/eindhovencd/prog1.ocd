@@ -1,4 +1,4 @@
-<CD>
+<CD xmlns="http://www.openmath.org/OpenMathCD">
 <CDName> prog1 </CDName>
 <CDURL> </CDURL>
 <CDReviewDate> 2001-06-01 </CDReviewDate>
@@ -26,7 +26,7 @@ assignment(variable, value), where variable is the encoding of an
 OpenMath variable (OMV) and value is an OpenMath object.
 </Description>
 <Example> The assignment a := 125 is encoded as
-<OMOBJ>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0">
  <OMA>
   <OMS cd="prog1" name="assignment"/>
   <OMV name="a"/>
@@ -49,7 +49,7 @@ OpenMath encoding of the ith sentence (or action) inside the body.
  a := a+1;
 }
 is encoded as
-<OMOBJ>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0">
  <OMA>
   <OMS cd="prog1" name="block"/>
   <OMA>
@@ -168,7 +168,7 @@ are only allowed to return values by means of the return construct.
 The function (in Maple notation), 
 MyFunction:=proc(N) local i, Result; Result := 1; for i from 2 to N do 
 Result := Result + i^10; od; Result; end;, is encoded as
-<OMOBJ>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0">
  <OMA>
   <OMS cd="prog1" name="function_definition"/>
   <OMV name="MyFunct"/>
@@ -249,7 +249,7 @@ Result := Result + i^10; od; Result; end;, is encoded as
 
 <Example> The encoding of a function N --> 1+2^3+...+N^3 (uses the while loop) 
 is
-<OMOBJ>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0">
  <OMA>
   <OMS cd="prog1" name="function_definition"/>
   <OMV name="Prog1AddCubes"/>
@@ -324,7 +324,7 @@ is
 
 <Example> The encoding of a function the compute the Nth term of the Fibonacci 
 sequence is 
-<OMOBJ>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0">
  <OMA>
   <OMS cd="prog1" name="function_definition"/>
   <OMV name="Prog1Fibonacci"/>
@@ -416,7 +416,7 @@ Both, name and call_arguments, should be present but call_arguments can be
 empty.
 </Description>
 <Example> The function call "MyFunction(100)" is encoded as
-<OMOBJ>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0">
  <OMA>
   <OMS cd="prog1" name="function_call"/>
   <OMV name="MyFunct"/>
@@ -427,8 +427,9 @@ empty.
  </OMA>
 </OMOBJ>
 </Example>
-<CDDefinition>
+</CDDefinition>
 
+<CDDefinition>
 <Name> procedure_definition </Name>
 <Description>
  This symbol can be used to define a procedure. The sintax is
@@ -441,6 +442,7 @@ global_var construct (see procedure block).
 </Description>
 </CDDefinition>
 
+<CDDefinition>
 <Name> procedure_call </Name>
 <Description>
 Symbol procedure_call can be used to "call" already defined procedures. 
