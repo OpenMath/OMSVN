@@ -9,7 +9,7 @@
 
 
 
-<xsl:template match="om:OMS[@cd='complex1' and @name='complex-cartesian']" >
+<xsl:template match="om:OMS[@cd='complex1' and @name='complex_cartesian']" >
 <xsl:choose>
 <xsl:when test="parent::om:OMA and not(preceding-sibling::*)">
 <xsl:variable name="r">
@@ -63,7 +63,7 @@
 </xsl:template>
 
 
-<xsl:template match="om:OMS[@cd='complex1' and @name='complex-polar']" >
+<xsl:template match="om:OMS[@cd='complex1' and @name='complex_polar']" >
 <xsl:choose>
 <xsl:when test="parent::om:OMA and not(preceding-sibling::*)">
 <xsl:variable name="r">
