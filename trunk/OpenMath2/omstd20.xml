@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.85 2004/02/20 15:53:54 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.86 2004/02/24 16:00:48 openmath Exp $ -->
 
 
 <!DOCTYPE book 
@@ -298,7 +298,7 @@ designers were mainly developers of computer algebra systems, it is
 now attracting interest from other areas of scientific computation and
 from many publishers of electronic documents with a significant
 mathematical content.  There is a strong relationship to the MathML
-recommendation <citation>MathML_2000</citation> from the Worldwide Web
+recommendation <citation>MathML_2003</citation> from the Worldwide Web
 Consortium, and a large overlap between the two developer communities.
 MathML deals principally with the <emphasis>presentation</emphasis> of
 mathematical objects, while &OM; is solely concerned with their
@@ -1050,7 +1050,7 @@ expression could be attributed with its spoken or visual rendering.
 
 
 <para>Objects can be decorated in a multitude of
-ways. In&#160;<citation>OM_D131b</citation>, typing of &OM; objects is
+ways. In&#160;<citation>OM_D132b</citation>, typing of &OM; objects is
 expressed by using an attribution. The object <math><mi
 mathvariant="bold">attribution</mi><mo>(</mo><mi>A</mi><mo>,</mo>
 <mi>type</mi> <mspace width=".3em"/> <mi>t</mi> <mo>)</mo></math>
@@ -1873,7 +1873,7 @@ canonical URI reference is constructed as follows:</para>
 <para revisionflag="added">
   gives the URI <systemitem>"http://www.openmath.org/cd/arith1#plus"</systemitem>
   This would allow us to refer uniquely to an openmath symbol from a
-MathML document <citation>MathML_2000</citation>.</para>
+MathML document <citation>MathML_2003</citation>.</para>
 <blockquote  revisionflag="added">
   <literallayout>
 &lt;mathml:csymbol xmlns:mathml="http://www.w3.org/1998/Math/MathML/"
@@ -3715,16 +3715,16 @@ present in the table.</para>
 
 <para>As an example of this binary encoding, we can consider the &OM; object
 whose &exml; encoding is
-<literallayout><![CDATA[<OMOBJ>
+<literallayout><![CDATA[<OMOBJ cdbase="http://www.openmath.org/cd">
   <OMA>
-    <OMS cdbase="http://www.openmath.org/cd" name="times" cd="arith1"/>
+    <OMS name="times" cd="arith1"/>
     <OMA>
-      <OMS cdbase="http://www.openmath.org/cd" name="plus" cd="arith1"/>
+      <OMS name="plus" cd="arith1"/>
       <OMV name="x"/>
       <OMV name="y"/>
     </OMA>
     <OMA>
-      <OMS cdbase="http://www.openmath.org/cd" name="plus" cd="arith1"/>
+      <OMS name="plus" cd="arith1"/>
       <OMV name="x"/>
       <OMV name="z"/>
     </OMA>
@@ -4070,7 +4070,7 @@ presentation forms, extra defining mathematical properties may be
 associated with Content Dictionaries using files whose format is not
 specified by this standard. It is expected that a common method of
 defining the presentation for &OM; symbols is via
-<acronym>xsl</acronym>&#160;<citation>XSL_99</citation> stylesheets
+<acronym>xsl</acronym>&#160;<citation>XSLT_99</citation> stylesheets
 giving transformations to MathML.</para>
 
 <para revisionflag="added">
@@ -4088,7 +4088,7 @@ collections of Content Dictionaries. One particular CDGroup of
 interest is the <quote>MathML CDGroup</quote>. This group expresses
 the collection of the core Content Dictionaries that is designed to
 have the same semantic scope as the content elements of
-MathML&#160;2&#160;<citation>MathML_2000</citation>.  &OM; objects
+MathML&#160;2&#160;<citation>MathML_2003</citation>.  &OM; objects
 built from symbols that come from Content Dictionaries in this CDGroup
 may be expected to be eaily transformed between &OM; and MathML
 encodings.  The detailed structure of a CDGroup is described in
@@ -5692,12 +5692,15 @@ or, using the Relax NG compact syntax:
     <author><othername>IETF</othername></author>
     <title>RFC 2396 - Uniform Resource Identifiers (URI): Generic Syntax</title>
     <pubdate>August 1998</pubdate>
+    <bibliomisc>http://www.ietf.org/rfc/rfc2396.txt</bibliomisc>
   </biblioentry>
   
   <biblioentry id="XSD" role="book" revisionflag="added">
     <author><othername>World Wide Web Consortium</othername></author>
-    <title>XSD Schema Parts 1 &amp; 2</title>
+    <title>XML Schema Part 1: Structures &amp; Part 2: Datatypes</title>
     <pubdate>May 2001</pubdate>
+    <bibliomisc>http://www.w3.org/TR/xmlschema-1</bibliomisc>
+    <bibliomisc>http://www.w3.org/TR/xmlschema-2</bibliomisc>
   </biblioentry>
   
   <biblioentry id="RELAX-COMPACT" role="book" revisionflag="added">
@@ -6330,10 +6333,11 @@ or, using the Relax NG compact syntax:
   
   <biblioentry id="UNICODE" role="Book">
     <author><othername>Unicode Consortium</othername></author>
-    <title>The Unicode Standard: Version <phrase revisionflag="deleted">2.0</phrase><phrase revisionflag="added">4.0</phrase></title>
-    <publisher><publishername>Addison-Wesley Developers Press</publishername></publisher>
-    <pubdate revisionflag="deleted">1996</pubdate>
-    <pubdate revisionflag="added">2003</pubdate>
+    <title>The Unicode Standard: Version <phrase revisionflag="deleted">2.0</phrase><phrase revisionflag="added">4.0.0</phrase></title>
+    <publisher><publishername>Addison-Wesley</publishername></publisher>
+    <pubdate>2003</pubdate>
+    <isbn>ISBN 0-321-18578-1</isbn>
+    <bibliomisc>Online edition available from http://www.unicode.org/versions/Unicode4.0.0</bibliomisc>
   </biblioentry>
   
   <biblioentry id="ieee754_85" role="Misc">
@@ -6384,7 +6388,6 @@ or, using the Relax NG compact syntax:
   <biblioentry id="xmlns" role="Misc">
     <author><othername>World Wide Web Consortium</othername></author>
     <title>Namespaces in XML</title>
-    <bibliomisc>REC-xml-names-19990114</bibliomisc>
     <pubdate role="month">January</pubdate>
     <pubdate>1999</pubdate>
     <bibliomisc>http://www.w3.org/TR/REC-xml-names</bibliomisc>
@@ -6610,10 +6613,19 @@ or, using the Relax NG compact syntax:
   <biblioentry id="MathML_2000" role="Misc" revisionflag="added">
     <author><othername>World Wide Web Consortium</othername></author>
     <title>Mathematical Markup Language (MathML) 2.0 Specification</title>
-    <bibliomisc>REC-MathML2-20010221/</bibliomisc>
     <pubdate role="month">February</pubdate>
     <pubdate>2001</pubdate>
     <bibliomisc>Available at http://www.w3.org/TR/REC-MathML2/</bibliomisc>
+  </biblioentry>
+  
+
+  <biblioentry id="MathML_2003" role="Misc" revisionflag="added">
+    <author><othername>World Wide Web Consortium</othername></author>
+    <title>Mathematical Markup Language (MathML) 2.0 Specification
+    (Second Edition)</title>
+    <pubdate role="month">October</pubdate>
+    <pubdate>2003</pubdate>
+    <bibliomisc>Available at http://www.w3.org/TR/MathML2/</bibliomisc>
   </biblioentry>
   
   <biblioentry id="CTCOQMATH" role="Manual">
@@ -6826,13 +6838,20 @@ or, using the Relax NG compact syntax:
   
   
   
-  <biblioentry id="XSL_99" role="Misc">
+  <biblioentry id="XSL_2001" role="Misc">
     <author><othername>World Wide Web Consortium</othername></author>
     <title>Extensible Stylesheet Language (XSL) Specification</title>
-    <bibliomisc>W3C Working Draft</bibliomisc>
-    <pubdate role="month">21 Apr</pubdate>
+    <pubdate role="month">October</pubdate>
+    <pubdate>2001</pubdate>
+    <bibliomisc>http://www.w3.org/TR/xsl/</bibliomisc>
+  </biblioentry>
+
+  <biblioentry id="XSLT_99" role="Misc">
+    <author><othername>World Wide Web Consortium</othername></author>
+    <title>XSL Transformations (XSLT)</title>
+    <pubdate role="month">November</pubdate>
     <pubdate>1999</pubdate>
-    <bibliomisc>http://www.w3.org/TR/WD-xsl/</bibliomisc>
+    <bibliomisc>http://www.w3.org/TR/xslt/</bibliomisc>
   </biblioentry>
   
   <biblioentry id="Kohlhase_99" role="InProceedings">
