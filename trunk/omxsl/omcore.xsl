@@ -316,6 +316,7 @@ select="@name"/>]</xsl:message>
   <xsl:param name="this-p" select="0"/>
  <mrow>
   <xsl:copy-of select="$mo"/>
+  <mo>&#x2009;</mo>
   <xsl:apply-templates select="following-sibling::om:OMBVAR[1]"/>
   <mo>.</mo>
   <xsl:apply-templates select="following-sibling::*[2]"/>
