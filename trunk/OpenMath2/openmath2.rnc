@@ -19,15 +19,15 @@ common.attributes = (attribute id { xsd:ID })?
 compound.attributes = common.attributes,cdbase
 
 # symbol
-OMS = element OMS { common.attributes, attlist.OMS}
-attlist.OMS =
-  attribute name { xsd:NCName},
-  attribute cd { xsd:NCName},
-  cdbase
+OMS = element OMS { common.attributes,
+                    attribute name { xsd:NCName},
+                    attribute cd { xsd:NCName},
+                    cdbase }
 
 # variable
-OMV = element OMV { common.attributes, attlist.OMV,omel?}
-attlist.OMV = attribute name { xsd:NCName}
+OMV = element OMV { common.attributes,
+                    attribute name { xsd:NCName},
+                    omel? }
 
 # integer
 OMI = element OMI { common.attributes,
@@ -39,16 +39,16 @@ OMB = element OMB { common.attributes, xsd:base64Binary }
 OMSTR = element OMSTR { common.attributes, text }
 
 # floating point
-OMF = element OMF { common.attributes, attlist.OMF}
-attlist.OMF =
-  attribute dec { xsd:string 
-           {pattern = "(-?)([0-9]+)?(\.[0-9]+)?(e([+\-]?)[0-9]+)?"}}|
-  attribute hex { xsd:string {pattern = "[0-9A-F]+"}}
+OMF = element OMF { common.attributes,
+                    ( attribute dec { xsd:double } |
+                      attribute hex { xsd:string {pattern = "[0-9A-F]+"}}) }
 
 # apply constructor
 OMA = element OMA { compound.attributes, omel+ }
+
 # binding constructor and variable
 OMBIND = element OMBIND { compound.attributes, omel, OMBVAR, omel }
+
 OMBVAR = element OMBVAR { common.attributes, omvar+ }
 
 # error
@@ -69,15 +69,14 @@ notom =
    | text)
 
 # OM object constructor
-OMOBJ = element OMOBJ { compound.attributes, omel }
- attlist.OMOBJ = attribute version { "1.0" | "1.1" | "2.0" }
-
+OMOBJ = element OMOBJ { compound.attributes,
+                        attribute version { "1.0" | "1.1" | "2.0" }?,
+                        omel }
 
 # OM2: OMR
-OMR = element OMR { common.attributes, attlist.OMR }
-attlist.OMR = 
-        attribute xlink:href { xsd:anyURI },
-        attribute xlink:type {"simple"}?,
-        attribute xlink:show {"embed"}?
+OMR = element OMR { common.attributes,
+                    attribute xlink:href { xsd:anyURI },
+                    attribute xlink:type {"simple"}?,
+                    attribute xlink:show {"embed"}? }
 
 start = OMOBJ
