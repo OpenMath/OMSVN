@@ -349,7 +349,10 @@ relative to the OpenMath 1.0 document...</p>
 
 
 <xsl:template match="figure" mode="number">
-<xsl:number level="multiple" count="chapter"/>.<xsl:number level="any"  from="chapter"/>
+<xsl:if test="not(ancestor-or-self::*/@revisionflag='deleted')">
+<xsl:number level="multiple" count="chapter"/>.<xsl:number
+count="figure[not(ancestor-or-self::*/@revisionflag='deleted')]" level="any"  from="chapter"/>
+</xsl:if>
 </xsl:template>
 
 
@@ -505,8 +508,9 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 
 <xsl:template match="lot">
 <h2><xsl:apply-templates select="title/node()"/></h2>
-<xsl:for-each select="//figure">
+<xsl:for-each select="//figure[$showdiffs or not(ancestor-or-self::*/@revisionflag='deleted')]">
 <a href="#{@id}">
+<xsl:apply-templates select="../@revisionflag"/>
 <xsl:apply-templates select="."
 mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 </a><br/>
