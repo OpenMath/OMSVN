@@ -2611,12 +2611,12 @@ implementations).</para>
 <entry><math>&longrightarrow;</math></entry>
 <entry> [6]
   [<math><mi>n</mi></math>]
-  chars:<math><mi>n</mi></math>
+  <phrase revisionflag="deleted">chars</phrase><phrase revisionflag="added">bytes</phrase>:<math><mi>n</mi></math>
 </entry>
 <entry revisionflag="added">|</entry>
 <entry revisionflag="added"> [6+64]
   [<math><mi>n</mi></math>]
-  chars:<math><mi>n</mi></math>
+  <phrase revisionflag="deleted">chars</phrase><phrase revisionflag="added">bytes</phrase>:<math><mi>n</mi></math>
 </entry>
 </row>
 
@@ -2625,13 +2625,13 @@ implementations).</para>
 <entry>|</entry>
 <entry> [6+128]
   {<math><mi>n</mi></math>}
-  chars:<math><mi>n</mi></math>
+  <phrase revisionflag="deleted">chars</phrase><phrase revisionflag="added">bytes</phrase>:<math><mi>n</mi></math>
 </entry>
 <entry revisionflag="added">|</entry>
 <entry revisionflag="added"> [6+64+128]
   {<math><mi>n</mi></math>}
   {<math><mi>m</mi></math>}
-  chars:<math><mi>n</mi></math>
+  <phrase revisionflag="deleted">chars</phrase><phrase revisionflag="added">bytes</phrase>:<math><mi>n</mi></math>
   id:<math><mi>m</mi></math>
 </entry>
 </row>
@@ -2641,13 +2641,13 @@ implementations).</para>
   <entry>|</entry>
   <entry> [7]
     [<math><mi>n</mi></math>]
-    chars:<math><mn>2</mn><mi>n</mi></math>
+    <phrase revisionflag="deleted">chars</phrase><phrase revisionflag="added">bytes</phrase>:<math><mn>2</mn><mi>n</mi></math>
   </entry>
   <entry  revisionflag="added">|</entry>
   <entry revisionflag="added"> [7+64]
     [<math><mi>n</mi></math>]
     [<math><mi>m</mi></math>]
-    chars:<math><mn></mn><mi>n</mi></math>
+    <phrase revisionflag="deleted">chars</phrase><phrase revisionflag="added">bytes</phrase>:<math><mn></mn><mi>n</mi></math>
     id:<math><mi>m</mi></math>
   </entry>
 </row>
@@ -2657,13 +2657,13 @@ implementations).</para>
 <entry>|</entry>
 <entry> [7+128]
   {<math><mi>n</mi></math>}
-  chars:<math><mn>2</mn><mi>n</mi></math>
+  <phrase revisionflag="deleted">chars</phrase><phrase revisionflag="added">bytes</phrase>:<math><mn>2</mn><mi>n</mi></math>
 </entry>
 <entry revisionflag="added">|</entry>
 <entry revisionflag="added"> [7+64+128]
   {<math><mi>n</mi></math>}
   {<math><mi>m</mi></math>}
-  chars:<math><mn>2</mn><mi>n</mi></math>
+  <phrase revisionflag="deleted">chars</phrase><phrase revisionflag="added">bytes</phrase>:<math><mn>2</mn><mi>n</mi></math>
   id:<math><mi>m</mi></math>
 </entry>
 </row>
@@ -2868,18 +2868,32 @@ implementations).</para>
 </informaltable>
 </figure>
 
-<para>Figure <xref linkend="fig_bin-enc"/> gives a grammar for the binary encoding.  The
-following conventions are used in this section: [<math><mi>n</mi></math>] denotes a byte
-whose value is the integer <math><mi>n</mi></math> (<math><mi>n</mi></math> can range from
-0 to 255), {<math><mi>m</mi></math>} denotes four bytes representing the (unsigned)
-integer <math><mi>m</mi></math> in network byte order, [_] denotes an arbitrary byte, {_}
+<para>Figure <xref linkend="fig_bin-enc"/> gives a grammar for the binary
+encoding.  The following conventions are used in this section:
+[<math><mi>n</mi></math>] denotes a byte whose value is the integer
+<math><mi>n</mi></math> (<math><mi>n</mi></math> can range from 0 to 255),
+{<math><mi>m</mi></math>} denotes four bytes representing the (unsigned) integer
+<math><mi>m</mi></math> in network byte order, [_] denotes an arbitrary byte, {_}
 denotes an arbitrary sequence of four bytes.
-<emphasis>name</emphasis>:<math><mi>n</mi></math> denotes a sequence of
+<phrase revisionflag="deleted">
+  <emphasis>name</emphasis>:<math><mi>n</mi></math> denotes a sequence of
 <math><mi>n</mi></math> bytes named <emphasis>name</emphasis>.
 <emphasis>name</emphasis>:2<math><mi>n</mi></math> denotes a sequence of
 <math><mn>2</mn><mi>n</mi></math> bytes.  <quote>start</quote> is the start symbol of the
-grammar.</para>
-</section>
+grammar.</phrase></para>
+
+<para revisionflag="added"><emphasis>xxxx</emphasis>:<math><mi>n</mi></math>,
+where <emphasis>xxxx</emphasis> is one of <emphasis>symbname</emphasis>,
+<emphasis>cdname</emphasis>, <emphasis>varname</emphasis>,
+<emphasis>uri</emphasis>, <emphasis>id</emphasis>, <emphasis>digits</emphasis>, or
+<emphasis>bytes</emphasis> denotes a sequence of <math><mi>n</mi></math> bytes
+named that conforms to the constraints on <emphasis>xxx</emphasis> strings. For
+instance, for <emphasis>symbname</emphasis>, <emphasis>varname</emphasis>, or
+<emphasis>cdname</emphasis>this is the regular expression described in
+<xref linkend="sec_names"/>, for <emphasis>uri</emphasis> it is the grammar for
+URIs in <citation>IETF2396</citation>.</para>
+
+<para> <quote>start</quote> is the start symbol of the grammar.</para> </section>
 
 <section id="sec_bin-desc">
 <title>Description of the Grammar</title>
