@@ -182,7 +182,7 @@ relative to the OpenMath 1.0 document...</p>
 <xsl:template match="section" mode="number">
 <xsl:apply-templates mode="number" select="ancestor::chapter|ancestor::appendix"/>
 <xsl:text>.</xsl:text>
-<xsl:number level="multiple"  from="chapter|appendix"/>
+<xsl:number level="multiple" format="1.1" from="chapter|appendix"/>
 </xsl:template>
 
 
