@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.90 2004/03/26 17:13:05 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.91 2004/03/29 16:38:46 openmath Exp $ -->
 
 
 <!DOCTYPE book 
@@ -2006,12 +2006,6 @@ The variable name is a subset of the printable
   <para revisionflag="added">or one of the special values: INF, -INF or
   NaN.</para>
 </blockquote>
- <para revisionflag="added">
-Note that the syntax NaN  (and also +/- INF) is used to
-  denote several values.
-  If precise control is required over the exact
-  value represented in the <acronym>ieee</acronym> Double, the
-  <systemitem>hex</systemitem> attribute should be used, as described below.</para>
   <para revisionflag="changed">The value of
   <systemitem>hex</systemitem> is a base 16 representation of the 
  64 bits of the <acronym>ieee</acronym> Double.
@@ -2021,12 +2015,24 @@ Note that the syntax NaN  (and also +/- INF) is used to
   </para>
   <para revisionflag="changed">For example, both <systemitem>&lt;OMF
     dec="1.0e-10"/&gt;</systemitem> and 
-   <systemitem>&lt;OMF hex="00000000D9D7BDBB"/&gt;</systemitem>
-  are valid floating-point
-  representations of the floating point number
+   <systemitem>&lt;OMF hex="3DDB7CDFD9D7BDBB"/&gt;</systemitem>
+  are valid representations of the floating point number
   <math><mn>1</mn><mo>&#215;</mo>
 <msup><mn>10</mn><mn>-10</mn></msup></math>.</para>
-  
+ 
+ <para revisionflag="added"> The symbols <systemitem>INF</systemitem>,
+<systemitem>-INF</systemitem> and <systemitem>NaN</systemitem> represent
+positive and negative infinity, and <emphasis>not a number</emphasis> as
+defined in <citation>ieee754_85</citation>.  Note that while infinities
+have a unique representation, it is possible for NaNs to contain extra
+information about how they were generated and if this informations is to
+be preserved then the hexadecimal representation must be used.  For
+example
+<systemitem>&lt;OMF hex="FFF8000000000000"/&gt;</systemitem> and
+<systemitem>&lt;OMF hex="FFF8000000000001"/&gt;</systemitem> are both
+hexadecimal representations of NaNs.
+</para>
+
 
 </listitem>
 </varlistentry>
@@ -2047,7 +2053,7 @@ Note that the syntax NaN  (and also +/- INF) is used to
   Basically, it represents an arbitrary sequence of octets using 64
   <quote>digits</quote> (<systemitem>A</systemitem> through <systemitem>Z</systemitem>, <systemitem>a</systemitem> through <systemitem>z</systemitem>, <systemitem>0</systemitem> through <systemitem>9</systemitem>, <systemitem>+</systemitem> and /, in order of increasing
   value). Three octets are represented as four digits (the <systemitem>=</systemitem>
-  character for padding to the right at the end of the data). All line
+  character is used for padding at the end of the data). All line
   breaks and carriage return, space, form feed and horizontal
   tabulation characters are ignored. The reader is refered to
   <citation>rfc1521</citation> for more detailed information.</para>
@@ -2056,7 +2062,7 @@ Note that the syntax NaN  (and also +/- INF) is used to
 </varlistentry>
 </variablelist>
  
-<para>In detail the encoding of an &OM; object is described below.</para>
+<para revisionflag="deleted">In detail the encoding of an &OM; object is described below.</para>
 
 <variablelist>
 <varlistentry><term>Applications</term><listitem><para>are encoded using the <systemitem>OMA</systemitem> element. The
@@ -2174,7 +2180,9 @@ as follows:
 <varlistentry>
  <term>Errors</term> 
  <listitem><para>are encoded using the <systemitem>OME</systemitem> element. The error whose
-  symbol is <math><mi>s</mi></math> and whose arguments are the &OM; objects <math><msub><mi>e</mi><mn>1</mn></msub></math>,
+  symbol is <math><mi>s</mi></math> and whose arguments are the &OM; objects
+<phrase revisionflag="added">or &OM; derived objects</phrase>
+ <math><msub><mi>e</mi><mn>1</mn></msub></math>,
   <phrase>&#8230;</phrase>, <math><msub><mi>e</mi><mi>n</mi></msub></math> is encoded as <systemitem>&lt;OME></systemitem> <math><msub><mi>C</mi><mi>s</mi></msub></math> <math><msub><mi>C</mi><mn>1</mn></msub></math><phrase>&#8230;</phrase> <math><msub><mi>C</mi><mi>n</mi></msub></math> <systemitem>&lt;/OME></systemitem> where <math><msub><mi>C</mi><mi>s</mi></msub></math> is the encoding of <math><mi>s</mi></math> and <math><msub><mi>C</mi><mi>i</mi></msub></math> the encoding
   of <math><msub><mi>e</mi><mi>i</mi></msub></math>.</para>
 
@@ -2193,6 +2201,38 @@ as follows:
   </OMA> 
  </OME>]]></literallayout></para>
   
+<para revisionflag="added">
+If a <systemitem>mathml</systemitem> Content Dictionary contained an
+  <systemitem>unhandled_csymbol</systemitem> symbol, then an &OM; to
+MathML translater might return an error such as:
+<literallayout><![CDATA[<OME>
+  <OMS cd="mathml" name="unhandled_csymbol"/>  
+  <OMFOREIGN>
+    <mathml:csymbol xmlns:mathml="http://www.w3.org/1998/Math/MathML/"
+                    definitionURL="http://www.nag.co.uk/Airy#A">
+      <mathml:mo>Ai</mathml:mo>
+    </mathml:csymbol>
+  </OMFOREIGN> 
+ </OME>]]></literallayout></para>
+
+<para revisionflag="added"> Note that it is possible to embed fragments
+of valid &OM; inside an <systemitem>OMFOREIGN</systemitem> element but that it
+cannot contain invalid &OM;.  In addition, the arguments to an
+<systemitem>OMERROR</systemitem> must be well-formed &exml;.  If an
+application wishes to signal that the &OM; it has received is invalid or
+is not well-formed then the offending data must be encoded as a string.
+For example:
+<literallayout><![CDATA[<OME>
+  <OMS cd="parser" name="invalid_XML"/>  
+  <OMSTR>
+    &ltOMA&gt; &lt;OMS name="cos" cd="transc1"&gt;
+      &lt;OMV name="v"&gt; &lt;/OMA&gt;
+  </OMSTR> 
+ </OME>]]></literallayout>
+Note that the `&lt;' and `&gt;' characters have been escaped as is usual in
+an &exml; document.
+</para>
+
 </listitem>
 </varlistentry>
 
@@ -2248,6 +2288,7 @@ as follows:
              <mrow>
                <mi>f</mi>
                <mo separator="true">,</mo>
+               <mspace linebreak="indentingnewline"/>
                <mi mathvariant="bold">application</mi>
                <mrow>
                  <mo fence="true">(</mo>
@@ -2271,8 +2312,10 @@ as follows:
    </mrow>
  </math>
 </para>
-<para>can be encoded in the &exml; encoding as either one of the &exml; encodings
-below (and some intermedidate versions as well).</para>
+<para>can be encoded in the &exml; encoding as either one of the
+&exml; encodings given in <xref linkend="fig_shared_vs_unshared"/>
+(and some intermedidate versions as well).</para>
+</listitem> </varlistentry> </variablelist>
 
 <figure id="fig_shared_vs_unshared">
     <title>Shared vs. unshared representations</title>
@@ -2310,6 +2353,10 @@ below (and some intermedidate versions as well).</para>
 </OMOBJ>                     </OMOBJ>]]>
 </literallayout>
 </figure>
+</section>
+
+<section id="sec_references" revisionflag="added">
+<title>Some Notes on References</title>
 
 <para>We say that an &OM; element dominates all its children and all elements
 they dominate. An <systemitem>OMR</systemitem> element dominates its target,
@@ -2319,7 +2366,7 @@ in Figure <xref linkend="fig_shared_vs_unshared"/>, the
 <systemitem>OMA</systemitem> element with <systemitem>id="t1"</systemitem> and
 also the second <systemitem>OMR</systemitem> dominate the
 <systemitem>OMA</systemitem> element with <systemitem>id="t11"</systemitem>.
-</para> </listitem> </varlistentry> </variablelist>
+</para>
 
 <section id="sec_acyclicity" revisionflag="added">
 <title>An Acyclicity Constraint</title>
@@ -2481,8 +2528,8 @@ represented) and one with <systemitem>id="copy"</systemitem>, represented by the
 
 <para>It is well-known that variable capture does not conserve semantics. For
   instance, we could use <math><mi>&#x003B1;</mi></math>-conversion to rename the inner occurrence of
-  <math><mi>x</mi></math> into - say - 
-  <math><mi>y</mi></math> arriving at the (same) object
+  <math><mi>X</mi></math> into, say, 
+  <math><mi>Y</mi></math> arriving at the (same) object
 <math display="block">
   <mi mathvariant="bold">binding</mi>
   <mrow>
@@ -3976,7 +4023,7 @@ changeable number of Content Dictionaries (perhaps after being sent
 Content Dictionaries in some way).</para>
 
 <para>The primary use of Content Dictionaries is thought to be for
-designers of Phrasebooks,the programs which translate between the &OM;
+designers of Phrasebooks, the programs which translate between the &OM;
 mathematical object and the corresponding (often internal) structure
 of the particular application in question. For such a use the Content
 Dictionaries have themselves been designed to be as readable and
@@ -3996,8 +4043,12 @@ same way as other (&OM;) mathematical data.</para>
 Content Dictionaries has been designed to be relatively easy to learn
 and to write, and also free from the need for any specialist
 software. This is because it is acknowledged that there is an enormous
-amount of mathematical information to represent, and so most of the
-Content Dictionaries will be written by <quote>ordinary</quote>
+amount of mathematical information to represent, and so most 
+<phrase revisionflag="deleted">of the</phrase>
+Content Dictionaries 
+<phrase revisionflag="deleted">will be</phrase>
+<phrase revisionflag="added">are</phrase> 
+written by <quote>ordinary</quote>
 mathematicians, encoding their particular fields of expertise.  A
 further reason is that the mathematics conveyed by a specific Content
 Dictionary should be understandable independently of any
@@ -4105,8 +4156,9 @@ of a major and minor part (see <xref linkend="sec_version"/>).
 linkend="sec_status"/>. 
 </para>
 </listitem>
-<listitem><para>A <emphasis>CD base</emphasis> which is a unique
-identifier for the Content Dictionary, and may or may not refer to an
+<listitem><para>A <emphasis>CD base</emphasis> which, when combined
+with the CD name, forms a unique
+identifier for the Content Dictionary. It may or may not refer to an
 actual location from which it can be retrieved.   
 </para>
 </listitem>
@@ -4175,12 +4227,12 @@ linkend="sigfiles"/>.</para>
 <para>Content Dictionaries may be grouped into <emphasis>CD
 Groups</emphasis>. These groups allow applications to easily refer to
 collections of Content Dictionaries. One particular CDGroup of
-interest is the <quote>MathML CDGroup</quote>. This group expresses
-the collection of the core Content Dictionaries that is designed to
+interest is the <quote>MathML CDGroup</quote>. This group consists of
+the collection of core Content Dictionaries that is designed to
 have the same semantic scope as the content elements of
 MathML&#160;2&#160;<citation>MathML_2003</citation>.  &OM; objects
 built from symbols that come from Content Dictionaries in this CDGroup
-may be expected to be eaily transformed between &OM; and MathML
+may be expected to be eaisly transformed between &OM; and MathML
 encodings.  The detailed structure of a CDGroup is described in
 <xref linkend="ssec_cdgroups"/> below.</para>
 
@@ -4237,7 +4289,7 @@ Should this be required then a new CD with a different name should be
    When the major version number
    is increased, the revision number is normally reset to zero.</para>
 
-<para>As detailed in chapter&#160;<xref linkend="cha_comp"/>, &OM;
+<para>As detailed in <xref linkend="cha_comp"/>, &OM;
 compliant applications state which versions of which CDs they support.
 </para>
 
@@ -4275,7 +4327,7 @@ Content Dictionaries given in <xref linkend="sec_cd_schema"/>.
 Appendix&#160;<xref linkend="app_cdcd"/>, which is the
 <systemitem>Meta</systemitem> Content Dictionary for describing
 Content Dictionaries themselves. A more typical Content Dictionary is
-given in Appendix&#160;<xref linkend="arith1.ocd"/>, the
+given in <xref linkend="arith1.ocd"/>, the
 <systemitem>arith1</systemitem> Content Dictionary for basic
 arithmetic functions.</para>
 
@@ -4364,7 +4416,7 @@ Content Dictionaries.</para>
 <para revisionflag="added">
 We now describe the elements used in the above schema in terms of the
 abstract description of CDs in <xref linkend="sect_func"/>.  Unless
-stated otherwise the information is encoded as the content of the
+stated otherwise information is encoded as the content of the relevent
 element.
 </para>
 
@@ -4660,7 +4712,7 @@ systems can also be employed to assign types to &OM; symbols.</para>
 
 
 <para>Signature files have a header which specifies the Content
-Dictionary and determines the type system being used, and the Content
+Dictionary and determines the type system being used and the Content
 Dictionary which contains the symbols for which the signatures are
 being given. Each signature takes the form of an &exml; encoded &OM;
 object.</para>
@@ -4708,13 +4760,14 @@ object.</para>
 <title><phrase revisionflag="deleted">Further
 Requirements</phrase><phrase
  revisionflag="added">Abstract Specification</phrase>
- of a Signature File</title>
+ of a Signature Dictionary</title>
 
 
 
-<para revisionflag="added">Signature files have a header which specifies the
-type system being used, and the Content
-Dictionary which contains the symbols for which the signatures are
+<para revisionflag="added">Signature dictionaries
+have a header which specifies the
+type system being used and the Content
+Dictionary containing the symbols for which signatures are
 being given. Each signature takes the form of an &OM;
 object in an appropriate encoding.</para>
 
@@ -4728,11 +4781,11 @@ Dictionaries.</para>
 
 <variablelist revisionflag="deleted">
 <varlistentry><term><systemitem>CDSignatures</systemitem></term><listitem><para>The
-  outermost element of the Signature File is characterized by two
+  outermost element of the Signature is characterized by two
   required attributes that identify the type system and the Content
   Dictionary whose signatures are defined. The value of the &exml;
   attribute <systemitem>type</systemitem> is the name of the Content
-  Dictionary or of the CDGroup (cfg. <xref linkend="ssec_cdgroups"/>)
+  Dictionary or of the CDGroup (see <xref linkend="ssec_cdgroups"/>)
   that represents the type system. The value of the &exml; attribute
   <systemitem>cd</systemitem> is the name of the Content Dictionary
   whose symbols are assigned signatures in this Signature File. Both
@@ -4878,9 +4931,11 @@ groups.</para>
 it <quote>understands CDGroup G</quote> is exactly equivalent to, and
 interchangable with, the declaration that it <quote>understands
 Content Dictionaries <math><msub><mi>x</mi><mn>1</mn></msub></math>,
-<math><msub><mi>x</mi><mn>2</mn></msub></math>, <phrase>&#8230;</phrase>
+<math><msub><mi>x</mi><mn>2</mn></msub></math>,&#160;
+<phrase>&#8230;</phrase>&#160;
 <math><msub><mi>x</mi><mi>n</mi></msub></math></quote>, where
-<math><msub><mi>x</mi><mn>1</mn></msub></math>, <phrase>&#8230;</phrase>
+<math><msub><mi>x</mi><mn>1</mn></msub></math>,&#160;
+<phrase>&#8230;</phrase>&#160;
 <math><msub><mi>x</mi><mi>n</mi></msub></math> are the members of
 CDGroup G.</para>
 
@@ -5046,18 +5101,59 @@ Dictionary may change as a result of this review process.</para>
 
 
 <para>Applications that meet the requirements specified in this chapter may
-label themselves as <emphasis>&OM; compliant</emphasis>. &OM; compliancy is
+label themselves as <emphasis>OpenMath compliant</emphasis>. &OM; compliancy is
 defined so as to maximize the potential for interoperability amongst
 &OM; applications.</para>
 
 <section id="sec_compl_encoding">
-<title>Encoding</title>
+<title>Encodings</title>
 <para>This standard defines two reference encodings for &OM;, the binary
 encoding and &exml; encoding,  defined in <xref linkend="cha_enco"/>.</para>
 
 <para>As a minimum, an &OM; compliant application, which accepts or generates
 &OM; objects, <emphasis>must</emphasis> be capable of doing so using  the &exml; encoding.
 The ability to use other encodings is optional.</para>
+
+<section id="sec_compl_xml_encoding" revisionflag="added">
+<title>The XML Encoding</title>
+
+<section id="sec_compl_xml_encoding_float">
+<title>Decimal versus Hexadecimal Float Representation</title>
+
+<para>
+In the &exml; encoding, floating-point numbers may be defined using
+either decimal or hexadecimal notation.  For numerical values, plus the
+two infinities, the two representations may be used interchangably since
+there is a one-to-one correspondence between them.  The exceptional case
+is that of <emphasis>not a number</emphasis> (NaN) which is defined in the
+IEEE standard <citation>ieee754_85</citation> to be any number whose
+exponent has the maximum possible value (in this case the exponent is 11
+bits so the maximum value is 2047) and whose mantissa is non-zero.  The
+standard explicitly notes the use of the 52 bits in the mantissa (and
+also the sign bit) to store information about how the NaN was generated
+in a system-specific way.  Thus in some cases the exact representation
+of the NaN is significant.
+</para>
+
+<para>
+The semantics of the &OM; object
+<systemitem>&lt;OMF dec="NaN"/&gt;</systemitem> is that it represents
+<emphasis>any</emphasis> NaN, and a phrasebook may substitute any
+specific NaN value when processing it.  The semantics of a NaN in
+hexadecimal notation however, such as 
+<systemitem>&lt;OMF hex="FFF8000000000001"/&gt;</systemitem>,
+is that this is a specific NaN, as distinct from all others.
+If a phrasebook author substitutes
+another value for the NaN or maps all NaNs to a single object then he or
+she must recognise that this process is not an identity transformation. 
+</para>
+
+
+</section>
+
+
+</section>
+
 </section>
 
 <section id="sec_compl_cd">
@@ -5105,8 +5201,11 @@ revisionflag="added"></phrase> using the
 <systemitem>CDBase</systemitem> and the
 <systemitem>CDName</systemitem>.  </para>
 
-<para>When receiving an &OM; symbol, e.g. <math><mi>s</mi></math>,
- that is not supported from a supported Content Dictionary, a
+<para>When receiving an &OM; symbol, e.g.&#160;<math><mi>s</mi></math>,
+ that is not 
+<phrase revisionflag="deleted">supported from</phrase>
+<phrase revisionflag="added">defined in</phrase>
+a supported Content Dictionary, a
  compliant application will act as if it had received the &OM; object
  <math display="block"><mi
  mathvariant="bold">error</mi><mo>(</mo><mi>Unhandled_Symbol</mi><mo
