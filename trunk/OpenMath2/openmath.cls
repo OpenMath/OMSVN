@@ -45,7 +45,9 @@
       \put(55,5){\framebox(115.71652,71.46826){}}
     \end{picture}}}}
 
-
+\def\consortium{The OpenMath Society}
+\DeclareOption{esprit}{\def\consortium{ESPRIT project 24969: OpenMath}}
+\DeclareOption{tn}{\def\consortium{OpenMath Thematic Network (IST-2000-28719)}}
 
 \DeclareOption*{\PassOptionsToClass\CurrentOption\@mainclass}
 
@@ -232,10 +234,10 @@ Editor\ifnum\om@ed>\@ne s\fi
 
 \def\ps@om{%
   \def\@oddhead{\parbox\hsize{%
-    \rightline{\strut\textit{ESPRIT project 24969: OpenMath}}
+    \rightline{\strut\textit{\consortium}}
     \hrule}}%
   \def\@evenhead{\parbox\hsize{%
-    \leftline{\strut\textit{ESPRIT project 24969: OpenMath}}
+    \leftline{\strut\textit{\consortium}}
     \hrule}}%
   \def\@oddfoot{%
    \parbox\hsize{\hrule\par\smallskip
