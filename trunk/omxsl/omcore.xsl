@@ -266,8 +266,8 @@ select="@name"/>]</xsl:message>
         <xsl:copy-of select="$sep"/>
     </xsl:if>
     </xsl:for-each>
-    </mrow>
-   <xsl:copy-of select="$close"/>
+    <xsl:copy-of select="$close"/>
+  </mrow>
     </xsl:when>
     <xsl:otherwise>
    <mi><xsl:value-of select="@name"/></mi>
