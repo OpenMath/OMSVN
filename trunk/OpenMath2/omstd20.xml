@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.107 2004/04/05 14:20:03 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.108 2004/04/06 10:12:13 openmath Exp $ -->
 
 
 <!DOCTYPE book 
@@ -2251,13 +2251,13 @@ an &exml; document.
  &OM; integers, floating point numbers, character strings,
  bytearrays, applications, binding, attributions can also be encoded
  as an empty <systemitem>OMR</systemitem> element with an <systemitem>href</systemitem>
- attribute whose value is the value of an id attribute of an &OM; object of
- that type. The &OM; element represented by this <systemitem>OMR</systemitem>
- element is a copy of the &OM; element pointed to in the
- <systemitem>xref</systemitem> attribute. Note that the representation of the
- <systemitem>OMR</systemitem>
- element is <emphasis>structurally equal</emphasis>, but not identical
- to the element it points to. </para>
+ attribute whose value is the value of a URI referencing an id
+ attribute of an &OM; object of that type.
+The &OM; element represented by this <systemitem>OMR</systemitem>
+ reference is a copy of the &OM; element referenced
+ <systemitem>href</systemitem> attribute. Note that this copy
+ is <emphasis>structurally equal</emphasis>, but not identical
+ to the element referenced. </para>
 
  <para>For instance, the &OM; object
 
@@ -2338,13 +2338,13 @@ an &exml; document.
         <OMV name="a"/>               <OMV name="a"/>
         <OMV name="a"/>               <OMV name="a"/>
       </OMA>                        </OMA>
-      <OMA>                         <OMR href="t11"/>
+      <OMA>                         <OMR href="#t11"/>
         <OMV name="f"/>
         <OMV name="a"/> 
         <OMV name="a"/>
       </OMA>                                
     </OMA>                      </OMA>
-    <OMA>                       <OMR href="t1"/>
+    <OMA>                       <OMR href="#t1"/>
       <OMV name="f"/>
       <OMA>
         <OMV name="f"/>
@@ -2466,7 +2466,7 @@ representation: <literallayout><![CDATA[<OMBIND id="outer">
     <OMBIND id="inner">
       <OMS cd="fns1" name="lambda"/>
       <OMBVAR><OMV name="X"/></OMBVAR>
-      <OMR id="copy" href="orig"/>
+      <OMR id="copy" href="#orig"/>
     </OMBIND>
     <OMA id="orig"><OMV name="g"/><OMV name="X"/></OMA>
   </OMA>
@@ -7228,66 +7228,3 @@ Types</title>
 </book>
 
 
-<!--  LocalWords:  omstd openmath Exp docbook customisations sidebar xs CDSignatures
- LocalWords:  ATTLIST mrow mn mi mo msub msup mtext mspace mfrac mfenced mml om
- LocalWords:  xmlns revisionflag PCDATA mathcolor mathvariant linebreak ref ns
- LocalWords:  processContents attributeGroup elementFormDefault targetNamespace
- LocalWords:  maxOccurs minOccurs complexType schemaLocation simpleType anyName
- LocalWords:  simpleContent datatypeLibrary zeroOrMore oneOrMore nsName param
- LocalWords:  exml exadigits lcalpha ucalpha dpc regxp zsp longrightarrow omrnc
- LocalWords:  varnamechar rnc cdrnc omcd sigrnc omcdsig cdgrouprnc omcdgroup cd
- LocalWords:  omxsd xsd omdtd dtd omrng rng cdrng sigrng metacd ocd arith sts
- LocalWords:  errorcd bookinfo releaseinfo firstname Buswell othername Carlisle
- LocalWords:  Gaetano para xref linkend cha generatable ulink url toc sec hist
- LocalWords:  formalised Abbott Leeuwen Strotmann Dalmas omsoc int fileref obj
- LocalWords:  enco addnfiles CDGroup phrasebooks Phrasebook behaviour omabs gt
- LocalWords:  omin labelled itemizedlist listitem bignums ieee Unicode cdbase
- LocalWords:  Bytearray em orderedlist lowerroman sl variablelist varlistentry
- LocalWords:  Bytearrays bytearray bytearrays systemitem blockquote Za varname
- LocalWords:  phrasebook automorphism lt OMD colour informaltable tgroup cols
- LocalWords:  tbody NameStartChar NameChar xC xD xF FF FFF FEF xFDCF xFDF xFFFD
- LocalWords:  xEFFFF xB formalpara IETF octets PosixLetter RDF rdf transc iso
- LocalWords:  literallayout mathml csymbol definitionURL ascii autodetection NG
- LocalWords:  ssec app relaxrestricted OMB objdtd embeddable OMATP omel OMSTR
- LocalWords:  OMF OME omvar dec xlmns xlink linearised utf apos quot omf omstr
- LocalWords:  linearisation cr nl cdname symbname fpdec fphex ABCDEF cdnameatt
- LocalWords:  symbnameatt varnameatt fpdecatt fphexatt OMATTRx omatp attrs desc
- LocalWords:  NCName xA eE INF NaN DDB CDFD BDBB NaNs rfc fns ecc OMFOREIGN Ai
- LocalWords:  aritherror DivisionByZero unhandled OMERROR ltOMA cos OMR href BB
- LocalWords:  nestedap foo baz bvars orig xmldoc lang tt XLink enc uri vars xf
- LocalWords:  attrpairs attrvar xxxx endian latin thead impl func FMPs YYYY DD
- LocalWords:  sigfiles xsl cdgroups cdapprove comp pcdata cdcd EP buswell nh Li
- LocalWords:  howgrave CDComment CDName CDURL CDUses inhel CDReviewDate omobj
- LocalWords:  CDStatus omobjectdtd PartOf FunctorClass CDDate CDVersion CDBase
- LocalWords:  CDRevision ftn addfiles CDGroups sigpcdata CDSComment CDSStatus
- LocalWords:  CDSReviewDate CDSreviewDate CDSignature sigex cfg sigschema cdg
- LocalWords:  mapsto nassoc AbelianSemiGroup cdgroup cdgpcdata CDGroupName val
- LocalWords:  CDGroupVersion CDGroupRevision CDGroupURL CDGroupDescription conc
- LocalWords:  CDGroupMember compl recognise cdfiles alg bigfloat linalg minmax
- LocalWords:  mathmltypes Multset nums quant setname orientated dist veccalc CB
- LocalWords:  altenc lcm gcd modularisation regexp abs attlist whats chgformal
- LocalWords:  RDFS chgenc chgcd biblioentry Std pubdate misc bibliomisc Geddes
- LocalWords:  Datatypes Gonnet publishername WATCOM Lisser LiE MuPAD Benno isbn
- LocalWords:  Fuchssteiner Chichester Teubner NuPRL Bromley Cleaveland Cremer
- LocalWords:  Knoblock Mendler Panangaden Sasaki PDFbook TeXBook TeXbook PPML
- LocalWords:  Ppml Projet MetaFontBook MetaFont Spivak AMSTeXBook AmSTeX Rhode
- LocalWords:  PVM Geist Beguelin Dongarra Jiang Manchek Sunderam Janusz Kowalik
- LocalWords:  CoCoA Capani Niesi Robbiano Giovini InProceedings Bibliomiscs cme
- LocalWords:  Visigenic Yael Pingali Vavasis Zippel hol Melham harrison fais QG
- LocalWords:  Christoffer Gefwert Pekka Orponen Juoko Sepp nen Suomen Teko ry
- LocalWords:  lyseuran julkaisuja TECHREPORT Pembroke Thery Seger Voronkov WP
- LocalWords:  Ballarin Levelt FroCoS Stephane Andr Gr bner Winkler Moller ller
- LocalWords:  Manocha Multipolynomial Arnon McIsaac Waldspurger CaminoReal Ga
- LocalWords:  Bibliomiscbook booktitle Sausse TechReport tano Diaz Vorkoetter
- LocalWords:  LEGOmanual Luo Pollack luo PhdThesis Shand vrmlspec Carey Marrin
- LocalWords:  Modelling IEC vrmlarm VRML eaispec Turku Centre TUCS Lemmink TR
- LocalWords:  isenkatu Dunstan Kelsey Linton Gloor Rostock Laurent Kirchner REC
- LocalWords:  PolyMath Stilo OMurl Website Seppala Elbers Borenstein Yergeau SV
- LocalWords:  Alis JTC CDROM Eds ida Cuypers Sterk CaprottiCohen Trento Jebelan
- LocalWords:  Kriftner Vasaru Jebelean Maui Zhao Analytica Kapur Devitt Nico tm
- LocalWords:  Poppelier Neil Soiffer Sutor CTCOQMATH CtCoqmath Pottier Bertoli
- LocalWords:  Plattsburgh Jung Ch sk Callaghan Finin Labrou Mayfield Yannis MCP
- LocalWords:  InCollection IAMC ICM Vilya SDMGCHDISCO phane Marc Huchet LNCS
- LocalWords:  Limongelli DOM CFCa CFC CFCb imacs IMACA ACA calc iamc OMsem
- LocalWords:  OMworkshop
--->
