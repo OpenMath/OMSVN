@@ -157,12 +157,15 @@ relative to the OpenMath 1.0 document...</p>
 
 
 <xsl:template match="formalpara">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <p>
-<b>
-<xsl:value-of select="title"/>
-</b>
-<xsl:apply-templates select="@revisionflag|node()[not(title)]"/>
+<xsl:apply-templates select="@revisionflag"/>
+<b><xsl:value-of select="title"/></b>
+<xsl:text>&#160;&#160;</xsl:text>
+<xsl:apply-templates select="*[not(self::title)][1]/node()"/>
+<xsl:apply-templates select="*[not(self::title)][position()&gt;1]"/>
 </p>
+</xsl:if>
 </xsl:template>
 
 <xsl:template match="para">
@@ -563,7 +566,7 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 <h2 name="bibliography" id="bibliography">
   Appendix&#160;<xsl:apply-templates mode="number" select="."/>
   <br/>Bibliography</h2>
-<xsl:for-each select="biblioentry[key('cite',@id)]">
+<xsl:for-each select="biblioentry[key('cite',@id)][$showdiffs or not(@revisionflag='deleted')]">
 <xsl:sort select="(author[1]/surname|author[1]/othername|bibliomisc[@role='key'])[1]"/>
 <p>
 <xsl:apply-templates select="@revisionflag"/>
