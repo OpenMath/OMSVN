@@ -108,6 +108,20 @@
 
 
 
+<xsl:template match="om:OMS[(@cd='set1' or @cd='multiset1') and @name='suchthat'][following-sibling::om:OMBIND/om:OMS/@name='lambda']">
+  <mrow>
+    <mo>{</mo>
+    <mrow>
+      <xsl:apply-templates select="following-sibling::om:OMBIND/om:OMBVAR/om:OMV"/>
+      <mo>&#x2208;</mo>
+      <xsl:apply-templates select="following-sibling::*[1]"/>
+    </mrow>
+    <mo>|</mo>
+    <xsl:apply-templates select="following-sibling::om:OMBIND/*[3]"/>
+   <mo>}</mo>
+</mrow>
+</xsl:template>
+
 </xsl:stylesheet>
 
 
