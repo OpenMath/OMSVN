@@ -663,6 +663,10 @@ select="substring-before(.,':')"/>:</a>
 <xsl:apply-templates mode="verb" select="."/>
 </xsl:template>
 
+<xsl:template match="cd:CD" xmlns:cd="http://www.openmath.org/OpenMathCD">
+<xsl:apply-templates mode="verb" select="."/>
+</xsl:template>
+
 
 
 </xsl:stylesheet>

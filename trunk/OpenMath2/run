@@ -35,13 +35,36 @@ sed -e "s/default namespace/# default namespace/" \
     -e "s/, (omel|notom)\*//" \
     -e "s/^.* text.$//" \
     -e "s/{pattern.*}}/}/" \
+    -e "s/include .openmath2.rnc. {.*}/# OMDTD/" \
         $i >tmp.rnc
 
  trang tmp.rnc tmp.dtd 2>> trang.txt
  
- sed -e "s/OMFOREIGN EMPTY/OMFOREIGN ANY/"  tmp.dtd > ${i%%rnc}dtd
+ sed -e "s/OMFOREIGN EMPTY/OMFOREIGN ANY/" \
+     -e "s/\# OMDTD/<!ENTITY % omdtd SYSTEM \"openmath2.dtd\"> %omdtd;/"\
+        tmp.dtd > ${i%%rnc}dtd
  sed -e "s/</\&lt;/g" ${i%%rnc}dtd > ${i%%.rnc}dtd.xml
 done
+
+
+echo DTD
+for i in omcd2.rnc
+do
+echo $i
+sed -e  "s/| OMOBJ//" \
+    -e "s/include .openmath2.rnc. {.*}/# OMDTD/" \
+    -e "s/\(CDRevision\)[)],/\\1)+,/" \
+    -e "s/ & / | /g" \
+        $i >tmp.rnc
+
+ trang tmp.rnc tmp.dtd 2>> trang.txt
+ 
+ sed -e "s/text-or-om \"(#PCDATA/text-or-om \"(#PCDATA|OMOBJ/" \
+     -e "s/<!-- OMDTD -->/<!ENTITY % omdtd SYSTEM \"openmath2.dtd\"> %omdtd;/"\
+        tmp.dtd > ${i%%rnc}dtd
+ sed -e "s/</\&lt;/g" ${i%%rnc}dtd > ${i%%.rnc}dtd.xml
+done
+
 
 
 echo validate

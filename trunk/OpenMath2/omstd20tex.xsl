@@ -361,10 +361,10 @@ changelog entry here
 </xsl:template>
 
 <xsl:template match="id('fig_bin-enc')/informaltable">
-\footnotesize
-\begin£longtableﬂ£llp£5cmﬂlp£5cmﬂ|lﬂ
+\tiny
+\noindent\rlap£\begin£tabularﬂ£llp£5cmﬂlp£5cmﬂlﬂ
 <xsl:apply-templates select="tgroup/*"/>
-\end£longtableﬂ<xsl:text>&#10;</xsl:text>
+\end£tabularﬂﬂ<xsl:text>&#10;</xsl:text>
 </xsl:template>
 
 
@@ -582,7 +582,7 @@ changelog entry here
 <xsl:apply-templates mode="verb" select="."/>
 </xsl:template>
 
-<xsl:template match="CD" xmlns="http://www.openmath.org/OpenMathCD">
+<xsl:template match="cd:CD" xmlns:cd="http://www.openmath.org/OpenMathCD">
 <xsl:apply-templates mode="verb" select="."/>
 </xsl:template>
 

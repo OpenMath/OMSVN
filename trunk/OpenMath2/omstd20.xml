@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.66 2003/11/21 15:39:34 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.67 2003/11/23 11:27:18 openmath Exp $ -->
 
 <!--
  PUBLIC "-//OASIS//DTD DocBook XML V4.2CR1//EN"
@@ -8,6 +8,7 @@ olga's setup for editing with emacs
 SYSTEM "dtds/docbookx.dtd"
 -->
 <!DOCTYPE book 
+SYSTEM "/tei-emacs/xml/dtds/docbook/docbookx.dtd"
 [
 <!-- 
  docbook customisations:
@@ -218,11 +219,12 @@ SYSTEM "dtds/docbookx.dtd"
 <!ENTITY cdrng SYSTEM "omcd2.rng">
 <!ENTITY sigrng SYSTEM "omcdsig2.rng">
 
-<!--
 <!ENTITY % omcd2 SYSTEM "omcd2.dtd">
 %omcd2;
--->
+
 <!ENTITY metacd SYSTEM "meta.ocd">
+<!ENTITY arith1cd SYSTEM "arith1.ocd">
+<!ENTITY errorcd SYSTEM "error.ocd">
 ]>
 <book xml:space="preserve">
 <title>The &OM; Standard</title>
@@ -1861,7 +1863,9 @@ MathML document <citation>MathML_2000</citation>.</para>
 <blockquote  revisionflag="added">
   <literallayout>
 &lt;mathml:csymbol xmlns:mathml="http://www.w3.org/1998/Math/MathML/"
-                definitionURL="http://www.openmath.org/cd/arith1#plus"&gt;Z&lt;/csymbol&gt;
+                definitionURL="http://www.openmath.org/cd/arith1#plus"&gt;
+  Z
+&lt;/csymbol&gt;
   </literallayout>
 </blockquote>
 <para revisionflag="added">
@@ -2005,7 +2009,7 @@ encoded as a child.  So for example the encoding
   automorphism group:
 <literallayout><![CDATA[<OMATTR>    
   <OMATP>
-    <OMS cdbase="http://www.openmath.org/cd" cd="groups" name="automorphism_group" />  
+    <OMS cd="groups" name="automorphism_group" />  
     [..group-encoding..] 
   </OMATP>  
   [..group-encoding..] 
@@ -2013,8 +2017,8 @@ encoded as a child.  So for example the encoding
 or to express the type of a variable:
 <literallayout><![CDATA[<OMATTR>    
   <OMATP>
-    <OMS cdbase="http://www.openmath.org/cd" cd="ecc" name="type" /> 
-    <OMS cdbase="http://www.openmath.org/cd" cd="ecc" name="real" />
+    <OMS cd="ecc" name="type" /> 
+    <OMS cd="ecc" name="real" />
   </OMATP> 
   <OMV name="x" />
 </OMATTR>]]></literallayout></para>
@@ -2077,9 +2081,9 @@ as follows:
   <mi>x</mi><mo>,</mo> <mn>0</mn><mo>)</mo><mo>)</mo></math> would be encoded as follows:
 
 <literallayout><![CDATA[<OME>
-  <OMS cdbase="http://www.openmath.org/cd" cd="aritherror" name="DivisionByZero"/>  
+  <OMS cd="aritherror" name="DivisionByZero"/>  
   <OMA>
-    <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="divide" />
+    <OMS cd="arith1" name="divide" />
     <OMV name="x"/>  
     <OMI> 0 </OMI>
   </OMA> 
@@ -2169,23 +2173,23 @@ below (and some intermedidate versions as well).</para>
 <figure id="fig_shared_vs_unshared">
     <title>Shared vs. unshared representations</title>
     
- <literallayout><![CDATA[<OMOBJ>                                <OMOBJ>
-  <OMA>                                   <OMA xmlns:xlink="http://www.w3.org/1999/xlink">
-    <OMV name="f"/>                         <OMV name="f"/> 
-    <OMA>                                   <OMA id="t1">
-      <OMV name="f"/>                         <OMV name="f"/>
-      <OMA>                                   <OMA id="t11">
-        <OMV name="f"/>                         <OMV name="f"/>
-        <OMV name="a"/>                         <OMV name="a"/>
-        <OMV name="a"/>                         <OMV name="a"/>
-      </OMA>                                  </OMA>
-      <OMA>                                   <OMR xlink:href="t11"/>
+ <literallayout><![CDATA[<OMOBJ>                      <OMOBJ>
+  <OMA>                         <OMA xmlns:xlink="http://www.w3.org/1999/xlink">
+    <OMV name="f"/>               <OMV name="f"/> 
+    <OMA>                         <OMA id="t1">
+      <OMV name="f"/>               <OMV name="f"/>
+      <OMA>                         <OMA id="t11">
+        <OMV name="f"/>               <OMV name="f"/>
+        <OMV name="a"/>               <OMV name="a"/>
+        <OMV name="a"/>               <OMV name="a"/>
+      </OMA>                        </OMA>
+      <OMA>                         <OMR xlink:href="t11"/>
         <OMV name="f"/>
         <OMV name="a"/> 
         <OMV name="a"/>
       </OMA>                                
-    </OMA>                                </OMA>
-    <OMA>                                 <OMR xlink:href="t1"/>
+    </OMA>                      </OMA>
+    <OMA>                       <OMR xlink:href="t1"/>
       <OMV name="f"/>
       <OMA>
         <OMV name="f"/>
@@ -2199,7 +2203,7 @@ below (and some intermedidate versions as well).</para>
       </OMA>
     </OMA>
   </OMA>
-</OMOBJ>                               </OMOBJ>]]>
+</OMOBJ>                     </OMOBJ>]]>
 </literallayout>
 </figure>
 
@@ -5132,7 +5136,7 @@ Dictionaries and &OM; objects is given.</para>
 <title>The <filename>meta</filename> Content Dictionary</title>
 
 <literallayout>
-<!--&metacd;-->
+&metacd;
 </literallayout>
 </section>
 
@@ -5140,842 +5144,8 @@ Dictionaries and &OM; objects is given.</para>
   <title>The  <filename>arith1</filename> Content Dictionary File</title>
   
   
-  <literallayout><![CDATA[<CD>
-  <CDName> arith1 </CDName>
-  <CDURL> http://www.openmath.org/cd/arith1.ocd </CDURL>
-  <CDReviewDate> 2003-04-01 </CDReviewDate>
-  <CDStatus> official </CDStatus>
-  <CDDate> 2001-03-12 </CDDate>
-  <CDVersion> 2 </CDVersion>
-  <CDRevision> 0 </CDRevision>
-  
-  <Description> 
-    This CD defines symbols for common arithmetic functions.
-  </Description>
-    
-  <CDDefinition>
-    <Name> lcm </Name>
-    <Description> 
-      The symbol to represent the n-ary function to return the least common
-      multiple of its arguments.
-    </Description>
-      
-    <CMP> lcm(a,b) = a*b/gcd(a,b) </CMP>
-      
-    <FMP>
-      <OMOBJ>
-        <OMA>
-          <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
-          <OMA>
-            <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="lcm"/>
-            <OMV name="a"/>
-            <OMV name="b"/>
-          </OMA>
-          <OMA>
-            <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="divide"/>
-            <OMA>
-              <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="times"/>
-              <OMV name="a"/>
-              <OMV name="b"/>
-            </OMA>
-            <OMA>
-              <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="gcd"/>
-              <OMV name="a"/>
-              <OMV name="b"/>
-            </OMA>
-          </OMA>
-        </OMA>
-      </OMOBJ>
-    </FMP>
-    <CMP>for all integers a,b |
-        There does not exist a c>0 such that c/a is an Integer and c/b is an
-        Integer and lcm(a,b) > c.
-    </CMP>
-      
-    <FMP>
-      <OMOBJ>
-        <OMBIND>
-          <OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="forall"/>
-          <OMBVAR>
-            <OMV name="a"/>
-            <OMV name="b"/>
-          </OMBVAR>
-          <OMA>
-            <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="implies"/>
-            <OMA>
-              <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="and"/>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="set1" name="in"/>
-                <OMV name="a"/>
-                <OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="Z"/>
-              </OMA>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="set1" name="in"/>
-                <OMV name="b"/>
-                <OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="Z"/>
-              </OMA>
-            </OMA>
-            <OMA>
-              <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="not"/>
-              <OMBIND>
-                <OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="exists"/>
-                <OMBVAR><OMV name="c"/></OMBVAR>
-                <OMA>
-                  <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="and"/>
-                  <OMA>
-                    <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="gt"/>
-                    <OMV name="c"/>
-                    <OMI>0</OMI>
-                  </OMA>
-                  <OMA>
-                    <OMS cdbase="http://www.openmath.org/cd" cd="integer1" name="factorof"/>
-                    <OMV name="a"/>
-                    <OMV name="c"/>
-                  </OMA>
-                  <OMA>
-                    <OMS cdbase="http://www.openmath.org/cd" cd="integer1" name="factorof"/>
-                    <OMV name="b"/>
-                    <OMV name="c"/>
-                  </OMA>
-                  <OMA>
-                    <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="lt"/>
-                    <OMV name="c"/>
-                    <OMA>
-                      <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="lcm"/>
-                      <OMV name="a"/>
-                      <OMV name="b"/>
-                    </OMA>
-                  </OMA>
-                </OMA>
-              </OMBIND>
-            </OMA>
-          </OMA>
-        </OMBIND>
-      </OMOBJ>
-    </FMP>
-  </CDDefinition>
-  
-  <CDDefinition>
-    <Name> gcd </Name>
-    <Description> 
-      The symbol to represent the n-ary function to return the gcd (greatest
-      common divisor) of its arguments.
-    </Description>
-    
-    <CMP>
-      for all integers a,b |
-      There does not exist a c such that a/c is an Integer and b/c is an
-      Integer and c > gcd(a,b).
-      
-      Note that this implies that gcd(a,b) > 0
-    </CMP>
-    
-    <FMP>
-      <OMOBJ>
-        <OMBIND>
-          <OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="forall"/>
-          <OMBVAR>
-            <OMV name="a"/>
-            <OMV name="b"/>
-          </OMBVAR>
-          <OMA>
-            <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="implies"/>
-            <OMA>
-              <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="and"/>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="set1" name="in"/>
-                <OMV name="a"/>
-                <OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="Z"/>
-              </OMA>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="set1" name="in"/>
-                <OMV name="b"/>
-                <OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="Z"/>
-              </OMA>
-            </OMA>
-            <OMA>
-              <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="not"/>
-              <OMBIND>
-                <OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="exists"/>
-                <OMBVAR>
-                  <OMV name="c"/>
-                </OMBVAR>
-                <OMA>
-                  <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="and"/>
-                  <OMA>
-                    <OMS cdbase="http://www.openmath.org/cd" cd="set1" name="in"/>
-                    <OMA>
-                      <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="divide"/>
-                      <OMV name="a"/>
-                      <OMV name="c"/>
-                    </OMA>
-                    <OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="Z"/>
-                  </OMA>
-                  <OMA>
-                    <OMS cdbase="http://www.openmath.org/cd" cd="set1" name="in"/>
-                    <OMA>
-                      <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="divide"/>
-                      <OMV name="b"/>
-                      <OMV name="c"/>
-                    </OMA>
-                    <OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="Z"/>
-                  </OMA>
-                  <OMA>
-                    <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="gt"/>
-                    <OMV name="c"/>
-                    <OMA>
-                      <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="gcd"/>
-                      <OMV name="a"/>
-                      <OMV name="b"/>
-                    </OMA>
-                  </OMA>
-                </OMA>
-              </OMBIND>
-            </OMA>
-          </OMA>
-        </OMBIND>
-      </OMOBJ>
-    </FMP>
-    
-    <Example>
-      gcd(6,9) = 3
-      <OMOBJ>
-        <OMA>
-          <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
-          <OMA>
-            <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="gcd"/>
-            <OMI> 6 </OMI>
-            <OMI> 9 </OMI>
-          </OMA>
-          <OMI> 3 </OMI>
-        </OMA>
-      </OMOBJ>
-    </Example>
-  </CDDefinition>
-  
-  <CDDefinition>
-    <Name> plus </Name>
-    <Description>
-      The symbol representing an n-ary commutative function plus.
-      </Description>
-      <CMP> for all a,b | a + b = b + a </CMP>
-      <FMP>
-        <OMOBJ>
-          <OMBIND>
-            <OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="forall"/>
-            <OMBVAR>
-              <OMV name="a"/>
-              <OMV name="b"/>
-            </OMBVAR>
-            <OMA>
-              <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="plus"/>
-                <OMV name="a"/>
-                <OMV name="b"/>
-              </OMA>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="plus"/>
-                <OMV name="b"/>
-                <OMV name="a"/>
-              </OMA>
-            </OMA>
-          </OMBIND>
-        </OMOBJ>
-      </FMP>
-    </CDDefinition>
-    
-    <CDDefinition>
-      <Name> unary_minus </Name>
-      <Description> 
-        This symbol denotes unary minus, i.e. the additive inverse.
-      </Description>
-      <CMP> for all a | a + (-a) = 0 </CMP>
-      <FMP>
-        <OMOBJ>
-          <OMBIND>
-            <OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="forall"/>
-            <OMBVAR>
-              <OMV name="a"/>
-            </OMBVAR>
-            <OMA>
-              <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="plus"/>
-                <OMV name="a"/>
-                <OMA>
-                  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="unary_minus"/>
-                  <OMV name="a"/>
-                </OMA>
-              </OMA>
-              <OMS cdbase="http://www.openmath.org/cd" cd="alg1" name="zero"/>
-            </OMA>
-          </OMBIND>
-        </OMOBJ>
-      </FMP>
-    </CDDefinition>
-    
-    <CDDefinition>
-      <Name> minus </Name>
-      <Description> 
-        The symbol representing a binary minus function. This is equivalent to
-        adding the additive inverse.
-      </Description>
-      <CMP> for all a,b | a - b = a + (-b) </CMP>
-      <FMP>
-        <OMOBJ>
-          <OMBIND>
-            <OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="forall"/>
-            <OMBVAR>
-              <OMV name="a"/>
-              <OMV name="b"/>
-            </OMBVAR>
-            <OMA>
-              <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="minus"/>
-                <OMV name="a"/>
-                <OMV name="b"/>
-              </OMA>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="plus"/>
-                <OMV name="a"/>
-                <OMA>
-                  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="unary_minus"/>
-                  <OMV name="b"/>
-                </OMA>
-              </OMA>
-            </OMA>
-          </OMBIND>
-        </OMOBJ>
-      </FMP>
-    </CDDefinition>
-    
-    <CDDefinition>
-      <Name> times </Name>
-      <Description> 
-        The symbol representing an n-ary multiplication function.
-      </Description>
-      <Example>
-        <OMOBJ>
-          <OMA>
-            <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
-            <OMA>
-              <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="times"/>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="linalg2" name="matrix"/>
-                <OMA>
-                  <OMS cdbase="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
-                  <OMI> 1 </OMI>
-                  <OMI> 2 </OMI>
-                </OMA>
-                <OMA>
-                  <OMS cdbase="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
-                  <OMI> 3 </OMI>
-                  <OMI> 4 </OMI>
-                </OMA>
-              </OMA>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="linalg2" name="matrix"/>
-                <OMA>
-                  <OMS cdbase="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
-                  <OMI> 5 </OMI>
-                  <OMI> 6 </OMI>
-                </OMA>
-                <OMA>
-                  <OMS cdbase="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
-                  <OMI> 7 </OMI>
-                  <OMI> 8 </OMI>
-                </OMA>
-              </OMA>
-            </OMA>
-            <OMA>
-              <OMS cdbase="http://www.openmath.org/cd" cd="linalg2" name="matrix"/>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
-                <OMI> 19 </OMI>
-                <OMI> 20 </OMI>
-              </OMA>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
-                <OMI> 43 </OMI>
-                <OMI> 50 </OMI>
-              </OMA>
-            </OMA>
-          </OMA>
-        </OMOBJ>
-      </Example>
-      <CMP> for all a,b | a * 0 = 0 and a * b = a * (b - 1) + a </CMP>
-      
-      <FMP><OMOBJ>
-          <OMBIND>
-            <OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="forall"/>
-            <OMBVAR>
-              <OMV name="a"/>
-              <OMV name="b"/>
-            </OMBVAR>
-            <OMA>
-              <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="and"/>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
-                <OMA>
-                  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="times"/>
-                  <OMV name="a"/>
-                  <OMS cdbase="http://www.openmath.org/cd" cd="alg1" name="zero"/>
-                </OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="alg1" name="zero"/>
-              </OMA>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
-                <OMA>
-                  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="times"/>
-                  <OMV name="a"/>
-                  <OMV name="b"/>
-                </OMA>
-                <OMA>
-                  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="plus"/>
-                  <OMA>
-                    <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="times"/>
-                    <OMV name="a"/>
-                    <OMA>
-                      <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="minus"/>
-                      <OMV name="b"/>
-                      <OMS cdbase="http://www.openmath.org/cd" cd="alg1" name="one"/>
-                    </OMA>
-                  </OMA>
-                  <OMV name="a"/>
-                </OMA>
-              </OMA>
-            </OMA>
-          </OMBIND>
-        </OMOBJ></FMP>
-      
-      <CMP> for all a,b,c | a*(b+c) = a*b + a*c </CMP>
-      <FMP><OMOBJ>
-          <OMBIND>
-            <OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="forall"/>
-            <OMBVAR>
-              <OMV name="a"/>
-              <OMV name="b"/>
-              <OMV name="c"/>
-            </OMBVAR>
-            <OMA>
-              <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="times"/>
-                <OMV name="a"/>
-                <OMA>
-                  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="plus"/>
-                  <OMV name="b"/>
-                  <OMV name="c"/>
-                </OMA>
-              </OMA>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="plus"/>
-                <OMA>
-                  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="times"/>
-                  <OMV name="a"/>
-                  <OMV name="b"/>
-                </OMA>
-                <OMA>
-                  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="times"/>
-                  <OMV name="a"/>
-                  <OMV name="c"/>
-                </OMA>
-              </OMA>
-            </OMA>
-          </OMBIND>
-        </OMOBJ></FMP>
-    </CDDefinition>
-    
-    <CDDefinition>
-      <Name> divide </Name>
-      <Description>
-        This symbol represents a (binary) division function denoting the first argument
-        right-divided by the second, i.e. divide(a,b)=a*inverse(b). It is the
-        inverse of the multiplication function defined by the symbol times in this CD.
-      </Description>
-      <CMP> whenever not(a=0) then a/a = 1 </CMP>
-      <FMP>
-        <OMOBJ>
-          <OMBIND>
-            <OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="forall"/>
-            <OMBVAR>
-              <OMV name="a"/>
-            </OMBVAR>
-            <OMA>
-              <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="implies"/>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="neq"/>
-                <OMV name="a"/>
-                <OMS cdbase="http://www.openmath.org/cd" cd="alg1" name="zero"/>
-              </OMA>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
-                <OMA>
-                  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="divide"/>
-                  <OMV name="a"/>
-                  <OMV name="a"/>
-                </OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="alg1" name="one"/>
-              </OMA>
-            </OMA>
-          </OMBIND>
-        </OMOBJ>
-      </FMP>
-    </CDDefinition>
-    
-    <CDDefinition>
-      <Name> power </Name>
-      <Description>
-        This symbol represents a power function. The first argument is raised
-        to the power of the second argument. When the second argument is not
-        an integer, powering is defined in terms of exponentials and 
-        logarithms for the complex and real numbers.
-        This operator can represent general powering.
-      </Description>
-      
-      <CMP>
-        x\in C implies x^a = exp(a ln x)
-      </CMP>
-      
-      <FMP>
-        <OMOBJ>
-          <OMA>
-            <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="implies"/>
-            <OMA>
-              <OMS cdbase="http://www.openmath.org/cd" cd="set1" name="in"/>
-              <OMV name="x"/>
-              <OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="C"/>
-            </OMA>
-            <OMA>
-              <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" name="power" cd="arith1"/>
-                <OMV name="x"/>
-                <OMV name="a"/>
-              </OMA>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" name="exp" cd="transc1"/>
-                <OMA>
-                  <OMS cdbase="http://www.openmath.org/cd" name="times" cd="arith1"/>
-                  <OMV name="a"/>
-                  <OMA>
-                    <OMS cdbase="http://www.openmath.org/cd" name="ln" cd="transc1"/>
-                    <OMV name="x"/>
-                  </OMA>
-                </OMA>
-              </OMA>
-            </OMA>
-          </OMA>
-        </OMOBJ>
-      </FMP>
-      
-      <CMP>
-        if n is an integer then
-        x^0 = 1,
-        x^n = x * x^(n-1)
-      </CMP>
-      <FMP>
-        <OMOBJ>
-          <OMA>
-            <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="implies"/>
-            <OMA>
-              <OMS cdbase="http://www.openmath.org/cd" cd="set1" name="in"/>
-              <OMV name="n"/>
-              <OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="Z"/>
-            </OMA>
-            <OMA>
-              <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="and"/>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
-                <OMA>
-                  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="power"/>
-                  <OMV name="x"/>
-                  <OMI>0</OMI>
-                </OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="alg1" name="one"/>
-              </OMA>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
-                <OMA>
-                  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="power"/>
-                  <OMV name="x"/>
-                  <OMV name="n"/>
-                </OMA>
-                <OMA>
-                  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="times"/>
-                  <OMV name="x"/>
-                  <OMA>
-                    <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="power"/>
-                    <OMV name="x"/>
-                    <OMA>
-                      <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="minus"/>
-                      <OMV name="n"/>
-                      <OMI>1</OMI>
-                    </OMA>
-                  </OMA>
-                </OMA>
-              </OMA>
-            </OMA>
-          </OMA>
-        </OMOBJ>
-      </FMP>
-      <Example>
-        <OMOBJ>
-          <OMA>
-            <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
-            <OMA>
-              <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="power"/>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="linalg2" name="matrix"/>
-                <OMA>
-                  <OMS cdbase="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
-                  <OMI> 1 </OMI>
-                  <OMI> 2 </OMI>
-                </OMA>
-                <OMA>
-                  <OMS cdbase="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
-                  <OMI> 3 </OMI>
-                  <OMI> 4 </OMI>
-                </OMA>
-              </OMA>
-              <OMI>3</OMI>
-            </OMA>
-            <OMA>
-              <OMS cdbase="http://www.openmath.org/cd" cd="linalg2" name="matrix"/>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
-                <OMI> 37 </OMI>
-                <OMI> 54 </OMI>
-              </OMA>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="linalg2" name="matrixrow"/>
-                <OMI> 81 </OMI>
-                <OMI> 118 </OMI>
-              </OMA>
-            </OMA>
-          </OMA>
-        </OMOBJ>
-      </Example>
-      <Example>
-        <OMOBJ>
-          <OMA>
-            <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
-            <OMA>
-              <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="power"/>
-              <OMS cdbase="http://www.openmath.org/cd" cd="nums1" name="e"/>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="times"/>
-                <OMS cdbase="http://www.openmath.org/cd" cd="nums1" name="i"/>
-                <OMS cdbase="http://www.openmath.org/cd" cd="nums1" name="pi"/>
-              </OMA>
-            </OMA>
-            <OMA>
-              <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="unary_minus"/>
-              <OMS cdbase="http://www.openmath.org/cd" cd="alg1" name="one"/>
-            </OMA>
-          </OMA>
-        </OMOBJ>
-      </Example>
-    </CDDefinition>
-    
-    <CDDefinition>
-      <Name> abs </Name>
-      <Description> 
-        A unary operator which represents the absolute value of its
-        argument. The argument should be numerically valued.
-        In the complex case this is often referred to as the modulus.
-      </Description>
-      <CMP> for all x,y | abs(x) + abs(y) >= abs(x+y) </CMP>
-      <FMP>
-        <OMOBJ>
-          <OMBIND>
-            <OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="forall"/>
-            <OMBVAR>
-              <OMV name="x"/>
-              <OMV name="y"/>
-            </OMBVAR>
-            <OMA>
-              <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="geq"/>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="plus"/>
-                <OMA>
-                  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="abs"/>
-                  <OMV name="x"/>
-                  <OMV name="y"/>
-                </OMA>
-                <OMA>
-                  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="abs"/>
-                  <OMV name="x"/>
-                  <OMV name="y"/>
-                </OMA>
-              </OMA>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="abs"/>
-                <OMA>
-                  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="plus"/>
-                  <OMV name="x"/>
-                  <OMV name="y"/>
-                </OMA>
-              </OMA>
-            </OMA>
-          </OMBIND>
-        </OMOBJ>
-      </FMP>
-    </CDDefinition>
-    
-    <CDDefinition>
-      <Name> root </Name>
-      <Description> 
-        A binary operator which represents its first argument "lowered" to its
-        n'th root where n is the second argument. This is the inverse of the operation
-        represented by the power symbol defined in this CD.
-        
-        Care should be taken as to the precise meaning of this operator, in
-        particular which root is represented, however it is here to represent
-        the general notion of taking n'th roots. As inferred by the signature
-        relevant to this symbol, the function represented by this symbol is
-        the single valued function, the specific root returned is the one
-        indicated by the first CMP. Note also that the converse of the second
-        CMP is not valid in general.
-      </Description>
-      
-      <CMP> x\in C implies root(x,n) = exp(ln(x)/n) </CMP>
-      <FMP>
-        <OMOBJ>
-          <OMA>
-            <OMS cdbase="http://www.openmath.org/cd" cd="logic1" name="implies"/>
-            <OMA>
-              <OMS cdbase="http://www.openmath.org/cd" cd="set1" name="in"/>
-              <OMV name="x"/>
-              <OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="C"/>
-            </OMA>
-            <OMA>
-              <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="root"/>
-                <OMV name="x"/>
-                <OMV name="n"/>          
-              </OMA>
-              <OMA>
-                <OMS name="exp" cd="transc1"/>
-                <OMA>
-                  <OMS name="divide" cd="arith1"/>
-                  <OMA>
-                    <OMS name="ln" cd="transc1"/>
-                    <OMV name="x"/>
-                  </OMA>
-                  <OMV name="n"/>          
-                </OMA>
-              </OMA>
-            </OMA>
-          </OMA>
-        </OMOBJ>
-      </FMP>
-      
-      <CMP> for all a,n | power(root(a,n),n) = a (if the root exists!) </CMP>
-      <FMP>
-        <OMOBJ>
-          <OMBIND>
-            <OMS cdbase="http://www.openmath.org/cd" cd="quant1" name="forall"/>
-            <OMBVAR>
-              <OMV name="a"/>
-              <OMV name="n"/>
-            </OMBVAR>
-            <OMA>
-              <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="power"/>
-                <OMA>
-                  <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="root"/>
-                  <OMV name="a"/>
-                  <OMV name="n"/>
-                </OMA>
-                <OMV name="n"/>
-              </OMA>
-              <OMV name="a"/>
-            </OMA>
-          </OMBIND>
-        </OMOBJ>
-      </FMP>
-    </CDDefinition>
-    
-    
-    
-    
-    <CDDefinition>
-      <Name> sum </Name>
-      <Description>
-        An operator taking two arguments, the first being the range of summation,
-        e.g. an integral interval, the second being the function to be
-        summed. Note that the sum may be over an infinite interval.
-      </Description>
-      <Example>
-        This represents the summation of the reciprocals of all the integers between
-        1 and 10 inclusive.
-        <OMOBJ>
-          <OMA>
-            <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="sum"/>
-            <OMA>
-              <OMS cdbase="http://www.openmath.org/cd" cd="interval1" name="integer_interval"/>
-              <OMI> 1 </OMI>
-              <OMI> 10 </OMI>
-            </OMA>
-            <OMBIND>
-              <OMS cdbase="http://www.openmath.org/cd" cd="fns1" name="lambda"/>
-              <OMBVAR>
-                <OMV name="x"/>
-              </OMBVAR>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="divide"/>
-                <OMI> 1 </OMI>
-                <OMV name="x"/>
-              </OMA>
-            </OMBIND>
-          </OMA>
-        </OMOBJ>
-      </Example>
-    </CDDefinition>
-    
-    <CDDefinition>
-      <Name> product </Name>
-      <Description>
-        An operator taking two arguments, the first being the range of multiplication
-        e.g. an integral interval, the second being the function to
-        be multiplied. Note that the product may be over an infinite interval. 
-      </Description>
-      <Example>
-        This represents the statement that the factorial of n is equal to the product
-        of all the integers between 1 and n inclusive.
-        <OMOBJ>
-          <OMA>
-            <OMS cdbase="http://www.openmath.org/cd" cd="relation1" name="eq"/>
-            <OMA>
-              <OMS cdbase="http://www.openmath.org/cd" cd="integer1" name="factorial"/>
-              <OMV name="n" />
-            </OMA>
-            <OMA>
-              <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="product"/>
-              <OMA>
-                <OMS cdbase="http://www.openmath.org/cd" cd="interval1" name="integer_interval"/>
-                <OMI> 1 </OMI>
-                <OMV name="n"/>
-              </OMA>
-              <OMBIND>
-                <OMS cdbase="http://www.openmath.org/cd" cd="fns1" name="lambda"/>
-                <OMBVAR>
-                  <OMV name="i"/>
-                </OMBVAR>
-                <OMV name="i"/>
-              </OMBIND>
-            </OMA>
-          </OMA>
-        </OMOBJ>
-      </Example>
-    </CDDefinition>
-    
-  </CD>]]>
+<literallayout>
+&arith1cd;
 </literallayout>
 
 </section>
@@ -6284,87 +5454,8 @@ Dictionaries and &OM; objects is given.</para>
 <section id="errorcd">
   <title>The <filename>error</filename> Content Dictionary</title>
   
-  <literallayout><![CDATA[<CD>
-  <CDName> error </CDName>
-  <CDURL> http://www.openmath.org/cd/error.ocd </CDURL>
-  <CDReviewDate> 2003-04-01 </CDReviewDate>
-  <CDStatus> official </CDStatus>
-  <CDDate> 2001-03-12 </CDDate>
-  <CDVersion> 2 </CDVersion>
-  <CDRevision> 0 </CDRevision>
-  <CDUses>
-    <CDName> arith1 </CDName>
-    <CDName> specfun1 </CDName>
-  </CDUses>
-  
-  <CDDefinition>
-    <Name> unhandled_symbol </Name>
-    <Description>
-      This symbol represents the error which is raised when an application
-      reads a symbol which is present in the mentioned content
-      dictionary, but which it has not implemented.
-      
-      When receiving such a symbol, the application should act as if it had
-      received the OpenMath error object constructed from unhandled_symbol
-      and the unhandled symbol as in the example below.
-    </Description>
-    
-    <Example>
-      The application does not implement the Complex numbers:
-      <OMOBJ>
-        <OME>
-          <OMS cdbase="http://www.openmath.org/cd" cd="error" name="unhandled_symbol"/>
-          <OMS cdbase="http://www.openmath.org/cd" cd="setname1" name="C"/>
-        </OME>
-      </OMOBJ>
-    </Example>
-  </CDDefinition>
-  
-  <CDDefinition>
-    <Name> unexpected_symbol </Name>
-    <Description>
-      This symbol represents the error which is raised when an application
-      reads a symbol which is not present in the mentioned content dictionary.
-      
-      When receiving such a symbol, the application should act as if it had
-      received the OpenMath error object constructed from unexpected_symbol
-      and the unexpected symbol as in the example below.
-    </Description>
-    <Example>
-      The application received a mistyped symbol
-      <OMOBJ>
-        <OME>
-          <OMS cdbase="http://www.openmath.org/cd" cd="error" name="unexpected_symbol"/>
-          <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="plurse"/>
-        </OME>
-      </OMOBJ>
-    </Example>
-  </CDDefinition>
-  
-  <CDDefinition>
-    <Name> unsupported_CD </Name>
-    <Description>
-      This symbol represents the error which is raised when an application
-      reads a symbol where the mentioned content dictionary is not
-      present.
-      
-      When receiving such a symbol, the application should act as if it had
-      received the OpenMath error object constructed from unsupported_CD and
-      the symbol from the unsupported Content Dictionary as in the example
-      below.
-    </Description>
-    <Example>
-      The application does not know about the CD specfun1
-      <OMOBJ>
-        <OME>
-          <OMS cdbase="http://www.openmath.org/cd" cd="error" name="unsupported_CD"/>
-          <OMS cdbase="http://www.openmath.org/cd" cd="specfun1" name="BesselJ"/>
-        </OME>
-      </OMOBJ>
-    </Example>
-  </CDDefinition>
-  
-</CD>]]>
+<literallayout>
+&errorcd;
 </literallayout>
 
 </section>
