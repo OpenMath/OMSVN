@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.69 2003/12/03 14:04:23 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.70 2003/12/18 12:02:23 openmath Exp $ -->
 
 <!--
  PUBLIC "-//OASIS//DTD DocBook XML V4.2CR1//EN"
@@ -1895,7 +1895,7 @@ encoded as a child.  So for example the encoding
 <math><msub><mi>x</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub></math> is:
 <literallayout><![CDATA[<OMV name="x">  
   <OMA>
-    <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="plus"/> 
+    <OMS cd="arith1" name="plus"/> 
     <OMV name="i"/>  
     <OMI>1</OMI>
   </OMA>
@@ -1963,7 +1963,7 @@ encoded as a child.  So for example the encoding
 
 <para>For example, <math><mi mathvariant="bold">application</mi><mo>(</mo><mi>sin</mi><mo>,</mo><mi>x</mi> <mo>)</mo></math> is encoded as:
 <literallayout><![CDATA[<OMA>  
-  <OMS cdbase="http://www.openmath.org/cd" cd="transc1" name="sin"/> 
+  <OMS cd="transc1" name="sin"/> 
   <OMV name="x"/>  
 </OMA>]]></literallayout>
   provided that the symbol <systemitem>sin</systemitem> is defined to be a function
@@ -1984,10 +1984,10 @@ encoded as a child.  So for example the encoding
   <mi>x</mi><mo>,</mo><mi mathvariant="bold">application</mi>
      <mo>(</mo><mi>sin</mi><mo>,</mo> <mi>x</mi><mo>)</mo><mo>)</mo></math> is:
 <literallayout><![CDATA[<OMBIND>
-  <OMS cdbase="http://www.openmath.org/cd" cd="fns1" name="lambda"/>  
+  <OMS cd="fns1" name="lambda"/>  
   <OMBVAR><OMV name="x"/></OMBVAR>  
   <OMA>
-    <OMS cdbase="http://www.openmath.org/cd" cd="transc1" name="sin"/> 
+    <OMS cd="transc1" name="sin"/> 
     <OMV name="x"/>  
   </OMA>
 </OMBIND>]]></literallayout></para>
@@ -2043,7 +2043,7 @@ representation in Presentation MathML is:
     </OMFOREIGN>  
   </OMATP>
   <OMA>
-   <OMS cdbase="http://www.openmath.org/cd" cd="transc1" name="sin"/> 
+   <OMS cd="transc1" name="sin"/> 
    <OMV name="x"/>  
   </OMA>
 </OMATTR>]]></literallayout>
@@ -2058,7 +2058,7 @@ as follows:
     <OMFOREIGN>sin\,(x)</OMFOREIGN>  
   </OMATP>
   <OMA>
-    <OMS cdbase="http://www.openmath.org/cd" cd="transc1" name="sin"/> 
+    <OMS cd="transc1" name="sin"/> 
     <OMV name="x"/>  
   </OMA>
 </OMATTR>]]></literallayout>
@@ -2226,10 +2226,10 @@ also the second <systemitem>OMR</systemitem> dominate the
 <para revisionflag="added">Consider for instance the following (illegal) &exml; representation
 <literallayout><![CDATA[<OMOBJ>
   <OMA id="foo">
-    <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="divide"/>
+    <OMS cd="arith1" name="divide"/>
     <OMI>1</OMI>
     <OMA>
-       <OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="plus"/>
+       <OMS cd="arith1" name="plus"/>
        <OMI>1</OMI>
        <OMR xref="foo"/>
     </OMA> 
@@ -2300,12 +2300,12 @@ element it points to. In particular, referencing does not interact
 with binding in a semantically intuitive way, since it allows for
 variable capture. Consider for instance the following &exml;
 representation: <literallayout><![CDATA[<OMBIND id="outer">
-  <OMS cdbase="http://www.openmath.org/cd" cd="fns1" name="lambda"/>
+  <OMS cd="fns1" name="lambda"/>
   <OMBVAR><OMV name="X"/></OMBVAR>
   <OMA>
     <OMV name="f"/>
     <OMBIND id="inner">
-      <OMS cdbase="http://www.openmath.org/cd" cd="fns1" name="lambda"/>
+      <OMS cd="fns1" name="lambda"/>
       <OMBVAR><OMV name="X"/></OMBVAR>
       <OMR id="copy" xlink:href="orig"/>
     </OMBIND>
@@ -4789,9 +4789,9 @@ name="plus"/></systemitem>: <literallayout><![CDATA[
 <Signature name="plus">
 <OMOBJ>
  <OMA>
-  <OMS cdbase="http://www.openmath.org/cd" name="mapsto" cd="sts"/>
+  <OMS name="mapsto" cd="sts"/>
   <OMA>
-   <OMS cdbase="http://www.openmath.org/cd" name="nassoc" cd="sts"/> 
+   <OMS name="nassoc" cd="sts"/> 
    <OMV name="AbelianSemiGroup"/>
   </OMA>
   <OMV name="AbelianSemiGroup"/>
@@ -5603,7 +5603,7 @@ or, using the Relax NG compact syntax:
   <para>In this appendix we describe the major changes that occurred
     between version 1.1 and version 2 of the &OM; standard. All changes to
     the encodings and content dictionaries have been designed to be
-    backward compatibile, in other words all existing &OM; objects and
+    backward compatible, in other words all existing &OM; objects and
     Content Dictionaries are still valid in &OM; 2.  On the other hand an
     existing  &OM; 1.1 application may not be able to process &OM; 2
     objects.
