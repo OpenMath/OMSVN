@@ -456,20 +456,38 @@ Attribution</para></sidebar> </listitem> <listitem><para><phrase>(iii)</phrase> 
 
   <math display="block"><mi mathvariant="bold">attribution</mi>
   <mo>(</mo><mi>A</mi><mo>,</mo> <msub><mi>S</mi><mn>1</mn></msub>
-  <mspace width=".3em"/>
-  <msub><mi>A</mi><mn>1</mn></msub><mo>,</mo>
- <mspace width=".3em"/> <mi>&#8230;</mi> <mspace width=".3em"/> <mo>,</mo> <msub><mi>S</mi><mi>n</mi></msub> <mspace width=".3em"/>
-  <msub><mi>A</mi><mi>n</mi></msub><mo>)</mo></math>
-  is an &OM; <emphasis>attribution object</emphasis> and <math><mi>A</mi></math> is the object
-  <emphasis>stripped of attributions</emphasis>. The operation of recursively
-  applying stripping to the stripped object is called <emphasis>flattening
-    of the attribution</emphasis>. When  the stripped object after flattening
-  is a  variable, the attributed object is called <emphasis>attributed
-    variable</emphasis>.</para>
+  <mspace width=".3em"/> <msub><mi>A</mi><mn>1</mn></msub><mo>,</mo>
+  <mspace width=".3em"/> <mi>&#8230;</mi> <mspace width=".3em"/>
+  <mo>,</mo> <msub><mi>S</mi><mi>n</mi></msub> <mspace width=".3em"/>
+  <msub><mi>A</mi><mi>n</mi></msub><mo>)</mo></math> is an &OM;
+  <emphasis>attribution object</emphasis>. 
+
+  <phrase revisionflag="deleted">and</phrase> <math><mi>A</mi></math>
+  is the object <emphasis>stripped of attributions</emphasis>. <phrase
+  revisionflag="added">
+  <math><msub><mi>S</mi><mn>1</mn></msub><mo>,</mo>
+  <mi>&#8230;</mi><mo>,</mo> <msub><mi>S</mi><mi>n</mi></msub></math>
+  are referred to as <emphasis>keys</emphasis> and
+  <math><msub><mi>A</mi><mn>1</mn></msub></math>,
+  <phrase>&#8230;</phrase>,
+  <math><msub><mi>A</mi><mi>n</mi></msub></math> as their associated
+  <emphasis>values</emphasis></phrase>. The operation of recursively
+  applying stripping to the stripped object is called
+  <emphasis>flattening of the attribution</emphasis>.
+
+		  When the stripped object after flattening is a
+  variable, the attributed object is called <emphasis>attributed
+  variable</emphasis>.</para>
 </listitem>
 
-<listitem><para><phrase>(iv)</phrase> If <math><mi>B</mi></math> and <math><mi>C</mi></math> are &OM; objects, and <math><msub><mi>v</mi><mn>1</mn></msub></math>, <math><mi>&#8230;</mi></math>,
-  <math><msub><mi>v</mi><mi>n</mi></msub></math> <math><mo>(</mo><mi>n</mi> <mo>&#8805;</mo> <mn>0</mn><mo>)</mo></math> are &OM; variables or attributed variables, then
+<listitem><para><phrase>(iv)</phrase> If <math><mi>B</mi></math> and
+  <math><mi>C</mi></math> are &OM; objects, and
+  <math><msub><mi>v</mi><mn>1</mn></msub></math>,
+  <math><mi>&#8230;</mi></math>,
+  <math><msub><mi>v</mi><mi>n</mi></msub></math>
+  <math><mo>(</mo><mi>n</mi> <mo>&#8805;</mo>
+  <mn>0</mn><mo>)</mo></math> are &OM; variables or attributed
+  variables, then
   <math display="block">
   <mi mathvariant="bold">binding</mi> <mo>(</mo><mi>B</mi><mo>,</mo> <msub><mi>v</mi><mn>1</mn></msub><mo>,</mo> <mi>&#8230;</mi><mo>,</mo> <msub><mi>v</mi><mi>n</mi></msub><mo>,</mo> <mi>C</mi><mo>)</mo>
   </math>
@@ -489,38 +507,33 @@ is an &OM; <emphasis>binding object</emphasis>.</para>
 <section id="sec_roles" revisionflag="added">
 <title>&OM; Symbol Roles</title>
 
-<para>The <emphasis>role</emphasis> of an &OM; symbol is a restriction
+<para>The <emphasis>rôle</emphasis> of an &OM; symbol is a restriction
 on where it can appear in an &OM; object.  A symbol cannot have more
 than one role.  If no role is indicated
 then the symbol can be used anywhere.  Possible roles are:
 <orderedlist numeration="lowerroman">
-<listitem><para>
-<emphasis>binder</emphasis>  The symbol may only appear as the first
-child of an &OM; binding object.
+
+<listitem><para><emphasis>binder</emphasis> The symbol may only
+appear as the first child of an &OM; binding object.
 </para></listitem>
-<listitem><para>
-<emphasis>attribution</emphasis> The symbol may only be used as one of
-the odd-numbered children of an &OM; attribution object, i.e. as the
-first element of a key-value pair, or in an equivalent context (for
-example to refer to the value of an attribution).  This form of
-attribution may be ignored by an application, so should be used for
-information which does not change the meaning of the attributed &OM;
-object.
-</para></listitem>
-<listitem><para>
-<emphasis>semantic-attribution</emphasis> This is the same as
-<emphasis>attribution</emphasis> except that it modifies the meaning
-of the attributed &OM; object and thus cannot be ignored by an
-application.
-</para></listitem>
-<listitem><para>
-<emphasis>error</emphasis> The symbol can only appear as the first
-child of an &OM; error object.
-</para></listitem>
-<listitem><para>
-<emphasis>default</emphasis> The symbol can appear anywhere not
-defined in the previous four cases.
-</para></listitem>
+
+<listitem><para> <emphasis>attribution</emphasis> The symbol may only
+be used as key in an &OM; attribution object, i.e. as the first
+element of a key-value pair, or in an equivalent context (for example
+to refer to the value of an attribution).  This form of attribution
+may be ignored by an application, so should be used for information
+which does not change the meaning of the attributed &OM; object.
+</para></listitem> 
+
+<listitem><para> <emphasis>semantic-attribution</emphasis> This is the
+same as <emphasis>attribution</emphasis> except that it modifies the
+meaning of the attributed &OM; object and thus cannot be ignored by an
+application.  </para></listitem> 
+
+<listitem><para> <emphasis>error</emphasis> The symbol can only appear
+as the first child of an &OM; error object.  </para></listitem>
+<listitem><para> <emphasis>default</emphasis> The symbol can appear
+anywhere not defined in the previous four cases.  </para></listitem>
 </orderedlist>
 </para>
 </section>
@@ -820,13 +833,15 @@ expression could be attributed with its spoken or visual rendering.
   order.)</para>
 
 <para revisionflag="added">Attribution acts as either adornment
-  annotation or as semantical annotation. When the attribute has rôle
-  attribution, then replacement of the attributed object by the object
-  itself is not harmful and preserves the semantics. When the
-  attribute has rôle semantic-attribution then the attributed object
-  is modified by the attribution and cannot be viewed as semantically
-  equivalent to the stripped object. If the attribute lacks the rôle
-  specification then attribution is acting as adornment annotation.
+  annotation or as semantical annotation. When the key has rôle
+  <emphasis> attribution</emphasis>, then replacement of the
+  attributed object by the object itself is not harmful and preserves
+  the semantics. When the key has rôle
+  <emphasis>semantic-attribution</emphasis> then the attributed
+  object is modified by the attribution and cannot be viewed as
+  semantically equivalent to the stripped object. If the attribute
+  lacks the rôle specification then attribution is acting as adornment
+  annotation.
   </para>
 
 <sidebar revision="1999/08/24" author="OC">
