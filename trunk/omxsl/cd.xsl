@@ -197,7 +197,7 @@
 
 <xsl:template match="cd:CDDefinition/cd:FMP">
 <dl>
-<dt><span class="dt">Formal Mathematical property (cd:FMP):</span></dt>
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt>
 <dd><xsl:apply-templates/>
 </dd></dl>
 </xsl:template>
