@@ -8,6 +8,8 @@
 <xsl:import href="verb.xsl"/>
 <xsl:import href="om2pmml.xsl"/>
 
+<xsl:param name="xsldir" select="'../xsl'"/>
+
 <xsl:output method="xml" />
 
 <xsl:strip-space elements="cd:Name"/>
@@ -15,7 +17,7 @@
 <xsl:template match="cd:CD">
   <xsl:variable name="cd" select="normalize-space(./cd:CDName)"/>
 <xsl:processing-instruction name="xml-stylesheet"
-> type="text/xsl"  href="../xsl/pmathml.xsl"</xsl:processing-instruction>
+> type="text/xsl"  href="<xsl:value-of select="$xsldir"/>/pmathml.xsl"</xsl:processing-instruction>
 <xsl:text>&#10;</xsl:text>
   <html>
   <head>
@@ -237,10 +239,10 @@
 <pre id="{generate-id()}xml" style="display:none">
 <xsl:apply-templates mode="verb" select="."/>
 </pre>
-<div id="{generate-id()}pref" style="display:none">
+<div id="{generate-id()}pref" style="display:none; margin-top: 0.5em">
 <xsl:apply-templates mode="term" select="."/>
 </div>
-<div id="{generate-id()}mml" style="display:block">
+<div id="{generate-id()}mml" style="display:block; margin-top: 0.5em">
   <math   xmlns="http://www.w3.org/1998/Math/MathML" display="block">
     <xsl:apply-templates/>
   </math>
