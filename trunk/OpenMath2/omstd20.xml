@@ -387,7 +387,8 @@ is a sequence of characters matching the regular expression described
 in <xref linkend="sec_names"/>.  The Content Dictionary is the
 location of the definition of the symbol, consisting of a name (a
 sequence of characters matching the regular expression described in
-<xref linkend="sec_names"/>) and, optionally, a unique prefix to
+<xref linkend="sec_names"/>) and, optionally, a unique prefix called
+a <emphasis>uristub</emphasis> which is used to
 disambiguate multiple Content Dictionaries of the same name.  The role
 is a restriction on where the symbol may appear in an &OM; object.
 The possible roles are described in <xref linkend="sec_roles"/>.
@@ -963,6 +964,15 @@ Then a legal &OM; name is defined by the following grammar:
 </blockquote>
 
 </para>
+
+<formalpara><title>Uristubs</title>
+
+Uristubs must conform to the grammar described in
+<citation>IETF2396</citation>.  Note that if non-ASCII characters are
+used in a CD or symbol name then when a URI for that symbol is
+constructed it will be necessary to map the non-ASCII characters to a
+sequence of octets.  The precise mechanism for doing this depends on
+the URI scheme.</formalpara>
 
 <formalpara><title>Note on content dictionary names</title>
 
@@ -1893,7 +1903,7 @@ as follows:
         <OMATP>
           <OMS cd="presentation1" name="latex"/>  
           <OMFOREIGN>
-            <OMS>sin\,(x)</OMS>
+            sin\,(x)
           </OMFOREIGN>  
         </OMATP>
         <OMA>
@@ -1901,9 +1911,6 @@ as follows:
           <OMV name="x"/>  
         </OMA>
       </OMATTR>]]></literallayout>
-We have used the <systemitem>OMSTR</systemitem> element here for
-convenience to encode a string, but any element understood by the
-application receiving this object could have been used.
 </para>
 </varlistentry>
 
@@ -2941,7 +2948,7 @@ implementations).</para>
     <emphasis>cdname</emphasis>, <emphasis>varname</emphasis>,
     <emphasis>uri</emphasis>, <emphasis>id</emphasis>, <emphasis>digits</emphasis>, or
     <emphasis>bytes</emphasis> denotes a sequence of <math><mi>n</mi></math> bytes
-    named that conforms to the constraints on <emphasis>xxx</emphasis> strings. For
+    that conforms to the constraints on <emphasis>xxxx</emphasis> strings. For
     instance, for <emphasis>symbname</emphasis>, <emphasis>varname</emphasis>, or
     <emphasis>cdname</emphasis>this is the regular expression described in
     <xref linkend="sec_names"/>, for <emphasis>uri</emphasis> it is the grammar for
@@ -6515,6 +6522,8 @@ since it is trivial to extract its content automatically from the CD.
 <para>
 A CD may now, optionally, define its uristub.
 </para>
+	</listitem>
+	<listitem>
 <para>
 A CD symbol definition may now, optionally, define its role.
 </para>
@@ -6543,6 +6552,12 @@ A CD symbol definition may now, optionally, define its role.
     <title>Std 1003.1-2001 (Open Group Technical Standard, Issue 6),
 Standard for Information Technology-Portable Operating System Interface (POSIX)</title>
     <pubdate>2001</pubdate>
+  </biblioentry>
+  
+  <biblioentry id="IETF2396" role="misc" revisionflag="added">
+  <author><othername>IETF</othername></author>
+    <title>RFC 2396 - Uniform Resource Identifiers (URI): Generic Syntax</title>
+    <pubdate>August 1998</pubdate>
   </biblioentry>
   
   <biblioentry id="XSD" role="book" revisionflag="added">
