@@ -52,14 +52,16 @@ for i in omcd2.rnc
 do
 echo $i
 sed -e  "s/| OMOBJ//" \
+    -e "s/OMOBJ/text/" \
     -e "s/include .openmath2.rnc. {.*}/# OMDTD/" \
     -e "s/\(CDRevision\)[)],/\\1)+,/" \
     -e "s/ & / | /g" \
         $i >tmp.rnc
 
- trang tmp.rnc tmp.dtd 2>> trang.txt
+ trang tmp.rnc tmp.dtd  2>> trang.txt
  
  sed -e "s/text-or-om \"(#PCDATA/text-or-om \"(#PCDATA|OMOBJ/" \
+     -e "s/FMP (#PCDATA)/FMP (OMOBJ)/" \
      -e "s/<!-- OMDTD -->/<!ENTITY % omdtd SYSTEM \"openmath2.dtd\"> %omdtd;/"\
         tmp.dtd > ${i%%rnc}dtd
  sed -e "s/</\&lt;/g" ${i%%rnc}dtd > ${i%%.rnc}dtd.xml
