@@ -1,0 +1,708 @@
+\def\cdca{\textsc{DOC}}
+
+
+\newif\iflemma
+\lemmafalse
+
+\def\ednoteshape{\sf}
+\newif\ifshowednotes\showednotesfalse
+\def\edshownotes{\showednotestrue}
+\DeclareOption{show}{\showednotestrue}
+\DeclareOption{hide}{\showednotesfalse}
+\ProcessOptions
+
+\newcounter{ednote}
+\def\ed@foot#1#2#3% text, type, label
+{\def\test{#3}\def\empty{}\footnotetext[\value{ednote}]%
+{{\sc{#2}\if\test\empty\else\label{ed:#3}[{#3}]\fi:} \ednoteshape #1}}
+\def\ed@note#1#2#3% text, type, label
+{\addtocounter{ednote}{1}\message{#2!}%
+\ifshowednotes%
+\footnotemark[\arabic{ednote}]\ed@foot{#1}{#2}{#3}%
+\marginpar{#2(\arabic{ednote})}%
+\fi}
+\newcommand{\ednote}[2][]{\ed@note{#2}{EdNote}{#1}}
+\newcommand{\issue}[2][]{\ed@note{#2}{Issue}{#1}}
+\newenvironment{newpart}[1]% text
+{\addtocounter{ednote}{1}\edef\new@number{\theednote}\message{New Part!\new@number}
+\ifshowednotes\ed@foot{#1}{New Part}{}\marginpar{BegNP(\new@number)}\fi}
+{\ifshowednotes\marginpar{EndNP(\new@number)}\fi}
+
+\def\ednotemessage{\ifnum\value{ednote}>0\typeout{}%
+\typeout{There are still \arabic{ednote} EdNotes and Issues to resolve!}%
+\typeout{}\fi}
+
+%% a bit wider
+%\advance\evensidemargin-.8in
+%\advance\oddsidemargin-.8in
+%\advance\textwidth1.6in
+% Vertical space mods from Mike's old 2.09 version.
+% Separate paragraphs, and subvert \item to leave less space!
+%
+\parskip=0.5\baselineskip
+\parindent=0pt
+
+\documentclass{euproposal}
+
+\usepackage{paralist,enumerate,url}
+
+\begin{document}
+\setcounter{part}{2}% part B
+
+
+
+
+\title{Realizing the Potential of Semantic  Markup for Mathematics\\
+  \normalfont\large Future and Emerging Technologies Open Coordination
+  Action}
+
+\date{Date of Preparation: \today}
+\author{Coordinator: Professor Michael Kohlhase\\
+  School of Engineering \& Sciences\\
+  International University Bremen, \\
+  Campus Ring 12, D-28759 Bremen, Germany\\ 
+\texttt{m.kohlhase@iu-bremen.de}\\
+tel: +49 421 200 3140 \\ fax: +49 421 200 3103} 
+
+
+\titlepage 
+
+\maketitle
+\showednotestrue
+\newpage
+\tableofcontents
+
+\setcounter{chapter}{0}
+
+\section{Proposal Summary}
+
+\textbf{Realizing the Potential of Semantic Markup for Mathematics}\\
+\textsc{Acronym:} \\
+
+
+\subsection{Strategic objectives}
+
+The two key objectives of this proposal are:
+\begin{itemize}
+\item To foster and extend the use of OpenMath and MathML within the
+  European scientific community.
+\item To embed these technologies into the semantic web by providing
+  views of them grounded in suitable ontologies.  This will enable
+  them to be used by applications based on RDF and OWL.
+\end{itemize}
+
+
+\subsection{Abstract}
+
+There is a critical mass of activity developing around the area of
+semantic markup for mathematics embracing the fields of publishing,
+e-science, and mathematical software.  Much of this activity is or has
+been sponsored by the EU (OpenMath, OpenMathTN, MONET, WebALT,
+LeActivemath, MOWGLI, Calculemus, ...), some is sponsored by national
+agencies (MathBroker, GENSS, ...), some by multi-national consortia
+(W3C's MathML Interest Group, The OpenMath Society, ...), and some by
+private enterprise (NAG Ltd., Springer-Verlag, Design Science Inc,
+Stilo Technology Ltd. ...).  Coordination of these activities and the
+maintenance of agreed standards will have tremendous long-term
+benefits for the scientific and technical community in Europe and the
+wider world.
+
+
+
+
+\chapter{Objectives}
+\label{cha:object}
+
+In the 21st Century one of the great challenges facing the scientific
+community will be to manage increasingly large bodies of
+digitally-encoded information.  To allow this information to be
+\emph{re-used} in different contexts, and to be \emph{processed} by
+software systems,
+%amc: replaced assistants by systems to avoid too much of our own idiom
+it will need to be encoded using appropriate semantic markup.  As a
+result there has in recent years been an explosion of interest in the
+semantic web and related technologies.
+
+In the OpenMath Project and the Thematic Network that followed it, the
+European Union supported the development of OpenMath and MathML, two
+complementary standards for content and presentation markup of
+mathematics.  The original intention was that these would be used to
+exchange mathematical objects between software systems, facilitate the
+development of ``active'' texts where the mathematical components
+could be extracted, manipulated and checked.  As such, these
+technologies have been a great success and are now beginning to be
+used in a wide range of areas.  However now we see the potential to
+combine our existing markup mechanisms with emerging semantic web
+technologies to allow for digital mathematical content to be managed,
+searched, indexed, validated etc.~in a mathematically meaningful way.
+
+The two key objectives of this proposal are:
+\begin{itemize}
+\item To foster and extend the use of OpenMath and MathML within the
+  European scientific community.
+\item To embed these technologies into the semantic web by providing
+  views of them grounded in suitable ontologies.  This will enable
+  them to be used by applications based on RDF and OWL.
+\end{itemize}
+
+
+\chapter{Relevance to the objectives of FET Open}
+\label{cha:relevance}
+
+Several research groups in Europe are currently using and developing
+semantic markup for mathematics. Their activities range from
+publishing, to e-science on the grid, and mathematical software
+development. In the past, EU-sponsored projects in this area,
+(OpenMath, OpenMathTN, MONET, MOWGLI, Calculemus) have developed new
+using emerging web technologies and standards for the electronic
+communication of mathematics.  Current EU projects (WebALT,
+LeActivemath), national agencies (MathBroker, GENSS, ...),
+multi-national consortia (W3C's MathML Interest Group, The OpenMath
+Society, ...), and some private enterprise (NAG Ltd., Springer-Verlag,
+Design Science Inc, Stilo Technology Ltd., Math4More ...) build upon
+and exploit such technologies. Integration of all these related
+activities is crucial for the advancement in the emerging area of
+semantic web technologies. This coordination action will monitor and
+align the on-going international efforts that are extending OpenMath
+in emerging markup languages for their activity to promote a common
+standard.
+
+
+
+
+
+\chapter{Potential Impact}
+\label{cha:impact}
+
+
+
+Coordination of the wide range of activities that involve semantic
+markup of mathematics, the maintenance of agreed standards, the
+establishments of expert groups and usage guidelines will have
+tremendous long-term benefits for the scientific and technical
+community in Europe and the wider world.
+
+
+
+
+\chapter{Consortium and Project Resources}
+\label{cha:consortium}
+
+
+
+
+
+\begin{description}
+  
+\item[NAG Ltd] NAG is Europe's largest vendor of mathematical
+  software.  It is involved heavily in the W3C Math Working Group,
+  providing one of the current co-chairs.  NAG uses semantic markup to
+  tailor documentation for specific user communities, and to generate
+  software components from abstract specifications.  In addition to
+  coordinating the Thematic Network is ran the website and developed a
+  range of validation tools for OpenMath documents and Content
+  Dictionaries.  It also led the development of the OpenMath~2
+  Standard.
+  
+\item[University of Bath] The Computing Department at the University
+  of Bath has a long history of involvement in Computer Algebra, and
+  until recently was part of the School of Mathematical Sciences.  It
+  coordinated the development of Content Dictionaries during the
+  former projects: OpenMath and OpenMath Thematic Network.
+  
+\item[Stilo Technology Ltd] Stilo is an SME providing XML-based
+  services in a broad range of areas.  It is involved in a number of
+  W3C activities (including MathML) and was heavily involved in the
+  development of OpenMath~2.
+  
+\item[INRIA Sophia-Antipolis] INRIA is one of the three original W3C
+  host institutions and the group at Sophia-Antipolis has been
+  involved in the Math Working group from its inception.  They also
+  have a long history in the development of mathematical software and
+  have been a key developer within the MONET project.
+  
+\item[University of St Andrews] St Andrews coordinates development of
+  the GAP algebraic software system, which can read and write
+  OpenMath.
+  
+\item[Technical University of Eindhoven] The group at Eindhoven has
+  been involved in the development of electronic mathematical
+  textbooks, notably \emph{Algebra Interactive} for some years, and
+  are using OpenMath to communicate between user interfaces and a
+  range of mathematical engines.  They contributed a significant
+  number of Content Dictionaries during the OpenMath Thematic Network
+  project and have played a key design and development role for the
+  MONET project. 
+  
+%  \item[Springer Verlag] Springer is interested in electronic and
+%  interactive publishing, and have collaborated with Eindhoven in the
+%  development and publication of \emph{Algebra Interactive}.
+ 
+\item[University of Nice] The M@INLINE Project at the University of
+  Nice is interested in e-learning and the development of tools for
+  delivering interactive courses in Mathematics.  They have developed
+  various OpenMath tools including an editor and a rendering agent.
+  
+\item[Konrad-Zuse Zentrum fur Informationstechnik] ZIB is one of the
+  main developers of the Reduce Computer Algebra System.
+
+%\item[Explo-IT Research/Nibbles.it] Exploit (later replaced in the
+%  consortium by Nibbles.it) develops middleware for the integration of
+%  mathematical components into other software systems.
+
+\item[Research Institute for Symbolic Computation] RISC is one of the
+  largest research centres for Computer Algebra in the world.  It
+  played a substantial part in the development of the OpenMath~2
+  Standard and of the MONET protocols.
+  
+\item[German Research Centre for Artificial Intelligence] Based at the
+  DFKI, the ActiveMath project is developing technology for
+  e-learning.  They make substantial use of OMDoc, a mechanism for
+  representing mathematical documents which is built on OpenMath.
+  
+\item[University of Helsinki] The University of Helsinki is also
+  interested in e-learning and, through its collaboration with Florida
+  State University, has developed a substantial body of material for
+  teaching undergraduate calculus.
+  
+\item[University of Cologne] Cologne is interested in the theory
+  behind semantic markup for mathematics, and provided in-depth and
+  thorough critiques of drafts of both MathML~2 (second edition) and
+  OpenMath~2.
+  
+\item[International University of Bremen] Bremen is the lead developer
+  of the OMDoc system for representing complete mathematical documents
+  in a machine-processable form.  They are involved in the W3C Math
+  Working group and were involved in the development of OpenMath~2.
+
+\end{description}
+
+
+\chapter{Project Management}
+\label{cha:management}
+
+
+\chapter{Workplan}
+\label{cha:workplan}
+
+
+
+\section{Introduction}
+
+The ability to use computers for performing mathematical tasks is
+undoubtedly one of the key factors behind recent progress in science,
+engineering, and economics.  New technology such as the computational
+grid and the semantic web could provide the infrastructure which will
+allow researchers to make even greater leaps forward by enhancing
+collaboration and providing instant access to massive computational
+resources.  On a smaller scale, web service technology holds out the
+promise of better interaction between mathematical applications within
+a particular community.
+
+These visions rely on the ability to move data and mathematical
+objects between pieces of software, and this in turn requires a
+mechanism for describing the meaning of those objects.  This issue was
+addressed in the Fifth Framework OpenMath and OpenMath Thematic
+Network projects, in cooperation with the Worldwide Web Consortium's
+(W3C) Math Working Group.  The result is two complementary
+standards~--- OpenMath and MathML~--- which allow mathematical objects
+to be transmitted and processed by computers in a mathematically
+meaningful way, as well as rendered in the current generation of web
+browsers.
+
+The coordination action focuses on strengthening OpenMath support for
+mathematical communication in the scientific, engineering, and
+economics communities, and on supporting European involvement in the
+newly-chartered W3C Math Interest Group.  The coordination action will
+sponsor activities such as
+
+\begin{enumerate}[(i)]
+\item the enhancement and strengthening of the community of OpenMath
+  users;
+\item further evolution of the OpenMath vocabulary;
+\item tailoring OpenMath for use as a technology within the semantic
+  web;
+\item the development of web and grid services which communicate via
+  OpenMath;
+\item the development of tools for OpenMath developers.
+\end{enumerate}
+
+
+\section{Strengthening the OpenMath Community} 
+\label{community}
+
+
+As a result of the previous projects there is now a broad community of
+people using OpenMath in a variety of ways.  Activities in the areas
+of publishing, e-learning, web services and conventional mathematical
+software are all in progress.  The main aim of this task is to provide
+a basic infrastructure in which these groups can collaborate. This
+includes providing web-based and hands-on training, supporting mailing
+lists and organizing regular workshops.
+
+This task is at the core of the coordination action since it aims at
+strengthening the user base of OpenMath by promoting Content
+Dictionaries (CDs), by dissemination and training, setting up an editorial
+board for CDs, expert consulting, easy to follow and good practice
+guidelines. The OpenMath web site at \texttt{http://www.openmath.org}
+will collect the results produced during this action's lifetime, and
+maintain and enhance the available content as a central resource for
+the OpenMath community. 
+
+
+% I think that it would be good to have a section after the introduction
+% describing the existing OpenMath Community.  This could be structured as
+% follows:
+% - Mathematical Software (NAG, ORCCA/Maple, Axiom, Cocoa ...)
+% - Mathematical Publishing (OMDoc, Algebra Interactive, NAG)
+% - E-Learning (Eindhoven, LeActiveMath, Helsinki)
+% - Semantic Web (MONET, Stilo)
+% - Web Services (MONET, ORCCA/Maple)
+% Obviously the more groups and the wider the coverage of topics the
+% better.  We might want to think about who we could bring "into the fold"
+% as well.
+
+
+
+\subsection{Mathematical Software}
+\label{sec:msw}
+% - Mathematical Software (NAG, ORCCA/Maple, Axiom, Cocoa ...)
+
+The original and primary target user group for OpenMath was the
+community of mathematical users and developers. OpenMath has been
+developed with the intent of supporting easy interfacing of
+mathematical software packages with different yet compatible
+functionalities.
+
+Examples of computer algebra systems that speak OpenMath include
+libraries such as Aldor, general purpose systems such as Maple,
+REDUCE, and AXIOM, special purpose systems such as GAP and CoCoA.
+
+%what to do to strenghten this community 
+The coordination action intends to strengthen this community by adding
+more visibility to the OpenMath compliant software via the web page,
+by collecting and disseminating guidelines for implementors, by active
+support for the upgrade to OpenMath version 2.0, by the development
+and exchange of Content Dictionaries and Phrasebooks.
+
+\subsection{Mathematical Publishing}
+\label{sec:mpubl}
+% - Mathematical Publishing (OMDoc, Algebra Interactive, NAG)
+
+The mathematical publishing community broadly includes publishing
+companies of scientific literature, software companies distributing
+documentation and training material, down to the researchers that
+distribute results and lectures on-line.
+
+Publishers of mathematical books are interested in the inclusion of
+OpenMath in electronic versions of texts because it enhances
+interactivity: with a mouse click, a mathematical object can be
+transferred to a computational program or to visualization software.
+The same reason holds true for OpenMath to be incorporated in other
+publishing activities: the mathematics in published material becomes
+truly interactive whether it is demonstrating usage of third-party
+algorithms or giving hands-on examples to students.
+
+The publishing community can follow the examples set by Algebra
+Interactive~\cite{ida}, by OMDoc activities\cite{OMDOC} and by NAG
+(hyper-textual documentation?).
+
+%what to do to strenghten this community
+The coordination action intends to strengthen this community by
+cooperating with activities such as Nist's Digital Library of
+Mathematical
+Functions\footnote{\url{http://www.openmath.org/cocoon/openmath//meetings/helsinki2004/Miller/slides.pdf}},
+collect tools that simplify inclusion of OpenMath in published
+material, include OpenMath in accepted formats such as Docbook.
+
+
+\subsection{E-Learning}
+\label{sec:e-learn}
+% - E-Learning (Eindhoven, LeActiveMath, Helsinki)
+Novel usage of OpenMath comes from the e-learning community. To
+e-learning developers, OpenMath offers the advantage of being a rather
+simple language for the representation of mathematics that
+standardizes the various notations used in computational software
+systems. Authors can produce electronic lectures in a format that can
+be visualized on the screen, read out automatically or printed. The
+same source may be used to produce handouts of specific lesson-trails
+or dynamically adapted to the user profile. The mathematical
+expressions can be directly fed to a variety of software packages and
+to mathematical web services.
+
+***MK: add the OMDOC usage at CMU? ****
+
+LeActiveMath (IST-507826) is a EU project targeting the development of
+a third generation e-learning system that is Language-Enhanced, User
+Adaptive, and provides Interactive eLearning for Mathematics. OpenMath
+is the internal XML format chosen for the representation of the
+mathematical content.  The Helsinki Learning System provides tools to
+create multilingual adaptive exercise databases that support learning
+in any discipline, currently it covers a typical single variable
+calculus course in mathematics. The prospective EU project WebAlt
+intends to extend the system with OpenMath support.
+
+% WebALT is a European project 
+
+%what to do to strenghten this community
+The coordination action intends to strengthen this community by
+increasing dissemination in relevant conferences (IMACS-ACA,
+technology conference in mathematics), by producing easy-to-follow
+self-contained examples beyond the mathematical field, by enlarging
+the number of authors to scientific and engineering fields.
+
+
+\subsection{Markup Languages}
+\label{sec:ml}
+% -  (MathML, CML)
+
+The user community of markup languages is growing every day and has
+the potential of becoming a large user group for OpenMath, should it
+be adopted as the markup language of mathematics inside scientific,
+engineering and commercial markups (see the recent workshop
+\url{http://scimarkuplang.comm.nsdlib.org/cgi-bin/wiki.pl}).
+
+MathML is a format for describing both the presentation and content of
+mathematical objects, and is designed to support OpenMath as a content
+descriptor.  The W3C Math Working group was recently dissolved, after
+completing an editorial revision of MathML.  A new Math Interest Group
+has been set up by W3C to support users of MathML, and an important
+aspect of this task will be to support European involvement in it.
+One of the members of this Consortium, NAG Ltd, provides one of the
+co-chairs of the Math Interest Group.
+
+CML, chemical markup language and STMML, scientific, technical and
+medical a markup language, RoboML, Robotic Markup Language, are at
+present a few examples of markup languages that only support OpenMath
+indirectly through MathML.  Public awareness will increase by crafting
+examples in these languages which are representable in MathML only by
+resorting to OpenMath Content Dictionaries.
+
+
+
+
+\section{Evolving the OpenMath Vocabulary}
+\label{sec:OCD}
+
+The mathematical knowledge is provided in OpenMath by means of
+symbols, defined in ``OpenMath Content Dictionaries'' (CDs).  OpenMath
+Content Dictionaries make available mathematical definitions and
+symbols in an extensible, machine-readable way.
+
+For OpenMath to become widespread it is important to have a critical
+mass of CDs. This task is centered on identifying and producing CDs
+for those areas of mathematics which are not yet supported by either
+MathML or OpenMath. The mathematical content will be represented in
+CDs and these CDs will be implemented and tested in one or more
+software packages as to demonstrate their usefulness.
+
+Special attention will be devoted to CDs linked to 
+\begin{itemize}
+  
+\item computational software packages which decides to become part of
+  the OpenMath community by for instance implementing an OpenMath
+  \texttt{export} facility (Maple, Axiom, Singular, CoCoA, Macaulay2,
+  Cinderella, Wiris, FORM, \ldots)
+  
+\item projects that use and/or extend OpenMath (LeActiveMath, MONET,
+  Algebra Interactive, \ldots)
+  
+\item computationally relevant fields ranging from NIST digital
+  library of mathematical functions to specific case studies such as
+  the problem of matrix-group recognition (solvable by GAP and Magma)
+  or dynamic geometry (handled by Cinderella and Geometric Discovery
+(see \verb`http://193.146.36.49/discovery`). Special
+  effort will be devoted to producing CDs for fields new to OpenMath
+  such as financial mathematics, physical and engineering
+  applications.
+
+\end{itemize}
+
+
+
+
+
+
+\section{OpenMath inside the Semantic Web}
+
+W3C is developing tools that will support the next generation
+\emph{semantic} web where information is encoded in such a way that
+its meaning is unambiguous and where software agents can process and
+reason with it on behalf of human users.  In the semantic web vision,
+a piece of mathematics is identified with its meaning, the content,
+which must be uniquely understood and unambiguous.  OpenMath has
+always focused on the problem of creating a representation of
+mathematics which is notation independent and carries the mathematical
+content, even before the World Wide Web existed in the way we
+experience it now. With the recent development of technologies, like
+OWL and RDF, meant to underpin a semantic web, OpenMath can play an
+important role as the ontological framework of mathematics. The MONET
+project (IST-2001-34145) produced results which have already started
+to build ontologies that bridge OpenMath to RDF and OWL.  In
+particular, MONET experimented with using OpenMath inside the Web
+Ontology Language so that a software component could make decisions by
+reasoning about OpenMath objects.
+
+This task will continue to investigate the integration of OpenMath
+into the semantic web.  One aspect of this is to allow OpenMath
+objects to be manipulated by semantic web tools, as was done in MONET.
+Another is to develop and further refine the concept of Content
+Dictionaries so that the information contained within them can be
+processed by sophisticated tools such as proof assistants and theorem
+provers.
+
+\section{Web and Grid Services}
+
+
+% Rewritten from MKM proposal
+
+Web Service technology is a fundamental development towards
+distributed collaboration on the computational grid (often called
+\emph{e-science}).  The Web Service paradigm can be used in the
+mathematical context to offer controlled access to literature
+information, e.g. journal articles, or to databases, e.g.  integral
+tables, or to offer access to computational resources, e.g.
+differential equation solvers, theorem provers, statistical packages.
+Evidence from the EU MONET project (IST-2001-34145) suggests that true
+advertisement and discovery of mathematical services requires building
+and maintaining a significant amount of mathematical infrastructure
+beyond that offered by the web service technologies used in industry.
+The MONET framework uses a layered approach for the mathematical parts
+of the service description, the \emph{Mathematical Service Description
+  Language} (MSDL) in which the mathematical fragments of the
+descriptions heavily rely on OpenMath.  The ultimate goal is for a
+user to be able to state requirements specifically (``solve
+$\int_0^\pi{}\sin(x)\,dx$'') or generically (``find me an available
+service which performs definite integration and costs nothing for me
+to use'') and a mathematical broker to find the suitable services that
+match the request.
+
+GENSS (Grid-Enabled Numerical and Symbolic Services), a joint project
+between the Universities of Bath and Cardiff, addresses the
+combination of Grid computing and mathematical Web services, and their
+extension to deliver mathematical problem analysis, and the code and
+the resources to compute the answers, using a common open agent-based
+framework.. The project builds on the work on Mathematical Web
+Services done in the MONET project.
+
+%what to do to strenghten this community
+The coordination action intends to strengthen the usage of OpenMath in
+e-science by building a MONET expert group that developes and
+maintains standards for mathematical service descriptions. To foster
+collaboration, this task will setup a public registry of mathematical
+services along with the necessary Problem and Algorithm Description
+Libraries.  The group will monitor the new web service technologies
+developed by Worldwide Web Consortium and OASIS to ascertain their
+compatibility with the universe of mathematical applications.
+
+
+\section{Tools Development} 
+\label{tools}
+
+This task realizes the need for OpenMath tools with special emphasis
+on tools that facilitate the creation and usage of CDs. Activities
+that develop editors, stylesheets, validation mechanisms, archiving
+and searching facilities fall under this task.
+
+Tools such as the following will receive special attention by the
+coordination action: 
+\begin{itemize}
+\item the OpenMath editor under development within the European
+  project LeActiveMath
+\item the MBase knowledge base for archiving and searching Content
+  Dictionaries symbols, mathematical properties, signatures.
+
+
+\end{itemize}
+
+
+
+\newpage
+%\setcounter{tocdepth}{2}\tableofcontents
+
+\section{NOT PART OF THE PROPOSAL:  Keep In Mind}
+Co-ordination actions are meant to complement other Framework Program
+instruments in contributing toward integrating research at European
+level through well-planned networking or coordination activities.
+
+This means, we need to list to which projects we are adding bells and
+whistles.
+
+GOAL: This document should become the big-picture visionary paper to
+rally the OM crowd around for the next part of the OM initiative.  We
+need a \emph{new vision} that can be sold to the OM crowd (target 1)
+and funding bodies (target 2).
+
+
+\section{NOT PART OF THE PROPOSAL: Work Plan}
+We define a work plan containing a whole range of medium- to long-term
+types of networking or co-ordination activities.
+\begin{itemize}
+\item Performance of studies, analyzes, benchmarking exercises;
+
+test sets for  solving simple problems phrased in OM
+
+
+\item exchange and dissemination of information
+
+\item exchange and dissemination of good practices
+
+exchanging phrasebooks from one package to another.
+
+Sharing OCDs.
+Test each on 3 applications / software systems
+
+\item exchanges of personnel;
+
+offer young researchers for writing phrasebooks;
+
+(small  budget)
+
+
+\item organization of conference, seminar and meetings;
+
+OpenMath workshop series, and satellites for ISSAC or similar, and
+possibly further out, eg economics.
+
+Combine with MathML?
+
+\item setting up of common information systems;
+
+all the data base, knowledge base repository of OCDs
+
+connections with MKM?
+
+Expand and maintain www.openmath.org at NAG
+
+
+\item setting up of expert groups;
+
+one of these: makers of CAS systems, involved in phrasebooks for
+particular sets of OCDs.
+
+$\surd$ editorial board for OCD submission, editing, validation, etc.
+
+\item definition, organization and management of joint or common
+  initiatives.
+
+GAP-MAGMA for matrix recognition project
+
+OpenMath for finance,
+
+$\surd$ for chemistry, 
+
+$\surd$ GRID, 
+
+$\surd$ e-learning (LeAM) 
+
+FORM
+
+planar geometry: Cinderella, Botana, ...
+
+
+
+\end{itemize}
+
+
+\end{document}
+
