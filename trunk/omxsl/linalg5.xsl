@@ -119,7 +119,7 @@
 </xsl:template>
 
 
-<xsl:template match="om:OMS[@cd='linalg5'  and @name='banded']" >
+<xsl:template match="om:OMS[@cd='linalg5'  and (@name='banded' or @name='upper-Hessenberg' or @name='tridiagonal')]" >
  <xsl:choose>
   <xsl:when test="following-sibling::*[1]/*[1][self::om:OMS[@name='vector']] 
            and not(following-sibling::*[1]/*/*[$big-matrix-size + 1])">
@@ -160,6 +160,191 @@
   </xsl:otherwise>
 </xsl:choose>
 </xsl:template>
+
+
+<xsl:template match="om:OMS[@cd='linalg5'  and @name='lower-Hessenberg']" >
+ <xsl:choose>
+  <xsl:when test="following-sibling::*[1]/*[1][self::om:OMS[@name='vector']] 
+           and not(following-sibling::*[1]/*/*[$big-matrix-size + 1])">
+   <xsl:variable name="size">
+    <xsl:for-each select="following-sibling::*[1]/*">
+    <xsl:sort select="count(*)" data-type="number" order="descending"/>
+    <xsl:if test="position()=1">
+      <xsl:value-of select="count(*) - 1"/>
+    </xsl:if>
+    </xsl:for-each>
+   </xsl:variable>
+   <xsl:variable name="first" select="count(following-sibling::*[1]/*[2]/*) -1"/>
+   <xsl:variable name="vec" select="following-sibling::*[1]"/>
+  <mfenced>
+   <mtable>
+   <xsl:for-each select="(//node())[position()&lt;=$size]">
+   <xsl:variable name="y" select="position()"/>
+   <mtr>
+     <xsl:for-each select="(//node())[position()&lt;=$size]">
+     <xsl:variable name="x" select="position()"/>
+    <xsl:variable name="z" 
+  select="$vec[$y &lt;= $x]/*[position()= 2+ $size - $first + $y - $x]/*[position()= 1+ $y]|
+          $vec[$y &gt;  $x]/*[position()= 2+ $size - $first + $y - $x]/*[position()= 1+ $x]"/>
+    <mtd>
+    <xsl:choose>
+    <xsl:when test="$z"><xsl:apply-templates select="$z"/></xsl:when>
+    <xsl:otherwise> <mn>0</mn></xsl:otherwise>
+    </xsl:choose>
+    </mtd>
+   </xsl:for-each>
+   </mtr>
+   </xsl:for-each>
+   </mtable>
+  </mfenced>
+  </xsl:when>
+  <xsl:otherwise>
+    <xsl:call-template name="prefix"/>
+  </xsl:otherwise>
+</xsl:choose>
+</xsl:template>
+
+
+<xsl:template match="om:OMS[@cd='linalg5'  and @name='upper-triangular']" >
+ <xsl:choose>
+  <xsl:when test="following-sibling::*[1]/*[1][self::om:OMS[@name='vector']] 
+           and not(following-sibling::*[1]/*/*[$big-matrix-size + 1])">
+   <xsl:variable name="size" select="count(following-sibling::*[1]/*) - 1"/>
+   <xsl:variable name="vec" select="following-sibling::*[1]"/>
+  <mfenced>
+   <mtable>
+   <xsl:for-each select="(//node())[position()&lt;=$size]">
+   <xsl:variable name="x" select="position()"/>
+   <mtr>
+     <xsl:for-each select="(//node())[position()&lt;=$size]">
+     <xsl:variable name="y" select="position()"/>
+    <xsl:variable name="z" 
+  select="$vec/*[position()= 1 + $x]/*[position()&gt;1][position()= 1 + $y - $x]"/>
+    <mtd>
+    <xsl:choose>
+    <xsl:when test="$z"><xsl:apply-templates select="$z"/></xsl:when>
+    <xsl:otherwise> <mn>0</mn></xsl:otherwise>
+    </xsl:choose>
+    </mtd>
+   </xsl:for-each>
+   </mtr>
+   </xsl:for-each>
+   </mtable>
+  </mfenced>
+  </xsl:when>
+  <xsl:otherwise>
+    <xsl:call-template name="prefix"/>
+  </xsl:otherwise>
+</xsl:choose>
+</xsl:template>
+
+<xsl:template match="om:OMS[@cd='linalg5'  and @name='lower-triangular']" >
+ <xsl:choose>
+  <xsl:when test="following-sibling::*[1]/*[1][self::om:OMS[@name='vector']] 
+           and not(following-sibling::*[1]/*/*[$big-matrix-size + 1])">
+   <xsl:variable name="size" select="count(following-sibling::*[1]/*) - 1"/>
+   <xsl:variable name="vec" select="following-sibling::*[1]"/>
+  <mfenced>
+   <mtable>
+   <xsl:for-each select="(//node())[position()&lt;=$size]">
+   <xsl:variable name="x" select="position()"/>
+   <mtr>
+     <xsl:for-each select="(//node())[position()&lt;=$size]">
+     <xsl:variable name="y" select="position()"/>
+    <xsl:variable name="z" 
+  select="$vec/*[position()= 1 + $x]/*[position()= 1+ $y]"/>
+    <mtd>
+    <xsl:choose>
+    <xsl:when test="$z"><xsl:apply-templates select="$z"/></xsl:when>
+    <xsl:otherwise> <mn>0</mn></xsl:otherwise>
+    </xsl:choose>
+    </mtd>
+   </xsl:for-each>
+   </mtr>
+   </xsl:for-each>
+   </mtable>
+  </mfenced>
+  </xsl:when>
+  <xsl:otherwise>
+    <xsl:call-template name="prefix"/>
+  </xsl:otherwise>
+</xsl:choose>
+</xsl:template>
+
+
+<xsl:template match="om:OMS[@cd='linalg5'  and @name='symmetric']" >
+ <xsl:choose>
+  <xsl:when test="following-sibling::*[1]/*[1][self::om:OMS[@name='vector']] 
+           and not(following-sibling::*[1]/*/*[$big-matrix-size + 1])">
+   <xsl:variable name="size" select="count(following-sibling::*[1]/*) - 1"/>
+   <xsl:variable name="vec" select="following-sibling::*[1]"/>
+  <mfenced>
+   <mtable>
+   <xsl:for-each select="(//node())[position()&lt;=$size]">
+   <xsl:variable name="x" select="position()"/>
+   <mtr>
+     <xsl:for-each select="(//node())[position()&lt;=$size]">
+     <xsl:variable name="y" select="position()"/>
+    <xsl:variable name="z" 
+  select="$vec[$x &lt;= $y]/*[position()= 1 + $x]/*[position()= 2+ $y - $x]|
+          $vec[$x &gt;  $y]/*[position()=  1 + $y]/*[position()= 2+ $x - $y]"/>
+    <mtd>
+    <xsl:choose>
+    <xsl:when test="$z"><xsl:apply-templates select="$z"/></xsl:when>
+    <xsl:otherwise> <mn>0</mn></xsl:otherwise>
+    </xsl:choose>
+    </mtd>
+   </xsl:for-each>
+   </mtr>
+   </xsl:for-each>
+   </mtable>
+  </mfenced>
+  </xsl:when>
+  <xsl:otherwise>
+    <xsl:call-template name="prefix"/>
+  </xsl:otherwise>
+</xsl:choose>
+</xsl:template>
+
+<xsl:template match="om:OMS[@cd='linalg5'  and @name='skew-symmetric']" >
+ <xsl:choose>
+  <xsl:when test="following-sibling::*[1]/*[1][self::om:OMS[@name='vector']] 
+           and not(following-sibling::*[1]/*/*[$big-matrix-size + 1])">
+   <xsl:variable name="size" select="count(following-sibling::*[1]/*) "/>
+   <xsl:variable name="vec" select="following-sibling::*[1]"/>
+  <mfenced>
+   <mtable>
+   <xsl:for-each select="(//node())[position()&lt;=$size]">
+   <xsl:variable name="x" select="position()"/>
+   <mtr>
+     <xsl:for-each select="(//node())[position()&lt;=$size]">
+     <xsl:variable name="y" select="position()"/>
+    <xsl:variable name="z" 
+  select="$vec[$x &lt;= $y]/*[position()= 1 + $x]/*[position()!=1][position()=  $y - $x]|
+          $vec[$x &gt;  $y]/*[position()=  1 + $y]/*[position()!=1][position()=  $x - $y]"/>
+    <mtd>
+    <xsl:choose>
+    <xsl:when test="$z and $y &lt; $x">
+          <mo>-</mo><xsl:apply-templates select="$z"/>
+    </xsl:when>
+    <xsl:when test="$z">
+          <xsl:apply-templates select="$z"/>
+    </xsl:when>
+    <xsl:otherwise> <mn>0</mn></xsl:otherwise>
+    </xsl:choose>
+    </mtd>
+   </xsl:for-each>
+   </mtr>
+   </xsl:for-each>
+   </mtable>
+  </mfenced>
+  </xsl:when>
+  <xsl:otherwise>
+    <xsl:call-template name="prefix"/>
+  </xsl:otherwise>
+</xsl:choose>
+</xsl:template>
+
 
 </xsl:stylesheet>
 
