@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.79 2004/02/12 14:33:49 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.80 2004/02/12 15:27:59 openmath Exp $ -->
 
 
 <!DOCTYPE book 
@@ -647,8 +647,8 @@ display="block"><mi mathvariant="bold">error</mi>
 <title>&OM; Symbol Roles</title>
 
 <para>The <emphasis>role</emphasis> of an &OM; symbol is a restriction
-on how it may be used to construct a compound &OM; object.  In effect
-this decides whether it can be the first child of an &OM; application,
+on how it may be used to construct a compound &OM; object, by which we
+mean whether it can be the first child of an &OM; application,
 binding or error object, or an even-indexed child of an &OM;
 attribution object.  In the latter case it also indicates how the
 application should be interpreted.  Possible roles are:
@@ -677,22 +677,27 @@ as the first child of an &OM; error object.  </para></listitem>
 <listitem><para> <emphasis>application</emphasis> The symbol can appear
 as the first child of an &OM; application object.  </para></listitem>
 
-<listitem><para> <emphasis>constant</emphasis> The symbol cannot appear
-as the first child of a compound &OM; object.  </para></listitem>
+<listitem><para> <emphasis>constant</emphasis> The symbol cannot be
+used to construct an &OM; compound object.
 
+</para></listitem>
 
 </orderedlist>
+
 A symbol cannot have more than one role, and if a role is indicated
-then it cannot be used in a context which requires another role.  This
-means that one cannot use a symbol which binds some variables to
+then it cannot be used to construct a compound &OM; object in a way
+which requires another role (using the definition of construct given
+earlier in this section).
+This means that one cannot use a symbol which binds some variables to
 construct, say, an application object.  However it does not prevent
 the use of that symbol as an <emphasis>argument</emphasis> in an
 application object (where by argument we mean a child with index
-greater than 1).
-</para>
+greater than 1).  </para>
 
 <para> 
-If no role is indicated then the symbol can be used anywhere.
+If no role is indicated then the symbol can be used anywhere.  Note
+that this is not the same as saying that the symbol's role is
+<emphasis>constant</emphasis>.
 </para>
 
 
@@ -1889,7 +1894,7 @@ Note that the syntax NaN  (and also +/- INF) is used to
     dec="1.0e-10"/></systemitem> is a valid floating-point
   representation of the floating point number
   <math><mn>1</mn><mo>&#215;</mo>
-<msup><mn>10</mn><mn>-10</mn></msup></math></para>
+<msup><mn>10</mn><mn>-10</mn></msup></math>.</para>
   
 
 </listitem>
