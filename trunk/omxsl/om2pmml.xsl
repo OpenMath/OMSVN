@@ -28,6 +28,7 @@
 <xsl:include href="logic1.xsl"/>
 <xsl:include href="bigfloat1.xsl"/>
 <xsl:include href="list1.xsl"/>
+<xsl:include href="limit1.xsl"/>
 <xsl:include href="linalg1.xsl"/>
 <xsl:include href="linalg2.xsl"/>
 <xsl:include href="linalg3.xsl"/>
