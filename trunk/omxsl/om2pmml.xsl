@@ -49,4 +49,11 @@
 <!-- -->
 <xsl:include href="omvar.xsl"/>
 <!-- -->
+
+
+<!-- RIACA CDs -->
+<xsl:include href="permgp2.xsl"/>
+<xsl:include href="set3.xsl"/>
+<xsl:include href="integer2.xsl"/>
+
 </xsl:stylesheet>
