@@ -34,8 +34,8 @@
       <text/>
     </element>
   </define>
-  <define name="CDBASE">
-    <element name="CDBASE">
+  <define name="CDBase">
+    <element name="CDBase">
       <text/>
     </element>
   </define>
@@ -94,7 +94,8 @@
         <value>attribution</value>
         <value>semantic-attribution</value>
         <value>error</value>
-        <value>default</value>
+        <value>application</value>
+        <value>constant</value>
       </choice>
     </element>
   </define>
@@ -135,27 +136,37 @@
   </define>
   <define name="CD">
     <element name="CD">
-      <zeroOrMore>
-        <ref name="CDComment"/>
-      </zeroOrMore>
       <interleave>
+        <zeroOrMore>
+          <ref name="CDComment"/>
+        </zeroOrMore>
+        <ref name="Description"/>
         <ref name="CDName"/>
-        <ref name="CDURL"/>
-        <ref name="CDReviewDate"/>
+        <optional>
+          <ref name="CDURL"/>
+        </optional>
+        <optional>
+          <ref name="CDBase"/>
+        </optional>
+        <optional>
+          <ref name="CDReviewDate"/>
+        </optional>
         <ref name="CDDate"/>
         <ref name="CDStatus"/>
-        <ref name="CDUses"/>
+        <optional>
+          <ref name="CDUses"/>
+        </optional>
         <ref name="CDVersion"/>
-        <ref name="CDRevision"/>
+        <optional>
+          <ref name="CDRevision"/>
+        </optional>
       </interleave>
-      <zeroOrMore>
-        <choice>
+      <oneOrMore>
+        <ref name="CDDefinition"/>
+        <optional>
           <ref name="CDComment"/>
-          <ref name="Description"/>
-          <ref name="CDDefinition"/>
-          <ref name="Example"/>
-        </choice>
-      </zeroOrMore>
+        </optional>
+      </oneOrMore>
     </element>
   </define>
 </grammar>

@@ -12,7 +12,7 @@ CDComment = element CDComment { text }
 CDName = element CDName { xsd:NCName }
 CDUses = element CDUses { CDName* }
 CDURL = element CDURL { text }
-CDBASE = element CDBASE { text }
+CDBase = element CDBase { text }
 text-or-om = (text | OMOBJ)*
 CDReviewDate = element CDReviewDate { xsd:date }
 CDDate = element CDDate { xsd:date }
@@ -30,7 +30,8 @@ Role = element Role {
    "attribution" |
    "semantic-attribution" |
    "error" |
-   "default" }
+   "application" |
+   "constant" }
 CMP = element CMP { text }
 FMP = element FMP { OMOBJ }
 # allow embedded OM
@@ -43,11 +44,11 @@ CDDefinition =
   }
 CD =
   element CD {
-    CDComment*,
-    (CDName & CDURL & 
-     CDReviewDate & CDDate & CDStatus & 
-     CDUses & 
-     CDVersion & CDRevision),
-    (CDComment | Description | CDDefinition | Example)*
+    (CDComment* & Description &
+     CDName & CDURL? & CDBase? &
+     CDReviewDate? & CDDate & CDStatus & 
+     CDUses? & 
+     CDVersion & CDRevision?),
+    ( CDDefinition,CDComment? )+
   }
 
