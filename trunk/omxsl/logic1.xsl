@@ -37,6 +37,14 @@
 </xsl:template>
 
 
+<xsl:template match="om:OMS[@cd='logic1' and @name='equivalent']"  >
+  <xsl:param name="p"/>
+  <xsl:call-template name="infix">
+    <xsl:with-param name="mo"><mo>&#x2261;</mo></xsl:with-param>
+    <xsl:with-param name="p" select="$p"/>
+    <xsl:with-param name="this-p" select="2"/>
+  </xsl:call-template>
+</xsl:template>
 
 <xsl:template match="om:OMS[@cd='logic1' and @name='implies']"  >
   <xsl:param name="p"/>
