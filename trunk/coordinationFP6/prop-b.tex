@@ -1,9 +1,7 @@
 \def\cdca{\textsc{DOC}}
 
 
-\newif\iflemma
-\lemmafalse
-
+\makeatletter
 \def\ednoteshape{\sf}
 \newif\ifshowednotes\showednotesfalse
 \def\edshownotes{\showednotestrue}
@@ -31,7 +29,7 @@
 \def\ednotemessage{\ifnum\value{ednote}>0\typeout{}%
 \typeout{There are still \arabic{ednote} EdNotes and Issues to resolve!}%
 \typeout{}\fi}
-
+\makeatother
 %% a bit wider
 %\advance\evensidemargin-.8in
 %\advance\oddsidemargin-.8in
@@ -374,11 +372,13 @@ developed with the intent of supporting easy interfacing of
 mathematical software packages with different yet compatible
 functionalities.
 
-Examples of computer algebra systems that speak OpenMath include
-libraries such as Aldor, general purpose systems such as Maple,
-REDUCE, and AXIOM, special purpose systems such as GAP and CoCoA.
+Examples of computer algebra systems that speak OpenMath include libraries such as
+Aldor, general purpose systems such as Maple, REDUCE, and AXIOM, special purpose
+systems such as GAP and CoCoA. Furthermore, OpenMath has been taken up as an
+communication standard by (semi)-automated theorem provers and program
+verification systems through the OMDoc format in the OMEGA, TPS, OTTER, and PVS.
 
-%what to do to strenghten this community 
+%what to do to strengthen this community 
 The coordination action intends to strengthen this community by adding
 more visibility to the OpenMath compliant software via the web page,
 by collecting and disseminating guidelines for implementors, by active
@@ -403,17 +403,17 @@ publishing activities: the mathematics in published material becomes
 truly interactive whether it is demonstrating usage of third-party
 algorithms or giving hands-on examples to students.
 
-The publishing community can follow the examples set by Algebra
-Interactive~\cite{ida}, by OMDoc activities\cite{OMDOC} and by NAG
-(hyper-textual documentation?).
+The publishing community can follow the examples set by Algebra Interactive (TU
+Eindhoven/Springer), by OMDoc activities (IUB, DFKI, Carnegie Mellon University)
+and by NAG (hyper-textual documentation).
 
-%what to do to strenghten this community
-The coordination action intends to strengthen this community by
-cooperating with activities such as Nist's Digital Library of
-Mathematical
-Functions\footnote{\url{http://www.openmath.org/cocoon/openmath//meetings/helsinki2004/Miller/slides.pdf}},
-collect tools that simplify inclusion of OpenMath in published
-material, include OpenMath in accepted formats such as Docbook.
+%what to do to strengthen this community
+The coordination action intends to strengthen this community by cooperating with
+activities such as the Digital Library of Mathematical Functions (DLMF) developed
+at the National Institute of Standards and Technology (NIST)
+\footnote{\url{http://www.openmath.org/meetings/helsinki2004/Miller/slides.pdf}},
+collect tools that simplify inclusion of OpenMath in published material, include
+OpenMath in accepted formats such as DocBook.
 
 
 \subsection{E-Learning}
@@ -430,8 +430,6 @@ or dynamically adapted to the user profile. The mathematical
 expressions can be directly fed to a variety of software packages and
 to mathematical web services.
 
-***MK: add the OMDOC usage at CMU? ****
-
 LeActiveMath (IST-507826) is a EU project targeting the development of
 a third generation e-learning system that is Language-Enhanced, User
 Adaptive, and provides Interactive eLearning for Mathematics. OpenMath
@@ -442,9 +440,13 @@ in any discipline, currently it covers a typical single variable
 calculus course in mathematics. The prospective EU project WebAlt
 intends to extend the system with OpenMath support.
 
-% WebALT is a European project 
+\begin{newpart}{MiKo: as requested}
+  Outside the EU, the ``Open Learning Initiative'' and the ``Course Capsules
+  Project'' at Carnegie Mellon University have built on the OpenMath/OMDoc format,
+  extending it to courses in Computer Science and Philosophy, adding authoring
+  support in the {\LaTeX}, MS-PowerPoint, and Mathematica workflows.
+\end{newpart}
 
-%what to do to strenghten this community
 The coordination action intends to strengthen this community by
 increasing dissemination in relevant conferences (IMACS-ACA,
 technology conference in mathematics), by producing easy-to-follow
@@ -452,9 +454,7 @@ self-contained examples beyond the mathematical field, by enlarging
 the number of authors to scientific and engineering fields.
 
 
-\subsection{Markup Languages}
-\label{sec:ml}
-% -  (MathML, CML)
+\subsection{Markup Languages}\label{sec:ml}
 
 The user community of markup languages is growing every day and has
 the potential of becoming a large user group for OpenMath, should it
@@ -471,15 +471,11 @@ aspect of this task will be to support European involvement in it.
 One of the members of this Consortium, NAG Ltd, provides one of the
 co-chairs of the Math Interest Group.
 
-CML, chemical markup language and STMML, scientific, technical and
-medical a markup language, RoboML, Robotic Markup Language, are at
-present a few examples of markup languages that only support OpenMath
-indirectly through MathML.  Public awareness will increase by crafting
-examples in these languages which are representable in MathML only by
-resorting to OpenMath Content Dictionaries.
-
-
-
+CML (Chemical Markup Language) and STMML (Scientific, Technical and Medical Markup
+Language), RoboML (Robotic Markup Language), are at present a few examples of
+markup languages that only support OpenMath indirectly through MathML.  Public
+awareness will increase by crafting examples in these languages which are
+representable in MathML only by resorting to OpenMath Content Dictionaries.
 
 \section{Evolving the OpenMath Vocabulary}
 \label{sec:OCD}
@@ -498,31 +494,29 @@ software packages as to demonstrate their usefulness.
 
 Special attention will be devoted to CDs linked to 
 \begin{itemize}
-  
-\item computational software packages which decides to become part of
-  the OpenMath community by for instance implementing an OpenMath
-  \texttt{export} facility (Maple, Axiom, Singular, CoCoA, Macaulay2,
-  Cinderella, Wiris, FORM, \ldots)
-  
-\item projects that use and/or extend OpenMath (LeActiveMath, MONET,
-  Algebra Interactive, \ldots)
-  
-\item computationally relevant fields ranging from NIST digital
-  library of mathematical functions to specific case studies such as
-  the problem of matrix-group recognition (solvable by GAP and Magma)
-  or dynamic geometry (handled by Cinderella and Geometric Discovery
-(see \verb`http://193.146.36.49/discovery`). Special
-  effort will be devoted to producing CDs for fields new to OpenMath
-  such as financial mathematics, physical and engineering
-  applications.
-
+\item computational software packages which decides to become part of the OpenMath
+  community by for instance implementing an OpenMath \texttt{export} facility
+  (Maple, Axiom, Singular, CoCoA, Macaulay2, Cinderella, Wiris, FORM, \ldots)
+\item projects that use and/or extend OpenMath (LeActiveMath, MONET, Algebra
+  Interactive, \ldots)
+\item computationally relevant fields ranging from the Digital Library of
+  Mathematical Functions at NIST to specific case studies such as the problem of
+  matrix-group recognition (solvable by GAP and Magma) or dynamic geometry
+  (handled by Cinderella and Geometric Discovery (see
+  {\url{http://193.146.36.49/discovery}}). Special effort will be devoted to
+  producing CDs for fields new to OpenMath such as financial mathematics, physical
+  and engineering applications.
 \end{itemize}
-
-
-
-
-
-
+\begin{newpart}{MiKo: to say that the preconditions have changed favorably}
+  With the OpenMath2 standard accomplished in the OpenMathTN, we have generalized
+  the content dictionary format, so that content dictionaries e.g. in OMDoc form
+  can now be self-documenting entities that also develop the necessary
+  mathematical material. In this way, e.g. the DLMF can serve as a web-accessible
+  tome of information about special functions as well as their content dictionary,
+  which fixes the semantics of OpenMath objects referencing them. This removes the
+  need for separate content dictionaries and alleviates a major knowledge
+  management hassle and roadblock to content dictionary adaption.
+\end{newpart}
 \section{OpenMath inside the Semantic Web}
 
 W3C is developing tools that will support the next generation
@@ -585,9 +579,9 @@ the resources to compute the answers, using a common open agent-based
 framework.. The project builds on the work on Mathematical Web
 Services done in the MONET project.
 
-%what to do to strenghten this community
+%what to do to strengthen this community
 The coordination action intends to strengthen the usage of OpenMath in
-e-science by building a MONET expert group that developes and
+e-science by building a MONET expert group that develops and
 maintains standards for mathematical service descriptions. To foster
 collaboration, this task will setup a public registry of mathematical
 services along with the necessary Problem and Algorithm Description
@@ -607,12 +601,21 @@ and searching facilities fall under this task.
 Tools such as the following will receive special attention by the
 coordination action: 
 \begin{itemize}
-\item the OpenMath editor under development within the European
-  project LeActiveMath
+\item the OpenMath/OMDoc editor under development within the European project
+  LeActiveMath
 \item the MBase knowledge base for archiving and searching Content
   Dictionaries symbols, mathematical properties, signatures.
-
-
+\begin{newpart}{MiKo: some more, need even more}
+\item The editor CPoint (OpenMath/OMDoc in MS PowerPoint) under development at
+  Universty Bremen
+\item The OpenMath/OMDoc extension for the GNU {\TeX}macs editor under development
+  at Saarland University.
+\item The S{\TeX}/{\LaTeX}ML workflow for semantic annotation and conversion of
+  {\LaTeX} to OpenMath under development at NIST and IUB.
+\item second-generation presentation systems for OpenMath: in particular modular
+  formats for including notation information into content dictionaries and their
+  integration into OpenMath presentation- and translation systems.
+\end{newpart}
 \end{itemize}
 
 
@@ -706,3 +709,9 @@ planar geometry: Cinderella, Botana, ...
 
 \end{document}
 
+
+% LocalWords:  mega Calculemus ednote EdNote newpart BegNP EndNP EdNotes pt tel
+% LocalWords:  OpenMathTN WebALT LeActivemath MathBroker GENSS Stilo amc CDs MK
+% LocalWords:  ORCCA Eindhoven LeActiveMath Aldor CoCoA TPS PVS Phrasebooks CMU
+% LocalWords:  NIST DocBook IST eLearning WebAlt IMACS ACA CML co STMML RoboML
+% LocalWords:  Wiris MKM MSDL OM phrasebooks OCDs eg CAS OCD LeAM Botana
