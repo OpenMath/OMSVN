@@ -371,7 +371,7 @@ value is the endomap which maps x in D to P2(P1(x)).
   </Example>
 </CDDefinition>
 
-<CDDefinition> <Name>permutation</Name> <Description> This symbols is
+<CDDefinition> <Name>permutation</Name> <Description> This symbol is
   an n-ary constructor whose arguments are cycles of length at least 2
   with the property that all entries of all cycles are mutually
   distinct.
@@ -381,6 +381,8 @@ entries of the cycles to X. The map is defined as follows: if E occurs
 as an entry of a cycle, then the permutation maps E to the entry
 following E in the same cycle if it exists and to the first entry in
 the same cycle otherwise.
+
+When applied to an element y outside X, the constructed permutation is considered to fix y.
 
 </Description>
 		<CMP>
@@ -1023,14 +1025,12 @@ the point x under the permutation p.
 <OMA><OMS cd="relation1" name="eq"/>
      <OMA><OMS cd="permutation1" name="action"/>
           <OMA><OMS cd="permutation1" name="permutation"/>
-	       <OMA><OMS cd="permutation1" name="permutation"/>
 		    <OMA><OMS cd="permutation1" name="cycle"/>
 		         <OMI>1</OMI><OMI> 5 </OMI><OMI> 4 </OMI>
                     </OMA>
 	            <OMA><OMS cd="permutation1" name="cycle"/>
 		         <OMI> 6 </OMI>	<OMI> 7 </OMI>
                     </OMA>
-	       </OMA>
           </OMA>
           <OMI>1</OMI>
      </OMA>
@@ -1040,6 +1040,39 @@ the point x under the permutation p.
 </Example>
 
 </CDDefinition>
+
+
+
+<CDDefinition>
+                <Name>permutationsn</Name>
+		<Description>
+		This symbol is a unary function. Its argument should
+		be a positive integer. When applied to argument n,
+		the resulting value is the set of all permutations of the set
+                {1,..., n}.
+		</Description>
+		<Example>
+		Both sides of the following equality represent the two
+                permutations on {1,2}.
+			<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0">
+                   	<OMA>   <OMS cd="relation1" name="eq"/>
+				<OMA>   <OMS cd="permutation1" name="permutationsn"/>
+					<OMI>2</OMI>
+				</OMA>
+				<OMA>   <OMS cd="set1" name="set"/>
+                                        <OMA><OMS cd="permutation1" name="permutation"/>
+                                        </OMA>
+                                        <OMA><OMS cd="permutation1" name="permutation"/>
+                                             <OMA><OMS cd="permutation1" name="cycle"/>
+                                                  <OMI>1</OMI><OMI>2</OMI>
+                                             </OMA>
+                                        </OMA>
+                                </OMA>
+			</OMA>
+			</OMOBJ>
+			
+		</Example>
+	</CDDefinition>
 
 
 

@@ -13,96 +13,9 @@
    </Description>
 
 
-<CDComment>
-    Polynomial rings constructors
-</CDComment>
-
-
-    <CDDefinition>
-       <Name> poly_ring </Name>
-       <Description> 
-         The constructor of polynomial ring. The first argument is a ring
-         (the ring of the coefficients), the second is the number 
-         of variables as an integer.
-       </Description>
-    </CDDefinition>
 
 <CDComment>
-     Definitions related to orderings
-</CDComment>
-
-
-    <CDDefinition>
-       <Name> ordering </Name>
-       <Description> 
-      This symbol is a constructor with one argument.
-          The argument indicates an ordering of the monomials in a
-          polynomial or list of polynomials. The value of this argument
-          should be one of the constructors specifying ordering. 
-       </Description>
-    </CDDefinition>
-
-<CDComment>
-          The following orders on monomials have their standards definitions, 
-         see, for example, "Ideals, Varieties and Algorithms", D. Cox, 
-         J.B. Little and D. O'Shea, Springer Verlag.
-</CDComment>
-
-    <CDDefinition>
-       <Name> lexicographic </Name>
-       <Description> 
-          The lexicographic ordering of monomials.
-       </Description>
-    </CDDefinition>
-
-    <CDDefinition>
-       <Name> reverse_lexicographic </Name>
-       <Description> 
-          The reverse lexicographic ordering of monomials
-       </Description>
-    </CDDefinition>
-
-    <CDDefinition>
-       <Name> graded_lexicographic </Name>
-       <Description> 
-          Total degree order, graded with the lexicographic ordering.
-       </Description>
-    </CDDefinition>
-
-    <CDDefinition>
-       <Name> graded_reverse_lexicographic </Name>
-       <Description> 
-          Total degree order, graded with the reverse lexicographic ordering.
-       </Description>
-    </CDDefinition>
-
-    <CDDefinition>
-       <Name> elimination </Name>
-       <Description> 
-          This is an ordering, which is partially in terms of one
-          ordering, and partially in terms of another.
-          First argument is a number of variables.
-          Second is ordering to apply on the first so many variables.
-          Third is an ordering on the rest, to be used to break ties.
-       </Description>
-       <Example>
-         <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0">
-           <OMA>
-             <OMS name="elimination" cd="polygb1"/>
-             <OMI> 1 </OMI>
-             <OMS name="lexicographic" cd="polygb1"/>
-             <OMS name="graded_reverse_lexicographic" cd="polygb1"/>
-           </OMA>
-         </OMOBJ>
-       </Example>
-    </CDDefinition>
-
-<CDComment>
-  We need a few more orderings... 
-</CDComment>
-
-<CDComment>
-     Definition of some other constructors
+     Definition of some constructors
 </CDComment>
 
    <CDDefinition> <Name> groebner_basis </Name> <Description> The
@@ -168,6 +81,27 @@ be represented as a polynomial expression.  </Description>
 
 </CDDefinition>
 
+   <CDDefinition>
+       <Name> groebnered </Name>
+       <Description> 
+          The constructor for a Groebner basis (reduced, minimal). The first
+          argument is an ordering, the second is the Groebner Basis itself
+          (with respect to the ordering) that should be represented as a DMPL.
+       </Description>
+    </CDDefinition>
+
+    <CDDefinition>
+       <Name> completely_reduced </Name>
+       <Description> 
+          This attribute, attached to a groebnered object, says 'true' if
+          the base is fully reduced, i.e. no monomial is divisible by the
+          leading monomial of any other polynomial.
+       </Description>
+    </CDDefinition>
+
+
+
+
     <CDDefinition>
        <Name> reduce </Name>
        <Description>
@@ -211,7 +145,7 @@ be represented as a polynomial expression.  </Description>
                      <OMV name="x"/><OMV name="y"/>
                 </OMA>
                 <OMA><OMS name="ordering" cd="polygb1"/>
-                     <OMS name="Lexicographic" cd="polygb1"/>
+                     <OMS name="lexicographic" cd="polygb1"/>
                 </OMA>
            </OMA>
 </OMOBJ>

@@ -47,119 +47,101 @@ The rational function field Q(a,b) in the indeterminates a, b is
 <CDDefinition>
 <Name> fraction_field </Name>
 <Description>
-This is a unary function. Its argument should be a domain (as in CD ring3).
+This is a unary function. Its argument should be a domain (as in CD ring4).
 It denotes the fraction field of the domain.
 </Description>
 
+<Example> The rationals equals fraction_field(Integers)
 
-</CDDefinition>
-
-
-
-<CDDefinition>
-<Name> C </Name>
-<Description>
-This is a symbol representing the field of complex numbers.
-</Description>
-
-
-<CMP>
-The field of complex numbers is (C, +,0,-,*,1,/), where +,-,*,/ are the standard
-arithmetic operations.
-</CMP>
-
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0">
-  <OMA><OMS cd="relation1" name="eq"/>
-       <OMS cd="field3" name="C"/>
-       <OMA><OMS cd="field1" name="field"/>
-                 <OMS cd="setname1" name="C"/>
-                 <OMS cd="arith1" name="plus"/>
-                 <OMI>0</OMI>
-                 <OMS cd="arith1" name="minus"/>
-                 <OMS cd="arith1" name="times"/>
-                 <OMI>1</OMI>
-                 <OMS cd="arith1" name="divide"/>
-       </OMA>
-
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+<OMA>
+  <OMS cd="relation1" name="eq"/>
+  <OMS cd="fieldname1" name="Q"/>
+  <OMA>
+    <OMS cd="setname2" name="fraction_field"/>
+    <OMS cd="ringname1" name="Z"/>
   </OMA>
+</OMA>
 </OMOBJ>
-</FMP>
+</Example>
+
 </CDDefinition>
 
 
 <CDDefinition>
-<Name> R </Name>
+<Name> field_by_poly</Name>
+
 <Description>
-This is a symbol representing the field of real numbers.
+This symbol is a binary function whose first argument is a univariate
+polynomial ring R over a field, and whose second argument is an irreducible
+polynomial f in this polynomial ring R. So, when applied to R and f, the
+function has value the quotient ring R/(f).
 </Description>
 
 
-<CMP>
-The field of real numbers is (R, +,0,-,*,1,/), where +,-,*,/ are the standard
-arithmetic operations.
-</CMP>
+<Example>
 
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0">
-  <OMA><OMS cd="relation1" name="eq"/>
-       <OMS cd="field3" name="R"/>
-       <OMA><OMS cd="field1" name="field"/>
-                 <OMS cd="setname1" name="R"/>
-                 <OMS cd="arith1" name="plus"/>
-                 <OMI>0</OMI>
-                 <OMS cd="arith1" name="minus"/>
-                 <OMS cd="arith1" name="times"/>
-                 <OMI>1</OMI>
-                 <OMS cd="arith1" name="divide"/>
-       </OMA>
+The finite field GF(2)[X]/(X^2+X+1) is represented by
 
-  </OMA>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+<OMA><OMA><OMS cd="field3" name="field_by_poly"/>
+          <OMA id="pr"><OMS cd="polyd1" name="poly_ring_d_named"/>
+               <OMA><OMS cd="fieldname1" name="GFp"/>
+                    <OMI>2</OMI>
+               </OMA>
+               <OMV name="X"/>
+          </OMA>
+          <OMA><OMS cd="polyd1" name="DMP"/>
+               <OMR href="#pr"/>
+               <OMA><OMS cd="polyd1" name="SDMP"/>
+                    <OMA><OMS cd="polyd1" name="term"/>
+                         <OMI>1</OMI><OMI>0</OMI>
+                    </OMA>
+                    <OMA><OMS cd="polyd1" name="term"/>
+                         <OMI>1</OMI><OMI>1</OMI>
+                    </OMA>
+                    <OMA><OMS cd="polyd1" name="term"/>
+                         <OMI>1</OMI><OMI>2</OMI>
+                    </OMA>
+               </OMA>
+          </OMA>
+     </OMA> 
+</OMA>
 </OMOBJ>
-</FMP>
-</CDDefinition>
 
 
-<CDDefinition>
-<Name> Q </Name>
-<Description>
-This is a symbol representing the field of rational numbers.
-</Description>
+or by
 
 
-<CMP>
-The field of rational numbers is (Q, +,0,-,*,1,/), where +,-,*,/ are the standard
-arithmetic operations.
-</CMP>
-
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0">
-  <OMA><OMS cd="relation1" name="eq"/>
-       <OMS cd="field3" name="Q"/>
-       <OMA><OMS cd="field1" name="field"/>
-                 <OMS cd="setname1" name="Q"/>
-                 <OMS cd="arith1" name="plus"/>
-                 <OMI>0</OMI>
-                 <OMS cd="arith1" name="minus"/>
-                 <OMS cd="arith1" name="times"/>
-                 <OMI>1</OMI>
-                 <OMS cd="arith1" name="divide"/>
-       </OMA>
-
-  </OMA>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+     <OMA><OMS cd="field3" name="field_by_poly"/>
+          <OMA id="prn"><OMS cd="polyd1" name="poly_ring_d_named"/>
+               <OMA><OMS cd="fieldname1" name="GFp"/>
+                    <OMI>2</OMI>
+               </OMA>
+               <OMV name="X"/>
+          </OMA>
+          <OMA><OMS cd="ring1" name="expression"/>
+               <OMR href="#prn"/>
+               <OMA><OMS cd="arith1" name="plus"/>
+                    <OMI>1</OMI>
+                    <OMV name="X"/>
+                    <OMA><OMS cd="arith1" name="power"/>
+                         <OMV name="X"/><OMI>2</OMI>
+                    </OMA>
+               </OMA>
+          </OMA>
+     </OMA> 
 </OMOBJ>
-</FMP>
+
+
+
+
+</Example>
+
+
+
 </CDDefinition>
-
-
-<CDDefinition>
-<Name>automorphism_group</Name>
-<Description>
-This is a function with a single argument which must be a field.
-It refers to the automorphism group of its argument.
-</Description>
-</CDDefinition>
-
 
 
 
