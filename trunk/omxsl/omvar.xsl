@@ -22,6 +22,15 @@
    <mi>&#x3C0;</mi>
 </xsl:template>
 
+
+
+
+
+<xsl:template match="om:OMV[@name='Gamma']"  >
+   <mi>&#x393;</mi>
+</xsl:template>
+
+
 <xsl:template
 match="om:OMV[translate(substring(@name,string-length(@name)),'0123456789','0000000000')='0']"
 >
