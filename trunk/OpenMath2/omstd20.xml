@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.58 2003/11/12 23:53:56 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.59 2003/11/20 12:50:53 openmath Exp $ -->
 
 <!--
  PUBLIC "-//OASIS//DTD DocBook XML V4.2CR1//EN"
@@ -475,9 +475,10 @@ typesetting tool.</para>
 <para>Reshuffled the sections on &OM; Objects</para>
 </sidebar>
 <para>In this chapter we provide a self-contained description of &OM;
-objects. We first do so at an informal level (<xref
-linkend="sec_omin"/>) and next by means of an abstract grammar
-description (<xref linkend="sec_omabs"/>).</para>
+objects. We first do so by means of an abstract grammar
+description (<xref linkend="sec_omabs"/>)
+and then give a more informal description (<xref
+linkend="sec_omin"/>).</para>
 
 
 <section id="sec_omabs">
@@ -608,7 +609,7 @@ Attribution</para></sidebar> </listitem> <listitem><para><phrase>(iii)</phrase> 
 <phrase revisionflag="added">
 <math><mi>A</mi></math> is an &OM; object, and
   <math><msub><mi>A</mi><mn>1</mn></msub></math>,
-  <phrase>&#8230;</phrase>, <math><msub><mi>A</mi><mi>n</mi></msub></math>, <math><mo>(</mo><mi>n</mi><mo>&gt;</mo><mn>0</mn><mo>)</mo></math> are &OM; objects or &OM; foreign objects, then
+  <phrase>&#8230;</phrase>, <math><msub><mi>A</mi><mi>n</mi></msub></math> <math><mo>(</mo><mi>n</mi><mo>&gt;</mo><mn>0</mn><mo>)</mo></math> are &OM; objects or &OM; foreign objects, then
 </phrase>
 
   <math display="block"><mi mathvariant="bold">attribution</mi>
@@ -1832,10 +1833,10 @@ encoded as <systemitem>&lt;OMI> 10 &lt;/OMI> </systemitem> or as
  cd="transc" name="sin"/></systemitem></para>
 </blockquote>
 <blockquote revisionflag="added"><para><systemitem>&lt;OMS
- cdbase="http://www.openmath.org/cd" cd="transc" name="sin"/></systemitem></para>
+ cdbase="http://www.openmath.org/cd" cd="transc1" name="sin"/></systemitem></para>
 </blockquote>
   is the encoding of the symbol named <systemitem>sin</systemitem> in
-  the Content Dictionary named <systemitem>transc</systemitem>,
+  the Content Dictionary named <systemitem>transc1</systemitem>,
 <phrase revisionflag="added">which is part of the collection
 maintained by the &OM; Society</phrase>.</para>
 
@@ -2255,7 +2256,7 @@ element. Even though it could be given the interpretation of the continued fract
  </mfrac>
 </math> this would correspond to an infinite tree of applications,
 which is not admitted by the structure of &OM; objects described
-in section 3.</para>
+in <xref linkend="cha_obj"/>.</para>
 
 <para revisionflag="added">Note that the acyclicity constraints is not restricted to such simple
 cases, as the following example shows.</para>
@@ -3396,7 +3397,7 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
 <listitem><para>are encoded in two ways depending on whether
   <phrase revisionflag="deleted">the string contains <acronym>utf-16</acronym> characters or not. If the
   string contains only 8 bit characters</phrase>,
-  <phrase revisionflag="added">The string is encoded in
+  <phrase revisionflag="added">the string is encoded in
   <acronym>utf-16</acronym> or <acronym>iso-859-1</acronym>
   (<acronym>latin-1</acronym>).
   In the case of <acronym>latin-1</acronym></phrase> it is encoded as the one
@@ -3412,7 +3413,7 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
   <phrase revisionflag="deleted">characters</phrase><phrase
   revisionflag="added"><acronym>utf-16</acronym> units, which will be the
   number of characters unless characters in the higher planes of
-  Unicode are used.</phrase> as a byte (if the long flag was not set) or a four byte
+  Unicode are used,</phrase> as a byte (if the long flag was not set) or a four byte
   integer (in network byte order), followed by the characters
   (<acronym>utf-16</acronym> encoded  Unicode).</para>
 
@@ -3713,7 +3714,7 @@ binary encoding with sharing.</para>
   the next position of the array. Whenever a reference of the form 
   <systemitem>[30] [_]</systemitem> is
   encountered, the array is queried for the value at <systemitem>[_]</systemitem>
-  and analogously for or <systemitem>[30+128] {_}</systemitem>. Note that the
+  and analogously for <systemitem>[30+128] {_}</systemitem>. Note that the
   application can decide to copy the value or share it among subterms as long as
   it respects the identity conditions given by the tree-nature of the &OM;
   objects.  The implementation must take care to ensure that no variables
@@ -4422,7 +4423,7 @@ status of the Content Dictionary.
   
 </listitem>
 </varlistentry>
-<varlistentry revisionflag="added"><term><systemitem>CDCDBASE</systemitem></term><listitem><para>The
+<varlistentry revisionflag="added"><term><systemitem>CDBASE</systemitem></term><listitem><para>The
 CD base of the CD.
 
 </para>
@@ -4832,13 +4833,13 @@ CDGroup G.</para>
 
 
 <section id="sec_dtd_cdg">
-<title>The DTD Specification of CDGroups</title>
+<title>The Specification of CDGroups</title>
 
 
 <para>CDGroups are &exml; documents, hence  a valid  CDGroup
  should 
 <itemizedlist>
-<listitem><para>be valid according to the DTD given in
+<listitem><para>be valid according to the <phrase revisionflag="deleted">DTD</phrase><phrase revisionflag="added">schema</phrase> given in
   <xref linkend="fig_cdgroup.dtd"/>,</para>
 </listitem>
 <listitem><para>adhere to the extra conditions on the content of the elements
@@ -4854,7 +4855,7 @@ CDs, identified by name and optionally version number and URL.</para>
 
 <figure id="fig_cdgroup.dtd">
     <title><phrase revisionflag="deleted">DTD</phrase><phrase
-    revisionflag="added">Relax NG</phrase>Specification of CDGroups</title>
+    revisionflag="added">Relax NG</phrase> Specification of CDGroups</title>
 <literallayout>
 &cdgrouprnc;
 </literallayout>
@@ -4869,8 +4870,8 @@ CDs, identified by name and optionally version number and URL.</para>
 <sidebar revision="1999/08/26" author="OC"><para>Added PCDATA for CDGroup</para></sidebar>
 
 <para>The notion of being a valid CDGroup implies that the following
-requirements on the content of the elements described by the DTD in
-<xref linkend="fig_omcdsig.dtd"/> are also met.</para>
+requirements on the content of the elements described by the <phrase revisionflag="deleted">DTD</phrase><phrase revisionflag="added">schema</phrase> given in
+  <xref linkend="sect_sigschema"/> are also met.</para>
 
 
 <variablelist>
@@ -4930,7 +4931,7 @@ mathematical area of the CDGroup.</para>
 </varlistentry>
 <varlistentry><term><systemitem>CDVersion</systemitem></term><listitem><para>The
   text occurring in the <systemitem>CDVersion</systemitem> element
-  identifies which version of the Content Dictionary isto be taken as
+  identifies which version of the Content Dictionary is to be taken as
   member of the CDGroup. This element is optional. In case it is
   missing, the latest version is the one included in the CDGroup.  For
   the syntactical requirements, see <systemitem>CDVersion</systemitem>
@@ -6710,7 +6711,7 @@ or, using the Relax NG compact syntax:
     objects.
   </para>
   
-  <section>
+  <section id="chgformal">
     <title>Changes to the Formal Definition of Objects</title>
     
     <para>Additional features of abstract objects have been
@@ -6774,7 +6775,7 @@ or, using the Relax NG compact syntax:
     
   </section>
   
-  <section>
+  <section id="chgenc">
     <title>Changes to the encodings</title>
     
     <para>The &OM; version 2 standard still mandantes two encodings:
@@ -6810,7 +6811,7 @@ or, using the Relax NG compact syntax:
   </section>
   
   
-  <section>
+  <section id="chgcd">
     <title>Changes to Content Dictionaries</title>
     
     <itemizedlist>

@@ -168,9 +168,11 @@ relative to the OpenMath 1.0 document...</p>
 
 
 <xsl:template match="emphasis">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <i>
 <xsl:apply-templates/>
 </i>
+</xsl:if>
 </xsl:template>
 
 <xsl:template match="acronym">
@@ -328,16 +330,21 @@ relative to the OpenMath 1.0 document...</p>
 
 
 <xsl:template match="systemitem">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <small><code><xsl:apply-templates/></code></small>
+</xsl:if>
 </xsl:template>
 
 
 <xsl:template match="blockquote">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <blockquote><xsl:apply-templates/></blockquote>
+</xsl:if>
 </xsl:template>
 
 
 <xsl:template match="figure">
+<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <div class="figure">
 <a name="{@id}" id="{@id}"/>
 <xsl:apply-templates/>
@@ -345,6 +352,7 @@ relative to the OpenMath 1.0 document...</p>
   Figure <xsl:apply-templates mode="number" select="."/>&#160;<xsl:apply-templates select="title/node()"/>
 </div>
 </div>
+</xsl:if>
 </xsl:template>
 
 
@@ -491,7 +499,13 @@ changelog entry here
 
 <xsl:template match="toc">
 <h2>Contents</h2>
-<xsl:for-each select="/book/chapter|/book/bibliography|/book/appendix">
+<xsl:for-each
+select="/book/chapter|/book/bibliography|/book/appendix">
+<xsl:if test="not(@id)">
+<xsl:message>
+No id on <xsl:value-of select="title"/>
+</xsl:message>
+</xsl:if>
 <a href="#{@id}">
 <xsl:apply-templates select="."
 mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
