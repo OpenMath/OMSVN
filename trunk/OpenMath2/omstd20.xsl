@@ -210,12 +210,15 @@ relative to the OpenMath 1.0 document...</p>
 
 <xsl:template match="chapter">
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
+<div>
+<xsl:apply-templates select="@revisionflag"/>
 <h2 name="{@id}" id="{@id}">
   Chapter&#160;<xsl:apply-templates mode="number" select="."/>
   <br/>
   <xsl:apply-templates select="title/node()"/>
 </h2>
 <xsl:apply-templates/>
+</div>
 </xsl:if>
 </xsl:template>
 

@@ -187,9 +187,14 @@ relative to the OpenMath 1.0 document\ldots
 
 <xsl:template match="chapter">
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
-\chapter£<xsl:apply-templates select="title/node()"
+<xsl:text>£</xsl:text><xsl:apply-templates select="@revisionflag"/>
+<xsl:text>&#10;&#10;</xsl:text>
+\chapter<xsl:if test="@revisionflag='deleted'">*</xsl:if>£<xsl:apply-templates select="title/node()"
            />ß\label£<xsl:value-of select="@id"/>ß
 <xsl:apply-templates/>
+<xsl:text>
+
+ß</xsl:text>
 </xsl:if>
 </xsl:template>
 
