@@ -82,6 +82,17 @@
   <mi>
     <xsl:value-of select="@name"/>
   </mi>
+  <xsl:if test="parent::om:OMA and not(preceding-sibling::*)">
+  <mo><!-- AF --></mo>
+  <mrow>
+  <mo>(</mo>
+  <xsl:for-each select="following-sibling::*">
+   <xsl:apply-templates select="."/>
+   <xsl:if test="position() &lt; last()"><mo>,</mo></xsl:if>
+  </xsl:for-each>
+  <mo>)</mo>
+  </mrow>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="om:OMSTR">
