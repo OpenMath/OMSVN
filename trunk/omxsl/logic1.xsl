@@ -1,7 +1,4 @@
-<!DOCTYPE xsl:stylesheet [
-<!ENTITY % om2pmml.ent SYSTEM "om2pmml.ent" >
-%om2pmml.ent;
-]>
+
 
 <xsl:stylesheet 
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -13,7 +10,7 @@
 <xsl:template match="om:OMS[@cd='logic1' and @name='and']"  >
   <xsl:param name="p"/>
   <xsl:call-template name="infix">
-    <xsl:with-param name="mo"><mo>^</mo></xsl:with-param>
+    <xsl:with-param name="mo"><mo>&#x2227;</mo></xsl:with-param>
     <xsl:with-param name="p" select="$p"/>
     <xsl:with-param name="this-p" select="1"/>
   </xsl:call-template>
@@ -24,7 +21,7 @@
 <xsl:template match="om:OMS[@cd='logic1' and @name='or']"  >
   <xsl:param name="p"/>
   <xsl:call-template name="infix">
-    <xsl:with-param name="mo"><mo>&or;</mo></xsl:with-param>
+    <xsl:with-param name="mo"><mo>&#x2228;</mo></xsl:with-param>
     <xsl:with-param name="p" select="$p"/>
     <xsl:with-param name="this-p" select="2"/>
   </xsl:call-template>
@@ -44,7 +41,7 @@
 <xsl:template match="om:OMS[@cd='logic1' and @name='implies']"  >
   <xsl:param name="p"/>
   <xsl:call-template name="binary">
-    <xsl:with-param name="mo"><mo>&Implies;</mo></xsl:with-param>
+    <xsl:with-param name="mo"><mo>&#x21D2;</mo></xsl:with-param>
     <xsl:with-param name="p" select="$p"/>
     <xsl:with-param name="this-p" select="0"/>
   </xsl:call-template>
@@ -52,7 +49,7 @@
 
 
 <xsl:template match="om:OMS[@cd='logic1' and @name='not']" >
-<mo>&not;</mo>
+<mo>&#xAC;</mo>
 <xsl:apply-templates select="following-sibling::*">
 <xsl:with-param name="p" select="5"/>
 </xsl:apply-templates>

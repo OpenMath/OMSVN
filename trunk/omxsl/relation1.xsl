@@ -1,7 +1,4 @@
-<!DOCTYPE xsl:stylesheet [
-<!ENTITY % om2pmml.ent SYSTEM "om2pmml.ent" >
-%om2pmml.ent;
-]>
+
 
 <xsl:stylesheet 
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -22,7 +19,7 @@
 <xsl:template match="om:OMS[@cd='relation1' and @name='neq']"  >
   <xsl:param name="p"/>
   <xsl:call-template name="infix">
-    <xsl:with-param name="mo"><mo>&ne;</mo></xsl:with-param>
+    <xsl:with-param name="mo"><mo>&#x2260;</mo></xsl:with-param>
     <xsl:with-param name="p" select="$p"/>
     <xsl:with-param name="this-p" select="1"/>
   </xsl:call-template>

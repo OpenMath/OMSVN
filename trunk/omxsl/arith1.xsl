@@ -1,7 +1,4 @@
-<!DOCTYPE xsl:stylesheet [
-<!ENTITY % om2pmml.ent SYSTEM "om2pmml.ent" >
-%om2pmml.ent;
-]>
+
 
 <xsl:stylesheet 
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -33,7 +30,7 @@
    <xsl:choose>
    <xsl:when test="position() &gt; 1 and 
              self::om:OMA/*[1][self::om:OMS[@name='unary_minus']]">
-    <mo>&minus;</mo>
+    <mo>-</mo>
    <xsl:apply-templates select="*[2]">
      <xsl:with-param name="p" select="1"/>
    </xsl:apply-templates>
@@ -42,7 +39,7 @@
              self::om:OMA[*[position()=1 and last()=3]
                          [self::om:OMS and @name='times']]/
               *[2][self::om:OMA]/*[1][self::om:OMS[@name='unary_minus']]">
-    <mo>&minus;</mo>
+    <mo>-</mo>
    <mrow>
    <xsl:apply-templates select="*[2]/*[2]">
    <xsl:with-param name="p" select="1"/>
@@ -78,8 +75,8 @@
     <mo>
     <xsl:choose>
     <xsl:when test="following-sibling::*[not(self::om:OMI or self::om:OMF)]"
-    >&InvisibleTimes;</xsl:when>
-    <xsl:otherwise>&times;</xsl:otherwise>
+    ><!-- IT --></xsl:when>
+    <xsl:otherwise>&#xD7;</xsl:otherwise>
     </xsl:choose>
     </mo>
    </xsl:with-param>
@@ -112,7 +109,7 @@
 <xsl:template match="om:OMS[@cd='arith1' and @name='minus']"  >
   <xsl:param name="p"/>
   <xsl:call-template name="infix">
-    <xsl:with-param name="mo"><mo>&minus;</mo></xsl:with-param>
+    <xsl:with-param name="mo"><mo>-</mo></xsl:with-param>
     <xsl:with-param name="p" select="$p"/>
     <xsl:with-param name="this-p" select="1"/>
   </xsl:call-template>
@@ -123,7 +120,7 @@
 <xsl:template match="om:OMS[@cd='arith1' and @name='plusminus']"  >
   <xsl:param name="p"/>
   <xsl:call-template name="infix">
-    <xsl:with-param name="mo"><mo>&PlusMinus;</mo></xsl:with-param>
+    <xsl:with-param name="mo"><mo>&#xB1;</mo></xsl:with-param>
     <xsl:with-param name="p" select="$p"/>
     <xsl:with-param name="this-p" select="1"/>
   </xsl:call-template>
@@ -131,7 +128,7 @@
 
 <xsl:template match="om:OMS[@cd='arith1' and @name='unary_minus']"  >
    <mrow>
-   <mo>&minus;</mo>
+   <mo>-</mo>
    <xsl:apply-templates select="following-sibling::*[1]"/>
    </mrow>
 </xsl:template>
@@ -237,8 +234,8 @@ else put range of summation at bottom
    <munderover>
    <mo>
    <xsl:choose>
-    <xsl:when test="@name='sum'">&sum;</xsl:when>
-    <xsl:otherwise>&prod;</xsl:otherwise>
+    <xsl:when test="@name='sum'">&#x2211;</xsl:when>
+    <xsl:otherwise>&#x220F;</xsl:otherwise>
    </xsl:choose>
    </mo>
    <mrow>
@@ -253,8 +250,8 @@ else put range of summation at bottom
    <munder>
    <mo>
    <xsl:choose>
-    <xsl:when test="@name='sum'">&sum;</xsl:when>
-    <xsl:otherwise>&prod;</xsl:otherwise>
+    <xsl:when test="@name='sum'">&#x2211;</xsl:when>
+    <xsl:otherwise>&#x220F;</xsl:otherwise>
    </xsl:choose>
    </mo>
    <mrow>
@@ -281,8 +278,8 @@ else put range of summation at bottom
    <munderover>
    <mo>
    <xsl:choose>
-    <xsl:when test="@name='sum'">&sum;</xsl:when>
-    <xsl:otherwise>&prod;</xsl:otherwise>
+    <xsl:when test="@name='sum'">&#x2211;</xsl:when>
+    <xsl:otherwise>&#x220F;</xsl:otherwise>
    </xsl:choose>
    </mo>
    <xsl:apply-templates select="following-sibling::om:OMA/*[2]"/>
@@ -293,8 +290,8 @@ else put range of summation at bottom
    <msub>
    <mo>
    <xsl:choose>
-    <xsl:when test="@name='sum'">&sum;</xsl:when>
-    <xsl:otherwise>&prod;</xsl:otherwise>
+    <xsl:when test="@name='sum'">&#x2211;</xsl:when>
+    <xsl:otherwise>&#x220F;</xsl:otherwise>
    </xsl:choose>
    </mo>
    <xsl:apply-templates select="following-sibling::*[1]"/>

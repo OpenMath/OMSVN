@@ -1,7 +1,4 @@
-<!DOCTYPE xsl:stylesheet [
-<!ENTITY % om2pmml.ent SYSTEM "om2pmml.ent" >
-%om2pmml.ent;
-]>
+
 
 <xsl:stylesheet 
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -29,8 +26,8 @@
   <xsl:apply-templates select="following-sibling::*[1]"/>
 <mo>+</mo>
   <mrow>
-  <mi>&ImaginaryI;</mi>
-  <mo>&InvisibleTimes;</mo>
+  <mi>i</mi>
+  <mo><!-- IT --></mo>
   <xsl:apply-templates select="following-sibling::*[2]"/>
   </mrow>
 </mrow>
@@ -39,34 +36,34 @@
 <xsl:template match="om:OMS[@cd='nums1' and @name='complex_polar']"  >
 <mrow>
   <xsl:apply-templates select="following-sibling::*[1]"/>
-<mo>&times;</mo>
+<mo>&#xD7;</mo>
   <msup>
-  <mi>&ExponentialE;</mi>
+  <mi>e</mi>
   <xsl:apply-templates select="following-sibling::*[2]"/>
   </msup>
 </mrow>
 </xsl:template>
 
 <xsl:template match="om:OMS[@cd='nums1' and @name='infinity']"  >
-<mi>&infin;</mi>
+<mi>&#x221E;</mi>
 </xsl:template>
 
 
 <xsl:template match="om:OMS[@cd='nums1' and @name='e']"  >
-<mi>&ExponentialE;</mi>
+<mi>e</mi>
 </xsl:template>
 
 <xsl:template match="om:OMS[@cd='nums1' and @name='i']"  >
-<mi>&ImaginaryI;</mi>
+<mi>i</mi>
 </xsl:template>
 
 
 <xsl:template match="om:OMS[@cd='nums1' and @name='pi']"  >
-<mi>&pi;</mi>
+<mi>&#x3C0;</mi>
 </xsl:template>
 
 <xsl:template match="om:OMS[@cd='nums1' and @name='gamma']"  >
-<mi>&gamma;</mi>
+<mi>&#x3B3;</mi>
 </xsl:template>
 
 <xsl:template match="om:OMS[@cd='nums1' and @name='NaN']"  >

@@ -1,7 +1,4 @@
-<!DOCTYPE xsl:stylesheet [
-<!ENTITY % om2pmml.ent SYSTEM "om2pmml.ent" >
-%om2pmml.ent;
-]>
+
 
 <xsl:stylesheet 
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -13,9 +10,9 @@
 
 <xsl:include href="arith1.xsl"/>
 <xsl:include href="arith2.xsl"/>
+ <xsl:include href="transc1.xsl"/>
 <!-- default OK
- <xsl:include href="transc11.xsl"/>
- <xsl:include href="minmax.xsl"/>
+ <xsl:include href="minmax1.xsl"/>
 -->
 <xsl:include href="alg1.xsl"/>
 <xsl:include href="integer1.xsl"/>
@@ -26,7 +23,7 @@
 <xsl:include href="fns1.xsl"/>
 <xsl:include href="quant1.xsl"/>
 <xsl:include href="logic1.xsl"/>
-<xsl:include href="bigfloat.xsl"/>
+<xsl:include href="bigfloat1.xsl"/>
 <xsl:include href="list1.xsl"/>
 <xsl:include href="linalg2.xsl"/>
 <xsl:include href="set1.xsl"/>
@@ -36,7 +33,6 @@
 <xsl:include href="omvar.xsl"/>
 <!-- -->
 <!-- -->
-<xsl:include href="verbxml.xsl"/>
 <!-- -->
 <xsl:include href="fns2.xsl"/>
 
@@ -110,7 +106,7 @@
   <mrow>
   <mi><xsl:value-of select="@name"/></mi>
   <xsl:if test="parent::om:OMA and not(preceding-sibling::*)">
-  <mo>&ApplyFunction;</mo>
+  <mo><!-- AF --></mo>
   <mrow>
   <mo>(</mo>
   <xsl:for-each select="following-sibling::*">

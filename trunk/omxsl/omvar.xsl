@@ -1,7 +1,4 @@
-<!DOCTYPE xsl:stylesheet [
-<!ENTITY % om2pmml.ent SYSTEM "om2pmml.ent" >
-%om2pmml.ent;
-]>
+
 
 <xsl:stylesheet 
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -14,15 +11,15 @@
 
 
 <xsl:template match="om:OMV[@name='theta']"  >
-   <mi>&theta;</mi>
+   <mi>&#x3B8;</mi>
 </xsl:template>
 
-<xsl:template match="om:OMV[@name='theta']"  >
-   <mi>&lambda;</mi>
+<xsl:template match="om:OMV[@name='lambda']"  >
+   <mi>&#x3BB;</mi>
 </xsl:template>
 
-<xsl:template match="om:OMV[@name='theta']"  >
-   <mi>&pi;</mi>
+<xsl:template match="om:OMV[@name='pi']"  >
+   <mi>&#x3C0;</mi>
 </xsl:template>
 
 </xsl:stylesheet>

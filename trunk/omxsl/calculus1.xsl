@@ -1,7 +1,4 @@
-<!DOCTYPE xsl:stylesheet [
-<!ENTITY % om2pmml.ent SYSTEM "om2pmml.ent" >
-%om2pmml.ent;
-]>
+
 
 <xsl:stylesheet 
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -53,7 +50,7 @@ subscript, and just typeset the body of the lambda expression,
 zap the lambda.
 -->
    <xsl:when test="following-sibling::*[1]/self::om:OMBIND/*[1][self::om:OMS[@name='lambda']]">
-    <mo>&int;</mo>
+    <mo>&#x222B;</mo>
     <mrow>
      <xsl:apply-templates select="following-sibling::om:OMBIND/*[3]"/>
     </mrow>
@@ -63,7 +60,7 @@ zap the lambda.
     </mrow>
    </xsl:when>
    <xsl:otherwise>
-   <mo>&int;</mo>
+   <mo>&#x222B;</mo>
    <mrow>
      <mo>(</mo>
      <xsl:apply-templates select="following-sibling::*[1]"/>
@@ -94,14 +91,14 @@ else put range of summation at bottom
 -->
    <xsl:when test="following-sibling::*[1]/self::om:OMA/*[1][self::om:OMS[@name='interval']]">
    <munderover>
-     <mo>&int;</mo>
+     <mo>&#x222B;</mo>
    <xsl:apply-templates select="following-sibling::om:OMA/*[2]"/>
    <xsl:apply-templates select="following-sibling::om:OMA/*[3]"/>
    </munderover>
    </xsl:when>
    <xsl:otherwise>
    <msub>
-   <mo>&int;</mo>
+   <mo>&#x222B;</mo>
    <xsl:apply-templates select="following-sibling::*[1]"/>
    </msub>
    </xsl:otherwise>
@@ -126,14 +123,14 @@ else put range of summation at bottom
 -->
    <xsl:when test="following-sibling::*[1]/self::om:OMA/*[1][self::om:OMS[@name='interval']]">
    <munderover>
-   <mo>&int;</mo>
+   <mo>&#x222B;</mo>
    <xsl:apply-templates select="following-sibling::om:OMA/*[2]"/>
    <xsl:apply-templates select="following-sibling::om:OMA/*[3]"/>
    </munderover>
    </xsl:when>
    <xsl:otherwise>
    <msub>
-   <mo>&int;</mo>
+   <mo>&#x222B;</mo>
    <xsl:apply-templates select="following-sibling::*[1]"/>
    </msub>
    </xsl:otherwise>
@@ -154,7 +151,7 @@ If the body is a lambda expression, use d^2/dx/dy otherwise use D_1,2
    <xsl:when test="following-sibling::*[2]/self::om:OMBIND/*[1][self::om:OMS[@name='lambda']]">
     <mfrac>
      <msup>
-       <mi>&PartialD;</mi>
+       <mi>&#x2202;</mi>
        <mn><xsl:value-of select="count(following-sibling::*[1]/om:OMI)"/></mn>
      </msup>
     <mrow>
@@ -169,7 +166,7 @@ If the body is a lambda expression, use d^2/dx/dy otherwise use D_1,2
     </mrow>
    </xsl:when>
    <xsl:otherwise>
-   <mo>&PartialD;</mo>
+   <mo>&#x2202;</mo>
    <mrow>
      <mo>(</mo>
      <xsl:apply-templates select="following-sibling::*[1]"/>
@@ -192,7 +189,7 @@ If the body is a lambda expression, use d^2/dx/dy otherwise use D_1,2
    </xsl:when>
    <xsl:otherwise>
      <mrow>
-     <mi>&PartialD;</mi>
+     <mi>&#x2202;</mi>
      <xsl:choose>
        <xsl:when test="$n=1">
          <xsl:apply-templates select="$v/*[position()=current()]"/>

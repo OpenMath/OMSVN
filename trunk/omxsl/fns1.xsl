@@ -1,7 +1,4 @@
-<!DOCTYPE xsl:stylesheet [
-<!ENTITY % om2pmml.ent SYSTEM "om2pmml.ent" >
-%om2pmml.ent;
-]>
+
 
 <xsl:stylesheet 
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -16,7 +13,7 @@
 <xsl:template match="om:OMS[@cd='fns1' and @name='identity']" >
   <mrow>
   <mi>Id</mi>
-  <mo>&ApplyFunction;</mo>
+  <mo><!-- AF --></mo>
   <mo>(</mo>
   <xsl:apply-templates select="following-sibling::*[1]"/>
   <mo>)</mo>
@@ -44,7 +41,7 @@
 
 <xsl:template match="om:OMS[@cd='fns1' and @name='lambda']" mode="ombind">
  <mrow>
-  <mo>&lambda;</mo>
+  <mo>&#x3BB;</mo>
   <xsl:apply-templates select="following-sibling::OMBVAR[1]"/>
   <mo>.</mo>
   <xsl:apply-templates select="following-sibling::*[2]"/>

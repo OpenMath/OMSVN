@@ -13,7 +13,7 @@
 
 <xsl:template match="/">
 <xsl:processing-instruction name="xml-stylesheet"
-> type="text/xsl"  href="../queries/xsl/pmathml.xsl"</xsl:processing-instruction>
+> type="text/xsl"  href="../omxsl/pmathml.xsl"</xsl:processing-instruction>
 
 <html>
 <head><title>Test file</title></head>

@@ -1,7 +1,4 @@
-<!DOCTYPE xsl:stylesheet [
-<!ENTITY % om2pmml.ent SYSTEM "om2pmml.ent" >
-%om2pmml.ent;
-]>
+
 
 
 <xsl:stylesheet 
@@ -15,14 +12,14 @@
 
 
 <xsl:template match="om:OMS[(@cd='set1' or @cd='multiset1') and @name='emptyset']" >
-  <mi>&empty;</mi>
+  <mi>&#x2205;</mi>
 </xsl:template>
 
 
 <xsl:template match="om:OMS[(@cd='set1' or @cd='multiset1') and @name='in']" >
   <xsl:param name="p"/>
   <xsl:call-template name="binary">
-    <xsl:with-param name="mo"><mo>&in;</mo></xsl:with-param>
+    <xsl:with-param name="mo"><mo>&#x2208;</mo></xsl:with-param>
     <xsl:with-param name="p" select="$p"/>
     <xsl:with-param name="this-p" select="2"/>
   </xsl:call-template>
@@ -77,7 +74,7 @@
 <xsl:template match="om:OMS[(@cd='set1' or @cd='multiset1') and @name='notin']" >
   <xsl:param name="p"/>
   <xsl:call-template name="binary">
-    <xsl:with-param name="mo"><mo>&notin;</mo></xsl:with-param>
+    <xsl:with-param name="mo"><mo>&#x2209;</mo></xsl:with-param>
     <xsl:with-param name="p" select="$p"/>
     <xsl:with-param name="this-p" select="2"/>
   </xsl:call-template>
