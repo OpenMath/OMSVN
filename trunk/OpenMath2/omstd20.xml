@@ -6283,7 +6283,7 @@ be present here.
 
 
 <appendix id="app_relaxcompact" revisionflag="added">
-  <title>OpenMath Schema in Relax NG Compact Syntax (Non-Normative)</title>
+  <title>&OM; Schema in Relax NG Compact Syntax (Non-Normative)</title>
   
   <para>This is the Relax NG Schema described in <xref linkend="sec_xml"/>
     expressed according to the Relax NG Compact Syntax described in
@@ -6294,8 +6294,69 @@ be present here.
   </literallayout>
 </appendix>
 
+<appendix id="app_relaxrestricted" revisionflag="added">
+  <title>Restricting the &OM; Schema (Non-Normative)</title>
+  
+  <para> Relax NG allows one to state constraints such as <emphasis>
+if the cd attribute of OMS is arith1 then the name attribute must be
+one of lcm, gcd, plus etc.</emphasis> Thus it is easy to use a
+stylesheet to generate for any given CD, a Relax NG schema that
+expresses the constraint that an <systemitem>OMS</systemitem> naming
+that CD must only use symbols defined in the specified dictionary.
+Similarly it is possible to use the <emphasis>role</emphasis>
+information contained in the CD to restrict which symbols can be the
+first child of an <systemitem>OMBIND</systemitem> or the odd-numbered
+children of an <systemitem>OMATP</systemitem>. 
+</para>
+
+<para> The modularisation mechanisms of Relax NG then allow one to
+include these schema for all the CDs that you want to allow and, for
+example, to replace the regexp-based validation of the
+<systemitem>OMS</systemitem> attributes by explicit lists of allowed
+CD names, and for each CD Name, a list of allowed symbol names.
+</para>
+
+<para>
+For example, a CD-specific Relax NG Schema for the arith1 CD shown in
+<xref linkend="arith1.ocd"/> would look (using the Relax NG compact
+syntax) like:
+<literallayout>
+cd.attlist.OMS |= 
+  attribute cd {string "arith1" },
+  attribute name {
+    string "lcm" |
+    string "gcd" |
+    string "plus" |
+    string "unary_minus" |
+    string "minus" |
+    string "times" |
+    string "divide" |
+    string "power" |
+    string "abs" |
+    string "root" |
+    string "sum" |
+    string "product" }
+</literallayout>
+</para>
+
+<para> To build a schema that allows only symbols from arith1 we just
+need to include the &OM; schema described in <xref
+linkend="app_relaxcompact"/>, override the attribute declarations for
+OMS, and then include the schema for arith1.  For example:
+<literallayout>
+include "openmath.rnc" {
+ attlist.OMS = cd.attlist.OMS}
+
+include "arith1.rnc"
+</literallayout>
+Using this approach it is possible to include as many files as
+required.
+</para>
+
+</appendix>
+
 <appendix id="app_xsd" revisionflag="added">
-  <title>OpenMath Schema in XSD Syntax (Non-Normative)</title>
+  <title>&OM; Schema in XSD Syntax (Non-Normative)</title>
   
   <para>This is an XSD Schema generated from the Relax NG Schema described in 
         <xref linkend="sec_xml"/>.
@@ -6306,7 +6367,7 @@ be present here.
 </appendix>
 
 <appendix id="app_dtd" revisionflag="added">
-  <title>OpenMath DTD (Non-Normative)</title>
+  <title>&OM; DTD (Non-Normative)</title>
   
   <para>This is a DTD generated from the Relax NG Schema described in 
         <xref linkend="sec_xml"/>.  Note that we cannot express the 
@@ -6354,7 +6415,7 @@ In addition to their <emphasis>name</emphasis> and
 <emphasis>uristub</emphasis> property.  This can be used to
 disambiguate between two CDs which are produced independently but have
 the same name, and can also be used to produce a canonical URI for any
-OpenMath symbol for use in frameworks such as RDFS or MathML which
+&OM; symbol for use in frameworks such as RDFS or MathML which
 need one.
 	  </para>
 	</listitem>
