@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.119 2004/04/06 16:16:05 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.120 2004/04/07 04:46:01 openmath Exp $ -->
 
 
 <!DOCTYPE book 
@@ -2370,7 +2370,7 @@ The &OM; element represented by this <systemitem>OMR</systemitem>
 they dominate. An <systemitem>OMR</systemitem> element dominates its target,
 i.e. the element that carries the <systemitem>id</systemitem> attribute pointed to
 by the <systemitem>xref</systemitem> attribute. For instance in the representation
-in Figure <xref linkend="fig_shared_vs_unshared"/>, the
+in <xref linkend="fig_shared_vs_unshared"/>, the
 <systemitem>OMA</systemitem> element with <systemitem>id="t1"</systemitem> and
 also the second <systemitem>OMR</systemitem> dominate the
 <systemitem>OMA</systemitem> element with <systemitem>id="t11"</systemitem>.
@@ -2423,17 +2423,20 @@ element. Even though it could be given the interpretation of the continued fract
 which is not admitted by the structure of &OM; objects described
 in <xref linkend="cha_obj"/>.</para>
 
-<para revisionflag="added">Note that the acyclicity constraints is not restricted to such simple
-cases, as the following example shows.</para>
+<para revisionflag="added">Note that the acyclicity constraints is not restricted
+to such simple cases, as the example in <xref linkend="fig_sharing_between"/>
+shows.</para>
 
-<para><literallayout><![CDATA[<OMOBJ version="2.0">                   <OMOBJ version="2.0">
+<figure id="fig_sharing_between">
+    <title>Sharing between &OM; objects (A cycle of order <math><mn>2</mn></math>.</title>
+<literallayout><![CDATA[<OMOBJ version="2.0">                   <OMOBJ version="2.0">
   <OMA id="bar">                         <OMA id="baz">
     <OMS cd="arith1" name="plus"/>         <OMS cd="arith1" name="plus"/>
     <OMI>1</OMI>                           <OMI>1</OMI>
     <OMR xref="baz"/>                      <OMR xref="bar"/>
   </OMA>                                 </OMA>
 </OMOBJ>                               </OMOBJ>]]>
-</literallayout></para>
+</literallayout></figure>
 
 <para revisionflag="added"> Here, the <systemitem>OMA</systemitem> with
 <systemitem>id="bar"</systemitem> dominates its third child, the
@@ -3124,7 +3127,7 @@ implementations).</para>
             <entry> [12]
               [<math><mi>n</mi></math>]
               [<math><mi>m</mi></math>]
-              uri:<math><mi>n</mi></math>
+              bytes:<math><mn>2</mn><mn>m</mn></math>
               bytes:<math><mi>m</mi></math>
             </entry>
             <entry revisionflag="added">|</entry>
@@ -3132,7 +3135,7 @@ implementations).</para>
               [<math><mi>n</mi></math>]
               [<math><mi>m</mi></math>]
               [<math><mi>k</mi></math>]
-              uri:<math><mi>n</mi></math>
+              bytes:<math><mn>2</mn><mn>m</mn></math>
               bytes:<math><mi>m</mi></math>
               id:<math><mi>k</mi></math>
             </entry>
@@ -3144,7 +3147,7 @@ implementations).</para>
             <entry> [12+32]
               [<math><mi>n</mi></math>]
               [<math><mi>m</mi></math>]
-              uri:<math><mi>n</mi></math>
+              bytes:<math><mn>2</mn><mn>m</mn></math>
               bytes:<math><mi>m</mi></math>
             </entry>
             <entry/>
@@ -3157,7 +3160,7 @@ implementations).</para>
             <entry> [12+128]
               {<math><mi>n</mi></math>}
               {<math><mi>m</mi></math>}
-              uri:<math><mi>n</mi></math>
+              bytes:<math><mn>2</mn><mn>m</mn></math>
               bytes:<math><mi>m</mi></math>
             </entry>
             <entry revisionflag="added">|</entry>
@@ -3165,7 +3168,7 @@ implementations).</para>
               {<math><mi>n</mi></math>}
               {<math><mi>m</mi></math>}
               {<math><mi>k</mi></math>}
-              uri:<math><mi>n</mi></math>
+              bytes:<math><mn>2</mn><mn>m</mn></math>
               bytes:<math><mi>m</mi></math>
               id:<math><mi>k</mi></math>
             </entry>
@@ -3177,8 +3180,8 @@ implementations).</para>
             <entry> [12+32+128]
               {<math><mi>n</mi></math>}
               {<math><mi>m</mi></math>}
+              bytes:<math><mn>2</mn><mn>m</mn></math>
               bytes:<math><mi>n</mi></math>
-              uri:<math><mi>m</mi></math>
             </entry>
             <entry/>
             <entry/>
@@ -3337,7 +3340,7 @@ implementations).</para>
     </informaltable>
   </figure>
   
-  <para>Figure <xref linkend="fig_bin-enc"/> gives a grammar for the binary
+  <para><xref linkend="fig_bin-enc"/> gives a grammar for the binary
     encoding <phrase revisionflag="added"> (<quote>start</quote> is the start
       symbol).</phrase>.</para>
   <para>The following conventions are used in this section:
@@ -3390,7 +3393,7 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
   encoded &OM; object are longer than 255 bytes or characters. The sharing flag
   indicates that the encoded object may be shared in another (part of an) object
   somewhere else (see <xref linkend="sec_sharing_references"/>). Note that if the sharing
-  flag is set (in the right column of the grammar in Figure
+  flag is set (in the right column of the grammar in 
   <xref linkend="fig_bin-enc"/>, then the encoding includes a representation of
   an identifier that serves as the target of a reference (internal with token
   identifier 30 or external with token identifier 31).</phrase>
@@ -3498,7 +3501,7 @@ identifier is stored in the first 6 bits (1 to 6). The long flag is the eighth b
 	    <row><entry>2</entry><entry>begin final big integer tag</entry></row>
 	    <row><entry>42</entry><entry>68 digits in packet</entry></row>
 	    <row><entry>2B</entry><entry>sign + (disregarded)</entry></row>
-	    <row><entry>...</entry><entry> the 68 digits as charactres</entry></row>
+	    <row><entry>...</entry><entry> the 68 digits as characters</entry></row>
 	  </tbody>
 	</tgroup>
       </informaltable>
@@ -3618,11 +3621,13 @@ the Content Dictionary name, the symbol name, and the CD base.</phrase>
       number <math><mn>m</mn></math> of bytes used to encode the foreign
       object. <math><mn>n</mn></math> and <math><mn>m</mn></math> are represented as a
       byte (if the long flag was not set) or a four byte integer (in network byte
-      order). These numbers are followed by an <math><mn>n</mn></math>-byte sequence
+      order). These numbers are followed by an <math><mn>n</mn></math>-character
+   sequence
       representation of the encoding attribute and an <math><mn>m</mn></math> byte
       sequence of bytes encoding the foreign object in their normal order (we call these
-      the payload bytes).</para>
-    <para revisionflag="added">Sequences of foreign object
+      the payload bytes). The encoding attribute is encoded in UTF-16, so it is
+      represented by a <math><mn>2</mn><mn>m</mn></math> byte sequence.</para>
+    <para>Sequences of foreign object
       packets are assembled into foreign objects by concatenating the payload bytes in
       the packets in sequence order.</para>
   </listitem>
@@ -3920,8 +3925,8 @@ references). This integer references the
 where the 
 shared flag is set) in the current object (counted in the order they are generated
 in the encoding). For example <systemitem>Ox7E Ox01</systemitem> references the
-second shared sub-object. Figure <xref linkend="fig_bin-enc2"/> shows the binary
-encoding of the object in figure <xref linkend="fig_shared_vs_unshared"/>
+second shared sub-object. <xref linkend="fig_bin-enc2"/> shows the binary
+encoding of the object in <xref linkend="fig_shared_vs_unshared"/>
 above.</para>
 
 <figure id="fig_bin-enc2">
@@ -3979,10 +3984,10 @@ for greater depths). The shared &exml; encoding only uses
 <math><mn>32</mn><mi>d</mi><mo>+</mo><mn>29</mn></math> bytes, which is more space
 efficient starting at depth 9.</para>
 
-<para>Note that in conversion from the &exml; to the
+<para>Note that in the conversion from the &exml; to the
 binary encoding the identifiers on the
 objects are not preserved. Moreover, even though the &exml; encoding
-allows references across objects, as in figure ???, the binary
+allows references across objects, as in <xref linkend="fig_sharing_between"/>, the binary
 encoding does not (the binary encoding has no notion of a multi-object
 collection, while in the &exml; encoding this would naturally correspond to
 e.g.&#160;the embedding of multiple &OM; objects into a single &exml;
@@ -7283,3 +7288,66 @@ Types</title>
 </book>
 
 
+<!--  LocalWords:  omstd openmath Exp docbook customisations sidebar xs CDSignatures
+ LocalWords:  ATTLIST mrow mn mi mo msub msup mtext mspace mfrac mfenced mml om
+ LocalWords:  xmlns revisionflag PCDATA mathcolor mathvariant linebreak ref ns
+ LocalWords:  processContents attributeGroup elementFormDefault targetNamespace
+ LocalWords:  maxOccurs minOccurs complexType schemaLocation simpleType anyName
+ LocalWords:  simpleContent datatypeLibrary zeroOrMore oneOrMore nsName param
+ LocalWords:  exml exadigits lcalpha ucalpha dpc regxp zsp longrightarrow omrnc
+ LocalWords:  varnamechar rnc cdrnc omcd sigrnc omcdsig cdgrouprnc omcdgroup cd
+ LocalWords:  omxsd xsd omdtd dtd omrng rng cdrng sigrng metacd ocd arith sts
+ LocalWords:  errorcd bookinfo releaseinfo firstname Buswell othername Carlisle
+ LocalWords:  Gaetano para xref linkend cha generatable ulink url toc sec hist
+ LocalWords:  formalised Abbott Leeuwen Strotmann Dalmas omsoc int fileref obj
+ LocalWords:  enco addnfiles CDGroup phrasebooks Phrasebook behaviour omabs gt
+ LocalWords:  omin labelled itemizedlist listitem bignums ieee Unicode cdbase
+ LocalWords:  Bytearray em orderedlist lowerroman sl variablelist varlistentry
+ LocalWords:  Bytearrays bytearray bytearrays systemitem blockquote Za varname
+ LocalWords:  phrasebook automorphism lt OMD colour informaltable tgroup cols
+ LocalWords:  tbody NameStartChar NameChar xC xD xF FF FFF FEF xFDCF xFDF xFFFD
+ LocalWords:  xEFFFF xB formalpara IETF octets PosixLetter RDF rdf transc iso
+ LocalWords:  literallayout mathml csymbol definitionURL ascii autodetection NG
+ LocalWords:  ssec app relaxrestricted OMB objdtd embeddable OMATP omel OMSTR
+ LocalWords:  OMF OME omvar dec xlmns xlink linearised utf apos quot omf omstr
+ LocalWords:  linearisation cr nl cdname symbname fpdec fphex ABCDEF cdnameatt
+ LocalWords:  symbnameatt varnameatt fpdecatt fphexatt OMATTRx omatp attrs desc
+ LocalWords:  NCName xA eE INF NaN DDB CDFD BDBB NaNs rfc fns ecc OMFOREIGN Ai
+ LocalWords:  aritherror DivisionByZero unhandled OMERROR ltOMA cos OMR href BB
+ LocalWords:  nestedap foo baz bvars orig xmldoc lang tt XLink enc uri vars xf
+ LocalWords:  attrpairs attrvar xxxx endian latin thead impl func FMPs YYYY DD
+ LocalWords:  sigfiles xsl cdgroups cdapprove comp pcdata cdcd EP buswell nh Li
+ LocalWords:  howgrave CDComment CDName CDURL CDUses inhel CDReviewDate omobj
+ LocalWords:  CDStatus omobjectdtd PartOf FunctorClass CDDate CDVersion CDBase
+ LocalWords:  CDRevision ftn addfiles CDGroups sigpcdata CDSComment CDSStatus
+ LocalWords:  CDSReviewDate CDSreviewDate CDSignature sigex cfg sigschema cdg
+ LocalWords:  mapsto nassoc AbelianSemiGroup cdgroup cdgpcdata CDGroupName val
+ LocalWords:  CDGroupVersion CDGroupRevision CDGroupURL CDGroupDescription conc
+ LocalWords:  CDGroupMember compl recognise cdfiles alg bigfloat linalg minmax
+ LocalWords:  mathmltypes Multset nums quant setname orientated dist veccalc CB
+ LocalWords:  altenc lcm gcd modularisation regexp abs attlist whats chgformal
+ LocalWords:  RDFS chgenc chgcd biblioentry Std pubdate misc bibliomisc Geddes
+ LocalWords:  Datatypes Gonnet publishername WATCOM Lisser LiE MuPAD Benno isbn
+ LocalWords:  Fuchssteiner Chichester Teubner NuPRL Bromley Cleaveland Cremer
+ LocalWords:  Knoblock Mendler Panangaden Sasaki PDFbook TeXBook TeXbook PPML
+ LocalWords:  Ppml Projet MetaFontBook MetaFont Spivak AMSTeXBook AmSTeX Rhode
+ LocalWords:  PVM Geist Beguelin Dongarra Jiang Manchek Sunderam Janusz Kowalik
+ LocalWords:  CoCoA Capani Niesi Robbiano Giovini InProceedings Bibliomiscs cme
+ LocalWords:  Visigenic Yael Pingali Vavasis Zippel hol Melham harrison fais QG
+ LocalWords:  Christoffer Gefwert Pekka Orponen Juoko Sepp nen Suomen Teko ry
+ LocalWords:  lyseuran julkaisuja TECHREPORT Pembroke Thery Seger Voronkov WP
+ LocalWords:  Ballarin Levelt FroCoS Stephane Andr Gr bner Winkler Moller ller
+ LocalWords:  Manocha Multipolynomial Arnon McIsaac Waldspurger CaminoReal Ga
+ LocalWords:  Bibliomiscbook booktitle Sausse TechReport tano Diaz Vorkoetter
+ LocalWords:  LEGOmanual Luo Pollack luo PhdThesis Shand vrmlspec Carey Marrin
+ LocalWords:  Modelling IEC vrmlarm VRML eaispec Turku Centre TUCS Lemmink TR
+ LocalWords:  isenkatu Dunstan Kelsey Linton Gloor Rostock Laurent Kirchner REC
+ LocalWords:  PolyMath Stilo OMurl Website Seppala Elbers Borenstein Yergeau SV
+ LocalWords:  Alis JTC CDROM Eds ida Cuypers Sterk CaprottiCohen Trento Jebelan
+ LocalWords:  Kriftner Vasaru Jebelean Maui Zhao Analytica Kapur Devitt Nico tm
+ LocalWords:  Poppelier Neil Soiffer Sutor CTCOQMATH CtCoqmath Pottier Bertoli
+ LocalWords:  Plattsburgh Jung Ch sk Callaghan Finin Labrou Mayfield Yannis MCP
+ LocalWords:  InCollection IAMC ICM Vilya SDMGCHDISCO phane Marc Huchet LNCS ci
+ LocalWords:  Limongelli DOM CFCa CFC CFCb imacs IMACA ACA calc iamc OMsem
+ LocalWords:  OMworkshop omforeign maximise documentclass maketitle convertor
+-->
