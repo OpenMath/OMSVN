@@ -18,6 +18,7 @@
  <xsl:include href="minmax1.xsl"/>
 -->
 <xsl:include href="alg1.xsl"/>
+<xsl:include href="complex1.xsl"/>
 <xsl:include href="integer1.xsl"/>
 <xsl:include href="interval1.xsl"/>
 <xsl:include href="nums1.xsl"/>
