@@ -476,6 +476,14 @@ changelog entry here
     </xsl:if>
     <xsl:text>ﬂ</xsl:text>
 <xsl:text>&#10;</xsl:text>
+ <xsl:for-each select="seriesvolnums">
+  <xsl:text> </xsl:text>
+   <xsl:value-of select="."/>
+  </xsl:for-each>
+ <xsl:for-each select="publisher">
+  <xsl:text> </xsl:text>
+   <xsl:apply-templates/>
+  </xsl:for-each>
 <xsl:if test="pubdate">
   <xsl:text>, </xsl:text>
  <xsl:if test="pubdate[@role]">
@@ -497,6 +505,9 @@ changelog entry here
 \end£thebibliographyﬂ
 </xsl:template>
 
+<xsl:template match="publishername">
+  <xsl:apply-templates/>
+</xsl:template>
 
 <xsl:template match="bibliography" mode="number">
 <xsl:number format="A" value="1+count(preceding-sibling::appendix)"/>
