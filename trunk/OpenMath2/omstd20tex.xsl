@@ -300,6 +300,8 @@ relative to the OpenMath 1.0 document\ldots
 </xsl:if>
 </xsl:template>
 
+<xsl:template match="@*"/>
+
 <xsl:template match="listitem">
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 \item
