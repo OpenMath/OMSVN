@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.74 2004/02/04 11:24:47 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.75 2004/02/12 13:31:20 openmath Exp $ -->
 
 <!--
  PUBLIC "-//OASIS//DTD DocBook XML V4.2CR1//EN"
@@ -1858,17 +1858,23 @@ The variable name is a subset of the printable
   NaN.</para>
 </blockquote>
  <para revisionflag="added">
-Note that the syntax NaN  (and also +/- INF) may be used used to
+Note that the syntax NaN  (and also +/- INF) is used to
   denote several values.
   If precise control is required over the exact
   value represented in the <acronym>ieee</acronym> Double, the
   <systemitem>hex</systemitem> attribute should be used, as described below.</para>
-  <para>The value of <systemitem>hex</systemitem> is the digits of the floating-point number
-  expressed in base 16, with digits <systemitem>0</systemitem>-<systemitem>9</systemitem>, <systemitem>A</systemitem>-<systemitem>F</systemitem>
-  (mantissa, exponent, and sign from lowest to highest bits) using a
-  least significant byte ordering.</para>
-  <para>For example, <systemitem>&lt;OMF
-    dec="1.0e-10"/></systemitem> is a valid floating-point number.</para>
+  <para revisionflag="changed">The value of
+  <systemitem>hex</systemitem> is a base 16 representation of the 
+ 32 bits of the <acronym>ieee</acronym> Double.
+ Thus the number represents mantissa, exponent, and sign from lowest
+  to highest bits using a  least significant byte ordering.
+ This consists of a string of 16 digits <systemitem>0</systemitem>-<systemitem>9</systemitem>, <systemitem>A</systemitem>-<systemitem>F</systemitem>.
+  </para>
+  <para revisionflag="changed">For example, <systemitem>&lt;OMF
+    dec="1.0e-10"/></systemitem> is a valid floating-point
+  representation of the floating point number
+  <math><mn>1</mn><mo>&#215;</mo>
+<msup><mn>10</mn><mn>-10</mn></msup></math></para>
   
 
 </listitem>
@@ -1897,55 +1903,16 @@ Note that the syntax NaN  (and also +/- INF) may be used used to
 
 </listitem>
 </varlistentry>
- 
-<para revisionflag="deleted">In detail the encoding of an &OM; object is described below.</para>
-
-<variablelist revisionflag="added">
-  <varlistentry>
-    <term>Foreign Objects</term>
-    <listitem>
-
-      <para>are encoded using the <systemitem>OMFOREIGN</systemitem> element.  The children of this
-	element must be well-formed &exml;.
-      </para>
-    </listitem>
-  </varlistentry>
 </variablelist>
-	
-<variablelist>
-  <varlistentry>
-    <term>Applications</term>
-    <listitem>
+ 
+<para>In detail the encoding of an &OM; object is described below.</para>
 
-      <para>are encoded using the <systemitem>OMA</systemitem> element. The
-	application whose head is the &OM; object
-	<math><msub><mi>e</mi><mn>0</mn></msub></math> and whose arguments 
-	are the &OM; objects <math><msub><mi>e</mi><mn>1</mn></msub></math>,
-	<phrase>&#8230;</phrase>, <math><msub><mi>e</mi><mi>n</mi></msub></math>
-	is encoded as <systemitem>&lt;OMA></systemitem> 
-	<math>
-	  <msub>
-	    <mi>C</mi>
-	    <mn>0</mn>
-	  </msub>
-	</math>
-	<math>
-	  <msub>
-	    <mi>C</mi>
-	    <mn>1</mn>
-	  </msub>
-	</math>
-	<phrase>&#8230;</phrase>
-	<math>
-	  <msub>
-	    <mi>C</mi>
-	    <mi>n</mi>
-	  </msub>
-	</math>
-	<systemitem>&lt;/OMA></systemitem> where
-	<math><msub><mi>C</mi><mi>i</mi></msub></math> is the encoding of
-	<math><msub><mi>e</mi><mi>i</mi></msub></math>.
-      </para>
+<variablelist>
+<varlistentry><term>Applications</term><listitem><para>are encoded using the <systemitem>OMA</systemitem> element. The
+  application whose head is the &OM; object <math><msub><mi>e</mi><mn>0</mn></msub></math> and whose arguments
+  are the &OM; objects <math><msub><mi>e</mi><mn>1</mn></msub></math>, <phrase>&#8230;</phrase>, <math><msub><mi>e</mi><mi>n</mi></msub></math> is encoded as <systemitem>&lt;OMA></systemitem>
+  <math><msub><mi>C</mi><mn>0</mn></msub></math> <math><msub><mi>C</mi><mn>1</mn></msub></math><phrase>&#8230;</phrase> <math><msub><mi>C</mi><mi>n</mi></msub></math> <systemitem>&lt;/OMA></systemitem> where <math><msub><mi>C</mi><mi>i</mi></msub></math> is the encoding of
+  <math><msub><mi>e</mi><mi>i</mi></msub></math>.</para>
 
 <para>For example, <math><mi mathvariant="bold">application</mi><mo>(</mo><mi>sin</mi><mo>,</mo><mi>x</mi> <mo>)</mo></math> is encoded as:
 <literallayout><![CDATA[<OMA>  
@@ -2013,7 +1980,8 @@ or to express the type of a variable:
 <para revisionflag="added">
 A special use of attributions is to associate non-&OM; data with an
 &OM; object.  This is done using the
-<systemitem>OMFOREIGN</systemitem> element. For example the attribution of the
+<systemitem>OMFOREIGN</systemitem> element.  The children of this
+element must be well-formed &exml;.  For example the attribution of the
 &OM; object 
   <math>
      <mi>sin</mi><mfenced><mi>x</mi></mfenced></math> with its
