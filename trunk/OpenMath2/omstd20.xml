@@ -365,10 +365,26 @@ objects</para></sidebar>
  <para>A sequence of bytes.</para>
 
 </listitem>
-<listitem><para><phrase>(v)</phrase> Symbol.</para> <para>A Symbol
+<listitem><para><phrase>(v)</phrase> Symbol.</para>
+<para revisionflag="deleted">A Symbol
 encodes two fields of information, a <emphasis>name</emphasis> and a
 <emphasis>Content Dictionary</emphasis>. Each is a sequence of
 characters matching a regular expression, as described below.</para>
+
+<para revisionflag="added">A Symbol encodes three fields of
+information, a <emphasis>name</emphasis>, a <emphasis>Content
+Dictionary</emphasis>, and (optionally) a role.  The name of a symbol
+is a sequence of characters matching the regular expression described
+in <xref linkend="sec_names"/>.  The Content Dictionary is the
+location of the definition of the symbol, consisting of a name (a
+sequence of characters matching the regular expression described in
+<xref linkend="sec_names"/>) and, optionally, a unique prefix to
+disambiguate multiple Content Dictionaries of the same name.  The role
+is a restriction on where the symbol may appear in an &OM; object.
+The possible roles are described in <xref linkend="sec_roles"/>.
+
+</para>
+
 </listitem>
 <listitem><para><phrase>(vi)</phrase> Variable.</para>
 
@@ -376,9 +392,10 @@ characters matching a regular expression, as described below.</para>
 <para>A Variable <phrase revisionflag="deleted">consists of</phrase>
 <phrase revisionflag="added">must have</phrase> a
 <emphasis>name</emphasis> which is a sequence of characters matching a
-regular expression, as described below.  <phrase
-revisionflag="added">It may also have one or more optional &OM;
-objects as children which are treated as scripts.</phrase></para>
+regular expression, as described in <xref linkend="sec_names"/>.
+<phrase revisionflag="added">Where the variable is a member of an
+enumerated set it also has a child which is an &OM; object
+representing its indices.  </phrase></para>
 
 </listitem>
 </itemizedlist>
@@ -456,7 +473,7 @@ Attribution</para></sidebar> </listitem> <listitem><para><phrase>(iii)</phrase> 
   <math display="block">
   <mi mathvariant="bold">binding</mi> <mo>(</mo><mi>B</mi><mo>,</mo> <msub><mi>v</mi><mn>1</mn></msub><mo>,</mo> <mi>&#8230;</mi><mo>,</mo> <msub><mi>v</mi><mi>n</mi></msub><mo>,</mo> <mi>C</mi><mo>)</mo>
   </math>
-  is an &OM; <emphasis>binding object</emphasis>.</para>
+is an &OM; <emphasis>binding object</emphasis>.</para>
 
 </listitem>
 <listitem><para><phrase>(v)</phrase> If <math><mi>S</mi></math> is an
@@ -468,8 +485,47 @@ Attribution</para></sidebar> </listitem> <listitem><para><phrase>(iii)</phrase> 
 </itemizedlist>
 </para>
 </section>
+
+<section id="sec_roles" revisionflag="added">
+<title>&OM; Symbol Roles</title>
+
+<para>The <emphasis>role</emphasis> of an &OM; symbol is a restriction
+on where it can appear in an &OM; object.  A symbol cannot have more
+than one role.  If no role is indicated
+then the symbol can be used anywhere.  Possible roles are:
+<orderedlist numeration="lowerroman">
+<listitem><para>
+<emphasis>binder</emphasis>  The symbol may only appear as the first
+child of an &OM; binding object.
+</para></listitem>
+<listitem><para>
+<emphasis>attribution</emphasis> The symbol may only be used as one of
+the odd-numbered children of an &OM; attribution object, i.e. as the
+first element of a key-value pair, or in an equivalent context (for
+example to refer to the value of an attribution).  This form of
+attribution may be ignored by an application, so should be used for
+information which does not change the meaning of the attributed &OM;
+object.
+</para></listitem>
+<listitem><para>
+<emphasis>semantic-attribution</emphasis> This is the same as
+<emphasis>attribution</emphasis> except that it modifies the meaning
+of the attributed &OM; object and thus cannot be ignored by an
+application.
+</para></listitem>
+<listitem><para>
+<emphasis>error</emphasis> The symbol can only appear as the first
+child of an &OM; error object.
+</para></listitem>
+<listitem><para>
+<emphasis>default</emphasis> The symbol can appear anywhere not
+defined in the previous four cases.
+</para></listitem>
+</orderedlist>
+</para>
 </section>
 
+</section>
 <section id="sec_omin">
 <title>Further Description of &OM; Objects</title>
 
