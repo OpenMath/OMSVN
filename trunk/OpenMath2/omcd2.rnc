@@ -9,26 +9,28 @@ default namespace = "http://www.openmath.org/OpenMathCD"
 include "openmath2.rnc" {start = CD}
 
 CDComment = element CDComment { text }
-CDName = element CDName { text }
+CDName = element CDName { xsd:NCName }
 CDUses = element CDUses { CDName* }
 CDURL = element CDURL { text }
 CDBASE = element CDBASE { text }
 text-or-om = (text | OMOBJ)*
-CDReviewDate = element CDReviewDate { text }
-CDDate = element CDDate { text }
-CDVersion = element CDVersion { text }
-CDRevision = element CDRevision { text }
-CDStatus = element CDStatus { text }
+CDReviewDate = element CDReviewDate { xsd:date }
+CDDate = element CDDate { xsd:date }
+CDVersion = element CDVersion { xsd:nonNegativeInteger }
+CDRevision = element CDRevision { xsd:nonNegativeInteger }
+CDStatus = element CDStatus { "official" | "experimental" | "private" | "obsolete"}
 Description = element Description { text }
-Name = element Name { text }
-Role = element Role { text }
+Name = element Name { xsd:NCName }
+Role = element Role { "binder" | "semantic-attribution" | "error" | "default" }
 CMP = element CMP { text }
-FMP = element FMP { text-or-om }
+FMP = element FMP { OMOBJ }
 # allow embedded OM
 Example = element Example { text-or-om }
 CDDefinition =
   element CDDefinition {
-    (CDComment | Name | Description | Example | FMP | CMP)*
+    CDComment*,
+    (Name & Description),
+   (CDComment | Example | FMP | CMP)*
   }
 CD =
   element CD {
