@@ -1,4 +1,4 @@
-<!-- @version CVS $Id: omstd20.xml,v 1.84 2004/02/13 15:40:05 openmath Exp $ -->
+<!-- @version CVS $Id: omstd20.xml,v 1.85 2004/02/20 15:53:54 openmath Exp $ -->
 
 
 <!DOCTYPE book 
@@ -1091,41 +1091,27 @@ objects.</para>
 
 <section id="sec_names" revisionflag="added">
 <title>Names</title>
-<para>
 
-The names of symbols, variables and content dictionaries must conform to the
-following rules, which are designed to be compatible with standards such as
-Unicode and XML.  These standards group individual characters into letters,
-digits, combining characters and extenders.  Informally, these are defined as
-follows:
+<para>The names of symbols, variables and content dictionaries must conform to the
+production Name specified in the following  grammar, which is
+identical to the grammar for &exml; names in XML 1.1, <citation>xml_04</citation>.</para>
 
-<variablelist>
-
-<varlistentry><term>Letters</term><listitem><para> are elements of an
-alphabet such as latin, cyrillic, kanji etc.</para></listitem></varlistentry>
-
-<varlistentry><term>Digits</term><listitem><para> are atomic numbers,
-from which compound numbers can be constructed (for example `1' is a
-digit but `11' is not).</para></listitem></varlistentry>
-
-<varlistentry><term>Combining Characters</term><listitem><para> are
-used to combine several characters to produce a new one, for example
-an accented character.
-</para></listitem></varlistentry>
-
-<varlistentry><term>Extenders</term><listitem><para> are characters
-which are neither letters nor combining characters but modify the
-appearance of other characters in some way.
-</para></listitem></varlistentry>
-
-</variablelist>
-Formally, we use the precise definitions given in the Unicode
-standard&#160;<citation>UNICODE</citation>.
-</para>
-
-<para>
-
-Then a legal &OM; name is defined by the following grammar:
+<para>Note that the schema for OpenMath 
+described in <xref linkend="ssec_xml"/> specifies the names as xsd:Name
+type. At the time of writing, W3C Schema types are defined in terms of
+<citation>xml_98</citation> which uses a more restrictive set of name
+characters, based on the characters available in Unicode 2.0.
+It is expected that W3C Schema types will be augmented to match the
+new XML recommendation, but for portability reasons applications
+should avoid  using the new XML 1.1 name characters unless they are
+absolutely required. Note the XML 1 name production listed explictly
+th echaracters that were allowed, so all characters added in later
+versions since Unicode 2.0 (which amounts to 10's of thousands of
+characters) are not allowed in names. XML 1.1 name production as shown
+below excludes certain punctuation and combining  characters, but
+includes all other code points including codepoints that are currently
+unassigned. The XML 1.1 specification has a useful appendix giving
+advice on good strategies to use when naminmg identifiers.</para>
 <blockquote>
 <informaltable>
 <tgroup cols="3">
@@ -1133,21 +1119,25 @@ Then a legal &OM; name is defined by the following grammar:
 <row>
 <entry>Name </entry>
 <entry> <math>&longrightarrow;</math> </entry>
-<entry> (Letter | '_') (Char)*
+<entry> NameStartChar (NameChar)* </entry>
+</row>
+<row>
+<entry>NameStartChar</entry>
+<entry> <math>&longrightarrow;</math> </entry>
+<entry>  ":" | [A-Z] | "_" | [a-z] | [#xC0-#xD6] | [#xD8-#xF6] | [#xF8-#x2FF] | [#x370-#x37D] | [#x37F-#x1FFF] | [#x200C-#x200D] | [#x2070-#x218F] | [#x2C00-#x2FEF] | [#x3001-#xD7FF] | [#xF900-#xFDCF] | [#xFDF0-#xFFFD] | [#x10000-#xEFFFF] 
 </entry>
 </row>
 <row>
-<entry>Char</entry>
+<entry>NameChar</entry>
 <entry> <math>&longrightarrow;</math> </entry>
-<entry> Letter | Digit | '.' | '-' | '_' | CombiningChar | Extender
-</entry>
+<entry>  NameStartChar | "-" | "." | [0-9] | #xB7 | [#x0300-#x036F] | [#x203F-#x2040] </entry>
 </row>
 </tbody>
 </tgroup>
 </informaltable>
 </blockquote>
 
-</para>
+
 
 <formalpara><title>CD Base</title>
 
@@ -6456,6 +6446,15 @@ or, using the Relax NG compact syntax:
     <bibliomisc>http://www.w3.org/TR/1998/REC-xml-19980210</bibliomisc>
   </biblioentry>
   
+  <biblioentry id="xml_04" role="Misc">
+    <author><othername>World Wide Web Consortium</othername></author>
+    <title>Extensible Markup Language (XML) 1.1.</title>
+    <bibliomisc>W3C Recommendation REC-xml11-20040204</bibliomisc>
+    <pubdate role="month">February</pubdate>
+    <pubdate>2004</pubdate>
+    <bibliomisc>http://www.w3.org/TR/2004/REC-xml11-20040204/</bibliomisc>
+  </biblioentry>
+  
   <biblioentry id="OM_D131a" role="Misc">
     <author><othername>&OM; Consortium</othername></author>
     <title>The &OM; Standard</title>
@@ -6936,18 +6935,3 @@ or, using the Relax NG compact syntax:
 </bibliography>
 </book>
 
-<!-- LocalWords:  xsl href omstd DocBook docbook olga's dtds customisations sidebar
-LocalWords:  ATTLIST mrow mn mi mo msub msup mtext mspace mfrac mml xmlns exml
-LocalWords:  revisionflag varname systemitem PCDATA mathcolor mathvariant dpc
-LocalWords:  exadigits lcalpha ucalpha regxp zsp longrightarrow varnamechar OC
-LocalWords:  omrnc openmath rnc omxsd xsd omrng rng bookinfo releaseinfo xref
-LocalWords:  firstname Buswell othername Gaetano linkend cha toc formalised cd
-LocalWords:  Leeuwen Strotmann Dalmas omsoc ulink url int fileref obj enco gt
-LocalWords:  addnfiles CDGroup DefMP phrasebooks Phrasebook behaviour omin Exp
-LocalWords:  omabs labelled itemizedlist listitem bignums ieee Unicode mfenced
-LocalWords:  Bytearray  xs processContents attributeGroup elementFormDefault
-LocalWords:  targetNamespace xlink maxOccurs minOccurs complexType ns dtd
-LocalWords:  schemaLocation simpleType simpleContent datatypeLibrary omcd
-LocalWords:  anyName zeroOrMore oneOrMore nsName param cdrnc sigrnc omdtd
-LocalWords:  omcdsig cdgrouprnc omcdgroup cdrng sigrng cdbase
- -->
