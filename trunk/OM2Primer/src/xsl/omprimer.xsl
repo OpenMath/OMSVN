@@ -1029,6 +1029,40 @@ select="substring-before(.,':')"/>:</a>
 </xsl:template>
 
 
+<xsl:template match="screen">
+<pre style="background-color: #DDDDDD;">
+<xsl:apply-templates/>
+</pre>
+</xsl:template>
+
+<xsl:template match="mml:math" xmlns:mml="http://www.w3.org/1998/Math/MathML">
+ <xsl:copy-of select="."/>
+</xsl:template>
+
+
+<xsl:template match="inlineequation">
+<xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="equation">
+<xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="example">
+<div>
+<h3>Example: <xsl:number/></h3>
+<xsl:apply-templates/>
+</div>
+<xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="mediaobject">
+<div>
+<img src="imageobject/imagedata/@fileref" alt="imageobject/imagedata/@fileref"/>
+<xsl:apply-templates select="caption/node()"/>
+</div>
+</xsl:template>
+
 
 
 </xsl:stylesheet>
