@@ -74,7 +74,7 @@ font-style: italic;
 }
 .delliteral {
 font-size: 75%;
-background-color: #cfcfcf;
+background-color: #efefef;
 border-color: black;
 border-style: solid;
 border-width: 1px;
@@ -84,7 +84,7 @@ text-decoration: line-through;
 }
 .newliteral {
 font-size: 75%;
-background-color: #cfcfcf;
+background-color: #efefef;
 border-color: black;
 border-style: solid;
 border-width: 1px;
@@ -93,7 +93,7 @@ color: green;
 }
 .literal {
 font-size: 75%;
-background-color: #cfcfcf;
+background-color: #efefef;
 border-color: black;
 border-style: solid;
 border-width: 1px;
@@ -421,7 +421,7 @@ relative to the OpenMath 1.0 document...</p>
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
  <div>
   <xsl:apply-templates select="@revisionflag"/>
-<xsl:element name="h{count(ancestor::section)+3}">
+<xsl:element name="h{count(ancestor::section)+$chapterlevel + 1}">
   <xsl:attribute name="name"><xsl:value-of select="@id"/></xsl:attribute>
   <xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
   <xsl:apply-templates mode="number" select="."/>&#160;<xsl:apply-templates select="title/node()"/>
