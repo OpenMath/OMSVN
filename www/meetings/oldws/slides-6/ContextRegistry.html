@@ -1,0 +1,386 @@
+<HTML>
+<HEAD>
+<TITLE>The OpenMath Context Registry</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN=CENTER>A Proposed Arena for the OpenMath Context Registry</H1>
+<BR>
+<CENTER><P><FONT SIZE=+2>OpenMath Workshop 6<BR>
+Zurich, Switzerland<BR>
+July 27-28th, 1996</FONT></P></CENTER>
+<BR>
+<P><CENTER><FONT SIZE=+2>
+Angel D&#237az<BR></FONT>
+Rensselaer Polytechnic Institute<BR>
+Department of Computer Science<BR>
+Troy, New York, USA<BR>
+<A HREF="http://www.es.net/cgi-bin/send?to=diaza@cs.rpi.edu">
+<TT>diaza@cs.rpi.edu</TT></A>
+</CENTER></P>
+
+<CENTER><P><HR WIDTH="100%" ></P></CENTER>
+These slides are also available as <A HREF="ContextRegistry.ps.gz">gzipped
+PostScript (110k)</A>
+<HR>
+
+<P><I>
+One result of the <A HREF="http://www.can.nl/~abbott/OpenMath/">OpenMath</A> 
+design committee's mini-meeting at RIACA (Eindhoven, The Netherlands) was a 
+<A HREF="http://www.can.nl/~abbott/OpenMath/prototypes/Meeting-Eindhoven.html">
+proposed syntax definition for OpenMath contexts.</A> In response to
+the aforementioned specification, several <A HREF="http://www.javasoft.com/">
+Java</A> applications are currently being developed to facilitate the creation, 
+maintenance and archival of such contexts. This talk will detail a
+prototypical arena for the maintenance and registry of OpenMath contexts
+with the intent of stimulating discussion relevant to both OpenMath 
+context syntax and the context registry mechanism. In the interim, such an 
+arena aims to encourage the rapid creation of OpenMath contexts and 
+ultimately to provide a procedure for context maintenance and archival. 
+Finally, our plans for further refinement and development of the OpenMath 
+registry are presented.
+</I></P>
+<FONT SIZE=+1>
+<CENTER><P><HR WIDTH="100%" ></P></CENTER>
+<H1>Contents</H1>
+<MENU>
+    <LI><A HREF="#OMCR">1. The OpenMath Context Registry</A></LI>
+    <MENU>
+        <LI><A HREF="#GOALS">1.1 Goals</A></LI>
+        <LI><A HREF="#AUDIENCE">1.2 Target Audience</A></LI>
+    </MENU>
+    <LI><A HREF="#ARENA">2. An Arena for Context Registry</A></LI>
+    <MENU>
+        <LI><A HREF="#CONTEXT">2.1 Context Organization</A></LI>
+        <LI><A HREF="#SERVER">2.2 The OpenMath Registry Server</A></LI>
+        <LI><A HREF="#CLIENT">2.3 The OpenMath Registry Client</A></LI>
+        <LI><A HREF="#ADDFUNC">2.4 Additional Functionality</A></LI>
+    </MENU>
+    <LI><A HREF="#PROTO">3. Our Current Prototype</A></LI>
+    <MENU>
+        <LI><A HREF="#PSERVER">3.1 The Prototype Registry Server</A></LI>
+        <LI><A HREF="#PCLIENT">3.2 The Prototype Registry Client</A></LI>
+        <MENU>
+            <LI><A HREF="#PAPPLET">3.2.1 The Client Applet</A></LI>
+            <LI><A HREF="#PALONE">3.2.2 The Client Stand-Alone Application</A>
+            </LI>
+        </MENU>
+        <LI><A HREF="#IPC">3.3 Implementation and Platform Considerations
+        </A></LI>
+    </MENU>
+    <LI><A HREF="#PLANS">4. Plans for the future</A></LI>
+</MENU>
+
+<CENTER><P><HR WIDTH="100%" ></P></CENTER>
+
+<A NAME="OMCR"></A><H1>1. The OpenMath Context Registry</H1>
+<P>The OpenMath context registry aims to serve as a focal point for the 
+collaborative creation, maintenance and archival of OpenMath contexts.
+In our view, this early prototype of an OpenMath context registry is
+intended to stimulate the rapid creation of OpenMath contexts while providing 
+an arena for discussion relevant to the OpenMath context syntax and the 
+context registry mechanism. In the interim, the audience for this prototypical 
+implementation are parties interested in this endeavor. The
+following text details several items that may serve as the 
+impetus for the ultimate incarnation of the OpenMath context registry.
+</P>
+<A NAME="GOALS"></A><H2>1.1 Goals</H2>
+<UL>
+   <LI> Allow for the collaborative creation and maintenance of OpenMath
+        contexts in a secure fashion</LI>
+   <LI> Serve as a public archive of OpenMath contexts</LI>
+   <LI> Supply up to date context information</LI>
+   <LI> Provide a cross-platform implementation so as to reach the largest
+        possible audience</LI>
+</UL>
+<A NAME="AUDIENCE"></A><H2>1.2 Target Audience</H2>
+<UL>
+   <LI> Researchers interested in forming or joining a group to 
+        develop/modify OpenMath contexts
+   <LI> Developers of OpenMath compliant applications</LI>
+</UL>
+
+<CENTER><P><HR WIDTH="100%" ></P></CENTER>
+
+<A NAME="ARENA"></A><H1>2. An Arena for Context Registry</H1>
+
+<P>Our proposed arena for realizing the OpenMath context registry is a 
+World Wide Web based client/server application. By taking advantage of
+several Internet protocols, standards, and Java, a freely available 
+cross-platform language, the aforementioned goals may be achieved.</P>
+
+<P>In this scenario, OpenMath contexts are accessed and maintained through
+a Java coded OpenMath context registry server. Access to the server is
+accomplished via either a Java registry client applet or a stand-alone 
+Java registry client.  While the registry client applet only requires a 
+Java enabled Web browser or applet viewer for the purpose of execution, 
+both the registry server and stand-alone registry client require the 
+utilization of a Java interpreter (see section 3.3).</P>
+
+<P> The reason we provide two Java registry clients is that in Netscape 
+Navigator 2.0 or higher, <A HREF="http://www.javasoft.com/sfaq/index.html#read">
+applets cannot read or write files</A>. The stand-alone registry client
+adds the functionality of context file up-load and down-load.</P>
+
+ In what follows is an initial specification for the organization of contexts,
+the OpenMath context registry server and the OpenMath context registry client.
+We will also comment on several thoughts currently under consideration which
+relate to the additional functionality that the context registry should
+exhibit.
+
+<A NAME="CONTEXT"></A><H2>2.1 Context Organization</H2>
+<UL>
+<LI>Official - stable; entries will never be deleted, but new entries may
+    appear occasionally</LI>
+<LI>On-Track - due soon to be converted to "official" status, should be fairly
+    stable; entries may be deleted, new entries may be added</LI>
+<LI>Unofficial - no guarantees about stability, there may be two or more
+    unofficial contexts covering essentially the same area; these are 
+    primarily for people working at extending OpenMath</LI>
+</UL>
+
+<A NAME="SERVER"></A><H2>2.2 The OpenMath Context Registry Server</H2>
+<UL>
+<LI>Listen for requests on a dedicated port</LI>
+<LI>Fetch OpenMath contexts</LI>
+<LI>Provide a user and group level "accounting" system for sensitive 
+    transactions</LI>
+<LI>Implement secure context removal and archival</LI>
+<LI>Oversee collaborative context creation and maintenance (group level)</LI>
+<LI>Implement a context locking mechanism</LI>
+</UL>
+
+<A NAME="CLIENT"></A><H2>2.3 The OpenMath Context Registry Client</H2>
+<UL>
+<LI>Allow for automatic and manual registry connection</LI>
+<LI>Provide a mechanism for OpenMath context browsing</LI>
+    <UL>
+    <LI>Retrieve a list of available contexts</LI>
+    <LI>Context fetch and display</LI>
+    <LI>Follow "hyper-links" referring to other contexts</LI>
+    </UL>
+<LI>Allow for user/group authentication</LI> 
+<LI>Enact a context authoring environment</LI>
+    <UL>
+    <LI>Allow for single user context creation/maintenance</LI>
+        <UL>
+        <LI>Provide a mechanism for syntactically correct insertion/deletion 
+            of context entries</LI>
+        </UL>
+    <LI>Facilitate collaborative context creation/maintenance</LI>
+        <UL>
+        <LI>Provide a mechanism for syntactically correct insertion/deletion
+            of context entries</LI>
+        <LI>Display participants, as well as, their respective context control 
+            properties</LI>
+        <LI>Provide a "chat pad" for collaborative context development</LI> 
+        </UL>
+    </UL>
+<LI>Implement a secure method of context removal and archival</LI>
+<LI>Allow for context file up-load and down-load (stand-alone version)</LI>
+</UL>
+
+<A NAME="ADDFUNC"></A><H2>2.4 Additional Functionality</H2>
+
+<P>In order to alleviate potential network congestion, the OpenMath consortium
+could maintain several registries residing in different geographical locations.
+Initially, a mirror site would be a copy of the registry which does not 
+support any updating operations. If necessary, we could extend the
+registry functionality to include several "principal" sites. Each principal
+site would allow both context retrieval and updating. This, however, would
+involve a more intimate coupling between each principal registry server.</P>
+
+<P>In light of the potential danger of stale context versions, a user
+could utilize the registry home page to declare his/her "interest" 
+in a particular list of contexts. The registry would keep track of updates and 
+inform the interested parties via email.</P>
+
+<CENTER><P><HR WIDTH="100%" ></P></CENTER>
+
+<A NAME="PROTO"></A><H1>3. Our Current Prototype</H1>
+
+<P>Our prototypical "OpenMath Context Registry" home page can be reached by 
+following:</P> 
+
+<P><A HREF="http://www2.cs.rpi.edu/projects/OpenMath"><TT>
+http://www2.cs.rpi.edu/projects/OpenMath</TT>
+</A>(OpenMath Registry Home Page)</P>
+
+<P>This page provides additional information regarding our current 
+implementation and enables access to our context registry via a context 
+registry client applet. Furthermore, the context registry home page publishes 
+an online user's guide detailing the utilization of the context registry 
+client.
+
+<P>The contexts currently archived are intended to demonstrate our prototype`s
+functionality and context syntax. It is our hope that recent discussions with
+St&#233phane Dalmas and Marc Gaetano, members of the 
+<A HREF="http://www.inria.fr/safir/index-eng.html">SAFIR</A> (Formal Algebraic 
+Systems for Industry and Research) group in France, will produce a unified 
+context design, as well as some initial OpenMath contexts.</P>
+
+<P>This prototype implements a subset of the initial registry specifications
+detailed in section 2. At this point, the functionality offered by our
+prototype server and clients are summarized. By utilizing "screen shots", we 
+provide an overview of the steps involved in context creation and registry.
+</P>
+
+<A NAME="PSERVER"></A><H2>3.1 The Prototype Registry Server</H2>
+
+ The OpenMath Registry Server maintains and protects the OpenMath context
+archive. The server's current functionality includes:
+
+<UL>
+<LI>Listens for requests on a dedicated port</LI> 
+<LI>Handles each request as a separate thread - each thread consequently 
+    communicates via a newly allocated socket</LI>
+<LI>Requires session authentication for sensitive transactions
+    (store and delete context)</LI>
+<LI>Enacts context fetch, store and delete operations, as well as, 
+    the registry directory operation</LI> 
+</UL> 
+
+<A NAME="PCLIENT"></A><H2>3.2 The Prototype Registry Client</H2>
+
+ The OpenMath registry client is intended to provide a graphical front
+end to the OpenMath registry server. This prototype includes the
+following functionality:
+<UL>
+<LI> Provides a restricted context authoring mechanism - one can
+     sequentially add "syntactically correct" context entries</LI>
+<LI> Allows for both non-authenticated transactions (context fetch,
+     registry directory listing) and authenticated interchange 
+     (context save, delete)</LI>
+<LI> Automatically establishes an OpenMath registry session</LI>
+<LI> Permits manual OpenMath registry session initialization - one can
+     reconnect in the case of unforeseen network situations</LI>
+</UL> 
+
+<A NAME="PAPPLET"></A><H3>3.2.1 The Client Applet</H3>
+<P>The registry client consists of three areas :
+a control panel, an editing pad and a status window. <A HREF="ContextRegistry-images/ce2.gif">
+Click here for a full screen shot of the context registry client.</A></P>
+
+<CENTER><IMG SRC="ContextRegistry-images/control.gif"></CENTER>
+<CENTER><H3><B>Figure 1</B> : Control Panel</H3></CENTER>
+
+<P>Upon initialization the registry client reads several "parameters" specified 
+within the HTML file and attempts to connect to an OpenMath registry server. 
+In the case of unforeseen network situations, the registry server may not be 
+available. In this scenario, a user can utilize the editing facility and 
+attempt to connect to the registry at a later time. Figure 1 displays
+the client control panel. In this example, a connection to the registry
+has been established and the LinearAlgebra context has been selected from 
+the list of available contexts.</P>
+
+<P>Buttons located at the bottom of the control panel area refer to
+actions related to the context pad, while buttons that are left aligned 
+perform context registry related operations.</P>
+
+<CENTER><IMG SRC="ContextRegistry-images/ccp.gif"></CENTER>
+<CENTER><H3><B>Figure 2</B> : Status Window</H3></CENTER>
+
+<P>Also, an external status window is spawned on applet initialization. The
+intent is to provide detailed information regarding the results and status of
+all registry client operations.</P>
+
+<CENTER><IMG SRC="ContextRegistry-images/auth.gif"></CENTER>
+<CENTER><H3><B>Figure 3</B> : User Authentication</H3></CENTER>
+
+<P>This prototype supports user level authentication. The "Authenticate" action
+button produces a pop-up user authentication dialog window. Internally, on
+authentication success, the registry client is given a unique randomly
+selected session identification by the registry server. Sensitive transactions 
+are accomplished by the utilization of this id. Please note that in this
+prototype, authentication is not required for the context fetch and registry 
+directory listing operations.</P>
+
+<CENTER><IMG SRC="ContextRegistry-images/pad.gif"></CENTER>
+<CENTER><H3><B>Figure 4</B> : Context Editing Pad</H3></CENTER>
+
+<P>Figure 4 exhibits the context pad area. In this example, user "diaz" has
+down loaded the LinearAlgebra context from the registry. This context was 
+retrieved by selecting the LinearAlgebra entry from the registry directory 
+listing and clicking on the "Get Context" action button.  Context key
+words are displayed in red while context hyper-links are displayed in blue.
+This prototype does not fully support the context hyper-link mechanism.
+In this implementation, context scrolling is achieved by taking advantage 
+of several pre-defined hot keys. It is expected that our next prototype
+will provide scroll bars for this functionality</P> 
+
+<CENTER><IMG SRC="ContextRegistry-images/insert.gif"></CENTER>
+<CENTER><H3><B>Figure 5</B> : Insert a Context Entry</H3></CENTER>
+
+<P>One would ultimately be able to click on the context pad to initiate a 
+"Context Wizard" (see figure 5). The wizard provides the user with all of the
+possible syntactically correct context entry types at any given point. 
+This prototype only allows the insertion and deletion of context entries and 
+the end of a context document.</P>
+
+<P>Once a context is ready for archival, a user can update the registry
+to reflect the local changes. This is accomplished by utilizing the "Send
+Context Pad" action button. This action will update the current directory 
+of contexts automatically. If desired a manual update can be achieved
+at any instance via the "Refresh Context List" action button. Also, contexts 
+may be removed from the archive by utilizing the "Delete Context" action 
+button.</P>
+
+<A NAME="PALONE"></A><H3>3.2.2 The Client Stand-Alone Application</H3>
+
+ The stand-alone Java registry client enhances the functionality and
+interface of the Java registry client applet by allowing context file 
+up-load and down-load. Context down-load facilitates local context archival,
+while context up-load permits a user to create/maintain a context employing 
+another editing mechanism.
+
+<A NAME="IPC"></A><H2>3.3 Implementation and Platform Considerations</H2>
+
+<P>Applets loaded over the Internet can only establish
+<A HREF="http://www.javasoft.com/sfaq/index.html#prevent">
+network connections to the originating host.</A> For this reason, it is
+required that the OpenMath registry server execute on the same compute node
+as the Web server.</P>
+
+<P>Both the OpenMath registry server and stand-alone context registry
+client require the utilization of a Java interpreter for the purpose of 
+execution. Each of the aforementioned applications have been tested using the 
+Java interpreter provided in the 
+<A HREF= "http://www.javasoft.com/java.sun.com/products/JDK/index.html">
+JDK 1.0.2</A> on the following platforms: Microsoft Windows NT/95, Linux 2.0,
+SPARC/Solaris, x86/Solaris.</P>
+
+<P>The applet form of the registry client requires a Java applet viewer. The
+JDK provides an applet viewer, as well as, 
+<A HREF="http://home.netscape.com">Netscape 2.0</A>  or higher, on most 
+platforms. Due to several problems with the Microsoft Windows NT/95 
+Netscape implementation, the context registry client Java applet causes
+Netscape to perform an "illegal" operation. Microsoft Windows NT/95 users can 
+take advantage of the functionality offered by the context registry client
+applet by utilizing either the JDK applet viewer or the 
+<A HREF="http://www.microsoft.com/ie"> Microsoft Internet explorer 3.0 
+Beta 1</A> or higher.</P>
+
+<CENTER><P><HR WIDTH="100%" ></P></CENTER>
+
+<A NAME="PLANS"></A><H1>4. Plans for the future</H1>
+
+<P>Our current focus revolves around obtaining a stable definition for
+the syntax and file format of OpenMath contexts and a concrete specification 
+for the functionality of the OpenMath context registry. It is our hope that 
+this prototype encourages steps in the aforementioned directions.</P> 
+
+<CENTER><IMG SRC="ContextRegistry-images/control2.gif"></CENTER>
+<CENTER><H3><B>Figure 6</B> : The Next Iteration Control Panel</H3></CENTER>
+
+<P>Plans for the next iteration of our prototype include the full 
+implementation of the specifications detailed in section 2.
+Figure 6 displays a proposed interface for achieving the set forth
+specifications.<A HREF="ContextRegistry-images/alpha2.0.gif">Click here for a full screen 
+shot of a candidate interface for the next iteration of the context 
+registry.</A></P>
+
+<CENTER><P><HR WIDTH="100%" ></P></CENTER>
+<HR>
+This page is part of the OpenMath Web archive,
+and is no longer kept up to date.
+</BODY>
+</HTML>

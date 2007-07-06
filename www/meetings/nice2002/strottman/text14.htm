@@ -1,0 +1,25 @@
+<html>
+<head>
+<meta HTTP-EQUIV=CONTENT-TYPE CONTENT="text/html; charset=utf-8">
+<title>Slide 15</title>
+</head>
+<body text=#463634 bgcolor=#E7E5D6 link=#000080 vlink=#800000 alink=#000080>
+<center>
+<a href="text0.htm">First page</a> <a href="text13.htm">Back</a> <a href="text15.htm">Continue</a> <a href="text19.htm">Last page</a> <a href="om-categorial-types.htm">Overview</a> <a href="img14.htm">Graphics</a></center><br>
+<h1><i><font color=#795241>Categorial Types and OpenMath: Problems Found – Currying</i></font></h1><p>
+<ul><li><h2>Currying inconsistencies in OpenMath</h2>
+<ul><li>OMBind objects defined to be curried:<b>
+  ombind</b>(q,x,y,e) := <b>ombind</b>(q,x,<b>ombind</b>(q,y,e))
+<li>OMApplication objects not curried:<b>
+  oma</b>(<b>ombind</b>(lambda,x,y,f),a,b) :=?<b>
+  oma</b>(<b>ombind</b>(lambda,x,<b>ombind</b>(lambda,y,f)),a,b)
+<li>Signatures are not curried:
+  f:A,B-&gt;C  vs. <b>fmp</b>[<b>oma</b>(eq,f,<b>ombind</b>(lambda,x,y,g))]
+    =&gt; is (f(a) : B --&gt; C) correct or not???
+<li>Multiple scopes for binder in curried OMBinding:
+<b>ombind</b>(q,x,<b>ombind</b>(q,y,e)) – q in <i>and</i> out of scope for x
+</ul><li><h2><b>Currying</b> as a universal <b>categorial type inference rule</b> would have avoided these problems (I conjecture)</h2>
+</ul><br>
+<h3>Notes:</h3>
+</body>
+</html>

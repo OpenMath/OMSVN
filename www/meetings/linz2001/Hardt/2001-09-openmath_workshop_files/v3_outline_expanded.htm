@@ -1,0 +1,815 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=PowerPoint.Slide>
+<meta name=Generator content="Microsoft PowerPoint 9">
+<link id=Main-File rel=Main-File href="../2001-09-openmath_workshop.htm">
+<link rel=Preview href=preview.wmf>
+
+<script>
+<!--
+if( window.name != "PPTOtl" )
+  parent.location.href = "../2001-09-openmath_workshop.htm";
+//-->
+</script>
+<meta name=Robots content=NoIndex>
+</head>
+
+<body bgcolor=black text=white link=white vlink=white alink=white>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0001.htm');">Slide 1</a></b></font></p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0002.htm');">Agenda</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Motivation for using OMDoc</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>In2Math and its requirements</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Representing formulas with OMDoc</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Example</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Issues</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Domain and context specific
+  representations</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Approach for user defined „logic
+  languages“</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Summary and Discussion</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0003.htm');">In2Math</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>Interactive learning material for Mathematics
+  (especially logic)</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>Integration of exercises in logic book</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>Example domain: planning</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0019.htm');">In2Math: Requirements</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>Calling different provers using
+  different syntax</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>Webbrowser interface – support for
+  multiple logical formalisms (first order predicate logic, clause logic)</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0008.htm');">Planning Example „Buy
+loaves of bread“</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>at(ToCity, Loaves, s(s(Time)), drive(ToCity,
+  Situation)) :-</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun: yes">   
+  </span>at(FromCity, Loaves, Time, Situation),</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun: yes">   
+  </span>next_to(FromCity, ToCity).</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>at(City, Loaves, s(Time), wait_at(Situation))
+  :-</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun: yes">   
+  </span>at(City, Loaves, Time, Situation).</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>at(City, s(Loaves), s(Time), buy(Situation))
+  :-</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun: yes">   
+  </span>at(City, Loaves, Time, Situation).</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>next_to(winnemucca, elko).</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>% ... More next_to() predicates</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>at(cheyenne, none, start,
+  initial_situation).</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>false :- at(desMoines, s(none), Time,
+  Situation).</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0018.htm');">In2Math: Requirements</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>Input of clauses and first-order
+  formulas<br>
+  “false :- at(F,L,T), next(F,T).”<br>
+  “</font><font
+  face=Symbol size=2>&quot;</font><font face=Arial size=2>x </font><font
+  face=Symbol size=2>$</font><font face=Arial size=2>y p(f(y))</font><font
+  face=Arial size=2>”</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>Visualization – same style</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>Searching formulas (e.g. which formulas
+  contain a term „next_to(cityA, cityB) “?)</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0006.htm');">Using OMDoc in In2Math</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>OpenMath/OMDoc as a standard for
+  representing mathematical knowledge</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>Therefore knowledge exchange between
+  different systems „easy“<br>
+  (Many syntax around in FOTP)</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>It‘s XML =&gt; XPath support</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0009.htm');">Planning example in OpenMath</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&#9;&lt;OMA&gt;&lt;OMS
+  cd=&quot;logic1&quot; name=&quot;not&quot;/&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&#9;<span style="mso-spacerun: yes"> 
+  </span>&lt;OMA&gt;&lt;OMS cd=&quot;PLA001-1theory1&quot;
+  name=&quot;at&quot;/&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun:
+  yes"> </span>&#9;&#9;&lt;OMV name=&quot;ToCity&quot;/&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&#9;&#9;&lt;OMV
+  name=&quot;Loaves&quot;/&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun: yes">      
+  </span>&#9;&lt;OMA&gt;&#9;&lt;OMS cd=&quot;PLA001-1theory1&quot;
+  name=&quot;s&quot;/&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun:
+  yes">               </span>&lt;OMA&gt;&#9;&lt;OMS
+  cd=&quot;PLA001-1theory1&quot; name=&quot;s&quot;/&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun:
+  yes">                  </span>&#9;&lt;OMV name=&quot;Time&quot;/&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun:
+  yes">              </span>&#9;&lt;/OMA&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun: yes">    
+  </span>&#9;&lt;/OMA&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun: yes">      
+  </span>&#9;&lt;OMA&gt;&#9;&lt;OMS cd=&quot;PLA001-1theory1&quot;
+  name=&quot;drive&quot;/&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun:
+  yes">             </span>&#9;&lt;OMV name=&quot;ToCity&quot;/&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun:
+  yes">              </span>&#9;&lt;OMV name=&quot;Situation&quot;/&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun: yes">    
+  </span>&#9;&lt;/OMA&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun: yes">    
+  </span>&lt;/OMA&gt;&lt;/OMA&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0010.htm');">Representation issues</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>„Validity“ of documents is domain
+  dependent</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>&lt;OMA&gt;&lt;OMS
+  name=&quot;at&quot;/&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>&#9;&lt;OMA&gt;&lt;OMS
+  name=&quot;at&quot;/&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>&#9;&#9;<span style="mso-spacerun:
+  yes">    </span>&lt;OMV name=&quot;x&quot;/&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>&#9;&#9;<span style="mso-spacerun:
+  yes">    </span>&lt;OMV name=&quot;y&quot;/&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>&#9;&lt;/OMA&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>&lt;/OMA&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0011.htm');">Representation issues
+(cont‘d)</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Readability (?)</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Tool programming “difficult” (?), e.g.</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Syntax checking</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Converters OpenMath-to-Provers</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Analysis/Retrieval according to by
+  predicate logic syntax criteria</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0012.htm');">First approach: XML -&gt;
+OpenMath</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>„Intuitive“ representation of different
+  input languages <br>
+  (clause and predicate logic, STRIPS planning calculus
+  etc.)</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>Specific DTDs / style sheets for
+  different logic languages</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0015.htm');">Example (Clause Logic)</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&lt;CLDOC&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&#9;&lt;METADATA&gt; ...
+  &lt;/METADATA&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&#9;&lt;CLAUSESET
+  id=&quot;PLA001-1theory1&quot;&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&#9;&#9;&lt;FUNCTIONSYMBOLS&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&#9;&#9;&#9;&lt;SYMBOL
+  id=&quot;buy&quot;&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&#9;&#9;&#9;&#9;&lt;CMP&gt;Buy
+  something &lt;/CMP&gt; &lt;/SYMBOL&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&#9;&#9;&#9;&lt;!– more symbol
+  declarations --&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&#9;&#9;&lt;/FUNCTIONSYMBOLS&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&#9;&#9;&lt;PREDICATESYMBOLS&gt;...
+  &lt;/PREDICATESYMBOLS&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&#9;&#9;&lt;CLAUSE&gt; &lt;!– see next
+  slide --&gt; &lt;/CLAUSE&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&#9;&#9;&lt;!– more clause elements
+  --&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&#9;&lt;/CLAUSESET&gt;&lt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&lt;/CLDOC&gt;</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0017.htm');">Example (Clause Logic)
+cont‘d</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&lt;CLAUSE
+  id=&quot;PLA001-1c1&quot;&gt; &lt;DESCRIPTION&gt;drive1&lt;/DESCRIPTION&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&#9;&lt;ATOM name=&quot;at&quot;
+  negated=&quot;true&quot;&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&#9;&#9;&#9;&#9;&lt;VAR
+  name=&quot;FromCity&quot;/&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&#9;&#9;&#9;&#9;&lt;VAR
+  name=&quot;Loaves&quot;/&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&#9;&#9;&#9;&#9;&lt;VAR
+  name=&quot;Time&quot;/&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&#9;&#9;&#9;&#9;&lt;VAR
+  name=&quot;Situation&quot;/&gt;&#9;&lt;/ATOM&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&#9;&lt;ATOM name=&quot;next_to&quot;
+  negated=&quot;true&quot;&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&#9;&#9;&#9;&#9;&lt;VAR
+  name=&quot;FromCity&quot;/&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&#9;&#9;&#9;&#9;&lt;VAR
+  name=&quot;ToCity&quot;/&gt;&lt;/ATOM&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&#9;&lt;!– more atoms --&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&lt;/CLAUSE&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0016.htm');">Example (Predicate Logic)</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&lt;PLTHEORY&gt;&lt;SYMBOL
+  name=&quot;and&quot;/&gt;&lt;SYMBOL name=&quot;or&quot;/&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&#9;&lt;!– more symbol declarations
+  --&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&#9;&lt;FORMULA&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun: yes">  
+  </span>&#9;&lt;LOGBINOP name=&quot;and&quot;/&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun: yes">      
+  </span>&#9;&lt;FORMULA&gt;&lt;QUANT name=&quot;forall&quot;/&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&#9;&#9;<span style="mso-spacerun:
+  yes">  </span>&lt;VARIABLE&gt;x&lt;/VARIABLE&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun: yes">     
+  </span>&#9;<span style="mso-spacerun: yes">  </span>&lt;FORMULA&gt;&lt;QUANT
+  name=&quot;exists&quot;/&gt;&#9;&#9;&#9;&#9;<span style="mso-spacerun:
+  yes">    </span>&lt;VARIABLE&gt;y&lt;/VARIABLE&gt;<span style="mso-spacerun:
+  yes">                       </span>&#9;&#9;<span style="mso-spacerun:
+  yes">    </span>&lt;FORMULA&gt;&lt;PREDICATESYMBOL name=&quot;p&quot;/&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun:
+  yes">               </span>&lt;TERM&gt;&lt;FUNCTIONSYMBOL
+  name=&quot;f&quot;/&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&#9;&#9;&#9;<span style="mso-spacerun:
+  yes">  
+  </span>&lt;TERM&gt;&lt;VARIABLE&gt;y&lt;/VARIABLE&gt;&lt;/TERM&gt;&lt;/TERM&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun:
+  yes">            </span>&lt;/FORMULA&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun:
+  yes">          </span>&lt;/FORMULA&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&#9; &#9;&lt;/FORMULA&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun: yes">       
+  </span>&lt;!– 2nd Formula --&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun: yes">   
+  </span>&lt;/FORMULA&gt;</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>&lt;/PLTHEORY&gt;</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0014.htm');">Architecture Idea</a></b></font></p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0022.htm');">Second Approach: OmDoc</a></b></font></p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0023.htm');">Summary and Discussion</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>3 possibilities for canonical
+  representation</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>XML: <br>
+  Pros: intuitive (?),
+  sufficient<br>
+  Cons: selfmade, want to establish a new standard?</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>OpenMath/OMDoc: <br>
+  Pros:
+  standard<br>
+  Cons: little structure, tool writing difficult (?).</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>“Proper” OMDoc: <br>
+  Pros:
+  meta-stylesheet approach practical. <br>
+  Cons: still little structure</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>Why use any of these at all?</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0013.htm');">Summary and Discussion</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>OMDoc CDs: semantic not clear</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>OMDoc DTD too generic</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Therefore:</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Domain specific approach</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Better tool support</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Robustness against changes due to
+  separation between domain model and physical (OMDoc) model</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0020.htm');">&quot;Problem:&quot;</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>Problem: Converting existing OMDoc into
+  domain model not always possible</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1></td>
+ </tr>
+</table>
+
+</p>
+
+</body>
+
+</html>

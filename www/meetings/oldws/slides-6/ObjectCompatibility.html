@@ -1,0 +1,176 @@
+<html>
+<head>
+   <title>A Proposed OpenMath Object Compatibility Standard</title>
+   <meta name="Author" content="Robert S. Sutor">
+   <meta name="GENERATOR" content="Mozilla/2.01Gold (Win32)">
+   <meta name="KeyWords" content="OpenMath, techexplorer, Maple, Mathematica">
+</head>
+<body>
+
+<h1 align=center>A Proposed OpenMath 
+<br>Object Compatibility Standard&nbsp;</h1>
+
+<center><p><a href="mailto:sutor@watson.ibm.com">Robert S. Sutor 
+<br></a>Mathematical Sciences Department 
+<br><a href="http://www.research.ibm.com">IBM Research Division 
+<br></a>T.J. Watson Research Center 
+<br>Yorktown Heights, New York 10598 USA</p></center>
+
+<p>
+<hr width="100%" ></p>
+
+<h2>Basic thesis</h2>
+
+<p>On a given platform with a rich object model, e.g., Windows 95 or the
+Macintosh, the full OpenMath standard with universal representations and
+transmission protocols is <b>overkill</b>.</p>
+
+<p>
+<hr width="100%" ></p>
+
+<h2>For example ...</h2>
+
+<ul>
+<li>Under Microsoft Windows, <a 
+href="http://www.microsoft.com/activex/">ActiveX/OLE</a>
+allows you to publish the availability of custom data formats for clipboard
+storage, OLE Automation transfer, or drag and drop. </li>
+
+<li>A <b><a 
+href="http://www.ics.raleigh.ibm.com/ics/techexp.htm">techexplorer</a></b>
+example ...</li>
+</ul>
+
+<p>
+<hr width="100%" ></p>
+
+<h2>On other platforms ...</h2>
+
+<ul>
+<li><a href="http://www.software.ibm.com/clubopendoc/index.html">SOM</a>
+and <a href="http://www.software.ibm.com/clubopendoc/index.html">OpenDoc</a>
+allow similar functionality for the Macintosh, OS/2, Windows 95/NT, and
+AIX, with more UNIX to follow. </li>
+
+<li>DSOM and <a 
+href="http://msdn.microsoft.com/library/backgrnd/html/msdn_dcomtec.htm">DCOM</a>
+will allow the marshalling of objects across machine boundaries.</li>
+</ul>
+
+<p>
+<hr width="100%" ></p>
+
+<h2>OpenMath Object Compatibility</h2>
+
+<ul>
+<li>For each object model on each supported platform, the OpenMath Object
+Standard describes how to construct a <i>native object</i> from an OpenMath
+object, and <i>vice-versa</i>. </li>
+
+<li>For example, on Windows we define a <tt>CF_OPENMATH</tt> clipboard
+format and specify the corresponding representation.</li>
+
+<li>An application is <i>OpenMath Object Compatible</i> if it can create
+or receive an ObjectMath object stored in native object format. </li>
+
+<li>In effect, we encode/decode with respect to the native object format
+and leave the transmission of the object to the underlying system.</li>
+</ul>
+
+<p>
+<hr width="100%" ></p>
+
+<h2>OMOC examples (Windows)</h2>
+
+<ul>
+<li><b>techexplorer </b>would be OMOC if it supported the creation of OM
+ActiveX objects for drag and drop or copy to the clipboard. </li>
+
+<li><b><a href="http://www.maplesoft.com/">Maple</a> </b>would be OMOC
+if it could both create and receive OM ActiveX objects.</li>
+</ul>
+
+<p>
+<hr width="100%" ></p>
+
+<h2>Intermachine object transfer</h2>
+
+<ul>
+<li>We don,t care! That,s the responsibility of the OM Network Compatibility
+Standard. </li>
+
+<li>However, we should support DCOM and DSOM, if possible, for the ActiveX
+and SOM object models.</li>
+</ul>
+
+<p>
+<hr width="100%" ></p>
+
+<h2>Nested standards</h2>
+
+<pre>+-----------------------------------------------------------+
+|                                                           |
+|  +---------------------------------------------+          |
+|  |                                             |          |
+|  | Object Compatibility                        |          |
+|  | Probably single computer (today)            |          |
+|  +---------------------------------------------+          |
+|                                                           |
+|  Network Compatibility                                    |
+|  Probably multiple computers or UNIX                      |
++-----------------------------------------------------------+</pre>
+
+<p>
+<hr width="100%" ></p>
+
+<h2>A necessary requirement</h2>
+
+<ul>
+<li>OM native objects are transferred on demand, without the chance for
+a conversation between the sender and receiver. </li>
+
+<li>Indeed, either may be the clipboard, which is notoriously math-inept!</li>
+</ul>
+
+<p>
+<hr width="100%" ></p>
+
+<h2>The actual representations</h2>
+
+<ul>
+<li>The problem of working with the native representation is equvalent
+to working with the OpenMath data structure level. </li>
+
+<li>Minimally (and inefficiently) we could define a <tt>CF_OPENMATH_STRING</tt>
+representation which encapsulates our standard ASCII representation.</li>
+</ul>
+
+<p>
+<hr width="100%" ></p>
+
+<h2>Suggested starting points</h2>
+
+<ul>
+<li>Windows NT/95 and ActiveX: 
+<br>
+<br><b>techexplorer </b><tt>---&gt;</tt> <b>Maple </b><tt>&lt;---&gt; 
+</tt><b><a href="http://www.nag.co.uk:70/0/symbolic/AX/">AXIOM</a>
+</b><tt>&lt;---</tt> <b>techexplorer</b>
+<br></li>
+
+<li>Macintosh and OpenDoc/SOM: 
+<br>
+<br><tt><a href="http://www.wri.com/">Mathematica</a> &lt;---&gt; Maple</tt>
+</li>
+</ul>
+
+<p>
+<hr width="100%" ></p>
+
+<div align=right><p>27 July, 1996</p></div>
+
+<HR>
+This page is part of the OpenMath Web archive,
+and is no longer kept up to date.
+</body>
+</html>

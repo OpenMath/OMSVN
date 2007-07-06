@@ -1,0 +1,150 @@
+<CD xmlns="http://www.openmath.org/OpenMathCD">
+
+<CDName> linalg5 </CDName>
+<CDBase>http://www.openmath.org/cd</CDBase>
+<CDURL> http://www.openmath.org/cd/linalg5.ocd </CDURL>
+<CDReviewDate>2006-03-30</CDReviewDate>
+<CDDate>2004-05-11</CDDate>
+<CDVersion>3</CDVersion>
+<CDRevision>1</CDRevision>
+<CDStatus> experimental </CDStatus>
+<Description>
+This CD contains symbols which represent a number of special types of
+matrix. 
+</Description>
+
+<CDDefinition>
+<Name> identity </Name>
+<Role>application</Role>
+<Description>
+This symbol denotes a unary function which is used to construct an
+(nxn) identity matrix where n is the single positive integral argument.
+</Description>
+<CMP>
+for all M | identity(rowcount M) * M = M * identity(columncount M) = M
+</CMP>
+
+<FMP>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMBIND>
+    <OMS cd="quant1" name="forall"/>
+    <OMBVAR>
+      <OMV name="M"/>
+    </OMBVAR>
+    <OMA>
+      <OMS cd="logic1" name="and"/>
+      <OMA>
+        <OMS cd="relation1" name="eq"/>
+        <OMA>
+          <OMS cd="arith1" name="times"/>
+	  <OMA>
+	    <OMS cd="linalg5" name="identity"/>
+	    <OMA>
+	      <OMS cd="linalg4" name="rowcount"/>
+	      <OMV name="M"/>
+	    </OMA>
+	  </OMA>
+	  <OMV name="M"/>
+        </OMA>
+        <OMV name="M"/>
+      </OMA>
+      <OMA>
+        <OMS cd="relation1" name="eq"/>
+        <OMA>
+          <OMS cd="arith1" name="times"/>
+	  <OMV name="M"/>
+	  <OMA>
+	    <OMS cd="linalg5" name="identity"/>
+	    <OMA>
+	      <OMS cd="linalg4" name="columncount"/>
+	      <OMV name="M"/>
+	    </OMA>
+	  </OMA>
+        </OMA>
+        <OMV name="M"/>
+      </OMA>
+    </OMA>
+  </OMBIND>
+</OMOBJ>
+</FMP>
+
+<Example>
+A representation of the 2x2 identity matrix [[1,0],[0,1]]
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="linalg5" name="identity"/>
+    <OMI> 2 </OMI>
+  </OMA>
+</OMOBJ>
+</Example>
+</CDDefinition>
+
+<FMP>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+<OMA><OMS cd="list1" name="list"/>
+
+	<OMA>
+	  <OMS cd="complex1" name="complex-cartesian"/>
+	  <OMI> 1 </OMI><OMI> 1 </OMI>
+        </OMA>
+         <OMA>
+	  <OMS cd="complex1" name="complex-cartesian"/>
+	  <OMI> 0 </OMI><OMI> 1 </OMI>
+        </OMA>
+         <OMA>
+	  <OMS cd="complex1" name="complex-cartesian"/>
+	  <OMI> 0 </OMI><OMI> 0 </OMI>
+        </OMA>
+         <OMA>
+	  <OMS cd="complex1" name="complex-cartesian"/>
+	  <OMI> 1 </OMI><OMI> 0 </OMI>
+        </OMA>
+         <OMA>
+	  <OMS cd="complex1" name="complex-cartesian"/>
+	  <OMI> 3 </OMI><OMI> 2 </OMI>
+        </OMA>
+         <OMA>
+	  <OMS cd="complex1" name="complex-cartesian"/>
+	  <OMI> 4 </OMI><OMA><OMS name="plus" cd="arith1"/><OMV name="x"/><OMI> 1 </OMI></OMA>
+        </OMA>
+
+
+        </OMA>
+</OMOBJ>
+</FMP>
+
+<FMP>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+<OMA><OMS cd="list1" name="list"/>
+
+	<OMA>
+	  <OMS cd="complex1" name="complex-polar"/>
+	  <OMI> 1 </OMI><OMI> 1 </OMI>
+        </OMA>
+         <OMA>
+	  <OMS cd="complex1" name="complex-polar"/>
+	  <OMI> 0 </OMI><OMI> 1 </OMI>
+        </OMA>
+         <OMA>
+	  <OMS cd="complex1" name="complex-polar"/>
+	  <OMI> 0 </OMI><OMI> 0 </OMI>
+        </OMA>
+         <OMA>
+	  <OMS cd="complex1" name="complex-polar"/>
+	  <OMI> 1 </OMI><OMI> 0 </OMI>
+        </OMA>
+         <OMA>
+	  <OMS cd="complex1" name="complex-polar"/>
+	  <OMI> 3 </OMI><OMI> 2 </OMI>
+        </OMA>
+         <OMA>
+	  <OMS cd="complex1" name="complex-polar"/>
+	  <OMI> 4 </OMI><OMA><OMS name="plus" cd="arith1"/><OMV name="x"/><OMI> 1 </OMI></OMA>
+        </OMA>
+
+
+        </OMA>
+</OMOBJ>
+</FMP>
+
+</CD>

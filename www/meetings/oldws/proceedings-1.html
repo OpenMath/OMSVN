@@ -1,0 +1,180 @@
+<HTML>
+<HEAD>
+<TITLE>Preliminary Report on OpenMath Workshop 1</TITLE>
+</HEAD>
+<BODY>
+<H1>Preliminary Report on OpenMath Workshop 1</H1>
+
+Thanks to Stefan Vorkoetter for supplying these notes.
+
+<P>
+The workshop was held on 17-18 December 1993 at ETH Zurich.
+A <A HREF="participants-1.html">list of participants</A> is available.
+
+<H3>Purpose</H3>
+
+A workshop to formulate a character based standard for the exchange
+of mathematical formulas and other mathematical objects between
+programs.
+
+
+<H3>Notes on the presentations</H3>
+
+For any presentations accompanied by paper(s), we omit detail here
+and refer the reader to the paper(s).
+
+<P>
+<B>Gaston Gonnet</B> gave an introduction to OpenMath, and outlined some of
+the requirements that such a protocol must have in order to function
+in arbitrary environments. Some of these requirements are:
+<UL>
+<LI> text (character) based
+<LI> can be sent by electronic mail
+<LI> a limit on line length
+<LI> extensible
+</UL>
+
+<P>
+<B>Chris Howlett</B> outlined Waterloo Maple Software's plans for OpenMath:
+<UL>
+<LI> committed to implementing a client/server math architecture
+for Maple during 1994
+<LI> need a standard such as OpenMath to ensure utility and
+acceptance; input from and agreement of a large group is essential
+</UL>
+
+<P>
+<B>Stefan Vorkoetter</B> described the current OpenMath proposal, as put
+forward by Waterloo Maple Software. During the ensuing discussion,
+some weaknesses and Maple-specific aspects were discovered:
+<UL>
+<LI> choice of data structures too Maple-biased
+<LI> how to decide which operators/functions to include
+</UL>
+
+<P>
+<B>Heikki Apiola</B> described ESC, an Environment for Scientific
+Computation, which combines various mathematical tools.
+
+<P>
+<B>Wolfgang Weck</B> described his concept of a math protocol, based on
+modular decomposition and type extension:<BR>
+"A Module Library for Computer Algebra", Dominik Gruntz, Wolfgang Weck (submitted to ISSAC 94).
+
+<P>
+<B>Marc Gaetano</B> described the ASAP protocol:<BR>
+"Designing a protocol for exchanging mathematical objects", S. Dalmas, M. Gaetano, A. Sausse<BR>
+"The ASAP Protocol: a description", S. Dalmas, M. Gaetano, A. Sausse<BR>
+"A C library for ASAP", S. Dalmas, A. Sausse
+
+<P>
+<B>Carlo Traverso</B> described POSSO:<BR>
+"The POSSO External Data Representation", J. Abbott, C. Traverso
+
+<P>
+<B>Norbert Kajler</B> spoke on building a computer algebra environment.  He
+described the SAFIR project and CAS/PI:<BR>
+"Building a Computer Algebra Environment by Composition of Collaborative Tools", Norbert Kajler
+
+<P>
+<B>Mika Seppala</B> gave a brief historical review of EuroMath.
+
+
+<H3>Discussions</H3>
+
+<UL>
+<LI><B>Syntax</B>
+    <UL>
+    <LI> general agreement (expression trees in LISP-like notation).
+    <LI> modifying the proposed standard seemed to be acceptable.
+    <LI> it was agreed that the sequences defined by SGML standard
+	 would be adopted for special characters.
+    <LI> there is still the issue of which escape character to use.
+    </UL>
+
+<LI><B>Semantics</B>
+    <UL>
+    <LI> it was agreed that the basic proposal should support all the
+	 functions in Abramowitz and Stegun, Chapters 1 to 3.
+    <LI> the standard should allow for the definition of packages of
+	 functions as extensions.
+    </UL>
+
+<LI><B>Attributes</B>
+    <UL>
+    <LI> basic attributes do not belong in the standard, but rather in
+	 packages (eg. a package of typesetting attributes).
+    </UL>
+
+<LI><B>Types</B>
+the proposal from WMS had too many Maple-specific types. The
+following base types were suggested:
+    <UL>
+    <LI> numbers (integer, floating point (including complex))
+    <LI> symbols
+    <LI> sets
+    <LI> arrays
+    </UL>
+
+<LI><B>Sub-, super-, and other-scripts</B>
+    <UL>
+    <LI>there was intense discussion about what method should be used
+	to represent these.
+    <LI> eventually, it was generally agreed that this was beyond the
+	 scope of the standard, because these are typographical, and
+	 not mathematical, attributes.
+    </UL>
+
+<LI><B>Functions</B>
+    <UL>
+    <LI> after some discussion, it became clear that it would be both
+	 impossible and undesirable to include all possible functions
+	 in the base proposal.
+    <LI> there would always be functions that someone considers
+	 important that were left out.
+    <LI> four extensions were proposed: Polynomial Manipulation, Group Theory, Programming, and Tensors.
+    </UL>
+
+<LI><B>Control Layer:</B> discussion was deferred to future meetings.
+</UL>
+
+
+<H3>Assignment of responsibilities</H3>
+
+<B>Waterloo Maple Software:</B> will take care of the following list:
+<UL>
+<LI> prepare the OpenMath mailing list (openmath@maplesoft.on.ca).
+<LI> prepare this report.
+<LI> update the OpenMath proposal based on the discussions at the
+     workshop. Some things that are to be incorporated are:
+     <UL>
+     <LI> simplified structure level operators.
+     <LI> a method to determine packages understood.
+     <LI> in-line OpenMath recognition via &lt;openmath&gt;..&lt;\openmath&gt;.
+     <LI> adoption of SGML character set extensions.
+     <LI> an OpenMath to SGML mapping.
+     <LI> a Maple extension to the standard.
+     <LI> extensions for number bases.
+     <LI> clarification of labels and references.
+     <LI> simplification of concept of symbols.
+     <LI> complex numbers.
+     </UL>
+</UL>
+
+<P>
+<B>Carlo Traverso:</B> design of an extension for polynomial manipulation.
+
+<P>
+<B>Someone at CWI:</B> design of an extension for group theory.
+
+<P>
+<B>Michael Monagan, Marc Gaetano:</B> design of an extension for programming.
+
+<P>
+<B>Someone called MB:</B> design of an extension for tensors.
+
+<HR>
+This page is part of the OpenMath Web archive,
+and is no longer kept up to date.
+</BODY>
+</HTML>

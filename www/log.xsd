@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd='http://www.w3.org/2001/XMLSchema'
+  targetNamespace="log" elementFormDefault="qualified" xmlns="log">
+  
+	<xsd:element name="change">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:choice>
+					<xsd:element name="file" type="xsd:string"/>
+					<xsd:element name="files"><xsd:complexType>
+						<xsd:sequence><xsd:element name="file" type="xsd:string" maxOccurs="unbounded"/></xsd:sequence>
+					</xsd:complexType></xsd:element>
+				</xsd:choice>
+				<xsd:element name="toldat" type="xsd:string"  minOccurs="0"/>
+				<xsd:element name="thanksto" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="log" type="xsd:string"/>
+			</xsd:sequence>
+  		<xsd:attribute name="who" type="xsd:IDREF"/>
+  		<xsd:attribute name="date" type="xsd:date"/>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="logs">
+		<xsd:complexType><xsd:sequence>
+			<xsd:element ref="change" maxOccurs="unbounded"/>
+			<xsd:element ref="persons"/>
+		</xsd:sequence></xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="persons">
+		<xsd:complexType><xsd:sequence>
+			<xsd:element name="person" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:attribute name="name"/>
+					<xsd:attribute name="email"/>
+					<xsd:attribute name="id" type="xsd:ID"/>
+				</xsd:complexType></xsd:element>
+		</xsd:sequence></xsd:complexType>
+	</xsd:element>
+	
+</xsd:schema>
+

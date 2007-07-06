@@ -1,0 +1,221 @@
+<HTML>
+<HEAD>
+
+<TITLE>OpenMath Network Compatibility</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN=CENTER>OpenMath Network Compatibility</H1>
+<HR>
+
+<H2>Motivation</H2>
+
+Bob Sutor in <A HREF="ObjectCompatibility.html">his talk</A> has already
+explained that certain platforms come supplied with a built-in object
+transfer protocol allowing complete, structured objects to be transmitted
+directly.  For interprocess communications on these platforms there are
+advantages to using the innate technology.  On the other hand, there are
+still many platforms for which no such protocol yet exists; similarly for
+communications between different platforms.  Thus, to be widely portable
+and to support cross-platform links, OpenMath must define its own "object
+transfer protocol"; we present here the main features which this protocol
+should have (based on our experience with building prototypes)..
+
+
+<H2>Analysis</H2>
+
+The principal difference between "network compatibility" and "object
+compatibility" is that the former assumes only a byte-stream-like transport
+medium while the latter allows for more sophisticated media.  Thus an
+object compatible implementation may bypass some of the lower layers in the
+OpenMath model (see the <A HREF="../../reports/objectives.ps.gz">Objectives
+Document</A>).  At one extreme, an object compatible implementation is
+permitted merely to take a standard OpenMath encoding (i.e. as produced by
+a network compatible implementation) and transport it as a string object.
+At the other extreme, it might be possible to transmit an OpenMath object
+directly.
+
+<P>
+In this document we concentrate on the lowest two or three layers: OpenMath
+Expression, OpenMath data-structure, and OpenMath encoding.  During
+prototyping the design decisions concerning these layers usually involved a
+compromise between what seemed "best" and what could be achieved before a
+specific deadline.
+
+<P>
+We recall also that the <A
+HREF="../../reports/objectives.ps.gz">Objectives Document</A> stated that
+it was not necessary for the different layers to be readily distinguishable
+in an implementation, but that the important criterion was that the
+OpenMath object received should be semantically equivalent to the one sent.
+Indeed, in our implementations of prototype2.1 both the OpenMath object and
+the OpenMath expression layers had only ephemeral existences.
+The sections below describe some of the more abstract design decisions
+which were taken during the development of prototypes 2.0 and 2.1; greater
+detail will be given in the talk on <A HREF="PrototypeNews.html">OpenMath
+Prototypes</A>.
+
+
+<H3>OpenMath Data-Structure: Trees</H3>
+
+The principal choice for the OpenMath data-structure was between a directed
+acyclic graph (DAG) and a tree.  For the last few prototypes we chose to
+use a tree because it allowed a simpler implementation (in REDUCE, Maple,
+and CoCoA), because the extra capabilities offered by DAGs would not be of
+use at this stage, and because the ability of DAGs to represent shared
+structure can easily be subsumed by an alternative mechanism: <A
+HREF="PrototypeNews.html#conversations">conversations</A>.  Other factors
+favouring trees include the fact that many programming systems/languages
+support trees readily, while relatively few support DAGs as easily.
+
+<P>
+In summary, the choice is not especially clear cut, but the differences
+between the two options are quite small in any case.  Something I regard as
+an advantage of using trees is that shared substructure is explicit even
+above the data-structure level, but this is only an opinion.
+
+
+<H3>OpenMath Object to OpenMath Tree</H3>
+
+The specification of an OpenMath tree was developed in parallel with the
+algorithm for converting between objects and trees; the aim was to keep
+both the tree structure and the algorithm "simple".  We note in our
+implementations the transition from application specific representation to
+OpenMath tree was effected as a single step, though this may not always be
+possible/convenient for more complicated mathematical data.  The object and
+expression levels are represented only as program state.
+
+<P>
+The <A HREF="../../prototypes/2.1.tar.gz">specifications</A> for
+prototype2.1 describe OpenMath trees with 15 different types of node.
+Some of the node types are used directly to represent data while others
+have a more "managerial" role, for OpenMath is a complete protocol not
+merely a data representation.  Most node types have fixed numbers of
+children, just two allow varied numbers.
+
+<P>
+OpenMath contexts play a vital role in the conversions between objects and
+trees.  For the prototypes only a very simple scheme of contexts was used:
+a context was no more than an indexed list of symbols whose meanings were
+described in a human-only comprehensible form.  As a more sophisticated
+internal structure for contexts becomes stable, the extra information
+thereby represented can be exploited during the conversion processes.
+
+<P>
+It is important to bear in mind that a context may be extended between the
+time that an OpenMath object is converted to an OpenMath tree and the time
+that the object is reconstructed from the tree: think of data stored in an
+archive.  Thus the manner in which contexts are used for these conversions
+should permit extensions to the contexts without invalidating or altering
+the meaning of OpenMath data stored in an archive.  This is also the reason
+why deletions from officially registered contexts are not allowed.  Note:
+although it is an OpenMath encoding which is stored in an archive, the
+conversion between a tree and its linear encoding is independent of all
+contexts; thus it is fair to say that an archive contains OpenMath trees.
+
+
+<H3>OpenMath Encoding</H3>
+
+We <A HREF="../../reports/objectives.ps.gz">recall</A> that an
+<b>encoding</b> is a reversible linearization of the OpenMath tree.
+The primary decision here was to make it explicit that the
+linearization should be based on a pre-order traversal of the OpenMath
+tree.  There are no real technical difficulties encountered during
+conversion between OpenMath trees and their encodings.  The biggest problems
+were how to encode big integers (as opposed to integers of strictly limited
+magnitude, typically representable in 32 bits), and machine precision
+floating point (MPFP) numbers without being unreasonably inefficient in some
+cases.
+
+<P>
+The difficulty with big integers is that different systems use different
+internal representations, and the cost of conversion is super-linear in the
+length of the integer: in general, the complexity of converting base of an
+integer of length n is the smaller of n*n and M(n)*log(n) where M(n) is
+the cost of multiplying together two integers of length n.  Barring Maple,
+all computer algebra systems use a binary representation permitting a
+linear time inter-conversion.  Imposing a binary representation would make
+Maple to Maple communication via OpenMath unreasonably slow if many large
+integers are to be exchanged; in this case a "decimal" representation is
+the only acceptable solution.  Moreover, integer values sent to a
+typesetting system, say, must also be in a "decimal" form since it is not
+reasonable to require the typesetter to perform base conversion on
+arbitrary precision integers.
+
+<P>
+A similar problem arises for MPFP numbers.  Here the problem is that
+numerical computations frequently involve very large numbers of floating
+point values, and if a large array is to be transmitted the cost of
+changing the format a MPFP number is multiplied manifold.  A
+more serious aspect of changing format is that precision may be lost, or
+some values may be unrepresentable (e.g. magnitude is too great or too
+small).  When both sender and receiver have the same internal format for
+MPFP numbers, OpenMath should allow them to use that format for
+data exchange.
+
+<P>
+The solution proposed is for every <A
+HREF="PrototypeNews.html#conversations">conversation</A> to be preceded by a
+negotiation phase where the format to be used for big integers, and for
+MPFP numbers is determined at run-time.  This does pose problems when
+OpenMath is to be used for archival or other "non-interactive" purposes
+such as drag-and-drop, and communication via email.  In these cases the
+sender knows little about the receiver, but ultimate efficiency is also
+less important: a "decimal" representation for big integers must be used in
+case the receiver is a typesetter; it is much less clear what format to use
+for MPFP numbers.
+
+<P>
+Once the idea of negotiation is introduced, it can be extended to cover
+other aspects.  One possible choice is the alphabet (and encoding) for
+strings: ASCII (or ISO-Latin-1) is an obvious choice for English speakers,
+while the full range of UniCode may be needed in some circumstances.
+Another candidate for negotiation is the overall encoding of the OpenMath
+tree: e.g. Lisp-like, based on ASAP, or based on MP.  In the prototypes to
+date, renegotiation of encoding formats was not permitted during a
+conversation because it seemed unnecessary, and could be risky.
+
+<P>
+If run-time negotiation is to be adopted as the correct approach then it
+will be necessary to list all the various formats which may be chosen from
+during negotiation; this may be tricky for floating point numbers.  Also a
+default format must be chosen for MPFP numbers to use in "non-interactive"
+situations; this default should be capable of representing without loss of
+precision any number from any of the current common formats for MPFP
+numbers (and any likely future format).
+
+
+<H3>Error Reporting</H3>
+
+If OpenMath is used as the protocol for a remote procedure call then a
+means of returning an error response will sometimes be needed.  Probably
+the simplest way to do this is to have two types of message: a normal
+response and an error response, exactly one of which will be returned for
+each remote call.  A disadvantage of this method is that the complete
+response to a remote call must be computed and stored in the server before
+any part of it can be sent.
+
+<P>
+It was decided that the "naive" solution described above was too
+restrictive, and instead a more flexible, but hardly more complicated,
+scheme was devised: the linear encoding of an OpenMath tree may be
+"interrupted" at almost any point by an error message.  This permits the
+server to interleave computation with sending back of the result: there is
+no problem if an error occurs after part of the result has already been
+sent back.  It also provides a convenient mechanism for allowing the user
+(in an interactive environment) to terminate prematurely the transmission
+of an excessively long result.
+
+<P>
+The ability of an error report to "interrupt" the encoding of a tree
+probably cannot be exploited by "object compatible" data transfer.  On the
+other hand, there is no obligation on the server to interleave computation
+and transmission of a result; the OpenMath error reporting mechanism merely
+permits it.
+
+
+<HR>
+<BR>
+This page is part of the OpenMath Web archive,
+and is no longer kept up to date.
+</BODY>
+</HTML>

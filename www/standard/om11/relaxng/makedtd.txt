@@ -1,0 +1,10 @@
+#!/usr/local/bin/bash
+
+sed -e "s/default namespace/# default namespace/" \
+    -e "s/element OMATTR {(OMATP , (OMV| attvar))}/OMATTR/" \
+    -e "s/{pattern.*}}/}/" \
+        $1 >tmp.rnc
+
+trang tmp.rnc `basename $1 .rnc`.dtd
+
+echo "<!ATTLIST OMOBJ xmlns CDATA  #FIXED \"http://www.openmath.org/OpenMath\">" >> `basename $1 .rnc`.dtd

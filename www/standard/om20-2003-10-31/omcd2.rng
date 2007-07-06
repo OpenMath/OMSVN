@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  *********************************************
+  
+  Relax NG Schema for OpenMath CD
+  
+  *********************************************
+-->
+<grammar ns="http://www.openmath.org/OpenMathCD" xmlns="http://relaxng.org/ns/structure/1.0">
+  <include href="openmath2.rng"/>
+  <define name="CDComment">
+    <element name="CDComment">
+      <text/>
+    </element>
+  </define>
+  <define name="CDName">
+    <element name="CDName">
+      <text/>
+    </element>
+  </define>
+  <define name="CDURL">
+    <element name="CDURL">
+      <text/>
+    </element>
+  </define>
+  <define name="CDBASE">
+    <element name="CDBASE">
+      <text/>
+    </element>
+  </define>
+  <define name="text-or-om">
+    <zeroOrMore>
+      <choice>
+        <text/>
+        <ref name="OMOBJ"/>
+      </choice>
+    </zeroOrMore>
+  </define>
+  <define name="CDReviewDate">
+    <element name="CDReviewDate">
+      <text/>
+    </element>
+  </define>
+  <define name="CDStatus">
+    <element name="CDStatus">
+      <text/>
+    </element>
+  </define>
+  <define name="Description">
+    <element name="Description">
+      <text/>
+    </element>
+  </define>
+  <define name="Name">
+    <element name="Name">
+      <text/>
+    </element>
+  </define>
+  <define name="Role">
+    <element name="Role">
+      <text/>
+    </element>
+  </define>
+  <define name="CMP">
+    <element name="CMP">
+      <text/>
+    </element>
+  </define>
+  <define name="FMP">
+    <element name="FMP">
+      <ref name="text-or-om"/>
+    </element>
+  </define>
+  <!-- allow embedded OM -->
+  <define name="Example">
+    <element name="Example">
+      <ref name="text-or-om"/>
+    </element>
+  </define>
+  <define name="CDDefinition">
+    <element name="CDDefinition">
+      <zeroOrMore>
+        <choice>
+          <ref name="CDComment"/>
+          <ref name="Name"/>
+          <ref name="Description"/>
+          <ref name="Example"/>
+          <ref name="FMP"/>
+          <ref name="CMP"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="CD">
+    <element name="CD">
+      <zeroOrMore>
+        <ref name="CDComment"/>
+      </zeroOrMore>
+      <interleave>
+        <ref name="CDName"/>
+        <ref name="CDURL"/>
+        <ref name="CDReviewDate"/>
+        <ref name="CDStatus"/>
+      </interleave>
+      <zeroOrMore>
+        <choice>
+          <ref name="CDComment"/>
+          <ref name="Description"/>
+          <ref name="CDDefinition"/>
+          <ref name="Example"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <start>
+    <ref name="CD"/>
+  </start>
+</grammar>

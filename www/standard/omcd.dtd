@@ -1,0 +1,42 @@
+<!-- omcd.dtd -->
+<!-- ********************************************* -->
+<!--                                               -->
+<!-- DTD for OpenMath CD                           -->
+<!-- (c) EP24969 the ESPRIT OpenMath Consortium    -->
+<!-- date = 28.aug.1998                            -->
+<!-- author = s.buswell sb@stilo.demon.co.uk       -->
+<!--                                               -->
+<!-- edited by n.howgrave-graham 30.aug.98         -->
+<!-- edited by sb 4.sep.98                         -->
+<!-- edited by nh-g 4.sep.98                       -->
+<!-- edited by sb 1.nov.98                         -->
+<!-- edited by sb 1.nov.98                         -->
+<!-- edited by dpc 1999-04-13                      -->
+<!--                                               -->
+<!--                                               -->
+<!-- ********************************************* -->
+<!ELEMENT CDComment      (#PCDATA) >
+<!ELEMENT CDName         (#PCDATA) >
+<!ELEMENT CDURL          (#PCDATA) >
+<!ELEMENT CDUses         (CDName)*  >
+<!ENTITY % inhel        "(#PCDATA)" >
+<!ENTITY % inhel2       "(#PCDATA | OMOBJ)*" >
+<!ELEMENT CDReviewDate   %inhel; >
+<!ELEMENT CDStatus       %inhel; >
+<!ELEMENT Description    %inhel; >
+<!ELEMENT Name           %inhel; >
+<!ELEMENT Signature      %inhel; >
+<!ELEMENT Presentation   %inhel; >
+<!ELEMENT CMP            %inhel; >
+<!-- include dtd for OM objects -->
+<!ENTITY  % omobjectdtd SYSTEM "omobj.dtd" >
+%omobjectdtd;
+<!ELEMENT FMP            %inhel2; >             <!-- allow embedded OM -->
+<!ELEMENT Example        %inhel2; >
+<!ELEMENT CDDefinition    (CDComment | Name | Description |  PartOf |
+                          FunctorClass | Signature | Example | FMP |
+                          CMP | Presentation)* >
+<!ELEMENT CD             (CDComment | CDName | Description | CDReviewDate |
+                         CDStatus | CDURL | CDUses |  CDDefinition |
+Example)* >
+<!-- end of DTD for OM CD -->

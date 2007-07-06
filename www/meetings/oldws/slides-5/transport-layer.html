@@ -1,0 +1,55 @@
+<HTML>
+<HEAD>
+<TITLE>Discussion about transport layer</TITLE>
+</HEAD>
+<BODY>
+<center><H1>Discussion about transport layer</H1></center>
+<HR>
+
+<H2>Notes from Workshop 5: afternoon session, 11 January 1996</H2>
+
+Shawn Sheridan participated by telephone.
+
+<P>
+There was a discussion on the transport layer; in particular, it was noted
+that the communications report did not resolve the issue of ASAP-style
+urgent messages versus MathLink-style ones.  Everyone approved the idea
+that the two alternatives should be compared in prototypes, and then the
+decision should be taken.
+
+<P>
+A new potential problem was raised: how can a client interrupt the server
+in the middle of sending a long message.  The main difficulty here is that
+if the message being transmitted is abruptly truncated then it may not be
+well-formed; this may cause difficulties for the client receiving the message.
+Since a byte-stream transport layer has been assumed, the end of a truncated
+message must be marked explicitly -- this could be tricky if opaque binary
+data can be sent.  MathLink does allow premature termination of messages
+because MLEndPacket() can be called at any atom boundary.
+
+<P>
+Another potential problem is that urgent messages may be delayed (e.g. by
+network troubles), and could arrive at the server after it has begun
+handling the next normal request.  It was proposed that urgent messages
+should thus carry the identity of the request which they are supposed to
+interrupt, and if that request has already been completed then the urgent
+message is discarded.  It was not decided what should happen if the
+indicated request is still queued for handling.  Shawn noted that
+MathLink urgent messages do not (at this stage) carry such request-ID
+information because it is expected to be used in a "transaction scheme"
+(i.e. where requests are not queued up at the server).  It was pointed out
+that we ought to consider the needs of parallel process management, which
+seem to resemble the scenarios given in the discussion.
+
+<P>
+The question of whether interrupts should be forwarded by intermediate
+processes in a chain of processes was raised.  The general feeling was
+that each process in the chain should decide how to handle the interrupt
+(the behaviour of each process should be given in its documentation).
+
+
+<HR>
+This page is part of the OpenMath Web archive,
+and is no longer kept up to date.
+</BODY>
+</HTML>

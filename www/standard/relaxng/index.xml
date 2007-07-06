@@ -1,0 +1,329 @@
+<page>
+
+<page-title>RELAX NG derived Schema for OpenMath</page-title>
+
+<h3>The schema</h3>
+<p>Currently we maintain two different schema for OpenMath,
+a DTD (omobj.dtd) and a W3C XML Schema (omobj.xsd).
+Having two schemas causes maintenance problems, and some features of the language, notably that an OMF must have exactly one attribute, either hex or dec, are not captured by either schema.</p>
+
+<p>This is an experiment to describe OpenMath 1 using Relax NG, which is able to express more constraints than either XSD or DTD, and then to automatically derive XSD and DTD files from the Relax NG schema (Using James Clark's trang convertor).</p>
+
+<p>More information on Relax NG, and links to implementations of validators and convertors
+for this schema format are available from the <link uri="http://www.relaxng.org/">Relax NG Home page</link>.</p>
+
+<ul>
+<li><link uri="openmath1.rnc">openmath1.rnc</link>
+Relax NG schema in compact (non XML) syntax. This is the version that is
+maually maintained.</li>
+<li><link uri="openmath1.rng">openmath1.rng</link> Relax NG schema in XML syntax. This is fully compatible with the RNC schema trang can "round trip" between these two formats.</li>
+<li><link uri="openmath1.dtd">openmath1.dtd</link> DTD derived by trang
+after first removing a few Relax features not handled by the trang convertor
+for DTD (specifically regexp restrictions on datatypes and the local content model of an OMATTR in OMBIND). The result should validate exactly the same documents as the original omobj.dtd</li>
+<li><link uri="openmath1.xsd">openmath1.xsd</link> XSD schema derived by trang.The result appears to be identical in effect to the original omobj.xsd schema
+with the exception that the named complex data types used in omobj.xsd are not used but instead anonymous types are defined within the element declarations.
+This means the file is identical for the purposes of validation, but files
+(eg WSDL files) that may be refering to named types may need to be altered.</li>
+</ul>
+
+<h3>Example Documents</h3>
+<p>The following table links to some example OpenMath XML files, and indicates whether they are valid
+or invalid according to these schema (as reported by  Jing, rxp or xsv).</p>
+
+<table border="1">
+<tr>
+<th>File</th>
+<th>Note</th>
+<th>RNG (jing)</th>
+<th>DTD (rxp)</th>
+<th>XSD (xsv)</th>
+</tr>
+<tr>
+<td><link uri="ombad1.xml">ombad1.xml</link></td><td style="color:red;">Attribute and element content not matching regexp constraints.</td><td style="color:red;">invalid</td><td style="color:green;">valid</td><td style="color:red;">invalid</td>
+</tr>
+<tr>
+<td><link uri="ombad2.xml">ombad2.xml</link></td><td style="color:red;">Attributed "Variable" an OMI</td><td style="color:red;">invalid</td><td style="color:green;">valid</td><td style="color:red;">invalid</td>
+</tr>
+<tr>
+<td><link uri="ombad3.xml">ombad3.xml</link></td><td style="color:red;">OMF with no attribute or both dec and hex</td><td style="color:red;">invalid</td><td style="color:green;">valid</td><td style="color:green;">valid</td>
+</tr>
+<tr>
+<td><link uri="ombad4.xml">ombad4.xml</link></td><td style="color:red;">No namespace</td><td style="color:red;">invalid</td><td style="color:green;">valid</td><td style="color:red;">invalid</td>
+</tr>
+<tr>
+<td><link uri="omgood1.xml">omgood1.xml</link></td><td style="color:green;">Small valid example</td><td style="color:green;">valid</td><td style="color:green;">valid</td><td style="color:green;">valid</td>
+</tr>
+<tr>
+<td><link uri="omgood2.xml">omgood2.xml</link></td><td style="color:green;">Valid attributed bound variable</td><td style="color:green;">valid</td><td style="color:green;">valid</td><td style="color:green;">valid</td>
+</tr>
+</table>
+
+<h3>Conversion Scripts</h3>
+
+<p>Converting the RNC format to RNG and XSD is simply a matter of</p>
+<pre>
+trang openmath1.rnc openmath1.rng
+trang openmath1.rnc openmath1.xsd
+</pre>
+
+<p>In order to produce a DTD, the RNC needs to be simplified slightly before using trang,
+(due to documented restrictions in trang's dtd support) the script currently just uses sed for this
+and is available <link uri="makedtd.txt">here</link>.</p>
+
+
+
+<h3>CD specific schema</h3>
+<p>Relax NG allows one to state constraints such as:</p>
+<blockquote><em>If the cd attribute of OMS is arith1
+then the name attribute must be one of lcm, gcd, plus, ...</em></blockquote>
+
+<p>Thus it is easy to use a stylesheet <link uri="cd2rnc.xsl">cd2rnc.xsl</link>
+to generate for any given CD, a Relax NG schema that expresses the constraint that
+an OMS naming that CD must only use symbols defined in the specified dictionary.</p>
+
+<p>The modularisation mechanisms of Relax NG then allow one to include these schema for all the CDs that you want to allow, and  to replace the regexp-based validation of the OMS attributes by explicit lists of allowed CD names, and for each CD Name, a list of allowed symbol names.</p>
+
+<p>A Typical CD-specific Relax NG schema would be <link uri="arith1.rnc">arith1.rnc</link>
+which looks like:</p>
+<pre>
+cd.attlist.OMS |= 
+  attribute cd {string "arith1" },
+  attribute name {
+    string "lcm" |
+    string "gcd" |
+    string "plus" |
+    string "unary_minus" |
+    string "minus" |
+    string "times" |
+    string "divide" |
+    string "power" |
+    string "abs" |
+    string "root" |
+    string "sum" |
+    string "product" }
+</pre>
+
+<p>To build a schema that allows this CD we just need to include the
+openmath1 schema described above, override the attribute declarations
+for OMS, and then include the schema for each CD that we wish to
+allow. <link uri="omextra.rnc">omextra.rnc</link> does this for all the CDs in the "extra"
+collection available from this site (that is, all the CDs other than contribted CDs.</p>
+
+<p>Its format is as shown below, and may be trivially edited to allow a different list of CDs
+for specific purposes.</p>
+<pre>include "<link uri="openmath1.rnc">openmath1.rnc</link>" {
+ attlist.OMS = cd.attlist.OMS}
+
+include "<link uri="alg1.rnc">alg1.rnc</link>"
+include "<link uri="altenc.rnc">altenc.rnc</link>"
+include "<link uri="arith1.rnc">arith1.rnc</link>"
+include "<link uri="arith2.rnc">arith2.rnc</link>"
+include "<link uri="bigfloat1.rnc">bigfloat1.rnc</link>"
+include "<link uri="calculus1.rnc">calculus1.rnc</link>"
+include "<link uri="cc.rnc">cc.rnc</link>"
+include "<link uri="coercions.rnc">coercions.rnc</link>"
+include "<link uri="combinat1.rnc">combinat1.rnc</link>"
+include "<link uri="complex1.rnc">complex1.rnc</link>"
+include "<link uri="dimensions1.rnc">dimensions1.rnc</link>"
+include "<link uri="ecc.rnc">ecc.rnc</link>"
+include "<link uri="error.rnc">error.rnc</link>"
+include "<link uri="fns1.rnc">fns1.rnc</link>"
+include "<link uri="fns2.rnc">fns2.rnc</link>"
+include "<link uri="group1.rnc">group1.rnc</link>"
+include "<link uri="icc.rnc">icc.rnc</link>"
+include "<link uri="indnat.rnc">indnat.rnc</link>"
+include "<link uri="integer1.rnc">integer1.rnc</link>"
+include "<link uri="interval1.rnc">interval1.rnc</link>"
+include "<link uri="lc.rnc">lc.rnc</link>"
+include "<link uri="limit1.rnc">limit1.rnc</link>"
+include "<link uri="linalg1.rnc">linalg1.rnc</link>"
+include "<link uri="linalg2.rnc">linalg2.rnc</link>"
+include "<link uri="linalg3.rnc">linalg3.rnc</link>"
+include "<link uri="linalg4.rnc">linalg4.rnc</link>"
+include "<link uri="linalg5.rnc">linalg5.rnc</link>"
+include "<link uri="list1.rnc">list1.rnc</link>"
+include "<link uri="list2.rnc">list2.rnc</link>"
+include "<link uri="logic1.rnc">logic1.rnc</link>"
+include "<link uri="mathmltypes.rnc">mathmltypes.rnc</link>"
+include "<link uri="meta.rnc">meta.rnc</link>"
+include "<link uri="metagrp.rnc">metagrp.rnc</link>"
+include "<link uri="metasig.rnc">metasig.rnc</link>"
+include "<link uri="minmax1.rnc">minmax1.rnc</link>"
+include "<link uri="moreerrors.rnc">moreerrors.rnc</link>"
+include "<link uri="multiset1.rnc">multiset1.rnc</link>"
+include "<link uri="nums1.rnc">nums1.rnc</link>"
+include "<link uri="omtypes.rnc">omtypes.rnc</link>"
+include "<link uri="opnode.rnc">opnode.rnc</link>"
+include "<link uri="permgrp.rnc">permgrp.rnc</link>"
+include "<link uri="permut1.rnc">permut1.rnc</link>"
+include "<link uri="physical_consts1.rnc">physical_consts1.rnc</link>"
+include "<link uri="piece1.rnc">piece1.rnc</link>"
+include "<link uri="poly.rnc">poly.rnc</link>"
+include "<link uri="polyd.rnc">polyd.rnc</link>"
+include "<link uri="polyr.rnc">polyr.rnc</link>"
+include "<link uri="polyslp.rnc">polyslp.rnc</link>"
+include "<link uri="polysts.rnc">polysts.rnc</link>"
+include "<link uri="polyu.rnc">polyu.rnc</link>"
+include "<link uri="quant1.rnc">quant1.rnc</link>"
+include "<link uri="relation0.rnc">relation0.rnc</link>"
+include "<link uri="relation1.rnc">relation1.rnc</link>"
+include "<link uri="rounding1.rnc">rounding1.rnc</link>"
+include "<link uri="s_data1.rnc">s_data1.rnc</link>"
+include "<link uri="s_dist1.rnc">s_dist1.rnc</link>"
+include "<link uri="semigroup.rnc">semigroup.rnc</link>"
+include "<link uri="set1.rnc">set1.rnc</link>"
+include "<link uri="set2.rnc">set2.rnc</link>"
+include "<link uri="setname1.rnc">setname1.rnc</link>"
+include "<link uri="setname2.rnc">setname2.rnc</link>"
+include "<link uri="setoid.rnc">setoid.rnc</link>"
+include "<link uri="sigma.rnc">sigma.rnc</link>"
+include "<link uri="sts.rnc">sts.rnc</link>"
+include "<link uri="transc1.rnc">transc1.rnc</link>"
+include "<link uri="transc2.rnc">transc2.rnc</link>"
+include "<link uri="transc3.rnc">transc3.rnc</link>"
+include "<link uri="typesorts.rnc">typesorts.rnc</link>"
+include "<link uri="units_imperial1.rnc">units_imperial1.rnc</link>"
+include "<link uri="units_metric1.rnc">units_metric1.rnc</link>"
+include "<link uri="veccalc1.rnc">veccalc1.rnc</link>"
+
+
+</pre>
+
+
+<h3 id="forolga">More CD specific schema</h3>
+<p>Initial comments on this page have been generally positive but people seem to want more constraints still...</p>
+
+<p><link uri="cdsts2rnc.xsl">cdsts2rnc.xsl</link> is a modification of the above stylesheet that also inspects the associated STS file for a CD. It builds two enumerated lists in the schema, one for 
+general symbols and one for symbols that should only be used as keys in attributions.</p>
+<p>For example the "type" symbol in the sts CD is such a symbol, and <link uri="sts-sts.rnc">sts-sts.rnc</link> has the form:</p>
+<pre>
+cd.attlist.OMS |= 
+  attribute cd {string "sts" },
+  attribute name {
+    string "mapsto" |
+    string "nary" |
+    string "nassoc" |
+    string "error" |
+    string "structure" |
+    string "binder" |
+    string "attribution" |
+    string "Object" |
+    string "NumericalValue" |
+    string "SetNumericalValue" }
+
+cd.attlist.OMS.attrib |= 
+  attribute cd {string "sts" },
+  attribute name {
+    string "type" }
+</pre>
+
+
+<p>The schema <link usr="omextra-sts.rnc">omextra-sts.rnc</link> is as shown below and
+redefines OMATP to only allow OMS elements that have attributes matching
+the cd.attlist.OMS.attrib pattern, and then includes all the CD specific schema as before.
+</p>
+
+
+<pre>
+
+default namespace = "http://www.openmath.org/OpenMath"
+
+include  "openmath1.rnc" {
+ attlist.OMS = cd.attlist.OMS
+
+OMATP = element OMATP { (element OMS {cd.attlist.OMS.attrib}, omel)+ }
+}
+
+include "<link uri="alg1-sts.rnc">alg1-sts.rnc</link>"
+include "<link uri="altenc-sts.rnc">altenc-sts.rnc</link>"
+include "<link uri="arith1-sts.rnc">arith1-sts.rnc</link>"
+include "<link uri="arith2-sts.rnc">arith2-sts.rnc</link>"
+include "<link uri="bigfloat1-sts.rnc">bigfloat1-sts.rnc</link>"
+include "<link uri="calculus1-sts.rnc">calculus1-sts.rnc</link>"
+include "<link uri="cc-sts.rnc">cc-sts.rnc</link>"
+include "<link uri="coercions-sts.rnc">coercions-sts.rnc</link>"
+include "<link uri="combinat1-sts.rnc">combinat1-sts.rnc</link>"
+include "<link uri="complex1-sts.rnc">complex1-sts.rnc</link>"
+include "<link uri="dimensions1-sts.rnc">dimensions1-sts.rnc</link>"
+include "<link uri="ecc-sts.rnc">ecc-sts.rnc</link>"
+include "<link uri="error-sts.rnc">error-sts.rnc</link>"
+include "<link uri="fns1-sts.rnc">fns1-sts.rnc</link>"
+include "<link uri="fns2-sts.rnc">fns2-sts.rnc</link>"
+include "<link uri="group1-sts.rnc">group1-sts.rnc</link>"
+include "<link uri="icc-sts.rnc">icc-sts.rnc</link>"
+include "<link uri="indnat-sts.rnc">indnat-sts.rnc</link>"
+include "<link uri="integer1-sts.rnc">integer1-sts.rnc</link>"
+include "<link uri="interval1-sts.rnc">interval1-sts.rnc</link>"
+include "<link uri="lc-sts.rnc">lc-sts.rnc</link>"
+include "<link uri="limit1-sts.rnc">limit1-sts.rnc</link>"
+include "<link uri="linalg1-sts.rnc">linalg1-sts.rnc</link>"
+include "<link uri="linalg2-sts.rnc">linalg2-sts.rnc</link>"
+include "<link uri="linalg3-sts.rnc">linalg3-sts.rnc</link>"
+include "<link uri="linalg4-sts.rnc">linalg4-sts.rnc</link>"
+include "<link uri="linalg5-sts.rnc">linalg5-sts.rnc</link>"
+include "<link uri="list1-sts.rnc">list1-sts.rnc</link>"
+include "<link uri="list2-sts.rnc">list2-sts.rnc</link>"
+include "<link uri="logic1-sts.rnc">logic1-sts.rnc</link>"
+include "<link uri="mathmltypes-sts.rnc">mathmltypes-sts.rnc</link>"
+include "<link uri="meta-sts.rnc">meta-sts.rnc</link>"
+include "<link uri="metagrp-sts.rnc">metagrp-sts.rnc</link>"
+include "<link uri="metasig-sts.rnc">metasig-sts.rnc</link>"
+include "<link uri="minmax1-sts.rnc">minmax1-sts.rnc</link>"
+include "<link uri="moreerrors-sts.rnc">moreerrors-sts.rnc</link>"
+include "<link uri="multiset1-sts.rnc">multiset1-sts.rnc</link>"
+include "<link uri="nums1-sts.rnc">nums1-sts.rnc</link>"
+include "<link uri="omtypes-sts.rnc">omtypes-sts.rnc</link>"
+include "<link uri="opnode-sts.rnc">opnode-sts.rnc</link>"
+include "<link uri="permgrp-sts.rnc">permgrp-sts.rnc</link>"
+include "<link uri="permut1-sts.rnc">permut1-sts.rnc</link>"
+include "<link uri="physical_consts1-sts.rnc">physical_consts1-sts.rnc</link>"
+include "<link uri="piece1-sts.rnc">piece1-sts.rnc</link>"
+include "<link uri="poly-sts.rnc">poly-sts.rnc</link>"
+include "<link uri="polyd-sts.rnc">polyd-sts.rnc</link>"
+include "<link uri="polyr-sts.rnc">polyr-sts.rnc</link>"
+include "<link uri="polyslp-sts.rnc">polyslp-sts.rnc</link>"
+include "<link uri="polysts-sts.rnc">polysts-sts.rnc</link>"
+include "<link uri="polyu-sts.rnc">polyu-sts.rnc</link>"
+include "<link uri="quant1-sts.rnc">quant1-sts.rnc</link>"
+include "<link uri="relation0-sts.rnc">relation0-sts.rnc</link>"
+include "<link uri="relation1-sts.rnc">relation1-sts.rnc</link>"
+include "<link uri="rounding1-sts.rnc">rounding1-sts.rnc</link>"
+include "<link uri="s_data1-sts.rnc">s_data1-sts.rnc</link>"
+include "<link uri="s_dist1-sts.rnc">s_dist1-sts.rnc</link>"
+include "<link uri="semigroup-sts.rnc">semigroup-sts.rnc</link>"
+include "<link uri="set1-sts.rnc">set1-sts.rnc</link>"
+include "<link uri="set2-sts.rnc">set2-sts.rnc</link>"
+include "<link uri="setname1-sts.rnc">setname1-sts.rnc</link>"
+include "<link uri="setname2-sts.rnc">setname2-sts.rnc</link>"
+include "<link uri="setoid-sts.rnc">setoid-sts.rnc</link>"
+include "<link uri="sigma-sts.rnc">sigma-sts.rnc</link>"
+include "<link uri="sts-sts.rnc">sts-sts.rnc</link>"
+include "<link uri="transc1-sts.rnc">transc1-sts.rnc</link>"
+include "<link uri="transc2-sts.rnc">transc2-sts.rnc</link>"
+include "<link uri="transc3-sts.rnc">transc3-sts.rnc</link>"
+include "<link uri="typesorts-sts.rnc">typesorts-sts.rnc</link>"
+include "<link uri="units_imperial1-sts.rnc">units_imperial1-sts.rnc</link>"
+include "<link uri="units_metric1-sts.rnc">units_metric1-sts.rnc</link>"
+include "<link uri="veccalc1-sts.rnc">veccalc1-sts.rnc</link>"
+</pre>
+
+
+
+<p>The example <link uri="ombad6.xml">ombad6.xml</link> which looks like:</p>
+<pre><![CDATA[
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+<OMATTR>
+<OMATP>
+<OMS  name="plus" cd="arith1"/>
+<OMS  name="Object" cd="sts"/>
+</OMATP>
+<OMS  name="type" cd="sts"/>
+</OMATTR>
+</OMOBJ>
+]]></pre>
+
+<p>Is declared valid by the openmath1.rnc and omextra.rnc schmema but invalid by omextra-sts.rnc as 
+<code>&lt;OMS  name="plus" cd="arith1"/&gt;</code> is not allowed as an odd numbered child of OMATP,
+and conversely 
+<code>&lt;OMS  name="type" cd="sts"/&gt;</code> is only allowed in such a position.</p>
+</page>

@@ -1,0 +1,620 @@
+
+<!--Converted with LaTeX2HTML 99.1 release (March 30, 1999)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Software Tools</TITLE>
+<META NAME="description" CONTENT="Software Tools">
+<META NAME="keywords" CONTENT="final">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="LaTeX2HTML v99.1 release">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="final.css">
+
+<LINK REL="next" HREF="node8.htm">
+<LINK REL="previous" HREF="node6.htm">
+<LINK REL="up" HREF="final.htm">
+<LINK REL="next" HREF="node8.htm">
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF">
+<!--Navigation Panel-->
+<A NAME="tex2html182"
+ HREF="node8.htm">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next_motif.gif"></A> 
+<A NAME="tex2html178"
+ HREF="final.htm">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up_motif.gif"></A> 
+<A NAME="tex2html172"
+ HREF="node6.htm">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="previous_motif.gif"></A> 
+<A NAME="tex2html180"
+ HREF="node1.htm">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents_motif.gif"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html183"
+ HREF="node8.htm">Applications</A>
+<B> Up:</B> <A NAME="tex2html179"
+ HREF="final.htm">The OpenMath Project Final</A>
+<B> Previous:</B> <A NAME="tex2html173"
+ HREF="node6.htm">OpenMath and MathML</A>
+ &nbsp <B>  <A NAME="tex2html181"
+ HREF="node1.htm">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html184"
+ HREF="node7.htm#SECTION00710000000000000000">OpenMath libraries</A>
+<UL>
+<LI><A NAME="tex2html185"
+ HREF="node7.htm#SECTION00711000000000000000">The C library</A>
+<LI><A NAME="tex2html186"
+ HREF="node7.htm#SECTION00712000000000000000">The C++ library</A>
+<LI><A NAME="tex2html187"
+ HREF="node7.htm#SECTION00713000000000000000">The Java library</A>
+<LI><A NAME="tex2html188"
+ HREF="node7.htm#SECTION00714000000000000000">The Aldor library</A>
+</UL>
+<LI><A NAME="tex2html189"
+ HREF="node7.htm#SECTION00720000000000000000">Searching tools</A>
+<LI><A NAME="tex2html190"
+ HREF="node7.htm#SECTION00730000000000000000">Multimedia Tools</A>
+<UL>
+<LI><A NAME="tex2html191"
+ HREF="node7.htm#SECTION00731000000000000000">Stilo MathWriter</A>
+</UL>
+<LI><A NAME="tex2html192"
+ HREF="node7.htm#SECTION00740000000000000000">Jome</A>
+<LI><A NAME="tex2html193"
+ HREF="node7.htm#SECTION00750000000000000000">Conversion tools</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00700000000000000000">
+Software Tools</A>
+</H1>
+
+<P>
+The goal of this task was to provide software tools (programs and libraries)
+to help test the standards proposed in work package 1 and build the
+demonstrators in work package 3.
+
+<P>
+Important tools are certainly libraries to allow programs to
+read and write OpenMath objects conveniently. One goal of this work
+package was thus to provide a C and a Java library. C is important because it 
+is very common and almost all other languages and compilers have facilities
+to link and access C code. Java is of course a very popular language today,
+particularly for web-based applications.
+
+<P>
+This work package was also responsible for providing two other important
+kinds of software tools that are necessary for the wide adoption of OpenMath: 
+conversion tools (converting OpenMath to and from the most common math
+formats, necessary to allow the interoperability of OpenMath and the existing
+formats), and tools to edit and display OpenMath objects (necessary to build
+a lot of other interactive tools and crucial to the planned demonstrators).
+Another kind of tool has also been produced as part of this work package,
+searching tools (for searching in a set of OpenMath encoded
+mathematics). They are quite different compared to the others. The problem of
+searching mathematics is not very well understood and there are several
+difficult issues. This remains a topic for research and hence the tools that
+we have developed are still experimental. 
+
+<P>
+We initially planned to develop other software tools as part of task 2.2
+that would be more directly useful for developing OpenMath applications (for 
+example tools that could generate part of a phrase book).  Instead we
+looked at developing ``generic'' phrase books in Java which could be
+customised for particular applications.  These are useful in cases where
+the input language to the application is essentially a linear string (e.g.&nbsp;an
+interactive mathematics package) but of course does not allow access to the
+application's internal data structures.
+
+<P>
+
+<H1><A NAME="SECTION00710000000000000000"></A>
+<A NAME="libraries"></A>
+<BR>
+OpenMath libraries
+</H1>
+
+<P>
+In addition to the planned C, C++, Java and Aldor libraries we have also
+implemented a Standard ML and a Lisp library.
+The SML library has been implemented as part of task 2.4 (``Tools for
+searching mathematical databases and texts'') to turn our deductive database
+engine into an OpenMath program. The Lisp library has been used outside the
+project to provide OpenMath support to an optical formula recognition package
+(a program that can produce an OpenMath object from an image of a
+formula). 
+
+<P>
+As part of the MathML and OpenMath alignment effort, we have studied the
+possible inclusion of a MathML encoding in our libraries.
+We designed such an encoding (as a joint activity with task 1.2) but after a
+careful examination of its possible uses, we find that it would have been too
+contrived to achieve the minimal level of interoperability that would have
+been necessary between a MathML application and a  typical OpenMath
+application. 
+
+<P>
+We should mention that the adoption of our API and libraries may be
+overtaken by the wide availability of XML libraries. Several people in the
+OpenMath community have expressed the idea that using an XML library to read
+and write OpenMath objects is indeed sufficient and one does not need a
+specific OpenMath library. Using an off-the-shelf XML library has its
+advantages, most notably the fact that you can read any XML document and use
+the whole power of XML in the encoding (including using any character
+encoding, adding new attributes and entity references) but it certainly has
+its drawbacks: the API is not tailored to OpenMath objects, you
+cannot use the binary encoding and it becomes quite difficult to enforce the
+standard (there is a potential threat to interoperability).  Historically,
+the early XML encoding was in fact an SGML encoding and it was unrealistic
+to expect OpenMath applications to use a full SGML parser.  The wide 
+availability of reasonably good XML tools is a recent phenomenon, hence
+our decision at the outset of the project to produce our own. 
+
+<P>
+
+<H2><A NAME="SECTION00711000000000000000">
+The C library</A>
+</H2>
+
+<P>
+We started this work from a C library that was previously developed at
+INRIA. We made its API more regular and we improved the robustness of the
+code. 
+Various changes to the SGML and XML encodings were made following the 
+progress of the standard (work package 1; the SGML encoding was then
+dropped in favor of the XML one).
+As part of this task we defined and experimented with the binary encoding
+of OpenMath objects. It appeared to be reasonably efficient and compact,
+between three and ten times more compact than the XML encoding.  
+Compared to a good compression algorithm, it produces results half as compact as
+the GNU <SMALL>ZIP</SMALL> program (<TT> gzip</TT>) but the encoding and
+decoding processes are much more efficient.
+
+<P>
+The central abstraction in the C API is a <I CLASS="slanted"> device</I>. An OpenMath object is
+read from (or written to) a device, that hides both  the particular
+encoding (binary, XML or SGML) and the way input or output is done at the
+lowest level (for example, devices can be created for I/O to strings, files,
+file descriptors...). Objects are read and written at the token level (not 
+as whole objects) to allow a more flexible integration with the application
+(most notably for memory management control and efficiency of phrase book
+translations). 
+
+<P>
+Our C library does not only read and write OpenMath objects, it also supports 
+simple interprocess communication facilities (through sockets) that  have
+been very useful in writing OpenMath clients and servers.  Other alternatives
+include standard technologies such as <SMALL>KQML</SMALL> or <SMALL>FIPA</SMALL> or
+<SMALL>SOAP</SMALL> (an XML-based mechanism for expressing messages and communication). 
+
+<P>
+The C library is very portable. It runs on several Unix
+variants (Linux, Digital Unix, AIX, IRIX, Solaris) and on Windows (NT,
+98 and 2000 through the Win32 interface). 
+Installation is quite easy with a  <TT>configure</TT> script for Unix
+platforms (taking care of the various differences between them) and
+auto-testing capabilities.  
+
+<P>
+This library has been used by our partners in a number of applciations
+(see chapter&nbsp;<A HREF="node8.htm#chap:apps">7</A>), and by a number of people outside the project. 
+A collaboration with ZIB (the Konrad Zuse Zentrum f&#252;r Informationstechnik 
+Berlin), produced a fairly complete OpenMath version of the Reduce computer
+algebra system.
+The library was also distributed to a software company that used it to
+build a prototype requiring communications with several mathematical
+softwares. 
+
+<P>
+
+<H2><A NAME="SECTION00712000000000000000">
+The C++ library</A>
+</H2>
+
+<P>
+The C++ library is basically a set of classes built on top of the C library
+that provides a DOM-like interface for reading, writing and manipulating
+OpenMath objects (DOM is the Document Object Model, a World Wide Web
+Consortium interface).
+
+<P>
+
+<H2><A NAME="SECTION00713000000000000000">
+The Java library</A>
+</H2>
+
+<P>
+The API of the Java library is quite different from the C API as it tries to
+follow common Java conventions.  The library is divided in two parts: 
+
+<UL>
+<LI><TT> fr.inria.openmath.omapi</TT> is a set of interfaces defining parsers and
+printers for OpenMath objects (to read and write them in the most general
+setting).  It is possible to create or modify OpenMath
+parsers and printers provided that they conform to these common interfaces.</LI>
+<LI><TT> fr.inria.openmath.omapi.implementation</TT> implements the parsers and
+printers for both the XML and binary encodings of OpenMath objects
+(conforming to the above interfaces). </LI>
+</UL>
+
+<P>
+The API defined by these interfaces is structured in two levels. 
+The lowest level is close to our C API, and
+exposes streams of tokens (following the model of SAX,
+the Simple Api for XML). The higher level manipulates whole OpenMath
+objects as trees following an interface similar to the one provided
+by DOM (the Document Object Model of the W3C).  
+
+<P>
+We initially planned to converge quickly to a common API with the Java
+library developed at Simon Fraser University (Canada) in the PolyMath group
+(a member of NAOMI, the North American OpenMath Initiative). 
+However it appeared that their library is more oriented towards the effective
+high-level manipulation of OpenMath objects than we would like it to be.
+For most of the Java developments in the project 
+(and we believe in most envisioned useful OpenMath applications) OpenMath
+objects are just used as convenient intermediate objects in the ``phrase
+book'' process (the conversion between OpenMath objects and the mathematical
+objects in the representation used by the application). We thus chose a  
+different design but we still hope to share our experiences and come up with
+a standard OpenMath Java API in the near future (under the auspices of the
+OpenMath society).
+
+<P>
+
+<H2><A NAME="SECTION00714000000000000000"></A>
+<A NAME="aldor"></A>
+<BR>
+The Aldor library
+</H2>
+
+<P>
+Although Aldor is not a widespread programming language it has unique
+characteristics and is used for several interesting and innovative projects
+in the computer algebra community. That is why we chose to provide an
+OpenMath library for Aldor. 
+
+<P>
+A first version of this library was just a wrapper 
+around the C library (the Aldor compiler has the ability to link in C
+code). A second version was pure Aldor but due to the nature of the language
+and the basic libraries available it was infeasible to include support for
+the OpenMath binary encoding in this version.  The library was used to
+build a web-based computational server (see&nbsp;<A HREF="node8.htm#nagweb">7.2</A>).
+
+<P>
+
+<H1><A NAME="SECTION00720000000000000000"></A>
+<A NAME="sec:MFD2"></A>
+<BR>
+Searching tools
+</H1>
+
+<P>
+The work on searching tools started from the deductive database  prototype 
+previously developed at INRIA (during the PhD thesis of Claude Huchet).
+This prototype has been vastly improved during the project: 
+we changed some internal structures to make it faster (the way algebraic
+expressions are represented is more efficient), cleaned up the code and
+enhanced the typing mechanism. 
+The handling of higher order constructs (such as differentiation and
+indefinite integration) has been improved.  
+We have also designed and implemented new algorithms to improve the
+efficiency of expression retrieval and the precision of the answers
+(filtering out the non interesting solutions that are sometimes 
+generated). We have also collected a first test suite. 
+
+<P>
+Of course, a good deal of work has been spent to make the database an
+OpenMath application. 
+We developed a Content Dictionary for expressing the
+query language of the database and wrote an OpenMath library in
+Standard ML (the programming language in which the database is written).
+The database was not turned into a full OpenMath server
+at the end of the first year as we had expected for two reasons. 
+The first was the lack of a stable set of basic Content Dictionaries (in part 
+because of the work required by the MathML alignment effort), the
+second was that some discussions in the project at this time led us to
+believe that there could have been changes in OpenMath that could have
+affected this task in important ways.  
+
+<P>
+To use our initial set of data (formulae mostly taken from the ``Handbook of
+Mathematical Functions'' by Abramovitz and Stegun) we have developed a set
+of new content dictionaries (and additions to existing CDs) most notably for
+special functions.  Independently of this, a group in Canada produced a
+similar content dictionary, and work is currently underway to merge the two.
+
+<P>
+The deductive database normally operates on a (large) set of true statements
+that are used to answer queries. We add the ability to search in a set of
+OpenMath formulas modulo the stored true statements. This enables the
+database to be used as a deductive search engine on OpenMath objects.
+A close integration with the <SMALL>JOME</SMALL> editor has been performed
+with the help of Ove. A first interface was
+demonstrated at the OpenMath industry day in Amsterdam. Searching in a set of
+OpenMath objects was demonstrated through another <SMALL>JOME</SMALL>  interface at 
+the Luxembourg review.
+
+<P>
+We were expecting a free access to the BIDS (Bath Information and
+Data Services) and its associated collection of mathematical abstracts to
+build an appropriate search engine based on our deductive database.
+Sadly this was not possible due to the unexpected
+privatisation of this service which occurred during the course of the
+project. 
+Bath decided to use a  collection of LaTeX abstracts instead, from the
+<EM> LMS Journal of Mathematics and Computation</EM>, but this work
+began very late in the project which left little time to tune our searching 
+tools.
+INRIA is now continuing the work on searching tools by designing and
+implementing 
+a dedicated toolkit (independent from any encoding  or representation of
+mathematics) to build search engines working on mathematical formulas
+
+<P>
+
+<H1><A NAME="SECTION00730000000000000000">
+Multimedia Tools</A>
+</H1>
+
+<P>
+Task 2.3 produced two Java applications, Stilo MathWriter and <SMALL>JOME</SMALL>.
+Both applications can edit and display OpenMath objects. They can be used as
+applets in Web browsers to render and interact with mathematical objects in
+Web pages.  MathWriter includes support for MathML and has been designed
+as a commercial product (or to be included in other commercial products).
+textscjome is oriented towards visual manipulation of (particularly large)
+expressions, and collaborative working.
+
+<P>
+
+<H2><A NAME="SECTION00731000000000000000"></A>
+<A NAME="stars"></A>
+<BR>
+Stilo MathWriter
+</H2>
+
+<P>
+Stilo MathWriter is a Java tool for the creation, edition, rendering and 
+evaluation of MathML and OpenMath objects. In the early stages of its
+development, Stilo MathWriter was known as <EM> STARS</EM>.  It consists of two
+co-operating Java applets:
+
+<OL>
+<LI>an extension to the publicly available WebEQ applet,
+providing user  interaction and dynamic update and processing of the
+displayed mathematics within  a web page, coupled with</LI>
+<LI>an Input Syntax handler applet which accepts a linear syntax based 
+on TeX, with some extensions for disambiguation. The applet translates the 
+linear input into OpenMath syntax for processing, and into MathML for display. 
+It also accepts user input encoded in OpenMath or Content MathML (entered 
+from the keyboard, pasted from another program or automatically transmitted) 
+and converts this in the opposite direction into the linear syntax.</LI>
+</OL> 
+
+<P>
+Stilo MathWriter has a public Java API which allows users to connect to the
+applet and receive automatic updates when the Maths in changed. This was used
+in the NAG Multiple Integrators Demonstration (see section&nbsp;<A HREF="node8.htm#multiint">7.1.4</A>) where
+MathWriter was used to enter the expression to be integrated, and to display
+the result. 
+
+<P>
+There is a Javascript extension to the MathWriter technology, PageBuilder 
+which allows a user to build up and save a web page by adding mathematical
+formulae and text. 
+
+<P>
+Stilo MathWriter has some support for evaluating expressions. If it is not
+able to evaluate the expression for all the operators, it is simplified in
+terms of understood operators and then displayed. For example  
+<SPAN CLASS="MATH">1 + <I>x</I> + 2</SPAN> simplifies to <SPAN CLASS="MATH"><I>x</I> + 3</SPAN> and 
+<!-- MATH
+ $sin \{\pi/2\}$
+ -->
+<SPAN CLASS="MATH"><I>sin</I>{<IMG
+ WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.gif"
+ ALT="$ \pi$">/2}</SPAN>
+evaluates to <SPAN CLASS="MATH">1.0</SPAN>. Stilo MathWriter has evaluation logic for the 
+arithmetic operators 
+<!-- MATH
+ $+ - / * ^, log, ln$
+ -->
+<SPAN CLASS="MATH">+ - / * <I>log</I> <I>ln</I></SPAN> and most trigonometric functions.
+
+<P>
+Stilo MathWriter attempts to provide as ``natural'' looking an input syntax as
+possible. So, for example, to get <SPAN CLASS="MATH">sin <I>x</I></SPAN> one simply types "sin x" or 
+"sinx". "ab" is <SPAN CLASS="MATH"><I>ab</I></SPAN> by default.
+There is no requirement to precede known functions with 
+<!-- MATH
+ $\backslash$
+ -->
+<SPAN CLASS="MATH">&#92;</SPAN>
+(as in TeX), or to surround arguments with () as in many computer algebra
+packages.  
+Stilo MathWriter is controlled by a Syntax Table which defines the operators
+and rules understood. This table is a Java class which can be replaced in
+different implementations. The basic implementation understands all the
+operator elements on Content MathML. There are also extensions to support the
+formal theorem proving system COQ.  
+Stilo MathWriter recognises MathML entities such as <code>&amp;alpha;</code> for the
+Greek letter "alpha" and so on.  In addition, the evaluation-value of certain 
+mathematical constants is known (as described in the MathML Recommendation
+[<A
+ HREF="node10.htm#MathML:2000">12</A>]). These
+include <code>&amp;ee;</code> (e) and <code>&amp;pi;</code> (<SPAN CLASS="MATH"><IMG
+ WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.gif"
+ ALT="$ \pi$"></SPAN>). 
+
+<P>
+Stilo foresees that the technology developed on this project for MathWriter 
+can be further developed and exploited in various ways:
+
+<UL>
+<LI>Stand-alone Stilo MathWriter product for creating web pages including
+mathematical expressions.  
+The initial market area for this would be in online education</LI>
+<LI>Links to Stilo's other XML products, for example to provide integrated
+mathematics editing capability in Stilo's WebWriter XML document editor </LI>
+<LI>Front End / Component in larger systems, for example such systems as the
+NAG 
+electronic documentation project. This might also support different rendering
+models such as transforming directly to presentation MathML for rendering in
+Mozilla </LI>
+<LI>Develop user-loadable operator dictionary. This would allow users to
+reload an application-specific operator dictionary (associated for example
+with their particular CD)</LI>
+<LI>Re-use ``natural language'' parser technology. This may have areas of
+application outside mathematics itself, for example in the analysis of
+unstructured or weakly structured legacy data when importing into XML-based
+documentation systems</LI>
+</UL>
+
+<P>
+Stilo MathWriter has been integrated as a front-end into the COQ formal 
+theorem proving system (Technical University of Eindhoven), and is 
+currently being integrated into the prototype online documentation 
+system for the NAG Fortran Libraries (Numerical Algorithms Group, 
+Oxford). Stilo MathWriter is being
+used by a number or educational institutions, including at MIT in 
+the investigation of web-based interactive mathematical education.
+It is also on trial at some industrial research locations in the UK.
+
+<P>
+
+<H1><A NAME="SECTION00740000000000000000"></A>
+<A NAME="jome"></A>
+<BR>
+Jome
+</H1>
+
+<P>
+ 
+<SMALL>JOME</SMALL> (Java OpenMath Editor) is a self-contained software component
+written in Java (as a Java bean) dedicated to the visualisation and
+manipulation of mathematical formulae. Conceptually based on the 
+Model-View-Controller design pattern, <SMALL>JOME</SMALL> naturally consists of the 
+corresponding three entities, each being a Java bean. This makes it easy to
+add different kind of representations for a formula and to provide different
+ways of editing  it. This also makes using <SMALL>JOME</SMALL> to display or edit
+formulas in another Java application extremely simple (in an
+environment such as Symantec Visual Caf&#233; or IBM Visual Age,
+the integration work can be
+carried out completely through the graphical interface).
+
+<P>
+ 
+<SMALL>JOME</SMALL> has some support for manipulating formulas with semantic
+drag and drop (the selection can be moved from one side of an operator to
+the other with a relevant mathematical transformation performed).
+
+<P>
+Extensibility is achieved via a plug-in system. This system works via a
+combination of resource files and dynamic class instantiation. It allows an 
+application to be updated to a new Content Dictionary dynamically.
+
+<P>
+ 
+<SMALL>JOME</SMALL> has been used to build an applet to enter and display
+mathematical expressions and in an interface to the tools created as part of
+task 2.4 (mathematical search engine). It has also been used as an applet to
+handle all the formulae in an electronic course.
+
+<P>
+
+<H1><A NAME="SECTION00750000000000000000">
+Conversion tools</A>
+</H1>
+
+<P>
+The conversion tools targeted two languages, LaTeX which is important 
+today and  MathML which should be very important in the (near)
+future.
+LaTeX is of course important because it is the
+de facto standard for mathematics and physics at the university level.
+MathML will be important because it is the W3C recommended way to write
+mathematics in XML documents (and thus probably in all future technical
+documents).
+
+<P>
+While converting OpenMath to LaTeX is relatively straightforward, 
+going in the other direction is much more complicated as it amounts to adding
+semantics to the presentation markup. This
+translation is normally highly context sensitive. Two translators were built
+and an on-line demonstration is available via the project Web
+page (where a user can type a piece of LaTeX and look at the resulting
+translated OpenMath). 
+
+<P>
+MathML has two subsets, the presentation part (which is close to LaTeX)
+and the content part (which is closer to OpenMath).
+Converting to and from MathML presentation is simpler than LaTeX because
+presentation MathML is much more structured. 
+Content MathML is indeed very close to OpenMath (because of
+the alignment activities that occurred as part of task 1.2 and 1.4). 
+The conversion tools for MathML have been developed as part of Stilo
+MathWriter. <SMALL>JOME</SMALL> also has the ability to generate MathML.
+
+<P>
+ 
+<A NAME="xsl_stylesheets"></A>The project has also produced XSLT (the eXtensible Stylesheet Language,
+Transformations, a W3C recommendation) code to translate XML encoded OpenMath 
+to and from MathML (this has been used to demonstrate a prototype OpenMath
+interface to a version of Reduce that has MathML import and export
+capabilities). When used in Java servlets, these stylesheets allow OpenMath
+objects to be converted dynamically to presentation MathML by an HTTP server
+to be displayed natively by a MathML capable browser (such as Mozilla or
+Amaya). 
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html182"
+ HREF="node8.htm">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next_motif.gif"></A> 
+<A NAME="tex2html178"
+ HREF="final.htm">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up_motif.gif"></A> 
+<A NAME="tex2html172"
+ HREF="node6.htm">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="previous_motif.gif"></A> 
+<A NAME="tex2html180"
+ HREF="node1.htm">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents_motif.gif"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html183"
+ HREF="node8.htm">Applications</A>
+<B> Up:</B> <A NAME="tex2html179"
+ HREF="final.htm">The OpenMath Project Final</A>
+<B> Previous:</B> <A NAME="tex2html173"
+ HREF="node6.htm">OpenMath and MathML</A>
+ &nbsp <B>  <A NAME="tex2html181"
+ HREF="node1.htm">Contents</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<a href="http://www.nag.co.uk/Projects/openmath">The OpenMath Consortium</a>
+<img align="top" alt="logo" src="openmath-s.gif">
+</ADDRESS>
+</BODY>
+</HTML>

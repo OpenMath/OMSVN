@@ -1,0 +1,1493 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=PowerPoint.Slide>
+<meta name=Generator content="Microsoft PowerPoint 9">
+<link id=Main-File rel=Main-File href="../strottman_slides-omtn1-berlin.htm">
+<link rel=Preview href=preview.wmf>
+
+<script>
+<!--
+if( window.name != "PPTOtl" )
+  parent.location.href = "../strottman_slides-omtn1-berlin.htm";
+//-->
+</script>
+<meta name=Robots content=NoIndex>
+</head>
+
+<body bgcolor=black text=white link=white vlink=white alink=white>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0001.htm');">Sorted Generalized
+Quantifiers in OpenMath</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>Andreas Strotmann</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>Florida State University</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0055.htm');">Overview</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Introduction</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>OpenMath Binders and Typed Variables</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Problems and possible solutions</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Scoping, currying, signatures,
+  composition</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>A Categorial Type Logic for OpenMath</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>OMA, OMBIND, OMATTR (incl. type
+  attribs)</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Application to typed-binder problems</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Conclusions - incl. quantifiers in OM
+  CDs</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0002.htm');">Michael Kohlhase’s
+Posting</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Let us discuss sorted quantifiers!</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0026.htm');">Goal</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Find good guidelines for attaching type
+  information to OM objects</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Compositional (with clean semantics)</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Conservative (compatible with exist.
+  proposal)</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Complete (works for all OM objects)</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Focus on (generalized) quantifiers</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0027.htm');">Some Results</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=3><font face=Arial size=2>Requirements</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>Clean scoping rules for OMbind objects</font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1><font face=Arial size=2>OM Standard needs to be more precise</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>Categorial type logic for all OM
+  objects</font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1><font face=Arial size=2>Extension of STS, simpler than ECC,
+  pluggable</font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1><font face=Arial size=2>corresponds to “OpenMath Expression
+  Layer”</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>Explicit distinction between type and
+  range</font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1><font face=Arial size=2>Difficult with single OMBind expression</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=3><font face=Arial size=2>No revolution, but evolution needed</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0059.htm');">Overview</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Introduction</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>OpenMath Binders and Typed Variables</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Problems and possible solutions</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Scoping, currying, signatures,
+  composition</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>A Categorial Type Logic for OpenMath</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>OMA, OMBIND, OMATTR (incl. type
+  attribs)</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Application to typed-binder problems</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Conclusions</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0028.htm');">A Scoping Rule for OMBIND</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Consider object OMBIND(q,v,e).<span
+  style="mso-spacerun: yes">  </span>Then:<br>
+  The scope of variable v is expression e.</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>OM Standard is silent on this question.
+  Add the above!</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun:
+  yes"> </span>Neither attributes of variables nor (possibly compound)
+  quantifier q are inside v’s scope.</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>OM Standard’s OMBind currying rules
+  complicate scoping rules a bit for multiple variables.</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Type expression for v not necessarily
+  valid inside expression e (variable name clashes).</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>However, crazy mix of scopes inside OMBind
+  …</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0052.htm');">Binder Scoping Problems</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Crazy mix of scopes in OMBIND</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>bind(b:tb,x:tx,y:ty,e) <br>
+  := bind(b:tb,x:tx,
+  bind(b:tb,y:ty,e))</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>OM Standard defines Currying: 3.5
+  scopes</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>notice b:tb is both in and out of scope
+  for x!!!</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Usually OK since constant types or
+  binders</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Compositionality problem!</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>What do we do about it?</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0053.htm');">Binder Scoping
+Solution:<br>
+Signatures</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=3><font face=Arial size=2>bind(b,x,y,e) : tb </font><font
+  face=Symbol size=2>·</font><font face="Times New Roman" size=2> </font><font
+  face=Arial size=2>(te / ty / tx)</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>signature expression assigns types to
+  all components via simple structural type “logic”</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>signature out of scope for all vars</font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1><font face=Arial size=2>var renaming when crossing into scope
+  boundaries</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>Lambek-style categorial type system
+  (see below)</font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1><font face=Arial size=2>application (</font><font face=Symbol
+  size=2>·</font><font face="Times New Roman" size=2>) </font><font face=Arial
+  size=2>and abstraction (maps-to, /) only</font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1><font face=Arial size=2>define OMA,OMBIND,OMATTR using </font><font
+  face=Symbol size=2>·</font><font face="Times New Roman" size=2> and / only</font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1><font face=Arial size=2>support “radical lexicalism”
+  (per-symbol type defs)</font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1><font face=Arial size=2>doesn’t need OM’s binder-currying rule</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0029.htm');">Binder Signatures</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Quantifier takes truth “function” and
+  returns truth value</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>forall :<span style="mso-spacerun:
+  yes">  </span>(X </font><font face=Wingdings size=2>à</font><font
+  face="Times New Roman" size=2> T) </font><font face=Wingdings size=2>à</font><font
+  face="Times New Roman" size=2> T</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Generalized Quantifiers are similar</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>the : (X </font><font face=Wingdings
+  size=2>à</font><font face="Times New Roman" size=2> T) </font><font
+  face=Wingdings size=2>à</font><font face="Times New Roman" size=2> X</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>OMBind builds function and applies
+  binder</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>OMBind(b,v,e) == b(<span
+  style="mso-spacerun: yes">  </span>(v </font><font face=Wingdings size=2>à</font><font
+  face="Times New Roman" size=2> e)<span style="mso-spacerun: yes">  </span>)</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0031.htm');">OMBind and OMA</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>OMBind(b,v,e) == apply(b,</font><font
+  face=Symbol size=2>l</font><font face="Times New Roman" size=2>v.e)</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Any OM object accepting a unary
+  function as its argument can be used as a binder</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Any binder can be used as an operator
+  accepting a unary function as argument</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Binders can accept optional range
+  argument when used as OMA(b,</font><font face=Symbol size=2>l</font><font
+  face="Times New Roman" size=2>v.e,r)</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>“set-of” takes two functions, can only
+  do OMA</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>STS easily adjusted to this
+  interpretation</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Simpler and more general than ECC,
+  where OMBind(b,v:t,e)==apply(b,t,(v:t </font><font face=Wingdings size=2>à</font><font
+  face="Times New Roman" size=2> e))</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0030.htm');">Compound Binders</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>=&gt; can allow compound binders, e.g.
+  annotated with type information (i.e. signature)</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Example: “Exists Uniquely” as a
+  compound binder</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>&#9;</font><font face=Symbol size=2>$</font><font
+  face="Times New Roman" size=2>!<span style="mso-spacerun: yes">   </span></font><font
+  face=Symbol size=2>º</font><font face="Times New Roman" size=2><span
+  style="mso-spacerun: yes">  </span></font><font face=Arial size=2><span
+  style="mso-spacerun: yes"> </span>&#955;P.<span style="mso-spacerun: yes"> 
+  </span>(</font><font face=Symbol size=2>$</font><font face="Times New Roman"
+  size=2>x. P(x)) </font><font face=Symbol size=2>Ù</font><font
+  face="Times New Roman" size=2> (</font><font face=Symbol size=2>&quot;</font><font
+  face="Times New Roman" size=2>y,z. (P(y) </font><font face=Symbol size=2>Ù</font><font
+  face="Times New Roman" size=2> P(z)) </font><font face=Symbol size=2>Þ</font><font
+  face="Times New Roman" size=2> y = z)</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>OMB( OMB(lambda, OMV(P),</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun:
+  yes">         </span>OMA(and, OMB(exists, OMV(x), OMA(OMV(P),OMV(x))),</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun:
+  yes">                  </span>OMB(forall, OMV(y), OMV(z),</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun:
+  yes">                      </span>OMA(implies,</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun:
+  yes">                          </span>OMA(and, OMA(OMV(P),OMV(y)),</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun:
+  yes">                                   </span>OMA(OMV(P),OMV(z))),</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun:
+  yes">                          </span>OMA(equal, OMV(y), OMV(z)) )))),</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun: yes">    
+  </span>OMV(n),</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun: yes">    
+  </span>OMA(equal, OMI(0), OMA(power, OMV(n), OMI(4)) ))</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0056.htm');">Overview</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Introduction</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>OpenMath Binders and Typed Variables</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Problems and possible solutions</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Scoping, currying, signatures,
+  composition</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>A Categorial Type Logic for OpenMath</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>OMA, OMBIND, OMATTR (incl. type
+  attribs)</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Application to typed-binder problems</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Conclusions</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0032.htm');">Categorial types</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Notation due to Lambek</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Abstraction A/B – returns something of
+  type A if given argument of type B</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>STS “mapsto(B,A)”;<span
+  style="mso-spacerun: yes">   </span>vernacular<span style="mso-spacerun:
+  yes">  </span>A<sup>B</sup></font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>A/B/C/D : three args</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Application A</font><font face=Symbol
+  size=2>·</font><font face="Times New Roman" size=2>B – something of type A
+  applied to an argument of type B</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2><span style="mso-spacerun:
+  yes"> </span>STS “application(A,B)”;<span style="mso-spacerun: yes">  
+  </span>vernacular<span style="mso-spacerun: yes">         </span>??)</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>(A/B/C/D) </font><font face=Symbol
+  size=2>·</font><font face="Times New Roman" size=2> D </font><font
+  face=Symbol size=2>·</font><font face="Times New Roman" size=2> C </font><font
+  face=Symbol size=2>·</font><font face="Times New Roman" size=2> B<span
+  style="mso-spacerun: yes">  </span>“simplifies” to type A</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Plug in any type system (e.g. ECC) for
+  atoms</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Hence “categorial” semantics / type
+  logic</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0033.htm');">Categorial Semantics for
+OpenMath : OMA</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=3><font face=Arial size=2>Application works like STS</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>apply(a,b<sub>1</sub>,…,b<sub>n</sub>)
+  is type A </font><font face=Symbol size=2>·</font><font face="Times New Roman"
+  size=2> B</font><font face=Arial size=2><sub>n</sub> </font><font
+  face=Symbol size=2>·</font><font face="Times New Roman" size=2> … </font><font
+  face=Symbol size=2>·</font><font face="Times New Roman" size=2> B</font><font
+  face=Arial size=2><sub>1</sub></font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=3><font face=Arial size=2>Per-symbol type assignments
+  (“lexicalism”)</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>type(sin) = C/C, …</font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1><font face=Arial size=2>Type symbol “C” plugged in from
+  specific type system</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>type(plus) = C/</font><font
+  face=Symbol size=2><sub>w</sub></font><font face="Times New Roman" size=2>C,
+  …</font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1><font face=Arial size=2>“/</font><font face=Symbol size=2><sub>w</sub></font><font
+  face="Times New Roman" size=2>” syntactic sugar for “n-ary abstraction”</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>type(list) = U</font><font face=Symbol
+  size=2><sup>w</sup></font><font face="Times New Roman" size=2>/</font><font
+  face=Symbol size=2><sub>w</sub></font><font face="Times New Roman" size=2>U,
+  …</font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1><font face=Arial size=2>“power” type constructor plugged in
+  from specific type system</font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1><font face=Arial size=2>Type symbol “U” (universe) plugged in
+  from “outside”</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0039.htm');">Categorial Semantics for
+OpenMath : OMBIND</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=3><font face=Arial size=2>bind(a,v,e) is type A </font><font
+  face=Symbol size=2>·</font><font face="Times New Roman" size=2> (E/V)</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>Different from STS and ECC (but
+  similar!)</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>Note that OM defines currying rule for
+  bind</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>Binders are therefore generally of type
+  Y/(E/V)</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=3><font face=Arial size=2>Per-binder type assignments
+  (lexicalism)</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>type(lambda) = (X/X) or = ((X/Y)/(X/Y))</font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1><font face=Arial size=2>(X/X) </font><font face=Symbol size=2>·</font><font
+  face="Times New Roman" size=2> (E/</font><font face=Arial size=2>V) = ((E/V)/(E/V))
+  </font><font face=Symbol size=2>·</font><font face="Times New Roman" size=2>
+  (E/</font><font face=Arial size=2>V) = E/V</font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1><font face=Arial size=2>Note “meta” type variables and
+  unification</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>type(forall) = 2/(2/X)</font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1><font face=Arial size=2>With type “2” (boolean) plugged in from
+  “outside”</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>type(the) = (X/(2/X))</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0040.htm');">Categorial Semantics for
+OpenMath : OMATTR</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=3><font face=Arial size=2>attribution(a=b,e) is type (A </font><font
+  face=Symbol size=2>·</font><font face="Times New Roman" size=2> B) </font><font
+  face=Symbol size=2>·</font><font face="Times New Roman" size=2> E</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>very different from ECC and STS</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=3><font face=Arial size=2>Per-attribute-symbol type assignment</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>type(type) = (T / X) / ‘T’</font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1><font face=Arial size=2>Converter to type T given a descriptor
+  for type T</font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1><font face=Arial size=2>No type of types defined here</font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1><font face=Arial size=2>Open question: define “ ‘…’ ” where?</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>type(typeset_as) = ( X/X ) / Y<span
+  style="mso-spacerun: yes">  </span>(the default?)</font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1><font face=Arial size=2>(((X/X)/Y) </font><font face=Symbol
+  size=2>·</font><font face="Times New Roman" size=2>bold) </font><font
+  face=Symbol size=2>·</font><font face="Times New Roman" size=2>R = (</font><font
+  face=Arial size=2>X/X) </font><font face=Symbol size=2>·</font><font
+  face="Times New Roman" size=2>R = (R/R) </font><font face=Symbol size=2>·</font><font
+  face="Times New Roman" size=2>R = R</font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0057.htm');">Overview</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Introduction</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>OpenMath Binders and Typed Variables</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Problems and possible solutions</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Scoping, currying, signatures,
+  composition</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>A Categorial Type Logic for OpenMath</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>OMA, OMBIND, OMATTR (incl. type
+  attribs)</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Application to typed-binder problems</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Conclusions - incl. quantifiers in OM
+  CDs</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0042.htm');">Styles of Type Assignment
+in Mathematical Vernacular</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>Direct type assignment: “</font><font
+  face=Symbol size=2>Î</font><font face=Arial size=2>” notation</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>Semi-direct type assignment: “</font><font
+  face=Symbol size=2>Î</font><font face=Arial size=2>” notation with tuples and
+  Cartesian products</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=1><font face=Arial size=2>Indirect type assignment from signature</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0044.htm');">Direct Type Assignment</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=3></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=3></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=3><font face=Arial size=2>Composition of notation:</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>Quantifier</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>Variable with type/range annotation</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>Scope of variable ( expression )</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=3><font face=Arial size=2>Compositional semantics</font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1><font face=Arial size=2>(2/(2/Z))</font><font face=Symbol
+  size=2>·</font><font face="Times New Roman" size=2>(2/((((</font><font
+  face=Arial size=2>T/Y)/‘T’)</font><font face=Symbol size=2>·</font><font
+  face=Arial size=2>‘R’)</font><font face=Symbol size=2>·</font><font
+  face="Times New Roman" size=2>X</font><font face=Arial size=2>))=(2/(2/R)) </font><font
+  face=Symbol size=2>·</font><font face="Times New Roman" size=2>(2/R)</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>intensional interpretation, extensional
+  notation</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0045.htm');">Semi-direct type
+assignment</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=3></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=3></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=3><font face=Arial size=2>Composition of notation:</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>Constructor (generalized quantifier)
+  {…|…}</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>Complex type/range/compose constructor</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>Conditional expression</font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1><font face=Arial size=2>(2<sup>Y</sup>/(2/X)/(Y/X))</font><font
+  face=Symbol size=2>·</font><font face="Times New Roman" size=2>((</font><font
+  face=Arial size=2>T/Z/‘T’)</font><font face=Symbol size=2>·</font><font
+  face=Arial size=2>‘(N</font><font face=Symbol size=2><sup>w</sup></font><font
+  face="Times New Roman" size=2>)’</font><font face=Symbol size=2>·</font><font
+  face="Times New Roman" size=2>W</font><font face=Symbol size=2><sup>w</sup></font><font
+  face="Times New Roman" size=2>)/</font><font face=Symbol size=2><sub>w</sub></font><font
+  face="Times New Roman" size=2>U)</font><font face=Symbol size=2>·</font><font
+  face="Times New Roman" size=2>(2/</font><font face=Symbol size=2><sub>w</sub></font><font
+  face="Times New Roman" size=2>N) <br>
+  = 2</font><font face=Arial size=2><sup>N</sup></font><font
+  face=Symbol size=2><sup>w</sup></font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1><font face="Times New Roman" size=2>=&gt; set-of cannot be done
+  as a binder (w/ this signat.)</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0046.htm');">Indirect type assignment</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Composition of notation:</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Function variable (f)</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Signature for function</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Un-typed “lambda” expression</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Compositional semantics</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>((T/W)/‘T’) </font><font face=Symbol
+  size=2>·</font><font face="Times New Roman" size=2> </font><font face=Arial
+  size=2>‘(R/R/R)’ </font><font face=Symbol size=2>·</font><font
+  face="Times New Roman" size=2> (((C/C/C) </font><font face=Symbol size=2>·</font><font
+  face="Times New Roman" size=2> </font><font face=Arial size=2>Y </font><font
+  face=Symbol size=2>·</font><font face="Times New Roman" size=2> </font><font
+  face=Arial size=2>X)/X/Y) <br>
+  = R/R/R</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>X=Y=C, =R with “plugged-in” type system
+  for R&lt;C</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0054.htm');">Binder Scoping
+Solution:<br>
+Categorial Signatures</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=3><font face=Arial size=2>bind(b,x,y,e) : tb </font><font
+  face=Symbol size=2>·</font><font face="Times New Roman" size=2> </font><font
+  face=Arial size=2>((tb </font><font face=Symbol size=2>·</font><font
+  face="Times New Roman" size=2> (te/ty)) / tx)</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>signature expression assigns types to
+  all components via categorial type “logic”</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>signature out of scope for all vars</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>Note “</font><font face=Symbol size=2>·</font><font
+  face=Arial size=2>” necessary to assign type into bind</font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1><font face=Arial size=2>bind(forall,v,e) : 2 <br>
+  vs
+  bind(forall,v,e) : (2/(2/X))</font><font face=Symbol size=2>·</font><font
+  face="Times New Roman" size=2>(E/V)</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>Signatures “the” way to type bound
+  variables ?!?</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=3><font face=Arial size=2>Multiple scopes for ‘b’ still a
+  problem, though</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>remove currying rule for OMBIND???</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0043.htm');">Type vs. Range</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Extensional notation is ambiguous</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Range of quantification vs. type of
+  variable</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>OpenMath resolved ambiguity in favor of
+  “range” interpretation in definite integration</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Generalized quantifiers will need none,
+  one OR both of type/range in addition to “body”</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>None:<span style="mso-spacerun: yes"> 
+  </span>bind(q,v,e);<span style="mso-spacerun: yes">        </span>Type:
+  bind(q,v:t,e)</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Range: apply(q,</font><font
+  face=Symbol size=2>l</font><font face="Times New Roman" size=2>v.e,r);<span
+  style="mso-spacerun: yes">  </span>Both: apply(q,</font><font face=Symbol
+  size=2>l</font><font face="Times New Roman" size=2>v:t.e,r)</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0058.htm');">Overview</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Introduction</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>OpenMath Binders and Typed Variables</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Problems and possible solutions</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Scoping, currying, signatures,
+  composition</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>A Categorial Type Logic for OpenMath</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>OMA, OMBIND, OMATTR (incl. type
+  attribs)</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Application to typed-binder problems</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Conclusions - incl. quantifiers in OM
+  CDs</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0047.htm');">Categorial Type System:
+Summary</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=3><font face=Arial size=2>Categorial type system is possible and
+  useful for OpenMath</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>factors out structural semantics common
+  to all</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>supports “radical lexicalism”</font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1><font face=Arial size=2>type logic on “atoms” is orthogonal,
+  pluggable</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>both coarse and fine grained
+  types/signatures</font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1><font face=Arial size=2>similar to parallel
+  content/presentation options</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>modifies both STS and ECC, slightly</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0050.htm');">Conclusions</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Formal Linguistics provides useful
+  tools</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Categorial Semantics (= OM expression
+  layer!)</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Compositionality considerations</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>Scoping analyses</font></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=2><font face=Arial size=2>Generalized quantifiers in OpenMath CDs</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>always define binders as operators, too</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>always add type/range-disambiguated
+  version</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=1><font face=Arial size=2>some GQs cannot be defined as binders
+  (set-of)</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0051.htm');">Conclusions and Questions</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=1></td>
+  <td colspan=3><font face=Arial size=2>Sorted generalized quantifiers</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>assign types to bound variables via
+  signature</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>then use “distribution laws” with var
+  renaming to infer correct “direct” type assignment</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>need to discuss scoping problem of
+  currying rule for OMBIND wrt compound binders</font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1><font face=Arial size=2>revoke currying rule?? Restrict form of
+  binders??</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>Categorial type theory is very useful
+  here</font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1><font face=Arial size=2>develop &amp; standardize??</font></td>
+ </tr>
+</table>
+
+</p>
+
+<p><font face=Arial size=2><b><a
+href="javascript:parent.GoToSld('v3_slide0022.htm');">Bibliography</a></b></font>
+
+<table>
+ <tr>
+  <td width=5 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width=20 nowrap></td>
+  <td width="100%"></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>Handbook of Logic and Language
+  (vanBenthem, terMeulen eds.)</font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1><font face=Arial size=2>Categorial Type Logics (Moortgat)</font></td>
+ </tr>
+ <tr>
+  <td colspan=3></td>
+  <td colspan=1><font face=Arial size=2>Compositionality (Janssen)</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>The Expression Layer (Strotmann;
+  slides, Bath OM Workshop)</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>A Small OpenMath Type System
+  (Davenport)</font></td>
+ </tr>
+ <tr>
+  <td colspan=2></td>
+  <td colspan=2><font face=Arial size=2>A Type System for OpenMath (Caprotti,
+  Cohen)</font></td>
+ </tr>
+</table>
+
+</p>
+
+</body>
+
+</html>

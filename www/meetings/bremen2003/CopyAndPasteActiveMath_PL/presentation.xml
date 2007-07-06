@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="application/xml" href="singlePublication.xsl"?>
+<presentation>
+	<title>Copy And Paste in ActiveMath </title>
+	
+	<slide><title>  Copy and Paste </title>
+    <li><t> A familar paradigm available everywhere </t></li>
+    <li><t> Works well (almost) everywhere for text </t></li>
+    <li><t> Works on modern windowing-systems even with pictures and styled-text </t></li>
+    <li><t> Users naturally expect it to work even for mathematics  </t></li>
+    </slide>
+    
+  <slide><title> Is Math Content as easy as text ? </title>
+    <li><t>Math-content can be written as styled text...</t>
+      <li><t>One could copy presented formulae...</t></li>
+      <li><t>Fits for people writing and reading (most)</t></li>
+      </li>
+    <li><t>But math can also be computed and manipulated</t>
+      <li><t>e.g. outputting a table of values or a graph</t></li>
+      <li><t>e.g. equations can be checked for solvability...</t></li>
+      <li><t>... if well encoded it can even be searched</t></li>
+      </li>
+    </slide>
+  
+  <slide><title>Content-Level Mathematical Objects</title>
+    <li><t>Mathematical <i>systems</i> encode the objects they understand </t></li>
+    <li><t>Standards try to abstract differences between them all</t>
+      <li><t>OpenMath, MathML content</t></li>
+      <li><t>Beginning penetration...</t></li>
+      <li><t>Converters to/from math-systems exist (phrasebooks)</t></li>
+      <li><t>Presenters exist</t></li>
+      </li>
+    <li><t>Authoring tools... are at their beginning</t>
+      <li><t>Math systems, QMath, Jome</t></li>
+      <li><t>Practice is missing!</t></li>
+      </li>
+    </slide>
+  
+	<slide><title>  ActiveMath  </title>
+		<li><t>  A web-based <b>learning</b> environment  </t></li>
+		<li><t>  For mathematics  </t></li>
+		<li><t>  Offering intelligent learner-support  </t></li>
+		<li><t>  Adaptive presentation of semantic mathematical content  </t></li>
+		<li><t>  Integrating access to mathematical systems   </t></li>
+		</slide>
+	
+  <slide><title> ActiveMath content </title>
+    <li><t>Macro: Building blocks at the paragraph level</t>
+      <li><t> OMDoc </t></li>
+      <li><t> Enriched with extra metadata annotations</t></li>
+      </li>
+    <li><t> Micro: textual content</t>
+      <li><t>With small micro-structure </t></li>
+      <li><t> With mathematical formulae as OpenMath objects</t></li>
+      </li>
+    <li><t> Provides: </t>
+      <li><t>Multi-target output (HTML, PDF, SVG, XHTML+MathML)</t></li>
+      <li><t>(independent of content)</t></li>
+      <li><t>Definable mathematical symbols</t></li>
+      <li><t>Interactive browsing adapted to the user</t></li>
+      </li>
+    </slide>
+    
+  <slide><title> Interactive Exercises</title>
+    <li><t>One click, no-install invocation</t></li>
+    <li><t>Elementary types (MCQ, FIB,...)</t></li>
+    <li><t>Math-systems-connected interactions</t>
+      <li><t>Currently simple applet-based consoles</t></li>
+      <li><t>Later richer-presentation</t></li>
+      <li><t>Currently GAP, MuPad</t></li>
+      </li>
+    <!-- <li><t>Soon a mix of both</t></li>-->
+    </slide>
+  
+  <slide><title> Pasting OpenMath in MuPad ?</title>
+    <li><t>Phrasebooks</t></li>
+    <li><t>MuPad has its internal input-syntax</t></li>
+    <li><t>Still no MathML or OpenMath input/output</t></li>
+    <li><t>Copy and paste has to produce MuPad syntax</t>
+      <li><t>A phrasebook has to be used and/or developed</t></li>
+      <li><t><i>Mupad phrasebook</i> of RIACA was tested... very incomplete!</t></li>
+      <li><t><i>GAP phrasebook</i> was taken and adapted for MuPad: better!</t></li>
+      </li>
+    </slide>
+    
+    <slide><title>Presentation engine in ActiveMath</title>
+      <li><t>We start with a bunch of OMDoc items (fragments)</t>
+        <li><t>each has an ID</t></li></li>
+      <li><t>We pre-process them</t>
+        <li><t>Among others, we attach coordinates to every 
+          <code>OMOBJ</code>, <code>OMA</code>, <code>OMBIND</code></t></li>
+        </li>
+      <li><t>XSLT is applied</t>
+        <li><t>Relays the coordinates as special css properties</t></li>
+        </li>
+      </slide>
+
+
+  <slide><title>Selecting and Copying in the Browser</title>
+    <li><t>The HTML thus viewed is complemented with JavaScript bits</t></li>
+    <li><t>The latter can display the smallest sub-term under the mouse</t></li>
+    <li><t>A simple "drag" will activate the selection of the highlighted subterm</t></li>
+    <li><t>JavaScript now has the coordinate of what's selected</t></li>
+    <li><t>(we consider having copied)</t>
+      <li><t>(remember: no clipboard access for applets or JavaScript, security!)</t></li></li>
+    </slide>
+    
+    
+  <slide><title>Copying to a MuPad console</title>
+    <li><t>An applet receiving the request to paste has to extract this coordinate</t></li>
+    <li><t>This applet needs to talk to the server to get the content in question</t></li>
+    <li><t>Then make the conversion to given language</t></li>
+    <li><t>Demo</t></li>
+    </slide>
+        
+  <slide><title>Comparable Approaches</title>
+    <li><t>Coordinate marking is also used in HELM for presentation </t>
+      <li><t>Mostly for referencing later</t></li></li>
+    <li><t>The only known system that does copy and paste of formulae are Mozilla MathML and MathPlayer</t>
+      <li><t>But a complicated contextual menu invocation is needed</t></li>
+      <li><t>Only a complete formula can be copied</t></li>
+    </li>
+    </slide>
+
+  
+  <slide><title>Issues I</title>
+    <li><t>MathML allows allows presentation to be parallelized with content of semantic element,</t>
+      <li><t>need to use that!</t></li>
+      <li><t>Need players to use that!</t></li>
+      </li>
+    <li><t>Phrasebooks will stay limited</t>
+      <li><t>OMDoc allows (and encourages) creation of new symbols</t></li>
+      <li><t>Phrasebooks can be enriched permantly!</t></li>
+      <li><t>Use types to support defining new symbols as specializations of others ?</t></li>
+      </li>
+      </slide>
+  <slide><title>Issues II</title>
+    <li><t>Selection and copy and paste of mathematical formulae isn't common</t>
+      <li><t>Is sub-term highlighting and selecting a good idea ?</t></li>
+      <li><t>Do users want to copy the symbol "sum" without it's body ?</t></li>
+      <li><t>Integrate textual selection with math-selection, how ?</t></li>
+      <li><t>If we had contextual-menu access, we could offer translation to many languages... interesting ?</t></li>
+      </li>
+    <li><t>In general communicating content-level math</t>
+      <li><t>Has been little experimented</t></li>
+      <li><t>Hasn't found user-level paradigms</t></li>
+      </li>
+    </slide>
+    
+    
+ 	<footer>
+        <A href="http://www-2.cs.cmu.edu/~kohlhase/event/om03/" class="invisible">OpenMath Meeting IUB - Nov 2003</A>, <br/>
+        <a href="http://www.activemath.org/%7Epaul/"  class="invisible">Paul Libbrecht</a>, 
+        2003-11-08
+		</footer> 
+  <author><name>Paul Libbrecht, Vladimir Brezhnev,  <br/>Erica Melis, Carsten Ullrich, George Goguadze</name>
+  <url>http://www.activemath.org/</url>
+      <affiliation><name>The ActiveMath Group, DFKI and Universität des Saarlandes</name>
+      <url>http://www.activemath.org/</url>
+      </affiliation>
+
+      </author>
+    
+    </presentation>

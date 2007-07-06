@@ -1,0 +1,310 @@
+
+<!--Converted with LaTeX2HTML 99.1 release (March 30, 1999)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>OpenMath and MathML</TITLE>
+<META NAME="description" CONTENT="OpenMath and MathML">
+<META NAME="keywords" CONTENT="final">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="LaTeX2HTML v99.1 release">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="final.css">
+
+<LINK REL="next" HREF="node7.htm">
+<LINK REL="previous" HREF="node5.htm">
+<LINK REL="up" HREF="final.htm">
+<LINK REL="next" HREF="node7.htm">
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF">
+<!--Navigation Panel-->
+<A NAME="tex2html166"
+ HREF="node7.htm">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next_motif.gif"></A> 
+<A NAME="tex2html162"
+ HREF="final.htm">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up_motif.gif"></A> 
+<A NAME="tex2html156"
+ HREF="node5.htm">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="previous_motif.gif"></A> 
+<A NAME="tex2html164"
+ HREF="node1.htm">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents_motif.gif"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html167"
+ HREF="node7.htm">Software Tools</A>
+<B> Up:</B> <A NAME="tex2html163"
+ HREF="final.htm">The OpenMath Project Final</A>
+<B> Previous:</B> <A NAME="tex2html157"
+ HREF="node5.htm">The OpenMath Standard</A>
+ &nbsp <B>  <A NAME="tex2html165"
+ HREF="node1.htm">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html168"
+ HREF="node6.htm#SECTION00610000000000000000">MathML</A>
+<LI><A NAME="tex2html169"
+ HREF="node6.htm#SECTION00620000000000000000">Relationship with OpenMath: Presentation</A>
+<LI><A NAME="tex2html170"
+ HREF="node6.htm#SECTION00630000000000000000">Relationship with OpenMath: Content</A>
+<LI><A NAME="tex2html171"
+ HREF="node6.htm#SECTION00640000000000000000">Summary</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00600000000000000000">
+OpenMath and MathML</A>
+</H1>
+
+<P>
+
+<H1><A NAME="SECTION00610000000000000000">
+MathML</A>
+</H1>
+A language closely related to OpenMath is the MathML Recommendation of the
+W3C.  The
+<a href="http://www.w3.org/TR/1998/REC-xml-19980210">first version</a>
+was issued in April 1998 (Shortly after the
+original publication of XML), with an updated MathML 1.01 Recommendation
+appearing in July 1999. A new
+<a href="http://www.w3.org/TR/REC-MathML2/">MathML&nbsp;2</a>
+draft is currently in production
+and is expected to be issued as a Recommendation in February 2001.
+MathML is developed by 
+<a href="http://www.w3.org/Math/">the Math working group</a>
+of the <a href="http://www.w3.org">W3C</a>. Three members of this 
+consortium (Stephen Buswell, St&#233;phane Dalmas
+and David Carlisle) are members of the working group.
+
+<P>
+It may be noted that the dates of MathML development overlap
+considerably with the time frame for the OpenMath Esprit project.
+At the time of the original Esprit proposal, the W3C did not have an
+activity for producing a markup language for Mathematics. However
+the Math Working Group was chartered, and MathML&nbsp;1.0 was produced
+shortly after the OpenMath consortium effectively began work at the end
+of 1997. The emergence of MathML has had a large impact on the
+subsequent work of the consortium, resulting in a situation where the
+two languages are visibly complementary rather than in competition.
+In summary, new elements were added to MathML&nbsp;2 which align it quite 
+closely with OpenMath, and the OpenMath Content Dictionaries were
+re-organised so that symbols that correspond to MathML&nbsp;2 constructs are
+explicitly grouped together. MathML provides a natural mechanism for
+rendering OpenMath expressions and conversely OpenMath, and in
+particular the OpenMath Content Dictionaries, provide a natural target
+for the extension mechanisms in MathML. We give some more specific
+details and examples below.
+
+<P>
+Unlike OpenMath in which XML is but one possible encoding of an abstract
+model of the mathematical expression, MathML is by definition an XML
+vocabulary.
+MathML consists of two essentially separate languages. 
+
+<P>
+ 
+<SPAN  CLASS="textit">Presentation MathML</SPAN> consists of XML constructs
+specifying the layout forms traditionally required for mathematics
+(superscripts, subscripts, fractions, tables, etc.) It also provides
+access to a repertoire of around 2000 Mathematical symbols. In
+MathML&nbsp;1.x these symbols were accessed in XML as unofficial ``Private
+Use'' Characters, however MathML&nbsp;2  has been able to take advantage of
+the proposed unicode extensions for mathematics in Unicode 3.1 and 3.2.
+
+<P>
+ 
+<SPAN  CLASS="textit">Content MathML</SPAN> contains XML elements denoting constructors such
+as function application, together with a fixed set of (typically empty)
+elements denoting mathematical functions. The intention is to provide
+the functions typically encountered in High School or an introductory
+University course. Content MathML also has mechanisms for extending
+beyond this fixed range, however in contrast to OpenMath's Content
+Dictionary mechanism there is no specified mechanism for defining the
+semantics of such extensions. In MathML one just gives a URI at which
+an external definition may be found in some format. In fact the majority
+of extension examples in the MathML specification use
+OpenMath Content Dictionaries as the target of these DefinitionURL
+links.
+
+<P>
+
+<H1><A NAME="SECTION00620000000000000000">
+Relationship with OpenMath: Presentation</A>
+</H1>
+
+<P>
+OpenMath is designed to encode the semantics of a mathematical
+expression, however it is often necessary to display such an expression
+in a conventional form. By specifying, for each symbol in an OpenMath
+dictionary, a fragment of Presentation MathML that describes the symbols
+and layout forms suitable for that function, it is possible to build a
+stylesheet that may convert arbitrary (XML encoded) OpenMath expressions
+built from those symbols into Presentation MathML. This transform could
+be encoded in any of several languages although XSLT, being a W3C
+specified language specifically for XML transforms, is currently the most
+popular. Given such a stylesheet it is possible to display OpenMath
+expressions using a MathML enabled Browser (For example Mozilla or
+Amaya, or a standard browser using the Techexplorer plugin or WebEq
+applet). Microsoft internet explorer, and some builds of Mozilla
+include an XSLT transform engine in the client browser. With such a
+system it is possible to serve OpenMath (rather than MathML or HTML
+derived from OpenMath sources) from a web server, and have it displayed
+directly in a client browser.
+
+<P>
+<a href="./cdfiles/html/i-xsl.html">XSL stylesheets which provide this
+transformation</a> have been produced for
+the majority of Content Dictionaries developed by the consortium.
+They will be made available from the OpenMath Society web site.
+
+<P>
+As an alternative to using stylesheets, or as an ``override'' mechanism
+for special circumstances it is also possible directly to embed the
+Presentation form in the document. Either the OpenMath expression
+may use an OpenMath attribution object giving the MathML form, or
+perhaps more usefully for a browser that may render MathML, a MathML
+expression may use the MathML <code>&lt;semantics&gt;</code> element to annotate the
+presentation form with further semantics given in OpenMath.
+
+<P>
+
+<H1><A NAME="SECTION00630000000000000000">
+Relationship with OpenMath: Content</A>
+</H1>
+As described above, Content MathML provides elements (for example
+<code>&lt;sin/&gt;</code>) that cover a fixed but useful range of ``elementary''
+mathematics. This Consortium and the W3C Math Working group have ensured
+that the development of the Content elements in MathML2, and the
+development of the core OpenMath Content Dictionaries (which are now
+known as the MathML Content Dictionary Group) occurred in parallel.
+As far as possible, symbols in the  MathML CD group correspond directly
+to specified attribute/element combinations in MathML, and vice-versa.
+There are some
+small areas (especially in the treatment of complex and floating point
+numbers) where there is not a simple one-to-one correspondence between
+the OpenMath and MathML constructs, but in general
+the translation in both directions is fully specified, and is being
+implemented, again using XSLT.
+
+<P>
+Thus the OpenMath syntax, being more regular and more naturally
+extensible, is perhaps more suitable for more advanced uses
+and users; whereas the more compact and limited
+Content MathML syntax may be more
+suitable for uses within its target audience of High School
+Mathematics. So for example the MathML
+<PRE>
+
+&lt;apply&gt;&lt;sin/&gt; &lt;ci&gt;x&lt;/ci&gt; &lt;/apply&gt;
+</PRE>
+may be seen as a convenient shorthand for
+<PRE>
+
+&lt;OMA&gt;&lt;OMS name="sin" cd="transc1"/&gt; &lt;OMV name="x"/&gt; &lt;/OMA&gt;
+</PRE>
+However for a more advanced topic one sees that the OpenMath syntax
+remains regular, but Content MathML requires a different syntax to refer
+to extended functionality, and has no single method of encoding the
+semantics. We use an OpenMath CD here, but MathML does not enforce any
+particular format for the documents referred to by definitionURL
+attributes.
+<PRE>
+
+&lt;csymbol definitionURL="http://www.openmath.org/cd/group1.ocd"
+encoding="OpenMath"&gt; DerivedSubgroup &lt;/csymbol&gt;
+</PRE>
+this is a Content MathML expression equivalent to the OpenMath
+<PRE>
+
+&lt;OMS name="DerivedSubgroup" cd="group1"/&gt;
+</PRE>
+
+<P>
+The details of the mapping between Content MathML and the OpenMath
+MathML CD Group are given in the document 
+<a href="./reports/ommml.pdf">Conversion between MathML and  OpenMath</a>.
+
+<P>
+In addition to the csymbol element used above (and which has been added
+to MathML&nbsp;2 intentionally to mirror the facilities of the OpenMath
+Symbol construct) MathML has two other extension mechanisms (which were
+both available in MathML&nbsp;1). Firstly most Content MathML elements take
+the definitionURL attribute which, as in csymbol, may point to further
+semantics (in any format). This may be used to override the default
+semantics of a MathML element. So for example <code>&lt;times/&gt;</code> has
+default semantics being commutative multiplication on subsets of the
+Complex numbers. However  <code>&lt;times definitionURL="...."/&gt;</code> 
+would denote a (presumably related) symbol, but with a definition
+modified by the text at the specified URI. This technique has advantages
+in the MathML context that the construct may inherit some properties, in
+particular a default presentation, from the built in  <code>&lt;times/&gt;</code>
+element. However if inheriting such defaults is not an issue
+is usually preferable to use the new csymbol construct.
+The final extension mechanism is the MathML semantics element.
+This is very similar to the OpenMath attribution mechanism.
+It allows an entire subtree of an expression to be ``wrapped''
+as the first child of a semantics element. Subsequent children
+may annotate this base in various ways. In particular one might annotate
+a Presentation MathML expression with its OpenMath or Content MathML
+equivalent, or to give equivalent expressions in computer algebra
+systems, etc.
+
+<P>
+
+<H1><A NAME="SECTION00640000000000000000">
+Summary</A>
+</H1>
+
+<P>
+We believe that the emergence of MathML at this time is a great advantage
+for OpenMath.  Not only does it offer a presentation mechanism suitable
+for use in browsers and interactive environments, but being a W3C
+Recommendation it is likely to be quite widely implemented whether
+natively or in plug-ins.  We hope that MathML is a success and that
+OpenMath can exploit this to gain exposure and popularity.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html166"
+ HREF="node7.htm">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next_motif.gif"></A> 
+<A NAME="tex2html162"
+ HREF="final.htm">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up_motif.gif"></A> 
+<A NAME="tex2html156"
+ HREF="node5.htm">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="previous_motif.gif"></A> 
+<A NAME="tex2html164"
+ HREF="node1.htm">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents_motif.gif"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html167"
+ HREF="node7.htm">Software Tools</A>
+<B> Up:</B> <A NAME="tex2html163"
+ HREF="final.htm">The OpenMath Project Final</A>
+<B> Previous:</B> <A NAME="tex2html157"
+ HREF="node5.htm">The OpenMath Standard</A>
+ &nbsp <B>  <A NAME="tex2html165"
+ HREF="node1.htm">Contents</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<a href="http://www.nag.co.uk/Projects/openmath">The OpenMath Consortium</a>
+<img align="top" alt="logo" src="openmath-s.gif">
+</ADDRESS>
+</BODY>
+</HTML>

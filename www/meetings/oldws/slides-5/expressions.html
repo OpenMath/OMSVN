@@ -1,0 +1,208 @@
+<HTML>
+<TITLE>OpenMath Expressions Proposal </TITLE>
+<!-- Changed by: Strotmann, 20-Feb-1996 -->
+<BODY>
+A. Strotmann: Proposal presented at 5th OpenMath Workshop, Bath.
+<H1>OpenMath Layer: Expression</H1>
+
+<UL>
+<LI> Basic "Categories"
+<LI> Constructor "Categories"
+<LI> Rules of Composition
+<LI> Representation Rules and Interpretation Rules
+<LI> Relation to Contexts
+<LI> Some Reasons
+<LI> Some Issues
+</UL>
+
+Note: I'm still trying to find a good name for the components that make up 
+the expression layer.  The problem is that all the "good" names I can
+think of carry specific meaning in some area of mathematics and 
+computer science or other.  Possiblities include "fundamental concepts",
+"class", "fundamental mathematical structures".
+<P>
+For want of a better alternative so far, I reluctantly call them "category"
+here.
+
+<H2>An SGML example</H2>
+
+<TT>
+<PRE>
+     &lt;apply&gt;
+       &lt;function  context=user&gt; f &lt;/function&gt;
+     &lt;to&gt;
+       &lt;constant  context=RealTrig&gt; &pi; &lt;/constant&gt;
+     &lt;to&gt;
+       &lt;constant  context=arith&gt; 234 &lt;/constant&gt;
+     &lt;/apply&gt;
+</PRE>
+</TT>
+
+<H2>Basic "Categories"</H2>
+
+<UL>
+<LI> Representation (uninterpreted data)
+<LI> Domain (or Type)
+<LI> Constant (or domain element)
+<LI> Function 
+<LI> Relation (or predicate)
+<LI> Truth Value
+<LI> Conjunctions (and, or, not, ...)
+<LI> Quantifier
+<LI> Variable
+<LI> Operator
+<LI> Sectioning Command
+<LI> Operation (command)
+<LI> ... others ... ?
+</UL>
+
+
+<H2>Constructor "Categories"</H2>
+
+<UL>
+<LI> Application
+<LI> Attribution (or annotation)
+</UL>
+
+Scope, binding, structure sharing
+
+<H2>Expression and Data Structure</H2>
+
+An example ("X+1000"):
+<P>
+
+<TT><PRE>
+expression =        application
+                    /   |   \
+                   /    |    \
+                  fn   var   dom.el.
+                  +     x     1000
+
+
+data-structure=       -------   (i.e. non-homogeneous sequence)
+                     /   |   \
+                    /    |      \
+                   /     |         \
+               symb      symb       -----------
+              /  |        /\        /  |   \   \
+             /   |       /  \      /   |    \    \
+           ctx  entry  ctx entry symb int32 bool vector-of-int32
+                                 / |             [.|.|.|.|...]
+                                /  |
+                               ctx entry
+
+[where "ctx" is short for "context"; a 'bigint' is used for 
+ illustration purposes]
+</PRE></TT>
+
+i.e. the data structure level provides more detail. 
+
+<P>
+
+Interpretation Rules govern the mapping from data-structure to 
+expression level.
+<P>
+Representation Rules govern the mapping from expression to 
+data structure. 
+<P>
+Example representation rules:
+<P>
+<TT><PRE>
+     apply(f, x1, x2, ... xn)  -->  (f x1 x2 ... xn) 
+     symbol                    -->  triple(name, context, category)
+</PRE></TT>
+where (a b ... c) is a shorthand notation for a non-homogeneous sequence
+with elements a,b,...,c .
+<P>
+Example interpretation rules are the inverse mappings of above rules.
+<P>
+NOTE: Streamlined implementations may not need to generate separate
+data structures for these levels.  The separate layers may either be
+realized in a single complex data structure with separate fields for
+the components of each layer, or the data structures and expressions 
+may in fact be "real" only by virtue of a calling graph of the encoding
+API functions.
+
+<H2>Rules of Composition</H2>
+
+Examples:
+<P>
+APPLICATION of FUNCTION to DOMAIN ELEMENT yields DOMAIN ELEMENT
+<P>
+APPLICATION of FUNCTION to DOMAIN yields DOMAIN
+<P>
+APPLICATION of DOMAIN to DOMAIN ELEMENT yields DOMAIN ELEMENT
+<P>
+APPLICATION of PREDICATE to DOMAIN ELEMENTS yields TRUTH VALUE
+<P>
+
+<H2>Some Reasons</H2>
+
+<UL>
+<LI> help user understand the mathematical structure of a document
+     without having to understand all the details
+<LI> Useful for SGML markup (see example earlier)
+<LI> default handling of 'user' or 'unknown' symbols of a "category"
+     (e.g. printing function symbols different from variable symbols).
+<LI> facilitate cooperation between computational logic and computer
+     algebra systems:  Roughly, each side leaves the other's components
+     of an object untouched when processing, and each side may 
+     possibly disregard certain information not in its realm when it 
+     doesn't understand it in full detail.  Similarly, a graphics
+     system might just disregard anything but the image data embedded.
+<LI> provide a common framework for those who need to define 
+     model-theoretic semantics for their Contexts (e.g. ANSI working
+     group in the area of knowledge interchange)
+<LI> try to capture a usefully small and intuitive set of "categories"
+     that are pervasive in mathematical papers or software.  As a guideline,
+     it should be hard to imagine any field of mathematics that does
+     not require instances of such a "category" in marking up a paper
+     from that field.
+</UL>
+
+<H2>Some Issues</H2>
+
+
+Is it really necessary...
+<UL>
+<LI>... to have more than a minimalistic expression layer (which would
+    just say that sequence (a b ...) represents application of a to 
+    b,...)
+<LI>... to have, in particular, ...
+  <UL>
+  <LI> ... logic "categories"?  E.g.:  one could get away with just
+       boolean functions instead of predicates and conjunctions
+  <LI> "category" APPLICATION instead of specific "categories"
+       such as, e.g., FUNCTION APPLICATION, QUANTIFICATION,
+       PREDICATION...
+  <LI> ... structured symbols (we could keep that additional information
+       in the corresponding Context instead)
+  <LI> CONSTANTS (as opposed to zero-argument functions)
+  </UL>
+<LI>... to consider "Is it really necessary" questions?
+</UL>
+
+Other issues include:
+<UL>
+<LI> handling scoping and binding of variables and structure sharing
+<LI> are Domain and Type the same (or close enough)?
+<LI> doing it right...
+</UL>
+
+Some guidelines that might help decide:
+<UL>
+<LI> try for an "intuitive" user interface for marking up mathematical
+     documents
+<LI> provide support for important clients of OpenMath (databases/searching, 
+     typesetting, formula display, computational logic, numerics,
+     graphics ...)
+<LI> not too much, not too little...
+</UL>
+
+<HR>
+This page is part of the OpenMath Web archive,
+and is no longer kept up to date.
+</BODY>
+
+</HTML>
+

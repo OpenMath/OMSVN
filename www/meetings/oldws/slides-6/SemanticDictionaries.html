@@ -1,0 +1,310 @@
+<HTML>
+<HEAD>
+<TITLE>Transparencies for Content Dictionaries by G. Gonnet</TITLE>
+</HEAD>
+
+<P>There was no page 1</P>
+<HR>
+
+<P ALIGN=RIGHT>(page 2)</P>
+<FONT SIZE=10>
+
+<BR><DL>
+<DT><FONT COLOR=green>Definition</FONT>
+<BR>
+<DD><FONT COLOR=blue>Content dictionaries (CD's) are OpenMath objects
+which define sets of names to be used inside OpenMath objects.</FONT>
+</DL>
+<BR>
+<FONT COLOR=brown>(An OM object may have a functional representation
+or an SGML representation, we use the SGML one for dictionaries).</FONT>
+
+<P><FONT SIZE=4>(Editorial note: The paper was presented using the terminology
+<EM>Semantic dictionaries</EM>, but later it was decided by the workshop
+that the name for these objects should be <EM>Content dictionaries</EM>.
+Hence all references to Semantic dictionaries have been updated.)</FONT></P>
+
+<HR SIZE="9" WIDTH="85%" ALIGN="CENTER" NOSHADE>
+</FONT>
+<P ALIGN=RIGHT>(page 3)</P>
+<FONT SIZE=10>
+
+<P><FONT COLOR=blue>
+A Content dictionary (CD) should be viewed <EM>primarily</EM>
+as a document for humans, even though parts of it will be processed
+and understood by communicating systems.</FONT></P>
+<BR>
+<P><FONT COLOR=red>GUIDING PRINCIPLES</FONT></P>
+<DL>
+<DT><FONT COLOR=green>- Human/Formal</FONT>
+<BR><DD><FONT COLOR=brown> Intended for humans to read, but also
+computer parsable</FONT>
+<BR><BR>
+
+<DT><FONT COLOR=green>- Tolerance</FONT>
+<BR><DD><FONT COLOR=brown>Valid Syntactic objects, not known to
+the system, are quietly ignored.
+<BR> Minimal or Subset compliant: the system does not guarantee
+to implement everything, it just guarantees that it will <EM>not</EM>
+misinterpret defined objects.</FONT>
+<BR><BR>
+
+<DT><FONT COLOR=green>- Self-contained</FONT>
+<BR><DD><FONT COLOR=brown>The CD is self-contained and its definitions
+are also a CD (the Meta CD).</FONT>
+</DL>
+
+<HR SIZE="9" WIDTH="85%" ALIGN="CENTER" NOSHADE>
+</FONT>
+<P ALIGN=RIGHT>(page 4)</P>
+<FONT SIZE=10>
+
+<FONT COLOR=blue>A Content dictionary (CD) contains:</FONT>
+<FONT COLOR=red>
+<UL>
+<LI> A unique name within the OpenMath community</LI>
+<BR><BR>
+<LI> Header information</LI>
+<BR><BR>
+<LI> A set of names defined (function, operators, constants) and
+their information</LI>
+<BR><BR>
+<LI> Global relations between the defined names</LI>
+</UL></FONT>
+
+<HR SIZE="9" WIDTH="85%" ALIGN="CENTER" NOSHADE>
+</FONT>
+<P ALIGN=RIGHT>(page 5)</P>
+<FONT SIZE=10>
+
+<FONT SIZE=2>
+<PRE> &lt;CD&gt; </PRE>
+<TABLE border=3> <TR><TD><PRE>
+
+  &lt;CD_Name&gt; Basic &lt;/CD_Name&gt;  
+</PRE></TD></TR> <CAPTION ALIGN=bottom>CD name</CAPTION></TABLE>
+
+<TABLE border=3> <TR><TD><PRE>
+
+  &lt;CD_URL&gt;http://www.can.nl/OpenMath/Definition/Basic&lt;/CD_URL&gt;
+  &lt;CD_Expire&gt; 12/Dec/96 &lt;/CD_Expire&gt;
+
+  &lt;Description&gt; The basic semantic dictionary that every OM
+    compliant implementation should accept.  &lt;/Description&gt;
+</PRE></TD></TR> <CAPTION ALIGN=bottom>Header information</CAPTION></TABLE>
+
+<TABLE border=3> <TR><TD><PRE>
+
+  &lt;CD_Definition&gt;
+    &lt;Name&gt; Pi &lt;/Name&gt;
+    &lt;Class&gt; Constant &lt;/Class&gt;
+    &lt;Type&gt; Pi :: real and Non(rational) and Non(algebraic)
+      &lt;/Type&gt;
+    &lt;Description&gt; The mathematical constant Pi, approximately
+      3.14159 &lt;/Description&gt;
+    &lt;CMP&gt; Pi = 3.1415926535897932385, "20-digit approximation"
+      &lt;/CMP&gt;
+    &lt;CMP&gt; Pi = 4*arctan(1) &lt;/CMP&gt;
+    &lt;CMP&gt; Pi = 16*arctan(1/5)-4*arctan(1/239),
+      "Machin's formula" &lt;/CMP&gt;
+  &lt;/CD_Definition&gt;
+</PRE></TD></TR> <CAPTION ALIGN=bottom>First name definition</CAPTION></TABLE>
+
+<TABLE border=3> <TR><TD><PRE>
+
+  &lt;CD_Definition&gt;
+    &lt;Name&gt; + &lt;/Name&gt;
+    &lt;Class&gt; Unary_function, Binary_function, Associative,
+      Commutative &lt;/Class&gt;
+    &lt;Type&gt; complex+complex :: complex &lt;/Type&gt;
+    &lt;Type&gt; real+real :: real &lt;/Type&gt;
+    &lt;Type&gt; rational+rational :: rational &lt;/Type&gt;
+    &lt;Type&gt; integer+integer :: integer &lt;/Type&gt;
+    &lt;Description&gt; The addition operator of any group
+      &lt;/Description&gt;
+    &lt;CMP&gt; a+b=b+a, commutativity &lt;/CMP&gt;
+    &lt;CMP&gt; a+(b+c)=(a+b)+c, associativity &lt;/CMP&gt;
+    &lt;CMP&gt; a+0=0+a=a, identity &lt;/CMP&gt;
+  &lt;/CD_Definition&gt;
+</PRE></TD></TR> <CAPTION ALIGN=bottom>Second name definition</CAPTION></TABLE>
+</FONT>
+
+<HR SIZE="9" WIDTH="85%" ALIGN="CENTER" NOSHADE>
+<P ALIGN=RIGHT>(page 6)</P>
+<FONT SIZE=10>
+
+<FONT SIZE=2>
+<TABLE border=3> <TR><TD><PRE>
+
+  &lt;CD_Definition&gt;
+    &lt;Name&gt; sin &lt;/Name&gt;
+    &lt;Class&gt; Unary_function &lt;/Class&gt;
+    &lt;Type&gt; sin(real) :: -1..1 &lt;/Type&gt;
+    &lt;Description&gt; The circular trigonometric function sine
+      &lt;/Description&gt;
+    &lt;Ref&gt; M. Abramowitz and I. Stegun, Handbook of
+      Mathematical Functions, [4.3] &lt;/Ref&gt;
+    &lt;CMP&gt; sin(0)=0 &lt;/CMP&gt;
+    &lt;CMP&gt; sin(3*x)=-4*sin(x)^3+3*sin(x), "triple angle
+      formula", &lt;Ref&gt; ditto, [4.3.27] &lt;/Ref&gt; &lt;/CMP&gt;
+  &lt;/CD_Definition&gt;
+</PRE></TD></TR> <CAPTION ALIGN=bottom>Third name definition</CAPTION></TABLE>
+
+<TABLE border=3> <TR><TD><PRE>
+
+  &lt;CMP&gt; sin(x)^2+cos(x)^2-1=0, "Invariant relation followed by
+    sin and cos", &lt;Ref&gt; M. Abramowitz and I. Stegun, Handbook
+      of Mathematical Functions [4.3.10] &lt;/Ref&gt; &lt;/CMP&gt;
+  &lt;CMP&gt; sin(Z*Pi)=0, "for any integer Z" &lt;/CMP&gt;
+  &lt;CMP&gt; exp(I*Pi) + 1 = 0, "Identity linking I, Pi, 0 and 1",
+    &lt;Ref&gt; ditto, [4.2.26] &lt;/CMP&gt;
+  &lt;CMP&gt; sin(2*x) = 2*sin(x)*cos(x), "sine duplicating formula"
+    &lt;/CMP&gt;
+</PRE></TD></TR> <CAPTION ALIGN=bottom>Global relations</CAPTION></TABLE>
+<PRE> &lt;/CD&gt; </PRE>
+
+<TABLE border=3> <TR><TD><PRE>
+
+ . . . . 
+  &lt;CD_Definition&gt;
+    &lt;Name&gt; sin &lt;/Name&gt;
+    &lt;Class&gt; Unary_function &lt;/Class&gt;
+    &lt;Replacement_Semantics&gt; Augments &lt;/Replacement_Semantics&gt;
+    &lt;Type&gt; sin(complex) :: complex &lt;/Type&gt;
+    &lt;Type&gt; sin(symbolic) :: sin(symbolic) &lt;/Type&gt;
+  &lt;/CD_Definition&gt;
+ . . . .
+</PRE></TD></TR> <CAPTION ALIGN=bottom>in some other package we may find</CAPTION></TABLE>
+</FONT>
+
+<HR SIZE="9" WIDTH="85%" ALIGN="CENTER" NOSHADE>
+</FONT>
+<P ALIGN=RIGHT>(pages 7-12)</P>
+<P>The transparencies numbered 7 to 12 contain the format
+definition of the CDs.  This is the CD called
+<A HREF="Meta">Meta.</A>
+Since there has been a lot of activity over this definition,
+the original ones are no longer interesting.
+
+<HR SIZE="9" WIDTH="85%" ALIGN="CENTER" NOSHADE>
+<P ALIGN=RIGHT>(page 13)</P>
+
+<FONT SIZE=10 COLOR=blue>Low Level CDs</FONT>
+<BR><BR>
+
+<CENTER>
+<TABLE BORDER>
+<CAPTION ALIGN=bottom>Basic CDs and their hierarchy</CAPTION>
+<tr>
+  <TD ALIGN=center> <FONT SIZE=10 COLOR=green>
+    Linear<BR>Algebra</FONT></TD>
+  <TD ALIGN=center ROWSPAN=2> <FONT SIZE=10 COLOR=green>
+    Poly-<BR>nomials</FONT></TD>
+  <TD ALIGN=center ROWSPAN=2> <FONT SIZE=10 COLOR=green>
+    Special<BR>functions</FONT></TD>
+  <TD ALIGN=center ROWSPAN=2> <FONT SIZE=10 COLOR=green>
+    Power<BR>series</FONT></TD>
+  </TR>
+<TR><TD ALIGN=center> <FONT SIZE=10 COLOR=green>
+    Non-<BR>commutative</FONT></TD></TR>
+<TR><TD COLSPAN=4 ALIGN=center>
+  <FONT SIZE=10 COLOR=green>Inert</FONT></TD></TR>
+<TR><TD COLSPAN=4 ALIGN=center>
+  <FONT SIZE=10 COLOR=green>Basic</FONT></TD></TR>
+<TR><TD COLSPAN=4 ALIGN=center>
+  <FONT SIZE=10 COLOR=green>Meta<SUP>*</SUP></FONT></TD></TR>
+</TABLE>
+</CENTER>
+<BR>
+
+Definitions and comments on the low level CDs.
+<UL>
+<LI><FONT SIZE=+2 COLOR=green>Meta.</FONT>
+This CD provides the formal definition of the CD itself.
+In reality, it is not part of the hierarchy, all of the CDs
+are written in the format as specified by Meta.
+<LI><FONT SIZE=+2 COLOR=green>Basic.</FONT>
+Provides the definition of
+ <UL>
+ <LI> symbols, integers, rationals, floating point numbers,
+booleans
+ <LI> arithmetic operations
+ <LI> some transcendental functions (exp, ln, trigonometric,
+  inverse trigonometric)
+ <LI> matrices and vectors
+ <LI> truncated dense taylor series
+ <LI> algebraic numbers
+ <LI> some basic data structures (list, set, equation,
+inequation, inequalities, ranges)
+ <LI> error messages
+ <LI> boolean operators (not and or)
+ </UL>
+<LI><FONT SIZE=+2 COLOR=green>Inert.</FONT>
+Provides the same set of operations as in Basic, but these are
+intended to be non-computing.
+These allow to build mathematical objects without evaluation.
+For example, to build the expression 1+2 without having it
+evaluated to 3.
+The long form of names (e.g. Inert::+) allows the user to use
+these inert forms.
+<LI><FONT SIZE=+2 COLOR=green>Non-commutative.</FONT>
+Redefinition of some operators which are commutative in the
+Basic CD to allow their use as non-commutative operators
+by long form names (e.g. NonComm::*)
+<LI><FONT SIZE=+2 COLOR=green>Linear Algebra.</FONT>
+Definition of linear algebra functions and operators
+and of other valid matrix/vector representations.
+<LI><FONT SIZE=+2 COLOR=green>Polynomials.</FONT>
+Definition of functions dealing with polynomials and
+other representation for polynomials.
+<LI><FONT SIZE=+2 COLOR=green>Special Functions.</FONT>
+Definition of special mathematical functions.
+<LI><FONT SIZE=+2 COLOR=green>Power series.</FONT>
+Definition/redefinition of operators on power series
+and definition of various constructors of power series.
+</UL>
+
+<HR SIZE="9" WIDTH="85%" ALIGN="CENTER" NOSHADE>
+<P ALIGN=RIGHT>(page 14)</P>
+Other groups have proposed similar layering of dictionaries,
+see for example the
+<A HREF="http://mish161.cern.ch/sc4wg6/overview.htm">proposal</A>
+by Roy Pike and his definition of <EM>Fields of Mathematics</EM>.
+
+<HR SIZE="9" WIDTH="85%" ALIGN="CENTER" NOSHADE>
+<P ALIGN=RIGHT>(page 15)</P>
+<FONT SIZE=10>
+
+<CENTER><TABLE BORDER=4> <TR> <TD ALIGN=center>
+  <TABLE BORDER=4> <TR> <TD ALIGN=center>
+    <FONT SIZE=10 COLOR=blue> THIS IS A PROPOSAL</FONT>
+  </TD> </TR> </TABLE>
+</TD> </TR> </TABLE></CENTER>
+<BR>
+<FONT COLOR=green>
+The Basic and Meta are available as files.
+<BR>
+They should be <EM>completely</EM> self-contained.
+</FONT>
+<BR><BR>
+
+<CENTER><TABLE BORDER=4> <TR> <TD ALIGN=center>
+  <TABLE BORDER=4> <TR> <TD ALIGN=center>
+    <FONT SIZE=10 COLOR=blue> PROPOSAL SCHEDULE</FONT>
+  </TD> </TR> </TABLE>
+</TD> </TR> </TABLE></CENTER>
+<BR>
+<FONT COLOR=green>
+<P> Sept 15, Authors install Basic &amp; Meta CDs as Web pages.
+Comments and updates follow.</P>
+<P> Dec 15, The version at this date is considered the official
+CD version 1.0. </P>
+</FONT>
+
+<HR SIZE="9" WIDTH="85%" ALIGN="CENTER" NOSHADE>
+
+<HR>
+This page is part of the OpenMath Web archive,
+and is no longer kept up to date.
+</BODY>
+</HTML>

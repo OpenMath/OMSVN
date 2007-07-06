@@ -1,0 +1,228 @@
+<rdf:RDF
+  xmlns:rdf   = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs  = "http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:dc    = "http://purl.org/dc/elements/1.1/"
+  xmlns:om    = "http://www.openmath.org/"
+  xmlns:omcd  = "http://www.openmath.org/CD#"
+  xmlns:omcds  = "http://www.openmath.org/CDs/"
+  xmlns:omcmps  = "http://www.openmath.org/CMPs/"
+  xmlns:omfmps  = "http://www.openmath.org/FMPs/"
+  xmlns:omexs   = "http://www.openmath.org/Examples/"
+  xmlns:omcdsa1 = "http://www.openmath.org/CDs/arith1#"
+  xmlns         = "http://www.openmath.org/lang/"
+>
+
+<!-- explanation of namespaces
+
+    om - general OM namespace (not used yet)
+	omcd  - namespace for declaration of types used in the RDF encoding
+	omcds - namespace for the CDs themselves
+	omcmps - namespace for the CMPs 
+	omfmps - namespace for the FMPs 
+	omexs - namespace for the examples 
+	omcdsa1 - convenience namespace for the CD arith1 - could be constructed from omcds
+	
+	--> 
+
+<!--declarations of the types to support the RDF encoding -->
+
+
+<rdf:Description rdf:about="http://www.openmath.org/CD#CDType" rdf:type = "rdfs:Class">
+  <rdfs:label xml:lang="en">CDType</rdfs:label>
+  <rdfs:comment>
+    Class declaration for use by RDF representations of OpenMath CDs.
+  </rdfs:comment>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.openmath.org/CD#CDSymbolType" rdf:type = "rdfs:Class">
+  <rdfs:label xml:lang="en">CDSymbolType</rdfs:label>
+  <rdfs:comment>
+    Class declaration for use by RDF representations of OpenMath CD Symbols.
+  </rdfs:comment>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.openmath.org/CD#CDUses" rdf:type = "rdfs:Property">
+  <rdfs:label xml:lang="en">CDUses</rdfs:label>
+  <rdfs:comment>
+    Property declaration for the CDUses relation.
+  </rdfs:comment>
+  <rdfs:domain rdf:resource="omcd:CDType"/>
+  <rdfs:range rdf:resource="omcd:CDType"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.openmath.org/CD#CDDefinition" rdf:type = "rdfs:Property">
+  <rdfs:label xml:lang="en">CDDefinition</rdfs:label>
+  <rdfs:comment>
+    Property declaration for the CDDefinition relation, ie "this CD defines this symbol".
+  </rdfs:comment>
+  <rdfs:domain rdf:resource="omcd:CDType"/>
+  <rdfs:range rdf:resource="omcd:CDSymbolType"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.openmath.org/CD#CDStatus" rdf:type = "rdfs:Property">
+  <rdfs:label xml:lang="en">CDStatus</rdfs:label>
+  <rdfs:comment>
+    Property declaration for the CDStatus .
+  </rdfs:comment>
+  <rdfs:domain rdf:resource="omcd:CDType"/>
+  <rdfs:range rdf:resource="rdfs:Literal"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.openmath.org/CD#CDVersion" rdf:type = "rdfs:Property">
+  <rdfs:label xml:lang="en">CDVersion</rdfs:label>
+  <rdfs:comment>
+    Property declaration for the CDVersion .
+  </rdfs:comment>
+  <rdfs:domain rdf:resource="omcd:CDType"/>
+  <rdfs:range rdf:resource="rdfs:Literal"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.openmath.org/CD#CDRevision" rdf:type = "rdfs:Property">
+  <rdfs:label xml:lang="en">CDRevision</rdfs:label>
+  <rdfs:comment>
+    Property declaration for the CDRevision .
+  </rdfs:comment>
+  <rdfs:domain rdf:resource="omcd:CDType"/>
+  <rdfs:range rdf:resource="rdfs:Literal"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.openmath.org/CD#CMP" rdf:type = "rdfs:Class">
+  <rdfs:label xml:lang="en">CMP</rdfs:label>
+  <rdfs:comment>
+    Class declaration for a CMP (Commented Mathematical Property) .
+	Declaring these as resources rather than literals allows them to be shared.
+  </rdfs:comment>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.openmath.org/CD#hasCMP" rdf:type = "rdfs:Property">
+  <rdfs:label xml:lang="en">hasCMP</rdfs:label>
+  <rdfs:comment>
+    Property declaration for associated CMP (Commented Mathematical Property) .
+  </rdfs:comment>
+  <rdfs:domain rdf:resource="omcd:CDSymbolType"/>
+  <rdfs:range rdf:resource="omcd:CMP"/>
+</rdf:Description>
+
+
+<rdf:Description rdf:about="http://www.openmath.org/CD#FMP" rdf:type = "rdfs:Class">
+  <rdfs:label xml:lang="en">FMP</rdfs:label>
+  <rdfs:comment>
+    Class declaration for use by RDF representations of OpenMath FMPs.
+  </rdfs:comment>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.openmath.org/CD#hasFMP" rdf:type = "rdfs:Property">
+  <rdfs:label xml:lang="en">hasFMP</rdfs:label>
+  <rdfs:comment>
+    Property declaration for associated FMP (Formal Mathematical Property) .
+  </rdfs:comment>
+  <rdfs:domain rdf:resource="omcd:CDSymbolType"/>
+  <rdfs:range rdf:resource="omcd:FMP"/>
+</rdf:Description>
+
+<!--
+<rdf:Description rdf:about="http://www.openmath.org/CD#FMPUses" rdf:type = "rdfs:Property">
+  <rdfs:label xml:lang="en">FMPUses</rdfs:label>
+  <rdfs:comment>
+    Property declaration for the FMPUses relation.
+  </rdfs:comment>
+  <rdfs:domain rdf:resource="omcd:FMP"/>
+  <rdfs:range rdf:resource="omcd:CDType"/>
+</rdf:Description>
+-->
+
+<rdf:Description rdf:about="http://www.openmath.org/CD#Example" rdf:type = "rdfs:Class">
+  <rdfs:label xml:lang="en">Example</rdfs:label>
+  <rdfs:comment>
+    Class declaration for use by RDF representations of OpenMath Examples.
+  </rdfs:comment>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.openmath.org/CD#hasExample" rdf:type = "rdfs:Property">
+  <rdfs:label xml:lang="en">hasExample</rdfs:label>
+  <rdfs:comment>
+    Property declaration for associated Example .
+  </rdfs:comment>
+  <rdfs:domain rdf:resource="omcd:CDSymbolType"/>
+  <rdfs:range rdf:resource="omcd:Example"/>
+</rdf:Description>
+
+
+<!-- the CD arith1  -->
+
+<rdf:Description rdf:type = "omcd:CDType" rdf:ID = "omcds:arith1">
+  <dc:title>CD-Arith1</dc:title>
+  <dc:publisher>The OpenMath Society</dc:publisher>
+  <dc:description>This CD defines symbols for common arithmetic functions.</dc:description>
+  <dc:date>2001-03-12</dc:date>
+  <rdfs:comment>
+    declares a resource which represents the OM arith1 CD. Generic metadata in Dublin Core.
+  </rdfs:comment>
+  <omcd:CDStatus> = "official" </omcd:CDStatus>
+  <omcd:CDRevision> = "0" </omcd:CDRevision>
+  <omcd:CDVersion> = "2" </omcd:CDVersion>
+</rdf:Description>
+
+<!-- (possibly) shared CMPs  -->
+
+<rdf:Description rdf:type = "omcd:CMP" rdf:ID = "omcmp:CMP-CDarith1-1">
+  <rdf:value>lcm(a,b) = a*b/gcd(a,b)</rdf:value>
+  <dc:description>This CMP relates the lcm and gcd symbols.
+  </dc:description>
+</rdf:Description>
+
+<rdf:Description rdf:type = "omcd:CMP" rdf:ID = "omcmp:CMP-CDarith1-2">
+  <rdf:value>for all integers a,b | There does not exist a c &gt; 0 such that c/a is an Integer and c/b is an
+              Integer and lcm(a,b) &gt; c. Note that this implies that gcd(a,b) &gt; 0
+  </rdf:value>
+  <dc:description>This CMP relates to the lcm symbol.
+  </dc:description>
+</rdf:Description>
+
+
+
+<!-- lcm, a symbol -->
+
+<rdf:Description rdf:about = "omcds:arith1">
+  <omcd:CDDefinition rdf:resource = "omcdsa1:lcm" />
+</rdf:Description>
+
+<rdf:Description rdf:type = "omcd:CDSymbolType" rdf:ID = "omcdsa1:lcm">
+  <dc:description>The symbol to represent the n-ary function to return the least common
+     multiple of its arguments.
+  </dc:description>
+</rdf:Description>
+
+<rdf:Description rdf:about = "omcdsa1:lcm">
+  <omcd:hasCMP rdf:resource = "omcmps:CMP-CDarith1-1" />
+  <omcd:hasCMP rdf:resource = "omcmps:CMP-CDarith1-2" />
+  <omcd:hasFMP rdf:resource = "omfmps:FMP-CDarith1-1" />
+  <omcd:hasFMP rdf:resource = "omfmps:FMP-CDarith1-2" />
+</rdf:Description>
+
+
+<!-- gcd, a symbol -->
+
+<rdf:Description rdf:about = "omcds:arith1">
+  <omcd:CDDefinition rdf:resource = "omcdsa1:gcd" />
+</rdf:Description>
+
+<rdf:Description rdf:type = "omcd:CDSymbolType" rdf:ID = "omcdsa1:gcd">
+  <dc:description> The symbol to represent the n-ary function to return the gcd (greatest
+                   common divisor) of its arguments.
+  </dc:description>
+</rdf:Description>
+
+<rdf:Description rdf:about = "omcdsa1:gcd">
+  <omcd:hasCMP  rdf:resource = "omcmps:CMP1" />
+  <omcd:hasFMP rdf:resource = "omfmps:FMP-CDarith1-1" />
+  <omcd:hasFMP rdf:resource = "omfmps:FMP-CDarith1-3" />
+  <omcd:hasExample  rdf:resource = "omexs:Example-CDarith1-1" />
+</rdf:Description>
+
+
+
+
+
+</rdf:RDF>
+

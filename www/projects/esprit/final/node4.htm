@@ -1,0 +1,206 @@
+
+<!--Converted with LaTeX2HTML 99.1 release (March 30, 1999)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Technical Summary</TITLE>
+<META NAME="description" CONTENT="Technical Summary">
+<META NAME="keywords" CONTENT="final">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="LaTeX2HTML v99.1 release">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="final.css">
+
+<LINK REL="next" HREF="node5.htm">
+<LINK REL="previous" HREF="node3.htm">
+<LINK REL="up" HREF="final.htm">
+<LINK REL="next" HREF="node5.htm">
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF">
+<!--Navigation Panel-->
+<A NAME="tex2html131"
+ HREF="node5.htm">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next_motif.gif"></A> 
+<A NAME="tex2html127"
+ HREF="final.htm">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up_motif.gif"></A> 
+<A NAME="tex2html121"
+ HREF="node3.htm">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="previous_motif.gif"></A> 
+<A NAME="tex2html129"
+ HREF="node1.htm">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents_motif.gif"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html132"
+ HREF="node5.htm">The OpenMath Standard</A>
+<B> Up:</B> <A NAME="tex2html128"
+ HREF="final.htm">The OpenMath Project Final</A>
+<B> Previous:</B> <A NAME="tex2html122"
+ HREF="node3.htm">Objectives and Results</A>
+ &nbsp <B>  <A NAME="tex2html130"
+ HREF="node1.htm">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html133"
+ HREF="node4.htm#SECTION00410000000000000000">Summary</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00400000000000000000">
+Technical Summary</A>
+</H1>
+
+<P>
+The technical work in the project can be broken down into three
+categories:
+<DL>
+<DT><STRONG>Standardisation</STRONG></DT>
+<DD>principally the development of 
+<a href="./reports/standard.pdf">the OpenMath Standard</a>
+and associated content dictionaries, but also the work on MathML and 
+contacts with other activities, notably STEP and ISO-12083 (SGML);</DD>
+<DT><STRONG>Tools</STRONG></DT>
+<DD>including translators from other formats, editors, 
+renderers etc;</DD>
+<DT><STRONG>Applications</STRONG></DT>
+<DD>built on the tools and implementing the standard.</DD>
+</DL>
+All these activities took place simultaneously, the decision to take
+advantage of the emerging
+<a href="http://www.w3.org/TR/REC-MathML2/">MathML 2 standard </a>
+meant that we had to delay
+finalising both the
+<a href="./reports/standard.pdf">OpenMath standard</a>
+and the
+<a href="./cdfiles/html/extra/mathml-cdg.html">MathML CD Group</a> until rather
+late in the project.
+
+<P>
+<a href="./reports/standard.pdf">The OpenMath Standard</a>
+was based on earlier work which pre-dated the start
+of the project, and designed to be as simple as possible.  A few new
+features were introduced to support particular kinds of applications, such
+as an explicit binding operator to assist searching tools and support
+for the different kinds of type system needed by automated reasoning
+packages.  A decision was taken to use
+<a href="http://www.w3.org/TR/1998/REC-xml-19980210">XML</a>
+as the principal underlying
+mechanism to bring OpenMath closer to MathML and facilitate the use of the 
+many tools and standards emerging from W3C, such as
+<a href="http://www.w3.org/TR/xsl/">XSL</a> and
+<a href="http://www.w3.org/dom">the DOM</a>.
+This has proved a wise decision although it did cause problems early on
+in the project since XML was not yet a standard.
+A significant amount of effort was devoted to the task of ``MathML alignment'',
+i.e.&nbsp;ensuring that where MathML and OpenMath overlapped in some sense, they
+were either equivalent or there was a well-defined mapping from one to
+the other.  This involved work by both the Consortium and the MathML 
+Working Group, which includes a number of OpenMath members.  The bulk of
+the work was in the area of developing and defining content dictionaries,
+which lie at the heart of OpenMath since they embody the agreed semantics
+of symbols in the language.
+
+<P>
+The development of tools was driven on the whole by the requirements of 
+the applications being developed both inside and outside the project.  
+The rapid growth in the popularity of XML and its associated standards
+(in particular XSLT), and support for them in popular browsers, had a
+significant impact on this part of the workplan.  All the tools developed
+were used in applications, although some (notably the searching tools)
+are still in the research phase and require further investigation.  
+
+<P>
+The applications covered a number of areas including mathematical software
+components and electronic books and journal.  An important lesson which
+was learned during this exercise is that it is much easier to design
+these kinds of applications from scratch, using OpenMath as one of several
+tools, than to retro-fit OpenMath support to an existing piece of software.
+On the other hand a modern computer algebra system such as AXIOM or GAP
+represents hundreds of person-years of development effort and has proved
+its reliability in the field over a period of time.  In cases like these
+adding OpenMath support is worthwhile and can be done in a number of
+different ways, as we have demonstrated.   
+
+<P>
+In the area of electronic publishing, it is clear that interactive books
+have very different requirements to traditional ``static'' ones, and it
+is far better to write specially than to try and re-use an existing text.
+The availability of toolkits of re-usable OpenMath plug-ins and components
+to facilitate interaction and display will make the author's task 
+significantly easier.  With academic journals the issues are somewhat different:
+economic considerations mediate against the introduction of large amounts
+of interactivity, and their r&#244;le as a long-term repository of
+knowledge makes it important that they should not depend on software
+or hardware which will one day be obsolete.  In this latter case the fact
+that OpenMath is text-based and flexible enough to exist in a variety of
+encodings makes it very attractive as a means to deliver features such
+as indexing and searchability.
+
+<P>
+In all these instances, OpenMath is only part of the solution.  Frameworks
+for connecting and controlling mathematical components (and which use
+OpenMath to carry data) and for organising mathematical texts (such as
+OMDoc [<A
+ HREF="node10.htm#OMDoc1">2</A>,<A
+ HREF="node10.htm#OMDoc2">3</A>]) still need to be defined.
+
+<P>
+
+<H1><A NAME="SECTION00410000000000000000">
+Summary</A>
+</H1>
+
+<P>
+The technical work carried out during the project has been extremely
+successful.   The standard has met with widespread approval and been
+implemented in a number of software tools and applications.  The software
+developed during the project is continuing to be used and in some
+cases has already been incorporated into commercial systems.  OpenMath
+has had a significant impact on the MathML activity, and both OpenMath
+and MathML are attracting a wide range of interest.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html131"
+ HREF="node5.htm">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next_motif.gif"></A> 
+<A NAME="tex2html127"
+ HREF="final.htm">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up_motif.gif"></A> 
+<A NAME="tex2html121"
+ HREF="node3.htm">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="previous_motif.gif"></A> 
+<A NAME="tex2html129"
+ HREF="node1.htm">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents_motif.gif"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html132"
+ HREF="node5.htm">The OpenMath Standard</A>
+<B> Up:</B> <A NAME="tex2html128"
+ HREF="final.htm">The OpenMath Project Final</A>
+<B> Previous:</B> <A NAME="tex2html122"
+ HREF="node3.htm">Objectives and Results</A>
+ &nbsp <B>  <A NAME="tex2html130"
+ HREF="node1.htm">Contents</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<a href="http://www.nag.co.uk/Projects/openmath">The OpenMath Consortium</a>
+<img align="top" alt="logo" src="openmath-s.gif">
+</ADDRESS>
+</BODY>
+</HTML>
