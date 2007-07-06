@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- $Id$  -->
+
+<chapter id="encodings">
+  <title>&OM; Encodings</title>
+  
+  <para>&OM; abstract objects are represented via an encoding. The
+  standard defines an &exml; encoding and a binary encoding. This
+  chapter shows examples of each.</para>
+  
+  <section id="omobjenco">
+    <title>Encodings of &OM; Objects</title>
+    
+    <section id="xml">
+          <title>XML Encoding</title> 
+      
+      <para>This encoding has been designed with the goals of
+      providing an encoding that: <orderedlist><listitem><para>uses
+      the most common character set (so that it can be easily included
+      in most documents and transport protocols). In principle this
+      format is both readable and writable by a human however in
+      general is intended as a machine processable
+      format.</para></listitem><listitem><para>can be included
+      (embedded) in &exml; documents, see Section <xref
+      linkend="usingxml"/> for
+      details.</para></listitem></orderedlist></para> <para>This
+      encoding is defined by a Relax NG &exml; schema in the &OM;
+      standard. The default namespace for &OM; objects is
+      <quote>http://www.openmath.org/OpenMath</quote>.
+      </para>
+          <para>The root element for the encoded &OM; object is the
+          <systemitem>OMOBJ</systemitem> element.  This element can
+          contain the elements described in what follows.</para>
+          <variablelist>
+            <varlistentry>
+              <term>Integers</term>
+              <listitem>
+                <para>are encoded using the
+                <systemitem>OMI</systemitem> element around the
+                sequence of their digits in base 10 or 16. Most
+                significant digit go first.  Integers written in base
+                16 match<screen>
+                <systemitem>-?x[0-9A-F]+</systemitem>.</screen>
+
+The integer 10 can be thus encoded as <screen><systemitem>&lt;OMI> 10
+&lt;/OMI></systemitem></screen> or as <screen><systemitem>&lt;OMI> xA
+&lt;/OMI></systemitem></screen> but neither
+<screen><systemitem>&lt;OMI> +10 &lt;/OMI></systemitem></screen> nor
+<screen><systemitem>&lt;OMI> +xA &lt;/OMI></systemitem></screen> can
+be used.</para>
+	      
+<para>The negative integer
+<inlineequation><mml:math><mml:mn>-120</mml:mn></mml:math></inlineequation>
+can be encoded as either as decimal <screen><systemitem>&lt;OMI> -120
+&lt;/OMI></systemitem></screen> or as hexadecimal
+<screen><systemitem>&lt;OMI> -x78
+&lt;/OMI></systemitem></screen>.</para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term>Symbols</term>
+	    <listitem>
+	      <para>are encoded using the <systemitem>OMS</systemitem>
+		element. This element has three &exml;-attributes
+		<systemitem>cd</systemitem>,
+		<systemitem>name</systemitem>, and
+		<systemitem>uristub</systemitem>. The value of
+		<systemitem>cd</systemitem> is the name of the Content
+		Dictionary in which the symbol is defined and the
+		value of <systemitem>name</systemitem> is the name of
+		the symbol.  The optional
+		<systemitem>uristub</systemitem> attribute is a URI
+		that can be used to disambiguate between two content
+		dictionaries with the same name.
+
+  The name of the Content Dictionary is compulsory, but a future
+  revision of the &OM; standard might introduce a defaulting
+  mechanism.  For example, <screen><systemitem>&lt;OMS cd="transc"
+  name="sin"/></systemitem></screen> is the encoding of the symbol
+  named <systemitem>sin</systemitem> in the Content Dictionary named
+  <systemitem>transc</systemitem>.</para> <para>The three attributes
+  of the <systemitem>OMS</systemitem> are used in order to build a URI
+  for the symbol, for use in contexts where URI-based referencing
+  mechanisms are used. This canonical URI is constructed as
+  follows:</para>
+<screen>
+<systemitem>URI = uristub-value + '/' + cd-value + '/' + name-value</systemitem> 
+</screen>
+	      
+	      <example>
+		<title/> 
+
+		<screen><![CDATA[ 
+<OMS name="plus" cd="arith1" uristub="http://www.openmath.org/CDs"/>
+                    ]]></screen>
+                           
+                <para>gives the URI
+		  <screen><systemitem>"http://www.openmath.org/CDs/arith1/plus"</systemitem>.</screen>
+		  This allows us to refer uniquely to an openmath
+		  symbol from a MathML document.</para></example>
+
+	      <example>
+		<title/>
+		<screen>
+		<literallayout>
+		  &lt;mathml:csymbol xmlns:mathml="http://www.w3.org/TR/MathML2/" definitionURL="http://www.openmath.org/CDs/arith1/plus"&gt;Z&lt;/csymbol&gt;
+		</literallayout>
+	      </screen>
+	      </example>
+	    </listitem>
+	  </varlistentry>
+	  
+	  <varlistentry>
+	    <term>Variables</term>
+	    <listitem>
+	      <para>are encoded using the <systemitem>OMV</systemitem>
+  element, with only one &exml;-attribute,
+  <systemitem>name</systemitem>, whose value is the variable name.
+  The variable name is a subset of the printable
+  <acronym>ascii</acronym> set of characters.  In particular, neither
+  spaces nor double-quote <systemitem>&quot;</systemitem> are allowed
+  in variable names.  For instance, the encoding of the object
+  representing the variable <inlineequation><mml:math
+  ><mml:mi>x</mml:mi></mml:math></inlineequation> is:
+  <screen><systemitem>&lt;OMV name="x"/></systemitem></screen></para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Floating-point numbers</term>
+              <listitem>
+                <para>are encoded using the
+  <systemitem>OMF</systemitem> element that has either the
+  &exml;-attribute <systemitem>dec</systemitem> or the
+  &exml;-attribute <systemitem>hex</systemitem>. The two
+  &exml;-attributes cannot be present simultaneously. The value of
+  <systemitem>dec</systemitem> is the floating-point number expressed
+  in base 10, using the common syntax:</para>
+	      <screen><systemitem>(-?)([0-9]+)?("."[0-9]+)?(e(-?)[0-9]+)?</systemitem>.</screen>
+
+                <para>The value of <systemitem>hex</systemitem> is the
+  digits of the floating-point number expressed in base 16, with
+  digits <systemitem>0</systemitem>-<systemitem>9</systemitem>,
+  <systemitem>A</systemitem>-<systemitem>F</systemitem> (mantissa,
+  exponent, and sign from lowest to highest bits) using a least
+  significant byte ordering.  For example, <screen><systemitem>&lt;OMF
+  dec="1.0e-10"/></systemitem></screen> is a valid floating-point
+  number.</para>
+	    </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Character strings</term>
+              <listitem>
+                <para>are
+  encoded using the <systemitem>OMSTR</systemitem> element.  Its
+  content is a Unicode text (The default encoding is
+  <acronym>utf-8</acronym><citation>utf8</citation>, although &exml;
+  encoded &OM; may be embedded in a containing &exml; document that
+  specifies alternative encoding in the &exml; declaration. Note that
+  as always in &exml; the characters <systemitem>&lt;</systemitem> and
+  <systemitem>&amp;</systemitem> need to be represented by the entity
+  references <systemitem>&lt;</systemitem> and
+  <systemitem>&amp;</systemitem> respectively.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Bytearrays</term>
+              <listitem>
+                <para>are encoded using
+  the <systemitem>OMB</systemitem> element. Its content is a sequence
+  of characters that is a base64 encoding of the data.  The base64
+  encoding is defined in <acronym>rfc</acronym> 1521
+  <citation>rfc1521</citation>.  Basically, it represents an arbitrary
+  sequence of octets using 64 <quote>digits</quote>
+  (<systemitem>A</systemitem> through <systemitem>Z</systemitem>,
+  <systemitem>a</systemitem> through <systemitem>z</systemitem>,
+  <systemitem>0</systemitem> through <systemitem>9</systemitem>,
+  <systemitem>+</systemitem> and /, in order of increasing
+  value). Three octets are represented as four digits (the
+  <systemitem>=</systemitem> character for padding to the right at the
+  end of the data). All line breaks and carriage return, space, form
+  feed and horizontal tabulation characters are ignored. The reader is
+  refered to <citation>rfc1521</citation> for more detailed
+  information.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+          <para>In detail the encoding of an &OM; object is described below.</para>
+          <variablelist>
+            <varlistentry>
+              <term>Applications</term>
+              <listitem>
+                <para>are encoded using the
+<systemitem>OMA</systemitem> element. The application whose root is
+the &OM; object
+<inlineequation><mml:math><mml:msub><mml:mi>e</mml:mi><mml:mn>0</mml:mn></mml:msub></mml:math></inlineequation>
+and whose arguments are the &OM; objects
+<inlineequation><mml:math><mml:msub><mml:mi>e</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></inlineequation>,
+<phrase>&#8230;</phrase>,
+<inlineequation><mml:math><mml:msub><mml:mi>e</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></inlineequation>
+is encoded as
+<systemitem>&lt;OMA></systemitem><inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mn>0</mml:mn></mml:msub></mml:math></inlineequation><inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></inlineequation><phrase>&#8230;</phrase><inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></inlineequation><systemitem>&lt;/OMA></systemitem>
+where
+<inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:math></inlineequation>
+is the encoding of
+<inlineequation><mml:math><mml:msub><mml:mi>e</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:math></inlineequation>.
+</para>
+                <para>For example, <inlineequation><mml:math><mml:mi mathvariant="bold">application</mml:mi><mml:mo>(</mml:mo><mml:mi>sin</mml:mi><mml:mo>,</mml:mo><mml:mi>x</mml:mi><mml:mo>)</mml:mo></mml:math></inlineequation> is encoded as:
+		<screen><literallayout>
+		  <![CDATA[<OMA><OMS cd="transc1" name="sin"/> <OMV name="x"/> </OMA> ]]>
+		</literallayout> 
+	      </screen>
+		provided that the symbol <systemitem>sin</systemitem>
+		is defined to be a function symbol in a Content
+		Dictionary named
+		<systemitem>transc1</systemitem>.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Binding</term>
+              <listitem>
+                <para>is encoded using the
+  <systemitem>OMBIND</systemitem> element.  The binding by the &OM;
+  object <mml:math><mml:mi>b</mml:mi></mml:math> of the &OM; variables
+  <mml:math><mml:msub><mml:mi>x</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math>,
+  <mml:math><mml:msub><mml:mi>x</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:math>,
+  <mml:math><mml:mi>&#8230;</mml:mi></mml:math>,
+  <mml:math><mml:msub><mml:mi>x</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math>
+  in the object <mml:math><mml:mi>c</mml:mi></mml:math> is encoded as
+  <systemitem>&lt;OMBIND></systemitem><mml:math><mml:mi>B</mml:mi></mml:math><systemitem>&lt;OMBVAR></systemitem><mml:math><mml:msub><mml:mi>X</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math><mml:math><mml:mi>&#8230;</mml:mi></mml:math><mml:math><mml:msub><mml:mi>X</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math><systemitem>&lt;/OMBVAR></systemitem><mml:math><mml:mi>C</mml:mi></mml:math><systemitem>&lt;/OMBIND></systemitem> where
+  <mml:math><mml:mi>B</mml:mi></mml:math>,
+  <mml:math><mml:mi>C</mml:mi></mml:math>, and
+  <mml:math><mml:msub><mml:mi>X</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:math>
+  are the encodings of <mml:math><mml:mi>b</mml:mi></mml:math>,
+  <mml:math><mml:mi>c</mml:mi></mml:math> and
+  <mml:math><mml:msub><mml:mi>x</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:math>,
+  respectively.</para>
+                <para>For instance the encoding of <inlineequation><mml:math><mml:mi mathvariant="bold">binding</mml:mi><mml:mo>(</mml:mo><mml:mi>lambda</mml:mi><mml:mo>,</mml:mo><mml:mi>x</mml:mi><mml:mo>,</mml:mo><mml:mi mathvariant="bold">application</mml:mi><mml:mo>(</mml:mo><mml:mi>sin</mml:mi><mml:mo>,</mml:mo><mml:mi>x</mml:mi><mml:mo>)</mml:mo><mml:mo>)</mml:mo></mml:math></inlineequation> is: <literallayout><![CDATA[
+      <OMBIND>
+        <OMS cd="fns1" name="lambda"/>  
+        <OMBVAR>
+          <OMV name="x"/>
+        </OMBVAR>  
+        <OMA>
+          <OMS cd="transc1" name="sin"/> 
+          <OMV name="x"/>  
+        </OMA>
+      </OMBIND>]]></literallayout></para>
+                <para>Binders are defined in  Content Dictionaries, in particular,
+  the symbol <systemitem>lambda</systemitem> is defined in the Content Dictionary
+  <systemitem>fns1</systemitem> for functions over functions.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Attributions</term>
+              <listitem>
+                <para>are encoded
+  using the <systemitem>OMATTR</systemitem> element.  If the &OM;
+  object
+  <inlineequation><mml:math><mml:mi>e</mml:mi></mml:math></inlineequation>
+  is attributed with (<inlineequation><mml:math><mml:msub><mml:mi>s</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math>,
+  <mml:math><mml:msub><mml:mi>e</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></inlineequation> ), <phrase>&#8230;</phrase>, (<inlineequation><mml:math><mml:msub><mml:mi>s</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math>,
+  <mml:math><mml:msub><mml:mi>e</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></inlineequation> ) pairs (where
+  <inlineequation><mml:math><mml:msub><mml:mi>s</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:math></inlineequation>
+  are the attributes), it is encoded as
+  <systemitem>&lt;OMATTR></systemitem><systemitem>&lt;OMATP></systemitem><inlineequation><mml:math><mml:msub><mml:mi>S</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></inlineequation><inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></inlineequation><phrase>&#8230;</phrase><inlineequation><mml:math><mml:msub><mml:mi>S</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></inlineequation><inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></inlineequation><systemitem>&lt;/OMATP></systemitem><inlineequation><mml:math><mml:mi>E</mml:mi></mml:math></inlineequation><systemitem>&lt;/OMATTR></systemitem> where
+  <inlineequation><mml:math><mml:msub><mml:mi>S</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:math></inlineequation>
+  is the encoding of the symbol
+  <inlineequation><mml:math><mml:msub><mml:mi>s</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:math></inlineequation>,
+  <inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:math></inlineequation>
+  of the object
+  <inlineequation><mml:math><mml:msub><mml:mi>e</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:math></inlineequation>
+  and
+  <inlineequation><mml:math><mml:mi>E</mml:mi></mml:math></inlineequation>
+  is the encoding of
+  <inlineequation><mml:math><mml:mi>e</mml:mi></mml:math></inlineequation>.</para>
+                <para>Examples are the use of attribution to decorate a group by its
+  automorphism group:
+<literallayout><![CDATA[
+          <OMATTR>    
+             <OMATP>
+                  <OMS cd="groups" name="automorphism_group" />  
+                  [..group-encoding..] 
+             </OMATP>  
+             [..group-encoding..] 
+          </OMATTR>]]></literallayout>
+or to express the type of a variable:
+<literallayout><![CDATA[ 
+          <OMATTR>    
+              <OMATP>
+                   <OMS cd="ecc" name="type" /> 
+                   <OMS cd="ecc" name="real" />
+              </OMATP> 
+              <OMV name="x" />
+            </OMATTR>]]></literallayout></para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Errors</term>
+              <listitem>
+                <para>are encoded using the
+ <systemitem>OME</systemitem> element. The error whose symbol is
+ <inlineequation><mml:math><mml:mi>s</mml:mi></mml:math></inlineequation>
+ and whose arguments are the &OM; objects
+ <inlineequation><mml:math><mml:msub><mml:mi>e</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></inlineequation>,
+ <phrase>&#8230;</phrase>,
+ <inlineequation><mml:math><mml:msub><mml:mi>e</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></inlineequation>
+ is encoded as <systemitem>&lt;OME></systemitem><inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mi>s</mml:mi></mml:msub></mml:math></inlineequation><inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></inlineequation><phrase>&#8230;</phrase><inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></inlineequation><systemitem>&lt;/OME></systemitem> where
+ <inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mi>s</mml:mi></mml:msub></mml:math></inlineequation>
+ is the encoding of
+ <inlineequation><mml:math><mml:mi>s</mml:mi></mml:math></inlineequation> and
+ <inlineequation><mml:math><mml:msub><mml:mi>C</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:math></inlineequation>
+ the encoding of
+ <inlineequation><mml:math><mml:msub><mml:mi>e</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:math></inlineequation>.</para>
+                <para>If an <systemitem>aritherror</systemitem> Content Dictionary
+contained a
+<inlineequation><mml:math><mml:mi>DivisionByZero</mml:mi></mml:math></inlineequation>
+symbol, then the object <inlineequation><mml:math><mml:mi mathvariant="bold">error</mml:mi><mml:mo>(</mml:mo><mml:mi>DivisionByZero</mml:mi><mml:mo>,</mml:mo><mml:mi mathvariant="bold">application</mml:mi><mml:mo>(</mml:mo><mml:mi>divide</mml:mi><mml:mo>,</mml:mo><mml:mi>x</mml:mi><mml:mo>,</mml:mo><mml:mn>0</mml:mn><mml:mo>)</mml:mo><mml:mo>)</mml:mo></mml:math></inlineequation>
+would be encoded as follows:
+
+<literallayout><![CDATA[ 
+            <OME>
+            <OMS cd="aritherror" name="DivisionByZero"/>  
+            <OMA>
+                 <OMS cd="arith1" name="divide" />
+                 <OMV name="x"/>  
+                 <OMI> 0 </OMI>
+            </OMA> 
+            </OME>]]></literallayout></para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>References</term>
+              <listitem>
+                <para> &OM; integers, floating point numbers,
+ character strings, byearrays, applications, binding, attributions can
+ also be encoded as an empty <systemitem>OMR</systemitem> element with
+ an <systemitem>xlink:href</systemitem> attribute whose value is the
+ value of an id attribute of an &OM; object of that type. The &OM;
+ element represented by this <systemitem>OMR</systemitem> element is a
+ copy of the &OM; element pointed to in the
+ <systemitem>xlink:xref</systemitem> attribute. Note that the
+ representation of the <systemitem>OMR</systemitem> element is
+ <emphasis>structurally equal</emphasis>, but not identical to the
+ element it points to. </para> <para>For instance, the &OM; object
+
+ <mml:math display="block"><mml:mrow><mml:mi mathvariant="bold">application</mml:mi><mml:mrow><mml:mo fence="true">(</mml:mo><mml:mrow><mml:mi>f</mml:mi><mml:mo separator="true">,</mml:mo><mml:mi mathvariant="bold">application</mml:mi><mml:mrow><mml:mo fence="true">(</mml:mo><mml:mrow><mml:mi>f</mml:mi><mml:mo separator="true">,</mml:mo><mml:mi mathvariant="bold">application</mml:mi><mml:mrow><mml:mo fence="true">(</mml:mo><mml:mrow><mml:mi>f</mml:mi><mml:mo separator="true">,</mml:mo><mml:mi>a</mml:mi><mml:mo separator="true">,</mml:mo><mml:mi>a</mml:mi></mml:mrow><mml:mo fence="true">)</mml:mo></mml:mrow><mml:mo separator="true">,</mml:mo><mml:mi mathvariant="bold">application</mml:mi><mml:mrow><mml:mo fence="true">(</mml:mo><mml:mrow><mml:mi>f</mml:mi><mml:mo separator="true">,</mml:mo><mml:mi>a</mml:mi><mml:mo separator="true">,</mml:mo><mml:mi>a</mml:mi></mml:mrow><mml:mo fence="true">)</mml:mo></mml:mrow><mml:mo fence="true">)</mml:mo></mml:mrow><mml:mo separator="true">,</mml:mo><mml:mi mathvariant="bold">application</mml:mi><mml:mrow><mml:mo fence="true">(</mml:mo><mml:mrow><mml:mi>f</mml:mi><mml:mo separator="true">,</mml:mo><mml:mi mathvariant="bold">application</mml:mi><mml:mrow><mml:mo fence="true">(</mml:mo><mml:mrow><mml:mi>f</mml:mi><mml:mo separator="true">,</mml:mo><mml:mi>a</mml:mi><mml:mo separator="true">,</mml:mo><mml:mi>a</mml:mi></mml:mrow><mml:mo fence="true">)</mml:mo></mml:mrow><mml:mo separator="true">,</mml:mo><mml:mi mathvariant="bold">application</mml:mi><mml:mrow><mml:mo fence="true">(</mml:mo><mml:mrow><mml:mi>f</mml:mi><mml:mo separator="true">,</mml:mo><mml:mi>a</mml:mi><mml:mo separator="true">,</mml:mo><mml:mi>a</mml:mi></mml:mrow><mml:mo fence="true">)</mml:mo></mml:mrow><mml:mo fence="true">)</mml:mo></mml:mrow></mml:mrow><mml:mo fence="true">)</mml:mo></mml:mrow></mml:mrow></mml:mrow></mml:mrow></mml:math></para>
+                
+<para>can be encoded in the &exml; encoding as either one of the
+&exml; encodings below (and some intermedidate versions as
+well).</para>
+                <figure id="fig_shared_vs_unshared">
+                  <title>Shared vs. unshared representations</title>
+                  <literallayout><![CDATA[
+ <OMOBJ>                                <OMOBJ>
+  <OMA>                                   <OMA>
+    <OMA>                                    <OMA id="t1">
+      <OMV name="f"/>                           <OMV name="f"/>
+      <OMA>                                     <OMA id="t11">
+        <OMV name="f"/>                            <OMV name="f"/>
+        <OMV name="a"/>                            <OMV name="a"/>
+        <OMV name="a"/>                            <OMV name="a"/>
+      </OMA>                                    </OMA>
+      <OMA>                                     <OMR xlink:href="t11"/>
+        <OMV name="f"/>
+        <OMV name="a"/> 
+        <OMV name="a"/>
+      </OMA>                                   </OMA>
+      <OMA>                                     <OMR xlink:href="t1"/>
+        <OMV name="f"/>
+        <OMA>
+          <OMV name="f"/>
+          <OMV name="a"/>
+          <OMV name="a"/>
+        </OMA>
+        <OMA>
+          <OMV name="f"/>
+          <OMV name="a"/>
+          <OMV name="a"/>
+        </OMA>
+      </OMA>
+     </OMA>
+   </OMA>
+ </OMOBJ>                                 </OMOBJ>]]></literallayout>
+                </figure>
+
+                <para> Using references that capture variables in this
+ way can easily lead to representation errors, and is not recommended.
+	      </para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+ 
+       <section id="bin">
+          <title>Binary Encoding</title>
+
+          <para>How the binary encoding is structured and used</para>
+        </section>
+
+        <section id="other">
+          <title>Other Encoding</title>
+          <para>How it is possible to devise other encodings</para>
+        </section>
+      </section>
+
+      <section id="cdenco">
+
+
+        <title>Encodings of Content Dictionaries</title>
+
+        <section id="cdxml">
+          <title>Classic &exml; encoding</title>
+          <para></para>
+        </section>
+
+        <section id="cdrdf">
+          <title>RDF encoding</title>
+          <para></para>
+        </section>
+
+        <section id="cdother">
+          <title>Other encodings</title>
+          <para></para>
+        </section>
+      </section>
+    </chapter>
