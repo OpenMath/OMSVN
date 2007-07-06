@@ -1,0 +1,20 @@
+$Id$
+
+
+In order to produce xhtml from the sources using the ANT build.xml file
+distributed you need to: 
+	- have java (tested on j2sdk1.4.2_02)
+	- have ANT  (tested on apache-ant-1.6.1)
+	- have the standard docbook stylesheets (tested on xsl-stylesheets-1.61.2)
+	- set the environment variable DOCBOOK_XSL to your local
+	version of the docbook stylesheets, 
+	e.g.  setenv DOCBOOK_XSL /usr/share/xml/docbook/xsl-stylesheets-1.61.2
+
+
+The default ANT target will use the stylesheet $DOCBOOK_XSL/xhtml/chunk.xsl 
+and include in the local stylesheet src/xsl/primer.xsl where customization
+is to be found. The style for rendering is stored in src/xsl/primer.css.
+The command to invoke is:
+	ant chunk or ant
+
+and it produces the html in build/obj/xhtml.
