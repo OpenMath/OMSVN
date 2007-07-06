@@ -1,0 +1,404 @@
+<CD xmlns="http://www.openmath.org/OpenMathCD">
+   <CDName>finfield1</CDName>
+   <CDURL>http://www.openmath.org/cd/finfield1.ocd</CDURL>
+   <CDDate> 2004-06-01 </CDDate>
+   <CDVersion>1</CDVersion>
+   <CDRevision>0</CDRevision>
+   <CDStatus>experimental</CDStatus>
+   
+
+   <Description>
+                 A CD to instantiate finite fields.
+   </Description>
+
+   <CDComment>
+     Built by Arjeh M. Cohen 2003-02-25.
+   The information on Conway polynomials is largely taken from
+   &lt;a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/">Frank Luebeck&lt;/a>.
+
+   </CDComment>
+
+
+<CDDefinition>
+<Name>zero</Name>
+<Description>
+
+This symbol represents a unary function. The argument should be a
+prime power q. This symbol returns the zero element of GF(q).
+
+</Description>
+
+</CDDefinition>
+
+<CDDefinition>
+<Name>identity</Name>
+<Description>
+
+This symbol represents a unary function. The argument should be a
+prime power q. This symbol returns the identity element of GF(q).
+
+</Description>
+
+</CDDefinition>
+
+<CDDefinition>
+<Name>primitive_element</Name>
+<Description>
+
+This symbol has one or two arguments. If there is only one argument,
+it must be a prime power q. The optional second argument is a
+polynomial m which is primitive over the prime subfield of GF(q). This
+symbol returns a primitive element for GF(q) with minimal polynomial
+m. If there is only one argument, then the minimal polynomial is
+assumed to be the conway polynomial for GF(q).
+
+</Description>
+
+</CDDefinition>
+
+<CDDefinition>
+<Name>conway_polynomial</Name>
+<Description>
+
+This symbol represents a unary function. Its argument should be a
+prime power.
+Before defining which of the possible f(X) is the Conway polynomial we
+introduce an ordering of the polynomials of degree n over GF(p).
+Let g(X) = g_nX^n + ... + g_0 and
+h(X) = h_nX^n + ... + h_0.
+Then we define g &lt; h if and only if there is an index k with
+g_i = h_i for i &gt; k and (-1)^{n-k}
+g_k &lt; (-1)^{n-k} h_k.
+ 
+The &lt;em>Conway polynomial&lt;/em> f_{p,n}(X) for
+GF(p^n) is defined recursively as the smallest polynomial of
+degree n with respect to this ordering such that:
+ 
+&lt;ol>
+&lt;li>f_{p,n}(X) is monic&lt;/li>
+&lt;li>f_{p,n}(X) is primitive, that is, any zero is a generator of the
+(cyclic) multiplicative group of GF(p^n)&lt;/li>
+&lt;li>for each proper divisor m of n we have that 
+f_{p,m}(X^{(p^n-1) / (p^m-1)}) = 0 mod 
+f_{p,n}(X); that is, the (p^n-1) / (p^m-1) -th
+power of a zero of f_{p,n&lt;/sub>(X) is a zero of f_{p,m}(X)
+&lt;/li>
+&lt;/ol>
+
+</Description>
+
+<CMP>
+
+The existence of these polynomials can be shown with the Chinese
+Remainder Theorem, see W. Nickel, &lt;em>Endliche Koerper in dem
+gruppentheoretischen Programmsystem GAP&lt;/em>, Diploma thesis, RWTH
+Aachen (1988)
+
+</CMP>
+
+<CDComment>
+
+Conway polynomials were defined by R. Parker. Their purpose is to
+provide a standard notation for elements in a finite field
+GF(p^n) with p^n elements, p being a prime.
+
+This is for example used within computer algebra systems to have data
+of finite field elements which can easily be ported between different
+programs.
+ 
+The Conway polynomials are also used in data bases like the Modular
+Atlas character tables, this was the original motivation for their
+definition.
+ 
+&lt;h3>References and Acknowledgements&lt;/h3>
+The definition and a long list of Conway polynomials are due to
+R. Parker.  This is not published but the list is floating around for
+some time and, for example, incorporated in GAP or Magma. All
+polynomials from Parker's list are now checked with independent
+programs.
+
+The computation method with computing the minimal polynomials of all
+compatible elements was rediscovered in
+
+L.S.Heath and N.A.Loehr, &lt;em>New algorithms for generating Conway
+polynomials over finite fields&lt;/em>, Proceedings of the Tenth Annual
+ACM-SIAM Symposium on Discrete Algorithms (Baltimore, MD, 1999),
+429--437, ACM, New York (1999)
+
+There are basically two methods to compute Conway polynomials.
+
+The first is to run through all polynomials of degree n over GF(p)
+with respect to the ordering defined above and to check the necessary
+conditions (for primitivity one has to check that for each proper
+(maximal) divisor k of p^n-1 we have that f_{p,n}(X)
+does not divide X^k-1).
+
+The second possibility is to take any representation of
+GF(p^n) and to enumerate all elements in that field which
+fulfill the compatibility condition 3. above. Then check for each of
+these elements if it is primitive and if yes compute its minimal
+polynomial over GF(p). The smallest polynomial found this way is the
+Conway polynomial.
+
+Both methods were used by R. Parker to compute a long list of Conway
+polynomials. These are available in computer algebra systems like &lt;a
+href="http://www.gap-system.org">GAP&lt;/a> or &lt;a
+href="http://www.maths.usyd.edu.au:8000/u/magma/">Magma&lt;/a> and they
+are used in several other programs, like the &lt;a
+href="http://www.math.rwth-aachen.de/~MTX/">MeatAxe&lt;/a>.
+
+</CDComment>
+
+<Example>
+Some Conway polynomials for p = 2.
+
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0"><OMA><OMS cd="relation1" name="eq"/>
+            <OMA><OMS cd="finfield1" name="conway_polynomial"/>
+                 <OMI>2</OMI>
+            </OMA>
+            <OMA><OMS cd="univpoly1" name="univariate_polynomial"/>
+                 <OMA><OMS cd="univpoly1" name="ring"/>
+                      <OMA><OMS cd="finfield1" name="GF"/>
+                           <OMI>2</OMI>
+                      </OMA>
+                 </OMA>
+                 <OMA><OMS cd="univpoly1" name="monomials"/>
+                      <OMA><OMS cd="univpoly1" name="monomial"/>
+                           <OMI>1</OMI><OMI>0</OMI>
+                      </OMA>
+                      <OMA><OMS cd="univpoly1" name="monomial"/>
+                           <OMI>1</OMI><OMI>1</OMI>
+                      </OMA>
+                 </OMA>
+                 <OMV name="X"/>         
+            </OMA>
+       </OMA>
+</OMOBJ>
+<!-- X + 1-->
+
+
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0"><OMA><OMS cd="relation1" name="eq"/>
+            <OMA><OMS cd="finfield1" name="conway_polynomial"/>
+                 <OMI>2</OMI><OMI>2</OMI>
+            </OMA>
+            <OMA><OMS cd="univpoly1" name="univariate_polynomial"/>
+                 <OMA><OMS cd="univpoly1" name="ring"/>
+                      <OMA><OMS cd="finfield1" name="GF"/>
+                           <OMI>2</OMI>
+                      </OMA>
+                 </OMA>
+                 <OMA><OMS cd="univpoly1" name="monomials"/>
+                      <OMA><OMS cd="univpoly1" name="monomial"/>
+                           <OMI>1</OMI><OMI>0</OMI>
+                      </OMA>
+                      <OMA><OMS cd="univpoly1" name="monomial"/>
+                           <OMI>1</OMI><OMI>1</OMI>
+                      </OMA>
+                      <OMA><OMS cd="univpoly1" name="monomial"/>
+                           <OMI>1</OMI><OMI>2</OMI>
+                      </OMA>
+                 </OMA>
+                 <OMV name="X"/>         
+            </OMA>
+       </OMA>
+</OMOBJ>
+
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0"><OMA><OMS cd="relation1" name="eq"/>
+            <OMA><OMS cd="finfield1" name="conway_polynomial"/>
+                 <OMI>2</OMI><OMI>3</OMI>
+            </OMA>
+            <OMA><OMS cd="univpoly1" name="univariate_polynomial"/>
+                 <OMA><OMS cd="univpoly1" name="ring"/>
+                      <OMA><OMS cd="finfield1" name="GF"/>
+                           <OMI>2</OMI>
+                      </OMA>
+                 </OMA>
+                 <OMA><OMS cd="univpoly1" name="monomials"/>
+                      <OMA><OMS cd="univpoly1" name="monomial"/>
+                           <OMI>1</OMI><OMI>0</OMI>
+                      </OMA>
+                      <OMA><OMS cd="univpoly1" name="monomial"/>
+                           <OMI>1</OMI><OMI>1</OMI>
+                      </OMA>
+                      <OMA><OMS cd="univpoly1" name="monomial"/>
+                           <OMI>1</OMI><OMI>3</OMI>
+                      </OMA>
+                 </OMA>
+                 <OMV name="X"/>         
+            </OMA>
+       </OMA>
+</OMOBJ>
+<!-- X^3 + X + 1-->
+
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0"><OMA><OMS cd="relation1" name="eq"/>
+            <OMA><OMS cd="finfield1" name="conway_polynomial"/>
+                 <OMI>2</OMI><OMI>4</OMI>
+            </OMA>
+            <OMA><OMS cd="univpoly1" name="univariate_polynomial"/>
+                 <OMA><OMS cd="univpoly1" name="ring"/>
+                      <OMA><OMS cd="finfield1" name="GF"/>
+                           <OMI>2</OMI>
+                      </OMA>
+                 </OMA>
+                 <OMA><OMS cd="univpoly1" name="monomials"/>
+                      <OMA><OMS cd="univpoly1" name="monomial"/>
+                           <OMI>1</OMI><OMI>0</OMI>
+                      </OMA>
+                      <OMA><OMS cd="univpoly1" name="monomial"/>
+                           <OMI>1</OMI><OMI>1</OMI>
+                      </OMA>
+                      <OMA><OMS cd="univpoly1" name="monomial"/>
+                           <OMI>1</OMI><OMI>4</OMI>
+                      </OMA>
+                 </OMA>
+                 <OMV name="X"/>         
+            </OMA>
+       </OMA>
+</OMOBJ>
+<!-- X^4 + X + 1-->
+
+
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0"><OMA><OMS cd="relation1" name="eq"/>
+            <OMA><OMS cd="finfield1" name="conway_polynomial"/>
+                 <OMI>2</OMI><OMI>5</OMI>
+            </OMA>
+            <OMA><OMS cd="univpoly1" name="univariate_polynomial"/>
+                 <OMA><OMS cd="univpoly1" name="ring"/>
+                      <OMA><OMS cd="finfield1" name="GF"/>
+                           <OMI>2</OMI>
+                      </OMA>
+                 </OMA>
+                 <OMA><OMS cd="univpoly1" name="monomials"/>
+                      <OMA><OMS cd="univpoly1" name="monomial"/>
+                           <OMI>1</OMI><OMI>0</OMI>
+                      </OMA>
+                      <OMA><OMS cd="univpoly1" name="monomial"/>
+                           <OMI>1</OMI><OMI>2</OMI>
+                      </OMA>
+                      <OMA><OMS cd="univpoly1" name="monomial"/>
+                           <OMI>1</OMI><OMI>5</OMI>
+                      </OMA>
+                 </OMA>
+                 <OMV name="X"/>         
+            </OMA>
+       </OMA>
+</OMOBJ>
+<!-- X^5 + X^2 + 1-->
+
+
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0"><OMA><OMS cd="relation1" name="eq"/>
+            <OMA><OMS cd="finfield1" name="conway_polynomial"/>
+                 <OMI>2</OMI><OMI>6</OMI>
+            </OMA>
+            <OMA><OMS cd="univpoly1" name="univariate_polynomial"/>
+                 <OMA><OMS cd="univpoly1" name="ring"/>
+                      <OMA><OMS cd="finfield1" name="GF"/>
+                           <OMI>2</OMI>
+                      </OMA>
+                 </OMA>
+                 <OMA><OMS cd="univpoly1" name="monomials"/>
+                      <OMA><OMS cd="univpoly1" name="monomial"/>
+                           <OMI>1</OMI><OMI>0</OMI>
+                      </OMA>
+                      <OMA><OMS cd="univpoly1" name="monomial"/>
+                           <OMI>1</OMI><OMI>3</OMI>
+                      </OMA>
+                      <OMA><OMS cd="univpoly1" name="monomial"/>
+                           <OMI>1</OMI><OMI>4</OMI>
+                      </OMA>
+                      <OMA><OMS cd="univpoly1" name="monomial"/>
+                           <OMI>1</OMI><OMI>6</OMI>
+                      </OMA>
+                 </OMA>
+                 <OMV name="X"/>         
+            </OMA>
+       </OMA>
+</OMOBJ>
+<!--X^6 + X^4 + X^3 + X + 1
+-->
+</Example>
+
+</CDDefinition>
+
+
+<CDDefinition>
+<Name>minimal_polynomial</Name>
+<Description>
+
+This symbol represents a function with one or two arguments. Its first
+argument should be an element x of a finite field F.  The second
+argument should be a subfield K of F.  It returns the minimal
+polynomial of x over K.  If there is only one argument, K defaults to
+the prime subfield of F.
+
+</Description>
+
+<CMP>
+</CMP>
+
+<Example>
+</Example>
+</CDDefinition>
+
+
+<CDDefinition>
+<Name>discrete_log</Name>
+<Description>
+
+This symbol represents a binary function. The first argument is the
+base b, a primitive element of a finite field F. The second argument
+is a nonzero element x in F. It returns the smallest nonnegative
+integer i such that x=b^i.
+
+</Description>
+
+<CMP>
+later
+</CMP>
+</CDDefinition>
+
+
+<CDDefinition>
+<Name>ffe_vector</Name>
+<Description>
+
+This symbol has two or three arguments.  Its first argument should be
+a finite field element b.  Its second argument should be a finite
+field element x in the field F generated by b.  Its optional third
+argument should be a finite subfield K of F.  When applied to b, x and
+K, the result is a list of n elements [a_0,...,a_{n-1}] from K, where
+n is the degree of the minimal polynomial of b over K, such that
+x=a_0+a_1b+...+a_{n-1}b^{n-1}.  If there are only two arguments then K
+is assumed to be the prime field of F.
+
+</Description>
+
+<CMP>
+later
+</CMP>
+
+<Example>
+An element of the Conway field of order 4:
+
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0">
+   <OMA><OMS cd="finfield1" name="ffe_vector"/>
+        <OMA><OMS cd="finfield1" name="conway"/>
+             <OMA><OMS cd="finfield1" name="GF"/>
+                  <OMI>2</OMI><OMI>2</OMI>
+            </OMA>
+       </OMA>
+       <OMA><OMS cd="finfield1" name="sffe_vector"/>       
+            <OMI>1</OMI>       
+            <OMI>1</OMI>
+       </OMA>
+  </OMA>
+</OMOBJ>
+
+
+****deal with the special case of dimension 1 separately***?
+</Example>
+
+
+</CDDefinition>
+
+</CD>

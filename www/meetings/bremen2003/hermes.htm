@@ -1,0 +1,226 @@
+<html>
+	<head>
+		<title>Hermes: A content oriented tool for LaTeX to XML conversion/authoring</title>
+		<meta name="description" content="Hermes is a content oriented tool for LaTeX to XML conversion/authoring"/>
+		<meta name="keywords" content="Hermes content MathML LaTeX authoring semantic web MoWGLI Living Reviews"/>
+		<meta name="author" content="Romeo Anghelache"/>
+	</head>
+	<body>
+<h2 align="center">Hermes: A content oriented LaTeX to XML conversion/authoring tool</h2>
+<div align="center">
+Talk @ OpenMath, Bremen, 7 Nov. 2003
+</div>
+<div align="center">
+<a href="http://psyx.org">Romeo Anghelache</a>
+</div>
+
+
+<h3>Introduction</h3>
+
+<div>
+<a href="http://relativity.livingreviews.org/Info/AboutLR/mowgli/"><b>Hermes</b></a> complements the LaTeX system: it helps the authors 
+enrich the semantics of their work, preserving the quality of rendering. 
+This makes it a content oriented LaTeX authoring and conversion to XML tool.
+</div>
+<div>
+Its main purpose is to assist the authors of scientific articles in making their work available to the public, on the Internet.
+</div>
+
+<h3>Outline</h3>
+Currently, <b>Hermes</b>  has the following components:
+<ul>
+	<li>
+a set of helper LaTeX macros, which allows the author to disambiguate
+the meaning of the mathematical expressions he writes, while allowing some choices for the
+presentation; this set is included by the author in the originally written LaTeX document
+(it resides in the 'definitions' file in the <b>Hermes</b> distribution, detailed in  <a href="#definitions">definitions</a>).
+A LaTeX run on the macro-enriched document will output a 'semantic <b>dvi</b>' file
+(a <b>dvi</b> file containing 'special' annotations of various combinations of graphical
+and nongraphical symbols in the source).
+	</li>
+	<li>
+a scanner, written in <b>flex</b>, which extracts from the resulting <b>dvi</b> file the
+semantic tokens seeded by the macro collection above and sends them to the parser below
+(the 'hermes.l' file in the <b>Hermes</b> distribution, detailed in <a href="#scanner">scanner</a>.
+	</li>
+	<li>
+a parser, written in <b>bison</b>, which is a grammar that performs a
+semantic action when a structured set of tokens is recognized
+(the 'hermes.y' file in the <b>Hermes</b> distribution, detailed in <a href="#parser">parser</a>;
+the semantic action is the creation of parts of the <b>XML</b> output; the parser and the
+scanner compile into a 'semantic <b>dvi</b>' compiler called 'the <b>Hermes</b> compiler'.
+	</li>
+</ul>
+
+<b>Hermes v.0.7.1</b>  handles consistently only those
+mathematical expressions in LaTeX which contain structures covered by the
+current Content-MathML standard (MathML version 2.0); it also handles the text around them.
+A subset of these structures can be and are automatically inferred from the unaltered 
+(that is, only the 'definitions' file is included, no further manual formulae editing is performed) LaTeX source (at the cost of semantic depth), the rest are provided as supplementary macros; they reside and are briefly
+commented in the 'definitions' file.
+
+<h3>Architecture</h3>
+<b>Hermes</b> is developed along these lines:
+<ul>
+	<li>
+does not replace nor modify the functionality of the <b>TeX</b> engine, so it does not restrict the set of macros used
+for authoring: it uses the <b>dvi</b> format as input.
+	</li>
+	<li>
+is content oriented, therefore an emphasis is put on generating Content-MathML.
+Generating content requires a high degree of accuracy in fitting the output
+structures with the authored input as it is intended for machine consumption
+(search engines, mathematical computation): therefore it has a compiler behaviour
+(it strictly flags ambiguous input as errors in the process of conversion and stops).
+<br/>It is in <i>beta</i> stage of development along this direction.
+	</li>
+	<li>
+is also document oriented. It aims at generating the semantic
+information available typically in a legacy scientific article (text, keywords,
+references, author information, document structure etc.) or supplementary
+layers of metadata for the newly created documents.
+<br/>It is in <i>alpha</i> stage of development along this direction.
+	</li>
+	<li>
+preserves the presentational output of the original source documents.
+This is a feature of the <b>Hermes</b> macros: they should leave the graphical objects 
+unmodified (if they are used for making legacy <b>TeX</b> documents semantically rich) 
+while attaching semantics to them in the background.
+<br/>It is in <i>beta</i> stage of development along this direction.
+	</li>
+	<li>
+should let the author the freedom to sharpen the meaning of an arbitrary 
+LaTeX chunk, but should also be prepared to convert a legacy source
+document with no manual intervention. In the latter case only a subset of Content-MathML
+and only the already specified (e.g. citations, author name, keywords, abstract)
+metadata subset will be generated; the arbitrary mathematical symbols
+encountered (e.g. $Q^{+}$) will generate only Presentation-MathML if nothing else
+(no author specified metadata and no <b>Hermes</b> macro is explicitely used)
+makes their meaning precise.
+This feature enables gradual annotation of scientific work and allows
+adding semantic depth (e.g. improving its reachability on the Internet
+or its compatibility with a new mathematical software tool).
+<br/>It is in <i>alpha</i> stage of development along this direction.
+	</li>
+</ul>
+
+
+
+<h3>Details about the source code</h3>
+
+<ul>
+	<li>
+<a name="definitions"><h3>Definitions</h3></a>
+Recovering or adding semantics is achieved by leaving appropriate
+traces into the <b>dvi</b> file using the LaTeX 'special' command
+(at low level, by activating some of the characters or simply prefixing the
+old LaTeX command with a 'special' string); these traces
+are enabled by a set of macros residing in the 'definitions' file.
+The way they should be used is mostly self-explanatory: some of them
+decorate the corresponding old <b>TeX</b> ones (the author simply uses the same <b>TeX</b> commands),
+the rest are supplying the structures needed to cover Content-MathML mahematical expressions
+(the author needs to use these ones if he wants to enable Content-MathML output,
+they usually start with a capital letter), and all of them are commented.
+
+The semantic traces are tokenized by the scanner.
+	</li>
+	<li>
+<a name="scanner"><h3>Scanner</h3></a>
+<div>
+The scanner uses regular expressions and context conditions to recover the tokens from
+the <b>dvi</b> file; it understands all the <b>dvi</b> commands and also keeps track
+of the current font and coordinates trough an internal stack.
+</div>
+<div>
+
+The handled tokens are the ones defined by the macros described above and all the bytecodes
+typically present in the <b>dvi</b> file are dealt with. Hermes v.0.7 ignores most of the
+presentation oriented information available in the <b>dvi</b>, but does not preclude further
+enhancements to enable a more accurate rendering too.
+</div>
+<div>
+
+The way the scanner source is organized makes it easy to understand the categories of tokens
+it tackles: basic tokens (e.g. letter 'L'), <b>TeX</b> tokens (e.g. 'PLUS', 'SQRT'),
+structured tokens (e.g. 'BMoment' and 'EMoment',
+along with 'BMomentDeg' and 'EMomentDeg' etc.) that come in pairs (prefixes Begin=B, End=E)
+wrapping the structure inside.
+</div>
+<div>
+
+A 'C' variable ('drop') is used in the scanner to decide when to forward the next token to
+the parser or simply ignore it. This is useful in simplifying the process
+of writing or reading the content oriented grammar (it is used to neglect some of the
+graphical glyphs where there is enough semantic information to render it precisely),
+but it will have to disappear when the presentation oriented code will be implemented,
+and the burden of handling them will be handed out to the parser.
+</div>
+	</li>
+	<li>
+<a name="parser"><h3>Parser</h3></a>
+<div>
+The parser expects various combinations of semantic tokens from the scanner.
+When a structure is recognized, the appropriate <b>XML</b> output string of characters is built.
+<b>Hermes</b> v.0.7 recognizes LaTeX inline or display mathematical areas
+and builds the corresponding Content-MathML code.
+</div>
+<div>
+Some of the operators or variables in the source documents are recognized
+implicitly (e.g. 'VEE' or 'OVER'), in these cases there is no need for
+any <b>Hermes</b> provided macro to create the appropriate
+Content-MathML code (e.g. respectively &lt;or/&gt; and &lt;divide/&gt;).
+</div>
+<div>
+Others are provided by <b>Hermes</b> as explicit complementary macros
+(e.g. 'Laplacian' or 'Listl' in the 'definitions') which also have associated with
+them a specific rendering in a normal (pdf)LaTeX run.
+</div>
+<div>
+
+The accented letters or greek symbols give a Presentation-MathML code which is
+embedded in Content-MathML.
+</div>
+<div>
+
+The rest of the parser is made of 'C' routines.
+Some of them put the corresponding <b>XML</b> tags in the right place, based on usual
+mathematics precedence rules or the nature of the mathematical entity under treatment.
+Other routines, executed at the end of a structure recognition, prepare the
+intermediary string for a final ordering; yet other routines are simple helpers for
+the above or do the pretty printing of the <b>XML</b> output.
+</div>
+	</li>
+</ul>
+
+
+
+<h3>To do</h3>
+<div>
+
+In the real world, authors need, along with the most usual symbols,
+or <b>Hermes</b> provided macros, arbitrary mathematical expressions they feel most appropriate
+for rendering a particular meaning; some of their choices become de facto standards
+(e.g. x<sup>1/2</sup> ) so <b>Hermes</b> has no difficulty in generating the appropriate content oriented <b>XML</b>,
+others remain ambiguous from a machine point of view (e.g. Q<sup>+</sup> ),
+i.e. there is not enough information for a machine to infer what their meaning were.
+</div>
+<div>
+
+There is no realistic (i.e. easily acceptable by the user) alternative
+solution to the problem above but to convert
+those arbitrary symbols into Presentation-MathML and let the author complement the
+source of the arbitrary symbol with simple annotations if he feels the need to do so
+(and not forcing him to obey a non-standard, external to his way of thinking, set of conventions);
+these annotated Presentation-MathML structures, along with the Content-MathML, enable a potential reader to locate
+mathematical expressions on the web by their meaning and not by their particular rendering
+(which, obviously, cannot be known before accesing the document itself).
+</div>
+<div>
+
+Therefore, a truly viable and complete <b>Hermes</b> system should go beyond converting from LaTeX
+to Content-<a href="http://www.w3.org/Math/">MathML</a>, that is, should be prepared to convert and annotate arbitrary
+mathematical expressions, not yet covered by the current Content-<a href="http://www.w3.org/Math/">MathML</a> or <a href="http://www.openmath.org/">OpenMath</a> standards, into Presentation-<a href="http://www.w3.org/Math/">MathML</a> and this is how it will evolve.
+</div>
+</body>
+</html>
+

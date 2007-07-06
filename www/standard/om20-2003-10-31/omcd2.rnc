@@ -1,0 +1,34 @@
+# *********************************************
+# 
+# Relax NG Schema for OpenMath CD
+# 
+# *********************************************
+
+default namespace = "http://www.openmath.org/OpenMathCD"
+
+include "openmath2.rnc"
+CDComment = element CDComment { text }
+CDName = element CDName { text }
+CDURL = element CDURL { text }
+CDBASE = element CDBASE { text }
+text-or-om = (text | OMOBJ)*
+CDReviewDate = element CDReviewDate { text }
+CDStatus = element CDStatus { text }
+Description = element Description { text }
+Name = element Name { text }
+Role = element Role { text }
+CMP = element CMP { text }
+FMP = element FMP { text-or-om }
+# allow embedded OM
+Example = element Example { text-or-om }
+CDDefinition =
+  element CDDefinition {
+    (CDComment | Name | Description | Example | FMP | CMP)*
+  }
+CD =
+  element CD {
+    CDComment*,
+    (CDName & CDURL & CDReviewDate & CDStatus),
+    (CDComment | Description | CDDefinition | Example)*
+  }
+start = CD

@@ -1,0 +1,162 @@
+<HTML>
+<TITLE> OpenMath Data Structure Proposal </TITLE>
+<!-- Changed by: Strotmann, 20-Feb-1996 -->
+
+<BODY>
+A. Strotmann: Proposal presented at 5th OpenMath Workshop, Bath.
+<P>
+With corrections that came up during the discussion.
+</P>
+
+<H1> OpenMath Layer: Data Structure </H1>
+
+<UL>
+<LI> <A HREF="#atoms">Atomic</A> Data Structures
+<LI> <A HREF="#compound">Compound Data Structures</A>
+<LI> Some <A HREF="#reasons">Reasons</A>
+<LI> Some <A HREF="#issues">Issues</A>
+</UL>
+
+Even though this is a realistic proposal for an OpenMath data structure
+layer, other possibilities do exist in the literature, e.g. ASAP.
+The primary purposes here are to provide an example that may help 
+clarify the distinction between OpenMath's data structure and expression
+layers, and to serve as a starting point for the discussions during this
+workshop.
+
+<H2> <A Name=atoms>Atomic</A> Data Structures </H2>
+
+<UL>
+<LI> <tt>int</tt>'s
+  <UL>
+  <LI> Bit, byte, 32-bit, 64-bit
+  <LI> signed and unsigned
+  <LI> perhaps: 24 bit, 'n'-bit
+  <LI> BigInts are not atomic: see Expression layer!
+  </UL>
+<LI> <tt>float</tt>s
+  <UL>
+  <LI> 32 bit, 64 bit, 128 bit
+  <LI> IEEE; perhaps native
+  <LI> BigFloats are not atomic: see Expression layer!
+  </UL>
+<LI> <tt>char</tt>s
+  <UL>
+  <LI> ASCII (7 bits); ISO 8-bit extensions; Unicode = ISO 10 646 Basic
+       Multilingual Plane(?) (16 bits); full ISO 10 646 (32 bits)
+  <LI> perhaps national or industry-"standard" character sets 
+       (JISC 2022(?), Big5(?), EBCDIC) (8 or 16 bits)
+  <LI> perhaps different character set encodings for UniCode (say)
+      (UTF-7, UTF-8 (8 bits))
+  </UL>
+</UL>
+
+<H2> <A Name=compound>Compound</A> Data Structures </H2>
+
+<UL>
+<LI> simple homogeneous vectors
+  <UL>
+  <LI> elements are of homogeneous <A HREF="#atoms">atomic</A> data type 
+     <UL>
+     <LI> int's, float's, char's
+     </UL>
+  <LI> size (= number of elements) is arbitrary (possibly zero)
+  <LI> strings = simple homogeneous vectors of char's  
+       (therefore: several kinds of strings)
+  </UL>
+
+Note: an encoding will usually give explicit size information, but may
+      leave it unspecified if necessary
+
+<LI> (perhaps) simple homogeneous n-dimensional arrays
+  <UL>
+  <LI> any number of dimensions, arbitrary size along dimension
+  <LI> elements are of homogeneous <A HREF="#atoms">atomic</A> data type 
+     <UL>
+     <LI> int's, float's
+     </UL>
+  <LI> size (= number of elements) is arbitrary (possibly zero)
+  <LI> "cuboid" only
+  <LI> may choose to use  <I>"pair of (simple homogeneous vector of 
+       ints, simple homogeneous vector of atomic data type)"</I> instead
+  </UL>
+
+Note: an encoding will usually give explicit size information, but may
+      leave it unspecified if necessary
+
+<LI> non-homogeneous sequences (aka lists, n-tuples)
+  <UL>
+  <LI> elements are arbitrary OpenMath data structures
+  </UL>
+
+Note: an encoding will often give explicit size information, but may
+      leave it unspecified if necessary
+
+<LI> Attribution <BR>
+Note: this is a binary data structure used for attaching a list of attributes 
+(i.e. attribute/value pairs) to another data structure.
+
+<LI> Pairs (aka tuples?) <BR>
+Note: unlike in LISP, 'lists' are not made up of (dotted) pairs.  Pairs
+are not lists of two elements, either.  Pairs are a separate data type.
+<BR>
+Example uses:  named arguments to operations, attribute/value pairs,
+  exponent/coefficient pairs, "struct"s/records replacement
+<LI> Symbols are (in general) records with
+   <UL>
+   <LI> reference to context it's registered in (usually, a string
+        or an int or a "path")
+   <LI> id within that context (usually, a string or an int)
+   <LI> category information (explained in expression layer)
+   </UL>
+</UL>
+
+<H2> <A Name=reasons>Some reasons</A> </H2>
+
+<UL>
+<LI> easy or even trivial to implement in C or any similar language
+<LI> easy to map to existing symbolic computation systems
+<LI> allow efficient implementations and provide support for
+     efficient representations and encodings
+     of things like large numeric data
+     streams or image data
+<LI> support representation of symbolic data structures
+<LI> no "mathematics", just "computer science"
+<LI> no semantics, just syntax
+</UL>
+
+<H2> <A Name=issues>Some issues</A> </H2>
+
+Labels and Backreferences should be added in above.
+<P>
+<P>
+<P>
+BigInts: there are several possible representations for these, e.g.
+<UL>
+<LI> (base, sign, simple-vector-of-ints) : "ordinary" representation
+<LI> (simple-vector-of-ints, simple-vector-of-ints) : "chinese remainder" representation
+<LI> text string : "cop-out" representation, actually a 
+     special case of first repesentation
+</UL>
+Proposal: use such data structures plus the information that the 
+ data structure is in fact meant to represent an object of mathematical 
+ type Integer (in other words: the representation proper is on this
+ level, but assigning the meaning of "integer" to it is on the next level
+ up).
+<P>
+<P>
+<P>
+Arrays, BigFloats, Handles (see above): similar to the BigInt issue
+<P>
+<P>
+<P>
+Symbols: may need to have additional info in a distributed computation 
+environment, such as handles refering to owning process or link, scope...
+
+<HR>
+This page is part of the OpenMath Web archive,
+and is no longer kept up to date.
+</BODY>
+
+</HTML>
+

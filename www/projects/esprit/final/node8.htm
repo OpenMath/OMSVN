@@ -1,0 +1,951 @@
+
+<!--Converted with LaTeX2HTML 99.1 release (March 30, 1999)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Applications</TITLE>
+<META NAME="description" CONTENT="Applications">
+<META NAME="keywords" CONTENT="final">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="LaTeX2HTML v99.1 release">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="final.css">
+
+<LINK REL="next" HREF="node9.htm">
+<LINK REL="previous" HREF="node7.htm">
+<LINK REL="up" HREF="final.htm">
+<LINK REL="next" HREF="node9.htm">
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF">
+<!--Navigation Panel-->
+<A NAME="tex2html204"
+ HREF="node9.htm">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next_motif.gif"></A> 
+<A NAME="tex2html200"
+ HREF="final.htm">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up_motif.gif"></A> 
+<A NAME="tex2html194"
+ HREF="node7.htm">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="previous_motif.gif"></A> 
+<A NAME="tex2html202"
+ HREF="node1.htm">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents_motif.gif"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html205"
+ HREF="node9.htm">Conclusions</A>
+<B> Up:</B> <A NAME="tex2html201"
+ HREF="final.htm">The OpenMath Project Final</A>
+<B> Previous:</B> <A NAME="tex2html195"
+ HREF="node7.htm">Software Tools</A>
+ &nbsp <B>  <A NAME="tex2html203"
+ HREF="node1.htm">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html206"
+ HREF="node8.htm#SECTION00810000000000000000">Mathematical Applications</A>
+<UL>
+<LI><A NAME="tex2html207"
+ HREF="node8.htm#SECTION00811000000000000000">Writing Phrasebooks for Existing Mathematical Software</A>
+<LI><A NAME="tex2html208"
+ HREF="node8.htm#SECTION00812000000000000000">AXIOM</A>
+<LI><A NAME="tex2html209"
+ HREF="node8.htm#SECTION00813000000000000000">Reduce</A>
+<LI><A NAME="tex2html210"
+ HREF="node8.htm#SECTION00814000000000000000">The Multiple Integrators Demonstrator</A>
+<LI><A NAME="tex2html211"
+ HREF="node8.htm#SECTION00815000000000000000">GAP</A>
+<LI><A NAME="tex2html212"
+ HREF="node8.htm#SECTION00816000000000000000">Mathematica</A>
+</UL>
+<LI><A NAME="tex2html213"
+ HREF="node8.htm#SECTION00820000000000000000">The NAG Library</A>
+<LI><A NAME="tex2html214"
+ HREF="node8.htm#SECTION00830000000000000000">Electronic Journal Databases</A>
+<UL>
+<LI><A NAME="tex2html215"
+ HREF="node8.htm#SECTION00831000000000000000">OpenMath points</A>
+<LI><A NAME="tex2html216"
+ HREF="node8.htm#SECTION00832000000000000000">JCM points</A>
+<LI><A NAME="tex2html217"
+ HREF="node8.htm#SECTION00833000000000000000">Text, data or both?</A>
+<LI><A NAME="tex2html218"
+ HREF="node8.htm#SECTION00834000000000000000">Implicit mathematical information</A>
+<LI><A NAME="tex2html219"
+ HREF="node8.htm#SECTION00835000000000000000">Conclusions</A>
+</UL>
+<LI><A NAME="tex2html220"
+ HREF="node8.htm#SECTION00840000000000000000">Electronic Books</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00800000000000000000"></A>
+<A NAME="chap:apps"></A>
+<BR>
+Applications
+</H1>
+
+<P>
+
+<H1><A NAME="SECTION00810000000000000000">
+Mathematical Applications</A>
+</H1>
+
+<P>
+In this section we describe the work done in the project building
+mathematical applications using OpenMath.  There were two main
+approaches used: to add OpenMath support to an existing application,
+or to construct a new application using OpenMath tools.
+
+<P>
+
+<H2><A NAME="SECTION00811000000000000000">
+Writing Phrasebooks for Existing Mathematical Software</A>
+</H2>
+
+<P>
+The reader will recall that the layer of software which translates
+between an OpenMath encoding and a piece of software's own internal
+format is called a <EM> phrasebook</EM>.  The task of adding OpenMath
+support to an existing application is therefore mainly the process of
+writing one or more phrasebooks, although it can also involve the
+specification of new content dictionaries.  More than one phrasebook
+might be required if an application is expected to interpret the same
+input in different ways, for example a computer algebra system would
+generally simplify the OpenMath expression:
+<PRE>
+
+          &lt;OMOBJ&gt;
+            &lt;OMA&gt;
+              &lt;OMS cd="transc1" name="arcsin"/&gt;
+              &lt;OMI&gt; 1 &lt;/OMI&gt;
+            &lt;/OMA&gt;
+          &lt;/OMOBJ&gt;
+</PRE>
+to something like:
+<PRE>
+
+          &lt;OMOBJ&gt;
+            &lt;OMA&gt;
+              &lt;OMS cd="arith1" name="divide"/&gt;
+              &lt;OMS cd="nums1" name="pi"/&gt;
+              &lt;OMI&gt; 2 &lt;/OMI&gt;
+            &lt;/OMA&gt;
+          &lt;/OMOBJ&gt;
+</PRE>
+(i.e.&nbsp;
+<!-- MATH
+ $\frac{\pi}{2}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="16" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img13.gif"
+ ALT="$ {\frac{\pi}{2}}$"></SPAN>, although 
+<!-- MATH
+ ${\frac{\pi}{2}}+2\,n\,\pi, n\in\cal{Z}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="16" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img13.gif"
+ ALT="$ {\frac{\pi}{2}}$"> + 2&nbsp;<I>n</I>&nbsp;<IMG
+ WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.gif"
+ ALT="$ \pi$">, <I>n</I> <IMG
+ WIDTH="15" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img14.gif"
+ ALT="$ \in$"> <IMG
+ WIDTH="17" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.gif"
+ ALT="$ \cal {Z}$"></SPAN>
+would be better).  However, in some circumstances it might be required
+to do computations in floating point, in which case it might return
+<PRE>
+
+          &lt;OMOBJ&gt;
+            &lt;OMF hex="182d4454fb210940"/&gt;
+          &lt;/OMOBJ&gt;
+</PRE>
+
+<P>
+Writing a phrasebook requires a great deal of knowledge about the
+semantics of the underlying application and expertise in this area is
+more important than expertise in OpenMath (since its semantics are
+very explicit).  The project has developed a number of libraries (see
+<A HREF="node7.htm#libraries">6.1</A>) to assist in the reading and writing of encoded
+OpenMath objects.  In addition there have been some experiments with
+generic phrasebooks designed to carry out the translation as a separate
+process.
+
+<P>
+
+<H2><A NAME="SECTION00812000000000000000">
+AXIOM</A>
+</H2>
+
+<P>
+<a href="http://www.nag.co.uk/symbolic_software.asp">AXIOM</a> is a
+strongly-typed computer algebra system marketed and developed by NAG
+Ltd.  The system is implemented in its own special-purpose language
+which runs on top of a Lisp kernel.  During the project NAG
+experimented with adding OpenMath support to the kernel by building on
+top of the C library developed by INRIA (see <A HREF="node7.htm#libraries">6.1</A>),
+extending some of AXIOM's data types so that they could export
+instances of themselves using the XML encoding, and adding the
+capability to run as a server, reading and writing OpenMath objects on
+a socket.  Some of these features will be included in the next
+commercial release of AXIOM (AXIOM 2.3), in late 2000.
+
+<P>
+
+<H2><A NAME="SECTION00813000000000000000">
+Reduce</A>
+</H2>
+
+<P>
+Early in the project a student from the University of Bath implemented
+a MathML package for Reduce, which extended the system to accept input
+and print results in that format.  NAG built a wrapper for Reduce
+which used an XSL transformation engine to convert OpenMath to and
+from MathML so that it could operate as a simple server.  While slow,
+this was a quick and re-usable solution which provided an interesting
+test bed for both the XSL stylesheets (see <A HREF="node7.htm#xsl_stylesheets">6.5</A>) and
+the Reduce MathML support.
+
+<P>
+
+<H2><A NAME="SECTION00814000000000000000"></A>
+<A NAME="multiint"></A>
+<BR>
+The Multiple Integrators Demonstrator
+</H2>
+
+<P>
+One advantage of OpenMath is that it can lead to a ``plug and play''
+approach to linking together mathematical components.  To demonstrate
+this a Java applet was developed which used STARS (see&nbsp;<A HREF="node7.htm#stars">6.3.1</A>) as
+an editor/rendering tool which allowed a user to enter an expression
+to be integrated.  The formal integral was shipped to either the AXIOM
+or Reduce servers (as described above) to be evaluated.  The resulting
+expression was displayed in the applet using a second instance of
+STARS.
+
+<P>
+
+<H2><A NAME="SECTION00815000000000000000">
+GAP</A>
+</H2>
+
+<P>
+
+<a HREF="http://www-history.mcs.st-and.ac.uk/~gap">GAP</A> is a system
+for computational discrete algebra developed by a worldwide community
+and currently maintained by the University of St Andrews.  It is
+distributed under ``copyleft'' conditions, i.e.&nbsp;it can be used freely
+by anybody but not included in a commercial product.
+
+<P>
+A GAP share package was developed at St.&nbsp;Andrews and is now available
+to users 
+<a HREF="http://www-history.mcs.st-and.ac.uk/~gap/Info4/deposit.html">via
+FTP</a>.
+It uses an application based on the INRIA C Library
+(see&nbsp;<A HREF="node7.htm#libraries">6.1</A>) to read and write OpenMath objects from files,
+sockets etc.
+
+<P>
+
+<H2><A NAME="SECTION00816000000000000000">
+Mathematica</A>
+</H2>
+
+<P>
+A phrasebook for Mathematica was developed at INRIA, based on the
+MathLink protocol and the OpenMath C Library (see&nbsp;<A HREF="node7.htm#libraries">6.1</A>).
+Its design is similar to that of the GAP phrasebook in that it is a
+separate process which sits between Mathematica and the client
+application, although the implementation details are different.  It
+can be obtained by contacting the INRIA team.
+
+<P>
+
+<H1><A NAME="SECTION00820000000000000000"></A>
+<A NAME="nagweb"></A>
+<BR>
+The NAG Library
+</H1>
+
+<P>
+NAG is perhaps best known for its numerical libraries, which are
+written in a variety of languages including Fortran-77.  An important
+facet of these libraries is the comprehensive nature of the
+documentation which describes the background to each algorithm, the
+parameters of each routine, details of how to interpret errors and a
+fully-worked example.  As well as printed documentation, NAG has used
+a number of online formats over the years, with PDF being the current
+favourite (because of its cross-platform nature and ability to render
+mathematics faithfully).  As an experiment NAG decided to produce a
+version of one of its routine documents which used MathML to display
+mathematical expressions, and provided interactive access to the
+routine using OpenMath.
+
+<P>
+The approach chosen was to allow the user to input the problem (in
+this case constrained minimisation of a multivariate expression) in a
+Java applet running inside an appropriate (in principle
+MathML-supporting) browser.  The problem would be encoded as OpenMath
+and sent to a server which was capable of executing the NAG routine
+and returning the result.  Unlike the previous examples, this server
+would be written from scratch as an OpenMath application.  Its
+interface would be defined in terms of an OpenMath object described in
+a private content dictionary (although the individual components were
+defined using symbols from standard CDs).
+
+<P>
+This server can be used in a variety of contexts provided that the
+input is encoded in OpenMath (as opposed to binary data laid out in
+memory according to ANSI Fortran rules, for example).  Equally, since
+the interface is well-defined, it would be possible to use a different
+server (incorporating a more powerful NAG routine or the Matlab
+optimisation toolbox or ...) from the client relatively easily.
+
+<P>
+The components were constructed using generic tools.  The client was
+written in Java and made use of the STARS (see&nbsp;<A HREF="node7.htm#stars">6.3.1</A>) applet
+from Stilo for translating the user input to OpenMath and displaying
+it in MathML.  The server was written in Aldor [<A
+ HREF="node10.htm#aldor">20</A>] and used
+the Aldor OpenMath Library (see&nbsp;<A HREF="node7.htm#libraries">6.1</A>) for reading and
+writing the OpenMath objects.  It also used standard Aldor bindings to
+the NAG Library to solve the problem.  While we could have written
+everything from scratch the availability of all these tools made
+building the software much more straightforward.
+
+<P>
+This experiment has proved extremely successful and NAG is now
+considering the development of a toolkit to allow the rapid deployment
+of its algorithmic software in this way.
+
+<P>
+
+<H1><A NAME="SECTION00830000000000000000">
+Electronic Journal Databases</A>
+</H1>
+
+<a HREF="http://www.lms.ac.uk/jcm">The London Mathematical Society's Journal of
+Computation and Mathematics</a>
+is an electronic-only subscription journal,
+published in PDF since 1988. The advantages of being an electronic-only journal
+are cited in the editorial as follows.
+
+<UL>
+<LI>Speed.</LI>
+<LI>Flexibility.</LI>
+<LI>Links.</LI>
+<LI>Updating.</LI>
+<LI>Searchability.</LI>
+</UL>
+It is this last that the OpenMath Project wished to address. Although the
+Journal is published in PDF, the sources of all the papers, in LaTeX, are
+maintained by the Journal<A NAME="tex2html8"
+ HREF="#foot762"><SUP><SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">1</SPAN></SUP></A>. The Journal does have a
+full-text search capability, driven off a database built from the LaTeX
+sources. 
+
+<P>
+This is far from perfect, since there is much information in the formulae
+that cannot be recovered from the text. A few examples of this are given
+below.
+
+<OL>
+<LI>A search for the word ``dihedral'' reveals [<A
+ HREF="node10.htm#CHM">4</A>] and [<A
+ HREF="node10.htm#EK">6</A>].
+However, a search for the word ``Frattini'' only reveals [<A
+ HREF="node10.htm#EK">6</A>], even
+though Frattini groups are mentioned in [<A
+ HREF="node10.htm#CHM">4</A>], but only by their
+symbol.</LI>
+<LI>Some terms may be multiple words, which are harder to find. An
+example is the phrase ``general linear group'', which is traditionally
+represented<A NAME="tex2html9"
+ HREF="#foot517"><SUP><SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">2</SPAN></SUP></A> by the mathematical symbol
+
+<!-- MATH
+ $\mathop{\rm GL}$
+ -->
+<SPAN CLASS="MATH"><I>GL</I></SPAN>.</LI>
+<LI>There may be more specifics in the notation. For example, [<A
+ HREF="node10.htm#DG">5</A>]
+contains the phrase ``as an application of this result, we work out the
+case 
+<!-- MATH
+ $\mathop{\rm GL}_4(q)$
+ -->
+<SPAN CLASS="MATH"><I>GL</I><SUB>4</SUB>(<I>q</I>)</SPAN>''. If one was only interested in details of 
+<!-- MATH
+ $\mathop{\rm GL}_4$
+ -->
+<SPAN CLASS="MATH"><I>GL</I><SUB>4</SUB></SPAN>, a
+text-based search would be less use than a pattern-matching formula-based
+search on 
+<!-- MATH
+ $\mathop{\rm GL}_4(*)$
+ -->
+<SPAN CLASS="MATH"><I>GL</I><SUB>4</SUB>(*)</SPAN> - in fact, due to the nature of MFD2's unification
+engine, a search on 
+<!-- MATH
+ $\mathop{\rm GL}(4,x)$
+ -->
+<SPAN CLASS="MATH"><I>GL</I>(4, <I>x</I>)</SPAN> for any OpenMath variable (<code>OMV</code>) <SPAN CLASS="MATH"><I>x</I></SPAN>
+would recover this formula: there is no need to know that it is <SPAN CLASS="MATH"><I>q</I></SPAN>.</LI>
+</OL>
+
+<P>
+We therefore built a prototype formula search
+engine on some of the formulae in the abstracts of the LMS JCM. As
+envisaged in the plan, this was built on top of the MFD2 search engine
+[<A
+ HREF="node10.htm#MFD2">1</A>] from INRIA
+(see section&nbsp;<A HREF="node7.htm#sec:MFD2">6.2</A>). The formula search engine was given a database of
+formulae from the abstracts of the journal (there is no reason why this
+could not be from the whole journal, 
+but for the purpose of this exercise it
+was felt that concentrating on the abstracts of as many articles as
+possible was better than looking at a few articles in depth). While time
+did not permit a user-driven evaluation, the points described in the
+following sub-sections were noted.
+
+<H2><A NAME="SECTION00831000000000000000">
+OpenMath points</A>
+</H2>
+The following points relate largely to the details of OpenMath, its use,
+and the CD mechanism.
+
+<UL>
+<LI>None of the four occurrences of <SPAN CLASS="MATH"><IMG
+ WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.gif"
+ ALT="$ \pi$"></SPAN> in the abstracts mean
+
+<!-- MATH
+ $3.1415926\ldots$
+ -->
+<SPAN CLASS="MATH">3.1415926...</SPAN>: all refer to various projections. Of course, this is
+easy in OpenMath<A NAME="tex2html10"
+ HREF="#foot524"><SUP><SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">3</SPAN></SUP></A>, rather than being
+<PRE>
+
+&lt;OMS cd="nums1" name="pi"/&gt;
+</PRE>
+they would be
+<PRE>
+
+&lt;OMV name="pi"/&gt;
+</PRE>
+or
+<PRE>
+
+&lt;OMS cd="..." name="pi"/&gt;
+</PRE>
+
+<P>
+ </LI>
+<LI>Many of the ideas present were not in existing CDs. For the purpose
+of that task, some <I> ad hoc</I> CDs were written, but this did also
+prompt the investigation into an asymptotics CD, which turned out to raise
+several interesting questions (see section <A HREF="node8.htm#AsympCD">7.3.4</A>).</LI>
+</UL>
+<H2><A NAME="SECTION00832000000000000000"></A><A NAME="JCM"></A>
+<BR>
+JCM points
+</H2>
+The following points relate largely to the JCM and the LaTeX in it.
+
+<UL>
+<LI>There is no consistency of presentation - as remarked above, it
+could be 
+<!-- MATH
+ $\mathop{\rm GL}_n(K)$
+ -->
+<SPAN CLASS="MATH"><I>GL</I><SUB>n</SUB>(<I>K</I>)</SPAN> or 
+<!-- MATH
+ $\mathop{\rm GL}(n,K)$
+ -->
+<SPAN CLASS="MATH"><I>GL</I>(<I>n</I>, <I>K</I>)</SPAN>. Whether there should be is dubious:
+there are differences in presentation between sub-disciplines (consider the
+``<SPAN CLASS="MATH"><I>i</I></SPAN> versus <SPAN CLASS="MATH"><I>j</I></SPAN> for <SPAN CLASS="MATH"><IMG
+ WIDTH="38" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img15.gif"
+ ALT="$ \sqrt{-1}$"></SPAN>'' battle), but the question needs to be asked,
+and the OpenMath discipline helps.</LI>
+<LI>Even after the attention of an extremely careful copy-editor, the
+quality of the LaTeX is poor for semantic purposes. Consider the
+following extract from [<A
+ HREF="node10.htm#Sharp2">8</A>] (the wider context is quoted below in
+section <A HREF="node8.htm#TextData">7.3.3</A>):
+<PRE>
+
+$O(\ell N^2 \log N$)
+</PRE>
+Clearly what is meant is the transposition of the last two characters:
+<PRE>
+
+$O(\ell N^2 \log N)$
+</PRE>
+which prints so similarly that the difference cannot be detected by
+examining the paper result.
+
+<P>
+Unfortunately for any hopes of automatic correction, the formula given is
+inside parentheses, so the misplaced <code>)</code> would be picked up as closing
+the parenthesis. One cannot require that a LaTeX formula be
+``parenthesis correct'', because of interval notations such as <SPAN CLASS="MATH">[0, 1)</SPAN> (or
+the variant <SPAN CLASS="MATH">[0, 1[</SPAN> common in France).</LI>
+</UL>
+<H2><A NAME="SECTION00833000000000000000"></A><A NAME="TextData"></A>
+<BR>
+Text, data or both?
+</H2>
+Overall the separation between text and data is not very helpful. A
+classic example is given by [<A
+ HREF="node10.htm#Sharp2">8</A>], which says the following.
+<BLOCKQUOTE>
+An algorithm is given that recognises (in
+
+<!-- MATH
+ $O(l N^2 \log N)$
+ -->
+<SPAN CLASS="MATH"><I>O</I>(<I>lN</I><SUP>2</SUP>log <I>N</I>)</SPAN> time, where <SPAN CLASS="MATH"><I>N</I></SPAN> is the size of the
+input and <SPAN CLASS="MATH"><I>l</I></SPAN> the depth of a precalculated Schreier
+tree) when a transitive group  
+<!-- MATH
+ $(G, \Omega)$
+ -->
+<SPAN CLASS="MATH">(<I>G</I>,<IMG
+ WIDTH="16" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img16.gif"
+ ALT="$ \Omega$">)</SPAN> is the
+action on one orbit of the action of <SPAN CLASS="MATH"><I>G</I></SPAN> on the set
+
+<!-- MATH
+ $\Gamma^{(2)}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="31" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img17.gif"
+ ALT="$ \Gamma^{(2)}_{}$"></SPAN> of ordered pairs of distinct elements of
+some <SPAN CLASS="MATH"><I>G</I></SPAN>-set (that is,  <SPAN CLASS="MATH"><IMG
+ WIDTH="16" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img16.gif"
+ ALT="$ \Omega$"></SPAN> is isomorphic to an
+orbital of 
+<!-- MATH
+ $(G, \Gamma)$
+ -->
+<SPAN CLASS="MATH">(<I>G</I>,<IMG
+ WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img18.gif"
+ ALT="$ \Gamma$">)</SPAN>).
+
+</BLOCKQUOTE>
+Here the relation between the formulae (e.g.&nbsp;<SPAN CLASS="MATH"><I>N</I></SPAN> and <SPAN CLASS="MATH"><I>G</I></SPAN>), which would be
+vital for any decent understanding of the mathematics, is carried by the text.
+Techniques such as OMDoc [<A
+ HREF="node10.htm#OMDoc1">2</A>,<A
+ HREF="node10.htm#OMDoc2">3</A>], which build on OpenMath, may
+well be necessary to make any sense of this.
+
+<P>
+The situation is even worse if we consider the abstract of [<A
+ HREF="node10.htm#Sharp">7</A>].
+<BLOCKQUOTE>
+We give an algorithm that takes as input a transitive permutation
+group 
+<!-- MATH
+ $(G, \Omega)$
+ -->
+<SPAN CLASS="MATH">(<I>G</I>,<IMG
+ WIDTH="16" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img16.gif"
+ ALT="$ \Omega$">)</SPAN> of degree 
+<!-- MATH
+ $n=m choose 2$
+ -->
+<SPAN CLASS="MATH"><I>n</I> = <I>mchoose</I>2</SPAN> and decides whether or
+not <SPAN CLASS="MATH"><IMG
+ WIDTH="16" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img16.gif"
+ ALT="$ \Omega$"></SPAN> is <SPAN CLASS="MATH"><I>G</I></SPAN>-isomorphic to the action of <SPAN CLASS="MATH"><I>G</I></SPAN> on the set of
+unordered pairs of some set <SPAN CLASS="MATH"><IMG
+ WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img18.gif"
+ ALT="$ \Gamma$"></SPAN> on which <SPAN CLASS="MATH"><I>G</I></SPAN> acts
+2-homogeneously. The algorithm is constructive: if a suitable action
+exists then one such will be found, together with a suitable
+isomorphism. We give a deterministic 
+<!-- MATH
+ $O(sn\log^cn)$
+ -->
+<SPAN CLASS="MATH"><I>O</I>(<I>sn</I>log<SUP>c</SUP><I>n</I>)</SPAN> implementation of
+the algorithm that assumes advance knowledge of the suborbits of
+
+<!-- MATH
+ $(G,\Omega)$
+ -->
+<SPAN CLASS="MATH">(<I>G</I>,<IMG
+ WIDTH="16" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img16.gif"
+ ALT="$ \Omega$">)</SPAN>.  This leads to deterministic <SPAN CLASS="MATH"><I>O</I>(<I>I</I><SUP>2</SUP>)</SPAN> and Monte-Carlo
+
+<!-- MATH
+ $O(sn\log^cn)$
+ -->
+<SPAN CLASS="MATH"><I>O</I>(<I>sn</I>log<SUP>c</SUP><I>n</I>)</SPAN> implementations that do not make this assumption.
+
+</BLOCKQUOTE>
+Here <SPAN CLASS="MATH"><I>I</I></SPAN> is totally undefined (one guesses that it is the size of the
+input), as are <SPAN CLASS="MATH"><I>c</I></SPAN> and <SPAN CLASS="MATH"><I>s</I></SPAN>.
+
+<H2><A NAME="SECTION00834000000000000000"></A><A NAME="AsympCD"></A>
+<BR>
+Implicit mathematical information
+</H2>
+In general, much mathematics is implicit.
+This is, we found, particularly true of the <SPAN CLASS="MATH"><I>O</I></SPAN> notation and related ones.
+In the quotation from [<A
+ HREF="node10.htm#Sharp2">8</A>] above, consider the formula 
+<!-- MATH
+ $O(l N^2
+\log N)$
+ -->
+<SPAN CLASS="MATH"><I>O</I>(<I>lN</I><SUP>2</SUP>log <I>N</I>)</SPAN>. This is ``clearly'' intended to be (apart from the influence of
+<SPAN CLASS="MATH"><I>l</I></SPAN>)
+<P></P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay"><A NAME="O1"></A>
+<!-- MATH
+ \begin{equation}
+O_{N -> \infty}(l N^2 \log N).
+\end{equation}
+ -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP>
+<I>O</I><SUB>N - &gt; <IMG
+ WIDTH="17" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img19.gif"
+ ALT="$\scriptstyle \infty$"></SUB>(<I>lN</I><SUP>2</SUP>log <I>N</I>).
+</TD>
+<TD CLASS="eqno" WIDTH=10 ALIGN="RIGHT">
+(<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">1</SPAN>)</TD></TR>
+</TABLE></DIV><P></P>
+However, in the formula
+
+<!-- MATH
+ \begin{displaymath}
+\sin(k^2x)=k^2x-(k^6x^3)/{6}+(k^{10}x^5)/{120}+O(k^{14}x^7),
+\end{displaymath}
+ -->
+
+<P></P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+sin(<I>k</I><SUP>2</SUP><I>x</I>) = <I>k</I><SUP>2</SUP><I>x</I> - (<I>k</I><SUP>6</SUP><I>x</I><SUP>3</SUP>)/6 + (<I>k</I><SUP>10</SUP><I>x</I><SUP>5</SUP>)/120 + <I>O</I>(<I>k</I><SUP>14</SUP><I>x</I><SUP>7</SUP>),
+</DIV><P></P>
+the <SPAN CLASS="MATH"><I>O</I></SPAN> expression is, equally ``clearly'', intended to be
+<P></P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay"><A NAME="O2"></A>
+<!-- MATH
+ \begin{equation}
+O_{x -> 0}(k^{14}x^7).
+\end{equation}
+ -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP>
+<I>O</I><SUB>x - &gt; 0</SUB>(<I>k</I><SUP>14</SUP><I>x</I><SUP>7</SUP>).
+</TD>
+<TD CLASS="eqno" WIDTH=10 ALIGN="RIGHT">
+(<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">2</SPAN>)</TD></TR>
+</TABLE></DIV><P></P>
+
+<P>
+How should OpenMath express the extra information in equations <A HREF="node8.htm#O1">7.1</A> 
+and <A HREF="node8.htm#O2">7.2</A>?
+It would have been possible to base the syntax very closely on that of the
+<code>limit</code> symbol. This would, in some sense, reflect the underlying
+formal mathematics, but probably not the way these symbols are used in
+practice. 
+
+<P>
+Instead, using the same methodology as in <code>diff</code> and <code>int</code> it
+was decided to make the main argument of <SPAN CLASS="MATH"><I>O</I></SPAN> into a lambda-expression.
+While this might seem to cause problems on the rendering side (who would
+want to see 
+<!-- MATH
+ $O(\lambda x.x^7)$
+ -->
+<SPAN CLASS="MATH"><I>O</I>(<IMG
+ WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img9.gif"
+ ALT="$ \lambda$"><I>x</I>.<I>x</I><SUP>7</SUP>)</SPAN>?), these problems have already been solved
+for <code>diff</code> and <code>int</code>. One advantage of this is that it is
+possible to deal with functions of more than one argument, as in the
+translation of equation <A HREF="node8.htm#O1">7.1</A>, which would be structured as follows (ignoring
+the complexities of causing the <SPAN CLASS="MATH"><I>l</I></SPAN> to render as <SPAN CLASS="MATH"><I>l</I></SPAN>, which are not
+germane to this discussion).
+<PRE>
+
+	&lt;OMA&gt;
+	  &lt;OMS name="O" cd="asymp1"/&gt;
+	  &lt;OMBIND&gt;
+	    &lt;OMS name="lambda" cd="fns1"/&gt;
+	    &lt;BVAR&gt;
+	      &lt;OMV name="N"/&gt;
+	      &lt;OMV name="l"/&gt;
+	    &lt;/BVAR&gt;
+	    &lt;OMA&gt;
+	      &lt;OMS name="times" cd="arith1"/&gt;
+	      ...
+	    &lt;/OMA&gt;
+	  &lt;/OMBIND&gt;
+	  &lt;OMA&gt;
+	    &lt;OMS name="list" cd="list1"/&gt;
+	    &lt;OMS name="infinity" cd="nums1"/&gt;
+	    &lt;OMS name="infinity" cd="nums1"/&gt;
+	  &lt;/OMA&gt;
+	&lt;/OMA&gt;
+</PRE>
+
+<P>
+It was decided to make the place to which
+the implicit limit is taken be a second argument to the <SPAN CLASS="MATH"><I>O</I></SPAN> symbol. This
+allows for a value of <code>unknown</code> in places where the OpenMath generator
+is unable to determine a sensible value. 
+
+<H2><A NAME="SECTION00835000000000000000">
+Conclusions</A>
+</H2>
+As a ``proof of concept'', which is all it was intended to be, this task
+has been a success. It has demonstrated that it is possible to build a
+database of OpenMath formulae from real-life examples, which can be
+intelligently searched by a suitable search engine. It should be noted that
+MFD2, the  search engine used, has the sophisticated unification
+capabilities that are necessary for this task - ``one man's <SPAN CLASS="MATH"><I>k</I></SPAN> is
+another man's <SPAN CLASS="MATH"><I>l</I></SPAN>''.
+
+<P>
+However, many areas for future development have been highlighted by this
+application of OpenMath to ``real life'' data.
+
+<OL>
+<LI>The ``poor quality'' (in terms of semantic content) of the LaTeX
+available - it is a presentation language, and people judge its output
+as such: see the second item in section <A HREF="node8.htm#JCM">7.3.2</A>.</LI>
+<LI>The difficulty of LaTeX -&gt; OpenMath. Based on the evidence
+gathered in this task, this is the subject of an application to the U.K.
+research councils (EPSRC). A key point here is that such translation needs
+to be domain-specific within mathematics: in the JCM's current contents no
+<SPAN CLASS="MATH"><IMG
+ WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.gif"
+ ALT="$ \pi$"></SPAN> was 3.14159<SPAN CLASS="MATH">...</SPAN>, but other papers could have changed this
+easily.</LI>
+<LI>The requirement for Content Dictionaries. While some of these are fairly
+easy to write (e.g. one for 
+<!-- MATH
+ $\mathop{\rm GL}$
+ -->
+<SPAN CLASS="MATH"><I>GL</I></SPAN>), others are by no means as
+easy to write as one would think - see section <A HREF="node8.htm#AsympCD">7.3.4</A>.</LI>
+<LI>The difficulty of divorcing  the semantics of formulae from those of
+the text, and the inter-relation between the two. The data from this task
+lend weight to the need for a unified approach [<A
+ HREF="node10.htm#OMDoc1">2</A>,<A
+ HREF="node10.htm#OMDoc2">3</A>].</LI>
+</OL>
+
+<P>
+
+<H1><A NAME="SECTION00840000000000000000">
+Electronic Books</A>
+</H1>
+
+<P>
+In order to experiment with OpenMath in the creation of electronic
+books, the interactive book ``Algebra Interactive!'' has been produced.
+The first version used JavaScript, Java applets and GAP. It was set up so as to
+be able to implement OpenMath, although OpenMath itself was not yet present.
+It has been released as a commercial product by Springer Verlag
+[<A
+ HREF="node10.htm#ida">34</A>].
+
+<P>
+The book is an introduction to abstract algebra for first year
+undergraduate students in Mathematics, Computer Science and Electrical
+Engineering. It distinguishes itself contentwise by its focus on
+algorithms and applications. Interactivity is obtained through
+
+<UL>
+<LI>interesting playful applets, that require little
+knowledge of the content, but try to interest the student in the
+topic;</LI>
+<LI>three kind of interactive exercises: first, a list of
+`regular exercises' with hints and solutions obtainable on request,
+second, a challenge to see if a theorem is well understood by means of
+a single multiple choice question attached to the theorem, and third, a
+multiple choice test based on random selections from a data base for each
+chapter, enabling the students to test their advancements;</LI>
+<LI>so-called gapplets: about 130 screens with linear input facilities and
+linear output, where GAP is used as a back engine to provide the student with
+less trivial examples than can be computed by hand in a short time span;</LI>
+<LI>the usual links and indices for an electronic book.</LI>
+</UL>
+
+<P>
+The authors of Algebra Interactive  are
+Arjeh M.&nbsp;Cohen, Hans Cuypers, and Hans Sterk.
+Many core Java applets have been written by
+L.&nbsp;van Gastel, A.&nbsp;Heck and G.&nbsp;Simons.
+Technical assistance was carried out by  C.&nbsp;Huiban and  W.&nbsp;Kortsmit.
+At Springer-Verlag, details regarding design, layout, software, and
+commercial aspects were sorted out by A.&nbsp;Einzmann, M.&nbsp;Feith,
+T.&nbsp;Fuhrmann, F.&nbsp;Schmidt, V.&nbsp;Wicks.
+Further contributions at RIACA/EUT came from S.&nbsp;Ball,
+A.E.&nbsp;Brouwer, A.&nbsp;Blokhuis,  J.&nbsp;Geraats, W.&nbsp;de Graaf,
+S.&nbsp;Hoop, M.&nbsp;Lavrauw,
+R.&nbsp;Lindenbergh, S.&nbsp;van Rijnswou,
+M.&nbsp;Smeets, A.&nbsp;Steinbach,
+R.&nbsp;Ushirobira,
+J.&nbsp;Veerman, R.&nbsp;Verstappen,  and H.A.&nbsp;Wilbrink.
+The GAP development team in St.&nbsp;Andrews helped
+including GAP as a back engine in Algebra Interactive and provided useful
+suggestions.
+The integral source and running version of GAP are to be found on the CD Rom.
+
+<P>
+The idea at the last stage of
+this subproject was to translate the content files of the electronic
+version of this book,
+usually referred to as IDA1 within the project, in such a way that the
+mathematics would be encoded in OpenMath. Joint study with Michael
+Kohlhase en his group at Saarbr&#252;cken has led to the definition of an
+XML standard for such a document, called OMDoc. The reason behind this
+choice of a new standard is that more than simply OpenMath is required
+to set up the structure of an interactive book (or document). An
+important OMDoc feature is that both the CD's (conceptually) created
+within the text and the OpenMath object present in the document can be
+extracted automatically. By means of ad hoc programming, a first
+translation from the IDA1 source texts to OMDoc has been
+achieved. Furthermore, Chapter 1 of IDA has been manually reworked to
+a full OMDoc. Using the latest Mozilla browser (and its MathML display
+capabilities), this chapter can be professionally visualized.  All
+mathematics, including the symbols inserted in sentences, are in
+OpenMath, as can be visualized by clicking them (forcing the raw
+OpenMath to appear in a popup window).  This shows that the expressions
+are "ready for use" in any conceivable application. Further progress
+on interfaces with backengines
+has given us the possibility to formulate
+in the OpenMath language
+the queries needed for interactivity of the gapplet kind
+(as enabled in IDA1). This OpenMath version of the gapplets appearing in OMDoc
+are called "omlets". A direct positive effect is that the output of omlets
+now appears naturally displayed in the text; this is a huge improvement
+over the clumsy ASCII string displayed in IDA1 as gapplet output.
+The big improvement however is that we now have a very flexible source,
+from which many versions of the book (and personally adapted displays) can be
+made by means of style files.
+
+<P>
+The new version has been shown at the International Conference in Lisbon,
+November, 2001, by Dr. Hans Cuypers of RIACA/EUT Eindhoven.
+
+<P>
+SMASH, Springer's Mathematical Assistant System Heidelberg is
+based on the technology for IDA2. The goal is to create a collection
+of pages containing useful concise information for the engineer for
+each relevant topic, with back engines enhancing the interactivity,
+and possibly data bases supporting the knowledge supply. The use of
+the backengines GAP and Mathematica (via JLink) has been successfully
+demonstrated. A convincing prototype on prime numbers has been
+completed, and the outlook for a major project in this direction is
+promising. The idea would be that a future version or successor to
+JOME will play the role of an authoring tool, and that database
+tools, extending MDF2, will be used in which OpenMath helps to find the
+expressions in the database corresponding in a meaningful way to a
+given query.
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot762">... Journal</A><A NAME="foot762"
+ HREF="node8.htm#tex2html8"><SUP><SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">1</SPAN></SUP></A>
+<DD>Another reason for this is
+future-proofing: when new formats become common, and PDF and LaTeX die
+out, it seems likely that it will be much easier to roll the LaTeX
+forward to the new formats than the PDF.
+
+<DT><A NAME="foot517">...
+represented</A><A NAME="foot517"
+ HREF="node8.htm#tex2html9"><SUP><SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">2</SPAN></SUP></A>
+<DD>This is actually a good example of power of OpenMath,
+since in fact there are two presentation notations in common use:
+
+<!-- MATH
+ $\mathop{\rm GL}_n(K)$
+ -->
+<SPAN CLASS="MATH"><I>GL</I><SUB>n</SUB>(<I>K</I>)</SPAN> and 
+<!-- MATH
+ $\mathop{\rm GL}(n,K)$
+ -->
+<SPAN CLASS="MATH"><I>GL</I>(<I>n</I>, <I>K</I>)</SPAN>. However, in OpenMath, both would be represented
+by the same semantic notation, and the choice of presentation would be up
+to the OpenMath -&gt; MathML-P converter.
+
+<DT><A NAME="foot524">... OpenMath</A><A NAME="foot524"
+ HREF="node8.htm#tex2html10"><SUP><SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">3</SPAN></SUP></A>
+<DD>But much harder for the
+LaTeX -&gt; OpenMath translator, and indeed this was one of the
+areas where manual intervention was required.
+
+</DL><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html204"
+ HREF="node9.htm">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next_motif.gif"></A> 
+<A NAME="tex2html200"
+ HREF="final.htm">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up_motif.gif"></A> 
+<A NAME="tex2html194"
+ HREF="node7.htm">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="previous_motif.gif"></A> 
+<A NAME="tex2html202"
+ HREF="node1.htm">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents_motif.gif"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html205"
+ HREF="node9.htm">Conclusions</A>
+<B> Up:</B> <A NAME="tex2html201"
+ HREF="final.htm">The OpenMath Project Final</A>
+<B> Previous:</B> <A NAME="tex2html195"
+ HREF="node7.htm">Software Tools</A>
+ &nbsp <B>  <A NAME="tex2html203"
+ HREF="node1.htm">Contents</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<a href="http://www.nag.co.uk/Projects/openmath">The OpenMath Consortium</a>
+<img align="top" alt="logo" src="openmath-s.gif">
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,45 @@
+# Schema for OpenMath 1
+# DPC 2003-09-26
+
+
+default namespace = "http://www.openmath.org/OpenMath"
+
+omel = OMS | OMV | OMI | OMB | OMSTR | OMF | OMA | OMBIND | OME | OMATTR
+# things which can be variables
+omvar = OMV | attvar
+
+attvar = element OMATTR {(OMATP , (OMV| attvar))}
+
+
+# symbol
+OMS = element OMS { attlist.OMS}
+attlist.OMS =
+  attribute name { xsd:string {pattern = "[A-Za-z][A-Za-z0-9_]*"}},
+  attribute cd { xsd:string {pattern = "[a-z][a-z0-9_]*"}}
+# variable
+OMV = element OMV { attlist.OMV}
+attlist.OMV = attribute name { xsd:string {pattern = "([A-Za-z0-9\+=(),\-\./:\?!#$%\*;@\[\]\^_`\{\|\}])+"}}
+# integer
+OMI = element OMI { xsd:string {pattern = "\s*(-\s?)?[0-9]+(\s[0-9]+)*\s*"}}
+# byte array
+OMB = element OMB { xsd:base64Binary }
+# string
+OMSTR = element OMSTR { text }
+# floating point
+OMF = element OMF { attlist.OMF}
+attlist.OMF =
+  attribute dec { xsd:string {pattern = "(-?)([0-9]+)?(\.[0-9]+)?(e([+\-]?)[0-9]+)?"}}|
+  attribute hex { xsd:string {pattern = "[0-9A-F]+"}}
+# apply constructor
+OMA = element OMA { omel+ }
+# binding constructor & variable
+OMBIND = element OMBIND { omel, OMBVAR, omel }
+OMBVAR = element OMBVAR { omvar+ }
+# error
+OME = element OME { OMS, omel* }
+# attribution constructor & attribute pair constructor
+OMATTR = element OMATTR { OMATP, omel }
+OMATP = element OMATP { (OMS, omel)+ }
+# OM object constructor
+OMOBJ = element OMOBJ { omel }
+start = OMOBJ

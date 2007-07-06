@@ -1,0 +1,4569 @@
+<?xml version="1.0" encoding="utf-8"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:m="http://www.w3.org/1998/Math/MathML"><head><title>The OpenMath Standard</title><object id="mmlFactory" classid="clsid:32F66A20-7614-11D4-BD11-00104BD3F987"/><?import 
+ namespace="m" implementation="#mmlFactory"
+?><style>
+p {text-align:justify;	   
+  }
+code {font-size: 125%;
+      font-family: monospace; 
+     }
+.figure {
+border-width:1px;
+border-color: black;
+}
+.footnote{
+font-size: 75%;
+font-style: italic;
+}
+.literal {
+font-size: 75%;
+background-color: #cfcfcf;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+}
+.del {
+color: red;
+}
+.new {
+color: green;
+}
+.changetoc {
+border-style: solid;
+border-color: black;
+border-width: 1px;
+margin: 2em 2em 2em 2em;
+background-color: yellow;
+}
+</style></head><body><h1>The <i>OpenMath</i> Standard</h1><div>
+Version: 1.1b</div><div>The OpenMath Esprit Consortium</div><div>Editors<br/>O. Caprotti, D. P. Carlisle, A. M. Cohen</div><div>October 22 2002</div><div><h3>Abstract</h3><p>This document proposes <i>OpenMath</i> as a standard for the communication of
+  semantically rich mathematical objects. This draft of the <i>OpenMath</i> 
+  standard comprises the following: a description of <i>OpenMath</i> objects, the
+  grammar of <span>xml</span> and of the binary encoding of objects, a
+  description of Content Dictionaries and an <span>xml</span> document type
+  definition for validating Content Dictionaries. The non-normative
+  <a href="#cha_his">Chapter 1</a> of this document briefly overviews the history
+  of <i>OpenMath</i>.</p></div><div class="changetoc"><h3>Change-marked edition notes</h3><p>
+This edition contains colour coded change markings
+relative to the OpenMath 1.0 document...</p><ul><li class="new">New text is marked with css class "new" (green).</li><li class="del">Deleted text is marked with css class "del" (red).</li></ul><p>Sections with new text</p><ul><a href="#sec_omin" class="new">3.2 Further Description of OpenMath Objects</a><br/><a href="#ssec_xml" class="new">4.1.1 A Grammar for the xml Encoding</a><br/></ul></div>
+
+
+  
+<h2>Contents</h2><a href="#cha_his">1 <i>OpenMath</i> Movement</a><br/>
+    <a href="#sec_hist">1.1 History</a><br/>
+    <a href="#sec_omsoc">1.2 <i>OpenMath</i> Society</a><br/><a href="#cha_int">2 Introduction to <i>OpenMath</i></a><br/>
+    <a href="#sec_om-arch">2.1 <i>OpenMath</i> Architecture</a><br/>
+    <a href="#sec_intro-obj">2.2 <i>OpenMath</i> Objects and Encodings</a><br/>
+    <a href="#sec_intro-cd">2.3 Content Dictionaries</a><br/>
+    <a href="#sec_addnfiles">2.4 Additional Files</a><br/>
+    <a href="#sec_phrasebooks">2.5 Phrasebooks</a><br/><a href="#cha_obj">3 <i>OpenMath</i> Objects</a><br/>
+    <a href="#sec_omabs">3.1 Formal Definition of <i>OpenMath</i> Objects</a><br/>
+        <a href="#sec_basic">3.1.1 Basic <i>OpenMath</i> objects</a><br/>
+        <a href="#sec_compound">3.1.2 Compound <i>OpenMath</i> Objects</a><br/>
+    <a href="#sec_omin">3.2 Further Description of <i>OpenMath</i> Objects</a><br/>
+    <a href="#sec_summary">3.3 Summary</a><br/><a href="#cha_enco">4 <i>OpenMath</i> Encodings</a><br/>
+    <a href="#sec_xml">4.1 The <span>xml</span> Encoding</a><br/>
+        <a href="#ssec_xml">4.1.1 A Grammar for the <span>xml</span> Encoding</a><br/>
+        <a href="#sec_xml-desc">4.1.2 Description of the Grammar</a><br/>
+        <a href="#xmldoc">4.1.3 Embedding OpenMath in XML Documents</a><br/>
+    <a href="#sec_binary">4.2 The Binary Encoding</a><br/>
+        <a href="#sec_binary_grammar">4.2.1 A Grammar for the Binary Encoding</a><br/>
+        <a href="#sec_bin-desc">4.2.2 Description of the Grammar</a><br/>
+            <a href="#sec_sharing">4.2.2.1 Sharing</a><br/>
+        <a href="#sec_impl_note">4.2.3 Implementation Note</a><br/>
+        <a href="#sec_bin_example">4.2.4 Example of Binary Encoding</a><br/>
+    <a href="#sec_enc_summary">4.3 Summary</a><br/><a href="#cha_cd">5 Content Dictionaries</a><br/>
+    <a href="#sec_cd_summary">5.1 Introduction</a><br/>
+    <a href="#sect_func">5.2 Content Dictionaries</a><br/>
+    <a href="#sec_xml_cd">5.3 The XML Encoding for Content Dictionaries</a><br/>
+        <a href="#sec_dtd_cd">5.3.1 The DTD Specification of  Content Dictionaries</a><br/>
+        <a href="#sect_pcdata">5.3.2 Further Requirements of an <i>OpenMath</i> Content Dictionary</a><br/>
+    <a href="#addfiles">5.4 Additional Information</a><br/>
+        <a href="#sigfiles">5.4.1 Signature Files</a><br/>
+            <a href="#sec_dtd_sig">5.4.1.1 The  DTD Specification of Signature Files</a><br/>
+            <a href="#sect_sigpcdata">5.4.1.2 Further Requirements of a Signature File</a><br/>
+            <a href="#sect_sigex">5.4.1.3 Examples</a><br/>
+        <a href="#ssec_cdgroups">5.4.2 CDGroups</a><br/>
+            <a href="#sec_dtd_cdg">5.4.2.1 The DTD Specification of CDGroups</a><br/>
+            <a href="#sect_cdgpcdata">5.4.2.2 Further Requirements of a CDGroup</a><br/>
+    <a href="#cdapprove">5.5 Content Dictionaries Reviewing Process</a><br/><a href="#cha_comp">6 <i>OpenMath</i> Compliance</a><br/>
+    <a href="#sec_compl_encoding">6.1 Encoding</a><br/>
+    <a href="#sec_compl_cd">6.2 Content Dictionaries</a><br/>
+    <a href="#sec_comp_lex">6.3 Lexical Errors</a><br/><a href="#cha_conc">7 Conclusion</a><br/><a href="#app_cdfiles">A CD Files</a><br/>
+    <a href="#app_cdcd">A.1 The <b>meta</b> Content Dictionary</a><br/>
+    <a href="#arith1.ocd">A.2 The  <b>arith1</b> Content Dictionary File</a><br/>
+    <a href="#arith1.sts">A.3 The  <b>arith1</b> STS Signature File</a><br/>
+    <a href="#mathml.cdg">A.4 The  <b>MathML</b> CDGroup</a><br/>
+    <a href="#errorcd">A.5 The <b>error</b> Content Dictionary</a><br/><a href="#bibliography">B Bibliography</a><br/>
+<h2>List of Figures</h2><a href="#fig_om">2.1 The <i>OpenMath</i> Architecture</a><br/><a href="#fig_obj">3.1 The <i>OpenMath</i> application and binding objects for
+<m:math><m:mi>sin</m:mi> <m:mo>(</m:mo><m:mi>x</m:mi> <m:mo>)</m:mo></m:math>  and
+<m:math><m:mi>λ</m:mi> <m:mi>x</m:mi><m:mo>.</m:mo><m:mi>x</m:mi> <m:mo>+</m:mo>
+<m:mn>2</m:mn></m:math>  in tree-like notation.</a><br/><a href="#fig_objdtd">4.1 DTD for the <i>OpenMath</i> <span>xml</span> encoding of objects.</a><br/><a href="#fig_xml">4.2 Grammar for the <span>xml</span> encoding of <i>OpenMath</i> objects.</a><br/><a href="#fig_bin-enc">4.3 Grammar of the binary encoding of <i>OpenMath</i> objects.</a><br/><a href="#fig_cd-dtd">5.1 DTD Specification of  Content Dictionaries</a><br/><a href="#fig_omcdsig.dtd">5.2 DTD Specification of Signature Files</a><br/><a href="#fig_cdgroup.dtd">5.3 DTD Specification of CDGroups</a><br/>
+
+<h2 name="cha_his" id="cha_his">
+  Chapter 1<br/><i>OpenMath</i> Movement</h2>
+
+
+
+<p>This chapter is a historical account of <i>OpenMath</i> and should be regarded
+as non-normative.</p>
+
+<p><i>OpenMath</i> is a standard for representing mathematical objects,
+allowing them to be exchanged between computer programs, stored in
+databases, or published on the worldwide web.  While the original
+designers were mainly developers of computer algebra systems, it is
+now attracting interest from other areas of scientific computation and
+from many publishers of electronic documents with a significant
+mathematical content.  There is a strong relationship to the MathML
+recommendation <a href="#MathML_98">[5]</a> from the Worldwide Web
+Consortium, and a large overlap between the two developer communities.
+MathML deals principally with the <i>presentation</i> of
+mathematical objects, while <i>OpenMath</i> is solely concerned with their
+semantic meaning or <i>content</i>.  While MathML does
+have some limited facilities for dealing with content, it also allows
+semantic information encoded in <i>OpenMath</i> to be embedded inside a MathML
+structure.  Thus the two technologies may be seen as highly
+complementary.</p>
+
+<div><h3 name="sec_hist" id="sec_hist">1.1 History</h3>
+
+
+
+<p><i>OpenMath</i> was originally developed through a series of workshops held
+in Zurich (1993 and 1996), Oxford (1994), Amsterdam (1995), Copenhagen
+(1995), Bath (1996), Dublin (1996), Nice (1997), Yorktown Heights
+(1997), Berlin (1998), and Tallahassee (1998).  The participants in
+these workshops formed a global <i>OpenMath</i> community which was coordinated
+by a Steering Committee and operated through electronic mailing groups
+and ad-hoc working parties.  This loose arrangement has been
+formalised through the establishment of an <i>OpenMath</i> Society.  Up until the
+end of 1996 much of the work of the community was funded through a
+grant from the Human Capital and Mobility program of the European
+Union, the contributions of several institutions and individuals.  A
+document outlining the objectives and basic design of <i>OpenMath</i> was
+produced (later published as
+<a href="#Abbott_Leeuwen_Strotmann_98">[3]</a>).  By the end of 1996
+a simplified specification had been agreed on and some prototype
+implementations have come about
+<a href="#Dalmas_Gaetano_Watt_97">[8]</a>.</p>
+
+
+<p>In 1996 a group of European participants in <i>OpenMath</i> decided to bid
+for funding under the European Union's Fourth Framework Programme for
+strategic research in information technology.  This bid was successful
+and the project started in late 1997.  The principal aims of the
+project are to formalise <i>OpenMath</i> as a standard and to develop it
+further through industrial applications; this document is a product of
+that process and draws heavily on the previous work described earlier.
+<i>OpenMath</i> participants from all over the world continue to meet
+regularly and cooperate on areas of mutual interest, and
+recent workshops in Tallahassee (November 1998) and Eindhoven (June
+1999)  endorsed  drafts of this document as the current <i>OpenMath</i> standard.</p>
+
+
+
+
+</div>
+
+<div><h3 name="sec_omsoc" id="sec_omsoc">1.2 <i>OpenMath</i> Society</h3>
+
+
+
+<p>In November 1998 the <i>OpenMath</i> Society has been established to coordinate
+all <i>OpenMath</i> activities. The society is based in Helsinki, Finland and is
+steered by the executive committee whose members are elected by the
+society. The official web page of the society is
+<a href="http://www.openmath.org">http://www.openmath.org</a>.</p>
+</div>
+
+
+
+<h2 name="cha_int" id="cha_int">
+  Chapter 2<br/>Introduction to <i>OpenMath</i></h2>
+
+
+
+
+
+<p>This chapter briefly introduces <i>OpenMath</i> concepts and notions that are
+referred to in the rest of this document.</p>
+
+<div><h3 name="sec_om-arch" id="sec_om-arch">2.1 <i>OpenMath</i> Architecture</h3>
+
+
+
+<div class="figure"><a name="fig_om" id="fig_om"/>
+    
+    <img src="om-arch.png" alt="om-arch.png"/>
+<div>
+  Figure 2.1 The <i>OpenMath</i> Architecture</div></div>
+
+<p>The architecture of <i>OpenMath</i> is described in <a href="#fig_om">Figure 2.1</a> and
+summarizes the interactions among the different <i>OpenMath</i> components.
+There are three layers of representation of a mathematical object
+<a href="#OM_98">[10]</a>. A private layer that is the internal representation used
+by an application.  An abstract layer that is the representation as an
+<i>OpenMath</i> object. Third is a communication layer that translates the <i>OpenMath</i> 
+object representation to a stream of bytes. An application dependent
+program manipulates the mathematical objects using its internal
+representation, it can convert them to <i>OpenMath</i> objects and communicate
+them by using the byte stream representation of <i>OpenMath</i> objects.</p>
+</div>
+
+<div><h3 name="sec_intro-obj" id="sec_intro-obj">2.2 <i>OpenMath</i> Objects and Encodings</h3>
+
+
+
+
+
+
+<p><i>OpenMath</i> objects are representations of mathematical entities that
+can be communicated among various software applications in a
+meaningful way, that is, preserving their
+<span>"semantics"</span>.</p>
+
+<p><i>OpenMath</i> objects and encodings are described in detail in <a href="#cha_obj">Chapter 3</a> and <a href="#cha_enco">Chapter 4</a>.</p>
+
+
+
+
+<p>The standard endorses encodings in <span>xml</span> and binary
+format. These are the encodings supported by the official <i>OpenMath</i>
+libraries. However they are not the only possible encodings of <i>OpenMath</i>
+objects. Users that wish to define their own encoding using some other
+specific language (e.g.  Lisp) may do so provided there is an
+effective translation of this encoding to an official one.</p>
+</div>
+
+<div><h3 name="sec_intro-cd" id="sec_intro-cd">2.3 Content Dictionaries</h3>
+
+
+
+<p>Content Dictionaries (CDs) are used to assign informal and formal
+semantics to all symbols used in the <i>OpenMath</i> objects. They define the
+symbols used to represent concepts arising in a particular area of
+mathematics.</p>
+
+<p>The Content Dictionaries are public, they represent the actual
+common knowledge among <i>OpenMath</i> applications.  Content Dictionaries fix
+the <span>"meaning"</span> of objects independently of the
+application.  The application receiving the object may then recognize
+whether or not, according to the semantics of the symbols defined in
+the Content Dictionaries, the object can be transformed to the
+corresponding internal representation used by the application.</p>
+</div>
+
+<div><h3 name="sec_addnfiles" id="sec_addnfiles">2.4 Additional Files</h3>
+  <p>Several
+additional files are related to Content Dictionaries.  Signature files
+contain the signatures of symbols defined in some <i>OpenMath</i> Content
+Dictionary and their format is endorsed by this standard.</p>
+
+<p>Furthermore, the standard fixes how to define as a CDGroup a specific
+set of Content Dictionaries.</p>
+
+<p>Auxiliary files that define presentation and rendering or that
+are used for manipulating and processing Content Dictionaries are not
+discussed by the standard.</p>
+
+
+</div>
+<div><h3 name="sec_phrasebooks" id="sec_phrasebooks">2.5 Phrasebooks</h3>
+
+
+
+
+<p>The conversion of an <i>OpenMath</i> object to/from the internal
+representation in a software application is performed by an interface
+program called <i>Phrasebook</i>. The translation is
+governed by the Content Dictionaries and the specifics of the
+application. It is envisioned that a software application dealing with
+a specific area of mathematics declares which Content Dictionaries it
+understands. As a consequence, it is expected that the Phrasebook of
+the application is able to translate <i>OpenMath</i> objects built using symbols
+from these Content Dictionaries to/from the internal mathematical
+objects of the application.</p>
+
+ <p><i>OpenMath</i> objects do not
+specify any compuational behaviour, they merely represent mathematical
+expressions.  Part of the <i>OpenMath</i> philosophy is to leave it to the
+application to decide what it does with an object once it has received
+it.  <i>OpenMath</i> is not a query or programming language. Because of this,
+<i>OpenMath</i> does not prescribe a way of forcing <span>"evaluation"</span> or
+<span>"simplification"</span> of objects like
+<m:math><m:mn>2</m:mn><m:mo>+</m:mo><m:mn>3</m:mn></m:math>  or
+<m:math><m:mi>sin</m:mi><m:mo>(</m:mo><m:mi>π</m:mi><m:mo>)</m:mo></m:math>. Thus,
+the same object <m:math><m:mn>2</m:mn><m:mo>+</m:mo><m:mn>3</m:mn></m:math>  could be
+transformed to <m:math><m:mn>5</m:mn></m:math>  by a computer algebra system,
+or displayed as <m:math><m:mn>2</m:mn><m:mo>+</m:mo><m:mn>3</m:mn></m:math>  by a
+typesetting tool.</p>
+</div>
+
+
+<h2 name="cha_obj" id="cha_obj">
+  Chapter 3<br/><i>OpenMath</i> Objects</h2>
+
+
+
+
+<p>In this chapter we provide a self-contained description of <i>OpenMath</i>
+objects. We first do so at an informal level (<a href="#sec_omin">Section 3.2</a>) and next by means of an abstract grammar
+description (<a href="#sec_omabs">Section 3.1</a>).</p>
+
+
+<div><h3 name="sec_omabs" id="sec_omabs">3.1 Formal Definition of <i>OpenMath</i> Objects</h3>
+
+
+
+<p><i>OpenMath</i> represents mathematical objects as terms or as labelled
+trees that are called <i>OpenMath</i> objects or <i>OpenMath</i> expressions. The definition
+of an abstract <i>OpenMath</i> object is then the following.</p>
+
+
+<div><h4 name="sec_basic" id="sec_basic">3.1.1 Basic <i>OpenMath</i> objects</h4>
+ <p>The Basic <i>OpenMath</i> Objects form
+the leaves of the <i>OpenMath</i> Object tree.  A Basic <i>OpenMath</i> Object is of one of
+the following.</p> 
+<ol class="lowerroman">
+<li><p> Integer.</p><p>Integers in
+  the mathematical sense, with no predefined range.  They are
+  <span>"infinite precision"</span> integers (also called
+  <span>"bignums"</span> in computer algebra).</p></li>
+<li><p> IEEE floating point
+    number.</p><p>Double precision floating-point numbers
+    following the <span>ieee</span> 754-1985
+    standard <a href="#ieee754_85">[1]</a>.</p></li>
+<li><p> Character string.</p><p>A Unicode Character string. This also corresponds to `characters' in
+  <span>xml</span>.</p></li>
+<li><p> Bytearray.</p><p>A sequence of bytes.</p></li>
+<li><p> Symbol.</p><p>A Symbol
+encodes two fields of information, a <i>name</i> and a
+<i>Content Dictionary</i>. Each is a sequence of
+characters matching a regular expression, as described below.</p></li>
+<li><p> Variable.</p><p>A Variable consists of a <i>name</i> which is a
+ sequence of characters matching a regular expression, as described
+ below.</p></li>
+</ol>
+</div>
+
+<div><h4 name="sec_compound" id="sec_compound">3.1.2 Compound <i>OpenMath</i> Objects</h4>
+
+  
+<p><i>OpenMath</i> objects are built recursively as follows.
+<ol class="lowerroman">
+<li><p> Basic <i>OpenMath</i> objects are <i>OpenMath</i> objects.</p></li>
+
+<li><p>
+     If
+    <m:math><m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub></m:math>, <span>…</span>,
+    <m:math><m:msub><m:mi>A</m:mi><m:mi>n</m:mi></m:msub></m:math> 
+    <m:math><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn><m:mo>)</m:mo></m:math>  are <i>OpenMath</i>
+    objects, then 
+  <m:math display="block">
+  <m:mi mathvariant="bold">application</m:mi><m:mo>(</m:mo><m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo> <m:mi>…</m:mi><m:mo>,</m:mo> <m:msub><m:mi>A</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo>
+  </m:math> 
+  is an <i>OpenMath</i> <i>application object</i>.</p></li> <li><p> If
+  <m:math><m:msub><m:mi>S</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo>
+  <m:mi>…</m:mi><m:mo>,</m:mo> <m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub></m:math> 
+  are <i>OpenMath</i> symbols, and <m:math><m:mi>A</m:mi></m:math>,
+  <m:math><m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub></m:math>,
+  <span>…</span>, <m:math><m:msub><m:mi>A</m:mi><m:mi>n</m:mi></m:msub></m:math>, <m:math><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn><m:mo>)</m:mo></m:math>  are <i>OpenMath</i> objects, then
+  <m:math display="block"><m:mi mathvariant="bold">attribution</m:mi>
+  <m:mo>(</m:mo><m:mi>A</m:mi><m:mo>,</m:mo> <m:msub><m:mi>S</m:mi><m:mn>1</m:mn></m:msub>
+  <m:mspace width=".3em"/>
+  <m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo>
+ <m:mspace width=".3em"/> <m:mi>…</m:mi> <m:mspace width=".3em"/> <m:mo>,</m:mo> <m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub> <m:mspace width=".3em"/>
+  <m:msub><m:mi>A</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:math> 
+  is an <i>OpenMath</i> <i>attribution object</i> and <m:math><m:mi>A</m:mi></m:math>  is the object
+  <i>stripped of attributions</i>. The operation of recursively
+  applying stripping to the stripped object is called <i>flattening
+    of the attribution</i>. When  the stripped object after flattening
+  is a  variable, the attributed object is called <i>attributed
+    variable</i>.</p></li>
+<li><p> If <m:math><m:mi>B</m:mi></m:math>  and <m:math><m:mi>C</m:mi></m:math>  are <i>OpenMath</i> objects, and <m:math><m:msub><m:mi>v</m:mi><m:mn>1</m:mn></m:msub></m:math>, <m:math><m:mi>…</m:mi></m:math>,
+  <m:math><m:msub><m:mi>v</m:mi><m:mi>n</m:mi></m:msub></m:math>  <m:math><m:mo>(</m:mo><m:mi>n</m:mi> <m:mo>≥</m:mo> <m:mn>0</m:mn><m:mo>)</m:mo></m:math>  are <i>OpenMath</i> variables or attributed variables, then
+  <m:math display="block">
+  <m:mi mathvariant="bold">binding</m:mi> <m:mo>(</m:mo><m:mi>B</m:mi><m:mo>,</m:mo> <m:msub><m:mi>v</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo> <m:mi>…</m:mi><m:mo>,</m:mo> <m:msub><m:mi>v</m:mi><m:mi>n</m:mi></m:msub><m:mo>,</m:mo> <m:mi>C</m:mi><m:mo>)</m:mo>
+  </m:math> 
+  is an <i>OpenMath</i> <i>binding object</i>.</p></li>
+<li><p> If <m:math><m:mi>S</m:mi></m:math>  is an
+<i>OpenMath</i> symbol and <m:math><m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub></m:math>, <span>…</span>, <m:math><m:msub><m:mi>A</m:mi><m:mi>n</m:mi></m:msub></m:math>  <m:math><m:mo>(</m:mo><m:mi>n</m:mi> <m:mo>≥</m:mo> <m:mn>0</m:mn><m:mo>)</m:mo></m:math>  are <i>OpenMath</i> objects, then
+  <m:math display="block"><m:mi mathvariant="bold">error</m:mi> <m:mo>(</m:mo><m:mi>S</m:mi><m:mo>,</m:mo> <m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mi>…</m:mi><m:mo>,</m:mo><m:msub><m:mi>A</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo>
+  </m:math> 
+  is an <i>OpenMath</i> <i>error object</i>.</p></li>
+</ol>
+</p>
+</div>
+</div>
+
+<div><h3 name="sec_omin" id="sec_omin">3.2 Further Description of <i>OpenMath</i> Objects</h3>
+
+
+
+
+  
+
+<p>Informally, an <i>OpenMath</i> <span><i>object</i></span> can be
+viewed as a tree and is also referred to as a term.  The objects at
+the leaves of <i>OpenMath</i> trees are called <span><i>basic
+objects</i></span>.  The basic objects supported by <i>OpenMath</i> are:
+<dl>
+<dt>Integer</dt><dd><p>Arbitrary Precision
+integers.</p> </dd>
+<dt>Float</dt><dd> <p><i>OpenMath</i> floats are
+<span>ieee</span> 754 Double precision floating-point
+numbers. Other types of floating point number may be encoded in <i>OpenMath</i>
+by the use of suitable content dictionaries.</p>
+  
+</dd>
+
+<dt>Character strings</dt><dd><p>are
+  sequences of characters. These characters come from the Unicode
+  standard <a href="#UNICODE">[13]</a>.</p>
+  
+</dd>
+<dt>Bytearrays</dt><dd><p>are sequences of bytes. There is no <span>"byte"</span> in <i>OpenMath</i> 
+  as an object of its own. However, a single byte can of course be
+  represented by a bytearray of length 1.  The difference between
+  strings and bytearrays is the following: a character string is a
+  sequence of bytes with a fixed interpretation (as characters,
+  Unicode texts may require several bytes to code one character),
+  whereas a bytearray is an uninterpreted sequence of bytes with no
+  intrinsic meaning.  Bytearrays could be used inside <i>OpenMath</i> errors to
+  provide information to, for example, a debugger; they could also
+  contain intermediate results of calculations, or `handles' into
+  computations or databases.</p>
+</dd>
+
+<dt>Symbols</dt><dd>
+  
+  
+  <p>
+ are uniquely defined by the Content Dictionary in which they occur
+  and by a name. In definition in <a href="#sec_omabs">Section 3.1</a> we have
+  left this information implicit. However, it should be kept in mind
+  that all symbols appearing in an <i>OpenMath</i> object are defined in a
+  Content Dictionary. The form of these definitions is explained in
+  <a href="#cha_cd">Chapter 5</a>.  Each symbol has no more than one
+  definition in a Content Dictionary. Many Content Dictionaries may
+  define differently a symbol with the same name (e.g., the symbol
+  <code>union</code> is defined as
+  associative-commutativeset theoretic union in a Content Dictionary
+  <code>set1</code> but another Content Dictionary,
+  <code>multiset1</code> might define a symbol
+  <code>union</code> as the union of multi-sets.  The name
+  of a symbol can only contain alphanumeric characters and
+  underscores.  More precisely, a symbol name matches the following
+  regular expression: <blockquote><p>
+  [<code>A</code>-<code>Z</code><code>a</code>-<code>z</code>]
+  [<code>A</code>-<code>Z</code><code>a</code>-<code>z</code><code>0</code>-<code>9</code><code>_</code>]*
+  </p></blockquote></p>
+  
+  <p>Notice that these symbol names are case sensitive.  <i>OpenMath</i>
+  <i>recommends</i> that symbol names should be no longer than
+  100 characters.</p>
+ 
+  </dd>
+
+<dt>Variables</dt><dd><p>are meant to
+  denote parameters, variables or indeterminates (such as bound
+  variables of function definitions, variables in summations and
+  integrals, independent variables of derivatives).  Plain variable
+  names are restricted to use a subset of the printable ASCII
+  characters.  Formally the names must match the regular expression:
+  <blockquote><p> [A-Za-z0-9=+(),-./:?!#$%*;=@[]^_`{|}]+
+  </p></blockquote></p>
+   
+</dd>
+
+</dl> </p>
+
+<p>The four following constructs can be used to make compound <i>OpenMath</i>
+objects.</p>
+
+<dl>
+<dt>Application</dt><dd><p>constructs an
+  <i>OpenMath</i> object from a sequence of one or more <i>OpenMath</i> objects. The first
+  argument of application is referred to as <span>"head"</span> while
+  the remaining objects are called <span>"arguments"</span>.  An <i>OpenMath</i>
+  application object can be used to convey the mathematical notion of
+  application of a function to a set of arguments.  For instance,
+  suppose that the <i>OpenMath</i> symbol <code>sin</code> is defined
+  in a Content Dictionary for trigonometry, then <m:math><m:mi mathvariant="bold">application</m:mi><m:mo>(</m:mo><m:mi>sin</m:mi><m:mo>,</m:mo>
+  <m:mi>x</m:mi> <m:mo>)</m:mo></m:math>  is the abstract <i>OpenMath</i> object
+  corresponding to <m:math><m:mi>sin</m:mi> <m:mo>(</m:mo><m:mi>x</m:mi>
+  <m:mo>)</m:mo></m:math>.  More generally, an <i>OpenMath</i> application object can
+  be used as a constructor to convey a mathematical object built from
+  other objects such as a polynomial constructed from a set of
+  monomials.  Constructors build inhabitants of some symbolic type,
+  for instance the type of rational numbers or the type of
+  polynomials.  The rational number, usually denoted as
+  <m:math><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>2</m:mn></m:math>, is represented by the
+  <i>OpenMath</i> application object <m:math><m:mi mathvariant="bold">application</m:mi><m:mo>(</m:mo><m:mi>Rational</m:mi><m:mo>,</m:mo>
+  <m:mn>1</m:mn><m:mo>,</m:mo> <m:mn>2</m:mn><m:mo>)</m:mo></m:math>. The symbol
+  <code>Rational</code> must be defined, by a Content
+  Dictionary, as a constructor symbol for the rational numbers.</p>
+   
+<div class="figure"><a name="fig_obj" id="fig_obj"/>
+      <img src="lambda.png" alt="lambda.png"/>
+<div>
+  Figure 3.1 The <i>OpenMath</i> application and binding objects for
+<m:math><m:mi>sin</m:mi> <m:mo>(</m:mo><m:mi>x</m:mi> <m:mo>)</m:mo></m:math>  and
+<m:math><m:mi>λ</m:mi> <m:mi>x</m:mi><m:mo>.</m:mo><m:mi>x</m:mi> <m:mo>+</m:mo>
+<m:mn>2</m:mn></m:math>  in tree-like notation.</div></div>
+
+  
+</dd>
+
+<dt>Binding</dt><dd><p>objects are
+  constructed from an <i>OpenMath</i> object, and from a sequence of zero or more
+  variables followed by another <i>OpenMath</i> object.  The first <i>OpenMath</i> object is
+  the <span>"binder"</span> object. Arguments 2 to
+  <m:math><m:mi>n</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:math>  are always variables to
+  be bound in the <span>"body"</span> which is the
+  <m:math><m:msup><m:mi>n</m:mi><m:mi>th</m:mi></m:msup></m:math>  argument object. It
+  is allowed to have no bound variables, but the binder object and the
+  body should be present. Binding can be used to express functions or
+  logical statements.  The function <m:math><m:mi>λ</m:mi>
+  <m:mi>x</m:mi><m:mo>.</m:mo><m:mi>x</m:mi> <m:mo>+</m:mo><m:mn>2</m:mn></m:math>, in which
+  the variable <m:math><m:mi>x</m:mi></m:math>  is bound by
+  <m:math><m:mi>λ</m:mi></m:math>, corresponds to a binding object having
+  as binder the <i>OpenMath</i> symbol <code>lambda</code>: <m:math display="block"><m:mi mathvariant="bold">binding</m:mi><m:mo>(</m:mo><m:mi>lambda</m:mi><m:mo>,</m:mo>
+  <m:mi>x</m:mi> <m:mo>,</m:mo> <m:mi mathvariant="bold">application</m:mi><m:mo>(</m:mo><m:mi>plus</m:mi><m:mo>,</m:mo>
+  <m:mi>x</m:mi> <m:mo>,</m:mo>
+  <m:mn>2</m:mn><m:mo>)</m:mo><m:mo>)</m:mo><m:mtext>.</m:mtext></m:math></p>
+  
+  
+  <p class="del">Binding of several variables as in: <m:math display="block"><m:mi mathvariant="bold">binding</m:mi>
+  <m:mo>(</m:mo><m:mi>B</m:mi><m:mo>,</m:mo>
+  <m:msub><m:mi>v</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo>
+  <m:mi>…</m:mi><m:mo>,</m:mo>
+  <m:msub><m:mi>v</m:mi><m:mi>n</m:mi></m:msub><m:mo>,</m:mo> <m:mi>C</m:mi>
+  <m:mo>)</m:mo></m:math>  is semantically equivalent to composition of
+  binding of a single variable, namely
+  <m:math display="block">
+    <m:mi mathvariant="bold">binding</m:mi>
+    <m:mo>(</m:mo>
+    <m:mi>B</m:mi>
+    <m:mo>,</m:mo>
+    <m:msub><m:mi>v</m:mi><m:mn>1</m:mn></m:msub>
+    <m:mo>,</m:mo>
+    <m:mo>(</m:mo>
+    <m:mi mathvariant="bold">binding</m:mi>
+    <m:mo>(</m:mo>
+    <m:mi>B</m:mi>
+    <m:mo>,</m:mo>
+    <m:msub><m:mi>v</m:mi><m:mn>2</m:mn></m:msub>
+    <m:mo>,</m:mo>
+    <m:mo>(</m:mo>
+    <m:mi>…</m:mi>
+    <m:mo>,</m:mo>
+    <m:mi mathvariant="bold">binding</m:mi>
+    <m:mo>(</m:mo>
+    <m:mi>B</m:mi>
+    <m:mo>,</m:mo>
+    <m:msub><m:mi>v</m:mi><m:mi>n</m:mi></m:msub>
+    <m:mo>,</m:mo>
+    <m:mi>C</m:mi>
+    <m:mo>)</m:mo>
+    <m:mi>…</m:mi>
+    <m:mo>)</m:mo>
+    <m:mtext>.</m:mtext>
+  </m:math> 
+</p>
+  
+  
+ <p class="del">Note that it follows from
+this that repeated occurrences of the same variable in a binding
+operator are allowed. For example the object
+  <m:math display="block">
+    <m:mi mathvariant="bold">binding</m:mi>
+    <m:mo>(</m:mo><m:mi>lambda</m:mi><m:mo>,</m:mo> <m:mi>v</m:mi> <m:mo>,</m:mo>
+    <m:mi>v</m:mi> <m:mo>,</m:mo><m:mi mathvariant="bold">application</m:mi>
+    <m:mo>(</m:mo><m:mi>times</m:mi><m:mo>,</m:mo><m:mi>v</m:mi>
+    <m:mo>,</m:mo><m:mi>v</m:mi><m:mo>)</m:mo> <m:mo>)</m:mo></m:math>  is semantically
+    equivalent to: <m:math display="block"><m:mi mathvariant="bold">binding</m:mi><m:mo>(</m:mo><m:mi>lambda</m:mi><m:mo>,</m:mo>
+    <m:mi>v</m:mi><m:mo>,</m:mo> <m:mi mathvariant="bold">binding</m:mi>
+    <m:mo>(</m:mo><m:mi>lambda</m:mi><m:mo>,</m:mo> <m:mi>v</m:mi><m:mo>,</m:mo><m:mi mathvariant="bold">application</m:mi><m:mo>(</m:mo><m:mi>times</m:mi><m:mo>,</m:mo><m:mi>v</m:mi><m:mo>,</m:mo><m:mi>v</m:mi><m:mo>)</m:mo><m:mo>)</m:mo><m:mo>)</m:mo></m:math> 
+    so that the outermost binding is actually a constant function
+    (<m:math><m:mi>v</m:mi></m:math>  does not occur free in the body <m:math><m:mi mathvariant="bold">application</m:mi>
+    <m:mo>(</m:mo><m:mi>times</m:mi><m:mo>,</m:mo><m:mi>v</m:mi>
+    <m:mo>,</m:mo><m:mi>v</m:mi><m:mo>)</m:mo> <m:mo>)</m:mo></m:math>).</p>
+
+<p>Phrasebooks are allowed to use <m:math><m:mi>α</m:mi></m:math> 
+  conversion in order to avoid clashes of variable names. Suppose an
+  object <m:math><m:mi>Ω</m:mi></m:math>  contains an occurrence of the
+  object <m:math><m:mi mathvariant="bold">binding</m:mi>
+  <m:mo>(</m:mo><m:mi>B</m:mi> <m:mo>,</m:mo> <m:mi>v</m:mi> <m:mo>,</m:mo> <m:mi>C</m:mi>
+  <m:mo>)</m:mo></m:math>.  This object <m:math><m:mi mathvariant="bold">binding</m:mi> <m:mo>(</m:mo><m:mi>B</m:mi> <m:mo>,</m:mo>
+  <m:mi>v</m:mi> <m:mo>,</m:mo> <m:mi>C</m:mi> <m:mo>)</m:mo></m:math>  can be replaced
+  in <m:math><m:mi>Ω</m:mi></m:math>  by <m:math><m:mi mathvariant="bold">binding</m:mi> <m:mo>(</m:mo><m:mi>B</m:mi> <m:mo>,</m:mo>
+  <m:mi>z</m:mi> <m:mo>,</m:mo> <m:mi>C'</m:mi><m:mo>)</m:mo></m:math>  where
+  <m:math><m:mi>z</m:mi></m:math>  is a variable not occurring free in
+  <m:math><m:mi>C</m:mi></m:math>  and <m:math><m:mi>C'</m:mi></m:math>  is obtained
+  from <m:math><m:mi>C</m:mi></m:math>  by replacing each free (i.e., not bound
+  by any intermediate <b>binding</b> construct) occurrence
+  of <m:math><m:mi>v</m:mi></m:math>  by <m:math><m:mi>z</m:mi></m:math>.  This
+  operation preserves the semantics of the object
+  <m:math><m:mi>Ω</m:mi></m:math>. In the above example, a phrasebook is
+  thus allowed to transform the object to, e.g.  <m:math class="del" display="block"><m:mi mathvariant="bold">binding</m:mi>
+  <m:mo>(</m:mo><m:mi>lambda</m:mi><m:mo>,</m:mo> <m:mi>v</m:mi> <m:mo>,</m:mo> <m:mi mathvariant="bold">binding</m:mi> <m:mo>(</m:mo><m:mi>lambda</m:mi><m:mo>,</m:mo>
+  <m:mi>z</m:mi> <m:mo>,</m:mo><m:mi mathvariant="bold">application</m:mi>
+  <m:mo>(</m:mo><m:mi>times</m:mi><m:mo>,</m:mo><m:mi>z</m:mi>
+  <m:mo>,</m:mo><m:mi>z</m:mi><m:mo>)</m:mo><m:mo>)</m:mo><m:mo>)</m:mo><m:mtext>.</m:mtext></m:math> 
+  <m:math class="new" display="block"><m:mi mathvariant="bold">binding</m:mi><m:mo>(</m:mo><m:mi>lambda</m:mi><m:mo>,</m:mo>
+  <m:mi>z</m:mi> <m:mo>,</m:mo> <m:mi mathvariant="bold">application</m:mi><m:mo>(</m:mo><m:mi>plus</m:mi><m:mo>,</m:mo>
+  <m:mi>z</m:mi> <m:mo>,</m:mo>
+  <m:mn>2</m:mn><m:mo>)</m:mo><m:mo>)</m:mo><m:mtext>.</m:mtext></m:math> 
+</p>
+<p class="new">Repeated occurrences of the same variable in a
+  binding operator are allowed. An OpenMath application should treat a
+  binding with multiple occurrences of the same variable as equivalent
+  to the binding in which all but the last occurrence of each variable
+  is replaced by a new variable which does not occur free in the body
+  of the binding.  <m:math display="block"><m:mi mathvariant="bold">binding</m:mi> <m:mo>(</m:mo><m:mi>lambda</m:mi><m:mo>,</m:mo>
+  <m:mi>v</m:mi> <m:mo>,</m:mo> <m:mi>v</m:mi> <m:mo>,</m:mo><m:mi mathvariant="bold">application</m:mi>
+  <m:mo>(</m:mo><m:mi>times</m:mi><m:mo>,</m:mo><m:mi>v</m:mi>
+  <m:mo>,</m:mo><m:mi>v</m:mi><m:mo>)</m:mo> <m:mo>)</m:mo></m:math>  is semantically
+  equivalent to: <m:math display="block"><m:mi mathvariant="bold">binding</m:mi> <m:mo>(</m:mo><m:mi>lambda</m:mi> <m:mo>,</m:mo>
+  <m:msup><m:mi>v</m:mi><m:mo>'</m:mo></m:msup> <m:mo>,</m:mo> <m:mi>v</m:mi>
+  <m:mo>,</m:mo><m:mi mathvariant="bold">application</m:mi>
+  <m:mo>(</m:mo><m:mi>times</m:mi><m:mo>,</m:mo><m:mi>v</m:mi>
+  <m:mo>,</m:mo><m:mi>v</m:mi><m:mo>)</m:mo> <m:mo>)</m:mo></m:math>  so that the
+  resulting function is actually a constant in its first argument
+  (<m:math><m:msup><m:mi>v</m:mi><m:mo>'</m:mo></m:msup></m:math>  does not occur free
+  in the body <m:math><m:mi mathvariant="bold">application</m:mi>
+  <m:mo>(</m:mo><m:mi>times</m:mi><m:mo>,</m:mo><m:mi>v</m:mi>
+  <m:mo>,</m:mo><m:mi>v</m:mi><m:mo>)</m:mo> <m:mo>)</m:mo></m:math>).</p>
+
+  
+</dd>
+
+<dt>Attribution</dt><dd><p>decorates an
+  object with a sequence of one or more pairs made up of an <i>OpenMath</i>
+  symbol, the <span>"attribute"</span>, and an associated <i>OpenMath</i> object,
+  the <span>"value of the attribute"</span>.  The value of the
+  attribute can be an attribution object itself. As example of this,
+  consider the <i>OpenMath</i> objects representing groups, automorphism groups,
+  and group dimensions. It is then possible to attribute an <i>OpenMath</i>
+  object representing a group by its automorphism group, itself
+  attributed by its dimension.</p>
+
+<p>Composition of attributions, as in
+  <m:math display="block">
+<m:mi mathvariant="bold">attribution</m:mi><m:mo>(</m:mo><m:mi mathvariant="bold">attribution</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>,</m:mo>
+  <m:msub><m:mi>S</m:mi><m:mn>1</m:mn></m:msub> <m:mspace width=".3em"/>
+  <m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mi>…</m:mi><m:mo>,</m:mo><m:msub><m:mi>S</m:mi><m:mi>h</m:mi></m:msub>
+  <m:mspace width=".3em"/>
+  <m:msub><m:mi>A</m:mi><m:mi>h</m:mi></m:msub><m:mo>)</m:mo><m:mo>,</m:mo>
+  <m:msub><m:mi>S</m:mi><m:mrow><m:mi>h</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub>
+  <m:mspace width=".3em"/>
+  <m:msub><m:mi>A</m:mi><m:mrow><m:mi>h</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>,</m:mo>
+  <m:mi>…</m:mi><m:mo>,</m:mo> <m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub> <m:mspace width=".3em"/> <m:msub><m:mi>A</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:math>  is
+  semantically equivalent to a single attribution, that is <m:math display="block"><m:mi mathvariant="bold">attribution</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>,</m:mo>
+  <m:msub><m:mi>S</m:mi><m:mn>1</m:mn></m:msub> <m:mspace width=".3em"/>
+  <m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo>
+  <m:mi>…</m:mi><m:mo>,</m:mo> <m:msub><m:mi>S</m:mi><m:mi>h</m:mi></m:msub> <m:mspace width=".3em"/> <m:msub><m:mi>A</m:mi><m:mi>h</m:mi></m:msub><m:mo>,</m:mo>
+  <m:msub><m:mi>S</m:mi><m:mrow><m:mi>h</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub>
+  <m:mspace width=".3em"/>
+  <m:msub><m:mi>A</m:mi><m:mrow><m:mi>h</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>,</m:mo>
+  <m:mi>…</m:mi><m:mo>,</m:mo> <m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub> <m:mspace width=".3em"/>
+  <m:msub><m:mi>A</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo><m:mtext>.</m:mtext></m:math> 
+  The operation that produces an object with a single layer of
+  attribution is called <code>flattening</code>.</p>
+
+<p>Multiple attributes with the same name are allowed.  While the order
+  of the given attributes does not imply any notion of priority,
+  potentially it could be significant. For instance, consider the case
+  in which <m:math><m:msub><m:mi>S</m:mi><m:mi>h</m:mi></m:msub> <m:mo>=</m:mo>
+  <m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub></m:math> 
+ (<m:math><m:mi>h</m:mi> <m:mo>&lt;</m:mo> <m:mi>n</m:mi></m:math>) in the example above. Then, the
+  object is to be interpreted as if the value <m:math><m:msub><m:mi>A</m:mi><m:mi>n</m:mi></m:msub></m:math>  overwrites the
+  value <m:math><m:msub><m:mi>A</m:mi><m:mi>h</m:mi></m:msub></m:math>.  (<i>OpenMath</i> however does not mandate that an application
+  preserves the attributes or their order.)</p>
+
+
+<p>Objects can be decorated in a multitude of
+ways. In <a href="#OM_D131b">[6]</a>, typing of <i>OpenMath</i> objects is
+expressed by using an attribution. The object <m:math><m:mi mathvariant="bold">attribution</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>,</m:mo>
+<m:mi>type</m:mi> <m:mspace width=".3em"/> <m:mi>t</m:mi> <m:mo>)</m:mo></m:math> 
+represents the judgment stating that object <m:math><m:mi>A</m:mi></m:math> 
+has type <m:math><m:mi>t</m:mi></m:math>. Note that both
+<m:math><m:mi>A</m:mi></m:math>  and <m:math><m:mi>t</m:mi></m:math>  are <i>OpenMath</i>
+objects.</p>
+
+<p>Attribution can act as either annotation, in the sense of adornment,
+  or as modifier. In the former case, replacement of the adorned
+  object by the object itself is probably not harmful (preserves the
+  semantics). In the latter case however, it may very well be.
+  Therefore, attribution in general should by default be treated as a
+  construct rather than as adornment. Only when the CD definitions of
+  the attributes make it clear that they are adornments, can the
+  attributed object be viewed as semantically equivalent to the
+  stripped object.</p>
+
+  
+</dd>
+
+<dt>Error</dt><dd><p>is made up of an <i>OpenMath</i>
+  symbol and a sequence of zero or more <i>OpenMath</i> objects. This object has
+  no direct mathematical meaning.  Errors occur as the result of some
+  treatment on an <i>OpenMath</i> object and are thus of real interest only when
+  some sort of communication is taking place. Errors may occur inside
+  other objects and also inside other errors.  Error objects might
+  consist only of a symbol as in the object: <m:math><m:mi mathvariant="bold">error</m:mi> <m:mo>(</m:mo><m:mi>S</m:mi>
+  <m:mo>)</m:mo></m:math>.</p> 
+</dd>
+
+</dl> 
+</div>
+
+<div><h3 name="sec_summary" id="sec_summary">3.3 Summary</h3>
+
+
+<ul>
+<li><p><i>OpenMath</i> supports basic objects like integers, symbols,
+  floating-point numbers, character strings, bytearrays, and
+  variables.</p></li>
+<li><p><i>OpenMath</i> compound objects are of four kinds: applications, bindings,
+  errors, and attributions.</p></li>
+<li><p><i>OpenMath</i> objects have the expressive power to cover all areas of
+  computational mathematics.</p></li>
+</ul>
+
+
+<p>Observe that an <i>OpenMath</i> application object is viewed as a <span>"tree"</span> by
+software applications that do not understand Content Dictionaries,
+whereas a Phrasebook that understands the semantics of the symbols, as
+defined in the Content Dictionaries, should interpret the object as
+functional application, constructor, or binding accordingly. Thus, for
+example, for some applications, the <i>OpenMath</i> object corresponding
+to <m:math><m:mn>2</m:mn><m:mo>+</m:mo><m:mn>5</m:mn></m:math>  may result in a command that writes <m:math><m:mn>7</m:mn></m:math>.</p>
+</div>
+
+
+<h2 name="cha_enco" id="cha_enco">
+  Chapter 4<br/><i>OpenMath</i> Encodings</h2>
+
+
+
+<p>In this chapter, two encodings are defined that map between  <i>OpenMath</i>
+objects and byte streams.  These byte streams constitute a low level
+representation that can be easily exchanged between processes (via
+almost any communication method) or stored and retrieved from files.</p>
+
+
+<p>The first encoding uses  ISO 646:1983 characters <a href="#iso646_83">[2]</a>
+(also known as <span>ascii</span> characters) and is  an <span>xml</span>
+application. Although the <span>xml</span> markup of the encoding uses only <span>ascii</span>
+characters, OpenMath strings may use
+arbitrary Unicode/ISO 10646:1988 
+characters <a href="#UNICODE">[13]</a>. 
+It can be used, for example, to send <i>OpenMath</i> objects via
+e-mail, news, cut-and-paste, etc. The texts produced by this encoding
+can be part of <span>xml</span> documents.</p>
+
+<p>The second encoding is a binary encoding that is meant to be used when 
+the compactness of the encoding is important (interprocess communications 
+over a network is an example).</p>
+
+<p>Note that these two encodings are sufficiently different for
+autodetection to be effective: an application reading the bytes can
+very easily determine which encoding is used.</p>
+
+<div><h3 name="sec_xml" id="sec_xml">4.1 The <span>xml</span> Encoding</h3>
+
+
+<p>This encoding has been designed with two main goals in mind:
+<ol>
+<li><p>to provide an encoding that uses the most common character set
+  (so that it can be easily included in most documents and transport
+  protocols) and that is both readable and writable by a human.</p></li>
+<li><p>to provide an encoding that can be included (embedded) in
+  <span>xml</span> documents.</p></li>
+</ol> 
+</p>
+
+<div><h4 name="ssec_xml" id="ssec_xml">4.1.1 A Grammar for the <span>xml</span> Encoding</h4>
+
+
+
+
+
+<p>The <span>xml</span> encoding of an OpenMath object is defined by the <span>dtd</span> given
+in <a href="#fig_objdtd">Figure 4.1</a> below, with the following additional rules
+not implied by the <span>xml</span> <span>dtd</span>.</p>
+<ul>
+<li><p>Comments are permitted only between
+elements, not within element character data.</p></li>
+<li><p>Processing Instructions are only allowed before the <span>OMOBJ</span>
+ element.</p></li>
+<li><p>The content of an <span>OMB</span> element, is a valid base64-encoded text.</p></li>
+<li><p>The character data forming element content and attribute values
+matches the regular expressions of <a href="#fig_xml">Figure 4.2</a>.</p></li>
+</ul>
+
+
+<div class="figure"><a name="fig_objdtd" id="fig_objdtd"/>
+    
+<div class="literal"><pre>
+&lt;!-- DTD for OM Objects - sb 29.10.98 --&gt;
+&lt;!-- sb 3.2.99 --&gt;
+
+&lt;!--
+     general list of embeddable elements
+      : excludes OMATP as this is only embeddable in OMATTR
+      : excludes OMBVAR as this is only embeddable in OMBIND
+--&gt;
+
+&lt;!ENTITY % omel "OMS | OMV | OMI | OMB | OMSTR
+                                | OMF | OMA | OMBIND | OME
+                                | OMATTR "&gt;
+
+&lt;!-- things which can be variables --&gt;
+
+&lt;!ENTITY % omvar "OMV | OMATTR" &gt;
+
+&lt;!-- symbol --&gt;
+&lt;!ELEMENT OMS EMPTY&gt;
+&lt;!ATTLIST OMS name CDATA #REQUIRED
+                          cd CDATA #REQUIRED &gt;
+
+&lt;!-- variable --&gt;
+&lt;!ELEMENT OMV EMPTY&gt;
+&lt;!ATTLIST OMV name CDATA #REQUIRED &gt;
+
+&lt;!-- integer --&gt;
+&lt;!ELEMENT OMI (#PCDATA) &gt;
+
+&lt;!-- byte array --&gt;
+&lt;!ELEMENT OMB (#PCDATA) &gt;
+
+&lt;!-- string --&gt;
+&lt;!ELEMENT OMSTR (#PCDATA) &gt;
+
+&lt;!-- floating point --&gt;
+&lt;!ELEMENT OMF EMPTY&gt;
+&lt;!ATTLIST OMF dec CDATA #IMPLIED
+                          hex CDATA #IMPLIED&gt;
+
+&lt;!-- apply constructor --&gt;
+&lt;!ELEMENT OMA (%omel;)+ &gt;
+
+&lt;!-- binding constructor &amp; variable --&gt;
+&lt;!ELEMENT OMBIND ((%omel;), OMBVAR, (%omel;)) &gt;
+&lt;!ELEMENT OMBVAR (%omvar;)+ &gt;
+
+&lt;!-- error --&gt;
+&lt;!ELEMENT OME (OMS, (%omel;)* ) &gt;
+
+&lt;!-- attribution constructor &amp; attribute pair constructor --&gt;
+&lt;!ELEMENT OMATTR (OMATP, (%omel;)) &gt;
+&lt;!ELEMENT OMATP (OMS, (%omel;))+ &gt;
+
+&lt;!-- OM object constructor --&gt;
+&lt;!ELEMENT OMOBJ (%omel;) &gt;
+</pre></div>
+<div>
+  Figure 4.1 DTD for the <i>OpenMath</i> <span>xml</span> encoding of objects.</div></div>
+
+
+<p>In addition, if the <span>xml</span> document encoding the <i>OpenMath</i> object is
+linearised into the <span>xml</span> concrete syntax, the following further
+constraints apply, which ensure thet the encoding may be read by <i>OpenMath</i>
+applications that may not include a full <span>xml</span> parser.</p>
+
+<ul>
+<li><p>The document should use <span>utf-8</span> encoding.</p></li>
+<li class="del"><p>Entity and character references should not be used.</p></li>
+<li><p>A <code>&lt;!DOCTYPE</code> declaration should not be used.</p></li>
+<li class="new"><p>Character references should not be used. As <code>&lt;!DOCTYPE</code>
+is not used, the only entity references that are allowed are the five predefined entity
+references: 
+<code>&amp;apos;</code> ('),
+<code>&amp;quot;</code> ("),
+<code>&amp;lt;</code> (&lt;),
+<code>&amp;gt;</code> (&gt;),
+<code>&amp;amp;</code> (&amp;).
+</p></li>
+<li><p>The <span>xml</span> empty element form <code>&lt;|<span>…</span>/&gt;</code> should always be
+used to encode elements such as <span>omf</span> which are specified in the
+<span>dtd</span> as
+being <span>empty</span>. It should never be used for elements that may sometimes be
+empty, such as <span>omstr</span>.</p></li>
+</ul>
+
+<p>Such a linearisation of an <span>xml</span> encoded <i>OpenMath</i> Object would match the
+match the character based grammar given in <a href="#fig_xml">Figure 4.2</a>.</p>
+
+<p>The notation used in this section and in <a href="#fig_xml">Figure 4.2</a> should
+be quite straightforward (+ meaning <span>"one or more"</span>, ? meaning zero or
+one, and <m:math><m:mi>|</m:mi></m:math>  meaning <span>"or"</span>). The start symbol of the grammar is
+<span>"start"</span>, <span>"space"</span> stands for the space character, <span>"cr"</span> for the
+carriage return character, <span>"nl"</span> for the line feed character and
+<span>"tab"</span> for the horizontal tabulation character.</p>
+
+
+<div class="figure"><a name="fig_xml" id="fig_xml"/>
+    
+
+
+
+<table>
+<tr>
+<td>
+S           </td><td> <m:math><m:mo>→</m:mo></m:math>  </td><td> (space<m:math><m:mi>|</m:mi></m:math>tab<m:math><m:mi>|</m:mi></m:math>cr<m:math><m:mi>|</m:mi></m:math>nl)+  
+</td>
+</tr>
+<tr>
+<td>
+
+
+integer     </td><td> <m:math><m:mo>→</m:mo></m:math>  </td><td> 
+        (<code>-</code> S?)? [0-9]+ (S [0-9]+)*  <m:math><m:mi>|</m:mi></m:math>  
+        (<code>-</code> S?)? <code>x</code> S? [0-9A-F]+ (S [0-9A-F]+)* 
+</td>
+</tr>
+<tr>
+<td>
+ 
+
+cdname      </td><td> <m:math><m:mo>→</m:mo></m:math>  </td><td>  [a-z][a-z0-9<code>_</code>]*
+</td>
+</tr>
+<tr>
+<td>
+
+
+symbname    </td><td> <m:math><m:mo>→</m:mo></m:math>  </td><td> [A-Za-z][A-Za-z0-9<code>_</code>]*
+</td>
+</tr>
+<tr>
+<td>
+
+
+fpdec       </td><td> <m:math><m:mo>→</m:mo></m:math>  </td><td>  
+    (<code>-</code>?)([0-9]+)?(<code>.</code>[0-9]+)?(<code>e</code>([+-]?)[0-9]+)?
+</td>
+</tr>
+<tr>
+<td>
+
+
+fphex       </td><td> <m:math><m:mo>→</m:mo></m:math>  </td><td>  [0-9ABCDEF]+ 
+</td>
+</tr>
+<tr>
+<td>
+
+
+varname        </td><td> <m:math><m:mo>→</m:mo></m:math>  </td><td> ([A-Za-z0-9+=(),-./:?!#$%*;@[]^_`{|}])+ 
+</td>
+</tr>
+<tr>
+<td>
+
+
+base64      </td><td> <m:math><m:mo>→</m:mo></m:math>  </td><td> ([A-Za-z0-9 +/=] <m:math><m:mi>|</m:mi></m:math>  S)+ 
+</td>
+</tr>
+<tr>
+<td>
+
+vv
+char  </td><td> <m:math><m:mo>→</m:mo></m:math>  </td><td> <i>XML Character Data</i>
+</td>
+</tr>
+</table>
+
+
+
+
+<table>
+<tr>
+<td>
+symbnameatt</td><td> <m:math><m:mo>→</m:mo></m:math></td><td> 
+    <code>name</code> S? = S? (<code>"</code> symbname <code>"</code> <code>|</code> <code>'</code> symbname <code>'</code>) 
+</td>
+</tr>
+<tr>
+<td>
+
+cdnameatt</td><td> <m:math><m:mo>→</m:mo></m:math></td><td>
+ <code>cd</code> S? = S? (<code>"</code> cdname <code>"</code> <code>|</code> <code>'</code> cdname <code>'</code>) 
+</td>
+</tr>
+<tr>
+<td>
+
+varnameatt</td><td> <m:math><m:mo>→</m:mo></m:math></td><td>
+ <code>name</code> S? = S? (<code>"</code> varname <code>"</code> <code>|</code> <code>'</code> varname <code>'</code>) 
+</td>
+</tr>
+<tr>
+<td>
+
+fpdecatt</td><td> <m:math><m:mo>→</m:mo></m:math></td><td>
+ <code>dec</code> S? = S? (<code>"</code> fpdec <code>"</code> <code>|</code> <code>'</code> fpdec <code>'</code>) 
+</td>
+</tr>
+<tr>
+<td>
+
+fphexatt</td><td> <m:math><m:mo>→</m:mo></m:math></td><td>
+ <code>hex</code> S? = S? (<code>"</code> fphex <code>"</code> <code>|</code> <code>'</code> fphex <code>'</code>) 
+</td>
+</tr>
+<tr>
+<td>
+
+PI </td><td> <m:math><m:mo>→</m:mo></m:math></td><td> &lt;<code>?</code> char <code>?</code><code>&gt;</code>
+</td>
+</tr>
+<tr>
+<td>
+
+comment</td><td> <m:math><m:mo>→</m:mo></m:math></td><td> &lt;<code>!--</code> char <code>--</code><code>&gt;</code>
+</td>
+</tr>
+<tr>
+<td>
+
+
+SC</td><td><m:math><m:mo>→</m:mo></m:math></td><td> S+ <code>|</code> (comment S)+
+</td>
+</tr>
+<tr>
+<td>
+
+
+start  </td><td> <m:math><m:mo>→</m:mo></m:math>  </td><td> 
+ (SC <code>|</code> PI)* <code>&lt;OMOBJ</code> S?<code>&gt;</code> S? object S? <code>&lt;/OMOBJ</code> S?<code>&gt;</code> 
+</td>
+</tr>
+<tr>
+<td>
+
+
+symbol   </td><td> <m:math><m:mo>→</m:mo></m:math>  </td><td> 
+  <code>&lt;OMS</code> S  symbnameatt S cdnameatt  S? <code>/&gt;</code>
+</td>
+</tr>
+<tr>
+<td>
+
+       </td><td> <m:math><m:mi>|</m:mi></m:math>                </td><td>
+  <code>&lt;OMS</code> S cdnameatt S symbnameatt S? <code>/&gt;</code>
+</td>
+</tr>
+<tr>
+<td>
+
+
+variable </td><td> <m:math><m:mo>→</m:mo></m:math>  </td><td>
+   <code>&lt;OMV</code> S varnameatt S? <code>/&gt;</code>
+</td>
+</tr>
+<tr>
+<td>
+
+         </td><td> <m:math><m:mi>|</m:mi></m:math>  
+         </td><td> <code>&lt;OMATTR</code> S?<code>&gt;</code> SC? omatp SC? variable SC? <code>&lt;/OMATTR</code> S?<code>&gt;</code>
+</td>
+</tr>
+<tr>
+<td>
+
+omatp </td><td> <m:math><m:mo>→</m:mo></m:math>  </td><td>
+     <code>&lt;OMATP</code> S?<code>&gt;</code> SC? attrs SC? <code>&lt;/#1</code> S?<code>&gt;</code> 
+</td>
+</tr>
+<tr>
+<td>
+
+
+
+
+object </td><td> <m:math><m:mo>→</m:mo></m:math>  </td><td> symbol 
+</td>
+</tr>
+<tr>
+<td>
+
+       </td><td> <m:math><m:mi>|</m:mi></m:math>            </td><td> variable 
+</td>
+</tr>
+<tr>
+<td>
+
+       </td><td> <m:math><m:mi>|</m:mi></m:math>            </td><td> <code>&lt;OMI</code> S?<code>&gt;</code> S? integer S? <code>&lt;/OMI</code> S?<code>&gt;</code>
+</td>
+</tr>
+<tr>
+<td>
+
+       </td><td> <m:math><m:mi>|</m:mi></m:math>            </td><td> <code>&lt;OMF</code> S fpdecatt S? <code>/&gt;</code>
+</td>
+</tr>
+<tr>
+<td>
+  
+       </td><td> <m:math><m:mi>|</m:mi></m:math>            </td><td> <code>&lt;OMF</code> S fphexatt S? <code>/&gt;</code>
+</td>
+</tr>
+<tr>
+<td>
+  
+       </td><td> <m:math><m:mi>|</m:mi></m:math>            </td><td> <code>&lt;OMSTR</code> S?<code>&gt;</code> char <code>&lt;/#1</code> S?<code>&gt;</code> 
+</td>
+</tr>
+<tr>
+<td>
+  
+       </td><td> <m:math><m:mi>|</m:mi></m:math>            </td><td> <code>&lt;OMB</code> S?<code>&gt;</code> base64  <code>&lt;/#1</code> S?<code>&gt;</code> 
+</td>
+</tr>
+<tr>
+<td>
+   
+       </td><td> <m:math><m:mi>|</m:mi></m:math>            </td><td> <code>&lt;OMA</code> S?<code>&gt;</code> SC? object SC? objects SC? <code>&lt;/OMA</code> S?<code>&gt;</code>
+</td>
+</tr>
+<tr>
+<td>
+
+       </td><td> <m:math><m:mi>|</m:mi></m:math>            </td><td> <code>&lt;OMBIND</code> S?<code>&gt;</code> SC? object SC? 
+</td>
+</tr>
+<tr>
+<td>
+
+       </td><td/><td> <code>&lt;OMBVAR</code> S?<code>&gt;</code> SC? variables SC? <code>&lt;/#1</code> S?<code>&gt;</code> 
+</td>
+</tr>
+<tr>
+<td>
+
+       </td><td/><td> SC? object SC? <code>&lt;/OMBIND</code> S?<code>&gt;</code>
+</td>
+</tr>
+<tr>
+<td>
+ 
+       </td><td> <m:math><m:mi>|</m:mi></m:math>            </td><td> <code>&lt;OME</code> S?<code>&gt;</code> SC? symbol SC? objects SC? <code>&lt;/OME</code> S?<code>&gt;</code> 
+</td>
+</tr>
+<tr>
+<td>
+  
+       </td><td> <m:math><m:mi>|</m:mi></m:math>            </td><td> <code>&lt;OMATTR</code> S?<code>&gt;</code> SC?  <code>&lt;OMATP</code> S?<code>&gt;</code> SC? attrs SC? <code>&lt;/#1</code> S?<code>&gt;</code>   
+</td>
+</tr>
+<tr>
+<td>
+
+       </td><td/><td>SC? object SC? <code>&lt;/OMATTR</code> S?<code>&gt;</code>  
+</td>
+</tr>
+<tr>
+<td>
+  
+ 
+
+attrs  </td><td> <m:math><m:mo>→</m:mo></m:math>  </td><td> symbol S? object   
+</td>
+</tr>
+<tr>
+<td>
+ 
+       </td><td> <m:math><m:mi>|</m:mi></m:math>                </td><td> symbol S? object S? attrs 
+</td>
+</tr>
+<tr>
+<td>
+
+
+
+objects </td><td> <m:math><m:mo>→</m:mo></m:math>  </td><td> SC?     
+</td>
+</tr>
+<tr>
+<td>
+
+        </td><td> <m:math><m:mi>|</m:mi></m:math>                </td><td> object SC? objects  
+</td>
+</tr>
+<tr>
+<td>
+
+
+variables </td><td> <m:math><m:mo>→</m:mo></m:math>  </td><td> SC?   
+</td>
+</tr>
+<tr>
+<td>
+ 
+        </td><td> <m:math><m:mi>|</m:mi></m:math>                </td><td> variable SC? variables  
+</td>
+</tr>
+<tr>
+<td>
+
+</td>
+</tr>
+</table>
+
+
+<div>
+  Figure 4.2 Grammar for the <span>xml</span> encoding of <i>OpenMath</i> objects.</div></div>
+</div>
+
+<div><h4 name="sec_xml-desc" id="sec_xml-desc">4.1.2 Description of the Grammar</h4>
+
+
+
+
+<p>An encoded <i>OpenMath</i> object is placed inside an <code>OMOBJ</code> element.  This 
+element can contain the elements (and integers) as described above.</p>
+
+<p>We briefly discuss the <span>xml</span> encoding for each type of <i>OpenMath</i> object
+starting from the basic objects.</p>
+
+<dl>
+<dt>Integers</dt>
+<dd>
+
+<p>are encoded using the <code>OMI</code> element around the
+  sequence of their digits in base 10 or 16 (most significant digit
+  first).  White space may be inserted between the characters of the
+  integer representation, this will be ignored.
+  After ignoring white
+  space, integers written in base 10 match the regular expression
+  <code>-?[0-9]+</code>.  Integers written in base 16 match
+  <code>-?x[0-9A-F]+</code>.
+The integer 10 can be thus encoded as
+  <code>&lt;OMI&gt; 10 &lt;/OMI&gt; </code> or as <code>&lt;OMI&gt; xA &lt;/OMI&gt; </code>
+  but neither <code>&lt;OMI&gt; +10 &lt;/OMI&gt;</code> nor <code>&lt;OMI&gt; +xA &lt;/OMI&gt;</code>
+  can be used.</p>
+
+<p>The negative integer <m:math><m:mn>-120</m:mn></m:math>  can be encoded as either as decimal
+       <code>&lt;OMI&gt; -120 &lt;/OMI&gt;</code> or  as hexadecimal <code>&lt;OMI&gt; -x78 &lt;/OMI&gt;</code>.</p>
+
+  
+</dd>
+
+<dt>Symbols</dt><dd><p>are encoded using the <code>OMS</code> element. This element
+  has two <span>xml</span>-attributes <code>cd</code> and <code>name</code>. The value
+  of <code>cd</code> is the name of the Content Dictionary in which the
+  symbol is defined and the value of <code>name</code> is the name of the
+  symbol.  The name of the Content Dictionary is compulsory, but a
+  future revision of the <i>OpenMath</i> standard might introduce a defaulting
+  mechanism.  For example, <code>&lt;OMS cd="transc" name="sin"/&gt;</code> is the
+  encoding of the symbol named <code>sin</code> in the Content Dictionary
+  named <code>transc</code>.</p>
+  
+</dd>
+
+<dt>Variables</dt><dd><p>are encoded using the <code>OMV</code> element, with only
+  one <span>xml</span>-attribute, <code>name</code>, whose value is the variable
+  name.  The variable name is a subset of the printable <span>ascii</span>
+ set of characters.
+  In particular, neither spaces nor double-quote <code>"</code> are allowed
+  in variable names.  For instance, the encoding of the object
+  representing the variable <m:math><m:mi>x</m:mi></m:math>  is:
+    <code>&lt;OMV  name="x"/&gt;</code></p>
+
+  
+</dd>
+
+<dt>Floating-point numbers</dt><dd><p>are encoded using the <code>OMF</code> element
+  that has either the <span>xml</span>-attribute <code>dec</code> or the
+  <span>xml</span>-attribute <code>hex</code>. The two <span>xml</span>-attributes
+  cannot be present simultaneously. The value of <code>dec</code> is the
+  floating-point number expressed in base 10, using the common syntax:</p>
+  
+  <blockquote><p>
+  <code>(-?)([0-9]+)?("."[0-9]+)?(e(-?)[0-9]+)?</code>.
+  </p></blockquote>
+  
+  <p>The value of <code>hex</code> is the digits of the floating-point number
+  expressed in base 16, with digits <code>0</code>-<code>9</code>, <code>A</code>-<code>F</code>
+  (mantissa, exponent, and sign from lowest to highest bits) using a
+  least significant byte ordering.  For example, <code>&lt;OMF
+    dec="1.0e-10"/&gt;</code> is a valid floating-point number.</p>
+  
+
+</dd>
+
+<dt>Character strings</dt><dd><p>are encoded using the <code>OMSTR</code> element.
+  Its content is  a Unicode text (The default encoding 
+  is <span>utf-8</span><a href="#utf8">[17]</a>, although <span>xml</span> encoded OpenMath may be embedded
+ in a containing <span>xml</span> document that specifies alternative encoding in
+  the <span>xml</span> declaration. Note that as always in <span>xml</span> the
+  characters <code>&lt;</code> and <code>&amp;</code>  need to be represented by the
+  entity references <code>&lt;</code> and <code>&amp;</code> respectively.</p>
+  
+</dd>
+
+<dt>Bytearrays</dt><dd><p>are encoded using the <code>OMB</code> element. Its content
+  is a sequence of characters that is a base64 encoding of the data.
+  The base64 encoding is defined in <span>rfc</span> 1521 <a href="#rfc1521">[4]</a>.
+  Basically, it represents an arbitrary sequence of octets using 64
+  <span>"digits"</span> (<code>A</code> through <code>Z</code>, <code>a</code> through <code>z</code>, <code>0</code> through <code>9</code>, <code>+</code> and /, in order of increasing
+  value). Three octets are represented as four digits (the <code>=</code>
+  character for padding to the right at the end of the data). All line
+  breaks and carriage return, space, form feed and horizontal
+  tabulation characters are ignored. The reader is refered to
+  <a href="#rfc1521">[4]</a> for more detailed information.</p>
+
+</dd>
+
+</dl>
+ 
+<p>In detail the encoding of an <i>OpenMath</i> object is described below.</p>
+
+<dl>
+<dt>Applications</dt><dd><p>are encoded using the <code>OMA</code> element. The
+  application whose root is the <i>OpenMath</i> object <m:math><m:msub><m:mi>e</m:mi><m:mn>0</m:mn></m:msub></m:math>  and whose arguments
+  are the <i>OpenMath</i> objects <m:math><m:msub><m:mi>e</m:mi><m:mn>1</m:mn></m:msub></m:math>, <span>…</span>, <m:math><m:msub><m:mi>e</m:mi><m:mi>n</m:mi></m:msub></m:math>  is encoded as <code>&lt;OMA&gt;</code>
+  <m:math><m:msub><m:mi>C</m:mi><m:mn>0</m:mn></m:msub></m:math>  <m:math><m:msub><m:mi>C</m:mi><m:mn>1</m:mn></m:msub></m:math><span>…</span> <m:math><m:msub><m:mi>C</m:mi><m:mi>n</m:mi></m:msub></m:math>  <code>&lt;/OMA&gt;</code> where <m:math><m:msub><m:mi>C</m:mi><m:mi>i</m:mi></m:msub></m:math>  is the encoding of
+  <m:math><m:msub><m:mi>e</m:mi><m:mi>i</m:mi></m:msub></m:math>.</p>
+
+<p>For example, <m:math><m:mi mathvariant="bold">application</m:mi><m:mo>(</m:mo><m:mi>sin</m:mi><m:mo>,</m:mo><m:mi>x</m:mi> <m:mo>)</m:mo></m:math>  is encoded as:
+<code>
+            &lt;OMA&gt;  
+            &lt;OMS cd="transc1" name="sin"/&gt; 
+            &lt;OMV name="x"/&gt;  
+            &lt;/OMA&gt; 
+</code> 
+  provided that the symbol <code>sin</code> is defined to be a function
+  symbol in a Content Dictionary named <code>transc1</code>.</p>
+
+  
+</dd>
+
+<dt>Binding</dt><dd><p>is encoded using the <code>OMBIND</code> element.  The binding
+  by the <i>OpenMath</i> object <m:math><m:mi>b</m:mi></m:math>  of the <i>OpenMath</i> variables <m:math><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:math>, <m:math><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:math>,
+  <m:math><m:mi>…</m:mi></m:math>, <m:math><m:msub><m:mi>x</m:mi><m:mi>n</m:mi></m:msub></m:math>  in the object <m:math><m:mi>c</m:mi></m:math>  is encoded as <code>&lt;OMBIND&gt;</code> <m:math><m:mi>B</m:mi></m:math> 
+  <code>&lt;OMBVAR&gt;</code> <m:math><m:msub><m:mi>X</m:mi><m:mn>1</m:mn></m:msub></m:math>  <m:math><m:mi>…</m:mi></m:math>  <m:math><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub></m:math>  <code>&lt;/OMBVAR&gt;</code> <m:math><m:mi>C</m:mi></m:math>  <code>&lt;/OMBIND&gt;</code> where <m:math><m:mi>B</m:mi></m:math>, <m:math><m:mi>C</m:mi></m:math>, and <m:math><m:msub><m:mi>X</m:mi><m:mi>i</m:mi></m:msub></m:math>  are the encodings of <m:math><m:mi>b</m:mi></m:math>, <m:math><m:mi>c</m:mi></m:math> 
+  and <m:math><m:msub><m:mi>x</m:mi><m:mi>i</m:mi></m:msub></m:math>, respectively.</p>
+
+<p>For instance the encoding of
+  <m:math><m:mi mathvariant="bold">binding</m:mi>
+       <m:mo>(</m:mo><m:mi>lambda</m:mi><m:mo>,</m:mo>
+  <m:mi>x</m:mi><m:mo>,</m:mo><m:mi mathvariant="bold">application</m:mi>
+     <m:mo>(</m:mo><m:mi>sin</m:mi><m:mo>,</m:mo> <m:mi>x</m:mi><m:mo>)</m:mo><m:mo>)</m:mo></m:math>  is:
+<code> 
+      &lt;OMBIND&gt;
+        &lt;OMS cd="fns1" name="lambda"/&gt;  
+        &lt;OMBVAR&gt;
+          &lt;OMV name="x"/&gt;
+        &lt;/OMBVAR&gt;  
+        &lt;OMA&gt;
+          &lt;OMS cd="transc1" name="sin"/&gt; 
+          &lt;OMV name="x"/&gt;  
+        &lt;/OMA&gt;
+      &lt;/OMBIND&gt;
+</code> </p>
+  
+<p>Binders are defined in  Content Dictionaries, in particular,
+  the symbol <code>lambda</code> is defined in the Content Dictionary
+  <code>fns1</code> for functions over functions.</p>
+  
+</dd>
+
+<dt>Attributions</dt><dd><p>are encoded using the <code>OMATTR</code> element.  If
+  the <i>OpenMath</i> object <m:math><m:mi>e</m:mi></m:math>  is attributed with (<m:math><m:msub><m:mi>s</m:mi><m:mn>1</m:mn></m:msub></m:math>, <m:math><m:msub><m:mi>e</m:mi><m:mn>1</m:mn></m:msub></m:math>), <span>…</span>, 
+  (<m:math><m:msub><m:mi>s</m:mi><m:mi>n</m:mi></m:msub></m:math>, <m:math><m:msub><m:mi>e</m:mi><m:mi>n</m:mi></m:msub></m:math>) pairs (where <m:math><m:msub><m:mi>s</m:mi><m:mi>i</m:mi></m:msub></m:math>  are the attributes), it is encoded
+  as <code>&lt;OMATTR&gt;</code> <code>&lt;OMATP&gt;</code> <m:math><m:msub><m:mi>S</m:mi><m:mn>1</m:mn></m:msub></m:math>  <m:math><m:msub><m:mi>C</m:mi><m:mn>1</m:mn></m:msub></m:math>  <span>…</span> <m:math><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub></m:math>  <m:math><m:msub><m:mi>C</m:mi><m:mi>n</m:mi></m:msub></m:math>  <code>&lt;/OMATP&gt;</code> <m:math><m:mi>E</m:mi></m:math>  <code>&lt;/OMATTR&gt;</code> where <m:math><m:msub><m:mi>S</m:mi><m:mi>i</m:mi></m:msub></m:math>  is the encoding of the
+  symbol <m:math><m:msub><m:mi>s</m:mi><m:mi>i</m:mi></m:msub></m:math>, <m:math><m:msub><m:mi>C</m:mi><m:mi>i</m:mi></m:msub></m:math>  of the object <m:math><m:msub><m:mi>e</m:mi><m:mi>i</m:mi></m:msub></m:math>  and <m:math><m:mi>E</m:mi></m:math>  is the encoding of
+  <m:math><m:mi>e</m:mi></m:math>.</p>
+
+<p>Examples are the use of attribution to decorate a group by its
+  automorphism group:
+<code>
+          &lt;OMATTR&gt;    
+             &lt;OMATP&gt;
+                  &lt;OMS cd="groups" name="automorphism_group" /&gt;  
+                  [..group-encoding..] 
+             &lt;/OMATP&gt;  
+             [..group-encoding..] 
+          &lt;/OMATTR&gt;  
+</code> 
+or to express the type of a variable:
+<code> 
+          &lt;OMATTR&gt;    
+              &lt;OMATP&gt;
+                   &lt;OMS cd="ecc" name="type" /&gt; 
+                   &lt;OMS cd="ecc" name="real" /&gt;
+              &lt;/OMATP&gt; 
+              &lt;OMV name="x" /&gt;
+          &lt;/OMATTR&gt;
+</code> </p>
+
+  
+</dd>
+
+<dt>Errors</dt><dd><p>are encoded using the <code>OME</code> element. The error whose
+  symbol is <m:math><m:mi>s</m:mi></m:math>  and whose arguments are the <i>OpenMath</i> objects <m:math><m:msub><m:mi>e</m:mi><m:mn>1</m:mn></m:msub></m:math>,
+  <span>…</span>, <m:math><m:msub><m:mi>e</m:mi><m:mi>n</m:mi></m:msub></m:math>  is encoded as <code>&lt;OME&gt;</code> <m:math><m:msub><m:mi>C</m:mi><m:mi>s</m:mi></m:msub></m:math>  <m:math><m:msub><m:mi>C</m:mi><m:mn>1</m:mn></m:msub></m:math><span>…</span> <m:math><m:msub><m:mi>C</m:mi><m:mi>n</m:mi></m:msub></m:math>  <code>&lt;/OME&gt;</code> where <m:math><m:msub><m:mi>C</m:mi><m:mi>s</m:mi></m:msub></m:math>  is the encoding of <m:math><m:mi>s</m:mi></m:math>  and <m:math><m:msub><m:mi>C</m:mi><m:mi>i</m:mi></m:msub></m:math>  the encoding
+  of <m:math><m:msub><m:mi>e</m:mi><m:mi>i</m:mi></m:msub></m:math>.</p>
+
+<p>If an <code>aritherror</code> Content Dictionary contained a
+  <code>DivisionByZero</code> symbol, then the object
+  <m:math><m:mi mathvariant="bold">error</m:mi><m:mo>(</m:mo><m:mi>DivisionByZero</m:mi><m:mo>,</m:mo> <m:mi mathvariant="bold">application</m:mi>
+  <m:mo>(</m:mo><m:mi>divide</m:mi><m:mo>,</m:mo> 
+  <m:mi>x</m:mi><m:mo>,</m:mo> <m:mn>0</m:mn><m:mo>)</m:mo><m:mo>)</m:mo></m:math>  would be encoded as follows:
+
+<code> 
+            &lt;OME&gt;
+            &lt;OMS cd="aritherror" name="DivisionByZero"/&gt;  
+            &lt;OMA&gt;
+                 &lt;OMS cd="arith1" name="divide" /&gt;
+                 &lt;OMV name="x"/&gt;  
+                 &lt;OMI&gt; 0 &lt;/OMI&gt;
+            &lt;/OMA&gt; 
+            &lt;/OME&gt;
+</code></p>   
+  
+</dd>
+
+</dl>
+
+
+
+</div>
+
+<div><h4 name="xmldoc" id="xmldoc">4.1.3 Embedding OpenMath in XML Documents</h4>
+
+
+     
+<p>The above encoding of <span>xml</span> encoded <i>OpenMath</i> specifies the grammar to be
+used in files that encode a single <i>OpenMath</i> object, and specifies the
+character streams that a conforming <i>OpenMath</i> application should be able
+to accept or produce.</p>
+
+<p>When embedding <span>xml</span> encoded <i>OpenMath</i> objects into a larger XML document
+one may wish, or need, to use other XML features. For example use of
+extra <span>xml</span> attributes to specify <span>xml</span> Namespaces <a href="#xmlns">[14]</a>
+or xml:lang attributes to specify the language used in strings <a href="#xml">[15]</a>.
+Also, the encoding used in the larger document may not be <span>utf-8</span>.</p>
+
+ 
+<p>In particular, if <i>OpenMath</i>  is used with applications that use the XML
+Namespace Recommnedation <a href="#xmlns">[14]</a> then they should ensure
+that <i>OpenMath</i> elements are in the namespace
+<code>http://www.openmath.org/OpenMath</code>
+This is most conveniently achieved by adding the namespace declaration
+<div class="literal"><pre>
+xmlns="http://www.openmath.org/OpenMath"
+</pre></div>
+as an attribute to each <code>OMOBJ</code> element in the document.</p>
+
+<p>If such <span>xml</span> features are used then the <span>xml</span> application controlling the
+document must, if passing the <i>OpenMath</i> fragment to an <i>OpenMath</i> application,
+remove any such extra attributes and must ensure that the
+fragment is encoded according to the grammar specified above.</p>
+</div>
+</div>
+
+<div><h3 name="sec_binary" id="sec_binary">4.2 The Binary Encoding</h3>
+
+
+
+
+<p>The binary encoding was essentially designed to be more compact than
+the <span>xml</span> encodings, so that it can be more efficient if large
+amounts of data are involved. For the current encoding, we tried to
+keep the right balance between compactness, speed of encoding and
+decoding and simplicity (to allow a simple specification and easy
+implementations).</p>
+
+<div><h4 name="sec_binary_grammar" id="sec_binary_grammar">4.2.1 A Grammar for the Binary Encoding</h4>
+
+
+
+
+     
+
+<div class="figure"><a name="fig_bin-enc" id="fig_bin-enc"/>
+    
+    
+<table>
+<tr>
+<td>
+start  </td><td> <m:math><m:mo>→</m:mo></m:math>  </td><td> [24] object [25] 
+</td>
+</tr>
+<tr>
+<td>
+
+object </td><td> <m:math><m:mo>→</m:mo></m:math>  </td><td> integer 
+</td>
+</tr>
+<tr>
+<td>
+
+       </td><td> <m:math><m:mi>|</m:mi></m:math>                </td><td> float 
+</td>
+</tr>
+<tr>
+<td>
+
+       </td><td> <m:math><m:mi>|</m:mi></m:math>                </td><td> variable 
+</td>
+</tr>
+<tr>
+<td>
+
+       </td><td> <m:math><m:mi>|</m:mi></m:math>                </td><td> symbol 
+</td>
+</tr>
+<tr>
+<td>
+
+       </td><td> <m:math><m:mi>|</m:mi></m:math>                </td><td> string 
+</td>
+</tr>
+<tr>
+<td>
+
+       </td><td> <m:math><m:mi>|</m:mi></m:math>                </td><td> bytearray 
+</td>
+</tr>
+<tr>
+<td>
+
+       </td><td> <m:math><m:mi>|</m:mi></m:math>                </td><td> construct 
+</td>
+</tr>
+<tr>
+<td>
+
+integer </td><td><m:math><m:mo>→</m:mo></m:math>  </td><td> [1] [_] 
+</td>
+</tr>
+<tr>
+<td>
+
+        </td><td><m:math><m:mi>|</m:mi></m:math>                </td><td> [1 + 128] {_} 
+</td>
+</tr>
+<tr>
+<td>
+
+        </td><td><m:math><m:mi>|</m:mi></m:math>                </td><td> [2] [n] [_] digits:n 
+</td>
+</tr>
+<tr>
+<td>
+
+        </td><td><m:math><m:mi>|</m:mi></m:math>                </td><td> [2 + 128] {n} [_] digits:n 
+</td>
+</tr>
+<tr>
+<td>
+
+float  </td><td> <m:math><m:mo>→</m:mo></m:math>  </td><td> [3] {_} {_} 
+</td>
+</tr>
+<tr>
+<td>
+
+variable </td><td> <m:math><m:mo>→</m:mo></m:math>  </td><td> [5] [n] varname:n 
+</td>
+</tr>
+<tr>
+<td>
+
+         </td><td> <m:math><m:mi>|</m:mi></m:math>                </td><td> [5 + 128] {n} varname:n 
+</td>
+</tr>
+<tr>
+<td>
+
+         </td><td> <m:math><m:mi>|</m:mi></m:math>                </td><td> [5 + 64] [n] 
+</td>
+</tr>
+<tr>
+<td>
+
+symbol </td><td>  <m:math><m:mo>→</m:mo></m:math>  </td><td> [8] [n] [m] cdname:n symbname:m 
+</td>
+</tr>
+<tr>
+<td>
+
+       </td><td> <m:math><m:mi>|</m:mi></m:math>                 </td><td> [8 + 128] {n} {m} cdname:n symbname:m 
+</td>
+</tr>
+<tr>
+<td>
+
+       </td><td> <m:math><m:mi>|</m:mi></m:math>                 </td><td> [8 + 64] [n] 
+</td>
+</tr>
+<tr>
+<td>
+
+string </td><td> <m:math><m:mo>→</m:mo></m:math>  </td><td> [6] [n] chars:n 
+</td>
+</tr>
+<tr>
+<td>
+
+       </td><td> <m:math><m:mi>|</m:mi></m:math>                </td><td> [6 + 128] {n} chars:n 
+</td>
+</tr>
+<tr>
+<td>
+
+       </td><td> <m:math><m:mi>|</m:mi></m:math>                </td><td> [7] [n] chars:2n 
+</td>
+</tr>
+<tr>
+<td>
+
+       </td><td> <m:math><m:mi>|</m:mi></m:math>                </td><td> [7 + 128] {n} chars:2n 
+</td>
+</tr>
+<tr>
+<td>
+
+       </td><td> <m:math><m:mi>|</m:mi></m:math>                </td><td> [7 + 64] [n] 
+</td>
+</tr>
+<tr>
+<td>
+
+bytearray </td><td> <m:math><m:mo>→</m:mo></m:math>  </td><td> [4] [n] bytes:n 
+</td>
+</tr>
+<tr>
+<td>
+
+          </td><td> <m:math><m:mi>|</m:mi></m:math>                </td><td> [4 + 128] {n} bytes:n 
+</td>
+</tr>
+<tr>
+<td>
+
+construct </td><td> <m:math><m:mo>→</m:mo></m:math>  </td><td> [16] object objects [17] 
+</td>
+</tr>
+<tr>
+<td>
+
+          </td><td> <m:math><m:mi>|</m:mi></m:math>                </td><td> [22] symbol objects [23] 
+</td>
+</tr>
+<tr>
+<td>
+
+          </td><td> <m:math><m:mi>|</m:mi></m:math>                </td><td> [18] attrpairs object [19] 
+</td>
+</tr>
+<tr>
+<td>
+
+          </td><td> <m:math><m:mi>|</m:mi></m:math>                </td><td> [26] object bvars object [27] 
+</td>
+</tr>
+<tr>
+<td>
+
+attrpairs </td><td> <m:math><m:mo>→</m:mo></m:math>  </td><td> [20] pairs [21]
+</td>
+</tr>
+<tr>
+<td>
+
+pairs     </td><td>  <m:math><m:mo>→</m:mo></m:math>  </td><td> symbol object 
+</td>
+</tr>
+<tr>
+<td>
+
+          </td><td> <m:math><m:mi>|</m:mi></m:math>                 </td><td> symbol object pairs
+</td>
+</tr>
+<tr>
+<td>
+
+bvars    </td><td> <m:math><m:mo>→</m:mo></m:math>  </td><td> [28] vars [29] 
+</td>
+</tr>
+<tr>
+<td>
+
+vars     </td><td> <m:math><m:mo>→</m:mo></m:math>  </td><td> attrvar 
+</td>
+</tr>
+<tr>
+<td>
+
+         </td><td>  <m:math><m:mi>|</m:mi></m:math>               </td><td> attrvar vars 
+</td>
+</tr>
+<tr>
+<td>
+
+attrvar  </td><td> <m:math><m:mo>→</m:mo></m:math>  </td><td> variable 
+</td>
+</tr>
+<tr>
+<td>
+
+         </td><td>  <m:math><m:mi>|</m:mi></m:math>               </td><td> [18] attrpairs attrvar [19] 
+</td>
+</tr>
+<tr>
+<td>
+
+objects  </td><td> <m:math><m:mo>→</m:mo></m:math>  </td><td> 
+</td>
+</tr>
+<tr>
+<td>
+
+         </td><td> <m:math><m:mi>|</m:mi></m:math>               </td><td> object objects 
+</td>
+</tr>
+</table>
+
+
+<div>
+  Figure 4.3 Grammar of the binary encoding of <i>OpenMath</i> objects.</div></div>
+
+
+
+
+
+
+
+<p><a href="#fig_bin-enc">Figure 4.3</a> gives a grammar for the binary encoding.  The
+following conventions are used in this section: [<m:math><m:mi>n</m:mi></m:math>] denotes a byte
+whose value is the integer <m:math><m:mi>n</m:mi></m:math>  (<m:math><m:mi>n</m:mi></m:math>  can range from 0 to 255), {<m:math><m:mi>m</m:mi></m:math>}
+denotes four bytes representing the (unsigned) integer <m:math><m:mi>m</m:mi></m:math>  in network
+byte order, [_] denotes an arbitrary byte, {_} denotes an
+arbitrary sequence of four bytes.  <i>name</i>:<m:math><m:mi>n</m:mi></m:math>  denotes a sequence
+of <m:math><m:mi>n</m:mi></m:math>  bytes named <i>name</i>.  <i>name</i>:2<m:math><m:mi>n</m:mi></m:math>  denotes a sequence of
+<m:math><m:mn>2</m:mn><m:mi>n</m:mi></m:math>  bytes.  <span>"start"</span> is the start symbol of the grammar.</p>
+
+</div>
+
+<div><h4 name="sec_bin-desc" id="sec_bin-desc">4.2.2 Description of the Grammar</h4>
+
+
+
+
+<p>An <i>OpenMath</i> object is encoded as a sequence of bytes starting with the
+begin object tag (value 24) and ending with the end object tag
+(value 25). These are similar to the <code>&lt;OMOBJ&gt;</code> and <code>&lt;/OMOBJ&gt;</code> tags of
+the <span>xml</span> encoding.</p>
+
+<p>The encoding of each kind of <i>OpenMath</i> object begins with a tag that is a
+single byte, holding a <span><i>token identifier</i></span> and two flags, the <span><i>long</i></span> flag and the <span><i>shared</i></span> flag. The identifier is stored in
+the first 6 bits (1 to 6). The long flag is the eighth bit and the
+shared flag is the seventh bit.</p>
+
+<p>Here is a description of the binary encodings of every kind of <i>OpenMath</i> 
+object:
+
+
+<dl>
+<dt>Integers</dt><dd><p>are encoded depending on how large they are. There are
+  four possible formats.  Integers between -128 and 127 are encoded as
+  the small integer tag (1) followed by a single byte that is the
+  value of the integer (interpreted as a signed character). For
+  example 16 is encoded as <code>0x01 0x10</code>.  Integers between
+  <m:math><m:msup><m:mn>-2</m:mn><m:mn>31</m:mn></m:msup></m:math>  (<m:math><m:mn>-2147483648</m:mn></m:math>) and <m:math><m:msup><m:mn>2</m:mn><m:mn>31</m:mn></m:msup> <m:mo>-</m:mo> <m:mn>1</m:mn></m:math>  (<m:math><m:mn>2147483647</m:mn></m:math>) are encoded as
+  the small integer tag with the long flag set followed by the integer
+  encoded in little endian format on four bytes (network byte order:
+  the most significant byte comes first). For example, 128 is encoded
+  as <code>0x81</code> <code>0x00000080</code>.  The most general encoding begins
+  with the big integer tag (token identifier 2) with the long flag set
+  if the number of bytes in the encoding of the digits is greater or
+  equal than 256. It is followed by the length (in bytes) of the
+  sequence of digits, encoded on one byte (0 to 255, if the long flag
+  was not set) or four bytes (network byte order, if the long flag was
+  set).  It is then followed by a byte describing the sign and the
+  base.  This 'sign/base' byte is <code>+</code> (0x2B) or <code>-</code> (0x2D)
+  for the sign ored with the base mask bits that can be 0 for base 10
+  or 0x40 for base 16.  It is followed by the strings of digits (as
+  characters) in their natural order (as in the <span>xml</span>
+  encoding).  For example, 8589934592 (<m:math><m:msup><m:mn>2</m:mn><m:mn>33</m:mn></m:msup></m:math>) is encoded <code>0x02
+    0x0A 0x2B 0x38353839393334353932</code> and xfffffff1 is
+  encoded as <code>0x02 0x08 0x6b 0x6666666666666631</code>.  Note that it is
+  permitted to encode a <span>"small"</span> integer in any <span>"bigger"</span> format.</p>
+  
+</dd>
+
+<dt>Symbols</dt><dd><p>are encoded as the symbol tag (8) with the long flag
+  set if the maximum of the length of the Content Dictionary name and
+  the symbol name is greater than or equal to 256 (note that this
+  should never be the case if the rules on symbols and Content
+  Dictionary names are applied), then followed by the length of the
+  Content Dictionary name as a byte (if the long flag was not set)
+  or a four byte integer (in network byte order) followed by the
+  length of the symbol name as a byte (if the long flag was not set)
+  or a four byte integer (in network byte order), followed by the
+  characters of the Content Dictionary name, followed by the
+  characters of the symbol name.</p>
+
+  
+</dd>
+
+<dt>Variables</dt><dd><p>are encoded using the variable tag (5) with the long
+  flag set if the number of bytes (characters) in the variable name is
+  greater than or equal to 256 (this should never happen if the rules
+  on variables are followed).  Then, there is the number of characters
+  as a byte (if the long flag was not set) or a four byte integer
+  (in network byte order), followed by the characters of the name of
+  the variable. For example, the variable x is encoded as <code>0x05
+    0x01 0x78</code>.</p>
+
+  
+</dd>
+
+<dt>Floating-point number</dt><dd><p>are encoded using the floating-point
+  number tag (3) followed by eight bytes that are the IEEE 754
+  representation <a href="#ieee754_85">[1]</a>, most significant bytes first. For
+  example, 0.1 is encoded as <code>0x03 0x000000000000f03f</code>.</p>
+
+  
+</dd>
+
+<dt>Character string</dt><dd><p>are encoded in two ways depending on whether
+  the string contains <span>utf-16</span> characters or not. If the
+  string contains only 8 bit characters, it is encoded as the one
+  byte character string tag (6) with the long flag set if the number
+  of bytes (characters) in the string is greater than or equal to 256.
+  Then, there is the number of characters as a byte (if the length
+  flag was not set) or a four byte integer (in network byte order),
+  followed by the characters in the string. If the string contains two
+  byte characters, it is encoded as the two byte character string
+  tag (7) with the long flag set if the number of characters in the
+  string is greater or equal to 256. Then, there is the number of
+  characters as a byte (if the long flag was not set) or a four byte
+  integer (in network byte order), followed by the characters
+  (<span>utf-16</span> encoded  Unicode).</p>
+ 
+  
+</dd>
+
+<dt>Bytearrays</dt><dd><p>are encoded using the bytearray tag (4) with the
+  long flag set if the number of bytes in the number of elements is
+  greater than or equal to 256. Then, there is the number of elements,
+  as a byte (if the long flag was not set) or a four byte integer
+  (in network byte order), followed by the elements of the arrays in
+  their normal order.</p>
+  
+  
+</dd>
+
+<dt>Applications</dt><dd><p>are encoded using the application tag (16). More
+  precisely, the application of <m:math><m:msub><m:mi>E</m:mi><m:mn>0</m:mn></m:msub></m:math>  to <m:math><m:msub><m:mi>E</m:mi><m:mn>1</m:mn></m:msub></m:math><span>…</span> <m:math><m:msub><m:mi>E</m:mi><m:mi>n</m:mi></m:msub></m:math>  is encoded
+  using the application tag (16), the sequence of the encodings of
+  <m:math><m:msub><m:mi>E</m:mi><m:mn>0</m:mn></m:msub></m:math>  to <m:math><m:msub><m:mi>E</m:mi><m:mi>n</m:mi></m:msub></m:math>  and the end application tag (17).</p>
+    
+</dd>
+
+<dt>Bindings</dt><dd><p>are encoded using the binding tag (26). More
+  precisely, the binding by <m:math><m:mi>B</m:mi></m:math>  of variables <m:math><m:msub><m:mi>V</m:mi><m:mn>1</m:mn></m:msub></m:math><span>…</span> <m:math><m:msub><m:mi>V</m:mi><m:mi>n</m:mi></m:msub></m:math>  in
+  <m:math><m:mi>C</m:mi></m:math>  is encoded as the binding tag (26), followed by the encoding of
+  <m:math><m:mi>B</m:mi></m:math>, followed by the binding variables tag (28), followed by the
+  encodings of the variables <m:math><m:msub><m:mi>V</m:mi><m:mn>1</m:mn></m:msub></m:math>  <span>…</span> <m:math><m:msub><m:mi>V</m:mi><m:mi>n</m:mi></m:msub></m:math>, followed by the end
+  binding variables tag (29), followed by the encoding of <m:math><m:mi>C</m:mi></m:math>,
+  followed by the end binding tag (27).</p>
+
+  
+</dd>
+
+<dt>Attribution</dt><dd><p>are encoded using the attribution tag (18). More
+  precisely, attribution of the object <m:math><m:mi>E</m:mi></m:math>  with (<m:math><m:msub><m:mi>S</m:mi><m:mn>1</m:mn></m:msub></m:math>, <m:math><m:msub><m:mi>E</m:mi><m:mn>1</m:mn></m:msub></m:math>),
+  <m:math><m:mi>…</m:mi></m:math>  (<m:math><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub></m:math>, <m:math><m:msub><m:mi>E</m:mi><m:mi>n</m:mi></m:msub></m:math>) pairs (where <m:math><m:msub><m:mi>S</m:mi><m:mi>i</m:mi></m:msub></m:math>  are the attributes) is
+  encoded as the attributed object tag (18), followed by the encoding
+  of the attribute pairs as the attribute pairs tag (20), followed by
+  the encoding of each symbol and value, followed by the end attribute
+  pairs tag (21), followed by the encoding of <m:math><m:mi>E</m:mi></m:math>, followed by the end
+  attributed object tag (19).</p>
+
+    
+</dd>
+
+<dt>Error</dt><dd><p>are encoded using the error tag (22). More precisely,
+  <m:math><m:msub><m:mi>S</m:mi><m:mn>0</m:mn></m:msub></m:math>  applied to <m:math><m:msub><m:mi>E</m:mi><m:mn>1</m:mn></m:msub></m:math><span>…</span> <m:math><m:msub><m:mi>E</m:mi><m:mi>n</m:mi></m:msub></m:math>  is encoded as the error tag (22),
+  the encoding of <m:math><m:msub><m:mi>S</m:mi><m:mn>0</m:mn></m:msub></m:math>, the sequence of the encodings of <m:math><m:msub><m:mi>E</m:mi><m:mn>0</m:mn></m:msub></m:math>  to
+  <m:math><m:msub><m:mi>E</m:mi><m:mi>n</m:mi></m:msub></m:math>  and the end error tag (23).</p>
+
+</dd>
+
+</dl> 
+</p>
+<div><h5 name="sec_sharing" id="sec_sharing">4.2.2.1 Sharing</h5>
+
+ 
+<p>This binary encoding supports the sharing of symbols, variables and
+strings (up to a certain length for strings) within one object. That
+is, sharing between objects is not supported.  A reference to a shared
+symbol, variable or string is encoded as the corresponding tag with
+the long flag not set and the shared flag set, followed by a positive
+integer <m:math><m:mi>n</m:mi></m:math>  coded on one byte (0 to 255). This integer references the
+<m:math><m:mi>n</m:mi> <m:mo>+</m:mo> <m:mn>1</m:mn></m:math>-th such sharable sub-object (symbol, variable or string up to
+255 characters) in the current <i>OpenMath</i> object (counted in the order they
+are generated by the encoding).  For example, <code>0x48 0x01</code>
+references a symbol that is identical to the second symbol that was
+found in the current object.  Strings with 8 bit characters and
+strings with 16 bit characters are two different kinds of objects for
+this sharing. Only strings containing less than 256 characters can be
+shared (i.e. only strings up to 255 characters).</p>
+</div>
+</div>
+
+<div><h4 name="sec_impl_note" id="sec_impl_note">4.2.3 Implementation Note</h4>
+
+<p>A typical implementation of the binary encoding uses four tables, each
+of 256 entries, for symbol, variables, 8 bit character strings whose
+lengths are less than 256 characters and 16 bit character strings
+whose lengths are less than 256 characters.  When an object is read,
+all the tables are first flushed. Each time a sharable sub-object is
+read, it is entered in the corresponding table if it is not full. When
+a reference to the shared i-th object of a given type is read, it
+stands for the i-th entry in the corresponding table. It is an
+encoding error if the i-th position in the table has not already been
+assigned (i.e. forward references are not allowed).  Sharing is not
+mandatory, there may be duplicate entries in the tables (if the
+application that wrote the object chose not to share optimally).</p>
+
+<p>Writing an object is simple. The tables are first flushed. Each time a
+sharable sub-object is encountered (in the natural order of output
+given by the encoding), it is either entered in the corresponding
+table (if it is not full) and output in the normal way or replaced by
+the right reference if it is already present in the table.</p>
+</div>
+
+<div><h4 name="sec_bin_example" id="sec_bin_example">4.2.4 Example of Binary Encoding</h4>
+
+
+<p>As an example of this binary encoding, we can consider the <i>OpenMath</i> object
+whose <span>xml</span> encoding is
+<div class="literal"><pre> 
+&lt;OMOBJ&gt;
+  &lt;OMA&gt;
+    &lt;OMS name="times" cd="arith1"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS name="plus" cd="arith1"/&gt;
+      &lt;OMV name="x"/&gt;
+      &lt;OMV name="y"/&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS name="plus" cd="arith1"/&gt;
+      &lt;OMV name="x"/&gt;
+      &lt;OMV name="z"/&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;
+</pre></div> 
+It is binary encoded as the sequence of bytes given by  the following table.</p>
+
+<table>
+<tr>
+<th>
+Hex </th><th>    Meaning </th><th> Hex </th><th>    Meaning 
+</th>
+</tr>
+
+<tr>
+<td>
+18  </td><td>    begin object tag   </td><td>   
+68  </td><td>   h  .)
+</td>
+</tr>
+<tr>
+<td>
+ 
+
+10  </td><td>    begin application tag</td><td>
+31  </td><td>   1  .)
+</td>
+</tr>
+<tr>
+<td>
+
+
+08  </td><td>   symbol tag </td><td>
+70  </td><td>   p (symbol name begin
+</td>
+</tr>
+<tr>
+<td>
+
+
+06  </td><td>    cd length </td><td>
+6c  </td><td>   l  .
+</td>
+</tr>
+<tr>
+<td>
+
+
+05  </td><td>   name length</td><td>
+75  </td><td>   u  . 
+</td>
+</tr>
+<tr>
+<td>
+
+
+61  </td><td>    a (cd name begin</td><td>
+73  </td><td>   s  .) 
+</td>
+</tr>
+<tr>
+<td>
+
+
+72  </td><td>    r  .</td><td>
+05  </td><td>   variable tag 
+</td>
+</tr>
+<tr>
+<td>
+
+
+69  </td><td>   i  .</td><td>
+01  </td><td>   name length 
+</td>
+</tr>
+<tr>
+<td>
+
+
+74  </td><td>   t  .</td><td>
+78  </td><td>   x (name) 
+</td>
+</tr>
+<tr>
+<td>
+
+
+68  </td><td>   h  .</td><td>
+05  </td><td>   variable tag 
+</td>
+</tr>
+<tr>
+<td>
+
+
+31  </td><td>   1  .)</td><td>
+01  </td><td>   name length 
+</td>
+</tr>
+<tr>
+<td>
+
+
+74  </td><td>   t (symbol name begin</td><td>
+79  </td><td>   y (variable name) 
+</td>
+</tr>
+<tr>
+<td>
+
+
+69  </td><td>   i  .</td><td>
+11  </td><td>   end application tag 
+</td>
+</tr>
+<tr>
+<td>
+
+
+6d  </td><td>   m  .</td><td>
+10  </td><td>   begin application tag 
+</td>
+</tr>
+<tr>
+<td>
+
+
+65  </td><td>   e  .</td><td>
+48  </td><td>   symbol tag (with share bit on) 
+</td>
+</tr>
+<tr>
+<td>
+
+
+73  </td><td>   s  .)</td><td>
+01  </td><td>   reference to second symbol seen (arith1:plus) 
+</td>
+</tr>
+<tr>
+<td>
+
+
+10  </td><td>   begin application tag</td><td>
+45  </td><td>   variable tag (with share bit on) 
+</td>
+</tr>
+<tr>
+<td>
+
+
+08  </td><td>   symbol tag</td><td>
+00  </td><td>   reference to first variable seen (x) 
+</td>
+</tr>
+<tr>
+<td>
+
+
+06  </td><td>   cd length</td><td>
+05  </td><td>   variable tag 
+</td>
+</tr>
+<tr>
+<td>
+
+
+04  </td><td>   name length</td><td>
+01  </td><td>   name length 
+</td>
+</tr>
+<tr>
+<td>
+
+
+61  </td><td>   a (cd name begin</td><td>
+7a  </td><td>   z (variable name) 
+</td>
+</tr>
+<tr>
+<td>
+
+
+72  </td><td>   r  .</td><td>
+11  </td><td>   end application tag 
+</td>
+</tr>
+<tr>
+<td>
+
+
+69  </td><td>   i  .</td><td>
+11  </td><td>   end application tag 
+</td>
+</tr>
+<tr>
+<td>
+
+
+74  </td><td>   t  .</td><td>
+19  </td><td>   end object tag 
+</td>
+</tr>
+</table> 
+
+</div>
+</div>
+
+<div><h3 name="sec_enc_summary" id="sec_enc_summary">4.3 Summary</h3>
+
+
+<p>The key points of this chapter are:
+<ul>
+<li><p>The <span>xml</span> encoding for <i>OpenMath</i> objects uses most common
+  character sets.</p></li>
+<li><p>The <span>xml</span> encoding is readable, writable and can be
+  embedded in most documents and transport protocols.</p></li>
+<li><p>The binary encoding for <i>OpenMath</i> objects should be used when
+  efficiency is a key issue. It is compact yet simple enough to allow
+  fast encoding and decoding of objects.</p></li>
+</ul>
+</p>
+</div>
+
+
+<h2 name="cha_cd" id="cha_cd">
+  Chapter 5<br/>Content Dictionaries</h2>
+
+
+
+<p>In this chapter we give a brief overview of Content Dictionaries
+before explicitly stating their functionality and encoding.</p>
+<div><h3 name="sec_cd_summary" id="sec_cd_summary">5.1 Introduction</h3>
+
+
+<p>Content Dictionaries (CDs) are central to the <i>OpenMath</i> philosophy of
+transmitting mathematical information. It is the <i>OpenMath</i> Content
+Dictionaries which actually hold the meanings of the objects being
+transmitted.</p>
+
+<p>For example if application <m:math><m:mi>A</m:mi></m:math>  is talking to application <m:math><m:mi>B</m:mi></m:math>, and
+sends, say, an equation involving multiplication of matrices, then <m:math><m:mi>A</m:mi></m:math> 
+and <m:math><m:mi>B</m:mi></m:math>  must agree on what a matrix is, and on what matrix
+multiplication is, and even on what constitutes an equation. All this
+information is held within some Content Dictionaries which both
+applications agree upon.</p>
+
+<p>A <i> Content Dictionary</i> holds the meanings of
+(various) mathematical <span>"words"</span>. These words are <i>OpenMath</i> basic objects
+referred to as <i>symbols</i> in <a href="#sec_omabs">Section 3.1</a>.</p>
+
+<p>With a set of symbol definitions (perhaps from several content
+Dictionaries), <m:math><m:mi>A</m:mi></m:math>  and <m:math><m:mi>B</m:mi></m:math>  can now talk in a common <span>"language"</span>.</p>
+
+<p>It is important to stress that it is not Content Dictionaries
+themselves which are being passed, but some <span>"mathematics"</span> whose
+definitions are held within the Content Dictionaries. This means that
+the applications must have already agreed on a set of Content
+Dictionaries which they <span>"understand"</span> (i.e., can cope with to some
+degree).</p>
+
+
+<p>In many cases, the Content
+Dictionaries that an application understands will be constant, and be
+intrinsic to the application's mathematical use. However the above
+approach can also be used for applications which can handle
+every Content Dictionary (such as an <i>OpenMath</i> parser, or perhaps a
+typesetting system), or alternatively for applications which
+understand a changeable number of Content Dictionaries (perhaps after
+being sent Content Dictionaries in some way).</p>
+
+<p>The primary use of Content Dictionaries is thought to be for designers
+of Phrasebooks,the programs which translate between the
+<i>OpenMath</i> mathematical object and the corresponding (often internal)
+structure of the particular application in question. For such a use
+the Content Dictionaries have themselves been designed to be as
+readable and precise as possible.</p>
+
+<p>Another possible use for <i>OpenMath</i> Content Dictionaries could rely on their
+automatic comprehension by a machine (e.g., when given definitions of
+objects defined in terms of previously understood ones), in which case
+Content Dictionaries may have to be passed as data. Towards this end,
+a Content Dictionary has been written which contains a set of symbols
+sufficient to represent any other Content Dictionary. This means that
+Content Dictionaries may be passed in the same way as other (<i>OpenMath</i>)
+mathematical data.</p>
+
+
+<p>Finally, the syntax of the Content Dictionaries has been designed to
+be relatively easy to learn and to write, and also free from the need
+for any specialist software. This is because it is acknowledged that
+there is an enormous amount of mathematical information to represent,
+and so most of the Content Dictionaries will be written by
+<span>"ordinary"</span> mathematicians, encoding their particular fields of
+expertise. 
+A further reason is that the mathematics conveyed by a
+specific Content Dictionary should be understandable independently of
+any application.</p>
+
+<p>The key points from this section are:
+
+<ul>
+<li><p>Content Dictionaries should be readable and precise to help
+  Phrasebook designers,</p></li>
+<li><p>Content Dictionaries should be readily write-able to encourage
+  widespread use,</p></li>
+<li><p>It ought to be possible for a machine to understand a Content
+  Dictionary to some degree.</p></li>
+</ul>
+</p>
+</div>
+
+<div><h3 name="sect_func" id="sect_func">5.2 Content Dictionaries</h3>
+
+
+<p>In this section we define the overall structure of Content
+Dictionaries.</p>
+
+
+<p>Other than Content Dictionary comments (which have no real semantics),
+Content Dictionaries have been designed to hold two types of
+information: that which is pertinent to the whole Content Dictionary,
+and that which is restricted to a particular symbol definition.
+Specific information pertaining to the symbols like the signature and
+the defining mathematical properties is conveyed in additional files
+associated to Content Dictionaries.</p>
+
+<p>Information that is pertinent to the whole Content Dictionary
+includes:
+<ul>
+<li><p>The name of the Content Dictionary.</p></li>
+<li><p>A description of the Content Dictionary.</p></li>
+<li><p>A date when the Content Dictionary is next planned to be reviewed.</p></li>
+<li><p>A date on which the Content Dictionary was last edited.</p></li>
+<li><p>The current version and revision  numbers of the Content Dictionary.</p></li>
+<li><p>The status of the Content Dictionary.</p></li>
+<li><p>An optional URL for this Content Dictionary.</p></li>
+<li><p>An optional list of Content Dictionaries on which this Content
+  Dictionary depends. That is, those named in Examples and FMP
+  in this Content Dictionary.</p></li>
+<li><p>An optional comment, possibly containing the author's name.</p></li>
+</ul>
+</p>
+
+<p>Information that is restricted to a particular symbol includes:
+<ul>
+<li><p>The name of the symbol.</p></li>
+<li><p>A description of this symbol.</p></li>
+<li><p>An optional comment.</p></li>
+<li><p>Optional properties that this symbol should obey.</p></li>
+<li><p>Optional examples of the use of this symbol.</p></li>
+</ul>
+</p>
+
+
+
+
+
+<p>As mentioned earlier, certain kinds of data pertaining to symbols may
+be conveyed in files other than a Content Dictionary.  In particular,
+information on signatures according to a type system
+may be described in <i>Signature Files</i> whose format is given in
+<a href="#sigfiles">Section 5.4.1</a>. Other information such as
+presentation forms, extra defining mathematical properties may be
+associated with Content Dictionaries using files whose format is not
+specified by this standard. It is expected that a common method
+of defining the presentation for <i>OpenMath</i> symbols is via
+<span>xsl</span> <a href="#XSL_99">[16]</a> stylesheets giving transformations to MathML.</p>
+
+
+<p>Content Dictionaries may be grouped into <i>CD Groups</i>. These
+groups allow applications to easily refer to collections of Content
+Dictionaries. One particular CDGroup of interest is the <span>"MathML
+CDGroup"</span>. This group expresses the collection of the core Content
+Dictionaries that is designed to have the same semantic scope as the
+content elements of MathML 2 <a href="#MathML_2000">[11]</a>.
+ <i>OpenMath</i> objects built from
+symbols that come from Content Dictionaries in this CDGroup may be
+expected to be eaily transformed between <i>OpenMath</i> and MathML encodings.
+The detailed structure of a CDGroup is described in
+section <a href="#ssec_cdgroups">Section 5.4.2</a> below.</p>
+
+</div>
+
+<div><h3 name="sec_xml_cd" id="sec_xml_cd">5.3 The XML Encoding for Content Dictionaries</h3>
+
+
+
+
+
+<p>Content Dictionaries are XML documents.  A valid Content Dictionary
+document should 
+<ul>
+<li><p>be valid according to  the DTD given in <a href="#fig_cd-dtd">Figure 5.1</a>,</p></li>
+<li><p>adhere to the extra conditions on the content of the elements
+  given in <a href="#sect_pcdata">Section 5.3.2</a>.</p></li>
+</ul>
+</p>
+
+
+
+<p>An example of a complete Content Dictionary is given in
+Appendix <a href="#app_cdcd">Appendix A.1</a>, which is the <code>Meta</code> Content Dictionary
+for describing Content Dictionaries themselves. A more typical Content
+Dictionary is given in Appendix <a href="#arith1.ocd">Appendix A.2</a>, the <code>arith1</code>
+Content Dictionary for basic arithmetic functions.</p>
+
+
+<div><h4 name="sec_dtd_cd" id="sec_dtd_cd">5.3.1 The DTD Specification of  Content Dictionaries</h4>
+
+
+
+<div class="figure"><a name="fig_cd-dtd" id="fig_cd-dtd"/>
+    
+<div class="literal"><pre>
+&lt;!-- DTD for OpenMath object -sb-29.10.1998 -&gt;
+
+&lt;!--  general list of embeddable elements
+      : excludes OMATP as this is only embeddable in OMATTR
+      : excludes OMBVAR as this is only embeddable in OMBIND
+--&gt;
+&lt;!ENTITY % omel "OMS | OMV | OMI | OMB | OMSTR
+                     | OMF | OMA | OMBIND | OME  | OMATTR  "&gt;
+
+&lt;!-- things which can be variables --&gt;
+&lt;!ENTITY % omvar        "OMV | OMATTR" &gt;
+
+&lt;!-- symbol --&gt;
+&lt;!ELEMENT OMS EMPTY&gt;
+&lt;!ATTLIST OMS name CDATA #REQUIRED  cd CDATA #REQUIRED &gt;
+
+&lt;!-- variable --&gt;
+&lt;!ELEMENT OMV EMPTY&gt;
+&lt;!ATTLIST OMV name CDATA #REQUIRED &gt;
+
+&lt;!-- integer --&gt;
+&lt;!ELEMENT OMI (#PCDATA) &gt;
+
+&lt;!-- byte array --&gt;
+&lt;!ELEMENT OMB (#PCDATA) &gt;
+
+&lt;!-- string --&gt;
+&lt;!ELEMENT OMSTR (#PCDATA) &gt;
+
+&lt;!-- floating point --&gt;
+&lt;!ELEMENT OMF EMPTY&gt;
+&lt;!ATTLIST OMF dec CDATA #IMPLIED  hex CDATA #IMPLIED&gt;
+
+&lt;!-- apply constructor --&gt;
+&lt;!ELEMENT OMA (%omel;)+ &gt;
+
+&lt;!-- binding constructor &amp; variable --&gt;
+&lt;!ELEMENT OMBIND ((%omel;), OMBVAR, (%omel;)) &gt;
+&lt;!ELEMENT OMBVAR (%omvar;)+ &gt;
+
+&lt;!-- error --&gt;
+&lt;!ELEMENT OME    (OMS, (%omel;)* ) &gt;
+
+&lt;!-- attribution constructor &amp; attribute pair constructor --&gt;
+&lt;!ELEMENT OMATTR (OMATP, (%omel;)) &gt;
+&lt;!ELEMENT OMATP (OMS, (%omel;))+ &gt;
+
+&lt;!-- OM object constructor --&gt;
+&lt;!ELEMENT OMOBJ (%omel;) &gt;
+
+&lt;!-- end of DTD for OM object --&gt;
+
+
+</pre></div>
+
+
+<div>
+  Figure 5.1 DTD Specification of  Content Dictionaries</div></div>
+
+
+<p>The XML DTD for Content Dictionaries is given in
+<a href="#fig_cd-dtd">Figure 5.1</a>. The allowed elements are further
+described in the following section.</p>
+</div>
+
+<div><h4 name="sect_pcdata" id="sect_pcdata">5.3.2 Further Requirements of an <i>OpenMath</i> Content Dictionary</h4>
+
+
+
+<p>The notion of being a valid Content Dictionary is stronger than merely
+being successfully parsed by the DTD. This is because the content of
+the elements, referred to in <a href="#fig_cd-dtd">Figure 5.1</a> as PCDATA and
+CDATA, must actually make sense to, say, a Phrasebook designer. In
+this section we define exactly the format of the elements used in
+Content Dictionaries.</p>
+
+
+
+<dl>
+<dt><code>CDName</code></dt><dd><p>The text occurring in the <code>CDName</code> element
+  corresponds to the name of Content Dictionary, and is of the form
+  specified in <a href="#cha_enco">Chapter 4</a>.</p>
+
+</dd>
+
+
+<dt><code>Description</code></dt>
+<dd><p>The text occurring in the <code>Description</code>
+  element is used to give a description of the enclosing element, which
+  could be a symbol or the entire Content Dictionary. The content of
+  this element can be any XML text.</p>
+  
+</dd>
+
+<dt><code>CDReviewDate</code></dt><dd><p>The text occurring in the <code>CDReviewDate</code>
+  element corresponds to the earliest possible revision date of the
+  Content Dictionary.  The date formats should be ISO-compliant in the
+  form YYYY-MM-DD, e.g. 1953-09-26.</p>
+  
+</dd>
+
+<dt><code>CDDate</code></dt><dd><p>The text occurring in the <code>CDDate</code> element
+  corresponds to the date of this version of the Content Dictionary.
+  The date formats should be ISO-compliant in the form YYYY-MM-DD,
+  e.g. 1953-09-26.</p>
+  
+</dd>
+
+<dt><code>CDVersion</code></dt><dd>
+   
+   
+   <p>The text occurring in the <code>CDVersion</code> element corresponds to
+   the version number of the current version of a Content Dictionary.
+   It should be a non negative integer.</p>
+
+<p>In CDs that do not have status <i>experimental</i>, CD version
+  numbering should adhere to the following. The version number should
+  be a positive integer.</p>
+
+<p>No changes can be
+  introduced that invalidate objects built with previous versions.
+  Any change that influences phrasebook compliance, like adding a new
+  symbol to a Content Dictionary, is considered a major change.
+  and should be reflected by an increase in this version number. Other
+  changes, like adding an example or correcting a description, are
+  considered minor changes. For minor changes the version number is not
+  changed, but an increas should be made to the revision number, as
+  described below. A change such as removing a symbol should
+  not be made, instead a new CD, with a different name should be
+  produced, so as not to invalidate existing objects.</p>
+
+<p>As detailed in chapter <a href="#cha_comp">Chapter 6</a>, <i>OpenMath</i> compliant applications
+  state which versions of which CDs they support.
+
+  <i>Experimental</i> CDs may expect to have changes such as adding
+  or removing symbols as they are developed, without requiring the name
+  of the CD to be changed.</p>
+
+  
+</dd>
+
+<dt><code>CDRevision</code></dt><dd>
+   
+   <p>The text occurring in the <code>CDRevision</code> element corresponds to
+   the revision, or `minor version number' of the current version of a
+   Content Dictionary.  It should be a non negative integer.</p>
+
+<p>Minor changes to a CD that do not warrant the release of a CD with
+   an increased version number should be marked by increasing the
+   revision number specified in this field. When the Cd Version number
+   is increased, the Revision number is normally reset to zero.</p>
+
+  
+</dd>
+
+<dt><code>CDStatus</code></dt><dd><p>The text occurring in the <code>CDStatus</code> element
+  corresponds to the status of Content Dictionary, and can be either
+  <code>official</code> (approved by the <i>OpenMath</i> Society according to the
+  procedure outlined in <a href="#cdapprove">Section 5.5</a>), <code>experimental</code>
+  (currently being tested), <code>private</code> (used by a private group of
+  <i>OpenMath</i> users) or <code>obsolete</code> (an obsolete Content Dictionary kept
+  only for archival purposes).</p>
+  
+</dd>
+
+<dt><code>CDURL</code></dt><dd><p>The text occurring in the <code>CDURL</code> element
+  should be a valid URL where the source file for the Content
+  Dictionary encoding can be found (if it exists). The filename should
+  conform to ISO 9660 <a href="#ISO9660">[12]</a>.</p>
+
+</dd>
+
+<dt><code>CDUses</code></dt><dd>
+   
+   <p>The content of this element should be a series of <code>CDName</code>
+   elements, each naming a Content Dictionary used in the
+   <code>Example</code> and <code>FMP</code>s of the current Content
+   Dictionary. </p>
+   
+ </dd>
+
+<dt><code>CDComment</code></dt><dd><p>The content of this element should be text
+   that does not convey any crucial information concerning the current
+   Content Dictionary. It can be used in the Content Dictionary header
+   to report the author of the Content Dictionary and to log change
+   information. In the body of the Content Dictionary, it can be used
+   to attach extra remarks to certain symbols.</p>
+   
+   
+ </dd>
+
+<dt><code>Example</code></dt>
+<dd>
+
+<p>The text occurring in the <code>Example</code> element is used to give
+  examples of the enclosing symbol, and can be any XML text. In
+  addition to text the element may contain examples as <span>xml</span> encoded
+  <i>OpenMath</i>, inside <code>OMOBJ</code> elements.  Note that <code>Examples</code> must
+  be with respect to some symbol and cannot be <span>"loose"</span> in the
+  Content Dictionary.</p>
+  
+</dd>
+
+<dt><code>Name</code></dt><dd><p>The text occurring in the <code>Name</code> element
+  corresponds to the name of the symbol, and is specified as in
+  <a href="#cha_enco">Chapter 4</a>.</p>  
+  
+</dd>
+
+<dt><code>CMP</code></dt>
+<dd><p>The text occurring in the <code>CMP</code> element
+  corresponds to a property of the symbol. An application which says
+  it understands a Content Dictionary symbol need not understand a
+  commented property of the symbol.</p>
+  
+</dd>
+
+<dt><code>FMP</code></dt><dd><p>The content of the <code>FMP</code> element also corresponds
+  to a property<sup><a href="#ftn_theory">*1</a></sup> of the symbol, however the content of this
+  element must be a valid <i>OpenMath</i> object in the XML encoding.  An
+  application which says it understands a Content Dictionary symbol
+  need not understand a formal property of the symbol.</p><p class="footnote"><a name="ftn_theory"/><sup>*1</sup>It corresponds to a theorem of a theory in
+    some formal system.</p>
+</dd>
+
+</dl>
+</div>
+</div>
+
+
+<div><h3 name="addfiles" id="addfiles">5.4 Additional Information</h3>
+
+
+
+
+
+<p>Content Dictionaries contain just one part of the information that can
+be associated to a symbol in order to stepwise define its meaning and
+its functionality. <i>OpenMath</i> Signature files, CDGroups, and possibly
+files of extra mathematical properties, are used to convey the different
+aspects that as a whole make up a mathematical definition.</p>
+
+<div><h4 name="sigfiles" id="sigfiles">5.4.1 Signature Files</h4>
+
+
+
+
+
+<p><i>OpenMath</i> may be used with any type system. One just needs to produce a
+Content Dictionary which gives the constructors of the type system,
+and then one may build <i>OpenMath</i> objects representing types in the given
+type system. These are typically associated with <i>OpenMath</i> objects via the
+<i>OpenMath</i> <b>attribution</b> constructor.</p>
+
+<p>A Small Type System, called STS, has been designed to give semi-formal
+signatures to <i>OpenMath</i> symbols and is documented in <a href="#OM_D132c">[9]</a>.  The
+signature file given in <a href="#arith1.sts">Appendix A.3</a> is based on this
+formalism. Using the same mechanism, <a href="#OMD132b">[7]</a> shows
+how pure type systems can also be employed to assign types to <i>OpenMath</i> 
+symbols.</p>
+
+
+<div><h5 name="sec_dtd_sig" id="sec_dtd_sig">5.4.1.1 The  DTD Specification of Signature Files</h5>
+
+
+<p>Signature Files are <span>xml</span> documents, hence  a valid Signature File
+ should 
+<ul>
+<li><p>be valid according to the <span>dtd</span> given in
+  <a href="#fig_omcdsig.dtd">Figure 5.2</a>,</p></li>
+<li><p>adhere to the extra conditions on the content of the elements
+  given in <a href="#sect_sigpcdata">Section 5.4.1.2</a>.</p></li>
+</ul></p>
+
+
+<p>Signature files have a header which specifies the Content Dictionary
+and determines the type system being used, and the Content
+Dictionary which contains the symbols for which the signatures are
+being given. Each signature takes the form of an <span>xml</span> encoded <i>OpenMath</i>
+object.</p>
+
+
+<div class="figure"><a name="fig_omcdsig.dtd" id="fig_omcdsig.dtd"/>
+    
+<div class="literal"><pre>
+&lt;!-- omcdsig.dtd --&gt;
+&lt;!-- ********************************************* --&gt;
+&lt;!--                                               --&gt;
+&lt;!-- DTD for OpenMath CD Signatures                --&gt;
+&lt;!-- (c) EP24969 the ESPRIT OpenMath Consortium    --&gt;
+&lt;!-- David Carlisle 1999-04-13                     --&gt;
+&lt;!-- David Carlisle 1999-05-21                     --&gt;
+&lt;!-- David Carlisle 1999-06-22                     --&gt;
+&lt;!--                                               --&gt;
+&lt;!--                                               --&gt;
+&lt;!-- ********************************************* --&gt;
+
+&lt;!-- include dtd for OM objects --&gt;
+&lt;!ENTITY  % omobjectdtd SYSTEM "omobj.dtd" &gt;
+%omobjectdtd;
+
+&lt;!ELEMENT CDSComment      (#PCDATA) &gt;
+&lt;!ELEMENT CDSReviewDate    (#PCDATA) &gt;
+&lt;!ELEMENT CDSStatus    (#PCDATA) &gt;
+
+&lt;!ELEMENT CDSignatures   (CDComment |CDSComment | CDSReviewDate |
+                         CDSStatus | Signature )* &gt;
+
+&lt;!ATTLIST CDSignatures cd CDATA #REQUIRED
+                       type CDATA #REQUIRED &gt;
+
+&lt;!ELEMENT Signature      (OMOBJ?) &gt;
+
+&lt;!ATTLIST  Signature  name CDATA #REQUIRED &gt;
+
+&lt;!-- end of DTD for OM CD Signatures --&gt;
+</pre></div>
+<div>
+  Figure 5.2 DTD Specification of Signature Files</div></div>
+</div>
+
+<div><h5 name="sect_sigpcdata" id="sect_sigpcdata">5.4.1.2 Further Requirements of a Signature File</h5>
+
+
+
+
+<p>The notion of being a valid Signature File is stronger than merely
+being successfully parsed by the <span>dtd</span> in <a href="#fig_omcdsig.dtd">Figure 5.2</a>.
+In this section we define exactly the format of the elements used in
+Signature Files. Several of the requirements are the same as those on
+elements of Contents Dictionaries.</p>
+
+
+<dl>
+<dt><code>CDSignatures</code></dt><dd><p>The outermost element of the Signature File
+  is characterized by two required attributes that identify the type
+  system and the Content Dictionary whose signatures are defined. The
+  value of the <span>xml</span> attribute <code>type</code> is the name of the Content
+  Dictionary or of the CDGroup (cfg. <a href="#ssec_cdgroups">Section 5.4.2</a>) that
+  represents the type system. The value of the XML attribute
+  <code>cd</code> is the name of the Content Dictionary whose symbols are
+  assigned signatures in this Signature File. Both values are of the
+  form specified in <a href="#cha_enco">Chapter 4</a>.</p>
+  
+</dd>
+
+<dt><code>CDSComment</code></dt><dd><p>See <code>CDComment</code> in
+  <a href="#sect_pcdata">Section 5.3.2</a>.</p>
+
+</dd>
+
+<dt><code>CDSreviewDate</code></dt><dd><p>The text occurring in the <code>CDSReviewDate</code> element corresponds to the earliest possible
+  revision date of the Signature File.  The date formats should be
+  ISO-compliant in the form YYYY-MM-DD, e.g. 2000-02-29.</p>
+  
+</dd>
+
+<dt><code>CDSStatus</code></dt><dd><p>The text occurring in the <code>CDSStatus</code>
+  element corresponds to the status of the Signature File, and can be
+  either <code>official</code> (approved by the <i>OpenMath</i> Society according to the
+  procedure outlined in <a href="#cdapprove">Section 5.5</a>), <code>experimental</code>
+  (currently being tested), <code>private</code> (used by a private group of
+  <i>OpenMath</i> users) or <code>obsolete</code> (an obsolete Signature File kept only
+  for archival purposes).</p>
+  
+</dd>
+
+<dt><code>Signature</code></dt>
+<dd>
+
+<p>The content of the <code>Signature</code> element
+  has to be a valid <i>OpenMath</i> object in <span>xml</span> encoding as specified in
+  <a href="#cha_enco">Chapter 4</a>. Additionally, the object must represent a
+  valid type in the type system identified by the
+  XML attribute <code>type</code> of the <code>CDSignature</code> element. See
+  <a href="#sect_sigex">Section 5.4.1.3</a> for examples.</p>
+
+</dd>
+
+</dl>
+</div>
+
+
+<div><h5 name="sect_sigex" id="sect_sigex">5.4.1.3 Examples</h5>
+
+
+<p>An example of a signature file for the type system STS and the
+<code>arith1</code> Content Dictionary is given in
+<a href="#arith1.sts">Appendix A.3</a>. Each
+signature entry is similar to the
+following one for the <i>OpenMath</i> symbol 
+<code>&lt;OMS cd="arith1" name="plus"/&gt;</code>:
+<div class="literal"><pre>
+&lt;Signature name="plus"&gt;
+&lt;OMOBJ&gt;
+ &lt;OMA&gt;
+  &lt;OMS name="mapsto" cd="sts"/&gt;
+  &lt;OMA&gt;
+   &lt;OMS name="nassoc" cd="sts"/&gt; 
+   &lt;OMV name="AbelianSemiGroup"/&gt;
+  &lt;/OMA&gt;
+  &lt;OMV name="AbelianSemiGroup"/&gt;
+ &lt;/OMA&gt;
+&lt;/OMOBJ&gt;
+&lt;/Signature&gt;
+</pre></div>
+</p>
+</div>
+</div>
+
+<div><h4 name="ssec_cdgroups" id="ssec_cdgroups">5.4.2 CDGroups</h4>
+
+
+
+
+
+
+<p>The CD Group mechanism is a convenience mechanism for identifying
+collections of CDs.  A CD Group file is an <span>xml</span> document used in the
+(static or dynamic) negotiation phase where communicating applications
+declare and agree on the Content Dictionaries which they process.  It
+is a complement, or an alternative, to the individual declaration of
+Content Dictionaries understood by an application.  Note that
+CD Groups do <i>not</i> affect the <i>OpenMath</i> objects themselves.
+Symbols in an object always refer to content dictionaries, not groups.</p>
+
+
+<p>For an application to declare that it <span>"understands CDGroup G"</span> is
+exactly equivalent to, and interchangable with, the declaration that it 
+<span>"understands Content Dictionaries <m:math><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:math>, <m:math><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:math>, <span>…</span> <m:math><m:msub><m:mi>x</m:mi><m:mi>n</m:mi></m:msub></m:math>"</span>, where
+<m:math><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:math>, <span>…</span> <m:math><m:msub><m:mi>x</m:mi><m:mi>n</m:mi></m:msub></m:math>  are the members of CDGroup G.</p>
+
+
+<div><h5 name="sec_dtd_cdg" id="sec_dtd_cdg">5.4.2.1 The DTD Specification of CDGroups</h5>
+
+
+
+<p>CDGroups are XML documents, hence  a valid  CDGroup
+ should 
+<ul>
+<li><p>be valid according to the DTD given in
+  <a href="#fig_cdgroup.dtd">Figure 5.3</a>,</p></li>
+<li><p>adhere to the extra conditions on the content of the elements
+  given in <a href="#sect_cdgpcdata">Section 5.4.2.2</a>.</p></li>
+</ul>
+</p>
+
+<p>Apart from some header information such as <code>CDGroupName</code> and
+<code>CDGroup</code> version, a CDGroup is simply an unordered list of
+CDs, identified by name and optionally version number and URL.</p>
+
+
+<div class="figure"><a name="fig_cdgroup.dtd" id="fig_cdgroup.dtd"/>
+    
+<div class="literal"><pre>
+&lt;!-- CDgroup.dtd --&gt;
+&lt;!-- ********************************************* --&gt;
+&lt;!--                                               --&gt;
+&lt;!-- DTD for OpenMath CD group                     --&gt;
+&lt;!-- (c) EP24969 the ESPRIT OpenMath Consortium    --&gt;
+&lt;!-- date = 18.Feb.1999                            --&gt;
+&lt;!-- author = s.buswell sb@stilo.demon.co.uk       --&gt;
+&lt;!--                                               --&gt;
+&lt;!--                                               --&gt;
+&lt;!-- available at                                  --&gt;
+&lt;!-- http://www.nag.co.uk/~something here David~  --&gt;
+&lt;!--                                               --&gt;
+&lt;!-- ********************************************* --&gt;
+
+&lt;!-- info on the CD group itself --&gt;
+
+&lt;!ELEMENT CDGroupName      (#PCDATA) &gt;
+&lt;!ELEMENT CDGroupVersion     (#PCDATA) &gt;
+&lt;!ELEMENT CDGroupRevision     (#PCDATA) &gt;
+&lt;!ELEMENT CDGroupURL          (#PCDATA) &gt;
+&lt;!ELEMENT CDGroupDescription  (#PCDATA) &gt;
+
+&lt;!-- info on the CDs in the group  --&gt;
+
+&lt;!ELEMENT CDComment     (#PCDATA) &gt;
+&lt;!ELEMENT CDGroupMember (CDComment?,CDName, CDVersion?, CDURL?) &gt;
+&lt;!ELEMENT CDName     (#PCDATA) &gt;
+&lt;!ELEMENT CDVersion     (#PCDATA) &gt;
+&lt;!ELEMENT CDURL         (#PCDATA) &gt;
+
+&lt;!-- structure of the group --&gt;
+&lt;!ELEMENT CDGroup 
+   (CDGroupName, CDGroupVersion, CDGroupRevision?,
+    CDGroupURL, CDGroupDescription,
+     (CDGroupMember  | CDComment )* ) &gt;
+
+&lt;!-- end of DTD for OM CDGroup --&gt;
+</pre></div>
+
+<div>
+  Figure 5.3 DTD Specification of CDGroups</div></div>
+</div>
+
+<div><h5 name="sect_cdgpcdata" id="sect_cdgpcdata">5.4.2.2 Further Requirements of a CDGroup</h5>
+
+
+
+
+
+<p>The notion of being a valid CDGroup implies that the following
+requirements on the content of the elements described by the DTD in
+<a href="#fig_omcdsig.dtd">Figure 5.2</a> are also met.</p>
+
+
+<dl>
+<dt><code>CDGroup</code></dt>
+<dd><p>The XML element <code>CDGroup</code> is the outermost
+  element in a CDGroup document.</p>
+  
+</dd>
+
+<dt><code>CDGroupName</code></dt>
+<dd>
+
+<p>The text occurring in the <code>CDGroupName</code>
+  element corresponds to the name of the CDGroup. For the syntactical
+  requirements, see <code>CDName</code> in <a href="#sect_pcdata">Section 5.3.2</a>.</p>
+  
+</dd>
+
+<dt><code>CDGroupURL</code></dt>
+<dd><p>The text occurring in the <code>CDGroupURL</code>
+  element identifies the location of the CDGroup file, not necessarily
+  of the member Content Dictionaries. For the syntactical
+  requirements, see <code>CDURL</code> in <a href="#sect_pcdata">Section 5.3.2</a>.</p>
+  
+</dd>
+
+<dt><code>CDGroupDescription</code></dt>
+<dd><p>The text occurring in the <code>CDGroupDescription</code> element describes the mathematical area of the
+  CDGroup.</p>
+  
+</dd>
+
+<dt><code>CDGroupMember</code></dt>
+<dd><p>The XML element <code>CDGroupMember</code>
+  encloses the data identifying each member of the CDGroup.</p>
+  
+</dd>
+
+<dt><code>CDName</code></dt><dd><p>The text occurring in the <code>CDName</code> element
+  corresponds to the name of a Content Dictionary in the CDGroup. For
+  the syntactical requirements, see <code>CDName</code> in
+  <a href="#sect_pcdata">Section 5.3.2</a>.</p>
+  
+</dd>
+
+<dt><code>CDVersion</code></dt><dd><p>The text occurring in the <code>CDVersion</code>
+  element identifies which version of the Content Dictionary isto be
+  taken as member of the CDGroup. This element is optional. In case it
+  is missing, the latest version is the one included in the CDGroup.
+  For the syntactical requirements, see <code>CDVersion</code> in
+  <a href="#sect_pcdata">Section 5.3.2</a>.</p>
+  
+</dd>
+
+<dt><code>CDURL</code></dt>
+<dd>
+
+<p>The text occurring in the <code>CDURL</code> element
+  identifies the location of the Content Dictionary to be taken as
+  member of the CDGroup. This element is optional. In case it is
+  missing, the location of the CDGroup identified by the element
+  <code>CDGroupURL</code> is assumed.
+  For the syntactical requirements, see <code>CDURL</code>
+  in <a href="#sect_pcdata">Section 5.3.2</a>.</p>
+  
+</dd>
+
+<dt><code>CDComment</code></dt><dd><p>See <code>CDComment</code> in
+  <a href="#sect_pcdata">Section 5.3.2</a>.</p>
+
+
+
+</dd>
+
+</dl>
+
+
+
+
+
+
+
+
+</div>
+</div>
+</div>
+
+<div><h3 name="cdapprove" id="cdapprove">5.5 Content Dictionaries Reviewing Process</h3>
+
+
+
+
+<p>The <i>OpenMath</i> Society is responsible  for implementing a
+review and referee process to assess the accuracy of the mathematical
+content of Content Dictionaries.  The status (see <code>CDStatus</code>)
+and/or the version number (see <code>CDVersion</code> ) of a Content
+Dictionary may change as a result of this review process.</p>
+</div>
+
+
+
+
+
+
+<h2 name="cha_comp" id="cha_comp">
+  Chapter 6<br/><i>OpenMath</i> Compliance</h2>
+
+
+
+<p>Applications that meet the requirements specified in this chapter may
+label themselves as <i>OpenMath compliant</i>. <i>OpenMath</i> compliancy is
+defined so as to maximize the potential for interoperability amongst
+<i>OpenMath</i> applications.</p>
+
+<div><h3 name="sec_compl_encoding" id="sec_compl_encoding">6.1 Encoding</h3>
+
+<p>This standard defines two reference encodings for <i>OpenMath</i>, the binary
+encoding and XML encoding,  defined in chapter <a href="#cha_enco">Chapter 4</a>.</p>
+
+<p>As a minimum, an <i>OpenMath</i> compliant application, which accepts or generates
+<i>OpenMath</i> objects, <i>must</i> be capable of doing so using  the XML encoding.
+The ability to use other encodings is optional.</p>
+</div>
+
+<div><h3 name="sec_compl_cd" id="sec_compl_cd">6.2 Content Dictionaries</h3>
+
+
+<p>An <i>OpenMath</i> compliant application  <i>must</i> be able to support the error
+Content Dictionary defined in <a href="#errorcd">Appendix A.5</a>.</p>
+
+<p>A compliant application must declare the names and version numbers of
+the Content Dictionaries that it supports. Equivalently it may declare
+the Content Dictionary Group (or groups) and major version number (not
+revision number), rather than listing individual Content Dictionaries.
+Applications that support all Content Dictionaries (e.g. renderers)
+should refer to the implicit CD Group <code>all</code>.</p>
+
+<p>If a compliant application supports a Content Dictionary then it must
+explicitly declare any symbols in the Content Dictionaries that are not
+supported. Phrasebooks are encouraged to support every symbol in the 
+Content Dictionaries.</p>
+
+<p>Symbols which are not listed as unsupported are <i>supported</i> by
+the application. The meaning of <i>supported</i> will depend on the
+application domain. For example an <i>OpenMath</i> renderer should provide a
+default display for any <i>OpenMath</i> object that only references supported
+symbols, whereas a Computer Algebra System will be expected to map
+such an object to a suitable internal representation, in this system,
+of this mathematical object. It is expected that the application's
+<i>phrasebooks</i> for supported Content Dictionaries will be
+constructed such that propertes of the symbol expressed in the Content
+Dictionary are respected as far as possible for the given application
+domain. However <i>OpenMath</i> compliance does <i>not</i> imply
+any guarantee by the <i>OpenMath</i> Society on the accuracy of these representations.</p>
+
+
+<p>Content Dictionaries available from the official <i>OpenMath</i> repository at
+www.openmath.org need only be referenced by name, other Content
+Dictionaries <i>should</i> be referenced by the URL declared in the
+<code>CDURL</code> field of the Dictionary. This URL may be used to
+retrieve the Content Dictionary.</p>
+
+<p>When receiving an <i>OpenMath</i> symbol, e.g. <m:math><m:mi>s</m:mi></m:math>,  that is not supported from a
+ supported Content Dictionary,  a compliant
+application will act as if it had received the <i>OpenMath</i> object
+<m:math display="block"><m:mi mathvariant="bold">error</m:mi><m:mo>(</m:mo><m:mi>Unhandled_Symbol</m:mi><m:mo>,</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:math> 
+where <code>Unhandled_Symbol</code> is the symbol from the error Content
+Dictionary.</p>
+
+
+<p>Similarly if it receives a symbol, e.g. <m:math><m:mi>s</m:mi></m:math>, from an unsupported Content
+Dictionary,
+it  will act as if it had received the <i>OpenMath</i> object
+<m:math display="block"><m:mi mathvariant="bold">error</m:mi><m:mo>(</m:mo><m:mi>Unsupported_CD</m:mi><m:mo>,</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:math></p>
+
+<p>Finally if the compliant application receives a symbol from a supported
+Content Dictionary but with an unknown name, then this must either be
+an incorrect object, or possibly the object has been built using a
+later version of the Content Dictionary. In either case, the
+application will act as if it had received the <i>OpenMath</i> object
+<m:math display="block"><m:mi mathvariant="bold">error</m:mi><m:mo>(</m:mo><m:mi>Unexpected_Symbol</m:mi><m:mo>,</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:math></p>
+</div>
+
+<div><h3 name="sec_comp_lex" id="sec_comp_lex">6.3 Lexical Errors</h3>
+
+
+<p>The previous section defines the behaviour of a compliant application
+upon receiving well formed <i>OpenMath</i> objects containing unexpected symbols.
+This standard does not specify any behaviour for an application upon
+receiving ill-formed objects.</p>
+</div>
+
+
+<h2 name="cha_conc" id="cha_conc">
+  Chapter 7<br/>Conclusion</h2>
+
+
+
+<p>The goal of this document is to define the <i>OpenMath</i> standard. The things
+are addressed by the <i>OpenMath</i> standard are:
+<ul>
+<li><p>Informal and formal definition of the <i>OpenMath</i> objects.</p></li>
+<li><p>Informal and formal definition of the notion of Content
+  Dictionaries.</p></li>
+</ul>
+To do this, <i>OpenMath</i> objects are precisely defined and two encodings are
+described to represent these objects using <span>xml</span> and binary
+code. Furthermore, the Document Type Definition for validating Content
+Dictionaries and <i>OpenMath</i> objects is given.</p>
+
+
+
+
+
+<h2 name="app_cdfiles" id="app_cdfiles">
+  Appendix A<br/>CD Files</h2>
+
+
+<div><h3 name="app_cdcd" id="app_cdcd">A.1 The <b>meta</b> Content Dictionary</h3>
+
+
+<div class="literal"><pre>
+&lt;CD&gt;
+
+&lt;CDName&gt; meta &lt;/CDName&gt;
+
+&lt;Description&gt; 
+
+This is a content dictionary to represent content dictionaries, so
+that they may be passed between OpenMath compliant application in a
+similar way to mathematical objects.  It is acknowledged that this is
+not the only way to do this, but it seems a natural way.
+
+This can be viewed as updating the previous Meta-CD.
+
+The information written here is taken from "The OpenMath Standard".
+This document is a slightly stronger statement than "the following
+symbols are defined as in the DTD at
+http://www.nag.co.uk/projects/OpenMath/omstd/dtds/cd.dtd", since the
+DTD often only says that the information inside the elements is PCDATA
+without saying what this actually corresponds to. However this is the
+only way this document is better than the DTD, and thus this is the
+only extra information we give here.
+
+Author: N. Howgrave-Graham
+&lt;/Description&gt;
+
+&lt;CDReviewDate&gt; 1998-10-01 &lt;/CDReviewDate&gt;
+&lt;CDStatus&gt; experimental &lt;/CDStatus&gt;
+&lt;CDURL&gt; http://www.nag.co.uk/projects/OpenMath/omstd/cds/meta.ocd &lt;/CDURL&gt;
+
+&lt;CDComment&gt;
+This is how one uses comments.
+
+This whole document must be valid XML which means that we cannot have
+sub-elements inside elements where we are expecting PCDATA. For this
+reason it is suggested that one use the unicode characters when
+clashes occur. For example &amp;lt; and &amp;gt; for less than and more than.
+&lt;/CDComment&gt;
+
+&lt;CDDefinition&gt;
+&lt;Name&gt; CD &lt;/Name&gt;
+&lt;Description&gt;
+The DTD fully specifies the use of the CD tag
+&lt;/Description&gt;
+&lt;/CDDefinition&gt;
+
+&lt;CDDefinition&gt;
+&lt;Name&gt; CDDescription &lt;/Name&gt;
+&lt;Description&gt;
+The DTD fully specifies the use of the CDDescription tag
+&lt;/Description&gt;
+&lt;/CDDefinition&gt;
+
+&lt;CDComment&gt;
+For those that do not have access to the DTD, the tagged entries
+are the following (in no particular order):
+
+&amp;lt;CD&amp;gt;
+&amp;lt;CDName&amp;gt; &amp;lt;/CDName&amp;gt;
+&amp;lt;Description&amp;gt; &amp;lt;/Description&amp;gt;
+&amp;lt;CDReviewDate&amp;gt; &amp;lt;/CDReviewDate&amp;gt;
+&amp;lt;CDStatus&amp;gt; &amp;lt;/CDStatus&amp;gt;
+&amp;lt;CDURL&amp;gt;? &amp;lt;/CDURL&amp;gt;
+&amp;lt;CDUses&amp;gt;? &amp;lt;CDUses&amp;gt;
+&amp;lt;CDDefinition&amp;gt;*
+&amp;lt;Name&amp;gt; &amp;lt;/Name&amp;gt;
+&amp;lt;Description&amp;gt; &amp;lt;/Description&amp;gt;
+&amp;lt;Signature&amp;gt;? &amp;lt;/Signature&amp;gt;
+&amp;lt;Example&amp;gt;* &amp;lt;/Example&amp;gt;
+&amp;lt;FMP&amp;gt;* &amp;lt;/FMP&amp;gt;
+&amp;lt;CMP&amp;gt;* &amp;lt;/CMP&amp;gt;
+&amp;lt;Presentation&amp;gt;? &amp;lt;/Presentation&amp;gt;
+&amp;lt;/CDDefinition&amp;gt;
+
+where an asterisk (?) denotes it can repeated 0 or 1 times, and a star
+(*) denotes 0 or more times.
+&lt;/CDComment&gt;
+
+&lt;CDDefinition&gt;
+&lt;Name&gt; CDName &lt;/Name&gt;
+&lt;Description&gt;
+A tag which contains PCDATA corresponding to the name of the CD.
+&lt;/Description&gt;
+&lt;/CDDefinition&gt;
+
+&lt;CDDefinition&gt;
+&lt;Name&gt; CDURL &lt;/Name&gt;
+&lt;Description&gt;
+An optional tag which contains PCDATA corresponding to the URL where
+the CD is stored.
+&lt;/Description&gt;
+&lt;/CDDefinition&gt;
+
+&lt;CDDefinition&gt;
+&lt;Name&gt; Example &lt;/Name&gt;
+&lt;Description&gt;
+A tag which contains PCDATA to give an example of the
+enclosing symbol definition.
+&lt;/Description&gt;
+&lt;/CDDefinition&gt;
+
+&lt;CDDefinition&gt;
+&lt;Name&gt; CDReviewDate &lt;/Name&gt;
+&lt;Description&gt;
+A tag which contains PCDATA to give an expiry date of
+the CD.  It should be in the form of ISO-8601, i.e. YYYY-MM-DD
+&lt;/Description&gt;
+&lt;/CDDefinition&gt;
+
+&lt;CDDefinition&gt;
+&lt;Name&gt; CDStatus &lt;/Name&gt;
+&lt;Description&gt;
+A tag which contains PCDATA to give information on the
+status of the CD. This can be either official (approved by the
+OpenMath steering committee), experimental (currently being tested),
+private (used by a private group of OpenMath users) or obsolete
+(an obsolete CD kept only for archival purposes).
+&lt;/Description&gt;
+&lt;/CDDefinition&gt;
+
+&lt;CDDefinition&gt;
+&lt;Name&gt; CDUses &lt;/Name&gt;
+&lt;Description&gt;
+A tag which contains zero or more CDNames which correspond
+to the CD's that this CD depends on. This makes an inheritance
+structure for CD's. If the CD is dependent on any other CD's they must
+be present here.
+&lt;/Description&gt;
+&lt;/CDDefinition&gt;
+
+&lt;CDDefinition&gt;
+&lt;Name&gt; CDTypeUses &lt;/Name&gt;
+&lt;Description&gt;
+A tag which contains zero or more CDNames which correspond
+to the CD's that hold type information that this CD depends on. This
+makes an inheritance type structure for CD's. If the CD types are
+dependent on any other CD's they must be present here. For application
+that do not respect types, this symbol can be ignored.
+&lt;/Description&gt;
+&lt;/CDDefinition&gt;
+
+&lt;CDDefinition&gt;
+&lt;Name&gt; Description &lt;/Name&gt;
+&lt;Description&gt;
+A tag which contains PCDATA corresponding to the
+description of either the CD or the symbol (depending on which is the
+enclosing element).
+&lt;/Description&gt;
+&lt;/CDDefinition&gt;
+
+&lt;CDDefinition&gt;
+&lt;Name&gt; Name &lt;/Name&gt;
+&lt;Description&gt;
+A tag which contains PCDATA corresponding to the name of
+the symbol being defined.
+&lt;/Description&gt;
+&lt;/CDDefinition&gt;
+
+&lt;CDDefinition&gt;
+&lt;Name&gt; Signature &lt;/Name&gt;
+&lt;Description&gt;
+An optional tag which contains PCDATA corresponding to
+the type of the symbol being defined. This type information will be
+an OpenMath type object as defined in chapter 5 of "First Draft of the
+OpenMath Standard".
+&lt;/Description&gt;
+&lt;/CDDefinition&gt;
+
+&lt;CDDefinition&gt;
+&lt;Name&gt; Presentation &lt;/Name&gt;
+&lt;Description&gt;
+An optional tag (which may be repeated many times) which contains
+PCDATA corresponding to a way of presenting the symbol being defined.
+&lt;/Description&gt;
+&lt;/CDDefinition&gt;
+
+&lt;CDDefinition&gt;
+&lt;Name&gt; CMP &lt;/Name&gt;
+&lt;Description&gt;
+An optional tag (which may be repeated many times) which contains
+PCDATA corresponding to a property of the symbol being
+defined.
+&lt;/Description&gt;
+&lt;/CDDefinition&gt;
+
+&lt;CDDefinition&gt;
+&lt;Name&gt; FMP &lt;/Name&gt;
+&lt;Description&gt;
+An optional tag (which may be repeated many times) which contains
+PCDATA corresponding to a property of the symbol being
+defined. This property must be a valid OpenMath object.
+&lt;/Description&gt;
+&lt;/CDDefinition&gt;
+
+&lt;/CD&gt;
+</pre></div>
+</div>
+
+<div><h3 name="arith1.ocd" id="arith1.ocd">A.2 The  <b>arith1</b> Content Dictionary File</h3>
+
+
+
+<div class="literal"><pre>
+&lt;CD&gt;
+&lt;CDName&gt; arith1 &lt;/CDName&gt;
+&lt;CDURL&gt; http://www.openmath.org/cd/arith1.ocd &lt;/CDURL&gt;
+&lt;CDReviewDate&gt; 2003-04-01 &lt;/CDReviewDate&gt;
+&lt;CDStatus&gt; official &lt;/CDStatus&gt;
+&lt;CDDate&gt; 2001-03-12 &lt;/CDDate&gt;
+&lt;CDVersion&gt; 2 &lt;/CDVersion&gt;
+&lt;CDRevision&gt; 0 &lt;/CDRevision&gt;
+&lt;CDUses&gt;
+  &lt;CDName&gt;alg1&lt;/CDName&gt;
+  &lt;CDName&gt;fns1&lt;/CDName&gt;
+  &lt;CDName&gt;integer1&lt;/CDName&gt;
+  &lt;CDName&gt;interval1&lt;/CDName&gt;
+  &lt;CDName&gt;linalg2&lt;/CDName&gt;
+  &lt;CDName&gt;logic1&lt;/CDName&gt;
+  &lt;CDName&gt;quant1&lt;/CDName&gt;
+  &lt;CDName&gt;relation1&lt;/CDName&gt;
+  &lt;CDName&gt;set1&lt;/CDName&gt;
+  &lt;CDName&gt;setname1&lt;/CDName&gt;
+  &lt;CDName&gt;transc1&lt;/CDName&gt;
+&lt;/CDUses&gt;
+
+&lt;Description&gt; 
+This CD defines symbols for common arithmetic functions.
+&lt;/Description&gt;
+
+&lt;CDDefinition&gt;
+&lt;Name&gt; lcm &lt;/Name&gt;
+&lt;Description&gt; 
+The symbol to represent the n-ary function to return the least common
+multiple of its arguments.
+&lt;/Description&gt;
+
+&lt;CMP&gt; lcm(a,b) = a*b/gcd(a,b) &lt;/CMP&gt;
+
+&lt;FMP&gt;
+&lt;OMOBJ&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="relation1" name="eq"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="arith1" name="lcm"/&gt;
+      &lt;OMV name="a"/&gt;
+      &lt;OMV name="b"/&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="arith1" name="divide"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="times"/&gt;
+	&lt;OMV name="a"/&gt;
+	&lt;OMV name="b"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="gcd"/&gt;
+        &lt;OMV name="a"/&gt;
+        &lt;OMV name="b"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;
+&lt;/FMP&gt;
+&lt;CMP&gt;
+for all integers a,b |
+There does not exist a c&gt;0 such that c/a is an Integer and c/b is an
+Integer and lcm(a,b) &gt; c.
+&lt;/CMP&gt;
+
+&lt;FMP&gt;
+&lt;OMOBJ&gt;
+&lt;OMBIND&gt;
+  &lt;OMS cd="quant1" name="forall"/&gt;
+  &lt;OMBVAR&gt;
+    &lt;OMV name="a"/&gt;
+    &lt;OMV name="b"/&gt;
+  &lt;/OMBVAR&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="logic1" name="implies"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="logic1" name="and"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="set1" name="in"/&gt;
+	&lt;OMV name="a"/&gt;
+	&lt;OMS cd="setname1" name="Z"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="set1" name="in"/&gt;
+	&lt;OMV name="b"/&gt;
+	&lt;OMS cd="setname1" name="Z"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="logic1" name="not"/&gt;
+      &lt;OMBIND&gt;
+        &lt;OMS cd="quant1" name="exists"/&gt;
+        &lt;OMBVAR&gt;
+          &lt;OMV name="c"/&gt;
+        &lt;/OMBVAR&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="logic1" name="and"/&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="relation1" name="gt"/&gt;
+              &lt;OMV name="c"/&gt;
+              &lt;OMI&gt;0&lt;/OMI&gt;
+          &lt;/OMA&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="integer1" name="factorof"/&gt;
+              &lt;OMV name="a"/&gt;
+              &lt;OMV name="c"/&gt;
+          &lt;/OMA&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="integer1" name="factorof"/&gt;
+              &lt;OMV name="b"/&gt;
+              &lt;OMV name="c"/&gt;
+          &lt;/OMA&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="relation1" name="lt"/&gt;
+            &lt;OMV name="c"/&gt;
+            &lt;OMA&gt;
+              &lt;OMS cd="arith1" name="lcm"/&gt;
+              &lt;OMV name="a"/&gt;
+              &lt;OMV name="b"/&gt;
+            &lt;/OMA&gt;
+          &lt;/OMA&gt;
+        &lt;/OMA&gt;
+      &lt;/OMBIND&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;
+&lt;/FMP&gt;
+&lt;/CDDefinition&gt;
+
+&lt;CDDefinition&gt;
+&lt;Name&gt; gcd &lt;/Name&gt;
+&lt;Description&gt; 
+The symbol to represent the n-ary function to return the gcd (greatest
+common divisor) of its arguments.
+&lt;/Description&gt;
+
+&lt;CMP&gt;
+for all integers a,b |
+There does not exist a c such that a/c is an Integer and b/c is an
+Integer and c &gt; gcd(a,b).
+
+Note that this implies that gcd(a,b) &gt; 0
+&lt;/CMP&gt;
+
+&lt;FMP&gt;
+&lt;OMOBJ&gt;
+&lt;OMBIND&gt;
+  &lt;OMS cd="quant1" name="forall"/&gt;
+  &lt;OMBVAR&gt;
+    &lt;OMV name="a"/&gt;
+    &lt;OMV name="b"/&gt;
+  &lt;/OMBVAR&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="logic1" name="implies"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="logic1" name="and"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="set1" name="in"/&gt;
+	&lt;OMV name="a"/&gt;
+	&lt;OMS cd="setname1" name="Z"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="set1" name="in"/&gt;
+	&lt;OMV name="b"/&gt;
+	&lt;OMS cd="setname1" name="Z"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="logic1" name="not"/&gt;
+      &lt;OMBIND&gt;
+        &lt;OMS cd="quant1" name="exists"/&gt;
+        &lt;OMBVAR&gt;
+          &lt;OMV name="c"/&gt;
+        &lt;/OMBVAR&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="logic1" name="and"/&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="set1" name="in"/&gt;
+            &lt;OMA&gt;
+              &lt;OMS cd="arith1" name="divide"/&gt;
+              &lt;OMV name="a"/&gt;
+              &lt;OMV name="c"/&gt;
+            &lt;/OMA&gt;
+            &lt;OMS cd="setname1" name="Z"/&gt;
+          &lt;/OMA&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="set1" name="in"/&gt;
+            &lt;OMA&gt;
+              &lt;OMS cd="arith1" name="divide"/&gt;
+              &lt;OMV name="b"/&gt;
+              &lt;OMV name="c"/&gt;
+            &lt;/OMA&gt;
+            &lt;OMS cd="setname1" name="Z"/&gt;
+          &lt;/OMA&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="relation1" name="gt"/&gt;
+            &lt;OMV name="c"/&gt;
+            &lt;OMA&gt;
+              &lt;OMS cd="arith1" name="gcd"/&gt;
+              &lt;OMV name="a"/&gt;
+              &lt;OMV name="b"/&gt;
+            &lt;/OMA&gt;
+          &lt;/OMA&gt;
+        &lt;/OMA&gt;
+      &lt;/OMBIND&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;
+&lt;/FMP&gt;
+
+&lt;Example&gt;
+gcd(6,9) = 3
+&lt;OMOBJ&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="relation1" name="eq"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="arith1" name="gcd"/&gt;
+      &lt;OMI&gt; 6 &lt;/OMI&gt;
+      &lt;OMI&gt; 9 &lt;/OMI&gt;
+    &lt;/OMA&gt;
+    &lt;OMI&gt; 3 &lt;/OMI&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;
+&lt;/Example&gt;
+&lt;/CDDefinition&gt;
+
+&lt;CDDefinition&gt;
+&lt;Name&gt; plus &lt;/Name&gt;
+&lt;Description&gt;
+The symbol representing an n-ary commutative function plus.
+&lt;/Description&gt;
+&lt;CMP&gt; for all a,b | a + b = b + a &lt;/CMP&gt;
+&lt;FMP&gt;
+&lt;OMOBJ&gt;
+  &lt;OMBIND&gt;
+    &lt;OMS cd="quant1" name="forall"/&gt;
+    &lt;OMBVAR&gt;
+       &lt;OMV name="a"/&gt;
+       &lt;OMV name="b"/&gt;
+    &lt;/OMBVAR&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="relation1" name="eq"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="plus"/&gt;
+        &lt;OMV name="a"/&gt;
+        &lt;OMV name="b"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="plus"/&gt;
+        &lt;OMV name="b"/&gt;
+        &lt;OMV name="a"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;
+&lt;/FMP&gt;
+&lt;/CDDefinition&gt;
+
+&lt;CDDefinition&gt;
+&lt;Name&gt; unary_minus &lt;/Name&gt;
+&lt;Description&gt; 
+This symbol denotes unary minus, i.e. the additive inverse.
+&lt;/Description&gt;
+&lt;CMP&gt; for all a | a + (-a) = 0 &lt;/CMP&gt;
+&lt;FMP&gt;
+&lt;OMOBJ&gt;
+  &lt;OMBIND&gt;
+    &lt;OMS cd="quant1" name="forall"/&gt;
+    &lt;OMBVAR&gt;
+       &lt;OMV name="a"/&gt;
+    &lt;/OMBVAR&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="relation1" name="eq"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="plus"/&gt;
+        &lt;OMV name="a"/&gt;
+        &lt;OMA&gt;
+           &lt;OMS cd="arith1" name="unary_minus"/&gt;
+           &lt;OMV name="a"/&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+      &lt;OMS cd="alg1" name="zero"/&gt;
+    &lt;/OMA&gt;
+  &lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;
+&lt;/FMP&gt;
+&lt;/CDDefinition&gt;
+
+&lt;CDDefinition&gt;
+&lt;Name&gt; minus &lt;/Name&gt;
+&lt;Description&gt; 
+The symbol representing a binary minus function. This is equivalent to
+adding the additive inverse.
+&lt;/Description&gt;
+&lt;CMP&gt; for all a,b | a - b = a + (-b) &lt;/CMP&gt;
+&lt;FMP&gt;
+&lt;OMOBJ&gt;
+  &lt;OMBIND&gt;
+    &lt;OMS cd="quant1" name="forall"/&gt;
+    &lt;OMBVAR&gt;
+       &lt;OMV name="a"/&gt;
+       &lt;OMV name="b"/&gt;
+    &lt;/OMBVAR&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="relation1" name="eq"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="minus"/&gt;
+        &lt;OMV name="a"/&gt;
+        &lt;OMV name="b"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="plus"/&gt;
+        &lt;OMV name="a"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="arith1" name="unary_minus"/&gt;
+          &lt;OMV name="b"/&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;
+&lt;/FMP&gt;
+&lt;/CDDefinition&gt;
+
+&lt;CDDefinition&gt;
+&lt;Name&gt; times &lt;/Name&gt;
+&lt;Description&gt; 
+The symbol representing an n-ary multiplication function.
+&lt;/Description&gt;
+&lt;Example&gt;
+&lt;OMOBJ&gt;
+&lt;OMA&gt;
+  &lt;OMS cd="relation1" name="eq"/&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="arith1" name="times"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="linalg2" name="matrix"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="linalg2" name="matrixrow"/&gt;
+        &lt;OMI&gt; 1 &lt;/OMI&gt;
+        &lt;OMI&gt; 2 &lt;/OMI&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="linalg2" name="matrixrow"/&gt;
+        &lt;OMI&gt; 3 &lt;/OMI&gt;
+        &lt;OMI&gt; 4 &lt;/OMI&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="linalg2" name="matrix"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="linalg2" name="matrixrow"/&gt;
+        &lt;OMI&gt; 5 &lt;/OMI&gt;
+        &lt;OMI&gt; 6 &lt;/OMI&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="linalg2" name="matrixrow"/&gt;
+        &lt;OMI&gt; 7 &lt;/OMI&gt;
+        &lt;OMI&gt; 8 &lt;/OMI&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="linalg2" name="matrix"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="linalg2" name="matrixrow"/&gt;
+      &lt;OMI&gt; 19 &lt;/OMI&gt;
+      &lt;OMI&gt; 20 &lt;/OMI&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="linalg2" name="matrixrow"/&gt;
+      &lt;OMI&gt; 43 &lt;/OMI&gt;
+      &lt;OMI&gt; 50 &lt;/OMI&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMOBJ&gt;
+&lt;/Example&gt;
+&lt;CMP&gt; for all a,b | a * 0 = 0 and a * b = a * (b - 1) + a &lt;/CMP&gt;
+
+&lt;FMP&gt;&lt;OMOBJ&gt;
+&lt;OMBIND&gt;
+  &lt;OMS cd="quant1" name="forall"/&gt;
+  &lt;OMBVAR&gt;
+    &lt;OMV name="a"/&gt;
+    &lt;OMV name="b"/&gt;
+  &lt;/OMBVAR&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="logic1" name="and"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="relation1" name="eq"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="times"/&gt;
+        &lt;OMV name="a"/&gt;
+        &lt;OMS cd="alg1" name="zero"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMS cd="alg1" name="zero"/&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="relation1" name="eq"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="times"/&gt;
+	&lt;OMV name="a"/&gt;
+	&lt;OMV name="b"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="plus"/&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="arith1" name="times"/&gt;
+	  &lt;OMV name="a"/&gt;
+	  &lt;OMA&gt;
+	    &lt;OMS cd="arith1" name="minus"/&gt;
+	    &lt;OMV name="b"/&gt;
+	    &lt;OMS cd="alg1" name="one"/&gt;
+	  &lt;/OMA&gt;
+	&lt;/OMA&gt;
+	&lt;OMV name="a"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;&lt;/FMP&gt;
+
+&lt;CMP&gt; for all a,b,c | a*(b+c) = a*b + a*c &lt;/CMP&gt;
+&lt;FMP&gt;&lt;OMOBJ&gt;
+&lt;OMBIND&gt;
+  &lt;OMS cd="quant1" name="forall"/&gt;
+  &lt;OMBVAR&gt;
+    &lt;OMV name="a"/&gt;
+    &lt;OMV name="b"/&gt;
+    &lt;OMV name="c"/&gt;
+  &lt;/OMBVAR&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="relation1" name="eq"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="arith1" name="times"/&gt;
+      &lt;OMV name="a"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="plus"/&gt;
+	&lt;OMV name="b"/&gt;
+	&lt;OMV name="c"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="arith1" name="plus"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="times"/&gt;
+	&lt;OMV name="a"/&gt;
+	&lt;OMV name="b"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="times"/&gt;
+	&lt;OMV name="a"/&gt;
+	&lt;OMV name="c"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;&lt;/FMP&gt;
+&lt;/CDDefinition&gt;
+
+&lt;CDDefinition&gt;
+&lt;Name&gt; divide &lt;/Name&gt;
+&lt;Description&gt;
+This symbol represents a (binary) division function denoting the first argument
+right-divided by the second, i.e. divide(a,b)=a*inverse(b). It is the
+inverse of the multiplication function defined by the symbol times in this CD.
+&lt;/Description&gt;
+&lt;CMP&gt; whenever not(a=0) then a/a = 1 &lt;/CMP&gt;
+&lt;FMP&gt;
+&lt;OMOBJ&gt;
+  &lt;OMBIND&gt;
+    &lt;OMS cd="quant1" name="forall"/&gt;
+    &lt;OMBVAR&gt;
+       &lt;OMV name="a"/&gt;
+    &lt;/OMBVAR&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="logic1" name="implies"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="relation1" name="neq"/&gt;
+        &lt;OMV name="a"/&gt;
+        &lt;OMS cd="alg1" name="zero"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="relation1" name="eq"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="arith1" name="divide"/&gt;
+          &lt;OMV name="a"/&gt;
+          &lt;OMV name="a"/&gt;
+        &lt;/OMA&gt;
+        &lt;OMS cd="alg1" name="one"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;
+&lt;/FMP&gt;
+&lt;/CDDefinition&gt;
+
+&lt;CDDefinition&gt;
+&lt;Name&gt; power &lt;/Name&gt;
+&lt;Description&gt;
+This symbol represents a power function. The first argument is raised
+to the power of the second argument. When the second argument is not
+an integer, powering is defined in terms of exponentials and 
+logarithms for the complex and real numbers.
+This operator can represent general powering.
+&lt;/Description&gt;
+
+&lt;CMP&gt;
+x\in C implies x^a = exp(a ln x)
+&lt;/CMP&gt;
+
+&lt;FMP&gt;
+&lt;OMOBJ&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="logic1" name="implies"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="set1" name="in"/&gt;
+      &lt;OMV name="x"/&gt;
+      &lt;OMS cd="setname1" name="C"/&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="relation1" name="eq"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS name="power" cd="arith1"/&gt;
+        &lt;OMV name="x"/&gt;
+        &lt;OMV name="a"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS name="exp" cd="transc1"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS name="times" cd="arith1"/&gt;
+          &lt;OMV name="a"/&gt;
+          &lt;OMA&gt;
+            &lt;OMS name="ln" cd="transc1"/&gt;
+            &lt;OMV name="x"/&gt;
+          &lt;/OMA&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;
+&lt;/FMP&gt;
+
+&lt;CMP&gt;
+  if n is an integer then
+  x^0 = 1,
+  x^n = x * x^(n-1)
+&lt;/CMP&gt;
+&lt;FMP&gt;
+&lt;OMOBJ&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="logic1" name="implies"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="set1" name="in"/&gt;
+      &lt;OMV name="n"/&gt;
+      &lt;OMS cd="setname1" name="Z"/&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="logic1" name="and"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="relation1" name="eq"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="arith1" name="power"/&gt;
+          &lt;OMV name="x"/&gt;
+          &lt;OMI&gt;0&lt;/OMI&gt;
+        &lt;/OMA&gt;
+        &lt;OMS cd="alg1" name="one"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="relation1" name="eq"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="arith1" name="power"/&gt;
+          &lt;OMV name="x"/&gt;
+          &lt;OMV name="n"/&gt;
+        &lt;/OMA&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="arith1" name="times"/&gt;
+          &lt;OMV name="x"/&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="arith1" name="power"/&gt;
+            &lt;OMV name="x"/&gt;
+            &lt;OMA&gt;
+              &lt;OMS cd="arith1" name="minus"/&gt;
+              &lt;OMV name="n"/&gt;
+              &lt;OMI&gt;1&lt;/OMI&gt;
+            &lt;/OMA&gt;
+          &lt;/OMA&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;
+&lt;/FMP&gt;
+&lt;Example&gt;
+&lt;OMOBJ&gt;
+&lt;OMA&gt;
+  &lt;OMS cd="relation1" name="eq"/&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="arith1" name="power"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="linalg2" name="matrix"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="linalg2" name="matrixrow"/&gt;
+        &lt;OMI&gt; 1 &lt;/OMI&gt;
+        &lt;OMI&gt; 2 &lt;/OMI&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="linalg2" name="matrixrow"/&gt;
+        &lt;OMI&gt; 3 &lt;/OMI&gt;
+        &lt;OMI&gt; 4 &lt;/OMI&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+    &lt;OMI&gt;3&lt;/OMI&gt;
+  &lt;/OMA&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="linalg2" name="matrix"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="linalg2" name="matrixrow"/&gt;
+      &lt;OMI&gt; 37 &lt;/OMI&gt;
+      &lt;OMI&gt; 54 &lt;/OMI&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="linalg2" name="matrixrow"/&gt;
+      &lt;OMI&gt; 81 &lt;/OMI&gt;
+      &lt;OMI&gt; 118 &lt;/OMI&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMOBJ&gt;
+&lt;/Example&gt;
+&lt;Example&gt;
+&lt;OMOBJ&gt;
+&lt;OMA&gt;
+  &lt;OMS cd="relation1" name="eq"/&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="arith1" name="power"/&gt;
+    &lt;OMS cd="nums1" name="e"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="arith1" name="times"/&gt;
+      &lt;OMS cd="nums1" name="i"/&gt;
+      &lt;OMS cd="nums1" name="pi"/&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="arith1" name="unary_minus"/&gt;
+    &lt;OMS cd="alg1" name="one"/&gt;
+  &lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMOBJ&gt;
+&lt;/Example&gt;
+&lt;/CDDefinition&gt;
+
+&lt;CDDefinition&gt;
+&lt;Name&gt; abs &lt;/Name&gt;
+&lt;Description&gt; 
+A unary operator which represents the absolute value of its
+argument. The argument should be numerically valued.
+In the complex case this is often referred to as the modulus.
+&lt;/Description&gt;
+&lt;CMP&gt; for all x,y | abs(x) + abs(y) &gt;= abs(x+y) &lt;/CMP&gt;
+&lt;FMP&gt;
+&lt;OMOBJ&gt;
+  &lt;OMBIND&gt;
+    &lt;OMS cd="quant1" name="forall"/&gt;
+    &lt;OMBVAR&gt;
+      &lt;OMV name="x"/&gt;
+      &lt;OMV name="y"/&gt;
+    &lt;/OMBVAR&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="relation1" name="geq"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="plus"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="arith1" name="abs"/&gt;
+            &lt;OMV name="x"/&gt;
+            &lt;OMV name="y"/&gt;
+        &lt;/OMA&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="arith1" name="abs"/&gt;
+            &lt;OMV name="x"/&gt;
+            &lt;OMV name="y"/&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="abs"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="arith1" name="plus"/&gt;
+          &lt;OMV name="x"/&gt;
+          &lt;OMV name="y"/&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;
+&lt;/FMP&gt;
+&lt;/CDDefinition&gt;
+
+&lt;CDDefinition&gt;
+&lt;Name&gt; root &lt;/Name&gt;
+&lt;Description&gt; 
+A binary operator which represents its first argument "lowered" to its
+n'th root where n is the second argument. This is the inverse of the operation
+represented by the power symbol defined in this CD.
+
+Care should be taken as to the precise meaning of this operator, in
+particular which root is represented, however it is here to represent
+the general notion of taking n'th roots. As inferred by the signature
+relevant to this symbol, the function represented by this symbol is
+the single valued function, the specific root returned is the one
+indicated by the first CMP. Note also that the converse of the second
+CMP is not valid in general.
+&lt;/Description&gt;
+
+&lt;CMP&gt; x\in C implies root(x,n) = exp(ln(x)/n) &lt;/CMP&gt;
+&lt;FMP&gt;
+  &lt;OMOBJ&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="logic1" name="implies"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="set1" name="in"/&gt;
+        &lt;OMV name="x"/&gt;
+        &lt;OMS cd="setname1" name="C"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="relation1" name="eq"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="arith1" name="root"/&gt;
+          &lt;OMV name="x"/&gt;
+          &lt;OMV name="n"/&gt;          
+        &lt;/OMA&gt;
+        &lt;OMA&gt;
+          &lt;OMS name="exp" cd="transc1"/&gt;
+          &lt;OMA&gt;
+            &lt;OMS name="divide" cd="arith1"/&gt;
+            &lt;OMA&gt;
+              &lt;OMS name="ln" cd="transc1"/&gt;
+              &lt;OMV name="x"/&gt;
+            &lt;/OMA&gt;
+            &lt;OMV name="n"/&gt;          
+          &lt;/OMA&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMOBJ&gt;
+&lt;/FMP&gt;
+
+&lt;CMP&gt; for all a,n | power(root(a,n),n) = a (if the root exists!) &lt;/CMP&gt;
+&lt;FMP&gt;
+  &lt;OMOBJ&gt;
+    &lt;OMBIND&gt;
+      &lt;OMS cd="quant1" name="forall"/&gt;
+      &lt;OMBVAR&gt;
+         &lt;OMV name="a"/&gt;
+         &lt;OMV name="n"/&gt;
+      &lt;/OMBVAR&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="relation1" name="eq"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="arith1" name="power"/&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="arith1" name="root"/&gt;
+            &lt;OMV name="a"/&gt;
+            &lt;OMV name="n"/&gt;
+          &lt;/OMA&gt;
+          &lt;OMV name="n"/&gt;
+        &lt;/OMA&gt;
+        &lt;OMV name="a"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMBIND&gt;
+  &lt;/OMOBJ&gt;
+&lt;/FMP&gt;
+&lt;/CDDefinition&gt;
+
+
+
+
+&lt;CDDefinition&gt;
+&lt;Name&gt; sum &lt;/Name&gt;
+&lt;Description&gt;
+An operator taking two arguments, the first being the range of summation,
+e.g. an integral interval, the second being the function to be
+summed. Note that the sum may be over an infinite interval.
+&lt;/Description&gt;
+&lt;Example&gt;
+  This represents the summation of the reciprocals of all the integers between
+  1 and 10 inclusive.
+&lt;OMOBJ&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="arith1" name="sum"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="interval1" name="integer_interval"/&gt;
+        &lt;OMI&gt; 1 &lt;/OMI&gt;
+        &lt;OMI&gt; 10 &lt;/OMI&gt;
+      &lt;/OMA&gt;
+    &lt;OMBIND&gt;
+      &lt;OMS cd="fns1" name="lambda"/&gt;
+        &lt;OMBVAR&gt;
+          &lt;OMV name="x"/&gt;
+        &lt;/OMBVAR&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="arith1" name="divide"/&gt;
+          &lt;OMI&gt; 1 &lt;/OMI&gt;
+          &lt;OMV name="x"/&gt;
+        &lt;/OMA&gt;
+    &lt;/OMBIND&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;
+&lt;/Example&gt;
+&lt;/CDDefinition&gt;
+
+&lt;CDDefinition&gt;
+&lt;Name&gt; product &lt;/Name&gt;
+&lt;Description&gt;
+An operator taking two arguments, the first being the range of multiplication
+e.g. an integral interval, the second being the function to
+be multiplied. Note that the product may be over an infinite interval. 
+&lt;/Description&gt;
+&lt;Example&gt;
+This represents the statement that the factorial of n is equal to the product
+of all the integers between 1 and n inclusive.
+&lt;OMOBJ&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="relation1" name="eq"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="integer1" name="factorial"/&gt;
+      &lt;OMV name="n" /&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="arith1" name="product"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="interval1" name="integer_interval"/&gt;
+          &lt;OMI&gt; 1 &lt;/OMI&gt;
+          &lt;OMV name="n"/&gt;
+        &lt;/OMA&gt;
+      &lt;OMBIND&gt;
+        &lt;OMS cd="fns1" name="lambda"/&gt;
+          &lt;OMBVAR&gt;
+            &lt;OMV name="i"/&gt;
+          &lt;/OMBVAR&gt;
+          &lt;OMV name="i"/&gt;
+      &lt;/OMBIND&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;
+&lt;/Example&gt;
+&lt;/CDDefinition&gt;
+
+&lt;/CD&gt;
+</pre></div>
+
+</div>
+
+<div><h3 name="arith1.sts" id="arith1.sts">A.3 The  <b>arith1</b> STS Signature File</h3>
+
+
+
+
+<div class="literal"><pre>
+&lt;CDSignatures type="sts" cd="arith1"&gt;
+
+&lt;CDSComment&gt;
+Date:  1999-11-26
+Author: David Carlisle
+&lt;/CDSComment&gt;
+
+&lt;Signature name="lcm" &gt;
+&lt;OMOBJ&gt;
+ &lt;OMA&gt;
+   &lt;OMS name="mapsto" cd="sts" /&gt;
+   &lt;OMA&gt;
+     &lt;OMS name="nassoc" cd="sts"/&gt;
+     &lt;OMV name="SemiGroup"/&gt;
+   &lt;/OMA&gt;
+   &lt;OMV name="SemiGroup" /&gt;
+ &lt;/OMA&gt;
+&lt;/OMOBJ&gt;
+&lt;/Signature&gt;
+
+&lt;Signature name="gcd" &gt;
+&lt;OMOBJ&gt;
+ &lt;OMA&gt;
+   &lt;OMS name="mapsto" cd="sts" /&gt;
+   &lt;OMA&gt;
+     &lt;OMS name="nassoc" cd="sts"/&gt;
+     &lt;OMV name="SemiGroup"/&gt;
+   &lt;/OMA&gt;
+   &lt;OMV name="SemiGroup" /&gt;
+ &lt;/OMA&gt;
+&lt;/OMOBJ&gt;
+&lt;/Signature&gt;
+
+&lt;Signature name="plus"&gt;
+&lt;OMOBJ&gt;
+ &lt;OMA&gt;
+  &lt;OMS name="mapsto" cd="sts"/&gt;
+  &lt;OMA&gt;
+   &lt;OMS name="nassoc" cd="sts"/&gt; 
+   &lt;OMV name="AbelianSemiGroup"/&gt;
+  &lt;/OMA&gt;
+  &lt;OMV name="AbelianSemiGroup"/&gt;
+ &lt;/OMA&gt;
+&lt;/OMOBJ&gt;
+&lt;/Signature&gt;
+
+&lt;Signature name="unary_minus"&gt;
+&lt;OMOBJ&gt;
+ &lt;OMA&gt;
+  &lt;OMS name="mapsto" cd="sts"/&gt;
+  &lt;OMV name="AbelianGroup"/&gt; 
+  &lt;OMV name="AbelianGroup"/&gt; 
+ &lt;/OMA&gt;
+&lt;/OMOBJ&gt;
+&lt;/Signature&gt;
+
+&lt;Signature name="minus"&gt;
+&lt;OMOBJ&gt;
+ &lt;OMA&gt;
+  &lt;OMS name="mapsto" cd="sts"/&gt;
+  &lt;OMV name="AbelianGroup"/&gt; 
+  &lt;OMV name="AbelianGroup"/&gt; 
+  &lt;OMV name="AbelianGroup"/&gt; 
+ &lt;/OMA&gt;
+&lt;/OMOBJ&gt;
+&lt;/Signature&gt;
+
+&lt;Signature name="times"&gt;
+&lt;OMOBJ&gt;
+ &lt;OMA&gt;
+  &lt;OMS name="mapsto" cd="sts"/&gt;
+  &lt;OMA&gt;
+   &lt;OMS name="nassoc" cd="sts"/&gt; 
+   &lt;OMV name="SemiGroup"/&gt;
+  &lt;/OMA&gt;
+  &lt;OMV name="SemiGroup"/&gt;
+ &lt;/OMA&gt;
+&lt;/OMOBJ&gt;
+&lt;/Signature&gt;
+
+&lt;Signature name="divide"&gt;
+&lt;OMOBJ&gt;
+ &lt;OMA&gt;
+  &lt;OMS name="mapsto" cd="sts"/&gt;
+  &lt;OMV name="AbelianGroup"/&gt; 
+  &lt;OMV name="AbelianGroup"/&gt; 
+  &lt;OMV name="AbelianGroup"/&gt; 
+ &lt;/OMA&gt;
+&lt;/OMOBJ&gt;
+&lt;/Signature&gt;
+
+&lt;Signature name="power"&gt;
+&lt;OMOBJ&gt;
+ &lt;OMA&gt;
+  &lt;OMS name="mapsto" cd="sts"/&gt;
+  &lt;OMS name="NumericalValue" cd="sts"/&gt; 
+  &lt;OMS name="NumericalValue" cd="sts"/&gt; 
+  &lt;OMS name="NumericalValue" cd="sts"/&gt; 
+ &lt;/OMA&gt;
+&lt;/OMOBJ&gt;
+&lt;/Signature&gt;
+
+&lt;Signature name="abs"&gt;
+&lt;OMOBJ&gt;
+ &lt;OMA&gt;
+  &lt;OMS name="mapsto" cd="sts"/&gt;
+  &lt;OMS name="C" cd="setname1"/&gt; 
+  &lt;OMS name="R" cd="setname1"/&gt; 
+ &lt;/OMA&gt;
+&lt;/OMOBJ&gt;
+&lt;/Signature&gt;
+
+&lt;Signature name="root"&gt;
+&lt;OMOBJ&gt;
+ &lt;OMA&gt;
+  &lt;OMS name="mapsto" cd="sts"/&gt;
+  &lt;OMS name="NumericalValue" cd="sts"/&gt; 
+  &lt;OMS name="NumericalValue" cd="sts"/&gt; 
+  &lt;OMS name="NumericalValue" cd="sts"/&gt; 
+ &lt;/OMA&gt;
+&lt;/OMOBJ&gt;
+&lt;/Signature&gt;
+
+
+&lt;Signature name="sum" &gt;
+&lt;OMOBJ&gt;
+ &lt;OMA&gt;
+  &lt;OMS name="mapsto" cd="sts" /&gt;
+  &lt;OMV name="IntegerRange" /&gt;
+  &lt;OMA&gt;
+   &lt;OMS name="mapsto" cd="sts" /&gt;
+   &lt;OMS name="Z" cd="setname1" /&gt;
+   &lt;OMV name="AbelianMonoid" /&gt;
+  &lt;/OMA&gt;
+  &lt;OMV name="AbelianMonoid" /&gt;
+ &lt;/OMA&gt;
+&lt;/OMOBJ&gt;
+&lt;/Signature&gt;
+
+&lt;Signature name="product" &gt;
+&lt;OMOBJ&gt;
+ &lt;OMA&gt;
+  &lt;OMS name="mapsto" cd="sts" /&gt;
+  &lt;OMV name="IntegerRange" /&gt;
+  &lt;OMA&gt;
+   &lt;OMS name="mapsto" cd="sts" /&gt;
+   &lt;OMS name="Z" cd="setname1" /&gt;
+   &lt;OMV name="AbelianMonoid" /&gt;
+  &lt;/OMA&gt;
+  &lt;OMV name="AbelianMonoid" /&gt;
+ &lt;/OMA&gt;
+&lt;/OMOBJ&gt;
+&lt;/Signature&gt;
+
+&lt;/CDSignatures&gt;
+</pre></div>
+
+</div>
+
+<div><h3 name="mathml.cdg" id="mathml.cdg">A.4 The  <b>MathML</b> CDGroup</h3>
+
+
+
+<div class="literal"><pre>
+&lt;CDGroup&gt;
+&lt;CDGroupName&gt;mathml&lt;/CDGroupName&gt;
+&lt;CDGroupVersion&gt; 2 &lt;/CDGroupVersion&gt;
+&lt;CDGroupRevision&gt; 0 &lt;/CDGroupRevision&gt;
+&lt;CDGroupURL&gt;
+http://www.openmath.org/cdfiles/cdgroups/mathml.ocd&lt;/CDGroupURL&gt;
+&lt;CDGroupDescription&gt; MathML compatibility CD Group &lt;/CDGroupDescription&gt;
+&lt;CDComment&gt;This is the first version of the Core CD group.
+It was created by D Carlisle based on MathML CD Group.&lt;/CDComment&gt;
+&lt;CDComment&gt;Algebra&lt;/CDComment&gt;
+&lt;CDGroupMember&gt;
+&lt;CDName&gt;alg1&lt;/CDName&gt;
+&lt;CDURL&gt;http://www.openmath.org/cd/alg1.ocd&lt;/CDURL&gt;&lt;/CDGroupMember&gt;
+&lt;CDComment&gt;Arithmetic&lt;/CDComment&gt;
+&lt;CDGroupMember&gt;
+&lt;CDName&gt;arith1&lt;/CDName&gt;
+&lt;CDURL&gt;http://www.openmath.org/cd/arith1.ocd&lt;/CDURL&gt;&lt;/CDGroupMember&gt;
+&lt;CDComment&gt;Constructor for Floating Point Numbers&lt;/CDComment&gt;
+&lt;CDGroupMember&gt;
+&lt;CDName&gt;bigfloat1&lt;/CDName&gt;
+&lt;CDURL&gt;http://www.openmath.org/cd/bigfloat1.ocd&lt;/CDURL&gt;&lt;/CDGroupMember&gt;
+&lt;CDComment&gt;Calculus&lt;/CDComment&gt;
+&lt;CDGroupMember&gt;
+&lt;CDName&gt;calculus1&lt;/CDName&gt;
+&lt;CDURL&gt;http://www.openmath.org/cd/calculus1.ocd&lt;/CDURL&gt;&lt;/CDGroupMember&gt;
+&lt;CDComment&gt;Operations on and constructors for complex numbers&lt;/CDComment&gt;
+&lt;CDGroupMember&gt;
+&lt;CDName&gt;complex1&lt;/CDName&gt;
+&lt;CDURL&gt;http://www.openmath.org/cd/complex1.ocd&lt;/CDURL&gt;&lt;/CDGroupMember&gt;
+&lt;CDComment&gt;Functions on functions&lt;/CDComment&gt;
+&lt;CDGroupMember&gt;
+&lt;CDName&gt;fns1&lt;/CDName&gt;
+&lt;CDURL&gt;http://www.openmath.org/cd/fns1.ocd&lt;/CDURL&gt;&lt;/CDGroupMember&gt;
+&lt;CDComment&gt;Integer arithmetic&lt;/CDComment&gt;
+&lt;CDGroupMember&gt;
+&lt;CDName&gt;integer1&lt;/CDName&gt;
+&lt;CDURL&gt;http://www.openmath.org/cd/integer1.ocd&lt;/CDURL&gt;&lt;/CDGroupMember&gt;
+&lt;CDComment&gt;Intervals&lt;/CDComment&gt;
+&lt;CDGroupMember&gt;
+&lt;CDName&gt;interval1&lt;/CDName&gt;
+&lt;CDURL&gt;http://www.openmath.org/cd/interval1.ocd&lt;/CDURL&gt;&lt;/CDGroupMember&gt;
+&lt;CDComment&gt;Linear Algebra - vector &amp;amp; matrix constructors, those symbols which are independant of orientation, but in MathML&lt;/CDComment&gt;
+&lt;CDGroupMember&gt;
+&lt;CDName&gt;linalg1&lt;/CDName&gt;
+&lt;CDURL&gt;http://www.openmath.org/cd/linalg1.ocd&lt;/CDURL&gt;&lt;/CDGroupMember&gt;
+&lt;CDComment&gt;Linear Algebra - vector &amp;amp; matrix constructors, those symbols which are dependant of orientation, and in MathML&lt;/CDComment&gt;
+&lt;CDGroupMember&gt;
+&lt;CDName&gt;linalg2&lt;/CDName&gt;
+&lt;CDURL&gt;http://www.openmath.org/cd/linalg2.ocd&lt;/CDURL&gt;&lt;/CDGroupMember&gt;
+&lt;CDComment&gt;Limits of unary functions&lt;/CDComment&gt;
+&lt;CDGroupMember&gt;
+&lt;CDName&gt;limit1&lt;/CDName&gt;
+&lt;CDURL&gt;http://www.openmath.org/cd/limit1.ocd&lt;/CDURL&gt;&lt;/CDGroupMember&gt;
+&lt;CDComment&gt;List constructors&lt;/CDComment&gt;
+&lt;CDGroupMember&gt;
+&lt;CDName&gt;list1&lt;/CDName&gt;
+&lt;CDURL&gt;http://www.openmath.org/cd/list1.ocd&lt;/CDURL&gt;&lt;/CDGroupMember&gt;
+&lt;CDComment&gt;Basic logical operators&lt;/CDComment&gt;
+&lt;CDGroupMember&gt;
+&lt;CDName&gt;logic1&lt;/CDName&gt;
+&lt;CDURL&gt;http://www.openmath.org/cd/logic1.ocd&lt;/CDURL&gt;&lt;/CDGroupMember&gt;
+&lt;CDComment&gt;
+MathML Numerical Types
+&lt;/CDComment&gt;
+&lt;CDGroupMember&gt;
+&lt;CDName&gt;mathmltypes&lt;/CDName&gt;
+&lt;CDURL&gt;http://www.openmath.org/cd/mathmltypes.ocd&lt;/CDURL&gt;
+&lt;/CDGroupMember&gt;
+&lt;CDComment&gt;Minima and maxima&lt;/CDComment&gt;
+&lt;CDGroupMember&gt;
+&lt;CDName&gt;minmax1&lt;/CDName&gt;
+&lt;CDURL&gt;http://www.openmath.org/cd/minmax1.ocd&lt;/CDURL&gt;&lt;/CDGroupMember&gt;
+&lt;CDComment&gt;Multset-theoretic operators and constructors&lt;/CDComment&gt;
+&lt;CDGroupMember&gt;
+&lt;CDName&gt;multiset1&lt;/CDName&gt;
+&lt;CDURL&gt;http://www.openmath.org/cd/multiset1.ocd&lt;/CDURL&gt;&lt;/CDGroupMember&gt;
+&lt;CDComment&gt;Symbols for creating numbers, including some defined constants
+(which can be seen as nullary constructors)&lt;/CDComment&gt;
+&lt;CDGroupMember&gt;
+&lt;CDName&gt;nums1&lt;/CDName&gt;
+&lt;CDURL&gt;http://www.openmath.org/cd/nums1.ocd&lt;/CDURL&gt;&lt;/CDGroupMember&gt;
+&lt;CDComment&gt;Symbols for creating piecewise definitions&lt;/CDComment&gt;
+&lt;CDGroupMember&gt;
+&lt;CDName&gt;piece1&lt;/CDName&gt;
+&lt;CDURL&gt;http://www.openmath.org/cd/piece1.ocd&lt;/CDURL&gt;&lt;/CDGroupMember&gt;
+&lt;CDComment&gt;The basic quantifiers forall and exists.&lt;/CDComment&gt;
+&lt;CDGroupMember&gt;
+&lt;CDName&gt;quant1&lt;/CDName&gt;
+&lt;CDURL&gt;http://www.openmath.org/cd/quant1.ocd&lt;/CDURL&gt;&lt;/CDGroupMember&gt;
+&lt;CDComment&gt;Common arithmetic relations&lt;/CDComment&gt;
+&lt;CDGroupMember&gt;
+&lt;CDName&gt;relation1&lt;/CDName&gt;
+&lt;CDURL&gt;http://www.openmath.org/cd/relation1.ocd&lt;/CDURL&gt;&lt;/CDGroupMember&gt;
+&lt;CDComment&gt;Number sets&lt;/CDComment&gt;
+&lt;CDGroupMember&gt;
+&lt;CDName&gt;setname1&lt;/CDName&gt;
+&lt;CDURL&gt;http://www.openmath.org/cd/setname1.ocd&lt;/CDURL&gt;&lt;/CDGroupMember&gt;
+&lt;CDComment&gt;Rounding&lt;/CDComment&gt;
+&lt;CDGroupMember&gt;
+&lt;CDName&gt;rounding1&lt;/CDName&gt;
+&lt;CDURL&gt;http://www.openmath.org/cd/rounding1.ocd&lt;/CDURL&gt;&lt;/CDGroupMember&gt;
+&lt;CDComment&gt;Set-theoretic operators and constructors&lt;/CDComment&gt;
+&lt;CDGroupMember&gt;
+&lt;CDName&gt;set1&lt;/CDName&gt;
+&lt;CDURL&gt;http://www.openmath.org/cd/set1.ocd&lt;/CDURL&gt;&lt;/CDGroupMember&gt;
+&lt;CDComment&gt;Basic data orientated statistical operators&lt;/CDComment&gt;
+&lt;CDGroupMember&gt;
+&lt;CDName&gt;s_data1&lt;/CDName&gt;
+&lt;CDURL&gt;http://www.openmath.org/cd/s_data1.ocd&lt;/CDURL&gt;&lt;/CDGroupMember&gt;
+&lt;CDComment&gt;Basic random variable orientated statistical operators&lt;/CDComment&gt;
+&lt;CDGroupMember&gt;
+&lt;CDName&gt;s_dist1&lt;/CDName&gt;
+&lt;CDURL&gt;http://www.openmath.org/cd/s_dist1.ocd&lt;/CDURL&gt;&lt;/CDGroupMember&gt;
+&lt;CDComment&gt;Basic transcendental functions&lt;/CDComment&gt;
+&lt;CDGroupMember&gt;
+&lt;CDName&gt;transc1&lt;/CDName&gt;
+&lt;CDURL&gt;http://www.openmath.org/cd/transc1.ocd&lt;/CDURL&gt;&lt;/CDGroupMember&gt;
+&lt;CDComment&gt;Vector calculus functions&lt;/CDComment&gt;
+&lt;CDGroupMember&gt;
+&lt;CDName&gt;veccalc1&lt;/CDName&gt;
+&lt;CDURL&gt;http://www.openmath.org/cd/veccalc1.ocd&lt;/CDURL&gt;&lt;/CDGroupMember&gt;
+&lt;CDComment&gt;Alternative encoding symbols for compatibility with the MathML
+Semantic mapping constructs.&lt;/CDComment&gt;
+&lt;CDGroupMember&gt;
+&lt;CDName&gt;altenc&lt;/CDName&gt;
+&lt;CDURL&gt;http://www.openmath.org/cd/altenc.ocd&lt;/CDURL&gt;&lt;/CDGroupMember&gt;
+&lt;/CDGroup&gt;
+</pre></div>
+
+
+
+</div>
+
+<div><h3 name="errorcd" id="errorcd">A.5 The <b>error</b> Content Dictionary</h3>
+
+
+<div class="literal"><pre>
+&lt;CD&gt;
+&lt;CDName&gt; error &lt;/CDName&gt;
+&lt;CDURL&gt; http://www.openmath.org/cd/error.ocd &lt;/CDURL&gt;
+&lt;CDReviewDate&gt; 2003-04-01 &lt;/CDReviewDate&gt;
+&lt;CDStatus&gt; official &lt;/CDStatus&gt;
+&lt;CDDate&gt; 2001-03-12 &lt;/CDDate&gt;
+&lt;CDVersion&gt; 2 &lt;/CDVersion&gt;
+&lt;CDRevision&gt; 0 &lt;/CDRevision&gt;
+&lt;CDUses&gt;
+&lt;CDName&gt; arith1 &lt;/CDName&gt;
+&lt;CDName&gt; specfun1 &lt;/CDName&gt;
+&lt;/CDUses&gt;
+
+&lt;CDDefinition&gt;
+&lt;Name&gt; unhandled_symbol &lt;/Name&gt;
+&lt;Description&gt;
+This symbol represents the error which is raised when an application
+reads a symbol which is present in the mentioned content
+dictionary, but which it has not implemented.
+
+When receiving such a symbol, the application should act as if it had
+received the OpenMath error object constructed from unhandled_symbol
+and the unhandled symbol as in the example below.
+&lt;/Description&gt;
+
+&lt;Example&gt;
+The application does not implement the Complex numbers:
+&lt;OMOBJ&gt;
+  &lt;OME&gt;
+    &lt;OMS cd="error" name="unhandled_symbol"/&gt;
+    &lt;OMS cd="setname1" name="C"/&gt;
+  &lt;/OME&gt;
+&lt;/OMOBJ&gt;
+&lt;/Example&gt;
+&lt;/CDDefinition&gt;
+
+&lt;CDDefinition&gt;
+&lt;Name&gt; unexpected_symbol &lt;/Name&gt;
+&lt;Description&gt;
+This symbol represents the error which is raised when an application
+reads a symbol which is not present in the mentioned content dictionary.
+
+When receiving such a symbol, the application should act as if it had
+received the OpenMath error object constructed from unexpected_symbol
+and the unexpected symbol as in the example below.
+&lt;/Description&gt;
+&lt;Example&gt;
+The application received a mistyped symbol
+&lt;OMOBJ&gt;
+  &lt;OME&gt;
+    &lt;OMS cd="error" name="unexpected_symbol"/&gt;
+    &lt;OMS cd="arith1" name="plurse"/&gt;
+  &lt;/OME&gt;
+&lt;/OMOBJ&gt;
+&lt;/Example&gt;
+&lt;/CDDefinition&gt;
+
+&lt;CDDefinition&gt;
+&lt;Name&gt; unsupported_CD &lt;/Name&gt;
+&lt;Description&gt;
+This symbol represents the error which is raised when an application
+reads a symbol where the mentioned content dictionary is not
+present.
+
+When receiving such a symbol, the application should act as if it had
+received the OpenMath error object constructed from unsupported_CD and
+the symbol from the unsupported Content Dictionary as in the example
+below.
+&lt;/Description&gt;
+&lt;Example&gt;
+The application does not know about the CD specfun1
+&lt;OMOBJ&gt;
+  &lt;OME&gt;
+    &lt;OMS cd="error" name="unsupported_CD"/&gt;
+    &lt;OMS cd="specfun1" name="BesselJ"/&gt;
+  &lt;/OME&gt;
+&lt;/OMOBJ&gt;
+&lt;/Example&gt;
+&lt;/CDDefinition&gt;
+
+&lt;/CD&gt;
+</pre></div>
+
+</div>
+
+
+
+
+
+<h2 name="bibliography" id="bibliography">
+  Appendix B<br/>Bibliography</h2><p><a name="Abbott_Leeuwen_Strotmann_98" id="Abbott_Leeuwen_Strotmann_98"/><b>[1]</b>  John A. Abbott, André van Leeuwen and A. Strotmann <i>OpenMath: Communicating Mathematical Information 
+between Co-operating Agents in a Knowledge Network.</i></p><p><a name="rfc1521" id="rfc1521"/><b>[2]</b>  N. Borenstein and N Freed <i>MIME (Multipurpose Internet Mail Extensions) Part One: Mechanism for Specifying and Describing the Format of Internet Message Bodies</i></p><p><a name="MathML_98" id="MathML_98"/><b>[3]</b>  Stephen Buswell, Stan Devitt, Angel Diaz, Nico Poppelier, Bruce Smith, Neil Soiffer, Robert Sutor and Stephen Watt <i>Mathematical Markup Language (MathML) 1.0 Specification</i></p><p><a name="OM_D131b" id="OM_D131b"/><b>[4]</b>  O. Caprotti and A. M. Cohen <i>A Type System for OpenMath</i></p><p><a name="OMD132b" id="OMD132b"/><b>[5]</b>  Olga Caprotti and Arjeh M. Cohen <i>A Type System for OpenMath</i></p><p><a name="Dalmas_Gaetano_Watt_97" id="Dalmas_Gaetano_Watt_97"/><b>[6]</b>  S. Dalmas, M. Gaëtano and S. Watt <i>An OpenMath 1.0 Implementation</i></p><p><a name="OM_D132c" id="OM_D132c"/><b>[7]</b>  J. Davenport <i>A Small OpenMath Type System</i></p><p><a name="ieee754_85" id="ieee754_85"/><b>[8]</b>   <i>IEEE Standard for binary Floating-Point Arithmetic</i></p><p><a name="iso646_83" id="iso646_83"/><b>[9]</b>   <i>ISO 7-bit coded character set for information interchange</i></p><p><a name="OM_98" id="OM_98"/><b>[10]</b>  OpenMath Consortium <i>OpenMath Version 1 - Draft</i></p><p><a name="MathML_2000" id="MathML_2000"/><b>[11]</b>  Nico Poppelier, Robert Miner, Patrick Ion, David Carlisle, Ron Ausbrooks, Stephen Buswell, Stéphane Dalmas, Stan Devitt, Angel Diaz, Roger Hunter, Bruce Smith, Neil Soiffer, Robert Sutor and Stephen Watt <i>Mathematical Markup Language (MathML) 2.0 Specification</i></p><p><a name="ISO9660" id="ISO9660"/><b>[12]</b>  Technical committee / subcommittee: JTC 1 <i>ISO 9660:1988 Information processing <span>–</span> Volume and File Structure of CDROM for Information Interchange</i></p><p><a name="UNICODE" id="UNICODE"/><b>[13]</b>  Unicode Consortium <i>The Unicode Standard: Version 2.0</i></p><p><a name="xmlns" id="xmlns"/><b>[14]</b>  W3C <i>Namespaces in XML</i></p><p><a name="xml" id="xml"/><b>[15]</b>  W3C <i>Extensible Markup Language XML 1.0</i></p><p><a name="XSL_99" id="XSL_99"/><b>[16]</b>  W3C <i>Extensible Stylesheet Language (XSL) Specification</i></p><p><a name="utf8" id="utf8"/><b>[17]</b>  F. Yergeau <i>UTF-8, a transformation format of ISO 10646</i></p>
+
+
+
+
+</body></html>

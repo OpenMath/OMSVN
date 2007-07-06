@@ -1,0 +1,51 @@
+I wish I had some slides for the typesetting section so that I could 
+make a short presentation, but I don't have a thought out position to present.
+I do believe the following, and would appreciate you bringing them up 
+if you are not planning to talk about them in your talk:
+
+1.  Most computations have some equation *input* and output.
+    OpenMath should not ignore this fact.
+
+2.  Equation editors, and more generally, documentation systems
+    are very complicated.  All of the rationale for why OpenMath
+    is good for use with computation applies to using OpenMath for 
+    these systems.
+
+3.  Converters to and from TeX, SGML, etc, should be written.
+    These converters are no different *in concept* from converters in
+    a computer algebra system.
+
+    Converting from TeX, etc., is much harder because they have no semantic
+    information (which is why we should try to influence SGML).
+    You can only guess or use comments.
+
+4.  Whereas a computer algebra has a programming language, most 
+    equation editors do not have one.  This is a problem for extensibility.
+    It argues that formatting should be done elsewhere, either the generating
+    program (e.g., a computer algebra system), or by a flexible program
+    filter that is included in a standard openmath distribution -- one that
+    can be extended at runtime.
+
+5.  I think that the above point argues for the creation of a typesetting 
+    language (using the simple OpenMath structure) in much the same way
+    as there is planned a "core" language for OpenMath.
+
+    Eg, the language might include typesetting primitives:
+        fraction, subscript, superscript, grid, ...
+    Note that these do not specify exact positioning information,
+    just general semantics similar to the "core" semantics for computation.
+    This allows (for example) TeX to use different layout for "inline"
+    expressions versus "display" expressions.
+
+    Some provision for incorporating the semantics must be made with
+    a primitive to disambiguate ambiguous notation.
+    Similarly, some provision should be made to associate typesetting
+    with an expression.  I think another optional field similar to the
+    atribute field should be added to OpenMath.
+
+
+Feel free to make a slide out of this.
+
+Good luck with your talk,
+
+        Neil

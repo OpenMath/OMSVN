@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<j:jelly        xmlns:j         ="jelly:core" 
+        xmlns:log       ="jelly:log"
+        xmlns:x         ="jelly:xml"
+        xmlns:ant       ="jelly:ant"
+        xmlns:util="jelly:util"
+        >
+  <x:parse var="presentation" xml="presentation.xml"/>
+  <!-- FIXME: would need to be given the path to the file to process -->
+  <log:info>Hi there.</log:info>
+
+  <j:forEach var="pageNum" begin="0" end="14" step="1">
+    <!-- FIXME: would need to compute the number of nodes -->
+    <j:if test="${pageNum lt 10}">
+      <j:set var="pageNum" value="0${pageNum}"/></j:if>
+    <j:file name="${pageNum}.htm" outputMode="XML">
+      <x:transform xslt="slidesWithJelly.xsl">
+        <x:copyOf select="$presentation"/>
+         <x:param name="slideNum" value="${pageNum}"/>
+        </x:transform>
+      </j:file>
+    </j:forEach>
+    
+  <j:file name="index.htm" outputMode="XML">
+    <html>
+      <head>
+        <title><x:expr select="$presentation/presentation/title"/></title>
+        <style type="text/css">@import url(../css/default.css);</style>
+        </head>
+      <body background="../images/LogoEnFond.jpeg" vlink="#666666" link="#666666" text="#000000" BGCOLOR="white">
+        <h1><x:expr select="$presentation/presentation/title"/></h1>
+        <h2><x:element name="a">
+          <x:attribute name="href"><x:expr select="$presentation/presentation/author/url"/></x:attribute>
+          <x:attribute name="class">invisible</x:attribute>
+          <x:expr select="$presentation/presentation/author/name"/></x:element></h2>
+        <h3 style="text-align:center"><x:element name="a">
+          <x:attribute name="href"><x:expr select="$presentation/presentation/author/affiliation/url"/></x:attribute>
+          <x:attribute name="class">invisible</x:attribute>
+          <x:expr select="$presentation/presentation/author/affiliation/name"/></x:element></h3>
+        <ul>
+        <j:set var="count" value="0"/>
+        <x:forEach select="$presentation/presentation/slide/title">
+          <j:set var="count" value="${count+1}"/>
+          <log:info>Count is now ${count}.</log:info>
+          <j:set var="countString" value="0${count}"/>
+          <!-- <j:if test="${count-10.0 lt 0}">
+            <j:set var="countString" value="0${count}"/></j:if> -->
+          <log:info>Count is now ${countString}.</log:info>
+          <li class="level_2"><x:element name="a">
+          <x:attribute name="href">
+            <x:expr select="concat('0',${count})"/>.htm</x:attribute>
+          <x:attribute name="class">invisible</x:attribute>
+            <x:expr select="."/></x:element></li>
+          </x:forEach>
+          </ul>
+        </body>
+      </html>
+    </j:file>
+
+</j:jelly>
+
+

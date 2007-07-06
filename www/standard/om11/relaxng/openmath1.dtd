@@ -1,0 +1,76 @@
+<?xml encoding="UTF-8"?>
+
+<!--
+Schema for OpenMath 1
+DPC 2003-09-26
+-->
+
+<!-- default namespace = "http://www.openmath.org/OpenMath" -->
+
+<!ENTITY % omel "OMS|OMV|OMI|OMB|OMSTR|OMF|OMA|OMBIND|OME|OMATTR">
+
+<!ENTITY % attvar "OMATTR">
+
+<!-- things which can be variables -->
+
+<!ENTITY % omvar "OMV|%attvar;">
+
+<!-- symbol -->
+
+<!ELEMENT OMS EMPTY>
+
+<!ATTLIST OMS
+  name CDATA #REQUIRED
+  cd CDATA #REQUIRED>
+
+<!-- variable -->
+
+<!ELEMENT OMV EMPTY>
+
+<!ATTLIST OMV
+  name CDATA #REQUIRED>
+
+<!-- integer -->
+
+<!ELEMENT OMI (#PCDATA)>
+
+<!-- byte array -->
+
+<!ELEMENT OMB (#PCDATA)>
+
+<!-- string -->
+
+<!ELEMENT OMSTR (#PCDATA)>
+
+<!-- floating point -->
+
+<!ELEMENT OMF EMPTY>
+
+<!ATTLIST OMF
+  dec CDATA #IMPLIED
+  hex CDATA #IMPLIED>
+
+<!-- apply constructor -->
+
+<!ELEMENT OMA (%omel;)+>
+
+<!-- binding constructor & variable -->
+
+<!ELEMENT OMBIND ((%omel;),OMBVAR,(%omel;))>
+
+<!ELEMENT OMBVAR (%omvar;)+>
+
+<!-- error -->
+
+<!ELEMENT OME (OMS,(%omel;)*)>
+
+<!-- attribution constructor & attribute pair constructor -->
+
+<!ELEMENT OMATTR (OMATP,(%omel;))>
+
+<!ELEMENT OMATP (OMS,(%omel;))+>
+
+<!-- OM object constructor -->
+
+<!ELEMENT OMOBJ (%omel;)>
+<!ATTLIST OMOBJ xmlns CDATA  #FIXED "http://www.openmath.org/OpenMath">

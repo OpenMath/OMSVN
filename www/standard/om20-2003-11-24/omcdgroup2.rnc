@@ -1,0 +1,32 @@
+
+# Schema for OpenMath CD groups
+
+# info on the CD group itself
+
+CDGroupName = element CDGroupName { text }
+CDGroupVersion = element CDGroupVersion { text }
+attlist.CDGroupVersion &= empty
+CDGroupRevision = element CDGroupRevision { text }
+CDGroupURL = element CDGroupURL { text }
+CDGroupDescription = element CDGroupDescription { text }
+# info on the CDs in the group
+CDComment = element CDComment { text }
+CDGroupMember =
+  element CDGroupMember {
+    attlist.CDGroupMember, CDComment?, CDName, CDVersion?, CDURL?
+  }
+CDName = element CDName { text }
+CDVersion = element CDVersion { text }
+CDURL = element CDURL { text }
+# structure of the group
+CDGroup =
+  element CDGroup {
+    CDGroupName,
+    CDGroupVersion,
+    CDGroupRevision?,
+    CDGroupURL,
+    CDGroupDescription,
+    (CDGroupMember | CDComment)*
+  }
+start = CDGroup
+

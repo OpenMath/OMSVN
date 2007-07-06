@@ -1,0 +1,273 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0050)http://mark.math.helsinki.fi:8080/doc/hlsplan.html -->
+<HTML><HEAD><TITLE>HLS Techincal Plan</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<META content="Matti Pauna" name=Author>
+<META content="MSHTML 6.00.2716.2200" name=GENERATOR><LINK 
+href="HLS_files/styles.css" type=text/css rel=stylesheet></HEAD>
+<BODY>
+<CENTER>
+<H2>HLS - Technical Plan</H2></CENTER>
+<P>This plan does not represent the current status of the project, rather it is 
+an overview of the features that HLS (Helsinki Learning System) should 
+have.&nbsp; 
+<H2>Table of contents</H2>
+<UL>
+  <LI>Overview of components 
+  <OL>
+    <LI><A 
+    href="http://mark.math.helsinki.fi:8080/doc/hlsplan.html#datastructures">Databases 
+    and data structures</A> 
+    <LI><A 
+    href="http://mark.math.helsinki.fi:8080/doc/hlsplan.html#applications">Applications</A> 
+    </LI></OL>
+  <LI><A 
+  href="http://mark.math.helsinki.fi:8080/doc/hlsplan.html#techoverview">Technical 
+  overview</A> 
+  <LI><A 
+  href="http://mark.math.helsinki.fi:8080/doc/hlsplan.html#installing">Installing</A> 
+
+  <LI><A 
+  href="http://mark.math.helsinki.fi:8080/doc/hlsplan.html#status">Current 
+  status</A> </LI></UL>
+<H2>Overview of components</H2>
+<P>HLS has the following components, each described later.&nbsp; 
+<P align=center><IMG height=411 src="HLS_files/fig1.jpg" 
+width=539 border=0> 
+<H3><A name=datastructures></A>1. Databases and data structures</H3>
+<P>The data structures of the HLS system are xml documents stored in an xml 
+database. The structure of these data bases is specified by xml document type 
+definitions (dtds). There are following data bases in HLS: 
+<UL>
+  <LI><B>ccd, course content dictionary.</B> Defines the topical hierarchy of 
+  the content. Defines also additional information concerning topics. 
+  <LI><B>problems. </B>Problems which can be of type multiple choice, yes or no, 
+  string and essay. 
+  <LI><B>exercises. </B>Exercises consist of several problems and information 
+  about in which order the system offers them to the user. Also hints and other 
+  feedback concerning problems are stored in exercises. 
+  <LI><B>userdb.</B> User data base stores user accounts to the system. </LI></UL>
+<H4>1.1 CCD</H4>
+<P>Course content dictionary contains the topic hierarchy of courses. Each 
+course has an entry in the ccd. The topics covered in the course are listed 
+under that course. The topic hierarchy is recursive, i.e. each topic has its 
+subtopics as topic subelements. Courses and topics contain also additional 
+description data. This data is <I>not yet specified</I>. The use of ccd in 
+problem and exercise data bases is pictured below. 
+<P align=center><IMG height=438 src="HLS_files/fig2.jpg" 
+width=581 border=0> 
+<H4>1.2 Meta data</H4>Each problem and exercise contains <I>meta data</I>, which 
+describe its content: 
+<UL>
+  <LI><B>TimeStamp. </B>When the document was last modified. 
+  <LI><B>Author. </B>The author of the document and the url to the author. 
+  <LI><B>Copyright owner.</B> Copyright owner of the document. 
+  <LI><B>Level. </B>Level of difficulty of the problem or exercise. A percentage 
+  of the successful attempts of solving it. 
+  <LI><B>Relevant text. </B>A standard text book which covers the topic of the 
+  document. 
+  <LI><B>Course. </B>A reference to the course in the ccd to which the problem 
+  or exercise belongs. 
+  <LI><B>Topic.</B> A reference to the topic in the ccd to which the problem or 
+  exercise belong. </LI></UL>
+<H4>1.3 Problems</H4>
+<P>All types of problems have problem text. Problem can contain several language 
+versions. Different types of problems contain specific data: 
+<UL>
+  <LI><B>Multiple choice:</B> 
+  <UL>
+    <LI>All the <B>choices</B> and the information whether they are correct or 
+    false. </LI></UL>
+  <LI><B>Yes or no:</B> 
+  <UL>
+    <LI>The <B>correct answer</B> as yes or no. </LI></UL>
+  <LI><B>String:</B> 
+  <UL>
+    <LI>The <B>correct answer</B> as a string. 
+    <LI><B>Encoding of the answer</B>, e.g. Maple or Mathematica. 
+    <LI><B>Evaluation guide</B>, which tells how the user's answer and the 
+    correct answer should be compared. </LI></UL>
+  <LI><B>Essay:&nbsp; </B><I>Not yet specified.</I> </LI></UL>
+<H4>1.4 Exercises</H4>
+<P>Exercises consist of sequences of problems. Each member of the sequence is a 
+reference to a problem in the problem data base with additional information. 
+There are three different types of user actions, correct answer, wrong answer, 
+and I don't know answer. For each of these types of actions there is stored the 
+following information: 
+<UL>
+  <LI><B>Feedback, </B>which the system should displays to the user. 
+  <LI><B>Reference to a problem</B> which the system displays next to the user. 
+  Can also be left empty, when it means that the exercise ends. 
+  <LI>Information whether to display the correct solution. </LI></UL>
+<H4>1.5 Users</H4>
+<P>According to the privileges there are different types of users, the higher 
+types have all the privileges of the lower types: 
+<UL>
+  <LI><B>administrator.</B> Can freely modify all the content of the databases. 
+  Can create new user accounts. 
+  <LI><B>lecturer.</B> Can create ccd's, modify their own ccd's, modify all 
+  problems and exercises of their own courses. Can create new user accounts on 
+  levels lecturer and editor. 
+  <LI><B>editor.</B> The default level. Can create and modify their own problems 
+  and exercises. Can create and modify their own user accounts. 
+  <LI>Users without privileges can view the content of the problem and exercise 
+  data bases. </LI></UL>
+<H3><A name=applications></A>2. Applications</H3>
+<P><BR>There are two applications of the data bases. First is a tool to modify 
+the content, called editor. Users log in to the editor and can modify the 
+databases according to their privileges. Content can be added, changed, 
+previewed, and deleted. 
+<P>The second application is for the students of the material. The application 
+presents exercises to the user and allows solving them. It displays the feedback 
+coded in the exercises and can also display an overview of the students 
+strengths and weaknesses according to the course's topics. 
+<H2><A name=techoverview></A>Technical overview</H2>
+<P>The applications are web based, meaning that they are used with a web 
+browser. Also they are client - server applications, since the client uses the 
+server's data bases. Overview of the system is pictured below: 
+<P align=center><IMG height=297 src="HLS_files/fig3.jpg" 
+width=623 border=0> 
+<H3>1. Client side</H3>
+<P>Clients use the applications with a web browser. The web browser needs the 
+IBM TechExplorer plug-in for displaying material written with TeX. 
+<H3>2. Server side</H3>
+<P>In the server side servlets are used as to handle the user interface and 
+user's actions. Standard xml libraries are used to work with xml data. All 
+applications are written in the Java programming language. 
+<H3>3. Interfaces</H3>
+<P>As the data structures and the applications should be flexible, there is an 
+interface between them. This allows the changing of the implementation of the 
+data base without changing the applications as long as the interface does not 
+change. Also the applications can change without affecting the data base 
+definitions. These interfaces are coded using the Java language. <BR>&nbsp; 
+<H2><A name=installing></A>Installing the HLS system</H2>
+<P>HLS system is a web application that is installed into a directory structure 
+in a java enabled web server. The preferred server is Apache Tomcat 4. HLS 
+system should be rooted at a directory called <TT>hls</TT>. The direcoty 
+structure is following: 
+<BLOCKQUOTE>
+  <DL>
+    <DT><TT>editor</TT> 
+    <DD>the starting point for editor application 
+    <DT><TT>mathapp</TT> 
+    <DD>the starting point for the student application 
+    <DT><TT>css</TT> 
+    <DD>contains css stylesheets defining a common style for the web pages 
+    <DT><TT>dtds</TT> 
+    <DD>contains all the dtds defining the xml data structures 
+    <DT><TT>js</TT> 
+    <DD>contains javascripts used in populating topic lists in problem and 
+    exercise input forms 
+    <DT><TT>jsp</TT> 
+    <DD>contains java server page files used in the user interface layer of the 
+    application 
+    <DT><TT>lib</TT> 
+    <DD>contains jsp tag libraries and other libraries used 
+    <DT><TT>WEB-INF/classes</TT> 
+    <DD>contains servlet class files 
+    <DT><TT>WEB-INF/lib</TT> 
+    <DD>contains java class libraries 
+    <DT><TT>WEB-INF/src</TT> 
+    <DD>contains java source files 
+    <DT><TT>xjs</TT> 
+    <DD>contains jaxb definitions for xml bindings into java objects 
+    <DT><TT>xml</TT> 
+    <DD>contains the databases in xml format 
+    <DT><TT>xsl</TT> 
+    <DD>contains xsl stylesheets for transforming xml data into html pages 
+  </DD></DL></BLOCKQUOTE>
+<H2><A name=status></A>Current status</H2>
+<DIV class=table>
+<TABLE borderColor=#808080 cellSpacing=0 cellPadding=2 border=1>
+  <TBODY>
+  <TR>
+    <TD><B>DTDS</B></TD>
+    <TD>&nbsp;</TD>
+    <TD>&nbsp;</TD>
+    <TD>&nbsp;</TD></TR>
+  <TR>
+    <TD>ccd's dtd</TD>
+    <TD>&nbsp;</TD>
+    <TD><SPAN style="FONT-VARIANT: small-caps">partly specified</SPAN></TD>
+    <TD>&nbsp;</TD></TR>
+  <TR>
+    <TD>problems' dtd</TD>
+    <TD><SPAN style="FONT-VARIANT: small-caps">specified</SPAN></TD>
+    <TD>&nbsp;</TD>
+    <TD>&nbsp;</TD></TR>
+  <TR>
+    <TD>exercises' dtd</TD>
+    <TD><SPAN style="FONT-VARIANT: small-caps">specified</SPAN></TD>
+    <TD>&nbsp;</TD>
+    <TD>&nbsp;</TD></TR>
+  <TR>
+    <TD>userdb's dtd</TD>
+    <TD>&nbsp;</TD>
+    <TD><SPAN style="FONT-VARIANT: small-caps">partly specified</SPAN></TD>
+    <TD>&nbsp;</TD></TR>
+  <TR>
+    <TD><B>EDITOR</B></TD>
+    <TD>&nbsp;</TD>
+    <TD>&nbsp;</TD>
+    <TD>&nbsp;</TD></TR>
+  <TR>
+    <TD>editor for multiple choice problems</TD>
+    <TD><SPAN style="FONT-VARIANT: small-caps">implemented</SPAN></TD>
+    <TD>&nbsp;</TD>
+    <TD>&nbsp;</TD></TR>
+  <TR>
+    <TD>editor for string questions</TD>
+    <TD>&nbsp;</TD>
+    <TD><SPAN style="FONT-VARIANT: small-caps">partly implemented</SPAN></TD>
+    <TD>&nbsp;</TD></TR>
+  <TR>
+    <TD>editor for exercises</TD>
+    <TD>&nbsp;</TD>
+    <TD><SPAN style="FONT-VARIANT: small-caps">partly implemented</SPAN></TD>
+    <TD>&nbsp;</TD></TR>
+  <TR>
+    <TD>editor for dtds</TD>
+    <TD>&nbsp;</TD>
+    <TD>&nbsp;</TD>
+    <TD><SPAN style="FONT-VARIANT: small-caps">not implemented</SPAN></TD></TR>
+  <TR>
+    <TD>logins for different users</TD>
+    <TD>&nbsp;</TD>
+    <TD>&nbsp;</TD>
+    <TD><SPAN style="FONT-VARIANT: small-caps">not implemented</SPAN></TD></TR>
+  <TR>
+    <TD><B>STUDENT'S TOOLS</B></TD>
+    <TD>&nbsp;</TD>
+    <TD>&nbsp;</TD>
+    <TD>&nbsp;</TD></TR>
+  <TR>
+    <TD>problem distributor</TD>
+    <TD><SPAN style="FONT-VARIANT: small-caps">implemented</SPAN></TD>
+    <TD>&nbsp;</TD>
+    <TD>&nbsp;</TD></TR>
+  <TR>
+    <TD>student progress</TD>
+    <TD><SPAN style="FONT-VARIANT: small-caps">implemented</SPAN></TD>
+    <TD>&nbsp;</TD>
+    <TD>&nbsp;</TD></TR>
+  <TR>
+    <TD><B>DATABASES</B></TD>
+    <TD>&nbsp;</TD>
+    <TD>&nbsp;</TD>
+    <TD>&nbsp;</TD></TR>
+  <TR>
+    <TD>interface for the db</TD>
+    <TD><SPAN style="FONT-VARIANT: small-caps">implemented</SPAN></TD>
+    <TD>&nbsp;</TD>
+    <TD>&nbsp;</TD></TR>
+  <TR>
+    <TD>db as xml document</TD>
+    <TD><SPAN style="FONT-VARIANT: small-caps">implemented</SPAN></TD>
+    <TD>&nbsp;</TD>
+    <TD>&nbsp;</TD></TR>
+  <TR>
+    <TD>xml databases</TD>
+    <TD>&nbsp;</TD>
+    <TD>&nbsp;</TD>
+    <TD><SPAN style="FONT-VARIANT: small-caps">not 
+  implemented</SPAN></TD></TR></TBODY></TABLE></DIV></BODY></HTML>

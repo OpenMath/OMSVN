@@ -1,0 +1,134 @@
+<page>
+<page-title>OpenMath 2 CD - Contribution</page-title>
+<page-head>
+<script language="JavaScript">
+
+function validateText(textField)
+{
+	val = textField.value;
+	if (val == "") {
+		return false;
+	}
+	else {
+		return true;
+	}
+}
+
+// Checks the contents of the input fields to make sure they contain valid data
+// for this form. Returns a boolean value to indicate whether the form
+// contained invalid data or not.
+function validateForm(infoForm)
+{
+	var urlIsValid = validateText(infoForm.file_url);
+	var authIsValid = validateText(infoForm.author);
+	var emailIsValid = validateText(infoForm.email);
+	var descIsValid = validateText(infoForm.desc);
+
+	var errMsg = "The form contained invalid data for some fields:";
+	if (!urlIsValid)	{ errMsg = errMsg + "\n    - CD File"; }
+	if (!authIsValid)	{ errMsg = errMsg + "\n    - Author"; }
+	if (!emailIsValid)	{ errMsg = errMsg + "\n    - Email"; }
+	if (!descIsValid)	{ errMsg = errMsg + "\n    - Description"; }
+	errMsg = errMsg + "\nPlease correct these fields and resubmit the form.";
+
+	if (urlIsValid &amp;&amp; authIsValid &amp;&amp; emailIsValid &amp;&amp; descIsValid ) {
+		return true;
+	}
+	else {
+		alert(errMsg);
+		return false;
+	}
+}
+</script>
+</page-head>
+
+<p>
+If you wish to contribute an OpenMath Content Dictionary, please
+submit the form below.<br/>
+The fields of the form are described at the bottom of this page.
+</p>
+
+<form name="CDForm" action="http://monet.nag.co.uk/cgi-bin/cdhtml2.cgi" method="post"
+enctype="multipart/form-data"
+onSubmit="return validateForm(this)">
+
+<table border="0">
+<tr>
+	<th align="right">Content Dictionary File</th>
+	<td><input type="file" size="40" name="file_url"/></td>
+</tr>
+<tr>
+	<th align="right">Author</th>
+	<td><input type="text" size="40" name="author"/></td>
+</tr>
+<tr>
+	<th align="right">Email</th>
+	<td><input type="text" size="40" name="email"/></td>
+</tr>
+<tr>
+	<th align="right">Description</th>
+	<td><textarea cols="40" rows="10" name="desc"></textarea></td>
+</tr>
+<tr>
+	<th align="right">STS File (Optional)</th>
+	<td><input type="file" size="40" name="sts_url"/></td>
+</tr>
+<tr>
+	<td colspan="2" align="center">
+        Overwrite Existing File?
+	<input type="checkbox"  name="overwrite"/></td>
+</tr>
+<tr>
+	<td colspan="2" align="center">
+		<input type="reset" value="Clear"/>
+		<input type="submit" value="Submit"/>
+	</td>
+</tr>
+</table>
+
+</form>
+
+<h3>Description of the Input Fields</h3>
+
+<dl >
+
+<dt><b>Content Dictionary File</b></dt>
+<dd>
+This should be the path on <i>your</i> system to the Content Dictionary
+file that you want to submit.
+This file should have a basename consisting of the name
+of the Content Dictionary, and the extension <tt>ocd</tt>.
+</dd>
+<dt><b>Author</b></dt>
+<dd>The name of the person responsible for creating the Content
+Dictionary.</dd>
+
+<dt><b>Email</b></dt>
+<dd>The current email address of the author. (Only used for internal
+logging purposes)</dd>
+
+<dt><b>Description</b></dt>
+<dd>A textual description of the Content Dictionary.
+This will be inserted into the index file for the contributed CD
+directory.
+</dd>
+
+<dt><b>STS File</b></dt>
+<dd>Optionally you may provide a Signature file for STS.
+The basename of this file should be the CD name, with extension
+<tt>sts</tt>
+</dd>
+
+
+<dt><b>Overwrite Existing File</b></dt>
+<dd>Normally if you try to submit a CD and a CD file of that name
+already exists on the server, the submission will be refused.
+If this box is checked, the existing file will be renamed (and no longer
+be accessible on the server) which will allow the new file to be
+submitted.
+</dd>
+</dl>
+
+
+
+</page>

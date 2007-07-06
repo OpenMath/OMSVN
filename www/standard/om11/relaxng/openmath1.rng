@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Schema for OpenMath 1
+  DPC 2003-09-26
+-->
+<grammar ns="http://www.openmath.org/OpenMath" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <define name="omel">
+    <choice>
+      <ref name="OMS"/>
+      <ref name="OMV"/>
+      <ref name="OMI"/>
+      <ref name="OMB"/>
+      <ref name="OMSTR"/>
+      <ref name="OMF"/>
+      <ref name="OMA"/>
+      <ref name="OMBIND"/>
+      <ref name="OME"/>
+      <ref name="OMATTR"/>
+    </choice>
+  </define>
+  <!-- things which can be variables -->
+  <define name="omvar">
+    <choice>
+      <ref name="OMV"/>
+      <ref name="attvar"/>
+    </choice>
+  </define>
+  <define name="attvar">
+    <element name="OMATTR">
+      <ref name="OMATP"/>
+      <choice>
+        <ref name="OMV"/>
+        <ref name="attvar"/>
+      </choice>
+    </element>
+  </define>
+  <!-- symbol -->
+  <define name="OMS">
+    <element name="OMS">
+      <ref name="attlist.OMS"/>
+    </element>
+  </define>
+  <define name="attlist.OMS">
+    <attribute name="name">
+      <data type="string">
+        <param name="pattern">[A-Za-z][A-Za-z0-9_]*</param>
+      </data>
+    </attribute>
+    <attribute name="cd">
+      <data type="string">
+        <param name="pattern">[a-z][a-z0-9_]*</param>
+      </data>
+    </attribute>
+  </define>
+  <!-- variable -->
+  <define name="OMV">
+    <element name="OMV">
+      <ref name="attlist.OMV"/>
+    </element>
+  </define>
+  <define name="attlist.OMV">
+    <attribute name="name">
+      <data type="string">
+        <param name="pattern">([A-Za-z0-9\+=(),\-\./:\?!#$%\*;@\[\]\^_`\{\|\}])+</param>
+      </data>
+    </attribute>
+  </define>
+  <!-- integer -->
+  <define name="OMI">
+    <element name="OMI">
+      <data type="string">
+        <param name="pattern">\s*(-\s?)?[0-9]+(\s[0-9]+)*\s*</param>
+      </data>
+    </element>
+  </define>
+  <!-- byte array -->
+  <define name="OMB">
+    <element name="OMB">
+      <data type="base64Binary"/>
+    </element>
+  </define>
+  <!-- string -->
+  <define name="OMSTR">
+    <element name="OMSTR">
+      <text/>
+    </element>
+  </define>
+  <!-- floating point -->
+  <define name="OMF">
+    <element name="OMF">
+      <ref name="attlist.OMF"/>
+    </element>
+  </define>
+  <define name="attlist.OMF">
+    <choice>
+      <attribute name="dec">
+        <data type="string">
+          <param name="pattern">(-?)([0-9]+)?(\.[0-9]+)?(e([+\-]?)[0-9]+)?</param>
+        </data>
+      </attribute>
+      <attribute name="hex">
+        <data type="string">
+          <param name="pattern">[0-9A-F]+</param>
+        </data>
+      </attribute>
+    </choice>
+  </define>
+  <!-- apply constructor -->
+  <define name="OMA">
+    <element name="OMA">
+      <oneOrMore>
+        <ref name="omel"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <!-- binding constructor & variable -->
+  <define name="OMBIND">
+    <element name="OMBIND">
+      <ref name="omel"/>
+      <ref name="OMBVAR"/>
+      <ref name="omel"/>
+    </element>
+  </define>
+  <define name="OMBVAR">
+    <element name="OMBVAR">
+      <oneOrMore>
+        <ref name="omvar"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <!-- error -->
+  <define name="OME">
+    <element name="OME">
+      <ref name="OMS"/>
+      <zeroOrMore>
+        <ref name="omel"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <!-- attribution constructor & attribute pair constructor -->
+  <define name="OMATTR">
+    <element name="OMATTR">
+      <ref name="OMATP"/>
+      <ref name="omel"/>
+    </element>
+  </define>
+  <define name="OMATP">
+    <element name="OMATP">
+      <oneOrMore>
+        <ref name="OMS"/>
+        <ref name="omel"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <!-- OM object constructor -->
+  <define name="OMOBJ">
+    <element name="OMOBJ">
+      <ref name="omel"/>
+    </element>
+  </define>
+  <start>
+    <ref name="OMOBJ"/>
+  </start>
+</grammar>

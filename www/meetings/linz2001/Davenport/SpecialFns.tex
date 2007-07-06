@@ -1,0 +1,207 @@
+\def\arctanD{\underbrace{\mathop{\rm arctan}\nolimits{}}_{\mathop{\rm Derive}\nolimits}}
+\def\arctanM{\underbrace{\mathop{\rm arctan}\nolimits{}}_{\mathop{\rm Maple}\nolimits}}
+\def\Ei{\mathop{\rm Ei}\nolimits}
+\def\ber{\mathop{\rm ber}\nolimits}
+\def\bei{\mathop{\rm bei}\nolimits}
+\def\J{\mathop{\rm J}\nolimits}
+\def\arccot{\mathop{\rm arccot}\nolimits}
+\def\eq{\mathrel{{\tt eq}}}
+\def\equal{\mathrel{\hbox{\tt =}}}
+\def\interval#1#2{[#1,#2]}
+\def\ttinterval#1#2{\hbox{\tt[}#1,#2\hbox{\tt]}}
+\def\GF{{\rm GF}}
+\def\factor{{\rm factor}}
+\def\trdeg{{\rm tr.deg.}}
+\def\atan{{\rm atan}}
+\def\deg{{\rm deg}}
+\def\signum{{\rm signum}}
+\def\dx{\,{\rm d}x}
+\def\Z{{\bf Z}}
+\def\C{{\bf C}}
+\def\Q{{\bf Q}}
+\def\R{{\bf R}}
+\def\RR{\R\rightarrow\R}
+\documentclass[11pt,a4paper]{artikel3}
+\usepackage{amsmath}
+\newtheorem{Proposition}{Proposition}
+\newtheorem{Definition}{Definition}
+\newtheorem{Theorem}{Theorem}
+\begin{document}
+\title{Special Functions in OpenMath}
+\author{James H. Davenport\\
+Department of Computer Science,\\
+University of Bath, Bath BA2 7AY, England\\
+{\tt   J.H.Davenport@bath.ac.uk}\\
+partially supported by the EU's OpenMath Thematic Network}
+\date{}
+\maketitle
+\par\noindent
+With thanks to St\'ephane Dalmas and the INRIA/UNSA team; Bruce Miller at
+NIST, and Bill Naylor (Bath and U.W.O.).
+\par\noindent
+As usual, all errors are mine.
+%\vskip 1.53in
+\section{Preliminaries}
+The following principles were endorsed at the OpenMath Meeting at ISSAC
+2001 and at the OpenMath Network Meeting in Berlin (August 2001).
+\begin{itemize}
+\item Many CDs, rather than a single ``special functions CD''.
+\item Short names, such as $\J$, similar to mathematical notation.
+\item Use currying where appropriate, so that we can talk about $\J_\nu$
+rather than having to talk about $\lambda z:\J(\nu,z)$.
+\item As in the work on elementary functions, to stick as closely as
+possible to Abramovitz and Stegun, and to be as precise as possible.
+\end{itemize}
+%\vskip 1.03in
+\subsection{Difficulties with these}
+\begin{itemize}
+\item Just how many CDs? A CD for Laguerre, with one symbol in, or a CD for
+all families of orthogonal polynomials, or what?
+\item[]{\bf I have probably used too many CDs.}
+\item Just what names are appropriate?
+\item Where is currying appropriate?
+\item[]{\bf Please tell me where you think I've got this wrong.}
+\item How much should we follow A+S: symbols defined in footnotes or as
+alternates? Do we need erfc? Every last {\it positive\/} wrinkle??
+\item A+S is sometimes not helpful: see chapters 9 (Bessel for integer
+order; but formulae valid for all orders) vs 10 (Bessel of fractional
+order, meaning $n+\frac12$).
+\item A+S has bugs: 6.1.23: $\ln\Gamma(\overline z)=\overline{\ln\Gamma(z)}$
+is false: $z=-2.5$.
+\end{itemize}
+%\vskip 1.03in
+\subsection{Difficulties with OpenMath}
+\begin{itemize}
+\item Functions defined by ordinary differential equations:
+\item[]{\it need a way of specifying the differential equations and
+boundary/initial conditions\/}
+--- {\tt odesoln1.ocd}.
+\item Functions defined by contour integrals:
+\item[]{\it we need a way of specifying contours and the restrictions on them\/}
+--- {\tt contour1.ocd}.
+\item No direct way of specifying the $n$-th total derivative: this is
+probably a bug even in MathML conformity.
+\item Need to specify a restricted range, e.g. only $g_2$ and $g_3$ exist as
+Weierstrass invariants:
+\item[]{\it extend the use of STS\/} (but not the syntax).
+%\end{itemize}
+%\vskip 0.3in
+%\subsection{Difficulties with OpenMath --- II}
+%\begin{itemize}
+\item Need to specify Cauchy principal value of integrals: an attribute or
+a new symbol?
+\item[]{\it New symbol in\/} {\it calculus2.ocd}.
+\item The 8+3 rule proves restrictive: I want to put the Weierstrass
+symbols in\verb+weierstrass.ocd+, not \verb+weierstr.ocd+. In fact, this
+rule is not followed already --- see \verb+relation1.ocd+ for example.
+\item Hard to express statements about uniqueness of solutions, or linear
+independence of solutions.
+\end{itemize}
+%\vskip 1.73in
+\subsection{{\tt odesoln1.ocd}}
+\begin{verbatim}
+<OMBIND>
+  <OMS name="ODEsolution" cd="odesoln1"/>
+  <OMBVAR>
+    <OMV name="f"/>
+    <OMV name="x"/>
+  </OMBVAR>
+\end{verbatim}
+Expression in $f$ and $x$ defining LHS of ODE (=0).
+\begin{verbatim}
+  <OMA>
+    <OMS name="list" cd="list1"/>
+\end{verbatim}
+List of expressions in $f$ representing initial/{\it boundary\/} conditions.
+\begin{verbatim}
+  </OMA>
+</OMBIND>
+\end{verbatim}
+%\vskip 0.7in
+\subsection{{\tt contour1.ocd}}
+The symbol \verb+path_description+ describes a contour. possibly not
+uniquely.
+\begin{verbatim}
+A contour from t to infinity, not crossing the
+negative real axis.
+<OMOBJ>
+  <OMBIND>
+    <OMS name="path_description" cd="contour1"/>
+    <OMBVAR>
+      <OMVAR name="P"/>
+    </OMBVAR>
+    <OMV name="t"/>
+    <OMS name="infinity" cd="nums1"/>
+    <OMA>
+      <OMS name="not" cd="logic1"/>
+      <OMBIND>
+        <OMS name="exists" cd="quant1"/>
+        <OMBVAR>
+          <OMV name="x"/>
+        </OMBVAR>
+        <OMA>
+          <OMS name="and" cd="logic1"/>
+          <OMA>
+            <OMS name="gt" cd="relation1"/>
+            <OMV name="x"/>
+            <OMS name="zero" cd="alg1"/>
+          </OMA>
+          <OMA>
+            <OMS name="le" cd="relation1"/>
+            <OMA>
+              <OMS name="real" cd="complex1"/>
+              <OMA>
+                <OMV name="P"/>
+                <OMV name="x"/>
+              </OMA>
+            </OMA>
+            <OMS name="zero" cd="alg1"/>
+          </OMA>
+          <OMA>
+            <OMS name="eq" cd="relation1"/>
+            <OMA>
+              <OMS name="imaginary" cd="complex1"/>
+              <OMA>
+                <OMV name="P"/>
+                <OMV name="x"/>
+              </OMA>
+            </OMA>
+            <OMS name="zero" cd="alg1"/>
+          </OMA>
+        </OMA>
+      </OMBIND>
+    </OMA>
+  </OMBIND>
+</OMOBJ>
+\end{verbatim}
+%\vskip 0.4in
+\section{The Real Problem: Analytic Continuation}
+$$\Ei(x)=-\int_{-x}^\infty\frac{e^{-t}}t\,{\rm d}t:\qquad x>0.$$
+But, $\Ei$ is defined by analytic continuation for all $z$, continuous
+modulo a branch cut along the negative real axis.
+\par\noindent
+How do we define this?
+\begin{itemize}
+\item Define a domain for $\Ei$: $\C\setminus\{0\}$.
+\item[]But how do we define the branch cut?
+\item Define a domain of continuity, i.e.
+$\C\setminus\{\Re(z)<0;\Im(z)=0\}$.
+\item[]Then how do we say which side the branch cut adheres to?
+\end{itemize}
+Suggestions welcome.
+\section{Bessel Functions}
+\begin{itemize}
+\item $\J_\nu$ and $\J_{-\nu}$ are two independent solutions to Bessel's
+equation.
+\item Except when $\nu$ is an integer, when 
+$$
+Y_\nu(z)=\lim_{\mu\rightarrow\nu}\frac{\J_\mu(z)\cos(\mu\pi)-\J_{-\mu}(z)}{\sin(\mu\pi)}
+$$
+is the second solution.
+\item Unfortunately, the initial conditions at $z=0$ are not always
+easy to state. 
+\item $\ber_\nu(x)+i\bei_\nu(x)=\J_\nu(xe^{3\pi i/4})$ --- do we need this,
+or the very many other variants?
+\item Need a domain expert (DLMF?)!
+\end{itemize}
+\end{document}

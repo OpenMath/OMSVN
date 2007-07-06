@@ -1,0 +1,742 @@
+\documentclass[11pt]{openmathTN}
+\def\action#1{\hfill\rlap{\bf #1}}
+\usepackage{url}
+\title{Units and Dimensions in OpenMath}
+\author{James H.~Davenport}
+\address{Department of Computer Science\\
+University of Bath\\
+Bath BA2 7AY\\
+England\\
+}
+\author{William A.~Naylor}
+\address{Victoria University of Wellington\\
+New Zealand\\
+}
+
+\begin{document}
+\begin{abstract}
+We first review the current state of units and dimensions in OpenMath, and
+compare it with the state of play in MathML
+\cite{WorldWideWebConsortium2003}. We then discuss the fundamental unsolved
+question: how does one write ``2 grammes'' in OpenMath? We present the
+various solutions, and recommend one to the OpenMath community for debate
+and decision. We then do the same for the follow-up question: how does one
+write ``2 kilometres'' in OpenMath?
+We conclude with a set of principles to guide the evolution of the
+definition and use of units and dimensions in OpenMath.
+\end{abstract}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Units in OpenMath: the current state}
+The current\footnote{As at 1 July 2003.} state of units and dimensions in
+OpenMath is given in the following Content Dictionaries:
+\begin{enumerate}
+\item {\tt dimension1.ocd} --- version 3 dated 2002-09-17;
+\item {\tt units\_metric1.ocd} --- version 2 dated 2000-08-13;
+\item {\tt units\_imperial1.ocd} --- version 2 dated 2000-08-13;
+\end{enumerate}
+and the corresponding STS \cite{Davenport2000c} files.
+\par
+There is no architecture document, but the following general principles
+were followed, and can be reconstructed from the files.
+\subsection{Dimensions}\label{areasect}
+\begin{enumerate}
+\item\label{area}The ordinary symbols from {\tt arith1.ocd} are used to compose
+dimensions, e.g. area is defined with the following Formal Mathematical
+Property:
+\begin{verbatim}
+<FMP><OMOBJ>
+  <OMA>
+    <OMS cd="relation1" name="eq"/>
+    <OMS cd="dimensions1" name="area"/>
+    <OMA>
+      <OMS cd="arith1" name="times"/>
+      <OMS cd="dimensions1" name="length"/>
+      <OMS cd="dimensions1" name="length"/>
+    </OMA>
+  </OMA>
+</OMOBJ></FMP>
+\end{verbatim}
+This seems compatible with the traditional usage in dimensional analysis.
+One could argue that this is not the ``normal'' meaning of this {\tt
+times}, but Occam's razor would operate against a new symbol. Though not
+binding, we note that MathML \cite[section 3]{WorldWideWebConsortium2003}
+appears to recommend the use of their standard {\tt times} content
+symbol for multiplication of units\footnote{MathML seems to have no
+particular concept of dimension, apart from a few words in \cite[section
+6.1 and Appendix C]{WorldWideWebConsortium2003}.}.
+\item\label{dimtype}The names of dimensions are used as types in the
+OpenMath Small Type System \cite{Davenport2000c} for units, as in the
+following signature for {\tt metre}.
+\begin{verbatim}
+<Signature name="metre" >
+<OMOBJ>
+  <OMS cd="dimensions1" name="length"/>
+</OMOBJ>
+</Signature>
+\end{verbatim}
+This is clearly sensible, and in line with the r\^ole of dimensions in
+physics.
+\end{enumerate}
+\subsection{Metric Units}\label{metricsect}
+\begin{enumerate}
+\item\label{FMPunit}
+There are no formal or commented mathematical properties in this file. This
+is probably due to the absence of any agreed mechanism for attaching units
+to quantities, or whether it would be legal OpenMath to write, for example,
+the definition of square metre\footnote{Whether one should define such a
+compound unit is a different matter. MathML (see item \ref{compoundMML} in
+section \ref{MathMLsect}) would not, and indeed leaving it as ${\tt
+metre}^2$ is simpler for renderers and reasoners. This question is asked as
+\ref{compoundOM} in section \ref{OMqueries}.}, as in table
+\ref{squaremetre}. The authors believe that this is legal OpenMath.
+\begin{table}[ht]
+\caption{Putative definition of square metre}\label{squaremetre}
+One possible definition of a square metre to go into \verb+units_metric1+.
+\begin{verbatim}
+<FMP><OMOBJ>
+  <OMA>
+    <OMS cd="relation1" name="eq"/>
+    <OMS cd="units_metric1" name="metre_sqrd"/>
+    <OMA>
+      <OMS cd="arith1" name="times"/>
+      <OMS cd="units_metric1" name="metre"/>
+      <OMS cd="units_metric1" name="metre"/>
+    </OMA>
+  </OMA>
+</OMOBJ></FMP>
+\end{verbatim}
+\end{table}
+\item The \verb+Newton_per_sqr_metre+ is defined, but not its ``proper''
+name, the \verb+Pascal+. {\it Now fixed: \verb+Newton_per_sqr_metre+
+retained for compatibility\footnote{The OpenMath standard \cite{OMSTD}
+forbids removing symbols from CDs, but, since the {\tt units\_metric1} CD
+is not yet official, this ban probably does not apply.}, but
+deprecated\/}.
+\item There are inconsistencies on the capitalisation of unit names. Those
+that are directly people's names are capitalised (in accordance with the
+principles in \cite{Davenport2000b}), but those that are merely based on them
+(e.g. \verb+volt+ from Volta, or {\tt amp} from Amp\`ere) are not, even
+though the abbreviation is in fact capitalised. This needs to be checked
+with the appropriate standards.\action{JHD}
+\end{enumerate}
+\subsection{Imperial Units}
+\begin{enumerate}
+\item Despite the idea that FMPs could be used to do conversion, there are
+none in this file. Probably this is due to the problem described in item
+\ref{FMPunit} in the previous section.
+\item Curiously, the {\tt mile} is defined, but not the {\tt foot}, which
+is now\footnote{And has been since the time of Henry II, the first King of
+England to demonstrate a knowledge of the Central Limit Theorem.} the
+standard of length, being fixed at 0.3048m.
+\end{enumerate}
+\subsection{U.S. Units}
+Nothing has so far been written on this subject apart from a note from JHD
+saying that it would be the existence of this CD (read ``namespace'') that
+distinguishes
+\begin{verbatim}
+<OMS name="pint" cd="units_imperial1"/>
+\end{verbatim}
+from
+\begin{verbatim}
+<OMS name="pint" cd="units_us1"/>
+\end{verbatim}
+We should note that this taxonomy is the other way up from that of MathML
+--- see item \ref{variants} in section \ref{MathMLsect}.
+\section{Units in MathML (Content)}\label{MathMLsect}
+It is beyond the scope of this document to consider the presentation of
+units in general, though the authors see no real problems with adapting to
+the presentation view of units in \cite{WorldWideWebConsortium2003}.
+\par
+The main points relevant to units in content MathML in
+\cite{WorldWideWebConsortium2003} are given below.
+\begin{enumerate}
+\item{}\label{timesunit}``In expressing a quantity with units, \dots, it is
+recommended that the unit be the last child of of an \verb+apply+ element
+which has the \verb+times+ element as its first child.'' \cite[section
+3]{WorldWideWebConsortium2003}
+\par
+This would seem to imply that 3.4m would be represented as
+\begin{verbatim}
+<apply>
+  <times/>
+  <cn> 3.4 </cn>
+  <csymbol> m </csymbol>
+</apply>
+\end{verbatim}
+\item{}\label{times}``It would also be best if compound units are kept
+separate as a nested apply at the end of a product.''  \cite[section
+3]{WorldWideWebConsortium2003}
+\par
+This would seem to imply that 3.4m/sec would be represented as
+\begin{verbatim}
+<apply>
+  <times/>
+  <cn> 3.4 </cn>
+  <apply>
+    <divide/>
+    <csymbol> m </csymbol>
+    <csymbol> sec </csymbol>
+  </apply>
+</apply>
+\end{verbatim}
+The use of \verb+<divide/>+ is hypothetical here, but see the next point.
+\item\label{compoundMML}``The \verb+csymbol+ element should be used to
+identify units. It should not be used to encapsulate a compound units ({\it
+sic}) as in the following two representations of the compound unit of speed
+centimeters per second.
+\begin{verbatim}
+<csymbol>centimeters per second</csymbol> 
+<csymbol>cm/s</csymbol> 
+\end{verbatim}
+Such compound units should be represented by explicit products or quotients
+of simple units.'' \cite[section 5]{WorldWideWebConsortium2003} 
+\par We note though, that in \cite[section
+6.2]{WorldWideWebConsortium2003}, the authors use a \verb+csymbol+ to
+denote ``watt'', so the intention seems to be to bar those compound units
+that are comprised of multiple ``recognised'' units, not all those that can
+be reduced to basic units. This means that the Content MathML expressions
+for ``1Nm'' and ``1W'' would presumably be rather different, as in table
+\ref{NmW}.
+\begin{table}[ht]
+\caption{Putative MathML for ``1Nm'' and ``1W''}\label{NmW}
+\begin{verbatim}
+<apply>                            <apply>
+ <times>                            <times>
+ <cn> 1 </cn>                       <cn> 1 </cn>
+ <apply>                            <csymbol definitionURL="...">
+  <times>                            W</csymbol>
+  <csymbol definitionURL="...">    </apply>
+    N</csymbol>
+  <csymbol definitionURL="...">
+    m</csymbol>
+ </apply>
+</apply>
+\end{verbatim}
+\end{table}
+\item\label{MathMLprefix}MathML seems to regard, say, {\tt centimetre}
+({\tt cm}) as a separate unit, not a derivation from {\tt metre} ({\tt m}),
+though this may only be in the context of the CGS system \cite[section
+6.5.1]{WorldWideWebConsortium2003}. At other times it uses the fragment
+identifier on URLs, as in
+\begin{verbatim}
+<csymbol definitionURL='http.../units/pascal#k'>kPa</csymbol>
+\end{verbatim}
+({\it loc.cit.\/}), though this is wrapped in a complex {\tt semantics}
+encoding which also includes (our re-formatting)
+\begin{verbatim}
+<annotation-xml encoding='MathML'
+                definitionURL='http.../SI-conversion-factor'>
+<cn type='integer'>1000</cn>
+</annotation-xml>
+\end{verbatim}
+This seems to imply that the meaning of {\tt k} is local to this piece of
+MathML, which seems obscure.
+\item\label{variants}MathML takes the approach of naming the unit, and then
+the variant, as in \cite[section 5.3.4]{WorldWideWebConsortium2003}
+\url{http://.../units/mile/gb-sct} for the Scottish mile, or
+\url{http://.../units/mile/survey/us}. In the latter case, the authors would
+suggest that the OpenMath name should be
+\begin{verbatim}
+<OMS name="survey_mile" cd="units_us1"/>
+\end{verbatim}
+thus placing the system higher up the hierarchy than the name. The first
+example is more problematic, but could be represented by
+\begin{verbatim}
+<OMS name="scottish_mile" cd="units_british_historic"/>
+\end{verbatim}
+\end{enumerate}
+\section{The Fundamental Question --- Attribution}\label{attributed}
+How should we signify that a quantity (ultimately numeric, but which may be
+a symbolic expression) is attributed with a unit? More specifically, since
+\begin{verbatim}
+<OMI> 2 </OMI>
+\end{verbatim}
+is the OpenMath for the number 2, and
+\begin{verbatim}
+<OMS name="gramme" cd="units_metric1"/>
+\end{verbatim}
+is the OpenMath for a gramme, what is the OpenMath for "2 grammes"? There
+seem to be three options.
+\begin{enumerate}
+\item\label{timesoption}Use the {\tt times} from {\tt arith1}. Then
+  the encoding for 2 grammes would be:
+\begin{verbatim}
+<OMA>
+  <OMS name="times" cd="arith1"/>
+  <OMI> 2 </OMI>
+  <OMS name="gramme" cd="units_metric1"/>
+</OMA>
+\end{verbatim}
+\begin{description}
+\item[pro]Aids MathML compatibility and conversion --- see item
+\ref{timesunit} in section \ref{MathMLsect}.
+\item[pro]Requires no extra symbols, and indeed means that a system that
+does not fully understand units can at least manipulate them as symbolic
+variables. \cite{Khanin2001}?
+\item[con]Somewhat of a perversion of this symbol, since what is going on
+is not multiplication in any homogeneous sense. Since this {\tt times} is
+declared to be {\tt nassoc} \cite{Davenport2000c}, this means that the
+result of multiplying two Newtons by three metres is
+\begin{verbatim}
+<OMA>
+  <OMS name="times" cd="arith1"/>
+  <OMI> 2 <\OMI>
+  <OMS name="Newton" cd="units_metric1"/>
+  <OMI> 3 <\OMI>
+  <OMS name="metre" cd="units_metric1"/>
+</OMA>
+\end{verbatim}
+whereas the OpenMath equivalent of the MathML way of representing this (see
+table \ref{NmW}) would be as follows.
+\begin{verbatim}
+<OMA>
+  <OMS name="times" cd="arith1"/>
+  <OMI> 2 <\OMI>
+  <OMI> 3 <\OMI>
+  <OMA>
+    <OMS name="times" cd="arith1"/>
+    <OMS name="Newton" cd="units_metric1"/>
+    <OMS name="metre" cd="units_metric1"/>
+  </OMA>
+</OMA>
+\end{verbatim}
+\end{description}
+\item Using a different symbol, with different semantics, e.g. possibly
+only binary. It is not totally clear what the signature would be: probably
+$$
+\verb+NumericalValue+\times\verb+Dimension+\rightarrow\verb+DimensionedValue+.
+$$
+Possibly the best choice might be
+\begin{verbatim}
+<OMS name="times" cd="units_ops"/>
+\end{verbatim}
+\begin{description}
+\item[pro]Unambiguous, and systems that can't understand units would not
+support this operator.
+\item[con]Occam's razor, and the greater complexity that a new symbol,
+which would need to be widely understood, would bring to OpenMath.
+\end{description}
+\item\label{unitsattributes}Use OpenMath attributes. Then the encoding for
+the problem that started this section would be as follows.
+\begin{verbatim}
+<OMATTR>
+  <OMATP>
+    <OMS name="quantity_with_units" cd="units_ops"/>
+    <OMS name="gramme" cd="units_metric1"/>
+  </OMATP>
+  <OMI> 2 </OMI>
+<\OMATTR>
+\end{verbatim}
+\begin{description}
+\item[pro]Attributes are already built into OpenMath.
+\item[con]Attributes can be silently discarded by applications, which seems
+dangerous for something as vital, and mission-crashing, as units.
+\end{description}
+\end{enumerate}
+Without wishing to prejudge the debate in the OpenMath community, the rest
+of this document, and the associated CDs, use option \ref{timesoption}
+above.
+\section{Unit Prefixing}\label{prefixing}
+The SI system\footnote{And others. In particular there is the IEC scheme
+for binary prefixes \cite[Appendix B.2]{WorldWideWebConsortium2003}.} has a
+uniform scheme for prefixing units to create larger or smaller one,
+generally in multiples of $10^3$. How can we apply this scheme uniformly in
+OpenMath?
+\par
+As in the previous section, there are various possibilities.
+\begin{enumerate}
+\item Treat them as separate units, as MathML sometimes seems to do: see
+item \ref{MathMLprefix} in section \ref{MathMLsect}.
+\begin{description}
+\item[pro]No new mechanisms involved.
+\item[con]Very verbose: each unit would also acquire 20 variants.
+\item[con]Problems of consistency.
+\end{description}
+\item As MathML (see item \ref{MathMLprefix} in section \ref{MathMLsect},
+or \cite[section 5.3.5]{WorldWideWebConsortium2003}) does, use the XML
+`prefix' notation: \verb+#+. Hence in MathML, the kiloPascal {\tt kPa} has
+a {\tt definitionURL} of \verb+http://.../units/pascal#k+. Of course,
+strictly speaking this is now a URI reference, rather than a URL, but this
+seems to be becoming common in MathML. More seriously, OpenMath already
+uses the prefix notation to distinguish individual symbols in a CD. Hence
+this is not a viable option for OpenMath.
+\begin{description}
+\item[pro]None that I can see for OpenMath, as opposed to MathML.
+\item[con]Unusable\footnote{This has been checked with David Carlisle.} in
+OpenMath.
+\item[con]Contrary to the OpenMath philosophy \cite{OMSTD} of semantic
+extensibility through CDs, requires every application to understand this
+\verb+#+ syntax.
+\item[con]The $10^{-6}$ prefix, $\mu$, has to be replaced by \verb+u+,
+which means that faithful rendering needs an extra rule to translate
+\verb+u+ into $\mu$.
+\item[con]The connection between the syntax \verb+#k+ and the semantics of
+$\times10^3$ seems to depend on the MathML-generator generating the correct
+combination of \verb+definitionURL+ and \verb+annotation-xml+ attri\-butes.
+\end{description}
+\item Use of \verb+<OMS name="times" cd="arith1"/>+, as was suggested in the
+previous section for attributing units.
+\begin{description}
+\item[pro]No extra syntax or semantics required, so that a
+kiloPascal would be as follows.
+\begin{verbatim}
+<OMA>
+  <OMS name="times" cd="arith1"/>
+  <OMS name="kilo" cd="units_siprefix1"/>
+  <OMS name="Pascal" cd="units_metric1"/>
+</OMA>
+\end{verbatim}
+\item[con]A fairly simplistic simplifier, which knew about \verb+<OMS name="times"+
+\verb+cd="arith1"/>+, might multiply kW by km to get
+\begin{verbatim}
+<OMA>
+  <OMS name="times" cd="arith1"/>
+  <OMS name="metre" cd="units_metric1"/>
+  <OMS name="Watt" cd="units_metric1"/>
+  <OMA>
+    <OMS name="power" cd="arith1"/>
+    <OMS name="kilo" cd="units_siprefix1"/>
+    <OMI> 2 </OMI>
+  </OMA>
+</OMA>
+\end{verbatim}
+\item[con]There is no guarantee that prefixes will in fact be prefixes, and
+certainly no rule to enforce this.
+\end{description}
+\item\label{prefixop}A special operator, such as
+\verb+<OMS name="prefix" cd="units_ops1"/>+,
+whose signature would be as given in table \ref{prefixsig}.
+\begin{table}[ht]
+\caption{Proposed signature of the ``prefix'' operation}\label{prefixsig}
+\begin{verbatim}
+<Signature name="prefix" >
+<OMOBJ>
+  <OMA>
+    <OMS name="mapsto" cd="sts"/>
+    <OMS cd="units_sts" name="unit_prefix"/>
+    <OMV name="dimension"/>
+    <OMV name="dimension"/>
+  </OMA>
+</OMOBJ>
+</Signature>
+\end{verbatim}
+\end{table}
+We recall that, by the rules of the Small Type System
+\cite{Davenport2000c}, this means that the first argument must have type
+\verb+unit_prefix+ (i.e. must be a prefix), the second argument can be anything
+(the human reads ``something of an unknown dimension'') but must return
+something of the {\it same\/} species (the human being reads ``same
+dimension''). For example the prefixed unit {\em millisecond} could be
+specified by the markup:
+\begin{verbatim}
+<OMA>
+  <OMS name="prefix" cd="units_ops1"/>
+  <OMS name="milli" cd="units_siprefix1"/>
+  <OMS name="second" cd="units_time1"/>
+</OMA>
+\end{verbatim}
+
+\begin{description}
+\item[pro]The order of the arguments ensures that, at least locally,
+prefixes are genuinely prefixes.
+\item[pro]Prefixes do not complicate any type-checking and consistency
+mechanism, as a result of that signature.
+\item[con]An extra operator, and indeed an extra CD \verb+units_sts+ to
+hold the necessary type.
+\end{description}
+\item Attributes, as discussed in solution \ref{unitsattributes} in section
+\ref{attributed}.
+\begin{description}
+\item[pro]Attributes are already built into OpenMath.
+\item[con]Attributes can be silently discarded by applications, which seems
+even more dangerous than discarding units as a whole: what application
+would notice that a "Mega" had silently vanished?
+\end{description}
+\end{enumerate}
+Without prejudicing the conclusions of the OpenMath community, we will go
+with option \ref{prefixop} in this document.
+\section{Other Points for OpenMath}\label{OMqueries}
+\subsection{Nomenclature}
+Should not {\tt units\_metric1} be renamed {\tt units\_si1}, thus allowing
+for CDs such as \verb+units_cgs1+, as well as for a
+\verb+units_metricmisc1+, which might contain the (metric) horsepower, the
+hectare\footnote{Unless we introduce the {\tt are} (little used in its own
+right) as an alternative for ${\tt metres}^2$, and rely on prefixing (see
+section \ref{prefixing}) to generate the hectare for us. However, might it
+not generate the ``hectoare'' instead?}, and so on.
+\subsection{Formal Mathematical Properties}
+The ``defining mathematical property'', as discussed in Pisa on
+28--29.9.2002 should be resurrected\footnote{\label{MKnote}With help from
+MK, who said in Pisa that he had a solution.}, and applied to ensure that
+all non-fundamental dimensions were defined, possibly indirectly\footnote{Note
+that, in the Pisa proposal, the author(s) of defining mathematical
+properties must ensure that the system is not circular.}, in terms of
+fundamental ones. For example, the formal mathematical property in the
+definition of {\tt area} discussed in item \ref{area} of section
+\ref{areasect} should be such a defining mathematical
+property.\action{JHD$\strut^{\ref{MKnote}}$}
+\subsection{Particular Dimensions}
+\subsubsection{The STS of dimensions}
+At the moment, all dimensions have an STS entry as follows.
+\begin{verbatim}
+<OMV name="PhysicalDimension"/>
+\end{verbatim}
+Might it not make more sense to make this an {\tt OMS}, or possibly two
+{\tt OMS}s --- one for fundamental\footnote{In theory, of course, the
+choice of fundamental dimensions is arbitrary. However, convention has
+fixed a set, and this choice would probably be less arbitrary than some
+choices of branch cuts which OpenMath has already made
+\cite{Corlessetal2000}.} dimensions and one for derived dimensions. This
+distinction might help reasoners about units to know when no further
+reduction was possible.
+\subsubsection{The Electrical Dimensions}
+These have no formal mathematical properties, and the commented ones are
+circular. There needs to be a proper investigation of the state of the SI
+system \cite{IEEEASTM1997} in this area, and the correct base
+dimension\footnote{\cite[section 6.1]{WorldWideWebConsortium2003} implies
+that this is current.} chosen and the rest reduced to it.\action{JHD}
+\subsubsection{Concentration}
+The current CMP defines it as $\frac{{\tt mass}}{{\tt length}^3}$, which
+would mean that {\tt mole} would not be a unit of concentration.
+Concentration could be regarded as `quantity/volume', but this poses the
+question ``what is {`quantity'}''. This needs investigating.\action{JHD?}
+\subsection{Compound Units}\label{compoundOM}
+By ``compound unit'', we mean a unit that does not have a specific name in
+\cite{IEEEASTM1997}, but is built up from other units. 
+Should OpenMath, as it currently does, define compound units such as
+\verb+metres_+\allowbreak\verb+sqrd+, or leave them as, for example, ${\tt
+metres}^2$, as MathML does (see item \ref{compoundMML} in section
+\ref{MathMLsect})? The authors are inclined to vote against compound units,
+on the ground that they add little, and complicate life for renderers.
+\subsection{Particular Units}
+\subsubsection{{\tt units\_time1}}
+Various other kinds of year, such as the sidereal year, and month, such as
+the lunar month, need to be defined.\action{JHD}
+%\subsection{Particular Prefixes}
+%So far only {\tt kilo} and {\tt milli} among the decimal prefixes have been
+%defined. Once the larger questions have been answered, the other SI
+%prefixes \cite[Appendix B.1]{WorldWideWebConsortium2003} need to be
+%defined. Also, the binary prefixes \cite[Appendix
+%B.2]{WorldWideWebConsortium2003} need to be defined --- a start has been
+%made with {\tt kibi} ($=2^{10}$).
+\subsection{Currency}
+No thought has yet been given in OpenMath to currency, either with
+fixed rates (``100 cents = 1 dollar'')\footnote{Or the more unusual, such
+as ``3 English marks = 2 pounds Sterling''. One might be tempted to class
+``20 guineas = 21 pounds Sterling'' in this category, but in fact this is
+only true since Sir Isaac Newton was Warden of the Royal Mint: prior to
+that, the guinea floated against the pound Sterling.}, currently
+fixed rates (``6.55957 French Francs = 1 Euro'') or variable rates. The first
+seems to fit within the current paradigm, but it would probably be unwise
+to press ahead with this without an eye to the broader picture.
+\section{Questions for MathML}\label{MathMLfuture}
+\begin{enumerate}
+\item\cite[section 3]{WorldWideWebConsortium2003} (see item \ref{times} in
+section \ref{MathMLsect}) should perhaps explicitly say that the first
+child of the {\tt apply} defining the compound unit should be one of {\tt
+times}, {\tt divide} (as in ``metres per second'') or {\tt power}.
+\item Does MathML (Content) really wish to continue with defining ``m''
+(metre) and ``cm'' (centimetre) as different units. See OpenMath's view in
+section \ref{prefixing}.
+\end{enumerate}
+\section{Conclusion}
+The following principles are used in constructing the existing dimensions
+and units CDs, and should be followed in any additions to them.
+\begin{enumerate}
+\item The ordinary symbols from {\tt arith1.ocd} are used to compose
+dimensions, as in point \ref{area} of section \ref{areasect}.
+\item The names of dimensions are used as types in the OpenMath Small Type
+System \cite{Davenport2000c} for units, as in point \ref{dimtype} of
+section \ref{areasect}.
+\item It is legal to declare that two dimensions, or dimensional
+expressions, are equal directly, as in item \ref{area} of section
+\ref{areasect}.
+\item It is legal to declare that two units, or unit expressions, are equal
+directly, as in item \ref{FMPunit} of section \ref{metricsect}. Of course,
+if the equivalence is not one-for-one, then one needs to use the mechanism
+of section \ref{attributed} to say that, say, one acre is 4840 square
+yards.
+\item The conclusion of section \ref{attributed}.
+\item The conclusion of section \ref{prefixing}.
+\item The conclusion of section \ref{compoundOM}.
+\end{enumerate}
+\begin{thebibliography}{9}
+\bibitem{OMSTD}
+{\sc Caprotti, O., Carlisle, D.P. and Cohen, A.M.}
+\newblock {\em The OpenMath Standard}.
+\newblock \url{http://www.openmath.org/std}
+
+\bibitem{Corlessetal2000}
+{\sc Corless, R.M., Davenport, J.H., Jeffrey, D.J. and Watt, S.M.}
+\newblock {According to Abramowitz and Stegun}.
+\newblock {\em ACM SIGSAM Bulletin 30(2)} 2000, 58--65.
+
+\bibitem{Davenport2000b}
+{\sc Davenport, J.H.}
+\newblock {On Writing OpenMath Content Dictionaries}.
+\newblock {\em ACM SIGSAM Bulletin 30(2)} 2000, 12--15.
+
+\bibitem{Davenport2000c}
+{\sc Davenport, J.H.}
+\newblock {A Small OpenMath Type System}.
+\newblock {\em ACM SIGSAM Bulletin 30(2)} 2000, 16--21.
+
+\bibitem{IEEEASTM1997}
+{\sc IEEE/ASTM}
+\newblock {SI 10-1997 {\em Standard for the Use of the International System
+of Units (SI): The Modern Metric System}}.
+\newblock IEEE Inc., New York, 1997.
+
+\bibitem{Khanin2001}
+{\sc Khanin, R.}
+\newblock {Dimensional Analysis in Computer Algebra}.
+\newblock In {\em Proceedings ISSAC 2001\/} (2001), B.~Mourrain, Ed., ACM,
+N.~York, pp. 201--208.
+
+\bibitem{WorldWideWebConsortium2003}
+{\sc World-Wide Web Consortium (ed. D.W. Harder and S. Devitt)},
+\newblock {\em Units in MathML}.
+\newblock {W3C Note, 1 July 2003}.
+\url{http://www.w3.org/Math/Documents/Notes/units.xml}.
+\end{thebibliography}
+\appendix
+\section{Changes made to the CDs}
+This appendix documents the changes made to the Content Dictionaries by JHD
+in the process of writing this document.
+\subsection{{\tt dimensions1.ocd}}
+\begin{enumerate}
+\item FMP added for {\tt speed}, matching the CMP. This was not done for
+{\tt velocity}, since it's not clear how to specify this formally.
+Clarified, in the ``Description'' field, the difference between speed and
+velocity. An FMP was added to {\tt velocity} stating that ``speed is the 
+vector norm of velocity''.
+\item In the CMP for {\tt acceleration}, ``metres'' was changed to
+''length''. An FMP was added, based on that for {\tt speed}.
+\item FMP added for {\tt force}, as
+\begin{verbatim}
+<FMP><OMOBJ>
+  <OMA>
+    <OMS cd="relation1" name="eq"/>
+    <OMS cd="dimensions1" name="force"/>
+    <OMA>
+      <OMS cd="arith1" name="times"/>
+      <OMS cd="dimensions1" name="mass"/>
+      <OMS cd="dimensions1" name="acceleration"/>
+    </OMA>
+  </OMA>
+</OMOBJ></FMP>
+\end{verbatim}
+In general, dimensions were related to their logical predecessors, rather
+than to the base dimensions.
+\item FMPs added for {\tt pressure}, {\tt density}\footnote{Or should this
+be specific gravity?}, {\tt energy} (along with matching CMP) and
+\verb+momentum+.
+\item Added the dimension \verb+power+, with an FMP and corresponding STS.
+\end{enumerate}
+\subsection{{\tt units\_metric1.ocd}}
+\begin{enumerate}
+\item Enhanced opening comments to point out that it is SI units that are
+defined in this file, not all metric units. Similarly, changed ``metric''
+to ``SI'' where appropriate
+\item Said that the {\tt second} here was the same as the {\tt second} in
+\verb+units_time1+, the general time CD.
+\item Enhanced description for {\tt gramme} to point out that, although
+kilogramme is the SI unit of mass, we take {\tt gramme}, otherwise the
+gramme would be the milli-kilogramme! Stated that it was a basic unit of
+SI.
+\item Gave \verb+metre_sqrd+ and \verb+litre+ FMPs in terms of {\tt metre}.
+\item Is the litre SI? Yes, it is, but \cite[Section
+5.3.3]{WorldWideWebConsortium2003}, it changed definition (by about
+0.0028\%) in 1964. Therefore added, with a CMP but without a FMP,
+\verb+litre_pre1964+\footnote{\cite[Section
+5.3.3]{WorldWideWebConsortium2003} calls this {\tt liter/1901}, which is
+indeed the date when the previous definition was adopted, but seems less
+helpful than saying when it ceased to be the definition.} and suitable
+clarifying text.
+\item Added \verb+Joule+ and \verb+Watt+, with the corresponding STS.
+\end{enumerate}
+\subsection{{\tt units\_metric1.sts}}
+\begin{enumerate}
+\item Changed the signature for {\tt pint} ({\it sic}) to the
+obviously-intended {\tt litre}.
+\item Changed the STS for \verb+metres_per_second+ from {\tt velocity} to
+{\tt speed}, to conform with the CMP in the {\tt.ocd} file.
+\item Added \verb+Pascal+, defined the existing \verb+Newton_per_sqr_metre+
+to be equivalent to it (as an FMP), but deprecated in OpenMath.
+\end{enumerate}
+\subsection{{\tt units\_imperial1.ocd}}
+\begin{enumerate}
+\item Added the {\tt foot}, since this is the base unit, and defined
+(currently in a CMP and an FMP) as 0.3048 metres. Gave the mile a CMP and
+an FMP in terms of the foot. Also added the STS.
+\item Added comments to the {\tt mile} to point out that it was the land,
+or statute, mile.
+\item Added {\tt yard}, with a CMP and FMP in terms of the {\tt foot}, and
+associated STS.
+\item Gave {\tt acre} a CMP and FMP in terms of square yards.
+\item Added comment to {\tt pint} to cross-reference to {\tt pint} in
+\verb+units_us1+ (when written).
+\item Added CMP and FMP to \verb+miles_per_hr+ and
+\verb+miles_per_hr_sqrd+. 
+\end{enumerate}
+\subsection{{\tt units\_time1.ocd}}\label{timesect}
+A new CD (and corresponding STS file), since time is common to, at least,
+SI and Imperial systems of units, and probably also the US one, but this
+needs checking.\action{JHD}
+\begin{enumerate}
+\item \verb+second+ is defined as the fundamental unit.
+\item \verb+minute+, \verb+hour+, \verb+day+ and \verb+week+ are derived in
+turn. The definition of \verb+day+ explicitly states that it does not take
+account of leap seconds.
+\item {\tt month} and {\tt year} are more complicated. There are a variety
+of definitions, and the calendar definitions are not constant. We therefore
+explicitly define \verb+calendar_month+ and \verb+calendar_year+, and will
+in the future need to define other variants. \verb+calendar_month+ has the
+following FMP, and \verb+calendar_year+ an equivalent one, as well as one
+saying that a \verb+calendar_year+ is precisely\footnote{One could argue
+about the appropriateness of this. After all, 12 Februarys are not a
+calendar year. But there seems no way of expressing ``12 consecutive
+months'', and the proposition is valid in that one year can always be
+converted into twelve months.} 12 \verb+calendar_month+s.
+\begin{verbatim}
+<FMP><OMOBJ>
+<OMA>
+  <OMS name="in" cd="set1"/>
+  <OMA>
+    <OMS name="divide" cd="arith1"/>
+    <OMS name="calendar_month" cd="units_time1"/>
+    <OMS name="day" cd="units_time1"/>
+  </OMA>
+  <OMA>
+    <OMS cd="interval1" name="integer_interval"/>
+    <OMI> 28 </OMI>
+    <OMI> 31 </OMI>
+  </OMA>
+</OMA>
+</OMOBJ></FMP>
+\end{verbatim}
+\end{enumerate}
+\subsection{{\tt units\_siprefix1.ocd}}
+This contains all the SI prefixes. Note
+that the powers of 10 involved are explicit, rather than being a series of
+zeroes, or, worse, an approximate floating point number.
+\subsection{{\tt units\_binaryprefix1.ocd}}
+This contains all the IEC binary prefixes. Note
+that the powers of 2 involved are explicit, rather than being a series of
+digits, prone to error.
+\subsection{{\tt units\_ops.ocd}}
+So far, this only contains the {\tt prefix} operator, as defined in item
+\ref{prefixop} in section \ref{prefixing}.
+\subsection{{\tt units\_sts.ocd}}
+So far, this only contains the type {\tt unit\_prefix}, the type of all unit
+prefixes, and which is used in the STS for
+\verb+<OMS name="prefix" cd="units_ops"/>+. The STS for {\tt unit\_prefix}
+describes it as being of type
+\begin{verbatim}
+  <OMS name="Object" cd="sts"/>
+\end{verbatim}
+\end{document}

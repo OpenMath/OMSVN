@@ -1,0 +1,53 @@
+<CD xmlns="http://www.openmath.org/OpenMathCD">
+<CDName> units_ops1 </CDName>
+<CDURL> http://www.openmath.org/cd/units_ops1.ocd </CDURL>
+<CDReviewDate> 2004-04-01 </CDReviewDate>
+<CDStatus> experimental </CDStatus>
+<CDDate> 2003-08-21 </CDDate>
+<CDVersion> 1 </CDVersion>
+<CDRevision> 0 </CDRevision>
+<CDUses>
+  <CDName>arith1</CDName>
+  <CDName>relations1</CDName>
+  <CDName>units_siprefix1</CDName>
+</CDUses>
+
+<Description> 
+This CD defines various symbols for use in the manipulation of units.
+</Description>
+
+<CDDefinition>
+<Name> prefix </Name>
+<Description>
+This symbol represents the fact that the subsequent unit has been 
+effectively multiplied by 1,000 ($10^{3}$)
+</Description>
+<CMP> This is unit multiplication by 1,000 </CMP>
+
+<FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath">
+<OMA>
+  <OMS name="eq" cd="relations1"/>
+  <OMA>
+    <OMS name="times" cd="arith1"/>
+    <OMI> 1 </OMI>
+    <OMA>
+      <OMS name="prefix" cd="units_ops1"/>
+      <OMS name="kilo" cd="units_siprefix1"/>
+      <OMV name="unit"/>
+    </OMA>
+  </OMA>
+  <OMA>
+    <OMS name="times" cd="arith1"/>
+    <OMA>
+      <OMS name="power" cd="arith1"/>
+      <OMI> 10 </OMI>
+      <OMI> 3 </OMI>
+    </OMA>
+    <OMV name="unit"/>
+  </OMA>
+</OMA>
+</OMOBJ></FMP>
+
+</CDDefinition>
+
+</CD>

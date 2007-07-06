@@ -1,0 +1,284 @@
+<HTML>
+<HEAD>
+
+<TITLE>OpenMath Prototype News</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN=CENTER>OpenMath Prototype News</H1>
+<HR>
+
+<H2>Current State</H2>
+
+Recently two prototypes have been developed at RIACA, called 2.0R and 2.1R.
+The first was for a demonstration at an OpenMath mini-meeting in May, the
+second was for a demonstration at MEGA'96.  The main differences between
+the two prototypes came from discussions at that mini-meeting.  So far 2.1R
+has been implemented in REDUCE and Maple, with an almost complete
+implementation in CoCoA.  An important aspect of the public release of 2.1R
+is that detailed specifications were included in the release thus allowing
+users of other systems and languages to build their own implementations:
+in particular, the group at INRIA(Nice) has taken the challenge to build a
+prototype "independently" to test the accuracy and completeness of the
+specifications -- this prototype is called 2.1I (I is for INRIA).
+
+<P>
+Current designs have assumed point-to-point use of OpenMath, partly because
+this seems to allow easier designs, and partly because the designers have
+only limited experience of parallel computation.  The restriction to
+point-to-point will eventually be lifted.
+
+
+<H3>The Truth</H3>
+
+The implementations of 2.1R in REDUCE and Maple used file copying (and
+system calls) as the data transport mechanism, and were thus unacceptably
+slow for many uses.  We recall that the <A
+HREF="../../reports/comms.ps.gz">communications committee report</A>
+specified the interface which the transport layer must offer, but did not
+require a particular transport mechanism to be used.  This file copying
+mechanism is indeed a compliant OpenMath transport layer, but is
+practicable only for coarse grained distributed computing.
+
+<P>
+On a Unix platform the preferred transport medium for interprocess
+communication would normally be a socket, but currently neither Maple nor
+REDUCE supports socket operations.  The CoCoA implementation is hampered by
+even more restricted I/O capability, though this should soon be rectified.
+Direct socket-based intercommunication would make relatively fine grained
+distributed computing feasible, but before OpenMath (or any similar
+communications scheme) can be implemented to use sockets directly, the
+developers of the various systems must make available the necessary socket
+operations.  Similar comments apply to other transport media, other
+platforms, and other mathematical software packages.
+
+<P>
+A normal implementation of an OpenMath sender/receiver will comprise an
+essentially static section of code (corresponding to the conversions
+between the levels OpenMath object and OpenMath encoding), together with
+the code forming the phrase book.  Normally the phrase book for a given
+system will have to be updated whenever there is a change in the contexts
+covering the domain of computation of that system.  Thus during the initial
+stages of OpenMath, many phrase books will change relatively often, more or
+less hand in hand with the introduction of new contexts or the extension of
+existing contexts.  As OpenMath matures, phrase books will become more
+static; indeed, for the more specialized systems it is even possible that
+the phrase book may never need to change.  On the other hand, the phrase
+books for more general mathematical systems may never become completely
+static -- this should be borne in mind when designing the implementation of
+the phrase book.
+
+
+<HR>
+<H2>Critical Appraisal</H2>
+
+Here we describe some of the main points of the most recent prototype
+(2.1), and comment on how well the design has worked, and when appropriate
+suggest ways to improve the design for the next prototype.  The order of
+the points is not special.
+
+
+<A NAME="conversations"><H3>Conversations</H3></A>
+
+One idea common to the last two prototypes is that of the
+<b>conversation</b>.  Conversations were invented to supersede the unpopular
+idea of "variable anonymization" presented at Bath.  The main purpose of a
+conversation is to maintain a certain amount of global state in which
+messages are exchanged.  The participants in a conversation may refer to
+and alter the global state during the course of the conversation.
+
+<P>
+There are three separate parts to this global state: a context of user
+parameters, a list of OpenMath symbols, and a list of stored values.  The
+first part achieves more or less what "variable anonymization" aimed to
+accomplish, and extends the idea.  The second part permits a compact
+encoding, and the third allows shared substructure to be retained during
+transmission.  This scheme worked well for the (small) examples used during
+the demonstrations, and allowed a fairly simple implementation.
+
+<P>
+The purpose of the list of OpenMath symbols could, in fact, be served by
+the list of stored values, thereby simplifying the design.  This potential
+simplification to the design should be investigated in a future prototype.
+
+<P>
+There is currently no way to clear out old stored values which we know will
+never be used again in the future.  The removal of stored values was
+forbidden so that there was no possible risk of creating a "dangling
+pointer"; instead there is the risk that a conversation might "fill up"
+with large amounts of useless stored values.  A solution to this problem is
+not evident; we suspect that in most practical situations excessive
+"filling up" will not occur, and propose that the problem be ignored for
+the time being.
+
+
+<H3>Asynchronicity</H3>
+
+Having permitted the existence of global state which can be updated by any
+member of the conversation at any time, the possibility of race conditions
+had to be eliminated (because OpenMath does not impose any synchronicity
+conditions on the participants in a conversation).  This difficulty can
+even arise in point-to-point usage.
+
+<P>
+A satisfactory solution seems to have been found: the global state is
+partitioned into pieces each one being "owned" by a single member of the
+conversation.  Each piece is a triple: parameter context, list of OpenMath
+symbols, and list of stored values.  Each member may modify only the piece
+belonging to itself, but may refer to symbols and values in any piece.
+Naturally, a reference has to record whose piece the value referred to comes
+from.  This idea is more complicated to describe in words than it is to
+visualize or to implement.
+
+
+<H3>User Parameters and Phrase Books</H3>
+
+We recall that the purpose of the phrase book is to effect the
+translation between an application specific representation of some
+mathematical object, and a semantically identical OpenMath object.
+Additionally, for prototype2.1 we assumed that all symbols appearing in
+an OpenMath object must come from a context.  Consequently, symbols
+appearing as (user) parameters in a formula must correspond to entries in
+some context.
+
+<P>
+To support this, a phrase book is allowed to add new entries to a special
+run-time context which contains only entries for (user) parameters.  The
+phrase book must also handle the reverse situation: a newly introduced
+parameter in an OpenMath object must be translated to a symbol different
+from all other symbols appearing in the application specific representation
+of that object.  This facility was needed for the polynomial decomposition
+demonstration.
+
+<P>
+In prototype2.1 only a minimal amount of information about a parameter was
+included in the context entry: a string being the original "print name" of
+the parameter.  This was a stopgap solution in case the parameter needed to
+be displayed to the user (e.g. during debugging).  A future prototype will
+surely use a more sophisticated way of indicating how to typeset/print the
+user symbol; this would include information about whether it is printed as
+a prefix, infix or postfix operator (or even as a superscript), whether
+arguments are printed in the usual way or as subscripts/superscripts/etc or
+perhaps not even printed at all.  Assuming OpenMath endorses type
+information, each parameter would also have some type information, possibly
+only a partially specified type (e.g. a matrix with unknown dimensions and
+unknown ring of entries).
+
+
+<H3>Phrase Books and Exported Commands</H3>
+
+For these prototypes it was decided that each command exported via an
+OpenMath interface should be associated with a particular OpenMath symbol;
+thus remote execution of a command could be effected by issuing the
+corresponding symbol and the data upon which the command is to act.  The
+human-readable part of the context would explain what precisely the command
+does, and the types and order of the arguments.  In the future we expect
+that the "signature" of the command may be held in a machine comprehensible
+form.
+
+<P>
+In the prototype implementations we found that the phrase books consisted
+of four distinct types of code: stub routines for making remote procedure
+calls, (small) interface procedures one for each exported command, data I/O
+routines (converting between the OpenMath representation and the
+application's internal representation), and some server routines for
+receiving and processing remote procedure calls.
+
+<P>
+To increase the range of commands which the system can call via the
+OpenMath interface it is necessary only to add one or more new stub
+routines.  To increase the range of commands which the system exports via
+its OpenMath interface it is necessary only to write the (usually small)
+interface procedure; possibly a small addition to one of the server
+routines would be needed to (depending on the host language/system).  If a
+new type of data is to be handled then the relevant I/O routines must be
+added.  We can see from this that the various parts of the phrase are
+fairly well decoupled from each other, thus making it quite easy to extend
+the system's OpenMath interface.  It is not necessary that the phrase book
+be implemented in this way, but our experience shows that this design has
+many advantages.
+
+
+<H3>Node Types in OpenMath Trees</H3>
+
+In prototype2.1, there were really too many different types of nodes in
+OpenMath trees: 15 altogether.  The main objections to having many
+different types of node are the high conceptual complexity, and the
+corresponding bulk of the code for sending and receiving OpenMath trees.
+Probably the correct action is to choose an adequate specification for the
+moment, and review it after some practical experience has been gained.
+
+<P>
+Changing the definition of the OpenMath data-structure (currently the
+OpenMath tree) would be a fundamental change, which should be reflected in
+a new top-level version number.  All the existing implementations would
+have to be changed accordingly, including phrase books.  Consequently,
+there is a strong incentive to minimize the number of such changes; or,
+equivalently, after OpenMath has become sufficiently widespread it would be
+impractical to attempt such a fundamental change.
+
+
+<H3>Lack of Error Handling</H3>
+
+Although present in the specification of prototype2.1, error handling was
+not implemented in any of REDUCE, Maple or CoCoA largely due to lack of
+time (and it was hoped that it wouldn't be needed during the
+demonstrations).  We note that some systems and languages support exception
+handling directly, while others do not: this greatly affects the ease of
+implementing proper error handling.  There will always be some error
+conditions which cannot be handled (e.g. power failure).
+
+<P>
+The design of error handling in OpenMath prototype2.1 is intended to be
+sufficient to support reasonably "intelligent" error management, for example, 
+for remote procedure calls.  We note that some changes to the existing
+error reporting facilities of various systems may be needed to facilitate
+automatic handling of errors, particularly through a remote call.
+
+
+<H3>Lack of Types</H3>
+
+As demonstrated at MEGA'96, prototype2.1 used an essentially untyped
+representation: the "parse tree" representation.  It relied on the built-in
+algebraic manipulation capabilities of the host systems (REDUCE, Maple, and
+CoCoA) to convert the parse tree into the application specific
+representation.  Output using the parse tree format was very simple since the
+internal structures of these systems were tree-like.
+
+<P>
+Types were not implemented in the prototype for various reasons, but
+primarily due to lack of time (both to design how to incorporate type
+information and to implement the design).  Moreover, for the small examples
+demonstrated (remote polynomial factorization, and remote polynomial
+decomposition) the advantages to including type information would not be
+evident: though, strictly, we must specify over which field to perform the
+factorization, and this information would naturally be supplied by the type
+of the polynomial.
+
+<P>
+Although REDUCE and Maple are largely untyped systems, in many cases it
+would not be hard for them to synthesize the necessary type information
+when they make or respond to a remote procedure call via OpenMath.  In
+contrast, in typed systems, it may be important to have the type of the
+data given explicitly.  For instance, the GCD of two polynomials with
+coefficients which happen to be integers depends on whether the polynomials
+are actually over the integers or the rationals.
+
+
+<H3>Incompleteness</H3>
+
+Not surprisingly, the prototype design and implementations are not yet
+"complete".  We hope that during discussions at this workshop a priority
+can be placed on the inclusion of the various absent features such as
+machine precision floating point numbers, type information, and quantified
+variables.
+
+
+
+
+
+<HR>
+<BR>
+This page is part of the OpenMath Web archive,
+and is no longer kept up to date.
+</BODY>
+</HTML>

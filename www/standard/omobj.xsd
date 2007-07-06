@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+
+<!-- OpenMath Schema 
+  Version 0.1
+  Authors: Olga Caprotti and David Carlisle
+  Copyright 2001 2003 Openmath 
+  $Id: omobj.xsd,v 1.4 2003/03/26 15:58:05 david Exp $
+-->
+
+
+
+<xs:schema
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.openmath.org/OpenMath"
+  targetNamespace="http://www.openmath.org/OpenMath"
+  elementFormDefault="qualified">
+
+
+<xs:element name="OMS">
+<xs:complexType>
+<xs:attribute name="name" type="omSymbname" use="required"/>
+<xs:attribute name="cd" type="omCdname" use="required"/>
+</xs:complexType>
+</xs:element>
+
+<xs:simpleType name="omSymbname">
+<xs:restriction  base="xs:string">
+<xs:pattern value="[A-Za-z][A-Za-z0-9_]*" />
+</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="omCdname">
+<xs:restriction  base="xs:string">
+<xs:pattern value="[a-z][a-z0-9_]*"/>
+</xs:restriction>
+</xs:simpleType>
+
+<xs:element name="OMV" >
+<xs:complexType>
+<xs:attribute name="name" type="omVariable" use="required" />
+</xs:complexType>
+</xs:element>
+
+<xs:simpleType name="omVariable">
+<xs:restriction  base="xs:string">
+<xs:pattern value="([A-Za-z0-9\+=(),\-\./:\?!#$%\*;@\[\]\^_`\{\|\}])+"/>
+</xs:restriction>
+</xs:simpleType>
+
+<xs:element name="OMI" type="omInteger" />
+
+<!-- should derive from int not string,  -->
+<xs:simpleType name="omInteger" >
+<xs:restriction base="xs:string">
+<xs:pattern value="\s*(-\s?)?[0-9]+(\s[0-9]+)*\s*" />
+</xs:restriction>
+</xs:simpleType>
+
+
+<xs:element name="OMF">
+<xs:complexType>
+<xs:attribute name="dec" type="omDecFloat" use="optional" />
+<xs:attribute name="hex" type="omHexFloat" use="optional" />
+</xs:complexType>
+</xs:element>
+
+<xs:simpleType name="omDecFloat" >
+<xs:restriction base="xs:string">
+<xs:pattern value="(-?)([0-9]+)?(\.[0-9]+)?(e([+\-]?)[0-9]+)?" />
+</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="omHexFloat">
+<xs:restriction base="xs:string">
+<xs:pattern value="[0-9A-F]+" />
+</xs:restriction>
+</xs:simpleType>
+
+<xs:element name="OMB" type="xs:base64Binary" />
+
+
+<xs:group  name="omElement" >
+<xs:choice>
+<xs:element ref="OMS"/>
+<xs:element ref="OMV"/>
+<xs:element ref="OMI"/>
+<xs:element ref="OMB"/>
+<xs:element ref="OMSTR"/>
+<xs:element ref="OMF"/>
+<xs:element ref="OMA"/>
+<xs:element ref="OMBIND"/>
+<xs:element ref="OME"/>
+<xs:element ref="OMATTR"/>
+</xs:choice>
+</xs:group>
+
+<xs:element name="OMSTR" type="xs:string"/>
+
+<xs:element name="OMA" >
+<xs:complexType>
+<xs:group ref="omElement"  maxOccurs="unbounded"/>
+</xs:complexType>
+</xs:element>
+
+
+<xs:element name="OMBIND">
+<xs:complexType>
+<xs:sequence>
+<xs:group ref="omElement" />
+<xs:element ref="OMBVAR" />
+<xs:group ref="omElement"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+
+
+<xs:element name="OMBVAR">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded">
+<xs:element ref="OMV"/>
+<xs:element name="OMATTR" type="omAttrVar"/>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+
+
+
+<xs:element name="OME">
+<xs:complexType>
+<xs:sequence>
+<xs:element ref="OMS"/>
+<xs:group ref="omElement"  minOccurs="0" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+
+
+
+<xs:element name="OMATTR">
+<xs:complexType>
+<xs:sequence>
+<xs:element ref="OMATP"/>
+<xs:group ref="omElement"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+
+<!-- arrange that the OMATTR branch must eventually end in an OMV -->
+<xs:complexType name="omAttrVar">
+<xs:sequence>
+<xs:element ref="OMATP"/>
+<xs:choice>
+<xs:element ref="OMV"/>
+<xs:element name="OMATTR" type="omAttrVar"/>
+</xs:choice>
+</xs:sequence>
+</xs:complexType>
+
+
+
+<xs:element name="OMATP">
+<xs:complexType>
+<xs:sequence maxOccurs="unbounded">
+<xs:element ref="OMS"/>
+<xs:group ref="omElement"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+
+
+
+<xs:element name="OMOBJ" type="OMOBJType"/>
+<xs:complexType name="OMOBJType">
+<xs:group ref="omElement" maxOccurs="unbounded"/>
+</xs:complexType>
+
+
+</xs:schema>
+

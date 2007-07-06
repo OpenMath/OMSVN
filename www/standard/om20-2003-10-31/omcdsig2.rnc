@@ -1,0 +1,25 @@
+# *********************************************
+# 
+# Relax NG Schema for OpenMath CD Signatures
+# 
+# *********************************************
+
+default namespace = "http://www.openmath.org/OpenMathCDS"
+
+include "openmath2.rnc"
+CDSComment = element CDSComment { text }
+CDSReviewDate = element CDSReviewDate { text }
+CDSStatus = element CDSStatus { text }
+CDSignatures =
+  element CDSignatures {
+    attlist.CDSignatures,
+    (CDComment | CDSComment)*,
+    (CDSReviewDate? & CDSStatus?),
+    (CDComment | CDSComment | Signature)*
+  }
+attlist.CDSignatures =
+  attribute cd { text },
+  attribute type { text }
+Signature = element Signature { attlist.Signature, OMOBJ? }
+attlist.Signature = attribute name { text }
+start = CDSignatures

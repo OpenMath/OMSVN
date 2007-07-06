@@ -1,0 +1,549 @@
+<page>
+<page-title>OpenMath and Mathematical Software</page-title>
+
+<center>
+<address><b>St&#233;phane Dalmas</b></address>
+<address><b>INRIA Sophia-Antipolis, projet SAFIR</b></address>
+</center>
+
+<p><b>Sections</b></p>
+
+<ul>
+<li><a id="3D&quot;tex2html1&quot;" name="3D&quot;tex2html1&quot;"
+href="#openmath"></a><a id="3D&quot;tex2html1&quot;"
+href="#openmath" name="3D&quot;tex2html1&quot;">OpenMath</a></li>
+
+<li><a id="3D&quot;tex2html2&quot;" name="3D&quot;tex2html2&quot;"
+href="#impact"></a><a id="3D&quot;tex2html2&quot;" href="#impact"
+name="3D&quot;tex2html2&quot;">The Impact of OpenMath on
+Mathematical Software</a></li>
+
+<li><a id="3D&quot;tex2html3&quot;" name="3D&quot;tex2html3&quot;"
+href="#targets"></a><a id="3D&quot;tex2html3&quot;" href="#targets"
+name="3D&quot;tex2html3&quot;">Natural Targets</a></li>
+
+<li><a id="3D&quot;tex2html4&quot;" name="3D&quot;tex2html4&quot;"
+href="#componentware"></a><a id="3D&quot;tex2html4&quot;"
+href="#componentware" name="3D&quot;tex2html4&quot;">Mathematical
+Componentware</a></li>
+
+<li><a id="3D&quot;tex2html5&quot;" name="3D&quot;tex2html5&quot;"
+href="#goodpoints"></a><a id="3D&quot;tex2html5&quot;"
+href="#goodpoints" name="3D&quot;tex2html5&quot;">The Good Points
+of OpenMath</a></li>
+
+<li><a id="3D&quot;tex2html6&quot;" name="3D&quot;tex2html6&quot;"
+href="#europeanproj"></a><a id="3D&quot;tex2html6&quot;"
+href="#europeanproj" name="3D&quot;tex2html6&quot;">What the
+European Project will Provide</a></li>
+
+<li><a id="3D&quot;tex2html7&quot;" name="3D&quot;tex2html7&quot;"
+href="#Clibrary"></a><a id="3D&quot;tex2html7&quot;"
+href="#Clibrary" name="3D&quot;tex2html7&quot;">The C
+library</a></li>
+
+<li><a id="3D&quot;tex2html8&quot;" name="3D&quot;tex2html8&quot;"
+href="#Javalib"></a><a id="3D&quot;tex2html8&quot;" href="#Javalib"
+name="3D&quot;tex2html8&quot;">The Java library</a></li>
+
+<li><a id="3D&quot;tex2html9&quot;" name="3D&quot;tex2html9&quot;"
+href="#convtools"></a><a id="3D&quot;tex2html9&quot;"
+href="#convtools" name="3D&quot;tex2html9&quot;">Conversion
+Tools</a></li>
+
+<li><a id="3D&quot;tex2html10&quot;"
+name="3D&quot;tex2html10&quot;" href="#writingopenapps"></a><a
+id="3D&quot;tex2html10&quot;" href="#writingopenapps"
+name="3D&quot;tex2html10&quot;">Writing OpenMath
+Applications</a></li>
+
+<li><a id="3D&quot;tex2html11&quot;"
+name="3D&quot;tex2html11&quot;" href="#concretequestions"></a><a
+id="3D&quot;tex2html11&quot;" href="#concretequestions"
+name="3D&quot;tex2html11&quot;">Concrete Mathematical
+Questions</a></li>
+
+<li><a id="3D&quot;tex2html12&quot;"
+name="3D&quot;tex2html12&quot;" href="#problems"></a><a
+id="3D&quot;tex2html12&quot;" href="#problems"
+name="3D&quot;tex2html12&quot;">Problems</a></li>
+
+<li><a id="3D&quot;tex2html13&quot;"
+name="3D&quot;tex2html13&quot;" href="#operquest"></a><a
+id="3D&quot;tex2html13&quot;" href="#operquest"
+name="3D&quot;tex2html13&quot;">Operational questions</a></li>
+
+<li><a id="3D&quot;tex2html14&quot;"
+name="3D&quot;tex2html14&quot;" href="#howdiff"></a><a
+id="3D&quot;tex2html14&quot;" href="#howdiff"
+name="3D&quot;tex2html14&quot;">How Difficult is it Really
+?</a></li>
+
+<li><a id="3D&quot;tex2html15&quot;"
+name="3D&quot;tex2html15&quot;" href="#openprogs"></a><a
+id="3D&quot;tex2html15&quot;" href="#openprogs"
+name="3D&quot;tex2html15&quot;">OpenMath Programs</a></li>
+
+<li><a id="3D&quot;tex2html16&quot;"
+name="3D&quot;tex2html16&quot;" href="#mathml"></a><a
+id="3D&quot;tex2html16&quot;" href="#mathml"
+name="3D&quot;tex2html16&quot;">MathML and OpenMath</a></li>
+
+<li><a id="3D&quot;tex2html17&quot;"
+name="3D&quot;tex2html17&quot;" href="#supportboth"></a><a
+id="3D&quot;tex2html17&quot;" href="#supportboth"
+name="3D&quot;tex2html17&quot;">Supporting OpenMath, MathML, both
+?</a></li>
+
+<li><a id="3D&quot;tex2html18&quot;"
+name="3D&quot;tex2html18&quot;" href="#conclusion"></a><a
+id="3D&quot;tex2html18&quot;" href="#conclusion"
+name="3D&quot;tex2html18&quot;">Conclusion</a></li>
+</ul>
+
+<hr />
+<h2><a id="openmath" name="openmath"></a>OpenMath</h2>
+
+<ul>
+<li>A format to represent mathematical objects</li>
+
+<li style="list-style: none">
+<ul>
+<li>much like JPEG, PNG, MPEG for images/video</li>
+</ul>
+</li>
+
+<li>Designed to be widely applicable</li>
+
+<li style="list-style: none">
+<ul>
+<li>all kinds of maths (college level, engineering,
+research...)</li>
+
+<li>e-mail, newsgroups</li>
+
+<li>MathLink-like communication</li>
+
+<li>embedding into standard solutions (DCOM, CORBA, PVM,
+MPI...)</li>
+</ul>
+</li>
+</ul>
+
+<h2><a id="impact" name="impact"></a>The Impact of OpenMath on
+Mathematical Software</h2>
+
+<ul>
+<li>What is the market for OpenMath ?</li>
+
+<li>Not as big as it may seem...</li>
+
+<li style="list-style: none">
+<ul>
+<li>most math objects are</li>
+
+<li style="list-style: none">
+<ul>
+<li>only approximately computed (and filtered away)</li>
+
+<li>embedded in programs (used to compute)</li>
+
+<li>embedded in entirely human-oriented documents (presentation
+together with natural language)</li>
+</ul>
+</li>
+
+<li>a few are</li>
+
+<li style="list-style: none">
+<ul>
+<li>in some data representation language</li>
+
+<li>in ``pseudo-semantics'' private representation</li>
+</ul>
+</li>
+</ul>
+</li>
+
+<li>OpenMath applies to case 2</li>
+
+<li style="list-style: none">
+<ul>
+<li>Objects in documents: very interesting for archival/searching
+but costly...</li>
+</ul>
+</li>
+</ul>
+
+<h2><a id="targets" name="targets"></a>Natural Targets</h2>
+
+<ul>
+<li>Specialized mathematical programs</li>
+
+<li style="list-style: none">
+<ul>
+<li>need to communicate ``sophisticated'' objects</li>
+</ul>
+</li>
+
+<li>Programs that need non numeric computations</li>
+
+<li style="list-style: none">
+<ul>
+<li>and want to be independent from a particular vendor</li>
+
+<li>need to use specialized programs</li>
+</ul>
+</li>
+</ul>
+
+<h2><a id="componentware" name="componentware"></a>Mathematical
+Componentware</h2>
+
+<ul>
+<li>Waiting for OpenMath...</li>
+
+<li>When state of the art algorithms and implementations are too
+costly to reproduce</li>
+
+<li style="list-style: none">
+<ul>
+<li>Groebner basis, differential algebra...</li>
+</ul>
+</li>
+
+<li>When integration is important</li>
+
+<li style="list-style: none">
+<ul>
+<li>problem solving environment, mixing symbolic and numeric
+computation...</li>
+</ul>
+</li>
+</ul>
+
+<h2><a id="goodpoints" name="goodpoints"></a>The Good Points of
+OpenMath</h2>
+
+<ul>
+<li>Simple</li>
+
+<li style="list-style: none">
+<ul>
+<li>OpenMath objects are simple</li>
+
+<li>reading/generating the two encodings is easy</li>
+</ul>
+</li>
+
+<li>Freely extensible</li>
+
+<li style="list-style: none">
+<ul>
+<li>one can introduce ``private'' Content Dictionaries, no need to
+really support any existing CD</li>
+</ul>
+</li>
+</ul>
+
+<h2><a id="europeanproj" name="europeanproj"></a>What the European
+Project will Provide</h2>
+
+<ul>
+<li>A C library</li>
+
+<li>A Java library</li>
+
+<li>Conversion tools</li>
+
+<li>A set of CD</li>
+</ul>
+
+<h2><a id="Clibrary" name="Clibrary"></a>The C library</h2>
+
+<ul>
+<li>Three layers</li>
+
+<li style="list-style: none">
+<ul>
+<li>The management of <i>devices</i></li>
+
+<li>Input and output: two encodings, XML and binary</li>
+
+<li>Basic interprocess communications</li>
+</ul>
+</li>
+
+<li>The library basically performs lexical analysis
+(tokenisation)</li>
+
+<li>A very reasonable level</li>
+
+<li style="list-style: none">
+<ul>
+<li>syntax checking is trivial</li>
+
+<li>most packages have their own special representations
+(efficiency, memory management)</li>
+</ul>
+</li>
+</ul>
+
+<h2><a id="Javalib" name="Javalib"></a>The Java library</h2>
+
+<ul>
+<li>Two parts</li>
+
+<li style="list-style: none">
+<ul>
+<li>a set of interfaces defining parsers and printers for OpenMath
+objects</li>
+
+<li>the parsers and printers for the XML and binary encodings</li>
+</ul>
+</li>
+
+<li>Two levels</li>
+
+<li style="list-style: none">
+<ul>
+<li>streams of tokens</li>
+
+<li>OpenMath objects</li>
+</ul>
+</li>
+</ul>
+
+<h2><a id="convtools" name="convtools"></a>Conversion Tools</h2>
+
+<ul>
+<li>Important for the acceptance of OpenMath</li>
+
+<li>Need to</li>
+
+<li style="list-style: none">
+<ul>
+<li>use legacy data</li>
+
+<li>convert to and from popular formats (T<font
+size="-1">E</font>X/L<sup><font size="-1">A</font></sup>T<font
+size="-1">E</font>X) or soon to be popular (MathML)</li>
+</ul>
+</li>
+
+<li>A difficult job...</li>
+</ul>
+
+<h2><a id="writingopenapps" name="writingopenapps"></a>Writing
+OpenMath Applications</h2>
+
+<ul>
+<li>Concrete Mathematical questions:</li>
+
+<li style="list-style: none">
+<ul>
+<li>How to represent the needed mathematical objects</li>
+
+<li>How to cope with existing CDs</li>
+</ul>
+</li>
+
+<li>Operational questions:</li>
+
+<li style="list-style: none">
+<ul>
+<li>How to express operations</li>
+
+<li>What kind of protocol to use</li>
+
+<li>What kinds of errors should be defined and how they should be
+handled</li>
+</ul>
+</li>
+
+<li>Implementation of phrase books</li>
+
+<li style="list-style: none">
+<ul>
+<li>usually covers the two families of questions</li>
+</ul>
+</li>
+</ul>
+
+<h2><a id="concretequestions" name="concretequestions"></a>Concrete
+Mathematical Questions</h2>
+
+<ul>
+<li>Are not always entirely mathematical (in a traditional sense)
+but they are certainly concrete...</li>
+
+<li style="list-style: none">
+<ul>
+<li>objects for plotting and generating graphical
+representations</li>
+
+<li>objects for numerical programs (meshes, grids, sparse
+matrices...)</li>
+
+<li>system objects (files, printers...)</li>
+
+<li>programs</li>
+</ul>
+</li>
+
+<li>Ideally, everything needed should be available in some CD. This
+requires:</li>
+
+<li style="list-style: none">
+<ul>
+<li>a good design</li>
+
+<li>strong documentation and search facilities</li>
+</ul>
+</li>
+</ul>
+
+<h2><a id="problems" name="problems"></a>Problems</h2>
+
+<ul>
+<li>Mapping the OpenMath semantics to the application semantics can
+be quite complicated</li>
+
+<li>Both for CDs and basic objects</li>
+
+<li style="list-style: none">
+<ul>
+<li>For CDs: computer algebra systems often have some peculiarities
+(<i>i</i> as an alias for (-1)<sup>1/2</sup>)</li>
+
+<li>For basic objects: renaming variables, Unicode strings may not
+be easily handled, bignums could be unimplemented...</li>
+</ul>
+</li>
+
+<li>Some systems have very stateful interfaces (a real object is
+built as the result of several commands).</li>
+</ul>
+
+<h2><a id="operquest" name="operquest"></a>Operational
+questions</h2>
+
+<ul>
+<li>Computations</li>
+
+<li style="list-style: none">
+<ul>
+<li>No real way to express computations in OpenMath: they are
+implicit.</li>
+
+<li>The format of a (possible) result should be specified in the CD
+entry.</li>
+
+<li>Each ``computation behaviour'' requires a different symbol (or
+extra symbols).</li>
+</ul>
+</li>
+
+<li>Communications</li>
+
+<li style="list-style: none">
+<ul>
+<li>OpenMath is not a protocol and various scenarios are possible:
+require what is useful.</li>
+</ul>
+</li>
+</ul>
+
+<h2><a id="howdiff" name="howdiff"></a>How Difficult is it Really
+?</h2>
+
+<ul>
+<li>Experiments tend to show it is not that difficult...</li>
+
+<li>Unfortunately, it is not yet clear whether it is a worthwhile
+investment...</li>
+</ul>
+
+<h2><a id="openprogs" name="openprogs"></a>OpenMath Programs</h2>
+
+<ul>
+<li>Trying to solve the bootstrapping problem...</li>
+
+<li>Reduce (collaboration with ZIB)</li>
+
+<li>Axiom</li>
+
+<li>GAP</li>
+
+<li>Maple ?</li>
+</ul>
+
+<h2><a id="mathml" name="mathml"></a>MathML and OpenMath</h2>
+
+<ul>
+<li>Competing or cooperating ?</li>
+
+<li style="list-style: none">
+<ul>
+<li>the ``Web mania'' pushes MathML ahead</li>
+
+<li>MathML has a ``semantics'' (content) subset</li>
+
+<li>but recognizes the importance of strongly semantics-oriented
+formats</li>
+</ul>
+</li>
+
+<li>A real danger ?</li>
+</ul>
+
+<h2><a id="supportboth" name="supportboth"></a>Supporting OpenMath,
+MathML, both ?</h2>
+
+<ul>
+<li>``Specialized'' programs will support OpenMath</li>
+
+<li style="list-style: none">
+<ul>
+<li>simpler</li>
+
+<li>more suited to sophisticated maths (outside K-12)</li>
+
+<li>translations to content and presentation MathML available</li>
+</ul>
+</li>
+
+<li>``Big'' programs will support both</li>
+
+<li>Otherwise:</li>
+
+<li style="list-style: none">
+<ul>
+<li>they will not be able to communicate faithfully</li>
+
+<li>or they will need private conventions</li>
+
+<li>they will keep on with proprietary solutions</li>
+</ul>
+</li>
+</ul>
+
+<h2><a id="conclusion" name="conclusion"></a>Conclusion</h2>
+
+<ul>
+<li>OpenMath is needed today</li>
+
+<li>May be central for mathematical componentware</li>
+
+<li style="list-style: none">
+<address>But a lot of work remain to be done to convince people out
+of our small community...</address>
+</li>
+</ul>
+
+<address><i>Stephane Dalmas</i></address>
+
+<br />
+<i>1998-10-28</i>
+</page>
+

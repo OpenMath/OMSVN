@@ -1,0 +1,311 @@
+<CD xmlns="http://www.openmath.org/OpenMathCD">
+<CDName>plangeo1</CDName>
+<CDURL> http://www.win.tue.nl/~amc/oz/om/cds/plangeo1.ocd </CDURL>
+<CDReviewDate> 00 </CDReviewDate>
+<CDStatus> unofficial </CDStatus>
+<CDDate> 2002-03-15 </CDDate>
+<CDVersion> 0.1 </CDVersion>
+<CDRevision> 0 </CDRevision>
+<CDUses>
+  <CDName>logic1.ocd</CDName>
+  <CDName>relation1.ocd</CDName>
+</CDUses>
+
+<Description> 
+This CD defines symbols for planar Euclidean geometry.
+</Description>
+
+
+
+
+<CDDefinition>
+<Name> point </Name>
+<Description> 
+The symbol is used to indicate a point of  planar Euclidean geometry
+by a variable. The point may (but need not) be subject to constraints.
+The symbol takes the variable as the first argument and the constraints
+as further arguments.
+</Description>
+
+
+<Example> 
+Given two lines  l and m,  a point  A  on l and m
+is defined by: 
+
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+  <OMA>
+    <OMS cd="plangeo1" name="point"/>
+    <OMV name="A"/>
+    <OMA>
+      <OMS cd="plangeo1" name="incident"/>
+      <OMV name="A"/>
+      <OMV name="l"/>
+    </OMA>
+    <OMA>
+      <OMS cd="plangeo1" name="incident"/>
+      <OMV name="A"/>
+      <OMV name="m"/>
+    </OMA>
+  </OMA>
+</OMOBJ>
+
+</Example>
+</CDDefinition>
+
+
+<CDDefinition>
+<Name> line  </Name>
+<Description> 
+The symbol is used to indicate a line of  planar Euclidean geometry
+by a variable. The line may (but need not) be subject to constraints.
+The symbol takes the variable as the first argument and the constraints
+as further arguments.
+</Description>
+
+<Example> Given points A and B, a line l through A and B
+is defined  by: 
+
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+  <OMA>
+    <OMS cd="plangeo1" name="line"/>
+    <OMV name="l"/>
+    <OMA>
+      <OMS cd="plangeo1" name="incident"/>
+      <OMV name="A"/>
+      <OMV name="l"/>
+    </OMA>
+    <OMA>
+      <OMS cd="plangeo1" name="incident"/>
+      <OMV name="B"/>
+      <OMV name="l"/>
+    </OMA>
+  </OMA>
+</OMOBJ>
+</Example>
+
+</CDDefinition>
+
+
+<CDDefinition>
+<Name> incident </Name>
+<Description> 
+The symbol represents the logical incidence function which is a
+binary function taking arguments representing
+geometric objects like points and lines and returning a boolean value.
+It is true if and only if the first argument is incident to the second.
+</Description>
+
+<Example> 
+That a point A is incident to a line l 
+is given by: 
+
+
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+  <OMA>
+    <OMS cd="plangeo1" name="incident"/>
+    <OMV name="A"/>
+    <OMV name="l"/>
+  </OMA>
+</OMOBJ>
+</Example>
+
+</CDDefinition>
+
+
+<CDDefinition>
+<Name> configuration </Name>
+<Description> 
+The symbol represents a configuration in Euclidean 
+planar geometry consisting of a sequence of geometric objects like points,
+lines,  etc, but also of other configurations.
+</Description>
+
+<Example> The configuration of  a point A and a line l  incident to  A 
+is defined by:
+
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+<OMA>
+  <OMS cd="plangeo1" name="configuration"/>
+    <OMA>
+      <OMS cd="plangeo1" name="point"/> 
+      <OMV name="A"/>
+    </OMA>
+    <OMA>
+      <OMS cd="plangeo1" name="line"/>
+      <OMV name="l"/>
+      <OMA>
+        <OMS cd="plangeo1" name="incident"/>
+        <OMV name="A"/>
+        <OMV name="l"/>
+      </OMA>
+    </OMA>
+</OMA>
+</OMOBJ>
+</Example>
+
+<Example> The prevous configuration of a point A and a line l incident
+with A can be extended by adding a second point B incident with l:
+
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+<OMA>
+  <OMS cd="plangeo1" name="configuration"/>
+    <OMA>
+      <OMS cd="plangeo1" name="configuration"/>
+        <OMA>
+          <OMS cd="plangeo1" name="point"/> 
+          <OMV name="A"/>
+        </OMA>
+        <OMA>
+          <OMS cd="plangeo1" name="line"/>
+          <OMV name="l"/>
+          <OMA>
+            <OMS cd="plangeo1" name="incident"/>
+            <OMV name="A"/>
+            <OMV name="l"/>
+          </OMA>
+        </OMA>
+     </OMA>
+    <OMA>
+      <OMS cd="plangeo1" name="point"/>
+        <OMV name="B"/>
+        <OMA>
+          <OMS cd="plangeo1" name="incident"/>
+          <OMV name="B"/>
+          <OMV name="l"/>
+        </OMA>
+    </OMA>
+</OMA>
+</OMOBJ>
+</Example>
+
+<Example>
+We describe a triangle on the distinct points A, B, C and lines a, b, c:
+
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+<OMA>
+  <OMS cd="plangeo1" name="configuration"/>
+  <OMA>
+    <OMS cd="plangeo1" name="point"/>
+    <OMV name="A"/>
+  </OMA>
+  
+  <OMA>
+    <OMS cd="plangeo1" name="point"/>
+    <OMV name="B"/>
+    <OMA>
+      <OMS cd="logic1" name="not"/>
+      <OMA>
+        <OMS cd="relation1" name="eq"/>
+        <OMV name="A"/>
+        <OMV name="B"/>
+      </OMA>
+    </OMA>
+  </OMA>
+
+  <OMA>
+    <OMS cd="plangeo1" name="line"/>
+    <OMV name="c"/>
+    <OMA>
+      <OMS cd="plangeo1" name="incident"/>
+      <OMV name="c"/>
+      <OMV name="A"/>
+    </OMA>
+    <OMA>
+      <OMS cd="plangeo1" name="incident"/>
+      <OMV name="c"/>
+      <OMV name="B"/>
+    </OMA>
+  </OMA>
+
+  <OMA>
+    <OMS cd="plangeo1" name="point"/>
+    <OMV name="C"/>
+    <OMA>
+      <OMS cd="logic1" name="not"/>
+      <OMA>
+        <OMS cd="plangeo1" name="incident"/>
+        <OMV name="C"/>
+        <OMV name="c"/>
+      </OMA>
+    </OMA>
+  </OMA>
+
+  <OMA>
+    <OMS cd="plangeo1" name="line"/>
+    <OMV name="a"/>
+    <OMA>
+      <OMS cd="plangeo1" name="incident"/>
+      <OMV name="a"/>
+      <OMV name="B"/>
+    </OMA>
+    <OMA>
+      <OMS cd="plangeo1" name="incident"/>
+      <OMV name="a"/>
+      <OMV name="C"/>
+    </OMA>
+  </OMA>
+
+  <OMA>
+    <OMS cd="plangeo1" name="line"/>
+    <OMV name="b"/>
+    <OMA>
+      <OMS cd="plangeo1" name="incident"/>
+      <OMV name="b"/>
+      <OMV name="A"/>
+    </OMA>
+    <OMA>
+      <OMS cd="plangeo1" name="incident"/>
+      <OMV name="b"/>
+      <OMV name="C"/>
+    </OMA>
+  </OMA>
+</OMA>
+</OMOBJ>
+
+
+
+</Example>
+</CDDefinition>
+
+
+<CDDefinition>
+<Name> type </Name>
+<Description> 
+The symbol represents the type of the basic geometric objects: points,
+lines, configuration.
+</Description>
+
+<CMP>
+If A and B are objects of the same type, then they are not incident. 
+</CMP>
+
+<FMP>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+  <OMA>
+    <OMS cd="logic1" name="implies"/>
+    <OMA>
+       <OMS cd="relation1" name="eq"/>
+       <OMA>
+          <OMS cd="plangeo1" name="type"/>
+          <OMV name="A"/>
+       </OMA>
+       <OMA>
+          <OMS cd="plangeo1" name="type"/>
+          <OMV name="B"/>
+       </OMA>
+    </OMA>
+    <OMA>
+      <OMS cd="logic1" name="not"/>
+      <OMA>
+        <OMS cd="plangeo1" name="incident"/>
+        <OMV name="A"/>
+        <OMV name="B"/>
+      </OMA>
+    </OMA>
+  </OMA>
+</OMOBJ>
+</FMP>
+
+</CDDefinition>
+
+</CD>

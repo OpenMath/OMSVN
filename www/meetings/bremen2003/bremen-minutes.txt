@@ -1,0 +1,365 @@
+
+OpenMath Workshop Bremen November 8-9 2003.
+===========================================
+
+MS: Mika Seppala
+SB: Stephen Buswell
+SJ: Sabina Jeschke
+TR: Tilman Rassy
+OC: Olga Capprotti
+PL: Paul Libbrecht
+LK: Ladislav Kohout
+DC: David Carlisle
+AS: Andreas Strotmann
+CK: Camelia Kocsis
+MG: Marc Gaetano
+SD: Stephane Dalmas
+RM: Roy McCasland
+RA: Romeo Angelache
+WN: Winfried Neun
+MD: Mike Dewar
+JZ: Juergen Zimmer
+MK: Michael Kohlhase
+
+
+
+Intro: Michael Kolhase
+
+General Admin.
+Best wishes to James Davenport who can't be present.
+
+Session 1: Chair Mike Dewar
+
+
+
+
+Andreas Strotmann: Content Markup: principles and consequences.
+Summary of dissertation (full dissertation available from FSU).
+
+1st attended was workshop 10 years ago, 2nd OM workshop.
+
+3 main chapters
+
+Linguistics approach.
+Comparison with "engineering approach" to study of natural language
+
+The compositionality principle
+ie that the meaning of a compound is a function of the meaning of its
+parts and its syntactic constructors.
+Especially notes on binding operators.
+
+
+Categorical (structural) semantics
+
+
+Focus on points that could influence OM2 and have influenced MML22e.
+
+
+
+
+Qns.
+OC qn about other work using natural language to describe mathematics
+and elearning environments.
+MK: pointed out that languages between people have different
+requirements than languages between machines (large inference
+capability and unreliable communication channel).
+
+
+
+
+Session 2: Chair Marc Gaetano
+Romeo Angelache: Hermes a LaTeX to XML converter and authoring tool.
+Documentation available on the web.
+
+Hermes has a set of macros to allow author to specify meaning of
+formulae which allows dvi to be semantically enhanced.
+hermes compiler then produces XML.
+
+Qn
+OC have you considered docbook (answer OMDoc and docbook both
+considered and one of these will replace current mowgli experimental
+markup, hope to complete this, and mml presentation by April next year.)
+MK converting between xml document formats easily done by xslt.
+PL: dangerous to imply such conversions are easy. Better to arrange
+output meets some standard. Answer use stylesheets but system will
+come with stylesheets for these conversions.
+
+Jürgen Jimmer: Brokering of Theorem proving services described in
+MSDL.
+Applying MSDL (Monet/MathBroker) to deduction reasoning systems.
+Developing ontologies for deductive services,.
+Mathweb software bus developed at saarbruken, provides homogeneous
+interface to several services to clients. Clients have to know which
+system they want to use and how to access it.
+User has to coordinate different reasoning systems.
+Moving to a semantic mathweb..
+based on FIPa and agents offering services described by a service
+description language (msdl, in the future perhaps owl-s)
+
+using protege-2000. describing tp in msdl using the ontology, then
+mapping msdl to java classes. Implementing simple brokering.
+
+
+Qn: Asked about splitting problems to subproblems that could be
+classified. Answer, in future plans, but currently not feasible.
+AS pointed out that work had been done at Nice in this area.
+OC: is the ontology just for First Order TP. Answer currently yes.
+OC: Any ideas on extensions to HO TP. 
+MK: the two HOTP available aren't that different in behaviour to the
+FO TP. Integrating proof checkers might be harder.
+
+
+Tilman Rasy: mmtex (TeX to XML converter)
+MUMIE (e-learning project for engineers)
+Content is stored in XML database, but authors used to LaTeX.
+Decided to develop own converter.
+latex-like code to xml
+written in perl, does not rely on latex being installed.
+perl good for writing extensible parsers for text.
+very Customisable no commands except \documentclass hard coded in core
+sources. everything in exchangeable libraries controlled by
+documentclass.
+two dialects currently implemented
+One similar to standard latex, other specialised one for MUMIE.
+Non mathematical parts converted to in house XML, Mathematical parts
+Presentation MML.
+XSLT to XHTML+MML.
+
+Qns:
+Some discussion on further requirements for e-learning systems
+MK: qns about extensibility of parsing with respect to special tex
+features such as catcodes. (catcodes not supported, \newcommands are
+supported) 
+
+Lunch
+
+
+OM2 session
+Chair: Olga Caprotti
+Overview of OpenMath 2 draft: Mike Dewar.
+
+Qns
+
+MK since binary encoding is about compactness, should a binary encoder
+do maximal sharing, Spec says all sharing variants are
+equivalent, but pragmatically should we have modes to control whether
+or not same DAG is preserved. Which means marking private or public
+sharing.
+
+PL: does anyone use binary encoding
+MK: a lot of interest in binary encoding, esp grid usage.
+OC CA will not use xml encoding due to file sizes.
+MK parsing time, first unzip then parse the costs time.
+Not really disk space.
+AS: should there be abstract data model for signature files and cd
+groups.
+MK currently not done for CD groups.
+AS: would like binary encoding be able to represent arbitrary om
+object. size limits, eg 2^31 digits in integer. Would give
+possibilities for streaming  large objects without knowing the size in
+advance.
+MK: integers, bytearrays and strings and foreign objects
+MK: note that current draft grammar uses "derived" instead of
+"foreign".
+MK additional mechanism to have explicit start tag and end tag
+instead of giving length
+SD there may be problems of finding an end tag given current
+mechanisms.
+MK: which version is the original.
+DC: suggested following w3c policy author in an xml dtd (docbook or
+us) but make xhtm+mathml version normative.
+
+
+Chair: MS
+MK: extending OMBIND with a restriction element
+Proposal to add a version of OMBind that allows restricted scope for the
+bound variables.
+MD: question about restrictions for more than one variable.
+Ans restriction can refer to all the binding ops.
+AS: MathML has this, also note that the restrictions have scope.
+
+MK for Enesto. A proposal from Reinaldo Barr: getting rid of the OMOBJ
+tag. It always has exactly one child.
+
+Qn
+SB: not really a problem
+DC: MML spec examples dont use omobj
+MK: suggest clarify spec mechanisms for embedding in other xnl
+languages.
+ML pointed out that there there are issues with version attribute on
+omobj.
+
+
+
+Mike Dewar for James. A proposal for DefMPs
+2 kinds of props CMP and FMP.
+4 kinds of OMS
+mathematicaly primitive FMPs describe symbol, Primitive from an OM
+point of view, FMPs describe symbol, Defined in terms of other OMS,
+FMPs define the symbol, defined recursively FMP define evaluation of
+symbol recursively.'proposal distinguish descriptive, defining,
+evaluating FMPs by optioal attribute on FMP.
+
+Qn
+MK: is this a suggestion to change the abstract model, or concrete CD.
+MK change to abstract model.
+Roy Mc: Mathematical gain restricted if you only have one definition
+as there are often many definitions and difficult to make a single
+defn.
+MK: OMDoc can do that, but overheads are quite high.
+MK: uniqueness constraint makes it difficult to allow mutual recursion.
+PL: don't you have relationships with types/multiple signatures.
+PL: Cds should be written in omdoc.
+OC: what is the effect on compliance rules.
+MK: systems would be allowed but not forced to replace a symbol by its
+definition.
+
+
+AS: Further proposals for OM2
+Make sure all encodings can encode all OM
+Compatibility with MML22e.
+indexed variables: needs more thought esp. nested binding.
+roles must not prohibit symbols from appearing anywhere in an object.
+Need to allow reasoning about binders and attributed symbols.
+
+MK confusing layers, the binder symbol can't be applied everywhere,
+you can not write exists = not forall not
+AS I think its fundamental that this is allowed.
+
+Disallow local reference out of an enclosing binding object.
+problems with capture of local variables.
+MK valid point but problem of capture "dynamic binding". Needs more
+thought. Should at least have a warning.
+
+Binding Objects
+remove paragraph on multiple variables. comment on mathml partialdiff use
+of multiple variables.
+
+special syntax for type specification?
+
+extend STS to become full fledged categorical type system.
+
+
+=======
+Straw Polls
+In favour of proposals for OM2.0                yes   no
+Such that                                        3    6
+DefMP                                            7    3                              
+OMObj optional                                    no vote as something to
+                                                  be addressed editorially.
+binary encoding streaming changes                6    2
+extending STS to a full Structural type system   0
+                       
+
+
+
+==================
+Saturday November 8th
+
+E-learning session, chair: MK
+
+Mika Seppälä: WebALT - Web Advanced Learning Technologies.
+
+[Tomorrow is a remarkable day 10 years to the day that I submitted the
+first OpenMath Proposal.]
+
+Shared development of material: an assembly line for courses.
+Course Content Definitions.
+Roadmap to more effective delivery of hight quality education.
+
+Looking for partners in course creation.
+
+Qns
+
+PL: do you get licence to convert classical books.
+answer, don't convert (publishers may do this) but CCD will contain
+references to relevant parts of these classical works. 
+May be possible to sell these indexes back to publishers.
+
+PL: Notion of CCD surprising, rather than existing standards for
+e-learning.
+Answer, don't want to re-invent wheel, main aim is to provide the
+content, developed own ccd schema as not aware of anything more
+suitable but if something better arises, we could use it.
+
+PL: How do you plan to author MML and OpenMath.
+Answer, currently producing Presentation MathML from Mathtype.
+Hoping to find a convenient free tool to produce content MML, but
+currently not available. (For exercise database).
+
+PL: How easy to convince colleagues to share exercises.
+
+MK: Currently even Presentation MML not reusable eg complex engineers
+want to use j rather than i.
+
+LK: i to j easy compared to conventions for units etc
+
+OC: Have you considered using Mathematica to develop problem trees.
+answer, have considered maple, not done yet, but currently system is
+just prototype.
+
+
+===
+Sabina Jeschke: Next generation in e-learning technology: Concepts and
+visions for Math and Science.
+
+Overview of projects and interests, necessity of semantic
+description of mathematics, defining requirements on semantic
+descriptions for e-learning.
+
+
+
+qns
+MS: status of IP proposal, ans Ranked 3 and suggested for funding but they
+only funded 2.
+
+PL: Comment on reusable fine granularity. No current systems, have you
+studied the dangers of such granularity restricting contact references
+"previous paragraph". Ans: not clear what the glue should be, similar
+to giving a talk: talking "between" the slides. Two styles one, fully
+automated with no manual teaching, we aim for materials to complement
+traditional lectures.
+
+AS: Experience with US is  that students don't have time to do any
+exploration outside lecture time.
+
+OC working in Sweden and cooperating with Austria, using VNC allows
+cooperation with java tools etc should probably work with cinderella.
+Only problem inputting the math. Perhaps writing on a tablet is the
+solution. 
+
+LK: We are too idealistic about standards, we assume that if we all use
+the same standard we could work together. This does not work in
+practice. Also need open source and open architecture otherwise stuck
+by incompatible proprietary implementations. (Courses written for
+blackboard 5 don't work in version 6)
+Ans: all work on the project is open source and linux based for
+exactly this reason.
+
+
+====
+
+PL: Copy and Paste in ActiveMath
+
+Copy and Paste, is math content as easy as text? content level
+mathematical objects, ActiveMath, interactive exercises,
+pasting OpenMath in MuPad, presentation engine in ActiveMath.
+
+qns
+SB: Have you looked at Jome as an input system
+Ans only recently licenced, and plan to replace current console with
+jome. Currently doesn't have full 2d editing. Also Luca's tex-like
+presentation editor.
+AS: Techexplorer used to have subformula copy and paste.
+Sam Dooley has extension to techexplorer, but techexplorer remains a
+non-free system.
+MK: copy and paste good application of mathml parallel markup.
+OC: Riaca phrasebooks have a mechanism to enlarge codecs.
+
+======
+
+David Carlisle for James. Units and Dimensions in OpenMath.
+A review of James Danport's paper on Units, and comparisons with similar
+Note from the W3C math WG on Units in MathML.
+
+=============		   

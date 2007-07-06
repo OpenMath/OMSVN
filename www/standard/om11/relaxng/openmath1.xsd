@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Schema for OpenMath 1
+  DPC 2003-09-26
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.openmath.org/OpenMath" xmlns:openmath="http://www.openmath.org/OpenMath">
+  <xs:group name="omel">
+    <xs:choice>
+      <xs:element ref="openmath:OMS"/>
+      <xs:element ref="openmath:OMV"/>
+      <xs:element ref="openmath:OMI"/>
+      <xs:element ref="openmath:OMB"/>
+      <xs:element ref="openmath:OMSTR"/>
+      <xs:element ref="openmath:OMF"/>
+      <xs:element ref="openmath:OMA"/>
+      <xs:element ref="openmath:OMBIND"/>
+      <xs:element ref="openmath:OME"/>
+      <xs:group ref="openmath:OMATTR"/>
+    </xs:choice>
+  </xs:group>
+  <!-- things which can be variables -->
+  <xs:group name="omvar">
+    <xs:choice>
+      <xs:element ref="openmath:OMV"/>
+      <xs:group ref="openmath:attvar"/>
+    </xs:choice>
+  </xs:group>
+  <xs:group name="attvar">
+    <xs:sequence>
+      <xs:element name="OMATTR">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element ref="openmath:OMATP"/>
+            <xs:choice>
+              <xs:element ref="openmath:OMV"/>
+              <xs:group ref="openmath:attvar"/>
+            </xs:choice>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:group>
+  <!-- symbol -->
+  <xs:element name="OMS">
+    <xs:complexType>
+      <xs:attributeGroup ref="openmath:attlist.OMS"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.OMS">
+    <xs:attribute name="name" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[A-Za-z][A-Za-z0-9_]*"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="cd" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[a-z][a-z0-9_]*"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <!-- variable -->
+  <xs:element name="OMV">
+    <xs:complexType>
+      <xs:attributeGroup ref="openmath:attlist.OMV"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.OMV">
+    <xs:attribute name="name" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:pattern value="([A-Za-z0-9\+=(),\-\./:\?!#$%\*;@\[\]\^_`\{\|\}])+"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <!-- integer -->
+  <xs:element name="OMI">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:pattern value="\s*(-\s?)?[0-9]+(\s[0-9]+)*\s*"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <!-- byte array -->
+  <xs:element name="OMB" type="xs:base64Binary"/>
+  <!-- string -->
+  <xs:element name="OMSTR" type="xs:string"/>
+  <!-- floating point -->
+  <xs:element name="OMF">
+    <xs:complexType>
+      <xs:attributeGroup ref="openmath:attlist.OMF"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.OMF">
+    <xs:attribute name="dec">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:pattern value="(-?)([0-9]+)?(\.[0-9]+)?(e([+\-]?)[0-9]+)?"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="hex">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[0-9A-F]+"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <!-- apply constructor -->
+  <xs:element name="OMA">
+    <xs:complexType>
+      <xs:group maxOccurs="unbounded" ref="openmath:omel"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- binding constructor & variable -->
+  <xs:element name="OMBIND">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group ref="openmath:omel"/>
+        <xs:element ref="openmath:OMBVAR"/>
+        <xs:group ref="openmath:omel"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OMBVAR">
+    <xs:complexType>
+      <xs:group maxOccurs="unbounded" ref="openmath:omvar"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- error -->
+  <xs:element name="OME">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="openmath:OMS"/>
+        <xs:group minOccurs="0" maxOccurs="unbounded" ref="openmath:omel"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- attribution constructor & attribute pair constructor -->
+  <xs:group name="OMATTR">
+    <xs:sequence>
+      <xs:element name="OMATTR">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element ref="openmath:OMATP"/>
+            <xs:group ref="openmath:omel"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:group>
+  <xs:element name="OMATP">
+    <xs:complexType>
+      <xs:sequence maxOccurs="unbounded">
+        <xs:element ref="openmath:OMS"/>
+        <xs:group ref="openmath:omel"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- OM object constructor -->
+  <xs:element name="OMOBJ">
+    <xs:complexType>
+      <xs:group ref="openmath:omel"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,123 @@
+<page>
+   <page-title>MathML and DSSSL Files</page-title>
+<h2 align="center">David Carlisle</h2>
+
+<h3 align="center">Copyright 1998 1999 NAG Ltd</h3>
+
+<h3 align="center">The OpenMath Consortium. Esprit Project
+24.969</h3>
+
+<h2 align="center">Introduction</h2>
+
+<p>This page introduces several files relating to parsing MathML in
+an SGML/XML system, and DSSSL style sheets which may be used to
+render the Mathematics to TeX or to RTF (For Microsoft Word, for
+example).</p>
+
+<p>These files are being released to <em>allow discussion</em>.
+They are <b>not in final form</b>. In particular the spacing and
+font choice is usually wrong, as so far most effort has been on
+recognising the structure of MathML.</p>
+
+<p>Comments should be directed at the author of these files, <a
+href="mailto:davidc@nag.co.uk">David Carlisle</a>.</p>
+
+<p>In the first section are several entity declarations for MathML
+symbol sets, this is followed by a second section with the DSSSL
+style sheet and supporting examples and scripts.</p>
+
+<p>The individual files may be retrieved or alternatively you may
+take a <a href="mml.zip">zip archive of all the files in the
+directory</a>.</p>
+
+<h2 align="center"><a id="entities" name="entities">Entity
+Declarations</a></h2>
+
+<p>These stylesheets were originally designed to work with entity
+declarations derived from the text of the MathML1.0 recomendation.
+These older files <a href="mml10ents.htm">are still
+available</a>.</p>
+
+<p><a href="mml101ents.htm">A new set</a> of entity files for
+MathML, and some other common entity sets are now derived from <a
+href="http://www.tug.org/applications/jadetex/unicode.xml">unicode.xml</a>.
+The stylesheets will be updated shortly to match these new entity
+sets. The new files are also available <a
+href="mml101ents.htm">from this site</a>.</p>
+
+<h2 align="center">DSSSL Style sheet</h2>
+
+<h3>SGML/XML</h3>
+
+<ul>
+<li><a href="mathml.dtd">mathml.dtd</a> DTD from Appendix A of the
+MathML recommendation (slightly edited).</li>
+
+<li><a href="mathmlx.dtd">mathmlx.dtd</a> DTD for a rather minimal
+document type that supports displayed MathML examples interspersed
+with text paragraphs. (This file contains the DOCTYPE declaration,
+so needs to be prepended on to a file containing the document
+instance. Probably not the best way of setting this up, but
+sufficient for this example.)</li>
+
+<li><a href="xml.dcl">xml.dcl</a> SGML Declaration for XML.
+(Unchanged from the Jade distribution).</li>
+</ul>
+
+<h3>DSSSL</h3>
+
+<ul>
+<li><a href="mathml.dsl">mathml.dsl</a> DSSSL fragment that
+purports to render the elements of MathML.</li>
+
+<li><a href="mathmlx.dsl">mathmlx.dsl</a> DSSSL Style sheet for the
+elements of mathmlx.dtd. Includes mathml.dsl via an entity
+reference. It also defines a few debugging functions, and functions
+in the DSSSL standard, but not implemented in Jade.</li>
+
+<li><a href="dblib.dsl">dblib.dsl</a> The library file from Norman
+Walsh's docbook style sheets. <code>dblib.dsl 1.7 1998/05/06
+15:04:0</code></li>
+</ul>
+
+<h3>Supporting Scripts</h3>
+
+<ul>
+<li><a href="jmml.sh">jmml</a> Script (batch file) which given a file
+as argument, calls jade with suitable arguments to process the file
+to produce TeX.</li>
+
+<li><a href="jmmlr.sh">jmmlr</a> Script (batch file) which given a
+file as argument, calls jade with suitable arguments to process the
+file to produce RTF. The RTF coming from Jade is further modified
+by the small script below.</li>
+
+<li><a href="rtffix.sh">rtffix</a> Even if min-leading is set, the
+displayed math always appears in the rtf clipped to a 12pt `exact'
+baseline. This script just edits it to be `at least'. It just
+changes the sign of a number which appears before each display. If
+you don't have sed, you can load the file in to word and alter the
+paragraph properties of each math display to change the baseline
+spacing.</li>
+
+<li><a href="jadetex.cfg">jadetex.cfg</a> Some further
+modifications required for the TeX backend. This requires a recent
+patched TeX backend as distributed by <a
+href="http://www.tug.org/applications/jadetex">Sebastian
+Rahtz</a>.</li>
+</ul>
+
+<h3>Examples</h3>
+
+<ul>
+<li><a href="examples.mml">examples.mml</a> Some MathML.</li>
+
+<li><a href="extex.ps">extex.ps</a> PostScript version of the
+above, via TeX.</li>
+
+<li><a href="exrtf.ps">exrtf.ps</a> PostScript version of the
+above, via Microsoft Word.</li>
+</ul>
+
+</page>
+
