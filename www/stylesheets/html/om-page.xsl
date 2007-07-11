@@ -58,6 +58,8 @@
     </xsl:otherwise>
   </xsl:choose>
   </title>
+  <link rel="stylesheet" type="text/css" href="/openmath-site.css"/>
+  <link rel="shortcut icon" type="image/png" href="/keylogo-small.png" />
   <xsl:copy-of select="/page/page-head/node()"/>
   </head>
 
