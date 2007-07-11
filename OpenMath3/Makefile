@@ -2,7 +2,10 @@ RNC 	= $(shell ls *.rnc)
 RNCXML 	= $(RNC:%.rnc=%rnc.xml)
 RNCSIG 	= $(RNC:%.rnc=%.rng)
 RNCXSD  = openmath2.xsd	
-HTML	= omstd20html.xml omstd20html-d.xml primerom20html.xml
+SPECINCL= $(RNC) $(RNCXML) $(RNCSIG) $(RNCXSD)
+
+HTML	= omstd20html.xml omstd20html-d.xml #primerom20html.xml
+
 html:	$(HTML)
 
 $(RNCXML): %rnc.xml: %.rnc 
@@ -14,16 +17,16 @@ $(RNCSIG): %.rng: %.rnc
 $(RNCXSD): %.xsd: %.rnc
 		java -jar trang.jar $(firstword $<) $@
 
-omstd20html.xml: omstd20.xml omstd20.xsl
+omstd20html.xml: omstd20.xml omstd20.xsl $(SPECINCL)
 	xsltproc -o $@ omstd20.xsl omstd20.xml
 
-omstd20html-d.xml: omstd20.xml omstd20.xsl
+omstd20html-d.xml: omstd20.xml omstd20.xsl $(SPECINCL)
 	xsltproc -o $@ --stringparam showdiffs true omstd20.xsl omstd20.xml
 
-omstd20.tex: omstd20.xml omstd20tex.xsl
+omstd20.tex: omstd20.xml omstd20tex.xsl $(SPECINCL)
 	xsltproc -o $@ omstd20.xsl omstd20.xml
 
-omstd20-d.tex: omstd20.xml omstd20tex.xsl
+omstd20-d.tex: omstd20.xml omstd20tex.xsl $(SPECINCL)
 	xsltproc -o $@ --stringparam showdiffs true omstd20.xsl omstd20.xml
 
 primerom20html.xml: primerom20.xml primer.xsl
