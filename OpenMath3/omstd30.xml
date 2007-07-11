@@ -333,20 +333,16 @@ referred to in the rest of this document.</para>
     <graphic fileref="om-arch" depth="500" width="700"/>
 </figure>
 
-<para>The architecture of &OM; is described in <xref linkend="fig_om"/> and summarizes the interactions among the different
-&OM; components.  There are three layers of representation of a
-mathematical object . The first is
-a  private layer that
-is the internal representation used by an application.  The second is
-an abstract layer that is the representation as an &OM; object.
-Note that these
-two layers may, in some cases, be the same.
-The third is a
-communication layer that translates the &OM; object representation into
-a stream of bytes. An application dependent program manipulates the
-mathematical objects using its internal representation, it can convert
-them to &OM; objects and communicate them by using the byte stream
-representation of &OM; objects.</para>
+<para>The architecture of &OM; is described in <xref linkend="fig_om"/> and summarizes the
+interactions among the different &OM; components.  There are three layers of
+representation of a mathematical object . The first is a private layer that is the
+internal representation used by an application.  The second is an abstract layer that is
+the representation as an &OM; object.  Note that these two layers may, in some cases, be
+the same.  The third is a communication layer that translates the &OM; object
+representation into a stream of bytes. An application dependent program manipulates the
+mathematical objects using its internal representation, it can convert them to &OM;
+objects and communicate them by using the byte stream representation of &OM;
+objects.</para>
 </section>
 
 <section id="sec_intro-obj">
@@ -397,19 +393,15 @@ corresponding internal representation used by the application.</para>
 </section>
 
 <section id="sec_addnfiles">
-<title>Additional Files</title> 
-<para>Several
-additional files are related to Content Dictionaries.  Signature
-Dictionaries
-contain the signatures of symbols defined in some &OM; Content
-Dictionary and their format is endorsed by this standard.</para>
+<title>Additional Files</title> <para>Several additional files are related to Content
+Dictionaries.  Signature Dictionaries contain the signatures of symbols defined in some
+&OM; Content Dictionary and their format is endorsed by this standard.</para>
 
-<para>Furthermore, the standard fixes how to define a specific
-set of Content Dictionaries as a CDGroup.</para>
+<para>Furthermore, the standard fixes how to define a specific set of Content Dictionaries
+as a CDGroup.</para>
 
-<para>Auxiliary files that define presentation and rendering or that
-are used for manipulating and processing Content Dictionaries are not
-discussed by the standard.</para>
+<para>Auxiliary files that define presentation and rendering or that are used for
+manipulating and processing Content Dictionaries are not discussed by the standard.</para>
 
 </section>
 <section id="sec_phrasebooks">
@@ -417,31 +409,26 @@ discussed by the standard.</para>
 
 
 
-<para>The conversion of an &OM; object to/from the internal
-representation in a software application is performed by an interface
-program called a <emphasis>Phrasebook</emphasis>. The translation is
-governed by the Content Dictionaries and the specifics of the
-application. It is envisioned that a software application dealing with
-a specific area of mathematics declares which Content Dictionaries it
-understands. As a consequence, it is expected that the Phrasebook of
-the application is able to translate &OM; objects built using symbols
-from these Content Dictionaries to/from the internal mathematical
-objects of the application.
+<para>The conversion of an &OM; object to/from the internal representation in a software
+application is performed by an interface program called a
+<emphasis>Phrasebook</emphasis>. The translation is governed by the Content Dictionaries
+and the specifics of the application. It is envisioned that a software application dealing
+with a specific area of mathematics declares which Content Dictionaries it understands. As
+a consequence, it is expected that the Phrasebook of the application is able to translate
+&OM; objects built using symbols from these Content Dictionaries to/from the internal
+mathematical objects of the application.
 </para>
 
- <para>&OM; objects do not
-specify any computational behaviour, they merely represent mathematical
-expressions.  Part of the &OM; philosophy is to leave it to the
-application to decide what it does with an object once it has received
-it.  &OM; is not a query or programming language. Because of this,
-&OM; does not prescribe a way of forcing <quote>evaluation</quote> or
-<quote>simplification</quote> of objects like
-<math><mn>2</mn><mo>+</mo><mn>3</mn></math> or
-<math><mi>sin</mi><mo>(</mo><mi>π</mi><mo>)</mo></math>. Thus,
-the same object <math><mn>2</mn><mo>+</mo><mn>3</mn></math> could be
-transformed to <math><mn>5</mn></math> by a computer algebra system,
-or displayed as <math><mn>2</mn><mo>+</mo><mn>3</mn></math> by a
-typesetting tool.</para>
+ <para>&OM; objects do not specify any computational behaviour, they merely represent
+ mathematical expressions.  Part of the &OM; philosophy is to leave it to the application
+ to decide what it does with an object once it has received it.  &OM; is not a query or
+ programming language. Because of this, &OM; does not prescribe a way of forcing
+ <quote>evaluation</quote> or <quote>simplification</quote> of objects like
+ <math><mn>2</mn><mo>+</mo><mn>3</mn></math> or
+ <math><mi>sin</mi><mo>(</mo><mi>π</mi><mo>)</mo></math>. Thus, the same object
+ <math><mn>2</mn><mo>+</mo><mn>3</mn></math> could be transformed to
+ <math><mn>5</mn></math> by a computer algebra system, or displayed as
+ <math><mn>2</mn><mo>+</mo><mn>3</mn></math> by a typesetting tool.</para>
 </section>
 </chapter>
 
@@ -496,21 +483,20 @@ the following.</para>
 <listitem><para><phrase>(v)</phrase> Symbol.</para>
 
 
-    <para>A Symbol encodes three fields of
-    information, a <emphasis>symbol name</emphasis>, a <emphasis>Content
-    Dictionary name</emphasis>, and (optionally) a <emphasis>Content
-    Dictionary base URI</emphasis>, The name of a symbol is a sequence
-    of characters matching the regular expression described in <xref linkend="sec_names"/>.  The Content Dictionary is the location of
-    the definition of the symbol, consisting of a name (a sequence of
-    characters matching the regular expression described in <xref linkend="sec_names"/>) and, optionally, a unique prefix called a
-    <emphasis>cdbase</emphasis> which is used to disambiguate multiple
-    Content Dictionaries of the same name.  There are other properties
-    of the symbol that are not explicit in these fields but whose
-    values may be obtained by inspecting the Content Dictionary
-    specified. These include the symbol definition, formal properties
-    and examples and, optionally, a <emphasis>Role</emphasis> which is
-    a restriction on where the symbol may appear in an &OM; object.  The
-    possible roles are described in <xref linkend="sec_roles"/>.
+    <para>A Symbol encodes three fields of information, a <emphasis>symbol
+    name</emphasis>, a <emphasis>Content Dictionary name</emphasis>, and (optionally) a
+    <emphasis>Content Dictionary base URI</emphasis>, The name of a symbol is a sequence
+    of characters matching the regular expression described in <xref
+    linkend="sec_names"/>.  The Content Dictionary is the location of the definition of
+    the symbol, consisting of a name (a sequence of characters matching the regular
+    expression described in <xref linkend="sec_names"/>) and, optionally, a unique prefix
+    called a <emphasis>cdbase</emphasis> which is used to disambiguate multiple Content
+    Dictionaries of the same name.  There are other properties of the symbol that are not
+    explicit in these fields but whose values may be obtained by inspecting the Content
+    Dictionary specified. These include the symbol definition, formal properties and
+    examples and, optionally, a <emphasis>Role</emphasis> which is a restriction on where
+    the symbol may appear in an &OM; object.  The possible roles are described in <xref
+    linkend="sec_roles"/>.
     </para>
 
 </listitem>
@@ -530,9 +516,8 @@ regular expression, as described in <xref linkend="sec_names"/>.
 <section id="sec_derived">
 <title>Derived &OM; Objects</title>
 
-<para>Derived &OM; objects are currently used as a way by which non-&OM;
-data is embedded inside an &OM; object.
-A derived &OM; object is built as follows: 
+<para>Derived &OM; objects are currently used as a way by which non-&OM; data is embedded
+inside an &OM; object.  A derived &OM; object is built as follows:
 <itemizedlist>
 <listitem><para><phrase>(i)</phrase> If <math><mi>A</mi></math> is
 <emphasis>not</emphasis> an &OM; object, then <math><mi mathvariant="bold">foreign</mi><mfenced><mi>A</mi></mfenced></math> is an &OM;
