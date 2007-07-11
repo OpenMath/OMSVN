@@ -25,8 +25,8 @@
   <target name="link-others"
           description="Copies all static resources.">
     <mkdir dir="${site}"/>
-    <copy todir="${site}">
-      <fileset dir="xml">
+    <copy todir="${site}" preservelastmodified="true">
+      <fileset dir=".">
 				<exclude name="**/*.xml"/>
 				<exclude name="**/*.ocd"/>
 				<exclude name="**/*.xhtml"/>
@@ -48,6 +48,10 @@
         <include name="**/*.tgz"/>
         <include name="**/*.zip"/>
 				<include name="**/*.gz"/> -->
+      </fileset>
+      <fileset dir="."><!-- partiular xml files -->
+        <include name="standard/*/openmath2rnc.xml"/>
+        <include name="standard/*/omstd20.xml"/>
       </fileset>
       <fileset dir="../wwwmass">
 				<exclude name="**/*.xml"/>
@@ -71,25 +75,34 @@
       classpathref='xslt.classpath'
     />
     <!-- all "regular" xml files -->
+    <echo>Now processing "regular xml files"</echo>
     <xslt 
-      basedir="xml" 
+      basedir="." 
       destdir="${site}"
       style="stylesheets/html/om-page.xsl"
       processor='${xslt.processor}'
       classpathref='xslt.classpath'
     >
-      <include name="**/*.xml"/>
+      <include name="documents/**/*.xml"/>
+      <include name="lists/**/*.xml"/>
+      <include name="logo/**/*.xml"/>
+      <include name="meetings/**/*.xml"/>
+      <include name="newlogo/**/*.xml"/>
+      <include name="OpenMath/**/*.xml"/>
+      <include name="overview/**/*.xml"/>
+      <include name="projects/**/*.xml"/>
+      <include name="society/**/*.xml"/>
+      <include name="software/**/*.xml"/>
       <exclude name="Trash/**/*"/>
       <exclude name="cd/**/*"/>
       <exclude name="cdfiles/**/*.*"/>
       <exclude name="cdfiles2/**/*.*"/>
-      <exclude name="standard/**/*.*"/>
       <exclude name="meetings/**/*.xml"/>
-      <!-- need to fix these ones ?? simply copy ? -->
     </xslt>
     
+    <echo>Now processing index.xml of meetings and standard</echo>
     <xslt 
-      basedir="xml" 
+      basedir="." 
       destdir="${site}"
       style="stylesheets/html/om-page.xsl"
       processor='${xslt.processor}'
@@ -299,6 +312,7 @@
   <target name="standard-xslt"
           description="Does all transformations for the standard.">
     
+    <echo>Now processing ocd files</echo>
     <xslt 
       basedir="standard/cd"
       destdir="${site}/standard/cd"
@@ -309,6 +323,7 @@
       <include name="*.ocd"/>
     </xslt>
     
+    <echo>Now processing sts files</echo>
     <xslt 
       basedir="standard"
       destdir="${site}/standard"
@@ -319,6 +334,7 @@
       <include name="sts/*.sts"/>
     </xslt>
     
+    <echo>Now processing cdg files</echo>
     <xslt 
       basedir="standard"
       destdir="${site}/standard"
@@ -329,6 +345,7 @@
       <include name="cdgroups/*.cdg"/>
     </xslt>
     
+    <echo>Now processing omst.xml</echo>
     
     <xslt 
       in="standard/xml/omstd.xml"
@@ -337,6 +354,7 @@
       processor='${xslt.processor}'
       classpathref='xslt.classpath'
     />
+    <echo>Now processing om11</echo>
     
     <xslt 
       in="standard/om11/omstd11.xml"
@@ -346,9 +364,9 @@
       classpathref='xslt.classpath'
     />
     
-    
+    <echo>Now processing index.xml</echo>
     <xslt 
-      basedir="xml"
+      basedir="."
       destdir="${site}"
       style="stylesheets/html/om-page.xsl"
       processor='${xslt.processor}'
@@ -357,6 +375,7 @@
       <include name="standard/**/index.xml"/>
     </xslt>
     
+    <echo>Now copying</echo>
     <copy todir="${site}/standard">
       <fileset dir="standard">
         <exclude name="**/index.xml"/>
