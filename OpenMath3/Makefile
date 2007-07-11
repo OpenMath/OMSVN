@@ -9,7 +9,7 @@ HTML	= omstd30html.xml omstd30html-d.xml #primerom30html.xml
 html:	$(HTML)
 
 $(RNCXML): %rnc.xml: %.rnc 
-		perl rnc3dbk $(firstword $<) > $@
+		perl rnc2dbk $(firstword $<) > $@
 
 $(RNCSIG): %.rng: %.rnc 
 		java -jar trang.jar $(firstword $<) $@

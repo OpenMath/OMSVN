@@ -205,31 +205,31 @@ SYSTEM "docbook/docbookx.dtd"
 
 <!ENTITY varnamechar "+=(),-./:?!#$&#37;*;@[]^_`{|}"><!-- dpc: remove `TeX error?  -->
 
-<!ENTITY omrnc SYSTEM "openmath2rnc.xml">
-<!ENTITY cdrnc SYSTEM "omcd2rnc.xml">
-<!ENTITY sigrnc SYSTEM "omcdsig2rnc.xml">
-<!ENTITY cdgrouprnc SYSTEM "omcdgroup2rnc.xml">
+<!ENTITY omrnc SYSTEM "openmath3rnc.xml">
+<!ENTITY cdrnc SYSTEM "omcd3rnc.xml">
+<!ENTITY sigrnc SYSTEM "omcdsig3rnc.xml">
+<!ENTITY cdgrouprnc SYSTEM "omcdgroup3rnc.xml">
 <!ENTITY mathmlcdg SYSTEM "mathml.cdg">
 
-<!ENTITY omxsd SYSTEM "openmath2.xsd">
-<!ENTITY omdtd SYSTEM "openmath2dtd.xml">
-<!ENTITY omrng SYSTEM "openmath2.rng">
-<!ENTITY cdrng SYSTEM "omcd2.rng">
-<!ENTITY sigrng SYSTEM "omcdsig2.rng">
+<!ENTITY omxsd SYSTEM "openmath3.xsd">
+<!ENTITY omdtd SYSTEM "openmath3dtd.xml">
+<!ENTITY omrng SYSTEM "openmath3.rng">
+<!ENTITY cdrng SYSTEM "omcd3.rng">
+<!ENTITY sigrng SYSTEM "omcdsig3.rng">
 
-<!ENTITY % openmath2 SYSTEM "openmath2.dtd">
-%openmath2;
+<!ENTITY % openmath3 SYSTEM "openmath3.dtd">
+%openmath3;
 <!ENTITY % omdtd "">
-<!ENTITY % omcd2 SYSTEM "omcd2.dtd">
-%omcd2;
-<!ENTITY % omcdsig2 SYSTEM "omcdsig2.dtd">
-%omcdsig2;
+<!ENTITY % omcd3 SYSTEM "omcd3.dtd">
+%omcd3;
+<!ENTITY % omcdsig3 SYSTEM "omcdsig3.dtd">
+%omcdsig3;
 
 <!--
 Can't include this as name clashes with CD dtd (as DTD not namespace
 aware) so include subset of the DTD inline below.
-<!ENTITY % omcdgroup2 SYSTEM "omcdgroup2.dtd">
-%omcdgroup2;
+<!ENTITY % omcdgroup3 SYSTEM "omcdgroup3.dtd">
+%omcdgroup3;
 -->
 <!ELEMENT CDGroupName (#PCDATA)>
 <!ELEMENT CDGroupVersion (#PCDATA)>
@@ -252,7 +252,7 @@ aware) so include subset of the DTD inline below.
 <book xml:space="preserve">
 <title>The &OM; Standard</title>
 <bookinfo>
-<releaseinfo>2.0</releaseinfo>
+<releaseinfo>3.0</releaseinfo>
 <author><firstname>The &OM; Society</firstname></author>
 
 
@@ -272,7 +272,7 @@ aware) so include subset of the DTD inline below.
 <abstract>
 
 
-<para>This document describes version 2 of
+<para>This document describes version 3 of
 &OM;: a standard for
 the representation and communication of mathematical objects.
 <phrase role="finaledit">This version clarifies and extends &OM; 1.1 <citation>OM_1.1</citation>.</phrase>
@@ -1365,7 +1365,7 @@ which version of the &OM; standard it conforms.  In previous versions of
 this standard this attribute did not exist, so any &OM; object without
 such an attribute must conform to version 1 (or equivalently 1.1) of the
 &OM; standard.  Objects which conform to the description given in this
-document should have <systemitem moreinfo="none">version="2.0"</systemitem>.
+document should have <systemitem moreinfo="none">version="3.0"</systemitem>.
 </para>
 
 <para>We briefly discuss the &exml; encoding for each type of &OM; object
@@ -1781,7 +1781,7 @@ The &OM; element represented by this <systemitem moreinfo="none">OMR</systemitem
 <figure id="fig_shared_vs_unshared" float="0">
     <title>Shared vs. unshared representations</title>
     
- <literallayout format="linespecific" class="normal">&lt;OMOBJ version="2.0"&gt;         &lt;OMOBJ version="2.0"&gt;
+ <literallayout format="linespecific" class="normal">&lt;OMOBJ version="3.0"&gt;         &lt;OMOBJ version="3.0"&gt;
   &lt;OMA&gt;                         &lt;OMA&gt;
     &lt;OMV name="f"/&gt;               &lt;OMV name="f"/&gt; 
     &lt;OMA&gt;                         &lt;OMA id="t1"&gt;
@@ -1836,7 +1836,7 @@ also the second <systemitem moreinfo="none">OMR</systemitem> dominate the
 <emphasis>acyclicity constraint</emphasis>: An &OM; element may not dominate itself.</para>
 
 <para>Consider for instance the following (illegal) &exml; representation
-<literallayout format="linespecific" class="normal">&lt;OMOBJ version="2.0"&gt;
+<literallayout format="linespecific" class="normal">&lt;OMOBJ version="3.0"&gt;
   &lt;OMA id="foo"&gt;
     &lt;OMS cd="arith1" name="divide"/&gt;
     &lt;OMI&gt;1&lt;/OMI&gt;
@@ -1882,7 +1882,7 @@ shows.</para>
 
 <figure id="fig_sharing_between" float="0">
     <title>Sharing between &OM; objects (A cycle of order <math><mn>2</mn></math>).</title>
-<literallayout format="linespecific" class="normal">&lt;OMOBJ version="2.0"&gt;                   &lt;OMOBJ version="2.0"&gt;
+<literallayout format="linespecific" class="normal">&lt;OMOBJ version="3.0"&gt;                   &lt;OMOBJ version="3.0"&gt;
   &lt;OMA id="bar"&gt;                         &lt;OMA id="baz"&gt;
     &lt;OMS cd="arith1" name="plus"/&gt;         &lt;OMS cd="arith1" name="plus"/&gt;
     &lt;OMI&gt;1&lt;/OMI&gt;                           &lt;OMI&gt;1&lt;/OMI&gt;
@@ -3382,12 +3382,12 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
 	    <entry>40</entry><entry>10</entry><entry>begin application tag </entry>
 	  </row>
 	  <row>
-	    <entry>2</entry><entry>2</entry><entry> version 2.0 (major)</entry>
+	    <entry>2</entry><entry>3</entry><entry> version 3.0 (major)</entry>
 	    <entry>20</entry><entry>08</entry><entry>symbol tag</entry>
 	    <entry>41</entry><entry>48</entry><entry>symbol tag (with share bit on) </entry>
 	  </row>
 	  <row>
-	    <entry>3</entry><entry>0</entry><entry> version 2.0 (minor)</entry>
+	    <entry>3</entry><entry>0</entry><entry> version 3.0 (minor)</entry>
 	    <entry>21</entry><entry>06</entry><entry>cd length</entry>
 	    <entry>42</entry><entry>01</entry><entry>reference to second symbol seen (arith1:plus)</entry>
 	  </row>
@@ -3546,7 +3546,7 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
     <para>The binary encoding with references uses the additional reference tags [30]
       for (short) internal references, [30+128] for long internal references, [31] for
       (short) external references, [31+128] for long external references. Internal
-      references are used to share sub-objects in the encoded object (see <xref linkend="fig_bin-enc2"/> for an example) by referencing their position; external
+      references are used to share sub-objects in the encoded object (see <xref linkend="fig_bin-enc3"/> for an example) by referencing their position; external
       references allow to reference &OM; objects in other documents by a URI.</para>
     
     <para>Identifiers [30+64] and [30+64+128] are not used, since they would encode
@@ -3561,11 +3561,11 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
       where the 
       shared flag is set) in the current object (counted in the order they are generated
       in the encoding). For example <systemitem moreinfo="none">Ox7E Ox01</systemitem> references the
-      second shared sub-object. <xref linkend="fig_bin-enc2"/> shows the binary
+      second shared sub-object. <xref linkend="fig_bin-enc3"/> shows the binary
       encoding of the object in <xref linkend="fig_shared_vs_unshared"/>
       above.</para>
     
-    <figure id="fig_bin-enc2" float="0">
+    <figure id="fig_bin-enc3" float="0">
       <title>A binary encoding of the &OM; object from <xref linkend="fig_shared_vs_unshared"/>.</title>
       <informaltable>
 	<tgroup cols="9">
@@ -3583,12 +3583,12 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
 	      <entry>23</entry><entry>1E</entry><entry>short reference</entry>
 	    </row>
 	    <row>
-	      <entry>2</entry><entry>2</entry><entry> version 2.0 (major)</entry>
+	      <entry>2</entry><entry>3</entry><entry> version 3.0 (major)</entry>
 	      <entry>13</entry><entry>05</entry><entry>variable tag</entry>
 	      <entry>24</entry><entry>00</entry><entry>to the first shared object</entry>
 	    </row>
 	    <row>
-	      <entry>3</entry><entry>0</entry><entry> version 2.0 (minor)</entry>
+	      <entry>3</entry><entry>0</entry><entry> version 3.0 (minor)</entry>
 	      <entry>14</entry><entry>01</entry><entry>variable length</entry>
 	      <entry>25</entry><entry>11</entry><entry>end application tag</entry>
 	    </row>
@@ -3707,15 +3707,17 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
 
 
 <section id="sec_relation_OM1_binary">
-  <title>Relation to the &OM; 1 binary encoding</title>
-  <para>The &OM; 2 binary encoding significantly extends the
-    &OM; 1 binary encoding to accommodate the new features and in particular sharing of
-    sub-objects. The tags and structure of the  &OM; 1 binary encoding are still
-    present in the current &OM; binary encoding, so that binary encoded &OM; 1 objects
-    are still valid in the &OM; 2 binary encoding and correspond to the same abstract
-    &OM; objects. In some cases, the binary encoding tags without the shared flag
-    can still be used as more compact representations of the objects (which are
-    not shared, and do not have an identifier).
+  <title revisionmark="changed">Relation to the &OM; 1  and &OM; 2 binary encodings</title>
+  <para revisionmark="added">The &OM; 3 binary encoding extends the &OM; 2 binary encoding
+  by an infrastructure for conditions in <systemitem>OMBIND</systemitem>.</para>
+
+  <para>The &OM; 3 binary encoding significantly extends the &OM; 1 binary encoding to
+  accommodate the new features and in particular sharing of sub-objects. The tags and
+  structure of the &OM; 1 binary encoding are still present in the current &OM; binary
+  encoding, so that binary encoded &OM; 1 objects are still valid in the &OM; 3 binary
+  encoding and correspond to the same abstract &OM; objects. In some cases, the binary
+  encoding tags without the shared flag can still be used as more compact representations
+  of the objects (which are not shared, and do not have an identifier).
   </para>
   <para>As the binary encoding is geared towards compactness, &OM; objects
     should be constructed so as to maximise internal sharing
@@ -3869,7 +3871,7 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
 	</listitem>
 	<listitem><para>A <emphasis>revision date</emphasis>, the date of the
 	    last change to the Content Dictionary.  Dates should be stored in the
-	    ISO-compliant format YYYY-MM-DD, e.g. 1966-02-03. 
+	    ISO-compliant format YYYY-MM-DD, e.g. 1966-03-03. 
 	  </para>
 	</listitem>
 	<listitem><para>A <emphasis>review date</emphasis>, a date until which
@@ -3955,7 +3957,7 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
       interest is the <quote>MathML CDGroup</quote>. This group consists of
       the collection of core Content Dictionaries that is designed to
       have the same semantic scope as the content elements of
-      MathML 2 <citation>MathML_2003</citation>.  &OM; objects
+      MathML 3 <citation>MathML_3003</citation>.  &OM; objects
       built from symbols that come from Content Dictionaries in this CDGroup
       may be expected to be easily transformed between &OM; and MathML
       encodings.  The detailed structure of a CDGroup is described in
@@ -4059,7 +4061,7 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
 
 <token>default</token> <token>namespace</token> = "<string><token>http:</token>//<token>www.openmath.org</token>/<token>OpenMathCD</token></string>"
 
-<token>include</token> "<string><token>openmath2.rnc</token></string>" {<token>start</token> = <token>CD</token>}
+<token>include</token> "<string><token>openmath3.rnc</token></string>" {<token>start</token> = <token>CD</token>}
 
 <token>CDComment</token> = <token>element</token> <token>CDComment</token> { <token>text</token> }
 <token>CDName</token> = <token>element</token> <token>CDName</token> { <token>xsd:NCName</token> }
@@ -4435,7 +4437,7 @@ designed to be used with Content Dictionaries in the &exml; encoding.
 following one for the &OM; symbol <systemitem moreinfo="none">&lt;OMS cd="arith1"
 name="plus"/&gt;</systemitem>: <literallayout format="linespecific" class="normal">
 &lt;Signature name="plus"&gt;
-&lt;OMOBJ version="2.0"&gt;
+&lt;OMOBJ version="3.0"&gt;
  &lt;OMA&gt;
   &lt;OMS name="mapsto" cd="sts"/&gt;
   &lt;OMA&gt;
