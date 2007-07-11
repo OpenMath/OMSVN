@@ -5,7 +5,7 @@
           depends="link-others, general-xslt, cds-xslt, contrib-cds-xslt, standard-xslt, archive-cds-and-presentation"/>
   
   <property name="site" value="target/site"/>
-  <property name="cdfiles" value="xml/cdfiles2"/>
+  <property name="cdfiles" value="cdfiles2"/>
   <property name="doForceXSL" value="false"/>
   
   <!-- define processor that will be used for xslt tranformations -->
@@ -65,7 +65,7 @@
     <!-- front-page -->
     <xslt 
       style="stylesheets/html/om-page.xsl"
-      in="xml/frontpage.xml"
+      in="frontpage.xml"
       out="${site}/index.html"
       processor='${xslt.processor}'
       classpathref='xslt.classpath'
@@ -293,16 +293,16 @@
       classpathref='xslt.classpath'
     />
 		<mkdir dir="${site}/xsl"/>
-		<copy todir="${site}/xsl/" file="xml/cdfiles2/xsl/pmathml.xsl"/>
+		<copy todir="${site}/xsl/" file="cdfiles2/xsl/pmathml.xsl"/>
   </target>
   
   <target name="standard-xslt"
           description="Does all transformations for the standard.">
     
     <xslt 
-      basedir="xml/standard/cd"
+      basedir="standard/cd"
       destdir="${site}/standard/cd"
-      style="xml/standard/omxsl/cd.xsl"
+      style="standard/omxsl/cd.xsl"
       processor='${xslt.processor}'
       classpathref='xslt.classpath'
     >
@@ -310,9 +310,9 @@
     </xslt>
     
     <xslt 
-      basedir="xml/standard"
+      basedir="standard"
       destdir="${site}/standard"
-      style="xml/standard/omxsl/sts2html.xsl"
+      style="standard/omxsl/sts2html.xsl"
       processor='${xslt.processor}'
       classpathref='xslt.classpath'
     >
@@ -320,9 +320,9 @@
     </xslt>
     
     <xslt 
-      basedir="xml/standard"
+      basedir="standard"
       destdir="${site}/standard"
-      style="xml/standard/omxsl/cdgroup.xsl"
+      style="standard/omxsl/cdgroup.xsl"
       processor='${xslt.processor}'
       classpathref='xslt.classpath'
     >
@@ -331,17 +331,17 @@
     
     
     <xslt 
-      in="xml/standard/xml/omstd.xml"
+      in="standard/xml/omstd.xml"
       out="${site}/standard/xml/omst.xml"
-      style="xml/standard/xml/omstd.xsl"
+      style="standard/xml/omstd.xsl"
       processor='${xslt.processor}'
       classpathref='xslt.classpath'
     />
     
     <xslt 
-      in="xml/standard/om11/omstd11.xml"
+      in="standard/om11/omstd11.xml"
       out="${site}/standard/om11/omstd11.html"
-      style="xml/standard/om11/omstd11.xsl"
+      style="standard/om11/omstd11.xsl"
       processor='${xslt.processor}'
       classpathref='xslt.classpath'
     />
@@ -358,7 +358,7 @@
     </xslt>
     
     <copy todir="${site}/standard">
-      <fileset dir="xml/standard">
+      <fileset dir="standard">
         <exclude name="**/index.xml"/>
       </fileset>
     </copy>
