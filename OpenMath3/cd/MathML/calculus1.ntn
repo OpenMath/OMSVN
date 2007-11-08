@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notations xmlns="http://www.w3.org/ns/mathml-cd" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+
+  <notation cdbase="FIXME" cd="calculus1" name="diff">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="calculus1" name="diff" mcd:cr="fun"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="calculus1" name="diff" mcd:cr="fun"/>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="900">
+      <m:msup>
+        <render name="arg" precedence="900"/>
+        <m:mo mcd:cr="fun">′</m:mo>
+      </m:msup>
+    </rendering>
+    <prototype>
+      <om:OMS cd="calculus1" name="diff"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="calculus1" name="diff"/>
+    </prototype>
+    <rendering>
+      <!--IMPROVEME: the following is just a fallback-->
+      <m:mo>diff</m:mo>
+    </rendering>
+  </notation>
+
+  <notation cdbase="FIXME" cd="calculus1" name="partialdiff">
+    <prototype>
+      <om:OMS cd="calculus1" name="partialdiff"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="calculus1" name="partialdiff"/>
+    </prototype>
+    <rendering xml:lang="en"><m:mo>∂</m:mo></rendering>
+  </notation>
+
+  <notation cdbase="FIXME" cd="calculus1" name="int">
+    <prototype>
+      <om:OMA>
+	<om:OMS cd="calculus1" name="int" mcd:cr="fun"/>
+	<om:OMBIND>
+	  <om:OMS cd="fns1" name="lambda" mcd:cr="lam"/>
+	  <om:OMBVAR><expr name="var"/></om:OMBVAR>
+	  <expr name="scope"/>
+	</om:OMBIND>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+	<m:csymbol cd="calculus1" name="int" mcd:cr="fun"/>
+	<m:bind>
+	  <m:csymbol cd="fns1" name="lambda"/>
+	  <m:bvar><expr name="var"/></m:bvar>
+	  <expr name="scope"/>
+	</m:bind>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+	<m:mo mcd:cr="fun"></m:mo>
+	<m:mo>&#x222B;</m:mo>
+	<render name="scope"/>
+	<m:mo mcd:cr="lam">d</m:mo>
+	<render name="scope"/>
+      </m:mrow>
+    </rendering>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="calculus1" name="int" mcd:cr="fun"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="calculus1" name="int" mcd:cr="fun"/>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+	<m:mo mcd:cr="fun">&#x222B;</m:mo>
+	<render name="arg"/>
+      </m:mrow>
+    </rendering>
+    <prototype>
+      <om:OMS cd="calculus1" name="int"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="calculus1" name="int"/>
+    </prototype>
+    <rendering>
+      <m:mo>&#x222B;</m:mo>
+    </rendering>
+  </notation>
+
+
+  <notation cdbase="FIXME" cd="calculus1" name="defint">
+    <prototype>
+      <om:OMA>
+	<om:OMS cd="calculus1" name="defint" mcd:cr="fun"/>
+	<om:OMA>
+	  <om:OMS cd="interval1" name="interval"/>
+	  <expr name="low"/>
+	  <expr name="high"/>
+	</om:OMA>
+	<om:OMBIND>
+	  <om:OMS cd="fns1" name="lambda" mcd:cr="lam"/>
+	  <om:OMBVAR><expr name="var"/></om:OMBVAR>
+	  <expr name="scope"/>
+	</om:OMBIND>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+	<m:csymbol cd="calculus1" name="defint" mcd:cr="fun"/>
+	<m:apply>
+	  <m:csymbol cd="interval1" name="interval"/>
+	  <expr name="low"/>
+	  <expr name="high"/>
+	</m:apply>
+	<m:bind>
+	  <m:csymbol cd="fns1" name="lambda" mcd:cr="lam"/>
+	  <m:bvar><expr name="var"/></m:bvar>
+	  <expr name="scope"/>
+	</m:bind>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+	<m:munderover>
+	  <m:mo mcd:cr="fun">&#x222B;</m:mo>
+	  <render name="low"/>
+	  <render name="high"/>
+	</m:munderover>
+	<render name="scope"/>
+	<m:mrow><m:mo mcd:cr="fun">d</m:mo><render name="var"/></m:mrow>
+      </m:mrow>
+    </rendering>
+    <prototype>
+      <om:OMS cd="calculus1" name="defint"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="calculus1" name="defint"/>
+    </prototype>
+    <rendering>
+      <m:mo>&#x222B;</m:mo>
+    </rendering>
+  </notation>
+</notations>

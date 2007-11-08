@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<notations xmlns="http://www.w3.org/ns/mathml-cd" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+  <notation cdbase="FIXME" cd="quant1" name="forall">
+    <prototype>
+      <om:OMS cd="quant1" name="forall"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="quant1" name="forall"/>
+    </prototype>
+    <rendering xml:lang="en"><m:mo>∀</m:mo></rendering>
+    <prototype>
+      <om:OMBIND>
+        <om:OMS cd="quant1" name="forall" mcd:cr="quant"/>
+        <om:OMBVAR>
+          <exprlist name="bvars"><expr name="bvar"/></exprlist>
+        </om:OMBVAR>
+        <om:OMC><expr name="condition"/></om:OMC>
+        <expr name="scope"/>
+      </om:OMBIND>
+    </prototype>
+    <prototype>
+      <m:bind>
+        <m:csymbol cd="quant1" name="forall" mcd:cr="quant"/>
+        <m:bvar>
+          <exprlist name="bvars"><expr name="bvar"/></exprlist>
+        </m:bvar>
+        <m:condition><expr name="condition"/></m:condition>
+        <expr name="scope"/>
+      </m:bind>
+    </prototype>
+    <rendering>
+      <m:mrow>
+	<m:mo mcd:cr="quant">∀</m:mo>
+	<m:mrow>
+	  <iterate name="bvars">
+	    <separator><m:mo mcd:egroup="separator" separator="true">,</m:mo></separator>
+	    <mcd:render name="bvar"/>
+	  </iterate>
+	</m:mrow>
+	<m:mo separator="true">:</m:mo>
+	<render name="condition"/>
+	<m:mo separator="true">.</m:mo>
+	<mcd:render name="scope"/>
+      </m:mrow>
+    </rendering>    
+    <prototype>
+      <om:OMBIND>
+        <om:OMS cd="quant1" name="forall" mcd:cr="quant"/>
+        <om:OMBVAR>
+          <exprlist name="bvars"><expr name="bvar"/></exprlist>
+        </om:OMBVAR>
+        <expr name="scope"/>
+      </om:OMBIND>
+    </prototype>
+    <prototype>
+      <m:bind>
+        <m:csymbol cd="quant1" name="forall" mcd:cr="quant"/>
+        <m:bvar>
+          <exprlist name="bvars"><expr name="bvar"/></exprlist>
+        </m:bvar>
+        <expr name="scope"/>
+      </m:bind>
+    </prototype>
+    <rendering>
+      <m:mrow>
+	<m:mo mcd:cr="fun">∀</m:mo>
+	<m:mrow>
+	  <iterate name="bvars">
+	    <separator><m:mo separator="true">,</m:mo></separator>
+	    <mcd:render name="bvar"/>
+	  </iterate>
+	</m:mrow>
+	<m:mo separator="true">.</m:mo>
+	<mcd:render name="scope"/>
+      </m:mrow>
+    </rendering>    
+  </notation>
+
+  <notation cdbase="FIXME" cd="quant1" name="exists">
+    <prototype>
+      <om:OMS cd="quant1" name="exists"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="quant1" name="exists"/>
+    </prototype>
+    <rendering xml:lang="en"><m:mo>∃</m:mo></rendering>
+    <prototype>
+      <om:OMBIND>
+        <om:OMS cd="quant1" name="exists" mcd:cr="quant"/>
+        <om:OMBVAR>
+          <exprlist name="bvars"><expr name="bvar"/></exprlist>
+        </om:OMBVAR>
+        <om:OMC><expr name="condition"/></om:OMC>
+        <expr name="scope"/>
+      </om:OMBIND>
+    </prototype>
+    <prototype>
+      <m:bind>
+        <m:csymbol cd="quant1" name="exists" mcd:cr="quant"/>
+        <m:bvar>
+          <exprlist name="bvars"><expr name="bvar"/></exprlist>
+        </m:bvar>
+        <m:condition><expr name="condition"/></m:condition>
+        <expr name="scope"/>
+      </m:bind>
+    </prototype>
+    <rendering>
+      <m:mrow>
+	<m:mo mcd:cr="quant">∃</m:mo>
+	<m:mrow>
+	  <iterate name="bvars">
+	    <separator><m:mo separator="true">,</m:mo></separator>
+	    <mcd:render name="bvar"/>
+	  </iterate>
+	</m:mrow>
+	<m:mo separator="true">:</m:mo>
+	<render name="condition"/>
+	<m:mo separator="true">.</m:mo>
+	<mcd:render name="scope"/>
+      </m:mrow>
+    </rendering>    
+    <prototype>
+      <om:OMBIND>
+        <om:OMS cd="quant1" name="exists" mcd:cr="quant"/>
+        <om:OMBVAR>
+          <exprlist name="bvars"><expr name="bvar"/></exprlist>
+        </om:OMBVAR>
+        <expr name="scope"/>
+      </om:OMBIND>
+    </prototype>
+    <prototype>
+      <m:bind>
+        <m:csymbol cd="quant1" name="exists" mcd:cr="fun"/>
+        <m:bvar>
+          <exprlist name="bvars"><expr name="bvar"/></exprlist>
+        </m:bvar>
+        <expr name="scope"/>
+      </m:bind>
+    </prototype>
+    <rendering>
+      <m:mrow>
+	<m:mo mcd:cr="quant">∃</m:mo>
+	<m:mrow>
+	  <iterate name="bvars">
+	    <separator><m:mo mcd:egroup="separator" separator="true">,</m:mo></separator>
+	    <mcd:render name="bvar"/>
+	  </iterate>
+	</m:mrow>
+	<m:mo mcd:egroup="separator" separator="true">.</m:mo>
+	<mcd:render name="scope"/>
+      </m:mrow>
+    </rendering>    
+  </notation>
+</notations>

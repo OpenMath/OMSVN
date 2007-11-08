@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<notations xmlns="http://www.w3.org/ns/mathml-cd" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+
+  <notation cdbase="FIXME" cd="list1" name="suchthat">
+    <prototype>
+      <om:OMA>
+	<om:OMS cd="list1" name="suchthat" mcd:cr="fun"/>
+	<expr name="set"/>
+	<om:OMBIND>
+	  <om:OMS cd="fns1" name="lambda"/>
+	  <om:OMBVAR><expr name="var"/></om:OMBVAR>
+	  <expr name="scope"/>
+	</om:OMBIND>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+	<m:csymbol cd="list1" name="suchthat" mcd:cr="fun"/>
+	<expr name="set"/>
+	<m:bind>
+	  <m:csymbol cd="fns1" name="lambda"/>
+	  <m:bvar><expr name="var"/></m:bvar>
+	  <expr name="scope"/>
+	</m:bind>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+	<m:mo mcd:cr="fun" fence="true">[</m:mo>
+	<m:mrow>
+	  <render name="var"/>
+	  <m:mo mcd:cr="fun">&#x2208;</m:mo>
+	  <render name="set"/>
+	</m:mrow>
+	<m:mo mcd:cr="fun">|</m:mo>
+	<render name="scope"/>  
+	<m:mo mcd:cr="fun">]</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="list1" name="list">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="list1" name="list" mcd:cr="fun"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="list1" name="list" mcd:cr="fun"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo mcd:cr="fun">[</m:mo>
+        <iterate name="args">
+          <separator><m:mo mcd:cr="fun">,</m:mo></separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo mcd:cr="fun">]</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+</notations>

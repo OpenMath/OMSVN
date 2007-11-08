@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<notations xmlns="http://www.w3.org/ns/mathml-cd" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+  <notation cdbase="FIXME" cd="piece1" name="piecewise">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="piece1" name="piecewise" mcd:cr="pw"/>
+        <exprlist name="pieces">
+	  <om:OMA>
+	    <om:OMS cd="piece1" name="piece" mcd:cr="pi"/>
+	    <expr name="value"/>
+	    <expr name="condition"/>
+	  </om:OMA>
+	</exprlist>
+	<om:OMA><om:OMS cd="piece1" name="otherwise" mcd:cr="ot"/><expr name="ow"/></om:OMA>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="piece1" name="piecewise" mcd:cr="pw"/>
+        <exprlist name="pieces">
+	  <m:apply>
+	    <m:csymbol cd="piece1" name="piece" mcd:cr="pi"/>
+	    <expr name="value"/>
+	    <expr name="condition"/>
+	  </m:apply>
+	</exprlist>
+	<m:apply><m:csymbol cd="piece1" name="otherwise" mcd:cr="ot"/><expr name="ow"/></m:apply>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+	<m:mo mcd:cr="pw">{</m:mo>
+	<m:mtable>
+	  <iterate name="pieces">
+	    <separator/>
+	    <m:mtr>
+	      <m:mtd><render name="value"/></m:mtd>
+	      <m:mtd><m:mtext mcd:cr="pi">if</m:mtext><render name="condition"/></m:mtd>
+	    </m:mtr>
+	  </iterate>
+	  <m:mtr>
+	    <m:mtd><render name="ow"/></m:mtd>
+	    <m:mtd><m:mtext mcd:cr="ot">otherwise</m:mtext></m:mtd>
+	  </m:mtr>
+	</m:mtable>
+      </m:mrow>
+    </rendering>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="piece1" name="piecewise" mcd:cr="pw"/>
+        <exprlist name="pieces">
+	  <om:OMA>
+	    <om:OMS cd="piece1" name="piece" mcd:cr="pi"/>
+	    <expr name="value"/>
+	    <expr name="condition"/>
+	  </om:OMA>
+	</exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="piece1" name="piecewise" mcd:cr="pw"/>
+        <exprlist name="pieces">
+	  <m:apply>
+	    <m:csymbol cd="piece1" name="piece" mcd:cr="pi"/>
+	    <expr name="value"/>
+	    <expr name="condition"/>
+	  </m:apply>
+	</exprlist>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+	<m:mo mcd:cr="pw">{</m:mo>
+	<m:mtable>
+	  <iterate name="pieces">
+	    <separator/>
+	    <m:mtr>
+	      <m:mtd><render name="value"/></m:mtd>
+	      <m:mtd><m:mtext mcd:cr="pi">if</m:mtext><render name="condition"/></m:mtd>
+	    </m:mtr>
+	  </iterate>
+	</m:mtable>
+      </m:mrow>
+    </rendering>
+  </notation>
+</notations>

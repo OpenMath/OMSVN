@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<notations xmlns="http://www.w3.org/ns/mathml-cd" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+  <notation cdbase="FIXME" cd="s_data1" name="mean">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="s_data1" name="mean" mcd:cr="fun"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="s_data1" name="mean" mcd:cr="fun"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mover>
+        <iterate name="args">
+          <separator><m:mo separator="true">,</m:mo></separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo mcd:cr="fun">¯</m:mo>
+      </m:mover>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="s_data1" name="sdev">
+    <prototype>
+      <om:OMS cd="s_data1" name="sdev"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="s_data1" name="sdev"/>
+    </prototype>
+    <rendering xml:lang="en"><m:mo>σ</m:mo></rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="s_data1" name="variance">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="s_data1" name="variance" mcd:cr="fun"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="s_data1" name="variance" mcd:cr="fun"/>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:msup>
+	<m:mrow>
+	  <m:mo mcd:cr="fun">σ</m:mo>
+	  <m:mo fence="true" mcd:egroup="fence">(</m:mo>
+	  <render name="arg"/>
+	  <m:mo fence="true" mcd:egroup="fence">)</m:mo>
+	</m:mrow>
+	<m:mn mcd:cr="fun">2</m:mn>
+      </m:msup>
+    </rendering>
+  </notation>
+</notations>
