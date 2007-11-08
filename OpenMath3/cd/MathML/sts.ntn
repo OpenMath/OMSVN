@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<notations xmlns="http://www.w3.org/ns/mathml-cd" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+  <notation cdbase="FIXME" cd="sts" name="type">
+    <prototype>
+      <om:OMATTR>
+        <om:OMATP>
+          <om:OMS cd="sts" name="type"/>
+          <expr name="val"/>
+        </om:OMATP>
+        <expr name="scope"/>
+      </om:OMATTR>
+    </prototype>
+    <prototype>
+      <m:semantics>
+        <expr name="scope"/>
+        <m:annotation-xml cd="sts" name="type">
+          <expr name="val"/>
+        </m:annotation-xml>
+      </m:semantics>
+    </prototype>
+    <rendering>
+      <m:msub>
+        <render name="scope"/>
+        <render name="val"/>
+      </m:msub>
+    </rendering>
+  </notation>
+
+  <notation cdbase="FIXME" cd="sts" name="mapsto">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="sts" name="mapsto" mcd:cr="fun"/>
+        <expr name="dom"/>
+        <expr name="codom"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="sts" name="mapsto" mcd:cr="fun"/>
+        <expr name="dom"/>
+        <expr name="codom"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow><render name="dom"/><m:mo mcd:cr="fun">↦</m:mo><render name="codom"/></m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="sts" name="nary">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="sts" name="nary" mcd:cr="fun"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="sts" name="nary" mcd:cr="fun"/>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:msup>
+          <render name="arg"/>
+	  <m:mo mcd:cr="fun">*</m:mo>
+      </m:msup>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="sts" name="nassoc">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="sts" name="nassoc" mcd:cr="fun"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="sts" name="nassoc" mcd:cr="fun"/>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:msup>
+          <render name="arg"/>
+	  <m:mo mcd:cr="fun">*</m:mo>
+      </m:msup>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="sts" name="structure">
+    <prototype>
+      <om:OMS cd="sts" name="structure"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="sts" name="structure"/>
+    </prototype>
+    <rendering>
+      <!--IMPROVEME: the following is just a fallback-->
+      <m:mo>structure</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="sts" name="NumericalValue">
+    <prototype>
+      <om:OMS cd="sts" name="NumericalValue"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="sts" name="NumericalValue"/>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>Num</m:mo>
+    </rendering>
+  </notation>
+</notations>

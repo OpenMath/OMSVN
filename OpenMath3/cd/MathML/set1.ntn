@@ -1,0 +1,362 @@
+<?xml version="1.0"?>
+<notations xmlns="http://www.w3.org/ns/mathml-cd" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+  <notation cdbase="FIXME" cd="set1" name="cartesian_product">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="set1" name="cartesian_product" mcd:cr="fun"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="set1" name="cartesian_product" mcd:cr="fun"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <iterate name="args">
+          <separator><m:mo mcd:cr="fun">×</m:mo></separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="set1" name="emptyset">
+    <prototype>
+      <om:OMS cd="set1" name="emptyset"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="set1" name="emptyset"/>
+    </prototype>
+    <rendering xml:lang="en"><m:mo>∅</m:mo></rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="set1" name="map">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="set1" name="map"/>
+        <expr name="fun"/>
+        <expr name="set"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="set1" name="map"/>
+        <expr name="fun"/>
+        <expr name="set"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <render name="fun"/>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+	<render name="set"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="set1" name="size">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="set1" name="size" mcd:cr="fun"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="set1" name="size" mcd:cr="fun"/>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo mcd:cr="fun">#</m:mo>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+	<render name="arg"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="set1" name="suchthat">
+    <prototype>
+      <om:OMA>
+	<om:OMS cd="set1" name="suchthat" mcd:cr="fun"/>
+	<expr name="set"/>
+	<om:OMBIND>
+	  <om:OMS cd="fns1" name="lambda"/>
+	  <om:OMBVAR><expr name="var"/></om:OMBVAR>
+	  <expr name="scope"/>
+	</om:OMBIND>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+	<m:csymbol cd="set1" name="suchthat" mcd:cr="fun"/>
+	<expr name="set"/>
+	<m:bind>
+	  <m:csymbol cd="fns1" name="lambda"/>
+	  <m:bvar><expr name="var"/></m:bvar>
+	  <expr name="scope"/>
+	</m:bind>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+	<m:mo mcd:cr="fun">{</m:mo>
+	<m:mrow><render name="var"/><m:mo mcd:cr="fun">&#x2208;</m:mo><render name="set"/></m:mrow>
+	<m:mo mcd:cr="fun">|</m:mo>
+	<render name="scope"/>  
+	<m:mo mcd:cr="fun">}</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="set1" name="set">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="set1" name="set" mcd:cr="fun"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="set1" name="set" mcd:cr="fun"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo fence="true" mcd:cr="fun">{</m:mo>
+        <iterate name="args">
+          <separator><m:mo fence="true" mcd:cr="fun">,</m:mo></separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo fence="true" mcd:cr="fun">}</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="set1" name="intersect">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="set1" name="intersect" mcd:cr="fun"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="set1" name="intersect" mcd:cr="fun"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </m:apply>
+    </prototype>
+    <rendering precedence="500">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <iterate name="args" precedence="500">
+          <separator><m:mo mcd:cr="fun">∩</m:mo></separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="set1" name="union">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="set1" name="union" mcd:cr="fun"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="set1" name="union" mcd:cr="fun"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </m:apply>
+    </prototype>
+    <rendering precedence="500">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <iterate name="args" precedence="500">
+          <separator><m:mo mcd:cr="fun">∪</m:mo></separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="set1" name="setdiff">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="set1" name="setdiff" mcd:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="set1" name="setdiff" mcd:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="500">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="500"/>
+        <m:mo mcd:cr="fun">∖</m:mo>
+        <render name="arg2" precedence="500"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="set1" name="subset">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="set1" name="subset" mcd:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="set1" name="subset" mcd:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="700">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="700"/>
+        <m:mo mcd:cr="fun">⊆</m:mo>
+        <render name="arg2" precedence="700"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="set1" name="in">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="set1" name="in" mcd:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="set1" name="in" mcd:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="550">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="550"/>
+        <m:mo mcd:cr="fun">∈</m:mo>
+        <render name="arg2" precedence="550"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="set1" name="notin">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="set1" name="notin" mcd:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="set1" name="notin" mcd:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="700">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="700"/>
+        <m:mo mcd:cr="fun">∉</m:mo>
+        <render name="arg2" precedence="700"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="set1" name="prsubset">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="set1" name="prsubset" mcd:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="set1" name="prsubset" mcd:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="700">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="700"/>
+        <m:mo mcd:cr="fun">⊊</m:mo>
+        <render name="arg2" precedence="700"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="set1" name="notsubset">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="set1" name="notsubset" mcd:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="set1" name="notsubset" mcd:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="700">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="700"/>
+        <m:mo mcd:cr="fun">⊈</m:mo>
+        <render name="arg2" precedence="700"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="set1" name="notprsubset">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="set1" name="notprsubset" mcd:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="set1" name="notprsubset" mcd:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="700">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="700"/>
+        <m:mo mcd:cr="fun">⊄</m:mo>
+        <render name="arg2" precedence="700"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+</notations>
