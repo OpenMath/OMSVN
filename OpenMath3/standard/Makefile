@@ -4,10 +4,6 @@ RNCSIG 	= $(RNC:%.rnc=%.rng)
 RNCXSD  = openmath3.xsd	
 SPECINCL= $(RNC) $(RNCXML) $(RNCSIG) $(RNCXSD)
 
-MOCDs = nums1,complex1,fns1,calculus1,arith1,set1,list1,integer1,minmax1,multiset1,\
-	alg1,logic1,rounding1,quant1,relations1,limit1,veccalc1,transc1,s-data1,s-dist1,\
-	linalg1,linalg2,setname1
-
 HTML	= omstd30html.xml omstd30html-d.xml #primerom30html.xml
 
 html:	$(HTML)
