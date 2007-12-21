@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $Id: constants.mcd,v 1.6 2007/03/11 06:33:56 mkohlhas2 Exp $ -->
+<mcd id="constants">
+  <title>Constants and Symbol Elements</title>
+     
+  <MMLdefinition id="cds_integers"  cdrole="constant">
+    <name>integers</name>
+    <description>
+      <p>integers represents the set of all integers.</p>
+    </description>
+    <classification>constant </classification>
+    <rendering>
+      <graphic role="display" source="image/new-integers.gif" alt="42 \in \mathbb{Z}"/>
+    </rendering>
+    <signature>set</signature>
+    <property>
+      <description>
+	<p>n is an integer implies n+1 is an integer.</p>
+          </description><![CDATA[<apply><implies/>
+  <apply><in/><ci>n</ci><integers/></apply>
+  <apply><in/><apply><plus/><ci>n</ci><cn>1</cn></apply><integers/></apply>
+</apply>]]></property>
+
+        <property>
+          <description><p>0 is an integer</p></description>
+<![CDATA[<apply><in/><cn>0</cn><integers/></apply>]]>
+	</property>
+
+        <property>
+          <description>
+            <p>n is an integer implies -n is an integer</p>
+          </description><![CDATA[
+<apply><implies/>
+  <apply><in/><ci>n</ci><integers/></apply>
+  <apply><in/><apply><minus/><ci>n</ci></apply><integers/></apply>
+</apply>]]></property>
+        <MMLexample><![CDATA[<apply><in/>
+  <cn type="integer"> 42 </cn>
+  <integers/>
+</apply>]]></MMLexample>
+      </MMLdefinition>
+ 
+      <MMLdefinition id="cds_reals" cdrole="constant">
+        <name>reals</name>
+        <description>
+          <p>reals represents the set of all real numbers.</p>
+        </description>
+		<discussion>
+			<p><el>reals</el> represents the set of all real numbers.</p>
+		</discussion>
+        <classification>symbol</classification>
+	<rendering>
+	  <graphic role="display" source="image/new-reals.gif" alt="44.997 \in \mathbb{R}"/>
+	</rendering>
+        <signature>set</signature>
+        <property>
+          <description>
+            <p>
+(S \subset R and exists y in R : forall x in S x \le y) implies 
+exists z in R such that ( ( forall x in S x \le z) and ( (forall x in S x \le w) 
+implies z le w)) 
+</p>
+          </description>
+        </property>
+        <property>
+          <description>
+            <p>for all a,b | a,b rational with a&lt;b implies there exists 
+rational a,c s.t. a&lt;c and c&lt;b 
+</p>
+          </description>
+        </property>
+        <MMLexample><![CDATA[<apply><in/>
+  <cn type="real"> 44.997 </cn>
+  <reals/>
+</apply>
+]]></MMLexample>
+      </MMLdefinition>
+      
+	  <MMLdefinition id="cds_rationals"  cdrole="constant">
+        <name>rationals</name>
+        <description>
+          <p>rationals represents the set of all rational numbers.</p>
+        </description>
+		<discussion>
+			<p><el>rationals</el> represents the set of all rational numbers.</p>
+		</discussion>
+        <classification>constant </classification>
+	<rendering>
+	  <graphic role="display" source="image/new-rationals.gif" alt="22/7 \in \mathbb{Q}"/>
+	</rendering>
+        <signature>set</signature>
+        <property>
+          <description>
+            <p>for all z where z is a rational, there exists integers p and q with  p/q = z </p>
+          </description><![CDATA[
+<apply><forall/>
+  <bvar><ci>z</ci></bvar>
+  <condition><apply><in/><ci>z</ci><rationals/></apply></condition>
+  <apply><exists/>
+    <bvar><ci>p</ci></bvar>
+    <bvar><ci>q</ci></bvar>
+    <apply><and/>
+      <apply><in/><ci>p</ci><integers/></apply>
+      <apply><in/><ci>q</ci><integers/></apply>
+      <apply><eq/>
+        <apply><divide/><ci>p</ci><ci>q</ci></apply>]]><![CDATA[<integers/></apply>]]><![CDATA[
+        <ci>z</ci>
+      </apply>
+    </apply>
+  </apply>
+]]>
+</property>
+        <property>
+          <description>
+            <p>ForAll( [a,b], a and b are rational, a &lt; b implies there exists c such that a &lt; c and c &lt; b )</p>
+          </description>
+        </property>
+        <MMLexample><![CDATA[<apply><in/>
+  <cn type="rational"> 22 <sep/>7</cn>
+  <rationals/>
+</apply>
+]]></MMLexample>
+      </MMLdefinition>
+      <MMLdefinition id="cds_naturalnumbers"  cdrole="constant">
+        <name>naturalnumbers</name>
+        <description>
+          <p>naturalnumbers represents the set of all natural numbers, 
+i.e.. non-negative integers.</p>
+        </description>
+		<discussion>
+			<p><el>naturalnumbers</el> represents the set of all natural
+			numbers, i.e. non-negative integers.</p>
+		</discussion>
+        <classification>constant </classification>
+	<rendering>
+	  <graphic role="display" source="image/new-naturalnumbers.gif" alt="1729 \in \mathbb{N}"/>
+	</rendering>
+        <signature>set</signature>
+        <property>
+          <description>
+            <p>For all n | n is a natural number implies n+1 is a natural number.</p>
+          </description><![CDATA[
+<apply><forall/>
+  <bvar><ci>n</ci></bvar>
+  <apply><implies/>
+    <apply><in/><ci>n</ci><naturalnumbers/></apply>
+    <apply><in/>
+      <apply><plus/><ci>n</ci><cn>1</cn></apply>
+      <naturalnumbers/>
+    </apply>
+  </apply>
+</apply>]]></property>
+        <property>
+          <description>
+            <p> 0 is a natural number. </p>
+          </description><![CDATA[
+<apply><in/><cn>0</cn><naturalnumbers/></apply>]]></property>
+        <property>
+          <description>
+            <p>for all n | n in the natural numbers is equivalent to saying n=0 or n-1 is a natural number 
+</p>
+          </description>
+        </property>
+        <MMLexample><![CDATA[<apply><in/>
+  <cn type="integer">1729</cn>
+  <naturalnumbers/>
+</apply>
+]]></MMLexample>
+      </MMLdefinition>
+      <MMLdefinition id="cds_complexes"  cdrole="constant">
+        <name>complexes</name>
+        <description>
+          <p>complexes represents the set of all complex numbers, i.e., numbers 
+which may have a real and an imaginary part.</p>
+        </description>
+		<discussion>
+			<p><el>complexes</el> represents the set of all complex
+			numbers, i.e. numbers which may have a real and an imaginary part.</p>
+		</discussion>
+        <classification>constant </classification>
+	<rendering>
+	  <graphic role = "display" source = "image/new-complexes.gif" alt = "17+29\ii \in \mathbb{C}"/>
+	</rendering>
+        <signature>set</signature>
+        <property>
+          <description>
+            <p><![CDATA[for all z | if z is complex then there exist 
+reals x,y s.t. z = x + i * y ]]></p>
+          </description>
+        </property>
+        <MMLexample><![CDATA[<apply><in/>
+  <cn type="complex">17<sep/>29</cn>
+  <complexes/>
+</apply>
+]]></MMLexample>
+      </MMLdefinition>
+
+      <MMLdefinition id="cds_primes"  cdrole="constant">
+        <name>primes</name>
+        <description>
+          <p>primes represents the set of all natural prime numbers, i.e., integers
+          greater than 1 which have no positive integer factor other than themselves and
+          1.</p>
+	</description>
+	<discussion>
+	  <p><el>primes</el> represents the set of all natural prime numbers,
+	  i.e. integers greater than 1 which have no positive integer factor other than
+	  themselves and 1.</p>
+	</discussion> 
+        <classification>constant </classification>
+	<rendering>
+	  <graphic role = "display" source = "image/new-primes.gif" alt = "17 \in \mathbb{P}"/>
+	</rendering>
+	<signature>set</signature>
+        <property>
+          <description>
+            <p>ForAll( [d,p], p is prime, Implies( d | p , d=1 or d=p ) )</p>
+          </description><![CDATA[
+<apply><forall/>
+  <bvar><ci>d</ci></bvar>
+  <bvar><ci>p</ci></bvar>
+  <condition>
+    <apply><and/>
+    <apply><in/><ci>p</ci><primes/></apply>
+    <apply><in/><ci>d</ci><naturalnumbers/></apply>
+    </apply>
+  </condition>
+  <apply><implies/>
+    <apply><factorof/><ci>d</ci><ci>p</ci></apply>
+    <apply><or/>
+      <apply><eq/><ci>d</ci><cn>1</cn></apply>
+      <apply><eq/><ci>d</ci><ci>p</ci></apply>
+    </apply>
+  </apply>
+</apply>
+]]></property>
+        <MMLexample><![CDATA[<apply>
+<in/>
+<cn type="integer">17</cn>
+<primes/>
+</apply>
+]]></MMLexample>
+      </MMLdefinition>
+      
+	  <MMLdefinition id="cds_exponentiale" cdrole="constant">
+        <name>exponentiale</name>
+        <description>
+          <p>exponentiale represents the mathematical constant which is the exponential
+          base of the natural logarithms, commonly written e .  It is approximately
+          2.718281828.. </p>
+        </description>
+	<discussion>
+	  <p><el>exponentiale</el> represents the mathematical constant which is the
+	  exponential base of the natural logarithms, commonly written <emph>e</emph>. It
+	  is approximately 2.718281828..</p>
+	</discussion>
+        <classification>constant </classification>
+	<rendering>
+	  <graphic role="display" source="image/new-exponentiale.gif" alt="\ln \eulere = 1"/>
+	</rendering>
+        <signature>real constant</signature>
+        <property>
+          <description><p>ln(e) = 1</p></description>
+	  <![CDATA[<apply><eq/>
+  <apply><ln/><exponentiale/></apply>
+  <cn>1</cn>
+</apply>]]></property>
+        <property>
+          <description>
+            <p>e  is approximately 2.718281828</p>
+          </description><![CDATA[<apply><approx/>
+  <exponentiale/>
+  <cn>2.718281828 </cn>
+</apply>]]></property>
+        <property>
+          <description>
+            <p>e = the sum as j ranges from 0 to infinity of 1/(j!)</p>
+          </description>
+        </property>
+        <MMLexample><![CDATA[<apply> <eq/>
+  <apply><ln/><exponentiale/></apply>
+  <cn>1</cn>
+</apply>
+]]></MMLexample>
+      </MMLdefinition>
+
+      <MMLdefinition id="cds_imaginaryi"  cdrole="constant">
+        <name>imaginaryi</name>
+        <description>
+          <p>imaginaryi represents the mathematical constant which is the square root of
+          -1, commonly written i</p>
+        </description>
+	<discussion>
+	  <p><el>imaginaryi</el> represents the mathematical constant which is the square
+	  root of -1, commonly written <emph>i</emph>.</p>
+	</discussion>
+        <classification>constant </classification>
+	<rendering>
+	  <graphic role="display" source="image/new-imaginaryi.gif" alt="\ii^2 = -1"/>
+	</rendering>
+        <signature>complex</signature>
+        <property>
+          <description>
+            <p>sqrt(-1) = i</p>
+          </description><![CDATA[
+<apply><eq/>
+  <imaginaryi/>
+  <apply><root/><degree><cn>2</cn></degree><cn>-1</cn></apply>
+</apply>]]></property>
+        <MMLexample><![CDATA[<apply> <eq/>
+  <apply><power/>
+    <imaginaryi/>
+    <cn>2</cn>
+  </apply>
+  <cn>-1</cn>
+</apply>
+]]></MMLexample>
+      </MMLdefinition>
+      <MMLdefinition id="cds_notanumber"  cdrole="constant">
+        <name>notanumber</name>
+        <description>
+          <p>notanumber represents the result of an ill-defined floating point operation,
+          sometimes also called NaN.</p>
+        </description>
+	<discussion>
+	  <p><el>notanumber</el> represents the result of an ill-defined floating point
+	  operation, sometimes also called <emph>NaN</emph>.</p>
+	</discussion>
+        <classification>constant </classification>
+	<rendering>
+	  <graphic role="display" source="image/new-notanumber.gif" alt="0/0 = \mbox{NaN}"/>
+	</rendering>
+        <signature>undefined</signature>
+        <MMLexample><![CDATA[<apply><eq/>
+  <apply><divide/><cn>0</cn><cn>0</cn></apply>
+  <notanumber/>
+</apply>]]></MMLexample>
+      </MMLdefinition>
+      
+	  <MMLdefinition id="cds_true"  cdrole="constant">
+        <name>true</name>
+        <description>
+          <p>true represents the logical constant for truth.</p>
+        </description>
+	<discussion>
+	  <p><el>true</el> represents the logical constant for truth.</p>
+	</discussion>
+	<classification>constant </classification>
+	<rendering>
+	  <graphic role="display" source="image/new-true.gif" alt="\mbox{true} \lor\ P = \mbox{true}"/>
+	</rendering>
+        <signature>boolean</signature>
+        <property>
+          <description><p>not true = false</p>
+          </description><![CDATA[
+<apply><eq/>
+  <apply><not/><true/></apply>
+  <false/>
+</apply>]]></property>
+        <property>
+          <description>
+            <p>For all boolean p,  p or true is true</p>
+          </description><![CDATA[
+<declare type="boolean"><ci>p</ci></declare>
+<apply><forall/>
+  <bvar><ci>p</ci></bvar>
+  <apply><eq/>
+    <apply><or/><ci>p</ci><true/></apply>
+    <true/>
+  </apply>
+</apply>
+]]></property>
+        <MMLexample><![CDATA[<apply> <eq/>
+  <apply><or/>
+    <true/>
+    <ci type = "boolean">P</ci>
+  </apply>
+  <true/>
+</apply>
+]]></MMLexample>
+      </MMLdefinition>
+
+      <MMLdefinition id="cds_false"  cdrole="constant">
+        <name>false</name>
+        <description>
+          <p>false represents the logical constant for falsehood.</p>
+        </description>
+	<discussion>
+	  <p><el>false</el> represents the logical constant for falsehood.</p>
+	</discussion>
+        <classification>constant </classification>
+	<rendering>
+	  <graphic role="display" source="image/new-false.gif" alt="\mbox{false} \land\ P = \mbox{false}"/>
+	</rendering>
+        <signature>boolean</signature>
+        <property>
+          <description>
+            <p>
+not true = false</p>
+          </description><![CDATA[
+<apply><eq/>
+  <apply><not/><true/></apply>
+  <false/>
+</apply>]]></property>
+        <property>
+          <description>
+            <p>
+p and false = false</p>
+          </description><![CDATA[
+<declare type="boolean"><ci>p</ci></declare>
+<apply><forall/>
+  <bvar><ci>p</ci></bvar>
+  <apply><and/><ci>p</ci><false/></apply>
+  <false/>
+</apply>
+]]></property>
+        <MMLexample><![CDATA[<apply><eq/>
+  <apply><and/>
+    <false/>
+    <ci type = "boolean">P</ci>
+  </apply>
+  <false/>
+</apply>
+]]></MMLexample>
+      </MMLdefinition>
+      
+	  <MMLdefinition id="cds_emptyset"  cdrole="constant">
+        <name>emptyset</name>
+        <description>
+          <p>emptyset represents the empty set.</p>
+        </description>
+	<discussion>
+	  <p><el>emptyset</el> represents the empty set.</p>
+	</discussion>
+        <classification>constant </classification>
+	<rendering>
+	  <graphic role="display" source="image/new-emptyset.gif" alt="\mathbb{Z} \neq \emptyset"/>
+	</rendering>
+        <signature>set</signature>
+        <property>
+          <description>
+            <p>
+for all sets S,   intersect(S,emptyset) = emptyset</p>
+          </description><![CDATA[
+<apply><forall/><bvar><ci type="set">S</ci></bvar>
+  <apply><eq/>
+    <apply><intersect/><emptyset/><ci>S</ci></apply>
+    <emptyset/>
+  </apply>
+</apply>]]></property>
+        <MMLexample><![CDATA[<apply><neq/>
+  <integers/>
+  <emptyset/>
+</apply>
+]]></MMLexample>
+      </MMLdefinition>
+
+      <MMLdefinition id="cds_pi"  cdrole="constant">
+        <name>pi</name>
+        <description>
+          <p>pi represents the mathematical constant which is the ratio of a circle's 
+circumference to its diameter, approximately 3.141592653.</p>
+        </description>
+	<discussion>
+	  <p><el>pi</el> represents the mathematical constant which is the ratio of a
+	  circle&apos;s circumference to its diameter, approximately 3.141592653.</p>
+	</discussion>
+        <classification>constant </classification>
+	<rendering>
+	  <graphic role="display" source="image/new-pi.gif" alt="\pi \approx 22/7"/>
+	</rendering>
+        <signature>real</signature>
+        <property><![CDATA[
+<apply><approx/>
+  <cn>pi</cn>
+  <cn> 3.141592654 </cn>
+</apply>
+]]></property>
+        <property>
+          <description>
+            <p>
+pi = 4 * the sum as j ranges from 0 to infinity of ((1/(4j+1))-(1/(4j+3))) </p>
+          </description><![CDATA[
+]]></property>
+        <MMLexample><![CDATA[<apply><approx/>
+  <pi/>
+  <cn type = "rational">22<sep/>7</cn>
+</apply>
+]]></MMLexample>
+      </MMLdefinition>
+ 
+      <MMLdefinition id="cds_eulergamma"  cdrole="constant">
+        <name>eulergamma</name>
+        <description>
+          <p>A symbol to convey the notion of the gamma constant as defined in Abramowitz
+          and Stegun, Handbook of Mathematical Functions, section 6.1.3. It is the limit
+          of 1 + 1/2 + 1/3 + ... + 1/m - ln m as m tends to infinity, this is
+          approximately 0.5772 15664. </p>
+        </description>
+	<discussion>
+	  <p><el>eulergamma</el> represents Euler&apos;s constant, approximately
+	  0.5772156649</p>
+	</discussion>
+        <classification>constant </classification>
+	<rendering>
+	  <graphic role="display" source="image/new-eulergamma.gif" alt="\gamma"/>
+	</rendering>
+        <signature>real</signature>
+        <property>
+          <description>
+            <p>
+gamma  is approx. 0.5772156649</p>
+          </description><![CDATA[
+<apply><approx/>
+  <eulergamma/>
+  <cn> .5772156649 </cn>
+</apply>]]></property>
+        <property>
+          <description>
+            <p>gamma = limit_(m -> infinity)(sum_(j ranges from 1 to m)(1/j) - ln m) </p>
+          </description><![CDATA[
+]]></property>
+       <MMLexample><![CDATA[
+	  <eulergamma/>]]></MMLexample> 
+		<MMLexample><![CDATA[<apply><approx/>
+  <eulergamma/>
+  <cn>0.5772156649</cn>
+</apply>]]></MMLexample>
+      </MMLdefinition>
+      
+	  <MMLdefinition id="cds_infinity"  cdrole="constant">
+        <name>infinity</name>
+        <description>
+          <p>Infinity.  Interpretation depends on the context.
+The default value is the positive infinity used to extend the
+real number line.  The "type" attribute can be use to indicate
+that this is a "complex" infinity.</p>
+        </description>
+		<discussion>
+			<p><el>infinity</el> represents the concept of
+			infinity. Proper interpretation depends on context.</p>
+		</discussion>
+        <classification>constant </classification>
+	<rendering>
+	  <graphic role="display" source="image/new-infinity.gif" alt="\infty"/>
+	</rendering>
+	<signature>constant</signature>
+        <property>
+          <description>
+            <p>
+infinity/infinity is not defined.</p>
+          </description><![CDATA[
+<apply><eq/>
+  <apply><divide/><infinity/><infinity/></apply>
+  <notanumber/>
+</apply>]]></property>
+        <property>
+          <description>
+            <p>
+for all reals x, x \lt infinity </p>
+          </description><![CDATA[
+<apply><forall/>
+  <bvar><ci>n</ci></bvar>
+  <condition><apply><in/><ci>n</ci><reals/></apply></condition>
+  <apply><lt/><ci>n</ci><infinity/></apply>
+</apply>]]></property>
+        
+<MMLexample><![CDATA[<infinity/>]]></MMLexample>
+<MMLexample><![CDATA[<apply><eq/>
+  <apply><limit/>
+    <bvar><ci>x</ci></bvar>
+    <condition><apply><tendsto/><ci>x</ci><infinity/></apply></condition>
+    <apply><divide/><cn>1</cn><ci>x</ci></apply>
+  </apply>
+  <cn>0</cn>
+</apply>]]></MMLexample>
+      </MMLdefinition>
+    </mcd>

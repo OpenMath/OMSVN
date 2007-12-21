@@ -1,0 +1,566 @@
+<?xml version="1.0"?>
+<!--This MathML CD is automatically generated from an OpenMath CD. Edit at your own risk.-->
+<mcd:mcd xmlns:mcd="http://www.w3.org/ns/mathml-cd" version="3.0" xml:id=" arith1 " review-date="" revision-date="" cdbase="http://www.openmath.org/cd" status=" official " date="2004-03-30">
+  <mcd:description> 
+This CD defines symbols for common arithmetic functions.
+</mcd:description>
+  <mcd:MMLDefinition xml:id="" cdrole="application">
+    <mcd:property>
+      <mcd:description>
+        <p> lcm(a,b) = a*b/gcd(a,b) </p>
+      </mcd:description>
+      <mcd:formal>
+<m:math xmlns:m="http://www.w3.org/1998/Math/MathML" version="2.0" cdbase="http://www.openmath.org/cd">
+  <m:apply>
+    <m:csymbol cd="relation1" name="eq"/>
+    <m:apply>
+      <m:csymbol cd="arith1" name="lcm"/>
+      <m:ci>a</m:ci>
+      <m:ci>b</m:ci>
+    </m:apply>
+    <m:apply>
+      <m:csymbol cd="arith1" name="divide"/>
+      <m:apply>
+        <m:csymbol cd="arith1" name="times"/>
+	<m:ci>a</m:ci>
+	<m:ci>b</m:ci>
+      </m:apply>
+      <m:apply>
+        <m:csymbol cd="arith1" name="gcd"/>
+        <m:ci>a</m:ci>
+        <m:ci>b</m:ci>
+      </m:apply>
+    </m:apply>
+  </m:apply>
+</m:math>
+</mcd:formal>
+    </mcd:property>
+    <mcd:property>
+      <mcd:description>
+        <p>
+for all integers a,b |
+There does not exist a c&gt;0 such that c/a is an Integer and c/b is an
+Integer and lcm(a,b) &gt; c.
+</p>
+      </mcd:description>
+      <mcd:formal>
+<m:math xmlns:m="http://www.w3.org/1998/Math/MathML" version="2.0" cdbase="http://www.openmath.org/cd">
+<m:bind><m:csymbol cd="quant1" name="forall"/><m:bvar>
+    <m:ci>a</m:ci>
+    <m:ci>b</m:ci>
+  </m:bvar><m:apply>
+    <m:csymbol cd="logic1" name="implies"/>
+    <m:apply>
+      <m:csymbol cd="logic1" name="and"/>
+      <m:apply>
+        <m:csymbol cd="set1" name="in"/>
+	<m:ci>a</m:ci>
+	<m:csymbol cd="setname1" name="Z"/>
+      </m:apply>
+      <m:apply>
+        <m:csymbol cd="set1" name="in"/>
+	<m:ci>b</m:ci>
+	<m:csymbol cd="setname1" name="Z"/>
+      </m:apply>
+    </m:apply>
+    <m:apply>
+      <m:csymbol cd="logic1" name="not"/>
+      <m:bind><m:csymbol cd="quant1" name="exists"/><m:bvar>
+          <m:ci>c</m:ci>
+        </m:bvar><m:apply>
+          <m:csymbol cd="logic1" name="and"/>
+          <m:apply>
+            <m:csymbol cd="relation1" name="gt"/>
+              <m:ci>c</m:ci>
+              <m:cn>0</m:cn>
+          </m:apply>
+          <m:apply>
+            <m:csymbol cd="integer1" name="factorof"/>
+              <m:ci>a</m:ci>
+              <m:ci>c</m:ci>
+          </m:apply>
+          <m:apply>
+            <m:csymbol cd="integer1" name="factorof"/>
+              <m:ci>b</m:ci>
+              <m:ci>c</m:ci>
+          </m:apply>
+          <m:apply>
+            <m:csymbol cd="relation1" name="lt"/>
+            <m:ci>c</m:ci>
+            <m:apply>
+              <m:csymbol cd="arith1" name="lcm"/>
+              <m:ci>a</m:ci>
+              <m:ci>b</m:ci>
+            </m:apply>
+          </m:apply>
+        </m:apply></m:bind>
+    </m:apply>
+  </m:apply></m:bind>
+</m:math>
+</mcd:formal>
+    </mcd:property>
+  </mcd:MMLDefinition>
+  <mcd:MMLDefinition xml:id="" cdrole="application">
+    <mcd:property>
+      <mcd:description>
+        <p>
+for all integers a,b |
+There does not exist a c such that a/c is an Integer and b/c is an
+Integer and c &gt; gcd(a,b).
+
+Note that this implies that gcd(a,b) &gt; 0
+</p>
+      </mcd:description>
+      <mcd:formal>
+<m:math xmlns:m="http://www.w3.org/1998/Math/MathML" version="2.0" cdbase="http://www.openmath.org/cd">
+<m:bind><m:csymbol cd="quant1" name="forall"/><m:bvar>
+    <m:ci>a</m:ci>
+    <m:ci>b</m:ci>
+  </m:bvar><m:apply>
+    <m:csymbol cd="logic1" name="implies"/>
+    <m:apply>
+      <m:csymbol cd="logic1" name="and"/>
+      <m:apply>
+        <m:csymbol cd="set1" name="in"/>
+	<m:ci>a</m:ci>
+	<m:csymbol cd="setname1" name="Z"/>
+      </m:apply>
+      <m:apply>
+        <m:csymbol cd="set1" name="in"/>
+	<m:ci>b</m:ci>
+	<m:csymbol cd="setname1" name="Z"/>
+      </m:apply>
+    </m:apply>
+    <m:apply>
+      <m:csymbol cd="logic1" name="not"/>
+      <m:bind><m:csymbol cd="quant1" name="exists"/><m:bvar>
+          <m:ci>c</m:ci>
+        </m:bvar><m:apply>
+          <m:csymbol cd="logic1" name="and"/>
+          <m:apply>
+            <m:csymbol cd="set1" name="in"/>
+            <m:apply>
+              <m:csymbol cd="arith1" name="divide"/>
+              <m:ci>a</m:ci>
+              <m:ci>c</m:ci>
+            </m:apply>
+            <m:csymbol cd="setname1" name="Z"/>
+          </m:apply>
+          <m:apply>
+            <m:csymbol cd="set1" name="in"/>
+            <m:apply>
+              <m:csymbol cd="arith1" name="divide"/>
+              <m:ci>b</m:ci>
+              <m:ci>c</m:ci>
+            </m:apply>
+            <m:csymbol cd="setname1" name="Z"/>
+          </m:apply>
+          <m:apply>
+            <m:csymbol cd="relation1" name="gt"/>
+            <m:ci>c</m:ci>
+            <m:apply>
+              <m:csymbol cd="arith1" name="gcd"/>
+              <m:ci>a</m:ci>
+              <m:ci>b</m:ci>
+            </m:apply>
+          </m:apply>
+        </m:apply></m:bind>
+    </m:apply>
+  </m:apply></m:bind>
+</m:math>
+</mcd:formal>
+    </mcd:property>
+  </mcd:MMLDefinition>
+  <mcd:MMLDefinition xml:id="" cdrole="application">
+    <mcd:property>
+      <mcd:description>
+        <p> for all a,b | a + b = b + a </p>
+      </mcd:description>
+      <mcd:formal>
+<m:math xmlns:m="http://www.w3.org/1998/Math/MathML" version="2.0" cdbase="http://www.openmath.org/cd">
+  <m:bind><m:csymbol cd="quant1" name="forall"/><m:bvar>
+       <m:ci>a</m:ci>
+       <m:ci>b</m:ci>
+    </m:bvar><m:apply>
+      <m:csymbol cd="relation1" name="eq"/>
+      <m:apply>
+        <m:csymbol cd="arith1" name="plus"/>
+        <m:ci>a</m:ci>
+        <m:ci>b</m:ci>
+      </m:apply>
+      <m:apply>
+        <m:csymbol cd="arith1" name="plus"/>
+        <m:ci>b</m:ci>
+        <m:ci>a</m:ci>
+      </m:apply>
+    </m:apply></m:bind>
+</m:math>
+</mcd:formal>
+    </mcd:property>
+  </mcd:MMLDefinition>
+  <mcd:MMLDefinition xml:id="" cdrole="application">
+    <mcd:property>
+      <mcd:description>
+        <p> for all a | a + (-a) = 0 </p>
+      </mcd:description>
+      <mcd:formal>
+<m:math xmlns:m="http://www.w3.org/1998/Math/MathML" version="2.0" cdbase="http://www.openmath.org/cd">
+  <m:bind><m:csymbol cd="quant1" name="forall"/><m:bvar>
+       <m:ci>a</m:ci>
+    </m:bvar><m:apply>
+      <m:csymbol cd="relation1" name="eq"/>
+      <m:apply>
+        <m:csymbol cd="arith1" name="plus"/>
+        <m:ci>a</m:ci>
+        <m:apply>
+           <m:csymbol cd="arith1" name="unary_minus"/>
+           <m:ci>a</m:ci>
+        </m:apply>
+      </m:apply>
+      <m:csymbol cd="alg1" name="zero"/>
+    </m:apply></m:bind>
+</m:math>
+</mcd:formal>
+    </mcd:property>
+  </mcd:MMLDefinition>
+  <mcd:MMLDefinition xml:id="" cdrole="application">
+    <mcd:property>
+      <mcd:description>
+        <p> for all a,b | a - b = a + (-b) </p>
+      </mcd:description>
+      <mcd:formal>
+<m:math xmlns:m="http://www.w3.org/1998/Math/MathML" version="2.0" cdbase="http://www.openmath.org/cd">
+  <m:bind><m:csymbol cd="quant1" name="forall"/><m:bvar>
+       <m:ci>a</m:ci>
+       <m:ci>b</m:ci>
+    </m:bvar><m:apply>
+      <m:csymbol cd="relation1" name="eq"/>
+      <m:apply>
+        <m:csymbol cd="arith1" name="minus"/>
+        <m:ci>a</m:ci>
+        <m:ci>b</m:ci>
+      </m:apply>
+      <m:apply>
+        <m:csymbol cd="arith1" name="plus"/>
+        <m:ci>a</m:ci>
+        <m:apply>
+          <m:csymbol cd="arith1" name="unary_minus"/>
+          <m:ci>b</m:ci>
+        </m:apply>
+      </m:apply>
+    </m:apply></m:bind>
+</m:math>
+</mcd:formal>
+    </mcd:property>
+  </mcd:MMLDefinition>
+  <mcd:MMLDefinition xml:id="" cdrole="application">
+    <mcd:property>
+      <mcd:description>
+        <p> for all a,b | a * 0 = 0 and a * b = a * (b - 1) + a </p>
+      </mcd:description>
+      <mcd:formal>
+        <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" version="2.0" cdbase="http://www.openmath.org/cd">
+<m:bind><m:csymbol cd="quant1" name="forall"/><m:bvar>
+    <m:ci>a</m:ci>
+    <m:ci>b</m:ci>
+  </m:bvar><m:apply>
+    <m:csymbol cd="logic1" name="and"/>
+    <m:apply>
+      <m:csymbol cd="relation1" name="eq"/>
+      <m:apply>
+        <m:csymbol cd="arith1" name="times"/>
+        <m:ci>a</m:ci>
+        <m:csymbol cd="alg1" name="zero"/>
+      </m:apply>
+      <m:csymbol cd="alg1" name="zero"/>
+    </m:apply>
+    <m:apply>
+      <m:csymbol cd="relation1" name="eq"/>
+      <m:apply>
+        <m:csymbol cd="arith1" name="times"/>
+	<m:ci>a</m:ci>
+	<m:ci>b</m:ci>
+      </m:apply>
+      <m:apply>
+        <m:csymbol cd="arith1" name="plus"/>
+	<m:apply>
+	  <m:csymbol cd="arith1" name="times"/>
+	  <m:ci>a</m:ci>
+	  <m:apply>
+	    <m:csymbol cd="arith1" name="minus"/>
+	    <m:ci>b</m:ci>
+	    <m:csymbol cd="alg1" name="one"/>
+	  </m:apply>
+	</m:apply>
+	<m:ci>a</m:ci>
+      </m:apply>
+    </m:apply>
+  </m:apply></m:bind>
+</m:math>
+      </mcd:formal>
+    </mcd:property>
+    <mcd:property>
+      <mcd:description>
+        <p> for all a,b,c | a*(b+c) = a*b + a*c </p>
+      </mcd:description>
+      <mcd:formal>
+        <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" version="2.0" cdbase="http://www.openmath.org/cd">
+<m:bind><m:csymbol cd="quant1" name="forall"/><m:bvar>
+    <m:ci>a</m:ci>
+    <m:ci>b</m:ci>
+    <m:ci>c</m:ci>
+  </m:bvar><m:apply>
+    <m:csymbol cd="relation1" name="eq"/>
+    <m:apply>
+      <m:csymbol cd="arith1" name="times"/>
+      <m:ci>a</m:ci>
+      <m:apply>
+        <m:csymbol cd="arith1" name="plus"/>
+	<m:ci>b</m:ci>
+	<m:ci>c</m:ci>
+      </m:apply>
+    </m:apply>
+    <m:apply>
+      <m:csymbol cd="arith1" name="plus"/>
+      <m:apply>
+        <m:csymbol cd="arith1" name="times"/>
+	<m:ci>a</m:ci>
+	<m:ci>b</m:ci>
+      </m:apply>
+      <m:apply>
+        <m:csymbol cd="arith1" name="times"/>
+	<m:ci>a</m:ci>
+	<m:ci>c</m:ci>
+      </m:apply>
+    </m:apply>
+  </m:apply></m:bind>
+</m:math>
+      </mcd:formal>
+    </mcd:property>
+  </mcd:MMLDefinition>
+  <mcd:MMLDefinition xml:id="" cdrole="application">
+    <mcd:property>
+      <mcd:description>
+        <p> whenever not(a=0) then a/a = 1 </p>
+      </mcd:description>
+      <mcd:formal>
+<m:math xmlns:m="http://www.w3.org/1998/Math/MathML" version="2.0" cdbase="http://www.openmath.org/cd">
+  <m:bind><m:csymbol cd="quant1" name="forall"/><m:bvar>
+       <m:ci>a</m:ci>
+    </m:bvar><m:apply>
+      <m:csymbol cd="logic1" name="implies"/>
+      <m:apply>
+        <m:csymbol cd="relation1" name="neq"/>
+        <m:ci>a</m:ci>
+        <m:csymbol cd="alg1" name="zero"/>
+      </m:apply>
+      <m:apply>
+        <m:csymbol cd="relation1" name="eq"/>
+        <m:apply>
+          <m:csymbol cd="arith1" name="divide"/>
+          <m:ci>a</m:ci>
+          <m:ci>a</m:ci>
+        </m:apply>
+        <m:csymbol cd="alg1" name="one"/>
+      </m:apply>
+    </m:apply></m:bind>
+</m:math>
+</mcd:formal>
+    </mcd:property>
+  </mcd:MMLDefinition>
+  <mcd:MMLDefinition xml:id="" cdrole="application">
+    <mcd:property>
+      <mcd:description>
+        <p>
+x\in C implies x^a = exp(a ln x)
+</p>
+      </mcd:description>
+      <mcd:formal>
+<m:math xmlns:m="http://www.w3.org/1998/Math/MathML" version="2.0" cdbase="http://www.openmath.org/cd">
+  <m:apply>
+    <m:csymbol cd="logic1" name="implies"/>
+    <m:apply>
+      <m:csymbol cd="set1" name="in"/>
+      <m:ci>x</m:ci>
+      <m:csymbol cd="setname1" name="C"/>
+    </m:apply>
+    <m:apply>
+      <m:csymbol cd="relation1" name="eq"/>
+      <m:apply>
+        <m:csymbol name="power" cd="arith1"/>
+        <m:ci>x</m:ci>
+        <m:ci>a</m:ci>
+      </m:apply>
+      <m:apply>
+        <m:csymbol name="exp" cd="transc1"/>
+        <m:apply>
+          <m:csymbol name="times" cd="arith1"/>
+          <m:ci>a</m:ci>
+          <m:apply>
+            <m:csymbol name="ln" cd="transc1"/>
+            <m:ci>x</m:ci>
+          </m:apply>
+        </m:apply>
+      </m:apply>
+    </m:apply>
+  </m:apply>
+</m:math>
+</mcd:formal>
+    </mcd:property>
+    <mcd:property>
+      <mcd:description>
+        <p>
+  if n is an integer then
+  x^0 = 1,
+  x^n = x * x^(n-1)
+</p>
+      </mcd:description>
+      <mcd:formal>
+<m:math xmlns:m="http://www.w3.org/1998/Math/MathML" version="2.0" cdbase="http://www.openmath.org/cd">
+  <m:apply>
+    <m:csymbol cd="logic1" name="implies"/>
+    <m:apply>
+      <m:csymbol cd="set1" name="in"/>
+      <m:ci>n</m:ci>
+      <m:csymbol cd="setname1" name="Z"/>
+    </m:apply>
+    <m:apply>
+      <m:csymbol cd="logic1" name="and"/>
+      <m:apply>
+        <m:csymbol cd="relation1" name="eq"/>
+        <m:apply>
+          <m:csymbol cd="arith1" name="power"/>
+          <m:ci>x</m:ci>
+          <m:cn>0</m:cn>
+        </m:apply>
+        <m:csymbol cd="alg1" name="one"/>
+      </m:apply>
+      <m:apply>
+        <m:csymbol cd="relation1" name="eq"/>
+        <m:apply>
+          <m:csymbol cd="arith1" name="power"/>
+          <m:ci>x</m:ci>
+          <m:ci>n</m:ci>
+        </m:apply>
+        <m:apply>
+          <m:csymbol cd="arith1" name="times"/>
+          <m:ci>x</m:ci>
+          <m:apply>
+            <m:csymbol cd="arith1" name="power"/>
+            <m:ci>x</m:ci>
+            <m:apply>
+              <m:csymbol cd="arith1" name="minus"/>
+              <m:ci>n</m:ci>
+              <m:cn>1</m:cn>
+            </m:apply>
+          </m:apply>
+        </m:apply>
+      </m:apply>
+    </m:apply>
+  </m:apply>
+</m:math>
+</mcd:formal>
+    </mcd:property>
+  </mcd:MMLDefinition>
+  <mcd:MMLDefinition xml:id="" cdrole="application">
+    <mcd:property>
+      <mcd:description>
+        <p> for all x,y | abs(x) + abs(y) &gt;= abs(x+y) </p>
+      </mcd:description>
+      <mcd:formal>
+<m:math xmlns:m="http://www.w3.org/1998/Math/MathML" version="2.0" cdbase="http://www.openmath.org/cd">
+  <m:bind><m:csymbol cd="quant1" name="forall"/><m:bvar>
+      <m:ci>x</m:ci>
+      <m:ci>y</m:ci>
+    </m:bvar><m:apply>
+      <m:csymbol cd="relation1" name="geq"/>
+      <m:apply>
+        <m:csymbol cd="arith1" name="plus"/>
+        <m:apply>
+          <m:csymbol cd="arith1" name="abs"/>
+            <m:ci>x</m:ci>
+        </m:apply>
+        <m:apply>
+          <m:csymbol cd="arith1" name="abs"/>
+            <m:ci>y</m:ci>
+        </m:apply>
+      </m:apply>
+      <m:apply>
+        <m:csymbol cd="arith1" name="abs"/>
+        <m:apply>
+          <m:csymbol cd="arith1" name="plus"/>
+          <m:ci>x</m:ci>
+          <m:ci>y</m:ci>
+        </m:apply>
+      </m:apply>
+    </m:apply></m:bind>
+</m:math>
+</mcd:formal>
+    </mcd:property>
+  </mcd:MMLDefinition>
+  <mcd:MMLDefinition xml:id="" cdrole="application">
+    <mcd:property>
+      <mcd:description>
+        <p> x\in C implies root(x,n) = exp(ln(x)/n) </p>
+      </mcd:description>
+      <mcd:formal>
+  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" version="2.0" cdbase="http://www.openmath.org/cd">
+    <m:apply>
+      <m:csymbol cd="logic1" name="implies"/>
+      <m:apply>
+        <m:csymbol cd="set1" name="in"/>
+        <m:ci>x</m:ci>
+        <m:csymbol cd="setname1" name="C"/>
+      </m:apply>
+      <m:apply>
+        <m:csymbol cd="relation1" name="eq"/>
+        <m:apply>
+          <m:csymbol cd="arith1" name="root"/>
+          <m:ci>x</m:ci>
+          <m:ci>n</m:ci>          
+        </m:apply>
+        <m:apply>
+          <m:csymbol name="exp" cd="transc1"/>
+          <m:apply>
+            <m:csymbol name="divide" cd="arith1"/>
+            <m:apply>
+              <m:csymbol name="ln" cd="transc1"/>
+              <m:ci>x</m:ci>
+            </m:apply>
+            <m:ci>n</m:ci>          
+          </m:apply>
+        </m:apply>
+      </m:apply>
+    </m:apply>
+  </m:math>
+</mcd:formal>
+    </mcd:property>
+    <mcd:property>
+      <mcd:description>
+        <p> for all a,n | power(root(a,n),n) = a (if the root exists!) </p>
+      </mcd:description>
+      <mcd:formal>
+  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" version="2.0" cdbase="http://www.openmath.org/cd">
+    <m:bind><m:csymbol cd="quant1" name="forall"/><m:bvar>
+         <m:ci>a</m:ci>
+         <m:ci>n</m:ci>
+      </m:bvar><m:apply>
+        <m:csymbol cd="relation1" name="eq"/>
+        <m:apply>
+          <m:csymbol cd="arith1" name="power"/>
+          <m:apply>
+            <m:csymbol cd="arith1" name="root"/>
+            <m:ci>a</m:ci>
+            <m:ci>n</m:ci>
+          </m:apply>
+          <m:ci>n</m:ci>
+        </m:apply>
+        <m:ci>a</m:ci>
+      </m:apply></m:bind>
+  </m:math>
+</mcd:formal>
+    </mcd:property>
+  </mcd:MMLDefinition>
+  <mcd:MMLDefinition xml:id="" cdrole="application"/>
+  <mcd:MMLDefinition xml:id="" cdrole="application"/>
+</mcd:mcd>
