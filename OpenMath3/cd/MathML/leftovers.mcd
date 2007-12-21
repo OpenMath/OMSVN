@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE spec SYSTEM  "mcd.dtd" []>
+<!-- $Id: leftovers.mcd,v 1.7 2007/06/27 04:02:08 mkohlhas2 Exp $ -->
+<mcd id="cds_leftovers">
+  <title>MathML Token elements</title>
+      <MMLdefinition id="cds_condition">
+        <name>condition</name>
+        <description>
+          <p>This is the MathML constructor for building conditions.  A condition differs
+          from a relation in how it is used.  A relation is simply an expression, while a
+          condition is used as a predicate to place conditions on bound variables.  </p>
+          <p>You can build compound conditions by applying operators such as "and" or
+          "or".</p>
+        </description>
+        <classification>constructor</classification>
+        <signature> (apply) -> predicate </signature>
+        <signature> (boolean) -> predicate </signature>
+        <!-- this is OK, but not a complete example as condition not usable at top level -->
+        <MMLexample role="mathml-fragment"><![CDATA[<condition>
+  <apply><lt/>
+    <apply><power/><ci>x</ci><cn>5</cn></apply>
+    <cn>3</cn>
+  </apply>
+</condition>]]></MMLexample>
+<MMLexample><![CDATA[<apply><int/>
+  <bvar><ci>x</ci></bvar>
+  <condition><apply><in/><ci>x</ci><ci type="set">C</ci></apply></condition>
+  <apply><ci type="function">f</ci><ci>x</ci></apply>
+</apply>]]></MMLexample>
+      </MMLdefinition>
+
+      <MMLdefinition id="cds_declare">
+        <name>declare</name>
+        <description>
+          <p>This is the MathML constructor for associating default attribute values and
+          values with mathematical objects.  For example V may be an identifier declared
+          to be a vector (has the attribute of being a vector), or V may be a name that
+          stands for a particular vector.
+	  </p>
+
+	  <p>The attribute values of the declare statement itself become the default
+	  attribute values of the first argument of the declare. </p>
+
+          <p>
+	    If there is a second argument, the first argument becomes an alias for the
+	    second argument and it also assumes all the properties of the second argument
+	    .  For example, a ci identifier v, declared to be the vector (1,2,3) would
+	    appear in the type style of a vector, and would have a norm which is the norm
+	    of (1,2,3)
+	  </p>
+        </description>
+        <classification>modifier</classification>
+        <MMLattribute>
+          <attname>type</attname>
+          <attvalue> MathMLtype </attvalue>
+          <attdefault>none</attdefault>
+        </MMLattribute>
+        <MMLattribute>
+          <attname>nargs</attname>
+          <attvalue> number of arguments for an object of operator </attvalue>
+          <attdefault>*</attdefault>
+        </MMLattribute>
+        <MMLattribute>
+          <attname>occurrence</attname>
+          <attvalue>infix | prefix</attvalue>
+          <attdefault>prefix</attdefault>
+        </MMLattribute>
+        <signature> [(attributename=attributevalue)*](anything) -> [(attributename=attributevalue)*](anything) </signature>
+        <signature> [(attributename=attributevalue)*](anything,anything) -> [(attributename=attributevalue)*](anything) </signature>
+        <signature>(anything,anything)   -> (anything)</signature>
+        <MMLexample><![CDATA[<declare>
+  <ci>y</ci>
+  <apply><plus/><ci>x</ci><cn>3</cn></apply>
+</declare>]]></MMLexample>
+        <MMLexample><![CDATA[<declare type="vector"> <ci> V </ci> </declare>]]></MMLexample>
+        <MMLexample><![CDATA[<declare type="vector">
+  <ci> V </ci>
+  <vector><cn> 1 </cn><cn> 2 </cn><cn> 3 </cn></vector>
+</declare>
+]]></MMLexample>
+      </MMLdefinition>
+
+    <MMLdefinition id="cds_cn">
+      <name>cn</name>
+      <description>
+        <p>The cn element is used to encode numerical constants.  The mathematical type of
+        number is given as an attribute.  The default type is "real".  Numbers such as
+        e-notation, rational and complex, require two parts
+        for a complete specification.  The parts of such a number are separated by an
+        empty sep element.</p>
+        <p>
+	  Many of the commonly occurring numeric constants such as 
+	  <kw role="entity">pi</kw> have their own elements.
+	</p>
+      </description>
+      <classification> constant </classification>
+      <MMLattribute>
+        <attname> type </attname>
+        <attvalue> integer | rational
+      | complex-cartesian | complex-polar |
+      real | e-notation | MathMLtype </attvalue>
+        <attdefault> real </attdefault>
+      </MMLattribute>
+      <MMLattribute>
+        <attname> base </attname>
+        <attvalue> integer between 2 and 36 </attvalue>
+        <attdefault> 10 </attdefault>
+      </MMLattribute>
+      <signature> [type=integer](numstring) -> constant(integer) </signature>
+      <signature> [base=base-value](numstring) -> constant(integer) </signature>
+      <signature> [type=rational](numstring,numstring) -> constant(rational) </signature>
+      <signature> [type=complex-cartesian](numstring,numstring) -> constant(complex) </signature>
+      <signature> [type=e-notation](numstring,numstring) -> constant(e-notation) </signature>
+      <signature> [type=complex-polar](numstring,numstring) -> constant(rational) </signature>
+      <signature> [definitionURL=definition](numstring*) -> constant(user-defined) </signature>
+      <property><![CDATA[<apply><eq/><cn base="16"> A </cn><cn> 10 </cn></apply>]]></property>
+      <property><![CDATA[<apply><eq/><cn base="16"> B </cn><cn> 11 </cn></apply>]]></property>
+      <property><![CDATA[<apply><eq/><cn base="16"> C </cn><cn> 12 </cn></apply>]]></property>
+      <property><![CDATA[<apply><eq/><cn base="16"> D </cn><cn> 13 </cn></apply>]]></property>
+      <property><![CDATA[<apply><eq/><cn base="16"> E </cn><cn> 14 </cn></apply>]]></property>
+      <property><![CDATA[<apply><eq/><cn base="16"> F </cn><cn> 15 </cn></apply>]]></property>
+      <MMLexample><![CDATA[<cn> 245 </cn>]]></MMLexample>
+      <MMLexample><![CDATA[<cn type="integer"> 245 </cn>]]></MMLexample>
+      <MMLexample><![CDATA[<cn type="integer" base="16"> A </cn>]]></MMLexample>
+      <MMLexample><![CDATA[<cn type="rational"> 245 <sep/> 351 </cn>]]></MMLexample>
+      <MMLexample><![CDATA[<cn type="complex-cartesian"> 1 <sep/> 2 </cn>]]></MMLexample>
+      <MMLexample><![CDATA[<cn> 245 </cn>]]></MMLexample>
+      <MMLexample><![CDATA[<apply><eq/>
+<cn type="e-notation"> 2 <sep/> 5 </cn>
+<apply><times/><cn>2</cn><apply><power/><cn>10</cn><cn>5</cn></apply></apply>
+</apply>]]></MMLexample>
+    </MMLdefinition>
+
+    <MMLdefinition id="cds_ci">
+      <name>ci</name>
+      <description>
+        <p>This element constructs an identifier (symbolic name).  The type attribute is 
+used to indicate the type of object being specified.  By default, the type is real. </p>
+      </description>
+      <classification>constructor </classification>
+      <MMLattribute>
+        <attname> type </attname>
+        <attvalue> constant | matrix | set | vector | list | MathMLtype </attvalue>
+        <attdefault> real </attdefault>
+      </MMLattribute>
+      <signature> ({string|mmlpresentation}) -> symbol </signature>
+      <signature> [type=typename]({string|mmlpresentation}) -> symbol(typename) </signature>
+      <MMLexample><![CDATA[<ci> xyz </ci>]]></MMLexample>
+      <MMLexample><![CDATA[<ci]]> <![CDATA[ type="vector"> v </ci>]]></MMLexample>
+    </MMLdefinition>
+    <MMLdefinition id="cds_csymbol">
+      <name>csymbol</name>
+      <description>
+        <p>The <el>csymbol</el> element allows a writer to introduce new objects into
+        MathML.  The objects are linked to external definitions by means of the
+        <kw>definitionURL</kw> attribute and <kw>encoding</kw> attribute.  The
+        <el>csymbol</el> element becomes the "name" of the new object.
+	</p>
+      </description>
+      <classification> constant  function</classification>
+      <signature> [definitionURL=definition]({string|mmlpresentation}) -> defined_symbol </signature>
+      <signature> [type=typename]({string|mmlpresentation}) -> defined_symbol(typename) </signature>
+      <MMLexample><![CDATA[<csymbol definitionURL=".../mydefinitionofPi">&pi;</csymbol>]]></MMLexample>
+    </MMLdefinition>
+</mcd>
