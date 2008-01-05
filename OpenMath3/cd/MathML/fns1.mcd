@@ -44,7 +44,7 @@
     <p>The <el>inverse</el> element is applied to a function whenever an inverse is
     required. For example, application of the inverse sine function to <var>x</var>,
     i.e. sin<sup>-1</sup> (<var>x</var>), is encoded as: <eg role = "mathml"><![CDATA[
-    <apply> <apply> <inverse/> <sin/> </apply> <ci> x </ci> </apply> ]]></eg>While
+    <apply> <apply> <inverse/> <sin/> </apply> <ci>x</ci> </apply> ]]></eg>While
     <el>arcsin</el> is one of the predefined MathML functions, an explicit reference to
     sin<sup>-1</sup>(<var>x</var>) might occur in a document discussing possible
     definitions of <el>arcsin</el>.</p>
@@ -85,9 +85,9 @@
 
 <MMLexample><![CDATA[<apply>
   <apply><inverse/>
-    <ci type="matrix"> a </ci>
+    <ci type="matrix"> a</ci>
   </apply>
-  <ci> A </ci>
+  <ci>A</ci>
 </apply>]]></MMLexample>
       </MMLdefinition>
 
@@ -142,7 +142,7 @@
       The following constructs the constant function <graphic role="inline"
       source="image/f4002.gif" alt="\lambda"/>(<var>x</var>, 3)
 
-<eg role = "mathml"><![CDATA[<lambda><bvar><ci> x </ci></bvar><cn>3</cn></lambda>]]></eg></p>
+<eg role = "mathml"><![CDATA[<lambda><bvar><ci>x</ci></bvar><cn>3</cn></lambda>]]></eg></p>
 
     <p>The lambda calculus allows a user to construct a function from a variable and an
     expression. For example, the lambda construct underlies the common mathematical idiom
@@ -168,13 +168,13 @@
 (<var>x</var>, sin(<var>x</var>+1)):
 
 <eg role = "mathml"><![CDATA[<lambda>
-  <bvar><ci> x </ci></bvar>
+  <bvar><ci>x</ci></bvar>
   <apply>
     <sin/>
     <apply>
       <plus/>
-      <ci> x </ci>
-      <cn> 1 </cn>
+      <ci>x</ci>
+      <cn>1</cn>
     </apply>
   </apply>
 </lambda>]]></eg></p>
@@ -184,18 +184,18 @@ which <var>f</var>( <var>x</var>) = <var>x</var><sup>2</sup> + <var>x</var> + 3 
 
 <eg role = "mathml"><![CDATA[
 <declare type="function">
-  <ci> f </ci>
+  <ci>f</ci>
   <lambda>
-    <bvar><ci> x </ci></bvar>
+    <bvar><ci>x</ci></bvar>
     <apply>
       <plus/>
       <apply>
         <power/>
-        <ci> x </ci>
-        <cn> 2 </cn>
+        <ci>x</ci>
+        <cn>2</cn>
       </apply>
-      <ci> x </ci>
-      <cn> 3 </cn>
+      <ci>x</ci>
+      <cn>3</cn>
     </apply>
   </lambda>
 </declare>]]></eg>
@@ -205,14 +205,14 @@ The following markup declares and constructs the function <var>J</var> such that
 of <var>t</var><sup>4</sup> with respect to <var>t</var>.
 
 <eg role = "mathml"><![CDATA[<declare type="function">
-  <ci> J </ci>
+  <ci>J</ci>
   <lambda>
-    <bvar><ci> x </ci></bvar>
-    <bvar><ci> y </ci></bvar>
+    <bvar><ci>x</ci></bvar>
+    <bvar><ci>y</ci></bvar>
     <apply> <int/>
-      <bvar><ci> t </ci></bvar>
-      <lowlimit><ci> x </ci></lowlimit>
-      <uplimit><ci> y </ci></uplimit>
+      <bvar><ci>t</ci></bvar>
+      <lowlimit><ci>x</ci></lowlimit>
+      <uplimit><ci>y</ci></uplimit>
       <apply>
         <power/>
         <ci>t</ci>
@@ -245,12 +245,12 @@ The function <var>J</var> can then in turn be applied to an argument pair.</p>
 <MMLexample>
 <description><p>a simple lambda construct.</p></description>
 <![CDATA[<lambda>
-  <bvar><ci> x </ci></bvar>
+  <bvar><ci>x</ci></bvar>
   <apply><sin/>
     <apply>
       <plus/>
-      <ci> x </ci>
-      <cn> 1 </cn>
+      <ci>x</ci>
+      <cn>1</cn>
     </apply>
   </apply>
 </lambda>]]></MMLexample>
@@ -260,15 +260,15 @@ The function <var>J</var> can then in turn be applied to an argument pair.</p>
 </description>
 <![CDATA[
 <lambda>
-  <bvar><ci> b </ci></bvar>
+  <bvar><ci>b</ci></bvar>
   <apply>
     <int/>
-    <bvar><ci> x </ci></bvar>
-    <lowlimit><ci> a </ci></lowlimit>
-    <uplimit><ci> b </ci></uplimit>
+    <bvar><ci>x</ci></bvar>
+    <lowlimit><ci>a</ci></lowlimit>
+    <uplimit><ci>b</ci></uplimit>
     <apply>
-       <fn><ci> f </ci></fn>
-       <ci> x </ci>
+       <fn><ci>f</ci></fn>
+       <ci>x</ci>
     </apply>
   </apply>
 </lambda>]]></MMLexample>
@@ -279,9 +279,9 @@ following two <el>lambda</el> constructs are representations of a function on
 the integers.
 </p></description>
 <![CDATA[<lambda>
-  <bvar><ci> x </ci></bvar>
+  <bvar><ci>x</ci></bvar>
   <domainofapplication><integers/></domainofapplication>
-  <apply><sin/><ci> x </ci></apply>
+  <apply><sin/><ci>x</ci></apply>
 </lambda>]]></MMLexample>
 <MMLexample>
 <description>
@@ -352,30 +352,30 @@ operator, therefore it may take qualifiers.
           <description>
             <p>The use of fn is deprecated.  Use type="function" instead.</p>
           </description><![CDATA[<apply><compose/>
-  <ci type="function"> f </ci>
-  <ci type="function"> g </ci>
+  <ci type="function"> f</ci>
+  <ci type="function"> g</ci>
   <sin/>
 </apply>]]></MMLexample>
 
 <MMLexample><![CDATA[<apply>
   <compose/>
-  <ci type="function"> f </ci>
-  <ci type="function"> g </ci>
-  <ci type="function"> h </ci>
+  <ci type="function"> f</ci>
+  <ci type="function"> g</ci>
+  <ci type="function"> h</ci>
 </apply>]]></MMLexample>
 <MMLexample><![CDATA[<apply>
   <apply><compose/>
-    <fn><ci> f </ci></fn>
-    <fn><ci> g </ci></fn>
+    <fn><ci>f</ci></fn>
+    <fn><ci>g</ci></fn>
   </apply>
-  <ci> x </ci>
+  <ci>x</ci>
 </apply>]]></MMLexample>
 
 <MMLexample><![CDATA[<apply>
-  <fn><ci> f </ci></fn>
+  <fn><ci>f</ci></fn>
   <apply>
-    <fn><ci> g </ci></fn>
-    <ci> x </ci>
+    <fn><ci>g</ci></fn>
+    <ci>x</ci>
   </apply>
 </apply>]]></MMLexample>
       </MMLdefinition>
@@ -409,9 +409,9 @@ operator, therefore it may take qualifiers.
 <apply>
   <eq/>
   <apply><compose/>
-    <fn><ci> f </ci></fn>
+    <fn><ci>f</ci></fn>
     <apply><inverse/>
-      <fn><ci> f </ci></fn>
+      <fn><ci>f</ci></fn>
     </apply>
   </apply>
   <ident/>
@@ -420,8 +420,8 @@ operator, therefore it may take qualifiers.
 
 <MMLexample><![CDATA[<apply><eq/>
   <apply><compose/>
-    <ci type="function"> f </ci>
-    <apply><inverse/><ci type="function"> f </ci></apply>
+    <ci type="function"> f</ci>
+    <apply><inverse/><ci type="function"> f</ci></apply>
   </apply>
   <ident/>
 </apply>
@@ -445,7 +445,7 @@ set of values over which it is defined.
 <![CDATA[<apply>
   <eq/>
   <apply><domain/>
-    <fn><ci> f </ci></fn>
+    <fn><ci>f</ci></fn>
   </apply>
   <reals/>
 </apply>
@@ -483,7 +483,7 @@ subset of the integers is mapped to by the function.)</p>
 <apply>
   <eq/>
   <apply><codomain/>
-    <fn><ci> f </ci></fn>
+    <fn><ci>f</ci></fn>
   </apply>
   <rationals/>
 </apply>
@@ -515,7 +515,7 @@ subset of the integers is mapped to by the function.)</p>
 	  </description>
 <![CDATA[<apply><eq/>
   <apply><image/><sin/></apply>
-  <interval><cn>-1</cn><cn> 1</cn></interval>
+  <interval><cn>-1</cn><cn>1</cn></interval>
 </apply>]]></MMLexample>
 
 <MMLexample><![CDATA[<apply><forall/>
