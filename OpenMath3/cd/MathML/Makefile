@@ -2,12 +2,12 @@
 #XSLDIR = $(PREFIX)/xsl
 
 CDS.ocd = $(shell ls *.ocd)
-#CDS.mcd = $(CDS.ocd:%.ocd=%.mcd)
+CDS.mtn = $(CDS.ocd:%.ocd=%.mtn)
 CDS.mts = $(CDS.ocd:%.ocd=%.mts)
 
-all: $(CDS.mts)
+all: $(CDS.mtn)
 
-$(CDS.mts): %.mts: %.mcd convert.xsl
+$(CDS.mtn): %.mtn: %.mcd convert.xsl
 	xsltproc -o $@ convert.xsl $(firstword $<)
 
 echo:
