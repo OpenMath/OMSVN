@@ -1,566 +1,749 @@
 <?xml version="1.0"?>
-<!--This MathML CD is automatically generated from an OpenMath CD. Edit at your own risk.-->
-<mcd:mcd xmlns:mcd="http://www.w3.org/ns/mathml-cd" version="3.0" xml:id=" arith1 " review-date="" revision-date="" cdbase="http://www.openmath.org/cd" status=" official " date="2004-03-30">
-  <mcd:description> 
-This CD defines symbols for common arithmetic functions.
-</mcd:description>
-  <mcd:MMLDefinition xml:id="" cdrole="application">
-    <mcd:property>
-      <mcd:description>
-        <p> lcm(a,b) = a*b/gcd(a,b) </p>
-      </mcd:description>
-      <mcd:formal>
-<m:math xmlns:m="http://www.w3.org/1998/Math/MathML" version="2.0" cdbase="http://www.openmath.org/cd">
-  <m:apply>
-    <m:csymbol cd="relation1" name="eq"/>
-    <m:apply>
-      <m:csymbol cd="arith1" name="lcm"/>
-      <m:ci>a</m:ci>
-      <m:ci>b</m:ci>
-    </m:apply>
-    <m:apply>
-      <m:csymbol cd="arith1" name="divide"/>
-      <m:apply>
-        <m:csymbol cd="arith1" name="times"/>
-	<m:ci>a</m:ci>
-	<m:ci>b</m:ci>
-      </m:apply>
-      <m:apply>
-        <m:csymbol cd="arith1" name="gcd"/>
-        <m:ci>a</m:ci>
-        <m:ci>b</m:ci>
-      </m:apply>
-    </m:apply>
-  </m:apply>
-</m:math>
-</mcd:formal>
-    </mcd:property>
-    <mcd:property>
-      <mcd:description>
-        <p>
-for all integers a,b |
-There does not exist a c&gt;0 such that c/a is an Integer and c/b is an
-Integer and lcm(a,b) &gt; c.
-</p>
-      </mcd:description>
-      <mcd:formal>
-<m:math xmlns:m="http://www.w3.org/1998/Math/MathML" version="2.0" cdbase="http://www.openmath.org/cd">
-<m:bind><m:csymbol cd="quant1" name="forall"/><m:bvar>
-    <m:ci>a</m:ci>
-    <m:ci>b</m:ci>
-  </m:bvar><m:apply>
-    <m:csymbol cd="logic1" name="implies"/>
-    <m:apply>
-      <m:csymbol cd="logic1" name="and"/>
-      <m:apply>
-        <m:csymbol cd="set1" name="in"/>
-	<m:ci>a</m:ci>
-	<m:csymbol cd="setname1" name="Z"/>
-      </m:apply>
-      <m:apply>
-        <m:csymbol cd="set1" name="in"/>
-	<m:ci>b</m:ci>
-	<m:csymbol cd="setname1" name="Z"/>
-      </m:apply>
-    </m:apply>
-    <m:apply>
-      <m:csymbol cd="logic1" name="not"/>
-      <m:bind><m:csymbol cd="quant1" name="exists"/><m:bvar>
-          <m:ci>c</m:ci>
-        </m:bvar><m:apply>
-          <m:csymbol cd="logic1" name="and"/>
-          <m:apply>
-            <m:csymbol cd="relation1" name="gt"/>
-              <m:ci>c</m:ci>
-              <m:cn>0</m:cn>
-          </m:apply>
-          <m:apply>
-            <m:csymbol cd="integer1" name="factorof"/>
-              <m:ci>a</m:ci>
-              <m:ci>c</m:ci>
-          </m:apply>
-          <m:apply>
-            <m:csymbol cd="integer1" name="factorof"/>
-              <m:ci>b</m:ci>
-              <m:ci>c</m:ci>
-          </m:apply>
-          <m:apply>
-            <m:csymbol cd="relation1" name="lt"/>
-            <m:ci>c</m:ci>
-            <m:apply>
-              <m:csymbol cd="arith1" name="lcm"/>
-              <m:ci>a</m:ci>
-              <m:ci>b</m:ci>
-            </m:apply>
-          </m:apply>
-        </m:apply></m:bind>
-    </m:apply>
-  </m:apply></m:bind>
-</m:math>
-</mcd:formal>
-    </mcd:property>
-  </mcd:MMLDefinition>
-  <mcd:MMLDefinition xml:id="" cdrole="application">
-    <mcd:property>
-      <mcd:description>
-        <p>
-for all integers a,b |
-There does not exist a c such that a/c is an Integer and b/c is an
-Integer and c &gt; gcd(a,b).
+<mcd>
+<MMLdefinition id="cds_divide"  cdrole="application" arity="2">
+  <title>Division</title>
+  <name>divide</name>
+  <description>
+    <p>This is the binary MathML operator that is used indicate the mathematical
+    operation a "divided by" b.</p>
+  </description>
+  <classification>function</classification>
+  <MMLattribute>
+    <attname> type </attname>
+    <attvalue>MathMLType</attvalue>
+    <attdefault> real </attdefault>
+  </MMLattribute>
+  
+  <rendering><p><graphic role = "inline" source = "image/f4028.gif" alt = "a/b"/></p></rendering>
+  <optype>binary arithmetic operator</optype>
+  <signature> (algebraic, algebraic) -> algebraic </signature>
+  <signature> (complex, complex) -> complex </signature>
+  <signature> (real, real) -> real </signature>
+  <signature> (rational, rational) -> rational </signature>
+  <signature> (integer, integer) -> rational </signature>
+  <property>
+    <description>
+      <p>Division by Zero error</p>
+      </description><![CDATA[<apply><forall/>
+      <bvar><ci>a</ci></bvar>
+      <apply><eq/>
+    <apply><divide/><ci> a </ci><cn> 0 </cn>]]><![CDATA[</apply>]]><![CDATA[
+    <notanumber/>
+  </apply>
+</apply>]]></property>
 
-Note that this implies that gcd(a,b) &gt; 0
-</p>
-      </mcd:description>
-      <mcd:formal>
-<m:math xmlns:m="http://www.w3.org/1998/Math/MathML" version="2.0" cdbase="http://www.openmath.org/cd">
-<m:bind><m:csymbol cd="quant1" name="forall"/><m:bvar>
-    <m:ci>a</m:ci>
-    <m:ci>b</m:ci>
-  </m:bvar><m:apply>
-    <m:csymbol cd="logic1" name="implies"/>
-    <m:apply>
-      <m:csymbol cd="logic1" name="and"/>
-      <m:apply>
-        <m:csymbol cd="set1" name="in"/>
-	<m:ci>a</m:ci>
-	<m:csymbol cd="setname1" name="Z"/>
-      </m:apply>
-      <m:apply>
-        <m:csymbol cd="set1" name="in"/>
-	<m:ci>b</m:ci>
-	<m:csymbol cd="setname1" name="Z"/>
-      </m:apply>
-    </m:apply>
-    <m:apply>
-      <m:csymbol cd="logic1" name="not"/>
-      <m:bind><m:csymbol cd="quant1" name="exists"/><m:bvar>
-          <m:ci>c</m:ci>
-        </m:bvar><m:apply>
-          <m:csymbol cd="logic1" name="and"/>
-          <m:apply>
-            <m:csymbol cd="set1" name="in"/>
-            <m:apply>
-              <m:csymbol cd="arith1" name="divide"/>
-              <m:ci>a</m:ci>
-              <m:ci>c</m:ci>
-            </m:apply>
-            <m:csymbol cd="setname1" name="Z"/>
-          </m:apply>
-          <m:apply>
-            <m:csymbol cd="set1" name="in"/>
-            <m:apply>
-              <m:csymbol cd="arith1" name="divide"/>
-              <m:ci>b</m:ci>
-              <m:ci>c</m:ci>
-            </m:apply>
-            <m:csymbol cd="setname1" name="Z"/>
-          </m:apply>
-          <m:apply>
-            <m:csymbol cd="relation1" name="gt"/>
-            <m:ci>c</m:ci>
-            <m:apply>
-              <m:csymbol cd="arith1" name="gcd"/>
-              <m:ci>a</m:ci>
-              <m:ci>b</m:ci>
-            </m:apply>
-          </m:apply>
-        </m:apply></m:bind>
-    </m:apply>
-  </m:apply></m:bind>
-</m:math>
-</mcd:formal>
-    </mcd:property>
-  </mcd:MMLDefinition>
-  <mcd:MMLDefinition xml:id="" cdrole="application">
-    <mcd:property>
-      <mcd:description>
-        <p> for all a,b | a + b = b + a </p>
-      </mcd:description>
-      <mcd:formal>
-<m:math xmlns:m="http://www.w3.org/1998/Math/MathML" version="2.0" cdbase="http://www.openmath.org/cd">
-  <m:bind><m:csymbol cd="quant1" name="forall"/><m:bvar>
-       <m:ci>a</m:ci>
-       <m:ci>b</m:ci>
-    </m:bvar><m:apply>
-      <m:csymbol cd="relation1" name="eq"/>
-      <m:apply>
-        <m:csymbol cd="arith1" name="plus"/>
-        <m:ci>a</m:ci>
-        <m:ci>b</m:ci>
-      </m:apply>
-      <m:apply>
-        <m:csymbol cd="arith1" name="plus"/>
-        <m:ci>b</m:ci>
-        <m:ci>a</m:ci>
-      </m:apply>
-    </m:apply></m:bind>
-</m:math>
-</mcd:formal>
-    </mcd:property>
-  </mcd:MMLDefinition>
-  <mcd:MMLDefinition xml:id="" cdrole="application">
-    <mcd:property>
-      <mcd:description>
-        <p> for all a | a + (-a) = 0 </p>
-      </mcd:description>
-      <mcd:formal>
-<m:math xmlns:m="http://www.w3.org/1998/Math/MathML" version="2.0" cdbase="http://www.openmath.org/cd">
-  <m:bind><m:csymbol cd="quant1" name="forall"/><m:bvar>
-       <m:ci>a</m:ci>
-    </m:bvar><m:apply>
-      <m:csymbol cd="relation1" name="eq"/>
-      <m:apply>
-        <m:csymbol cd="arith1" name="plus"/>
-        <m:ci>a</m:ci>
-        <m:apply>
-           <m:csymbol cd="arith1" name="unary_minus"/>
-           <m:ci>a</m:ci>
-        </m:apply>
-      </m:apply>
-      <m:csymbol cd="alg1" name="zero"/>
-    </m:apply></m:bind>
-</m:math>
-</mcd:formal>
-    </mcd:property>
-  </mcd:MMLDefinition>
-  <mcd:MMLDefinition xml:id="" cdrole="application">
-    <mcd:property>
-      <mcd:description>
-        <p> for all a,b | a - b = a + (-b) </p>
-      </mcd:description>
-      <mcd:formal>
-<m:math xmlns:m="http://www.w3.org/1998/Math/MathML" version="2.0" cdbase="http://www.openmath.org/cd">
-  <m:bind><m:csymbol cd="quant1" name="forall"/><m:bvar>
-       <m:ci>a</m:ci>
-       <m:ci>b</m:ci>
-    </m:bvar><m:apply>
-      <m:csymbol cd="relation1" name="eq"/>
-      <m:apply>
-        <m:csymbol cd="arith1" name="minus"/>
-        <m:ci>a</m:ci>
-        <m:ci>b</m:ci>
-      </m:apply>
-      <m:apply>
-        <m:csymbol cd="arith1" name="plus"/>
-        <m:ci>a</m:ci>
-        <m:apply>
-          <m:csymbol cd="arith1" name="unary_minus"/>
-          <m:ci>b</m:ci>
-        </m:apply>
-      </m:apply>
-    </m:apply></m:bind>
-</m:math>
-</mcd:formal>
-    </mcd:property>
-  </mcd:MMLDefinition>
-  <mcd:MMLDefinition xml:id="" cdrole="application">
-    <mcd:property>
-      <mcd:description>
-        <p> for all a,b | a * 0 = 0 and a * b = a * (b - 1) + a </p>
-      </mcd:description>
-      <mcd:formal>
-        <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" version="2.0" cdbase="http://www.openmath.org/cd">
-<m:bind><m:csymbol cd="quant1" name="forall"/><m:bvar>
-    <m:ci>a</m:ci>
-    <m:ci>b</m:ci>
-  </m:bvar><m:apply>
-    <m:csymbol cd="logic1" name="and"/>
-    <m:apply>
-      <m:csymbol cd="relation1" name="eq"/>
-      <m:apply>
-        <m:csymbol cd="arith1" name="times"/>
-        <m:ci>a</m:ci>
-        <m:csymbol cd="alg1" name="zero"/>
-      </m:apply>
-      <m:csymbol cd="alg1" name="zero"/>
-    </m:apply>
-    <m:apply>
-      <m:csymbol cd="relation1" name="eq"/>
-      <m:apply>
-        <m:csymbol cd="arith1" name="times"/>
-	<m:ci>a</m:ci>
-	<m:ci>b</m:ci>
-      </m:apply>
-      <m:apply>
-        <m:csymbol cd="arith1" name="plus"/>
-	<m:apply>
-	  <m:csymbol cd="arith1" name="times"/>
-	  <m:ci>a</m:ci>
-	  <m:apply>
-	    <m:csymbol cd="arith1" name="minus"/>
-	    <m:ci>b</m:ci>
-	    <m:csymbol cd="alg1" name="one"/>
-	  </m:apply>
-	</m:apply>
-	<m:ci>a</m:ci>
-      </m:apply>
-    </m:apply>
-  </m:apply></m:bind>
-</m:math>
-      </mcd:formal>
-    </mcd:property>
-    <mcd:property>
-      <mcd:description>
-        <p> for all a,b,c | a*(b+c) = a*b + a*c </p>
-      </mcd:description>
-      <mcd:formal>
-        <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" version="2.0" cdbase="http://www.openmath.org/cd">
-<m:bind><m:csymbol cd="quant1" name="forall"/><m:bvar>
-    <m:ci>a</m:ci>
-    <m:ci>b</m:ci>
-    <m:ci>c</m:ci>
-  </m:bvar><m:apply>
-    <m:csymbol cd="relation1" name="eq"/>
-    <m:apply>
-      <m:csymbol cd="arith1" name="times"/>
-      <m:ci>a</m:ci>
-      <m:apply>
-        <m:csymbol cd="arith1" name="plus"/>
-	<m:ci>b</m:ci>
-	<m:ci>c</m:ci>
-      </m:apply>
-    </m:apply>
-    <m:apply>
-      <m:csymbol cd="arith1" name="plus"/>
-      <m:apply>
-        <m:csymbol cd="arith1" name="times"/>
-	<m:ci>a</m:ci>
-	<m:ci>b</m:ci>
-      </m:apply>
-      <m:apply>
-        <m:csymbol cd="arith1" name="times"/>
-	<m:ci>a</m:ci>
-	<m:ci>c</m:ci>
-      </m:apply>
-    </m:apply>
-  </m:apply></m:bind>
-</m:math>
-      </mcd:formal>
-    </mcd:property>
-  </mcd:MMLDefinition>
-  <mcd:MMLDefinition xml:id="" cdrole="application">
-    <mcd:property>
-      <mcd:description>
-        <p> whenever not(a=0) then a/a = 1 </p>
-      </mcd:description>
-      <mcd:formal>
-<m:math xmlns:m="http://www.w3.org/1998/Math/MathML" version="2.0" cdbase="http://www.openmath.org/cd">
-  <m:bind><m:csymbol cd="quant1" name="forall"/><m:bvar>
-       <m:ci>a</m:ci>
-    </m:bvar><m:apply>
-      <m:csymbol cd="logic1" name="implies"/>
-      <m:apply>
-        <m:csymbol cd="relation1" name="neq"/>
-        <m:ci>a</m:ci>
-        <m:csymbol cd="alg1" name="zero"/>
-      </m:apply>
-      <m:apply>
-        <m:csymbol cd="relation1" name="eq"/>
-        <m:apply>
-          <m:csymbol cd="arith1" name="divide"/>
-          <m:ci>a</m:ci>
-          <m:ci>a</m:ci>
-        </m:apply>
-        <m:csymbol cd="alg1" name="one"/>
-      </m:apply>
-    </m:apply></m:bind>
-</m:math>
-</mcd:formal>
-    </mcd:property>
-  </mcd:MMLDefinition>
-  <mcd:MMLDefinition xml:id="" cdrole="application">
-    <mcd:property>
-      <mcd:description>
-        <p>
-x\in C implies x^a = exp(a ln x)
-</p>
-      </mcd:description>
-      <mcd:formal>
-<m:math xmlns:m="http://www.w3.org/1998/Math/MathML" version="2.0" cdbase="http://www.openmath.org/cd">
-  <m:apply>
-    <m:csymbol cd="logic1" name="implies"/>
-    <m:apply>
-      <m:csymbol cd="set1" name="in"/>
-      <m:ci>x</m:ci>
-      <m:csymbol cd="setname1" name="C"/>
-    </m:apply>
-    <m:apply>
-      <m:csymbol cd="relation1" name="eq"/>
-      <m:apply>
-        <m:csymbol name="power" cd="arith1"/>
-        <m:ci>x</m:ci>
-        <m:ci>a</m:ci>
-      </m:apply>
-      <m:apply>
-        <m:csymbol name="exp" cd="transc1"/>
-        <m:apply>
-          <m:csymbol name="times" cd="arith1"/>
-          <m:ci>a</m:ci>
-          <m:apply>
-            <m:csymbol name="ln" cd="transc1"/>
-            <m:ci>x</m:ci>
-          </m:apply>
-        </m:apply>
-      </m:apply>
-    </m:apply>
-  </m:apply>
-</m:math>
-</mcd:formal>
-    </mcd:property>
-    <mcd:property>
-      <mcd:description>
-        <p>
-  if n is an integer then
-  x^0 = 1,
-  x^n = x * x^(n-1)
-</p>
-      </mcd:description>
-      <mcd:formal>
-<m:math xmlns:m="http://www.w3.org/1998/Math/MathML" version="2.0" cdbase="http://www.openmath.org/cd">
-  <m:apply>
-    <m:csymbol cd="logic1" name="implies"/>
-    <m:apply>
-      <m:csymbol cd="set1" name="in"/>
-      <m:ci>n</m:ci>
-      <m:csymbol cd="setname1" name="Z"/>
-    </m:apply>
-    <m:apply>
-      <m:csymbol cd="logic1" name="and"/>
-      <m:apply>
-        <m:csymbol cd="relation1" name="eq"/>
-        <m:apply>
-          <m:csymbol cd="arith1" name="power"/>
-          <m:ci>x</m:ci>
-          <m:cn>0</m:cn>
-        </m:apply>
-        <m:csymbol cd="alg1" name="one"/>
-      </m:apply>
-      <m:apply>
-        <m:csymbol cd="relation1" name="eq"/>
-        <m:apply>
-          <m:csymbol cd="arith1" name="power"/>
-          <m:ci>x</m:ci>
-          <m:ci>n</m:ci>
-        </m:apply>
-        <m:apply>
-          <m:csymbol cd="arith1" name="times"/>
-          <m:ci>x</m:ci>
-          <m:apply>
-            <m:csymbol cd="arith1" name="power"/>
-            <m:ci>x</m:ci>
-            <m:apply>
-              <m:csymbol cd="arith1" name="minus"/>
-              <m:ci>n</m:ci>
-              <m:cn>1</m:cn>
-            </m:apply>
-          </m:apply>
-        </m:apply>
-      </m:apply>
-    </m:apply>
-  </m:apply>
-</m:math>
-</mcd:formal>
-    </mcd:property>
-  </mcd:MMLDefinition>
-  <mcd:MMLDefinition xml:id="" cdrole="application">
-    <mcd:property>
-      <mcd:description>
-        <p> for all x,y | abs(x) + abs(y) &gt;= abs(x+y) </p>
-      </mcd:description>
-      <mcd:formal>
-<m:math xmlns:m="http://www.w3.org/1998/Math/MathML" version="2.0" cdbase="http://www.openmath.org/cd">
-  <m:bind><m:csymbol cd="quant1" name="forall"/><m:bvar>
-      <m:ci>x</m:ci>
-      <m:ci>y</m:ci>
-    </m:bvar><m:apply>
-      <m:csymbol cd="relation1" name="geq"/>
-      <m:apply>
-        <m:csymbol cd="arith1" name="plus"/>
-        <m:apply>
-          <m:csymbol cd="arith1" name="abs"/>
-            <m:ci>x</m:ci>
-        </m:apply>
-        <m:apply>
-          <m:csymbol cd="arith1" name="abs"/>
-            <m:ci>y</m:ci>
-        </m:apply>
-      </m:apply>
-      <m:apply>
-        <m:csymbol cd="arith1" name="abs"/>
-        <m:apply>
-          <m:csymbol cd="arith1" name="plus"/>
-          <m:ci>x</m:ci>
-          <m:ci>y</m:ci>
-        </m:apply>
-      </m:apply>
-    </m:apply></m:bind>
-</m:math>
-</mcd:formal>
-    </mcd:property>
-  </mcd:MMLDefinition>
-  <mcd:MMLDefinition xml:id="" cdrole="application">
-    <mcd:property>
-      <mcd:description>
-        <p> x\in C implies root(x,n) = exp(ln(x)/n) </p>
-      </mcd:description>
-      <mcd:formal>
-  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" version="2.0" cdbase="http://www.openmath.org/cd">
-    <m:apply>
-      <m:csymbol cd="logic1" name="implies"/>
-      <m:apply>
-        <m:csymbol cd="set1" name="in"/>
-        <m:ci>x</m:ci>
-        <m:csymbol cd="setname1" name="C"/>
-      </m:apply>
-      <m:apply>
-        <m:csymbol cd="relation1" name="eq"/>
-        <m:apply>
-          <m:csymbol cd="arith1" name="root"/>
-          <m:ci>x</m:ci>
-          <m:ci>n</m:ci>          
-        </m:apply>
-        <m:apply>
-          <m:csymbol name="exp" cd="transc1"/>
-          <m:apply>
-            <m:csymbol name="divide" cd="arith1"/>
-            <m:apply>
-              <m:csymbol name="ln" cd="transc1"/>
-              <m:ci>x</m:ci>
-            </m:apply>
-            <m:ci>n</m:ci>          
-          </m:apply>
-        </m:apply>
-      </m:apply>
-    </m:apply>
-  </m:math>
-</mcd:formal>
-    </mcd:property>
-    <mcd:property>
-      <mcd:description>
-        <p> for all a,n | power(root(a,n),n) = a (if the root exists!) </p>
-      </mcd:description>
-      <mcd:formal>
-  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" version="2.0" cdbase="http://www.openmath.org/cd">
-    <m:bind><m:csymbol cd="quant1" name="forall"/><m:bvar>
-         <m:ci>a</m:ci>
-         <m:ci>n</m:ci>
-      </m:bvar><m:apply>
-        <m:csymbol cd="relation1" name="eq"/>
-        <m:apply>
-          <m:csymbol cd="arith1" name="power"/>
-          <m:apply>
-            <m:csymbol cd="arith1" name="root"/>
-            <m:ci>a</m:ci>
-            <m:ci>n</m:ci>
-          </m:apply>
-          <m:ci>n</m:ci>
-        </m:apply>
-        <m:ci>a</m:ci>
-      </m:apply></m:bind>
-  </m:math>
-</mcd:formal>
-    </mcd:property>
-  </mcd:MMLDefinition>
-  <mcd:MMLDefinition xml:id="" cdrole="application"/>
-  <mcd:MMLDefinition xml:id="" cdrole="application"/>
-</mcd:mcd>
+        <property>
+          <description>
+            <p>ForAll( a, a!= 0, a/a = 1 )</p>
+          </description><![CDATA[
+<apply><forall/>
+  <bvar><ci>a</ci></bvar>
+  <condition><apply><neq/><ci>a</ci><cn>0</cn></apply></condition>
+  <apply><eq/>
+    <apply><divide/><ci>a</ci><ci>a</ci></apply>
+    <cn>1</cn>
+  </apply>
+</apply>
+]]></property>
+
+	  <MMLexample>
+	    <description>
+	      <p>As a MathML expression, this does not evaluate. However, on receiving
+	      such an expression, some applications may attempt to evaluate and simplify
+	      the value. For example, when <var>a</var>=5 and <var>b</var>=2 some
+	      mathematical applications may evaluate this to 2.5 while others will treat
+	      is as a rational number.</p>
+	    </description>
+<![CDATA[<apply><divide/>
+  <ci> a </ci>
+  <ci> b </ci>
+</apply>]]></MMLexample>
+      </MMLdefinition>
+
+      <MMLdefinition id="cds_minus"  cdrole="application" arity="2">
+	<title>Subtraction</title>
+        <name>minus</name>
+        <description>
+          <p>This is the subtraction operator for an additive group. </p>
+        </description>
+	<discussion>
+	  <p>The <code>minus</code> element is the subtraction operator.</p>
+	</discussion>
+        <classification>function</classification>
+        <MMLattribute>
+          <attname>type</attname>
+          <attvalue>MathMLType</attvalue>
+          <attdefault>real</attdefault>
+        </MMLattribute>
+	<rendering><p><graphic role="inline" source="image/f4032.gif" alt="x-y"/></p></rendering>
+        <signature>(real,real) -> real</signature>
+        <signature>(algebraic,algebraic) -> algebraic</signature>
+        <signature>[type=MathMLtype](MathMLtype,MathMLtype) -> MathMLtype </signature>
+        <property>
+          <description>
+            <p>ForAll( x, x-x=0 )</p>
+          </description><![CDATA[<apply><forall/>
+  <bvar><ci> x </ci></bvar>
+  <apply><eq/>
+    <apply><minus/><ci> x </ci><ci> x </ci></apply>
+    <cn>0</cn>
+  </apply>
+</apply>]]></property>
+        <MMLexample>
+		<description><p>If this were evaluated at <var>x</var>=5 and 
+		<var>y</var>=2 it would yield 3.</p></description>
+		<![CDATA[<apply> <minus/>
+		  <ci> x </ci>
+		  <ci> y </ci>
+		</apply>]]></MMLexample>
+      </MMLdefinition>
+
+      <MMLdefinition id="cds_unary_minus"  cdrole="application" arity="1">
+	<title>Additive Inversion</title>
+        <name>unary_minus</name>
+        <description>
+          <p>This is the  inversion operator for an additive group. It constructs the additive inverse of
+          that group element.</p>
+        </description>
+        <classification>function</classification>
+        <MMLattribute>
+          <attname>type</attname>
+          <attvalue>MathMLType</attvalue>
+          <attdefault>real</attdefault>
+        </MMLattribute>
+	<rendering><p><graphic role="inline" source="image/f4032.gif" alt="x-y"/></p></rendering>
+        <signature>(real) -> real</signature>
+        <signature>(algebraic) -> algebraic</signature>
+        <signature>[type=MathMLtype](MathMLtype) -> MathMLtype </signature>
+        <MMLexample><![CDATA[<apply><minus/><cn>3</cn></apply>]]></MMLexample>
+      </MMLdefinition>
+
+      <MMLdefinition id="cds_plus"  cdrole="application" arity="nary">
+	<title>Addition</title>
+        <name>plus</name>
+        <description>
+          <p>This is the n-ary addition operator of an algebraic structure.  Ordinarily,
+          the operands are provided explicitly.  As an n-ary operation the operands can
+          also be generated by allowing a function or expression vary over a domain of
+          application though the sum element is normally used for that purpose.  If no
+          operands are provided, the expression represents the additive identity.  If one
+          operand, a, is provided the expression evaluates to "a".  If two or more
+          operands are provided, the expression represents the (semi) group element
+          corresponding to a left associative binary pairing of the operands.  The meaning
+          of mixed operand types not covered by the signatures shown here are left up to
+          the target system.
+	  </p>
+	  
+          <p>To use different type coercion rules different from those indicated by the
+          signatures, use the definitionURL attribute to identify a new definition.</p>
+        </description>
+	<discussion>
+	  <p>The <code>plus</code> element is the addition operator.</p>
+	  <p>As an n-ary operator, the operands may in principle also be provided using a
+	  domain of application as described in <specref
+	  ref="contm_naryopwithqual"/>. However, such expressions can already be
+	  represented explicitly using <specref ref="cds_sum"/> so the <code>plus</code>
+	  does not normally take qualifiers.</p>
+	</discussion>
+        <classification>function</classification>
+        <MMLattribute>
+          <attname>type</attname>
+          <attvalue>MathMLType</attvalue>
+          <attdefault>real</attdefault>
+        </MMLattribute>
+	<rendering><graphic  source="image/f4033.gif" alt="x+y+z"/></rendering>
+	<optype>n-ary arithmetic operator</optype>
+        <signature>[type=MathMLtype](anything*) -> MathMLtype </signature>
+        <signature>(set*) -> set</signature>
+        <signature>(multiset*) -> multiset</signature>
+        <signature>(algebraic*) -> algebraic</signature>
+        <signature>(real*) -> real</signature>
+        <signature>(complex*) -> complex</signature>
+        <signature>(integer*) -> integer</signature>
+        <signature> (domainofapp,function) -> algebraic </signature>
+        <signature> (bvar+,domainofapp,algebraic) -> algebraic </signature>
+        <property>
+          <description>
+            <p>an sum of no terms is 0</p>
+          </description><![CDATA[
+<apply><eq/>
+  <apply><plus/></apply>
+  <cn>0</cn>
+</apply> 
+]]></property>
+        <property>
+          <description>
+            <p>a sum of one term is equal to itself</p>
+          </description><![CDATA[
+<apply><forall/>
+  <bvar><ci>a</ci></bvar>
+  <apply><eq/>
+    <apply><plus/><ci>a</ci></apply>
+    <cn>a</cn>
+  </apply> 
+</apply>
+]]></property>
+        <property>
+          <description>
+            <p>Commutativity</p>
+          </description><![CDATA[
+<apply><forall/>
+  <bvar><ci>a</ci></bvar>
+  <bvar><ci>b</ci></bvar>
+  <condition>
+    <apply><and/>
+      <apply><in/><ci>a</ci><reals/></apply>
+      <apply><in/><ci>b</ci><reals/></apply>
+    </apply>
+  </condition>
+  <apply><eq/>
+    <apply><plus/><ci>a</ci><ci>b</ci></apply>
+    <apply><plus/><ci>b</ci><ci>a</ci></apply>
+  </apply>
+</apply>]]></property>
+        <MMLexample><![CDATA[<apply><plus/>
+  <cn>3</cn>
+</apply>]]></MMLexample>
+        <MMLexample><![CDATA[<apply><plus/>
+  <cn>3</cn>
+  <cn>5</cn>
+</apply>]]></MMLexample>
+       <MMLexample>
+	   <description><p>If this were evaluated at <var>x</var> = 5, <var>y</var> = 2 and <var>z</var> = 1 it would yield 8.</p></description>
+	   <![CDATA[
+			<apply>
+			  <plus/>
+			  <ci> x </ci>
+			  <ci> y </ci>
+			  <ci> z </ci>
+			</apply>
+			]]></MMLexample>
+	   
+      </MMLdefinition>
+
+      <MMLdefinition id="cds_power"  cdrole="application" arity="2">
+	<title>Exponentiation</title>
+        <name>power</name>
+        <description>
+          <p>This is the binary powering operator that is used to construct expressions
+          such as a "to the power of" b.  In particular, it is the operation for which a
+          "to the power of" 2 is equivalent to a * a.</p>
+	</description>
+	<discussion>
+	  <p>The <code>power</code> element is a generic exponentiation operator. That is,
+	  when applied to arguments <var>a</var> and <var>b</var>, it returns the value of
+	  <quote><var>a</var> to the power of <var>b</var></quote>.</p>
+	</discussion>
+        <classification>function</classification>
+        <MMLattribute>
+          <attname>type</attname>
+          <attvalue>MathMLType</attvalue>
+          <attdefault>real</attdefault>
+        </MMLattribute>
+	<rendering><p>
+	  <graphic role="inline" source="image/f4034.gif" alt="x^3"/></p>
+	</rendering>
+	<optype>binary arithmetic operator</optype>
+	<signature> (algebraic, algebraic) -> algebraic </signature>
+        <signature> (complex, complex) -> complex </signature>
+        <signature> (real, real) -> complex </signature>
+        <signature> (rational, integer) -> rational </signature>
+        <signature> (integer, integer) -> rational </signature>
+        <signature>[type=MathMLtype](anything,anything) -> MathMLtype </signature>
+        <property>
+          <description>
+            <p>ForAll( a, a!=0, a^0=1 )</p>
+          </description><![CDATA[
+<apply><forall/>
+  <bvar><ci>a</ci></bvar>
+  <condition><apply><neq/><ci>a</ci><cn>0</cn></apply></condition>
+  <apply><eq/>
+    <apply><power/><ci>a</ci><cn>0</cn></apply>
+    <cn>1</cn>
+  </apply>
+</apply>
+]]></property>
+        <property>
+          <description>
+            <p>ForAll( a, a^1=a )</p>
+          </description><![CDATA[
+<apply><forall/>
+  <bvar><ci>a</ci></bvar>
+  <apply><eq/>
+    <apply><power/><ci>a</ci><cn>1</cn></apply>
+    <ci>a</ci>
+  </apply>
+</apply>
+]]></property>
+        <property>
+          <description>
+            <p>ForAll( a, 1^a=1 )</p>
+          </description><![CDATA[
+<apply><forall/>
+  <bvar><ci>a</ci></bvar>
+  <apply><eq/>
+    <apply><power/><cn>1</cn><ci>a</ci></apply>
+    <cn>1</cn>
+  </apply>
+</apply>]]></property>
+        <MMLexample><![CDATA[<apply><power/><cn>2</cn><ci>x</ci></apply>]]></MMLexample>
+        <MMLexample><![CDATA[<apply><power/><ci> x </ci><cn> 3 </cn></apply>]]></MMLexample>
+      <MMLexample>
+	  <description><p>If this were evaluated at <var>x</var>= 5 it would yield 125.</p></description>
+	  <![CDATA[
+		<apply>
+		  <power/>
+		  <ci> x </ci>
+		  <cn> 3 </cn>
+		</apply>
+		]]></MMLexample>
+	  </MMLdefinition>
+
+      <MMLdefinition id="cds_times"  cdrole="application" arity="nary">
+	<title>Multiplication</title>
+        <name>times</name>
+        <description>
+	  <p> This is the n-ary multiplication operator of a ring.
+	  Ordinarily, the operands are provided explicitly.  As an n-ary operation
+	  the operands can also be generated by allowing a function or expression
+	  vary over a domain of application though the product element is normally used
+	  for that purpose.
+	  If no arguments are supplied then this represents the
+	  multiplicative identity.  If one argument is supplied, this
+	  represents an expression that would evaluate to
+	  that single argument.</p>
+	</description>
+	<discussion>
+	  <p>The <code>times</code> element is the n-ary multiplication operator.The operands
+	  are usually listed explicitly. As an n-ary operator, the operands may in
+	  principle also be provided using a domain of application as described in
+	  <specref ref="contm_naryopwithqual"/>.  However, such expressions can already be
+	  represented explicitly by using <specref ref="cds_product"/> so the
+	  <code>times</code> does not normally take qualifiers.</p>
+	</discussion>
+        <classification>function</classification>
+        <MMLattribute>
+          <attname>type</attname>
+          <attvalue>MathMLType</attvalue>
+          <attdefault>real</attdefault>
+        </MMLattribute>
+		<rendering><p>
+			<graphic role="inline" source="image/f4036.gif" alt="a b"/></p>
+		</rendering>
+        <signature> (algebraic*) -> algebraic </signature>
+        <signature> (complex*) -> complex </signature>
+        <signature> (real*) -> real </signature>
+        <signature> (rational*) -> rational </signature>
+        <signature> (integer*) -> integer </signature>
+        <signature> (domainofapp,function) -> algebraic </signature>
+        <signature> (bvar+,domainofapp,anything) -> algebraic </signature>
+        <property>
+          <description>
+            <p>ForAll( [a,b], condition(in({a,b}, Commutative)), a*b=b*a )</p>
+          </description>
+        </property>
+        <property>
+          <description>
+            <p>ForAll( [a,b,c], Associative, a*(b*c)=(a*b)*c ), associativity </p>
+          </description>
+        </property>
+        <property>
+          <description>
+            <p>
+multiplicative identity</p>
+          </description><![CDATA[
+<apply><forall/>
+  <bvar><ci>a</ci></bvar>
+  <apply><eq/>
+    <apply><times/><cn>1</cn><ci>a</ci></apply>
+    <ci>a</ci>
+  </apply> 
+</apply>
+]]></property>
+        <property>
+          <description>
+            <p> a*0=0 </p>
+          </description>
+        </property>
+        <property>
+          <description>
+            <p>
+Commutative property</p>
+          </description><![CDATA[
+<apply><forall/>
+  <bvar><ci>a</ci></bvar>
+  <bvar><ci>b</ci></bvar>
+  <condition>
+    <apply><and/>
+      <apply><in/><ci>a</ci><reals/></apply>
+      <apply><in/><ci>b</ci><reals/></apply>
+    </apply>
+  </condition>
+  <apply><eq/>
+    <apply><times/><ci>a</ci><ci>b</ci></apply>
+    <apply><times/><ci>b</ci><ci>a</ci></apply>
+  </apply>
+</apply>]]></property>
+        <property>
+	  <description>
+	    <p>a*0=0</p>
+	    </description>
+	    <![CDATA[<apply><forall/>
+  <bvar><ci>a</ci></bvar>
+  <apply><eq/>
+    <apply><times/><cn>0</cn><ci>a</ci></apply>
+    <cn>0</cn>
+  </apply> 
+</apply>]]>
+	</property>
+
+	<MMLexample>
+	  <description><p>If this were evaluated at 
+	  <var>a</var> = 5.5 and <var>b</var> = 3 it would yield 16.5.</p></description>
+	  <![CDATA[<apply><times/><ci>a</ci><ci>b</ci></apply>]]>
+	</MMLexample>
+      </MMLdefinition>
+
+      <MMLdefinition id="cds_root"  cdrole="application" arity="2">
+	<title>Root</title>
+        <name>root</name>
+        <description>
+          <p>This is the binary operator used to construct the nth root of an expression.
+          The first argument "a" is the expression and the second object "n" denotes the
+          root, as in ( a ) ^ (1/n)</p>
+        </description>
+	<discussion>
+	  <p>The <code>root</code> element is used to construct roots. The kind of root to be
+	  taken is specified by a <quote>degree</quote> child, which should be given as
+	  the second child of the <code>apply</code> element enclosing the <code>root</code>
+	  element. Thus, square roots correspond to the case where <code>degree</code>
+	  contains the value 2, cube roots correspond to 3, and so on.</p>
+	  
+	  <p>Note that MathML3 supports a <code>degree</code> element in the legacy <intref
+	  ref="contm_container">container representation</intref> (see <specref
+	  ref="contm_degree"/> for details). If no <code>degree</code> is present, a default
+	  value of 2 is used.</p>
+	</discussion>
+        <classification>function</classification>
+        <MMLattribute>
+          <attname> type </attname>
+          <attvalue> real | complex | principal_branch | MathMLType </attvalue>
+          <attdefault>real</attdefault>
+        </MMLattribute>
+	<rendering><p>
+	  <graphic role = "inline" source = "image/f4037.gif" alt = "\sqrt[n]{a}"/></p>
+	</rendering>
+	<optype>operator taking qualifiers</optype>
+        <signature> (algebraic) -> root(degree(2),algebraic) </signature>
+        <signature> (anything) -> root(degree(2),anything) </signature>
+        <signature> (degree,anything) -> root </signature>
+        <property>
+          <description>
+            <p>ForAll( bvars(a,n), root(degree(n),a) = a^(1/n) )</p>
+          </description><![CDATA[  ]]></property>
+        <MMLexample>
+          <description>
+            <p>The <var>n</var>th root of <var>a</var> is is given by</p>
+          </description><![CDATA[<apply><root/>]]>&lt;degree&gt;<![CDATA[<ci> n </ci>]]>&lt;/degree&gt;<![CDATA[<ci> a </ci></apply>]]></MMLexample>
+      </MMLdefinition>
+
+      <MMLdefinition id="cds_gcd"  cdrole="application" arity="nary">
+	<title>Greatest Common Divisor</title>
+        <name>gcd</name>
+        <description>
+          <p>This is the n-ary operator used to construct an expression which represents
+          the greatest common divisor of its arguments.  If no argument is provided, the
+          gcd is 0.  If one argument is provided, the gcd is that argument.</p>
+        </description>
+        <classification>function</classification>
+        <MMLattribute>
+          <attname>type</attname>
+          <attvalue>MathMLType</attvalue>
+          <attdefault>integer</attdefault>
+        </MMLattribute>
+	<rendering><p>
+	  <graphic role="inline" source="image/f4038.gif" alt="\gcd(a, b, c)"/></p>
+	  <p>This default rendering is English-language locale specific: other locales 
+	  may have different default renderings.</p>
+	</rendering>
+	<optype>n-ary associative operator</optype>
+	<signature> [type=MathMLtype](MathMLtype*) ->MathMLtype </signature>
+        <signature>(integer*) -> integer </signature>
+        <signature> (domainofapp,function) -> algebraic </signature>
+        <signature> (bvar+,domainofapp,algebraic) -> algebraic </signature>
+        <property><![CDATA[
+<apply><forall/>
+]]>&lt;forall/&gt;<![CDATA[  
+  <bvar><ci>x</ci></bvar>
+  <apply><eq/>
+    <apply><gcd/>
+      <ci>x</ci>
+      <cn>1</cn>
+    </apply>
+    <cn>1</cn>
+  </apply>
+</apply>
+]]></property>
+        <MMLexample><![CDATA[<apply><gcd/>
+  <cn>12</cn>
+  <cn>17</cn>
+</apply>]]></MMLexample>
+        <MMLexample><![CDATA[<apply><gcd/>
+  <cn>3</cn>
+  <cn>5</cn>
+  <cn>7</cn>
+</apply>]]></MMLexample>
+		<MMLexample>
+		<description><p>If this were evaluated at <var>a</var> = 15, 
+<var>b</var> = 21, <var>c</var> = 48, it would yield 3</p>
+		</description>
+		<![CDATA[
+		<apply> <gcd/>
+		  <ci> a </ci>
+		  <ci> b </ci>
+		  <ci> c </ci>
+		</apply>
+		]]></MMLexample>
+      </MMLdefinition>
+
+      <MMLdefinition id="cds_abs"  cdrole="application" arity="1">
+	<title>Absolute Value</title>
+        <name>abs</name>
+        <description>
+          <p>A unary operator which represents the absolute value of its argument. 
+In the complex case this is often referred to as the modulus. </p>
+        </description>
+	<discussion>
+	  <p>The <code>abs</code> element represents the absolute value of a real quantity or
+	  the modulus of a complex quantity.</p>
+	</discussion>
+	<classification>function</classification>
+        <MMLattribute>
+          <attname>type</attname>
+          <attvalue>MathMLType</attvalue>
+          <attdefault>real</attdefault>
+        </MMLattribute>
+	<rendering>
+	  <p><graphic role="inline" source="image/f4048.gif" alt="|x|"/></p>
+	</rendering>
+	<optype>unary arithmetic operator</optype>
+        <signature>(algebraic) -> algebraic</signature>
+        <signature>(real) -> real</signature>
+        <signature>(complex) -> real</signature>
+        <property>
+          <description>
+            <p>for all x and y, abs(x) + abs(y) >= abs(x+y) </p>
+          </description>
+        </property>
+        <MMLexample>
+		<description><p>The following example encodes the absolute value of <var>x</var>.</p>
+		</description>
+		<![CDATA[
+<apply><abs/><ci>x</ci></apply>
+]]></MMLexample>
+      </MMLdefinition>
+
+      <MMLdefinition id="cds_lcm"  cdrole="application" arity="nary">
+	<title>Least Common Multiple</title>
+        <name>lcm</name>
+        <description>
+          <p>This n-ary operator is used to construct an expression 
+which represents the least common multiple of its arguments.
+If no argument is provided, the lcm is 1.
+If one argument is provided, the lcm is that argument.
+The least common multiple of x and 1 is x.</p>
+        </description>
+	<discussion>
+	  <p>The 
+	  <code>lcm</code> element (introduced in MathML 2.0) is used to denote the lowest common
+	  multiple of its arguments.</p>
+	  <p>As an n-ary operator, its operands may also be generated as described in
+	  <specref ref="contm_naryopwithqual"/> Therefore it may take qualifiers.
+	  </p>
+	</discussion>
+        <classification>function</classification>
+        <MMLattribute>
+          <attname>type</attname>
+          <attvalue>MathMLType</attvalue>
+          <attdefault>integer</attdefault>
+        </MMLattribute>
+	<rendering><p>
+	  <graphic role = "inline" source = "image/new-lcm.gif" alt = "\mathrm{lcm}(a, b, c)"/></p>
+	  <p>This default rendering is English-language locale specific: other locales 
+	  may have different default renderings.</p>
+	</rendering>
+	<optype>n-ary operator</optype>
+        <signature> [type=MathMLtype](MathMLtype*) -> MathMLtype </signature>
+        <signature>(integer*) -> integer</signature>
+        <signature>(algebraic*) -> algebraic</signature>
+        <signature> (domainofapp,function) -> algebraic </signature>
+        <signature> (bvar+,domainofapp,anything) -> algebraic </signature>
+        <property>
+          <description>
+            <p>ForAll( x, lcm(x,1)=x )</p>
+          </description><![CDATA[
+<apply><forall/>
+  <bvar><ci>x</ci></bvar>
+  <apply><eq/>
+    <apply><lcm/><ci>x</ci><cn>1</cn></apply>
+    <ci>x</ci>
+  </apply>
+</apply>
+]]></property>
+        <MMLexample><![CDATA[<apply><lcm/>
+  <cn>12</cn>
+  <cn>17</cn>
+</apply>]]></MMLexample>
+        <MMLexample><![CDATA[<apply><lcm/>
+  <cn>3</cn>
+  <cn>5</cn>
+  <cn>7</cn>
+</apply>]]></MMLexample>
+		<MMLexample>
+		<description><p>If this were evaluated at <var>a</var> = 2, 
+<var>b</var> = 4, <var>c</var> = 6 it would yield 12.</p></description>
+		<![CDATA[
+		<apply> <lcm/>
+		  <ci> a </ci>
+		  <ci> b </ci>
+		  <ci> c </ci>
+		</apply>
+		]]></MMLexample>
+      </MMLdefinition>
+
+  <MMLdefinition id="cds_sum"  cdrole="application">
+    <name>sum</name>
+    <description>
+      <p>The sum element denotes the summation operator.  It may be qualified by providing
+      a domainofapplication.  This may be provided using one of the shorthand notations
+      for domainofapplication such as an uplimit,lowlimit pair or a condition or an
+      interval.  The index for the summation is specified by a bvar element.</p>
+    </description>
+    <discussion>
+      <p>The <el>sum</el> element denotes the summation operator.  The most general form
+      of a sum specifies the terms of the sum by using a <el>domainofapplication</el>
+      element to specify a domain.  If no bound variables are specified then terms of the
+      sum correspond to those produced by evaluating the function that is provided at the
+      points of the domain, while if bound variables are present they are the index of
+      summation and they take on the values of points in the domain.  In this case the
+      terms of the sum correspond to the values of the expression that is provided,
+      evaluated at those points.  Depending on the structure of the domain, the domain of
+      summation can be abbreviated by using <el>uplimit</el> and <el>lowlimit</el> to
+      specify upper and lower limits for the sum. </p>
+
+      <p>The <el>sum</el> function accept the <el>bvar</el>, <el>lowlimit</el>,
+      <el>uplimit</el>, <el>interval</el>, <el>condition</el> and
+      <el>domainofapplication</el> schemata. If both <el>lowlimit</el> and
+      <el>uplimit</el> schemata are present, they denote the limits of the sum or
+      product. The limits may alternatively be specified using the <el>interval</el>,
+      <el>condition</el> or <el>domainofapplication</el> schema. The <el>bvar</el> schema
+      signifies the internal variable in the sum or product. A typical example might be:
+
+<eg role = "mathml"><![CDATA[
+<apply>
+  <sum/>
+  <bvar><ci>i</ci></bvar>
+  <lowlimit><cn>0</cn></lowlimit>
+  <uplimit><cn>100</cn></uplimit>
+  <apply>
+    <power/>
+    <ci>x</ci>
+    <ci>i</ci>
+  </apply>
+</apply>]]></eg>
+
+When used with <el>sum</el> or <el>product</el>, each qualifier schema is expected to
+contain a single child schema; otherwise an error is generated.</p>
+		</discussion>
+        <classification>function</classification>
+	<rendering>
+	  <graphic role="display" source="image/f4088.gif" alt="\sum_{x=a}^b f(x)"/>
+	  <graphic role="display" source="image/f4089.gif" alt="\sum_{x \in B} f(x)"/>
+	  <graphic role="display" source="image/f4089a.gif" alt="\sum_{B} f"/>
+	</rendering>
+        <signature> (function ) -> function </signature>
+        <signature> (bvar,algebraic ) -> algebraic </signature>
+        <signature> (domainofapp,function) -> function </signature>
+        <signature> (bvar+,domainofapp,algebraic) -> algebraic </signature>
+        <MMLexample><![CDATA[<apply><sum/>
+  <bvar> <ci> x </ci></bvar>
+  <lowlimit><ci> a </ci></lowlimit>
+  <uplimit><ci> b </ci></uplimit>
+  <apply><ci> f </ci><ci> x </ci></apply>
+</apply>]]></MMLexample>
+	<MMLexample><![CDATA[<apply><sum/>
+  <bvar><ci> x </ci></bvar>
+  <condition><apply> <in/><ci> x </ci><ci type="set">B</ci></apply></condition>
+  <apply><ci type="function"> f </ci><ci> x </ci></apply>
+</apply>]]></MMLexample>
+
+	<MMLexample>
+	  <![CDATA[<apply>
+  <sum/>
+  <domainofapplication>
+    <ci type="set"> B </ci>
+  </domainofapplication>
+  <ci type="function"> f </ci>
+</apply>]]></MMLexample>
+      </MMLdefinition>
+      
+      <MMLdefinition id="cds_product" cdrole="application">
+        <name>product</name>
+        <description>
+          <p>The product element denotes the product operator.  It may be qualified by
+          providing a domainofapplication.  This may be provided using one of the
+          shorthand notations for domainofapplication such as an uplimit,lowlimit pair or
+          a condition or an interval.  The index for the product is specified by a bvar
+          element.</p>
+        </description>
+
+	<discussion>
+	  <p>The <el>product</el> element denotes the product operator.  The most general
+	  form of a product specifies the terms of the product by using a
+	  <el>domainofapplication</el> element to specify the domain.  If no bound
+	  variables are specified then terms of the product correspond to those produced
+	  by evaluating the function that is provided at the points of the domain, while
+	  if bound variables are present they are the index of product and they take on
+	  the values of points in the domain.  In this case the terms of the product
+	  correspond to the values of the expression that is provided, evaluated at those
+	  points.  Depending on the structure of the domain, the domain of product can be
+	  abbreviated by using <el>uplimit</el> and <el>lowlimit</el> to specify upper and
+	  lower limits for the product. </p>
+
+	  <p>The <el>sum</el> function accepts the <el>bvar</el>, <el>lowlimit</el>,
+	  <el>uplimit</el>, <el>interval</el>, <el>condition</el> and
+	  <el>domainofapplication</el> schemata. If both <el>lowlimit</el> and
+	  <el>uplimit</el> schemata are present, they denote the limits of the sum or
+	  product. The limits may alternatively be specified using the <el>interval</el>,
+	  <el>condition</el> or <el>domainofapplication</el> schema. The <el>bvar</el>
+	  schema signifies the internal variable in the sum or product.</p>
+	</discussion>
+        <classification>function</classification>
+	<rendering>
+	  <p>
+	    <graphic role="display" source="image/f4090.gif" alt="\prod_{x=a}^b f(x)"/>
+	    <graphic role="display" source="image/f4091.gif" alt="\prod_{x \in B} f(x)"/>
+	  </p>
+	</rendering>
+        <signature> (function) -> function </signature>
+        <signature> (bvar,algebraic) -> algebraic </signature>
+        <signature> (domainofapp,function) -> function </signature>
+        <signature> (bvar+,domainofapp,algebraic) -> algebraic </signature>
+        <MMLexample><![CDATA[
+<apply><product/>
+  <bvar><ci> x </ci></bvar>
+  <lowlimit> <ci> a </ci></lowlimit>
+  <uplimit><ci> b </ci></uplimit>
+  <apply><ci type="function"> f </ci><ci> x </ci></apply>
+</apply>
+]]></MMLexample>
+        <MMLexample><![CDATA[
+<apply><product/>
+  <bvar><ci> x </ci></bvar>
+  <condition><apply> <in/><ci> x </ci><ci type="set">B</ci></apply></condition>
+  <apply><ci> f </ci><ci> x </ci></apply>
+</apply>
+]]></MMLexample>
+      </MMLdefinition>
+
+</mcd>
