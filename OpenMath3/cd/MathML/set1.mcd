@@ -101,12 +101,7 @@
       <graphic role="inline" source="image/f4077.gif" alt="[ x \mid x &lt; 5 ]"/></p></item>
     </ulist>
     </rendering>
-    <signature> (anything*) -> list </signature>
-    <signature>[order=ordering](anything*) -> list </signature>
-        <signature>(domainofapp,function) -> list </signature>
-        <signature>(bvar+,domainofapp,anything) -> list </signature>
-        <signature>[order=ordering](domainofapp,function) -> list(ordering) </signature>
-        <signature>[order=ordering](bvar*,domainofapp,anything) -> list(ordering) </signature>
+
         <MMLexample><![CDATA[<list><ci>a</ci><ci>b</ci><ci>c</ci></list>]]></MMLexample>
         <MMLexample><![CDATA[<list order="numeric">
   <bvar><ci>x</ci></bvar>
@@ -139,12 +134,7 @@
 	  <graphic role="display" source="image/f4078.gif" alt="A \cup B"/>
 	  <graphic role="display" source="image/f4078b.gif" alt="\bigcup_{S\in L} S"/>
 	</rendering>
-	<signature> (set*) -> set </signature>
-        <signature> (multiset*) -> multiset </signature>
-        <signature> (domainofapp, set_valued_function) -> set </signature>
-        <signature> (bvar+,domainofapp,set_valued_expression) -> set</signature>
-        <signature> (domainofapp, multiset_valued_function) -> multiset </signature>
-        <signature> (bvar+,domainofapp,multiset_valued_expression) -> multiset</signature>
+
         <MMLexample><![CDATA[<apply><union/>
   <ci> A </ci>
   <ci> B </ci>
@@ -181,12 +171,7 @@
 	  <graphic role="display" source="image/f4079.gif" alt="A \cap B"/>
 	  <graphic role="display" source="image/f4079b.gif" alt="\bigcap_{S\in L} S"/>
 	</rendering>
-	<signature> (set*) -> set </signature>
-        <signature> (multiset*) -> multiset </signature>
-        <signature> (domainofapp, set_valued_function) -> set </signature>
-        <signature> (bvar+,domainofapp,set_valued_expression) -> set</signature>
-        <signature> (domainofapp, multiset_valued_function) -> multiset </signature>
-        <signature> (bvar+,domainofapp,multiset_valued_expression) -> multiset</signature>
+
         <MMLexample><![CDATA[<apply><intersect/>
   <ci type="set"> A </ci>
   <ci type="set"> B </ci>
@@ -217,8 +202,6 @@
 	  <graphic role="display" source="image/f4080.gif" alt="a \in A"/>
 	</rendering>
 <optype>binary relation</optype>
-        <signature> (anything,set) -> boolean </signature>
-        <signature> (anything,multiset) -> boolean </signature>
         <MMLexample><![CDATA[<apply><in/>
   <ci> a </ci>
   <ci type="set"> A </ci>
@@ -241,8 +224,6 @@ to construct set-theoretic exclusion ('is not in' or 'is not a member of').</p>
 	  <graphic role="display" source="image/f4081.gif" alt="a \notin A"/>
 	</rendering>
 	<optype>binary relation</optype>
-        <signature> (anything,set) -> boolean </signature>
-        <signature> (anything,multiset) -> boolean </signature>
         <MMLexample><![CDATA[<apply><notin/>
   <ci> a </ci>
   <ci type="set"> A </ci>
@@ -266,10 +247,6 @@ to construct set-theoretic exclusion ('is not in' or 'is not a member of').</p>
 	<rendering>
 	  <graphic role="display" source="image/f4082.gif" alt="A \subseteq B"/>
 	</rendering>
-        <signature> (set*) -> boolean </signature>
-        <signature> (multiset*) -> boolean </signature>
-        <signature> (domainofapp,function) -> boolean </signature>
-        <signature> (bvar+,domainofapp,algebraic) -> boolean </signature>
         <MMLexample><![CDATA[<apply><subset/>
   <ci type="set"> A </ci>
   <ci type="set"> B </ci>
@@ -307,10 +284,6 @@ to construct set-theoretic exclusion ('is not in' or 'is not a member of').</p>
 	<rendering>
 	  <graphic role="display" source="image/f4083.gif" alt="A \subset B"/>
 	</rendering>
-        <signature> (set*) -> boolean </signature>
-        <signature> (multiset*) -> boolean </signature>
-        <signature> (domainofapp,function) -> boolean </signature>
-        <signature> (bvar+,domainofapp,boolean) -> boolean </signature>
         <MMLexample><![CDATA[<apply><prsubset/>
   <ci type="set"> A </ci>
   <ci type="set"> B </ci>
@@ -344,8 +317,6 @@ set-theoretic relation 'is not a subset of'.</p>
 	  <graphic role="display" source="image/f4084.gif" alt="A \nsubseteq B"/>
 	</rendering>
 	<optype>binary relation</optype>
-	<signature> (set, set) -> boolean </signature>
-        <signature> (multiset,multiset) -> boolean </signature>
         <MMLexample><![CDATA[<apply><notsubset/>
   <ci type="set"> A </ci>
   <ci type="set"> B </ci>
@@ -368,8 +339,6 @@ set-theoretic relation 'is not a subset of'.</p>
 	  <graphic role="display" source="image/f4085.gif" alt="A \not\subset B"/>
 	</rendering>
 	<optype>binary relation</optype>
-        <signature> (set,set) -> boolean </signature>
-        <signature> (multiset,multiset) -> boolean </signature>
         <MMLexample><![CDATA[<apply><notprsubset/>
   <ci type="set"> A </ci>
   <ci type="set"> B </ci>
@@ -391,8 +360,6 @@ set-theoretic relation 'is not a subset of'.</p>
 	<rendering>
 	  <graphic role="display" source="image/f4086.gif" alt="A \setminus B"/>
 	</rendering>
-	<signature> (set,set) -> set </signature>
-        <signature> (multiset,multiset) -> multiset </signature>
         <MMLexample><![CDATA[<apply><setdiff/>
   <ci type="set"> A </ci>
   <ci type="set"> B </ci>
@@ -415,8 +382,6 @@ set-theoretic relation 'is not a subset of'.</p>
 	<rendering>
 	  <graphic role="display" source="image/f4087.gif" alt="| A | = 5"/>
 	</rendering>
-	<signature> (set) -> scalar </signature>
-        <signature> (multiset) -> scalar </signature>
         <MMLexample>
 		<description><p>where A is a set with 5 elements.</p>
 		</description>
@@ -451,8 +416,6 @@ may be repeated if elements in the base sets are repeated.</p>
 	  <graphic role="display" source="image/cartesianproduct2.gif" alt="\mathbb{R} \times \mathbb{R} \times \mathbb{R}"/>
 	  <graphic role="display" source="image/cartesianproduct3.gif" alt="\mathbb{R}^3"/>
 	</rendering>
-        <signature> (set*) -> set </signature>
-        <signature> (multiset*) -> multiset </signature>
         <MMLexample><![CDATA[<apply><cartesianproduct/><ci>A</ci><ci>B</ci></apply>]]></MMLexample>
         <MMLexample><![CDATA[<apply><cartesianproduct/><reals/><reals/><reals/></apply>]]></MMLexample>
       </MMLdefinition>
@@ -469,7 +432,6 @@ may be repeated if elements in the base sets are repeated.</p>
 	<rendering>
 	  <graphic role="display" source="image/new-emptyset.gif" alt="\mathbb{Z} \neq \emptyset"/>
 	</rendering>
-        <signature>set</signature>
         <property>
           <description>
             <p>

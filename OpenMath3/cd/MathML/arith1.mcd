@@ -16,11 +16,6 @@
   
   <rendering><p><graphic role = "inline" source = "image/f4028.gif" alt = "a/b"/></p></rendering>
   <optype>binary arithmetic operator</optype>
-  <signature> (algebraic, algebraic) -> algebraic </signature>
-  <signature> (complex, complex) -> complex </signature>
-  <signature> (real, real) -> real </signature>
-  <signature> (rational, rational) -> rational </signature>
-  <signature> (integer, integer) -> rational </signature>
   <property>
     <description>
       <p>Division by Zero error</p>
@@ -76,9 +71,6 @@
           <attdefault>real</attdefault>
         </MMLattribute>
 	<rendering><p><graphic role="inline" source="image/f4032.gif" alt="x-y"/></p></rendering>
-        <signature>(real,real) -> real</signature>
-        <signature>(algebraic,algebraic) -> algebraic</signature>
-        <signature>[type=MathMLtype](MathMLtype,MathMLtype) -> MathMLtype </signature>
         <property>
           <description>
             <p>ForAll( x, x-x=0 )</p>
@@ -112,10 +104,7 @@
           <attdefault>real</attdefault>
         </MMLattribute>
 	<rendering><p><graphic role="inline" source="image/f4032.gif" alt="x-y"/></p></rendering>
-        <signature>(real) -> real</signature>
-        <signature>(algebraic) -> algebraic</signature>
-        <signature>[type=MathMLtype](MathMLtype) -> MathMLtype </signature>
-        <MMLexample><![CDATA[<apply><minus/><cn>3</cn></apply>]]></MMLexample>
+         <MMLexample><![CDATA[<apply><minus/><cn>3</cn></apply>]]></MMLexample>
       </MMLdefinition>
 
       <MMLdefinition id="cds_plus"  cdrole="application" arity="nary">
@@ -153,15 +142,6 @@
         </MMLattribute>
 	<rendering><graphic  source="image/f4033.gif" alt="x+y+z"/></rendering>
 	<optype>n-ary arithmetic operator</optype>
-        <signature>[type=MathMLtype](anything*) -> MathMLtype </signature>
-        <signature>(set*) -> set</signature>
-        <signature>(multiset*) -> multiset</signature>
-        <signature>(algebraic*) -> algebraic</signature>
-        <signature>(real*) -> real</signature>
-        <signature>(complex*) -> complex</signature>
-        <signature>(integer*) -> integer</signature>
-        <signature> (domainofapp,function) -> algebraic </signature>
-        <signature> (bvar+,domainofapp,algebraic) -> algebraic </signature>
         <property>
           <description>
             <p>an sum of no terms is 0</p>
@@ -244,12 +224,6 @@
 	  <graphic role="inline" source="image/f4034.gif" alt="x^3"/></p>
 	</rendering>
 	<optype>binary arithmetic operator</optype>
-	<signature> (algebraic, algebraic) -> algebraic </signature>
-        <signature> (complex, complex) -> complex </signature>
-        <signature> (real, real) -> complex </signature>
-        <signature> (rational, integer) -> rational </signature>
-        <signature> (integer, integer) -> rational </signature>
-        <signature>[type=MathMLtype](anything,anything) -> MathMLtype </signature>
         <property>
           <description>
             <p>ForAll( a, a!=0, a^0=1 )</p>
@@ -330,13 +304,6 @@
 		<rendering><p>
 			<graphic role="inline" source="image/f4036.gif" alt="a b"/></p>
 		</rendering>
-        <signature> (algebraic*) -> algebraic </signature>
-        <signature> (complex*) -> complex </signature>
-        <signature> (real*) -> real </signature>
-        <signature> (rational*) -> rational </signature>
-        <signature> (integer*) -> integer </signature>
-        <signature> (domainofapp,function) -> algebraic </signature>
-        <signature> (bvar+,domainofapp,anything) -> algebraic </signature>
         <property>
           <description>
             <p>ForAll( [a,b], condition(in({a,b}, Commutative)), a*b=b*a )</p>
@@ -434,9 +401,6 @@ Commutative property</p>
 	  <graphic role = "inline" source = "image/f4037.gif" alt = "\sqrt[n]{a}"/></p>
 	</rendering>
 	<optype>operator taking qualifiers</optype>
-        <signature> (algebraic) -> root(degree(2),algebraic) </signature>
-        <signature> (anything) -> root(degree(2),anything) </signature>
-        <signature> (degree,anything) -> root </signature>
         <property>
           <description>
             <p>ForAll( bvars(a,n), root(degree(n),a) = a^(1/n) )</p>
@@ -467,10 +431,6 @@ Commutative property</p>
 	  may have different default renderings.</p>
 	</rendering>
 	<optype>n-ary associative operator</optype>
-	<signature> [type=MathMLtype](MathMLtype*) ->MathMLtype </signature>
-        <signature>(integer*) -> integer </signature>
-        <signature> (domainofapp,function) -> algebraic </signature>
-        <signature> (bvar+,domainofapp,algebraic) -> algebraic </signature>
         <property><![CDATA[
 <apply><forall/>
 ]]>&lt;forall/&gt;<![CDATA[  
@@ -527,9 +487,6 @@ In the complex case this is often referred to as the modulus. </p>
 	  <p><graphic role="inline" source="image/f4048.gif" alt="|x|"/></p>
 	</rendering>
 	<optype>unary arithmetic operator</optype>
-        <signature>(algebraic) -> algebraic</signature>
-        <signature>(real) -> real</signature>
-        <signature>(complex) -> real</signature>
         <property>
           <description>
             <p>for all x and y, abs(x) + abs(y) >= abs(x+y) </p>
@@ -573,11 +530,6 @@ The least common multiple of x and 1 is x.</p>
 	  may have different default renderings.</p>
 	</rendering>
 	<optype>n-ary operator</optype>
-        <signature> [type=MathMLtype](MathMLtype*) -> MathMLtype </signature>
-        <signature>(integer*) -> integer</signature>
-        <signature>(algebraic*) -> algebraic</signature>
-        <signature> (domainofapp,function) -> algebraic </signature>
-        <signature> (bvar+,domainofapp,anything) -> algebraic </signature>
         <property>
           <description>
             <p>ForAll( x, lcm(x,1)=x )</p>
@@ -661,10 +613,7 @@ contain a single child schema; otherwise an error is generated.</p>
 	  <graphic role="display" source="image/f4089.gif" alt="\sum_{x \in B} f(x)"/>
 	  <graphic role="display" source="image/f4089a.gif" alt="\sum_{B} f"/>
 	</rendering>
-        <signature> (function ) -> function </signature>
-        <signature> (bvar,algebraic ) -> algebraic </signature>
-        <signature> (domainofapp,function) -> function </signature>
-        <signature> (bvar+,domainofapp,algebraic) -> algebraic </signature>
+
         <MMLexample><![CDATA[<apply><sum/>
   <bvar> <ci> x </ci></bvar>
   <lowlimit><ci> a </ci></lowlimit>
@@ -725,10 +674,7 @@ contain a single child schema; otherwise an error is generated.</p>
 	    <graphic role="display" source="image/f4091.gif" alt="\prod_{x \in B} f(x)"/>
 	  </p>
 	</rendering>
-        <signature> (function) -> function </signature>
-        <signature> (bvar,algebraic) -> algebraic </signature>
-        <signature> (domainofapp,function) -> function </signature>
-        <signature> (bvar+,domainofapp,algebraic) -> algebraic </signature>
+
         <MMLexample><![CDATA[
 <apply><product/>
   <bvar><ci> x </ci></bvar>
