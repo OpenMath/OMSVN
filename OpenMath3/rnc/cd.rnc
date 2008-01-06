@@ -6,15 +6,17 @@
 
 default namespace = "http://www.openmath.org/OpenMathCD"
 
-include "openmath3.rnc" {start = CD}
-include "mathml3.rnc" {start = CD}
+start = CD
 
 CDComment = element CDComment { text }
 CDName = element CDName { xsd:NCName }
 CDUses = element CDUses { CDName* }
 CDURL = element CDURL { xsd:anyURI }
 CDBase = element CDBase { xsd:anyURI }
-text-or-om = (text | OMOBJ)*
+
+mobj = (external "openmath3.rnc" | external "mathml3.rnc")
+
+text-or-om = (text | mobj)*
 CDReviewDate = element CDReviewDate { xsd:date }
 CDDate = element CDDate { xsd:date }
 CDVersion = element CDVersion { xsd:nonNegativeInteger }
@@ -33,17 +35,18 @@ Role = element Role {
    "error" |
    "application" |
    "constant" }
+Arity = element Arity {"nary" | "1" | "2" | "constant"}
 CMP = element CMP { text }
 FMP = element FMP { 
   attribute kind {xsd:string}?,
-  OMOBJ
+  mobj
   }
 # allow embedded OM
 Example = element Example { text-or-om }
 CDDefinition =
   element CDDefinition {
     CDComment*,
-    (Name & Role? & Description),
+    (Name & Role? & Arity? & Description),
    (CDComment | Example | FMP | CMP)*
   }
 CD =
