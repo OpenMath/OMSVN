@@ -1,0 +1,57 @@
+#     This is the Mathematical Markup Language (MathML) 3.0, an XML
+#     application for describing mathematical notation and capturing
+#     both its structure and content.
+#
+#     Copyright 1998-2007 World Wide Web Consortium
+#        (Massachusetts Institute of Technology, Institut National de
+#         Recherche en Informatique et en Automatique, Keio University).
+#         All Rights Reserved.
+#
+#     Permission to use, copy, modify and distribute the RelaxNG schema for MathML3
+#     and its accompanying documentation for any purpose and without fee is
+#     hereby granted in perpetuity, provided that the above copyright notice
+#     and this paragraph appear in all copies.  The copyright holders make
+#     no representation about the suitability of the Schema for any purpose.
+#
+#     This file contains the grammar driver for MathML3
+#     It is provided "as is" without expressed or implied warranty.
+#
+#     Revision:   $Id: mathml3.rnc,v 1.8 2007/12/06 15:02:30 mkohlhas2 Exp $
+#     Author: Michael Kohlhase http://kwarc.info/kohlhase
+
+default namespace m = "http://www.w3.org/1998/Math/MathML"
+namespace local = ""
+
+
+non-mathml-attribs = attribute * - (local:*) {xsd:string} 
+
+MathML.Common.attrib = attribute class {xsd:NMTOKENS}?,
+                attribute style {xsd:string}?,
+                attribute id {xsd:ID}?,
+                non-mathml-attribs*
+
+include "mathml3-presentation.rnc"
+include "mathml3-strict.rnc"
+include "mathml3-pragmatic.rnc"
+include "mathml3-cds.rnc"
+include "mathml3-deprecated.rnc"
+
+Browser-interface.attrib = attribute baseline {xsd:string}?,
+                           attribute overflow {"scroll" | "elide" | "truncate" | "scale"}?,
+                           attribute altimg {xsd:anyURI}?,
+                           attribute alttext {xsd:string}?,
+       			   attribute type {xsd:string}?,
+			   attribute name {xsd:string}?,	    
+			   attribute height {xsd:string}?,
+			   attribute width {xsd:string}?
+
+math.attlist = Browser-interface.attrib,
+	       attribute macros {xsd:string}?,
+	       attribute display {"block" | "inline"}?,
+	       MathML.Common.attrib
+
+math.content = PresExp | ContExp
+
+math = element math {math.attlist,math.content*}
+
+start = math

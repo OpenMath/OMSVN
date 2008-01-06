@@ -1,0 +1,284 @@
+#     This is the Mathematical Markup Language (MathML) 3.0, an XML
+#     application for describing mathematical notation and capturing
+#     both its structure and content.
+#
+#     Copyright 1998-2007 World Wide Web Consortium
+#        (Massachusetts Institute of Technology, Institut National de
+#         Recherche en Informatique et en Automatique, Keio University).
+#         All Rights Reserved.
+#
+#     Permission to use, copy, modify and distribute the RelaxNG schema for MathML3
+#     and its accompanying documentation for any purpose and without fee is
+#     hereby granted in perpetuity, provided that the above copyright notice
+#     and this paragraph appear in all copies.  The copyright holders make
+#     no representation about the suitability of the Schema for any purpose.
+#
+#     This file contains the grammar rules for presentation MathML3
+#     It is provided "as is" without expressed or implied warranty.
+#
+#     Revision:   $Id: mathml3-presentation.rnc,v 1.13 2007/12/06 15:33:10 mkohlhas2 Exp $
+#     Author: Michael Kohlhase http://kwarc.info/kohlhase
+
+default namespace m = "http://www.w3.org/1998/Math/MathML"
+
+simple-size= "small" | "normal" | "big"
+centering.values = "left" | "center" | "right"
+named-space = "veryverythinmathspace" | "verythinmathspace" | "thinmathspace" | 
+              "mediummathspace" | 
+              "thickmathspace" | "verythickmathspace" | "veryverythickmathspace"
+thickness = "thin" | "medium" | "thick"
+
+# number with units used to specified lengths 
+#ednote(rnc:units-patterns) need final decision on the patterns here and refactor to horizontal and vertical ones
+length-with-unit = 
+    xsd:string #{pattern="(-?([0-9]+|[0-9]*\.[0-9]+)(em|ex|px|in|cm|mm|pt|pc|%))|0"}
+length-with-optional-unit = 
+   xsd:string #{pattern="-?([0-9]+|[0-9]*\.[0-9]+)(em|ex|px|in|cm|mm|pt|pc|%)?"}
+
+# This is just "infinity" that can be used as a length 
+infinity = "infinity"
+
+# colors defined as RGB 
+RGB-color = xsd:string {pattern="#(([0-9]|[a-f]){3}|([0-9]|[a-f]){6})"}
+
+# The mathematics style attributes. These attributes are valid on all
+#     presentation token elements except "mspace" and "mglyph", and on no
+#     other elements except "mstyle". 
+
+Token-style.attrib = attribute mathvariant
+		       {"normal" | "bold" | "italic" | "bold-italic" | "double-struck" | 
+                        "bold-fraktur" | "script" | "bold-script" | "fraktur" | 
+ 			"sans-serif" | "bold-sans-serif" | "sans-serif-italic" | 
+			"sans-serif-bold-italic" | "monospace"}?,
+                     attribute mathsize {simple-size | length-with-unit}?,
+#ednote(rnc:mathvariant) For both of the following attributes the types should be more restricted 
+                     attribute mathcolor {xsd:string}?,
+   		     attribute mathbackground {xsd:string}?
+
+truefalse = "true" | "false"
+
+Operator.attrib = 
+# this attribute value is normally inferred from the position of
+# the operator in its "<mrow"> 
+   attribute form {"prefix" | "infix" | "postfix"}?,
+   # set by dictionary, else it is "thickmathspace" 
+   attribute lspace {length-with-unit | named-space}?,
+   # set by dictionary, else it is "thickmathspace" 
+   attribute rspace {length-with-unit | named-space}?,
+   # set by dictionnary, else it is "false" 
+   attribute fence {truefalse}?,
+   # set by dictionnary, else it is "false" 
+   attribute separator {truefalse}?,
+   # set by dictionnary, else it is "false" 
+   attribute stretchy {truefalse}?,
+   # set by dictionnary, else it is "true" 
+   attribute symmetric {truefalse}?,
+   # set by dictionnary, else it is "false" 
+   attribute movablelimits {truefalse}?,
+   # set by dictionnary, else it is "false" 
+   attribute accent {truefalse}?,
+   # set by dictionnary, else it is "false" 
+   attribute largeop {truefalse}?,
+   attribute minsize {length-with-unit | named-space}?,
+   attribute maxsize {length-with-unit | named-space | infinity | xsd:float}?
+
+
+mglyph = element mglyph {MathML.Common.attrib,
+                     attribute alt {xsd:string}?,
+                     (attribute src {xsd:anyURI}| attribute fontfamily {xsd:string}),
+		     attribute width {xsd:string}?,
+		     attribute height {xsd:string}?,
+		     attribute baseline {xsd:string}?,
+		     attribute index {xsd:positiveInteger}?}
+#ednote(mglyph_alt) perhaps make alt required 9but breaks stuff, or just make it required if there is a src attribute
+
+linethickness.attrib = attribute linethickness {length-with-optional-unit|thickness}
+mline = element mline {MathML.Common.attrib,
+      linethickness.attrib?,
+      attribute spacing {xsd:string}?,
+      attribute length {length-with-unit | named-space}?}
+
+Glyph-alignmark = malignmark|mglyph
+
+mi = element mi {MathML.Common.attrib,Token-style.attrib,(Glyph-alignmark|text)*}
+
+mo = element mo {MathML.Common.attrib,Operator.attrib,Token-style.attrib,
+                 (text|Glyph-alignmark)*}
+
+mn = element mn {MathML.Common.attrib,Token-style.attrib,(text|Glyph-alignmark)*}
+
+mtext = element mtext {MathML.Common.attrib,Token-style.attrib,(text|Glyph-alignmark)*}
+
+ms = element ms {MathML.Common.attrib,Token-style.attrib,
+                 attribute lquote {xsd:string}?,
+		 attribute rquote {xsd:string}?,
+		 (text|Glyph-alignmark)*}
+
+# And the group of any token 
+Pres-token = mi | mo | mn | mtext | ms
+
+msub = element msub {MathML.Common.attrib,
+                  attribute subscriptshift {length-with-unit}?,
+                  ContInPres,ContInPres}
+
+msup = element msup {MathML.Common.attrib,
+                  attribute supscriptshift {length-with-unit}?, 
+                  ContInPres,ContInPres}
+
+msubsup = element msubsup {MathML.Common.attrib,
+                     attribute subscriptshift {length-with-unit}?, 
+                     attribute supscriptshift {length-with-unit}?, 
+                     ContInPres,ContInPres,ContInPres}
+
+munder = element munder {MathML.Common.attrib,
+                         attribute accentunder {truefalse}?, 
+                         ContInPres,ContInPres}
+
+mover = element mover {MathML.Common.attrib,
+                       attribute accent {truefalse}?, 
+                       ContInPres,ContInPres}
+
+munderover = element munderover {MathML.Common.attrib,
+                                 attribute accentunder {truefalse}?, 
+                                 attribute accent {truefalse}?, 
+                                 ContInPres,ContInPres,ContInPres}
+
+PresExp-or-none = ContInPres | none
+mmultiscripts = element mmultiscripts{MathML.Common.attrib,
+	                              ContInPres, 
+				      (PresExp-or-none,PresExp-or-none)*,
+				      (mprescripts,(PresExp-or-none,PresExp-or-none)*)?}
+none = element none {empty}
+mprescripts = element mprescripts {empty}
+
+Pres-script = msub|msup|msubsup|munder|mover|munderover|mmultiscripts
+linebreak-values = "auto" | "newline" | "indentingnewline" | "nobreak" | "goodbreak" | "badbreak"
+mspace = element mspace {MathML.Common.attrib,
+                         attribute width {length-with-unit | named-space}?,
+	           	 attribute height {length-with-unit}?,
+	           	 attribute depth {length-with-unit}?,
+                   	 attribute linebreak {linebreak-values}?}
+
+mrow = element mrow {MathML.Common.attrib,ContInPres*}
+
+mfrac = element mfrac {MathML.Common.attrib,
+                       attribute bevelled {truefalse}?,
+                       attribute denomalign {centering.values}?,
+		       attribute numalign {centering.values}?,
+		       linethickness.attrib?,
+		       ContInPres,ContInPres}
+msqrt = element msqrt {MathML.Common.attrib,ContInPres*}
+
+mroot = element mroot {MathML.Common.attrib,ContInPres,ContInPres}
+
+mpadded-space = xsd:string {pattern="(\+|-)?([0-9]+|[0-9]*\.[0-9]+)(((%?)*(width|lspace|height|depth))|(em|ex|px|in|cm|mm|pt|pc))"}
+
+#ednote(rnc:leftover-max) MaxF: definition from spec seems wrong, fixing to ([+|-] unsigned-number (%[pseudo-unit]|pseudo-unit|h-unit)) | namedspace | 0 
+
+mpadded-width-space = xsd:string {pattern="((\+|-)?([0-9]+|[0-9]*\.[0-9]+)(((%?) *(width|lspace|height|depth)?)|(width|lspace|height|depth)|(em|ex|px|in|cm|mm|pt|pc)))|((veryverythin|verythin|thin|medium|thick|verythick|veryverythick)mathspace)|0"}
+
+mpadded = element mpadded {MathML.Common.attrib,
+	                   attribute width {mpadded-width-space}?,
+  			   attribute lspace {mpadded-space}?,
+  			   attribute height {mpadded-space}?,
+  			   attribute depth {mpadded-space}?,
+  			   ContInPres*}
+
+mphantom = element mphantom.attlist {MathML.Common.attrib,ContInPres*}
+
+mfenced = element mfenced {MathML.Common.attrib,
+                           attribute open {xsd:string}?,
+  	                   attribute close {xsd:string}?,
+  			   attribute separators {xsd:string}?,
+			   ContInPres*}
+
+notation-values = "actuarial"|"longdiv"|"radical"| 
+                              "box"|"roundedbox"|"circle"| 
+                              "left"|"right"|"top"|"bottom"|
+                              "updiagonalstrike"|"downdiagonalstrike"| 
+                              "verticalstrike"|"horizontalstrike"
+menclose = element menclose {MathML.Common.attrib,
+                          attribute notation {notation-values}?,
+			  ContInPres*}
+
+# And the group of everything 
+Pres-layout = mrow|mfrac|msqrt|mroot|mpadded|mphantom|mfenced|menclose
+
+Table-alignment.attrib = attribute rowalign 
+ 	     {xsd:string {pattern="(top|bottom|center|baseline|axis)(top|bottom|center|baseline|axis)*"}}?,
+        attribute columnalign {xsd:string {pattern="(left|center|right)( (left|center|right))*"}}?,
+        attribute groupalign {xsd:string}?
+
+mtr.content = mtd
+mtr = element mtr {Table-alignment.attrib, MathML.Common.attrib,(mtr.content)+}
+
+mlabeledtr = element mlabeledtr {Table-alignment.attrib,MathML.Common.attrib,(mtr.content)*}
+
+mtd = element mtd {MathML.Common.attrib,
+                   Table-alignment.attrib,
+                   attribute columnspan {xsd:positiveInteger}?,
+  		   attribute rowspan {xsd:positiveInteger}?,
+		   ContInPres*}
+
+mtable.content = mtr|mlabeledtr
+mtable = element mtable {Table-alignment.attrib,
+                         attribute align {xsd:string}?,
+			 attribute alignmentscope {xsd:string {pattern="(true|false)( true| false)*"}}?,
+			 attribute columnwidth {xsd:string}?,
+  			 attribute width {xsd:string}?,
+  			 attribute rowspacing {xsd:string}?,
+  			 attribute columnspacing {xsd:string}?,
+  			 attribute rowlines {xsd:string}?,
+  			 attribute columnlines {xsd:string}?,
+  			 attribute frame {"none" | "solid" | "dashed"}?,
+  			 attribute framespacing {xsd:string}?,
+  			 attribute equalrows {truefalse}?,
+  			 attribute equalcolumns {truefalse}?,
+  			 attribute displaystyle {truefalse}?,
+			 attribute side {"left"|"right"|"leftoverlap"|"rightoverlap"}?,
+  			 attribute minlabelspacing {length-with-unit}?,
+  			 MathML.Common.attrib,
+			 (mtable.content)*}
+
+maligngroup = element maligngroup {MathML.Common.attrib,
+     attribute groupalign {"left" | "center" | "right" | "decimalpoint"}?}
+
+malignmark = element malignmark {MathML.Common.attrib,attribute edge {"left" | "right"}?}
+
+Pres-table = mtable|maligngroup|malignmark
+
+mcolumn = element mcolumn {MathML.Common.attrib,
+     attribute align {"left" | "right"}}
+
+mstyle = element mstyle {MathML.Common.attrib,
+                         attribute scriptlevel {xsd:integer}?,
+                         attribute displaystyle {truefalse}?,
+			 attribute scriptsizemultiplier {xsd:decimal}?,
+  			 attribute scriptminsize {length-with-unit}?,
+  			 attribute color {xsd:string}?,
+  			 attribute background {xsd:string}?,
+  			 attribute veryverythinmathspace {length-with-unit}?,
+  			 attribute verythinmathspace {length-with-unit}?,
+			 attribute thinmathspace {length-with-unit}?,
+                         attribute mediummathspace {length-with-unit}?,
+                         attribute thickmathspace {length-with-unit}?,
+                         attribute verythickmathspace {length-with-unit}?,
+                         attribute veryverythickmathspace {length-with-unit}?,
+                         linethickness.attrib?,
+  			 Operator.attrib,Token-style.attrib,
+			 ContInPres*}
+
+merror = element merror {MathML.Common.attrib,ContInPres*}
+
+maction = element maction {MathML.Common.attrib,
+			   attribute actiontype {xsd:string}?,
+  	                   attribute selection {xsd:positiveInteger}?,
+  			   ContInPres*}
+
+semantics-pmml = element semantics {semantics.attribs,PresExp, semantics-annotation*}
+
+PresExp = Pres-token | Pres-layout | Pres-script | Pres-table 
+	      |  mspace | mline | mcolumn |  maction | merror | mstyle
+	      | semantics-pmml
+
+ContInPres = PresExp|ContExp
