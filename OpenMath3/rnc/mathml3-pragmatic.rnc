@@ -1,0 +1,68 @@
+#     This is the Mathematical Markup Language (MathML) 3.0, an XML
+#     application for describing mathematical notation and capturing
+#     both its structure and content.
+#
+#     Copyright 1998-2007 World Wide Web Consortium
+#        (Massachusetts Institute of Technology, Institut National de
+#         Recherche en Informatique et en Automatique, Keio University).
+#         All Rights Reserved.
+#
+#     Permission to use, copy, modify and distribute the RelaxNG schema for MathML3
+#     and its accompanying documentation for any purpose and without fee is
+#     hereby granted in perpetuity, provided that the above copyright notice
+#     and this paragraph appear in all copies.  The copyright holders make
+#     no representation about the suitability of the Schema for any purpose.
+#
+#     This file contains the grammar rules for pragmatic content MathML3
+#     It is provided "as is" without expressed or implied warranty.
+#
+#     Revision:   $Id: mathml3-pragmatic.rnc,v 1.6 2007/12/01 05:27:26 mkohlhas2 Exp $
+#     Author: Michael Kohlhase http://kwarc.info/kohlhase
+
+default namespace m = "http://www.w3.org/1998/Math/MathML"
+
+#  This is the RelaxNG schema module for the pragmatic content part of MathML.
+
+# we also allow pMathML in tokens 
+Content-token.content |= PresExp
+
+# the content of "cn" may have <sep> elements in it
+sep = element sep {empty}
+cn.content.class |= sep
+cn.type.vals |= "constant" 
+
+# allow degree in bvar
+degree = element degree {MathML.Common.attrib,ContExp+}
+bvar.content &= degree?
+
+domainofapplication = element domainofapplication{Definition.attrib,MathML.Common.attrib,cdbase.attrib?,
+						  ContExp}
+lowlimit = element lowlimit {Definition.attrib,MathML.Common.attrib,cdbase.attrib?,ContExp+}
+uplimit = element uplimit {Definition.attrib,MathML.Common.attrib,cdbase.attrib?,ContExp+}
+
+# allow the non-strict qualifiers
+qualifier.class |= domainofapplication|(uplimit,lowlimit?)|(lowlimit,uplimit?)
+
+#ednote(rnc:cd-generated) this should somehow be generated from the MCDs. 
+pragmatic.binder = int.token|union.token|exists.token|forall.token|sum.token|product.token|diff.token|partialdiff.token
+
+# allow bvar also in the apply element, if one of the MathML2 binders is the head.
+apply.content |= (pragmatic.binder,bvar*,qualifier.class?,ContExp)
+
+# allow closure attributes and two content elements in intervals
+interval.content  &= attribute closure {"closed"|"open"|"open-closed"|"closed-open"}?,
+                                (ContExp),(ContExp)
+
+# extend sets and lists by attributes
+#ednote(rnc:set-type) "set" ("type" could be "multiset" or "normal" or anything else) 
+set.content &= attribute type {xsd:string}?
+lst.content &= attribute order {"lexicographic"|"numeric"}?
+diff.content &= attribute type {"function"|"algebraic"}?
+
+declare = element declare {attribute type {xsd:string}?,
+                           attribute scope {xsd:string}?,
+                           attribute nargs {xsd:nonNegativeInteger}?,
+                           attribute occurrence {"prefix"|"infix"|"function-model"}?,
+                           Definition.attrib,cdbase.attrib?, 
+                           ContExp+}
+

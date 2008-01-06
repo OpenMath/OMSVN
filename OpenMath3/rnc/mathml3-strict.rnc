@@ -1,0 +1,97 @@
+#     This is the Mathematical Markup Language (MathML) 3.0, an XML
+#     application for describing mathematical notation and capturing
+#     both its structure and content.
+#
+#     Copyright 1998-2007 World Wide Web Consortium
+#        (Massachusetts Institute of Technology, Institut National de
+#         Recherche en Informatique et en Automatique, Keio University).
+#         All Rights Reserved.
+#
+#     Permission to use, copy, modify and distribute the RelaxNG schema for MathML3
+#     and its accompanying documentation for any purpose and without fee is
+#     hereby granted in perpetuity, provided that the above copyright notice
+#     and this paragraph appear in all copies.  The copyright holders make
+#     no representation about the suitability of the Schema for any purpose.
+#
+#     This file contains the grammar rules for strict content MathML3
+#     It is provided "as is" without expressed or implied warranty.
+#
+#     Revision:   $Id: mathml3-strict.rnc,v 1.8 2007/12/01 09:21:59 mkohlhas2 Exp $
+#     Author: Michael Kohlhase http://kwarc.info/kohlhase
+
+#  This is the RelaxNG schema module for the strict content part of MathML.
+
+default namespace m = "http://www.w3.org/1998/Math/MathML"
+
+Definition.attrib = attribute encoding {xsd:string}?,
+                             attribute definitionURL {xsd:anyURI}?
+
+#ednote(rnc:token-content) What is the content of a token, currently all text?
+Content-token.content = text
+
+# we want to extend this in pragmatic CMathML, so we introduce abbrevs here.
+cn.content.class = Content-token.content
+cn.type.vals  = "e-notation"|"integer"|"rational"|"real" |
+                         "complex-cartesian"|"complex-polar"
+
+#ednote(rnc:cn) cn needs to be totally reworked once the spec is fixed
+cn = element cn {#attribute base {xsd:positiveInteger [1,...,36]},
+                 attribute type {cn.type.vals}?,
+  		 Definition.attrib,
+  		 MathML.Common.attrib,	
+		 (cn.content.class)*}
+
+ci = element ci {attribute type {xsd:string}?,
+                 attribute nargs {xsd:string}?,
+		 attribute occurrence {xsd:string}?,		
+                 Definition.attrib,	
+  		 MathML.Common.attrib,
+		 Content-token.content}
+
+cdbase.attrib = attribute cdbase {xsd:anyURI}
+cdname.attrib = attribute cd {xsd:NCName}
+
+csymbol       = element csymbol {MathML.Common.attrib,
+	                         Definition.attrib,cdname.attrib?,cdbase.attrib?, 
+				 Content-token.content}
+
+apply-head = apply|bind|ci|csymbol|semantics-apply
+apply.content = apply-head,ContExp*
+apply = element apply {MathML.Common.attrib,cdbase.attrib?,apply.content}
+
+qualifier.class = condition
+bind-head = apply|csymbol|semantics-bind
+bind.content = bind-head,bvar*,qualifier.class?,ContExp
+bind = element bind {MathML.Common.attrib,cdbase.attrib?,bind.content}
+
+bvar-head = ci|semantics-bvar
+bvar.content = (bvar-head)
+bvar = element bvar {MathML.Common.attrib,cdbase.attrib?,bvar.content}
+condition = element condition {Definition.attrib,cdbase.attrib?,ContExp}
+
+share = element share {MathML.Common.attrib,attribute href {xsd:anyURI}}
+
+cerror-head = csymbol|apply|semantics-cerror
+cerror.content = cerror-head,ContExp*
+cerror = element cerror {MathML.Common.attrib,cdbase.attrib?,cerror.content}
+
+annotation = element annotation {Definition.attrib,MathML.Common.attrib,text}
+
+annotation-xml.model = anyElement
+anyElement =  element * {(attribute * {text}|text| anyElement)*}
+annotation-xml = element annotation-xml {MathML.Common.attrib,
+	       cdname.attrib,cdbase.attrib?,Definition.attrib,
+	       annotation-xml.model}
+
+semantics.attribs = Definition.attrib,MathML.Common.attrib,cdbase.attrib?
+semantics-annotation = annotation|annotation-xml
+
+# semantics element wrapped around various token
+semantics-bvar   = element semantics {semantics.attribs,bvar-head, semantics-annotation*}
+semantics-apply = element semantics {semantics.attribs,apply-head, semantics-annotation*}
+semantics-bind   = element semantics {semantics.attribs,bind-head, semantics-annotation*}
+semantics-cerror = element semantics {semantics.attribs,cerror-head, semantics-annotation*}
+semantics-cmml = element semantics {semantics.attribs,ContExp, semantics-annotation*}
+
+ContExp = cn|ci|csymbol|apply|bind|share|cerror|semantics-cmml
+

@@ -1,0 +1,44 @@
+This directory contains the MathML3 RelaxNG schema. 
+
+Formats:
+======
+
+RNC: The files *.rnc make up the Schema in compact notation, they are the original, 
+         all other's are generated, and should not be edited manually
+RNG: The RelaxNG Schema in XML notation, generated.
+XSD: The RelaxNG Schema in XML Schema notation, generated.
+
+Files:
+====
+
+mathml3.*
+           is the top-level file, it sets up some attributes and includes the other files
+mathml3-presentation.*
+           contains the rules for  presentation MathML
+mathml3-strict.*
+           contains the rules for canonical content MathML
+mathml3-pragmatic.*
+          extends the content MathML grammar to allow pragmatic content MathML. 
+mathml3-cds.*
+          contains the rules for CD-defined content MathML token elements
+
+TESTING:
+======
+
+the file test.xml has a copy of the examples from the pragmatic CMathML part of the spec
+(keep up to date via diff) organized in pairs. by runnign the conversion style sheet over
+the left hand side, we should get the right hand side.
+
+test.rnc is the RelaxNG grammar for test.rnc (used to test the pCMathML grammar). 
+
+
+TODO:
+====
+
+1) test on many examples
+2) maybe modularize mathml3-cds into single cd files; maybe these can be generated from
+    the signature declarations in the *.mcd files. 
+3) check that we got  the pragmatic part right
+4) modularize the presentation part. 
+5) define driver files of varying strictness
+6) get all the pattern definitions right

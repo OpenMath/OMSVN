@@ -1,0 +1,38 @@
+#     This is the Mathematical Markup Language (MathML) 3.0, an XML
+#     application for describing mathematical notation and capturing
+#     both its structure and content.
+#
+#     Copyright 1998-2007 World Wide Web Consortium
+#        (Massachusetts Institute of Technology, Institut National de
+#         Recherche en Informatique et en Automatique, Keio University).
+#         All Rights Reserved.
+#
+#     Permission to use, copy, modify and distribute the RelaxNG schema for MathML3
+#     and its accompanying documentation for any purpose and without fee is
+#     hereby granted in perpetuity, provided that the above copyright notice
+#     and this paragraph appear in all copies.  The copyright holders make
+#     no representation about the suitability of the Schema for any purpose.
+#
+#     This file contains the grammar driver for MathML3
+#     It is provided "as is" without expressed or implied warranty.
+#
+#     Revision:   $Id: mathml3-deprecated.rnc,v 1.1 2007/12/06 15:02:30 mkohlhas2 Exp $
+#     Author: Michael Kohlhase http://kwarc.info/kohlhase
+
+default namespace m = "http://www.w3.org/1998/Math/MathML"
+
+Token-style.attrib |=
+  attribute fontsize {xsd:string}? |
+  attribute fontstyle {xsd:string}? |
+  attribute color {xsd:string}? |
+  attribute fontfamily {xsd:string}? |
+  attribute fontweight {xsd:string}? 
+
+#Deprecated Content Elements
+dep-content = 
+  element reln {ContExp*}|
+  element fn {ContExp}
+
+ContExp |= dep-content
+
+apply-head |= dep-content
