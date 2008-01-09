@@ -102,6 +102,16 @@
     <xsl:text>}&#xA;</xsl:text>
   </xsl:template>
 
+  <xsl:template match="om:OMA[om:OMS[1 and @name='bind' and @cd='sts']]" mode="rnc">
+    <xsl:param name="elt"/>
+    <xsl:apply-templates select="*[position()=last()]" mode="type"/>
+    <xsl:text> |= element om:OMBIND {</xsl:text>
+    <xsl:value-of select="$elt"/>
+    <xsl:text>, OMBVAR,</xsl:text>
+    <xsl:apply-templates select="*[2]" mode="type"/>
+    <xsl:text>}&#xA;</xsl:text>
+  </xsl:template>
+
   <!-- printing types --> 
 
   <xsl:template match="om:OMA[om:OMS[1 and @name='mapsto' and @cd='sts']]" mode="type">
