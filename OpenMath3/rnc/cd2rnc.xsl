@@ -33,7 +33,7 @@
     <xsl:value-of select="/mcd/@xml:id"/><xsl:text>&#xA;</xsl:text>
     <xsl:text>#     It is provided "as is" without expressed or implied warranty.&#xA;</xsl:text>
     <xsl:text>#&#xA;</xsl:text>
-    <xsl:text>#     Revision:   $Id: mcd2rnc.xsl,v 1.7 2007/11/20 06:38:17 mkohlhas2 Exp $&#xA;</xsl:text>
+    <xsl:text>#     Revision:   $Id$&#xA;</xsl:text>
     <xsl:value-of select="m:extend-class(//MMLdefinition[@cdrole='constant'],'cd.token.class')"/>
     <xsl:value-of select="m:extend-class(//MMLdefinition[@cdrole='application' and @arity='1'],'cd.token.unary.class')"/>
     <xsl:value-of select="m:extend-class(//MMLdefinition[@cdrole='application' and @arity='2'],'cd.token.binary.class')"/>

@@ -14,18 +14,28 @@
 #     no representation about the suitability of the Schema for any purpose.
 #
 #     This file contains the arity checking rules for the symbols
-#     from the content dictionary 
+#     from the STS types for the content dictionary linalg3
 #     It is provided "as is" without expressed or implied warranty.
 #
 #     Revision:   $Id$
-
-
-# the element definitions for the token elements
-sum.content = Token.type
-sum.token = element sum {sum.content}
-product.content = Token.type
-product.token = element product {product.content}
-limit.content = Token.type
-limit.token = element limit {limit.content}
-tendsto.content = Token.type, attribute type {MathMLtype}?
-tendsto.token = element tendsto {tendsto.content}
+vector@linalg3 = element om:OMS {
+        attribute cd {"linalg3"},
+        attribute name {"vector"}}
+ |    element m:csymbol {
+        attribute cd {"linalg3"},
+        attribute name {"vector"}}
+matrix@linalg3 = element om:OMS {
+        attribute cd {"linalg3"},
+        attribute name {"matrix"}}
+ |    element m:csymbol {
+        attribute cd {"linalg3"},
+        attribute name {"matrix"}}
+matrixcolumn@linalg3 = element om:OMS {
+        attribute cd {"linalg3"},
+        attribute name {"matrixcolumn"}}
+ |    element m:csymbol {
+        attribute cd {"linalg3"},
+        attribute name {"matrixcolumn"}}
+Vector@omtypes | = element om:OMA {vector@linalg3,}
+Matrix@omtypes | = element om:OMA {matrix@linalg3,}
+MatrixRow@sts | = element om:OMA {matrixcolumn@linalg3,}

@@ -1,0 +1,48 @@
+#     This is the Mathematical Markup Language (MathML) 3.0, an XML
+#     application for describing mathematical notation and capturing
+#     both its structure and content.
+#
+#     Copyright 1998-2007 World Wide Web Consortium
+#        (Massachusetts Institute of Technology, Institut National de
+#         Recherche en Informatique et en Automatique, Keio University).
+#         All Rights Reserved.
+#
+#     Permission to use, copy, modify and distribute the RelaxNG schema for MathML3
+#     and its accompanying documentation for any purpose and without fee is
+#     hereby granted in perpetuity, provided that the above copyright notice
+#     and this paragraph appear in all copies.  The copyright holders make
+#     no representation about the suitability of the Schema for any purpose.
+#
+#     This file contains the arity checking rules for the symbols
+#     from the STS types for the content dictionary s_dist1
+#     It is provided "as is" without expressed or implied warranty.
+#
+#     Revision:   $Id$
+mean@s_dist1 = element om:OMS {
+        attribute cd {"s_dist1"},
+        attribute name {"mean"}}
+ |    element m:csymbol {
+        attribute cd {"s_dist1"},
+        attribute name {"mean"}}
+sdev@s_dist1 = element om:OMS {
+        attribute cd {"s_dist1"},
+        attribute name {"sdev"}}
+ |    element m:csymbol {
+        attribute cd {"s_dist1"},
+        attribute name {"sdev"}}
+variance@s_dist1 = element om:OMS {
+        attribute cd {"s_dist1"},
+        attribute name {"variance"}}
+ |    element m:csymbol {
+        attribute cd {"s_dist1"},
+        attribute name {"variance"}}
+moment@s_dist1 = element om:OMS {
+        attribute cd {"s_dist1"},
+        attribute name {"moment"}}
+ |    element m:csymbol {
+        attribute cd {"s_dist1"},
+        attribute name {"moment"}}
+Object@omtypes | = element om:OMA {mean@s_dist1,Distribution@omtypes}
+Object@omtypes | = element om:OMA {sdev@s_dist1,Distribution@omtypes}
+Object@omtypes | = element om:OMA {variance@s_dist1,Distribution@omtypes}
+Object@omtypes | = element om:OMA {moment@s_dist1,Z@setname1,R@setname1,Distribution@omtypes}

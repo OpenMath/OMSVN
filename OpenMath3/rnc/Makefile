@@ -2,7 +2,8 @@ MCD.dir = ../cd/MathML
 
 MCD= #$(filter-out leftovers.mcd,$(shell cd $(MCD.dir); ls *.mcd))
 MCD.rnc = $(MCD:%.mcd=%.rnc)
-STS.dir = ../sts
+
+STS.dir = ../cd/MathML
 STS = $(shell cd $(STS.dir);ls *.sts)
 STS.rnc = $(STS:%.sts=%.rnc)
 

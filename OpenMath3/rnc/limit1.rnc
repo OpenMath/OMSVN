@@ -1,0 +1,55 @@
+#     This is the Mathematical Markup Language (MathML) 3.0, an XML
+#     application for describing mathematical notation and capturing
+#     both its structure and content.
+#
+#     Copyright 1998-2007 World Wide Web Consortium
+#        (Massachusetts Institute of Technology, Institut National de
+#         Recherche en Informatique et en Automatique, Keio University).
+#         All Rights Reserved.
+#
+#     Permission to use, copy, modify and distribute the RelaxNG schema for MathML3
+#     and its accompanying documentation for any purpose and without fee is
+#     hereby granted in perpetuity, provided that the above copyright notice
+#     and this paragraph appear in all copies.  The copyright holders make
+#     no representation about the suitability of the Schema for any purpose.
+#
+#     This file contains the arity checking rules for the symbols
+#     from the STS types for the content dictionary limit1
+#     It is provided "as is" without expressed or implied warranty.
+#
+#     Revision:   $Id$
+limit@limit1 = element om:OMS {
+        attribute cd {"limit1"},
+        attribute name {"limit"}}
+ |    element m:csymbol {
+        attribute cd {"limit1"},
+        attribute name {"limit"}}
+both_sides@limit1 = element om:OMS {
+        attribute cd {"limit1"},
+        attribute name {"both_sides"}}
+ |    element m:csymbol {
+        attribute cd {"limit1"},
+        attribute name {"both_sides"}}
+above@limit1 = element om:OMS {
+        attribute cd {"limit1"},
+        attribute name {"above"}}
+ |    element m:csymbol {
+        attribute cd {"limit1"},
+        attribute name {"above"}}
+below@limit1 = element om:OMS {
+        attribute cd {"limit1"},
+        attribute name {"below"}}
+ |    element m:csymbol {
+        attribute cd {"limit1"},
+        attribute name {"below"}}
+null@limit1 = element om:OMS {
+        attribute cd {"limit1"},
+        attribute name {"null"}}
+ |    element m:csymbol {
+        attribute cd {"limit1"},
+        attribute name {"null"}}
+NumericalValue@sts | = element om:OMA {limit@limit1,NumericalValue@sts,TendsTo@omtypes,}
+TendsTo | = both_sides@limit1
+TendsTo | = above@limit1
+TendsTo | = below@limit1
+TendsTo | = null@limit1

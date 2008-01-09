@@ -37,7 +37,7 @@
     <xsl:value-of select="/omcd:CDSignatures/@cd"/><xsl:text>&#xA;</xsl:text>
     <xsl:text>#     It is provided "as is" without expressed or implied warranty.&#xA;</xsl:text>
     <xsl:text>#&#xA;</xsl:text>
-    <xsl:text>#     Revision:   $Id: mcd2rnc.xsl,v 1.7 2007/11/20 06:38:17 mkohlhas2 Exp $&#xA;</xsl:text>
+    <xsl:text>#     Revision:   $Id$&#xA;</xsl:text>
     <xsl:apply-templates/>
   </xsl:template>
 

@@ -1,0 +1,48 @@
+#     This is the Mathematical Markup Language (MathML) 3.0, an XML
+#     application for describing mathematical notation and capturing
+#     both its structure and content.
+#
+#     Copyright 1998-2007 World Wide Web Consortium
+#        (Massachusetts Institute of Technology, Institut National de
+#         Recherche en Informatique et en Automatique, Keio University).
+#         All Rights Reserved.
+#
+#     Permission to use, copy, modify and distribute the RelaxNG schema for MathML3
+#     and its accompanying documentation for any purpose and without fee is
+#     hereby granted in perpetuity, provided that the above copyright notice
+#     and this paragraph appear in all copies.  The copyright holders make
+#     no representation about the suitability of the Schema for any purpose.
+#
+#     This file contains the arity checking rules for the symbols
+#     from the STS types for the content dictionary veccalc1
+#     It is provided "as is" without expressed or implied warranty.
+#
+#     Revision:   $Id$
+divergence@veccalc1 = element om:OMS {
+        attribute cd {"veccalc1"},
+        attribute name {"divergence"}}
+ |    element m:csymbol {
+        attribute cd {"veccalc1"},
+        attribute name {"divergence"}}
+grad@veccalc1 = element om:OMS {
+        attribute cd {"veccalc1"},
+        attribute name {"grad"}}
+ |    element m:csymbol {
+        attribute cd {"veccalc1"},
+        attribute name {"grad"}}
+curl@veccalc1 = element om:OMS {
+        attribute cd {"veccalc1"},
+        attribute name {"curl"}}
+ |    element m:csymbol {
+        attribute cd {"veccalc1"},
+        attribute name {"curl"}}
+Laplacian@veccalc1 = element om:OMS {
+        attribute cd {"veccalc1"},
+        attribute name {"Laplacian"}}
+ |    element m:csymbol {
+        attribute cd {"veccalc1"},
+        attribute name {"Laplacian"}}
+ | = element om:OMA {divergence@veccalc1,}
+ | = element om:OMA {grad@veccalc1,}
+ | = element om:OMA {curl@veccalc1,}
+ | = element om:OMA {Laplacian@veccalc1,}

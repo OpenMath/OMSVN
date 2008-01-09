@@ -1,0 +1,104 @@
+#     This is the Mathematical Markup Language (MathML) 3.0, an XML
+#     application for describing mathematical notation and capturing
+#     both its structure and content.
+#
+#     Copyright 1998-2007 World Wide Web Consortium
+#        (Massachusetts Institute of Technology, Institut National de
+#         Recherche en Informatique et en Automatique, Keio University).
+#         All Rights Reserved.
+#
+#     Permission to use, copy, modify and distribute the RelaxNG schema for MathML3
+#     and its accompanying documentation for any purpose and without fee is
+#     hereby granted in perpetuity, provided that the above copyright notice
+#     and this paragraph appear in all copies.  The copyright holders make
+#     no representation about the suitability of the Schema for any purpose.
+#
+#     This file contains the arity checking rules for the symbols
+#     from the STS types for the content dictionary arith1
+#     It is provided "as is" without expressed or implied warranty.
+#
+#     Revision:   $Id$
+lcm@arith1 = element om:OMS {
+        attribute cd {"arith1"},
+        attribute name {"lcm"}}
+ |    element m:csymbol {
+        attribute cd {"arith1"},
+        attribute name {"lcm"}}
+gcd@arith1 = element om:OMS {
+        attribute cd {"arith1"},
+        attribute name {"gcd"}}
+ |    element m:csymbol {
+        attribute cd {"arith1"},
+        attribute name {"gcd"}}
+plus@arith1 = element om:OMS {
+        attribute cd {"arith1"},
+        attribute name {"plus"}}
+ |    element m:csymbol {
+        attribute cd {"arith1"},
+        attribute name {"plus"}}
+unary_minus@arith1 = element om:OMS {
+        attribute cd {"arith1"},
+        attribute name {"unary_minus"}}
+ |    element m:csymbol {
+        attribute cd {"arith1"},
+        attribute name {"unary_minus"}}
+minus@arith1 = element om:OMS {
+        attribute cd {"arith1"},
+        attribute name {"minus"}}
+ |    element m:csymbol {
+        attribute cd {"arith1"},
+        attribute name {"minus"}}
+times@arith1 = element om:OMS {
+        attribute cd {"arith1"},
+        attribute name {"times"}}
+ |    element m:csymbol {
+        attribute cd {"arith1"},
+        attribute name {"times"}}
+divide@arith1 = element om:OMS {
+        attribute cd {"arith1"},
+        attribute name {"divide"}}
+ |    element m:csymbol {
+        attribute cd {"arith1"},
+        attribute name {"divide"}}
+power@arith1 = element om:OMS {
+        attribute cd {"arith1"},
+        attribute name {"power"}}
+ |    element m:csymbol {
+        attribute cd {"arith1"},
+        attribute name {"power"}}
+abs@arith1 = element om:OMS {
+        attribute cd {"arith1"},
+        attribute name {"abs"}}
+ |    element m:csymbol {
+        attribute cd {"arith1"},
+        attribute name {"abs"}}
+root@arith1 = element om:OMS {
+        attribute cd {"arith1"},
+        attribute name {"root"}}
+ |    element m:csymbol {
+        attribute cd {"arith1"},
+        attribute name {"root"}}
+sum@arith1 = element om:OMS {
+        attribute cd {"arith1"},
+        attribute name {"sum"}}
+ |    element m:csymbol {
+        attribute cd {"arith1"},
+        attribute name {"sum"}}
+product@arith1 = element om:OMS {
+        attribute cd {"arith1"},
+        attribute name {"product"}}
+ |    element m:csymbol {
+        attribute cd {"arith1"},
+        attribute name {"product"}}
+SemiGroup@omtypes | = element om:OMA {lcm@arith1,SemiGroup@omtypes*}
+SemiGroup@omtypes | = element om:OMA {gcd@arith1,SemiGroup@omtypes*}
+AbelianSemiGroup@omtypes | = element om:OMA {plus@arith1,AbelianSemiGroup@omtypes*}
+AbelianGroup@omtypes | = element om:OMA {unary_minus@arith1,AbelianGroup@omtypes}
+AbelianGroup@omtypes | = element om:OMA {minus@arith1,AbelianGroup@omtypes,AbelianGroup@omtypes}
+SemiGroup@omtypes | = element om:OMA {times@arith1,SemiGroup@omtypes*}
+AbelianGroup@omtypes | = element om:OMA {divide@arith1,AbelianGroup@omtypes,AbelianGroup@omtypes}
+NumericalValue@sts | = element om:OMA {power@arith1,NumericalValue@sts,NumericalValue@sts}
+R@setname1 | = element om:OMA {abs@arith1,C@setname1}
+NumericalValue@sts | = element om:OMA {root@arith1,NumericalValue@sts,NumericalValue@sts}
+AbelianMonoid@omtypes | = element om:OMA {sum@arith1,IntegerRange@omtypes,}
+AbelianMonoid@omtypes | = element om:OMA {product@arith1,IntegerRange@omtypes,}

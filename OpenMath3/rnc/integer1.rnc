@@ -1,0 +1,47 @@
+#     This is the Mathematical Markup Language (MathML) 3.0, an XML
+#     application for describing mathematical notation and capturing
+#     both its structure and content.
+#
+#     Copyright 1998-2007 World Wide Web Consortium
+#        (Massachusetts Institute of Technology, Institut National de
+#         Recherche en Informatique et en Automatique, Keio University).
+#         All Rights Reserved.
+#
+#     Permission to use, copy, modify and distribute the RelaxNG schema for MathML3
+#     and its accompanying documentation for any purpose and without fee is
+#     hereby granted in perpetuity, provided that the above copyright notice
+#     and this paragraph appear in all copies.  The copyright holders make
+#     no representation about the suitability of the Schema for any purpose.
+#
+#     This file contains the arity checking rules for the symbols
+#     from the STS types for the content dictionary integer1
+#     It is provided "as is" without expressed or implied warranty.
+#
+#     Revision:   $Id$
+factorof@integer1 = element om:OMS {
+        attribute cd {"integer1"},
+        attribute name {"factorof"}}
+ |    element m:csymbol {
+        attribute cd {"integer1"},
+        attribute name {"factorof"}}
+factorial@integer1 = element om:OMS {
+        attribute cd {"integer1"},
+        attribute name {"factorial"}}
+ |    element m:csymbol {
+        attribute cd {"integer1"},
+        attribute name {"factorial"}}
+quotient@integer1 = element om:OMS {
+        attribute cd {"integer1"},
+        attribute name {"quotient"}}
+ |    element m:csymbol {
+        attribute cd {"integer1"},
+        attribute name {"quotient"}}
+remainder@integer1 = element om:OMS {
+        attribute cd {"integer1"},
+        attribute name {"remainder"}}
+ |    element m:csymbol {
+        attribute cd {"integer1"},
+        attribute name {"remainder"}}
+N@setname1 | = element om:OMA {factorial@integer1,N@setname1}
+Z@setname1 | = element om:OMA {quotient@integer1,Z@setname1,Z@setname1}
+Z@setname1 | = element om:OMA {remainder@integer1,Z@setname1,Z@setname1}

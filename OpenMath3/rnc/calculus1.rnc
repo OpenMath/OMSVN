@@ -1,0 +1,55 @@
+#     This is the Mathematical Markup Language (MathML) 3.0, an XML
+#     application for describing mathematical notation and capturing
+#     both its structure and content.
+#
+#     Copyright 1998-2007 World Wide Web Consortium
+#        (Massachusetts Institute of Technology, Institut National de
+#         Recherche en Informatique et en Automatique, Keio University).
+#         All Rights Reserved.
+#
+#     Permission to use, copy, modify and distribute the RelaxNG schema for MathML3
+#     and its accompanying documentation for any purpose and without fee is
+#     hereby granted in perpetuity, provided that the above copyright notice
+#     and this paragraph appear in all copies.  The copyright holders make
+#     no representation about the suitability of the Schema for any purpose.
+#
+#     This file contains the arity checking rules for the symbols
+#     from the STS types for the content dictionary calculus1
+#     It is provided "as is" without expressed or implied warranty.
+#
+#     Revision:   $Id$
+diff@calculus1 = element om:OMS {
+        attribute cd {"calculus1"},
+        attribute name {"diff"}}
+ |    element m:csymbol {
+        attribute cd {"calculus1"},
+        attribute name {"diff"}}
+nthdiff@calculus1 = element om:OMS {
+        attribute cd {"calculus1"},
+        attribute name {"nthdiff"}}
+ |    element m:csymbol {
+        attribute cd {"calculus1"},
+        attribute name {"nthdiff"}}
+partialdiff@calculus1 = element om:OMS {
+        attribute cd {"calculus1"},
+        attribute name {"partialdiff"}}
+ |    element m:csymbol {
+        attribute cd {"calculus1"},
+        attribute name {"partialdiff"}}
+int@calculus1 = element om:OMS {
+        attribute cd {"calculus1"},
+        attribute name {"int"}}
+ |    element m:csymbol {
+        attribute cd {"calculus1"},
+        attribute name {"int"}}
+defint@calculus1 = element om:OMS {
+        attribute cd {"calculus1"},
+        attribute name {"defint"}}
+ |    element m:csymbol {
+        attribute cd {"calculus1"},
+        attribute name {"defint"}}
+ | = element om:OMA {diff@calculus1,}
+ | = element om:OMA {nthdiff@calculus1,Z@setname1,}
+ | = element om:OMA {partialdiff@calculus1,VariableList@omtypes,}
+ | = element om:OMA {int@calculus1,}
+Object@sts | = element om:OMA {defint@calculus1,RangeOfIntegration@omtypes,}
