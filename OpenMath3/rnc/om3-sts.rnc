@@ -6,11 +6,15 @@
 # $HeadURL$
 ############################################################
 
+namespace om = "http://www.openmath.org/OpenMath"
+namespace m  ="http://www.w3.org/1998/Math/MathML"
+
 #include the OpenMath3 Schema
 include "openmath3.rnc" {omelDerived =  notAllowed} 
 # extend omelDerived in the CD-induced schemata
 
-# Initialize the syntactic categories. 
+# Initialize the syntactic categories with OMV, since we do not do type checking for typed
+# variables yet.  
 Type_type = OMV
 String_type = OMV
 Category_type = OMV
@@ -20,7 +24,6 @@ R_setname1_type = OMV
 error_sts_type = OMV
 Set_type = OMV
 binder_sts_type = OMV
-B_setname2_type = OMV
 N_setname1_type = OMV
 Z_setname1_type = OMV
 IntegerInterval_type = OMV
@@ -33,14 +36,12 @@ Scalar_type = OMV
 Vector_type = OMV
 List_type = OMV
 Boolean_setname2_type = OMV
-OrderedSet_type = OMV
 Multiset1_type = OMV
 CardinalNumber_type = OMV
 BasedInteger_type = OMV
 Q_setname1_type = OMV
 IEEEFloat_type = OMV
 Piece_type = OMV
-EuclideanRing_type = OMV
 Field_type = OMV
 attribution_sts_type = OMV
 Tuple_type = OMV
@@ -68,12 +69,17 @@ SemiGroup_type = OMV|OMI
 AbelianSemiGroup_type = OMV|OMI
 AbelianGroup_type = OMV|OMI
 AbelianMonoid_type = OMV|OMI
+OrderedSet_type = OMV|OMI
+EuclideanRing_type = OMV|OMI
 
 # we also have subtype relations A<=B encoded as B |= A
 Object_sts_type |= SemiGroup_type
 SemiGroup_type |= AbelianSemiGroup_type
 AbelianSemiGroup_type |= AbelianMonoid_type
 AbelianMonoid_type |= AbelianGroup_type
+Ring_type |= EuclideanRing_type
+AbelianGroup_type |= Ring_type
+EuclideanRing_type |= Set_type
 
 omel |= Type_type
 omel |= String_type
@@ -90,7 +96,6 @@ omel |= R_setname1_type
 omel |= error_sts_type
 omel |= Set_type
 omel |= binder_sts_type
-omel |= B_setname2_type
 omel |= N_setname1_type
 omel |= Z_setname1_type
 omel |= IntegerInterval_type
@@ -130,6 +135,9 @@ omel |= AbelianGroupMult_type
 omel |= MatrixRow_type
 omel |= Ring_type
 omel |= IntegerRange_type
+
+# we do something for binders
+omel |= element om:OMBIND {binder_sts_type,OMBVAR, omel}
 
 # include the relevant content dictionaries
 include "fns1.rnc"
