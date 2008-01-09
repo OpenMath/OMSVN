@@ -1,0 +1,76 @@
+#     This is the Mathematical Markup Language (MathML) 3.0, an XML
+#     application for describing mathematical notation and capturing
+#     both its structure and content.
+#
+#     Copyright 1998-2007 World Wide Web Consortium
+#        (Massachusetts Institute of Technology, Institut National de
+#         Recherche en Informatique et en Automatique, Keio University).
+#         All Rights Reserved.
+#
+#     Permission to use, copy, modify and distribute the RelaxNG schema for MathML3
+#     and its accompanying documentation for any purpose and without fee is
+#     hereby granted in perpetuity, provided that the above copyright notice
+#     and this paragraph appear in all copies.  The copyright holders make
+#     no representation about the suitability of the Schema for any purpose.
+#
+#     This file contains the arity checking rules for the symbols
+#     from the STS types for the content dictionary nums1
+#     It is provided "as is" without expressed or implied warranty.
+#
+#     Revision:   $Id$
+based_integer@nums1 = element om:OMS {
+        attribute cd {"nums1"},
+        attribute name {"based_integer"}}
+ |    element m:csymbol {
+        attribute cd {"nums1"},
+        attribute name {"based_integer"}}
+rational@nums1 = element om:OMS {
+        attribute cd {"nums1"},
+        attribute name {"rational"}}
+ |    element m:csymbol {
+        attribute cd {"nums1"},
+        attribute name {"rational"}}
+infinity@nums1 = element om:OMS {
+        attribute cd {"nums1"},
+        attribute name {"infinity"}}
+ |    element m:csymbol {
+        attribute cd {"nums1"},
+        attribute name {"infinity"}}
+e@nums1 = element om:OMS {
+        attribute cd {"nums1"},
+        attribute name {"e"}}
+ |    element m:csymbol {
+        attribute cd {"nums1"},
+        attribute name {"e"}}
+i@nums1 = element om:OMS {
+        attribute cd {"nums1"},
+        attribute name {"i"}}
+ |    element m:csymbol {
+        attribute cd {"nums1"},
+        attribute name {"i"}}
+pi@nums1 = element om:OMS {
+        attribute cd {"nums1"},
+        attribute name {"pi"}}
+ |    element m:csymbol {
+        attribute cd {"nums1"},
+        attribute name {"pi"}}
+gamma@nums1 = element om:OMS {
+        attribute cd {"nums1"},
+        attribute name {"gamma"}}
+ |    element m:csymbol {
+        attribute cd {"nums1"},
+        attribute name {"gamma"}}
+NaN@nums1 = element om:OMS {
+        attribute cd {"nums1"},
+        attribute name {"NaN"}}
+ |    element m:csymbol {
+        attribute cd {"nums1"},
+        attribute name {"NaN"}}
+BasedInteger@omtypes | = element om:OMA {based_integer@nums1,PositiveInteger@omtypes,DigitString@omtypes}
+Q@setname1 | = element om:OMA {rational@nums1,Z@setname1,NonZeroInteger@omtypes}
+Infinity | = infinity@nums1
+R | = e@nums1
+C | = i@nums1
+R | = pi@nums1
+R | = gamma@nums1
+IEEEFloat | = NaN@nums1

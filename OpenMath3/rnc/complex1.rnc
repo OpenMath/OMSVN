@@ -1,0 +1,62 @@
+#     This is the Mathematical Markup Language (MathML) 3.0, an XML
+#     application for describing mathematical notation and capturing
+#     both its structure and content.
+#
+#     Copyright 1998-2007 World Wide Web Consortium
+#        (Massachusetts Institute of Technology, Institut National de
+#         Recherche en Informatique et en Automatique, Keio University).
+#         All Rights Reserved.
+#
+#     Permission to use, copy, modify and distribute the RelaxNG schema for MathML3
+#     and its accompanying documentation for any purpose and without fee is
+#     hereby granted in perpetuity, provided that the above copyright notice
+#     and this paragraph appear in all copies.  The copyright holders make
+#     no representation about the suitability of the Schema for any purpose.
+#
+#     This file contains the arity checking rules for the symbols
+#     from the STS types for the content dictionary complex1
+#     It is provided "as is" without expressed or implied warranty.
+#
+#     Revision:   $Id$
+conjugate@complex1 = element om:OMS {
+        attribute cd {"complex1"},
+        attribute name {"conjugate"}}
+ |    element m:csymbol {
+        attribute cd {"complex1"},
+        attribute name {"conjugate"}}
+complex_cartesian@complex1 = element om:OMS {
+        attribute cd {"complex1"},
+        attribute name {"complex_cartesian"}}
+ |    element m:csymbol {
+        attribute cd {"complex1"},
+        attribute name {"complex_cartesian"}}
+real@complex1 = element om:OMS {
+        attribute cd {"complex1"},
+        attribute name {"real"}}
+ |    element m:csymbol {
+        attribute cd {"complex1"},
+        attribute name {"real"}}
+imaginary@complex1 = element om:OMS {
+        attribute cd {"complex1"},
+        attribute name {"imaginary"}}
+ |    element m:csymbol {
+        attribute cd {"complex1"},
+        attribute name {"imaginary"}}
+complex_polar@complex1 = element om:OMS {
+        attribute cd {"complex1"},
+        attribute name {"complex_polar"}}
+ |    element m:csymbol {
+        attribute cd {"complex1"},
+        attribute name {"complex_polar"}}
+argument@complex1 = element om:OMS {
+        attribute cd {"complex1"},
+        attribute name {"argument"}}
+ |    element m:csymbol {
+        attribute cd {"complex1"},
+        attribute name {"argument"}}
+C@setname1 | = element om:OMA {conjugate@complex1,C@setname1}
+C@setname1 | = element om:OMA {complex_cartesian@complex1,NumericalValue@sts,NumericalValue@sts}
+NumericalValue@sts | = element om:OMA {real@complex1,C@setname1}
+NumericalValue@sts | = element om:OMA {imaginary@complex1,C@setname1}
+C@setname1 | = element om:OMA {complex_polar@complex1,PositiveReal@omtypes,R@setname1}
+R@setname1 | = element om:OMA {argument@complex1,C@setname1}

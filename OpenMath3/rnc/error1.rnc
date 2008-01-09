@@ -14,18 +14,28 @@
 #     no representation about the suitability of the Schema for any purpose.
 #
 #     This file contains the arity checking rules for the symbols
-#     from the content dictionary 
+#     from the STS types for the content dictionary error
 #     It is provided "as is" without expressed or implied warranty.
 #
 #     Revision:   $Id$
-
-
-# the element definitions for the token elements
-sum.content = Token.type
-sum.token = element sum {sum.content}
-product.content = Token.type
-product.token = element product {product.content}
-limit.content = Token.type
-limit.token = element limit {limit.content}
-tendsto.content = Token.type, attribute type {MathMLtype}?
-tendsto.token = element tendsto {tendsto.content}
+unhandled_symbol@error = element om:OMS {
+        attribute cd {"error"},
+        attribute name {"unhandled_symbol"}}
+ |    element m:csymbol {
+        attribute cd {"error"},
+        attribute name {"unhandled_symbol"}}
+unexpected_symbol@error = element om:OMS {
+        attribute cd {"error"},
+        attribute name {"unexpected_symbol"}}
+ |    element m:csymbol {
+        attribute cd {"error"},
+        attribute name {"unexpected_symbol"}}
+unsupported_CD@error = element om:OMS {
+        attribute cd {"error"},
+        attribute name {"unsupported_CD"}}
+ |    element m:csymbol {
+        attribute cd {"error"},
+        attribute name {"unsupported_CD"}}
+error@sts | = element om:OMA {unhandled_symbol@error,OMSymbol@omtypes}
+error@sts | = element om:OMA {unexpected_symbol@error,OMSymbol@omtypes}
+error@sts | = element om:OMA {unsupported_CD@error,OMSymbol@omtypes}

@@ -14,18 +14,28 @@
 #     no representation about the suitability of the Schema for any purpose.
 #
 #     This file contains the arity checking rules for the symbols
-#     from the content dictionary 
+#     from the STS types for the content dictionary piece1
 #     It is provided "as is" without expressed or implied warranty.
 #
 #     Revision:   $Id$
-
-
-# the element definitions for the token elements
-sum.content = Token.type
-sum.token = element sum {sum.content}
-product.content = Token.type
-product.token = element product {product.content}
-limit.content = Token.type
-limit.token = element limit {limit.content}
-tendsto.content = Token.type, attribute type {MathMLtype}?
-tendsto.token = element tendsto {tendsto.content}
+piecewise@piece1 = element om:OMS {
+        attribute cd {"piece1"},
+        attribute name {"piecewise"}}
+ |    element m:csymbol {
+        attribute cd {"piece1"},
+        attribute name {"piecewise"}}
+piece@piece1 = element om:OMS {
+        attribute cd {"piece1"},
+        attribute name {"piece"}}
+ |    element m:csymbol {
+        attribute cd {"piece1"},
+        attribute name {"piece"}}
+otherwise@piece1 = element om:OMS {
+        attribute cd {"piece1"},
+        attribute name {"otherwise"}}
+ |    element m:csymbol {
+        attribute cd {"piece1"},
+        attribute name {"otherwise"}}
+Object@sts | = element om:OMA {piecewise@piece1,}
+Piece@omtypes | = element om:OMA {piece@piece1,Object@sts,Boolean@setname2}
+Piece@omtypes | = element om:OMA {otherwise@piece1,Object@sts}

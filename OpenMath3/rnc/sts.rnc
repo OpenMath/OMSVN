@@ -1,0 +1,97 @@
+#     This is the Mathematical Markup Language (MathML) 3.0, an XML
+#     application for describing mathematical notation and capturing
+#     both its structure and content.
+#
+#     Copyright 1998-2007 World Wide Web Consortium
+#        (Massachusetts Institute of Technology, Institut National de
+#         Recherche en Informatique et en Automatique, Keio University).
+#         All Rights Reserved.
+#
+#     Permission to use, copy, modify and distribute the RelaxNG schema for MathML3
+#     and its accompanying documentation for any purpose and without fee is
+#     hereby granted in perpetuity, provided that the above copyright notice
+#     and this paragraph appear in all copies.  The copyright holders make
+#     no representation about the suitability of the Schema for any purpose.
+#
+#     This file contains the arity checking rules for the symbols
+#     from the STS types for the content dictionary sts
+#     It is provided "as is" without expressed or implied warranty.
+#
+#     Revision:   $Id$
+type@sts = element om:OMS {
+        attribute cd {"sts"},
+        attribute name {"type"}}
+ |    element m:csymbol {
+        attribute cd {"sts"},
+        attribute name {"type"}}
+mapsto@sts = element om:OMS {
+        attribute cd {"sts"},
+        attribute name {"mapsto"}}
+ |    element m:csymbol {
+        attribute cd {"sts"},
+        attribute name {"mapsto"}}
+nary@sts = element om:OMS {
+        attribute cd {"sts"},
+        attribute name {"nary"}}
+ |    element m:csymbol {
+        attribute cd {"sts"},
+        attribute name {"nary"}}
+nassoc@sts = element om:OMS {
+        attribute cd {"sts"},
+        attribute name {"nassoc"}}
+ |    element m:csymbol {
+        attribute cd {"sts"},
+        attribute name {"nassoc"}}
+error@sts = element om:OMS {
+        attribute cd {"sts"},
+        attribute name {"error"}}
+ |    element m:csymbol {
+        attribute cd {"sts"},
+        attribute name {"error"}}
+structure@sts = element om:OMS {
+        attribute cd {"sts"},
+        attribute name {"structure"}}
+ |    element m:csymbol {
+        attribute cd {"sts"},
+        attribute name {"structure"}}
+binder@sts = element om:OMS {
+        attribute cd {"sts"},
+        attribute name {"binder"}}
+ |    element m:csymbol {
+        attribute cd {"sts"},
+        attribute name {"binder"}}
+attribution@sts = element om:OMS {
+        attribute cd {"sts"},
+        attribute name {"attribution"}}
+ |    element m:csymbol {
+        attribute cd {"sts"},
+        attribute name {"attribution"}}
+Object@sts = element om:OMS {
+        attribute cd {"sts"},
+        attribute name {"Object"}}
+ |    element m:csymbol {
+        attribute cd {"sts"},
+        attribute name {"Object"}}
+NumericalValue@sts = element om:OMS {
+        attribute cd {"sts"},
+        attribute name {"NumericalValue"}}
+ |    element m:csymbol {
+        attribute cd {"sts"},
+        attribute name {"NumericalValue"}}
+SetNumericalValue@sts = element om:OMS {
+        attribute cd {"sts"},
+        attribute name {"SetNumericalValue"}}
+ |    element m:csymbol {
+        attribute cd {"sts"},
+        attribute name {"SetNumericalValue"}}
+attribution | = type@sts
+FunctionType@omtypes | = element om:OMA {mapsto@sts,}
+Tuple@omtypes | = element om:OMA {nary@sts,Type@omtypes}
+Tuple@omtypes | = element om:OMA {nassoc@sts,Type@omtypes}
+Error@omtypes | = element om:OMA {error@sts,String@omtypes}
+Domain@omtypes | = element om:OMA {structure@sts,Category@omtypes}
+Symbol | = binder@sts
+Symbol | = attribution@sts
+Symbol | = Object@sts
+Symbol | = NumericalValue@sts
+Symbol | = SetNumericalValue@sts

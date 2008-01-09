@@ -1,0 +1,69 @@
+#     This is the Mathematical Markup Language (MathML) 3.0, an XML
+#     application for describing mathematical notation and capturing
+#     both its structure and content.
+#
+#     Copyright 1998-2007 World Wide Web Consortium
+#        (Massachusetts Institute of Technology, Institut National de
+#         Recherche en Informatique et en Automatique, Keio University).
+#         All Rights Reserved.
+#
+#     Permission to use, copy, modify and distribute the RelaxNG schema for MathML3
+#     and its accompanying documentation for any purpose and without fee is
+#     hereby granted in perpetuity, provided that the above copyright notice
+#     and this paragraph appear in all copies.  The copyright holders make
+#     no representation about the suitability of the Schema for any purpose.
+#
+#     This file contains the arity checking rules for the symbols
+#     from the STS types for the content dictionary relation1
+#     It is provided "as is" without expressed or implied warranty.
+#
+#     Revision:   $Id$
+eq@relation1 = element om:OMS {
+        attribute cd {"relation1"},
+        attribute name {"eq"}}
+ |    element m:csymbol {
+        attribute cd {"relation1"},
+        attribute name {"eq"}}
+lt@relation1 = element om:OMS {
+        attribute cd {"relation1"},
+        attribute name {"lt"}}
+ |    element m:csymbol {
+        attribute cd {"relation1"},
+        attribute name {"lt"}}
+gt@relation1 = element om:OMS {
+        attribute cd {"relation1"},
+        attribute name {"gt"}}
+ |    element m:csymbol {
+        attribute cd {"relation1"},
+        attribute name {"gt"}}
+neq@relation1 = element om:OMS {
+        attribute cd {"relation1"},
+        attribute name {"neq"}}
+ |    element m:csymbol {
+        attribute cd {"relation1"},
+        attribute name {"neq"}}
+leq@relation1 = element om:OMS {
+        attribute cd {"relation1"},
+        attribute name {"leq"}}
+ |    element m:csymbol {
+        attribute cd {"relation1"},
+        attribute name {"leq"}}
+geq@relation1 = element om:OMS {
+        attribute cd {"relation1"},
+        attribute name {"geq"}}
+ |    element m:csymbol {
+        attribute cd {"relation1"},
+        attribute name {"geq"}}
+approx@relation1 = element om:OMS {
+        attribute cd {"relation1"},
+        attribute name {"approx"}}
+ |    element m:csymbol {
+        attribute cd {"relation1"},
+        attribute name {"approx"}}
+Boolean@setname2 | = element om:OMA {eq@relation1,Object@sts,Object@sts}
+Boolean@setname2 | = element om:OMA {lt@relation1,OrderedSet@omtypes,OrderedSet@omtypes}
+Boolean@setname2 | = element om:OMA {gt@relation1,OrderedSet@omtypes,OrderedSet@omtypes}
+Boolean@setname2 | = element om:OMA {neq@relation1,Object@sts,Object@sts}
+Boolean@setname2 | = element om:OMA {leq@relation1,OrderedSet@omtypes,OrderedSet@omtypes}
+Boolean@setname2 | = element om:OMA {geq@relation1,OrderedSet@omtypes,OrderedSet@omtypes}
+Boolean@setname2 | = element om:OMA {approx@relation1,NumericalValue@sts,NumericalValue@sts}

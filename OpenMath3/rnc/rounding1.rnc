@@ -1,0 +1,48 @@
+#     This is the Mathematical Markup Language (MathML) 3.0, an XML
+#     application for describing mathematical notation and capturing
+#     both its structure and content.
+#
+#     Copyright 1998-2007 World Wide Web Consortium
+#        (Massachusetts Institute of Technology, Institut National de
+#         Recherche en Informatique et en Automatique, Keio University).
+#         All Rights Reserved.
+#
+#     Permission to use, copy, modify and distribute the RelaxNG schema for MathML3
+#     and its accompanying documentation for any purpose and without fee is
+#     hereby granted in perpetuity, provided that the above copyright notice
+#     and this paragraph appear in all copies.  The copyright holders make
+#     no representation about the suitability of the Schema for any purpose.
+#
+#     This file contains the arity checking rules for the symbols
+#     from the STS types for the content dictionary rounding1
+#     It is provided "as is" without expressed or implied warranty.
+#
+#     Revision:   $Id$
+ceiling@rounding1 = element om:OMS {
+        attribute cd {"rounding1"},
+        attribute name {"ceiling"}}
+ |    element m:csymbol {
+        attribute cd {"rounding1"},
+        attribute name {"ceiling"}}
+floor@rounding1 = element om:OMS {
+        attribute cd {"rounding1"},
+        attribute name {"floor"}}
+ |    element m:csymbol {
+        attribute cd {"rounding1"},
+        attribute name {"floor"}}
+trunc@rounding1 = element om:OMS {
+        attribute cd {"rounding1"},
+        attribute name {"trunc"}}
+ |    element m:csymbol {
+        attribute cd {"rounding1"},
+        attribute name {"trunc"}}
+round@rounding1 = element om:OMS {
+        attribute cd {"rounding1"},
+        attribute name {"round"}}
+ |    element m:csymbol {
+        attribute cd {"rounding1"},
+        attribute name {"round"}}
+Z@setname1 | = element om:OMA {ceiling@rounding1,R@setname1}
+Z@setname1 | = element om:OMA {floor@rounding1,R@setname1}
+Z@setname1 | = element om:OMA {trunc@rounding1,R@setname1}
+Z@setname1 | = element om:OMA {round@rounding1,R@setname1}
