@@ -18,24 +18,27 @@
 #     It is provided "as is" without expressed or implied warranty.
 #
 #     Revision:   $Id$
-piecewise@piece1 = element om:OMS {
+
+namespace om = "http://www.openmath.org/OpenMath"
+namespace m  ="http://www.w3.org/1998/Math/MathML"
+piecewise_piece1_elt = element om:OMS {
         attribute cd {"piece1"},
         attribute name {"piecewise"}}
  |    element m:csymbol {
         attribute cd {"piece1"},
         attribute name {"piecewise"}}
-piece@piece1 = element om:OMS {
+piece_piece1_elt = element om:OMS {
         attribute cd {"piece1"},
         attribute name {"piece"}}
  |    element m:csymbol {
         attribute cd {"piece1"},
         attribute name {"piece"}}
-otherwise@piece1 = element om:OMS {
+otherwise_piece1_elt = element om:OMS {
         attribute cd {"piece1"},
         attribute name {"otherwise"}}
  |    element m:csymbol {
         attribute cd {"piece1"},
         attribute name {"otherwise"}}
-Object@sts | = element om:OMA {piecewise@piece1,}
-Piece@omtypes | = element om:OMA {piece@piece1,Object@sts,Boolean@setname2}
-Piece@omtypes | = element om:OMA {otherwise@piece1,Object@sts}
+Object_sts_type |= element om:OMA {piecewise_piece1_elt,Piece_type*}
+Piece_type |= element om:OMA {piece_piece1_elt,Object_sts_type,Boolean_setname2_type}
+Piece_type |= element om:OMA {otherwise_piece1_elt,Object_sts_type}

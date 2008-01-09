@@ -18,108 +18,111 @@
 #     It is provided "as is" without expressed or implied warranty.
 #
 #     Revision:   $Id$
-cartesian_product@set1 = element om:OMS {
+
+namespace om = "http://www.openmath.org/OpenMath"
+namespace m  ="http://www.w3.org/1998/Math/MathML"
+cartesian_product_set1_elt = element om:OMS {
         attribute cd {"set1"},
         attribute name {"cartesian_product"}}
  |    element m:csymbol {
         attribute cd {"set1"},
         attribute name {"cartesian_product"}}
-map@set1 = element om:OMS {
+map_set1_elt = element om:OMS {
         attribute cd {"set1"},
         attribute name {"map"}}
  |    element m:csymbol {
         attribute cd {"set1"},
         attribute name {"map"}}
-suchthat@set1 = element om:OMS {
+suchthat_set1_elt = element om:OMS {
         attribute cd {"set1"},
         attribute name {"suchthat"}}
  |    element m:csymbol {
         attribute cd {"set1"},
         attribute name {"suchthat"}}
-emptyset@set1 = element om:OMS {
+emptyset_set1_elt = element om:OMS {
         attribute cd {"set1"},
         attribute name {"emptyset"}}
  |    element m:csymbol {
         attribute cd {"set1"},
         attribute name {"emptyset"}}
-size@set1 = element om:OMS {
+size_set1_elt = element om:OMS {
         attribute cd {"set1"},
         attribute name {"size"}}
  |    element m:csymbol {
         attribute cd {"set1"},
         attribute name {"size"}}
-set@set1 = element om:OMS {
+set_set1_elt = element om:OMS {
         attribute cd {"set1"},
         attribute name {"set"}}
  |    element m:csymbol {
         attribute cd {"set1"},
         attribute name {"set"}}
-intersect@set1 = element om:OMS {
+intersect_set1_elt = element om:OMS {
         attribute cd {"set1"},
         attribute name {"intersect"}}
  |    element m:csymbol {
         attribute cd {"set1"},
         attribute name {"intersect"}}
-union@set1 = element om:OMS {
+union_set1_elt = element om:OMS {
         attribute cd {"set1"},
         attribute name {"union"}}
  |    element m:csymbol {
         attribute cd {"set1"},
         attribute name {"union"}}
-setdiff@set1 = element om:OMS {
+setdiff_set1_elt = element om:OMS {
         attribute cd {"set1"},
         attribute name {"setdiff"}}
  |    element m:csymbol {
         attribute cd {"set1"},
         attribute name {"setdiff"}}
-subset@set1 = element om:OMS {
+subset_set1_elt = element om:OMS {
         attribute cd {"set1"},
         attribute name {"subset"}}
  |    element m:csymbol {
         attribute cd {"set1"},
         attribute name {"subset"}}
-in@set1 = element om:OMS {
+in_set1_elt = element om:OMS {
         attribute cd {"set1"},
         attribute name {"in"}}
  |    element m:csymbol {
         attribute cd {"set1"},
         attribute name {"in"}}
-notin@set1 = element om:OMS {
+notin_set1_elt = element om:OMS {
         attribute cd {"set1"},
         attribute name {"notin"}}
  |    element m:csymbol {
         attribute cd {"set1"},
         attribute name {"notin"}}
-prsubset@set1 = element om:OMS {
+prsubset_set1_elt = element om:OMS {
         attribute cd {"set1"},
         attribute name {"prsubset"}}
  |    element m:csymbol {
         attribute cd {"set1"},
         attribute name {"prsubset"}}
-notsubset@set1 = element om:OMS {
+notsubset_set1_elt = element om:OMS {
         attribute cd {"set1"},
         attribute name {"notsubset"}}
  |    element m:csymbol {
         attribute cd {"set1"},
         attribute name {"notsubset"}}
-notprsubset@set1 = element om:OMS {
+notprsubset_set1_elt = element om:OMS {
         attribute cd {"set1"},
         attribute name {"notprsubset"}}
  |    element m:csymbol {
         attribute cd {"set1"},
         attribute name {"notprsubset"}}
- | = element om:OMA {cartesian_product@set1,}
-Set@omtypes | = element om:OMA {map@set1,,Set@omtypes}
- | = element om:OMA {suchthat@set1,,}
-Set | = emptyset@set1
-CardinalNumber@omtypes | = element om:OMA {size@set1,Set@omtypes}
-Set@omtypes | = element om:OMA {set@set1,}
-Set@omtypes | = element om:OMA {intersect@set1,Set@omtypes*}
-Set@omtypes | = element om:OMA {union@set1,Set@omtypes*}
-Set@omtypes | = element om:OMA {setdiff@set1,Set@omtypes,Set@omtypes}
-Boolean@setname2 | = element om:OMA {subset@set1,Set@omtypes,Set@omtypes}
-Boolean@setname2 | = element om:OMA {in@set1,Object@sts,Set@omtypes}
-Boolean@setname2 | = element om:OMA {notin@set1,Object@sts,Set@omtypes}
-Boolean@setname2 | = element om:OMA {prsubset@set1,Set@omtypes,Set@omtypes}
-Boolean@setname2 | = element om:OMA {notsubset@set1,Set@omtypes,Set@omtypes}
-Boolean@setname2 | = element om:OMA {notprsubset@set1,Set@omtypes,Set@omtypes}
+Set1_type |= element om:OMA {cartesian_product_set1_elt,Set_type*}
+Set_type |= element om:OMA {map_set1_elt,function_type,Set_type}
+Set_type |= element om:OMA {suchthat_set1_elt,Set_type,function_type}
+Set_type |= emptyset_set1_elt
+CardinalNumber_type |= element om:OMA {size_set1_elt,Set_type}
+Set_type |= element om:OMA {set_set1_elt,Object_sts_type*}
+Set_type |= element om:OMA {intersect_set1_elt,Set_type*}
+Set_type |= element om:OMA {union_set1_elt,Set_type*}
+Set_type |= element om:OMA {setdiff_set1_elt,Set_type,Set_type}
+Boolean_setname2_type |= element om:OMA {subset_set1_elt,Set_type,Set_type}
+Boolean_setname2_type |= element om:OMA {in_set1_elt,Object_sts_type,Set_type}
+Boolean_setname2_type |= element om:OMA {notin_set1_elt,Object_sts_type,Set_type}
+Boolean_setname2_type |= element om:OMA {prsubset_set1_elt,Set_type,Set_type}
+Boolean_setname2_type |= element om:OMA {notsubset_set1_elt,Set_type,Set_type}
+Boolean_setname2_type |= element om:OMA {notprsubset_set1_elt,Set_type,Set_type}

@@ -18,45 +18,48 @@
 #     It is provided "as is" without expressed or implied warranty.
 #
 #     Revision:   $Id$
-conjugate@complex1 = element om:OMS {
+
+namespace om = "http://www.openmath.org/OpenMath"
+namespace m  ="http://www.w3.org/1998/Math/MathML"
+conjugate_complex1_elt = element om:OMS {
         attribute cd {"complex1"},
         attribute name {"conjugate"}}
  |    element m:csymbol {
         attribute cd {"complex1"},
         attribute name {"conjugate"}}
-complex_cartesian@complex1 = element om:OMS {
+complex_cartesian_complex1_elt = element om:OMS {
         attribute cd {"complex1"},
         attribute name {"complex_cartesian"}}
  |    element m:csymbol {
         attribute cd {"complex1"},
         attribute name {"complex_cartesian"}}
-real@complex1 = element om:OMS {
+real_complex1_elt = element om:OMS {
         attribute cd {"complex1"},
         attribute name {"real"}}
  |    element m:csymbol {
         attribute cd {"complex1"},
         attribute name {"real"}}
-imaginary@complex1 = element om:OMS {
+imaginary_complex1_elt = element om:OMS {
         attribute cd {"complex1"},
         attribute name {"imaginary"}}
  |    element m:csymbol {
         attribute cd {"complex1"},
         attribute name {"imaginary"}}
-complex_polar@complex1 = element om:OMS {
+complex_polar_complex1_elt = element om:OMS {
         attribute cd {"complex1"},
         attribute name {"complex_polar"}}
  |    element m:csymbol {
         attribute cd {"complex1"},
         attribute name {"complex_polar"}}
-argument@complex1 = element om:OMS {
+argument_complex1_elt = element om:OMS {
         attribute cd {"complex1"},
         attribute name {"argument"}}
  |    element m:csymbol {
         attribute cd {"complex1"},
         attribute name {"argument"}}
-C@setname1 | = element om:OMA {conjugate@complex1,C@setname1}
-C@setname1 | = element om:OMA {complex_cartesian@complex1,NumericalValue@sts,NumericalValue@sts}
-NumericalValue@sts | = element om:OMA {real@complex1,C@setname1}
-NumericalValue@sts | = element om:OMA {imaginary@complex1,C@setname1}
-C@setname1 | = element om:OMA {complex_polar@complex1,PositiveReal@omtypes,R@setname1}
-R@setname1 | = element om:OMA {argument@complex1,C@setname1}
+C_setname1_type |= element om:OMA {conjugate_complex1_elt,C_setname1_type}
+C_setname1_type |= element om:OMA {complex_cartesian_complex1_elt,NumericalValue_sts_type,NumericalValue_sts_type}
+NumericalValue_sts_type |= element om:OMA {real_complex1_elt,C_setname1_type}
+NumericalValue_sts_type |= element om:OMA {imaginary_complex1_elt,C_setname1_type}
+C_setname1_type |= element om:OMA {complex_polar_complex1_elt,PositiveReal_type,R_setname1_type}
+R_setname1_type |= element om:OMA {argument_complex1_elt,C_setname1_type}

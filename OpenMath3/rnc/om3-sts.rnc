@@ -10,6 +10,127 @@
 include "openmath3.rnc" {omelDerived =  notAllowed} 
 # extend omelDerived in the CD-induced schemata
 
+# Initialize the syntactic categories. 
+Type_type = OMV
+String_type = OMV
+Category_type = OMV
+function_type = OMV
+C_setname1_type = OMV
+R_setname1_type = OMV
+error_sts_type = OMV
+Set_type = OMV
+binder_sts_type = OMV
+B_setname2_type = OMV
+N_setname1_type = OMV
+Z_setname1_type = OMV
+IntegerInterval_type = OMV
+RealInterval_type = OMV
+TendsTo_type = OMV
+CommutativeRing_sts_type = OMV
+Matrix_type = OMV
+ThreeVector_type = OMV
+Scalar_type = OMV
+Vector_type = OMV
+List_type = OMV
+Boolean_setname2_type = OMV
+OrderedSet_type = OMV
+Multiset1_type = OMV
+CardinalNumber_type = OMV
+BasedInteger_type = OMV
+Q_setname1_type = OMV
+IEEEFloat_type = OMV
+Piece_type = OMV
+EuclideanRing_type = OMV
+Field_type = OMV
+attribution_sts_type = OMV
+Tuple_type = OMV
+Error_type = OMV
+Domain_type = OMV
+Symbol_type = OMV
+PositiveInteger_type = OMV
+PositiveReal_type = OMV
+VariableList_type = OMV
+RangeOfIntegration_type = OMV
+DigitString_type = OMV
+NonZeroInteger_type = OMV
+Distribution_type = OMV
+OMSymbol_omtypes_type = OMV
+SquareMatrix_type =  OMV
+AbelianGroupMult_type = OMV
+MatrixRow_type = OMV
+Ring_type = OMV
+IntegerRange_type = OMV
+Object_sts_type = OMV
+
+# some of them need to be treated specially
+NumericalValue_sts_type = OMV|OMI
+SemiGroup_type = OMV|OMI
+AbelianSemiGroup_type = OMV|OMI
+AbelianGroup_type = OMV|OMI
+AbelianMonoid_type = OMV|OMI
+
+# we also have subtype relations A<=B encoded as B |= A
+Object_sts_type |= SemiGroup_type
+SemiGroup_type |= AbelianSemiGroup_type
+AbelianSemiGroup_type |= AbelianMonoid_type
+AbelianMonoid_type |= AbelianGroup_type
+
+omel |= Type_type
+omel |= String_type
+omel |= Category_type
+omel |= SemiGroup_type
+omel |= AbelianSemiGroup_type
+omel |= AbelianGroup_type
+omel |= NumericalValue_sts_type
+omel |= AbelianMonoid_type
+omel |= function_type
+omel |= Object_sts_type
+omel |= C_setname1_type
+omel |= R_setname1_type
+omel |= error_sts_type
+omel |= Set_type
+omel |= binder_sts_type
+omel |= B_setname2_type
+omel |= N_setname1_type
+omel |= Z_setname1_type
+omel |= IntegerInterval_type
+omel |= RealInterval_type
+omel |= TendsTo_type
+omel |= CommutativeRing_sts_type
+omel |= Matrix_type
+omel |= ThreeVector_type
+omel |= Scalar_type
+omel |= Vector_type
+omel |= List_type
+omel |= Boolean_setname2_type
+omel |= OrderedSet_type
+omel |= Multiset1_type
+omel |= CardinalNumber_type
+omel |= BasedInteger_type
+omel |= Q_setname1_type
+omel |= IEEEFloat_type
+omel |= Piece_type
+omel |= EuclideanRing_type
+omel |= Field_type
+omel |= attribution_sts_type
+omel |= Tuple_type
+omel |= Error_type
+omel |= Domain_type
+omel |= Symbol_type
+omel |= PositiveInteger_type
+omel |= PositiveReal_type
+omel |= VariableList_type
+omel |= RangeOfIntegration_type
+omel |= DigitString_type
+omel |= NonZeroInteger_type
+omel |= Distribution_type
+omel |= OMSymbol_omtypes_type
+omel |= SquareMatrix_type
+omel |= AbelianGroupMult_type
+omel |= MatrixRow_type
+omel |= Ring_type
+omel |= IntegerRange_type
+
 # include the relevant content dictionaries
 include "fns1.rnc"
 include "quant1.rnc"

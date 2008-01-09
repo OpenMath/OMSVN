@@ -18,38 +18,41 @@
 #     It is provided "as is" without expressed or implied warranty.
 #
 #     Revision:   $Id$
-diff@calculus1 = element om:OMS {
+
+namespace om = "http://www.openmath.org/OpenMath"
+namespace m  ="http://www.w3.org/1998/Math/MathML"
+diff_calculus1_elt = element om:OMS {
         attribute cd {"calculus1"},
         attribute name {"diff"}}
  |    element m:csymbol {
         attribute cd {"calculus1"},
         attribute name {"diff"}}
-nthdiff@calculus1 = element om:OMS {
+nthdiff_calculus1_elt = element om:OMS {
         attribute cd {"calculus1"},
         attribute name {"nthdiff"}}
  |    element m:csymbol {
         attribute cd {"calculus1"},
         attribute name {"nthdiff"}}
-partialdiff@calculus1 = element om:OMS {
+partialdiff_calculus1_elt = element om:OMS {
         attribute cd {"calculus1"},
         attribute name {"partialdiff"}}
  |    element m:csymbol {
         attribute cd {"calculus1"},
         attribute name {"partialdiff"}}
-int@calculus1 = element om:OMS {
+int_calculus1_elt = element om:OMS {
         attribute cd {"calculus1"},
         attribute name {"int"}}
  |    element m:csymbol {
         attribute cd {"calculus1"},
         attribute name {"int"}}
-defint@calculus1 = element om:OMS {
+defint_calculus1_elt = element om:OMS {
         attribute cd {"calculus1"},
         attribute name {"defint"}}
  |    element m:csymbol {
         attribute cd {"calculus1"},
         attribute name {"defint"}}
- | = element om:OMA {diff@calculus1,}
- | = element om:OMA {nthdiff@calculus1,Z@setname1,}
- | = element om:OMA {partialdiff@calculus1,VariableList@omtypes,}
- | = element om:OMA {int@calculus1,}
-Object@sts | = element om:OMA {defint@calculus1,RangeOfIntegration@omtypes,}
+function_type |= element om:OMA {diff_calculus1_elt,function_type}
+function_type |= element om:OMA {nthdiff_calculus1_elt,Z_setname1_type,function_type}
+function_type |= element om:OMA {partialdiff_calculus1_elt,VariableList_type,function_type}
+function_type |= element om:OMA {int_calculus1_elt,function_type}
+Object_sts_type |= element om:OMA {defint_calculus1_elt,RangeOfIntegration_type,function_type}

@@ -18,30 +18,34 @@
 #     It is provided "as is" without expressed or implied warranty.
 #
 #     Revision:   $Id$
-factorof@integer1 = element om:OMS {
+
+namespace om = "http://www.openmath.org/OpenMath"
+namespace m  ="http://www.w3.org/1998/Math/MathML"
+factorof_integer1_elt = element om:OMS {
         attribute cd {"integer1"},
         attribute name {"factorof"}}
  |    element m:csymbol {
         attribute cd {"integer1"},
         attribute name {"factorof"}}
-factorial@integer1 = element om:OMS {
+factorial_integer1_elt = element om:OMS {
         attribute cd {"integer1"},
         attribute name {"factorial"}}
  |    element m:csymbol {
         attribute cd {"integer1"},
         attribute name {"factorial"}}
-quotient@integer1 = element om:OMS {
+quotient_integer1_elt = element om:OMS {
         attribute cd {"integer1"},
         attribute name {"quotient"}}
  |    element m:csymbol {
         attribute cd {"integer1"},
         attribute name {"quotient"}}
-remainder@integer1 = element om:OMS {
+remainder_integer1_elt = element om:OMS {
         attribute cd {"integer1"},
         attribute name {"remainder"}}
  |    element m:csymbol {
         attribute cd {"integer1"},
         attribute name {"remainder"}}
-N@setname1 | = element om:OMA {factorial@integer1,N@setname1}
-Z@setname1 | = element om:OMA {quotient@integer1,Z@setname1,Z@setname1}
-Z@setname1 | = element om:OMA {remainder@integer1,Z@setname1,Z@setname1}
+B_setname2_type |= element om:OMA {factorof_integer1_elt,Z_setname1_type,Z_setname1_type}
+N_setname1_type |= element om:OMA {factorial_integer1_elt,N_setname1_type}
+Z_setname1_type |= element om:OMA {quotient_integer1_elt,Z_setname1_type,Z_setname1_type}
+Z_setname1_type |= element om:OMA {remainder_integer1_elt,Z_setname1_type,Z_setname1_type}
