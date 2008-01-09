@@ -18,87 +18,90 @@
 #     It is provided "as is" without expressed or implied warranty.
 #
 #     Revision:   $Id$
-lcm@arith1 = element om:OMS {
+
+namespace om = "http://www.openmath.org/OpenMath"
+namespace m  ="http://www.w3.org/1998/Math/MathML"
+lcm_arith1_elt = element om:OMS {
         attribute cd {"arith1"},
         attribute name {"lcm"}}
  |    element m:csymbol {
         attribute cd {"arith1"},
         attribute name {"lcm"}}
-gcd@arith1 = element om:OMS {
+gcd_arith1_elt = element om:OMS {
         attribute cd {"arith1"},
         attribute name {"gcd"}}
  |    element m:csymbol {
         attribute cd {"arith1"},
         attribute name {"gcd"}}
-plus@arith1 = element om:OMS {
+plus_arith1_elt = element om:OMS {
         attribute cd {"arith1"},
         attribute name {"plus"}}
  |    element m:csymbol {
         attribute cd {"arith1"},
         attribute name {"plus"}}
-unary_minus@arith1 = element om:OMS {
+unary_minus_arith1_elt = element om:OMS {
         attribute cd {"arith1"},
         attribute name {"unary_minus"}}
  |    element m:csymbol {
         attribute cd {"arith1"},
         attribute name {"unary_minus"}}
-minus@arith1 = element om:OMS {
+minus_arith1_elt = element om:OMS {
         attribute cd {"arith1"},
         attribute name {"minus"}}
  |    element m:csymbol {
         attribute cd {"arith1"},
         attribute name {"minus"}}
-times@arith1 = element om:OMS {
+times_arith1_elt = element om:OMS {
         attribute cd {"arith1"},
         attribute name {"times"}}
  |    element m:csymbol {
         attribute cd {"arith1"},
         attribute name {"times"}}
-divide@arith1 = element om:OMS {
+divide_arith1_elt = element om:OMS {
         attribute cd {"arith1"},
         attribute name {"divide"}}
  |    element m:csymbol {
         attribute cd {"arith1"},
         attribute name {"divide"}}
-power@arith1 = element om:OMS {
+power_arith1_elt = element om:OMS {
         attribute cd {"arith1"},
         attribute name {"power"}}
  |    element m:csymbol {
         attribute cd {"arith1"},
         attribute name {"power"}}
-abs@arith1 = element om:OMS {
+abs_arith1_elt = element om:OMS {
         attribute cd {"arith1"},
         attribute name {"abs"}}
  |    element m:csymbol {
         attribute cd {"arith1"},
         attribute name {"abs"}}
-root@arith1 = element om:OMS {
+root_arith1_elt = element om:OMS {
         attribute cd {"arith1"},
         attribute name {"root"}}
  |    element m:csymbol {
         attribute cd {"arith1"},
         attribute name {"root"}}
-sum@arith1 = element om:OMS {
+sum_arith1_elt = element om:OMS {
         attribute cd {"arith1"},
         attribute name {"sum"}}
  |    element m:csymbol {
         attribute cd {"arith1"},
         attribute name {"sum"}}
-product@arith1 = element om:OMS {
+product_arith1_elt = element om:OMS {
         attribute cd {"arith1"},
         attribute name {"product"}}
  |    element m:csymbol {
         attribute cd {"arith1"},
         attribute name {"product"}}
-SemiGroup@omtypes | = element om:OMA {lcm@arith1,SemiGroup@omtypes*}
-SemiGroup@omtypes | = element om:OMA {gcd@arith1,SemiGroup@omtypes*}
-AbelianSemiGroup@omtypes | = element om:OMA {plus@arith1,AbelianSemiGroup@omtypes*}
-AbelianGroup@omtypes | = element om:OMA {unary_minus@arith1,AbelianGroup@omtypes}
-AbelianGroup@omtypes | = element om:OMA {minus@arith1,AbelianGroup@omtypes,AbelianGroup@omtypes}
-SemiGroup@omtypes | = element om:OMA {times@arith1,SemiGroup@omtypes*}
-AbelianGroup@omtypes | = element om:OMA {divide@arith1,AbelianGroup@omtypes,AbelianGroup@omtypes}
-NumericalValue@sts | = element om:OMA {power@arith1,NumericalValue@sts,NumericalValue@sts}
-R@setname1 | = element om:OMA {abs@arith1,C@setname1}
-NumericalValue@sts | = element om:OMA {root@arith1,NumericalValue@sts,NumericalValue@sts}
-AbelianMonoid@omtypes | = element om:OMA {sum@arith1,IntegerRange@omtypes,}
-AbelianMonoid@omtypes | = element om:OMA {product@arith1,IntegerRange@omtypes,}
+SemiGroup_type |= element om:OMA {lcm_arith1_elt,SemiGroup_type*}
+SemiGroup_type |= element om:OMA {gcd_arith1_elt,SemiGroup_type*}
+AbelianSemiGroup_type |= element om:OMA {plus_arith1_elt,AbelianSemiGroup_type*}
+AbelianGroup_type |= element om:OMA {unary_minus_arith1_elt,AbelianGroup_type}
+AbelianGroup_type |= element om:OMA {minus_arith1_elt,AbelianGroup_type,AbelianGroup_type}
+SemiGroup_type |= element om:OMA {times_arith1_elt,SemiGroup_type*}
+AbelianGroup_type |= element om:OMA {divide_arith1_elt,AbelianGroup_type,AbelianGroup_type}
+NumericalValue_sts_type |= element om:OMA {power_arith1_elt,NumericalValue_sts_type,NumericalValue_sts_type}
+R_setname1_type |= element om:OMA {abs_arith1_elt,C_setname1_type}
+NumericalValue_sts_type |= element om:OMA {root_arith1_elt,NumericalValue_sts_type,NumericalValue_sts_type}
+AbelianMonoid_type |= element om:OMA {sum_arith1_elt,IntegerRange_type,function_type}
+AbelianMonoid_type |= element om:OMA {product_arith1_elt,IntegerRange_type,function_type}

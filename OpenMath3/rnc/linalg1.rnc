@@ -18,52 +18,55 @@
 #     It is provided "as is" without expressed or implied warranty.
 #
 #     Revision:   $Id$
-determinant@linalg1 = element om:OMS {
+
+namespace om = "http://www.openmath.org/OpenMath"
+namespace m  ="http://www.w3.org/1998/Math/MathML"
+determinant_linalg1_elt = element om:OMS {
         attribute cd {"linalg1"},
         attribute name {"determinant"}}
  |    element m:csymbol {
         attribute cd {"linalg1"},
         attribute name {"determinant"}}
-transpose@linalg1 = element om:OMS {
+transpose_linalg1_elt = element om:OMS {
         attribute cd {"linalg1"},
         attribute name {"transpose"}}
  |    element m:csymbol {
         attribute cd {"linalg1"},
         attribute name {"transpose"}}
-vector_selector@linalg1 = element om:OMS {
+vector_selector_linalg1_elt = element om:OMS {
         attribute cd {"linalg1"},
         attribute name {"vector_selector"}}
  |    element m:csymbol {
         attribute cd {"linalg1"},
         attribute name {"vector_selector"}}
-matrix_selector@linalg1 = element om:OMS {
+matrix_selector_linalg1_elt = element om:OMS {
         attribute cd {"linalg1"},
         attribute name {"matrix_selector"}}
  |    element m:csymbol {
         attribute cd {"linalg1"},
         attribute name {"matrix_selector"}}
-vectorproduct@linalg1 = element om:OMS {
+vectorproduct_linalg1_elt = element om:OMS {
         attribute cd {"linalg1"},
         attribute name {"vectorproduct"}}
  |    element m:csymbol {
         attribute cd {"linalg1"},
         attribute name {"vectorproduct"}}
-scalarproduct@linalg1 = element om:OMS {
+scalarproduct_linalg1_elt = element om:OMS {
         attribute cd {"linalg1"},
         attribute name {"scalarproduct"}}
  |    element m:csymbol {
         attribute cd {"linalg1"},
         attribute name {"scalarproduct"}}
-outerproduct@linalg1 = element om:OMS {
+outerproduct_linalg1_elt = element om:OMS {
         attribute cd {"linalg1"},
         attribute name {"outerproduct"}}
  |    element m:csymbol {
         attribute cd {"linalg1"},
         attribute name {"outerproduct"}}
-CommutativeRing@sts | = element om:OMA {determinant@linalg1,SquareMatrix@omtypes}
-Matrix@omtypes | = element om:OMA {transpose@linalg1,Matrix@omtypes}
-Object@sts | = element om:OMA {vector_selector@linalg1,PositiveInteger@omtypes,Object@sts}
-Object@sts | = element om:OMA {matrix_selector@linalg1,PositiveInteger@omtypes,PositiveInteger@omtypes,Matrix@omtypes}
-ThreeVector@omtypes | = element om:OMA {vectorproduct@linalg1,ThreeVector@omtypes,ThreeVector@omtypes}
-Scalar@omtypes | = element om:OMA {scalarproduct@linalg1,Vector@omtypes,Vector@omtypes}
-Matrix@omtypes | = element om:OMA {outerproduct@linalg1,Vector@omtypes,Vector@omtypes}
+CommutativeRing_sts_type |= element om:OMA {determinant_linalg1_elt,SquareMatrix_type}
+Matrix_type |= element om:OMA {transpose_linalg1_elt,Matrix_type}
+Object_sts_type |= element om:OMA {vector_selector_linalg1_elt,PositiveInteger_type,Object_sts_type}
+Object_sts_type |= element om:OMA {matrix_selector_linalg1_elt,PositiveInteger_type,PositiveInteger_type,Matrix_type}
+ThreeVector_type |= element om:OMA {vectorproduct_linalg1_elt,ThreeVector_type,ThreeVector_type}
+Scalar_type |= element om:OMA {scalarproduct_linalg1_elt,Vector_type,Vector_type}
+Matrix_type |= element om:OMA {outerproduct_linalg1_elt,Vector_type,Vector_type}
