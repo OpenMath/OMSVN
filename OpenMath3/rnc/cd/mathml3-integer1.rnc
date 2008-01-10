@@ -1,0 +1,36 @@
+#     This file contains the arity checking rules for the symbols
+#     from the STS types for the content dictionary integer1
+#     It is provided "as is" without expressed or implied warranty.
+#
+#     Revision:   $Id: sts2rnc.xsl 524 2008-01-10 05:05:35Z kohlhase $
+
+
+namespace m  ="http://www.w3.org/1998/Math/MathML"
+factorof_integer1_elt = element om:OMS {
+        attribute cd {"integer1"},
+        attribute name {"factorof"}}
+ |    element m:csymbol {
+        attribute cd {"integer1"},
+        attribute name {"factorof"}}
+factorial_integer1_elt = element om:OMS {
+        attribute cd {"integer1"},
+        attribute name {"factorial"}}
+ |    element m:csymbol {
+        attribute cd {"integer1"},
+        attribute name {"factorial"}}
+quotient_integer1_elt = element om:OMS {
+        attribute cd {"integer1"},
+        attribute name {"quotient"}}
+ |    element m:csymbol {
+        attribute cd {"integer1"},
+        attribute name {"quotient"}}
+remainder_integer1_elt = element om:OMS {
+        attribute cd {"integer1"},
+        attribute name {"remainder"}}
+ |    element m:csymbol {
+        attribute cd {"integer1"},
+        attribute name {"remainder"}}
+Boolean_setname2_type |= element m:apply {factorof_integer1_elt,Z_setname1_type,Z_setname1_type}
+N_setname1_type |= element m:apply {factorial_integer1_elt,N_setname1_type}
+Z_setname1_type |= element m:apply {quotient_integer1_elt,Z_setname1_type,Z_setname1_type}
+Z_setname1_type |= element m:apply {remainder_integer1_elt,Z_setname1_type,Z_setname1_type}

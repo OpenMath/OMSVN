@@ -15,7 +15,7 @@
   extension-element-prefixes="func set exsl">
 
   <xsl:output method="text"/>
-<xsl:param name="format" select="'OpenMath'/>
+<xsl:param name="format" select="'OpenMath'"/>
   <xsl:template match="/">
 <!--     <xsl:text>#     This is the Mathematical Markup Language (MathML) 3.0, an XML&#xA;</xsl:text>
     <xsl:text>#     application for describing mathematical notation and capturing&#xA;</xsl:text>

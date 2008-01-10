@@ -1,0 +1,56 @@
+#     This file contains the arity checking rules for the symbols
+#     from the STS types for the content dictionary linalg1
+#     It is provided "as is" without expressed or implied warranty.
+#
+#     Revision:   $Id: sts2rnc.xsl 524 2008-01-10 05:05:35Z kohlhase $
+
+
+namespace om = "http://www.openmath.org/OpenMath"determinant_linalg1_elt = element om:OMS {
+        attribute cd {"linalg1"},
+        attribute name {"determinant"}}
+ |    element m:csymbol {
+        attribute cd {"linalg1"},
+        attribute name {"determinant"}}
+transpose_linalg1_elt = element om:OMS {
+        attribute cd {"linalg1"},
+        attribute name {"transpose"}}
+ |    element m:csymbol {
+        attribute cd {"linalg1"},
+        attribute name {"transpose"}}
+vector_selector_linalg1_elt = element om:OMS {
+        attribute cd {"linalg1"},
+        attribute name {"vector_selector"}}
+ |    element m:csymbol {
+        attribute cd {"linalg1"},
+        attribute name {"vector_selector"}}
+matrix_selector_linalg1_elt = element om:OMS {
+        attribute cd {"linalg1"},
+        attribute name {"matrix_selector"}}
+ |    element m:csymbol {
+        attribute cd {"linalg1"},
+        attribute name {"matrix_selector"}}
+vectorproduct_linalg1_elt = element om:OMS {
+        attribute cd {"linalg1"},
+        attribute name {"vectorproduct"}}
+ |    element m:csymbol {
+        attribute cd {"linalg1"},
+        attribute name {"vectorproduct"}}
+scalarproduct_linalg1_elt = element om:OMS {
+        attribute cd {"linalg1"},
+        attribute name {"scalarproduct"}}
+ |    element m:csymbol {
+        attribute cd {"linalg1"},
+        attribute name {"scalarproduct"}}
+outerproduct_linalg1_elt = element om:OMS {
+        attribute cd {"linalg1"},
+        attribute name {"outerproduct"}}
+ |    element m:csymbol {
+        attribute cd {"linalg1"},
+        attribute name {"outerproduct"}}
+CommutativeRing_sts_type |= element om:OMA {determinant_linalg1_elt,SquareMatrix_type}
+Matrix_type |= element om:OMA {transpose_linalg1_elt,Matrix_type}
+Object_sts_type |= element om:OMA {vector_selector_linalg1_elt,PositiveInteger_type,Object_sts_type}
+Object_sts_type |= element om:OMA {matrix_selector_linalg1_elt,PositiveInteger_type,PositiveInteger_type,Matrix_type}
+ThreeVector_type |= element om:OMA {vectorproduct_linalg1_elt,ThreeVector_type,ThreeVector_type}
+Scalar_type |= element om:OMA {scalarproduct_linalg1_elt,Vector_type,Vector_type}
+Matrix_type |= element om:OMA {outerproduct_linalg1_elt,Vector_type,Vector_type}

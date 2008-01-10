@@ -1,0 +1,21 @@
+#     This file contains the arity checking rules for the symbols
+#     from the STS types for the content dictionary minmax1
+#     It is provided "as is" without expressed or implied warranty.
+#
+#     Revision:   $Id: sts2rnc.xsl 524 2008-01-10 05:05:35Z kohlhase $
+
+
+namespace om = "http://www.openmath.org/OpenMath"min_minmax1_elt = element om:OMS {
+        attribute cd {"minmax1"},
+        attribute name {"min"}}
+ |    element m:csymbol {
+        attribute cd {"minmax1"},
+        attribute name {"min"}}
+max_minmax1_elt = element om:OMS {
+        attribute cd {"minmax1"},
+        attribute name {"max"}}
+ |    element m:csymbol {
+        attribute cd {"minmax1"},
+        attribute name {"max"}}
+OrderedSet_type |= element om:OMA {min_minmax1_elt,OrderedSet_type}
+OrderedSet_type |= element om:OMA {max_minmax1_elt,OrderedSet_type}

@@ -1,0 +1,36 @@
+#     This file contains the arity checking rules for the symbols
+#     from the STS types for the content dictionary rounding1
+#     It is provided "as is" without expressed or implied warranty.
+#
+#     Revision:   $Id: sts2rnc.xsl 524 2008-01-10 05:05:35Z kohlhase $
+
+
+namespace m  ="http://www.w3.org/1998/Math/MathML"
+ceiling_rounding1_elt = element om:OMS {
+        attribute cd {"rounding1"},
+        attribute name {"ceiling"}}
+ |    element m:csymbol {
+        attribute cd {"rounding1"},
+        attribute name {"ceiling"}}
+floor_rounding1_elt = element om:OMS {
+        attribute cd {"rounding1"},
+        attribute name {"floor"}}
+ |    element m:csymbol {
+        attribute cd {"rounding1"},
+        attribute name {"floor"}}
+trunc_rounding1_elt = element om:OMS {
+        attribute cd {"rounding1"},
+        attribute name {"trunc"}}
+ |    element m:csymbol {
+        attribute cd {"rounding1"},
+        attribute name {"trunc"}}
+round_rounding1_elt = element om:OMS {
+        attribute cd {"rounding1"},
+        attribute name {"round"}}
+ |    element m:csymbol {
+        attribute cd {"rounding1"},
+        attribute name {"round"}}
+Z_setname1_type |= element m:apply {ceiling_rounding1_elt,R_setname1_type}
+Z_setname1_type |= element m:apply {floor_rounding1_elt,R_setname1_type}
+Z_setname1_type |= element m:apply {trunc_rounding1_elt,R_setname1_type}
+Z_setname1_type |= element m:apply {round_rounding1_elt,R_setname1_type}

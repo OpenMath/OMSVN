@@ -1,0 +1,84 @@
+#     This file contains the arity checking rules for the symbols
+#     from the STS types for the content dictionary sts
+#     It is provided "as is" without expressed or implied warranty.
+#
+#     Revision:   $Id: sts2rnc.xsl 524 2008-01-10 05:05:35Z kohlhase $
+
+
+namespace om = "http://www.openmath.org/OpenMath"type_sts_elt = element om:OMS {
+        attribute cd {"sts"},
+        attribute name {"type"}}
+ |    element m:csymbol {
+        attribute cd {"sts"},
+        attribute name {"type"}}
+mapsto_sts_elt = element om:OMS {
+        attribute cd {"sts"},
+        attribute name {"mapsto"}}
+ |    element m:csymbol {
+        attribute cd {"sts"},
+        attribute name {"mapsto"}}
+nary_sts_elt = element om:OMS {
+        attribute cd {"sts"},
+        attribute name {"nary"}}
+ |    element m:csymbol {
+        attribute cd {"sts"},
+        attribute name {"nary"}}
+nassoc_sts_elt = element om:OMS {
+        attribute cd {"sts"},
+        attribute name {"nassoc"}}
+ |    element m:csymbol {
+        attribute cd {"sts"},
+        attribute name {"nassoc"}}
+error_sts_elt = element om:OMS {
+        attribute cd {"sts"},
+        attribute name {"error"}}
+ |    element m:csymbol {
+        attribute cd {"sts"},
+        attribute name {"error"}}
+structure_sts_elt = element om:OMS {
+        attribute cd {"sts"},
+        attribute name {"structure"}}
+ |    element m:csymbol {
+        attribute cd {"sts"},
+        attribute name {"structure"}}
+binder_sts_elt = element om:OMS {
+        attribute cd {"sts"},
+        attribute name {"binder"}}
+ |    element m:csymbol {
+        attribute cd {"sts"},
+        attribute name {"binder"}}
+attribution_sts_elt = element om:OMS {
+        attribute cd {"sts"},
+        attribute name {"attribution"}}
+ |    element m:csymbol {
+        attribute cd {"sts"},
+        attribute name {"attribution"}}
+Object_sts_elt = element om:OMS {
+        attribute cd {"sts"},
+        attribute name {"Object"}}
+ |    element m:csymbol {
+        attribute cd {"sts"},
+        attribute name {"Object"}}
+NumericalValue_sts_elt = element om:OMS {
+        attribute cd {"sts"},
+        attribute name {"NumericalValue"}}
+ |    element m:csymbol {
+        attribute cd {"sts"},
+        attribute name {"NumericalValue"}}
+SetNumericalValue_sts_elt = element om:OMS {
+        attribute cd {"sts"},
+        attribute name {"SetNumericalValue"}}
+ |    element m:csymbol {
+        attribute cd {"sts"},
+        attribute name {"SetNumericalValue"}}
+attribution_sts_type |= type_sts_elt
+FunctionType_type |= element om:OMA {mapsto_sts_elt,Object_sts_type*}
+Tuple_type |= element om:OMA {nary_sts_elt,Type_type}
+Tuple_type |= element om:OMA {nassoc_sts_elt,Type_type}
+Error_type |= element om:OMA {error_sts_elt,String_type}
+Domain_type |= element om:OMA {structure_sts_elt,Category_type}
+Symbol_type |= binder_sts_elt
+Symbol_type |= attribution_sts_elt
+Symbol_type |= Object_sts_elt
+Symbol_type |= NumericalValue_sts_elt
+Symbol_type |= SetNumericalValue_sts_elt

@@ -1,0 +1,50 @@
+#     This file contains the arity checking rules for the symbols
+#     from the STS types for the content dictionary complex1
+#     It is provided "as is" without expressed or implied warranty.
+#
+#     Revision:   $Id: sts2rnc.xsl 524 2008-01-10 05:05:35Z kohlhase $
+
+
+namespace m  ="http://www.w3.org/1998/Math/MathML"
+conjugate_complex1_elt = element om:OMS {
+        attribute cd {"complex1"},
+        attribute name {"conjugate"}}
+ |    element m:csymbol {
+        attribute cd {"complex1"},
+        attribute name {"conjugate"}}
+complex_cartesian_complex1_elt = element om:OMS {
+        attribute cd {"complex1"},
+        attribute name {"complex_cartesian"}}
+ |    element m:csymbol {
+        attribute cd {"complex1"},
+        attribute name {"complex_cartesian"}}
+real_complex1_elt = element om:OMS {
+        attribute cd {"complex1"},
+        attribute name {"real"}}
+ |    element m:csymbol {
+        attribute cd {"complex1"},
+        attribute name {"real"}}
+imaginary_complex1_elt = element om:OMS {
+        attribute cd {"complex1"},
+        attribute name {"imaginary"}}
+ |    element m:csymbol {
+        attribute cd {"complex1"},
+        attribute name {"imaginary"}}
+complex_polar_complex1_elt = element om:OMS {
+        attribute cd {"complex1"},
+        attribute name {"complex_polar"}}
+ |    element m:csymbol {
+        attribute cd {"complex1"},
+        attribute name {"complex_polar"}}
+argument_complex1_elt = element om:OMS {
+        attribute cd {"complex1"},
+        attribute name {"argument"}}
+ |    element m:csymbol {
+        attribute cd {"complex1"},
+        attribute name {"argument"}}
+C_setname1_type |= element m:apply {conjugate_complex1_elt,C_setname1_type}
+C_setname1_type |= element m:apply {complex_cartesian_complex1_elt,NumericalValue_sts_type,NumericalValue_sts_type}
+NumericalValue_sts_type |= element m:apply {real_complex1_elt,C_setname1_type}
+NumericalValue_sts_type |= element m:apply {imaginary_complex1_elt,C_setname1_type}
+C_setname1_type |= element m:apply {complex_polar_complex1_elt,PositiveReal_type,R_setname1_type}
+R_setname1_type |= element m:apply {argument_complex1_elt,C_setname1_type}
