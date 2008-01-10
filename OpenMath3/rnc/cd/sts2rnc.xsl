@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- an XSLT stylesheet for tranfsorming arity information in MathML3 Content 
+<!-- an XSLT stylesheet for tranfsorming STS type  information in  Content 
      Dictionaries to RelaxNG grammar rules 
-     Copyright (c) 2007 Michael Kohlhase licensed under the Gnu LGPL -->
+     Copyright (c) 2008 Michael Kohlhase licensed under the Gnu LGPL
+    Revision:   $Id$
+    $HeadURL$
+ -->
 
 <xsl:stylesheet  version="1.0"
 		 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -32,15 +35,16 @@
     <xsl:text>#     and this paragraph appear in all copies.  The copyright holders make&#xA;</xsl:text>
     <xsl:text>#     no representation about the suitability of the Schema for any purpose.&#xA;</xsl:text>
     <xsl:text>#&#xA;</xsl:text> -->
-    <xsl:text>#     This file contains the arity checking rules for the symbols&#xA;</xsl:text>
+    <xsl:text>#     This file contains the type checking rules for the symbols&#xA;</xsl:text>
     <xsl:text>#     from the STS types for the content dictionary </xsl:text> 
     <xsl:value-of select="/omcd:CDSignatures/@cd"/><xsl:text>&#xA;</xsl:text>
     <xsl:text>#     It is provided "as is" without expressed or implied warranty.&#xA;</xsl:text>
     <xsl:text>#&#xA;</xsl:text>
-    <xsl:text>#     Revision:   $Id$&#xA;&#xA;</xsl:text>
-        <xsl:choose>
+    <xsl:text>#     Revision:   $Id$&#xA;</xsl:text>
+    <xsl:text>#    $HeadURL$;&#xA;;&#xA;</xsl:text>
+    <xsl:choose>
       <xsl:when test="$format='OpenMath'">
-	<xsl:text>&#xA;namespace om = "http://www.openmath.org/OpenMath"</xsl:text>
+	<xsl:text>&#xA;namespace om = "http://www.openmath.org/OpenMath"&#xA;&#xA;</xsl:text>
       </xsl:when>
       <xsl:when test="$format='MathML'">
 	<xsl:text>&#xA;namespace m  ="http://www.w3.org/1998/Math/MathML"&#xA;</xsl:text>
@@ -55,15 +59,14 @@
     <xsl:for-each select="set:distinct(descendant::omcd:Signature/@name)"> 
      <xsl:value-of select="concat(.,'_',$cd,'_elt')"/>
       <xsl:text> = </xsl:text>
-	<xsl:text>element om:OMS {&#xA;</xsl:text>
-	<xsl:text>        attribute cd {"</xsl:text>
-      	<xsl:value-of select="$cd"/>
-	<xsl:text>"},&#xA;</xsl:text>
-	<xsl:text>        attribute name {"</xsl:text>
-	<xsl:value-of select="."/>
-	<xsl:text>"}}&#xA;</xsl:text>
-	<xsl:text> |    </xsl:text>
-	<xsl:text>element m:csymbol {&#xA;</xsl:text>
+        <xsl:choose>
+	  <xsl:when test="$format='OpenMath'">
+	    <xsl:text>element om:OMS {&#xA;</xsl:text>
+	  </xsl:when>
+	  <xsl:when test="$format='MathML'">
+	    <xsl:text>element m:csymbol {&#xA;</xsl:text>
+	  </xsl:when>
+	</xsl:choose>
 	<xsl:text>        attribute cd {"</xsl:text>
       	<xsl:value-of select="$cd"/>
 	<xsl:text>"},&#xA;</xsl:text>

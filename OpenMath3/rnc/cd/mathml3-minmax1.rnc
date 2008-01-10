@@ -2,20 +2,14 @@
 #     from the STS types for the content dictionary minmax1
 #     It is provided "as is" without expressed or implied warranty.
 #
-#     Revision:   $Id: sts2rnc.xsl 524 2008-01-10 05:05:35Z kohlhase $
+#     Revision:   $Id$
 
 
 namespace m  ="http://www.w3.org/1998/Math/MathML"
-min_minmax1_elt = element om:OMS {
+min_minmax1_elt = element m:csymbol {
         attribute cd {"minmax1"},
         attribute name {"min"}}
- |    element m:csymbol {
-        attribute cd {"minmax1"},
-        attribute name {"min"}}
-max_minmax1_elt = element om:OMS {
-        attribute cd {"minmax1"},
-        attribute name {"max"}}
- |    element m:csymbol {
+max_minmax1_elt = element m:csymbol {
         attribute cd {"minmax1"},
         attribute name {"max"}}
 OrderedSet_type |= element m:apply {min_minmax1_elt,OrderedSet_type}
