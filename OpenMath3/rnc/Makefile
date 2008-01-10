@@ -5,7 +5,8 @@ MCD.rnc = $(MCD:%.mcd=%.rnc)
 
 STS.dir = ../cd/MathML
 STS = $(shell cd $(STS.dir);ls *.sts)
-STS.rnc = $(STS:%.sts=%.rnc)
+STS.OM.rnc = $(STS:%.sts=om3-%.rnc)
+STS.M.rnc = $(STS:%.sts=mathml3-%.rnc)
 
 RNC = $(shell ls *.rnc)
 RNG = $(RNC:%.rnc=%.rng)
