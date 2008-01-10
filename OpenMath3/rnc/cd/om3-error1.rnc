@@ -2,25 +2,18 @@
 #     from the STS types for the content dictionary error
 #     It is provided "as is" without expressed or implied warranty.
 #
-#     Revision:   $Id: sts2rnc.xsl 524 2008-01-10 05:05:35Z kohlhase $
+#     Revision:   $Id$
 
 
-namespace om = "http://www.openmath.org/OpenMath"unhandled_symbol_error_elt = element om:OMS {
-        attribute cd {"error"},
-        attribute name {"unhandled_symbol"}}
- |    element m:csymbol {
+namespace om = "http://www.openmath.org/OpenMath"
+
+unhandled_symbol_error_elt = element om:OMS {
         attribute cd {"error"},
         attribute name {"unhandled_symbol"}}
 unexpected_symbol_error_elt = element om:OMS {
         attribute cd {"error"},
         attribute name {"unexpected_symbol"}}
- |    element m:csymbol {
-        attribute cd {"error"},
-        attribute name {"unexpected_symbol"}}
 unsupported_CD_error_elt = element om:OMS {
-        attribute cd {"error"},
-        attribute name {"unsupported_CD"}}
- |    element m:csymbol {
         attribute cd {"error"},
         attribute name {"unsupported_CD"}}
 error_sts_type |= element om:OMA {unhandled_symbol_error_elt,OMSymbol_omtypes_type}
