@@ -58,8 +58,14 @@ argument_complex1_elt = element om:OMS {
         attribute cd {"complex1"},
         attribute name {"argument"}}
 C_setname1_type |= element om:OMA {conjugate_complex1_elt,C_setname1_type}
+C_setname1_type |= element m:apply {conjugate_complex1_elt,C_setname1_type}
 C_setname1_type |= element om:OMA {complex_cartesian_complex1_elt,NumericalValue_sts_type,NumericalValue_sts_type}
+C_setname1_type |= element m:apply {complex_cartesian_complex1_elt,NumericalValue_sts_type,NumericalValue_sts_type}
 NumericalValue_sts_type |= element om:OMA {real_complex1_elt,C_setname1_type}
+NumericalValue_sts_type |= element m:apply {real_complex1_elt,C_setname1_type}
 NumericalValue_sts_type |= element om:OMA {imaginary_complex1_elt,C_setname1_type}
+NumericalValue_sts_type |= element m:apply {imaginary_complex1_elt,C_setname1_type}
 C_setname1_type |= element om:OMA {complex_polar_complex1_elt,PositiveReal_type,R_setname1_type}
+C_setname1_type |= element m:apply {complex_polar_complex1_elt,PositiveReal_type,R_setname1_type}
 R_setname1_type |= element om:OMA {argument_complex1_elt,C_setname1_type}
+R_setname1_type |= element m:apply {argument_complex1_elt,C_setname1_type}

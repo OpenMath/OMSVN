@@ -15,9 +15,9 @@
   extension-element-prefixes="func set exsl">
 
   <xsl:output method="text"/>
-
+<xsl:param name="format" select="'OpenMath'/>
   <xsl:template match="/">
-    <xsl:text>#     This is the Mathematical Markup Language (MathML) 3.0, an XML&#xA;</xsl:text>
+<!--     <xsl:text>#     This is the Mathematical Markup Language (MathML) 3.0, an XML&#xA;</xsl:text>
     <xsl:text>#     application for describing mathematical notation and capturing&#xA;</xsl:text>
     <xsl:text>#     both its structure and content.&#xA;</xsl:text>
     <xsl:text>#&#xA;</xsl:text>
@@ -31,16 +31,21 @@
     <xsl:text>#     hereby granted in perpetuity, provided that the above copyright notice&#xA;</xsl:text>
     <xsl:text>#     and this paragraph appear in all copies.  The copyright holders make&#xA;</xsl:text>
     <xsl:text>#     no representation about the suitability of the Schema for any purpose.&#xA;</xsl:text>
-    <xsl:text>#&#xA;</xsl:text>
+    <xsl:text>#&#xA;</xsl:text> -->
     <xsl:text>#     This file contains the arity checking rules for the symbols&#xA;</xsl:text>
     <xsl:text>#     from the STS types for the content dictionary </xsl:text> 
     <xsl:value-of select="/omcd:CDSignatures/@cd"/><xsl:text>&#xA;</xsl:text>
     <xsl:text>#     It is provided "as is" without expressed or implied warranty.&#xA;</xsl:text>
     <xsl:text>#&#xA;</xsl:text>
-    <xsl:text>#     Revision:   $Id$&#xA;</xsl:text>
-    <xsl:text>&#xA;namespace om = "http://www.openmath.org/OpenMath"</xsl:text>
-    <xsl:text>&#xA;namespace m  ="http://www.w3.org/1998/Math/MathML"&#xA;</xsl:text>
-
+    <xsl:text>#     Revision:   $Id$&#xA;&#xA;</xsl:text>
+        <xsl:choose>
+      <xsl:when test="$format='OpenMath'">
+	<xsl:text>&#xA;namespace om = "http://www.openmath.org/OpenMath"</xsl:text>
+      </xsl:when>
+      <xsl:when test="$format='MathML'">
+	<xsl:text>&#xA;namespace m  ="http://www.w3.org/1998/Math/MathML"&#xA;</xsl:text>
+      </xsl:when>
+    </xsl:choose>
     <xsl:apply-templates/>
   </xsl:template>
 
@@ -92,7 +97,14 @@
   <xsl:template match="om:OMA[om:OMS[1 and @name='mapsto' and @cd='sts']]" mode="rnc">
     <xsl:param name="elt"/>
     <xsl:apply-templates select="*[position()=last()]" mode="type"/>
-    <xsl:text> |= element om:OMA {</xsl:text>
+    <xsl:choose>
+      <xsl:when test="$format='OpenMath'">
+	<xsl:text> |= element om:OMA {</xsl:text>
+      </xsl:when>
+      <xsl:when test="$format='MathML'">
+	<xsl:text> |= element m:apply {</xsl:text>
+      </xsl:when>
+    </xsl:choose>
     <xsl:value-of select="$elt"/>
     <xsl:text>,</xsl:text>
     <xsl:for-each select="*[position() &gt; 1 and position()!=last()]">
@@ -105,7 +117,14 @@
   <xsl:template match="om:OMA[om:OMS[1 and @name='bind' and @cd='sts']]" mode="rnc">
     <xsl:param name="elt"/>
     <xsl:apply-templates select="*[position()=last()]" mode="type"/>
-    <xsl:text> |= element om:OMBIND {</xsl:text>
+    <xsl:choose>
+      <xsl:when test="$format='OpenMath'">
+	<xsl:text> |= element om:OMBIND {</xsl:text>
+      </xsl:when>
+      <xsl:when test="$format='MathML'">
+	<xsl:text> |= element m:bind {</xsl:text>
+      </xsl:when>
+    </xsl:choose>
     <xsl:value-of select="$elt"/>
     <xsl:text>, OMBVAR,</xsl:text>
     <xsl:apply-templates select="*[2]" mode="type"/>
