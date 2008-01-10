@@ -1,0 +1,28 @@
+#     This file contains the arity checking rules for the symbols
+#     from the STS types for the content dictionary piece1
+#     It is provided "as is" without expressed or implied warranty.
+#
+#     Revision:   $Id: sts2rnc.xsl 524 2008-01-10 05:05:35Z kohlhase $
+
+
+namespace om = "http://www.openmath.org/OpenMath"piecewise_piece1_elt = element om:OMS {
+        attribute cd {"piece1"},
+        attribute name {"piecewise"}}
+ |    element m:csymbol {
+        attribute cd {"piece1"},
+        attribute name {"piecewise"}}
+piece_piece1_elt = element om:OMS {
+        attribute cd {"piece1"},
+        attribute name {"piece"}}
+ |    element m:csymbol {
+        attribute cd {"piece1"},
+        attribute name {"piece"}}
+otherwise_piece1_elt = element om:OMS {
+        attribute cd {"piece1"},
+        attribute name {"otherwise"}}
+ |    element m:csymbol {
+        attribute cd {"piece1"},
+        attribute name {"otherwise"}}
+Object_sts_type |= element om:OMA {piecewise_piece1_elt,Piece_type*}
+Piece_type |= element om:OMA {piece_piece1_elt,Object_sts_type,Boolean_setname2_type}
+Piece_type |= element om:OMA {otherwise_piece1_elt,Object_sts_type}

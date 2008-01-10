@@ -1,0 +1,112 @@
+#     This file contains the arity checking rules for the symbols
+#     from the STS types for the content dictionary set1
+#     It is provided "as is" without expressed or implied warranty.
+#
+#     Revision:   $Id: sts2rnc.xsl 524 2008-01-10 05:05:35Z kohlhase $
+
+
+namespace om = "http://www.openmath.org/OpenMath"cartesian_product_set1_elt = element om:OMS {
+        attribute cd {"set1"},
+        attribute name {"cartesian_product"}}
+ |    element m:csymbol {
+        attribute cd {"set1"},
+        attribute name {"cartesian_product"}}
+map_set1_elt = element om:OMS {
+        attribute cd {"set1"},
+        attribute name {"map"}}
+ |    element m:csymbol {
+        attribute cd {"set1"},
+        attribute name {"map"}}
+suchthat_set1_elt = element om:OMS {
+        attribute cd {"set1"},
+        attribute name {"suchthat"}}
+ |    element m:csymbol {
+        attribute cd {"set1"},
+        attribute name {"suchthat"}}
+emptyset_set1_elt = element om:OMS {
+        attribute cd {"set1"},
+        attribute name {"emptyset"}}
+ |    element m:csymbol {
+        attribute cd {"set1"},
+        attribute name {"emptyset"}}
+size_set1_elt = element om:OMS {
+        attribute cd {"set1"},
+        attribute name {"size"}}
+ |    element m:csymbol {
+        attribute cd {"set1"},
+        attribute name {"size"}}
+set_set1_elt = element om:OMS {
+        attribute cd {"set1"},
+        attribute name {"set"}}
+ |    element m:csymbol {
+        attribute cd {"set1"},
+        attribute name {"set"}}
+intersect_set1_elt = element om:OMS {
+        attribute cd {"set1"},
+        attribute name {"intersect"}}
+ |    element m:csymbol {
+        attribute cd {"set1"},
+        attribute name {"intersect"}}
+union_set1_elt = element om:OMS {
+        attribute cd {"set1"},
+        attribute name {"union"}}
+ |    element m:csymbol {
+        attribute cd {"set1"},
+        attribute name {"union"}}
+setdiff_set1_elt = element om:OMS {
+        attribute cd {"set1"},
+        attribute name {"setdiff"}}
+ |    element m:csymbol {
+        attribute cd {"set1"},
+        attribute name {"setdiff"}}
+subset_set1_elt = element om:OMS {
+        attribute cd {"set1"},
+        attribute name {"subset"}}
+ |    element m:csymbol {
+        attribute cd {"set1"},
+        attribute name {"subset"}}
+in_set1_elt = element om:OMS {
+        attribute cd {"set1"},
+        attribute name {"in"}}
+ |    element m:csymbol {
+        attribute cd {"set1"},
+        attribute name {"in"}}
+notin_set1_elt = element om:OMS {
+        attribute cd {"set1"},
+        attribute name {"notin"}}
+ |    element m:csymbol {
+        attribute cd {"set1"},
+        attribute name {"notin"}}
+prsubset_set1_elt = element om:OMS {
+        attribute cd {"set1"},
+        attribute name {"prsubset"}}
+ |    element m:csymbol {
+        attribute cd {"set1"},
+        attribute name {"prsubset"}}
+notsubset_set1_elt = element om:OMS {
+        attribute cd {"set1"},
+        attribute name {"notsubset"}}
+ |    element m:csymbol {
+        attribute cd {"set1"},
+        attribute name {"notsubset"}}
+notprsubset_set1_elt = element om:OMS {
+        attribute cd {"set1"},
+        attribute name {"notprsubset"}}
+ |    element m:csymbol {
+        attribute cd {"set1"},
+        attribute name {"notprsubset"}}
+Set1_type |= element om:OMA {cartesian_product_set1_elt,Set_type*}
+Set_type |= element om:OMA {map_set1_elt,function_type,Set_type}
+Set_type |= element om:OMA {suchthat_set1_elt,Set_type,function_type}
+Set_type |= emptyset_set1_elt
+CardinalNumber_type |= element om:OMA {size_set1_elt,Set_type}
+Set_type |= element om:OMA {set_set1_elt,Object_sts_type*}
+Set_type |= element om:OMA {intersect_set1_elt,Set_type*}
+Set_type |= element om:OMA {union_set1_elt,Set_type*}
+Set_type |= element om:OMA {setdiff_set1_elt,Set_type,Set_type}
+Boolean_setname2_type |= element om:OMA {subset_set1_elt,Set_type,Set_type}
+Boolean_setname2_type |= element om:OMA {in_set1_elt,Object_sts_type,Set_type}
+Boolean_setname2_type |= element om:OMA {notin_set1_elt,Object_sts_type,Set_type}
+Boolean_setname2_type |= element om:OMA {prsubset_set1_elt,Set_type,Set_type}
+Boolean_setname2_type |= element om:OMA {notsubset_set1_elt,Set_type,Set_type}
+Boolean_setname2_type |= element om:OMA {notprsubset_set1_elt,Set_type,Set_type}

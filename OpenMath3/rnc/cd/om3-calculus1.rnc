@@ -1,0 +1,42 @@
+#     This file contains the arity checking rules for the symbols
+#     from the STS types for the content dictionary calculus1
+#     It is provided "as is" without expressed or implied warranty.
+#
+#     Revision:   $Id: sts2rnc.xsl 524 2008-01-10 05:05:35Z kohlhase $
+
+
+namespace om = "http://www.openmath.org/OpenMath"diff_calculus1_elt = element om:OMS {
+        attribute cd {"calculus1"},
+        attribute name {"diff"}}
+ |    element m:csymbol {
+        attribute cd {"calculus1"},
+        attribute name {"diff"}}
+nthdiff_calculus1_elt = element om:OMS {
+        attribute cd {"calculus1"},
+        attribute name {"nthdiff"}}
+ |    element m:csymbol {
+        attribute cd {"calculus1"},
+        attribute name {"nthdiff"}}
+partialdiff_calculus1_elt = element om:OMS {
+        attribute cd {"calculus1"},
+        attribute name {"partialdiff"}}
+ |    element m:csymbol {
+        attribute cd {"calculus1"},
+        attribute name {"partialdiff"}}
+int_calculus1_elt = element om:OMS {
+        attribute cd {"calculus1"},
+        attribute name {"int"}}
+ |    element m:csymbol {
+        attribute cd {"calculus1"},
+        attribute name {"int"}}
+defint_calculus1_elt = element om:OMS {
+        attribute cd {"calculus1"},
+        attribute name {"defint"}}
+ |    element m:csymbol {
+        attribute cd {"calculus1"},
+        attribute name {"defint"}}
+function_type |= element om:OMA {diff_calculus1_elt,function_type}
+function_type |= element om:OMA {nthdiff_calculus1_elt,Z_setname1_type,function_type}
+function_type |= element om:OMA {partialdiff_calculus1_elt,VariableList_type,function_type}
+function_type |= element om:OMA {int_calculus1_elt,function_type}
+Object_sts_type |= element om:OMA {defint_calculus1_elt,RangeOfIntegration_type,function_type}

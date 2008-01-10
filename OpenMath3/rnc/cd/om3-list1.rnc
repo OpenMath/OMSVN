@@ -1,0 +1,28 @@
+#     This file contains the arity checking rules for the symbols
+#     from the STS types for the content dictionary list1
+#     It is provided "as is" without expressed or implied warranty.
+#
+#     Revision:   $Id: sts2rnc.xsl 524 2008-01-10 05:05:35Z kohlhase $
+
+
+namespace om = "http://www.openmath.org/OpenMath"map_list1_elt = element om:OMS {
+        attribute cd {"list1"},
+        attribute name {"map"}}
+ |    element m:csymbol {
+        attribute cd {"list1"},
+        attribute name {"map"}}
+suchthat_list1_elt = element om:OMS {
+        attribute cd {"list1"},
+        attribute name {"suchthat"}}
+ |    element m:csymbol {
+        attribute cd {"list1"},
+        attribute name {"suchthat"}}
+list_list1_elt = element om:OMS {
+        attribute cd {"list1"},
+        attribute name {"list"}}
+ |    element m:csymbol {
+        attribute cd {"list1"},
+        attribute name {"list"}}
+List_type |= element om:OMA {map_list1_elt,function_type,List_type}
+List_type |= element om:OMA {suchthat_list1_elt,Set_type,function_type}
+Object_sts_type |= element om:OMA {list_list1_elt,Object_sts_type*}

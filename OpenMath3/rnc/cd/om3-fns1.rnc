@@ -1,0 +1,70 @@
+#     This file contains the arity checking rules for the symbols
+#     from the STS types for the content dictionary fns1
+#     It is provided "as is" without expressed or implied warranty.
+#
+#     Revision:   $Id: sts2rnc.xsl 524 2008-01-10 05:05:35Z kohlhase $
+
+
+namespace om = "http://www.openmath.org/OpenMath"identity_fns1_elt = element om:OMS {
+        attribute cd {"fns1"},
+        attribute name {"identity"}}
+ |    element m:csymbol {
+        attribute cd {"fns1"},
+        attribute name {"identity"}}
+left_inverse_fns1_elt = element om:OMS {
+        attribute cd {"fns1"},
+        attribute name {"left_inverse"}}
+ |    element m:csymbol {
+        attribute cd {"fns1"},
+        attribute name {"left_inverse"}}
+right_inverse_fns1_elt = element om:OMS {
+        attribute cd {"fns1"},
+        attribute name {"right_inverse"}}
+ |    element m:csymbol {
+        attribute cd {"fns1"},
+        attribute name {"right_inverse"}}
+inverse_fns1_elt = element om:OMS {
+        attribute cd {"fns1"},
+        attribute name {"inverse"}}
+ |    element m:csymbol {
+        attribute cd {"fns1"},
+        attribute name {"inverse"}}
+domain_fns1_elt = element om:OMS {
+        attribute cd {"fns1"},
+        attribute name {"domain"}}
+ |    element m:csymbol {
+        attribute cd {"fns1"},
+        attribute name {"domain"}}
+domainofapplication_fns1_elt = element om:OMS {
+        attribute cd {"fns1"},
+        attribute name {"domainofapplication"}}
+ |    element m:csymbol {
+        attribute cd {"fns1"},
+        attribute name {"domainofapplication"}}
+range_fns1_elt = element om:OMS {
+        attribute cd {"fns1"},
+        attribute name {"range"}}
+ |    element m:csymbol {
+        attribute cd {"fns1"},
+        attribute name {"range"}}
+left_compose_fns1_elt = element om:OMS {
+        attribute cd {"fns1"},
+        attribute name {"left_compose"}}
+ |    element m:csymbol {
+        attribute cd {"fns1"},
+        attribute name {"left_compose"}}
+lambda_fns1_elt = element om:OMS {
+        attribute cd {"fns1"},
+        attribute name {"lambda"}}
+ |    element m:csymbol {
+        attribute cd {"fns1"},
+        attribute name {"lambda"}}
+Object_sts_type |= element om:OMA {identity_fns1_elt,Object_sts_type}
+function_type |= element om:OMA {left_inverse_fns1_elt,function_type}
+function_type |= element om:OMA {right_inverse_fns1_elt,function_type}
+function_type |= element om:OMA {inverse_fns1_elt,function_type}
+Set_type |= element om:OMA {domain_fns1_elt,function_type}
+Set_type |= element om:OMA {domainofapplication_fns1_elt,function_type}
+Set_type |= element om:OMA {range_fns1_elt,function_type}
+function_type |= element om:OMA {left_compose_fns1_elt,function_type,function_type}
+binder_sts_type |= lambda_fns1_elt
