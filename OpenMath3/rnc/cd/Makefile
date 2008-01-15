@@ -1,8 +1,11 @@
 STS.dir = ../../cd/MathML
 STS = $(shell cd $(STS.dir);ls *.sts)
-STS.OM.rnc = $(STS:%.sts=om3-%.rnc)
-STS.MathML.rnc = $(STS:%.sts=mathml3-%.rnc)
+STS.OM.rnc-arity = $(STS:%.sts=om3-%-arity.rnc)
+STS.OM.rnc-sts = $(STS:%.sts=om3-%-sts.rnc)
+STS.MathML.rnc-arity = $(STS:%.sts=mathml3-%-arity.rnc)
+STS.MathML.rnc-sts = $(STS:%.sts=mathml3-%-sts.rnc)
 RNC = $(STS.OM.rnc) $(STS.MathML.rnc) 
+
 RNG = $(RNC:%.rnc=%.rng)
 
 all: $(RNC) #rng
