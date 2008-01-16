@@ -1,19 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- an XSLT stylesheet for tranfsorming arity information in MathML3 Content 
+<!-- an XSLT stylesheet for tranfsorming STS type  information in  Content 
      Dictionaries to RelaxNG grammar rules 
-     Copyright (c) 2007 Michael Kohlhase licensed under the Gnu LGPL -->
+     Copyright (c) 2008 Michael Kohlhase licensed under the Gnu LGPL
+    Revision:   $Id: sts2rnc-sts.xsl 529 2008-01-15 10:07:01Z kohlhase $
+    $HeadURL: https://svn.openmath.org/OpenMath3/rnc/cd/sts2rnc-sts.xsl $
+ -->
 
 <xsl:stylesheet  version="1.0"
- xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+		 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:set="http://exslt.org/sets" 
   xmlns:m="http://www.w3.org/1998/Math/MathML"
   xmlns:func="http://exslt.org/functions" 
-  extension-element-prefixes="func">
+  xmlns:exsl="http://exslt.org/common" 
+  xmlns:omcds="http://www.openmath.org/OpenMathCDS"
+  xmlns:omcd="http://www.openmath.org/OpenMathCD"
+  xmlns:om="http://www.openmath.org/OpenMath"
+  extension-element-prefixes="func set exsl">
 
   <xsl:output method="text"/>
+  <xsl:param name="format" select="'OpenMath'"/>
+  <xsl:param name="thecd"/>
+  <xsl:variable name="here" select="/"/>
+  
+
+<xsl:variable name="symbol">
+  <xsl:choose>
+    <xsl:when test="$format='OpenMath'"><xsl:text>om:OMS</xsl:text></xsl:when>
+    <xsl:when test="$format='MathML'"><xsl:text>m:csymbol</xsl:text></xsl:when>
+  </xsl:choose>
+</xsl:variable>
 
   <xsl:template match="/">
-    <xsl:text>#     This is the Mathematical Markup Language (MathML) 3.0, an XML&#xA;</xsl:text>
+<!--     <xsl:text>#     This is the Mathematical Markup Language (MathML) 3.0, an XML&#xA;</xsl:text>
     <xsl:text>#     application for describing mathematical notation and capturing&#xA;</xsl:text>
     <xsl:text>#     both its structure and content.&#xA;</xsl:text>
     <xsl:text>#&#xA;</xsl:text>
@@ -27,67 +46,90 @@
     <xsl:text>#     hereby granted in perpetuity, provided that the above copyright notice&#xA;</xsl:text>
     <xsl:text>#     and this paragraph appear in all copies.  The copyright holders make&#xA;</xsl:text>
     <xsl:text>#     no representation about the suitability of the Schema for any purpose.&#xA;</xsl:text>
-    <xsl:text>#&#xA;</xsl:text>
+    <xsl:text>#&#xA;</xsl:text> -->
     <xsl:text>#     This file contains the arity checking rules for the symbols&#xA;</xsl:text>
-    <xsl:text>#     from the content dictionary </xsl:text> 
-    <xsl:value-of select="/mcd/@xml:id"/><xsl:text>&#xA;</xsl:text>
+    <xsl:text>#     generated from the STS types for the content dictionary </xsl:text> 
+    <xsl:value-of select="/omcds:CDSignatures/@cd"/><xsl:text>&#xA;</xsl:text>
     <xsl:text>#     It is provided "as is" without expressed or implied warranty.&#xA;</xsl:text>
     <xsl:text>#&#xA;</xsl:text>
-    <xsl:text>#     Revision:   $Id: mcd2rnc.xsl,v 1.7 2007/11/20 06:38:17 mkohlhas2 Exp $&#xA;</xsl:text>
-    <xsl:value-of select="m:extend-class(//MMLdefinition[@cdrole='constant'],'cd.token.class')"/>
-    <xsl:value-of select="m:extend-class(//MMLdefinition[@cdrole='application' and @arity='1'],'cd.token.unary.class')"/>
-    <xsl:value-of select="m:extend-class(//MMLdefinition[@cdrole='application' and @arity='2'],'cd.token.binary.class')"/>
-    <xsl:value-of select="m:extend-class(//MMLdefinition[@cdrole='application' and @arity='nary'],'cd.token.nary.class')"/>
-    <xsl:value-of select="m:extend-class(//MMLdefinition[@cdrole='binder'],'cd.binder.class')"/>
-    <xsl:value-of select="m:extend-class(//MMLdefinition[@cdrole='key'],'cd.key.class')"/>
-    <xsl:value-of select="m:extend-class(//MMLdefinition[@cdrole='error'],'cd.error.class')"/>
-    <!--     <xsl:value-of select="m:extend-class(//MMLdefinition[@container],'cd.container.class')"/> -->
-
-    <!-- warnings -->
-    <xsl:for-each select="//MMLdefinition[not(@cdrole='key' or 
-                                              @cdrole='error' or 
-                                              @cdrole='binder' or 
-                                              @cdrole='application' or 
-                                              @cdrole='constant')]">
-      <xsl:value-of select="concat('&#xA;# role ',@cdrole,' for symbol ',name,' not recognized!')"/>
-      <xsl:message>
-        <xsl:value-of select="concat('&#xA;# role ',@cdrole,' for symbol ',name,' not recognized!')"/>
-      </xsl:message>
-    </xsl:for-each>
-    <xsl:for-each select="//MMLdefinition[not(@cdrole)]">
-      <xsl:value-of select="concat('# no role for symbol ',name,' specified!')"/>
-      <xsl:message><xsl:value-of select="concat('# no role for symbol ',name,' specified!')"/></xsl:message>
-    </xsl:for-each>
-    
-    <!-- token element definitions -->
-    <xsl:text>&#xA;&#xA;</xsl:text>
-    <xsl:text># the element definitions for the token elements</xsl:text>
-    <xsl:for-each select="//MMLdefinition">
-      <xsl:value-of select="concat('&#xA;',name,'.content = Token.type')"/>
-      <xsl:for-each select="MMLattribute">
-        <xsl:value-of select="concat(', attribute ',attname,' {MathMLtype}?')"/>
-      </xsl:for-each>
-      <xsl:choose>
-        <xsl:when test="@container and @arity='1'"><xsl:text>,ContExp?</xsl:text></xsl:when>
-        <xsl:when test="@container and @arity='2'"><xsl:text>,(ContExp,ContExp)?</xsl:text></xsl:when>
-        <xsl:when test="@container and @arity='nary'"><xsl:text>,ContExp*</xsl:text></xsl:when>
-      </xsl:choose>
-      <xsl:value-of select="concat('&#xA;',name,'.token = element ',name,' {',name,'.content}')"/>
-    </xsl:for-each>
+    <xsl:text>#     Revision:   $Id: sts2rnc-sts.xsl 529 2008-01-15 10:07:01Z kohlhase $&#xA;</xsl:text>
+    <xsl:text>#    $HeadURL: https://svn.openmath.org/OpenMath3/rnc/cd/sts2rnc-sts.xsl $ &#xA;&#xA;</xsl:text>
+    <xsl:choose>
+      <xsl:when test="$format='OpenMath'">
+	<xsl:text>&#xA;namespace om = "http://www.openmath.org/OpenMath"&#xA;&#xA;</xsl:text>
+      </xsl:when>
+      <xsl:when test="$format='MathML'">
+	<xsl:text>&#xA;namespace m  ="http://www.w3.org/1998/Math/MathML"&#xA;</xsl:text>
+      </xsl:when>
+    </xsl:choose>
+    <xsl:apply-templates/>
   </xsl:template>
 
-  <func:function name="m:extend-class">
-    <xsl:param name="tokens"/>
-    <xsl:param name="class"/>
-    <xsl:if test="count($tokens)&gt;0">
-      <func:result>
-        <xsl:value-of select="concat('&#xA;',$class,' |= ')"/>
-        <xsl:for-each select="$tokens">
-          <xsl:value-of select="concat(name,'.token')"/>
-          <xsl:if test="position()!=last()"><xsl:text> | </xsl:text></xsl:if>
-        </xsl:for-each>
-      </func:result>
-    </xsl:if>
-  </func:function>
+  <xsl:template match="omcds:CDSignatures">
+    <!-- define abbreviations for the elements -->
+    <xsl:apply-templates select="omcds:Signature">
+      <xsl:with-param name="cd" select="@cd"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="omcds:Signature">
+    <!-- make the element definition -->
+    <xsl:param name="cd"/>
+    <xsl:value-of select="concat(@name,'_',$cd,'_elt')"/>
+    <xsl:text> = element </xsl:text>
+    <xsl:value-of select="$symbol"/>
+    <xsl:text>{attribute cd {"</xsl:text>
+    <xsl:value-of select="$cd"/>
+    <xsl:text>"}, attribute name {"</xsl:text>
+    <xsl:value-of select="@name"/>
+    <xsl:text>"}}&#xA;</xsl:text>
+    <!-- extend the relevant classes with it -->
+    <xsl:variable name="name" select="normalize-space(@name)"/>
+    <xsl:variable name="def" select="exsl:node-set(document($thecd,$here))
+				     //omcd:CDDefinition[normalize-space(omcd:Name)=$name]"/>
+    <xsl:variable name="role" select="$def/omcd:Role"/>
+    <xsl:variable name="token" select="$def/omcd:MathMLToken"/>
+    <xsl:message>token: <xsl:value-of select="normalize-space($token)"/></xsl:message>
+    <xsl:variable name="elt" select="concat(@name,'_',$cd,'_elt')"/>
+    <xsl:choose>
+      <xsl:when test="$role='constant'">
+	<xsl:value-of select="concat('cd.constants |= ',$elt)"/>
+      </xsl:when>
+      <xsl:when test="$role='binder'">
+	<xsl:value-of select="concat('cd.binders |= ',$elt)"/>
+      </xsl:when>
+      <xsl:when test="$role='application'">
+	<xsl:choose> 
+	  <xsl:when test="om:OMOBJ/om:OMA[om:OMS[1 and @cd='sts' and @name='mapsto'] and 
+		                          om:OMA[2 and om:OMS[1 and @cd='sts' and @name='nassoc']]]">
+	    <xsl:value-of select="concat('cd.nary |= ',$elt)"/>
+	  </xsl:when>
+	  <xsl:when test="om:OMOBJ/om:OMA[om:OMS[1 and @cd='sts' and @name='mapsto'] and count(*)=3]">
+	    <xsl:value-of select="concat('cd.unary |= ',$elt)"/>
+	  </xsl:when>
+	  <xsl:when test="om:OMOBJ/om:OMA[om:OMS[1 and @cd='sts' and @name='mapsto'] and count(*)=4]">
+	    <xsl:value-of select="concat('cd.binary |= ',$elt)"/>
+	  </xsl:when>
+	  <xsl:when test="om:OMOBJ/om:OMA[om:OMS[1 and @cd='sts' and @name='mapsto'] and count(*)=5]">
+	    <xsl:value-of select="concat('cd.ternary |= ',$elt)"/>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:message>unrecognized arity</xsl:message>
+	    <xsl:text>unrecognized arity</xsl:text>
+	  </xsl:otherwise>
+	</xsl:choose>
+      </xsl:when>
+      <xsl:when test="$role='semantic-attribution' or $role='semantic-attribution'">
+	<xsl:value-of select="concat('cd.key |= ',$elt)"/>
+      </xsl:when>
+      <xsl:when test="$role='error'">
+	<xsl:value-of select="concat('cd.errors |= ',$elt)"/>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:message>role <xsl:value-of select="$role"/> unsupported!</xsl:message>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text>&#xA;</xsl:text>
+  </xsl:template>
 
 </xsl:stylesheet>

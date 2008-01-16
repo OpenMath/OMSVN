@@ -41,7 +41,7 @@
     <xsl:text>#     It is provided "as is" without expressed or implied warranty.&#xA;</xsl:text>
     <xsl:text>#&#xA;</xsl:text>
     <xsl:text>#     Revision:   $Id$&#xA;</xsl:text>
-    <xsl:text>#    $HeadURL$;&#xA;;&#xA;</xsl:text>
+    <xsl:text>#    $HeadURL$ &#xA;&#xA;</xsl:text>
     <xsl:choose>
       <xsl:when test="$format='OpenMath'">
 	<xsl:text>&#xA;namespace om = "http://www.openmath.org/OpenMath"&#xA;&#xA;</xsl:text>
