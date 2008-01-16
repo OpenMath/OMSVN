@@ -55,24 +55,25 @@ csymbol       = element csymbol {MathML.Common.attrib,
 	                         Definition.attrib,cdname.attrib?,cdbase.attrib?, 
 				 Content-token.content}
 
-apply-head = apply|bind|ci|csymbol|semantics-apply
-apply.content = apply-head,ContExp*
+# the content of the apply element, leave it empty and extend it later
+apply.content = notAllowed
 apply = element apply {MathML.Common.attrib,cdbase.attrib?,apply.content}
 
 qualifier.class = condition
-bind-head = apply|csymbol|semantics-bind
-bind.content = bind-head,bvar*,qualifier.class?,ContExp
+
+# the content of the bind element, leave it empty and extend it later
+bind.content = notAllowed
 bind = element bind {MathML.Common.attrib,cdbase.attrib?,bind.content}
 
-bvar-head = ci|semantics-bvar
-bvar.content = (bvar-head)
+bvar.content = notAllowed
 bvar = element bvar {MathML.Common.attrib,cdbase.attrib?,bvar.content}
+
 condition = element condition {Definition.attrib,cdbase.attrib?,ContExp}
 
 share = element share {MathML.Common.attrib,attribute href {xsd:anyURI}}
 
-cerror-head = csymbol|apply|semantics-cerror
-cerror.content = cerror-head,ContExp*
+# the content of the cerror element, leave it empty and extend it later
+cerror.content = notAllowed
 cerror = element cerror {MathML.Common.attrib,cdbase.attrib?,cerror.content}
 
 annotation = element annotation {Definition.attrib,MathML.Common.attrib,text}
@@ -87,10 +88,6 @@ semantics.attribs = Definition.attrib,MathML.Common.attrib,cdbase.attrib?
 semantics-annotation = annotation|annotation-xml
 
 # semantics element wrapped around various token
-semantics-bvar   = element semantics {semantics.attribs,bvar-head, semantics-annotation*}
-semantics-apply = element semantics {semantics.attribs,apply-head, semantics-annotation*}
-semantics-bind   = element semantics {semantics.attribs,bind-head, semantics-annotation*}
-semantics-cerror = element semantics {semantics.attribs,cerror-head, semantics-annotation*}
 semantics-cmml = element semantics {semantics.attribs,ContExp, semantics-annotation*}
 
 ContExp = cn|ci|csymbol|apply|bind|share|cerror|semantics-cmml

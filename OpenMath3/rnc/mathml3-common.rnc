@@ -16,32 +16,35 @@
 #     This file contains the grammar driver for MathML3
 #     It is provided "as is" without expressed or implied warranty.
 #
-#     Revision:   $Id$
+#     Revision:   $Id: mathml3.rnc 516 2008-01-09 07:22:41Z kohlhase $
 #     Author: Michael Kohlhase http://kwarc.info/kohlhase
 
 default namespace m = "http://www.w3.org/1998/Math/MathML"
+namespace local = ""
 
-include "mathml3-common.rnc"
-include "mathml3-presentation.rnc"
-include "mathml3-strict.rnc"
+non-mathml-attribs = attribute * - (local:*) {xsd:string} 
 
-# we instantiate the strict content model by structure checking
-apply-head = apply|bind|ci|csymbol|semantics-apply
-apply.content |= apply-head,ContExp*
-semantics-apply = element semantics {semantics.attribs,apply-head, semantics-annotation*}
+MathML.Common.attrib = attribute class {xsd:NMTOKENS}?,
+                attribute style {xsd:string}?,
+                attribute id {xsd:ID}?,
+                non-mathml-attribs*
 
-bind-head = apply|csymbol|semantics-bind
-bind.content |= bind-head,bvar*,qualifier.class?,ContExp
-semantics-bind   = element semantics {semantics.attribs,bind-head, semantics-annotation*}
+Browser-interface.attrib = attribute baseline {xsd:string}?,
+                           attribute overflow {"scroll" | "elide" | "truncate" | "scale"}?,
+                           attribute altimg {xsd:anyURI}?,
+                           attribute alttext {xsd:string}?,
+       			   attribute type {xsd:string}?,
+			   attribute name {xsd:string}?,	    
+			   attribute height {xsd:string}?,
+			   attribute width {xsd:string}?
 
-bvar-head = ci|semantics-bvar
-bvar.content |= (bvar-head)
-semantics-bvar   = element semantics {semantics.attribs,bvar-head, semantics-annotation*}
+math.attlist = Browser-interface.attrib,
+	       attribute macros {xsd:string}?,
+	       attribute display {"block" | "inline"}?,
+	       MathML.Common.attrib
 
-cerror-head = csymbol|apply|semantics-cerror
-cerror.content |= cerror-head,ContExp*
-semantics-cerror = element semantics {semantics.attribs,cerror-head, semantics-annotation*}
+math.content = PresExp | ContExp
 
-include "mathml3-pragmatic.rnc"
-#include "mathml3-arity.rnc"
-#include "mathml3-deprecated.rnc"
+math = element math {math.attlist,math.content*}
+
+start = math

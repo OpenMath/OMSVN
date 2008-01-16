@@ -14,8 +14,8 @@ CDUses = element CDUses { CDName* }
 CDURL = element CDURL { xsd:anyURI }
 CDBase = element CDBase { xsd:anyURI }
 
-#mobj = (external "om3-sts.rnc" | external "mathml3.rnc")
-mobj = external "om3-sts.rnc"
+mobj = (external "om3-sts.rnc" | external "mathml3.rnc")
+#mobj = external "om3-sts.rnc"
 
 text-or-om = (text | mobj)*
 CDReviewDate = element CDReviewDate { xsd:date }
@@ -51,11 +51,14 @@ FMP = element FMP {
   }
 # allow embedded OM
 Example = element Example { text-or-om }
+MMLexample = element MMLexample {description?,mobj}
+description = element description {p*}
+p = element p { text-or-om }
 CDDefinition =
   element CDDefinition {
     CDComment*,
     (Name & Role? & Pragmatic? & Title? & Description),
-   (CDComment | Example | property)*
+   (CDComment | Example | MMLexample | property)*
   }
 CD =
   element CD {
