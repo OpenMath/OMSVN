@@ -36,7 +36,12 @@ Role = element Role {
    "error" |
    "application" |
    "constant" }
-Arity = element Arity {"nary" | "1" | "2" | "constant"}
+Pragmatic = element Pragmatic {(Token|Container),Attribute*}
+Token  = element Token { text }
+Container = element Container { text}
+Attribute = element Attribute {Name,Model,Default}
+Model = element Model { text }
+Default = element Default { text }
 Title = element Title { text }
 property = element property {CMP?,FMP?}
 CMP = element CMP { text }
@@ -49,7 +54,7 @@ Example = element Example { text-or-om }
 CDDefinition =
   element CDDefinition {
     CDComment*,
-    (Name & Role? & Arity? & Title? & Description),
+    (Name & Role? & Pragmatic? & Title? & Description),
    (CDComment | Example | property)*
   }
 CD =

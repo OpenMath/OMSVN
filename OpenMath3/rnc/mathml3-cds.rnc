@@ -25,16 +25,17 @@ default namespace m = "http://www.w3.org/1998/Math/MathML"
 # that can be extended in mathml3-pragmatic.rnc
 
 # we augment the content of an apply element
-apply.content |= (cd.token.unary.class,ContExp)|
-	                  (cd.token.binary.class,ContExp,ContExp)|
-			  (cd.token.nary.class,ContExp+)|
+apply.content |= (cd.unary,ContExp)|
+	                  (cd.binary,ContExp,ContExp)|
+			  (cd.ternary,ContExp,ContExp,ContExp)|
+			  (cd.nary,ContExp+)
 			  cd.container.class
 
 # of the bind element 
-binder.class |= cd.token.binder.class
+binder.class |= cd.binder
 
 # now we allow all tokens (except the binding symbols) to appear on their own
-ContExp |= cd.token.unary.class|cd.token.binary.class|cd.token.nary.class|cd.token.class
+ContExp |= cd.unary|cd.binary|cd.nary|cd.ternary|cd.constant
 
 #now we allow the containers as well. 
 ContExp |= cd.container.class
@@ -48,26 +49,41 @@ MathMLtype = xsd:string
 
 # simple arity checking for Tokens from the MathML3 CDs. 
 # we set up the categories to be extended by the CD-generated grammars
-cd.token.class =  notAllowed
-cd.token.unary.class = notAllowed
-cd.token.binary.class = notAllowed
-cd.token.nary.class = notAllowed
-cd.token.binder.class = notAllowed
-cd.token.key.class = notAllowed
-cd.token.error.class = notAllowed
-cd.container.class = notAllowed	
+cd.unary = notAllowed
+cd.binary = notAllowed
+cd.nary = notAllowed
+cd.binder = notAllowed
+cd.key = notAllowed
+cd.errors = notAllowed
+cd.container = notAllowed	
 
-# then we include the generated ones
 
-include "algebra-logic.rnc"
-include "basic-content-elements.rnc" 
-include "calculus_veccalc.rnc"
-include "constants.rnc" 
-include "errors.rnc" 
-include "linear_algebra.rnc" 
-include "relations.rnc" 
-include "sequences_series.rnc"
-include "sets.rnc" 
-include "specfun.rnc" 
-include "statistics.rnc"
-
+# include the relevant content dictionaries
+include "cd/mathml3-fns1-arity.rnc"
+include "cd/mathml3-quant1-arity.rnc"
+include "cd/mathml3-sts-arity.rnc"
+include "cd/mathml3-transc1-arity.rnc"
+include "cd/mathml3-set1-arity.rnc"
+include "cd/mathml3-integer1-arity.rnc"
+include "cd/mathml3-veccalc1-arity.rnc"
+include "cd/mathml3-multiset1-arity.rnc"
+include "cd/mathml3-complex1-arity.rnc"
+include "cd/mathml3-calculus1-arity.rnc"
+include "cd/mathml3-relation1-arity.rnc"
+include "cd/mathml3-limit1-arity.rnc"
+include "cd/mathml3-omtypes-arity.rnc"
+include "cd/mathml3-nums1-arity.rnc"
+include "cd/mathml3-interval1-arity.rnc"
+include "cd/mathml3-piece1-arity.rnc"
+include "cd/mathml3-rounding1-arity.rnc"
+include "cd/mathml3-s_dist1-arity.rnc"
+include "cd/mathml3-minmax1-arity.rnc"
+include "cd/mathml3-error1-arity.rnc"
+include "cd/mathml3-s_data1-arity.rnc"
+include "cd/mathml3-setname1-arity.rnc"
+include "cd/mathml3-logic1-arity.rnc"
+include "cd/mathml3-linalg1-arity.rnc"
+include "cd/mathml3-linalg2-arity.rnc"
+include "cd/mathml3-arith1-arity.rnc"
+include "cd/mathml3-linalg3-arity.rnc"
+include "cd/mathml3-list1-arity.rnc"
