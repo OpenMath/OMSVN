@@ -33,7 +33,7 @@ cn.type.vals |= "constant"
 
 # allow degree in bvar
 degree = element degree {MathML.Common.attrib,ContExp+}
-bvar.content &= degree?
+bvar.content |= degree?
 
 domainofapplication = element domainofapplication{Definition.attrib,MathML.Common.attrib,cdbase.attrib?,
 						  ContExp}
@@ -44,7 +44,7 @@ uplimit = element uplimit {Definition.attrib,MathML.Common.attrib,cdbase.attrib?
 qualifier.class |= domainofapplication|(uplimit,lowlimit?)|(lowlimit,uplimit?)
 
 #ednote(rnc:cd-generated) this should somehow be generated from the MCDs. 
-pragmatic.binder = int.token|union.token|exists.token|forall.token|sum.token|product.token|diff.token|partialdiff.token
+pragmatic.binder = notAllowed #int.token|union.token|exists.token|forall.token|sum.token|product.token|diff.token|partialdiff.token
 
 # allow bvar also in the apply element, if one of the MathML2 binders is the head.
 apply.content |= (pragmatic.binder,bvar*,qualifier.class?,ContExp)

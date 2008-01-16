@@ -26,10 +26,13 @@ default namespace m = "http://www.w3.org/1998/Math/MathML"
 
 # we augment the content of an apply element
 apply.content |= (cd.unary,ContExp)|
-	                   (cd.binary,ContExp,ContExp)|
-		 	   (cd.ternary,ContExp,ContExp,ContExp)|
-		 	   (cd.nary,ContExp+)
+	                  (cd.binary,ContExp,ContExp)|
+			  (cd.ternary,ContExp,ContExp,ContExp)|
+			  (cd.nary,ContExp+)
+			  cd.container.class
 
+# of the bind element 
+binder.class |= cd.binder
 
 # now we allow all tokens (except the binding symbols) to appear on their own
 ContExp |= cd.unary|cd.binary|cd.nary|cd.ternary|cd.constant
@@ -56,31 +59,31 @@ cd.container = notAllowed
 
 
 # include the relevant content dictionaries
-include "cd/mathml3-fns1-arity.rnc"
-include "cd/mathml3-quant1-arity.rnc"
-include "cd/mathml3-sts-arity.rnc"
-include "cd/mathml3-transc1-arity.rnc"
-include "cd/mathml3-set1-arity.rnc"
-include "cd/mathml3-integer1-arity.rnc"
-include "cd/mathml3-veccalc1-arity.rnc"
-include "cd/mathml3-multiset1-arity.rnc"
-include "cd/mathml3-complex1-arity.rnc"
-include "cd/mathml3-calculus1-arity.rnc"
-include "cd/mathml3-relation1-arity.rnc"
-include "cd/mathml3-limit1-arity.rnc"
-include "cd/mathml3-omtypes-arity.rnc"
-include "cd/mathml3-nums1-arity.rnc"
-include "cd/mathml3-interval1-arity.rnc"
-include "cd/mathml3-piece1-arity.rnc"
-include "cd/mathml3-rounding1-arity.rnc"
-include "cd/mathml3-s_dist1-arity.rnc"
-include "cd/mathml3-minmax1-arity.rnc"
-include "cd/mathml3-error1-arity.rnc"
-include "cd/mathml3-s_data1-arity.rnc"
-include "cd/mathml3-setname1-arity.rnc"
-include "cd/mathml3-logic1-arity.rnc"
-include "cd/mathml3-linalg1-arity.rnc"
-include "cd/mathml3-linalg2-arity.rnc"
-include "cd/mathml3-arith1-arity.rnc"
-include "cd/mathml3-linalg3-arity.rnc"
-include "cd/mathml3-list1-arity.rnc"
+include "cd/mathml3-fns1-sts.rnc"
+include "cd/mathml3-quant1-sts.rnc"
+include "cd/mathml3-sts-sts.rnc"
+include "cd/mathml3-transc1-sts.rnc"
+include "cd/mathml3-set1-sts.rnc"
+include "cd/mathml3-integer1-sts.rnc"
+include "cd/mathml3-veccalc1-sts.rnc"
+include "cd/mathml3-multiset1-sts.rnc"
+include "cd/mathml3-complex1-sts.rnc"
+include "cd/mathml3-calculus1-sts.rnc"
+include "cd/mathml3-relation1-sts.rnc"
+include "cd/mathml3-limit1-sts.rnc"
+include "cd/mathml3-omtypes-sts.rnc"
+include "cd/mathml3-nums1-sts.rnc"
+include "cd/mathml3-interval1-sts.rnc"
+include "cd/mathml3-piece1-sts.rnc"
+include "cd/mathml3-rounding1-sts.rnc"
+include "cd/mathml3-s_dist1-sts.rnc"
+include "cd/mathml3-minmax1-sts.rnc"
+include "cd/mathml3-error1-sts.rnc"
+include "cd/mathml3-s_data1-sts.rnc"
+include "cd/mathml3-setname1-sts.rnc"
+include "cd/mathml3-logic1-sts.rnc"
+include "cd/mathml3-linalg1-sts.rnc"
+include "cd/mathml3-linalg2-sts.rnc"
+include "cd/mathml3-arith1-sts.rnc"
+include "cd/mathml3-linalg3-sts.rnc"
+include "cd/mathml3-list1-sts.rnc"

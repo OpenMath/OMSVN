@@ -48,8 +48,16 @@ This CD defines symbols for common arithmetic functions.
 
 <CDDefinition>
   <Name>lcm</Name>
+  <Pragmatic>
+    <Token>lcm</Token>
+    <Attribute>
+      <Name>type</Name>
+      <Model>Real</Model>
+      <Default>"real"</Default>
+    </Attribute>
+  </Pragmatic>
+
   <Role>application</Role>
-  <Arity>nary</Arity>
   <Title>Least Common Multiple</Title>
   <Description>
     This n-ary operator is used to construct an expression which represents the
@@ -161,26 +169,38 @@ This CD defines symbols for common arithmetic functions.
 <property>
   <CMP>ForAll(x,lcm(x,1)=x)</CMP>
   <FMP>
-    <apply>
-      <forall/>
-      <bvar><ci>x</ci></bvar>
-      <apply>
-	<eq/>
-	<apply><lcm/><ci>x</ci><cn>1</cn></apply>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <bind>
+	<forall/>
+	<bvar><ci>x</ci></bvar>
+	<apply>
+	  <eq/>
+	  <apply><lcm/><ci>x</ci><cn>1</cn></apply>
 	<ci>x</ci>
       </apply>
-    </apply>
+    </bind>
+    </math>
   </FMP>
 </property>
 
-<MMLexample><apply><lcm/><cn>12</cn><cn>17</cn></apply></MMLexample>
-
-<MMLexample><apply><lcm/><cn>3</cn><cn>5</cn><cn>7</cn></apply></MMLexample>
+<MMLexample>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><lcm/><cn>12</cn><cn>17</cn></apply>
+  </math>
+</MMLexample>
 
 <MMLexample>
-  <description><p>If this were evaluated at a= 2, b=4, c=6 it would yield 12.</p>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><lcm/><cn>3</cn><cn>5</cn><cn>7</cn></apply>
+</math>
+</MMLexample>
+
+<MMLexample>
+  <description><p>If this were evalUated at a= 2, b=4, c=6 it would yield 12.</p>
   </description>
-  <math><apply><lcm/><ci>a</ci><ci>b</ci><ci>c</ci></apply></math>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><lcm/><ci>a</ci><ci>b</ci><ci>c</ci></apply>
+  </math>
 </MMLexample>
 </CDDefinition>
 
