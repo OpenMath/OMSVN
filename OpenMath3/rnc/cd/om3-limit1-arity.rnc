@@ -1,0 +1,20 @@
+#     This file contains the arity checking rules for the symbols
+#     generated from the STS types for the content dictionary limit1
+#     It is provided "as is" without expressed or implied warranty.
+#
+#     Revision:   $Id: sts2rnc-sts.xsl 529 2008-01-15 10:07:01Z kohlhase $
+#    $HeadURL: https://svn.openmath.org/OpenMath3/rnc/cd/sts2rnc-sts.xsl $ 
+
+
+namespace om = "http://www.openmath.org/OpenMath"
+
+limit_limit1_elt = element om:OMS{attribute cd {"limit1"}, attribute name {"limit"}}
+cd.ternary |= limit_limit1_elt
+both_sides_limit1_elt = element om:OMS{attribute cd {"limit1"}, attribute name {"both_sides"}}
+cd.constants |= both_sides_limit1_elt
+above_limit1_elt = element om:OMS{attribute cd {"limit1"}, attribute name {"above"}}
+cd.constants |= above_limit1_elt
+below_limit1_elt = element om:OMS{attribute cd {"limit1"}, attribute name {"below"}}
+cd.constants |= below_limit1_elt
+null_limit1_elt = element om:OMS{attribute cd {"limit1"}, attribute name {"null"}}
+cd.constants |= null_limit1_elt

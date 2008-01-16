@@ -1,0 +1,32 @@
+#     This file contains the arity checking rules for the symbols
+#     generated from the STS types for the content dictionary sts
+#     It is provided "as is" without expressed or implied warranty.
+#
+#     Revision:   $Id: sts2rnc-sts.xsl 529 2008-01-15 10:07:01Z kohlhase $
+#    $HeadURL: https://svn.openmath.org/OpenMath3/rnc/cd/sts2rnc-sts.xsl $ 
+
+
+namespace om = "http://www.openmath.org/OpenMath"
+
+type_sts_elt = element om:OMS{attribute cd {"sts"}, attribute name {"type"}}
+cd.key |= type_sts_elt
+mapsto_sts_elt = element om:OMS{attribute cd {"sts"}, attribute name {"mapsto"}}
+cd.unary |= mapsto_sts_elt
+nary_sts_elt = element om:OMS{attribute cd {"sts"}, attribute name {"nary"}}
+cd.unary |= nary_sts_elt
+nassoc_sts_elt = element om:OMS{attribute cd {"sts"}, attribute name {"nassoc"}}
+cd.unary |= nassoc_sts_elt
+error_sts_elt = element om:OMS{attribute cd {"sts"}, attribute name {"error"}}
+cd.constants |= error_sts_elt
+structure_sts_elt = element om:OMS{attribute cd {"sts"}, attribute name {"structure"}}
+cd.unary |= structure_sts_elt
+binder_sts_elt = element om:OMS{attribute cd {"sts"}, attribute name {"binder"}}
+cd.constants |= binder_sts_elt
+attribution_sts_elt = element om:OMS{attribute cd {"sts"}, attribute name {"attribution"}}
+cd.constants |= attribution_sts_elt
+Object_sts_elt = element om:OMS{attribute cd {"sts"}, attribute name {"Object"}}
+cd.constants |= Object_sts_elt
+NumericalValue_sts_elt = element om:OMS{attribute cd {"sts"}, attribute name {"NumericalValue"}}
+cd.constants |= NumericalValue_sts_elt
+SetNumericalValue_sts_elt = element om:OMS{attribute cd {"sts"}, attribute name {"SetNumericalValue"}}
+cd.constants |= SetNumericalValue_sts_elt
