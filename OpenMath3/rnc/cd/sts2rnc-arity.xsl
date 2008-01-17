@@ -20,9 +20,8 @@
 
   <xsl:output method="text"/>
   <xsl:param name="format" select="'OpenMath'"/>
-  <xsl:param name="thecd"/>
+  <xsl:param name="sts"/>
   <xsl:variable name="here" select="/"/>
-  
 
 <xsl:variable name="symbol">
   <xsl:choose>
@@ -65,32 +64,31 @@
     <xsl:apply-templates/>
   </xsl:template>
 
-  <xsl:template match="omcds:CDSignatures">
-    <!-- define abbreviations for the elements -->
-    <xsl:apply-templates select="omcds:Signature">
-      <xsl:with-param name="cd" select="@cd"/>
+  <xsl:template match="omcd:CD">
+    <xsl:message>hey</xsl:message>
+    <xsl:apply-templates select="omcd:CDDefinition">
+      <xsl:with-param name="cd" select="normalize-space(omcd:CDName)"/>
     </xsl:apply-templates>
   </xsl:template>
 
-  <xsl:template match="omcds:Signature">
+  <xsl:template match="omcd:CDDefinition">
     <!-- make the element definition -->
     <xsl:param name="cd"/>
-    <xsl:value-of select="concat(@name,'_',$cd,'_elt')"/>
+    <xsl:variable name="name" select="normalize-space(omcd:Name)"/>
+    <xsl:value-of select="concat($name,'_',$cd,'_elt')"/>
     <xsl:text> = element </xsl:text>
     <xsl:value-of select="$symbol"/>
     <xsl:text>{attribute cd {"</xsl:text>
     <xsl:value-of select="$cd"/>
     <xsl:text>"}, attribute name {"</xsl:text>
-    <xsl:value-of select="@name"/>
+    <xsl:value-of select="$name"/>
     <xsl:text>"}}&#xA;</xsl:text>
     <!-- extend the relevant classes with it -->
-    <xsl:variable name="name" select="normalize-space(@name)"/>
-    <xsl:variable name="def" select="exsl:node-set(document($thecd,$here))
-				     //omcd:CDDefinition[normalize-space(omcd:Name)=$name]"/>
-    <xsl:variable name="role" select="$def/omcd:Role"/>
-    <xsl:variable name="token" select="$def/omcd:MathMLToken"/>
-    <xsl:message>token: <xsl:value-of select="normalize-space($token)"/></xsl:message>
-    <xsl:variable name="elt" select="concat(@name,'_',$cd,'_elt')"/>
+    <xsl:variable name="sig" select="exsl:node-set(document($sts,$here))//omcds:Signature[normalize-space(@name)=$name]/om:OMOBJ"/>
+    <xsl:variable name="role" select="normalize-space(omcd:Role)"/>
+    <xsl:variable name="token" select="normalize-space(omcd:Pragmatic/omcd:Token)"/>
+    <xsl:message>token: <xsl:value-of select="$token"/></xsl:message>
+    <xsl:variable name="elt" select="concat($name,'_',$cd,'_elt')"/>
     <xsl:choose>
       <xsl:when test="$role='constant'">
 	<xsl:value-of select="concat('cd.constants |= ',$elt)"/>
@@ -100,17 +98,17 @@
       </xsl:when>
       <xsl:when test="$role='application'">
 	<xsl:choose> 
-	  <xsl:when test="om:OMOBJ/om:OMA[om:OMS[1 and @cd='sts' and @name='mapsto'] and 
-		                          om:OMA[2 and om:OMS[1 and @cd='sts' and @name='nassoc']]]">
+	  <xsl:when test="$sig/om:OMA[om:OMS[1 and @cd='sts' and @name='mapsto'] and 
+		                      om:OMA[2 and om:OMS[1 and @cd='sts' and @name='nassoc']]]">
 	    <xsl:value-of select="concat('cd.nary |= ',$elt)"/>
 	  </xsl:when>
-	  <xsl:when test="om:OMOBJ/om:OMA[om:OMS[1 and @cd='sts' and @name='mapsto'] and count(*)=3]">
+	  <xsl:when test="$sig/om:OMA[om:OMS[1 and @cd='sts' and @name='mapsto'] and count(*)=3]">
 	    <xsl:value-of select="concat('cd.unary |= ',$elt)"/>
 	  </xsl:when>
-	  <xsl:when test="om:OMOBJ/om:OMA[om:OMS[1 and @cd='sts' and @name='mapsto'] and count(*)=4]">
+	  <xsl:when test="$sig/om:OMA[om:OMS[1 and @cd='sts' and @name='mapsto'] and count(*)=4]">
 	    <xsl:value-of select="concat('cd.binary |= ',$elt)"/>
 	  </xsl:when>
-	  <xsl:when test="om:OMOBJ/om:OMA[om:OMS[1 and @cd='sts' and @name='mapsto'] and count(*)=5]">
+	  <xsl:when test="$sig/om:OMA[om:OMS[1 and @cd='sts' and @name='mapsto'] and count(*)=5]">
 	    <xsl:value-of select="concat('cd.ternary |= ',$elt)"/>
 	  </xsl:when>
 	  <xsl:otherwise>

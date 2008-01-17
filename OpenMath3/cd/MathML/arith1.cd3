@@ -177,7 +177,7 @@ This CD defines symbols for common arithmetic functions.
 	  <eq/>
 	  <apply><lcm/><ci>x</ci><cn>1</cn></apply>
 	<ci>x</ci>
-      </apply>
+      </apply> 
     </bind>
     </math>
   </FMP>
@@ -206,24 +206,42 @@ This CD defines symbols for common arithmetic functions.
 
 <CDDefinition>
   <Name>big_lcm</Name>
+  <Pragmatic>
+    <Token>big_lcm</Token>
+    <Attribute>
+      <Name>type</Name>
+      <Model>Real</Model>
+      <Default>"real"</Default>
+    </Attribute>
+  </Pragmatic>
+
   <Role>binder</Role>
   <Title>Least Common Multiple over a Set of expressions</Title>
   <Description>
-    <p>This n-ary operator is used to construct the least common multiple over a set of
-    expressions.</p>
+    This n-ary operator is used to construct the least common multiple over a set of
+    expressions.
   </Description>
 </CDDefinition>
 
 <CDDefinition>
   <Name> gcd </Name>
+  <Pragmatic>
+    <Token>gcd</Token>
+    <Attribute>
+      <Name>type</Name>
+      <Model>Real</Model>
+      <Default>"real"</Default>
+    </Attribute>
+  </Pragmatic>
+
   <Role>application</Role>
-  <Arity>nary</Arity>
   <Description>
-    <p>This is the n-ary operator used to construct an expression which represents
+    This is the n-ary operator used to construct an expression which represents
     the greatest common divisor of its arguments.  If no argument is provided, the
-    gcd is 0.  If one argument is provided, the gcd is that argument.</p>
+    gcd is 0.  If one argument is provided, the gcd is that argument.
   </Description>
 
+<property>
   <CMP>
     for all integers a,b |
     There does not exist a c such that a/c is an Integer and b/c is an
@@ -298,6 +316,7 @@ This CD defines symbols for common arithmetic functions.
 </OMBIND>
 </OMOBJ>
 </FMP>
+</property>
 
 <Example>
 gcd(6,9) = 3
@@ -314,9 +333,10 @@ gcd(6,9) = 3
 </OMOBJ>
 </Example>
 
-        <property><![CDATA[
+<property>
+<FMP>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
 <apply><forall/>
-]]>&lt;forall/&gt;<![CDATA[  
   <bvar><ci>x</ci></bvar>
   <apply><eq/>
     <apply><gcd/>
@@ -326,36 +346,56 @@ gcd(6,9) = 3
     <cn>1</cn>
   </apply>
 </apply>
-]]></property>
-        <MMLexample><![CDATA[<apply><gcd/>
+</math>
+</FMP>
+</property>
+
+<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply><gcd/>
   <cn>12</cn>
   <cn>17</cn>
-</apply>]]></MMLexample>
-        <MMLexample><![CDATA[<apply><gcd/>
+</apply>
+</math>
+</MMLexample>
+
+<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply><gcd/>
   <cn>3</cn>
   <cn>5</cn>
   <cn>7</cn>
-</apply>]]></MMLexample>
+</apply></math>
+</MMLexample>
+
 		<MMLexample>
 		<description><p>If this were evaluated at <var>a</var> = 15, 
 <var>b</var> = 21, <var>c</var> = 48, it would yield 3</p>
 		</description>
-		<![CDATA[
+<math xmlns="http://www.w3.org/1998/Math/MathML">
 		<apply> <gcd/>
 		  <ci>a</ci>
 		  <ci>b</ci>
 		  <ci>c</ci>
 		</apply>
-		]]></MMLexample>
+</math>
+</MMLexample>
 </CDDefinition>
 
 <CDDefinition>
   <Name>big_gcd</Name>
+  <Pragmatic>
+    <Token>big_gcd</Token>
+    <Attribute>
+      <Name>type</Name>
+      <Model>Real</Model>
+      <Default>"real"</Default>
+    </Attribute>
+  </Pragmatic>
+
   <Role>binder</Role>
   <Title>Greatest Common Divisor over a Set of expressions</Title>
   <Description>
-    <p>This n-ary operator is used to construct the greatest common divisor over a set of
-    expressions.</p>
+    This n-ary operator is used to construct the greatest common divisor over a set of
+    expressions.
   </Description>
 </CDDefinition>
 
