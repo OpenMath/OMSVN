@@ -1,5 +1,5 @@
 #     This file contains the arity checking rules for the symbols
-#     generated from the STS types for the content dictionary piece1
+#     generated from the STS types for the content dictionary 
 #     It is provided "as is" without expressed or implied warranty.
 #
 #     Revision:   $Id: sts2rnc-sts.xsl 529 2008-01-15 10:07:01Z kohlhase $
@@ -8,48 +8,9 @@
 
 namespace om = "http://www.openmath.org/OpenMath"
 
-
- official 
-
-
-Date:  2001-03-01
-Author: James Davenport
-Notes: STS cannot encode the requirement that there may be at most one
-       otherwise, and it must be the last element. However, this is the
-       intention.
-
-
-
- 
- 
-   
-   
-     
-     
-   
-   
- 
-
-
-
-
- 
- 
-   
-   
-   
-   
- 
-
-
-
-
- 
- 
-   
-   
-   
- 
-
-
-
+piecewise_piece1_elt = element om:OMS {common.attributes,cdbase,attribute cd {"piece1"},attribute name {"piecewise"}}
+cd.unary |= piecewise_piece1_elt
+piece_piece1_elt = element om:OMS {common.attributes,cdbase,attribute cd {"piece1"},attribute name {"piece"}}
+cd.binary |= piece_piece1_elt
+otherwise_piece1_elt = element om:OMS {common.attributes,cdbase,attribute cd {"piece1"},attribute name {"otherwise"}}
+cd.unary |= otherwise_piece1_elt

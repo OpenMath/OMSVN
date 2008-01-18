@@ -1,5 +1,5 @@
 #     This file contains the type checking rules for the symbols
-#     from the STS types for the content dictionary integer1
+#     from the STS types for the content dictionary 
 #     It is provided "as is" without expressed or implied warranty.
 #
 #     Revision:   $Id$
@@ -7,19 +7,324 @@
 
 
 namespace m  ="http://www.w3.org/1998/Math/MathML"
-factorof_integer1_elt = element m:csymbol {
-        attribute cd {"integer1"},
-        attribute name {"factorof"}}
-factorial_integer1_elt = element m:csymbol {
-        attribute cd {"integer1"},
-        attribute name {"factorial"}}
-quotient_integer1_elt = element m:csymbol {
-        attribute cd {"integer1"},
-        attribute name {"quotient"}}
-remainder_integer1_elt = element m:csymbol {
-        attribute cd {"integer1"},
-        attribute name {"remainder"}}
-Boolean_setname2_type |= element m:apply {factorof_integer1_elt,Z_setname1_type,Z_setname1_type}
-N_setname1_type |= element m:apply {factorial_integer1_elt,N_setname1_type}
-Z_setname1_type |= element m:apply {quotient_integer1_elt,Z_setname1_type,Z_setname1_type}
-Z_setname1_type |= element m:apply {remainder_integer1_elt,Z_setname1_type,Z_setname1_type}
+
+
+
+
+     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+
+
+ integer1 
+http://www.openmath.org/cd
+ http://www.openmath.org/cd/integer1.ocd 
+2006-03-30
+2004-03-30
+3
+0
+ official 
+
+    This CD holds a collection of basic integer functions.
+
+    This CD is intended to be `compatible' with the corresponding elements
+    in Content MathML.
+
+
+
+factorof
+  
+    factorof
+  
+application
+
+   This is the binary OpenMath operator that is used to indicate the
+   mathematical relationship a "is a factor of" b, where a is the
+   first argument and b is the second. This relationship is
+   true if and only if b mod a = 0.
+
+
+ b is a factor of a iff remainder of a divided by b = 0 
+
+
+  
+    
+      
+      
+        
+	
+	
+      
+      
+        
+	
+	  
+	  
+	  
+	
+	
+      
+    
+  
+
+
+
+
+ factorial 
+  
+    factorial
+  
+application
+ 
+The symbol to represent a unary factorial function on non-negative integers.
+
+
+factorial n = product [1..n]
+
+
+  
+    
+      
+      
+        
+        
+      
+      
+        
+          
+            
+             1 
+            
+          
+        
+          
+            
+              
+            
+            
+        
+      
+    
+  
+
+
+
+
+ quotient 
+  
+    quotient
+  
+application
+
+The symbol to represent the integer (binary) division operator. That is,
+for integers a and b, quotient(a,b) denotes q such that a=b*q+r, with |r|
+less than |b| and a*r positive.
+
+
+for all a,b with a,b Integers |
+  a = b * quotient(a,b) + remainder(a,b) and abs(remainder(a,b)) is less than abs(b) and 
+a*remainder(a,b) >= 0
+
+
+   
+     
+       
+       
+         
+         
+       
+       
+         
+         
+           
+           
+             
+             
+             
+           
+           
+             
+             
+             
+           
+         
+         
+	   
+	   
+             
+             
+             
+               
+               
+                 
+                 
+                 
+                   
+                   
+                   
+                 
+               
+               
+                 
+                 
+                 
+               
+             
+           
+           
+             
+             
+               
+               
+                 
+                 
+                 
+               
+             
+             
+               
+               
+             
+           
+           
+             
+             
+               
+               
+	       
+	         
+		 
+		 
+	       
+             
+             
+           
+         
+       
+     
+   
+
+
+
+
+ remainder 
+  
+    remainder
+  
+application
+ 
+The symbol to represent the integer remainder after (binary) division.
+For integers a and b, remainder(a,b) denotes r such that a=b*q+r, with |r| less
+than |b| and a*r positive.
+
+
+for all a,b with a,b Integers | 
+  a = b * quotient(a,b) + remainder(a,b) and abs(remainder(a,b)) is less than abs(b) and a*remainder(a,b) >= 0
+
+
+   
+     
+       
+       
+         
+         
+       
+       
+         
+         
+           
+           
+             
+             
+             
+           
+           
+             
+             
+             
+           
+         
+         
+	   
+	   
+             
+             
+             
+               
+               
+                 
+                 
+                 
+                   
+                   
+                   
+                 
+               
+               
+                 
+                 
+                 
+               
+             
+           
+           
+             
+             
+               
+               
+                 
+                 
+                 
+               
+             
+             
+               
+               
+             
+           
+           
+             
+             
+               
+               
+	       
+	         
+		 
+		 
+	       
+             
+             
+           
+         
+       
+     
+   
+
+
+

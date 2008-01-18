@@ -1,5 +1,5 @@
 #     This file contains the type checking rules for the symbols
-#     from the STS types for the content dictionary rounding1
+#     from the STS types for the content dictionary 
 #     It is provided "as is" without expressed or implied warranty.
 #
 #     Revision:   $Id$
@@ -8,19 +8,351 @@
 
 namespace om = "http://www.openmath.org/OpenMath"
 
-ceiling_rounding1_elt = element om:OMS {
-        attribute cd {"rounding1"},
-        attribute name {"ceiling"}}
-floor_rounding1_elt = element om:OMS {
-        attribute cd {"rounding1"},
-        attribute name {"floor"}}
-trunc_rounding1_elt = element om:OMS {
-        attribute cd {"rounding1"},
-        attribute name {"trunc"}}
-round_rounding1_elt = element om:OMS {
-        attribute cd {"rounding1"},
-        attribute name {"round"}}
-Z_setname1_type |= element om:OMA {ceiling_rounding1_elt,R_setname1_type}
-Z_setname1_type |= element om:OMA {floor_rounding1_elt,R_setname1_type}
-Z_setname1_type |= element om:OMA {trunc_rounding1_elt,R_setname1_type}
-Z_setname1_type |= element om:OMA {round_rounding1_elt,R_setname1_type}
+
+
+
+
+     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+
+
+ rounding1 
+http://www.openmath.org/cd
+ http://www.openmath.org/cd/rounding1.ocd 
+2006-03-30
+ official 
+2004-03-30
+3
+0
+ 
+A CD of basic rounding concepts
+
+
+Written by James Davenport, inspired by the need from bigfloat.ocd.
+Finished 1999-10-24.
+
+
+
+ ceiling 
+  
+    ceiling
+  
+application
+
+The round up (to +infinity) operation.
+
+ for all x | ceiling(x)-1 < x <= ceiling x 
+
+
+  
+    
+    
+       
+    
+    
+      
+      
+        
+        
+          
+          
+            
+            
+          
+          
+        
+        
+      
+      
+        
+        
+        
+          
+          
+        
+      
+    
+  
+
+
+
+
+
+ floor 
+  
+    floor
+  
+application
+
+The round down (to -infinity) operation.
+
+ for all x | floor(x) <= x < floor(x)+1 
+
+
+  
+    
+    
+       
+    
+    
+      
+      
+        
+        
+        
+          
+          
+            
+            
+          
+          
+        
+      
+      
+        
+        
+          
+          
+        
+        
+      
+    
+  
+
+
+
+
+
+ trunc 
+  
+    trunc
+  
+application
+
+The round to zero operation.
+
+
+ for all x | trunc(x) <= x < trunc(x)+1 (x>0) 
+
+
+
+  
+    
+    
+       
+    
+    
+      
+      
+        
+        
+        
+      
+      
+        
+        
+          
+          
+          
+            
+            
+              
+              
+            
+            
+          
+        
+        
+          
+          
+            
+            
+          
+          
+        
+      
+    
+  
+
+
+
+ for all x | trunc(x) >= x > trunc(x)-1 (x<0) 
+
+
+
+  
+    
+    
+       
+    
+      
+        
+        
+          
+          
+          
+        
+        
+          
+          
+            
+            
+            
+              
+              
+                
+                
+              
+              
+            
+          
+          
+            
+            
+              
+              
+            
+            
+          
+        
+      
+  
+
+
+
+
+
+ round 
+  
+    round
+  
+application
+
+The round to nearest operation.
+
+
+ for all x | x <= round(x)+1/2 and x <= round(x)-1/2 
+
+
+
+  
+    
+    
+       
+    
+    
+      
+      
+        
+        
+        
+          
+          
+            
+            
+          
+          
+            
+            
+	     2 
+          
+        
+      
+      
+        
+        
+        
+          
+          
+            
+            
+          
+          
+            
+            
+	     2 
+          
+        
+      
+    
+  
+
+
+
+ for all x | Also round to even in event of a tie 
+
+
+
+  
+    
+    
+       
+    
+    
+      
+      
+        
+	
+	  
+	  
+	    
+	    
+	    
+	  
+	
+        
+          
+          
+	    
+  	    
+	     2 
+  	  
+	  
+        
+      
+      
+        
+        
+          
+          
+            
+            
+          
+	   2 
+        
+        
+      
+    
+  
+
+
+
+
+

@@ -1,5 +1,5 @@
 #     This file contains the type checking rules for the symbols
-#     from the STS types for the content dictionary s_data1
+#     from the STS types for the content dictionary 
 #     It is provided "as is" without expressed or implied warranty.
 #
 #     Revision:   $Id$
@@ -8,27 +8,343 @@
 
 namespace om = "http://www.openmath.org/OpenMath"
 
-mean_s_data1_elt = element om:OMS {
-        attribute cd {"s_data1"},
-        attribute name {"mean"}}
-sdev_s_data1_elt = element om:OMS {
-        attribute cd {"s_data1"},
-        attribute name {"sdev"}}
-variance_s_data1_elt = element om:OMS {
-        attribute cd {"s_data1"},
-        attribute name {"variance"}}
-mode_s_data1_elt = element om:OMS {
-        attribute cd {"s_data1"},
-        attribute name {"mode"}}
-median_s_data1_elt = element om:OMS {
-        attribute cd {"s_data1"},
-        attribute name {"median"}}
-moment_s_data1_elt = element om:OMS {
-        attribute cd {"s_data1"},
-        attribute name {"moment"}}
-NumericalValue_sts_type |= element om:OMA {mean_s_data1_elt,NumericalValue_sts_type*}
-NumericalValue_sts_type |= element om:OMA {sdev_s_data1_elt,NumericalValue_sts_type,NumericalValue_sts_type*}
-NumericalValue_sts_type |= element om:OMA {variance_s_data1_elt,NumericalValue_sts_type,NumericalValue_sts_type*}
-NumericalValue_sts_type |= element om:OMA {mode_s_data1_elt,NumericalValue_sts_type*}
-NumericalValue_sts_type |= element om:OMA {median_s_data1_elt,NumericalValue_sts_type*}
-NumericalValue_sts_type |= element om:OMA {moment_s_data1_elt,NumericalValue_sts_type,NumericalValue_sts_type,NumericalValue_sts_type*}
+
+
+
+
+     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+
+
+ s_data1 
+http://www.openmath.org/cd
+ http://www.openmath.org/cd/s_data1.ocd 
+2006-03-30
+2004-03-30
+3
+0
+ official 
+
+
+    This CD holds the definitions of the basic statistical functions
+    used on sample data. It is intended to be `compatible' with the
+    MathML elements representing statistical functions, though it does
+    not cover the concept of random variable which is mentioned in
+    MathML.
+
+
+
+
+ mean 
+  
+    mean
+  
+application
+ 
+This symbol represents an n-ary function denoting the mean of its
+arguments. That is, their sum divided by their number.
+
+
+
+The mean of n arguments is their sum divided by their number
+
+
+
+
+  
+    
+    
+      
+      
+      
+    
+    
+      
+      
+        
+	
+	
+      
+      
+        
+	
+      
+    
+  
+
+
+
+ The mean of {1,2,3} is 3
+
+  
+    
+    
+      
+       1   2   3 
+    
+     3 
+  
+
+
+
+
+
+ sdev 
+  
+    sdev
+  
+application
+ 
+This symbol represents a function requiring two or more arguments,
+denoting the sample standard deviation of its arguments. That is,
+the square root of (the sum of the squares of the deviations from the
+mean of the arguments, divided by the number of arguments).
+See CRC Standard Mathematical Tables and Formulae,
+editor: Dan Zwillinger, CRC Press Inc., 1996, (7.7.11) section 7.7.1.
+
+
+
+The square of the standard deviation of n arguments is the sum of
+the squares of the differences from their mean divided by the number of
+arguments.
+
+
+
+
+  
+    
+    
+      
+      
+        
+	
+	  
+	  
+	
+      
+       2 
+    
+    
+      
+      
+        
+	
+	
+	  
+	  
+	    
+	    
+	      
+	    
+	    
+	      
+	      
+	        
+		
+		
+		  
+		  
+		
+	      
+	       2 
+	    
+	  
+	  
+	
+      
+      
+        
+	
+	  
+	  
+	  
+	
+      
+    
+  
+
+
+
+
+This is an example to denote the standard deviation of a set of data
+
+  
+    
+       
+       
+       
+    
+  
+
+
+
+
+
+ variance 
+  
+    variance
+  
+application
+
+This symbol represents a function requiring two or more arguments,
+denoting the variance of its arguments. That is, the square of the
+standard deviation.
+
+
+The variance of n arguments is the square of the standard deviation of
+those arguments.
+
+
+
+
+  
+    
+    
+      
+      
+        
+	
+      
+    
+    
+      
+      
+        
+	
+	  
+	  
+	
+      
+       2 
+    
+  
+
+
+
+
+This is an example to denote the variance of a set of data
+
+  
+    
+       
+       
+       
+    
+  
+ 
+
+
+
+
+ mode 
+  
+    mode
+  
+application
+ 
+This symbol represents an n-ary function denoting the mode of its
+arguments. That is the value which occurs with the greatest frequency.
+
+
+The mode of n arguments is that value which occurs with the greatest frequency.
+
+ The mode of {1,1,2} is 1
+
+  
+    
+    
+      
+       1   1   2 
+    
+     1 
+  
+ 
+
+
+
+ median 
+  
+    median
+  
+application
+ 
+This symbol represents an n-ary function denoting the median of its
+arguments. That is, if the data were placed in ascending order then it
+denotes the middle one (in the case of an odd amount of data) or the
+average of the middle two (in the case of an even amount of data).
+
+
+ The median of {1,2,3} is 2 
+
+  
+    
+    
+      
+       1   2   3 
+    
+     2 
+  
+
+
+
+
+
+ moment 
+  
+    moment
+  
+application
+ 
+This symbol is used to denote the i'th moment of a set of data. The
+first argument should be the degree of the moment (that is, for the
+i'th moment the first argument should be i), the second argument
+should be the point about which the moment is being taken and the rest of the
+arguments are treated as the data. For n data values x_1, x_2, ...,
+x_n the i'th moment about c is (1/n) ((x_1-c)^i + (x_2-c)^i + ... + (x_n-c)^i).
+See CRC Standard Mathematical Tables and Formulae,
+editor: Dan Zwillinger, CRC Press Inc., 1996, section 7.7.1.
+
+
+This is an example to denote the 2'nd moment of a set of data about
+the origin.
+
+  
+    
+     2 
+    
+       
+       
+       
+    
+  
+
+
+
+

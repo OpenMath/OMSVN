@@ -1,5 +1,5 @@
 #     This file contains the type checking rules for the symbols
-#     from the STS types for the content dictionary piece1
+#     from the STS types for the content dictionary 
 #     It is provided "as is" without expressed or implied warranty.
 #
 #     Revision:   $Id$
@@ -8,15 +8,169 @@
 
 namespace om = "http://www.openmath.org/OpenMath"
 
-piecewise_piece1_elt = element om:OMS {
-        attribute cd {"piece1"},
-        attribute name {"piecewise"}}
-piece_piece1_elt = element om:OMS {
-        attribute cd {"piece1"},
-        attribute name {"piece"}}
-otherwise_piece1_elt = element om:OMS {
-        attribute cd {"piece1"},
-        attribute name {"otherwise"}}
-Object_sts_type |= element om:OMA {piecewise_piece1_elt,Piece_type*}
-Piece_type |= element om:OMA {piece_piece1_elt,Object_sts_type,Boolean_setname2_type}
-Piece_type |= element om:OMA {otherwise_piece1_elt,Object_sts_type}
+
+
+
+
+     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+
+
+ piece1 
+http://www.openmath.org/cd
+ http://www.openmath.org/cd/piece1.ocd 
+2006-03-30
+2004-03-30
+2
+0
+ official 
+
+
+    This CD is intended to be compatible with the corresponding
+    elements in Content MathML 2.
+
+    In this CD we give a set of operators for piece-wise defined expressions.
+
+
+
+ piecewise 
+  
+    piecewise
+  
+application
+ 
+This operator heads an expression that is being defined piecewise. Its 
+arguments are n objects built with the piece constructor, optionally
+followed by one built with otherwise constructor.
+
+
+
+
+
+
+
+  
+  
+
+
+  
+      
+        0 
+  
+  
+       0 
+        0 
+  
+  
+      
+  
+
+
+
+
+
+
+
+ piece 
+  
+    piece
+  
+application
+ 
+This introduces an individual component of a piecewise definition. It has
+precisely two arguments: the first is the value, and the second is a Boolean
+(meant to be a predicate) which is true if and only if this piece is to
+provide the value of the piecewise construct.
+
+
+
+
+
+
+
+  
+  
+
+
+  
+      
+        0 
+  
+  
+       0 
+        0 
+  
+  
+      
+  
+
+
+
+
+
+
+
+ otherwise 
+  
+    otherwise
+  
+application
+
+This symbol introduces the 'default' value of a piecewise construct.
+If none of the previous piece constructs can provide the value, this will.
+It has a single child, the value.
+
+
+
+
+
+
+
+  
+  
+
+
+  
+      
+        0 
+  
+  
+       0 
+        0 
+  
+  
+      
+  
+
+
+
+
+
+

@@ -1,5 +1,5 @@
 #     This file contains the type checking rules for the symbols
-#     from the STS types for the content dictionary logic1
+#     from the STS types for the content dictionary 
 #     It is provided "as is" without expressed or implied warranty.
 #
 #     Revision:   $Id$
@@ -8,35 +8,363 @@
 
 namespace om = "http://www.openmath.org/OpenMath"
 
-equivalent_logic1_elt = element om:OMS {
-        attribute cd {"logic1"},
-        attribute name {"equivalent"}}
-not_logic1_elt = element om:OMS {
-        attribute cd {"logic1"},
-        attribute name {"not"}}
-and_logic1_elt = element om:OMS {
-        attribute cd {"logic1"},
-        attribute name {"and"}}
-xor_logic1_elt = element om:OMS {
-        attribute cd {"logic1"},
-        attribute name {"xor"}}
-or_logic1_elt = element om:OMS {
-        attribute cd {"logic1"},
-        attribute name {"or"}}
-implies_logic1_elt = element om:OMS {
-        attribute cd {"logic1"},
-        attribute name {"implies"}}
-true_logic1_elt = element om:OMS {
-        attribute cd {"logic1"},
-        attribute name {"true"}}
-false_logic1_elt = element om:OMS {
-        attribute cd {"logic1"},
-        attribute name {"false"}}
-Boolean_setname2_type |= element om:OMA {equivalent_logic1_elt,Boolean_setname2_type,Boolean_setname2_type}
-Boolean_setname2_type |= element om:OMA {not_logic1_elt,Boolean_setname2_type}
-Boolean_setname2_type |= element om:OMA {and_logic1_elt,Boolean_setname2_type*}
-Boolean_setname2_type |= element om:OMA {xor_logic1_elt,Boolean_setname2_type*}
-Boolean_setname2_type |= element om:OMA {or_logic1_elt,Boolean_setname2_type*}
-Boolean_setname2_type |= element om:OMA {implies_logic1_elt,Boolean_setname2_type,Boolean_setname2_type}
-Boolean_setname2_type |= true_logic1_elt
-Boolean_setname2_type |= false_logic1_elt
+
+
+
+
+     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+
+
+ logic1 
+http://www.openmath.org/cd
+ http://www.openmath.org/cd/logic1.ocd 
+2006-03-30
+2004-03-30
+3
+0
+ official 
+
+    This CD holds the basic logic functions.
+
+
+
+ equivalent 
+  
+    equivalent
+  
+application
+ 
+This symbol is used to show that two boolean expressions are logically 
+equivalent, that is have the same boolean value for any inputs.
+
+
+ The condition (A is equivalent to B) is equivalent to the
+condition that (A implies B and B implies A) 
+
+
+
+  
+    
+    
+      
+      
+      
+    
+    
+      
+      
+        
+	
+	
+      
+      
+        
+	
+	
+      
+    
+  
+
+
+
+
+
+ not 
+  
+    not
+  
+application
+ 
+This symbol represents the logical not function which takes one boolean
+argument, and returns the opposite boolean value.
+
+ for all x | not(not(x))=x 
+
+
+
+  
+  
+    
+  
+  
+    
+    
+      
+      
+        
+        
+      
+    
+    
+  
+
+
+
+
+
+
+ and 
+  
+    and
+  
+application
+ 
+This symbol represents the logical and function which is an n-ary
+function taking boolean arguments and returning a boolean value. It
+is true if all arguments are true or false otherwise.
+
+
+for all x | x and not(x) = false
+
+
+
+  
+  
+    
+  
+  
+    
+    
+      
+      
+        
+      
+    
+    
+  
+
+
+
+
+
+ xor 
+  
+    xor
+  
+application
+ 
+This symbol represents the logical xor function which is an n-ary
+function taking boolean arguments and returning a boolean
+value. It is true if there are an odd number of true arguments or
+false otherwise.
+
+
+for all x | x xor x = false
+
+
+  
+  
+    
+  
+  
+    
+    
+      
+      
+    
+    
+  
+
+
+
+
+for all x | x xor not(x) = true
+
+
+
+
+  
+    
+  
+  
+    
+    
+      
+      
+        
+      
+    
+    
+  
+
+
+
+
+
+ or 
+  
+    or
+  
+application
+ 
+This symbol represents the logical or function which is an n-ary
+function taking boolean arguments and returning a boolean value. It
+is true if any of the arguments are true or false otherwise.
+
+
+
+for all x | x or not(x) = true
+
+
+
+
+  
+    
+  
+  
+    
+    
+      
+      
+        
+      
+    
+    
+  
+
+
+
+
+for all a,b | not(a and b)= (not(a) or not(b))
+
+
+
+
+  
+  
+    
+    
+  
+  
+    
+    
+      
+      
+        
+        
+        
+      
+    
+    
+      
+      
+        
+        
+      
+      
+        
+        
+      
+    
+  
+
+
+
+
+
+
+ implies 
+  
+    implies
+  
+application
+ 
+This symbol represents the logical implies function which takes two
+boolean expressions as arguments. It evaluates to false if the first
+argument is true and the second argument is false, otherwise it
+evaluates to true.
+
+
+ for all x | false implies x 
+
+
+
+  
+  
+    
+  
+  
+    
+    
+    
+  
+
+
+
+
+
+ true 
+  
+    true
+  
+constant
+ 
+This symbol represents the boolean value true.
+
+ not true = false 
+
+  
+    
+      
+      
+        
+	
+      
+      
+    
+  
+
+
+
+
+ false 
+  
+    false
+  
+constant
+ 
+This symbol represents the boolean value false.
+
+ not false = true 
+
+  
+    
+      
+      
+        
+	
+      
+      
+    
+  
+
+
+

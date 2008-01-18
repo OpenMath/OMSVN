@@ -43,11 +43,17 @@ uplimit = element uplimit {Definition.attrib,MathML.Common.attrib,cdbase.attrib?
 # allow the non-strict qualifiers
 qualifier.class |= domainofapplication|(uplimit,lowlimit?)|(lowlimit,uplimit?)
 
-#ednote(rnc:cd-generated) this should somehow be generated from the MCDs. 
-pragmatic.binder = notAllowed #int.token|union.token|exists.token|forall.token|sum.token|product.token|diff.token|partialdiff.token
+# classes for the tokens by role
+token.constant = notAllowed
+token.binder = notAllowed
+token.application = notAllowed
+token.semantic-attribution = notAllowed
+token.attribution = notAllowed
+token.error = notAllowed
 
-# allow bvar also in the apply element, if one of the MathML2 binders is the head.
-apply.content |= (pragmatic.binder,bvar*,qualifier.class?,ContExp)
+tokens = token.constant | token.binder | token.application | 
+               token.semantic-attribution | token.attribution |
+	       token.error
 
 # allow closure attributes and two content elements in intervals
 interval.content  &= attribute closure {"closed"|"open"|"open-closed"|"closed-open"}?,
@@ -66,3 +72,5 @@ declare = element declare {attribute type {xsd:string}?,
                            Definition.attrib,cdbase.attrib?, 
                            ContExp+}
 
+# include the relevant content dictionaries
+include "cd/mathml3-pragmatic.rnc"

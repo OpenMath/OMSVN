@@ -1,5 +1,5 @@
 #     This file contains the type checking rules for the symbols
-#     from the STS types for the content dictionary arith1
+#     from the STS types for the content dictionary 
 #     It is provided "as is" without expressed or implied warranty.
 #
 #     Revision:   $Id$
@@ -8,53 +8,922 @@
 
 namespace om = "http://www.openmath.org/OpenMath"
 
-lcm_arith1_elt = element om:OMS {
-        attribute cd {"arith1"},
-        attribute name {"lcm"}}
-gcd_arith1_elt = element om:OMS {
-        attribute cd {"arith1"},
-        attribute name {"gcd"}}
-plus_arith1_elt = element om:OMS {
-        attribute cd {"arith1"},
-        attribute name {"plus"}}
-unary_minus_arith1_elt = element om:OMS {
-        attribute cd {"arith1"},
-        attribute name {"unary_minus"}}
-minus_arith1_elt = element om:OMS {
-        attribute cd {"arith1"},
-        attribute name {"minus"}}
-times_arith1_elt = element om:OMS {
-        attribute cd {"arith1"},
-        attribute name {"times"}}
-divide_arith1_elt = element om:OMS {
-        attribute cd {"arith1"},
-        attribute name {"divide"}}
-power_arith1_elt = element om:OMS {
-        attribute cd {"arith1"},
-        attribute name {"power"}}
-abs_arith1_elt = element om:OMS {
-        attribute cd {"arith1"},
-        attribute name {"abs"}}
-root_arith1_elt = element om:OMS {
-        attribute cd {"arith1"},
-        attribute name {"root"}}
-sum_arith1_elt = element om:OMS {
-        attribute cd {"arith1"},
-        attribute name {"sum"}}
-product_arith1_elt = element om:OMS {
-        attribute cd {"arith1"},
-        attribute name {"product"}}
-SemiGroup_type |= element om:OMA {lcm_arith1_elt,SemiGroup_type*}
-SemiGroup_type |= element om:OMA {gcd_arith1_elt,SemiGroup_type*}
-AbelianGroup_type |= element om:OMA {gcd_arith1_elt,AbelianGroup_type*}
-AbelianSemiGroup_type |= element om:OMA {plus_arith1_elt,AbelianSemiGroup_type*}
-AbelianGroup_type |= element om:OMA {unary_minus_arith1_elt,AbelianGroup_type}
-AbelianGroup_type |= element om:OMA {minus_arith1_elt,AbelianGroup_type,AbelianGroup_type}
-SemiGroup_type |= element om:OMA {times_arith1_elt,SemiGroup_type*}
-AbelianGroup_type |= element om:OMA {times_arith1_elt,AbelianGroup_type*}
-AbelianGroup_type |= element om:OMA {divide_arith1_elt,AbelianGroup_type,AbelianGroup_type}
-NumericalValue_sts_type |= element om:OMA {power_arith1_elt,NumericalValue_sts_type,NumericalValue_sts_type}
-R_setname1_type |= element om:OMA {abs_arith1_elt,C_setname1_type}
-NumericalValue_sts_type |= element om:OMA {root_arith1_elt,NumericalValue_sts_type,NumericalValue_sts_type}
-AbelianMonoid_type |= element om:OMA {sum_arith1_elt,IntegerRange_type,function_type}
-AbelianMonoid_type |= element om:OMA {product_arith1_elt,IntegerRange_type,function_type}
+
+
+
+
+     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+
+
+ arith1 
+http://www.openmath.org/cd
+http://www.openmath.org/cd/arith1.ocd 
+2006-03-30
+ official 
+2004-03-30
+3
+0
+
+ 
+This CD defines symbols for common arithmetic functions.
+
+
+
+ lcm 
+  
+    lcm
+  
+application
+ 
+The symbol to represent the n-ary function to return the least common
+multiple of its arguments.
+
+
+ lcm(a,b) = a*b/gcd(a,b) 
+
+
+
+  
+    
+    
+      
+      
+      
+    
+    
+      
+      
+        
+	
+	
+      
+      
+        
+        
+        
+      
+    
+  
+
+
+
+for all integers a,b |
+There does not exist a c>0 such that c/a is an Integer and c/b is an
+Integer and lcm(a,b) > c.
+
+
+
+
+
+  
+  
+    
+    
+  
+  
+    
+    
+      
+      
+        
+	
+	
+      
+      
+        
+	
+	
+      
+    
+    
+      
+      
+        
+        
+          
+        
+        
+          
+          
+            
+              
+              0
+          
+          
+            
+              
+              
+          
+          
+            
+              
+              
+          
+          
+            
+            
+            
+              
+              
+              
+            
+          
+        
+      
+    
+  
+
+
+
+
+
+
+ gcd 
+  
+    gcd
+  
+application
+ 
+The symbol to represent the n-ary function to return the gcd (greatest
+common divisor) of its arguments.
+
+
+
+for all integers a,b |
+There does not exist a c such that a/c is an Integer and b/c is an
+Integer and c > gcd(a,b).
+
+Note that this implies that gcd(a,b) > 0
+
+
+
+
+
+  
+  
+    
+    
+  
+  
+    
+    
+      
+      
+        
+	
+	
+      
+      
+        
+	
+	
+      
+    
+    
+      
+      
+        
+        
+          
+        
+        
+          
+          
+            
+            
+              
+              
+              
+            
+            
+          
+          
+            
+            
+              
+              
+              
+            
+            
+          
+          
+            
+            
+            
+              
+              
+              
+            
+          
+        
+      
+    
+  
+
+
+
+
+
+gcd(6,9) = 3
+
+  
+    
+    
+      
+       6 
+       9 
+    
+     3 
+  
+
+
+
+
+
+ plus 
+  
+    plus
+  
+application
+
+The symbol representing an n-ary commutative function plus.
+
+ for all a,b | a + b = b + a 
+
+
+  
+    
+    
+       
+       
+    
+    
+      
+      
+        
+        
+        
+      
+      
+        
+        
+        
+      
+    
+  
+
+
+
+
+
+ unary_minus 
+  
+    unary_minus
+  
+application
+ 
+This symbol denotes unary minus, i.e. the additive inverse.
+
+ for all a | a + (-a) = 0 
+
+
+  
+    
+    
+       
+    
+    
+      
+      
+        
+        
+        
+           
+           
+        
+      
+      
+    
+  
+
+
+
+
+
+ minus 
+  
+    minus
+  
+application
+ 
+The symbol representing a binary minus function. This is equivalent to
+adding the additive inverse.
+
+ for all a,b | a - b = a + (-b) 
+
+
+  
+    
+    
+       
+       
+    
+    
+      
+      
+        
+        
+        
+      
+      
+        
+        
+        
+          
+          
+        
+      
+    
+  
+
+
+
+
+
+ times 
+  
+    times
+  
+application
+ 
+The symbol representing an n-ary multiplication function.
+
+
+
+
+  
+  
+    
+    
+      
+      
+        
+         1 
+         2 
+      
+      
+        
+         3 
+         4 
+      
+    
+    
+      
+      
+        
+         5 
+         6 
+      
+      
+        
+         7 
+         8 
+      
+    
+  
+  
+    
+    
+      
+       19 
+       22 
+    
+    
+      
+       43 
+       50 
+    
+  
+
+
+
+ for all a,b | a * 0 = 0 and a * b = a * (b - 1) + a 
+
+
+
+  
+  
+    
+    
+  
+  
+    
+    
+      
+      
+        
+        
+        
+      
+      
+    
+    
+      
+      
+        
+	
+	
+      
+      
+        
+	
+	  
+	  
+	  
+	    
+	    
+	    
+	  
+	
+	
+      
+    
+  
+
+
+
+ for all a,b,c | a*(b+c) = a*b + a*c 
+
+
+  
+  
+    
+    
+    
+  
+  
+    
+    
+      
+      
+      
+        
+	
+	
+      
+    
+    
+      
+      
+        
+	
+	
+      
+      
+        
+	
+	
+      
+    
+  
+
+
+
+
+
+ divide 
+  
+    divide
+  
+application
+
+This symbol represents a (binary) division function denoting the first argument
+right-divided by the second, i.e. divide(a,b)=a*inverse(b). It is the
+inverse of the multiplication function defined by the symbol times in this CD.
+
+ whenever not(a=0) then a/a = 1 
+
+
+  
+    
+    
+       
+    
+    
+      
+      
+        
+        
+        
+      
+      
+        
+        
+          
+          
+          
+        
+        
+      
+    
+  
+
+
+
+
+
+ power 
+  
+    power
+  
+application
+
+This symbol represents a power function. The first argument is raised
+to the power of the second argument. When the second argument is not
+an integer, powering is defined in terms of exponentials and 
+logarithms for the complex and real numbers.
+This operator can represent general powering.
+
+
+
+x\in C implies x^a = exp(a ln x)
+
+
+
+
+  
+    
+    
+      
+      
+      
+    
+    
+      
+      
+        
+        
+        
+      
+      
+        
+        
+          
+          
+          
+            
+            
+          
+        
+      
+    
+  
+
+
+
+
+  if n is an integer then
+  x^0 = 1,
+  x^n = x * x^(n-1)
+
+
+
+  
+    
+    
+      
+      
+      
+    
+    
+      
+      
+        
+        
+          
+          
+          0
+        
+        
+      
+      
+        
+        
+          
+          
+          
+        
+        
+          
+          
+          
+            
+            
+            
+              
+              
+              1
+            
+          
+        
+      
+    
+  
+
+
+
+
+
+  
+  
+    
+    
+      
+      
+        
+         1 
+         2 
+      
+      
+        
+         3 
+         4 
+      
+    
+    3
+  
+  
+    
+    
+      
+       37 
+       54 
+    
+    
+      
+       81 
+       118 
+    
+  
+
+
+
+
+
+
+  
+  
+    
+    
+    
+      
+      
+      
+    
+  
+  
+    
+    
+  
+
+
+
+
+
+
+ abs 
+  
+    abs
+  
+application
+ 
+A unary operator which represents the absolute value of its
+argument. The argument should be numerically valued.
+In the complex case this is often referred to as the modulus.
+
+ for all x,y | abs(x) + abs(y) >= abs(x+y) 
+
+
+  
+    
+    
+      
+      
+    
+    
+      
+      
+        
+        
+          
+            
+        
+        
+          
+            
+        
+      
+      
+        
+        
+          
+          
+          
+        
+      
+    
+  
+
+
+
+
+
+ root 
+  
+    root
+  
+application
+ 
+A binary operator which represents its first argument "lowered" to its
+n'th root where n is the second argument. This is the inverse of the operation
+represented by the power symbol defined in this CD.
+
+Care should be taken as to the precise meaning of this operator, in
+particular which root is represented, however it is here to represent
+the general notion of taking n'th roots. As inferred by the signature
+relevant to this symbol, the function represented by this symbol is
+the single valued function, the specific root returned is the one
+indicated by the first CMP. Note also that the converse of the second
+CMP is not valid in general.
+
+
+ x\in C implies root(x,n) = exp(ln(x)/n) 
+
+  
+    
+      
+      
+        
+        
+        
+      
+      
+        
+        
+          
+          
+                    
+        
+        
+          
+          
+            
+            
+              
+              
+            
+                      
+          
+        
+      
+    
+  
+
+
+ for all a,n | power(root(a,n),n) = a (if the root exists!) 
+
+  
+    
+      
+      
+         
+         
+      
+      
+        
+        
+          
+          
+            
+            
+            
+          
+          
+        
+        
+      
+    
+  
+
+
+
+
+
+
+
+ sum 
+  
+    sum
+  
+application
+
+An operator taking two arguments, the first being the range of summation,
+e.g. an integral interval, the second being the function to be
+summed. Note that the sum may be over an infinite interval.
+
+
+  This represents the summation of the reciprocals of all the integers between
+  1 and 10 inclusive.
+
+  
+    
+      
+        
+         1 
+         10 
+      
+    
+      
+        
+          
+        
+        
+          
+           1 
+          
+        
+    
+  
+
+
+
+
+
+ product 
+  
+    product
+  
+application
+
+An operator taking two arguments, the first being the range of multiplication
+e.g. an integral interval, the second being the function to
+be multiplied. Note that the product may be over an infinite interval. 
+
+
+This represents the statement that the factorial of n is equal to the product
+of all the integers between 1 and n inclusive.
+
+  
+    
+    
+      
+      
+    
+    
+      
+        
+          
+           1 
+          
+        
+      
+        
+          
+            
+          
+          
+      
+    
+  
+
+
+
+

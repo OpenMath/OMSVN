@@ -1,5 +1,5 @@
 #     This file contains the type checking rules for the symbols
-#     from the STS types for the content dictionary limit1
+#     from the STS types for the content dictionary 
 #     It is provided "as is" without expressed or implied warranty.
 #
 #     Revision:   $Id$
@@ -8,23 +8,220 @@
 
 namespace om = "http://www.openmath.org/OpenMath"
 
-limit_limit1_elt = element om:OMS {
-        attribute cd {"limit1"},
-        attribute name {"limit"}}
-both_sides_limit1_elt = element om:OMS {
-        attribute cd {"limit1"},
-        attribute name {"both_sides"}}
-above_limit1_elt = element om:OMS {
-        attribute cd {"limit1"},
-        attribute name {"above"}}
-below_limit1_elt = element om:OMS {
-        attribute cd {"limit1"},
-        attribute name {"below"}}
-null_limit1_elt = element om:OMS {
-        attribute cd {"limit1"},
-        attribute name {"null"}}
-NumericalValue_sts_type |= element om:OMA {limit_limit1_elt,NumericalValue_sts_type,TendsTo_type,function_type}
-TendsTo_type |= both_sides_limit1_elt
-TendsTo_type |= above_limit1_elt
-TendsTo_type |= below_limit1_elt
-TendsTo_type |= null_limit1_elt
+
+
+
+
+     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+
+
+ limit1 
+http://www.openmath.org/cd
+ http://www.openmath.org/cd/limit1.ocd 
+2006-03-30
+2004-03-30
+3
+0
+ official 
+
+    This CD holds the basic notion of the limits of unary functions
+    whilst its variable tend (either from above, below or both
+    sides) to a particular value.
+
+
+
+
+ limit 
+application
+  
+    limit
+  
+
+This symbol is used to denote the limit of a unary function. It
+takes 3 arguments: the limiting value of the argument, the method of
+approach (either null, above, below or both_sides) and the function.
+
+
+
+The limit of sin(x) as x tends to 0
+
+  
+    
+     0 
+    
+    
+      
+        
+        
+        
+        
+          
+          
+        
+    
+  
+
+
+
+
+
+
+ both_sides 
+  
+    both_sides
+  
+constant
+ 
+This symbol is used within a limit construct to show the limit is
+being approached from both sides. It takes no arguments.
+
+
+
+The limit of sin(x) as x tends to 0 from either direction
+
+  
+    
+     0 
+    
+    
+      
+        
+        
+        
+        
+          
+          
+        
+    
+  
+
+
+
+
+
+ above 
+  
+    above
+  
+constant
+ 
+This symbol is used within a limit construct to show the limit is
+being approached from above. It takes no arguments.
+
+
+
+The limit of sin(x) as x tends to 0 from above
+
+  
+    
+     0 
+    
+    
+      
+        
+        
+        
+        
+          
+          
+        
+    
+  
+
+
+
+
+
+ below 
+  
+    below
+  
+constant
+
+This symbol is used within a limit construct to show the limit is
+being approached from below. It takes no arguments.
+
+
+
+The limit of sin(x) as x tends to 0 from below
+
+  
+    
+     0 
+    
+    
+      
+        
+        
+        
+        
+          
+          
+        
+    
+  
+
+
+
+
+
+ null 
+  
+    null
+  
+constant
+
+This symbol is used within a limit construct to avoid specifying the method of
+approach to the limit. It takes no arguments.
+
+
+
+The limit of sin(x) as x tends to 0
+
+  
+    
+     0 
+    
+    
+      
+      
+        
+      
+      
+        
+        
+      
+    
+  
+
+
+
+

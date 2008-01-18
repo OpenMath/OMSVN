@@ -24,10 +24,6 @@
   <xsl:variable name="here" select="/"/>
 
 <xsl:variable name="symbol">
-  <xsl:choose>
-    <xsl:when test="$format='OpenMath'"><xsl:text>om:OMS</xsl:text></xsl:when>
-    <xsl:when test="$format='MathML'"><xsl:text>m:csymbol</xsl:text></xsl:when>
-  </xsl:choose>
 </xsl:variable>
 
   <xsl:template match="/">
@@ -65,7 +61,6 @@
   </xsl:template>
 
   <xsl:template match="omcd:CD">
-    <xsl:message>hey</xsl:message>
     <xsl:apply-templates select="omcd:CDDefinition">
       <xsl:with-param name="cd" select="normalize-space(omcd:CDName)"/>
     </xsl:apply-templates>
@@ -77,17 +72,20 @@
     <xsl:variable name="name" select="normalize-space(omcd:Name)"/>
     <xsl:value-of select="concat($name,'_',$cd,'_elt')"/>
     <xsl:text> = element </xsl:text>
-    <xsl:value-of select="$symbol"/>
-    <xsl:text>{attribute cd {"</xsl:text>
-    <xsl:value-of select="$cd"/>
-    <xsl:text>"}, attribute name {"</xsl:text>
-    <xsl:value-of select="$name"/>
-    <xsl:text>"}}&#xA;</xsl:text>
+    <xsl:choose>
+      <xsl:when test="$format='OpenMath'">
+	<xsl:text>om:OMS {common.attributes,cdbase,</xsl:text>
+      </xsl:when>
+      <xsl:when test="$format='MathML'">
+	<xsl:text>m:csymbol {MathML.Common.attrib,</xsl:text>
+      </xsl:when>
+    </xsl:choose>
+    <xsl:value-of select="concat('attribute cd {&quot;',$cd,'&quot;},')"/>
+    <xsl:value-of select="concat('attribute name {&quot;',$name,'&quot;}')"/>
+    <xsl:text>}&#xA;</xsl:text>
     <!-- extend the relevant classes with it -->
     <xsl:variable name="sig" select="exsl:node-set(document($sts,$here))//omcds:Signature[normalize-space(@name)=$name]/om:OMOBJ"/>
     <xsl:variable name="role" select="normalize-space(omcd:Role)"/>
-    <xsl:variable name="token" select="normalize-space(omcd:Pragmatic/omcd:Token)"/>
-    <xsl:message>token: <xsl:value-of select="$token"/></xsl:message>
     <xsl:variable name="elt" select="concat($name,'_',$cd,'_elt')"/>
     <xsl:choose>
       <xsl:when test="$role='constant'">
@@ -129,5 +127,6 @@
     </xsl:choose>
     <xsl:text>&#xA;</xsl:text>
   </xsl:template>
+
 
 </xsl:stylesheet>

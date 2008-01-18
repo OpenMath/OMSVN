@@ -1,5 +1,5 @@
 #     This file contains the type checking rules for the symbols
-#     from the STS types for the content dictionary calculus1
+#     from the STS types for the content dictionary 
 #     It is provided "as is" without expressed or implied warranty.
 #
 #     Revision:   $Id$
@@ -8,23 +8,646 @@
 
 namespace om = "http://www.openmath.org/OpenMath"
 
-diff_calculus1_elt = element om:OMS {
-        attribute cd {"calculus1"},
-        attribute name {"diff"}}
-nthdiff_calculus1_elt = element om:OMS {
-        attribute cd {"calculus1"},
-        attribute name {"nthdiff"}}
-partialdiff_calculus1_elt = element om:OMS {
-        attribute cd {"calculus1"},
-        attribute name {"partialdiff"}}
-int_calculus1_elt = element om:OMS {
-        attribute cd {"calculus1"},
-        attribute name {"int"}}
-defint_calculus1_elt = element om:OMS {
-        attribute cd {"calculus1"},
-        attribute name {"defint"}}
-function_type |= element om:OMA {diff_calculus1_elt,function_type}
-function_type |= element om:OMA {nthdiff_calculus1_elt,Z_setname1_type,function_type}
-function_type |= element om:OMA {partialdiff_calculus1_elt,VariableList_type,function_type}
-function_type |= element om:OMA {int_calculus1_elt,function_type}
-Object_sts_type |= element om:OMA {defint_calculus1_elt,RangeOfIntegration_type,function_type}
+
+
+
+
+     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+
+
+ calculus1 
+http://www.openmath.org/cd
+ http://www.openmath.org/cd/calculus1.ocd 
+2006-03-30
+ official 
+2004-06-01
+4
+1
+
+    This CD is intended to be compatible with the calculus operations
+    in Content MathML.
+
+    Integration is just for the univariate case and is either definite
+    or indefinite.
+
+
+
+ diff 
+  
+    diff
+  
+application
+
+This symbol is used to express ordinary differentiation of a unary
+function. The single argument is the unary function.
+
+
+ 
+diff(lambda y:a(y) + b(y))(x) = diff(lambda y:a(y))(x) + diff(lambda y:b(y))(x)
+
+
+
+
+  
+    
+    
+      
+        
+        
+          
+          
+            
+          
+          
+            
+            
+              
+              
+            
+            
+              
+              
+            
+          
+        
+      
+      
+    
+    
+      
+      
+        
+          
+          
+            
+            
+              
+            
+            
+              
+              
+            
+          
+        
+        
+      
+      
+        
+          
+          
+            
+            
+              
+            
+            
+              
+              
+            
+          
+        
+        
+      
+    
+  
+
+
+
+ 
+diff(lambda y:a(y) * b(y))(x) = diff(lambda y:a(y))(x) * b(x) + 
+                                a(x) * diff(lambda y:b(y))(x)
+
+
+
+
+  
+    
+    
+      
+        
+        
+          
+          
+            
+          
+          
+            
+            
+              
+              
+            
+            
+              
+              
+            
+          
+        
+      
+      
+    
+    
+      
+      
+        
+        
+          
+            
+            
+              
+              
+                
+              
+              
+                
+                
+              
+            
+          
+          
+        
+        
+          
+          
+        
+      
+      
+        
+        
+          
+          
+        
+        
+          
+            
+            
+              
+              
+                
+              
+              
+                
+                
+              
+            
+          
+          
+        
+      
+    
+  
+
+
+
+
+This represents the equation:
+  derivative(x + 1.0) = 1.0
+
+  
+    
+    
+      
+        
+        
+          
+          
+            
+          
+          
+            
+            
+            
+          
+        
+      
+      
+    
+    
+  
+
+
+
+
+
+ nthdiff 
+  
+    nthdiff
+  
+application
+
+This symbol is used to express the nth-iterated ordinary differentiation of 
+a unary function. The first argument is n, and the second the unary function.
+
+
+
+  
+  
+    
+    
+      
+      
+      
+    
+    
+  
+  
+
+
+
+  
+  
+    
+    
+      
+      
+        
+        
+        
+      
+      
+    
+    
+      
+      
+        
+        
+        
+      
+    
+  
+  
+
+
+
+
+
+ partialdiff 
+  
+    partialdiff
+  
+application
+
+This symbol is used to express partial differentiation of a function
+of more than one variable. It has two arguments, the first is a list of 
+integers which index the variables of the function, the second is the function.
+
+
+An example to represent the equation:
+ \partial^2{xyz}/ \partial{x}\partial{z} = y
+
+
+  
+  
+    
+      
+      
+        
+         1 
+         3 
+      
+      
+        
+        
+          
+          
+          
+        
+        
+          
+          
+          
+          
+        
+      
+    
+    
+  
+  
+
+
+
+
+
+
+ int 
+  
+    int
+  
+application
+ 
+This symbol is used to represent indefinite integration of unary functions.
+The argument is the unary function.
+
+
+
+application of integrate followed by differentiate is the identity
+function, that is: 
+ diff(lambda y:integral(lambda z:f(z))(y)) = f
+
+
+
+
+  
+    
+        
+          
+          
+            
+            
+              
+            
+            
+              
+                
+                
+                  
+                  
+                    
+                  
+                  
+                    
+                    
+                  
+                
+              
+              
+            
+          
+        
+        
+  
+
+
+
+
+An example which represents the equation:
+integral(x +-> sin(x)) w.r.t. x = x +-> -cos(x)
+
+  
+    
+    
+      
+      
+        
+        
+          
+        
+        
+          
+          
+        
+      
+    
+    
+      
+      
+        
+      
+      
+        
+        
+          
+          
+        
+      
+    
+  
+
+
+
+
+
+ defint 
+  
+    defint
+  
+application
+ 
+This symbol is used to represent definite integration of unary
+functions. It takes two arguments; the first being the range (e.g. a
+set) of integration, and the second the function.
+
+
+ for all a,b | integral from a to b = -integral from b to a 
+
+
+
+  
+    
+    
+      
+      
+    
+    
+      
+      
+        
+        
+          
+          
+          
+        
+        
+          
+          
+            
+          
+          
+            
+            
+          
+        
+      
+      
+        
+        
+          
+          
+            
+            
+            
+          
+          
+            
+            
+              
+            
+            
+              
+              
+            
+          
+        
+      
+    
+  
+
+
+
+
+for all a < b < c | integral over [a,c] = integral over [a,b] + 
+integral over [b,c]
+
+
+
+
+  
+    
+    
+      
+      
+      
+    
+    
+      
+      
+        
+        
+          
+          
+  	
+        
+        
+          
+	  
+	  
+        
+      
+      
+        
+	
+	  
+	  
+	    
+	    
+	    
+	  
+	  
+	    
+	    
+	      
+	    
+	    
+	      
+	      
+	    
+	  
+	
+	
+	  
+	  
+	    
+	    
+	      
+	      
+	      
+	    
+	    
+	      
+	      
+	        
+	      
+	      
+	        
+	        
+	      
+	    
+	  
+	  
+	    
+	    
+	      
+	      
+	      
+	    
+	    
+	      
+	      
+	        
+	      
+	      
+	        
+	        
+	      
+	    
+	  
+	
+      
+    
+  
+
+
+
+An example to represent the definite integration of sin(x) between the points 
+-1.0 and 1.0.
+
+  
+    
+    
+      
+      
+      
+    
+    
+      
+      
+        
+      
+      
+         
+	
+      
+    
+  
+
+
+
+
+An example to represent the definite integration of f(x), for x in the
+set C:
+
+  
+    
+    
+    
+      
+      
+        
+      
+      
+        
+        
+      
+    
+  
+
+
+
+
+
