@@ -1,0 +1,20 @@
+#     This file contains the role checking rules for the symbols
+#     from the the content dictionary 
+#     It is provided "as is" without expressed or implied warranty.
+#
+#     Revision:   $Id: sts2rnc-sts.xsl 529 2008-01-15 10:07:01Z kohlhase $
+#    $HeadURL: https://svn.openmath.org/OpenMath3/rnc/cd/sts2rnc-sts.xsl $ 
+
+
+namespace om = "http://www.openmath.org/OpenMath"
+
+limit_limit1_elt = element om:OMS {common.attributes,cdbase,attribute cd {"limit1"},attribute name {"limit"}}
+cd.application |= limit_limit1_elt
+both_sides_limit1_elt = element om:OMS {common.attributes,cdbase,attribute cd {"limit1"},attribute name {"both_sides"}}
+cd.constant |= both_sides_limit1_elt
+above_limit1_elt = element om:OMS {common.attributes,cdbase,attribute cd {"limit1"},attribute name {"above"}}
+cd.constant |= above_limit1_elt
+below_limit1_elt = element om:OMS {common.attributes,cdbase,attribute cd {"limit1"},attribute name {"below"}}
+cd.constant |= below_limit1_elt
+null_limit1_elt = element om:OMS {common.attributes,cdbase,attribute cd {"limit1"},attribute name {"null"}}
+cd.constant |= null_limit1_elt
