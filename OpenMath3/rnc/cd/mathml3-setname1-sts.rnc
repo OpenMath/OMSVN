@@ -1,5 +1,5 @@
 #     This file contains the type checking rules for the symbols
-#     from the STS types for the content dictionary setname1
+#     from the STS types for the content dictionary 
 #     It is provided "as is" without expressed or implied warranty.
 #
 #     Revision:   $Id$
@@ -7,27 +7,582 @@
 
 
 namespace m  ="http://www.w3.org/1998/Math/MathML"
-P_setname1_elt = element m:csymbol {
-        attribute cd {"setname1"},
-        attribute name {"P"}}
-N_setname1_elt = element m:csymbol {
-        attribute cd {"setname1"},
-        attribute name {"N"}}
-Z_setname1_elt = element m:csymbol {
-        attribute cd {"setname1"},
-        attribute name {"Z"}}
-Q_setname1_elt = element m:csymbol {
-        attribute cd {"setname1"},
-        attribute name {"Q"}}
-R_setname1_elt = element m:csymbol {
-        attribute cd {"setname1"},
-        attribute name {"R"}}
-C_setname1_elt = element m:csymbol {
-        attribute cd {"setname1"},
-        attribute name {"C"}}
-Set_type |= P_setname1_elt
-Set_type |= N_setname1_elt
-EuclideanRing_type |= Z_setname1_elt
-Field_type |= Q_setname1_elt
-Field_type |= R_setname1_elt
-Field_type |= C_setname1_elt
+
+
+
+
+     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+
+
+ setname1 
+http://www.openmath.org/cd
+ http://www.openmath.org/cd/setname1.ocd 
+2006-03-30
+2004-03-30
+3
+0
+ official 
+
+    This CD defines common sets of mathematics
+
+
+Written by J.H. Davenport on 1999-04-18.
+Revised to add Zm, GFp, GFpn on 1999-11-09.
+Revised to add QuotientField and A on 1999-11-19.
+
+
+
+ P 
+  
+    P
+  
+constant
+ 
+This symbol represents the set of positive prime numbers.
+
+
+
+for all n |
+n is a positive prime number is equivalent to:
+n is a natural number and n > 1 and
+((n=a*b and a and b are natural numbers) implies ((a=1 and b=n) or
+(b=1 and a=n)))
+
+
+
+  
+    
+    
+       
+    
+    
+      
+      
+        
+        
+        
+      
+      
+        
+        
+          
+          
+          
+        
+        
+          
+          
+          
+        
+        
+          
+          
+            
+            
+              
+              
+              
+                
+                
+                
+              
+            
+            
+              
+              
+              
+            
+            
+              
+              
+              
+            
+          
+          
+            
+            
+              
+              
+                
+                
+                
+              
+              
+                
+                
+                
+              
+            
+            
+              
+              
+                
+                
+                
+              
+              
+                
+                
+                
+              
+            
+          
+        
+      
+    
+  
+
+
+
+
+
+ N 
+  
+    N
+  
+constant
+ 
+This symbol represents the set of natural numbers (including zero).
+
+
+ for all n | n in the natural numbers is equivalent to saying 
+n=0 or n-1 is a natural number 
+
+
+  
+    
+    
+       
+    
+    
+      
+      
+        
+        
+        
+      
+      
+        
+        
+          
+          
+          
+        
+        
+          
+          
+            
+            
+            
+          
+          
+        
+      
+    
+  
+
+
+
+
+
+ Z 
+  
+    Z
+  
+constant
+ 
+This symbol represents the set of integers, positive, negative and zero.
+
+
+ 
+for all z | the statements z is an integer and z is a natural number
+or -z is a natural number are equivalent
+
+
+
+
+  
+    
+    
+       
+    
+    
+      
+      
+        
+        
+        
+      
+      
+        
+        
+          
+          
+          
+        
+        
+          
+          
+            
+            
+          
+          
+        
+      
+    
+  
+
+
+
+
+
+ Q 
+constant
+  
+    Q
+  
+ 
+This  symbol represents the set of rational numbers.
+
+
+
+for all z where z is a rational, there exists integers p and q with
+q > 1 and p/q = z 
+
+
+
+
+  
+    
+    
+       
+    
+    
+      
+      
+        
+        
+        
+      
+      
+        
+        
+          
+          
+        
+        
+          
+          
+            
+            
+            
+          
+          
+            
+            
+            
+          
+          
+            
+            
+            
+          
+          
+            
+            
+            
+              
+              
+              
+            
+          
+        
+      
+     
+  
+
+
+
+
+ 
+for all a,b | a,b rational with a<b implies there exists rational a,c
+  s.t. a<c and c<b
+
+
+
+
+  
+  
+    
+    
+  
+  
+    
+    
+      
+      
+        
+	
+	
+      
+      
+        
+	
+	
+      
+      
+        
+	
+	
+      
+    
+    
+      
+      
+        
+      
+      
+        
+	
+	  
+	  
+	  
+	
+	
+	  
+	  
+	  
+	
+	
+	  
+	  
+	  
+	
+      
+    
+  
+
+
+
+
+
+ R 
+  
+    R
+  
+constant
+ 
+This symbol represents the set of real numbers.
+
+
+
+ S \subset R and exists y in R : forall x in S x <= y)  implies
+exists z in R such that
+    (( forall x in S x <= z) and
+     ((forall x in S x <= w)  implies z <= w)
+
+
+
+
+  
+    
+    
+      
+      
+        
+	
+	
+      
+      
+        
+	
+	  
+	
+	
+	  
+	  
+	    
+	    
+	    
+	  
+	  
+	    
+	    
+	      
+	    
+	    
+	      
+	      
+	        
+		
+		
+	      
+	      
+	        
+		
+		
+	      
+	    
+	  
+	
+      
+    
+    
+      
+      
+        
+      
+      
+        
+	
+          
+	  
+	  
+	
+	
+	  
+	  
+	    
+	  
+	  
+	    
+	    
+	      
+	      
+	      
+	    
+	    
+	      
+	      
+	      
+	    
+	  
+	
+	
+	  
+	  
+	    
+	    
+	      
+	    
+	    
+	      
+	      
+	        
+		
+		
+	      
+	      
+	        
+		
+		
+	      
+	    
+	  
+	  
+	    
+	    
+	    
+	  
+	
+      
+    
+  
+
+
+
+
+
+ C 
+  
+    C
+  
+constant
+ 
+This  symbol represents the set of complex numbers.
+
+
+ 
+for all z | if z is complex then there exist reals x,y 
+s.t. z = x + i * y 
+
+
+
+
+  
+  
+    
+  
+  
+    
+    
+      
+      
+      
+    
+    
+      
+      
+        
+	
+      
+      
+        
+	
+	  
+	  
+	  
+	
+	
+	  
+	  
+	  
+	
+	
+	  
+	  
+	  
+	    
+	    
+	    
+	      
+	      
+	      
+	    
+	  
+	
+      
+    
+  
+
+
+
+

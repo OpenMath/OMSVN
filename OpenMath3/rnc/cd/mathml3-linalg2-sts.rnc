@@ -1,5 +1,5 @@
 #     This file contains the type checking rules for the symbols
-#     from the STS types for the content dictionary linalg2
+#     from the STS types for the content dictionary 
 #     It is provided "as is" without expressed or implied warranty.
 #
 #     Revision:   $Id$
@@ -7,15 +7,130 @@
 
 
 namespace m  ="http://www.w3.org/1998/Math/MathML"
-vector_linalg2_elt = element m:csymbol {
-        attribute cd {"linalg2"},
-        attribute name {"vector"}}
-matrix_linalg2_elt = element m:csymbol {
-        attribute cd {"linalg2"},
-        attribute name {"matrix"}}
-matrixrow_linalg2_elt = element m:csymbol {
-        attribute cd {"linalg2"},
-        attribute name {"matrixrow"}}
-Vector_type |= element m:apply {vector_linalg2_elt,AbelianGroupMult_type*}
-Matrix_type |= element m:apply {matrix_linalg2_elt,MatrixRow_type*}
-MatrixRow_type |= element m:apply {matrixrow_linalg2_elt,Ring_type*}
+
+
+
+
+     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+
+
+ linalg2 
+http://www.openmath.org/cd
+ http://www.openmath.org/cd/linalg2.ocd 
+2006-03-30
+2004-03-30
+3
+0
+ official 
+
+    This CD  treats matrices and vectors in a row oriented fashion
+    (using matrixrow's).
+
+
+
+ vector 
+  
+    vector
+  
+application
+
+This symbol represents an n-ary function used to construct (or describe)
+vectors.  Vectors in this CD are considered to be row vectors and must 
+therefore be transposed to be considered as column vectors.
+
+
+An example of vector using n arguments. 
+The specific vector constructed in this example is [3,6,9].
+
+  
+    
+     3 
+     6 
+     9 
+  
+
+
+
+
+
+
+ matrixrow 
+  
+    matrixrow
+  
+application
+ 
+This symbol is an n-ary constructor used to represent rows of
+matrices. Its arguments should be members of a ring.
+
+
+Representation of a row of a matrix of length two containing the integers
+[1,0]
+
+  
+    
+     1 
+     0 
+  
+
+
+
+
+
+ matrix 
+  
+    matrix
+  
+application
+
+This symbol is an n-ary matrix constructor which requires matrixrow's
+as arguments. It is used to represent matrices.
+
+
+Representation of a 2x2 identity matrix
+
+  
+    
+    
+      
+       1 
+       0 
+    
+    
+      
+       0 
+       1 
+    
+  
+
+
+
+

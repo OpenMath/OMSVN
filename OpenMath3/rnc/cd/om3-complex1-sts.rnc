@@ -1,5 +1,5 @@
 #     This file contains the type checking rules for the symbols
-#     from the STS types for the content dictionary complex1
+#     from the STS types for the content dictionary 
 #     It is provided "as is" without expressed or implied warranty.
 #
 #     Revision:   $Id$
@@ -8,27 +8,488 @@
 
 namespace om = "http://www.openmath.org/OpenMath"
 
-conjugate_complex1_elt = element om:OMS {
-        attribute cd {"complex1"},
-        attribute name {"conjugate"}}
-complex_cartesian_complex1_elt = element om:OMS {
-        attribute cd {"complex1"},
-        attribute name {"complex_cartesian"}}
-real_complex1_elt = element om:OMS {
-        attribute cd {"complex1"},
-        attribute name {"real"}}
-imaginary_complex1_elt = element om:OMS {
-        attribute cd {"complex1"},
-        attribute name {"imaginary"}}
-complex_polar_complex1_elt = element om:OMS {
-        attribute cd {"complex1"},
-        attribute name {"complex_polar"}}
-argument_complex1_elt = element om:OMS {
-        attribute cd {"complex1"},
-        attribute name {"argument"}}
-C_setname1_type |= element om:OMA {conjugate_complex1_elt,C_setname1_type}
-C_setname1_type |= element om:OMA {complex_cartesian_complex1_elt,NumericalValue_sts_type,NumericalValue_sts_type}
-NumericalValue_sts_type |= element om:OMA {real_complex1_elt,C_setname1_type}
-NumericalValue_sts_type |= element om:OMA {imaginary_complex1_elt,C_setname1_type}
-C_setname1_type |= element om:OMA {complex_polar_complex1_elt,PositiveReal_type,R_setname1_type}
-R_setname1_type |= element om:OMA {argument_complex1_elt,C_setname1_type}
+
+
+
+
+     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+
+
+ complex1 
+http://www.openmath.org/cd
+ http://www.openmath.org/cd/complex1.ocd 
+2006-03-30
+2004-03-30
+3
+0
+ official 
+
+    This CD is intended to be `compatible' with the MathML view of
+    operations on and constructors for  complex numbers.
+
+
+
+ complex_cartesian 
+  
+    complex_cartesian
+  
+application
+ 
+This symbol represents a constructor function for complex numbers
+specified as the Cartesian coordinates of the relevant point on the
+complex plane. It takes two arguments, the first is a number x to
+denote the real part and the second a number y to denote the imaginary
+part of the complex number x + i y. (Where i is the square root of -1.)
+
+
+for all x,y | complex_cartesian(x,y) = x + iy
+
+
+  
+    
+      
+      
+        
+        
+      
+      
+        
+        
+          
+          
+          
+        
+        
+          
+          
+          
+            
+            
+            
+          
+        
+      
+    
+  
+
+
+
+
+ real 
+  
+    real
+  
+application
+ 
+This represents the real part of a complex number
+ 
+
+ for all x,y | x = real(x+iy)
+
+
+  
+    
+      
+      
+        
+        
+      
+      
+        
+        
+        
+          
+          
+            
+            
+            
+          
+        
+      
+    
+  
+
+
+
+
+ imaginary 
+  
+    imaginary
+  
+application
+ 
+This represents the imaginary part of a complex number
+ 
+
+for all x,y | y = imaginary(x+iy)
+
+
+  
+    
+      
+      
+        
+        
+      
+      
+        
+        
+        
+          
+          
+            
+            
+            
+          
+        
+      
+    
+  
+
+
+
+
+ complex_polar 
+  
+    complex_polar
+  
+application
+ 
+This symbol represents a constructor function for complex numbers
+specified as the polar coordinates of the relevant point on the complex
+plane. It takes two arguments, the first is a nonnegative number r to
+denote the magnitude and the second a number theta (given in radians)
+to denote the argument of the complex number r e^(i theta). (i and
+e are defined as in this CD).
+
+
+
+for all r,a | complex_polar(r,a) = r*e^(a*i)
+
+
+
+
+  
+    
+    
+      
+      
+    
+    
+      
+      
+        
+        
+        
+      
+      
+        
+	
+	
+	  
+	  
+	    
+	    
+	    
+	  
+	
+      
+    
+  
+
+
+
+
+for all x,y,r,a |
+(r sin a = y and r cos a = x) implies (complex_polar(r,a) = 
+complex_cartesian(x,y)
+
+
+
+
+  
+  
+    
+    
+    
+    
+  
+  
+    
+    
+      
+      
+        
+        
+          
+	  
+	  
+	    
+	    
+	  
+        
+	
+      
+      
+        
+        
+          
+	  
+	  
+	    
+	    
+	  
+        
+	
+      
+    
+    
+      
+      
+        
+        
+        
+      
+      
+        
+        
+        
+      
+    
+  
+
+
+
+ for all x | if a is a real number and k is an integer then
+  complex_polar(x,a) = complex_polar(x,a+2*pi*k) 
+
+
+
+  
+  
+    
+  
+  
+    
+    
+      
+      
+        
+	
+	
+      
+      
+        
+	
+	
+      
+    
+    
+      
+      
+        
+	
+	
+      
+      
+        
+	
+	
+	  
+	  
+	  
+	    
+	     2 
+	    
+	    
+	  
+	
+      
+    
+  
+
+
+
+ i = complex_polar(1,pi/2) 
+
+  
+  
+  
+    
+    
+    
+      
+      
+       2 
+    
+  
+
+
+
+
+
+ argument 
+  
+    argument
+  
+application
+
+This symbol represents the unary function which returns the argument
+of a complex number, viz. the angle which a straight line drawn from
+the number to zero makes with the Real line (measured
+anti-clockwise). The argument to the symbol is the complex number whos
+argument is being taken.
+
+
+ for all r,a | argument(complex_polar(r,a)=a) 
+
+
+
+  
+    
+    
+      
+      
+    
+    
+      
+      
+        
+        
+          
+          
+          
+        
+      
+      
+    
+  
+
+
+
+ the argument of x+i*y = arctan(y/x) (if x is positive) 
+
+
+
+  
+    
+    
+      
+      
+      
+    
+    
+      
+      
+        
+        
+          
+          
+          
+        
+      
+      
+        
+        
+          
+	  
+	  
+        
+      
+    
+  
+
+
+
+
+  the argument of x+i*y = arctan(y,x) (two-argument arctan from transc2)
+
+
+
+
+  
+    
+    
+      
+      
+        
+        
+        
+      
+    
+    
+      
+      
+      
+    
+  
+
+
+
+
+
+ conjugate 
+  
+    conjugate
+  
+application
+ 
+A unary operator representing the complex conjugate of its argument.
+
+
+ if a is a complex number then (conjugate(a) + a) is a real number
+
+
+
+  
+    
+    
+      
+      
+      
+    
+    
+      
+      
+        
+        
+          
+          
+        
+        
+      
+      
+    
+  
+
+
+
+

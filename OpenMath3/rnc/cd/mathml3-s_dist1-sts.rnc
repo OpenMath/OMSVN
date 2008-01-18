@@ -1,5 +1,5 @@
 #     This file contains the type checking rules for the symbols
-#     from the STS types for the content dictionary s_dist1
+#     from the STS types for the content dictionary 
 #     It is provided "as is" without expressed or implied warranty.
 #
 #     Revision:   $Id$
@@ -7,19 +7,255 @@
 
 
 namespace m  ="http://www.w3.org/1998/Math/MathML"
-mean_s_dist1_elt = element m:csymbol {
-        attribute cd {"s_dist1"},
-        attribute name {"mean"}}
-sdev_s_dist1_elt = element m:csymbol {
-        attribute cd {"s_dist1"},
-        attribute name {"sdev"}}
-variance_s_dist1_elt = element m:csymbol {
-        attribute cd {"s_dist1"},
-        attribute name {"variance"}}
-moment_s_dist1_elt = element m:csymbol {
-        attribute cd {"s_dist1"},
-        attribute name {"moment"}}
-Object_type |= element m:apply {mean_s_dist1_elt,Distribution_type}
-Object_type |= element m:apply {sdev_s_dist1_elt,Distribution_type}
-Object_type |= element m:apply {variance_s_dist1_elt,Distribution_type}
-Object_type |= element m:apply {moment_s_dist1_elt,Z_setname1_type,R_setname1_type,Distribution_type}
+
+
+
+
+     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+
+
+ s_dist1 
+http://www.openmath.org/cd
+ http://www.openmath.org/cd/s_dist1.ocd 
+2006-03-30
+2004-03-30
+3
+0
+ official 
+
+    This CD holds the definitions of the basic statistical functions
+    used on random variables. It is intended to be
+    `compatible' with the MathML elements representing statistical
+    functions.
+
+
+
+
+ mean 
+application
+ 
+This symbol represents a unary function denoting the mean of a 
+distribution. The argument is a univariate function to describe the 
+distribution. That is, if f is the function describing the 
+distribution. The mean is the expression integrate(x*f(x)) w.r.t. x over the
+range (-infinity,infinity).
+
+
+
+mean(f(X)) = int(x*f(x)) w.r.t. x over the range [-infinity,infinity]
+
+
+
+
+  
+    
+    
+      
+      
+    
+    
+      
+      
+        
+	
+	  
+	  
+	
+	
+      
+      
+        
+	
+	  
+	
+	
+	  
+	  
+	  
+	    
+	    
+	  
+	
+      
+    
+  
+
+
+
+
+
+ sdev 
+application
+ 
+This symbol represents a unary function denoting the standard
+deviation of a distribution. The argument is a univariate function
+to describe the distribution. The standard deviation of a distribution
+is the arithmetical mean of the squares of the deviation of the
+distribution from the mean.
+
+
+ 
+The standard deviation of a distribution is the arithmetical mean of
+the squares of the deviation of the distribution from the mean. 
+
+
+
+
+  
+    
+    
+      
+      
+    
+    
+      
+      
+        
+	
+	  
+	  
+	  
+	    
+	    
+	  
+	
+	 2 
+      
+    
+  
+
+
+
+
+
+ variance 
+application
+ 
+This symbol represents a unary function denoting the variance of a
+distribution. The argument is a function to describe the distribution.
+That is if f is the function which describes the distribution.
+The variance of a distribution is the square of the standard deviation
+of the distribution.
+
+
+
+The variance of a distribution is the square of the standard deviation
+of the distribution.
+
+
+
+
+  
+    
+    
+      
+      
+    
+    
+      
+      
+        
+	
+      
+       2 
+    
+  
+
+
+
+
+
+ moment 
+application
+ 
+This symbol represents a ternary function to denote the i'th moment of a
+distribution. The first argument should be the degree of the moment
+(that is, for the i'th moment the first argument should be i), the
+second argument is the value about which the moment is to be taken and
+the third argument is a univariate function to describe the distribution. That
+is, if f is the function which describe the distribution. The i'th
+moment of f about a is the integral of (x-a)^i*f(x) with respect to x,
+over the interval (-infinity,infinity).
+
+
+
+the i'th moment of f(X) about c = integral of (x-c)^i*f(x) with respect
+to x, over the interval (-infinity,infinity)
+
+
+
+
+  
+    
+    
+      
+      
+      
+      
+    
+    
+      
+      
+        
+	
+	  
+	  
+	
+	
+      
+      
+        
+	
+	  
+	
+        
+          
+	  
+	    
+	    
+	      
+	      
+	      
+	    
+	    
+	  
+	  
+	    
+	    
+	  
+        
+      
+    
+  
+
+
+
+

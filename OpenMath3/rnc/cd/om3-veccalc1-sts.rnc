@@ -1,5 +1,5 @@
 #     This file contains the type checking rules for the symbols
-#     from the STS types for the content dictionary veccalc1
+#     from the STS types for the content dictionary 
 #     It is provided "as is" without expressed or implied warranty.
 #
 #     Revision:   $Id$
@@ -8,19 +8,198 @@
 
 namespace om = "http://www.openmath.org/OpenMath"
 
-divergence_veccalc1_elt = element om:OMS {
-        attribute cd {"veccalc1"},
-        attribute name {"divergence"}}
-grad_veccalc1_elt = element om:OMS {
-        attribute cd {"veccalc1"},
-        attribute name {"grad"}}
-curl_veccalc1_elt = element om:OMS {
-        attribute cd {"veccalc1"},
-        attribute name {"curl"}}
-Laplacian_veccalc1_elt = element om:OMS {
-        attribute cd {"veccalc1"},
-        attribute name {"Laplacian"}}
-function_type |= element om:OMA {divergence_veccalc1_elt,function_type}
-function_type |= element om:OMA {grad_veccalc1_elt,function_type}
-function_type |= element om:OMA {curl_veccalc1_elt,ThreeVector_type}
-function_type |= element om:OMA {Laplacian_veccalc1_elt,function_type}
+
+
+
+
+     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+
+
+ veccalc1 
+http://www.openmath.org/cd
+ http://www.openmath.org/cd/veccalc1.ocd 
+2006-03-30
+2004-03-30
+3
+0
+ official 
+
+This CD contains symbols to represent functions which are concerned
+with vector calculus.
+
+
+
+ divergence 
+  
+    divergence
+  
+application
+
+This symbol is used to represent the divergence function. It takes one
+argument which should be a vector of scalar valued functions,
+intended to represent a vector valued function and returns a
+scalar value. It should satisfy the defining relation:
+ divergence(F) = \partial(F_(x_1))/\partial(x_1) + ...
+ + \partial(F_(x_n))/\partial(x_n)
+
+
+divergence(F) = \partial(F_(x_1))/\partial(x_1) + ...
+ + \partial(F_(x_n))/\partial(x_n)
+
+
+
+
+
+ grad 
+  
+    grad
+  
+application
+
+This symbol is used to represent the grad function. It takes one
+argument which should be a scalar valued function and returns a
+vector of functions. It should satisfy the defining relation:
+grad(F) = (\partial(F)/\partial(x_1), ... ,\partial(F)/partial(x_n))
+
+ 
+grad(F) = (\partial(F)/\partial(x_1), ... ,\partial(F)/partial(x_n))
+
+
+
+
+
+ curl 
+  
+    curl
+  
+application
+
+This symbol is used to represent the curl function. It takes one
+argument which should be a vector of scalar valued functions, intended
+to represent a vector valued function and returns a vector of
+functions. It should satisfy the defining relation:
+curl(F) = i X \partial(F)/\partial(x) + j X \partial(F)/\partial(y) +
+j X \partial(F)/\partial(Z) where i,j,k are the unit vectors
+corresponding to the x,y,z axes respectively and the multiplication X
+is cross multiplication.
+
+
+curl(F) = i X \partial(F)/\partial(x) + j X \partial(F)/\partial(y) +
+j X \partial(F)/\partial(Z)
+
+
+
+
+  
+    
+    
+      
+      
+    
+    
+      
+      
+        
+	
+	  
+	   1 
+	   0 
+	   0 
+	
+	
+	  
+	  
+	    
+	     1 
+	  
+	  
+	
+      
+      
+        
+	
+	  
+	   0 
+	   1 
+	   0 
+	
+	
+	  
+	  
+	    
+	     2 
+	  
+	  
+	
+      
+      
+        
+	
+	  
+	   0 
+	   0 
+	   1 
+	
+	
+	  
+	  
+	    
+	     3 
+	  
+	  
+	
+      
+    
+  
+
+
+
+
+
+ Laplacian 
+  
+    Laplacian
+  
+application
+
+This symbol is used to represent the laplacian function. It takes one
+argument which should be a vector of scalar valued functions, intended
+to represent a vector valued function and returns a vector of
+functions. It should satisfy the defining relation:
+laplacian(F) = \partial^2(F)/\partial(x_1)^2 + ... +
+\partial^2(F)/\partial(x_n)^2
+
+
+laplacian(F) = \partial^2(F)/\partial(x_1)^2 + ... +
+\partial^2(F)/\partial(x_n)^2
+
+
+

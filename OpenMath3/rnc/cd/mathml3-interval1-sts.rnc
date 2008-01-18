@@ -1,5 +1,5 @@
 #     This file contains the type checking rules for the symbols
-#     from the STS types for the content dictionary interval1
+#     from the STS types for the content dictionary 
 #     It is provided "as is" without expressed or implied warranty.
 #
 #     Revision:   $Id$
@@ -7,27 +7,210 @@
 
 
 namespace m  ="http://www.w3.org/1998/Math/MathML"
-integer_interval_interval1_elt = element m:csymbol {
-        attribute cd {"interval1"},
-        attribute name {"integer_interval"}}
-interval_interval1_elt = element m:csymbol {
-        attribute cd {"interval1"},
-        attribute name {"interval"}}
-interval_oo_interval1_elt = element m:csymbol {
-        attribute cd {"interval1"},
-        attribute name {"interval_oo"}}
-interval_cc_interval1_elt = element m:csymbol {
-        attribute cd {"interval1"},
-        attribute name {"interval_cc"}}
-interval_oc_interval1_elt = element m:csymbol {
-        attribute cd {"interval1"},
-        attribute name {"interval_oc"}}
-interval_co_interval1_elt = element m:csymbol {
-        attribute cd {"interval1"},
-        attribute name {"interval_co"}}
-IntegerInterval_type |= element m:apply {integer_interval_interval1_elt,Z_setname1_type,Z_setname1_type}
-RealInterval_type |= element m:apply {interval_interval1_elt,R_setname1_type,R_setname1_type}
-RealInterval_type |= element m:apply {interval_oo_interval1_elt,R_setname1_type,R_setname1_type}
-RealInterval_type |= element m:apply {interval_cc_interval1_elt,R_setname1_type,R_setname1_type}
-RealInterval_type |= element m:apply {interval_oc_interval1_elt,R_setname1_type,R_setname1_type}
-RealInterval_type |= element m:apply {interval_co_interval1_elt,R_setname1_type,R_setname1_type}
+
+
+
+
+     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+
+
+ interval1 
+http://www.openmath.org/cd
+ http://www.openmath.org/cd/interval1.ocd 
+2006-03-30
+2004-03-30
+3
+0
+ official 
+
+    This CD holds symbols which describe both discrete and continuous
+    1-dimensional intervals (with open/closed end points).
+
+
+
+
+ integer_interval 
+  
+    integer_interval
+  
+application
+ 
+A symbol to denote a discrete 1 dimensional interval from the first
+argument to the second (inclusive), where the discretisation occurs at unit 
+intervals. The arguments are the start and the end points of the interval
+in that order.
+
+
+The integer interval 1, 2, ..., 10.
+
+  
+    
+     1 
+     10 
+  
+
+
+
+
+
+ interval 
+  
+    interval
+  
+application
+ 
+A symbol to denote a continuous 1-dimensional interval without any
+information about the character of the end points (used in definite 
+integration). The arguments are the start and the end points of the interval
+in that order.
+
+
+The interval 1.0, ..., 10.0.
+
+  
+    
+    
+    
+  
+
+
+
+
+
+ interval_oo 
+  
+    interval
+    
+      closure
+      open-open
+    
+  
+application
+ 
+A symbol to denote a continuous 1-dimensional interval with both end
+points excluded from the interval. The arguments are the start and the end 
+points of the interval in that order.
+
+
+The continuous open interval (1,10).
+
+  
+    
+     1 
+     10 
+  
+
+
+
+
+
+ interval_cc 
+  
+    interval
+    
+      closure
+      closed-closed
+    
+  
+application
+ 
+A symbol to denote a continuous 1-dimensional interval with both end
+points included in the interval. The arguments are the start and the
+end points of the interval in that order.
+
+
+The continuous closed interval [1,10].
+
+  
+    
+     1 
+     10 
+  
+
+
+
+
+
+ interval_oc 
+  
+    interval
+    
+      closure
+      open-closed
+    
+  
+application
+ 
+A symbol to denote a continuous 1-dimensional interval with the first
+point excluded from the interval, but the last included. The arguments
+are the start and the end points of the interval in that order.
+
+
+The continuous interval open at the lower bound and closed at the higher 
+bound (1,10].
+
+  
+    
+     1 
+     10 
+  
+
+
+
+
+
+ interval_co 
+  
+    interval
+    
+      closure
+      closed-open
+    
+  
+application
+ 
+A symbol to denote a continuous 1-dimensional interval with the first
+point included in the interval, but the last excluded. The arguments
+are the start and the end points of the interval in that order.
+
+
+The continuous interval closed at the lower bound and open at the higher 
+bound [1,10).
+
+  
+    
+     1 
+     10 
+  
+
+
+
+
