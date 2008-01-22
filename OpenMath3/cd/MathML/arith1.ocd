@@ -53,7 +53,12 @@ This CD defines symbols for common arithmetic functions.
 </Pragmatic>
 <Role>application</Role>
 <Description>
- <description>
+ The symbol to represent the n-ary function to return the least common
+multiple of its arguments.
+</Description>
+
+<!-- new part -->
+<description>
     <p>This is the binary MathML operator that is used indicate the mathematical
     operation a "divided by" b.</p>
   </description>
@@ -75,10 +80,7 @@ This CD defines symbols for common arithmetic functions.
   <ci>a</ci>
   <ci>b</ci>
 </apply></math></MMLexample>
-
-The symbol to represent the n-ary function to return the least common
-multiple of its arguments.
-</Description>
+<!-- end new part -->
 
 <property id="lcm_prop_1">
 <CMP> lcm(a,b) = a*b/gcd(a,b) </CMP>
@@ -1078,6 +1080,28 @@ argument. The argument should be numerically valued.
 In the complex case this is often referred to as the modulus.
 </Description>
 
+<!-- new part -->
+<description>
+          <p>A unary operator which represents the absolute value of its argument. 
+In the complex case this is often referred to as the modulus. </p>
+        </description>
+	<discussion>
+	  <p>The <code>abs</code> element represents the absolute value of a real quantity or
+	  the modulus of a complex quantity.</p>
+	</discussion>
+<property>
+          <description>
+            <p>for all x and y, abs(x) + abs(y) >= abs(x+y) </p>
+          </description>
+        </property>
+        <MMLexample>
+		<description><p>The following example encodes the absolute value of <var>x</var>.</p>
+		</description>
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply><abs/><ci>x</ci></apply>
+</math></MMLexample>
+<!-- end new part -->
+
 <property id="abs_prop_12">
 <CMP> for all x,y | abs(x) + abs(y) &gt;= abs(x+y) </CMP>
 <FMP>
@@ -1134,6 +1158,36 @@ the single valued function, the specific root returned is the one
 indicated by the first CMP. Note also that the converse of the second
 CMP is not valid in general.
 </Description>
+
+<!-- new part -->
+ <description>
+          <p>This is the binary operator used to construct the nth root of an expression.
+          The first argument "a" is the expression and the second object "n" denotes the
+          root, as in ( a ) ^ (1/n)</p>
+        </description>
+	<discussion>
+	  <p>The <code>root</code> element is used to construct roots. The kind of root to be
+	  taken is specified by a <quote>degree</quote> child, which should be given as
+	  the second child of the <code>apply</code> element enclosing the <code>root</code>
+	  element. Thus, square roots correspond to the case where <code>degree</code>
+	  contains the value 2, cube roots correspond to 3, and so on.</p>
+	  
+	  <p>Note that MathML3 supports a <code>degree</code> element in the legacy <intref
+	  ref="contm_container">container representation</intref> (see <specref
+	  ref="contm_degree"/> for details). If no <code>degree</code> is present, a default
+	  value of 2 is used.</p>
+	</discussion>
+
+<property>
+          <description>
+            <p>ForAll( bvars(a,n), root(degree(n),a) = a^(1/n) )</p>
+          </description><![CDATA[  ]]></property>
+        <MMLexample>
+          <description>
+            <p>The <var>n</var>th root of <var>a</var> is is given by</p>
+          </description><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><root/>]]>&lt;degree&gt;<![CDATA[<ci>n</ci>]]>&lt;/degree&gt;<![CDATA[<ci>a</ci></apply></math></MMLexample>
+
+<!-- end new part -->
 
 <property id="root_prop_13">
 <CMP> x\in C implies root(x,n) = exp(ln(x)/n) </CMP>
@@ -1211,6 +1265,75 @@ An operator taking two arguments, the first being the range of summation,
 e.g. an integral interval, the second being the function to be
 summed. Note that the sum may be over an infinite interval.
 </Description>
+
+<!-- new part -->
+<description>
+      <p>The sum element denotes the summation operator.  It may be qualified by providing
+      a domainofapplication.  This may be provided using one of the shorthand notations
+      for domainofapplication such as an uplimit,lowlimit pair or a condition or an
+      interval.  The index for the summation is specified by a bvar element.</p>
+    </description>
+    <discussion>
+      <p>The <el>sum</el> element denotes the summation operator.  The most general form
+      of a sum specifies the terms of the sum by using a <el>domainofapplication</el>
+      element to specify a domain.  If no bound variables are specified then terms of the
+      sum correspond to those produced by evaluating the function that is provided at the
+      points of the domain, while if bound variables are present they are the index of
+      summation and they take on the values of points in the domain.  In this case the
+      terms of the sum correspond to the values of the expression that is provided,
+      evaluated at those points.  Depending on the structure of the domain, the domain of
+      summation can be abbreviated by using <el>uplimit</el> and <el>lowlimit</el> to
+      specify upper and lower limits for the sum. </p>
+
+      <p>The <el>sum</el> function accept the <el>bvar</el>, <el>lowlimit</el>,
+      <el>uplimit</el>, <el>interval</el>, <el>condition</el> and
+      <el>domainofapplication</el> schemata. If both <el>lowlimit</el> and
+      <el>uplimit</el> schemata are present, they denote the limits of the sum or
+      product. The limits may alternatively be specified using the <el>interval</el>,
+      <el>condition</el> or <el>domainofapplication</el> schema. The <el>bvar</el> schema
+      signifies the internal variable in the sum or product. A typical example might be:
+
+<eg role = "mathml"><![CDATA[
+<apply>
+  <sum/>
+  <bvar><ci>i</ci></bvar>
+  <lowlimit><cn>0</cn></lowlimit>
+  <uplimit><cn>100</cn></uplimit>
+  <apply>
+    <power/>
+    <ci>x</ci>
+    <ci>i</ci>
+  </apply>
+</apply>]]></eg>
+
+When used with <el>sum</el> or <el>product</el>, each qualifier schema is expected to
+contain a single child schema; otherwise an error is generated.</p>
+		</discussion>
+
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><sum/>
+  <bvar> <ci>x</ci></bvar>
+  <lowlimit><ci>a</ci></lowlimit>
+  <uplimit><ci>b</ci></uplimit>
+  <apply><ci>f</ci><ci>x</ci></apply>
+</apply></math></MMLexample>
+	<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><sum/>
+  <bvar><ci>x</ci></bvar>
+  <condition><apply> <in/><ci>x</ci><ci type="set">B</ci></apply></condition>
+  <apply><ci type="function"> f</ci><ci>x</ci></apply>
+</apply></math></MMLexample>
+
+	<MMLexample>
+	  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply>
+  <sum/>
+  <domainofapplication>
+    <ci type="set"> B</ci>
+  </domainofapplication>
+  <ci type="function"> f</ci>
+</apply></math></MMLexample>
+
+<!-- end new part -->
+
+
 <Example>
   This represents the summation of the reciprocals of all the integers between
   1 and 10 inclusive.
@@ -1249,6 +1372,56 @@ An operator taking two arguments, the first being the range of multiplication
 e.g. an integral interval, the second being the function to
 be multiplied. Note that the product may be over an infinite interval. 
 </Description>
+
+<!-- new part -->
+<description>
+          <p>The product element denotes the product operator.  It may be qualified by
+          providing a domainofapplication.  This may be provided using one of the
+          shorthand notations for domainofapplication such as an uplimit,lowlimit pair or
+          a condition or an interval.  The index for the product is specified by a bvar
+          element.</p>
+        </description>
+
+	<discussion>
+	  <p>The <el>product</el> element denotes the product operator.  The most general
+	  form of a product specifies the terms of the product by using a
+	  <el>domainofapplication</el> element to specify the domain.  If no bound
+	  variables are specified then terms of the product correspond to those produced
+	  by evaluating the function that is provided at the points of the domain, while
+	  if bound variables are present they are the index of product and they take on
+	  the values of points in the domain.  In this case the terms of the product
+	  correspond to the values of the expression that is provided, evaluated at those
+	  points.  Depending on the structure of the domain, the domain of product can be
+	  abbreviated by using <el>uplimit</el> and <el>lowlimit</el> to specify upper and
+	  lower limits for the product. </p>
+
+	  <p>The <el>sum</el> function accepts the <el>bvar</el>, <el>lowlimit</el>,
+	  <el>uplimit</el>, <el>interval</el>, <el>condition</el> and
+	  <el>domainofapplication</el> schemata. If both <el>lowlimit</el> and
+	  <el>uplimit</el> schemata are present, they denote the limits of the sum or
+	  product. The limits may alternatively be specified using the <el>interval</el>,
+	  <el>condition</el> or <el>domainofapplication</el> schema. The <el>bvar</el>
+	  schema signifies the internal variable in the sum or product.</p>
+	</discussion>
+
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply><product/>
+  <bvar><ci>x</ci></bvar>
+  <lowlimit> <ci>a</ci></lowlimit>
+  <uplimit><ci>b</ci></uplimit>
+  <apply><ci type="function"> f</ci><ci>x</ci></apply>
+</apply>
+</math></MMLexample>
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply><product/>
+  <bvar><ci>x</ci></bvar>
+  <condition><apply> <in/><ci>x</ci><ci type="set">B</ci></apply></condition>
+  <apply><ci>f</ci><ci>x</ci></apply>
+</apply>
+</math></MMLexample>
+
+<!-- end new part -->
+
 <Example>
 This represents the statement that the factorial of n is equal to the product
 of all the integers between 1 and n inclusive.
