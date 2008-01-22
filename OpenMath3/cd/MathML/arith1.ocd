@@ -423,9 +423,16 @@ This symbol denotes unary minus, i.e. the additive inverse.
 	<discussion>
 	  <p>The <code>minus</code> element is the subtraction operator.</p>
 	</discussion>
-  	<description>
+  	        <property>
+          <description>
             <p>ForAll( x, x-x=0 )</p>
-      </description>
+          </description><![CDATA[<apply><forall/>
+  <bvar><ci>x</ci></bvar>
+  <apply><eq/>
+    <apply><minus/><ci>x</ci><ci>x</ci></apply>
+    <cn>0</cn>
+  </apply>
+</apply>]]></property>
       <MMLexample>
 		<description><p>If this were evaluated at <var>x</var>=5 and 
 		<var>y</var>=2 it would yield 3.</p></description>
@@ -620,6 +627,50 @@ The symbol representing an n-ary multiplication function.
   </Pragmatic>
 <Role>application</Role>
 <Description>
+	<description>
+    		<p>This is the binary MathML operator that is used indicate the mathematical
+    		operation a "divided by" b.</p>
+  	</description>
+
+  <property>
+    <description>
+      <p>Division by Zero error</p>
+      </description><![CDATA[<apply><forall/>
+      <bvar><ci>a</ci></bvar>
+      <apply><eq/>
+    <apply><divide/><ci>a</ci><cn>0</cn>]]><![CDATA[</apply>]]><![CDATA[
+    <notanumber/>
+  </apply>
+</apply>]]></property>
+
+        <property>
+          <description>
+            <p>ForAll( a, a!= 0, a/a = 1 )</p>
+          </description><![CDATA[
+<apply><forall/>
+  <bvar><ci>a</ci></bvar>
+  <condition><apply><neq/><ci>a</ci><cn>0</cn></apply></condition>
+  <apply><eq/>
+    <apply><divide/><ci>a</ci><ci>a</ci></apply>
+    <cn>1</cn>
+  </apply>
+</apply>
+]]></property>
+
+	  <MMLexample>
+	    <description>
+	      <p>As a MathML expression, this does not evaluate. However, on receiving
+	      such an expression, some applications may attempt to evaluate and simplify
+	      the value. For example, when <var>a</var>=5 and <var>b</var>=2 some
+	      mathematical applications may evaluate this to 2.5 while others will treat
+	      is as a rational number.</p>
+	    </description>
+<math xmlns="http://www.w3.org/1998/Math/MathML"><apply><divide/>
+  <ci>a</ci>
+  <ci>b</ci>
+</apply></math></MMLexample>
+      </MMLdefinition>
+
 This symbol represents a (binary) division function denoting the first argument
 right-divided by the second, i.e. divide(a,b)=a*inverse(b). It is the
 inverse of the multiplication function defined by the symbol times in this CD.
