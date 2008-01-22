@@ -315,12 +315,45 @@ gcd(6,9) = 3
 	  represented explicitly using <specref ref="cds_sum"/> so the <code>plus</code>
 	  does not normally take qualifiers.</p>
 	</discussion>
-      <description>
+      <property>
+          <description>
             <p>an sum of no terms is 0</p>
-      </description>
-	<description>
+          </description><![CDATA[
+<apply><eq/>
+  <apply><plus/></apply>
+  <cn>0</cn>
+</apply> 
+]]></property>
+        <property>
+          <description>
+            <p>a sum of one term is equal to itself</p>
+          </description><![CDATA[
+<apply><forall/>
+  <bvar><ci>a</ci></bvar>
+  <apply><eq/>
+    <apply><plus/><ci>a</ci></apply>
+    <cn>a</cn>
+  </apply> 
+</apply>
+]]></property>
+        <property>
+          <description>
             <p>Commutativity</p>
-          </description>
+          </description><![CDATA[
+<apply><forall/>
+  <bvar><ci>a</ci></bvar>
+  <bvar><ci>b</ci></bvar>
+  <condition>
+    <apply><and/>
+      <apply><in/><ci>a</ci><reals/></apply>
+      <apply><in/><ci>b</ci><reals/></apply>
+    </apply>
+  </condition>
+  <apply><eq/>
+    <apply><plus/><ci>a</ci><ci>b</ci></apply>
+    <apply><plus/><ci>b</ci><ci>a</ci></apply>
+  </apply>
+</apply>]]></property>
         <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><plus/>
   <cn>3</cn>
 </apply></math></MMLexample>
@@ -328,7 +361,7 @@ gcd(6,9) = 3
   <cn>3</cn>
   <cn>5</cn>
 </apply></math></MMLexample>
-<MMLexample>
+       <MMLexample>
 	   <description><p>If this were evaluated at <var>x</var> = 5, <var>y</var> = 2 and <var>z</var> = 1 it would yield 8.</p></description>
 	   <math xmlns="http://www.w3.org/1998/Math/MathML">
 			<apply>
@@ -338,6 +371,7 @@ gcd(6,9) = 3
 			  <ci>z</ci>
 			</apply>
 			</math></MMLexample>
+
 The symbol representing an n-ary commutative function plus.
 </Description>
 
@@ -376,13 +410,14 @@ The symbol representing an n-ary commutative function plus.
   </Pragmatic>
 <Role>application</Role>
 <Description>
- 
-This symbol denotes unary minus, i.e. the additive inverse.
-</Description>
-	<description>
+ 	<description>
           <p>This is the  inversion operator for an additive group. It constructs the additive inverse of
           that group element.</p>
         </description>
+	<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><minus/><cn>3</cn></apply></math></MMLexample>
+
+This symbol denotes unary minus, i.e. the additive inverse.
+</Description>
 
 <property id="unary_minus_prop_5">
 <CMP> for all a | a + (-a) = 0 </CMP>
@@ -417,13 +452,19 @@ This symbol denotes unary minus, i.e. the additive inverse.
   </Pragmatic>
 <Role>application</Role>
 <Description> 
-	<description>
+The symbol representing a binary minus function. This is equivalent to
+adding the additive inverse.
+</Description>
+
+<!-- new part from arith1.mcd -->
+<description>
           <p>This is the subtraction operator for an additive group. </p>
         </description>
 	<discussion>
 	  <p>The <code>minus</code> element is the subtraction operator.</p>
 	</discussion>
-  	        <property>
+
+<property>
           <description>
             <p>ForAll( x, x-x=0 )</p>
           </description><![CDATA[<apply><forall/>
@@ -433,7 +474,7 @@ This symbol denotes unary minus, i.e. the additive inverse.
     <cn>0</cn>
   </apply>
 </apply>]]></property>
-      <MMLexample>
+        <MMLexample>
 		<description><p>If this were evaluated at <var>x</var>=5 and 
 		<var>y</var>=2 it would yield 3.</p></description>
 		<math xmlns="http://www.w3.org/1998/Math/MathML"><apply> <minus/>
@@ -441,9 +482,7 @@ This symbol denotes unary minus, i.e. the additive inverse.
 		  <ci>y</ci>
 		</apply></math></MMLexample>
 
-The symbol representing a binary minus function. This is equivalent to
-adding the additive inverse.
-</Description>
+<!-- end new part -->
 
 <property id="minus_prop_6">
 <CMP> for all a,b | a - b = a + (-b) </CMP>
@@ -627,11 +666,17 @@ The symbol representing an n-ary multiplication function.
   </Pragmatic>
 <Role>application</Role>
 <Description>
-	<description>
-    		<p>This is the binary MathML operator that is used indicate the mathematical
-    		operation a "divided by" b.</p>
-  	</description>
+This symbol represents a (binary) division function denoting the first argument
+right-divided by the second, i.e. divide(a,b)=a*inverse(b). It is the
+inverse of the multiplication function defined by the symbol times in this CD.
+</Description>
 
+<!-- new part from .mcd -->
+  <description>
+    <p>This is the binary MathML operator that is used indicate the mathematical
+    operation a "divided by" b.</p>
+  </description>
+  
   <property>
     <description>
       <p>Division by Zero error</p>
@@ -669,12 +714,8 @@ The symbol representing an n-ary multiplication function.
   <ci>a</ci>
   <ci>b</ci>
 </apply></math></MMLexample>
-      </MMLdefinition>
 
-This symbol represents a (binary) division function denoting the first argument
-right-divided by the second, i.e. divide(a,b)=a*inverse(b). It is the
-inverse of the multiplication function defined by the symbol times in this CD.
-</Description>
+<!-- end new part -->
 
 <property id="divide_prop_9">
 <CMP> whenever not(a=0) then a/a = 1 </CMP>
@@ -714,6 +755,7 @@ inverse of the multiplication function defined by the symbol times in this CD.
   </Pragmatic>
 <Role>application</Role>
 <Description>
+
 This symbol represents a power function. The first argument is raised
 to the power of the second argument. When the second argument is not
 an integer, powering is defined in terms of exponentials and 
