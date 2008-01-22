@@ -46,7 +46,7 @@
 This CD defines symbols for common arithmetic functions.
 </Description>
 
-<CDDefinition id="lcm">
+<CDDefinition xml:id="lcm">
 <Name>lcm</Name>
 <Pragmatic>
   <Token>lcm</Token>
@@ -57,32 +57,7 @@ This CD defines symbols for common arithmetic functions.
 multiple of its arguments.
 </Description>
 
-<!-- new part -->
-<description>
-    <p>This is the binary MathML operator that is used indicate the mathematical
-    operation a "divided by" b.</p>
-  </description>
- <description>
-      <p>Division by Zero error</p>
-  </description> 
- <description>
-            <p>ForAll( a, a!= 0, a/a = 1 )</p>
-  </description>
- <MMLexample>
-	    <description>
-	      <p>As a MathML expression, this does not evaluate. However, on receiving
-	      such an expression, some applications may attempt to evaluate and simplify
-	      the value. For example, when <var>a</var>=5 and <var>b</var>=2 some
-	      mathematical applications may evaluate this to 2.5 while others will treat
-	      is as a rational number.</p>
-	    </description>
-<math xmlns="http://www.w3.org/1998/Math/MathML"><apply><divide/>
-  <ci>a</ci>
-  <ci>b</ci>
-</apply></math></MMLexample>
-<!-- end new part -->
-
-<property id="lcm_prop_1">
+<property xml:id="lcm_prop_1">
 <CMP> lcm(a,b) = a*b/gcd(a,b) </CMP>
 
 <FMP>
@@ -111,7 +86,7 @@ multiple of its arguments.
 </OMOBJ>
 </FMP></property>
 
-<property id="integers_prop_2">
+<property xml:id="integers_prop_2">
 <CMP>
 for all integers a,b |
 There does not exist a c&gt;0 such that c/a is an Integer and c/b is an
@@ -183,7 +158,7 @@ Integer and lcm(a,b) &gt; c.
 </FMP></property>
 </CDDefinition>
 
-<CDDefinition id="gcd">
+<CDDefinition xml:id="gcd">
 <Name>gcd</Name>
   <Pragmatic>
     <Token>gcd</Token>
@@ -194,7 +169,7 @@ The symbol to represent the n-ary function to return the gcd (greatest
 common divisor) of its arguments.
 </Description>
 
-<property id="gcd_prop_3">
+<property xml:id="gcd_prop_3">
 <CMP>
 for all integers a,b |
 There does not exist a c such that a/c is an Integer and b/c is an
@@ -286,7 +261,7 @@ gcd(6,9) = 3
 </Example>
 </CDDefinition>
 
-<CDDefinition id="plus">
+<CDDefinition xml:id="plus">
 <Name>plus</Name>
   <Pragmatic>
     <Token>plus</Token>
@@ -379,7 +354,7 @@ gcd(6,9) = 3
 			</math></MMLexample>
 <!-- end new part -->
 
-<property id="commutativity_prop_4">
+<property xml:id="commutativity_prop_4">
 <CMP> for all a,b | a + b = b + a </CMP>
 <FMP>
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
@@ -407,7 +382,7 @@ gcd(6,9) = 3
 </FMP></property>
 </CDDefinition>
 
-<CDDefinition id="unary_minus">
+<CDDefinition xml:id="unary_minus">
 <Name>unary_minus</Name>
   <Pragmatic>
     <Token>unary_minus</Token>
@@ -417,7 +392,7 @@ gcd(6,9) = 3
  	This symbol denotes unary minus, i.e. the additive inverse.
 </Description>
 
-<!-- new part from arith1.mcd -->
+<!-- new part -->
   <description>
           <p>This is the  inversion operator for an additive group. It constructs the additive inverse of
           that group element.</p>
@@ -426,7 +401,7 @@ gcd(6,9) = 3
          <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><minus/><cn>3</cn></apply></math></MMLexample>
 <!-- end new part -->
 
-<property id="unary_minus_prop_5">
+<property xml:id="unary_minus_prop_5">
 <CMP> for all a | a + (-a) = 0 </CMP>
 <FMP>
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
@@ -452,7 +427,7 @@ gcd(6,9) = 3
 </FMP></property>
 </CDDefinition>
 
-<CDDefinition id="minus">
+<CDDefinition xml:id="minus">
 <Name>minus</Name>
   <Pragmatic>
     <Token>minus</Token>
@@ -463,7 +438,7 @@ The symbol representing a binary minus function. This is equivalent to
 adding the additive inverse.
 </Description>
 
-<!-- new part from arith1.mcd -->
+<!-- new part -->
 <description>
           <p>This is the subtraction operator for an additive group. </p>
         </description>
@@ -491,7 +466,7 @@ adding the additive inverse.
 
 <!-- end new part -->
 
-<property id="minus_prop_6">
+<property xml:id="minus_prop_6">
 <CMP> for all a,b | a - b = a + (-b) </CMP>
 <FMP>
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
@@ -522,7 +497,7 @@ adding the additive inverse.
 </FMP></property>
 </CDDefinition>
 
-<CDDefinition id="times">
+<CDDefinition xml:id="times">
 <Name>times</Name>
   <Pragmatic>
     <Token>times</Token>
@@ -671,7 +646,7 @@ Commutative property</p>
 </OMOBJ>
 </Example>
 
-<property id="times_prop_7">
+<property xml:id="times_prop_7">
 <CMP> for all a,b | a * 0 = 0 and a * b = a * (b - 1) + a </CMP>
 
 <FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
@@ -717,7 +692,7 @@ Commutative property</p>
 </OMBIND>
 </OMOBJ></FMP></property>
 
-<property id="distributivity_prop_8">
+<property xml:id="distributivity_prop_8">
 <CMP> for all a,b,c | a*(b+c) = a*b + a*c </CMP>
 <FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
 <OMBIND>
@@ -756,7 +731,7 @@ Commutative property</p>
 </OMOBJ></FMP></property>
 </CDDefinition>
 
-<CDDefinition id="divide">
+<CDDefinition xml:id="divide">
 <Name>divide</Name>
   <Pragmatic>
     <Token>divide</Token>
@@ -814,7 +789,7 @@ inverse of the multiplication function defined by the symbol times in this CD.
 
 <!-- end new part -->
 
-<property id="divide_prop_9">
+<property xml:id="divide_prop_9">
 <CMP> whenever not(a=0) then a/a = 1 </CMP>
 <FMP>
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
@@ -845,7 +820,7 @@ inverse of the multiplication function defined by the symbol times in this CD.
 </FMP></property>
 </CDDefinition>
 
-<CDDefinition id="power">
+<CDDefinition xml:id="power">
 <Name>power</Name>
   <Pragmatic>
     <Token>power</Token>
@@ -921,7 +896,7 @@ This operator can represent general powering.
 
 <!-- end new part -->
 
-<property id="power_prop_10">
+<property xml:id="power_prop_10">
 <CMP>
 x\in C implies x^a = exp(a ln x)
 </CMP>
@@ -958,7 +933,7 @@ x\in C implies x^a = exp(a ln x)
 </OMOBJ>
 </FMP></property>
 
-<property id="power_prop_11">
+<property xml:id="power_prop_11">
 <CMP>
   if n is an integer then
   x^0 = 1,
@@ -1102,7 +1077,7 @@ In the complex case this is often referred to as the modulus. </p>
 </math></MMLexample>
 <!-- end new part -->
 
-<property id="abs_prop_12">
+<property xml:id="abs_prop_12">
 <CMP> for all x,y | abs(x) + abs(y) &gt;= abs(x+y) </CMP>
 <FMP>
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
@@ -1139,7 +1114,7 @@ In the complex case this is often referred to as the modulus. </p>
 </FMP></property>
 </CDDefinition>
 
-<CDDefinition id="root">
+<CDDefinition xml:id="root">
 <Name>root</Name>
   <Pragmatic>
     <Token>root</Token>
@@ -1189,7 +1164,7 @@ CMP is not valid in general.
 
 <!-- end new part -->
 
-<property id="root_prop_13">
+<property xml:id="root_prop_13">
 <CMP> x\in C implies root(x,n) = exp(ln(x)/n) </CMP>
 <FMP>
   <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
@@ -1223,7 +1198,7 @@ CMP is not valid in general.
   </OMOBJ>
 </FMP></property>
 
-<property id="root_prop_14">
+<property xml:id="root_prop_14">
 <CMP> for all a,n | power(root(a,n),n) = a (if the root exists!) </CMP>
 <FMP>
   <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
@@ -1251,10 +1226,7 @@ CMP is not valid in general.
 </FMP></property>
 </CDDefinition>
 
-
-
-
-<CDDefinition id="sum">
+<CDDefinition xml:id="sum">
 <Name>sum</Name>
   <Pragmatic>
     <Token>sum</Token>
@@ -1361,7 +1333,7 @@ contain a single child schema; otherwise an error is generated.</p>
 </Example>
 </CDDefinition>
 
-<CDDefinition id="product">
+<CDDefinition xml:id="product">
 <Name>product</Name>
   <Pragmatic>
     <Token>product</Token>
