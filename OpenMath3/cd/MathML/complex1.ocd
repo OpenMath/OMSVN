@@ -260,7 +260,7 @@ for all x,y | y = imaginary(x+iy)
 </FMP></property>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="complex_polar">
 <Name>complex_polar</Name>
   <Pragmatic>
     <Token>complex_polar</Token>
@@ -442,7 +442,7 @@ complex_cartesian(x,y)
 </Example>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="argument">
 <Name>argument</Name>
   <Pragmatic>
     <Token>argument</Token>
@@ -545,7 +545,7 @@ argument is being taken.
 </FMP></property>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="conjugate">
 <Name>conjugate</Name>
   <Pragmatic>
     <Token>conjugate</Token>
@@ -554,6 +554,33 @@ argument is being taken.
 <Description> 
 A unary operator representing the complex conjugate of its argument.
 </Description>
+
+<!-- new part -->
+     <description>
+          <p>The unary "conjugate" arithmetic operator is used to represent the complex
+          conjugate of its argument.</p>
+        </description>
+	<discussion>
+	  <p>The <code>conjugate</code> element represents the complex conjugate of a complex quantity.</p>
+	</discussion>
+
+
+        <MMLexample>
+	  <description>
+	    <p>The following example encodes the conjugate of <var>x</var> + i<var>y</var>.</p>
+	  </description>
+	  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><conjugate/>
+ <apply><plus/>
+    <ci>x</ci>
+    <apply><times/>
+      <cn>&ImaginaryI;</cn>
+    <ci>y</ci>
+    </apply>
+  </apply>
+</apply>
+</math></MMLexample>
+
+<!-- end new part -->
 
 <property xml:id="conjugate_prop_10">
 <CMP>
