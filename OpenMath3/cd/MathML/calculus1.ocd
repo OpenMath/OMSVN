@@ -49,7 +49,7 @@
     or indefinite.
 </Description>
 
-<CDDefinition>
+<CDDefinition xml:id="diff">
 <Name>diff</Name>
   <Pragmatic>
     <Token>diff</Token>
@@ -60,7 +60,34 @@ This symbol is used to express ordinary differentiation of a unary
 function. The single argument is the unary function.
 </Description>
 
-<property>
+<!-- new part -->
+<description>
+	  <p>The <el>diff</el> element is the differentiation operator element for
+	  functions of a single variable.</p>
+	</description>
+	<discussion>
+	  <p> <el>diff</el> is applied directly to an actual function such as sine or
+	  cosine, thereby denoting a function which is the derivative of the original
+	  function, as in
+
+	  <eg role = "mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><diff/><ci type="function>f</ci></apply></math></eg>
+	  
+	  If <el>diff</el> is given a number <var>n</var> as a second argument, then it is
+	  interpreted as a <var>n</var>-fold differentiation operator.
+	  
+	  <eg role = "mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><ndiff/><cn>2</cn><ci type="function>f</ci></apply></math></eg></p>
+	</discussion>
+	<MMLexample>
+          <description>
+            <p>diff(sin) = cos</p>
+          </description>
+	<math xmlns="http://www.w3.org/1998/Math/MathML"><apply><eq/><apply><diff/><sin/></apply><cos/></apply></math></MMLexample>
+	<MMLexample>
+          <description><p>diff (2,sin) = sin</p></description>
+	<math xmlns="http://www.w3.org/1998/Math/MathML"><apply><eq/><apply><ndiff/><cn>2</cn><sin/></apply><sin/></apply></math></MMLexample>
+<!-- end new part -->
+
+<property xml:id="diff_prop_1">
 <CMP> 
 diff(lambda y:a(y) + b(y))(x) = diff(lambda y:a(y))(x) + diff(lambda y:b(y))(x)
 </CMP>
@@ -131,7 +158,7 @@ diff(lambda y:a(y) + b(y))(x) = diff(lambda y:a(y))(x) + diff(lambda y:b(y))(x)
 </OMOBJ>
 </FMP></property>
 
-<property>
+<property xml:id="diff_prop_2">
 <CMP> 
 diff(lambda y:a(y) * b(y))(x) = diff(lambda y:a(y))(x) * b(x) + 
                                 a(x) * diff(lambda y:b(y))(x)
@@ -257,7 +284,7 @@ This symbol is used to express the nth-iterated ordinary differentiation of
 a unary function. The first argument is n, and the second the unary function.
 </Description>
 
-<property>
+<property xml:id="nthdiff_prop_3">
 <FMP>
   <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
   <OMA>
@@ -272,7 +299,8 @@ a unary function. The first argument is n, and the second the unary function.
   </OMOBJ>
 </FMP></property>
 
-<property><FMP>
+<property xml:id="nthdiff_prop_4">
+<FMP>
   <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
   <OMA>
     <OMS name="eq" cd="relation1"/>
@@ -358,7 +386,7 @@ This symbol is used to represent indefinite integration of unary functions.
 The argument is the unary function.
 </Description>
 
-<property>
+<property xml:id="int_prop_5">
 <CMP>
 application of integrate followed by differentiate is the identity
 function, that is: 
@@ -448,7 +476,7 @@ functions. It takes two arguments; the first being the range (e.g. a
 set) of integration, and the second the function.
 </Description>
 
-<property>
+<property xml:id="defint_prop_6">
 <CMP> for all a,b | integral from a to b = -integral from b to a </CMP>
 
 <FMP>
@@ -505,7 +533,7 @@ set) of integration, and the second the function.
 </OMOBJ>
 </FMP></property>
 
-<property>
+<property xml:id="defint_prop_7">
 <CMP>
 for all a &lt; b &lt; c | integral over [a,c] = integral over [a,b] + 
 integral over [b,c]
