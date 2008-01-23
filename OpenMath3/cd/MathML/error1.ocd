@@ -42,7 +42,7 @@
 <CDVersion>3</CDVersion>
 <CDRevision>0</CDRevision>
 
-<CDDefinition>
+<CDDefinition xml:id="unhandled_symbol">
 <Name>unhandled_symbol</Name>
   <Pragmatic>
     <Token>unhandled_symbol</Token>
@@ -58,6 +58,26 @@ received the OpenMath error object constructed from unhandled_symbol
 and the unhandled symbol as in the example below.
 </Description>
 
+<!-- new part -->
+ <description>
+    <p>This symbol represents the error which is raised when an application reads a symbol
+    which is present in the mentioned content dictionary, but which it has not
+    implemented.</p>
+
+    <p>When receiving such a symbol, the application should act as if it had received the
+    MathML error object constructed from <code>unhandled_symbol</code> and the unhandled symbol as in
+    the example below.</p>
+  </description>
+  <MMLexample>
+    <description><p>The application does not implement the Complex numbers:</p></description>
+<math xmlns="http://www.w3.org/1998/Math/MathML"><error>
+    <csymbol cd="error" name="unhandled_symbol"/>
+    <csymbol cd="setname1" name="C"/>
+  </error></math>
+</MMLexample>
+
+<!-- end new part -->
+
 <Example>
 The application does not implement the Complex numbers:
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
@@ -69,7 +89,7 @@ The application does not implement the Complex numbers:
 </Example>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="unexpected_symbol">
 <Name>unexpected_symbol</Name>
   <Pragmatic>
     <Token>unexpected_symbol</Token>
@@ -83,6 +103,27 @@ When receiving such a symbol, the application should act as if it had
 received the OpenMath error object constructed from unexpected_symbol
 and the unexpected symbol as in the example below.
 </Description>
+
+<!-- new part -->
+  <description>
+    <p>This symbol represents the error which is raised when an application reads a symbol
+    which is not present in the mentioned content dictionary.</p>
+
+    <p>When receiving such a symbol, the application should act as if it had received the
+    MathML error object constructed from unexpected_symbol and the unexpected symbol as
+    in the example below.</p>
+  </description>
+
+  <MMLexample>
+    <description><p>The application received a mistyped symbol</p></description>
+<math xmlns="http://www.w3.org/1998/Math/MathML"><error>
+    <csymbol cd="error" name="unexpected_symbol"/>
+    <csymbol cd="arith1" name="plurse"/>
+  </error></math>
+</MMLexample>
+
+<!-- end new part -->
+
 <Example>
 The application received a mistyped symbol
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
@@ -94,7 +135,7 @@ The application received a mistyped symbol
 </Example>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="unsupported_CD">
 <Name>unsupported_CD</Name>
   <Pragmatic>
     <Token>unsupported_CD</Token>
@@ -110,6 +151,26 @@ received the OpenMath error object constructed from unsupported_CD and
 the symbol from the unsupported Content Dictionary as in the example
 below.
 </Description>
+
+<!-- new part -->
+  <description>
+    <p>This symbol represents the error which is raised when an application reads a symbol
+    where the mentioned content dictionary is not present.</p>
+
+    <p>When receiving such a symbol, the application should act as if it had received the
+    MathML error object constructed from <code>unsupported_CD</code> and the symbol from
+    the unsupported Content Dictionary as in the example below.</p>
+  </description>
+  <MMLexample>
+    <description><p>The application does not know about the CD <code>specfun</code></p></description>
+<math xmlns="http://www.w3.org/1998/Math/MathML"><error>
+    <csymbol cd="error" name="unsupported_CD"/>
+    <csymbol cd="specfun" name="BesselJ"/>
+  </error></math>
+  </MMLexample>
+
+<!-- end new part -->
+
 <Example>
 The application does not know about the CD specfun1
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
