@@ -273,7 +273,7 @@ This represents the equation:
 </Example>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="nthdiff">
 <Name>nthdiff</Name>
   <Pragmatic>
     <Token>nthdiff</Token>
@@ -327,7 +327,7 @@ a unary function. The first argument is n, and the second the unary function.
 
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="partialdiff">
 <Name>partialdiff</Name>
   <Pragmatic>
     <Token>partialdiff</Token>
@@ -338,6 +338,116 @@ This symbol is used to express partial differentiation of a function
 of more than one variable. It has two arguments, the first is a list of 
 integers which index the variables of the function, the second is the function.
 </Description>
+
+<!-- new part -->
+  <description>
+          <p>This symbol is used to express partial differentiation.  It occurs in two
+          forms: one form corresponding to the differentiation of algebraic expressions
+          (often displayed using the Leibnitz notation), and the other to express partial
+          derivatives of actual functions (often expressed as $D_{1,2} f $ )</p>
+
+	  <p>For the first form, the arguments are the bound variables followed by the
+	  algebraic expression.  The result is an algebraic expression.  Repetitions of
+	  the bound variables are indicated using the degree element.  The total degree is
+	  indicated by use of a degree element at the top level.</p>
+
+          <p>For the second form, there are two arguments: a list of indices indicating by
+          position which coordinates are involved in constructing the partial derivatives,
+          and the actual function.  The coordinates may be repeated.</p>
+        </description>
+	<discussion>
+	  <p>The <el>partialdiff</el> element is the partial differentiation operator
+	  element for functions or algebraic expressions in several variables. </p>
+
+	  <p>In the case of algebraic expressions, the bound variables are given by
+	  <el>bvar</el> elements, which are children of the containing <el>apply</el>
+	  element. The <el>bvar</el> elements may also contain <el>degree</el> element,
+	  which specify the order of the partial derivative to be taken in that
+	  variable.</p>
+
+	  <p>For the expression case the actual variable is designated by a <el>bvar</el>
+	  element that is a child of the containing <el>apply</el> element. The
+	  <el>bvar</el> elements may also contain a <el>degree</el> element, which
+	  specifies the order of the derivative to be taken.</p>
+
+	  <p>Where a total degree of differentiation must be specified, this is indicated
+	  by use of a <el>degree</el> element at the top level, i.e. without any
+	  associated <el>bvar</el>, as a child of the containing <el>apply</el>
+	  element.</p>
+
+	  <p>For the case of partial differentiation of a function, the containing
+	  <el>apply</el> takes two child elements: firstly a list of indices indicating by
+	  position which coordinates are involved in constructing the partial derivatives,
+	  and secondly the actual function to be partially differentiated.  The
+	  coordinates may be repeated.</p>
+
+	  <p>The <el>partialdiff</el> operator accepts zero or more <el>bvar</el>
+	  schemata, and an optional <el>degree</el> qualifier schema. The <el>bvar</el>
+	  schema specify, in order, the variables with respect to which the derivative is
+	  being taken. Each <el>bvar</el> element may contain a <el>degree</el> schema
+	  which is used to specify the order of the derivative being taken with respect to
+	  that variable. The optional <el>degree</el> schema qualifier associated with the
+	  <el>partialdiff</el> element itself (that is, appearing as a child of the
+	  enclosing <el>apply</el> element rather than of one of the <el>bvar</el>
+	  qualifiers) is used to represent the total degree of the differentiation. Each
+	  <el>degree</el> schema used with <el>partialdiff</el> is expected to contain a
+	  single child schema. For example,
+
+<eg role = "mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><bind><partialdiff/>
+  <bvar>
+    <degree><cn>2</cn></degree>
+    <ci>x</ci>
+  </bvar>
+  <bvar><ci>y</ci></bvar>
+  <bvar><ci>x</ci></bvar>
+  <degree><cn>4</cn></degree>
+  <ci type="function">f</ci>
+</apply></math></eg>
+
+            denotes the mixed partial derivative ( d<sup>4</sup> / d<sup>2</sup><var>x</var>
+	  d<var>y</var> d<var>x</var> ) <var>f</var>.</p>
+	</discussion>
+
+       <property>
+          <description>
+            <p>ForAll( [x,y], partialdiff( x * y , x ) = partialdiff(x,x)*y + partialdiff(y,x)*x )</p>
+          </description></property>
+        <property>
+          <description>
+            <p>ForAll( [x,a,b], partialdiff( a + b , x ) = partialdiff(a,x) + partialdiff(b,x) )</p>
+          </description></property>
+        <MMLexample>
+          <description>
+            <p>d^k/(dx^m dy^n) f(x,y)</p>
+          </description>
+		<math xmlns="http://www.w3.org/1998/Math/MathML"><apply><partialdiff/>
+  <bvar><ci>x</ci><degree><ci>m</ci></degree></bvar>
+  <bvar><ci>y</ci><degree><ci>n</ci></degree></bvar>
+  <degree><ci>k</ci></degree>
+  <apply><ci type="function">f</ci><ci>x</ci><ci>y</ci></apply>
+</apply></math></MMLexample>
+
+        <MMLexample>
+          <description>
+            <p>d^2/(dx dy) f(x,y)</p>
+          </description>
+	  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><partialdiff/>
+  <bvar><ci>x</ci></bvar>
+  <bvar><ci>y</ci></bvar>
+  <apply><ci type="function">f</ci><ci>x</ci><ci>y</ci></apply>
+</apply></math></MMLexample>
+
+        <MMLexample>
+          <description>
+            <p>D_{1,1,3}(f) </p>
+          </description>
+	  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><partialdiff/>
+  <list><cn>1</cn><cn>1</cn><cn>3</cn></list>
+  <ci type="function">f</ci>
+</apply></math></MMLexample>
+
+<!-- end new part -->
+
 <Example>
 An example to represent the equation:
  \partial^2{xyz}/ \partial{x}\partial{z} = y
