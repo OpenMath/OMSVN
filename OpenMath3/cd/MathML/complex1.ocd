@@ -46,7 +46,7 @@
     operations on and constructors for  complex numbers.
 </Description>
 
-<CDDefinition>
+<CDDefinition xml:id="complex_cartesian">
 <Name>complex_cartesian</Name>
   <Pragmatic>
     <Token>complex_cartesian</Token>
@@ -59,6 +59,8 @@ complex plane. It takes two arguments, the first is a number x to
 denote the real part and the second a number y to denote the imaginary
 part of the complex number x + i y. (Where i is the square root of -1.)
 </Description>
+
+<property xml:id="complex_cartesian_prop_1">
 <CMP>
 for all x,y | complex_cartesian(x,y) = x + iy
 </CMP>
@@ -89,7 +91,7 @@ for all x,y | complex_cartesian(x,y) = x + iy
       </OMA>
     </OMBIND>
   </OMOBJ>
-</FMP>
+</FMP></property>
 </CDDefinition>
 
 <CDDefinition>
@@ -101,6 +103,8 @@ for all x,y | complex_cartesian(x,y) = x + iy
 <Description> 
 This represents the real part of a complex number
 </Description> 
+
+<property xml:id="real_prop_2">
 <CMP>
  for all x,y | x = real(x+iy)
 </CMP>
@@ -126,7 +130,7 @@ This represents the real part of a complex number
       </OMA>
     </OMBIND>
   </OMOBJ>
-</FMP>
+</FMP></property>
 </CDDefinition>
 
 <CDDefinition>
@@ -138,6 +142,8 @@ This represents the real part of a complex number
 <Description> 
 This represents the imaginary part of a complex number
 </Description> 
+
+<property xml:id="imaginary_prop_3">
 <CMP>
 for all x,y | y = imaginary(x+iy)
 </CMP>
@@ -163,7 +169,7 @@ for all x,y | y = imaginary(x+iy)
       </OMA>
     </OMBIND>
   </OMOBJ>
-</FMP>
+</FMP></property>
 </CDDefinition>
 
 <CDDefinition>
@@ -181,6 +187,7 @@ to denote the argument of the complex number r e^(i theta). (i and
 e are defined as in this CD).
 </Description>
 
+<property xml:id="complex_polar_prop_4">
 <CMP>
 for all r,a | complex_polar(r,a) = r*e^(a*i)
 </CMP>
@@ -215,8 +222,9 @@ for all r,a | complex_polar(r,a) = r*e^(a*i)
     </OMA>
   </OMBIND>
 </OMOBJ>
-</FMP>
+</FMP></property>
 
+<property xml:id="complex_polar_prop_5">
 <CMP>
 for all x,y,r,a |
 (r sin a = y and r cos a = x) implies (complex_polar(r,a) = 
@@ -276,8 +284,9 @@ complex_cartesian(x,y)
     </OMA>
   </OMA>
 </OMBIND>
-</OMOBJ></FMP>
+</OMOBJ></FMP></property>
 
+<property xml:id="complex_polar_prop_6">
 <CMP> for all x | if a is a real number and k is an integer then
   complex_polar(x,a) = complex_polar(x,a+2*pi*k) </CMP>
 
@@ -326,7 +335,7 @@ complex_cartesian(x,y)
     </OMA>
   </OMA>
 </OMBIND>
-</OMOBJ></FMP>
+</OMOBJ></FMP></property>
 
 <Example> i = complex_polar(1,pi/2) 
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd"><OMA>
@@ -359,6 +368,7 @@ anti-clockwise). The argument to the symbol is the complex number whos
 argument is being taken.
 </Description>
 
+<property xml:id="argument_prop_7">
 <CMP> for all r,a | argument(complex_polar(r,a)=a) </CMP>
 
 <FMP>
@@ -383,8 +393,9 @@ argument is being taken.
     </OMA>
   </OMBIND>
 </OMOBJ>
-</FMP>
+</FMP></property>
 
+<property xml:id="argument_prop_8">
 <CMP> the argument of x+i*y = arctan(y/x) (if x is positive) </CMP>
 
 <FMP>
@@ -417,8 +428,9 @@ argument is being taken.
     </OMA>
   </OMA>
 </OMOBJ>
-</FMP>
+</FMP></property>
 
+<property xml:id="argument_prop_9">
 <CMP>
   the argument of x+i*y = arctan(y,x) (two-argument arctan from transc2)
 </CMP>
@@ -442,7 +454,7 @@ argument is being taken.
     </OMA>
   </OMA>
 </OMOBJ>
-</FMP>
+</FMP></property>
 </CDDefinition>
 
 <CDDefinition>
@@ -454,6 +466,8 @@ argument is being taken.
 <Description> 
 A unary operator representing the complex conjugate of its argument.
 </Description>
+
+<property xml:id="conjugate_prop_10">
 <CMP>
  if a is a complex number then (conjugate(a) + a) is a real number
 </CMP>
@@ -480,7 +494,7 @@ A unary operator representing the complex conjugate of its argument.
     </OMA>
   </OMA>
 </OMOBJ>
-</FMP>
+</FMP></property>
 </CDDefinition>
 
 </CD>
