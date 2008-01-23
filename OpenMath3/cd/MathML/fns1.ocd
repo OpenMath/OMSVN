@@ -335,6 +335,97 @@ ill-defined without further stipulations. No assumptions are made on
 the semantics of this inverse.
 </Description>
 
+<!-- new part -->
+    <description>
+          <p>This MathML element is applied to a function in order to construct a new
+          function that is to be interpreted as the inverse function of the original
+          function.  For a particular function F, inverse(F) composed with F behaves like
+          the identity map on the domain of F and F composed with inverse(F) should be an
+          identity function on a suitably restricted subset of the Range of F.  The MathML
+          definitionURL attribute should be used to resolve notational ambiguities, or to
+          restrict the inverse to a particular domain or to make it one-sided. </p>
+        </description>
+	<discussion>
+	  <p>The <el>inverse</el> element is applied to a function in order to construct a
+	  generic expression nfor the functional inverse of that function. As with other
+	  MathML functions, <el>inverse</el> may either be applied to arguments, or it may
+	  appear alone, in which case it represents an abstract inversion operator acting
+	  on other functions.</p>
+	  <p>A typical use of the <el>inverse</el> element is in an HTML document
+	  discussing a number of alternative definitions for a particular function so that
+	  there is a need to write and define <var>f</var><sup>(-1)</sup>(x). To associate
+	  a particular definition with <var>f</var><sup>(-1)</sup>, use the
+	  <att>definitionURL</att> and <att>encoding</att> attributes.</p>
+
+    <p>Given functions, it is natural to have functional inverses. This is handled by the
+    <el>inverse</el> element.</p>
+    <p>Functional inverses can be problematic from a mathematical point of view in that
+    they implicitly involve the definition of an inverse for an arbitrary function
+    <var>F</var>. Even at the K-through-12 level the concept of an inverse <var>F</var>
+    <sup>-1</sup> of many common functions <var>F</var> is not used in a uniform way. For
+    example, the definitions used for the inverse trigonometric functions may differ
+    slightly depending on the choice of domain and/or branch cuts.</p>
+    <p>MathML adopts the view: if <var>F</var> is a function from a domain <var>D</var> to
+    <var>D</var>&apos;, then the inverse <var>G</var> of <var>F</var> is a function over
+    <var>D</var>&apos; such that <var>G</var>(<var>F</var>(<var>x</var>)) = <var>x</var>
+    for <var>x</var> in <var>D</var>. This definition does not assert that such an inverse
+    exists for all or indeed any <var>x</var> in <var>D</var>, or that it is single-valued
+    anywhere. Also, depending on the functions involved, additional properties such as
+    <var>F</var>(<var>G</var>(<var>y</var>)) = <var>y</var> for <var>y</var> in
+    <var>D</var>&apos; may hold.</p>
+    
+    <p>The <el>inverse</el> element is applied to a function whenever an inverse is
+    required. For example, application of the inverse sine function to <var>x</var>,
+    i.e. sin<sup>-1</sup> (<var>x</var>), is encoded as: <eg role = "mathml"><![CDATA[
+    <apply> <apply> <inverse/> <sin/> </apply> <ci>x</ci> </apply> ]]></eg>While
+    <el>arcsin</el> is one of the predefined MathML functions, an explicit reference to
+    sin<sup>-1</sup>(<var>x</var>) might occur in a document discussing possible
+    definitions of <el>arcsin</el>.</p>
+	</discussion>
+
+        <property>
+          <description>
+            <p>ForAll( y, such y in domain( f^(-1) ), f( f^(-1)(y) ) = y </p>
+          </description><math xmlns="http://www.w3.org/1998/Math/MathML"> 
+<apply><forall/>
+  <bvar><ci>y</ci></bvar>
+  <bvar><ci type="function">f</ci></bvar>
+  <condition>
+    <apply><in/>
+      <ci>y</ci>
+      <apply><csymbol definitionURL="domain"><mtext>Domain</mtext></csymbol>
+        <apply><inverse/><ci type="function">f</ci></apply>
+      </apply>
+    </apply>
+  </condition>
+  <apply><eq/>
+    <apply><ci type="function">f</ci>
+      <apply><apply><inverse/><ci type="function">f</ci></apply>
+        <ci>y</ci>
+      </apply>
+    </apply>
+    <ci>y</ci>
+  </apply>
+</apply>
+</math></property>
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"> <apply><inverse/>
+  <sin/>
+</apply></math></MMLexample>
+
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"> <apply><inverse definitionURL="www.example.com/MathML/Content/arcsin"/>
+  <sin/>
+</apply></math></MMLexample>
+
+<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"> <apply>
+  <apply><inverse/>
+    <ci type="matrix"> a</ci>
+  </apply>
+  <ci>A</ci>
+</apply></math></MMLexample>
+
+<!-- end new part -->
+
+<property xml:id="inverse_prop_6">
 <CMP> 
 (inverse(f))(f(x)) = x if f is injective,
 that is
@@ -387,8 +478,9 @@ that is
   </OMA>
 </OMA>
 </OMOBJ>
-</FMP>
+</FMP></property>
 
+<property xml:id="inverse_prop_7">
 <CMP>
 f(inverse(f(y))=y if f is defined at inverse(f)(y)
 that is, 
@@ -433,7 +525,7 @@ f(inverse(f)(y)) = y
     </OMA>
   </OMA>
 </OMOBJ>
-</FMP>
+</FMP></property>
 </CDDefinition>
 
 <CDDefinition>
