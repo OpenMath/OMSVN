@@ -17,7 +17,15 @@ CDBase = element CDBase { xsd:anyURI }
 mobj = (external "openmath3.rnc" | external "mathml3.rnc")
 #mobj = external "om3-sts.rnc"
 
-text-or-om = (text | mobj)*
+text-or-om = (text | mobj | code | var | quote | intref | specref | el)*
+########### eliminate these in the final version
+code = element code {text}
+var = element var {text}
+quote = element quote {text-or-om}
+intref = element intref {attribute ref {xsd:anyURI}, text}
+specref = element specref {attribute ref {xsd:anyURI}}
+el = element el {text}
+############ end eliminate
 CDReviewDate = element CDReviewDate { xsd:date }
 CDDate = element CDDate { xsd:date }
 CDVersion = element CDVersion { xsd:nonNegativeInteger }
@@ -43,7 +51,7 @@ Attribute = element Attribute {Name,Model,Default}
 Model = element Model { text }
 Default = element Default { text }
 Title = element Title { text }
-property = element property {CMP?,FMP?}
+property = element property {id.att?,(CMP|description)?,(FMP|mobj)?}
 CMP = element CMP { text }
 FMP = element FMP { 
   attribute kind {xsd:string}?,
@@ -51,13 +59,15 @@ FMP = element FMP {
   }
 # allow embedded OM
 Example = element Example { text-or-om }
-MMLexample = element MMLexample {description?,mobj}
+MMLexample = element MMLexample {id.att?,description?,mobj}
 description = element description {p*}
+discussion = element discussion {p*}
 p = element p { text-or-om }
+id.att = attribute xml:id {xsd:ID}
 CDDefinition =
-  element CDDefinition {
+  element CDDefinition {id.att,
     CDComment*,
-    (Name & Role? & Pragmatic? & Title? & Description),
+    (Name & Role? & Pragmatic? & Title? & Description & description? & discussion?),
    (CDComment | Example | MMLexample | property)*
   }
 CD =
