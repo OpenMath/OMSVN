@@ -35,7 +35,7 @@
 
 <CDName>arith1</CDName>
 <CDBase>http://www.openmath.org/cd</CDBase>
-<CDURL>http://www.openmath.org/cd/arith1.ocd </CDURL>
+<CDURL>http://www.openmath.org/cd/arith1.ocd</CDURL>
 <CDReviewDate>2006-03-30</CDReviewDate>
 <CDStatus>official</CDStatus>
 <CDDate>2004-03-30</CDDate>
@@ -50,12 +50,20 @@ This CD defines symbols for common arithmetic functions.
 <Name>lcm</Name>
 <Pragmatic>
   <Token>lcm</Token>
-</Pragmatic>
-<Role>application</Role>
-<Description>
- The symbol to represent the n-ary function to return the least common
-multiple of its arguments.
-</Description>
+    <Attribute>
+      <Name>type</Name>
+      <Model>Real</Model>
+      <Default>"real"</Default>
+    </Attribute>
+  </Pragmatic>
+  <Role>application</Role>
+  <Title>Least Common Multiple</Title>
+  <Description>
+    This n-ary operator is used to construct an expression which represents the
+    least common multiple of its arguments.  If no argument is provided, the lcm is
+    1.  If one argument is provided, the lcm is that argument.  The least common
+    multiple of x and 1 is x.
+  </Description>
 
 <property xml:id="lcm_prop_1">
 <CMP> lcm(a,b) = a*b/gcd(a,b) </CMP>
@@ -84,17 +92,18 @@ multiple of its arguments.
     </OMA>
   </OMA>
 </OMOBJ>
-</FMP></property>
+</FMP>
+</property>
 
 <property xml:id="integers_prop_2">
-<CMP>
-for all integers a,b |
-There does not exist a c&gt;0 such that c/a is an Integer and c/b is an
-Integer and lcm(a,b) &gt; c.
-</CMP>
+  <CMP>
+    for all integers a,b |
+    There does not exist a c&gt;0 such that c/a is an Integer and c/b is an
+    Integer and lcm(a,b) &gt; c.
+  </CMP>
 
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
 <OMBIND>
   <OMS cd="quant1" name="forall"/>
   <OMBVAR>
@@ -155,19 +164,83 @@ Integer and lcm(a,b) &gt; c.
   </OMA>
 </OMBIND>
 </OMOBJ>
-</FMP></property>
+</FMP>
+</property>
+
+<property>
+  <CMP>ForAll(x,lcm(x,1)=x)</CMP>
+  <FMP>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <bind>
+	<forall/>
+	<bvar><ci>x</ci></bvar>
+	<apply>
+	  <eq/>
+	  <apply><lcm/><ci>x</ci><cn>1</cn></apply>
+	<ci>x</ci>
+      </apply> 
+    </bind>
+    </math>
+  </FMP>
+</property>
+
+<MMLexample>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><lcm/><cn>12</cn><cn>17</cn></apply>
+  </math>
+</MMLexample>
+
+<MMLexample xml:id="lcm_simple">
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><lcm/><cn>3</cn><cn>5</cn><cn>7</cn></apply>
+</math>
+</MMLexample>
+
+<MMLexample xml:id="eval">
+  <description>
+    <p>If the following expression were evaluated at a= 2, b=4, c=6 it would yield 12.</p>
+  </description>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><lcm/><ci>a</ci><ci>b</ci><ci>c</ci></apply>
+  </math>
+</MMLexample>
+</CDDefinition>
+
+<CDDefinition xml:id="bid_lcm">
+  <Name>big_lcm</Name>
+  <Pragmatic>
+    <Token>big_lcm</Token>
+    <Attribute>
+      <Name>type</Name>
+      <Model>Real</Model>
+      <Default>"real"</Default>
+    </Attribute>
+  </Pragmatic>
+
+  <Role>binder</Role>
+  <Title>Least Common Multiple over a Set of expressions</Title>
+  <Description>
+    This n-ary operator is used to construct the least common multiple over a set of
+    expressions.
+  </Description>
 </CDDefinition>
 
 <CDDefinition xml:id="gcd">
 <Name>gcd</Name>
   <Pragmatic>
     <Token>gcd</Token>
+    <Attribute>
+      <Name>type</Name>
+      <Model>Real</Model>
+      <Default>"real"</Default>
+    </Attribute>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-The symbol to represent the n-ary function to return the gcd (greatest
-common divisor) of its arguments.
-</Description>
+  <Role>application</Role>
+  <Description>
+    This is the n-ary operator used to construct an expression which represents
+    the greatest common divisor of its arguments.  If no argument is provided, the
+    gcd is 0.  If one argument is provided, the gcd is that argument.
+  </Description>
 
 <property xml:id="gcd_prop_3">
 <CMP>
@@ -243,7 +316,8 @@ Note that this implies that gcd(a,b) &gt; 0
   </OMA>
 </OMBIND>
 </OMOBJ>
-</FMP></property>
+</FMP>
+</property>
 
 <Example>
 gcd(6,9) = 3
@@ -260,6 +334,27 @@ gcd(6,9) = 3
 </OMOBJ>
 </Example>
 </CDDefinition>
+
+<CDDefinition xml:id="big_gcd">
+  <Name>big_gcd</Name>
+  <Pragmatic>
+    <Token>big_gcd</Token>
+    <Attribute>
+      <Name>type</Name>
+      <Model>Real</Model>
+      <Default>"real"</Default>
+    </Attribute>
+  </Pragmatic>
+
+  <Role>binder</Role>
+  <Title>Greatest Common Divisor over a Set of expressions</Title>
+  <Description>
+    This n-ary operator is used to construct the greatest common divisor over a set of
+    expressions.
+  </Description>
+</CDDefinition>
+
+
 
 <CDDefinition xml:id="plus">
 <Name>plus</Name>
@@ -288,18 +383,11 @@ gcd(6,9) = 3
           <p>To use different type coercion rules different from those indicated by the
           signatures, use the definitionURL attribute to identify a new definition.</p>
         </description>
-	<discussion>
-	  <p>The <code>plus</code> element is the addition operator.</p>
-	  <p>As an n-ary operator, the operands may in principle also be provided using a
-	  domain of application as described in <specref
-	  ref="contm_naryopwithqual"/>. However, such expressions can already be
-	  represented explicitly using <specref ref="cds_sum"/> so the <code>plus</code>
-	  does not normally take qualifiers.</p>
-	</discussion>
       <property>
           <description>
             <p>an sum of no terms is 0</p>
-          </description><math xmlns="http://www.w3.org/1998/Math/MathML">
+          </description>
+	  <math xmlns="http://www.w3.org/1998/Math/MathML">
 <apply><eq/>
   <apply><plus/></apply>
   <cn>0</cn>
@@ -309,19 +397,19 @@ gcd(6,9) = 3
           <description>
             <p>a sum of one term is equal to itself</p>
           </description><math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply><forall/>
+<bind><forall/>
   <bvar><ci>a</ci></bvar>
   <apply><eq/>
     <apply><plus/><ci>a</ci></apply>
     <cn>a</cn>
   </apply> 
-</apply>
+</bind>
 </math></property>
         <property>
           <description>
             <p>Commutativity</p>
           </description><math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply><forall/>
+<bind><forall/>
   <bvar><ci>a</ci></bvar>
   <bvar><ci>b</ci></bvar>
   <condition>
@@ -334,7 +422,7 @@ gcd(6,9) = 3
     <apply><plus/><ci>a</ci><ci>b</ci></apply>
     <apply><plus/><ci>b</ci><ci>a</ci></apply>
   </apply>
-</apply></math></property>
+</bind></math></property>
         <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><plus/>
   <cn>3</cn>
 </apply></math></MMLexample>
@@ -447,22 +535,29 @@ adding the additive inverse.
 	</discussion>
 
 <property>
-          <description>
-            <p>ForAll( x, x-x=0 )</p>
-          </description><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><forall/>
+  <description>
+    <p>ForAll( x, x-x=0 )</p>
+    </description>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+<bind><forall/>
   <bvar><ci>x</ci></bvar>
   <apply><eq/>
     <apply><minus/><ci>x</ci><ci>x</ci></apply>
     <cn>0</cn>
   </apply>
-</apply></math></property>
-        <MMLexample>
-		<description><p>If this were evaluated at <var>x</var>=5 and 
-		<var>y</var>=2 it would yield 3.</p></description>
-		<math xmlns="http://www.w3.org/1998/Math/MathML"><apply> <minus/>
-		  <ci>x</ci>
-		  <ci>y</ci>
-		</apply></math></MMLexample>
+</bind>
+</math>
+</property>
+<MMLexample>
+  <description><p>If this were evaluated at <var>x</var>=5 and 
+  <var>y</var>=2 it would yield 3.</p></description>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply> <minus/>
+  <ci>x</ci>
+  <ci>y</ci>
+</apply>
+</math>
+</MMLexample>
 
 <!-- end new part -->
 
@@ -509,47 +604,37 @@ The symbol representing an n-ary multiplication function.
 
 <!-- new part -->
 <description>
-	  <p> This is the n-ary multiplication operator of a ring.
-	  Ordinarily, the operands are provided explicitly.  As an n-ary operation
-	  the operands can also be generated by allowing a function or expression
-	  vary over a domain of application though the product element is normally used
-	  for that purpose.
-	  If no arguments are supplied then this represents the
-	  multiplicative identity.  If one argument is supplied, this
-	  represents an expression that would evaluate to
-	  that single argument.</p>
-	</description>
-	<discussion>
-	  <p>The <code>times</code> element is the n-ary multiplication operator.The operands
-	  are usually listed explicitly. As an n-ary operator, the operands may in
-	  principle also be provided using a domain of application as described in
-	  <specref ref="contm_naryopwithqual"/>.  However, such expressions can already be
-	  represented explicitly by using <specref ref="cds_product"/> so the
-	  <code>times</code> does not normally take qualifiers.</p>
-	</discussion>
-
-     <property>
-          <description>
-            <p>ForAll( [a,b], condition(in({a,b}, Commutative)), a*b=b*a )</p>
-          </description>
-        </property>
-        <property>
-          <description>
-            <p>ForAll( [a,b,c], Associative, a*(b*c)=(a*b)*c ), associativity </p>
-          </description>
-        </property>
-        <property>
-          <description>
-            <p>
-multiplicative identity</p>
-          </description><math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply><forall/>
+  <p> This is the n-ary multiplication operator of a ring.
+  Ordinarily, the operands are provided explicitly.  As an n-ary operation
+  the operands can also be generated by allowing a function or expression
+  vary over a domain of application though the product element is normally used
+  for that purpose.
+  If no arguments are supplied then this represents the
+  multiplicative identity.  If one argument is supplied, this
+  represents an expression that would evaluate to
+  that single argument.</p>
+</description>
+<property>
+  <description>
+    <p>ForAll( [a,b], condition(in({a,b}, Commutative)), a*b=b*a )</p>
+  </description>
+</property>
+<property>
+  <description>
+    <p>ForAll( [a,b,c], Associative, a*(b*c)=(a*b)*c ), associativity </p>
+  </description>
+</property>
+<property>
+  <description>
+    <p>multiplicative identity</p>
+    </description><math xmlns="http://www.w3.org/1998/Math/MathML">
+<bind><forall/>
   <bvar><ci>a</ci></bvar>
   <apply><eq/>
     <apply><times/><cn>1</cn><ci>a</ci></apply>
     <ci>a</ci>
   </apply> 
-</apply>
+</bind>
 </math></property>
         <property>
           <description>
@@ -558,10 +643,10 @@ multiplicative identity</p>
         </property>
         <property>
           <description>
-            <p>
-Commutative property</p>
-          </description><math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply><forall/>
+            <p>Commutative property</p>
+          </description>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<bind><forall/>
   <bvar><ci>a</ci></bvar>
   <bvar><ci>b</ci></bvar>
   <condition>
@@ -574,18 +659,18 @@ Commutative property</p>
     <apply><times/><ci>a</ci><ci>b</ci></apply>
     <apply><times/><ci>b</ci><ci>a</ci></apply>
   </apply>
-</apply></math></property>
+</bind></math></property>
         <property>
 	  <description>
 	    <p>a*0=0</p>
 	    </description>
-	    <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><forall/>
+	    <math xmlns="http://www.w3.org/1998/Math/MathML"><bind><forall/>
   <bvar><ci>a</ci></bvar>
   <apply><eq/>
     <apply><times/><cn>0</cn><ci>a</ci></apply>
     <cn>0</cn>
   </apply> 
-</apply></math>
+</bind></math>
 	</property>
 
 	<MMLexample>
@@ -752,26 +837,28 @@ inverse of the multiplication function defined by the symbol times in this CD.
   <property>
     <description>
       <p>Division by Zero error</p>
-      </description><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><forall/>
+      </description>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<bind><forall/>
       <bvar><ci>a</ci></bvar>
       <apply><eq/>
     <apply><divide/><ci>a</ci><cn>0</cn></apply>
     <notanumber/>
   </apply>
-</apply></math></property>
+</bind></math></property>
 
         <property>
           <description>
             <p>ForAll( a, a!= 0, a/a = 1 )</p>
           </description><math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply><forall/>
+<bind><forall/>
   <bvar><ci>a</ci></bvar>
   <condition><apply><neq/><ci>a</ci><cn>0</cn></apply></condition>
   <apply><eq/>
     <apply><divide/><ci>a</ci><ci>a</ci></apply>
     <cn>1</cn>
   </apply>
-</apply>
+</bind>
 </math></property>
 
 	  <MMLexample>
@@ -850,38 +937,38 @@ This operator can represent general powering.
           <description>
             <p>ForAll( a, a!=0, a^0=1 )</p>
           </description><math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply><forall/>
+<bind><forall/>
   <bvar><ci>a</ci></bvar>
   <condition><apply><neq/><ci>a</ci><cn>0</cn></apply></condition>
   <apply><eq/>
     <apply><power/><ci>a</ci><cn>0</cn></apply>
     <cn>1</cn>
   </apply>
-</apply>
+</bind>
 </math></property>
         <property>
           <description>
             <p>ForAll( a, a^1=a )</p>
           </description><math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply><forall/>
+<bind><forall/>
   <bvar><ci>a</ci></bvar>
   <apply><eq/>
     <apply><power/><ci>a</ci><cn>1</cn></apply>
     <ci>a</ci>
   </apply>
-</apply>
+</bind>
 </math></property>
         <property>
           <description>
             <p>ForAll( a, 1^a=1 )</p>
           </description><math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply><forall/>
+<bind><forall/>
   <bvar><ci>a</ci></bvar>
   <apply><eq/>
     <apply><power/><cn>1</cn><ci>a</ci></apply>
     <cn>1</cn>
   </apply>
-</apply></math></property>
+</bind></math></property>
         <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><power/><cn>2</cn><ci>x</ci></apply></math></MMLexample>
         <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><power/><ci>x</ci><cn>3</cn></apply></math></MMLexample>
       <MMLexample>
@@ -1043,7 +1130,7 @@ x\in C implies x^a = exp(a ln x)
 </Example>
 </CDDefinition>
 
-<CDDefinition id="abs">
+<CDDefinition xml:id="abs">
 <Name>abs</Name>
   <Pragmatic>
     <Token>abs</Token>
@@ -1147,7 +1234,7 @@ CMP is not valid in general.
 	  element. Thus, square roots correspond to the case where <code>degree</code>
 	  contains the value 2, cube roots correspond to 3, and so on.</p>
 	  
-	  <p>Note that MathML3 supports a <code>degree</code> element in the legacy <intref
+	  <p>Note that Pragmatic MathML3 supports a <code>degree</code> element in the legacy <intref
 	  ref="contm_container">container representation</intref> (see <specref
 	  ref="contm_degree"/> for details). If no <code>degree</code> is present, a default
 	  value of 2 is used.</p>
@@ -1160,7 +1247,9 @@ CMP is not valid in general.
         <MMLexample>
           <description>
             <p>The <var>n</var>th root of <var>a</var> is is given by</p>
-          </description><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><root/>&lt;degree&gt;<ci>n</ci>&lt;/degree&gt;<ci>a</ci></apply></math></MMLexample>
+          </description>
+	<math xmlns="http://www.w3.org/1998/Math/MathML">
+	  <apply><root/><degree><ci>n</ci></degree><ci>a</ci></apply></math></MMLexample>
 
 <!-- end new part -->
 
@@ -1265,8 +1354,8 @@ summed. Note that the sum may be over an infinite interval.
       <el>condition</el> or <el>domainofapplication</el> schema. The <el>bvar</el> schema
       signifies the internal variable in the sum or product. A typical example might be:
 
-<eg role = "mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<bind>
   <sum/>
   <bvar><ci>i</ci></bvar>
   <lowlimit><cn>0</cn></lowlimit>
@@ -1276,23 +1365,31 @@ summed. Note that the sum may be over an infinite interval.
     <ci>x</ci>
     <ci>i</ci>
   </apply>
-</apply></math></eg>
+</bind></math>
 
 When used with <el>sum</el> or <el>product</el>, each qualifier schema is expected to
 contain a single child schema; otherwise an error is generated.</p>
 		</discussion>
 
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><sum/>
+        <MMLexample>
+	  <math xmlns="http://www.w3.org/1998/Math/MathML">
+<bind><sum/>
   <bvar> <ci>x</ci></bvar>
   <lowlimit><ci>a</ci></lowlimit>
   <uplimit><ci>b</ci></uplimit>
   <apply><ci>f</ci><ci>x</ci></apply>
-</apply></math></MMLexample>
-	<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><sum/>
+</bind>
+</math>
+</MMLexample>
+<MMLexample>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+<bind><sum/>
   <bvar><ci>x</ci></bvar>
   <condition><apply> <in/><ci>x</ci><ci type="set">B</ci></apply></condition>
   <apply><ci type="function"> f</ci><ci>x</ci></apply>
-</apply></math></MMLexample>
+</bind>
+</math>
+</MMLexample>
 
 	<MMLexample>
 	  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply>
@@ -1301,7 +1398,9 @@ contain a single child schema; otherwise an error is generated.</p>
     <ci type="set"> B</ci>
   </domainofapplication>
   <ci type="function"> f</ci>
-</apply></math></MMLexample>
+</apply>
+</math>
+</MMLexample>
 
 <!-- end new part -->
 
@@ -1376,21 +1475,25 @@ be multiplied. Note that the product may be over an infinite interval.
 	  schema signifies the internal variable in the sum or product.</p>
 	</discussion>
 
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply><product/>
+        <MMLexample>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<bind><product/>
   <bvar><ci>x</ci></bvar>
   <lowlimit> <ci>a</ci></lowlimit>
   <uplimit><ci>b</ci></uplimit>
   <apply><ci type="function"> f</ci><ci>x</ci></apply>
-</apply>
-</math></MMLexample>
+</bind>
+</math>
+</MMLexample>
+
         <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply><product/>
+<bind><product/>
   <bvar><ci>x</ci></bvar>
   <condition><apply> <in/><ci>x</ci><ci type="set">B</ci></apply></condition>
   <apply><ci>f</ci><ci>x</ci></apply>
-</apply>
-</math></MMLexample>
+</bind>
+</math>
+</MMLexample>
 
 <!-- end new part -->
 

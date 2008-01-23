@@ -37,7 +37,7 @@
 <CDBase>http://www.openmath.org/cd</CDBase>
 <CDURL>http://www.openmath.org/cd/arith1.ocd</CDURL>
 <CDReviewDate>2006-03-30</CDReviewDate>
-<CDStatus> official </CDStatus>
+<CDStatus>official</CDStatus>
 <CDDate>2004-03-30</CDDate>
 <CDVersion>3</CDVersion>
 <CDRevision>0</CDRevision>
@@ -46,17 +46,16 @@
 This CD defines symbols for common arithmetic functions.
 </Description>
 
-<CDDefinition>
-  <Name>lcm</Name>
-  <Pragmatic>
-    <Token>lcm</Token>
+<CDDefinition xml:id="lcm">
+<Name>lcm</Name>
+<Pragmatic>
+  <Token>lcm</Token>
     <Attribute>
       <Name>type</Name>
       <Model>Real</Model>
       <Default>"real"</Default>
     </Attribute>
   </Pragmatic>
-
   <Role>application</Role>
   <Title>Least Common Multiple</Title>
   <Description>
@@ -65,10 +64,11 @@ This CD defines symbols for common arithmetic functions.
     1.  If one argument is provided, the lcm is that argument.  The least common
     multiple of x and 1 is x.
   </Description>
-  
-<property>
-  <CMP> lcm(a,b) = a*b/gcd(a,b) </CMP>
-  <FMP>
+
+<property xml:id="lcm_prop_1">
+<CMP> lcm(a,b) = a*b/gcd(a,b) </CMP>
+
+<FMP>
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
   <OMA>
     <OMS cd="relation1" name="eq"/>
@@ -95,10 +95,11 @@ This CD defines symbols for common arithmetic functions.
 </FMP>
 </property>
 
-<property>
+<property xml:id="integers_prop_2">
   <CMP>
-    for all integers a,b | There does not exist a c&gt;0 such that c/a is an Integer and
-    c/b is an Integer and lcm(a,b) &gt; c.
+    for all integers a,b |
+    There does not exist a c&gt;0 such that c/a is an Integer and c/b is an
+    Integer and lcm(a,b) &gt; c.
   </CMP>
 
   <FMP>
@@ -224,8 +225,8 @@ This CD defines symbols for common arithmetic functions.
   </Description>
 </CDDefinition>
 
-<CDDefinition>
-  <Name>gcd</Name>
+<CDDefinition xml:id="gcd">
+<Name>gcd</Name>
   <Pragmatic>
     <Token>gcd</Token>
     <Attribute>
@@ -234,7 +235,6 @@ This CD defines symbols for common arithmetic functions.
       <Default>"real"</Default>
     </Attribute>
   </Pragmatic>
-
   <Role>application</Role>
   <Description>
     This is the n-ary operator used to construct an expression which represents
@@ -242,13 +242,13 @@ This CD defines symbols for common arithmetic functions.
     gcd is 0.  If one argument is provided, the gcd is that argument.
   </Description>
 
-<property>
-  <CMP>
-    for all integers a,b |
-    There does not exist a c such that a/c is an Integer and b/c is an
-    Integer and c &gt; gcd(a,b).
-    
-    Note that this implies that gcd(a,b) &gt; 0
+<property xml:id="gcd_prop_3">
+<CMP>
+for all integers a,b |
+There does not exist a c such that a/c is an Integer and b/c is an
+Integer and c &gt; gcd(a,b).
+
+Note that this implies that gcd(a,b) &gt; 0
 </CMP>
 
 <FMP>
