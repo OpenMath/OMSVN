@@ -69,6 +69,8 @@ denote the real part and the second a number y to denote the imaginary
 part of the complex number x + i y. (Where i is the square root of -1.)
 
 
+
+
 for all x,y | complex_cartesian(x,y) = x + iy
 
 
@@ -111,6 +113,55 @@ application
 This represents the real part of a complex number
  
 
+
+
+          A unary operator used to construct an expression
+representing the "real" part of a complex number. 
+        
+	
+	  The real operator (introduced in MathML 2.0) gives the real part of
+	  a complex number, that is the x component in x + i y
+	
+
+   
+          
+            ForAll( [x,y], x in R, Y in R, real(x+i*y)=x) )
+          
+
+  x
+  y
+  
+    
+      x
+      y
+    
+  
+  
+    
+      
+        x
+        y
+      
+    
+    x
+  
+
+
+        
+		The following example encodes the real operation onx + iy.A MathML-aware evaluation system would return the x component, suitably encoded.
+		
+
+  
+    x
+    y
+  
+
+
+
+
+
+
+
  for all x,y | x = real(x+iy)
 
 
@@ -147,6 +198,49 @@ application
  
 This represents the imaginary part of a complex number
  
+
+
+    
+          The unary function used to construct an expression which represents the
+          imaginary part of a complex number.  
+        
+	
+	  The imaginary operator (introduced in MathML 2.0)
+	  gives the imaginary part of a complex number, that is, the y
+	  component in x + i y.
+	
+
+ 
+          
+            ForAll( [x,y], Imaginary(x + i*y) = y )
+          
+
+   x
+   y
+  
+    
+      
+         x
+        y
+      
+    
+     y
+  
+
+
+        
+		The following example encodes the imaginary operation on x + iy.A MathML-aware evaluation system would return the y component, suitably encoded.
+		
+  
+    x
+    y
+  
+
+
+
+
+
+
 
 for all x,y | y = imaginary(x+iy)
 
@@ -191,6 +285,7 @@ e are defined as in this CD).
 
 
 
+
 for all r,a | complex_polar(r,a) = r*e^(a*i)
 
 
@@ -223,6 +318,7 @@ for all r,a | complex_polar(r,a) = r*e^(a*i)
       
     
   
+
 
 
 
@@ -284,6 +380,7 @@ complex_cartesian(x,y)
       
     
   
+
 
 
 
@@ -368,6 +465,7 @@ anti-clockwise). The argument to the symbol is the complex number whos
 argument is being taken.
 
 
+
  for all r,a | argument(complex_polar(r,a)=a) 
 
 
@@ -391,6 +489,7 @@ argument is being taken.
       
     
   
+
 
 
 
@@ -429,6 +528,7 @@ argument is being taken.
 
 
 
+
   the argument of x+i*y = arctan(y,x) (two-argument arctan from transc2)
 
 
@@ -462,6 +562,35 @@ conjugate
 application
  
 A unary operator representing the complex conjugate of its argument.
+
+
+
+     
+          The unary "conjugate" arithmetic operator is used to represent the complex
+          conjugate of its argument.
+        
+	
+	  The conjugate element represents the complex conjugate of a complex quantity.
+	
+
+
+        
+	  
+	    The following example encodes the conjugate of x + iy.
+	  
+	  
+ 
+    x
+    
+      &ImaginaryI;
+    y
+    
+  
+
+
+
+
+
 
 
  if a is a complex number then (conjugate(a) + a) is a real number
