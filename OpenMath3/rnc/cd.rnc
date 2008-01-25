@@ -17,7 +17,8 @@ CDBase = element CDBase { xsd:anyURI }
 mobj = (external "openmath3.rnc" | external "mathml3.rnc")
 #mobj = external "om3-sts.rnc"
 
-text-or-om = (text | mobj | code | var | quote | intref | specref | el)*
+text-or-om = (text | mobj | code | var | quote | intref | specref | el | att | sup | sub |
+graphic)*
 ########### eliminate these in the final version
 code = element code {text}
 var = element var {text}
@@ -25,6 +26,11 @@ quote = element quote {text-or-om}
 intref = element intref {attribute ref {xsd:anyURI}, text}
 specref = element specref {attribute ref {xsd:anyURI}}
 el = element el {text}
+att = element att {text}
+sub = element sub {text}
+sup = element sup {text}
+graphic = element graphic {attribute role {xsd:string}?, attribute source {xsd:anyURI},
+attribute alt {xsd:string}}
 ############ end eliminate
 CDReviewDate = element CDReviewDate { xsd:date }
 CDDate = element CDDate { xsd:date }

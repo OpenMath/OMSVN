@@ -48,7 +48,9 @@ include "mathml3-pragmatic.rnc"
 apply-head |= token.application
 bind-head |= token.binder
 cerror-head |= token.error
-ContExp |= token.constant
+
+## allow all functions and constants to be OM objects on their own
+ContExp |= token.constant|token.application
 
 #include "mathml3-arity.rnc"
 #include "mathml3-deprecated.rnc"

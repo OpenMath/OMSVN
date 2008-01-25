@@ -70,12 +70,12 @@ function. The single argument is the unary function.
 	  cosine, thereby denoting a function which is the derivative of the original
 	  function, as in
 
-	  <eg role = "mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><diff/><ci type="function>f</ci></apply></math></eg>
+	  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><diff/><ci type="function">f</ci></apply></math>
 	  
 	  If <el>diff</el> is given a number <var>n</var> as a second argument, then it is
 	  interpreted as a <var>n</var>-fold differentiation operator.
 	  
-	  <eg role = "mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><ndiff/><cn>2</cn><ci type="function>f</ci></apply></math></eg></p>
+	  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><ndiff/><cn>2</cn><ci type="function">f</ci></apply></math></p>
 	</discussion>
 	<MMLexample>
           <description>
@@ -393,7 +393,7 @@ integers which index the variables of the function, the second is the function.
 	  <el>degree</el> schema used with <el>partialdiff</el> is expected to contain a
 	  single child schema. For example,
 
-<eg role = "mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><bind><partialdiff/>
+<math xmlns="http://www.w3.org/1998/Math/MathML"><bind><partialdiff/>
   <bvar>
     <degree><cn>2</cn></degree>
     <ci>x</ci>
@@ -402,7 +402,7 @@ integers which index the variables of the function, the second is the function.
   <bvar><ci>x</ci></bvar>
   <degree><cn>4</cn></degree>
   <ci type="function">f</ci>
-</apply></math></eg>
+</bind></math>
 
             denotes the mixed partial derivative ( d<sup>4</sup> / d<sup>2</sup><var>x</var>
 	  d<var>y</var> d<var>x</var> ) <var>f</var>.</p>
@@ -420,22 +420,24 @@ integers which index the variables of the function, the second is the function.
           <description>
             <p>d^k/(dx^m dy^n) f(x,y)</p>
           </description>
-		<math xmlns="http://www.w3.org/1998/Math/MathML"><apply><partialdiff/>
+	  <math xmlns="http://www.w3.org/1998/Math/MathML">
+<bind><partialdiff/>
   <bvar><ci>x</ci><degree><ci>m</ci></degree></bvar>
   <bvar><ci>y</ci><degree><ci>n</ci></degree></bvar>
   <degree><ci>k</ci></degree>
   <apply><ci type="function">f</ci><ci>x</ci><ci>y</ci></apply>
-</apply></math></MMLexample>
+</bind></math></MMLexample>
 
         <MMLexample>
           <description>
             <p>d^2/(dx dy) f(x,y)</p>
           </description>
-	  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><partialdiff/>
+	  <math xmlns="http://www.w3.org/1998/Math/MathML">
+<bind><partialdiff/>
   <bvar><ci>x</ci></bvar>
   <bvar><ci>y</ci></bvar>
   <apply><ci type="function">f</ci><ci>x</ci><ci>y</ci></apply>
-</apply></math></MMLexample>
+</bind></math></MMLexample>
 
         <MMLexample>
           <description>
