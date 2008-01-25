@@ -42,7 +42,7 @@ om3-roles.rnc: $(CDs)
 	@for d in $(CD.MathML.rnc-roles); do  (echo "include \"$$d\"" >> $@) done
 om3-arity.rnc: $(CDs)
 	rm -f $@
-	@for d in $(CD.MathML.rnc-ariy); do  (echo "include \"$$d\"" >> $@) done
+	@for d in $(CD.MathML.rnc-arity); do  (echo "include \"$$d\"" >> $@) done
 om3-sts.rnc: $(CDs)
 	rm -f $@
 	@for d in $(CD.MathML.rnc-sts); do  (echo "include \"$$d\"" >> $@) done
@@ -72,5 +72,4 @@ $(RNG): %.rng: %.rnc
 	trang -I rnc -O rng $< $@
 
 echo:	
-	echo $(CDs)
-#	echo $(CD.OM.rnc-arity)
+	echo $(CD.OM.rnc-arity)
