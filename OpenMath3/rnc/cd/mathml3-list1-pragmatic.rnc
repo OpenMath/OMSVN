@@ -7,9 +7,10 @@
 
 
 namespace m  ="http://www.w3.org/1998/Math/MathML"
-map_list1_elt |= element m:map {MathML.Common.attrib}
 token.application |= map_list1_elt
-suchthat_list1_elt |= element m:suchthat {MathML.Common.attrib}
+map_list1_elt |= element m:map {MathML.Common.attrib,Definition.attrib?}
 token.application |= suchthat_list1_elt
-list_list1_elt |= element m:list {MathML.Common.attrib,ContExp*}
+suchthat_list1_elt |= element m:suchthat {MathML.Common.attrib,Definition.attrib?}
 token.application |= list_list1_elt
+list_list1_elt |= element m:list {MathML.Common.attrib,Definition.attrib?,ContExp*}
+container |= list_list1_elt

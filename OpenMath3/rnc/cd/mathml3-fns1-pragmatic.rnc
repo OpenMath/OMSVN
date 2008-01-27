@@ -7,23 +7,25 @@
 
 
 namespace m  ="http://www.w3.org/1998/Math/MathML"
-domainofapplication_fns1_elt |= element m:domainofapplication {MathML.Common.attrib}
 token.application |= domainofapplication_fns1_elt
-domain_fns1_elt |= element m:domain {MathML.Common.attrib}
+domainofapplication_fns1_elt |= element m:domainofapplication {MathML.Common.attrib,Definition.attrib?}
 token.application |= domain_fns1_elt
-range_fns1_elt |= element m:range {MathML.Common.attrib}
+domain_fns1_elt |= element m:domain {MathML.Common.attrib,Definition.attrib?}
 token.application |= range_fns1_elt
-image_fns1_elt |= element m:image {MathML.Common.attrib}
+range_fns1_elt |= element m:range {MathML.Common.attrib,Definition.attrib?}
 token.application |= image_fns1_elt
-identity_fns1_elt |= element m:identity {MathML.Common.attrib}
+image_fns1_elt |= element m:image {MathML.Common.attrib,Definition.attrib?}
 token.application |= identity_fns1_elt
-left_inverse_fns1_elt |= element m:left_inverse {MathML.Common.attrib}
+identity_fns1_elt |= element m:identity {MathML.Common.attrib,Definition.attrib?}
 token.application |= left_inverse_fns1_elt
-right_inverse_fns1_elt |= element m:right_inverse {MathML.Common.attrib}
+left_inverse_fns1_elt |= element m:left_inverse {MathML.Common.attrib,Definition.attrib?}
 token.application |= right_inverse_fns1_elt
-inverse_fns1_elt |= element m:inverse {MathML.Common.attrib}
+right_inverse_fns1_elt |= element m:right_inverse {MathML.Common.attrib,Definition.attrib?}
 token.application |= inverse_fns1_elt
-left_compose_fns1_elt |= element m:left_compose {MathML.Common.attrib}
+inverse_fns1_elt |= element m:inverse {MathML.Common.attrib,Definition.attrib?}
 token.application |= left_compose_fns1_elt
-lambda_fns1_elt |= element m:lambda {MathML.Common.attrib,ContExp*}
+left_compose_fns1_elt |= element m:left_compose {MathML.Common.attrib,Definition.attrib?}
 token.binder |= lambda_fns1_elt
+lambda_fns1_elt |= element m:lambda {MathML.Common.attrib,Definition.attrib?}
+lambda_fns1_elt |= element m:lambda {MathML.Common.attrib,Definition.attrib?,bvar*,qualifier?,ContExp}
+container |= lambda_fns1_elt

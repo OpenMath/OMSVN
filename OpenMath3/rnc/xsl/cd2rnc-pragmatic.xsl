@@ -52,15 +52,31 @@
     <xsl:variable name="name" select="normalize-space(omcd:Name)"/>
     <xsl:variable name="token" select="normalize-space(omcd:Pragmatic/omcd:Token)"/>
     <xsl:variable name="container" select="normalize-space(omcd:Pragmatic/omcd:Container)"/>
-    <xsl:if test="$token!=''">
-      <xsl:value-of select="concat($name,'_',$cd,'_elt',' |= element m:',$token,' {MathML.Common.attrib}&#xA;')"/>
-    </xsl:if>
-    <xsl:if test="$container!=''">
-      <xsl:value-of select="concat($name,'_',$cd,'_elt',' |= element m:',$container,' {MathML.Common.attrib,ContExp*}&#xA;')"/>
-    </xsl:if>
     <xsl:variable name="role" select="normalize-space(omcd:Role)"/>
     <xsl:variable name="elt" select="concat($name,'_',$cd,'_elt')"/>
     <xsl:value-of select="concat('token.',$role,' |= ',$elt,'&#xA;')"/>
+    <xsl:choose>
+      <xsl:when test="$token!=''">
+	<xsl:value-of select="concat($name,'_',$cd,'_elt',
+			             ' |= element m:',$token,' {MathML.Common.attrib,Definition.attrib?}&#xA;')"/>
+      </xsl:when>
+      <xsl:when test="$container!='' and $role='application'">
+	<xsl:value-of select="concat($name,'_',$cd,'_elt',
+			             ' |= element m:',$container,
+				     ' {MathML.Common.attrib,Definition.attrib?,ContExp*}&#xA;')"/>
+	<xsl:value-of select="concat('container |= ',$elt,'&#xA;')"/>
+      </xsl:when>
+      <xsl:when test="$container!='' and $role='binder'">
+	<xsl:value-of select="concat($name,'_',$cd,'_elt',
+			             ' |= element m:',$container,
+				     ' {MathML.Common.attrib,Definition.attrib?}&#xA;')"/>
+	<xsl:value-of select="concat($name,'_',$cd,'_elt',
+			             ' |= element m:',$container,
+				     ' {MathML.Common.attrib,Definition.attrib?,bvar*,qualifier?,ContExp}&#xA;')"/>
+	<xsl:value-of select="concat('container |= ',$elt,'&#xA;')"/>
+      </xsl:when>
+      <xsl:otherwise><xsl:message>undefined pragmatic/role</xsl:message></xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
 
