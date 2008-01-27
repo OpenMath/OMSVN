@@ -45,7 +45,7 @@
    Operations on Matrices (independent of the matrix representation).
 </Description>
 
-<CDDefinition>
+<CDDefinition xml:="vectorproduct">
 <Name>vectorproduct</Name>
   <Pragmatic>
     <Token>vectorproduct</Token>
@@ -59,6 +59,53 @@ b as [b_1,b_2,b_3] then the vector product denoted
 a x b = [a_2b_3 - a_3b_2 , a_3b_1 - a_1b_3 , a_1b_2 - a_2b_1].
 Note that the vector product is often referred to as the cross product.
 </Description>
+
+<!-- new part -->
+<description>
+          <p>The vector or cross product of two nonzero three-dimensional vectors
+v1 and v2 is defined by</p>
+          <p>v1 x v2  =  n  norm(v1) * norm(v2) sin(theta)
+where n is the unit normal vector perpendicular to both, adhering to
+the right hand rule.
+CRC Standard Mathematical Tables and Formulae, 
+editor: Dan Zwillinger, CRC Press Inc., 1996, [2.4]
+</p>
+        </description>
+	<discussion>
+	  <p>The <el>vectorproduct</el> is the operator element for
+	  deriving the vector product of two vectors.</p>
+	</discussion>
+
+        <property>
+          <description>
+            <p>if v1 and v2 are parallel then their vector product is 0</p>
+          </description>
+        </property>
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><vectorproduct/><ci>u</ci><ci>v</ci></apply></math></MMLexample>
+		<MMLexample>
+		<description><p>where <var>A</var> and <var>B</var> are vectors, <var>N</var> is a unit vector orthogonal to <var>A</var> and <var>B</var>, <var>a</var>, <var>b</var> are the magnitudes of
+A, B and <graphic role="inline" source="image/f4112.gif" alt="\theta"/>is the angle between A and B.</p>
+        </description>
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+		<apply>
+		  <eq/>
+		  <apply><vectorproduct/>
+		    <ci type="vector"> A</ci>
+		    <ci type="vector"> B</ci>
+		  </apply>
+		  <apply><times/>
+		    <ci>a</ci>
+		    <ci>b</ci>
+		    <apply><sin/>
+		      <ci>&theta;</ci>
+		    </apply>
+		    <ci type="vector"> N</ci>
+		  </apply>
+		</apply>
+		</math></MMLexample>
+<!-- end new part -->
+
+<property xml:id="vectorproduct_prop_1">
 <CMP>
 if we write a as [a_1,a_2,a_3] and
 b as [b_1,b_2,b_3] then the vector product denoted 
@@ -165,10 +212,10 @@ a x b = [a_2b_3 - a_3b_2 , a_3b_1 - a_1b_3 , a_1b_2 - a_2b_1]
     </OMA>
   </OMA>
 </OMOBJ>
-</FMP>
+</FMP></property>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="scalarproduct">
 <Name>scalarproduct</Name>
   <Pragmatic>
     <Token>scalarproduct</Token>
@@ -182,6 +229,84 @@ the angle between the two vectors and |.| is a euclidean size
 function. Note that the scalar product is often referred to as the dot
 product.
 </Description>
+
+<!-- new part -->
+<description>
+          <p>This symbol represents the scalar product function. It takes two vector
+          arguments and returns a scalar value. The scalar product of two vectors a, b is
+          defined as |a| * |b| * cos(\theta), where \theta is the angle between the two
+          vectors and |.| is a euclidean size function. Note that the scalar product is
+          often referred to as the dot product. </p>
+	</description>
+	<discussion>
+	  <p>The <el>scalarproduct</el> is the operator element for deriving the scalar
+	  product of two vectors.</p>
+	</discussion>
+
+        <property>
+          <description>
+            <p>if the scalar product of two vectors is 0 then they are orthogonal.</p>
+          </description>
+        </property>
+        <MMLexample><description>
+          <p>This symbol represents the scalar product function. It takes two vector
+          arguments and returns a scalar value. The scalar product of two vectors a, b is
+          defined as |a| * |b| * cos(\theta), where \theta is the angle between the two
+          vectors and |.| is a euclidean size function. Note that the scalar product is
+          often referred to as the dot product. </p>
+	</description>
+	<discussion>
+	  <p>The <el>scalarproduct</el> is the operator element for deriving the scalar
+	  product of two vectors.</p>
+	</discussion>
+
+        <property>
+          <description>
+            <p>if the scalar product of two vectors is 0 then they are orthogonal.</p>
+          </description>
+        </property>
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><scalarproduct/><ci>u</ci><ci>v</ci></apply>/math></MMLexample>
+		<MMLexample>
+		<description>
+        <p>where A and B are vectors, <var>a</var>, <var>b</var> are the magnitudes of A, B and <graphic role="inline" source="image/f4112.gif" alt="\theta"/>is the angle between A and B.</p>
+        </description>
+	<math xmlns="http://www.w3.org/1998/Math/MathML"><apply>
+  <eq/>
+  <apply><scalarproduct/>
+    <ci type="vector"> A</ci>
+    <ci type="vector">B</ci>
+  </apply>
+  <apply><times/>
+    <ci>a</ci>
+    <ci>b</ci>
+    <apply><cos/>
+      <ci>&theta;</ci>
+    </apply>
+  </apply>
+</apply></math></MMLexample>
+<apply><scalarproduct/><ci>u</ci><ci>v</ci></apply>]]></MMLexample>
+		<MMLexample>
+		<description>
+        <p>where A and B are vectors, <var>a</var>, <var>b</var> are the magnitudes of A, B and <graphic role="inline" source="image/f4112.gif" alt="\theta"/>is the angle between A and B.</p>
+        </description>
+	<math xmlns="http://www.w3.org/1998/Math/MathML"><apply>
+  <eq/>
+  <apply><scalarproduct/>
+    <ci type="vector"> A</ci>
+    <ci type="vector">B</ci>
+  </apply>
+  <apply><times/>
+    <ci>a</ci>
+    <ci>b</ci>
+    <apply><cos/>
+      <ci>&theta;</ci>
+    </apply>
+  </apply>
+</apply></math></MMLexample>
+
+<!-- end new part -->
+
+<property xml:id="scalarproduct_prop_2">
 <CMP>
 a.b = |a| * |b| * cos(\theta), where \theta is the angle between the
 two vectors
@@ -293,10 +418,10 @@ N.B. The FMP displays the two dimensional case only.
     </OMA>
   </OMA>
 </OMOBJ>
-</FMP>
+</FMP></property>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="outerproduct">
 <Name>outerproduct</Name>
   <Pragmatic>
     <Token>outerproduct</Token>
@@ -309,6 +434,31 @@ the {i,j}'th element of the matrix to be returned as m_{i,j}, then:
 m_{i,j}=a_i * b_j where a_i,b_j are the i'th and j'th elements of a, b
 respectively.
 </Description>
+
+<!-- new part -->
+<description>
+          <p>This symbol represents the outer product function. It takes two vector
+          arguments and returns a matrix. It is defined as follows: if we write the
+          {i,j}'th element of the matrix to be returned as m_{i,j}, then: m_{i,j}=a_i *
+          b_j where a_i,b_j are the i'th and j'th elements of a, b respectively. </p>
+        </description>
+	<discussion>
+	  <p>The <el>outerproduct</el> is the operator element for deriving the outer
+	  product of two vectors.</p>
+	</discussion>
+
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><outerproduct/><ci>u</ci><ci>v</ci></apply></math></MMLexample>
+	<MMLexample>
+	  <description><p>where A and B are vectors.</p></description>
+	  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply>
+  <outerproduct/>
+  <ci type="vector">A</ci>
+  <ci type="vector">B</ci>
+</apply></math></MMLexample>
+
+<!-- end new part -->
+
+<property xml:id="outerproduct_prop_3">
 <CMP>
 outerproduct(a,b)_{i,j} = a_i * b_j
 </CMP>
@@ -341,10 +491,10 @@ outerproduct(a,b)_{i,j} = a_i * b_j
     </OMA>
   </OMA>
 </OMOBJ>
-</FMP>
+</FMP></property>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="transpose">
 <Name>transpose</Name>
   <Pragmatic>
     <Token>transpose</Token>
@@ -354,6 +504,36 @@ outerproduct(a,b)_{i,j} = a_i * b_j
 This symbol represents a unary function that denotes the transpose of
 the given matrix or vector
 </Description>
+
+<!-- new part -->
+   <description>
+          <p>The transpose of a matrix or vector.  See CRC Standard Mathematical Tables
+          and Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996, [2.4] and
+          [2.5.1].</p>
+        </description>
+	<discussion>
+	  <p>The <el>transpose</el> element is the operator for constructing the transpose
+	  of a matrix.</p>
+	</discussion>
+
+        <property>
+          <description>
+            <p>transpose(transpose(A))= A</p>
+          </description>
+        </property>
+        <property>
+          <description>
+            <p>transpose(transpose(V))= V</p>
+          </description>
+        </property>
+        <MMLexample>
+	  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><transpose/><ci type="matrix">A</ci></apply></math>
+	</MMLexample>
+	  
+	<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><transpose/><ci type="vector">V</ci></apply></math></MMLexample>
+
+<!-- end new part -->
+
 <Example>
 A representation of the equation 
 transpose matrix([0,1],[2,3]) = matrix([0,2],[1,3])
@@ -396,7 +576,7 @@ assumed.
 </Example>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="determinant">
 <Name>determinant</Name>
   <Pragmatic>
     <Token>determinant</Token>
@@ -406,6 +586,25 @@ assumed.
 This symbol denotes the unary function which returns the determinant
 of its argument, the argument should be a square matrix.
 </Description>
+
+<!-- new part -->
+<description>
+          <p>The "determinant" of a matrix.  This is a unary function.  See CRC Standard
+          Mathematical Tables and Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996,
+          [2.5.4].</p>
+        </description>
+	<discussion>
+	  <p>The <el>determinant</el> element is the operator for constructing the
+	  determinant of a matrix.</p>
+	</discussion>
+
+        <MMLexample>
+	  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><determinant/>
+  <ci type="matrix"> A</ci>
+</apply></math></MMLexample>
+<!-- end new part -->
+
+<property xml:id="determinant_prop_4">
 <CMP>
 The determinant of an identity matrix is 1
 </CMP>
@@ -463,10 +662,10 @@ The determinant of an identity matrix is 1
     </OMA>
   </OMA>
 </OMOBJ>
-</FMP>
+</FMP></property>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="vector_selector">
 <Name>vector_selector</Name>
   <Pragmatic>
     <Token>vector_selector</Token>
@@ -517,7 +716,7 @@ assumed
 </Example>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="matrix_selector">
 <Name>matrix_selector</Name>
   <Pragmatic>
     <Token>matrix_selector</Token>
