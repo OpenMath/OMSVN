@@ -30,7 +30,7 @@ Definition.attrib = attribute encoding {xsd:string}?,
 Content-token.content = text
 
 # we want to extend this in pragmatic CMathML, so we introduce abbrevs here.
-cn.content.class = Content-token.content
+cn.content = Content-token.content
 cn.type.vals  = "e-notation"|"integer"|"rational"|"real" |
                          "complex-cartesian"|"complex-polar"
 
@@ -39,7 +39,7 @@ cn = element cn {#attribute base {xsd:positiveInteger [1,...,36]},
                  attribute type {cn.type.vals}?,
   		 Definition.attrib,
   		 MathML.Common.attrib,	
-		 (cn.content.class)*}
+		 (cn.content)*}
 
 ci = element ci {attribute type {xsd:string}?,
                  attribute nargs {xsd:string}?,
@@ -59,7 +59,7 @@ csymbol       = element csymbol {MathML.Common.attrib,
 apply.content = notAllowed
 apply = element apply {MathML.Common.attrib,cdbase.attrib?,apply.content}
 
-qualifier.class = condition
+qualifier = condition
 
 # the content of the bind element, leave it empty and extend it later
 bind.content = notAllowed

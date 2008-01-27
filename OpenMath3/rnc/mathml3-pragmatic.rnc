@@ -28,7 +28,7 @@ Content-token.content |= PresExp
 
 # the content of "cn" may have <sep> elements in it
 sep = element sep {empty}
-cn.content.class |= sep
+cn.content |= sep
 cn.type.vals |= "constant" 
 
 # allow degree in bvar
@@ -40,10 +40,10 @@ domainofapplication = element domainofapplication{Definition.attrib,MathML.Commo
 lowlimit = element lowlimit {Definition.attrib,MathML.Common.attrib,cdbase.attrib?,ContExp+}
 uplimit = element uplimit {Definition.attrib,MathML.Common.attrib,cdbase.attrib?,ContExp+}
 
-# allow the non-strict qualifiers
-qualifier.class |= domainofapplication|(uplimit,lowlimit?)|(lowlimit,uplimit?)
+## allow the non-strict qualifiers
+qualifier |= domainofapplication|(uplimit,lowlimit?)|(lowlimit,uplimit?)|degree
 
-# classes for the tokens by role
+## we collect the tokens by role
 token.constant = notAllowed
 token.binder = notAllowed
 token.application = notAllowed
@@ -54,6 +54,8 @@ token.error = notAllowed
 tokens = token.constant | token.binder | token.application | 
                token.semantic-attribution | token.attribution |
 	       token.error
+
+container = notAllowed
 
 # allow closure attributes and two content elements in intervals
 interval.content  &= attribute closure {"closed"|"open"|"open-closed"|"closed-open"}?,
@@ -74,3 +76,5 @@ declare = element declare {attribute type {xsd:string}?,
 
 # include the relevant content dictionaries
 include "cd/mathml3-pragmatic.rnc"
+
+ContExp |=  container
