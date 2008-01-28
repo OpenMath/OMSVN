@@ -17,9 +17,10 @@ CDBase = element CDBase { xsd:anyURI }
 mobj = (external "openmath3.rnc" | external "mathml3.rnc")
 #mobj = external "om3-sts.rnc"
 
-text-or-om = (text | mobj | code | var | quote | intref | specref | el | att | sup | sub |
-graphic)*
-########### eliminate these in the final version
+text-or-om = (text | mobj | code | var | quote | intref | specref | el | att | attval | sup | sub |
+graphic | eg | emph | kw )*
+
+########### eliminate or substitute these in the final version
 code = element code {text}
 var = element var {text}
 quote = element quote {text-or-om}
@@ -27,10 +28,13 @@ intref = element intref {attribute ref {xsd:anyURI}, text}
 specref = element specref {attribute ref {xsd:anyURI}}
 el = element el {text}
 att = element att {text}
+attval = element attval {text}
 sub = element sub {text}
 sup = element sup {text}
-graphic = element graphic {attribute role {xsd:string}?, attribute source {xsd:anyURI},
-attribute alt {xsd:string}}
+emph = element emph {text}
+kw = element kw {text}
+graphic = element graphic {attribute role {xsd:string}?, attribute source {xsd:anyURI},attribute alt {xsd:string}}
+eg = element eg {attribute role {xsd:string}?,mobj}
 ############ end eliminate
 CDReviewDate = element CDReviewDate { xsd:date }
 CDDate = element CDDate { xsd:date }
@@ -53,9 +57,10 @@ Role = element Role {
 Pragmatic = element Pragmatic {(Token|Container),Attribute*}
 Token  = element Token { text }
 Container = element Container { text}
-Attribute = element Attribute {Name,Model,Default}
+Attribute = element Attribute {Name,((Model,Default)|Prescribed)}
 Model = element Model { text }
 Default = element Default { text }
+Prescribed = element Prescribed { text }
 Title = element Title { text }
 property = element property {id.att?,(CMP|description)?,(FMP|mobj)?}
 CMP = element CMP { text }

@@ -67,6 +67,58 @@ vectors.  Vectors in this CD are considered to be row vectors and must
 therefore be transposed to be considered as column vectors.
 
 
+
+
+      A vector is an ordered n-tuple of values representing an element of an
+      n-dimensional vector space.  The "values" are all from the same ring, typically real
+      or complex.  Where orientation is important, such as for pre or post multiplication
+      by a matrix a vector is treated as if it were a column vector and its transpose is
+      treated a row vector.  The type attribute can be used to explicitly specify that a
+      vector is a "row" vector.  See CRC Standard Mathematical Tables and Formulae,
+      editor: Dan Zwillinger, CRC Press Inc., 1996, [2.4]
+    
+
+    
+      vector is the container element for a vector. The child elements form
+      the components of the vector.
+
+      For purposes of interaction with matrices and matrix multiplication, vectors are
+      regarded as equivalent to a matrix consisting of a single column, and the transpose
+      of a vector behaves the same as a matrix consisting of a single row. Note that
+      vectors may be rendered either as a single column or row.
+
+      In general a vector can be constructed by providing a function and a
+      1-dimensional domain of application.  The entries of the vector correspond to the
+      values obtained by evaluating the function at the points of the domain.  The
+      qualifications defined by a domainofapplication element can also be
+      abbreviated in several ways including a condition placed on a bound
+      variable and an expression involving that variable.
+
+      The vector element constructs vectors from an n-dimensional
+      vector space so that its n child elements typically represent real or
+      complex valued scalars as in the three-element vector
+
+
+  
+
+  xy
+  3
+  7
+
+
+A vector can also be constructed by evaluating a function over a specific domain
+       of application, each evaluation corresponding to an entry in the vector.  In its
+       most general form a domain is explicitly specified by a
+       domainofapplication element and a function. Optionally the
+       domainofapplication can be augmented by a bvar element and an
+       algebraic expression expressed in terms of it.  Qualifications defined by a
+       domainofapplication element can be abbreviated in several ways as
+       described in .
+	
+
+
+
+
 An example of vector using n arguments. 
 The specific vector constructed in this example is [3,6,9].
 
@@ -86,10 +138,26 @@ matrixrow
   
     matrixrow
   
-application
+  application
+   
+    This symbol is an n-ary constructor used to represent rows of matrices. Its arguments
+    should be members of a ring.
+  
+
+
  
-This symbol is an n-ary constructor used to represent rows of
-matrices. Its arguments should be members of a ring.
+   This symbol is an n-ary constructor used to represent rows of matrices.  Its
+   arguments should be members of a ring. 
+ 
+ 
+   The matrixrow element is the container element
+   for the rows of a matrix.
+ 
+ 
+   
+   12
+ 
+ 
 
 
 Representation of a row of a matrix of length two containing the integers
@@ -113,6 +181,108 @@ application
 
 This symbol is an n-ary matrix constructor which requires matrixrow's
 as arguments. It is used to represent matrices.
+
+
+
+
+          This is the constructor for a matrix.  It requires matrixrow's as arguments.
+          It is used to represent matrices.  See CRC Standard Mathematical Tables and
+          Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996, [2.5.1].
+        
+	
+	  The matrix element is the container element for matrix rows, which
+	  are represented by matrixrow. The matrixrows contain the
+	  elements of a matrix.
+	  
+	  In general a matrix can be constructed by providing a function and a
+	  2-dimensional domain of application.  The entries of the matrix correspond to
+	  the values obtained by evaluating the function at the points of the domain.  The
+	  qualifications defined by a domainofapplication element can also be
+	  abbreviated in several ways including a condition element placing
+	  constraints directly on bound variables and an expression in those variables.
+	  The matrix element is used to represent mathematical matrices. It
+	  has zero or more child elements, all of which are matrixrow
+	  elements. These in turn expect zero or more child elements that evaluate to
+	  algebraic expressions or numbers. These sub-elements are often real numbers, or
+	  symbols as in
+
+
+   1 2 
+   3 4 
+
+
+        The matrixrow elements must always be contained inside of a matrix, and
+        all rows in a given matrix must have the same number of elements.
+
+	Note that the behavior of the matrix and matrixrow elements
+	is substantially different from the mtable and mtr presentation
+	elements.
+
+	A matrix can also be constructed by evaluating a bivariate function over a
+	specific domain of application, each evaluation corresponding to an entry in the
+	matrix.  In its most general form a domain of application is explicitly specified
+	by a domainofapplication element and a function which when evaluated at
+	points of the domain produces entries in the matrix. Optionally the
+	domainofapplication can be augmented by bvar elements and an
+	algebraic expression expressed in terms of them.
+	
+
+  
+          
+            scalar multiplication
+          
+        
+        
+	  
+	    scalar multiplication
+	  
+	  Matrix*column vector
+	
+
+        
+          
+            scalar multiplication
+          
+	  Addition
+	
+        
+          
+            scalar multiplication
+          
+	  Matrix*Matrix
+	
+
+        
+	  
+  0 1 0
+  0 0 1
+  1 0 0
+
+
+  i
+  j
+  
+    
+      
+        i
+        15
+      
+      
+        j
+        59
+      
+    
+  
+
+  
+    i
+    j
+  
+
+
+
+
+
 
 
 Representation of a 2x2 identity matrix

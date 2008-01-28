@@ -68,6 +68,108 @@ vectors.  Vectors in this CD are considered to be column vectors, and must
 therefore be transposed to be considered as row vectors.
 
 
+
+ 
+      A vector is an ordered n-tuple of values representing an element of an
+      n-dimensional vector space.  The "values" are all from the same ring, typically real
+      or complex.  Where orientation is important, such as for pre or post multiplication
+      by a matrix a vector is treated as if it were a column vector and its transpose is
+      treated a row vector.  The type attribute can be used to explicitly specify that a
+      vector is a "row" vector.  See CRC Standard Mathematical Tables and Formulae,
+      editor: Dan Zwillinger, CRC Press Inc., 1996, [2.4]
+    
+
+    
+      vector is the container element for a vector. The child elements form
+      the components of the vector.
+
+      For purposes of interaction with matrices and matrix multiplication, vectors are
+      regarded as equivalent to a matrix consisting of a single column, and the transpose
+      of a vector behaves the same as a matrix consisting of a single row. Note that
+      vectors may be rendered either as a single column or row.
+
+      In general a vector can be constructed by providing a function and a
+      1-dimensional domain of application.  The entries of the vector correspond to the
+      values obtained by evaluating the function at the points of the domain.  The
+      qualifications defined by a domainofapplication element can also be
+      abbreviated in several ways including a condition placed on a bound
+      variable and an expression involving that variable.
+
+      The vector element constructs vectors from an n-dimensional
+      vector space so that its n child elements typically represent real or
+      complex valued scalars as in the three-element vector
+
+
+  
+
+  xy
+  3
+  7
+
+
+A vector can also be constructed by evaluating a function over a specific domain
+       of application, each evaluation corresponding to an entry in the vector.  In its
+       most general form a domain is explicitly specified by a
+       domainofapplication element and a function. Optionally the
+       domainofapplication can be augmented by a bvar element and an
+       algebraic expression expressed in terms of it.  Qualifications defined by a
+       domainofapplication element can be abbreviated in several ways as
+       described in .
+	
+
+   
+	  vector=column_vector
+        
+        
+          matrix * vector = vector
+        
+        
+          matrix * column_vector = column_ vector
+        
+        
+          row_vector*matrix  = row_vector
+        
+        
+          transpose(vector) = row_vector
+        
+        
+          transpose(column_vector) = row_vector
+        
+        
+          transpose(row_vector) = column_vector
+        
+        
+          distributive over scalars
+        
+        
+          associativity.
+        
+        
+          Matrix * column vector
+	
+        
+          row vector * Matrix
+        
+	  123x
+	
+
+        
+	  
+	    123x
+	  
+	
+        
+	  i
+	  1
+	  10
+	  xi
+	
+      
+	
+
+
+
+
 An example of vector using n arguments. 
 The specific vector constructed in this example is transpose of [3,6,9].
 
