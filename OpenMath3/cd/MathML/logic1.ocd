@@ -104,7 +104,7 @@ equivalent, that is have the same boolean value for any inputs.
 condition that (A implies B and B implies A) </CMP>
 
 <FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
   <OMA>
     <OMS cd="logic1" name="equivalent"/>
     <OMA>
@@ -157,7 +157,7 @@ argument, and returns the opposite boolean value.
 <property xml:id="not_prop_2">
 <CMP> for all x | not(not(x))=x </CMP>
 <FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
 <OMBIND>
   <OMS cd="quant1" name="forall"/>
   <OMBVAR>
@@ -234,7 +234,7 @@ is true if all arguments are true or false otherwise.
 <CMP>
 for all x | x and not(x) = false
 </CMP>
-<FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+<FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
 <OMBIND>
   <OMS cd="quant1" name="forall"/>
   <OMBVAR>
@@ -295,7 +295,7 @@ are true.</p>
 <CMP>
 for all x | x xor x = false
 </CMP>
-<FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+<FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
   <OMBIND><OMS cd="quant1" name="forall"/>
   <OMBVAR>
     <OMV name="x"/>
@@ -317,7 +317,7 @@ for all x | x xor not(x) = true
 </CMP>
 
 <FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd"><OMBIND><OMS cd="quant1" name="forall"/>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"><OMBIND><OMS cd="quant1" name="forall"/>
   <OMBVAR>
     <OMV name="x"/>
   </OMBVAR>
@@ -372,7 +372,7 @@ for all x | x or not(x) = true
 </CMP>
 
 <FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd"><OMBIND><OMS cd="quant1" name="forall"/>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"><OMBIND><OMS cd="quant1" name="forall"/>
   <OMBVAR>
     <OMV name="x"/>
   </OMBVAR>
@@ -389,12 +389,12 @@ for all x | x or not(x) = true
 </OMBIND>
 </OMOBJ></FMP></property>
 
-<property xml:id="or_prop_7>
+<property xml:id="or_prop_7">
 <CMP>
 for all a,b | not(a and b)= (not(a) or not(b))
 </CMP>
 <FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
 <OMBIND>
   <OMS cd="quant1" name="forall"/>
   <OMBVAR>
@@ -467,13 +467,14 @@ evaluates to true.
   <ci>A</ci>
   <ci>B</ci>
 </apply>
-</property></MMLexample>
+		</math>
+</MMLexample>
 <!-- end new part -->
 
 <property xml:id="implies_prop_8">
 <CMP> for all x | false implies x </CMP>
 
-<FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+<FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
 <OMBIND>
   <OMS cd="quant1" name="forall"/>
   <OMBVAR>
@@ -512,20 +513,23 @@ This symbol represents the boolean value true.
   <apply><not/><true/></apply>
   <false/>
 </apply></math></property>
-        <property>
-          <description>
-            <p>For all boolean p,  p or true is true</p>
-          </description><math xmlns="http://www.w3.org/1998/Math/MathML">
-<declare type="boolean"><ci>p</ci></declare>
-<apply><forall/>
+<property>
+  <description>
+    <p>For all boolean p,  p or true is true</p>
+  </description>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <bind><forall/>
   <bvar><ci>p</ci></bvar>
   <apply><eq/>
     <apply><or/><ci>p</ci><true/></apply>
     <true/>
   </apply>
-</apply>
-</math></property>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply> <eq/>
+</bind>
+</math>
+</property>
+<MMLexample>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply> <eq/>
   <apply><or/>
     <true/>
     <ci type = "boolean">P</ci>
@@ -539,7 +543,7 @@ This symbol represents the boolean value true.
 <property xml:id="implies_prop_9">
 <CMP> not true = false </CMP>
 <FMP>
-  <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
     <OMA>
       <OMS cd="relation1" name="eq"/>
       <OMA>
@@ -584,12 +588,14 @@ not true = false</p>
             <p>
 p and false = false</p>
           </description><math xmlns="http://www.w3.org/1998/Math/MathML">
-<declare type="boolean"><ci>p</ci></declare>
-<apply><forall/>
+<bind><forall/>
   <bvar><ci>p</ci></bvar>
-  <apply><and/><ci>p</ci><false/></apply>
-  <false/>
-</apply>
+  <apply>
+    <eq/>
+      <apply><and/><ci>p</ci><false/></apply>
+      <false/>
+  </apply>
+</bind>
 </math></property>
         <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><eq/>
   <apply><and/>
@@ -604,7 +610,7 @@ p and false = false</p>
 <property xml:id="false_prop_10">
 <CMP> not false = true </CMP>
 <FMP>
-  <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
     <OMA>
       <OMS cd="relation1" name="eq"/>
       <OMA>

@@ -89,7 +89,9 @@ therefore be transposed to be considered as column vectors.
       vector space so that its <var>n</var> child elements typically represent real or
       complex valued scalars as in the three-element vector
 
-<eg role = "mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><vector>
+<eg role = "mathml">
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+<vector>
   <apply><plus/><ci>x</ci><ci>y</ci></apply>
   <cn>3</cn>
   <cn>7</cn>
@@ -110,7 +112,7 @@ therefore be transposed to be considered as column vectors.
 <Example>
 An example of vector using n arguments. 
 The specific vector constructed in this example is [3,6,9].
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
   <OMA>
     <OMS cd="linalg2" name="vector"/>
     <OMI> 3 </OMI>
@@ -125,32 +127,33 @@ The specific vector constructed in this example is [3,6,9].
 <CDDefinition xml:id="matrixrow">
 <Name>matrixrow</Name>
   <Pragmatic>
-    <Token>matrixrow</Token>
+    <Container>matrixrow</Container>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol is an n-ary constructor used to represent rows of
-matrices. Its arguments should be members of a ring.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol is an n-ary constructor used to represent rows of matrices. Its arguments
+    should be members of a ring.
+  </Description>
 
 <!-- new part -->
  <description>
-	  <p>This symbol is an n-ary constructor used to represent rows of matrices.  Its
-	  arguments should be members of a ring. </p>
-	</description>
-	<discussion>
-	  <p>The <el>matrixrow</el> element is the <emph>container</emph> element
-	  for the rows of a matrix.</p>
-	</discussion>
-        <MMLexample>
-	  <math xmlns="http://www.w3.org/1998/Math/MathML"><matrixrow><cn>1</cn><cn>2</cn></matrixrow></math>
-	</MMLexample>
-<!-- end new part -->
+   <p>This symbol is an n-ary constructor used to represent rows of matrices.  Its
+   arguments should be members of a ring. </p>
+ </description>
+ <discussion>
+   <p>The <el>matrixrow</el> element is the <emph>container</emph> element
+   for the rows of a matrix.</p>
+ </discussion>
+ <MMLexample>
+   <math xmlns="http://www.w3.org/1998/Math/MathML">
+   <matrixrow><cn>1</cn><cn>2</cn></matrixrow></math>
+ </MMLexample>
+ <!-- end new part -->
 
 <Example>
 Representation of a row of a matrix of length two containing the integers
 [1,0]
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
   <OMA>
     <OMS cd="linalg2" name="matrixrow"/>
     <OMI> 1 </OMI>
@@ -163,7 +166,7 @@ Representation of a row of a matrix of length two containing the integers
 <CDDefinition xml:id="matrix">
 <Name>matrix</Name>
   <Pragmatic>
-    <Token>matrix</Token>
+    <Container>matrix</Container>
   </Pragmatic>
 <Role>application</Role>
 <Description>
@@ -220,19 +223,20 @@ as arguments. It is used to represent matrices.
             <p>scalar multiplication</p>
           </description>
         </property>
-        <property role="mathml-fragment" >
+        <property>
 	  <description>
 	    <p>scalar multiplication</p>
 	  </description>
 	  <math xmlns="http://www.w3.org/1998/Math/MathML">Matrix*column vector</math>
 	</property>
-        <property role="mathml-fragment">
+
+        <property>
           <description>
             <p>scalar multiplication</p>
           </description>
 	  <math xmlns="http://www.w3.org/1998/Math/MathML">Addition</math>
 	</property>
-        <property role="mathml-fragment">
+        <property>
           <description>
             <p>scalar multiplication</p>
           </description>
@@ -245,7 +249,7 @@ as arguments. It is used to represent matrices.
   <matrixrow><cn>0</cn> <cn>0</cn> <cn>1</cn></matrixrow>
   <matrixrow><cn>1</cn> <cn>0</cn> <cn>0</cn></matrixrow>
 </matrix></math></MMLexample>
-        <MMLexample role="mathml-fragment"><math xmlns="http://www.w3.org/1998/Math/MathML"><matrix>
+<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><matrix>
   <bvar><ci type="integer">i</ci></bvar>
   <bvar><ci type="integer">j</ci></bvar>
   <condition>
@@ -260,17 +264,20 @@ as arguments. It is used to represent matrices.
       </apply>
     </apply>
   </condition>
+<vector>
   <apply><power/>
     <ci>i</ci>
     <ci>j</ci>
   </apply>
-</vector></math></MMLexample>
+</vector>
+</matrix>
+</math></MMLexample>
 
 <!-- end new part -->
 
 <Example>
 Representation of a 2x2 identity matrix
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
   <OMA>
     <OMS cd="linalg2" name="matrix"/>
     <OMA>

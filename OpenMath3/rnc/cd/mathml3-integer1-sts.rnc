@@ -70,6 +70,30 @@ application
    true if and only if b mod a = 0.
 
 
+
+
+          This is the binary MathML operator that is used indicate the mathematical
+          relationship a "is a factor of" b. This relationship is true just if b mod a =
+          0
+        
+	
+	  The factorof element is the relational operator element on two
+	  integers a and b specifying whether one is an integer
+	  factor of the other.
+	
+
+
+          
+            ForAll( [a,b], a and b integers, a divides b  if there is an integer c such that a*c = b )
+          
+        
+        
+  a
+  b
+
+
+
+
  b is a factor of a iff remainder of a divided by b = 0 
 
 
@@ -103,6 +127,46 @@ factorial
 application
  
 The symbol to represent a unary factorial function on non-negative integers.
+
+
+
+
+          This is the unary operator used to construct factorials.  Factorials are
+          defined by n! = n*(n-1)* ... * 1
+        
+        
+          
+            ForAll( n, n \gt 0, n! = n*(n-1)! )
+
+  n
+  n0
+  
+    n
+    
+      n
+      
+        n1
+      
+    
+  
+
+
+        
+          
+            0! = 1
+
+  0
+  1
+
+
+
+	    
+	      If this were evaluated at n = 5 it would evaluate to 120.
+	      
+	    n
+
+
+
 
 
 factorial n = product [1..n]
@@ -145,6 +209,67 @@ application
 The symbol to represent the integer (binary) division operator. That is,
 for integers a and b, quotient(a,b) denotes q such that a=b*q+r, with |r|
 less than |b| and a*r positive.
+
+
+
+
+      quotient is the binary function used to represent the operation of integer
+	division.  quotient(a,b) denotes q such that a = b*q+r, with |r| less than |b| and
+	a*r non-negative. 
+      
+    
+    
+      The quotient element is the operator used for division modulo a
+      particular base. When the quotient operator is applied to integer arguments
+      a and b, the result is the quotient of a
+      divided by b. That is, quotient returns the unique
+      integer q such that a = q b +
+      r. (In common usage, q is called the quotient and r
+      is the remainder.)
+    
+
+ 
+   
+     ForAll( [a,b], b != 0, a = b*quotient(a,b) + rem(a,b) )
+   
+
+
+  a
+  b
+  b0
+  
+    a
+    
+      
+          b
+          ab
+      
+      ab
+    
+  
+
+
+
+
+
+  Various mathematical applications will use this data in different
+  ways. Editing applications might choose an image such as shown below, while a
+  computationally based application would evaluate it to 2 whena=13 and
+  b=5.
+  
+   a b  
+
+
+
+
+
+  
+  5
+  4
+
+
+
+
 
 
 for all a,b with a,b Integers |
@@ -235,13 +360,74 @@ a*remainder(a,b) >= 0
 
 remainder
   
-    remainder
+    rem
   
 application
  
 The symbol to represent the integer remainder after (binary) division.
 For integers a and b, remainder(a,b) denotes r such that a=b*q+r, with |r| less
 than |b| and a*r positive.
+
+
+
+
+
+          This is the binary operator used to represent the integer remainder a mod b.
+          For arguments a and b, such that a = b*q + r with |r| < |b| it represents the
+          value r.
+        
+	
+	  The rem element is the operator that returns the
+	  remainder of a division modulo a particular base. When the
+	  rem operator is applied to integer arguments a and
+	  b, the result is the remainder of a divided by
+	  b. That is, rem returns the unique integer,
+	  r such that a = q b+ r,
+	  where r < q. (In common usage, q is called
+	  the quotient and r is the remainder.)
+	
+
+   
+          
+            rem(a, 0) is undefined
+          
+        
+        
+          
+            ForAll( [a,b], b!=0, a = b*quotient(a,b) + rem(a,b))
+          
+
+  a
+  b
+  b0
+  
+    a
+    
+      
+        b
+  ab
+      
+    
+    a
+    b
+  
+
+
+
+
+
+
+
+  
+    If this were evaluated at a = 15 and b = 8 it would yield 7.
+  
+
+  ab
+
+
+
+
+
 
 
 for all a,b with a,b Integers | 
