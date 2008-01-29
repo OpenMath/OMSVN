@@ -1,0 +1,1102 @@
+<?xml version="1.0"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:cd="http://www.openmath.org/OpenMathCD"><head><script type="text/javascript"> function divfold(_Id){
+     var thisLevel = document.getElementById(_Id);
+     var thisLevela = document.getElementById(_Id.concat("a"))
+     if(thisLevel.style.display != "none"){ 
+      thisLevel.style.display = "none";
+      thisLevela.style.backgroundColor = "#CCCCCC";} 
+     else{
+      thisLevel.style.display = "block";
+      thisLevela.style.backgroundColor = "#AAFFAA";}  
+       }
+     </script><title>fns1</title><link rel="stylesheet" href="omcd.css" type="text/css"/></head><body><a name="top"/><h1>OpenMath Content Dictionary: fns1</h1><dl><dt><span class="dt">Canonical URL:</span></dt><dd><a href="http://www.openmath.org/cd/fns1.ocd">http://www.openmath.org/cd/fns1.ocd</a></dd><dt><span class="dt">CD Base:</span></dt><dd><a href="http://www.openmath.org/cd">http://www.openmath.org/cd</a></dd><dt><span class="dt">CD File:</span></dt><dd><a href="fns1.ocd">fns1.ocd
+  </a></dd><dt><span class="dt">CD as XML Encoded OpenMath:</span></dt><dd><a href="fns1.omcd">fns1.omcd
+  </a></dd><dt><span class="dt">Defines:</span></dt><dd><a href="#domain">domain</a>, <a href="#domainofapplication">domainofapplication</a>, <a href="#identity">identity</a>, <a href="#image">image</a>, <a href="#inverse">inverse</a>, <a href="#lambda">lambda</a>, <a href="#left_compose">left_compose</a>, <a href="#left_inverse">left_inverse</a>, <a href="#range">range</a>, <a href="#right_inverse">right_inverse</a></dd><dt><span class="dt">Date:</span></dt><dd>2004-03-30</dd><dt><span class="dt">Version:</span></dt><dd>3</dd><dt><span class="dt">Review Date:</span></dt><dd>2006-03-30</dd><dt><span class="dt">Status:</span></dt><dd>official</dd></dl><hr/>
+
+<pre>
+
+     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+</pre>
+
+
+
+
+
+
+
+
+
+
+<p>
+    This CD is intended to be `compatible' with the corresponding
+    elements in Content MathML.</p><p>    In this CD we give a set of functions concerning functions
+    themselves. Functions can be constructed from expressions via a
+    lambda expression. Also there are basic function functions like
+    compose, etc.
+</p>
+
+<hr/><dl>
+<h2><a name="domainofapplication">domainofapplication</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;domainofapplication/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+The domainofapplication element denotes the domain over which a given 
+function is being applied. It is intended in MathML to be a more general 
+alternative to specification of this domain using
+such quantifier elements as bvar, lowlimit or condition. 
+</p></dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/fns1.html#domainofapplication">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#domain">domain</a>]
+	    [Last: <a href="#lambda">lambda</a>]
+	  
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="domain">domain</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;domain/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol denotes the domain of a given function, which is the set of
+values it is defined over.
+</p></dd>
+
+
+       <dt><span class="dt">description:</span></dt><dd><p>
+          The domain element denotes the domain of a given function, which is the 
+set of values over which it is defined. </p><p>        </p></dd>
+	<dt><span class="dt">discussion:</span></dt><dd><p>
+	  The domain element denotes the domain of a given function, which is
+	  the set of values over which it is defined.  </p></dd>
+
+<dt><span class="dt">Example:</span></dt><dd>
+
+<p>If f is a function from the reals to the rationals, then:</p>
+<div><button id="id73236xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73236xml')">xml</button> <button id="id73236prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73236pref')">prefix</button> <button id="id73236mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73236mml')">mathml</button></div><pre id="id73236xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;
+  &lt;eq/&gt;
+  &lt;apply&gt;&lt;domain/&gt;
+    &lt;ci&gt;f&lt;/ci&gt;
+  &lt;/apply&gt;
+  &lt;reals/&gt;
+&lt;/apply&gt;
+&lt;/math&gt;</pre><div id="id73236pref" style="display:none; margin-top: 0.5em">
+(
+( <i/>)
+, )
+
+</div></dd>
+
+
+
+<dt><span class="dt">Property:</span></dt><dd>
+
+x is in the domain of f if and only if 
+there exists a y in the range of f and f(x) = y
+
+
+
+<div><button id="id73269xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73269xml')">xml</button> <button id="id73269prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73269pref')">prefix</button> <button id="id73269mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73269mml')">mathml</button></div><pre id="id73269xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="logic1" name="equivalent"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="set1" name="in"/&gt;
+      &lt;OMV name="x"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="fns1" name="domain"/&gt;
+	&lt;OMV name="f"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+    &lt;OMBIND&gt;
+      &lt;OMS cd="quant1" name="exists"/&gt;
+      &lt;OMBVAR&gt;
+        &lt;OMV name="y"/&gt;
+      &lt;/OMBVAR&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="logic1" name="and"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="set1" name="in"/&gt;
+	  &lt;OMV name="y"/&gt;
+	  &lt;OMA&gt;
+            &lt;OMS cd="fns1" name="range"/&gt;
+	    &lt;OMV name="f"/&gt;
+	  &lt;/OMA&gt;
+        &lt;/OMA&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="relation1" name="eq"/&gt;
+	  &lt;OMA&gt;
+	    &lt;OMV name="f"/&gt;
+	    &lt;OMV name="x"/&gt;
+	  &lt;/OMA&gt;
+	  &lt;OMV name="y"/&gt;
+	&lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMBIND&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73269pref" style="display:none; margin-top: 0.5em">
+  <a href="logic1.html#equivalent">equivalent</a>
+(<a href="set1.html#in">in</a>
+( <i>x</i>, <a href="fns1.html#domain">domain</a>
+( <i>f</i>)
+)
+, <a href="quant1.html#exists">exists</a>
+[
+         <i>y</i>
+      ] .
+(<a href="logic1.html#and">and</a>
+(<a href="set1.html#in">in</a>
+( <i>y</i>, <a href="fns1.html#range">range</a>
+( <i>f</i>)
+)
+, <a href="relation1.html#eq">eq</a>
+( <i>f</i>
+( <i>x</i>)
+,  <i>y</i>)
+)
+)
+)
+
+</div>
+</dd>
+
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/fns1.html#domain">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#range">range</a>][Previous: <a href="#domainofapplication">domainofapplication</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="range">range</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;range/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p>
+This symbol denotes the range of a function, that is a set that the
+function will map to. The single argument should be the function whos
+range is being queried. It should be noted that this is not necessarily
+equal to the image, it is merely required to contain the image.
+</p></dd>
+
+<dt><span class="dt">Property:</span></dt><dd>
+
+the range of f is a subset of the image of f
+
+
+
+<div><button id="id73432xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73432xml')">xml</button> <button id="id73432prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73432pref')">prefix</button> <button id="id73432mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73432mml')">mathml</button></div><pre id="id73432xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="set1" name="subset"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="fns1" name="range"/&gt;
+      &lt;OMV name="f"/&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="fns1" name="image"/&gt;
+      &lt;OMV name="f"/&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73432pref" style="display:none; margin-top: 0.5em">
+  <a href="set1.html#subset">subset</a>
+(<a href="fns1.html#range">range</a>
+( <i>f</i>)
+, <a href="fns1.html#image">image</a>
+( <i>f</i>)
+)
+
+</div>
+</dd>
+
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/fns1.html#range">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#image">image</a>][Previous: <a href="#domain">domain</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="image">image</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;image/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol denotes the image of a given function, which is the set of
+values the domain of the given function maps to.
+</p></dd>
+
+
+<dt><span class="dt">description:</span></dt><dd><p>
+          The image element denotes the image of a given function, which is the set of
+          values taken by the function. Every point in the image is generated by the
+          function applied to some point of the domain.
+        </p></dd>
+	<dt><span class="dt">discussion:</span></dt><dd><p>
+	  The image element denotes the image of a given function, which is
+	  the set of values taken by the function. Every point in the image is generated
+	  by the function applied to some point of the domain.
+	</p></dd>
+
+
+        <dt><span class="dt">Property:</span></dt><dd>
+          <p>
+            ForAll( x, x in image(f), ThereExists(y,f(y)=x) )
+	  </p>
+	</dd>
+
+        <dt><span class="dt">Example:</span></dt><dd>
+	  <p>
+	    The real sin function is a function from the reals to the reals, 
+	    taking values between -1 and 1.
+	  </p>
+	  <div><button id="id73553xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73553xml')">xml</button> <button id="id73553prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73553pref')">prefix</button> <button id="id73553mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73553mml')">mathml</button></div><pre id="id73553xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+	    &lt;apply&gt;
+	      &lt;eq/&gt;
+	      &lt;apply&gt;
+		&lt;image/&gt;
+		&lt;sin/&gt;
+	      &lt;/apply&gt;
+	      &lt;interval&gt;&lt;cn&gt;-1&lt;/cn&gt;&lt;cn&gt;1&lt;/cn&gt;&lt;/interval&gt;
+	&lt;/apply&gt;&lt;/math&gt;</pre><div id="id73553pref" style="display:none; margin-top: 0.5em">
+	    
+(
+()
+, -11)
+</div></dd>
+
+
+
+<dt><span class="dt">Property:</span></dt><dd>
+ x in the domain of f implies f(x) is in the image f 
+
+
+<div><button id="id73592xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73592xml')">xml</button> <button id="id73592prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73592pref')">prefix</button> <button id="id73592mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73592mml')">mathml</button></div><pre id="id73592xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="logic1" name="implies"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="set1" name="in"/&gt;
+      &lt;OMV name="x"/&gt;
+      &lt;OMA&gt;
+	&lt;OMS cd="fns1" name="domain"/&gt;
+	&lt;OMV name="f"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="set1" name="in"/&gt;
+      &lt;OMA&gt;
+        &lt;OMV name="f"/&gt;
+	&lt;OMV name="x"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="fns1" name="image"/&gt;
+	&lt;OMV name="f"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73592pref" style="display:none; margin-top: 0.5em">
+  <a href="logic1.html#implies">implies</a>
+(<a href="set1.html#in">in</a>
+( <i>x</i>, <a href="fns1.html#domain">domain</a>
+( <i>f</i>)
+)
+, <a href="set1.html#in">in</a>
+( <i>f</i>
+( <i>x</i>)
+, <a href="fns1.html#image">image</a>
+( <i>f</i>)
+)
+)
+
+</div>
+
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/fns1.html#image">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#identity">identity</a>][Previous: <a href="#range">range</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="identity">identity</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;identity/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+The identity function, it takes one argument and returns the same value.
+</p></dd>
+
+<dt><span class="dt">Property:</span></dt><dd>
+ for all x | identity(x)=x 
+
+
+<div><button id="id73708xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73708xml')">xml</button> <button id="id73708prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73708pref')">prefix</button> <button id="id73708mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73708mml')">mathml</button></div><pre id="id73708xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMBIND&gt;
+    &lt;OMS cd="quant1" name="forall"/&gt;
+    &lt;OMBVAR&gt;
+      &lt;OMV name="x"/&gt;
+    &lt;/OMBVAR&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="relation1" name="eq"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="fns1" name="identity"/&gt;
+        &lt;OMV name="x"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMV name="x"/&gt;
+    &lt;/OMA&gt;
+  &lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73708pref" style="display:none; margin-top: 0.5em">
+  <a href="quant1.html#forall">forall</a>
+[
+       <i>x</i>
+    ] .
+(<a href="relation1.html#eq">eq</a>
+(<a href="fns1.html#identity">identity</a>
+( <i>x</i>)
+,  <i>x</i>)
+)
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/fns1.html#identity">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#left_inverse">left_inverse</a>][Previous: <a href="#image">image</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="left_inverse">left_inverse</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;left_inverse/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol is used to describe the left inverse of its argument (a
+function). This inverse may only be partially defined because the
+function may not have been surjective. If the function is not
+surjective the left inverse function is
+ill-defined without further stipulations. No other assumptions are made on
+the semantics of this left inverse.
+</p></dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/fns1.html#left_inverse">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#right_inverse">right_inverse</a>][Previous: <a href="#identity">identity</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="right_inverse">right_inverse</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;right_inverse/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol is used to describe the right inverse of its argument (a
+function). This inverse may only be partially defined because the
+function may not have been surjective. If the function is not
+surjective the right inverse function is
+ill-defined without further stipulations. No other assumptions are made on
+the semantics of this right inverse.
+</p></dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/fns1.html#right_inverse">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#inverse">inverse</a>][Previous: <a href="#left_inverse">left_inverse</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="inverse">inverse</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;inverse/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol is used to describe the inverse of its argument (a
+function). This inverse may only be partially defined because the
+function may not have been surjective. If the function is not
+surjective the inverse function is
+ill-defined without further stipulations. No assumptions are made on
+the semantics of this inverse.
+</p></dd>
+
+
+    <dt><span class="dt">description:</span></dt><dd><p>
+          This MathML element is applied to a function in order to construct a new
+          function that is to be interpreted as the inverse function of the original
+          function.  For a particular function F, inverse(F) composed with F behaves like
+          the identity map on the domain of F and F composed with inverse(F) should be an
+          identity function on a suitably restricted subset of the Range of F.  The MathML
+          definitionURL attribute should be used to resolve notational ambiguities, or to
+          restrict the inverse to a particular domain or to make it one-sided. 
+        </p></dd>
+	<dt><span class="dt">discussion:</span></dt><dd><p>
+	  The inverse element is applied to a function in order to construct a
+	  generic expression nfor the functional inverse of that function. As with other
+	  MathML functions, inverse may either be applied to arguments, or it may
+	  appear alone, in which case it represents an abstract inversion operator acting
+	  on other functions.
+	  A typical use of the inverse element is in an HTML document
+	  discussing a number of alternative definitions for a particular function so that
+	  there is a need to write and define f(-1)(x). To associate
+	  a particular definition with f(-1), use the
+	  definitionURL and encoding attributes.</p><p>    Given functions, it is natural to have functional inverses. This is handled by the
+    inverse element.
+    Functional inverses can be problematic from a mathematical point of view in that
+    they implicitly involve the definition of an inverse for an arbitrary function
+    F. Even at the K-through-12 level the concept of an inverse F
+    -1 of many common functions F is not used in a uniform way. For
+    example, the definitions used for the inverse trigonometric functions may differ
+    slightly depending on the choice of domain and/or branch cuts.
+    MathML adopts the view: if F is a function from a domain D to
+    D', then the inverse G of F is a function over
+    D' such that G(F(x)) = x
+    for x in D. This definition does not assert that such an inverse
+    exists for all or indeed any x in D, or that it is single-valued
+    anywhere. Also, depending on the functions involved, additional properties such as
+    F(G(y)) = y for y in
+    D' may hold.
+    
+    The inverse element is applied to a function whenever an inverse is
+    required. For example, application of the inverse sine function to x,
+    i.e. sin-1 (x), is encoded as: 
+    &lt;apply&gt; &lt;apply&gt; &lt;inverse/&gt; &lt;sin/&gt; &lt;/apply&gt; &lt;ci&gt;x&lt;/ci&gt; &lt;/apply&gt; While
+    arcsin is one of the predefined MathML functions, an explicit reference to
+    sin-1(x) might occur in a document discussing possible
+    definitions of arcsin.
+	</p></dd>
+
+        <dt><span class="dt">Property:</span></dt><dd>
+          <p>
+            ForAll( y, such y in domain( f^(-1) ), f( f^(-1)(y) ) = y 
+          </p><div><button id="id74064xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74064xml')">xml</button> <button id="id74064prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74064pref')">prefix</button> <button id="id74064mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74064mml')">mathml</button></div><pre id="id74064xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt; 
+&lt;bind&gt;&lt;forall/&gt;
+  &lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/bvar&gt;
+  &lt;bvar&gt;&lt;ci type="function"&gt;f&lt;/ci&gt;&lt;/bvar&gt;
+  &lt;condition&gt;
+    &lt;apply&gt;&lt;in/&gt;
+      &lt;ci&gt;y&lt;/ci&gt;
+      &lt;apply&gt;&lt;csymbol definitionURL="domain"&gt;&lt;mtext&gt;Domain&lt;/mtext&gt;&lt;/csymbol&gt;
+        &lt;apply&gt;&lt;inverse/&gt;&lt;ci type="function"&gt;f&lt;/ci&gt;&lt;/apply&gt;
+      &lt;/apply&gt;
+    &lt;/apply&gt;
+  &lt;/condition&gt;
+  &lt;apply&gt;&lt;eq/&gt;
+    &lt;apply&gt;&lt;ci type="function"&gt;f&lt;/ci&gt;
+      &lt;apply&gt;&lt;apply&gt;&lt;inverse/&gt;&lt;ci type="function"&gt;f&lt;/ci&gt;&lt;/apply&gt;
+        &lt;ci&gt;y&lt;/ci&gt;
+      &lt;/apply&gt;
+    &lt;/apply&gt;
+    &lt;ci&gt;y&lt;/ci&gt;
+  &lt;/apply&gt;
+&lt;/bind&gt;
+&lt;/math&gt;</pre><div id="id74064pref" style="display:none; margin-top: 0.5em"> 
+
+[ <i/>] .
+( <i/>
+    
+( <i/>, <a href="../../../cd/.html#"/>
+(
+( <i/>)
+)
+)
+
+  
+( <i/>
+(
+( <i/>)
+
+( <i/>)
+)
+,  <i/>)
+)
+
+</div></dd>
+        <dt><span class="dt">Example:</span></dt><dd><div><button id="id74137xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74137xml')">xml</button> <button id="id74137prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74137pref')">prefix</button> <button id="id74137mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74137mml')">mathml</button></div><pre id="id74137xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt; &lt;apply&gt;&lt;inverse/&gt;
+  &lt;sin/&gt;
+&lt;/apply&gt;&lt;/math&gt;</pre><div id="id74137pref" style="display:none; margin-top: 0.5em"> 
+()
+</div></dd>
+
+        <dt><span class="dt">Example:</span></dt><dd><div><button id="id74148xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74148xml')">xml</button> <button id="id74148prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74148pref')">prefix</button> <button id="id74148mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74148mml')">mathml</button></div><pre id="id74148xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+	  &lt;apply&gt;&lt;inverse definitionURL="www.example.com/MathML/Content/arcsin"/&gt;
+  &lt;sin/&gt;
+&lt;/apply&gt;&lt;/math&gt;</pre><div id="id74148pref" style="display:none; margin-top: 0.5em">
+	  
+()
+</div></dd>
+
+<dt><span class="dt">Example:</span></dt><dd><div><button id="id74162xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74162xml')">xml</button> <button id="id74162prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74162pref')">prefix</button> <button id="id74162mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74162mml')">mathml</button></div><pre id="id74162xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt; &lt;apply&gt;
+  &lt;apply&gt;&lt;inverse/&gt;
+    &lt;ci type="matrix"&gt; a&lt;/ci&gt;
+  &lt;/apply&gt;
+  &lt;ci&gt;A&lt;/ci&gt;
+&lt;/apply&gt;&lt;/math&gt;</pre><div id="id74162pref" style="display:none; margin-top: 0.5em"> 
+( <i/>)
+
+( <i/>)
+</div></dd>
+
+
+
+<dt><span class="dt">Property:</span></dt><dd>
+ 
+(inverse(f))(f(x)) = x if f is injective,
+that is
+(for all x,y | f(x) = f(y) implies x=y) implies (inverse(f))(f(z)) = z
+
+
+
+<div><button id="id74198xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74198xml')">xml</button> <button id="id74198prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74198pref')">prefix</button> <button id="id74198mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74198mml')">mathml</button></div><pre id="id74198xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMA&gt;
+  &lt;OMS cd="logic1" name="implies"/&gt;
+  &lt;OMBIND&gt;
+    &lt;OMS cd="quant1" name="forall"/&gt;
+    &lt;OMBVAR&gt;
+      &lt;OMV name="x"/&gt;
+      &lt;OMV name="y"/&gt;
+    &lt;/OMBVAR&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="logic1" name="implies"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="relation1" name="eq"/&gt;
+        &lt;OMA&gt;
+          &lt;OMV name="f"/&gt;
+	  &lt;OMV name="x"/&gt;
+        &lt;/OMA&gt;
+        &lt;OMA&gt;
+          &lt;OMV name="f"/&gt;
+          &lt;OMV name="y"/&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="relation1" name="eq"/&gt;
+        &lt;OMV name="x"/&gt;
+        &lt;OMV name="y"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMBIND&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="relation1" name="eq"/&gt;
+    &lt;OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="fns1" name="inverse"/&gt;
+        &lt;OMV name="f"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMV name="f"/&gt;
+        &lt;OMV name="z"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+    &lt;OMV name="z"/&gt;
+  &lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id74198pref" style="display:none; margin-top: 0.5em">
+<a href="logic1.html#implies">implies</a>
+(<a href="quant1.html#forall">forall</a>
+[
+       <i>x</i>
+       <i>y</i>
+    ] .
+(<a href="logic1.html#implies">implies</a>
+(<a href="relation1.html#eq">eq</a>
+( <i>f</i>
+( <i>x</i>)
+,  <i>f</i>
+( <i>y</i>)
+)
+, <a href="relation1.html#eq">eq</a>
+( <i>x</i>,  <i>y</i>)
+)
+)
+, <a href="relation1.html#eq">eq</a>
+(<a href="fns1.html#inverse">inverse</a>
+( <i>f</i>)
+
+( <i>f</i>
+( <i>z</i>)
+)
+,  <i>z</i>)
+)
+
+</div>
+</dd>
+
+<dt><span class="dt">Property:</span></dt><dd>
+
+f(inverse(f(y))=y if f is defined at inverse(f)(y)
+that is, 
+if there exists an x s.t. inverse(f)(y) = x then this implies
+f(inverse(f)(y)) = y
+
+
+
+<div><button id="id74351xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74351xml')">xml</button> <button id="id74351prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74351pref')">prefix</button> <button id="id74351mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74351mml')">mathml</button></div><pre id="id74351xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="logic1" name="implies"/&gt;
+       &lt;OMBIND&gt;
+        &lt;OMS cd="quant1" name="exists"/&gt;
+	&lt;OMBVAR&gt;
+	  &lt;OMV name="x"/&gt;
+	&lt;/OMBVAR&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="relation1" name="eq"/&gt;
+	  &lt;OMA&gt;
+	    &lt;OMA&gt;
+	      &lt;OMS cd="fns1" name="inverse"/&gt;
+	      &lt;OMV name="f"/&gt;
+	    &lt;/OMA&gt;
+	    &lt;OMV name="y"/&gt;
+	  &lt;/OMA&gt;
+	  &lt;OMV name="x"/&gt;
+	&lt;/OMA&gt;
+      &lt;/OMBIND&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="relation1" name="eq"/&gt;
+      &lt;OMA&gt;
+        &lt;OMV name="f"/&gt;
+	&lt;OMA&gt;
+	  &lt;OMA&gt;
+	    &lt;OMS cd="fns1" name="inverse"/&gt;
+	    &lt;OMV name="f"/&gt;
+	  &lt;/OMA&gt;
+	  &lt;OMV name="y"/&gt;
+	&lt;/OMA&gt;
+      &lt;/OMA&gt;
+      &lt;OMV name="y"/&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id74351pref" style="display:none; margin-top: 0.5em">
+  <a href="logic1.html#implies">implies</a>
+(<a href="quant1.html#exists">exists</a>
+[
+	   <i>x</i>
+	] .
+(<a href="relation1.html#eq">eq</a>
+(<a href="fns1.html#inverse">inverse</a>
+( <i>f</i>)
+
+( <i>y</i>)
+,  <i>x</i>)
+)
+, <a href="relation1.html#eq">eq</a>
+( <i>f</i>
+(<a href="fns1.html#inverse">inverse</a>
+( <i>f</i>)
+
+( <i>y</i>)
+)
+,  <i>y</i>)
+)
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/fns1.html#inverse">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#left_compose">left_compose</a>][Previous: <a href="#right_inverse">right_inverse</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="left_compose">left_compose</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;left_compose/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the function which forms the left-composition
+of its two (function) arguments.
+</p></dd>
+
+<dt><span class="dt">Property:</span></dt><dd>
+ for all f,g,x | left_compose(f,g)(x) = f(g(x)) 
+
+<div><button id="id74500xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74500xml')">xml</button> <button id="id74500prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74500pref')">prefix</button> <button id="id74500mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74500mml')">mathml</button></div><pre id="id74500xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMBIND&gt;
+  &lt;OMS cd="quant1" name="forall"/&gt;
+  &lt;OMBVAR&gt;
+    &lt;OMV name="f"/&gt;
+    &lt;OMV name="g"/&gt;
+    &lt;OMV name="x"/&gt;
+  &lt;/OMBVAR&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="relation1" name="eq"/&gt;
+    &lt;OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="fns1" name="left_compose"/&gt;
+        &lt;OMV name="f"/&gt;
+        &lt;OMV name="g"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMV name="x"/&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMV name="f"/&gt;
+      &lt;OMA&gt;
+        &lt;OMV name="g"/&gt;
+        &lt;OMV name="x"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;</pre><div id="id74500pref" style="display:none; margin-top: 0.5em">
+<a href="quant1.html#forall">forall</a>
+[
+     <i>f</i>
+     <i>g</i>
+     <i>x</i>
+  ] .
+(<a href="relation1.html#eq">eq</a>
+(<a href="fns1.html#left_compose">left_compose</a>
+( <i>f</i>,  <i>g</i>)
+
+( <i>x</i>)
+,  <i>f</i>
+( <i>g</i>
+( <i>x</i>)
+)
+)
+)
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/fns1.html#left_compose">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#lambda">lambda</a>][Previous: <a href="#inverse">inverse</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="lambda">lambda</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;lambda&gt; ... &lt;/lambda&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>binder</dd>
+<dt><span class="dt">Description:</span></dt><dd><p>
+This symbol is used to represent anonymous functions as lambda expansions. 
+It is used in a binder that takes two further arguments, the first of which
+is a list of variables, and the second of which is an expression, and it
+forms the function which is the lambda extraction of the expression
+</p></dd>
+
+
+ <dt><span class="dt">description:</span></dt><dd><p>
+          This is the operation of lambda calculus that constructs a function from an
+          expression and a variable.  Lambda is an n-ary function, where all but an
+          optional domain of application and the last argument are bound variables and the
+          last argument is an expression possibly involving those variables.  The lambda
+          function can be viewed as the inverse of function application.
+	  </p><p>	  For example, Lambda( x, F ) is written as \lambda x [F] in the lambda
+	  calculus literature.  The expression F may contain x but the full lambda
+	  expression is regarded to be free of x.  A computational application receiving a
+	  MathML lambda expression should not evaluate x or test for x.  Such an
+	  application may apply the lambda expression as a function to arguments in which
+	  case any result that is computed is computed through parameter substitutions
+	  into F.
+          
+	    Note that a lambda expression on an arbitrary function applied to a the bound
+	    variable is equivalent to that arbitrary function.  A domain of application
+	    can be used to restrict the defined function to a specific domain.
+        </p></dd>
+	<dt><span class="dt">discussion:</span></dt><dd><p>
+	  The lambda element is used to construct a user-defined function from
+	  an expression, bound variables, and qualifiers. In a lambda construct with
+	  n (possibly 0) bound variables, the first n children are
+	  bvar elements that identify the variables that are used as placeholders
+	  in the last child for actual parameter values. The bound variables can be
+	  restricted by an optional domainofapplication qualifier or one of its
+	  shorthand notations. The meaning of the lambda construct is an
+	  n-ary function that returns the expression in the last child where
+	  the bound variables are replaced with the respective arguments.</p><p>	The lambda element is used to construct a user-defined function from
+	an expression.  The last child is an expression defining the function in terms of
+	the bound variables declared by the bvar and any
+	domainofapplication (see ) elements
+	coming before it.  The last element is typically an apply element, but
+	can also be any container element. The following constructs
+	
+	(x, sin x)</p><p/><p>  x
+  x</p><p>
+      The following constructs the constant function (x, 3)</p><p>x3</p><p>    The lambda calculus allows a user to construct a function from a variable and an
+    expression. For example, the lambda construct underlies the common mathematical idiom
+    illustrated here: Let f be the function taking x to
+    x2 + 2</p><p>    There are various notations for this concept in mathematical literature, such as
+    (x,
+    F(x)) = F or (x, [F]) =F,
+    where x is a free variable in F.</p><p>    This concept is implemented in MathML with the lambda element. A lambda
+    construct with n (possibly 0) internal variables is encoded by a
+    lambda element, where the first n children are bvar
+    elements containing the identifiers of the internal variables. This is followed by an
+    optional domainofapplication qualifier (see ) and an expression defining the function. The defining
+    expression is typically an apply, but can also be any expression.</p><p>    The following constructs
+    
+(x, sin(x+1)):</p><p/><p>  x
+  
+    
+    
+      
+      x
+      1
+    
+  </p><p>
+To use declare and lambda to construct the function f for
+which f( x) = x2 + x + 3 use:</p><p/><p>  f
+  
+    x
+    
+      
+      
+        
+        x
+        2
+      
+      x
+      3
+    
+  </p><p>
+The following markup declares and constructs the function J such that
+J(x, y) is the integral from x to y
+of t4 with respect to t.</p><p/><p>  J
+  
+    x
+    y
+     
+      t
+      x
+      y
+      
+        
+        t
+        4
+      
+    
+  </p><p>
+The function J can then in turn be applied to an argument pair.</p><p>	</p></dd>
+
+	<dt><span class="dt">Property:</span></dt><dd>
+          <p>
+            ForAll( F, lambda(x,F(x)) = F )
+          </p><div><button id="id75104xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id75104xml')">xml</button> <button id="id75104prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id75104pref')">prefix</button> <button id="id75104mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id75104mml')">mathml</button></div><pre id="id75104xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;bind&gt;&lt;forall/&gt;
+  &lt;bvar&gt;&lt;ci&gt;F&lt;/ci&gt;&lt;/bvar&gt;
+  &lt;apply&gt;&lt;eq/&gt;
+    &lt;bind&gt;
+      &lt;lambda/&gt;
+      &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+      &lt;apply&gt;&lt;ci&gt;F&lt;/ci&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/apply&gt;
+    &lt;/bind&gt;
+    &lt;ci&gt;F&lt;/ci&gt;
+  &lt;/apply&gt;
+&lt;/bind&gt;
+&lt;/math&gt;</pre><div id="id75104pref" style="display:none; margin-top: 0.5em">
+
+[ <i/>] .
+(
+(
+[ <i/>] .
+( <i/>
+( <i/>)
+)
+,  <i/>)
+)
+
+</div></dd>
+
+<dt><span class="dt">Example:</span></dt><dd>
+<p>a simple lambda construct.</p>
+<div><button id="id75148xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id75148xml')">xml</button> <button id="id75148prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id75148pref')">prefix</button> <button id="id75148mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id75148mml')">mathml</button></div><pre id="id75148xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;bind&gt;&lt;lambda/&gt;
+  &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+  &lt;apply&gt;&lt;sin/&gt;
+    &lt;apply&gt;
+      &lt;plus/&gt;
+      &lt;ci&gt;x&lt;/ci&gt;
+      &lt;cn&gt;1&lt;/cn&gt;
+    &lt;/apply&gt;
+  &lt;/apply&gt;
+&lt;/bind&gt;&lt;/math&gt;</pre><div id="id75148pref" style="display:none; margin-top: 0.5em">
+
+[ <i/>] .
+(
+(
+( <i/>, 1)
+)
+)
+</div></dd>
+<dt><span class="dt">Example:</span></dt><dd>
+<p>The next example constructs a one-argument function in which the argument 
+b specifies the upper bound of a specific definite integral.
+</p>
+<div><button id="id75189xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id75189xml')">xml</button> <button id="id75189prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id75189pref')">prefix</button> <button id="id75189mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id75189mml')">mathml</button></div><pre id="id75189xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;bind&gt;&lt;lambda/&gt;
+  &lt;bvar&gt;&lt;ci&gt;b&lt;/ci&gt;&lt;/bvar&gt;
+  &lt;bind&gt;
+    &lt;int/&gt;
+    &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+    &lt;lowlimit&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;/lowlimit&gt;
+    &lt;uplimit&gt;&lt;ci&gt;b&lt;/ci&gt;&lt;/uplimit&gt;
+    &lt;apply&gt;&lt;ci&gt;f&lt;/ci&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/apply&gt;
+    &lt;/bind&gt;
+  &lt;/bind&gt;
+&lt;/math&gt;</pre><div id="id75189pref" style="display:none; margin-top: 0.5em">
+
+[ <i/>] .
+(
+[ <i/>] .
+( <i/> <i/> <i/>
+( <i/>)
+)
+)
+
+</div></dd>
+<dt><span class="dt">Example:</span></dt><dd>
+<p>The domainofapplication child restricts the possible
+values of the arguments of the constructed function. For instance, the
+following two lambda constructs are representations of a function on
+the integers.
+</p>
+<div><button id="id75244xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id75244xml')">xml</button> <button id="id75244prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id75244pref')">prefix</button> <button id="id75244mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id75244mml')">mathml</button></div><pre id="id75244xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;bind&gt;&lt;lambda/&gt;
+  &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+  &lt;domainofapplication&gt;&lt;integers/&gt;&lt;/domainofapplication&gt;
+  &lt;apply&gt;&lt;sin/&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/apply&gt;
+&lt;/bind&gt;&lt;/math&gt;</pre><div id="id75244pref" style="display:none; margin-top: 0.5em">
+
+[ <i/>] .
+(
+( <i/>)
+)
+</div></dd>
+<dt><span class="dt">Example:</span></dt><dd>
+<p>
+If a lambda construct does not contain bound variables, then the
+  arity of the constructed function is unchanged, and the lambda
+  construct is redundant, unless it also contains a
+  domainofapplication construct that restricts existing functional
+  arguments, as in this example, which is a variant representation for the
+  function above. In particular, if the last child of a lambda construct is not a
+function, say a number, then the lambda construct will not be a
+function, but the same number. Of course, in this case a
+  domainofapplication does not make sense
+</p>
+<div><button id="id75304xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id75304xml')">xml</button> <button id="id75304prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id75304pref')">prefix</button> <button id="id75304mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id75304mml')">mathml</button></div><pre id="id75304xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;bind&gt;&lt;lambda/&gt;
+  &lt;domainofapplication&gt;&lt;integers/&gt;&lt;/domainofapplication&gt;
+  &lt;sin/&gt;
+&lt;/bind&gt;&lt;/math&gt;</pre><div id="id75304pref" style="display:none; margin-top: 0.5em">
+
+[] .
+()
+</div>
+</dd>
+
+
+
+<dt><span class="dt">Example:</span></dt><dd>
+An example to show the connection between curried and uncurried
+applications of a binary function f 
+(lambda(x,y).(f))(a,b)= (lambda(x).((lambda(y).(f))(b)))(a)
+<div><button id="id75327xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id75327xml')">xml</button> <button id="id75327prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id75327pref')">prefix</button> <button id="id75327mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id75327mml')">mathml</button></div><pre id="id75327xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMBIND&gt;
+  &lt;OMS cd="quant1" name="forall"/&gt;
+  &lt;OMBVAR&gt;
+    &lt;OMV name="a"/&gt;
+    &lt;OMV name="b"/&gt;
+  &lt;/OMBVAR&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="relation1" name="eq"/&gt;
+    &lt;OMA&gt;
+      &lt;OMBIND&gt;
+        &lt;OMS cd="fns1" name="lambda"/&gt;
+        &lt;OMBVAR&gt;
+          &lt;OMV name="x"/&gt;
+          &lt;OMV name="y"/&gt;
+        &lt;/OMBVAR&gt;
+        &lt;OMV name="f"/&gt;
+      &lt;/OMBIND&gt;
+      &lt;OMV name="a"/&gt;
+      &lt;OMV name="b"/&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMBIND&gt;
+        &lt;OMS cd="fns1" name="lambda"/&gt;
+        &lt;OMBVAR&gt;
+          &lt;OMV name="x"/&gt;
+        &lt;/OMBVAR&gt;
+        &lt;OMA&gt;
+          &lt;OMBIND&gt;
+            &lt;OMS cd="fns1" name="lambda"/&gt;
+            &lt;OMBVAR&gt;
+              &lt;OMV name="y"/&gt;
+            &lt;/OMBVAR&gt;
+            &lt;OMV name="f"/&gt;
+          &lt;/OMBIND&gt;
+          &lt;OMV name="b"/&gt;
+        &lt;/OMA&gt;
+      &lt;/OMBIND&gt;
+      &lt;OMV name="a"/&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;</pre><div id="id75327pref" style="display:none; margin-top: 0.5em">
+<a href="quant1.html#forall">forall</a>
+[
+     <i>a</i>
+     <i>b</i>
+  ] .
+(<a href="relation1.html#eq">eq</a>
+(<a href="fns1.html#lambda">lambda</a>
+[
+           <i>x</i>
+           <i>y</i>
+        ] .
+( <i>f</i>)
+
+( <i>a</i>,  <i>b</i>)
+, <a href="fns1.html#lambda">lambda</a>
+[
+           <i>x</i>
+        ] .
+(<a href="fns1.html#lambda">lambda</a>
+[
+               <i>y</i>
+            ] .
+( <i>f</i>)
+
+( <i>b</i>)
+)
+
+( <i>a</i>)
+)
+)
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/fns1.html#lambda">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">
+	    [First: <a href="#domainofapplication">domainofapplication</a>]
+	  [Previous: <a href="#left_compose">left_compose</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+</body></html>

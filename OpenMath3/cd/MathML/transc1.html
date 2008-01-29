@@ -1,0 +1,2798 @@
+<?xml version="1.0"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:cd="http://www.openmath.org/OpenMathCD"><head><script type="text/javascript"> function divfold(_Id){
+     var thisLevel = document.getElementById(_Id);
+     var thisLevela = document.getElementById(_Id.concat("a"))
+     if(thisLevel.style.display != "none"){ 
+      thisLevel.style.display = "none";
+      thisLevela.style.backgroundColor = "#CCCCCC";} 
+     else{
+      thisLevel.style.display = "block";
+      thisLevela.style.backgroundColor = "#AAFFAA";}  
+       }
+     </script><title>transc1</title><link rel="stylesheet" href="omcd.css" type="text/css"/></head><body><a name="top"/><h1>OpenMath Content Dictionary: transc1</h1><dl><dt><span class="dt">Canonical URL:</span></dt><dd><a href="http://www.openmath.org/cd/transc1.ocd">http://www.openmath.org/cd/transc1.ocd</a></dd><dt><span class="dt">CD Base:</span></dt><dd><a href="http://www.openmath.org/cd">http://www.openmath.org/cd</a></dd><dt><span class="dt">CD File:</span></dt><dd><a href="transc1.ocd">transc1.ocd
+  </a></dd><dt><span class="dt">CD as XML Encoded OpenMath:</span></dt><dd><a href="transc1.omcd">transc1.omcd
+  </a></dd><dt><span class="dt">Defines:</span></dt><dd><a href="#arccos">arccos</a>, <a href="#arccosh">arccosh</a>, <a href="#arccot">arccot</a>, <a href="#arccoth">arccoth</a>, <a href="#arccsc">arccsc</a>, <a href="#arccsch">arccsch</a>, <a href="#arcsec">arcsec</a>, <a href="#arcsech">arcsech</a>, <a href="#arcsin">arcsin</a>, <a href="#arcsinh">arcsinh</a>, <a href="#arctan">arctan</a>, <a href="#arctanh">arctanh</a>, <a href="#cos">cos</a>, <a href="#cosh">cosh</a>, <a href="#cot">cot</a>, <a href="#coth">coth</a>, <a href="#csc">csc</a>, <a href="#csch">csch</a>, <a href="#exp">exp</a>, <a href="#ln">ln</a>, <a href="#log">log</a>, <a href="#sec">sec</a>, <a href="#sech">sech</a>, <a href="#sin">sin</a>, <a href="#sinh">sinh</a>, <a href="#tan">tan</a>, <a href="#tanh">tanh</a></dd><dt><span class="dt">Date:</span></dt><dd>2004-03-30</dd><dt><span class="dt">Version:</span></dt><dd>3</dd><dt><span class="dt">Review Date:</span></dt><dd>2006-03-30</dd><dt><span class="dt">Status:</span></dt><dd>official</dd></dl><hr/>
+
+<pre>
+
+     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+</pre>
+
+
+
+
+
+
+
+
+
+
+<p>
+    This CD holds the definitions of many transcendental
+    functions. They are defined as in Abromowitz and Stegun (ninth 
+    printing on), with precise reductions to logs in the case of 
+    inverse functions.</p><p>    Note that, if signed zeros are supported, some strict 
+    inequalities have to become weak
+.
+    It is intended to be `compatible' with the MathML elements
+    denoting trancendental functions.
+    Some additional functions are in the CD transc2.    
+</p>
+
+<hr/><dl>
+<h2><a name="log">log</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;log/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents a binary log function; the first argument is the base,
+to which the second argument is log'ed.
+It is defined in Abramowitz and Stegun, Handbook of Mathematical
+Functions, section 4.1
+</p></dd>
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd>
+  a^b = c implies log_a c = b
+</dd>
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+  <div><button id="id73171xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73171xml')">xml</button> <button id="id73171prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73171pref')">prefix</button> <button id="id73171mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73171mml')">mathml</button></div><pre id="id73171xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="logic1" name="implies"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="relation1" name="eq"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="arith1" name="power"/&gt;
+          &lt;OMV name="a"/&gt;
+          &lt;OMV name="b"/&gt;
+        &lt;/OMA&gt;
+        &lt;OMV name="c"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="relation1" name="eq"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="transc1" name="log"/&gt;
+          &lt;OMV name="a"/&gt;
+          &lt;OMV name="c"/&gt;
+        &lt;/OMA&gt;
+        &lt;OMV name="b"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMOBJ&gt;</pre><div id="id73171pref" style="display:none; margin-top: 0.5em">
+    <a href="logic1.html#implies">implies</a>
+(<a href="relation1.html#eq">eq</a>
+(<a href="arith1.html#power">power</a>
+( <i>a</i>,  <i>b</i>)
+,  <i>c</i>)
+, <a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#log">log</a>
+( <i>a</i>,  <i>c</i>)
+,  <i>b</i>)
+)
+
+  </div>
+</dd>
+
+<dt><span class="dt">Example:</span></dt><dd>
+log 100 to base 10 (which is 2).
+<div><button id="id73262xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73262xml')">xml</button> <button id="id73262prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73262pref')">prefix</button> <button id="id73262mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73262mml')">mathml</button></div><pre id="id73262xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="transc1" name="log"/&gt;
+    &lt;OMF dec="10"/&gt;
+    &lt;OMF dec="100"/&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73262pref" style="display:none; margin-top: 0.5em">
+  <a href="transc1.html#log">log</a>
+( 10 ,  100 )
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/transc1.html#log">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#ln">ln</a>]
+	    [Last: <a href="#arccoth">arccoth</a>]
+	  
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="ln">ln</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;ln/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the ln function (natural logarithm) as
+described in Abramowitz and Stegun, section 4.1. It takes one
+argument.  Note the description in the CMP/FMP of the branch cut.  If
+signed zeros are in use, the inequality needs to be non-strict.
+</p></dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd>
+-pi &lt; Im ln x &lt;= pi
+</dd>
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+  <div><button id="id73321xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73321xml')">xml</button> <button id="id73321prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73321pref')">prefix</button> <button id="id73321mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73321mml')">mathml</button></div><pre id="id73321xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+    &lt;OMA&gt;
+      &lt;OMS name="and" cd="logic1"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS name="lt" cd="relation1"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS name="unary_minus" cd="arith1"/&gt;
+          &lt;OMS name="pi" cd="nums1"/&gt;
+        &lt;/OMA&gt;
+        &lt;OMA&gt;
+          &lt;OMS name="imaginary" cd="complex1"/&gt;
+          &lt;OMA&gt;
+            &lt;OMS name="ln" cd="transc1"/&gt;
+            &lt;OMV name="x"/&gt;
+          &lt;/OMA&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS name="leq" cd="relation1"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS name="imaginary" cd="complex1"/&gt;
+          &lt;OMA&gt;
+            &lt;OMS name="ln" cd="transc1"/&gt;
+            &lt;OMV name="x"/&gt;
+          &lt;/OMA&gt;
+        &lt;/OMA&gt;
+        &lt;OMS name="pi" cd="nums1"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMOBJ&gt;</pre><div id="id73321pref" style="display:none; margin-top: 0.5em">
+    <a href="logic1.html#and">and</a>
+(<a href="relation1.html#lt">lt</a>
+(<a href="arith1.html#unary_minus">unary_minus</a>
+(<a href="nums1.html#pi">pi</a>)
+, <a href="complex1.html#imaginary">imaginary</a>
+(<a href="transc1.html#ln">ln</a>
+( <i>x</i>)
+)
+)
+, <a href="relation1.html#leq">leq</a>
+(<a href="complex1.html#imaginary">imaginary</a>
+(<a href="transc1.html#ln">ln</a>
+( <i>x</i>)
+)
+, <a href="nums1.html#pi">pi</a>)
+)
+
+  </div>
+</dd>
+
+<dt><span class="dt">Example:</span></dt><dd>
+ln 1 (which is 0).
+<div><button id="id73426xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73426xml')">xml</button> <button id="id73426prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73426pref')">prefix</button> <button id="id73426mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73426mml')">mathml</button></div><pre id="id73426xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="transc1" name="ln"/&gt;
+    &lt;OMF dec="1"/&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73426pref" style="display:none; margin-top: 0.5em">
+  <a href="transc1.html#ln">ln</a>
+( 1 )
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/transc1.html#ln">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#exp">exp</a>][Previous: <a href="#log">log</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="exp">exp</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;exp/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the exponentiation function as described in
+Abramowitz and Stegun, section 4.2. It takes one argument.
+</p></dd>
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> for all k if k is an integer then e^(z+2*pi*k*i)=e^z </dd>
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd><div><button id="id73477xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73477xml')">xml</button> <button id="id73477prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73477pref')">prefix</button> <button id="id73477mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73477mml')">mathml</button></div><pre id="id73477xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMBIND&gt;
+  &lt;OMS cd="quant1" name="forall"/&gt;
+  &lt;OMBVAR&gt;
+    &lt;OMV name="k"/&gt;
+  &lt;/OMBVAR&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="logic1" name="implies"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="set1" name="in"/&gt;
+      &lt;OMV name="k"/&gt;
+      &lt;OMS cd="setname1" name="Z"/&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="relation1" name="eq"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="transc1" name="exp"/&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="arith1" name="plus"/&gt;
+	  &lt;OMV name="z"/&gt;
+	  &lt;OMA&gt;
+	    &lt;OMS cd="arith1" name="times"/&gt;
+	    &lt;OMI&gt;2&lt;/OMI&gt;
+	    &lt;OMS cd="nums1" name="pi"/&gt;
+	    &lt;OMV name="k"/&gt;
+	    &lt;OMS cd="nums1" name="i"/&gt;
+	  &lt;/OMA&gt;
+	&lt;/OMA&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="transc1" name="exp"/&gt;
+	&lt;OMV name="z"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73477pref" style="display:none; margin-top: 0.5em">
+<a href="quant1.html#forall">forall</a>
+[
+     <i>k</i>
+  ] .
+(<a href="logic1.html#implies">implies</a>
+(<a href="set1.html#in">in</a>
+( <i>k</i>, <a href="setname1.html#Z">Z</a>)
+, <a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#exp">exp</a>
+(<a href="arith1.html#plus">plus</a>
+( <i>z</i>, <a href="arith1.html#times">times</a>
+(2, <a href="nums1.html#pi">pi</a>,  <i>k</i>, <a href="nums1.html#i">i</a>)
+)
+)
+, <a href="transc1.html#exp">exp</a>
+( <i>z</i>)
+)
+)
+)
+
+</div></dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/transc1.html#exp">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#sin">sin</a>][Previous: <a href="#ln">ln</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="sin">sin</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;sin/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the sin function as described in Abramowitz and
+Stegun, section 4.3. It takes one argument.
+</p></dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd>
+sin(x) = (exp(ix)-exp(-ix))/2i
+</dd>
+
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+  <div><button id="id73636xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73636xml')">xml</button> <button id="id73636prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73636pref')">prefix</button> <button id="id73636mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73636mml')">mathml</button></div><pre id="id73636xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="relation1" name="eq"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS name="sin" cd="transc1"/&gt;
+        &lt;OMV name="x"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS name="divide" cd="arith1"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS name="minus" cd="arith1"/&gt;
+          &lt;OMA&gt;
+            &lt;OMS name="exp" cd="transc1"/&gt;
+            &lt;OMA&gt;
+              &lt;OMS name="times" cd="arith1"/&gt;
+              &lt;OMS name="i" cd="nums1"/&gt;
+              &lt;OMV name="x"/&gt;
+            &lt;/OMA&gt;
+          &lt;/OMA&gt;
+          &lt;OMA&gt;
+            &lt;OMS name="exp" cd="transc1"/&gt;
+            &lt;OMA&gt;
+              &lt;OMS name="times" cd="arith1"/&gt;
+              &lt;OMA&gt;
+                &lt;OMS name="unary_minus" cd="arith1"/&gt;
+                &lt;OMS name="i" cd="nums1"/&gt;
+              &lt;/OMA&gt;
+              &lt;OMV name="x"/&gt;
+            &lt;/OMA&gt;
+          &lt;/OMA&gt;
+        &lt;/OMA&gt;
+        &lt;OMA&gt;
+          &lt;OMS name="times" cd="arith1"/&gt;
+          &lt;OMI&gt;2&lt;/OMI&gt;
+          &lt;OMS name="i" cd="nums1"/&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMOBJ&gt;</pre><div id="id73636pref" style="display:none; margin-top: 0.5em">
+    <a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#sin">sin</a>
+( <i>x</i>)
+, <a href="arith1.html#divide">divide</a>
+(<a href="arith1.html#minus">minus</a>
+(<a href="transc1.html#exp">exp</a>
+(<a href="arith1.html#times">times</a>
+(<a href="nums1.html#i">i</a>,  <i>x</i>)
+)
+, <a href="transc1.html#exp">exp</a>
+(<a href="arith1.html#times">times</a>
+(<a href="arith1.html#unary_minus">unary_minus</a>
+(<a href="nums1.html#i">i</a>)
+,  <i>x</i>)
+)
+)
+, <a href="arith1.html#times">times</a>
+(2, <a href="nums1.html#i">i</a>)
+)
+)
+
+  </div>
+</dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd>
+sin(A + B) = sin A cos B + cos A sin B
+</dd>
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+  <div><button id="id73781xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73781xml')">xml</button> <button id="id73781prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73781pref')">prefix</button> <button id="id73781mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73781mml')">mathml</button></div><pre id="id73781xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="relation1" name="eq"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="transc1" name="sin"/&gt;
+        &lt;OMA&gt;
+	  &lt;OMS cd="arith1" name="plus"/&gt;
+	  &lt;OMV name="A"/&gt;
+    	  &lt;OMV name="B"/&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+	&lt;OMS cd="arith1" name="plus"/&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="arith1" name="times"/&gt;
+	  &lt;OMA&gt;
+	    &lt;OMS cd="transc1" name="sin"/&gt;
+	    &lt;OMV name="A"/&gt;
+	  &lt;/OMA&gt;
+	  &lt;OMA&gt;
+	    &lt;OMS cd="transc1" name="cos"/&gt;
+	    &lt;OMV name="B"/&gt;
+	  &lt;/OMA&gt;
+	&lt;/OMA&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="arith1" name="times"/&gt;
+	  &lt;OMA&gt;
+	    &lt;OMS cd="transc1" name="cos"/&gt;
+	    &lt;OMV name="A"/&gt;
+	  &lt;/OMA&gt;
+	  &lt;OMA&gt;
+	    &lt;OMS cd="transc1" name="sin"/&gt;
+	    &lt;OMV name="B"/&gt;
+	  &lt;/OMA&gt;
+	&lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMOBJ&gt;</pre><div id="id73781pref" style="display:none; margin-top: 0.5em">
+    <a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#sin">sin</a>
+(<a href="arith1.html#plus">plus</a>
+( <i>A</i>,  <i>B</i>)
+)
+, <a href="arith1.html#plus">plus</a>
+(<a href="arith1.html#times">times</a>
+(<a href="transc1.html#sin">sin</a>
+( <i>A</i>)
+, <a href="transc1.html#cos">cos</a>
+( <i>B</i>)
+)
+, <a href="arith1.html#times">times</a>
+(<a href="transc1.html#cos">cos</a>
+( <i>A</i>)
+, <a href="transc1.html#sin">sin</a>
+( <i>B</i>)
+)
+)
+)
+
+  </div>
+</dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd>
+sin A = - sin(-A)
+</dd>
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+  <div><button id="id73916xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73916xml')">xml</button> <button id="id73916prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73916pref')">prefix</button> <button id="id73916mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73916mml')">mathml</button></div><pre id="id73916xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="relation1" name="eq"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="transc1" name="sin"/&gt;
+	&lt;OMV name="A"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="unary_minus"/&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="transc1" name="sin"/&gt;
+	  &lt;OMA&gt;
+	    &lt;OMS cd="arith1" name="unary_minus"/&gt;
+	    &lt;OMV name="A"/&gt;
+	  &lt;/OMA&gt;
+	&lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMOBJ&gt;</pre><div id="id73916pref" style="display:none; margin-top: 0.5em">
+    <a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#sin">sin</a>
+( <i>A</i>)
+, <a href="arith1.html#unary_minus">unary_minus</a>
+(<a href="transc1.html#sin">sin</a>
+(<a href="arith1.html#unary_minus">unary_minus</a>
+( <i>A</i>)
+)
+)
+)
+
+  </div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/transc1.html#sin">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#cos">cos</a>][Previous: <a href="#exp">exp</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="cos">cos</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;cos/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the cos function as described in Abramowitz and
+Stegun, section 4.3. It takes one argument.
+</p></dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd>
+cos(x) = (exp(ix)+exp(-ix))/2
+</dd>
+
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+  <div><button id="id74008xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74008xml')">xml</button> <button id="id74008prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74008pref')">prefix</button> <button id="id74008mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74008mml')">mathml</button></div><pre id="id74008xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="relation1" name="eq"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS name="cos" cd="transc1"/&gt;
+        &lt;OMV name="x"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS name="divide" cd="arith1"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS name="plus" cd="arith1"/&gt;
+          &lt;OMA&gt;
+            &lt;OMS name="exp" cd="transc1"/&gt;
+            &lt;OMA&gt;
+              &lt;OMS name="times" cd="arith1"/&gt;
+              &lt;OMS name="i" cd="nums1"/&gt;
+              &lt;OMV name="x"/&gt;
+            &lt;/OMA&gt;
+          &lt;/OMA&gt;
+          &lt;OMA&gt;
+            &lt;OMS name="exp" cd="transc1"/&gt;
+            &lt;OMA&gt;
+              &lt;OMS name="times" cd="arith1"/&gt;
+              &lt;OMA&gt;
+                &lt;OMS name="unary_minus" cd="arith1"/&gt;
+                &lt;OMS name="i" cd="nums1"/&gt;
+              &lt;/OMA&gt;
+              &lt;OMV name="x"/&gt;
+            &lt;/OMA&gt;
+          &lt;/OMA&gt;
+        &lt;/OMA&gt;
+        &lt;OMI&gt;2&lt;/OMI&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMOBJ&gt;</pre><div id="id74008pref" style="display:none; margin-top: 0.5em">
+    <a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#cos">cos</a>
+( <i>x</i>)
+, <a href="arith1.html#divide">divide</a>
+(<a href="arith1.html#plus">plus</a>
+(<a href="transc1.html#exp">exp</a>
+(<a href="arith1.html#times">times</a>
+(<a href="nums1.html#i">i</a>,  <i>x</i>)
+)
+, <a href="transc1.html#exp">exp</a>
+(<a href="arith1.html#times">times</a>
+(<a href="arith1.html#unary_minus">unary_minus</a>
+(<a href="nums1.html#i">i</a>)
+,  <i>x</i>)
+)
+)
+, 2)
+)
+
+  </div>
+</dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd>
+cos 2A = cos^2 A - sin^2 A
+</dd>
+
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+<div><button id="id74137xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74137xml')">xml</button> <button id="id74137prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74137pref')">prefix</button> <button id="id74137mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74137mml')">mathml</button></div><pre id="id74137xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="relation1" name="eq"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="cos"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="times"/&gt;
+	&lt;OMI&gt; 2 &lt;/OMI&gt;
+	&lt;OMV name="A"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="arith1" name="minus"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="power"/&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="transc1" name="cos"/&gt;
+	  &lt;OMV name="A"/&gt;
+	&lt;/OMA&gt;
+	&lt;OMI&gt; 2 &lt;/OMI&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="power"/&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="transc1" name="sin"/&gt;
+	  &lt;OMV name="A"/&gt;
+	&lt;/OMA&gt;
+	&lt;OMI&gt; 2 &lt;/OMI&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id74137pref" style="display:none; margin-top: 0.5em">
+  <a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#cos">cos</a>
+(<a href="arith1.html#times">times</a>
+( 2 ,  <i>A</i>)
+)
+, <a href="arith1.html#minus">minus</a>
+(<a href="arith1.html#power">power</a>
+(<a href="transc1.html#cos">cos</a>
+( <i>A</i>)
+,  2 )
+, <a href="arith1.html#power">power</a>
+(<a href="transc1.html#sin">sin</a>
+( <i>A</i>)
+,  2 )
+)
+)
+
+</div>
+</dd>
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd>
+cos A = cos(-A)
+</dd>
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+<div><button id="id74250xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74250xml')">xml</button> <button id="id74250prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74250pref')">prefix</button> <button id="id74250mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74250mml')">mathml</button></div><pre id="id74250xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="relation1" name="eq"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="cos"/&gt;
+      &lt;OMV name="A"/&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="cos"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="unary_minus"/&gt;
+	&lt;OMV name="A"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id74250pref" style="display:none; margin-top: 0.5em">
+  <a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#cos">cos</a>
+( <i>A</i>)
+, <a href="transc1.html#cos">cos</a>
+(<a href="arith1.html#unary_minus">unary_minus</a>
+( <i>A</i>)
+)
+)
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/transc1.html#cos">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#tan">tan</a>][Previous: <a href="#sin">sin</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="tan">tan</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;tan/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the tan function as described in Abramowitz and
+Stegun, section 4.3. It takes one argument.
+</p></dd>
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd>
+tan A = sin A / cos A
+</dd>
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd><div><button id="id74332xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74332xml')">xml</button> <button id="id74332prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74332pref')">prefix</button> <button id="id74332mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74332mml')">mathml</button></div><pre id="id74332xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMA&gt;
+  &lt;OMS cd="relation1" name="eq"/&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="transc1" name="tan"/&gt;
+    &lt;OMV name="A"/&gt;
+  &lt;/OMA&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="arith1" name="divide"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="sin"/&gt;
+      &lt;OMV name="A"/&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="cos"/&gt;
+      &lt;OMV name="A"/&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id74332pref" style="display:none; margin-top: 0.5em">
+<a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#tan">tan</a>
+( <i>A</i>)
+, <a href="arith1.html#divide">divide</a>
+(<a href="transc1.html#sin">sin</a>
+( <i>A</i>)
+, <a href="transc1.html#cos">cos</a>
+( <i>A</i>)
+)
+)
+
+</div></dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/transc1.html#tan">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#sec">sec</a>][Previous: <a href="#cos">cos</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="sec">sec</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;sec/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the sec function as described in Abramowitz and
+Stegun, section 4.3. It takes one argument.
+</p></dd>
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd>
+sec A = 1/cos A
+</dd>
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+<div><button id="id74427xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74427xml')">xml</button> <button id="id74427prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74427pref')">prefix</button> <button id="id74427mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74427mml')">mathml</button></div><pre id="id74427xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMA&gt;
+  &lt;OMS cd="relation1" name="eq"/&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="transc1" name="sec"/&gt;&lt;OMV name="A"/&gt;
+  &lt;/OMA&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="arith1" name="divide"/&gt;
+    &lt;OMS cd="alg1" name="one"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="cos"/&gt;
+      &lt;OMV name="A"/&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id74427pref" style="display:none; margin-top: 0.5em">
+<a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#sec">sec</a>
+( <i>A</i>)
+, <a href="arith1.html#divide">divide</a>
+(<a href="../../../cd/alg1.html#one">one</a>, <a href="transc1.html#cos">cos</a>
+( <i>A</i>)
+)
+)
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/transc1.html#sec">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#csc">csc</a>][Previous: <a href="#tan">tan</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="csc">csc</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;csc/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the csc function as described in Abramowitz and
+Stegun, section 4.3. It takes one argument.
+</p></dd>
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd>
+csc A = 1/sin A
+</dd>
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+<div><button id="id74515xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74515xml')">xml</button> <button id="id74515prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74515pref')">prefix</button> <button id="id74515mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74515mml')">mathml</button></div><pre id="id74515xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMA&gt;
+  &lt;OMS cd="relation1" name="eq"/&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="transc1" name="csc"/&gt;&lt;OMV name="A"/&gt;
+  &lt;/OMA&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="arith1" name="divide"/&gt;
+    &lt;OMS cd="alg1" name="one"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="sin"/&gt;
+      &lt;OMV name="A"/&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id74515pref" style="display:none; margin-top: 0.5em">
+<a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#csc">csc</a>
+( <i>A</i>)
+, <a href="arith1.html#divide">divide</a>
+(<a href="../../../cd/alg1.html#one">one</a>, <a href="transc1.html#sin">sin</a>
+( <i>A</i>)
+)
+)
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/transc1.html#csc">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#cot">cot</a>][Previous: <a href="#sec">sec</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="cot">cot</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;cot/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the cot function as described in Abramowitz and
+Stegun, section 4.3. It takes one argument.
+</p></dd>
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd>
+cot A = 1/tan A
+</dd>
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+<div><button id="id74603xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74603xml')">xml</button> <button id="id74603prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74603pref')">prefix</button> <button id="id74603mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74603mml')">mathml</button></div><pre id="id74603xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMA&gt;
+  &lt;OMS cd="relation1" name="eq"/&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="transc1" name="cot"/&gt;&lt;OMV name="A"/&gt;
+  &lt;/OMA&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="arith1" name="divide"/&gt;
+    &lt;OMS cd="alg1" name="one"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="tan"/&gt;
+      &lt;OMV name="A"/&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id74603pref" style="display:none; margin-top: 0.5em">
+<a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#cot">cot</a>
+( <i>A</i>)
+, <a href="arith1.html#divide">divide</a>
+(<a href="../../../cd/alg1.html#one">one</a>, <a href="transc1.html#tan">tan</a>
+( <i>A</i>)
+)
+)
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/transc1.html#cot">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#sinh">sinh</a>][Previous: <a href="#csc">csc</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="sinh">sinh</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;sinh/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the sinh function as described in Abramowitz
+and Stegun, section 4.5. It takes one argument.
+</p></dd>
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> sinh A = 1/2 * (e^A - e^(-A)) </dd>
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd><div><button id="id74690xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74690xml')">xml</button> <button id="id74690prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74690pref')">prefix</button> <button id="id74690mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74690mml')">mathml</button></div><pre id="id74690xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMA&gt;
+  &lt;OMS cd="relation1" name="eq"/&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="transc1" name="sinh"/&gt;
+    &lt;OMV name="A"/&gt;
+  &lt;/OMA&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="arith1" name="times"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="nums1" name="rational"/&gt;
+      &lt;OMS cd="alg1" name="one"/&gt;
+      &lt;OMI&gt; 2 &lt;/OMI&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="arith1" name="minus"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="power"/&gt;
+	&lt;OMS cd="nums1" name="e"/&gt;
+	&lt;OMV name="A"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="power"/&gt;
+	&lt;OMS cd="nums1" name="e"/&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="arith1" name="unary_minus"/&gt;
+	  &lt;OMV name="A"/&gt;
+	&lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id74690pref" style="display:none; margin-top: 0.5em">
+<a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#sinh">sinh</a>
+( <i>A</i>)
+, <a href="arith1.html#times">times</a>
+(<a href="nums1.html#rational">rational</a>
+(<a href="../../../cd/alg1.html#one">one</a>,  2 )
+, <a href="arith1.html#minus">minus</a>
+(<a href="arith1.html#power">power</a>
+(<a href="nums1.html#e">e</a>,  <i>A</i>)
+, <a href="arith1.html#power">power</a>
+(<a href="nums1.html#e">e</a>, <a href="arith1.html#unary_minus">unary_minus</a>
+( <i>A</i>)
+)
+)
+)
+)
+
+</div></dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/transc1.html#sinh">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#cosh">cosh</a>][Previous: <a href="#cot">cot</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="cosh">cosh</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;cosh/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the cosh function as described in Abramowitz
+and Stegun, section 4.5. It takes one argument.
+</p></dd>
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> cosh A = 1/2 * (e^A + e^(-A)) </dd>
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd><div><button id="id74836xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74836xml')">xml</button> <button id="id74836prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74836pref')">prefix</button> <button id="id74836mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74836mml')">mathml</button></div><pre id="id74836xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMA&gt;
+  &lt;OMS cd="relation1" name="eq"/&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="transc1" name="cosh"/&gt;
+    &lt;OMV name="A"/&gt;
+  &lt;/OMA&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="arith1" name="times"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="nums1" name="rational"/&gt;
+      &lt;OMS cd="alg1" name="one"/&gt;
+      &lt;OMI&gt; 2 &lt;/OMI&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="arith1" name="plus"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="power"/&gt;
+	&lt;OMS cd="nums1" name="e"/&gt;
+	&lt;OMV name="A"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="power"/&gt;
+	&lt;OMS cd="nums1" name="e"/&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="arith1" name="unary_minus"/&gt;
+	  &lt;OMV name="A"/&gt;
+	&lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id74836pref" style="display:none; margin-top: 0.5em">
+<a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#cosh">cosh</a>
+( <i>A</i>)
+, <a href="arith1.html#times">times</a>
+(<a href="nums1.html#rational">rational</a>
+(<a href="../../../cd/alg1.html#one">one</a>,  2 )
+, <a href="arith1.html#plus">plus</a>
+(<a href="arith1.html#power">power</a>
+(<a href="nums1.html#e">e</a>,  <i>A</i>)
+, <a href="arith1.html#power">power</a>
+(<a href="nums1.html#e">e</a>, <a href="arith1.html#unary_minus">unary_minus</a>
+( <i>A</i>)
+)
+)
+)
+)
+
+</div></dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/transc1.html#cosh">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#tanh">tanh</a>][Previous: <a href="#sinh">sinh</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="tanh">tanh</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;tanh/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the tanh function as described in Abramowitz
+and Stegun, section 4.5. It takes one argument.
+</p></dd>
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> tanh A = sinh A / cosh A </dd>
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd><div><button id="id74982xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74982xml')">xml</button> <button id="id74982prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74982pref')">prefix</button> <button id="id74982mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74982mml')">mathml</button></div><pre id="id74982xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMA&gt;
+  &lt;OMS cd="relation1" name="eq"/&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="transc1" name="tanh"/&gt;
+    &lt;OMV name="A"/&gt;
+  &lt;/OMA&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="arith1" name="divide"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="sinh"/&gt;
+      &lt;OMV name="A"/&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="cosh"/&gt;
+      &lt;OMV name="A"/&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id74982pref" style="display:none; margin-top: 0.5em">
+<a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#tanh">tanh</a>
+( <i>A</i>)
+, <a href="arith1.html#divide">divide</a>
+(<a href="transc1.html#sinh">sinh</a>
+( <i>A</i>)
+, <a href="transc1.html#cosh">cosh</a>
+( <i>A</i>)
+)
+)
+
+</div></dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/transc1.html#tanh">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#sech">sech</a>][Previous: <a href="#cosh">cosh</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="sech">sech</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;sech/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the sech function as described in Abramowitz
+and Stegun, section 4.5. It takes one argument.
+</p></dd>
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> sech A = 1/cosh A </dd>
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+<div><button id="id75079xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id75079xml')">xml</button> <button id="id75079prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id75079pref')">prefix</button> <button id="id75079mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id75079mml')">mathml</button></div><pre id="id75079xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMA&gt;
+  &lt;OMS cd="relation1" name="eq"/&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="transc1" name="sech"/&gt;&lt;OMV name="A"/&gt;
+  &lt;/OMA&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="arith1" name="divide"/&gt;
+    &lt;OMS cd="alg1" name="one"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="cosh"/&gt;
+      &lt;OMV name="A"/&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id75079pref" style="display:none; margin-top: 0.5em">
+<a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#sech">sech</a>
+( <i>A</i>)
+, <a href="arith1.html#divide">divide</a>
+(<a href="../../../cd/alg1.html#one">one</a>, <a href="transc1.html#cosh">cosh</a>
+( <i>A</i>)
+)
+)
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/transc1.html#sech">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#csch">csch</a>][Previous: <a href="#tanh">tanh</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="csch">csch</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;csch/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the csch function as described in Abramowitz
+and Stegun, section 4.5. It takes one argument.
+</p></dd>
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> csch A = 1/sinh A </dd>
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+<div><button id="id75168xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id75168xml')">xml</button> <button id="id75168prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id75168pref')">prefix</button> <button id="id75168mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id75168mml')">mathml</button></div><pre id="id75168xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMA&gt;
+  &lt;OMS cd="relation1" name="eq"/&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="transc1" name="csch"/&gt;&lt;OMV name="A"/&gt;
+  &lt;/OMA&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="arith1" name="divide"/&gt;
+    &lt;OMS cd="alg1" name="one"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="sinh"/&gt;
+      &lt;OMV name="A"/&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id75168pref" style="display:none; margin-top: 0.5em">
+<a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#csch">csch</a>
+( <i>A</i>)
+, <a href="arith1.html#divide">divide</a>
+(<a href="../../../cd/alg1.html#one">one</a>, <a href="transc1.html#sinh">sinh</a>
+( <i>A</i>)
+)
+)
+
+</div>
+</dd>
+
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/transc1.html#csch">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#coth">coth</a>][Previous: <a href="#sech">sech</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="coth">coth</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;coth/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the coth function as described in Abramowitz
+and Stegun, section 4.5. It takes one argument.
+</p></dd>
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> coth A = 1/tanh A </dd>
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+<div><button id="id75257xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id75257xml')">xml</button> <button id="id75257prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id75257pref')">prefix</button> <button id="id75257mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id75257mml')">mathml</button></div><pre id="id75257xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMA&gt;
+  &lt;OMS cd="relation1" name="eq"/&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="transc1" name="coth"/&gt;&lt;OMV name="A"/&gt;
+  &lt;/OMA&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="arith1" name="divide"/&gt;
+    &lt;OMS cd="alg1" name="one"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="tanh"/&gt;
+      &lt;OMV name="A"/&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id75257pref" style="display:none; margin-top: 0.5em">
+<a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#coth">coth</a>
+( <i>A</i>)
+, <a href="arith1.html#divide">divide</a>
+(<a href="../../../cd/alg1.html#one">one</a>, <a href="transc1.html#tanh">tanh</a>
+( <i>A</i>)
+)
+)
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/transc1.html#coth">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#arcsin">arcsin</a>][Previous: <a href="#csch">csch</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="arcsin">arcsin</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;arcsin/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the arcsin function. This is the inverse of the
+sin function as described in Abramowitz and Stegun, section 4.4. It
+takes one argument.
+</p></dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd>
+arcsin(z) = -i ln (sqrt(1-z^2)+iz)
+</dd>
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+  <div><button id="id75347xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id75347xml')">xml</button> <button id="id75347prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id75347pref')">prefix</button> <button id="id75347mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id75347mml')">mathml</button></div><pre id="id75347xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+    &lt;OMA&gt;
+      &lt;OMS name="eq" cd="relation1"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS name="arcsin" cd="transc1"/&gt;
+        &lt;OMV name="z"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS name="times" cd="arith1"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS name="unary_minus" cd="arith1"/&gt;
+          &lt;OMS name="i" cd="nums1"/&gt;
+        &lt;/OMA&gt;
+        &lt;OMA&gt;
+          &lt;OMS name="ln" cd="transc1"/&gt;
+          &lt;OMA&gt;
+            &lt;OMS name="plus" cd="arith1"/&gt;
+            &lt;OMA&gt;
+              &lt;OMS name="root" cd="arith1"/&gt;
+              &lt;OMA&gt;
+                &lt;OMS name="minus" cd="arith1"/&gt;
+                &lt;OMS name="one" cd="alg1"/&gt;
+                &lt;OMA&gt;
+                  &lt;OMS name="power" cd="arith1"/&gt;
+                  &lt;OMV name="z"/&gt;
+                  &lt;OMI&gt; 2 &lt;/OMI&gt;
+                &lt;/OMA&gt;
+              &lt;/OMA&gt;
+              &lt;OMI&gt; 2 &lt;/OMI&gt;
+            &lt;/OMA&gt;
+            &lt;OMA&gt;
+              &lt;OMS name="times" cd="arith1"/&gt;
+              &lt;OMS name="i" cd="nums1"/&gt;
+              &lt;OMV name="z"/&gt;
+            &lt;/OMA&gt;
+          &lt;/OMA&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMOBJ&gt;</pre><div id="id75347pref" style="display:none; margin-top: 0.5em">
+    <a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#arcsin">arcsin</a>
+( <i>z</i>)
+, <a href="arith1.html#times">times</a>
+(<a href="arith1.html#unary_minus">unary_minus</a>
+(<a href="nums1.html#i">i</a>)
+, <a href="transc1.html#ln">ln</a>
+(<a href="arith1.html#plus">plus</a>
+(<a href="arith1.html#root">root</a>
+(<a href="arith1.html#minus">minus</a>
+(<a href="../../../cd/alg1.html#one">one</a>, <a href="arith1.html#power">power</a>
+( <i>z</i>,  2 )
+)
+,  2 )
+, <a href="arith1.html#times">times</a>
+(<a href="nums1.html#i">i</a>,  <i>z</i>)
+)
+)
+)
+)
+
+  </div>
+</dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> x in [-(pi/2),(pi/2)] implies arcsin(sin x) = x </dd>
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd><div><button id="id75494xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id75494xml')">xml</button> <button id="id75494prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id75494pref')">prefix</button> <button id="id75494mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id75494mml')">mathml</button></div><pre id="id75494xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMA&gt;
+  &lt;OMS cd="logic1" name="implies"/&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="set1" name="in"/&gt;
+    &lt;OMV name="x"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="interval1" name="interval_cc"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="unary_minus"/&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="arith1" name="divide"/&gt;
+	  &lt;OMS cd="nums1" name="pi"/&gt;
+	  &lt;OMI&gt; 2 &lt;/OMI&gt;
+	&lt;/OMA&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="divide"/&gt;
+	&lt;OMS cd="nums1" name="pi"/&gt;
+	&lt;OMI&gt; 2 &lt;/OMI&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="relation1" name="eq"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="arcsin"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="transc1" name="sin"/&gt;
+	&lt;OMV name="x"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+    &lt;OMV name="x"/&gt;
+  &lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id75494pref" style="display:none; margin-top: 0.5em">
+<a href="logic1.html#implies">implies</a>
+(<a href="set1.html#in">in</a>
+( <i>x</i>, <a href="interval1.html#interval_cc">interval_cc</a>
+(<a href="arith1.html#unary_minus">unary_minus</a>
+(<a href="arith1.html#divide">divide</a>
+(<a href="nums1.html#pi">pi</a>,  2 )
+)
+, <a href="arith1.html#divide">divide</a>
+(<a href="nums1.html#pi">pi</a>,  2 )
+)
+)
+, <a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#arcsin">arcsin</a>
+(<a href="transc1.html#sin">sin</a>
+( <i>x</i>)
+)
+,  <i>x</i>)
+)
+
+</div></dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/transc1.html#arcsin">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#arccos">arccos</a>][Previous: <a href="#coth">coth</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="arccos">arccos</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;arccos/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the arccos function. This is the inverse of the
+cos function as described in Abramowitz and Stegun, section 4.4. It
+takes one argument. 
+</p></dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> arccos(z) = -i ln(z+i \sqrt(1-z^2)) </dd>
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+<div><button id="id75646xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id75646xml')">xml</button> <button id="id75646prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id75646pref')">prefix</button> <button id="id75646mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id75646mml')">mathml</button></div><pre id="id75646xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="relation1" name="eq"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="arccos"/&gt;
+      &lt;OMV name="z"/&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="arith1" name="times"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="unary_minus"/&gt;
+	&lt;OMS cd="nums1" name="i"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="transc1" name="ln"/&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="arith1" name="plus"/&gt;
+	  &lt;OMV name="z"/&gt;
+	  &lt;OMA&gt;
+	    &lt;OMS cd="arith1" name="times"/&gt;
+	    &lt;OMS cd="nums1" name="i"/&gt;
+	    &lt;OMA&gt;
+	      &lt;OMS cd="arith1" name="root"/&gt;
+	      &lt;OMA&gt;
+	        &lt;OMS cd="arith1" name="minus"/&gt;
+		&lt;OMS cd="alg1" name="one"/&gt;
+		&lt;OMA&gt;
+		  &lt;OMS cd="arith1" name="power"/&gt;
+		  &lt;OMV name="z"/&gt;
+		  &lt;OMI&gt; 2 &lt;/OMI&gt;
+		&lt;/OMA&gt;
+	      &lt;/OMA&gt;
+	      &lt;OMI&gt; 2 &lt;/OMI&gt;
+	    &lt;/OMA&gt;
+	  &lt;/OMA&gt;
+	&lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id75646pref" style="display:none; margin-top: 0.5em">
+  <a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#arccos">arccos</a>
+( <i>z</i>)
+, <a href="arith1.html#times">times</a>
+(<a href="arith1.html#unary_minus">unary_minus</a>
+(<a href="nums1.html#i">i</a>)
+, <a href="transc1.html#ln">ln</a>
+(<a href="arith1.html#plus">plus</a>
+( <i>z</i>, <a href="arith1.html#times">times</a>
+(<a href="nums1.html#i">i</a>, <a href="arith1.html#root">root</a>
+(<a href="arith1.html#minus">minus</a>
+(<a href="../../../cd/alg1.html#one">one</a>, <a href="arith1.html#power">power</a>
+( <i>z</i>,  2 )
+)
+,  2 )
+)
+)
+)
+)
+)
+
+</div>
+</dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> x in [0,pi] implies arccos(cos x) = x </dd>
+
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd><div><button id="id75794xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id75794xml')">xml</button> <button id="id75794prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id75794pref')">prefix</button> <button id="id75794mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id75794mml')">mathml</button></div><pre id="id75794xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMA&gt;
+  &lt;OMS cd="logic1" name="implies"/&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="set1" name="in"/&gt;
+    &lt;OMV name="x"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="interval1" name="interval_cc"/&gt;
+      &lt;OMS cd="alg1" name="zero"/&gt;
+      &lt;OMS cd="nums1" name="pi"/&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="relation1" name="eq"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="arccos"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="transc1" name="cos"/&gt;
+	&lt;OMV name="x"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+    &lt;OMV name="x"/&gt;
+  &lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id75794pref" style="display:none; margin-top: 0.5em">
+<a href="logic1.html#implies">implies</a>
+(<a href="set1.html#in">in</a>
+( <i>x</i>, <a href="interval1.html#interval_cc">interval_cc</a>
+(<a href="../../../cd/alg1.html#zero">zero</a>, <a href="nums1.html#pi">pi</a>)
+)
+, <a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#arccos">arccos</a>
+(<a href="transc1.html#cos">cos</a>
+( <i>x</i>)
+)
+,  <i>x</i>)
+)
+
+</div></dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/transc1.html#arccos">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#arctan">arctan</a>][Previous: <a href="#arcsin">arcsin</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="arctan">arctan</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;arctan/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the arctan function. This is the inverse of the
+tan function as described in Abramowitz and Stegun, section 4.4. It
+takes one argument.
+</p></dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd>
+arctan(z) = (i/2)ln((1-iz)/(1+iz))
+</dd>
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+  <div><button id="id75913xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id75913xml')">xml</button> <button id="id75913prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id75913pref')">prefix</button> <button id="id75913mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id75913mml')">mathml</button></div><pre id="id75913xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+    &lt;OMA&gt;
+      &lt;OMS name="eq" cd="relation1"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS name="arctan" cd="transc1"/&gt;
+        &lt;OMV name="z"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS name="times" cd="arith1"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS name="divide" cd="arith1"/&gt;
+          &lt;OMS name="i" cd="nums1"/&gt;
+          &lt;OMI&gt; 2 &lt;/OMI&gt;
+        &lt;/OMA&gt;
+        &lt;OMA&gt;
+          &lt;OMS name="ln" cd="transc1"/&gt;
+	  &lt;OMA&gt;
+            &lt;OMS name="divide" cd="arith1"/&gt;
+            &lt;OMA&gt;
+              &lt;OMS name="minus" cd="arith1"/&gt;
+              &lt;OMS name="one" cd="alg1"/&gt;
+              &lt;OMA&gt;
+                &lt;OMS name="times" cd="arith1"/&gt;
+                &lt;OMS name="i" cd="nums1"/&gt;
+                &lt;OMV name="z"/&gt;
+              &lt;/OMA&gt;
+            &lt;/OMA&gt;
+            &lt;OMA&gt;
+              &lt;OMS name="plus" cd="arith1"/&gt;
+              &lt;OMS name="one" cd="alg1"/&gt;
+              &lt;OMA&gt;
+                &lt;OMS name="times" cd="arith1"/&gt;
+                &lt;OMS name="i" cd="nums1"/&gt;
+                &lt;OMV name="z"/&gt;
+              &lt;/OMA&gt;
+            &lt;/OMA&gt;
+          &lt;/OMA&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMOBJ&gt;</pre><div id="id75913pref" style="display:none; margin-top: 0.5em">
+    <a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#arctan">arctan</a>
+( <i>z</i>)
+, <a href="arith1.html#times">times</a>
+(<a href="arith1.html#divide">divide</a>
+(<a href="nums1.html#i">i</a>,  2 )
+, <a href="transc1.html#ln">ln</a>
+(<a href="arith1.html#divide">divide</a>
+(<a href="arith1.html#minus">minus</a>
+(<a href="../../../cd/alg1.html#one">one</a>, <a href="arith1.html#times">times</a>
+(<a href="nums1.html#i">i</a>,  <i>z</i>)
+)
+, <a href="arith1.html#plus">plus</a>
+(<a href="../../../cd/alg1.html#one">one</a>, <a href="arith1.html#times">times</a>
+(<a href="nums1.html#i">i</a>,  <i>z</i>)
+)
+)
+)
+)
+)
+
+  </div>
+</dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> x in (-(pi/2),(pi/2)) implies arctan(tan x) = x </dd>
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd><div><button id="id76070xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id76070xml')">xml</button> <button id="id76070prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id76070pref')">prefix</button> <button id="id76070mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id76070mml')">mathml</button></div><pre id="id76070xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMA&gt;
+  &lt;OMS cd="logic1" name="implies"/&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="set1" name="in"/&gt;
+    &lt;OMV name="x"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="interval1" name="interval_oo"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="unary_minus"/&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="arith1" name="divide"/&gt;
+	  &lt;OMS cd="nums1" name="pi"/&gt;
+	  &lt;OMI&gt; 2 &lt;/OMI&gt;
+	&lt;/OMA&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="divide"/&gt;
+	&lt;OMS cd="nums1" name="pi"/&gt;
+	&lt;OMI&gt; 2 &lt;/OMI&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="relation1" name="eq"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="arctan"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="transc1" name="tan"/&gt;
+	&lt;OMV name="x"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+    &lt;OMV name="x"/&gt;
+  &lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id76070pref" style="display:none; margin-top: 0.5em">
+<a href="logic1.html#implies">implies</a>
+(<a href="set1.html#in">in</a>
+( <i>x</i>, <a href="interval1.html#interval_oo">interval_oo</a>
+(<a href="arith1.html#unary_minus">unary_minus</a>
+(<a href="arith1.html#divide">divide</a>
+(<a href="nums1.html#pi">pi</a>,  2 )
+)
+, <a href="arith1.html#divide">divide</a>
+(<a href="nums1.html#pi">pi</a>,  2 )
+)
+)
+, <a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#arctan">arctan</a>
+(<a href="transc1.html#tan">tan</a>
+( <i>x</i>)
+)
+,  <i>x</i>)
+)
+
+</div></dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/transc1.html#arctan">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#arcsec">arcsec</a>][Previous: <a href="#arccos">arccos</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="arcsec">arcsec</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;arcsec/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the arcsec function as described in Abramowitz
+and Stegun, section 4.4.
+</p></dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> arcsec(z) = -i ln(1/z + i \sqrt(1-1/z^2)) </dd>
+
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+<div><button id="id76223xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id76223xml')">xml</button> <button id="id76223prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id76223pref')">prefix</button> <button id="id76223mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id76223mml')">mathml</button></div><pre id="id76223xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="relation1" name="eq"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="arcsec"/&gt;
+      &lt;OMV name="z"/&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="arith1" name="times"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="unary_minus"/&gt;
+	&lt;OMS cd="nums1" name="i"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="transc1" name="ln"/&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="arith1" name="plus"/&gt;
+	  &lt;OMA&gt;
+	    &lt;OMS cd="arith1" name="divide"/&gt;
+	    &lt;OMS cd="alg1" name="one"/&gt;
+	    &lt;OMV name="z"/&gt;
+	  &lt;/OMA&gt;
+	  &lt;OMA&gt;
+	    &lt;OMS cd="arith1" name="times"/&gt;
+	    &lt;OMS cd="nums1" name="i"/&gt;
+	    &lt;OMA&gt;
+	      &lt;OMS cd="arith1" name="root"/&gt;
+	      &lt;OMA&gt;
+	        &lt;OMS cd="arith1" name="minus"/&gt;
+		&lt;OMS cd="alg1" name="one"/&gt;
+		&lt;OMA&gt;
+		  &lt;OMS cd="arith1" name="divide"/&gt;
+		  &lt;OMS cd="alg1" name="one"/&gt;
+		  &lt;OMA&gt;
+		    &lt;OMS cd="arith1" name="power"/&gt;
+		    &lt;OMV name="z"/&gt;
+		    &lt;OMI&gt; 2 &lt;/OMI&gt;
+		  &lt;/OMA&gt;
+		&lt;/OMA&gt;
+	      &lt;/OMA&gt;
+	      &lt;OMI&gt; 2 &lt;/OMI&gt;
+	    &lt;/OMA&gt;
+	  &lt;/OMA&gt;
+	&lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id76223pref" style="display:none; margin-top: 0.5em">
+  <a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#arcsec">arcsec</a>
+( <i>z</i>)
+, <a href="arith1.html#times">times</a>
+(<a href="arith1.html#unary_minus">unary_minus</a>
+(<a href="nums1.html#i">i</a>)
+, <a href="transc1.html#ln">ln</a>
+(<a href="arith1.html#plus">plus</a>
+(<a href="arith1.html#divide">divide</a>
+(<a href="../../../cd/alg1.html#one">one</a>,  <i>z</i>)
+, <a href="arith1.html#times">times</a>
+(<a href="nums1.html#i">i</a>, <a href="arith1.html#root">root</a>
+(<a href="arith1.html#minus">minus</a>
+(<a href="../../../cd/alg1.html#one">one</a>, <a href="arith1.html#divide">divide</a>
+(<a href="../../../cd/alg1.html#one">one</a>, <a href="arith1.html#power">power</a>
+( <i>z</i>,  2 )
+)
+)
+,  2 )
+)
+)
+)
+)
+)
+
+</div>
+</dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> for all z | arcsec z = i * arcsech z </dd>
+
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd><div><button id="id76401xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id76401xml')">xml</button> <button id="id76401prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id76401pref')">prefix</button> <button id="id76401mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id76401mml')">mathml</button></div><pre id="id76401xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMBIND&gt;
+  &lt;OMS cd="quant1" name="forall"/&gt;
+  &lt;OMBVAR&gt;
+    &lt;OMV name="z"/&gt;
+  &lt;/OMBVAR&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="relation1" name="eq"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="arcsec"/&gt;
+      &lt;OMV name="z"/&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="arith1" name="times"/&gt;
+      &lt;OMS cd="nums1" name="i"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="transc1" name="arcsech"/&gt;
+	&lt;OMV name="z"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;</pre><div id="id76401pref" style="display:none; margin-top: 0.5em">
+<a href="quant1.html#forall">forall</a>
+[
+     <i>z</i>
+  ] .
+(<a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#arcsec">arcsec</a>
+( <i>z</i>)
+, <a href="arith1.html#times">times</a>
+(<a href="nums1.html#i">i</a>, <a href="transc1.html#arcsech">arcsech</a>
+( <i>z</i>)
+)
+)
+)
+
+</div></dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/transc1.html#arcsec">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#arccsc">arccsc</a>][Previous: <a href="#arctan">arctan</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="arccsc">arccsc</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;arccsc/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the arccsc function as described in Abramowitz
+and Stegun, section 4.4.
+</p></dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> arccsc(z) = -i ln(i/z + \sqrt(1 - 1/z^2)) </dd>
+
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+<div><button id="id76507xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id76507xml')">xml</button> <button id="id76507prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id76507pref')">prefix</button> <button id="id76507mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id76507mml')">mathml</button></div><pre id="id76507xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="relation1" name="eq"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="arccsc"/&gt;
+      &lt;OMV name="z"/&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="arith1" name="times"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="unary_minus"/&gt;
+	&lt;OMS cd="nums1" name="i"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="transc1" name="ln"/&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="arith1" name="plus"/&gt;
+	  &lt;OMA&gt;
+	    &lt;OMS cd="arith1" name="divide"/&gt;
+	    &lt;OMS cd="nums1" name="i"/&gt;
+	    &lt;OMV name="z"/&gt;
+	  &lt;/OMA&gt;
+	  &lt;OMA&gt;
+	    &lt;OMS cd="arith1" name="root"/&gt;
+	    &lt;OMA&gt;
+	      &lt;OMS cd="arith1" name="minus"/&gt;
+	      &lt;OMS cd="alg1" name="one"/&gt;
+	      &lt;OMA&gt;
+		&lt;OMS cd="arith1" name="divide"/&gt;
+		&lt;OMS cd="alg1" name="one"/&gt;
+		&lt;OMA&gt;
+		  &lt;OMS cd="arith1" name="power"/&gt;
+		  &lt;OMV name="z"/&gt;
+		  &lt;OMI&gt; 2 &lt;/OMI&gt;
+		&lt;/OMA&gt;
+	      &lt;/OMA&gt;
+	    &lt;/OMA&gt;
+	    &lt;OMI&gt; 2 &lt;/OMI&gt;
+	  &lt;/OMA&gt;
+	&lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id76507pref" style="display:none; margin-top: 0.5em">
+  <a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#arccsc">arccsc</a>
+( <i>z</i>)
+, <a href="arith1.html#times">times</a>
+(<a href="arith1.html#unary_minus">unary_minus</a>
+(<a href="nums1.html#i">i</a>)
+, <a href="transc1.html#ln">ln</a>
+(<a href="arith1.html#plus">plus</a>
+(<a href="arith1.html#divide">divide</a>
+(<a href="nums1.html#i">i</a>,  <i>z</i>)
+, <a href="arith1.html#root">root</a>
+(<a href="arith1.html#minus">minus</a>
+(<a href="../../../cd/alg1.html#one">one</a>, <a href="arith1.html#divide">divide</a>
+(<a href="../../../cd/alg1.html#one">one</a>, <a href="arith1.html#power">power</a>
+( <i>z</i>,  2 )
+)
+)
+,  2 )
+)
+)
+)
+)
+
+</div>
+</dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> arccsc(z) = i * arccsch(i * z) </dd>
+
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd><div><button id="id76670xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id76670xml')">xml</button> <button id="id76670prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id76670pref')">prefix</button> <button id="id76670mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id76670mml')">mathml</button></div><pre id="id76670xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMA&gt;
+  &lt;OMS cd="relation1" name="eq"/&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="transc1" name="arccsc"/&gt;
+    &lt;OMV name="z"/&gt;
+  &lt;/OMA&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="arith1" name="times"/&gt;
+    &lt;OMS cd="nums1" name="i"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="arccsch"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="times"/&gt;
+        &lt;OMS cd="nums1" name="i"/&gt;
+	&lt;OMV name="z"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id76670pref" style="display:none; margin-top: 0.5em">
+<a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#arccsc">arccsc</a>
+( <i>z</i>)
+, <a href="arith1.html#times">times</a>
+(<a href="nums1.html#i">i</a>, <a href="transc1.html#arccsch">arccsch</a>
+(<a href="arith1.html#times">times</a>
+(<a href="nums1.html#i">i</a>,  <i>z</i>)
+)
+)
+)
+
+</div></dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> arccsc(-z) = - arccsc(z) </dd>
+
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd><div><button id="id76752xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id76752xml')">xml</button> <button id="id76752prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id76752pref')">prefix</button> <button id="id76752mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id76752mml')">mathml</button></div><pre id="id76752xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMA&gt;
+  &lt;OMS cd="relation1" name="eq"/&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="transc1" name="arccsc"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="arith1" name="unary_minus"/&gt;
+      &lt;OMV name="z"/&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="arith1" name="unary_minus"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="arccsc"/&gt;
+      &lt;OMV name="z"/&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id76752pref" style="display:none; margin-top: 0.5em">
+<a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#arccsc">arccsc</a>
+(<a href="arith1.html#unary_minus">unary_minus</a>
+( <i>z</i>)
+)
+, <a href="arith1.html#unary_minus">unary_minus</a>
+(<a href="transc1.html#arccsc">arccsc</a>
+( <i>z</i>)
+)
+)
+
+</div></dd>
+
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/transc1.html#arccsc">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#arccot">arccot</a>][Previous: <a href="#arcsec">arcsec</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="arccot">arccot</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;arccot/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the arccot function as described in Abramowitz
+and Stegun, section 4.4.
+</p></dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> arccot(-z) = - arccot(z) </dd>
+
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd><div><button id="id76843xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id76843xml')">xml</button> <button id="id76843prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id76843pref')">prefix</button> <button id="id76843mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id76843mml')">mathml</button></div><pre id="id76843xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMA&gt;
+  &lt;OMS cd="relation1" name="eq"/&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="transc1" name="arccot"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="arith1" name="unary_minus"/&gt;
+      &lt;OMV name="z"/&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="arith1" name="unary_minus"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="arccot"/&gt;
+      &lt;OMV name="z"/&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id76843pref" style="display:none; margin-top: 0.5em">
+<a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#arccot">arccot</a>
+(<a href="arith1.html#unary_minus">unary_minus</a>
+( <i>z</i>)
+)
+, <a href="arith1.html#unary_minus">unary_minus</a>
+(<a href="transc1.html#arccot">arccot</a>
+( <i>z</i>)
+)
+)
+
+</div></dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> arccot(x) = (i/2) * ln ((x - i)/(x + i)) </dd>
+
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+<div><button id="id76914xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id76914xml')">xml</button> <button id="id76914prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id76914pref')">prefix</button> <button id="id76914mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id76914mml')">mathml</button></div><pre id="id76914xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="relation1" name="eq"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="arccot"/&gt;
+      &lt;OMV name="x"/&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="arith1" name="times"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="divide"/&gt;
+	&lt;OMS cd="nums1" name="i"/&gt;
+	&lt;OMI&gt; 2 &lt;/OMI&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="transc1" name="ln"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="arith1" name="divide"/&gt;
+	  &lt;OMA&gt;
+	    &lt;OMS cd="arith1" name="minus"/&gt;
+	    &lt;OMV name="x"/&gt;
+	    &lt;OMS cd="nums1" name="i"/&gt;
+	  &lt;/OMA&gt;
+	  &lt;OMA&gt;
+	    &lt;OMS cd="arith1" name="plus"/&gt;
+	    &lt;OMV name="x"/&gt;
+	    &lt;OMS cd="nums1" name="i"/&gt;
+	  &lt;/OMA&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id76914pref" style="display:none; margin-top: 0.5em">
+  <a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#arccot">arccot</a>
+( <i>x</i>)
+, <a href="arith1.html#times">times</a>
+(<a href="arith1.html#divide">divide</a>
+(<a href="nums1.html#i">i</a>,  2 )
+, <a href="transc1.html#ln">ln</a>
+(<a href="arith1.html#divide">divide</a>
+(<a href="arith1.html#minus">minus</a>
+( <i>x</i>, <a href="nums1.html#i">i</a>)
+, <a href="arith1.html#plus">plus</a>
+( <i>x</i>, <a href="nums1.html#i">i</a>)
+)
+)
+)
+)
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/transc1.html#arccot">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#arcsinh">arcsinh</a>][Previous: <a href="#arccsc">arccsc</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="arcsinh">arcsinh</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;arcsinh/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the arcsinh function as described in Abramowitz
+and Stegun, section 4.6.
+</p></dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> arcsinh z = ln(z + \sqrt(1+z^2)) </dd>
+
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+<div><button id="id77061xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id77061xml')">xml</button> <button id="id77061prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id77061pref')">prefix</button> <button id="id77061mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id77061mml')">mathml</button></div><pre id="id77061xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="relation1" name="eq"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="arcsinh"/&gt;
+      &lt;OMV name="z"/&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="ln"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="plus"/&gt;
+	&lt;OMV name="z"/&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="arith1" name="root"/&gt;
+	  &lt;OMA&gt;
+	    &lt;OMS cd="arith1" name="plus"/&gt;
+	    &lt;OMS cd="alg1" name="one"/&gt;
+	    &lt;OMA&gt;
+	      &lt;OMS cd="arith1" name="power"/&gt;
+	      &lt;OMV name="z"/&gt;
+	      &lt;OMI&gt; 2 &lt;/OMI&gt;
+	    &lt;/OMA&gt;
+	  &lt;/OMA&gt;
+	  &lt;OMI&gt; 2 &lt;/OMI&gt;
+	&lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id77061pref" style="display:none; margin-top: 0.5em">
+  <a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#arcsinh">arcsinh</a>
+( <i>z</i>)
+, <a href="transc1.html#ln">ln</a>
+(<a href="arith1.html#plus">plus</a>
+( <i>z</i>, <a href="arith1.html#root">root</a>
+(<a href="arith1.html#plus">plus</a>
+(<a href="../../../cd/alg1.html#one">one</a>, <a href="arith1.html#power">power</a>
+( <i>z</i>,  2 )
+)
+,  2 )
+)
+)
+)
+
+</div>
+</dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> arcsinh(z) = - i * arcsin(i * z) </dd>
+
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd><div><button id="id77168xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id77168xml')">xml</button> <button id="id77168prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id77168pref')">prefix</button> <button id="id77168mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id77168mml')">mathml</button></div><pre id="id77168xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMA&gt;
+  &lt;OMS cd="relation1" name="eq"/&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="transc1" name="arcsinh"/&gt;
+    &lt;OMV name="z"/&gt;
+  &lt;/OMA&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="arith1" name="times"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="arith1" name="unary_minus"/&gt;
+      &lt;OMS cd="nums1" name="i"/&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="arcsin"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="times"/&gt;
+	&lt;OMS cd="nums1" name="i"/&gt;
+	&lt;OMV name="z"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id77168pref" style="display:none; margin-top: 0.5em">
+<a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#arcsinh">arcsinh</a>
+( <i>z</i>)
+, <a href="arith1.html#times">times</a>
+(<a href="arith1.html#unary_minus">unary_minus</a>
+(<a href="nums1.html#i">i</a>)
+, <a href="transc1.html#arcsin">arcsin</a>
+(<a href="arith1.html#times">times</a>
+(<a href="nums1.html#i">i</a>,  <i>z</i>)
+)
+)
+)
+
+</div></dd>
+
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/transc1.html#arcsinh">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#arccosh">arccosh</a>][Previous: <a href="#arccot">arccot</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="arccosh">arccosh</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;arccosh/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the arccosh function as described in Abramowitz
+and Stegun, section 4.6.
+</p></dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> arccosh(z) = 2*ln(\sqrt((z+1)/2) + \sqrt((z-1)/2)) </dd>
+
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+<div><button id="id77282xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id77282xml')">xml</button> <button id="id77282prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id77282pref')">prefix</button> <button id="id77282mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id77282mml')">mathml</button></div><pre id="id77282xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="relation1" name="eq"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="arccosh"/&gt;
+      &lt;OMV name="z"/&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="arith1" name="times"/&gt;
+      &lt;OMI&gt; 2 &lt;/OMI&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="transc1" name="ln"/&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="arith1" name="plus"/&gt;
+	  &lt;OMA&gt;
+	    &lt;OMS cd="arith1" name="root"/&gt;
+	    &lt;OMA&gt;
+	      &lt;OMS cd="arith1" name="divide"/&gt;
+	      &lt;OMA&gt;
+	        &lt;OMS cd="arith1" name="plus"/&gt;
+		&lt;OMV name="z"/&gt;
+		&lt;OMS cd="alg1" name="one"/&gt;
+	      &lt;/OMA&gt;
+	      &lt;OMI&gt; 2 &lt;/OMI&gt;
+	    &lt;/OMA&gt;
+	    &lt;OMI&gt; 2 &lt;/OMI&gt;
+	  &lt;/OMA&gt;
+	  &lt;OMA&gt;
+	    &lt;OMS cd="arith1" name="root"/&gt;
+	    &lt;OMA&gt;
+	      &lt;OMS cd="arith1" name="divide"/&gt;
+	      &lt;OMA&gt;
+	        &lt;OMS cd="arith1" name="minus"/&gt;
+		&lt;OMV name="z"/&gt;
+		&lt;OMS cd="alg1" name="one"/&gt;
+	      &lt;/OMA&gt;
+	      &lt;OMI&gt; 2 &lt;/OMI&gt;
+	    &lt;/OMA&gt;
+	    &lt;OMI&gt; 2 &lt;/OMI&gt;
+	  &lt;/OMA&gt;
+	&lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id77282pref" style="display:none; margin-top: 0.5em">
+  <a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#arccosh">arccosh</a>
+( <i>z</i>)
+, <a href="arith1.html#times">times</a>
+( 2 , <a href="transc1.html#ln">ln</a>
+(<a href="arith1.html#plus">plus</a>
+(<a href="arith1.html#root">root</a>
+(<a href="arith1.html#divide">divide</a>
+(<a href="arith1.html#plus">plus</a>
+( <i>z</i>, <a href="../../../cd/alg1.html#one">one</a>)
+,  2 )
+,  2 )
+, <a href="arith1.html#root">root</a>
+(<a href="arith1.html#divide">divide</a>
+(<a href="arith1.html#minus">minus</a>
+( <i>z</i>, <a href="../../../cd/alg1.html#one">one</a>)
+,  2 )
+,  2 )
+)
+)
+)
+)
+
+</div>
+</dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> arccosh z = i * (pi - arccos z) </dd>
+
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd><div><button id="id77442xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id77442xml')">xml</button> <button id="id77442prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id77442pref')">prefix</button> <button id="id77442mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id77442mml')">mathml</button></div><pre id="id77442xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMA&gt;
+  &lt;OMS cd="relation1" name="eq"/&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="transc1" name="arccosh"/&gt;
+    &lt;OMV name="z"/&gt;
+  &lt;/OMA&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="arith1" name="times"/&gt;
+    &lt;OMS cd="nums1" name="i"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="arith1" name="minus"/&gt;
+      &lt;OMS cd="nums1" name="pi"/&gt;
+      &lt;OMA&gt;
+	&lt;OMS cd="transc1" name="arccos"/&gt;
+	&lt;OMV name="z"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id77442pref" style="display:none; margin-top: 0.5em">
+<a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#arccosh">arccosh</a>
+( <i>z</i>)
+, <a href="arith1.html#times">times</a>
+(<a href="nums1.html#i">i</a>, <a href="arith1.html#minus">minus</a>
+(<a href="nums1.html#pi">pi</a>, <a href="transc1.html#arccos">arccos</a>
+( <i>z</i>)
+)
+)
+)
+
+</div></dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/transc1.html#arccosh">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#arctanh">arctanh</a>][Previous: <a href="#arcsinh">arcsinh</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="arctanh">arctanh</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;arctanh/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the arctanh function as described in Abramowitz
+and Stegun, section 4.6.
+</p></dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> arctanh(z) = - i * arctan(i * z) </dd>
+
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd><div><button id="id77546xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id77546xml')">xml</button> <button id="id77546prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id77546pref')">prefix</button> <button id="id77546mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id77546mml')">mathml</button></div><pre id="id77546xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMA&gt;
+  &lt;OMS cd="relation1" name="eq"/&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="transc1" name="arctanh"/&gt;
+    &lt;OMV name="z"/&gt;
+  &lt;/OMA&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="arith1" name="times"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="arith1" name="unary_minus"/&gt;
+	&lt;OMS cd="nums1" name="i"/&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="arctan"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="times"/&gt;
+	&lt;OMS cd="nums1" name="i"/&gt;
+	&lt;OMV name="z"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id77546pref" style="display:none; margin-top: 0.5em">
+<a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#arctanh">arctanh</a>
+( <i>z</i>)
+, <a href="arith1.html#times">times</a>
+(<a href="arith1.html#unary_minus">unary_minus</a>
+(<a href="nums1.html#i">i</a>)
+, <a href="transc1.html#arctan">arctan</a>
+(<a href="arith1.html#times">times</a>
+(<a href="nums1.html#i">i</a>,  <i>z</i>)
+)
+)
+)
+
+</div></dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> for all x where 0 &lt;= x^2 &lt; 1 |
+arctanh(x) = 1/2 * ln((1 + x)/(1 - x))
+</dd>
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd><div><button id="id77641xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id77641xml')">xml</button> <button id="id77641prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id77641pref')">prefix</button> <button id="id77641mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id77641mml')">mathml</button></div><pre id="id77641xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMBIND&gt;
+  &lt;OMS cd="quant1" name="forall"/&gt;
+  &lt;OMBVAR&gt;
+    &lt;OMV name="x"/&gt;
+  &lt;/OMBVAR&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="logic1" name="implies"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="logic1" name="and"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="relation1" name="leq"/&gt;
+	&lt;OMS cd="alg1" name="zero"/&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="arith1" name="power"/&gt;
+	  &lt;OMV name="x"/&gt;
+	  &lt;OMI&gt; 2 &lt;/OMI&gt;
+	&lt;/OMA&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="relation1" name="lt"/&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="arith1" name="power"/&gt;
+	  &lt;OMV name="x"/&gt;
+	  &lt;OMI&gt; 2 &lt;/OMI&gt;
+	&lt;/OMA&gt;
+	&lt;OMS cd="alg1" name="one"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="relation1" name="eq"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="transc1" name="arctanh"/&gt;
+	&lt;OMV name="x"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="times"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="nums1" name="rational"/&gt;
+          &lt;OMI&gt; 1 &lt;/OMI&gt;
+          &lt;OMI&gt; 2 &lt;/OMI&gt;
+        &lt;/OMA&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="transc1" name="ln"/&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="arith1" name="divide"/&gt;
+	    &lt;OMA&gt;
+	      &lt;OMS cd="arith1" name="plus"/&gt;
+	      &lt;OMV name="x"/&gt;
+	      &lt;OMS cd="alg1" name="one"/&gt;
+	    &lt;/OMA&gt;
+	    &lt;OMA&gt;
+	      &lt;OMS cd="arith1" name="minus"/&gt;
+	      &lt;OMS cd="alg1" name="one"/&gt;
+	      &lt;OMV name="x"/&gt;
+	    &lt;/OMA&gt;
+          &lt;/OMA&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;</pre><div id="id77641pref" style="display:none; margin-top: 0.5em">
+<a href="quant1.html#forall">forall</a>
+[
+     <i>x</i>
+  ] .
+(<a href="logic1.html#implies">implies</a>
+(<a href="logic1.html#and">and</a>
+(<a href="relation1.html#leq">leq</a>
+(<a href="../../../cd/alg1.html#zero">zero</a>, <a href="arith1.html#power">power</a>
+( <i>x</i>,  2 )
+)
+, <a href="relation1.html#lt">lt</a>
+(<a href="arith1.html#power">power</a>
+( <i>x</i>,  2 )
+, <a href="../../../cd/alg1.html#one">one</a>)
+)
+, <a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#arctanh">arctanh</a>
+( <i>x</i>)
+, <a href="arith1.html#times">times</a>
+(<a href="nums1.html#rational">rational</a>
+( 1 ,  2 )
+, <a href="transc1.html#ln">ln</a>
+(<a href="arith1.html#divide">divide</a>
+(<a href="arith1.html#plus">plus</a>
+( <i>x</i>, <a href="../../../cd/alg1.html#one">one</a>)
+, <a href="arith1.html#minus">minus</a>
+(<a href="../../../cd/alg1.html#one">one</a>,  <i>x</i>)
+)
+)
+)
+)
+)
+)
+
+</div></dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/transc1.html#arctanh">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#arcsech">arcsech</a>][Previous: <a href="#arccosh">arccosh</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="arcsech">arcsech</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;arcsech/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the arcsech function as described in Abramowitz
+and Stegun, section 4.6.
+</p></dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> arcsech(z) = 2 ln(\sqrt((1+z)/(2z)) + \sqrt((1-z)/(2z))) </dd>
+
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+<div><button id="id77884xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id77884xml')">xml</button> <button id="id77884prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id77884pref')">prefix</button> <button id="id77884mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id77884mml')">mathml</button></div><pre id="id77884xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="relation1" name="eq"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="arcsech"/&gt;
+      &lt;OMV name="z"/&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="arith1" name="times"/&gt;
+      &lt;OMI&gt; 2 &lt;/OMI&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="transc1" name="ln"/&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="arith1" name="plus"/&gt;
+	  &lt;OMA&gt;
+	    &lt;OMS cd="arith1" name="root"/&gt;
+	    &lt;OMA&gt;
+	      &lt;OMS cd="arith1" name="divide"/&gt;
+	      &lt;OMA&gt;
+	        &lt;OMS cd="arith1" name="plus"/&gt;
+		&lt;OMS cd="alg1" name="one"/&gt;
+		&lt;OMV name="z"/&gt;
+	      &lt;/OMA&gt;
+	      &lt;OMA&gt;
+	        &lt;OMS cd="arith1" name="times"/&gt;
+		&lt;OMI&gt; 2 &lt;/OMI&gt;
+		&lt;OMV name="z"/&gt;
+	      &lt;/OMA&gt;
+	    &lt;/OMA&gt;
+	    &lt;OMI&gt; 2 &lt;/OMI&gt;
+	  &lt;/OMA&gt;
+	  &lt;OMA&gt;
+	    &lt;OMS cd="arith1" name="root"/&gt;
+	    &lt;OMA&gt;
+	      &lt;OMS cd="arith1" name="divide"/&gt;
+	      &lt;OMA&gt;
+	        &lt;OMS cd="arith1" name="minus"/&gt;
+		&lt;OMS cd="alg1" name="one"/&gt;
+		&lt;OMV name="z"/&gt;
+	      &lt;/OMA&gt;
+	      &lt;OMA&gt;
+	        &lt;OMS cd="arith1" name="times"/&gt;
+		&lt;OMI&gt; 2 &lt;/OMI&gt;
+		&lt;OMV name="z"/&gt;
+	      &lt;/OMA&gt;
+	    &lt;/OMA&gt;
+	    &lt;OMI&gt; 2 &lt;/OMI&gt;
+	  &lt;/OMA&gt;
+	&lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id77884pref" style="display:none; margin-top: 0.5em">
+  <a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#arcsech">arcsech</a>
+( <i>z</i>)
+, <a href="arith1.html#times">times</a>
+( 2 , <a href="transc1.html#ln">ln</a>
+(<a href="arith1.html#plus">plus</a>
+(<a href="arith1.html#root">root</a>
+(<a href="arith1.html#divide">divide</a>
+(<a href="arith1.html#plus">plus</a>
+(<a href="../../../cd/alg1.html#one">one</a>,  <i>z</i>)
+, <a href="arith1.html#times">times</a>
+( 2 ,  <i>z</i>)
+)
+,  2 )
+, <a href="arith1.html#root">root</a>
+(<a href="arith1.html#divide">divide</a>
+(<a href="arith1.html#minus">minus</a>
+(<a href="../../../cd/alg1.html#one">one</a>,  <i>z</i>)
+, <a href="arith1.html#times">times</a>
+( 2 ,  <i>z</i>)
+)
+,  2 )
+)
+)
+)
+)
+
+</div>
+</dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> for all x in (0..1] | arcsech x = ln(1/x + (1/(x^2) - 1)^(1/2)) </dd>
+
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd><div><button id="id78072xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id78072xml')">xml</button> <button id="id78072prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id78072pref')">prefix</button> <button id="id78072mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id78072mml')">mathml</button></div><pre id="id78072xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMBIND&gt;
+  &lt;OMS cd="quant1" name="forall"/&gt;
+  &lt;OMBVAR&gt;
+    &lt;OMV name="x"/&gt;
+  &lt;/OMBVAR&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="logic1" name="implies"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="set1" name="in"/&gt;
+      &lt;OMV name="x"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="interval1" name="interval_oc"/&gt;
+	&lt;OMI&gt; 0 &lt;/OMI&gt; &lt;OMI&gt; 1 &lt;/OMI&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="relation1" name="eq"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="transc1" name="arcsech"/&gt;
+	&lt;OMV name="x"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="transc1" name="ln"/&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="arith1" name="plus"/&gt;
+	  &lt;OMA&gt;
+	    &lt;OMS cd="arith1" name="divide"/&gt;
+	    &lt;OMS cd="alg1" name="one"/&gt;
+	    &lt;OMV name="x"/&gt;
+	  &lt;/OMA&gt;
+	  &lt;OMA&gt;
+	    &lt;OMS cd="arith1" name="power"/&gt;
+	    &lt;OMA&gt;
+	      &lt;OMS cd="arith1" name="minus"/&gt;
+	      &lt;OMA&gt;
+	        &lt;OMS cd="arith1" name="divide"/&gt;
+		&lt;OMS cd="alg1" name="one"/&gt;
+		&lt;OMA&gt;
+		  &lt;OMS cd="arith1" name="power"/&gt;
+		  &lt;OMV name="x"/&gt;
+		  &lt;OMI&gt; 2 &lt;/OMI&gt;
+		&lt;/OMA&gt;
+	      &lt;/OMA&gt;
+	      &lt;OMS cd="alg1" name="one"/&gt;
+	    &lt;/OMA&gt;
+	    &lt;OMA&gt;
+	      &lt;OMS cd="nums1" name="rational"/&gt;
+	      &lt;OMI&gt; 1 &lt;/OMI&gt; &lt;OMI&gt; 2 &lt;/OMI&gt;
+	    &lt;/OMA&gt;
+	  &lt;/OMA&gt;
+	&lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;</pre><div id="id78072pref" style="display:none; margin-top: 0.5em">
+<a href="quant1.html#forall">forall</a>
+[
+     <i>x</i>
+  ] .
+(<a href="logic1.html#implies">implies</a>
+(<a href="set1.html#in">in</a>
+( <i>x</i>, <a href="interval1.html#interval_oc">interval_oc</a>
+( 0 ,  1 )
+)
+, <a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#arcsech">arcsech</a>
+( <i>x</i>)
+, <a href="transc1.html#ln">ln</a>
+(<a href="arith1.html#plus">plus</a>
+(<a href="arith1.html#divide">divide</a>
+(<a href="../../../cd/alg1.html#one">one</a>,  <i>x</i>)
+, <a href="arith1.html#power">power</a>
+(<a href="arith1.html#minus">minus</a>
+(<a href="arith1.html#divide">divide</a>
+(<a href="../../../cd/alg1.html#one">one</a>, <a href="arith1.html#power">power</a>
+( <i>x</i>,  2 )
+)
+, <a href="../../../cd/alg1.html#one">one</a>)
+, <a href="nums1.html#rational">rational</a>
+( 1 ,  2 )
+)
+)
+)
+)
+)
+)
+
+</div></dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/transc1.html#arcsech">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#arccsch">arccsch</a>][Previous: <a href="#arctanh">arctanh</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="arccsch">arccsch</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;arccsch/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the arccsch function as described in Abramowitz
+and Stegun, section 4.6.
+</p></dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> arccsch(z) = ln(1/z + \sqrt(1+(1/z)^2)) </dd>
+
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+<div><button id="id78300xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id78300xml')">xml</button> <button id="id78300prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id78300pref')">prefix</button> <button id="id78300mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id78300mml')">mathml</button></div><pre id="id78300xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="relation1" name="eq"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="arccsch"/&gt;
+      &lt;OMV name="z"/&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="ln"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="plus"/&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="arith1" name="divide"/&gt;
+	  &lt;OMS cd="alg1" name="one"/&gt;
+	  &lt;OMV name="z"/&gt;
+	&lt;/OMA&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="arith1" name="root"/&gt;
+	  &lt;OMA&gt;
+	    &lt;OMS cd="arith1" name="plus"/&gt;
+	    &lt;OMS cd="alg1" name="one"/&gt;
+	    &lt;OMA&gt;
+	      &lt;OMS cd="arith1" name="power"/&gt;
+	      &lt;OMA&gt;
+	        &lt;OMS cd="arith1" name="divide"/&gt;
+		&lt;OMS cd="alg1" name="one"/&gt;
+		&lt;OMV name="z"/&gt;
+	      &lt;/OMA&gt;
+	      &lt;OMI&gt; 2 &lt;/OMI&gt;
+	    &lt;/OMA&gt;
+	  &lt;/OMA&gt;
+	  &lt;OMI&gt; 2 &lt;/OMI&gt;
+	&lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id78300pref" style="display:none; margin-top: 0.5em">
+  <a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#arccsch">arccsch</a>
+( <i>z</i>)
+, <a href="transc1.html#ln">ln</a>
+(<a href="arith1.html#plus">plus</a>
+(<a href="arith1.html#divide">divide</a>
+(<a href="../../../cd/alg1.html#one">one</a>,  <i>z</i>)
+, <a href="arith1.html#root">root</a>
+(<a href="arith1.html#plus">plus</a>
+(<a href="../../../cd/alg1.html#one">one</a>, <a href="arith1.html#power">power</a>
+(<a href="arith1.html#divide">divide</a>
+(<a href="../../../cd/alg1.html#one">one</a>,  <i>z</i>)
+,  2 )
+)
+,  2 )
+)
+)
+)
+
+</div>
+</dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> arccsch(z) = i * arccsc(i * z) </dd>
+
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd><div><button id="id78438xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id78438xml')">xml</button> <button id="id78438prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id78438pref')">prefix</button> <button id="id78438mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id78438mml')">mathml</button></div><pre id="id78438xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMA&gt;
+  &lt;OMS cd="relation1" name="eq"/&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="transc1" name="arccsch"/&gt;
+    &lt;OMV name="z"/&gt;
+  &lt;/OMA&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="arith1" name="times"/&gt;
+    &lt;OMS cd="nums1" name="i"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="arccsc"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="times"/&gt;
+	&lt;OMS cd="nums1" name="i"/&gt;
+	&lt;OMV name="z"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id78438pref" style="display:none; margin-top: 0.5em">
+<a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#arccsch">arccsch</a>
+( <i>z</i>)
+, <a href="arith1.html#times">times</a>
+(<a href="nums1.html#i">i</a>, <a href="transc1.html#arccsc">arccsc</a>
+(<a href="arith1.html#times">times</a>
+(<a href="nums1.html#i">i</a>,  <i>z</i>)
+)
+)
+)
+
+</div></dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/transc1.html#arccsch">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#arccoth">arccoth</a>][Previous: <a href="#arcsech">arcsech</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="arccoth">arccoth</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;arccoth/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the arccoth function as described in Abramowitz
+and Stegun, section 4.6.
+</p></dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> arccoth(z) = (ln(-1-z)-ln(1-z))/2 </dd>
+
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+<div><button id="id78543xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id78543xml')">xml</button> <button id="id78543prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id78543pref')">prefix</button> <button id="id78543mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id78543mml')">mathml</button></div><pre id="id78543xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="relation1" name="eq"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="transc1" name="arccoth"/&gt;
+      &lt;OMV name="z"/&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="arith1" name="divide"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="minus"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="transc1" name="ln"/&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="arith1" name="minus"/&gt;
+	    &lt;OMA&gt;
+	      &lt;OMS cd="arith1" name="unary_minus"/&gt;
+	      &lt;OMS cd="alg1" name="one"/&gt;
+	    &lt;/OMA&gt;
+	    &lt;OMV name="z"/&gt;
+          &lt;/OMA&gt;
+        &lt;/OMA&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="transc1" name="ln"/&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="arith1" name="minus"/&gt;
+	    &lt;OMS cd="alg1" name="one"/&gt;
+	    &lt;OMV name="z"/&gt;
+          &lt;/OMA&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+      &lt;OMI&gt; 2 &lt;/OMI&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id78543pref" style="display:none; margin-top: 0.5em">
+  <a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#arccoth">arccoth</a>
+( <i>z</i>)
+, <a href="arith1.html#divide">divide</a>
+(<a href="arith1.html#minus">minus</a>
+(<a href="transc1.html#ln">ln</a>
+(<a href="arith1.html#minus">minus</a>
+(<a href="arith1.html#unary_minus">unary_minus</a>
+(<a href="../../../cd/alg1.html#one">one</a>)
+,  <i>z</i>)
+)
+, <a href="transc1.html#ln">ln</a>
+(<a href="arith1.html#minus">minus</a>
+(<a href="../../../cd/alg1.html#one">one</a>,  <i>z</i>)
+)
+)
+,  2 )
+)
+
+</div>
+</dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> for all z | if z is not zero then arccoth(z) = i * arccot(i * z) </dd>
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd><div><button id="id78671xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id78671xml')">xml</button> <button id="id78671prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id78671pref')">prefix</button> <button id="id78671mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id78671mml')">mathml</button></div><pre id="id78671xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMBIND&gt;
+  &lt;OMS cd="quant1" name="forall"/&gt;
+  &lt;OMBVAR&gt;
+    &lt;OMV name="z"/&gt;
+  &lt;/OMBVAR&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="logic1" name="implies"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="relation1" name="neq"/&gt;
+      &lt;OMV name="z"/&gt;
+      &lt;OMS cd="alg1" name="zero"/&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="relation1" name="eq"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="transc1" name="arccoth"/&gt;
+	&lt;OMV name="z"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="times"/&gt;
+	&lt;OMS cd="nums1" name="i"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="transc1" name="arccot"/&gt;
+	  &lt;OMA&gt;
+            &lt;OMS cd="arith1" name="times"/&gt;
+	    &lt;OMS cd="nums1" name="i"/&gt;
+	    &lt;OMV name="z"/&gt;
+          &lt;/OMA&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt; 
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;</pre><div id="id78671pref" style="display:none; margin-top: 0.5em">
+<a href="quant1.html#forall">forall</a>
+[
+     <i>z</i>
+  ] .
+(<a href="logic1.html#implies">implies</a>
+(<a href="relation1.html#neq">neq</a>
+( <i>z</i>, <a href="../../../cd/alg1.html#zero">zero</a>)
+, <a href="relation1.html#eq">eq</a>
+(<a href="transc1.html#arccoth">arccoth</a>
+( <i>z</i>)
+, <a href="arith1.html#times">times</a>
+(<a href="nums1.html#i">i</a>, <a href="transc1.html#arccot">arccot</a>
+(<a href="arith1.html#times">times</a>
+(<a href="nums1.html#i">i</a>,  <i>z</i>)
+)
+)
+)
+)
+)
+
+</div></dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/transc1.html#arccoth">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">
+	    [First: <a href="#log">log</a>]
+	  [Previous: <a href="#arccsch">arccsch</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+</body></html>

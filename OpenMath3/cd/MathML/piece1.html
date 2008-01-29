@@ -1,0 +1,252 @@
+<?xml version="1.0"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:cd="http://www.openmath.org/OpenMathCD"><head><script type="text/javascript"> function divfold(_Id){
+     var thisLevel = document.getElementById(_Id);
+     var thisLevela = document.getElementById(_Id.concat("a"))
+     if(thisLevel.style.display != "none"){ 
+      thisLevel.style.display = "none";
+      thisLevela.style.backgroundColor = "#CCCCCC";} 
+     else{
+      thisLevel.style.display = "block";
+      thisLevela.style.backgroundColor = "#AAFFAA";}  
+       }
+     </script><title>piece1</title><link rel="stylesheet" href="omcd.css" type="text/css"/></head><body><a name="top"/><h1>OpenMath Content Dictionary: piece1</h1><dl><dt><span class="dt">Canonical URL:</span></dt><dd><a href="http://www.openmath.org/cd/piece1.ocd">http://www.openmath.org/cd/piece1.ocd</a></dd><dt><span class="dt">CD Base:</span></dt><dd><a href="http://www.openmath.org/cd">http://www.openmath.org/cd</a></dd><dt><span class="dt">CD File:</span></dt><dd><a href="piece1.ocd">piece1.ocd
+  </a></dd><dt><span class="dt">CD as XML Encoded OpenMath:</span></dt><dd><a href="piece1.omcd">piece1.omcd
+  </a></dd><dt><span class="dt">Defines:</span></dt><dd><a href="#otherwise">otherwise</a>, <a href="#piece">piece</a>, <a href="#piecewise">piecewise</a></dd><dt><span class="dt">Date:</span></dt><dd>2004-03-30</dd><dt><span class="dt">Version:</span></dt><dd>2</dd><dt><span class="dt">Review Date:</span></dt><dd>2006-03-30</dd><dt><span class="dt">Status:</span></dt><dd>official</dd></dl><hr/>
+
+<pre>
+
+     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+</pre>
+
+
+
+
+
+
+
+
+
+
+<p>
+    This CD is intended to be compatible with the corresponding
+    elements in Content MathML 2.</p><p>    In this CD we give a set of operators for piece-wise defined expressions.
+</p>
+
+<hr/><dl>
+<h2><a name="piecewise">piecewise</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;piecewise/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This operator heads an expression that is being defined piecewise. Its 
+arguments are n objects built with the piece constructor, optionally
+followed by one built with otherwise constructor.
+</p></dd>
+
+<dt><span class="dt">Example:</span></dt><dd>
+<div><button id="id73163xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73163xml')">xml</button> <button id="id73163prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73163pref')">prefix</button> <button id="id73163mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73163mml')">mathml</button></div><pre id="id73163xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMA&gt;
+&lt;OMS cd="relation1" name="eq"/&gt;
+&lt;OMA&gt;
+  &lt;OMS cd="arith1" name="abs"/&gt;
+  &lt;OMV name="x"/&gt;
+&lt;/OMA&gt;
+&lt;OMA&gt;&lt;OMS cd="piece1" name="piecewise"/&gt;
+  &lt;OMA&gt;&lt;OMS cd="piece1" name="piece"/&gt;
+      &lt;OMA&gt;&lt;OMS cd="arith1" name="unary_minus"/&gt;&lt;OMV name="x"/&gt;&lt;/OMA&gt;
+      &lt;OMA&gt;&lt;OMS cd="relation1" name="lt"/&gt;&lt;OMV name="x"/&gt; &lt;OMI&gt; 0 &lt;/OMI&gt;&lt;/OMA&gt;
+  &lt;/OMA&gt;
+  &lt;OMA&gt;&lt;OMS cd="piece1" name="piece"/&gt;
+      &lt;OMI&gt; 0 &lt;/OMI&gt;
+      &lt;OMA&gt;&lt;OMS cd="relation1" name="eq"/&gt;&lt;OMV name="x"/&gt; &lt;OMI&gt; 0 &lt;/OMI&gt;&lt;/OMA&gt;
+  &lt;/OMA&gt;
+  &lt;OMA&gt;&lt;OMS cd="piece1" name="otherwise"/&gt;
+      &lt;OMV name="x"/&gt;
+  &lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73163pref" style="display:none; margin-top: 0.5em">
+<a href="relation1.html#eq">eq</a>
+(<a href="arith1.html#abs">abs</a>
+( <i>x</i>)
+, <a href="piece1.html#piecewise">piecewise</a>
+(<a href="piece1.html#piece">piece</a>
+(<a href="arith1.html#unary_minus">unary_minus</a>
+( <i>x</i>)
+, <a href="relation1.html#lt">lt</a>
+( <i>x</i>,  0 )
+)
+, <a href="piece1.html#piece">piece</a>
+( 0 , <a href="relation1.html#eq">eq</a>
+( <i>x</i>,  0 )
+)
+, <a href="piece1.html#otherwise">otherwise</a>
+( <i>x</i>)
+)
+)
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/piece1.html#piecewise">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#piece">piece</a>]
+	    [Last: <a href="#otherwise">otherwise</a>]
+	  
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="piece">piece</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;piece/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This introduces an individual component of a piecewise definition. It has
+precisely two arguments: the first is the value, and the second is a Boolean
+(meant to be a predicate) which is true if and only if this piece is to
+provide the value of the piecewise construct.
+</p></dd>
+
+<dt><span class="dt">Example:</span></dt><dd>
+<div><button id="id73305xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73305xml')">xml</button> <button id="id73305prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73305pref')">prefix</button> <button id="id73305mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73305mml')">mathml</button></div><pre id="id73305xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMA&gt;
+&lt;OMS cd="relation1" name="eq"/&gt;
+&lt;OMA&gt;
+  &lt;OMS cd="arith1" name="abs"/&gt;
+  &lt;OMV name="x"/&gt;
+&lt;/OMA&gt;
+&lt;OMA&gt;&lt;OMS cd="piece1" name="piecewise"/&gt;
+  &lt;OMA&gt;&lt;OMS cd="piece1" name="piece"/&gt;
+      &lt;OMA&gt;&lt;OMS cd="arith1" name="unary_minus"/&gt;&lt;OMV name="x"/&gt;&lt;/OMA&gt;
+      &lt;OMA&gt;&lt;OMS cd="relation1" name="lt"/&gt;&lt;OMV name="x"/&gt; &lt;OMI&gt; 0 &lt;/OMI&gt;&lt;/OMA&gt;
+  &lt;/OMA&gt;
+  &lt;OMA&gt;&lt;OMS cd="piece1" name="piece"/&gt;
+      &lt;OMI&gt; 0 &lt;/OMI&gt;
+      &lt;OMA&gt;&lt;OMS cd="relation1" name="eq"/&gt;&lt;OMV name="x"/&gt; &lt;OMI&gt; 0 &lt;/OMI&gt;&lt;/OMA&gt;
+  &lt;/OMA&gt;
+  &lt;OMA&gt;&lt;OMS cd="piece1" name="otherwise"/&gt;
+      &lt;OMV name="x"/&gt;
+  &lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73305pref" style="display:none; margin-top: 0.5em">
+<a href="relation1.html#eq">eq</a>
+(<a href="arith1.html#abs">abs</a>
+( <i>x</i>)
+, <a href="piece1.html#piecewise">piecewise</a>
+(<a href="piece1.html#piece">piece</a>
+(<a href="arith1.html#unary_minus">unary_minus</a>
+( <i>x</i>)
+, <a href="relation1.html#lt">lt</a>
+( <i>x</i>,  0 )
+)
+, <a href="piece1.html#piece">piece</a>
+( 0 , <a href="relation1.html#eq">eq</a>
+( <i>x</i>,  0 )
+)
+, <a href="piece1.html#otherwise">otherwise</a>
+( <i>x</i>)
+)
+)
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/piece1.html#piece">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#otherwise">otherwise</a>][Previous: <a href="#piecewise">piecewise</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="otherwise">otherwise</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;otherwise/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p>
+This symbol introduces the 'default' value of a piecewise construct.
+If none of the previous piece constructs can provide the value, this will.
+It has a single child, the value.
+</p></dd>
+
+<dt><span class="dt">Example:</span></dt><dd>
+<div><button id="id73441xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73441xml')">xml</button> <button id="id73441prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73441pref')">prefix</button> <button id="id73441mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73441mml')">mathml</button></div><pre id="id73441xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMA&gt;
+&lt;OMS cd="relation1" name="eq"/&gt;
+&lt;OMA&gt;
+  &lt;OMS cd="arith1" name="abs"/&gt;
+  &lt;OMV name="x"/&gt;
+&lt;/OMA&gt;
+&lt;OMA&gt;&lt;OMS cd="piece1" name="piecewise"/&gt;
+  &lt;OMA&gt;&lt;OMS cd="piece1" name="piece"/&gt;
+      &lt;OMA&gt;&lt;OMS cd="arith1" name="unary_minus"/&gt;&lt;OMV name="x"/&gt;&lt;/OMA&gt;
+      &lt;OMA&gt;&lt;OMS cd="relation1" name="lt"/&gt;&lt;OMV name="x"/&gt; &lt;OMI&gt; 0 &lt;/OMI&gt;&lt;/OMA&gt;
+  &lt;/OMA&gt;
+  &lt;OMA&gt;&lt;OMS cd="piece1" name="piece"/&gt;
+      &lt;OMI&gt; 0 &lt;/OMI&gt;
+      &lt;OMA&gt;&lt;OMS cd="relation1" name="eq"/&gt;&lt;OMV name="x"/&gt; &lt;OMI&gt; 0 &lt;/OMI&gt;&lt;/OMA&gt;
+  &lt;/OMA&gt;
+  &lt;OMA&gt;&lt;OMS cd="piece1" name="otherwise"/&gt;
+      &lt;OMV name="x"/&gt;
+  &lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73441pref" style="display:none; margin-top: 0.5em">
+<a href="relation1.html#eq">eq</a>
+(<a href="arith1.html#abs">abs</a>
+( <i>x</i>)
+, <a href="piece1.html#piecewise">piecewise</a>
+(<a href="piece1.html#piece">piece</a>
+(<a href="arith1.html#unary_minus">unary_minus</a>
+( <i>x</i>)
+, <a href="relation1.html#lt">lt</a>
+( <i>x</i>,  0 )
+)
+, <a href="piece1.html#piece">piece</a>
+( 0 , <a href="relation1.html#eq">eq</a>
+( <i>x</i>,  0 )
+)
+, <a href="piece1.html#otherwise">otherwise</a>
+( <i>x</i>)
+)
+)
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/piece1.html#otherwise">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">
+	    [First: <a href="#piecewise">piecewise</a>]
+	  [Previous: <a href="#piece">piece</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+</body></html>

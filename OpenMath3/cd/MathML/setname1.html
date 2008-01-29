@@ -1,0 +1,849 @@
+<?xml version="1.0"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:cd="http://www.openmath.org/OpenMathCD"><head><script type="text/javascript"> function divfold(_Id){
+     var thisLevel = document.getElementById(_Id);
+     var thisLevela = document.getElementById(_Id.concat("a"))
+     if(thisLevel.style.display != "none"){ 
+      thisLevel.style.display = "none";
+      thisLevela.style.backgroundColor = "#CCCCCC";} 
+     else{
+      thisLevel.style.display = "block";
+      thisLevela.style.backgroundColor = "#AAFFAA";}  
+       }
+     </script><title>setname1</title><link rel="stylesheet" href="omcd.css" type="text/css"/></head><body><a name="top"/><h1>OpenMath Content Dictionary: setname1</h1><dl><dt><span class="dt">Canonical URL:</span></dt><dd><a href="http://www.openmath.org/cd/setname1.ocd">http://www.openmath.org/cd/setname1.ocd</a></dd><dt><span class="dt">CD Base:</span></dt><dd><a href="http://www.openmath.org/cd">http://www.openmath.org/cd</a></dd><dt><span class="dt">CD File:</span></dt><dd><a href="setname1.ocd">setname1.ocd
+  </a></dd><dt><span class="dt">CD as XML Encoded OpenMath:</span></dt><dd><a href="setname1.omcd">setname1.omcd
+  </a></dd><dt><span class="dt">Defines:</span></dt><dd><a href="#C">C</a>, <a href="#N">N</a>, <a href="#P">P</a>, <a href="#Q">Q</a>, <a href="#R">R</a>, <a href="#Z">Z</a></dd><dt><span class="dt">Date:</span></dt><dd>2004-03-30</dd><dt><span class="dt">Version:</span></dt><dd>3</dd><dt><span class="dt">Review Date:</span></dt><dd>2006-03-30</dd><dt><span class="dt">Status:</span></dt><dd>official</dd></dl><hr/>
+
+<pre>
+
+     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+</pre>
+
+
+
+
+
+
+
+
+
+<p>
+    This CD defines common sets of mathematics
+</p>
+<pre>
+Written by J.H. Davenport on 1999-04-18.
+Revised to add Zm, GFp, GFpn on 1999-11-09.
+Revised to add QuotientField and A on 1999-11-19.
+</pre>
+
+<hr/><dl>
+<h2><a name="P">P</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;P/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>constant</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the set of positive prime numbers.
+</p></dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd>
+for all n |
+n is a positive prime number is equivalent to:
+n is a natural number and n &gt; 1 and
+((n=a*b and a and b are natural numbers) implies ((a=1 and b=n) or
+(b=1 and a=n)))
+</dd>
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+<div><button id="id73172xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73172xml')">xml</button> <button id="id73172prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73172pref')">prefix</button> <button id="id73172mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73172mml')">mathml</button></div><pre id="id73172xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMBIND&gt;
+    &lt;OMS name="forall" cd="quant1"/&gt;
+    &lt;OMBVAR&gt;
+       &lt;OMV name="n"/&gt;
+    &lt;/OMBVAR&gt;
+    &lt;OMA&gt;
+      &lt;OMS name="equivalent" cd="logic1"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS name="in" cd="set1"/&gt;
+        &lt;OMV name="n"/&gt;
+        &lt;OMS name="P" cd="setname1"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS name="and" cd="logic1"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS name="in" cd="set1"/&gt;
+          &lt;OMV name="n"/&gt;
+          &lt;OMS name="N" cd="setname1"/&gt;
+        &lt;/OMA&gt;
+        &lt;OMA&gt;
+          &lt;OMS name="gt" cd="relation1"/&gt;
+          &lt;OMV name="n"/&gt;
+          &lt;OMS name="one" cd="alg1"/&gt;
+        &lt;/OMA&gt;
+        &lt;OMA&gt;
+          &lt;OMS name="implies" cd="logic1"/&gt;
+          &lt;OMA&gt;
+            &lt;OMS name="and" cd="logic1"/&gt;
+            &lt;OMA&gt;
+              &lt;OMS name="eq" cd="relation1"/&gt;
+              &lt;OMV name="n"/&gt;
+              &lt;OMA&gt;
+                &lt;OMS name="times" cd="arith1"/&gt;
+                &lt;OMV name="a"/&gt;
+                &lt;OMV name="b"/&gt;
+              &lt;/OMA&gt;
+            &lt;/OMA&gt;
+            &lt;OMA&gt;
+              &lt;OMS name="in" cd="set1"/&gt;
+              &lt;OMV name="a"/&gt;
+              &lt;OMS name="N" cd="setname1"/&gt;
+            &lt;/OMA&gt;
+            &lt;OMA&gt;
+              &lt;OMS name="in" cd="set1"/&gt;
+              &lt;OMV name="b"/&gt;
+              &lt;OMS name="N" cd="setname1"/&gt;
+            &lt;/OMA&gt;
+          &lt;/OMA&gt;
+          &lt;OMA&gt;
+            &lt;OMS name="or" cd="logic1"/&gt;
+            &lt;OMA&gt;
+              &lt;OMS name="and" cd="logic1"/&gt;
+              &lt;OMA&gt;
+                &lt;OMS name="eq" cd="relation1"/&gt;
+                &lt;OMV name="a"/&gt;
+                &lt;OMS name="one" cd="alg1"/&gt;
+              &lt;/OMA&gt;
+              &lt;OMA&gt;
+                &lt;OMS name="eq" cd="relation1"/&gt;
+                &lt;OMV name="b"/&gt;
+                &lt;OMV name="n"/&gt;
+              &lt;/OMA&gt;
+            &lt;/OMA&gt;
+            &lt;OMA&gt;
+              &lt;OMS name="and" cd="logic1"/&gt;
+              &lt;OMA&gt;
+                &lt;OMS name="eq" cd="relation1"/&gt;
+                &lt;OMV name="b"/&gt;
+                &lt;OMS name="one" cd="alg1"/&gt;
+              &lt;/OMA&gt;
+              &lt;OMA&gt;
+                &lt;OMS name="eq" cd="relation1"/&gt;
+                &lt;OMV name="a"/&gt;
+                &lt;OMV name="n"/&gt;
+              &lt;/OMA&gt;
+            &lt;/OMA&gt;
+          &lt;/OMA&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73172pref" style="display:none; margin-top: 0.5em">
+  <a href="quant1.html#forall">forall</a>
+[
+        <i>n</i>
+    ] .
+(<a href="logic1.html#equivalent">equivalent</a>
+(<a href="set1.html#in">in</a>
+( <i>n</i>, <a href="setname1.html#P">P</a>)
+, <a href="logic1.html#and">and</a>
+(<a href="set1.html#in">in</a>
+( <i>n</i>, <a href="setname1.html#N">N</a>)
+, <a href="relation1.html#gt">gt</a>
+( <i>n</i>, <a href="../../../cd/alg1.html#one">one</a>)
+, <a href="logic1.html#implies">implies</a>
+(<a href="logic1.html#and">and</a>
+(<a href="relation1.html#eq">eq</a>
+( <i>n</i>, <a href="arith1.html#times">times</a>
+( <i>a</i>,  <i>b</i>)
+)
+, <a href="set1.html#in">in</a>
+( <i>a</i>, <a href="setname1.html#N">N</a>)
+, <a href="set1.html#in">in</a>
+( <i>b</i>, <a href="setname1.html#N">N</a>)
+)
+, <a href="logic1.html#or">or</a>
+(<a href="logic1.html#and">and</a>
+(<a href="relation1.html#eq">eq</a>
+( <i>a</i>, <a href="../../../cd/alg1.html#one">one</a>)
+, <a href="relation1.html#eq">eq</a>
+( <i>b</i>,  <i>n</i>)
+)
+, <a href="logic1.html#and">and</a>
+(<a href="relation1.html#eq">eq</a>
+( <i>b</i>, <a href="../../../cd/alg1.html#one">one</a>)
+, <a href="relation1.html#eq">eq</a>
+( <i>a</i>,  <i>n</i>)
+)
+)
+)
+)
+)
+)
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/setname1.html#P">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#N">N</a>]
+	    [Last: <a href="#C">C</a>]
+	  
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="N">N</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;N/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>constant</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the set of natural numbers (including zero).
+</p></dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> for all n | n in the natural numbers is equivalent to saying 
+n=0 or n-1 is a natural number </dd>
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+<div><button id="id73500xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73500xml')">xml</button> <button id="id73500prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73500pref')">prefix</button> <button id="id73500mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73500mml')">mathml</button></div><pre id="id73500xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMBIND&gt;
+    &lt;OMS name="forall" cd="quant1"/&gt;
+    &lt;OMBVAR&gt;
+       &lt;OMV name="n"/&gt;
+    &lt;/OMBVAR&gt;
+    &lt;OMA&gt;
+      &lt;OMS name="implies" cd="logic1"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS name="in" cd="set1"/&gt;
+        &lt;OMV name="n"/&gt;
+        &lt;OMS name="N" cd="setname1"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS name="or" cd="logic1"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS name="eq" cd="relation1"/&gt;
+          &lt;OMV name="n"/&gt;
+          &lt;OMS name="zero" cd="alg1"/&gt;
+        &lt;/OMA&gt;
+        &lt;OMA&gt;
+          &lt;OMS name="in" cd="set1"/&gt;
+          &lt;OMA&gt;
+            &lt;OMS name="minus" cd="arith1"/&gt;
+            &lt;OMV name="n"/&gt;
+            &lt;OMS name="one" cd="alg1"/&gt;
+          &lt;/OMA&gt;
+          &lt;OMS name="N" cd="setname1"/&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73500pref" style="display:none; margin-top: 0.5em">
+  <a href="quant1.html#forall">forall</a>
+[
+        <i>n</i>
+    ] .
+(<a href="logic1.html#implies">implies</a>
+(<a href="set1.html#in">in</a>
+( <i>n</i>, <a href="setname1.html#N">N</a>)
+, <a href="logic1.html#or">or</a>
+(<a href="relation1.html#eq">eq</a>
+( <i>n</i>, <a href="../../../cd/alg1.html#zero">zero</a>)
+, <a href="set1.html#in">in</a>
+(<a href="arith1.html#minus">minus</a>
+( <i>n</i>, <a href="../../../cd/alg1.html#one">one</a>)
+, <a href="setname1.html#N">N</a>)
+)
+)
+)
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/setname1.html#N">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#Z">Z</a>][Previous: <a href="#P">P</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="Z">Z</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;integers/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>constant</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the set of integers, positive, negative and zero.
+</p></dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> 
+for all z | the statements z is an integer and z is a natural number
+or -z is a natural number are equivalent
+</dd>
+
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+<div><button id="id73648xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73648xml')">xml</button> <button id="id73648prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73648pref')">prefix</button> <button id="id73648mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73648mml')">mathml</button></div><pre id="id73648xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMBIND&gt;
+    &lt;OMS name="forall" cd="quant1"/&gt;
+    &lt;OMBVAR&gt;
+       &lt;OMV name="z"/&gt;
+    &lt;/OMBVAR&gt;
+    &lt;OMA&gt;
+      &lt;OMS name="implies" cd="logic1"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS name="in" cd="set1"/&gt;
+        &lt;OMV name="z"/&gt;
+        &lt;OMS name="Z" cd="setname1"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS name="or" cd="logic1"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS name="in" cd="set1"/&gt;
+          &lt;OMV name="z"/&gt;
+          &lt;OMS name="N" cd="setname1"/&gt;
+        &lt;/OMA&gt;
+        &lt;OMA&gt;
+          &lt;OMS name="in" cd="set1"/&gt;
+          &lt;OMA&gt;
+            &lt;OMS name="unary_minus" cd="arith1"/&gt;
+            &lt;OMV name="z"/&gt;
+          &lt;/OMA&gt;
+          &lt;OMS name="N" cd="setname1"/&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73648pref" style="display:none; margin-top: 0.5em">
+  <a href="quant1.html#forall">forall</a>
+[
+        <i>z</i>
+    ] .
+(<a href="logic1.html#implies">implies</a>
+(<a href="set1.html#in">in</a>
+( <i>z</i>, <a href="setname1.html#Z">Z</a>)
+, <a href="logic1.html#or">or</a>
+(<a href="set1.html#in">in</a>
+( <i>z</i>, <a href="setname1.html#N">N</a>)
+, <a href="set1.html#in">in</a>
+(<a href="arith1.html#unary_minus">unary_minus</a>
+( <i>z</i>)
+, <a href="setname1.html#N">N</a>)
+)
+)
+)
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/setname1.html#Z">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#Q">Q</a>][Previous: <a href="#N">N</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="Q">Q</a></h2>
+<dt><span class="dt">Role:</span></dt><dd>constant</dd>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;Q/&gt;</code>
+  </dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This  symbol represents the set of rational numbers.
+</p></dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd>
+for all z where z is a rational, there exists integers p and q with
+q &gt; 1 and p/q = z 
+</dd>
+
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+<div><button id="id73792xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73792xml')">xml</button> <button id="id73792prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73792pref')">prefix</button> <button id="id73792mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73792mml')">mathml</button></div><pre id="id73792xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMBIND&gt;
+    &lt;OMS name="forall" cd="quant1"/&gt;
+    &lt;OMBVAR&gt;
+       &lt;OMV name="z"/&gt;
+    &lt;/OMBVAR&gt;
+    &lt;OMA&gt;
+      &lt;OMS name="implies" cd="logic1"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS name="in" cd="set1"/&gt;
+        &lt;OMV name="z"/&gt;
+        &lt;OMS name="Q" cd="setname1"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMBIND&gt;
+        &lt;OMS name="exists" cd="quant1"/&gt;
+        &lt;OMBVAR&gt;
+          &lt;OMV name="p"/&gt;
+          &lt;OMV name="q"/&gt;
+        &lt;/OMBVAR&gt;
+        &lt;OMA&gt;
+          &lt;OMS name="and" cd="logic1"/&gt;
+          &lt;OMA&gt;
+            &lt;OMS name="in" cd="set1"/&gt;
+            &lt;OMV name="p"/&gt;
+            &lt;OMS name="Z" cd="setname1"/&gt;
+          &lt;/OMA&gt;
+          &lt;OMA&gt;
+            &lt;OMS name="in" cd="set1"/&gt;
+            &lt;OMV name="q"/&gt;
+            &lt;OMS name="Z" cd="setname1"/&gt;
+          &lt;/OMA&gt;
+          &lt;OMA&gt;
+            &lt;OMS name="geq" cd="relation1"/&gt;
+            &lt;OMV name="q"/&gt;
+            &lt;OMS name="one" cd="alg1"/&gt;
+          &lt;/OMA&gt;
+          &lt;OMA&gt;
+            &lt;OMS name="eq" cd="relation1"/&gt;
+            &lt;OMV name="z"/&gt;
+            &lt;OMA&gt;
+              &lt;OMS name="divide" cd="arith1"/&gt;
+              &lt;OMV name="p"/&gt;
+              &lt;OMV name="q"/&gt;
+            &lt;/OMA&gt;
+          &lt;/OMA&gt;
+        &lt;/OMA&gt;
+      &lt;/OMBIND&gt;
+     &lt;/OMA&gt;
+  &lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73792pref" style="display:none; margin-top: 0.5em">
+  <a href="quant1.html#forall">forall</a>
+[
+        <i>z</i>
+    ] .
+(<a href="logic1.html#implies">implies</a>
+(<a href="set1.html#in">in</a>
+( <i>z</i>, <a href="setname1.html#Q">Q</a>)
+, <a href="quant1.html#exists">exists</a>
+[
+           <i>p</i>
+           <i>q</i>
+        ] .
+(<a href="logic1.html#and">and</a>
+(<a href="set1.html#in">in</a>
+( <i>p</i>, <a href="setname1.html#Z">Z</a>)
+, <a href="set1.html#in">in</a>
+( <i>q</i>, <a href="setname1.html#Z">Z</a>)
+, <a href="relation1.html#geq">geq</a>
+( <i>q</i>, <a href="../../../cd/alg1.html#one">one</a>)
+, <a href="relation1.html#eq">eq</a>
+( <i>z</i>, <a href="arith1.html#divide">divide</a>
+( <i>p</i>,  <i>q</i>)
+)
+)
+)
+)
+)
+
+</div>
+</dd>
+
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> 
+for all a,b | a,b rational with a&lt;b implies there exists rational a,c
+  s.t. a&lt;c and c&lt;b
+</dd>
+
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd><div><button id="id73976xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73976xml')">xml</button> <button id="id73976prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73976pref')">prefix</button> <button id="id73976mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73976mml')">mathml</button></div><pre id="id73976xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMBIND&gt;
+  &lt;OMS cd="quant1" name="forall"/&gt;
+  &lt;OMBVAR&gt;
+    &lt;OMV name="a"/&gt;
+    &lt;OMV name="b"/&gt;
+  &lt;/OMBVAR&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="logic1" name="implies"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="logic1" name="and"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="set1" name="in"/&gt;
+	&lt;OMV name="a"/&gt;
+	&lt;OMS cd="setname1" name="Q"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="set1" name="in"/&gt;
+	&lt;OMV name="b"/&gt;
+	&lt;OMS cd="setname1" name="Q"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="relation1" name="lt"/&gt;
+	&lt;OMV name="a"/&gt;
+	&lt;OMV name="b"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+    &lt;OMBIND&gt;
+      &lt;OMS cd="quant1" name="exists"/&gt;
+      &lt;OMBVAR&gt;
+        &lt;OMV name="c"/&gt;
+      &lt;/OMBVAR&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="logic1" name="and"/&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="set1" name="in"/&gt;
+	  &lt;OMV name="c"/&gt;
+	  &lt;OMS cd="setname1" name="Q"/&gt;
+	&lt;/OMA&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="relation1" name="lt"/&gt;
+	  &lt;OMV name="a"/&gt;
+	  &lt;OMV name="c"/&gt;
+	&lt;/OMA&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="relation1" name="lt"/&gt;
+	  &lt;OMV name="c"/&gt;
+	  &lt;OMV name="b"/&gt;
+	&lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMBIND&gt;
+  &lt;/OMA&gt;
+&lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73976pref" style="display:none; margin-top: 0.5em">
+<a href="quant1.html#forall">forall</a>
+[
+     <i>a</i>
+     <i>b</i>
+  ] .
+(<a href="logic1.html#implies">implies</a>
+(<a href="logic1.html#and">and</a>
+(<a href="set1.html#in">in</a>
+( <i>a</i>, <a href="setname1.html#Q">Q</a>)
+, <a href="set1.html#in">in</a>
+( <i>b</i>, <a href="setname1.html#Q">Q</a>)
+, <a href="relation1.html#lt">lt</a>
+( <i>a</i>,  <i>b</i>)
+)
+, <a href="quant1.html#exists">exists</a>
+[
+         <i>c</i>
+      ] .
+(<a href="logic1.html#and">and</a>
+(<a href="set1.html#in">in</a>
+( <i>c</i>, <a href="setname1.html#Q">Q</a>)
+, <a href="relation1.html#lt">lt</a>
+( <i>a</i>,  <i>c</i>)
+, <a href="relation1.html#lt">lt</a>
+( <i>c</i>,  <i>b</i>)
+)
+)
+)
+)
+
+</div></dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/setname1.html#Q">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#R">R</a>][Previous: <a href="#Z">Z</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="R">R</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;reals/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>constant</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol represents the set of real numbers.
+</p></dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd>
+ S \subset R and exists y in R : forall x in S x &lt;= y)  implies
+exists z in R such that
+    (( forall x in S x &lt;= z) and
+     ((forall x in S x &lt;= w)  implies z &lt;= w)
+</dd>
+
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+<div><button id="id74194xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74194xml')">xml</button> <button id="id74194prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74194pref')">prefix</button> <button id="id74194mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74194mml')">mathml</button></div><pre id="id74194xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="logic1" name="implies"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="logic1" name="and"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="set1" name="subset"/&gt;
+	&lt;OMV name="S"/&gt;
+	&lt;OMS cd="setname1" name="R"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMBIND&gt;
+        &lt;OMS cd="quant1" name="exists"/&gt;
+	&lt;OMBVAR&gt;
+	  &lt;OMV name="y"/&gt;
+	&lt;/OMBVAR&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="logic1" name="and"/&gt;
+	  &lt;OMA&gt;
+	    &lt;OMS cd="set1" name="in"/&gt;
+	    &lt;OMV name="y"/&gt;
+	    &lt;OMS cd="setname1" name="R"/&gt;
+	  &lt;/OMA&gt;
+	  &lt;OMBIND&gt;
+	    &lt;OMS cd="quant1" name="forall"/&gt;
+	    &lt;OMBVAR&gt;
+	      &lt;OMV name="x"/&gt;
+	    &lt;/OMBVAR&gt;
+	    &lt;OMA&gt;
+	      &lt;OMS cd="logic1" name="and"/&gt;
+	      &lt;OMA&gt;
+	        &lt;OMS cd="set1" name="in"/&gt;
+		&lt;OMV name="x"/&gt;
+		&lt;OMV name="S"/&gt;
+	      &lt;/OMA&gt;
+	      &lt;OMA&gt;
+	        &lt;OMS cd="relation1" name="leq"/&gt;
+		&lt;OMV name="x"/&gt;
+		&lt;OMV name="y"/&gt;
+	      &lt;/OMA&gt;
+	    &lt;/OMA&gt;
+	  &lt;/OMBIND&gt;
+	&lt;/OMA&gt;
+      &lt;/OMBIND&gt;
+    &lt;/OMA&gt;
+    &lt;OMBIND&gt;
+      &lt;OMS cd="quant1" name="exists"/&gt;
+      &lt;OMBVAR&gt;
+        &lt;OMV name="z"/&gt;
+      &lt;/OMBVAR&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="logic1" name="and"/&gt;
+	&lt;OMA&gt;
+          &lt;OMS cd="set1" name="in"/&gt;
+	  &lt;OMV name="z"/&gt;
+	  &lt;OMS cd="setname1" name="R"/&gt;
+	&lt;/OMA&gt;
+	&lt;OMBIND&gt;
+	  &lt;OMS cd="quant1" name="forall"/&gt;
+	  &lt;OMBVAR&gt;
+	    &lt;OMV name="x"/&gt;
+	  &lt;/OMBVAR&gt;
+	  &lt;OMA&gt;
+	    &lt;OMS cd="logic1" name="implies"/&gt;
+	    &lt;OMA&gt;
+	      &lt;OMS cd="set1" name="in"/&gt;
+	      &lt;OMV name="x"/&gt;
+	      &lt;OMV name="S"/&gt;
+	    &lt;/OMA&gt;
+	    &lt;OMA&gt;
+	      &lt;OMS cd="relation1" name="leq"/&gt;
+	      &lt;OMV name="x"/&gt;
+	      &lt;OMV name="z"/&gt;
+	    &lt;/OMA&gt;
+	  &lt;/OMA&gt;
+	&lt;/OMBIND&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="logic1" name="implies"/&gt;
+	  &lt;OMBIND&gt;
+	    &lt;OMS cd="quant1" name="forall"/&gt;
+	    &lt;OMBVAR&gt;
+	      &lt;OMV name="x"/&gt;
+	    &lt;/OMBVAR&gt;
+	    &lt;OMA&gt;
+	      &lt;OMS cd="logic1" name="implies"/&gt;
+	      &lt;OMA&gt;
+	        &lt;OMS cd="set1" name="in"/&gt;
+		&lt;OMV name="x"/&gt;
+		&lt;OMV name="S"/&gt;
+	      &lt;/OMA&gt;
+	      &lt;OMA&gt;
+	        &lt;OMS cd="relation1" name="leq"/&gt;
+		&lt;OMV name="x"/&gt;
+		&lt;OMV name="w"/&gt;
+	      &lt;/OMA&gt;
+	    &lt;/OMA&gt;
+	  &lt;/OMBIND&gt;
+	  &lt;OMA&gt;
+	    &lt;OMS cd="relation1" name="leq"/&gt;
+	    &lt;OMV name="z"/&gt;
+	    &lt;OMV name="w"/&gt;
+	  &lt;/OMA&gt;
+	&lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMBIND&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id74194pref" style="display:none; margin-top: 0.5em">
+  <a href="logic1.html#implies">implies</a>
+(<a href="logic1.html#and">and</a>
+(<a href="set1.html#subset">subset</a>
+( <i>S</i>, <a href="setname1.html#R">R</a>)
+, <a href="quant1.html#exists">exists</a>
+[
+	   <i>y</i>
+	] .
+(<a href="logic1.html#and">and</a>
+(<a href="set1.html#in">in</a>
+( <i>y</i>, <a href="setname1.html#R">R</a>)
+, <a href="quant1.html#forall">forall</a>
+[
+	       <i>x</i>
+	    ] .
+(<a href="logic1.html#and">and</a>
+(<a href="set1.html#in">in</a>
+( <i>x</i>,  <i>S</i>)
+, <a href="relation1.html#leq">leq</a>
+( <i>x</i>,  <i>y</i>)
+)
+)
+)
+)
+)
+, <a href="quant1.html#exists">exists</a>
+[
+         <i>z</i>
+      ] .
+(<a href="logic1.html#and">and</a>
+(<a href="set1.html#in">in</a>
+( <i>z</i>, <a href="setname1.html#R">R</a>)
+, <a href="quant1.html#forall">forall</a>
+[
+	     <i>x</i>
+	  ] .
+(<a href="logic1.html#implies">implies</a>
+(<a href="set1.html#in">in</a>
+( <i>x</i>,  <i>S</i>)
+, <a href="relation1.html#leq">leq</a>
+( <i>x</i>,  <i>z</i>)
+)
+)
+, <a href="logic1.html#implies">implies</a>
+(<a href="quant1.html#forall">forall</a>
+[
+	       <i>x</i>
+	    ] .
+(<a href="logic1.html#implies">implies</a>
+(<a href="set1.html#in">in</a>
+( <i>x</i>,  <i>S</i>)
+, <a href="relation1.html#leq">leq</a>
+( <i>x</i>,  <i>w</i>)
+)
+)
+, <a href="relation1.html#leq">leq</a>
+( <i>z</i>,  <i>w</i>)
+)
+)
+)
+)
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/setname1.html#R">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#C">C</a>][Previous: <a href="#Q">Q</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="C">C</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;C/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>constant</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This  symbol represents the set of complex numbers.
+</p></dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> 
+for all z | if z is complex then there exist reals x,y 
+s.t. z = x + i * y 
+</dd>
+
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd><div><button id="id74568xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74568xml')">xml</button> <button id="id74568prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74568pref')">prefix</button> <button id="id74568mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74568mml')">mathml</button></div><pre id="id74568xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMBIND&gt;
+  &lt;OMS cd="quant1" name="forall"/&gt;
+  &lt;OMBVAR&gt;
+    &lt;OMV name="z"/&gt;
+  &lt;/OMBVAR&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="logic1" name="implies"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="set1" name="in"/&gt;
+      &lt;OMV name="z"/&gt;
+      &lt;OMS cd="setname1" name="C"/&gt;
+    &lt;/OMA&gt;
+    &lt;OMBIND&gt;
+      &lt;OMS cd="quant1" name="exists"/&gt;
+      &lt;OMBVAR&gt;
+        &lt;OMV name="x"/&gt;
+	&lt;OMV name="y"/&gt;
+      &lt;/OMBVAR&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="logic1" name="and"/&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="set1" name="in"/&gt;
+	  &lt;OMV name="x"/&gt;
+	  &lt;OMS cd="setname1" name="R"/&gt;
+	&lt;/OMA&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="set1" name="in"/&gt;
+	  &lt;OMV name="y"/&gt;
+	  &lt;OMS cd="setname1" name="R"/&gt;
+	&lt;/OMA&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="relation1" name="eq"/&gt;
+	  &lt;OMV name="z"/&gt;
+	  &lt;OMA&gt;
+	    &lt;OMS cd="arith1" name="plus"/&gt;
+	    &lt;OMV name="x"/&gt;
+	    &lt;OMA&gt;
+	      &lt;OMS cd="arith1" name="times"/&gt;
+	      &lt;OMS cd="nums1" name="i"/&gt;
+	      &lt;OMV name="y"/&gt;
+	    &lt;/OMA&gt;
+	  &lt;/OMA&gt;
+	&lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMBIND&gt;
+  &lt;/OMA&gt;
+&lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;</pre><div id="id74568pref" style="display:none; margin-top: 0.5em">
+<a href="quant1.html#forall">forall</a>
+[
+     <i>z</i>
+  ] .
+(<a href="logic1.html#implies">implies</a>
+(<a href="set1.html#in">in</a>
+( <i>z</i>, <a href="setname1.html#C">C</a>)
+, <a href="quant1.html#exists">exists</a>
+[
+         <i>x</i>
+	 <i>y</i>
+      ] .
+(<a href="logic1.html#and">and</a>
+(<a href="set1.html#in">in</a>
+( <i>x</i>, <a href="setname1.html#R">R</a>)
+, <a href="set1.html#in">in</a>
+( <i>y</i>, <a href="setname1.html#R">R</a>)
+, <a href="relation1.html#eq">eq</a>
+( <i>z</i>, <a href="arith1.html#plus">plus</a>
+( <i>x</i>, <a href="arith1.html#times">times</a>
+(<a href="nums1.html#i">i</a>,  <i>y</i>)
+)
+)
+)
+)
+)
+)
+
+</div></dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/setname1.html#C">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">
+	    [First: <a href="#P">P</a>]
+	  [Previous: <a href="#R">R</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+</body></html>
