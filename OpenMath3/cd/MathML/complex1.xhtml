@@ -79,7 +79,7 @@ part of the complex number x + i y. (Where i is the square root of -1.)
 for all x,y | complex_cartesian(x,y) = x + iy
 
 
-  <div><button id="id73192xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73192xml')">xml</button> <button id="id73192prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73192pref')">prefix</button> <button id="id73192mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73192mml')">mathml</button></div><pre id="id73192xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  <div><button id="id73302xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73302xml')">xml</button> <button id="id73302prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73302pref')">prefix</button> <button id="id73302mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73302mml')">mathml</button></div><pre id="id73302xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
     &lt;OMBIND&gt;
       &lt;OMS cd="quant1" name="forall"/&gt;
       &lt;OMBVAR&gt;
@@ -104,21 +104,13 @@ for all x,y | complex_cartesian(x,y) = x + iy
         &lt;/OMA&gt;
       &lt;/OMA&gt;
     &lt;/OMBIND&gt;
-  &lt;/OMOBJ&gt;</pre><div id="id73192pref" style="display:none; margin-top: 0.5em">
+  &lt;/OMOBJ&gt;</pre><div id="id73302pref" style="display:none; margin-top: 0.5em">
     <a href="quant1.html#forall">forall</a>
 [
-         <i>x</i>
-         <i>y</i>
+        <i>x</i>
+        <i>y</i>
       ] .
-(<a href="relation1.html#eq">eq</a>
-(<a href="complex1.html#complex_cartesian">complex_cartesian</a>
-( <i>x</i>,  <i>y</i>)
-, <a href="arith1.html#plus">plus</a>
-( <i>x</i>, <a href="arith1.html#times">times</a>
-(<a href="nums1.html#i">i</a>,  <i>y</i>)
-)
-)
-)
+(<a href="relation1.html#eq">eq</a>(<a href="complex1.html#complex_cartesian">complex_cartesian</a>(<i>x</i>, <i>y</i>), <a href="arith1.html#plus">plus</a>(<i>x</i>, <a href="arith1.html#times">times</a>(<a href="nums1.html#i">i</a>, <i>y</i>))))
 
   </div>
 </dd>
@@ -152,7 +144,7 @@ representing the "real" part of a complex number.
    <dt><span class="dt">Property:</span></dt><dd>
           <p>
             ForAll( [x,y], x in R, Y in R, real(x+i*y)=x) )
-          </p><div><button id="id73343xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73343xml')">xml</button> <button id="id73343prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73343pref')">prefix</button> <button id="id73343mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73343mml')">mathml</button></div><pre id="id73343xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+          </p><div><button id="id73454xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73454xml')">xml</button> <button id="id73454prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73454pref')">prefix</button> <button id="id73454mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73454mml')">mathml</button></div><pre id="id73454xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
 &lt;apply&gt;&lt;forall/&gt;
   &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
   &lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/bvar&gt;
@@ -172,44 +164,22 @@ representing the "real" part of a complex number.
     &lt;ci&gt;x&lt;/ci&gt;
   &lt;/apply&gt;
 &lt;/apply&gt;
-&lt;/math&gt;</pre><div id="id73343pref" style="display:none; margin-top: 0.5em">
-
-( <i/>,  <i/>, 
-    
-(
-( <i/>, )
-, 
-( <i/>, )
-)
-
-  , 
-(
-(
-( <i/>, 
-(,  <i/>)
-)
-)
-,  <i/>)
-)
-
+&lt;/math&gt;</pre><div id="id73454pref" style="display:none; margin-top: 0.5em">
+forall(<i>x</i>, <i>y</i>, 
+    and(in(<i>x</i>, reals), in(<i>y</i>, reals))
+  , eq(real(plus(<i>x</i>, times(imaginaryi, <i>y</i>))), <i>x</i>))
 </div></dd>
         <dt><span class="dt">Example:</span></dt><dd>
 		<p>The following example encodes the real operation onx + iy.A MathML-aware evaluation system would return the x component, suitably encoded.</p>
-		<div><button id="id73426xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73426xml')">xml</button> <button id="id73426prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73426pref')">prefix</button> <button id="id73426mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73426mml')">mathml</button></div><pre id="id73426xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+		<div><button id="id73536xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73536xml')">xml</button> <button id="id73536prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73536pref')">prefix</button> <button id="id73536mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73536mml')">mathml</button></div><pre id="id73536xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
 &lt;apply&gt;&lt;real/&gt;
   &lt;apply&gt;&lt;plus/&gt;
     &lt;ci&gt;x&lt;/ci&gt;
     &lt;apply&gt;&lt;times/&gt;&lt;imaginaryi/&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/apply&gt;
   &lt;/apply&gt;
 &lt;/apply&gt;
-&lt;/math&gt;</pre><div id="id73426pref" style="display:none; margin-top: 0.5em">
-
-(
-( <i/>, 
-(,  <i/>)
-)
-)
-
+&lt;/math&gt;</pre><div id="id73536pref" style="display:none; margin-top: 0.5em">
+real(plus(<i>x</i>, times(imaginaryi, <i>y</i>)))
 </div></dd>
 
 
@@ -219,7 +189,7 @@ representing the "real" part of a complex number.
  for all x,y | x = real(x+iy)
 
 
-  <div><button id="id73463xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73463xml')">xml</button> <button id="id73463prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73463pref')">prefix</button> <button id="id73463mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73463mml')">mathml</button></div><pre id="id73463xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  <div><button id="id73573xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73573xml')">xml</button> <button id="id73573prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73573pref')">prefix</button> <button id="id73573mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73573mml')">mathml</button></div><pre id="id73573xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
     &lt;OMBIND&gt;
       &lt;OMS cd="quant1" name="forall"/&gt;
       &lt;OMBVAR&gt;
@@ -239,19 +209,13 @@ representing the "real" part of a complex number.
         &lt;/OMA&gt;
       &lt;/OMA&gt;
     &lt;/OMBIND&gt;
-  &lt;/OMOBJ&gt;</pre><div id="id73463pref" style="display:none; margin-top: 0.5em">
+  &lt;/OMOBJ&gt;</pre><div id="id73573pref" style="display:none; margin-top: 0.5em">
     <a href="quant1.html#forall">forall</a>
 [
-         <i>x</i>
-         <i>y</i>
+        <i>x</i>
+        <i>y</i>
       ] .
-(<a href="relation1.html#eq">eq</a>
-( <i>x</i>, <a href="complex1.html#real">real</a>
-(<a href="complex1.html#complex_cartesian">complex_cartesian</a>
-( <i>x</i>,  <i>y</i>)
-)
-)
-)
+(<a href="relation1.html#eq">eq</a>(<i>x</i>, <a href="complex1.html#real">real</a>(<a href="complex1.html#complex_cartesian">complex_cartesian</a>(<i>x</i>, <i>y</i>))))
 
   </div>
 </dd>
@@ -284,7 +248,7 @@ This represents the imaginary part of a complex number
  <dt><span class="dt">Property:</span></dt><dd>
           <p>
             ForAll( [x,y], Imaginary(x + i*y) = y )
-          </p><div><button id="id73596xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73596xml')">xml</button> <button id="id73596prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73596pref')">prefix</button> <button id="id73596mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73596mml')">mathml</button></div><pre id="id73596xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+          </p><div><button id="id73706xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73706xml')">xml</button> <button id="id73706prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73706pref')">prefix</button> <button id="id73706mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73706mml')">mathml</button></div><pre id="id73706xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
 &lt;apply&gt;&lt;forall/&gt;
   &lt;bvar&gt;&lt;ci type="real"&gt; x&lt;/ci&gt;&lt;/bvar&gt;
   &lt;bvar&gt;&lt;ci type="real"&gt; y&lt;/ci&gt;&lt;/bvar&gt;
@@ -298,34 +262,18 @@ This represents the imaginary part of a complex number
     &lt;ci type="real"&gt; y&lt;/ci&gt;
   &lt;/apply&gt;
 &lt;/apply&gt;
-&lt;/math&gt;</pre><div id="id73596pref" style="display:none; margin-top: 0.5em">
-
-( <i/>,  <i/>, 
-(
-(
-( <i/>, 
-(,  <i/>)
-)
-)
-,  <i/>)
-)
-
+&lt;/math&gt;</pre><div id="id73706pref" style="display:none; margin-top: 0.5em">
+forall(<i> x</i>, <i> y</i>, eq(imaginary(plus(<i> x</i>, times(imaginaryi, <i>y</i>))), <i> y</i>))
 </div></dd>
         <dt><span class="dt">Example:</span></dt><dd>
 		<p>The following example encodes the imaginary operation on x + iy.A MathML-aware evaluation system would return the y component, suitably encoded.</p>
-		<div><button id="id73667xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73667xml')">xml</button> <button id="id73667prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73667pref')">prefix</button> <button id="id73667mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73667mml')">mathml</button></div><pre id="id73667xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;imaginary/&gt;
+		<div><button id="id73777xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73777xml')">xml</button> <button id="id73777prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73777pref')">prefix</button> <button id="id73777mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73777mml')">mathml</button></div><pre id="id73777xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;imaginary/&gt;
   &lt;apply&gt;&lt;plus/&gt;
     &lt;ci&gt;x&lt;/ci&gt;
     &lt;apply&gt;&lt;times/&gt;&lt;imaginaryi/&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/apply&gt;
   &lt;/apply&gt;
 &lt;/apply&gt;
-&lt;/math&gt;</pre><div id="id73667pref" style="display:none; margin-top: 0.5em">
-(
-( <i/>, 
-(,  <i/>)
-)
-)
-
+&lt;/math&gt;</pre><div id="id73777pref" style="display:none; margin-top: 0.5em">imaginary(plus(<i>x</i>, times(imaginaryi, <i>y</i>)))
 </div></dd>
 
 
@@ -335,7 +283,7 @@ This represents the imaginary part of a complex number
 for all x,y | y = imaginary(x+iy)
 
 
-  <div><button id="id73704xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73704xml')">xml</button> <button id="id73704prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73704pref')">prefix</button> <button id="id73704mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73704mml')">mathml</button></div><pre id="id73704xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  <div><button id="id73814xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73814xml')">xml</button> <button id="id73814prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73814pref')">prefix</button> <button id="id73814mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73814mml')">mathml</button></div><pre id="id73814xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
     &lt;OMBIND&gt;
       &lt;OMS cd="quant1" name="forall"/&gt;
       &lt;OMBVAR&gt;
@@ -355,19 +303,13 @@ for all x,y | y = imaginary(x+iy)
         &lt;/OMA&gt;
       &lt;/OMA&gt;
     &lt;/OMBIND&gt;
-  &lt;/OMOBJ&gt;</pre><div id="id73704pref" style="display:none; margin-top: 0.5em">
+  &lt;/OMOBJ&gt;</pre><div id="id73814pref" style="display:none; margin-top: 0.5em">
     <a href="quant1.html#forall">forall</a>
 [
-         <i>x</i>
-         <i>y</i>
+        <i>x</i>
+        <i>y</i>
       ] .
-(<a href="relation1.html#eq">eq</a>
-( <i>y</i>, <a href="complex1.html#imaginary">imaginary</a>
-(<a href="complex1.html#complex_cartesian">complex_cartesian</a>
-( <i>x</i>,  <i>y</i>)
-)
-)
-)
+(<a href="relation1.html#eq">eq</a>(<i>y</i>, <a href="complex1.html#imaginary">imaginary</a>(<a href="complex1.html#complex_cartesian">complex_cartesian</a>(<i>x</i>, <i>y</i>))))
 
   </div>
 </dd>
@@ -397,7 +339,7 @@ for all r,a | complex_polar(r,a) = r*e^(a*i)
 
 
 
-<div><button id="id73816xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73816xml')">xml</button> <button id="id73816prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73816pref')">prefix</button> <button id="id73816mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73816mml')">mathml</button></div><pre id="id73816xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+<div><button id="id73927xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73927xml')">xml</button> <button id="id73927prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73927pref')">prefix</button> <button id="id73927mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73927mml')">mathml</button></div><pre id="id73927xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMBIND&gt;
     &lt;OMS cd="quant1" name="forall"/&gt;
     &lt;OMBVAR&gt;
@@ -425,23 +367,13 @@ for all r,a | complex_polar(r,a) = r*e^(a*i)
       &lt;/OMA&gt;
     &lt;/OMA&gt;
   &lt;/OMBIND&gt;
-&lt;/OMOBJ&gt;</pre><div id="id73816pref" style="display:none; margin-top: 0.5em">
+&lt;/OMOBJ&gt;</pre><div id="id73927pref" style="display:none; margin-top: 0.5em">
   <a href="quant1.html#forall">forall</a>
 [
-       <i>r</i>
-       <i>a</i>
+      <i>r</i>
+      <i>a</i>
     ] .
-(<a href="relation1.html#eq">eq</a>
-(<a href="complex1.html#complex_polar">complex_polar</a>
-( <i>r</i>,  <i>a</i>)
-, <a href="arith1.html#times">times</a>
-( <i>r</i>, <a href="transc1.html#exp">exp</a>
-(<a href="arith1.html#times">times</a>
-( <i>a</i>, <a href="nums1.html#i">i</a>)
-)
-)
-)
-)
+(<a href="relation1.html#eq">eq</a>(<a href="complex1.html#complex_polar">complex_polar</a>(<i>r</i>, <i>a</i>), <a href="arith1.html#times">times</a>(<i>r</i>, <a href="transc1.html#exp">exp</a>(<a href="arith1.html#times">times</a>(<i>a</i>, <a href="nums1.html#i">i</a>)))))
 
 </div>
 </dd>
@@ -453,7 +385,7 @@ for all x,y,r,a |
 complex_cartesian(x,y)
 
 
-<div><button id="id73930xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73930xml')">xml</button> <button id="id73930prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73930pref')">prefix</button> <button id="id73930mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73930mml')">mathml</button></div><pre id="id73930xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+<div><button id="id74040xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74040xml')">xml</button> <button id="id74040prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74040pref')">prefix</button> <button id="id74040mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74040mml')">mathml</button></div><pre id="id74040xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
 &lt;OMBIND&gt;
   &lt;OMS cd="quant1" name="forall"/&gt;
   &lt;OMBVAR&gt;
@@ -506,37 +438,15 @@ complex_cartesian(x,y)
     &lt;/OMA&gt;
   &lt;/OMA&gt;
 &lt;/OMBIND&gt;
-&lt;/OMOBJ&gt;</pre><div id="id73930pref" style="display:none; margin-top: 0.5em">
+&lt;/OMOBJ&gt;</pre><div id="id74040pref" style="display:none; margin-top: 0.5em">
 <a href="quant1.html#forall">forall</a>
 [
-     <i>x</i>
-     <i>y</i>
-     <i>r</i>
-     <i>a</i>
+    <i>x</i>
+    <i>y</i>
+    <i>r</i>
+    <i>a</i>
   ] .
-(<a href="logic1.html#implies">implies</a>
-(<a href="logic1.html#and">and</a>
-(<a href="relation1.html#eq">eq</a>
-(<a href="arith1.html#times">times</a>
-( <i>r</i>, <a href="transc1.html#sin">sin</a>
-( <i>a</i>)
-)
-,  <i>y</i>)
-, <a href="relation1.html#eq">eq</a>
-(<a href="arith1.html#times">times</a>
-( <i>r</i>, <a href="transc1.html#cos">cos</a>
-( <i>a</i>)
-)
-,  <i>x</i>)
-)
-, <a href="relation1.html#eq">eq</a>
-(<a href="complex1.html#complex_polar">complex_polar</a>
-( <i>r</i>,  <i>a</i>)
-, <a href="complex1.html#complex_cartesian">complex_cartesian</a>
-( <i>x</i>,  <i>y</i>)
-)
-)
-)
+(<a href="logic1.html#implies">implies</a>(<a href="logic1.html#and">and</a>(<a href="relation1.html#eq">eq</a>(<a href="arith1.html#times">times</a>(<i>r</i>, <a href="transc1.html#sin">sin</a>(<i>a</i>)), <i>y</i>), <a href="relation1.html#eq">eq</a>(<a href="arith1.html#times">times</a>(<i>r</i>, <a href="transc1.html#cos">cos</a>(<i>a</i>)), <i>x</i>)), <a href="relation1.html#eq">eq</a>(<a href="complex1.html#complex_polar">complex_polar</a>(<i>r</i>, <i>a</i>), <a href="complex1.html#complex_cartesian">complex_cartesian</a>(<i>x</i>, <i>y</i>))))
 
 </div></dd>
 
@@ -544,7 +454,7 @@ complex_cartesian(x,y)
  for all x | if a is a real number and k is an integer then
   complex_polar(x,a) = complex_polar(x,a+2*pi*k) 
 
-<div><button id="id74124xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74124xml')">xml</button> <button id="id74124prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74124pref')">prefix</button> <button id="id74124mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74124mml')">mathml</button></div><pre id="id74124xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+<div><button id="id74234xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74234xml')">xml</button> <button id="id74234prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74234pref')">prefix</button> <button id="id74234mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74234mml')">mathml</button></div><pre id="id74234xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
 &lt;OMBIND&gt;
   &lt;OMS cd="quant1" name="forall"/&gt;
   &lt;OMBVAR&gt;
@@ -589,35 +499,17 @@ complex_cartesian(x,y)
     &lt;/OMA&gt;
   &lt;/OMA&gt;
 &lt;/OMBIND&gt;
-&lt;/OMOBJ&gt;</pre><div id="id74124pref" style="display:none; margin-top: 0.5em">
+&lt;/OMOBJ&gt;</pre><div id="id74234pref" style="display:none; margin-top: 0.5em">
 <a href="quant1.html#forall">forall</a>
 [
-     <i>x</i>
+    <i>x</i>
   ] .
-(<a href="logic1.html#implies">implies</a>
-(<a href="logic1.html#and">and</a>
-(<a href="set1.html#in">in</a>
-( <i>a</i>, <a href="setname1.html#R">R</a>)
-, <a href="set1.html#in">in</a>
-( <i>k</i>, <a href="setname1.html#Z">Z</a>)
-)
-, <a href="relation1.html#eq">eq</a>
-(<a href="complex1.html#complex_polar">complex_polar</a>
-( <i>x</i>,  <i>a</i>)
-, <a href="complex1.html#complex_polar">complex_polar</a>
-( <i>x</i>, <a href="arith1.html#plus">plus</a>
-( <i>a</i>, <a href="arith1.html#times">times</a>
-( 2 , <a href="nums1.html#pi">pi</a>,  <i>k</i>)
-)
-)
-)
-)
-)
+(<a href="logic1.html#implies">implies</a>(<a href="logic1.html#and">and</a>(<a href="set1.html#in">in</a>(<i>a</i>, <a href="setname1.html#R">R</a>), <a href="set1.html#in">in</a>(<i>k</i>, <a href="setname1.html#Z">Z</a>)), <a href="relation1.html#eq">eq</a>(<a href="complex1.html#complex_polar">complex_polar</a>(<i>x</i>, <i>a</i>), <a href="complex1.html#complex_polar">complex_polar</a>(<i>x</i>, <a href="arith1.html#plus">plus</a>(<i>a</i>, <a href="arith1.html#times">times</a>( 2 , <a href="nums1.html#pi">pi</a>, <i>k</i>))))))
 
 </div></dd>
 
 <dt><span class="dt">Example:</span></dt><dd> i = complex_polar(1,pi/2) 
-<div><button id="id74286xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74286xml')">xml</button> <button id="id74286prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74286pref')">prefix</button> <button id="id74286mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74286mml')">mathml</button></div><pre id="id74286xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;&lt;OMA&gt;
+<div><button id="id74396xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74396xml')">xml</button> <button id="id74396prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74396pref')">prefix</button> <button id="id74396mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74396mml')">mathml</button></div><pre id="id74396xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;&lt;OMA&gt;
   &lt;OMS cd="relation1" name="eq"/&gt;
   &lt;OMS cd="nums1" name="i"/&gt;
   &lt;OMA&gt;
@@ -629,13 +521,7 @@ complex_cartesian(x,y)
       &lt;OMI&gt; 2 &lt;/OMI&gt;
     &lt;/OMA&gt;
   &lt;/OMA&gt;
-&lt;/OMA&gt;&lt;/OMOBJ&gt;</pre><div id="id74286pref" style="display:none; margin-top: 0.5em"><a href="relation1.html#eq">eq</a>
-(<a href="nums1.html#i">i</a>, <a href="complex1.html#complex_polar">complex_polar</a>
-(<a href="../../../cd/alg1.html#one">one</a>, <a href="arith1.html#divide">divide</a>
-(<a href="nums1.html#pi">pi</a>,  2 )
-)
-)
-</div>
+&lt;/OMA&gt;&lt;/OMOBJ&gt;</pre><div id="id74396pref" style="display:none; margin-top: 0.5em"><a href="relation1.html#eq">eq</a>(<a href="nums1.html#i">i</a>, <a href="complex1.html#complex_polar">complex_polar</a>(<a href="../../../cd/alg1.html#one">one</a>, <a href="arith1.html#divide">divide</a>(<a href="nums1.html#pi">pi</a>,  2 )))</div>
 </dd>
 <dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/complex1.html#complex_polar">
 	sts
@@ -660,7 +546,7 @@ argument is being taken.
  for all r,a | argument(complex_polar(r,a)=a) 
 
 
-<div><button id="id74384xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74384xml')">xml</button> <button id="id74384prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74384pref')">prefix</button> <button id="id74384mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74384mml')">mathml</button></div><pre id="id74384xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+<div><button id="id74494xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74494xml')">xml</button> <button id="id74494prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74494pref')">prefix</button> <button id="id74494mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74494mml')">mathml</button></div><pre id="id74494xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMBIND&gt;
     &lt;OMS cd="quant1" name="forall"/&gt;
     &lt;OMBVAR&gt;
@@ -680,19 +566,13 @@ argument is being taken.
       &lt;OMV name="a"/&gt;
     &lt;/OMA&gt;
   &lt;/OMBIND&gt;
-&lt;/OMOBJ&gt;</pre><div id="id74384pref" style="display:none; margin-top: 0.5em">
+&lt;/OMOBJ&gt;</pre><div id="id74494pref" style="display:none; margin-top: 0.5em">
   <a href="quant1.html#forall">forall</a>
 [
-       <i>r</i>
-       <i>a</i>
+      <i>r</i>
+      <i>a</i>
     ] .
-(<a href="relation1.html#eq">eq</a>
-(<a href="complex1.html#argument">argument</a>
-(<a href="complex1.html#complex_polar">complex_polar</a>
-( <i>r</i>,  <i>a</i>)
-)
-,  <i>a</i>)
-)
+(<a href="relation1.html#eq">eq</a>(<a href="complex1.html#argument">argument</a>(<a href="complex1.html#complex_polar">complex_polar</a>(<i>r</i>, <i>a</i>)), <i>a</i>))
 
 </div>
 </dd>
@@ -701,7 +581,7 @@ argument is being taken.
  the argument of x+i*y = arctan(y/x) (if x is positive) 
 
 
-<div><button id="id74467xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74467xml')">xml</button> <button id="id74467prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74467pref')">prefix</button> <button id="id74467mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74467mml')">mathml</button></div><pre id="id74467xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+<div><button id="id74577xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74577xml')">xml</button> <button id="id74577prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74577pref')">prefix</button> <button id="id74577mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74577mml')">mathml</button></div><pre id="id74577xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMA&gt;
     &lt;OMS cd="logic1" name="implies"/&gt;
     &lt;OMA&gt;
@@ -729,22 +609,8 @@ argument is being taken.
       &lt;/OMA&gt;
     &lt;/OMA&gt;
   &lt;/OMA&gt;
-&lt;/OMOBJ&gt;</pre><div id="id74467pref" style="display:none; margin-top: 0.5em">
-  <a href="logic1.html#implies">implies</a>
-(<a href="relation1.html#gt">gt</a>
-( <i>x</i>, <a href="../../../cd/alg1.html#zero">zero</a>)
-, <a href="relation1.html#eq">eq</a>
-(<a href="complex1.html#argument">argument</a>
-(<a href="complex1.html#complex_cartesian">complex_cartesian</a>
-( <i>x</i>,  <i>y</i>)
-)
-, <a href="transc1.html#arctan">arctan</a>
-(<a href="arith1.html#divide">divide</a>
-( <i>y</i>,  <i>x</i>)
-)
-)
-)
-
+&lt;/OMOBJ&gt;</pre><div id="id74577pref" style="display:none; margin-top: 0.5em">
+  <a href="logic1.html#implies">implies</a>(<a href="relation1.html#gt">gt</a>(<i>x</i>, <a href="../../../cd/alg1.html#zero">zero</a>), <a href="relation1.html#eq">eq</a>(<a href="complex1.html#argument">argument</a>(<a href="complex1.html#complex_cartesian">complex_cartesian</a>(<i>x</i>, <i>y</i>)), <a href="transc1.html#arctan">arctan</a>(<a href="arith1.html#divide">divide</a>(<i>y</i>, <i>x</i>))))
 </div>
 </dd>
 
@@ -754,7 +620,7 @@ argument is being taken.
 
 
 
-<div><button id="id74582xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74582xml')">xml</button> <button id="id74582prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74582pref')">prefix</button> <button id="id74582mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74582mml')">mathml</button></div><pre id="id74582xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+<div><button id="id74692xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74692xml')">xml</button> <button id="id74692prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74692pref')">prefix</button> <button id="id74692mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74692mml')">mathml</button></div><pre id="id74692xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMA&gt;
     &lt;OMS cd="relation1" name="eq"/&gt;
     &lt;OMA&gt;
@@ -771,16 +637,8 @@ argument is being taken.
       &lt;OMV name="x"/&gt;
     &lt;/OMA&gt;
   &lt;/OMA&gt;
-&lt;/OMOBJ&gt;</pre><div id="id74582pref" style="display:none; margin-top: 0.5em">
-  <a href="relation1.html#eq">eq</a>
-(<a href="complex1.html#argument">argument</a>
-(<a href="complex1.html#complex_cartesian">complex_cartesian</a>
-( <i>x</i>,  <i>y</i>)
-)
-, <a href="../../../cd/transc2.html#arctan">arctan</a>
-( <i>y</i>,  <i>x</i>)
-)
-
+&lt;/OMOBJ&gt;</pre><div id="id74692pref" style="display:none; margin-top: 0.5em">
+  <a href="relation1.html#eq">eq</a>(<a href="complex1.html#argument">argument</a>(<a href="complex1.html#complex_cartesian">complex_cartesian</a>(<i>x</i>, <i>y</i>)), <a href="../../../cd/transc2.html#arctan">arctan</a>(<i>y</i>, <i>x</i>))
 </div>
 </dd>
 <dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/complex1.html#argument">
@@ -812,7 +670,7 @@ A unary operator representing the complex conjugate of its argument.
 	  <p>
 	    The following example encodes the conjugate of x + iy.
 	  </p>
-	  <div><button id="id74708xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74708xml')">xml</button> <button id="id74708prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74708pref')">prefix</button> <button id="id74708mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74708mml')">mathml</button></div><pre id="id74708xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;conjugate/&gt;
+	  <div><button id="id74818xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74818xml')">xml</button> <button id="id74818prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74818pref')">prefix</button> <button id="id74818mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74818mml')">mathml</button></div><pre id="id74818xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;conjugate/&gt;
  &lt;apply&gt;&lt;plus/&gt;
     &lt;ci&gt;x&lt;/ci&gt;
     &lt;apply&gt;&lt;times/&gt;
@@ -821,13 +679,7 @@ A unary operator representing the complex conjugate of its argument.
     &lt;/apply&gt;
   &lt;/apply&gt;
 &lt;/apply&gt;
-&lt;/math&gt;</pre><div id="id74708pref" style="display:none; margin-top: 0.5em">
-(
-( <i/>, 
-(&amp;ImaginaryI;,  <i/>)
-)
-)
-
+&lt;/math&gt;</pre><div id="id74818pref" style="display:none; margin-top: 0.5em">conjugate(plus(<i>x</i>, times(&amp;ImaginaryI;, <i>y</i>)))
 </div></dd>
 
 
@@ -837,7 +689,7 @@ A unary operator representing the complex conjugate of its argument.
  if a is a complex number then (conjugate(a) + a) is a real number
 
 
-<div><button id="id74750xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74750xml')">xml</button> <button id="id74750prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74750pref')">prefix</button> <button id="id74750mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74750mml')">mathml</button></div><pre id="id74750xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+<div><button id="id74861xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74861xml')">xml</button> <button id="id74861prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74861pref')">prefix</button> <button id="id74861mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74861mml')">mathml</button></div><pre id="id74861xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMA&gt;
     &lt;OMS cd="logic1" name="implies"/&gt;
     &lt;OMA&gt;
@@ -858,18 +710,8 @@ A unary operator representing the complex conjugate of its argument.
       &lt;OMS cd="setname1" name="R"/&gt;
     &lt;/OMA&gt;
   &lt;/OMA&gt;
-&lt;/OMOBJ&gt;</pre><div id="id74750pref" style="display:none; margin-top: 0.5em">
-  <a href="logic1.html#implies">implies</a>
-(<a href="set1.html#in">in</a>
-( <i>a</i>, <a href="setname1.html#C">C</a>)
-, <a href="set1.html#in">in</a>
-(<a href="arith1.html#plus">plus</a>
-(<a href="complex1.html#conjugate">conjugate</a>
-( <i>a</i>)
-,  <i>a</i>)
-, <a href="setname1.html#R">R</a>)
-)
-
+&lt;/OMOBJ&gt;</pre><div id="id74861pref" style="display:none; margin-top: 0.5em">
+  <a href="logic1.html#implies">implies</a>(<a href="set1.html#in">in</a>(<i>a</i>, <a href="setname1.html#C">C</a>), <a href="set1.html#in">in</a>(<a href="arith1.html#plus">plus</a>(<a href="complex1.html#conjugate">conjugate</a>(<i>a</i>), <i>a</i>), <a href="setname1.html#R">R</a>))
 </div>
 </dd>
 <dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/complex1.html#conjugate">
