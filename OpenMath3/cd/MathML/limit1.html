@@ -1,0 +1,384 @@
+<?xml version="1.0"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:cd="http://www.openmath.org/OpenMathCD"><head><script type="text/javascript"> function divfold(_Id){
+     var thisLevel = document.getElementById(_Id);
+     var thisLevela = document.getElementById(_Id.concat("a"))
+     if(thisLevel.style.display != "none"){ 
+      thisLevel.style.display = "none";
+      thisLevela.style.backgroundColor = "#CCCCCC";} 
+     else{
+      thisLevel.style.display = "block";
+      thisLevela.style.backgroundColor = "#AAFFAA";}  
+       }
+     </script><title>limit1</title><link rel="stylesheet" href="omcd.css" type="text/css"/></head><body><a name="top"/><h1>OpenMath Content Dictionary: limit1</h1><dl><dt><span class="dt">Canonical URL:</span></dt><dd><a href="http://www.openmath.org/cd/limit1.ocd">http://www.openmath.org/cd/limit1.ocd</a></dd><dt><span class="dt">CD Base:</span></dt><dd><a href="http://www.openmath.org/cd">http://www.openmath.org/cd</a></dd><dt><span class="dt">CD File:</span></dt><dd><a href="limit1.ocd">limit1.ocd
+  </a></dd><dt><span class="dt">CD as XML Encoded OpenMath:</span></dt><dd><a href="limit1.omcd">limit1.omcd
+  </a></dd><dt><span class="dt">Defines:</span></dt><dd><a href="#above">above</a>, <a href="#below">below</a>, <a href="#both_sides">both_sides</a>, <a href="#limit">limit</a>, <a href="#null">null</a></dd><dt><span class="dt">Date:</span></dt><dd>2004-03-30</dd><dt><span class="dt">Version:</span></dt><dd>3</dd><dt><span class="dt">Review Date:</span></dt><dd>2006-03-30</dd><dt><span class="dt">Status:</span></dt><dd>official</dd></dl><hr/>
+
+<pre>
+
+     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+</pre>
+
+
+
+
+
+
+
+
+
+<p>
+    This CD holds the basic notion of the limits of unary functions
+    whilst its variable tend (either from above, below or both
+    sides) to a particular value.
+</p>
+
+
+<hr/><dl>
+<h2><a name="limit">limit</a></h2>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;limit/&gt;</code>
+  </dd>
+<dt><span class="dt">Description:</span></dt><dd><p>
+This symbol is used to denote the limit of a unary function. It
+takes 3 arguments: the limiting value of the argument, the method of
+approach (either null, above, below or both_sides) and the function.
+</p></dd>
+
+
+        <dt><span class="dt">description:</span></dt><dd><p>
+          The limit element represents the operation of taking a limit of a
+          sequence. The limit point is expressed by specifying a lowlimit and a bvar, or
+	  by specifying a condition on one or more bound variables.
+	</p></dd>
+	<dt><span class="dt">discussion:</span></dt><dd><p>
+	  The limit element represents the operation of taking a limit of a
+	  sequence. The limit point is expressed by specifying a lowlimit and a
+	  bvar, or by specifying a condition on one or more bound
+	  variables.</p><p>	  The limit function accepts zero or more bvar schemata, and
+	  optional condition and lowlimit schemata. A condition
+	  may be used to place constraints on the bvar. The bvar schema
+	  denotes the variable with respect to which the limit is being taken. The
+	  lowlimit schema denotes the limit point. When used with limit,
+	  the bvar and lowlimit schemata are expected to contain a
+	  single child schema; otherwise an error is generated.
+	</p></dd>
+
+        <dt><span class="dt">Example:</span></dt><dd><div><button id="id73259xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73259xml')">xml</button> <button id="id73259prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73259pref')">prefix</button> <button id="id73259mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73259mml')">mathml</button></div><pre id="id73259xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;apply&gt;
+  &lt;limit/&gt;
+  &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+  &lt;lowlimit&gt;&lt;cn&gt;0&lt;/cn&gt;&lt;/lowlimit&gt;
+  &lt;apply&gt;&lt;sin/&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/apply&gt;
+&lt;/apply&gt;
+&lt;/math&gt;</pre><div id="id73259pref" style="display:none; margin-top: 0.5em">
+
+( <i/>, 0, 
+( <i/>)
+)
+
+</div></dd>
+        
+        <dt><span class="dt">Example:</span></dt><dd><div><button id="id73289xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73289xml')">xml</button> <button id="id73289prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73289pref')">prefix</button> <button id="id73289mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73289mml')">mathml</button></div><pre id="id73289xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;apply&gt;&lt;limit/&gt;
+  &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+  &lt;condition&gt;
+    &lt;apply&gt;&lt;tendsto/&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;cn&gt;0&lt;/cn&gt;&lt;/apply&gt;
+  &lt;/condition&gt;
+  &lt;apply&gt;&lt;sin/&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/apply&gt;
+&lt;/apply&gt;
+&lt;/math&gt;</pre><div id="id73289pref" style="display:none; margin-top: 0.5em">
+
+( <i/>, 
+    
+( <i/>, 0)
+
+  , 
+( <i/>)
+)
+
+</div></dd>
+<dt><span class="dt">Example:</span></dt><dd><div><button id="id73319xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73319xml')">xml</button> <button id="id73319prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73319pref')">prefix</button> <button id="id73319mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73319mml')">mathml</button></div><pre id="id73319xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;apply&gt;
+  &lt;limit/&gt;
+  &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+  &lt;condition&gt;
+    &lt;apply&gt;&lt;tendsto type="above"/&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;/apply&gt;
+  &lt;/condition&gt;
+  &lt;apply&gt;&lt;sin/&gt;
+     &lt;ci&gt;x&lt;/ci&gt;
+  &lt;/apply&gt;
+&lt;/apply&gt;
+&lt;/math&gt;</pre><div id="id73319pref" style="display:none; margin-top: 0.5em">
+
+( <i/>, 
+    
+( <i/>,  <i/>)
+
+  , 
+( <i/>)
+)
+
+</div>
+</dd>
+
+
+<dt><span class="dt">Example:</span></dt><dd>
+The limit of sin(x) as x tends to 0
+<div><button id="id73361xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73361xml')">xml</button> <button id="id73361prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73361pref')">prefix</button> <button id="id73361mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73361mml')">mathml</button></div><pre id="id73361xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="limit1" name="limit"/&gt;
+    &lt;OMI&gt;0&lt;/OMI&gt;
+    &lt;OMS cd="limit1" name="both_sides"/&gt;
+    &lt;OMBIND&gt;
+      &lt;OMS cd="fns1" name="lambda"/&gt;
+        &lt;OMBVAR&gt;
+        &lt;OMV name="x"/&gt;
+        &lt;/OMBVAR&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="transc1" name="sin"/&gt;
+          &lt;OMV name="x"/&gt;
+        &lt;/OMA&gt;
+    &lt;/OMBIND&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73361pref" style="display:none; margin-top: 0.5em">
+  <a href="limit1.html#limit">limit</a>
+(0, <a href="limit1.html#both_sides">both_sides</a>, <a href="fns1.html#lambda">lambda</a>
+[
+         <i>x</i>
+        ] .
+(<a href="transc1.html#sin">sin</a>
+( <i>x</i>)
+)
+)
+
+</div>
+</dd>
+
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/limit1.html#limit">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#both_sides">both_sides</a>]
+	    [Last: <a href="#null">null</a>]
+	  
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="both_sides">both_sides</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;both_sides/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>constant</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol is used within a limit construct to show the limit is
+being approached from both sides. It takes no arguments.
+</p></dd>
+
+<dt><span class="dt">Example:</span></dt><dd>
+The limit of sin(x) as x tends to 0 from either direction
+<div><button id="id73444xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73444xml')">xml</button> <button id="id73444prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73444pref')">prefix</button> <button id="id73444mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73444mml')">mathml</button></div><pre id="id73444xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="limit1" name="limit"/&gt;
+    &lt;OMI&gt; 0 &lt;/OMI&gt;
+    &lt;OMS cd="limit1" name="both_sides"/&gt;
+    &lt;OMBIND&gt;
+      &lt;OMS cd="fns1" name="lambda"/&gt;
+        &lt;OMBVAR&gt;
+        &lt;OMV name="x"/&gt;
+        &lt;/OMBVAR&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="transc1" name="sin"/&gt;
+          &lt;OMV name="x"/&gt;
+        &lt;/OMA&gt;
+    &lt;/OMBIND&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73444pref" style="display:none; margin-top: 0.5em">
+  <a href="limit1.html#limit">limit</a>
+( 0 , <a href="limit1.html#both_sides">both_sides</a>, <a href="fns1.html#lambda">lambda</a>
+[
+         <i>x</i>
+        ] .
+(<a href="transc1.html#sin">sin</a>
+( <i>x</i>)
+)
+)
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/limit1.html#both_sides">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#above">above</a>][Previous: <a href="#limit">limit</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="above">above</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;above/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>constant</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol is used within a limit construct to show the limit is
+being approached from above. It takes no arguments.
+</p></dd>
+
+<dt><span class="dt">Example:</span></dt><dd>
+The limit of sin(x) as x tends to 0 from above
+<div><button id="id73532xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73532xml')">xml</button> <button id="id73532prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73532pref')">prefix</button> <button id="id73532mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73532mml')">mathml</button></div><pre id="id73532xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="limit1" name="limit"/&gt;
+    &lt;OMI&gt; 0 &lt;/OMI&gt;
+    &lt;OMS cd="limit1" name="above"/&gt;
+    &lt;OMBIND&gt;
+      &lt;OMS cd="fns1" name="lambda"/&gt;
+        &lt;OMBVAR&gt;
+        &lt;OMV name="x"/&gt;
+        &lt;/OMBVAR&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="transc1" name="sin"/&gt;
+          &lt;OMV name="x"/&gt;
+        &lt;/OMA&gt;
+    &lt;/OMBIND&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73532pref" style="display:none; margin-top: 0.5em">
+  <a href="limit1.html#limit">limit</a>
+( 0 , <a href="limit1.html#above">above</a>, <a href="fns1.html#lambda">lambda</a>
+[
+         <i>x</i>
+        ] .
+(<a href="transc1.html#sin">sin</a>
+( <i>x</i>)
+)
+)
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/limit1.html#above">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#below">below</a>][Previous: <a href="#both_sides">both_sides</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="below">below</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;below/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>constant</dd>
+<dt><span class="dt">Description:</span></dt><dd><p>
+This symbol is used within a limit construct to show the limit is
+being approached from below. It takes no arguments.
+</p></dd>
+
+<dt><span class="dt">Example:</span></dt><dd>
+The limit of sin(x) as x tends to 0 from below
+<div><button id="id73619xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73619xml')">xml</button> <button id="id73619prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73619pref')">prefix</button> <button id="id73619mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73619mml')">mathml</button></div><pre id="id73619xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="limit1" name="limit"/&gt;
+    &lt;OMI&gt; 0 &lt;/OMI&gt;
+    &lt;OMS cd="limit1" name="below"/&gt;
+    &lt;OMBIND&gt;
+      &lt;OMS cd="fns1" name="lambda"/&gt;
+        &lt;OMBVAR&gt;
+        &lt;OMV name="x"/&gt;
+        &lt;/OMBVAR&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="transc1" name="sin"/&gt;
+          &lt;OMV name="x"/&gt;
+        &lt;/OMA&gt;
+    &lt;/OMBIND&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73619pref" style="display:none; margin-top: 0.5em">
+  <a href="limit1.html#limit">limit</a>
+( 0 , <a href="limit1.html#below">below</a>, <a href="fns1.html#lambda">lambda</a>
+[
+         <i>x</i>
+        ] .
+(<a href="transc1.html#sin">sin</a>
+( <i>x</i>)
+)
+)
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/limit1.html#below">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#null">null</a>][Previous: <a href="#above">above</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="null">null</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;null/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>constant</dd>
+<dt><span class="dt">Description:</span></dt><dd><p>
+This symbol is used within a limit construct to avoid specifying the method of
+approach to the limit. It takes no arguments.
+</p></dd>
+
+<dt><span class="dt">Example:</span></dt><dd>
+The limit of sin(x) as x tends to 0
+<div><button id="id73706xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73706xml')">xml</button> <button id="id73706prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73706pref')">prefix</button> <button id="id73706mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73706mml')">mathml</button></div><pre id="id73706xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="limit1" name="limit"/&gt;
+    &lt;OMI&gt; 0 &lt;/OMI&gt;
+    &lt;OMS cd="limit1" name="null"/&gt;
+    &lt;OMBIND&gt;
+      &lt;OMS cd="fns1" name="lambda"/&gt;
+      &lt;OMBVAR&gt;
+        &lt;OMV name="x"/&gt;
+      &lt;/OMBVAR&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="transc1" name="sin"/&gt;
+        &lt;OMV name="x"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMBIND&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73706pref" style="display:none; margin-top: 0.5em">
+  <a href="limit1.html#limit">limit</a>
+( 0 , <a href="limit1.html#null">null</a>, <a href="fns1.html#lambda">lambda</a>
+[
+         <i>x</i>
+      ] .
+(<a href="transc1.html#sin">sin</a>
+( <i>x</i>)
+)
+)
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/limit1.html#null">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">
+	    [First: <a href="#limit">limit</a>]
+	  [Previous: <a href="#below">below</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+</body></html>

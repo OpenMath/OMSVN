@@ -1,0 +1,344 @@
+<?xml version="1.0"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:cd="http://www.openmath.org/OpenMathCD"><head><script type="text/javascript"> function divfold(_Id){
+     var thisLevel = document.getElementById(_Id);
+     var thisLevela = document.getElementById(_Id.concat("a"))
+     if(thisLevel.style.display != "none"){ 
+      thisLevel.style.display = "none";
+      thisLevela.style.backgroundColor = "#CCCCCC";} 
+     else{
+      thisLevel.style.display = "block";
+      thisLevela.style.backgroundColor = "#AAFFAA";}  
+       }
+     </script><title>linalg2</title><link rel="stylesheet" href="omcd.css" type="text/css"/></head><body><a name="top"/><h1>OpenMath Content Dictionary: linalg2</h1><dl><dt><span class="dt">Canonical URL:</span></dt><dd><a href="http://www.openmath.org/cd/linalg2.ocd">http://www.openmath.org/cd/linalg2.ocd</a></dd><dt><span class="dt">CD Base:</span></dt><dd><a href="http://www.openmath.org/cd">http://www.openmath.org/cd</a></dd><dt><span class="dt">CD File:</span></dt><dd><a href="linalg2.ocd">linalg2.ocd
+  </a></dd><dt><span class="dt">CD as XML Encoded OpenMath:</span></dt><dd><a href="linalg2.omcd">linalg2.omcd
+  </a></dd><dt><span class="dt">Defines:</span></dt><dd><a href="#matrix">matrix</a>, <a href="#matrixrow">matrixrow</a>, <a href="#vector">vector</a></dd><dt><span class="dt">Date:</span></dt><dd>2004-03-30</dd><dt><span class="dt">Version:</span></dt><dd>3</dd><dt><span class="dt">Review Date:</span></dt><dd>2006-03-30</dd><dt><span class="dt">Status:</span></dt><dd>official</dd></dl><hr/>
+
+<pre>
+
+     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+</pre>
+
+
+
+
+
+
+
+
+
+<p>
+    This CD  treats matrices and vectors in a row oriented fashion
+    (using matrixrow's).
+</p>
+
+<hr/><dl>
+<h2><a name="vector">vector</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;vector/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p>
+This symbol represents an n-ary function used to construct (or describe)
+vectors.  Vectors in this CD are considered to be row vectors and must 
+therefore be transposed to be considered as column vectors.
+</p></dd>
+
+
+<dt><span class="dt">description:</span></dt><dd><p>
+      A vector is an ordered n-tuple of values representing an element of an
+      n-dimensional vector space.  The "values" are all from the same ring, typically real
+      or complex.  Where orientation is important, such as for pre or post multiplication
+      by a matrix a vector is treated as if it were a column vector and its transpose is
+      treated a row vector.  The type attribute can be used to explicitly specify that a
+      vector is a "row" vector.  See CRC Standard Mathematical Tables and Formulae,
+      editor: Dan Zwillinger, CRC Press Inc., 1996, [2.4]
+    </p></dd>
+
+    <dt><span class="dt">discussion:</span></dt><dd><p>
+      vector is the container element for a vector. The child elements form
+      the components of the vector.</p><p>      For purposes of interaction with matrices and matrix multiplication, vectors are
+      regarded as equivalent to a matrix consisting of a single column, and the transpose
+      of a vector behaves the same as a matrix consisting of a single row. Note that
+      vectors may be rendered either as a single column or row.</p><p>      In general a vector can be constructed by providing a function and a
+      1-dimensional domain of application.  The entries of the vector correspond to the
+      values obtained by evaluating the function at the points of the domain.  The
+      qualifications defined by a domainofapplication element can also be
+      abbreviated in several ways including a condition placed on a bound
+      variable and an expression involving that variable.</p><p>      The vector element constructs vectors from an n-dimensional
+      vector space so that its n child elements typically represent real or
+      complex valued scalars as in the three-element vector</p><p>
+  </p><p>  xy
+  3
+  7</p><p>
+A vector can also be constructed by evaluating a function over a specific domain
+       of application, each evaluation corresponding to an entry in the vector.  In its
+       most general form a domain is explicitly specified by a
+       domainofapplication element and a function. Optionally the
+       domainofapplication can be augmented by a bvar element and an
+       algebraic expression expressed in terms of it.  Qualifications defined by a
+       domainofapplication element can be abbreviated in several ways as
+       described in .
+	</p></dd>
+
+
+
+<dt><span class="dt">Example:</span></dt><dd>
+An example of vector using n arguments. 
+The specific vector constructed in this example is [3,6,9].
+<div><button id="id73295xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73295xml')">xml</button> <button id="id73295prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73295pref')">prefix</button> <button id="id73295mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73295mml')">mathml</button></div><pre id="id73295xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="linalg2" name="vector"/&gt;
+    &lt;OMI&gt; 3 &lt;/OMI&gt;
+    &lt;OMI&gt; 6 &lt;/OMI&gt;
+    &lt;OMI&gt; 9 &lt;/OMI&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73295pref" style="display:none; margin-top: 0.5em">
+  <a href="linalg2.html#vector">vector</a>
+( 3 ,  6 ,  9 )
+
+</div>
+</dd>
+
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/linalg2.html#vector">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#matrixrow">matrixrow</a>]
+	    [Last: <a href="#matrix">matrix</a>]
+	  
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="matrixrow">matrixrow</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;matrixrow&gt; ... &lt;/matrixrow&gt;</code>
+  </dd>
+  <dt><span class="dt">Role:</span></dt><dd>application</dd>
+  <dt><span class="dt">Description:</span></dt><dd><p> 
+    This symbol is an n-ary constructor used to represent rows of matrices. Its arguments
+    should be members of a ring.
+  </p></dd>
+
+
+ <dt><span class="dt">description:</span></dt><dd><p>
+   This symbol is an n-ary constructor used to represent rows of matrices.  Its
+   arguments should be members of a ring. 
+ </p></dd>
+ <dt><span class="dt">discussion:</span></dt><dd><p>
+   The matrixrow element is the container element
+   for the rows of a matrix.
+ </p></dd>
+ <dt><span class="dt">Example:</span></dt><dd>
+   <div><button id="id73376xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73376xml')">xml</button> <button id="id73376prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73376pref')">prefix</button> <button id="id73376mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73376mml')">mathml</button></div><pre id="id73376xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+   &lt;matrixrow&gt;&lt;cn&gt;1&lt;/cn&gt;&lt;cn&gt;2&lt;/cn&gt;&lt;/matrixrow&gt;&lt;/math&gt;</pre><div id="id73376pref" style="display:none; margin-top: 0.5em">
+   12</div>
+ </dd>
+ 
+
+<dt><span class="dt">Example:</span></dt><dd>
+Representation of a row of a matrix of length two containing the integers
+[1,0]
+<div><button id="id73394xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73394xml')">xml</button> <button id="id73394prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73394pref')">prefix</button> <button id="id73394mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73394mml')">mathml</button></div><pre id="id73394xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="linalg2" name="matrixrow"/&gt;
+    &lt;OMI&gt; 1 &lt;/OMI&gt;
+    &lt;OMI&gt; 0 &lt;/OMI&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73394pref" style="display:none; margin-top: 0.5em">
+  <a href="linalg2.html#matrixrow">matrixrow</a>
+( 1 ,  0 )
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/linalg2.html#matrixrow">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#matrix">matrix</a>][Previous: <a href="#vector">vector</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="matrix">matrix</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;matrix&gt; ... &lt;/matrix&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p>
+This symbol is an n-ary matrix constructor which requires matrixrow's
+as arguments. It is used to represent matrices.
+</p></dd>
+
+
+<dt><span class="dt">description:</span></dt><dd><p>
+          This is the constructor for a matrix.  It requires matrixrow's as arguments.
+          It is used to represent matrices.  See CRC Standard Mathematical Tables and
+          Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996, [2.5.1].
+        </p></dd>
+	<dt><span class="dt">discussion:</span></dt><dd><p>
+	  The matrix element is the container element for matrix rows, which
+	  are represented by matrixrow. The matrixrows contain the
+	  elements of a matrix.
+	  
+	  In general a matrix can be constructed by providing a function and a
+	  2-dimensional domain of application.  The entries of the matrix correspond to
+	  the values obtained by evaluating the function at the points of the domain.  The
+	  qualifications defined by a domainofapplication element can also be
+	  abbreviated in several ways including a condition element placing
+	  constraints directly on bound variables and an expression in those variables.
+	  The matrix element is used to represent mathematical matrices. It
+	  has zero or more child elements, all of which are matrixrow
+	  elements. These in turn expect zero or more child elements that evaluate to
+	  algebraic expressions or numbers. These sub-elements are often real numbers, or
+	  symbols as in</p><p>
+   1 2 
+   3 4 </p><p>
+        The matrixrow elements must always be contained inside of a matrix, and
+        all rows in a given matrix must have the same number of elements.</p><p>	Note that the behavior of the matrix and matrixrow elements
+	is substantially different from the mtable and mtr presentation
+	elements.</p><p>	A matrix can also be constructed by evaluating a bivariate function over a
+	specific domain of application, each evaluation corresponding to an entry in the
+	matrix.  In its most general form a domain of application is explicitly specified
+	by a domainofapplication element and a function which when evaluated at
+	points of the domain produces entries in the matrix. Optionally the
+	domainofapplication can be augmented by bvar elements and an
+	algebraic expression expressed in terms of them.
+	</p></dd>
+
+  <dt><span class="dt">Property:</span></dt><dd>
+          <p>
+            scalar multiplication
+          </p>
+        </dd>
+        <dt><span class="dt">Property:</span></dt><dd>
+	  <p>
+	    scalar multiplication
+	  </p>
+	  <div><button id="id73606xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73606xml')">xml</button> <button id="id73606prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73606pref')">prefix</button> <button id="id73606mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73606mml')">mathml</button></div><pre id="id73606xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;Matrix*column vector&lt;/math&gt;</pre><div id="id73606pref" style="display:none; margin-top: 0.5em">Matrix*column vector</div>
+	</dd>
+
+        <dt><span class="dt">Property:</span></dt><dd>
+          <p>
+            scalar multiplication
+          </p>
+	  <div><button id="id73622xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73622xml')">xml</button> <button id="id73622prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73622pref')">prefix</button> <button id="id73622mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73622mml')">mathml</button></div><pre id="id73622xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;Addition&lt;/math&gt;</pre><div id="id73622pref" style="display:none; margin-top: 0.5em">Addition</div>
+	</dd>
+        <dt><span class="dt">Property:</span></dt><dd>
+          <p>
+            scalar multiplication
+          </p>
+	  <div><button id="id73637xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73637xml')">xml</button> <button id="id73637prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73637pref')">prefix</button> <button id="id73637mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73637mml')">mathml</button></div><pre id="id73637xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;Matrix*Matrix&lt;/math&gt;</pre><div id="id73637pref" style="display:none; margin-top: 0.5em">Matrix*Matrix</div>
+	</dd>
+
+        <dt><span class="dt">Example:</span></dt><dd>
+	  <div><button id="id73645xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73645xml')">xml</button> <button id="id73645prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73645pref')">prefix</button> <button id="id73645mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73645mml')">mathml</button></div><pre id="id73645xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;matrix&gt;
+  &lt;matrixrow&gt;&lt;cn&gt;0&lt;/cn&gt; &lt;cn&gt;1&lt;/cn&gt; &lt;cn&gt;0&lt;/cn&gt;&lt;/matrixrow&gt;
+  &lt;matrixrow&gt;&lt;cn&gt;0&lt;/cn&gt; &lt;cn&gt;0&lt;/cn&gt; &lt;cn&gt;1&lt;/cn&gt;&lt;/matrixrow&gt;
+  &lt;matrixrow&gt;&lt;cn&gt;1&lt;/cn&gt; &lt;cn&gt;0&lt;/cn&gt; &lt;cn&gt;0&lt;/cn&gt;&lt;/matrixrow&gt;
+&lt;/matrix&gt;&lt;/math&gt;</pre><div id="id73645pref" style="display:none; margin-top: 0.5em">
+  0 1 0
+  0 0 1
+  1 0 0
+</div></dd>
+<dt><span class="dt">Example:</span></dt><dd><div><button id="id73683xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73683xml')">xml</button> <button id="id73683prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73683pref')">prefix</button> <button id="id73683mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73683mml')">mathml</button></div><pre id="id73683xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;matrix&gt;
+  &lt;bvar&gt;&lt;ci type="integer"&gt;i&lt;/ci&gt;&lt;/bvar&gt;
+  &lt;bvar&gt;&lt;ci type="integer"&gt;j&lt;/ci&gt;&lt;/bvar&gt;
+  &lt;condition&gt;
+    &lt;apply&gt;&lt;and/&gt;
+      &lt;apply&gt;&lt;in/&gt;
+        &lt;ci&gt;i&lt;/ci&gt;
+        &lt;interval&gt;&lt;ci&gt;1&lt;/ci&gt;&lt;ci&gt;5&lt;/ci&gt;&lt;/interval&gt;
+      &lt;/apply&gt;
+      &lt;apply&gt;&lt;in/&gt;
+        &lt;ci&gt;j&lt;/ci&gt;
+        &lt;interval&gt;&lt;ci&gt;5&lt;/ci&gt;&lt;ci&gt;9&lt;/ci&gt;&lt;/interval&gt;
+      &lt;/apply&gt;
+    &lt;/apply&gt;
+  &lt;/condition&gt;
+&lt;vector&gt;
+  &lt;apply&gt;&lt;power/&gt;
+    &lt;ci&gt;i&lt;/ci&gt;
+    &lt;ci&gt;j&lt;/ci&gt;
+  &lt;/apply&gt;
+&lt;/vector&gt;
+&lt;/matrix&gt;
+&lt;/math&gt;</pre><div id="id73683pref" style="display:none; margin-top: 0.5em">
+   <i/>
+   <i/>
+  
+    
+(
+( <i/>,  <i/> <i/>)
+, 
+( <i/>,  <i/> <i/>)
+)
+
+  
+
+  
+( <i/>,  <i/>)
+
+
+
+</div></dd>
+
+
+
+<dt><span class="dt">Example:</span></dt><dd>
+Representation of a 2x2 identity matrix
+<div><button id="id73760xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73760xml')">xml</button> <button id="id73760prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73760pref')">prefix</button> <button id="id73760mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73760mml')">mathml</button></div><pre id="id73760xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="linalg2" name="matrix"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="linalg2" name="matrixrow"/&gt;
+      &lt;OMI&gt; 1 &lt;/OMI&gt;
+      &lt;OMI&gt; 0 &lt;/OMI&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="linalg2" name="matrixrow"/&gt;
+      &lt;OMI&gt; 0 &lt;/OMI&gt;
+      &lt;OMI&gt; 1 &lt;/OMI&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73760pref" style="display:none; margin-top: 0.5em">
+  <a href="linalg2.html#matrix">matrix</a>
+(<a href="linalg2.html#matrixrow">matrixrow</a>
+( 1 ,  0 )
+, <a href="linalg2.html#matrixrow">matrixrow</a>
+( 0 ,  1 )
+)
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/linalg2.html#matrix">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">
+	    [First: <a href="#vector">vector</a>]
+	  [Previous: <a href="#matrixrow">matrixrow</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+</body></html>

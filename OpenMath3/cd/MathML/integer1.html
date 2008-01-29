@@ -1,0 +1,716 @@
+<?xml version="1.0"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:cd="http://www.openmath.org/OpenMathCD"><head><script type="text/javascript"> function divfold(_Id){
+     var thisLevel = document.getElementById(_Id);
+     var thisLevela = document.getElementById(_Id.concat("a"))
+     if(thisLevel.style.display != "none"){ 
+      thisLevel.style.display = "none";
+      thisLevela.style.backgroundColor = "#CCCCCC";} 
+     else{
+      thisLevel.style.display = "block";
+      thisLevela.style.backgroundColor = "#AAFFAA";}  
+       }
+     </script><title>integer1</title><link rel="stylesheet" href="omcd.css" type="text/css"/></head><body><a name="top"/><h1>OpenMath Content Dictionary: integer1</h1><dl><dt><span class="dt">Canonical URL:</span></dt><dd><a href="http://www.openmath.org/cd/integer1.ocd">http://www.openmath.org/cd/integer1.ocd</a></dd><dt><span class="dt">CD Base:</span></dt><dd><a href="http://www.openmath.org/cd">http://www.openmath.org/cd</a></dd><dt><span class="dt">CD File:</span></dt><dd><a href="integer1.ocd">integer1.ocd
+  </a></dd><dt><span class="dt">CD as XML Encoded OpenMath:</span></dt><dd><a href="integer1.omcd">integer1.omcd
+  </a></dd><dt><span class="dt">Defines:</span></dt><dd><a href="#factorial">factorial</a>, <a href="#factorof">factorof</a>, <a href="#quotient">quotient</a>, <a href="#remainder">remainder</a></dd><dt><span class="dt">Date:</span></dt><dd>2004-03-30</dd><dt><span class="dt">Version:</span></dt><dd>3</dd><dt><span class="dt">Review Date:</span></dt><dd>2006-03-30</dd><dt><span class="dt">Status:</span></dt><dd>official</dd></dl><hr/>
+
+<pre>
+
+     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+</pre>
+
+
+
+
+
+
+
+
+
+<p>
+    This CD holds a collection of basic integer functions.</p><p>    This CD is intended to be `compatible' with the corresponding elements
+    in Content MathML.
+</p>
+
+<hr/><dl>
+<h2><a name="factorof">factorof</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;factorof/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p>
+   This is the binary OpenMath operator that is used to indicate the
+   mathematical relationship a "is a factor of" b, where a is the
+   first argument and b is the second. This relationship is
+   true if and only if b mod a = 0.
+</p></dd>
+
+
+<dt><span class="dt">description:</span></dt><dd><p>
+          This is the binary MathML operator that is used indicate the mathematical
+          relationship a "is a factor of" b. This relationship is true just if b mod a =
+          0
+        </p></dd>
+	<dt><span class="dt">discussion:</span></dt><dd><p>
+	  The factorof element is the relational operator element on two
+	  integers a and b specifying whether one is an integer
+	  factor of the other.
+	</p></dd>
+
+<dt><span class="dt">Property:</span></dt><dd>
+          <p>
+            ForAll( [a,b], a and b integers, a divides b  if there is an integer c such that a*c = b )
+          </p>
+        </dd>
+        <dt><span class="dt">Example:</span></dt><dd><div><button id="id73216xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73216xml')">xml</button> <button id="id73216prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73216pref')">prefix</button> <button id="id73216mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73216mml')">mathml</button></div><pre id="id73216xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;factorof/&gt;
+  &lt;ci&gt;a&lt;/ci&gt;
+  &lt;ci&gt;b&lt;/ci&gt;
+&lt;/apply&gt;&lt;/math&gt;</pre><div id="id73216pref" style="display:none; margin-top: 0.5em">
+( <i/>,  <i/>)
+</div></dd>
+
+
+<dt><span class="dt">Property:</span></dt><dd>
+ b is a factor of a iff remainder of a divided by b = 0 
+
+
+  <div><button id="id73244xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73244xml')">xml</button> <button id="id73244prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73244pref')">prefix</button> <button id="id73244mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73244mml')">mathml</button></div><pre id="id73244xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="logic1" name="implies"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="integer1" name="factorof"/&gt;
+	&lt;OMV name="b"/&gt;
+	&lt;OMV name="a"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="relation1" name="eq"/&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="integer1" name="remainder"/&gt;
+	  &lt;OMV name="a"/&gt;
+	  &lt;OMV name="b"/&gt;
+	&lt;/OMA&gt;
+	&lt;OMS cd="alg1" name="zero"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMOBJ&gt;</pre><div id="id73244pref" style="display:none; margin-top: 0.5em">
+    <a href="logic1.html#implies">implies</a>
+(<a href="integer1.html#factorof">factorof</a>
+( <i>b</i>,  <i>a</i>)
+, <a href="relation1.html#eq">eq</a>
+(<a href="integer1.html#remainder">remainder</a>
+( <i>a</i>,  <i>b</i>)
+, <a href="../../../cd/alg1.html#zero">zero</a>)
+)
+
+  </div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/integer1.html#factorof">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#factorial">factorial</a>]
+	    [Last: <a href="#remainder">remainder</a>]
+	  
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="factorial">factorial</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;factorial/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+The symbol to represent a unary factorial function on non-negative integers.
+</p></dd>
+
+
+<dt><span class="dt">description:</span></dt><dd><p>
+          This is the unary operator used to construct factorials.  Factorials are
+          defined by n! = n*(n-1)* ... * 1
+        </p></dd>
+        <dt><span class="dt">Property:</span></dt><dd>
+          <p>
+            ForAll( n, n \gt 0, n! = n*(n-1)! )</p><div><button id="id73355xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73355xml')">xml</button> <button id="id73355prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73355pref')">prefix</button> <button id="id73355mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73355mml')">mathml</button></div><pre id="id73355xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;bind&gt;&lt;forall/&gt;
+  &lt;bvar&gt;&lt;ci&gt;n&lt;/ci&gt;&lt;/bvar&gt;
+  &lt;condition&gt;&lt;apply&gt;&lt;gt/&gt;&lt;ci&gt;n&lt;/ci&gt;&lt;cn&gt;0&lt;/cn&gt;&lt;/apply&gt;&lt;/condition&gt;
+  &lt;apply&gt;&lt;eq/&gt;
+    &lt;apply&gt;&lt;factorial/&gt;&lt;ci&gt;n&lt;/ci&gt;&lt;/apply&gt;
+    &lt;apply&gt;&lt;times/&gt;
+      &lt;ci&gt;n&lt;/ci&gt;
+      &lt;apply&gt;&lt;factorial/&gt;
+        &lt;apply&gt;&lt;minus/&gt;&lt;ci&gt;n&lt;/ci&gt;&lt;cn&gt;1&lt;/cn&gt;&lt;/apply&gt;
+      &lt;/apply&gt;
+    &lt;/apply&gt;
+  &lt;/apply&gt;
+&lt;/bind&gt;
+&lt;/math&gt;</pre><div id="id73355pref" style="display:none; margin-top: 0.5em">
+
+[ <i/>] .
+(
+( <i/>, 0)
+
+(
+( <i/>)
+, 
+( <i/>, 
+(
+( <i/>, 1)
+)
+)
+)
+)
+
+</div></dd>
+        <dt><span class="dt">Property:</span></dt><dd>
+          <p>
+            0! = 1</p><div><button id="id73412xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73412xml')">xml</button> <button id="id73412prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73412pref')">prefix</button> <button id="id73412mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73412mml')">mathml</button></div><pre id="id73412xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;apply&gt;&lt;eq/&gt;
+  &lt;apply&gt;&lt;factorial/&gt;&lt;cn&gt;0&lt;/cn&gt;&lt;/apply&gt;
+  &lt;cn&gt;1&lt;/cn&gt;
+&lt;/apply&gt;
+&lt;/math&gt;</pre><div id="id73412pref" style="display:none; margin-top: 0.5em">
+
+(
+(0)
+, 1)
+
+</div></dd>
+
+	    <dt><span class="dt">Example:</span></dt><dd>
+	      <p>If this were evaluated at n = 5 it would evaluate to 120.
+	      </p>
+	    <div><button id="id73441xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73441xml')">xml</button> <button id="id73441prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73441pref')">prefix</button> <button id="id73441mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73441mml')">mathml</button></div><pre id="id73441xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;factorial/&gt;&lt;ci&gt;n&lt;/ci&gt;&lt;/apply&gt;&lt;/math&gt;</pre><div id="id73441pref" style="display:none; margin-top: 0.5em">
+( <i/>)
+</div></dd>
+
+
+
+<dt><span class="dt">Property:</span></dt><dd>
+
+factorial n = product [1..n]
+
+
+  <div><button id="id73464xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73464xml')">xml</button> <button id="id73464prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73464pref')">prefix</button> <button id="id73464mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73464mml')">mathml</button></div><pre id="id73464xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="relation1" name="eq"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="integer1" name="factorial"/&gt;
+        &lt;OMV name="n"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="product"/&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="interval1" name="integer_interval"/&gt;
+            &lt;OMI&gt; 1 &lt;/OMI&gt;
+            &lt;OMV name="n"/&gt;
+          &lt;/OMA&gt;
+        &lt;OMBIND&gt;
+          &lt;OMS cd="fns1" name="lambda"/&gt;
+            &lt;OMBVAR&gt;
+              &lt;OMV name="i"/&gt;
+            &lt;/OMBVAR&gt;
+            &lt;OMV name="i"/&gt;
+        &lt;/OMBIND&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMOBJ&gt;</pre><div id="id73464pref" style="display:none; margin-top: 0.5em">
+    <a href="relation1.html#eq">eq</a>
+(<a href="integer1.html#factorial">factorial</a>
+( <i>n</i>)
+, <a href="arith1.html#product">product</a>
+(<a href="interval1.html#integer_interval">integer_interval</a>
+( 1 ,  <i>n</i>)
+, <a href="fns1.html#lambda">lambda</a>
+[
+               <i>i</i>
+            ] .
+( <i>i</i>)
+)
+)
+
+  </div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/integer1.html#factorial">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#quotient">quotient</a>][Previous: <a href="#factorof">factorof</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="quotient">quotient</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;quotient/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p>
+The symbol to represent the integer (binary) division operator. That is,
+for integers a and b, quotient(a,b) denotes q such that a=b*q+r, with |r|
+less than |b| and a*r positive.
+</p></dd>
+
+
+<dt><span class="dt">description:</span></dt><dd><p>
+      quotient is the binary function used to represent the operation of integer
+	division.  quotient(a,b) denotes q such that a = b*q+r, with |r| less than |b| and
+	a*r non-negative. 
+      
+    </p></dd>
+    <dt><span class="dt">discussion:</span></dt><dd><p>
+      The quotient element is the operator used for division modulo a
+      particular base. When the quotient operator is applied to integer arguments
+      a and b, the result is the quotient of a
+      divided by b. That is, quotient returns the unique
+      integer q such that a = q b +
+      r. (In common usage, q is called the quotient and r
+      is the remainder.)
+    </p></dd>
+
+ <dt><span class="dt">Property:</span></dt><dd>
+   <p>
+     ForAll( [a,b], b != 0, a = b*quotient(a,b) + rem(a,b) )
+   </p>
+<div><button id="id73654xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73654xml')">xml</button> <button id="id73654prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73654pref')">prefix</button> <button id="id73654mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73654mml')">mathml</button></div><pre id="id73654xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;bind&gt;&lt;forall/&gt;
+  &lt;bvar&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;/bvar&gt;
+  &lt;bvar&gt;&lt;ci&gt;b&lt;/ci&gt;&lt;/bvar&gt;
+  &lt;condition&gt;&lt;apply&gt;&lt;neq/&gt;&lt;ci&gt;b&lt;/ci&gt;&lt;cn&gt;0&lt;/cn&gt;&lt;/apply&gt;&lt;/condition&gt;
+  &lt;apply&gt;&lt;eq/&gt;
+    &lt;ci&gt;a&lt;/ci&gt;
+    &lt;apply&gt;&lt;plus/&gt;
+      &lt;apply&gt;&lt;times/&gt;
+          &lt;ci&gt;b&lt;/ci&gt;
+          &lt;apply&gt;&lt;quotient/&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;ci&gt;b&lt;/ci&gt;&lt;/apply&gt;
+      &lt;/apply&gt;
+      &lt;apply&gt;&lt;rem/&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;ci&gt;b&lt;/ci&gt;&lt;/apply&gt;
+    &lt;/apply&gt;
+  &lt;/apply&gt;
+&lt;/bind&gt;
+&lt;/math&gt;</pre><div id="id73654pref" style="display:none; margin-top: 0.5em">
+
+[ <i/>] .
+( <i/>
+( <i/>, 0)
+
+( <i/>, 
+(
+( <i/>, 
+( <i/>,  <i/>)
+)
+, 
+( <i/>,  <i/>)
+)
+)
+)
+
+</div>
+</dd>
+
+<dt><span class="dt">Example:</span></dt><dd>
+  <p>Various mathematical applications will use this data in different
+  ways. Editing applications might choose an image such as shown below, while a
+  computationally based application would evaluate it to 2 whena=13 and
+  b=5.
+  </p>
+  <div><button id="id73733xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73733xml')">xml</button> <button id="id73733prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73733pref')">prefix</button> <button id="id73733mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73733mml')">mathml</button></div><pre id="id73733xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;quotient/&gt; &lt;ci&gt;a&lt;/ci&gt; &lt;ci&gt;b&lt;/ci&gt; &lt;/apply&gt; &lt;/math&gt;</pre><div id="id73733pref" style="display:none; margin-top: 0.5em">
+( <i/>,  <i/>)
+ </div>
+</dd>
+
+<dt><span class="dt">Example:</span></dt><dd>
+<div><button id="id73750xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73750xml')">xml</button> <button id="id73750prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73750pref')">prefix</button> <button id="id73750mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73750mml')">mathml</button></div><pre id="id73750xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;apply&gt;
+  &lt;quotient/&gt;
+  &lt;cn&gt;5&lt;/cn&gt;
+  &lt;cn&gt;4&lt;/cn&gt;
+&lt;/apply&gt;
+&lt;/math&gt;</pre><div id="id73750pref" style="display:none; margin-top: 0.5em">
+
+(5, 4)
+
+</div>
+</dd>
+
+<dt><span class="dt">Property:</span></dt><dd>
+
+for all a,b with a,b Integers |
+  a = b * quotient(a,b) + remainder(a,b) and abs(remainder(a,b)) is less than abs(b) and 
+a*remainder(a,b) &gt;= 0
+
+
+   <div><button id="id73775xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73775xml')">xml</button> <button id="id73775prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73775pref')">prefix</button> <button id="id73775mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73775mml')">mathml</button></div><pre id="id73775xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+     &lt;OMBIND&gt;
+       &lt;OMS cd="quant1" name="forall"/&gt;
+       &lt;OMBVAR&gt;
+         &lt;OMV name="a"/&gt;
+         &lt;OMV name="b"/&gt;
+       &lt;/OMBVAR&gt;
+       &lt;OMA&gt;
+         &lt;OMS cd="logic1" name="implies"/&gt;
+         &lt;OMA&gt;
+           &lt;OMS cd="logic1" name="and"/&gt;
+           &lt;OMA&gt;
+             &lt;OMS cd="set1" name="in"/&gt;
+             &lt;OMV name="a"/&gt;
+             &lt;OMS cd="setname1" name="Z"/&gt;
+           &lt;/OMA&gt;
+           &lt;OMA&gt;
+             &lt;OMS cd="set1" name="in"/&gt;
+             &lt;OMV name="b"/&gt;
+             &lt;OMS cd="setname1" name="Z"/&gt;
+           &lt;/OMA&gt;
+         &lt;/OMA&gt;
+         &lt;OMA&gt;
+	   &lt;OMS cd="logic1" name="and"/&gt;
+	   &lt;OMA&gt;
+             &lt;OMS cd="relation1" name="eq"/&gt;
+             &lt;OMV name="a"/&gt;
+             &lt;OMA&gt;
+               &lt;OMS cd="arith1" name="plus"/&gt;
+               &lt;OMA&gt;
+                 &lt;OMS cd="arith1" name="times"/&gt;
+                 &lt;OMV name="b"/&gt;
+                 &lt;OMA&gt;
+                   &lt;OMS cd="integer1" name="quotient"/&gt;
+                   &lt;OMV name="a"/&gt;
+                   &lt;OMV name="b"/&gt;
+                 &lt;/OMA&gt;
+               &lt;/OMA&gt;
+               &lt;OMA&gt;
+                 &lt;OMS cd="integer1" name="remainder"/&gt;
+                 &lt;OMV name="a"/&gt;
+                 &lt;OMV name="b"/&gt;
+               &lt;/OMA&gt;
+             &lt;/OMA&gt;
+           &lt;/OMA&gt;
+           &lt;OMA&gt;
+             &lt;OMS cd="relation1" name="lt"/&gt;
+             &lt;OMA&gt;
+               &lt;OMS cd="arith1" name="abs"/&gt;
+               &lt;OMA&gt;
+                 &lt;OMS cd="integer1" name="remainder"/&gt;
+                 &lt;OMV name="a"/&gt;
+                 &lt;OMV name="b"/&gt;
+               &lt;/OMA&gt;
+             &lt;/OMA&gt;
+             &lt;OMA&gt;
+               &lt;OMS cd="arith1" name="abs"/&gt;
+               &lt;OMV name="b"/&gt;
+             &lt;/OMA&gt;
+           &lt;/OMA&gt;
+           &lt;OMA&gt;
+             &lt;OMS cd="relation1" name="geq"/&gt;
+             &lt;OMA&gt;
+               &lt;OMS cd="arith1" name="times"/&gt;
+               &lt;OMV name="a"/&gt;
+	       &lt;OMA&gt;
+	         &lt;OMS cd="integer1" name="remainder"/&gt;
+		 &lt;OMV name="a"/&gt;
+		 &lt;OMV name="b"/&gt;
+	       &lt;/OMA&gt;
+             &lt;/OMA&gt;
+             &lt;OMS cd="alg1" name="zero"/&gt;
+           &lt;/OMA&gt;
+         &lt;/OMA&gt;
+       &lt;/OMA&gt;
+     &lt;/OMBIND&gt;
+   &lt;/OMOBJ&gt;</pre><div id="id73775pref" style="display:none; margin-top: 0.5em">
+     <a href="quant1.html#forall">forall</a>
+[
+          <i>a</i>
+          <i>b</i>
+       ] .
+(<a href="logic1.html#implies">implies</a>
+(<a href="logic1.html#and">and</a>
+(<a href="set1.html#in">in</a>
+( <i>a</i>, <a href="setname1.html#Z">Z</a>)
+, <a href="set1.html#in">in</a>
+( <i>b</i>, <a href="setname1.html#Z">Z</a>)
+)
+, <a href="logic1.html#and">and</a>
+(<a href="relation1.html#eq">eq</a>
+( <i>a</i>, <a href="arith1.html#plus">plus</a>
+(<a href="arith1.html#times">times</a>
+( <i>b</i>, <a href="integer1.html#quotient">quotient</a>
+( <i>a</i>,  <i>b</i>)
+)
+, <a href="integer1.html#remainder">remainder</a>
+( <i>a</i>,  <i>b</i>)
+)
+)
+, <a href="relation1.html#lt">lt</a>
+(<a href="arith1.html#abs">abs</a>
+(<a href="integer1.html#remainder">remainder</a>
+( <i>a</i>,  <i>b</i>)
+)
+, <a href="arith1.html#abs">abs</a>
+( <i>b</i>)
+)
+, <a href="relation1.html#geq">geq</a>
+(<a href="arith1.html#times">times</a>
+( <i>a</i>, <a href="integer1.html#remainder">remainder</a>
+( <i>a</i>,  <i>b</i>)
+)
+, <a href="../../../cd/alg1.html#zero">zero</a>)
+)
+)
+)
+
+   </div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/integer1.html#quotient">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#remainder">remainder</a>][Previous: <a href="#factorial">factorial</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="remainder">remainder</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;rem/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+The symbol to represent the integer remainder after (binary) division.
+For integers a and b, remainder(a,b) denotes r such that a=b*q+r, with |r| less
+than |b| and a*r positive.
+</p></dd>
+
+
+
+<dt><span class="dt">description:</span></dt><dd><p>
+          This is the binary operator used to represent the integer remainder a mod b.
+          For arguments a and b, such that a = b*q + r with |r| &lt; |b| it represents the
+          value r.
+        </p></dd>
+	<dt><span class="dt">discussion:</span></dt><dd><p>
+	  The rem element is the operator that returns the
+	  remainder of a division modulo a particular base. When the
+	  rem operator is applied to integer arguments a and
+	  b, the result is the remainder of a divided by
+	  b. That is, rem returns the unique integer,
+	  r such that a = q b+ r,
+	  where r &lt; q. (In common usage, q is called
+	  the quotient and r is the remainder.)
+	</p></dd>
+
+   <dt><span class="dt">Property:</span></dt><dd>
+          <p>
+            rem(a, 0) is undefined
+          </p>
+        </dd>
+        <dt><span class="dt">Property:</span></dt><dd>
+          <p>
+            ForAll( [a,b], b!=0, a = b*quotient(a,b) + rem(a,b))
+          </p><div><button id="id74181xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74181xml')">xml</button> <button id="id74181prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74181pref')">prefix</button> <button id="id74181mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74181mml')">mathml</button></div><pre id="id74181xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;bind&gt;&lt;forall/&gt;
+  &lt;bvar&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;/bvar&gt;
+  &lt;bvar&gt;&lt;ci&gt;b&lt;/ci&gt;&lt;/bvar&gt;
+  &lt;condition&gt;&lt;apply&gt;&lt;neq/&gt;&lt;ci&gt;b&lt;/ci&gt;&lt;cn&gt;0&lt;/cn&gt;&lt;/apply&gt;&lt;/condition&gt;
+  &lt;apply&gt;&lt;eq/&gt;
+    &lt;ci&gt;a&lt;/ci&gt;
+    &lt;apply&gt;&lt;plus/&gt;
+      &lt;apply&gt;&lt;times/&gt;
+        &lt;ci&gt;b&lt;/ci&gt;
+  &lt;apply&gt;&lt;quotient/&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;ci&gt;b&lt;/ci&gt;&lt;/apply&gt;
+      &lt;/apply&gt;
+    &lt;apply&gt;&lt;rem/&gt;
+    &lt;ci&gt;a&lt;/ci&gt;
+    &lt;ci&gt;b&lt;/ci&gt;
+  &lt;/apply&gt;
+&lt;/apply&gt;
+&lt;/apply&gt;
+&lt;/bind&gt;
+&lt;/math&gt;</pre><div id="id74181pref" style="display:none; margin-top: 0.5em">
+
+[ <i/>] .
+( <i/>
+( <i/>, 0)
+
+( <i/>, 
+(
+( <i/>, 
+( <i/>,  <i/>)
+)
+, 
+( <i/>,  <i/>)
+)
+)
+)
+
+</div>
+</dd>
+
+<dt><span class="dt">Example:</span></dt><dd>
+  <p>
+    If this were evaluated at a = 15 and b = 8 it would yield 7.
+  </p>
+<div><button id="id74259xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74259xml')">xml</button> <button id="id74259prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74259pref')">prefix</button> <button id="id74259mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74259mml')">mathml</button></div><pre id="id74259xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+  &lt;apply&gt;&lt;rem/&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;ci&gt;b&lt;/ci&gt;&lt;/apply&gt;
+&lt;/math&gt;</pre><div id="id74259pref" style="display:none; margin-top: 0.5em">
+  
+( <i/>,  <i/>)
+
+</div>
+</dd>
+
+
+
+<dt><span class="dt">Property:</span></dt><dd>
+
+for all a,b with a,b Integers | 
+  a = b * quotient(a,b) + remainder(a,b) and abs(remainder(a,b)) is less than abs(b) and a*remainder(a,b) &gt;= 0
+
+
+   <div><button id="id74282xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74282xml')">xml</button> <button id="id74282prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id74282pref')">prefix</button> <button id="id74282mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id74282mml')">mathml</button></div><pre id="id74282xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+     &lt;OMBIND&gt;
+       &lt;OMS cd="quant1" name="forall"/&gt;
+       &lt;OMBVAR&gt;
+         &lt;OMV name="a"/&gt;
+         &lt;OMV name="b"/&gt;
+       &lt;/OMBVAR&gt;
+       &lt;OMA&gt;
+         &lt;OMS cd="logic1" name="implies"/&gt;
+         &lt;OMA&gt;
+           &lt;OMS cd="logic1" name="and"/&gt;
+           &lt;OMA&gt;
+             &lt;OMS cd="set1" name="in"/&gt;
+             &lt;OMV name="a"/&gt;
+             &lt;OMS cd="setname1" name="Z"/&gt;
+           &lt;/OMA&gt;
+           &lt;OMA&gt;
+             &lt;OMS cd="set1" name="in"/&gt;
+             &lt;OMV name="b"/&gt;
+             &lt;OMS cd="setname1" name="Z"/&gt;
+           &lt;/OMA&gt;
+         &lt;/OMA&gt;
+         &lt;OMA&gt;
+	   &lt;OMS cd="logic1" name="and"/&gt;
+	   &lt;OMA&gt;
+             &lt;OMS cd="relation1" name="eq"/&gt;
+             &lt;OMV name="a"/&gt;
+             &lt;OMA&gt;
+               &lt;OMS cd="arith1" name="plus"/&gt;
+               &lt;OMA&gt;
+                 &lt;OMS cd="arith1" name="times"/&gt;
+                 &lt;OMV name="b"/&gt;
+                 &lt;OMA&gt;
+                   &lt;OMS cd="integer1" name="quotient"/&gt;
+                   &lt;OMV name="a"/&gt;
+                   &lt;OMV name="b"/&gt;
+                 &lt;/OMA&gt;
+               &lt;/OMA&gt;
+               &lt;OMA&gt;
+                 &lt;OMS cd="integer1" name="remainder"/&gt;
+                 &lt;OMV name="a"/&gt;
+                 &lt;OMV name="b"/&gt;
+               &lt;/OMA&gt;
+             &lt;/OMA&gt;
+           &lt;/OMA&gt;
+           &lt;OMA&gt;
+             &lt;OMS cd="relation1" name="lt"/&gt;
+             &lt;OMA&gt;
+               &lt;OMS cd="arith1" name="abs"/&gt;
+               &lt;OMA&gt;
+                 &lt;OMS cd="integer1" name="remainder"/&gt;
+                 &lt;OMV name="a"/&gt;
+                 &lt;OMV name="b"/&gt;
+               &lt;/OMA&gt;
+             &lt;/OMA&gt;
+             &lt;OMA&gt;
+               &lt;OMS cd="arith1" name="abs"/&gt;
+               &lt;OMV name="b"/&gt;
+             &lt;/OMA&gt;
+           &lt;/OMA&gt;
+           &lt;OMA&gt;
+             &lt;OMS cd="relation1" name="geq"/&gt;
+             &lt;OMA&gt;
+               &lt;OMS cd="arith1" name="times"/&gt;
+               &lt;OMV name="a"/&gt;
+	       &lt;OMA&gt;
+	         &lt;OMS cd="integer1" name="remainder"/&gt;
+		 &lt;OMV name="a"/&gt;
+		 &lt;OMV name="b"/&gt;
+	       &lt;/OMA&gt;
+             &lt;/OMA&gt;
+             &lt;OMS cd="alg1" name="zero"/&gt;
+           &lt;/OMA&gt;
+         &lt;/OMA&gt;
+       &lt;/OMA&gt;
+     &lt;/OMBIND&gt;
+   &lt;/OMOBJ&gt;</pre><div id="id74282pref" style="display:none; margin-top: 0.5em">
+     <a href="quant1.html#forall">forall</a>
+[
+          <i>a</i>
+          <i>b</i>
+       ] .
+(<a href="logic1.html#implies">implies</a>
+(<a href="logic1.html#and">and</a>
+(<a href="set1.html#in">in</a>
+( <i>a</i>, <a href="setname1.html#Z">Z</a>)
+, <a href="set1.html#in">in</a>
+( <i>b</i>, <a href="setname1.html#Z">Z</a>)
+)
+, <a href="logic1.html#and">and</a>
+(<a href="relation1.html#eq">eq</a>
+( <i>a</i>, <a href="arith1.html#plus">plus</a>
+(<a href="arith1.html#times">times</a>
+( <i>b</i>, <a href="integer1.html#quotient">quotient</a>
+( <i>a</i>,  <i>b</i>)
+)
+, <a href="integer1.html#remainder">remainder</a>
+( <i>a</i>,  <i>b</i>)
+)
+)
+, <a href="relation1.html#lt">lt</a>
+(<a href="arith1.html#abs">abs</a>
+(<a href="integer1.html#remainder">remainder</a>
+( <i>a</i>,  <i>b</i>)
+)
+, <a href="arith1.html#abs">abs</a>
+( <i>b</i>)
+)
+, <a href="relation1.html#geq">geq</a>
+(<a href="arith1.html#times">times</a>
+( <i>a</i>, <a href="integer1.html#remainder">remainder</a>
+( <i>a</i>,  <i>b</i>)
+)
+, <a href="../../../cd/alg1.html#zero">zero</a>)
+)
+)
+)
+
+   </div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/integer1.html#remainder">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">
+	    [First: <a href="#factorof">factorof</a>]
+	  [Previous: <a href="#quotient">quotient</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+</body></html>

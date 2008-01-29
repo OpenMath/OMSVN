@@ -1,0 +1,513 @@
+<?xml version="1.0"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:cd="http://www.openmath.org/OpenMathCD"><head><script type="text/javascript"> function divfold(_Id){
+     var thisLevel = document.getElementById(_Id);
+     var thisLevela = document.getElementById(_Id.concat("a"))
+     if(thisLevel.style.display != "none"){ 
+      thisLevel.style.display = "none";
+      thisLevela.style.backgroundColor = "#CCCCCC";} 
+     else{
+      thisLevel.style.display = "block";
+      thisLevela.style.backgroundColor = "#AAFFAA";}  
+       }
+     </script><title>rounding1</title><link rel="stylesheet" href="omcd.css" type="text/css"/></head><body><a name="top"/><h1>OpenMath Content Dictionary: rounding1</h1><dl><dt><span class="dt">Canonical URL:</span></dt><dd><a href="http://www.openmath.org/cd/rounding1.ocd">http://www.openmath.org/cd/rounding1.ocd</a></dd><dt><span class="dt">CD Base:</span></dt><dd><a href="http://www.openmath.org/cd">http://www.openmath.org/cd</a></dd><dt><span class="dt">CD File:</span></dt><dd><a href="rounding1.ocd">rounding1.ocd
+  </a></dd><dt><span class="dt">CD as XML Encoded OpenMath:</span></dt><dd><a href="rounding1.omcd">rounding1.omcd
+  </a></dd><dt><span class="dt">Defines:</span></dt><dd><a href="#ceiling">ceiling</a>, <a href="#floor">floor</a>, <a href="#round">round</a>, <a href="#trunc">trunc</a></dd><dt><span class="dt">Date:</span></dt><dd>2004-03-30</dd><dt><span class="dt">Version:</span></dt><dd>3</dd><dt><span class="dt">Review Date:</span></dt><dd>2006-03-30</dd><dt><span class="dt">Status:</span></dt><dd>official</dd></dl><hr/>
+
+<pre>
+
+     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+</pre>
+
+
+
+
+
+
+
+
+
+<p> 
+A CD of basic rounding concepts
+</p>
+<pre>
+Written by James Davenport, inspired by the need from bigfloat.ocd.
+Finished 1999-10-24.
+</pre>
+
+<hr/><dl>
+<h2><a name="ceiling">ceiling</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;ceiling/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p>
+The round up (to +infinity) operation.
+</p></dd>
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> for all x | ceiling(x)-1 &lt; x &lt;= ceiling x </dd>
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+<div><button id="id73172xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73172xml')">xml</button> <button id="id73172prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73172pref')">prefix</button> <button id="id73172mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73172mml')">mathml</button></div><pre id="id73172xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMBIND&gt;
+    &lt;OMS cd="quant1" name="forall"/&gt;
+    &lt;OMBVAR&gt;
+       &lt;OMV name="x"/&gt;
+    &lt;/OMBVAR&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="logic1" name="and"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="relation1" name="lt"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="arith1" name="minus"/&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="rounding1" name="ceiling"/&gt;
+            &lt;OMV name="x"/&gt;
+          &lt;/OMA&gt;
+          &lt;OMS cd="alg1" name="one"/&gt;
+        &lt;/OMA&gt;
+        &lt;OMV name="x"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="relation1" name="leq"/&gt;
+        &lt;OMV name="x"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="rounding1" name="ceiling"/&gt;
+          &lt;OMV name="x"/&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73172pref" style="display:none; margin-top: 0.5em">
+  <a href="quant1.html#forall">forall</a>
+[
+        <i>x</i>
+    ] .
+(<a href="logic1.html#and">and</a>
+(<a href="relation1.html#lt">lt</a>
+(<a href="arith1.html#minus">minus</a>
+(<a href="rounding1.html#ceiling">ceiling</a>
+( <i>x</i>)
+, <a href="../../../cd/alg1.html#one">one</a>)
+,  <i>x</i>)
+, <a href="relation1.html#leq">leq</a>
+( <i>x</i>, <a href="rounding1.html#ceiling">ceiling</a>
+( <i>x</i>)
+)
+)
+)
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/rounding1.html#ceiling">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#floor">floor</a>]
+	    [Last: <a href="#round">round</a>]
+	  
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="floor">floor</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;floor/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p>
+The round down (to -infinity) operation.
+</p></dd>
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> for all x | floor(x) &lt;= x &lt; floor(x)+1 </dd>
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+<div><button id="id73305xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73305xml')">xml</button> <button id="id73305prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73305pref')">prefix</button> <button id="id73305mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73305mml')">mathml</button></div><pre id="id73305xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMBIND&gt;
+    &lt;OMS cd="quant1" name="forall"/&gt;
+    &lt;OMBVAR&gt;
+       &lt;OMV name="x"/&gt;
+    &lt;/OMBVAR&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="logic1" name="and"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="relation1" name="lt"/&gt;
+        &lt;OMV name="x"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="arith1" name="plus"/&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="rounding1" name="floor"/&gt;
+            &lt;OMV name="x"/&gt;
+          &lt;/OMA&gt;
+          &lt;OMS cd="alg1" name="one"/&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="relation1" name="leq"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="rounding1" name="floor"/&gt;
+          &lt;OMV name="x"/&gt;
+        &lt;/OMA&gt;
+        &lt;OMV name="x"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73305pref" style="display:none; margin-top: 0.5em">
+  <a href="quant1.html#forall">forall</a>
+[
+        <i>x</i>
+    ] .
+(<a href="logic1.html#and">and</a>
+(<a href="relation1.html#lt">lt</a>
+( <i>x</i>, <a href="arith1.html#plus">plus</a>
+(<a href="rounding1.html#floor">floor</a>
+( <i>x</i>)
+, <a href="../../../cd/alg1.html#one">one</a>)
+)
+, <a href="relation1.html#leq">leq</a>
+(<a href="rounding1.html#floor">floor</a>
+( <i>x</i>)
+,  <i>x</i>)
+)
+)
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/rounding1.html#floor">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#trunc">trunc</a>][Previous: <a href="#ceiling">ceiling</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="trunc">trunc</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;trunc/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p>
+The round to zero operation.
+</p></dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> for all x | trunc(x) &lt;= x &lt; trunc(x)+1 (x&gt;0) </dd>
+
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+<div><button id="id73438xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73438xml')">xml</button> <button id="id73438prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73438pref')">prefix</button> <button id="id73438mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73438mml')">mathml</button></div><pre id="id73438xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMBIND&gt;
+    &lt;OMS cd="quant1" name="forall"/&gt;
+    &lt;OMBVAR&gt;
+       &lt;OMV name="x"/&gt;
+    &lt;/OMBVAR&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="logic1" name="implies"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="relation1" name="geq"/&gt;
+        &lt;OMV name="x"/&gt;
+        &lt;OMS cd="alg1" name="zero"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="logic1" name="and"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="relation1" name="lt"/&gt;
+          &lt;OMV name="x"/&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="arith1" name="plus"/&gt;
+            &lt;OMA&gt;
+              &lt;OMS cd="rounding1" name="trunc"/&gt;
+              &lt;OMV name="x"/&gt;
+            &lt;/OMA&gt;
+            &lt;OMS cd="alg1" name="one"/&gt;
+          &lt;/OMA&gt;
+        &lt;/OMA&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="relation1" name="leq"/&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="rounding1" name="trunc"/&gt;
+            &lt;OMV name="x"/&gt;
+          &lt;/OMA&gt;
+          &lt;OMV name="x"/&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73438pref" style="display:none; margin-top: 0.5em">
+  <a href="quant1.html#forall">forall</a>
+[
+        <i>x</i>
+    ] .
+(<a href="logic1.html#implies">implies</a>
+(<a href="relation1.html#geq">geq</a>
+( <i>x</i>, <a href="../../../cd/alg1.html#zero">zero</a>)
+, <a href="logic1.html#and">and</a>
+(<a href="relation1.html#lt">lt</a>
+( <i>x</i>, <a href="arith1.html#plus">plus</a>
+(<a href="rounding1.html#trunc">trunc</a>
+( <i>x</i>)
+, <a href="../../../cd/alg1.html#one">one</a>)
+)
+, <a href="relation1.html#leq">leq</a>
+(<a href="rounding1.html#trunc">trunc</a>
+( <i>x</i>)
+,  <i>x</i>)
+)
+)
+)
+
+</div>
+</dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> for all x | trunc(x) &gt;= x &gt; trunc(x)-1 (x&lt;0) </dd>
+
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+<div><button id="id73580xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73580xml')">xml</button> <button id="id73580prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73580pref')">prefix</button> <button id="id73580mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73580mml')">mathml</button></div><pre id="id73580xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMBIND&gt;
+    &lt;OMS cd="quant1" name="forall"/&gt;
+    &lt;OMBVAR&gt;
+       &lt;OMV name="x"/&gt;
+    &lt;/OMBVAR&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="logic1" name="implies"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="relation1" name="leq"/&gt;
+          &lt;OMV name="x"/&gt;
+          &lt;OMS cd="alg1" name="zero"/&gt;
+        &lt;/OMA&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="logic1" name="and"/&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="relation1" name="gt"/&gt;
+            &lt;OMV name="x"/&gt;
+            &lt;OMA&gt;
+              &lt;OMS cd="arith1" name="minus"/&gt;
+              &lt;OMA&gt;
+                &lt;OMS cd="rounding1" name="trunc"/&gt;
+                &lt;OMV name="x"/&gt;
+              &lt;/OMA&gt;
+              &lt;OMS cd="alg1" name="one"/&gt;
+            &lt;/OMA&gt;
+          &lt;/OMA&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="relation1" name="geq"/&gt;
+            &lt;OMA&gt;
+              &lt;OMS cd="rounding1" name="trunc"/&gt;
+              &lt;OMV name="x"/&gt;
+            &lt;/OMA&gt;
+            &lt;OMV name="x"/&gt;
+          &lt;/OMA&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+  &lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73580pref" style="display:none; margin-top: 0.5em">
+  <a href="quant1.html#forall">forall</a>
+[
+        <i>x</i>
+    ] .
+(<a href="logic1.html#implies">implies</a>
+(<a href="relation1.html#leq">leq</a>
+( <i>x</i>, <a href="../../../cd/alg1.html#zero">zero</a>)
+, <a href="logic1.html#and">and</a>
+(<a href="relation1.html#gt">gt</a>
+( <i>x</i>, <a href="arith1.html#minus">minus</a>
+(<a href="rounding1.html#trunc">trunc</a>
+( <i>x</i>)
+, <a href="../../../cd/alg1.html#one">one</a>)
+)
+, <a href="relation1.html#geq">geq</a>
+(<a href="rounding1.html#trunc">trunc</a>
+( <i>x</i>)
+,  <i>x</i>)
+)
+)
+)
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/rounding1.html#trunc">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#round">round</a>][Previous: <a href="#floor">floor</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="round">round</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;round/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p>
+The round to nearest operation.
+</p></dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> for all x | x &lt;= round(x)+1/2 and x &lt;= round(x)-1/2 </dd>
+
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+<div><button id="id73743xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73743xml')">xml</button> <button id="id73743prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73743pref')">prefix</button> <button id="id73743mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73743mml')">mathml</button></div><pre id="id73743xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMBIND&gt;
+    &lt;OMS cd="quant1" name="forall"/&gt;
+    &lt;OMBVAR&gt;
+       &lt;OMV name="x"/&gt;
+    &lt;/OMBVAR&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="logic1" name="and"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="relation1" name="leq"/&gt;
+        &lt;OMV name="x"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="arith1" name="plus"/&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="rounding1" name="round"/&gt;
+            &lt;OMV name="x"/&gt;
+          &lt;/OMA&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="arith1" name="divide"/&gt;
+            &lt;OMS cd="alg1" name="one"/&gt;
+	    &lt;OMI&gt; 2 &lt;/OMI&gt;
+          &lt;/OMA&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="relation1" name="geq"/&gt;
+        &lt;OMV name="x"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="arith1" name="minus"/&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="rounding1" name="round"/&gt;
+            &lt;OMV name="x"/&gt;
+          &lt;/OMA&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="arith1" name="divide"/&gt;
+            &lt;OMS cd="alg1" name="one"/&gt;
+	    &lt;OMI&gt; 2 &lt;/OMI&gt;
+          &lt;/OMA&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73743pref" style="display:none; margin-top: 0.5em">
+  <a href="quant1.html#forall">forall</a>
+[
+        <i>x</i>
+    ] .
+(<a href="logic1.html#and">and</a>
+(<a href="relation1.html#leq">leq</a>
+( <i>x</i>, <a href="arith1.html#plus">plus</a>
+(<a href="rounding1.html#round">round</a>
+( <i>x</i>)
+, <a href="arith1.html#divide">divide</a>
+(<a href="../../../cd/alg1.html#one">one</a>,  2 )
+)
+)
+, <a href="relation1.html#geq">geq</a>
+( <i>x</i>, <a href="arith1.html#minus">minus</a>
+(<a href="rounding1.html#round">round</a>
+( <i>x</i>)
+, <a href="arith1.html#divide">divide</a>
+(<a href="../../../cd/alg1.html#one">one</a>,  2 )
+)
+)
+)
+)
+
+</div>
+</dd>
+
+<dt><span class="dt">Commented Mathematical property (CMP):</span></dt><dd> for all x | Also round to even in event of a tie </dd>
+
+<dt><span class="dt">Formal Mathematical property (FMP):</span></dt><dd>
+<div><button id="id73896xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73896xml')">xml</button> <button id="id73896prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73896pref')">prefix</button> <button id="id73896mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73896mml')">mathml</button></div><pre id="id73896xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMBIND&gt;
+    &lt;OMS cd="quant1" name="forall"/&gt;
+    &lt;OMBVAR&gt;
+       &lt;OMV name="x"/&gt;
+    &lt;/OMBVAR&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="logic1" name="implies"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="logic1" name="and"/&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="logic1" name="not"/&gt;
+	  &lt;OMA&gt;
+	    &lt;OMS cd="set1" name="in"/&gt;
+	    &lt;OMV name="x"/&gt;
+	    &lt;OMS cd="setname1" name="Z"/&gt;
+	  &lt;/OMA&gt;
+	&lt;/OMA&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="set1" name="in"/&gt;
+          &lt;OMA&gt;
+	    &lt;OMS cd="arith1" name="times"/&gt;
+  	    &lt;OMV name="x"/&gt;
+	    &lt;OMI&gt; 2 &lt;/OMI&gt;
+  	  &lt;/OMA&gt;
+	  &lt;OMS cd="setname1" name="Z"/&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="set1" name="in"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="arith1" name="divide"/&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="rounding1" name="round"/&gt;
+            &lt;OMV name="x"/&gt;
+          &lt;/OMA&gt;
+	  &lt;OMI&gt; 2 &lt;/OMI&gt;
+        &lt;/OMA&gt;
+        &lt;OMS cd="setname1" name="Z"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73896pref" style="display:none; margin-top: 0.5em">
+  <a href="quant1.html#forall">forall</a>
+[
+        <i>x</i>
+    ] .
+(<a href="logic1.html#implies">implies</a>
+(<a href="logic1.html#and">and</a>
+(<a href="logic1.html#not">not</a>
+(<a href="set1.html#in">in</a>
+( <i>x</i>, <a href="setname1.html#Z">Z</a>)
+)
+, <a href="set1.html#in">in</a>
+(<a href="arith1.html#times">times</a>
+( <i>x</i>,  2 )
+, <a href="setname1.html#Z">Z</a>)
+)
+, <a href="set1.html#in">in</a>
+(<a href="arith1.html#divide">divide</a>
+(<a href="rounding1.html#round">round</a>
+( <i>x</i>)
+,  2 )
+, <a href="setname1.html#Z">Z</a>)
+)
+)
+
+</div>
+</dd>
+
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/rounding1.html#round">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">
+	    [First: <a href="#ceiling">ceiling</a>]
+	  [Previous: <a href="#trunc">trunc</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+</body></html>

@@ -1,0 +1,274 @@
+<?xml version="1.0"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:cd="http://www.openmath.org/OpenMathCD"><head><script type="text/javascript"> function divfold(_Id){
+     var thisLevel = document.getElementById(_Id);
+     var thisLevela = document.getElementById(_Id.concat("a"))
+     if(thisLevel.style.display != "none"){ 
+      thisLevel.style.display = "none";
+      thisLevela.style.backgroundColor = "#CCCCCC";} 
+     else{
+      thisLevel.style.display = "block";
+      thisLevela.style.backgroundColor = "#AAFFAA";}  
+       }
+     </script><title>list1</title><link rel="stylesheet" href="omcd.css" type="text/css"/></head><body><a name="top"/><h1>OpenMath Content Dictionary: list1</h1><dl><dt><span class="dt">Canonical URL:</span></dt><dd><a href="http://www.openmath.org/cd/list1.ocd">http://www.openmath.org/cd/list1.ocd</a></dd><dt><span class="dt">CD Base:</span></dt><dd><a href="http://www.openmath.org/cd">http://www.openmath.org/cd</a></dd><dt><span class="dt">CD File:</span></dt><dd><a href="list1.ocd">list1.ocd
+  </a></dd><dt><span class="dt">CD as XML Encoded OpenMath:</span></dt><dd><a href="list1.omcd">list1.omcd
+  </a></dd><dt><span class="dt">Defines:</span></dt><dd><a href="#list">list</a>, <a href="#map">map</a>, <a href="#suchthat">suchthat</a></dd><dt><span class="dt">Date:</span></dt><dd>2004-03-30</dd><dt><span class="dt">Version:</span></dt><dd>3</dd><dt><span class="dt">Review Date:</span></dt><dd>2006-03-30</dd><dt><span class="dt">Status:</span></dt><dd>official</dd></dl><hr/>
+
+<pre>
+
+     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+</pre>
+
+
+
+
+
+
+
+
+
+
+<p>
+    This CD is intended to be `compatible' with MathML list
+    constructs.
+</p>
+
+<hr/><dl>
+<h2><a name="map">map</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;map/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p>
+This symbol represents a mapping function which may be used to
+construct lists, it takes as arguments a function from X to Y and a
+list over X in that order. The value that is returned is a list of
+values in Y. The argument list may be a set or an integer_interval.
+</p></dd>
+
+<dt><span class="dt">Example:</span></dt><dd>
+The list of even values between 0 and 20 in ascending order, that is
+the values 2x in ascending order, where x ranges over the integral
+interval [0,10]. 
+<div><button id="id73173xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73173xml')">xml</button> <button id="id73173prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73173pref')">prefix</button> <button id="id73173mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73173mml')">mathml</button></div><pre id="id73173xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="list1" name="map"/&gt;
+    &lt;OMBIND&gt;
+      &lt;OMS cd="fns1" name="lambda"/&gt;
+      &lt;OMBVAR&gt;
+        &lt;OMV name="x"/&gt;
+      &lt;/OMBVAR&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="times"/&gt;
+        &lt;OMI&gt; 2 &lt;/OMI&gt;
+	&lt;OMV name="x"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMBIND&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="interval1" name="integer_interval"/&gt;
+      &lt;OMI&gt; 0 &lt;/OMI&gt;
+      &lt;OMI&gt; 10 &lt;/OMI&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73173pref" style="display:none; margin-top: 0.5em">
+  <a href="list1.html#map">map</a>
+(<a href="fns1.html#lambda">lambda</a>
+[
+         <i>x</i>
+      ] .
+(<a href="arith1.html#times">times</a>
+( 2 ,  <i>x</i>)
+)
+, <a href="interval1.html#integer_interval">integer_interval</a>
+( 0 ,  10 )
+)
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/list1.html#map">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#suchthat">suchthat</a>]
+	    [Last: <a href="#list">list</a>]
+	  
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="suchthat">suchthat</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;suchthat/&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p>
+This symbol represents the suchthat function which may be used to
+construct lists, it takes two arguments. The first argument should be the
+set which contains the elements of the list, the second argument should
+be a predicate, that is a function from the set to the booleans which
+describes if an element is to be in the list returned.
+</p></dd>
+
+<dt><span class="dt">Example:</span></dt><dd>
+This example shows how to construct the list of even positive integers less
+than 100, using the suchthat constructor.
+<div><button id="id73278xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73278xml')">xml</button> <button id="id73278prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73278pref')">prefix</button> <button id="id73278mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73278mml')">mathml</button></div><pre id="id73278xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="list1" name="suchthat"/&gt;
+    &lt;OMS cd="setname1" name="Z"/&gt;
+    &lt;OMBIND&gt;
+      &lt;OMS cd="fns1" name="lambda"/&gt;
+      &lt;OMBVAR&gt;
+        &lt;OMV name="x"/&gt;
+      &lt;/OMBVAR&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="logic1" name="and"/&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="relation1" name="geq"/&gt;
+	  &lt;OMV name="x"/&gt;
+	  &lt;OMS cd="alg1" name="zero"/&gt;
+	&lt;/OMA&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="relation1" name="lt"/&gt;
+	  &lt;OMV name="x"/&gt;
+	  &lt;OMI&gt; 100 &lt;/OMI&gt;
+	&lt;/OMA&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="set1" name="in"/&gt;
+	  &lt;OMA&gt;
+	    &lt;OMS cd="arith1" name="divide"/&gt;
+	    &lt;OMV name="x"/&gt;
+	    &lt;OMI&gt; 2 &lt;/OMI&gt;
+	  &lt;/OMA&gt;
+	  &lt;OMS cd="setname1" name="Z"/&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMBIND&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73278pref" style="display:none; margin-top: 0.5em">
+  <a href="list1.html#suchthat">suchthat</a>
+(<a href="setname1.html#Z">Z</a>, <a href="fns1.html#lambda">lambda</a>
+[
+         <i>x</i>
+      ] .
+(<a href="logic1.html#and">and</a>
+(<a href="relation1.html#geq">geq</a>
+( <i>x</i>, <a href="../../../cd/alg1.html#zero">zero</a>)
+, <a href="relation1.html#lt">lt</a>
+( <i>x</i>,  100 )
+, <a href="set1.html#in">in</a>
+(<a href="arith1.html#divide">divide</a>
+( <i>x</i>,  2 )
+, <a href="setname1.html#Z">Z</a>)
+)
+)
+)
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/list1.html#suchthat">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#list">list</a>][Previous: <a href="#map">map</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+<hr/><dl>
+<h2><a name="list">list</a></h2>
+  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
+    <code>&lt;list&gt; ... &lt;/list&gt;</code>
+  </dd>
+<dt><span class="dt">Role:</span></dt><dd>application</dd>
+<dt><span class="dt">Description:</span></dt><dd><p> 
+This symbol denotes the list construct which is an n-ary function. The
+list entries must be given explicitly.
+</p></dd>
+
+
+ <dt><span class="dt">description:</span></dt><dd><p>
+          The list element is the container element that constructs a list of elements.
+          They may be explicitly listed, or defined by expressions or functions evaluated
+          over a domain of application.  The domain of application may be given
+          explicitly, or provided by means of one of the shortcut notations.
+        </p></dd>
+
+<dt><span class="dt">Example:</span></dt><dd><div><button id="id73438xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73438xml')">xml</button> <button id="id73438prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73438pref')">prefix</button> <button id="id73438mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73438mml')">mathml</button></div><pre id="id73438xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;list&gt;
+  &lt;ci&gt;a&lt;/ci&gt;
+  &lt;ci&gt;b&lt;/ci&gt;
+  &lt;ci&gt;c&lt;/ci&gt;
+&lt;/list&gt;
+&lt;/math&gt;</pre><div id="id73438pref" style="display:none; margin-top: 0.5em">
+   <i/>
+   <i/>
+   <i/>
+
+</div></dd>
+<dt><span class="dt">Example:</span></dt><dd>
+<div><button id="id73456xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73456xml')">xml</button> <button id="id73456prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73456pref')">prefix</button> <button id="id73456mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73456mml')">mathml</button></div><pre id="id73456xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;list order="numeric"&gt;
+  &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+  &lt;condition&gt;
+    &lt;apply&gt;&lt;lt/&gt;
+      &lt;ci&gt;x&lt;/ci&gt;
+      &lt;cn&gt;5&lt;/cn&gt;
+    &lt;/apply&gt;
+  &lt;/condition&gt;
+&lt;/list&gt;
+&lt;/math&gt;</pre><div id="id73456pref" style="display:none; margin-top: 0.5em">
+
+   <i/>
+  
+    
+( <i/>, 5)
+
+  
+
+</div></dd>
+
+
+<dt><span class="dt">Example:</span></dt><dd>
+The list 3, 6, 9.
+<div><button id="id73491xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73491xml')">xml</button> <button id="id73491prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73491pref')">prefix</button> <button id="id73491mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73491mml')">mathml</button></div><pre id="id73491xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="list1" name="list"/&gt;
+    &lt;OMI&gt; 3 &lt;/OMI&gt;
+    &lt;OMI&gt; 6 &lt;/OMI&gt;
+    &lt;OMI&gt; 9 &lt;/OMI&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre><div id="id73491pref" style="display:none; margin-top: 0.5em">
+  <a href="list1.html#list">list</a>
+( 3 ,  6 ,  9 )
+
+</div>
+</dd>
+<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/list1.html#list">
+	sts
+      </a></dd></dl><p/><hr/><table width="100%"><tr><td align="right"><font size="-1">
+	    [First: <a href="#map">map</a>]
+	  [Previous: <a href="#suchthat">suchthat</a>]
+      [<a href="#top">Top</a>]</font></td></tr></table>
+
+</body></html>
