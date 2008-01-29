@@ -4,13 +4,13 @@ XSLDIR = $(PREFIX)/xsl
 CDS.ocd = $(shell ls *.ocd)
 CDS.mtn = $(CDS.ocd:%.ocd=%.mtn)
 CDS.mts = $(CDS.ocd:%.ocd=%.mts)
-CDS.html = $(CDS.ocd:%.ocd=%.html)
+CDS.xhtml = $(CDS.ocd:%.ocd=%.xhtml)
 CDS.omdoc = $(CDS.ocd:%.ocd=%.omdoc)
 
 
-all: cds-overview.xml $(CDS.html)
+all: cds-overview.xml $(CDS.xhtml)
 
-$(CDS.html): %.html: %.ocd $(XSLDIR)/cd2html.xsl
+$(CDS.xhtml): %.xhtml: %.ocd $(XSLDIR)/cd2html.xsl
 	xsltproc -o $@ $(word 2, $^) $<
 
 $(CDS.omdoc): %.omdoc: %.ocd $(XSLDIR)/cd2omdoc.xsl
