@@ -201,6 +201,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
   <CMP><xsl:apply-templates/></CMP>
 </xsl:template>
 
+<xsl:template match="cd:el|cd:var|cd:code|cd:quote">
+  <phrase type="{local-name()}"><xsl:apply-templates/></phrase>
+</xsl:template>
+
 <xsl:template match="Signature"><xsl:apply-templates/></xsl:template>
 
 <xsl:template match="cd:CDComment">
