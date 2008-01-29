@@ -23,15 +23,13 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
   xmlns:func="http://exslt.org/functions" 
   xmlns="http://www.mathweb.org/omdoc"
   xmlns:omdoc="http://www.mathweb.org/omdoc"
-  xmlns:om="http//www.openmath.org/OpenMath"
+  xmlns:om="http://www.openmath.org/OpenMath"
   xmlns:cd="http://www.openmath.org/OpenMathCD"
   xmlns:dc="http://purl.org/dc/elements/1.1/" 
   xmlns:m="http://www.w3.org/1998/Math/MathML"
   xmlns:saxon="http://icl.com/saxon"
-  extension-element-prefixes="func saxon">
-
-<!-- The parameter is the omdoc file that material should be copied from -->
-<xsl:param name="update-from"/>
+  extension-element-prefixes="func saxon"
+  exclude-result-prefixes="omdoc func saxon xsl m om">
 
 <xsl:output method="xml"
   version="1.0"
@@ -71,7 +69,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     <xsl:value-of select="normalize-space(cd:CD/cd:CDURL)"/>
     <xsl:text>,&#xA;     DO NOT EDIT!&#xA;</xsl:text>
     </xsl:comment>
-<xsl:apply-templates/></xsl:template>
+    <xsl:apply-templates/>
+</xsl:template>
 
 
 <xsl:template match="cd:CD">
@@ -81,10 +80,19 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     <xsl:copy-of select="omdoc:id($cdname,'omdoc')"/>
     <xsl:text>&#xA;</xsl:text>
     <metadata>
-      <xsl:if test="cd:Title"><dc:title><xsl:apply-templates select="cd:Title"/></dc:title></xsl:if>
+      <xsl:text>&#xA;</xsl:text>
+      <xsl:if test="cd:Title">
+	<dc:title><xsl:apply-templates select="cd:Title"/></dc:title>
+	<xsl:text>&#xA;</xsl:text>
+      </xsl:if>
       <dc:creator role="trl"><xsl:text>cd2omdoc</xsl:text></dc:creator>
+      <xsl:text>&#xA;</xsl:text>
       <dc:creator role="aut"><xsl:text>The OpenMath Society</xsl:text></dc:creator>
+      <xsl:text>&#xA;</xsl:text>
       <dc:description><xsl:apply-templates select="cd:Description" mode="dc"/></dc:description>
+      <xsl:text>&#xA;</xsl:text>
+      <dc:rights><xsl:value-of select="cd:CDComment"/></dc:rights>
+      <xsl:text>&#xA;</xsl:text>
     </metadata>
     <xsl:text>&#xA;</xsl:text>
     <theory cdurl="{normalize-space(cd:CDURL)}"
@@ -105,31 +113,33 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 <xsl:template match="cd:CDDefinition">
   <xsl:variable name="id" select="normalize-space(cd:Name)"/>
   <xsl:text>&#xA;</xsl:text>
-  <symbol>
-    <xsl:copy-of select="omdoc:id($id,'')"/>
+  <tgroup cd:type="CDDefinition">
     <xsl:text>&#xA;</xsl:text>
-    <metadata>
+    <symbol name="{$id}">
       <xsl:text>&#xA;</xsl:text>
-      <dc:description><xsl:apply-templates select="cd:Description" mode="dc"/></dc:description>
+      <metadata>
+	<xsl:text>&#xA;</xsl:text>
+	<dc:description><xsl:apply-templates select="cd:Description" mode="dc"/></dc:description>
+	<xsl:text>&#xA;</xsl:text>
+      </metadata>
       <xsl:text>&#xA;</xsl:text>
-    </metadata>
+      <xsl:if test="$sts/Signature[@name=$id]/om:OMOBJ">
+	<type system="sts">
+	  <xsl:copy-of select="$sts/Signature[@name=$id]/om:OMOBJ"/>
+	</type>
+      </xsl:if>
+    </symbol>
     <xsl:text>&#xA;</xsl:text>
-    <xsl:if test="$sts/Signature[@name=$id]/om:OMOBJ">
-      <type system="sts">
-        <xsl:copy-of select="$sts/Signature[@name=$id]/om:OMOBJ"/>
-      </type>
-    </xsl:if>
-  </symbol>
-  <xsl:text>&#xA;</xsl:text>
-  <xsl:apply-templates select="child::node()[not(self::Description) and not(self::Name)]"/>
+    <xsl:apply-templates select="child::node()[not(self::cd:Description) and not(self::cd:Name)]"/>
+  </tgroup>
 </xsl:template>
-
 
 <xsl:template match="cd:Example">
   <xsl:variable name="id" select="normalize-space(../cd:Name)"/>
-  <example type="for" for="{$id}">
+  <example type="for" for="{$id}" cd:type='Example'>
     <xsl:copy-of select="omdoc:nid($id,'ex')"/>
-    <CMP><xsl:apply-templates mode="copy"/></CMP>
+    <CMP><xsl:apply-templates mode="copy" select="text()"/></CMP>
+    <xsl:apply-templates select="om:OMOBJ" mode="copy"/>
   </example>
 </xsl:template>
 
@@ -224,14 +234,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 </xsl:template>
 
 <xsl:template match="Signature"><xsl:apply-templates/></xsl:template>
-
-<xsl:template match="cd:CDComment">
-  <xsl:variable name="num"><xsl:number value="position()" format="1"/></xsl:variable>
-  <omtext type="introduction">
-    <xsl:copy-of select="omdoc:nid('',CDComment)"/>
-    <CMP><xsl:apply-templates/></CMP>
-  </omtext>
-</xsl:template>
 
 <!-- this function makes an xml:id attribute, it first looks whether an xml:id attribute is already 
      present, if it is it takes that. If there is not, it constructs one from the arguments -->
