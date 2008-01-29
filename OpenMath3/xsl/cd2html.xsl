@@ -270,17 +270,17 @@
 
 
 <xsl:template mode="term" match="om:OMSTR">
-<tt> "<xsl:apply-templates mode="term"/>" </tt>
+<tt>"<xsl:apply-templates mode="term"/>"</tt>
 </xsl:template>
 
 <xsl:template mode="term" match="om:OMA|m:apply">
-<xsl:apply-templates mode="term" select="./*[position()=1]"/>
-(<xsl:for-each  select="./*[position()>1]">
+<xsl:apply-templates mode="term" select="*[1]"/>
+<xsl:text>(</xsl:text>
+<xsl:for-each  select="*[position()>1]">
   <xsl:apply-templates mode="term" select="."/>
-  <xsl:if test="position()&lt;last()">
-    <xsl:text>, </xsl:text>
-  </xsl:if>
-</xsl:for-each>)
+  <xsl:if test="position()&lt;last()"><xsl:text>, </xsl:text></xsl:if>
+</xsl:for-each>
+<xsl:text>)</xsl:text>
 </xsl:template>
 
 <xsl:template mode="term" match="om:OMBIND|m:bind">
@@ -290,23 +290,37 @@
 </xsl:template>
 
 
-<xsl:template mode="term" match="om:OMV|m:ci">
-  <xsl:text> </xsl:text>
+<xsl:template mode="term" match="om:OMV">
   <i><xsl:value-of select="@name"/></i>
 </xsl:template>
 
+<xsl:template mode="term" match="m:ci">
+  <i><xsl:value-of select="text()"/></i>
+</xsl:template>
+
+<!-- token elements -->
+<xsl:template mode="term" match="m:*[not(child::*) and not(child::text())]">
+  <xsl:value-of select="local-name()"/>
+</xsl:template>
 
 <xsl:template mode="term" match="om:OMF">
-<xsl:text> </xsl:text>
-  <xsl:value-of select="@*"/><xsl:text> </xsl:text>
+  <xsl:value-of select="@*"/>
 </xsl:template>
 
 
-<xsl:template mode="term" match="om:OMS|m:csymbol">
+<xsl:template mode="term" match="om:OMS">
     <xsl:variable name="p">
       <xsl:if test="not(document(concat(@cd,'.ocd'),.))">../../../cd/</xsl:if>
     </xsl:variable>
     <a href="{$p}{@cd}.html#{@name}"><xsl:value-of select="@name"/></a>
+</xsl:template>
+
+
+<xsl:template mode="term" match="om:csymbol">
+    <xsl:variable name="p">
+      <xsl:if test="not(document(concat(@cd,'.ocd'),.))">../../../cd/</xsl:if>
+    </xsl:variable>
+    <a href="{$p}{@cd}.html#{@name}"><xsl:value-of select="text()"/></a>
 </xsl:template>
 
 <xsl:template mode="term" match="om:OMATP">

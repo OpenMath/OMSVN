@@ -26,7 +26,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
   xmlns:om="http//www.openmath.org/OpenMath"
   xmlns:cd="http://www.openmath.org/OpenMathCD"
   xmlns:dc="http://purl.org/dc/elements/1.1/" 
-  extension-element-prefixes="func">
+  xmlns:m="http://www.w3.org/1998/Math/MathML"
+  xmlns:saxon="http://icl.com/saxon"
+  extension-element-prefixes="func saxon">
 
 <!-- The parameter is the omdoc file that material should be copied from -->
 <xsl:param name="update-from"/>
@@ -38,7 +40,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 <!-- for debugging -->
 <xsl:template match="*">
-  <xsl:message>warning: template for element <xsl:value-of select="local-name()"/> undefined</xsl:message>
+  <xsl:message>warning: template for element <xsl:value-of select="local-name()"/> undefined in line <xsl:value-of select="saxon:line-number()"/></xsl:message>
 </xsl:template>
 
 
@@ -98,7 +100,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 </xsl:template>
 
 
-<xsl:template match="cd:Name|cd:Role"/>
+<xsl:template match="cd:Name|cd:Role|cd:Title"/>
 
 <xsl:template match="cd:CDDefinition">
   <xsl:variable name="id" select="normalize-space(cd:Name)"/>
@@ -131,6 +133,14 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
   </example>
 </xsl:template>
 
+<xsl:template match="cd:MMLexample">
+  <xsl:variable name="id" select="normalize-space(../cd:Name)"/>
+  <example cd:type="MMLexample" type="for" for="{$id}">
+    <xsl:copy-of select="omdoc:nid($id,'ex')"/>
+    <xsl:apply-templates/>
+  </example>
+</xsl:template>
+
 <!-- we assume that every CMP that is followed by an FMP mean the same thing -->
 <xsl:template match="cd:CDDefinition/cd:CMP">
   <xsl:variable name="id" select="normalize-space(../cd:Name)"/>
@@ -160,7 +170,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 </xsl:template>
 
 <xsl:template match="cd:Description">
-  <omtext type="{local-name()}">
+  <omtext cd:type="{local-name()}">
     <xsl:text>&#xA;</xsl:text>
     <CMP><xsl:apply-templates mode="copy"/></CMP>
     <xsl:text>&#xA;</xsl:text>
@@ -168,7 +178,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 </xsl:template>
 
 <xsl:template match="cd:description|cd:discussion">
-  <omtext type="{local-name()}">
+  <omtext cd:type="{local-name()}">
     <xsl:text>&#xA;</xsl:text>
     <CMP><xsl:apply-templates/></CMP>
     <xsl:text>&#xA;</xsl:text>
@@ -192,12 +202,20 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 </xsl:template>
   
 <xsl:template match="cd:property">
-  <assertion type="{local-name()}">
+  <assertion cd:type="{local-name()}">
     <xsl:apply-templates/>
   </assertion>
 </xsl:template>
 
-<xsl:template match="cd:property/cd:description">
+<xsl:template match="cd:property/m:math">
+  <FMP><xsl:apply-templates select="." mode="copy"/></FMP>
+</xsl:template>
+
+<xsl:template match="m:math">
+  <xsl:apply-templates select="." mode="copy"/>
+</xsl:template>
+
+<xsl:template match="cd:property/cd:description|cd:MMLexample/cd:description">
   <CMP><xsl:apply-templates/></CMP>
 </xsl:template>
 
