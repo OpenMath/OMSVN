@@ -6,6 +6,7 @@ CDS.mtn = $(CDS.ocd:%.ocd=%.mtn)
 CDS.mts = $(CDS.ocd:%.ocd=%.mts)
 CDS.xhtml = $(CDS.ocd:%.ocd=%.xhtml)
 CDS.omdoc = $(CDS.ocd:%.ocd=%.omdoc)
+CDS.ocd.back = $(CDS.ocd:%.ocd=%.ocd.back)
 
 
 all: cds-overview.xml $(CDS.xhtml)
@@ -14,6 +15,9 @@ $(CDS.xhtml): %.xhtml: %.ocd $(XSLDIR)/cd2html.xsl
 	xsltproc -o $@ $(word 2, $^) $<
 
 $(CDS.omdoc): %.omdoc: %.ocd $(XSLDIR)/cd2omdoc.xsl
+	xsltproc -o $@ $(word 2, $^) $<
+
+$(CDS.ocd.back): %.ocd.back: %.omdoc $(XSLDIR)/omdoc2cd.xsl
 	xsltproc -o $@ $(word 2, $^) $<
 
 cds-overview.xml: cds.xml cds2overview.xsl $(CDS.ocd) 
