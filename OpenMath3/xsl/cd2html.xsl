@@ -2,23 +2,24 @@
   version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:om="http://www.openmath.org/OpenMath"
+  xmlns:m="http://www.w3.org/1998/Math/MathML"
   xmlns:cd="http://www.openmath.org/OpenMathCD"
   xmlns="http://www.w3.org/1999/xhtml">
 
 <xsl:import href="verb.xsl"/>
-<xsl:import href="om2pmml.xsl"/>
-
-<xsl:param name="xsldir" select="'../xsl'"/>
-
 <xsl:output method="xml" />
 
 <xsl:strip-space elements="cd:Name"/>
 
+
+<!-- for debugging -->
+<xsl:template match="*">
+  <xsl:message>warning: template for element <xsl:value-of select="local-name()"/> undefined</xsl:message>
+</xsl:template>
+
 <xsl:template match="cd:CD">
   <xsl:variable name="cd" select="normalize-space(./cd:CDName)"/>
-<xsl:processing-instruction name="xml-stylesheet"
-> type="text/xsl"  href="<xsl:value-of select="$xsldir"/>/pmathml.xsl"</xsl:processing-instruction>
-<xsl:text>&#10;</xsl:text>
+  <xsl:text>&#10;</xsl:text>
   <html>
   <head>
 
@@ -104,169 +105,167 @@
 </xsl:template>
 
 <xsl:template match="cd:CDComment">
-<pre>
-<xsl:apply-templates/>
-</pre>
+  <pre><xsl:apply-templates/></pre>
 </xsl:template>
 
-<xsl:template match="cd:CDDefinition/cd:Description">
-<dl>
-<dt><span class="dt">Description:</span></dt>
-<dd>
-  <xsl:call-template name="grab-para">
-    <xsl:with-param name="string" select="."/>
-  </xsl:call-template>
-</dd></dl>
+<xsl:template match="cd:CDDefinition/cd:Description|cd:CDDefinition/cd:description|cd:CDDefinition/cd:discussion|cd:CDDefinition/cd:Title">
+  <dt><span class="dt"><xsl:value-of select="local-name()"/>:</span></dt>
+  <dd>
+    <xsl:call-template name="grab-para"><xsl:with-param name="string" select="."/></xsl:call-template>
+  </dd>
 </xsl:template>
 
-
-<xsl:template match="cd:Description">
-  <xsl:call-template name="grab-para">
-    <xsl:with-param name="string" select="."/>
-  </xsl:call-template>
+<xsl:template match="cd:Description|cd:description">
+  <xsl:call-template name="grab-para"><xsl:with-param name="string" select="."/></xsl:call-template>
 </xsl:template>
 
-
-
+<!-- we have already dealt with these -->
 <xsl:template match="cd:CDURL|cd:CDBase|cd:CDName|cd:CDDate|cd:CDReviewDate|cd:CDStatus|
-                    cd:CDVersion|cd:CDRevision|cd:CDUses">
-</xsl:template>
-
-
+                    cd:CDVersion|cd:CDRevision|cd:CDUses"/>
 
 <xsl:template match="cd:CDDefinition">
-<hr/>
-<xsl:apply-templates/>
-<dl>
-<dt><span class="dt">Signatures:</span></dt>
-<dd>
+  <hr/>
+  <dl>
+    <xsl:apply-templates/>
+    <dt><span class="dt">Signatures:</span></dt>
+    <dd>
       <xsl:element name="a">
-      <xsl:attribute name="href">../sts/<xsl:value-of 
-             select="normalize-space(/cd:CD/cd:CDName)"/>.html#<xsl:value-of
-             select="normalize-space(cd:Name)"/></xsl:attribute>
-      sts
+	<xsl:attribute name="href">../sts/<xsl:value-of 
+	select="normalize-space(/cd:CD/cd:CDName)"/>.html#<xsl:value-of
+	select="normalize-space(cd:Name)"/></xsl:attribute>
+	sts
       </xsl:element>
-<!-- not many ecc files so far -->
-<!--   <xsl:variable name="nm" select="normalize-space(/cd:CD/cd:CDName)"/>
-   <xsl:if test="$nm='logic1' or 
-                 $nm='logic2' or 
-                 $nm='quant1' or
-	         $nm='setoid' or 
-                 $nm='relation1' or 
-                 $nm='relation0'">       
-   <xsl:element name="a">
-      <xsl:attribute name="href">../ecc/<xsl:value-of 
-             select="$nm"/>.html#<xsl:value-of
-             select="normalize-space(cd:Name)"/></xsl:attribute>
-      ,ecc
-      </xsl:element>
-</xsl:if> -->
-</dd>
-</dl>
-<p/>
-<hr/>
-
-<table width="100%">
-<tr>
-<td align="right"><font size="-1">
-<xsl:variable name="n"
-              select="normalize-space(following-sibling::cd:CDDefinition[1]/cd:Name)"/>
-  <xsl:choose>
-    <xsl:when test="''=$n">
-      <xsl:variable name="n2"
-              select="normalize-space(../cd:CDDefinition[1]/cd:Name)"/>
-      [First: <a href="#{$n2}"><xsl:value-of select="$n2"/></a>]
-    </xsl:when>
-    <xsl:otherwise>
-      [Next: <a href="#{$n}"><xsl:value-of select="$n"/></a>]
-    </xsl:otherwise>
-  </xsl:choose>
-<xsl:variable name="p"
-              select="normalize-space(preceding-sibling::cd:CDDefinition[1]/cd:Name)"/>
-  <xsl:choose>
-    <xsl:when test="''=$p">
-      <xsl:variable name="p2"
-              select="normalize-space(../cd:CDDefinition[last()]/cd:Name)"/>
-      [Last: <a href="#{$p2}"><xsl:value-of select="$p2"/></a>]
-    </xsl:when>
-    <xsl:otherwise>
-      [Previous: <a href="#{$p}"><xsl:value-of select="$p"/></a>]
-    </xsl:otherwise>
-  </xsl:choose>
-[<a href="#top">Top</a>]</font></td>
-</tr>
-</table>
+    </dd>
+  </dl>
+  <hr/>
+  
+  <table width="100%">
+    <tr>
+      <td align="right"><font size="-1">
+	<xsl:variable name="n" select="normalize-space(following-sibling::cd:CDDefinition[1]/cd:Name)"/>
+	<xsl:choose>
+	  <xsl:when test="''=$n">
+	    <xsl:variable name="n2" select="normalize-space(../cd:CDDefinition[1]/cd:Name)"/>
+	    [First: <a href="#{$n2}"><xsl:value-of select="$n2"/></a>]
+	  </xsl:when>
+	  <xsl:otherwise>[Next: <a href="#{$n}"><xsl:value-of select="$n"/></a>]</xsl:otherwise>
+	</xsl:choose>
+	<xsl:variable name="p" select="normalize-space(preceding-sibling::cd:CDDefinition[1]/cd:Name)"/>
+	<xsl:choose>
+	  <xsl:when test="''=$p">
+	    <xsl:variable name="p2" select="normalize-space(../cd:CDDefinition[last()]/cd:Name)"/>
+	    [Last: <a href="#{$p2}"><xsl:value-of select="$p2"/></a>]
+	  </xsl:when>
+	  <xsl:otherwise>[Previous: <a href="#{$p}"><xsl:value-of select="$p"/></a>]</xsl:otherwise>
+	</xsl:choose>
+      [<a href="#top">Top</a>]</font></td>
+    </tr>
+  </table>
 </xsl:template>
 
 
 <xsl:template match="cd:CDDefinition/cd:Name">
-<h2><a name="{normalize-space(.)}"><xsl:apply-templates/></a></h2>
+  <dt><u><b><span class="dt">Symbol:</span></b></u></dt>
+  <dd><a name="{normalize-space(.)}"><xsl:apply-templates/></a></dd>
 </xsl:template>
 
 
 <xsl:template match="cd:CDDefinition/cd:Role">
-<dl>
-<dt><span class="dt">Role:</span></dt>
-<dd>
-<xsl:apply-templates/>
-</dd></dl>
+  <dt><span class="dt">Role:</span></dt>
+  <dd><xsl:apply-templates/></dd>
 </xsl:template>
 
+<xsl:template match="cd:CDDefinition/cd:Pragmatic">
+  <dt><span class="dt">Pragmatic MathML:</span></dt>
+  <dd><xsl:apply-templates/></dd>
+</xsl:template>
 
+<xsl:template match="cd:CDDefinition/cd:MMLexample">
+  <dt><span class="dt">Example:</span></dt>
+  <dd><xsl:apply-templates/></dd>
+</xsl:template>
+
+<xsl:template match="cd:Token">
+  <code>
+    <xsl:text>&lt;</xsl:text>
+    <xsl:value-of select="."/>
+    <xsl:apply-templates select="following-sibling::cd:Attribute"/>
+    <xsl:text>/&gt;</xsl:text>
+  </code>
+</xsl:template>
+
+<xsl:template match="cd:Container">
+  <code>
+    <xsl:value-of select="concat('&lt;',.)"/>
+    <xsl:apply-templates  select="following-sibling::cd:Attribute"/>
+    <xsl:value-of select="concat('&gt; ... &lt;/',.,'&gt;')"/>
+  </code>
+</xsl:template>
+
+<xsl:template match="cd:Attribute">
+  <xsl:value-of select="concat(' ',normalize-space(cd:Name))"/>
+  <xsl:choose>
+    <xsl:when test="cd:Prescribed">
+      <xsl:value-of select="concat('=&quot;',normalize-space(cd:Prescribed),'&quot;')"/>
+    </xsl:when>
+    <xsl:when test="cd:Model">
+      <xsl:value-of select="concat(' : ',normalize-space(cd:Model))"/>
+    </xsl:when>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="cd:CDDefinition/cd:property">
+  <dt><span class="dt">Property:</span></dt>
+  <dd><xsl:apply-templates/></dd>
+</xsl:template>
+
+<xsl:template match="cd:property/cd:CMP"><xsl:apply-templates/></xsl:template>
+<xsl:template match="cd:property/cd:FMP"><xsl:apply-templates/></xsl:template>
+
+<!-- eliminate them as soon as properties are universally used -->
 <xsl:template match="cd:CDDefinition/cd:CMP">
-<dl>
-<dt><span class="dt">Commented Mathematical property (CMP):</span></dt>
-<dd>
-<xsl:apply-templates/>
-</dd></dl>
+  <dt><span class="dt">Commented Mathematical property (CMP):</span></dt>
+  <dd><xsl:apply-templates/></dd>
 </xsl:template>
-
 
 <xsl:template match="cd:CDDefinition/cd:FMP">
-<dl>
-<dt><span class="dt">Formal Mathematical property (FMP):</span></dt>
-<dd><xsl:apply-templates/>
-</dd></dl>
+  <dt><span class="dt">Formal Mathematical property (FMP):</span></dt>
+  <dd><xsl:apply-templates/></dd>
 </xsl:template>
 
 
 <xsl:template match="cd:CDDefinition/cd:Example">
-<dl>
-<dt><span class="dt">Example:</span></dt>
-<dd><xsl:apply-templates/>
-</dd></dl>
+  <dt><span class="dt">Example:</span></dt>
+  <dd><xsl:apply-templates/></dd>
 </xsl:template>
 
-<xsl:template match="om:OMOBJ">
-<div>
-<button id="{generate-id()}xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('{generate-id()}xml')">xml</button>
-<xsl:text>&#160;</xsl:text>
-<button id="{generate-id()}prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('{generate-id()}pref')">prefix</button>
-<xsl:text>&#160;</xsl:text>
-<button id="{generate-id()}mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('{generate-id()}mml')">mathml</button>
-</div>
-<pre id="{generate-id()}xml" style="display:none">
-<xsl:apply-templates mode="verb" select="."/>
-</pre>
-<div id="{generate-id()}pref" style="display:none; margin-top: 0.5em">
-<xsl:apply-templates mode="term" select="."/>
-</div>
-<div id="{generate-id()}mml" style="display:block; margin-top: 0.5em">
-  <math   xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-    <xsl:apply-templates/>
-  </math>
-</div>
+<xsl:template match="om:OMOBJ|m:math">
+  <div>
+    <button id="{generate-id()}xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('{generate-id()}xml')">xml</button>
+    <xsl:text>&#160;</xsl:text>
+    <button id="{generate-id()}prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('{generate-id()}pref')">prefix</button>
+    <xsl:text>&#160;</xsl:text>
+    <button id="{generate-id()}mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('{generate-id()}mml')">mathml</button>
+  </div>
+  <pre id="{generate-id()}xml" style="display:none">
+    <xsl:apply-templates mode="verb" select="."/>
+  </pre>
+  <div id="{generate-id()}pref" style="display:none; margin-top: 0.5em">
+    <xsl:apply-templates mode="term" select="."/>
+  </div>
+<!-- @CL change the MathML here
+  <div id="{generate-id()}mml" style="display:block; margin-top: 0.5em">
+    <math   xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+      <xsl:apply-templates/>
+    </math>
+  </div> -->
 </xsl:template>
-
-
-<!-- verb mode -->
-
 
 
 <!--   term mode -->
 
-<xsl:template mode="term" match="om:OMOBJ|om:OMBVAR">
-<xsl:apply-templates mode="term"/>
+<xsl:template mode="term" match="om:OMOBJ|om:OMBVAR|m:bvar">
+  <xsl:apply-templates mode="term"/>
 </xsl:template>
 
 
@@ -274,7 +273,7 @@
 <tt> "<xsl:apply-templates mode="term"/>" </tt>
 </xsl:template>
 
-<xsl:template mode="term" match="om:OMA">
+<xsl:template mode="term" match="om:OMA|m:apply">
 <xsl:apply-templates mode="term" select="./*[position()=1]"/>
 (<xsl:for-each  select="./*[position()>1]">
   <xsl:apply-templates mode="term" select="."/>
@@ -284,14 +283,14 @@
 </xsl:for-each>)
 </xsl:template>
 
-<xsl:template mode="term" match="om:OMBIND">
+<xsl:template mode="term" match="om:OMBIND|m:bind">
 <xsl:apply-templates mode="term" select="./*[position()=1]"/>
 [<xsl:apply-templates mode="term" select="./*[position()=2]"/>] .
 (<xsl:apply-templates mode="term" select="./*[position()>2]"/>)
 </xsl:template>
 
 
-<xsl:template mode="term" match="om:OMV">
+<xsl:template mode="term" match="om:OMV|m:ci">
   <xsl:text> </xsl:text>
   <i><xsl:value-of select="@name"/></i>
 </xsl:template>
@@ -303,13 +302,11 @@
 </xsl:template>
 
 
-
-
-<xsl:template mode="term" match="om:OMS">
+<xsl:template mode="term" match="om:OMS|m:csymbol">
     <xsl:variable name="p">
-<xsl:if test="not(document(concat(@cd,'.ocd'),.))">../../../cd/</xsl:if>
+      <xsl:if test="not(document(concat(@cd,'.ocd'),.))">../../../cd/</xsl:if>
     </xsl:variable>
-<a href="{$p}{@cd}.html#{@name}"><xsl:value-of select="@name"/></a>
+    <a href="{$p}{@cd}.html#{@name}"><xsl:value-of select="@name"/></a>
 </xsl:template>
 
 <xsl:template mode="term" match="om:OMATP">
@@ -327,25 +324,19 @@
 <xsl:apply-templates mode="term" select="./*[position()>1]"/>)
 </xsl:template>
 
-<!--   term mode -->
+<!-- end term mode -->
 
 
 <xsl:template name="grab-para">
   <xsl:param name="string"/>
   <xsl:choose>
-  <xsl:when test="contains($string, '&#10;&#10;')">
-  <p>
-  <xsl:value-of select="substring-before($string,'&#10;&#10;')"/>
-  </p>
-  <xsl:call-template name="grab-para">
-    <xsl:with-param name="string" select="substring-after($string,'&#10;&#10;')"/>
-  </xsl:call-template>
-  </xsl:when>
-  <xsl:otherwise>
-  <p>
-  <xsl:value-of select="$string"/>
-  </p>
-  </xsl:otherwise>
+    <xsl:when test="contains($string, '&#10;&#10;')">
+      <p><xsl:value-of select="substring-before($string,'&#10;&#10;')"/></p>
+      <xsl:call-template name="grab-para">
+	<xsl:with-param name="string" select="substring-after($string,'&#10;&#10;')"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise><p><xsl:value-of select="$string"/></p></xsl:otherwise>
   </xsl:choose>
 </xsl:template>
 
