@@ -99,6 +99,27 @@ the Cartesian product of multisets. It takes n multiset arguments in order to
 construct their Cartesian product.
 </Description>
 
+<!-- new part -->
+<description>
+          <p>The cartesianproduct element is the operator for a set-theoretic 
+cartesian product of two (or more) sets.  The cartesian 
+product of multisets produces a multiset since n-tuples
+may be repeated if elements in the base sets are repeated.</p>
+        </description>
+	<discussion>
+	  <p>The <el>cartesianproduct</el> element is the operator element for the
+	  Cartesian product of two or more sets. If <var>A</var> and <var>B</var> are two
+	  sets, then the Cartesian product of <var>A</var> and <var>B</var> is the set of
+	  all pairs <var>(a,b)</var> with <var>a</var> in <var>A</var> and <var>b</var> in
+	  <var>B</var>. </p>
+	  
+	  <p>As an n-ary operator, its operands may also be generated as described in
+	  <specref ref="contm_naryopwithqual"/> Therefore it may take qualifiers.</p>
+	</discussion>
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><cartesianproduct/><ci>A</ci><ci>B</ci></apply></math></MMLexample>
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><cartesianproduct/><reals/><reals/><reals/></apply></math></MMLexample>
+<!-- end new part -->
+
 <Example>
 An example to show the representation of the Cartesian product of
 multisets: AxBxC.
@@ -331,6 +352,7 @@ arguments.
 		</math></MMLexample>
 <!-- end new part -->
 
+<property xml:id="union_prop_4">
 <CMP> 
   A is a subset of (A union B) and B is a subset of (A union B) 
 </CMP>
@@ -359,8 +381,9 @@ arguments.
     </OMA>
   </OMA>
 </OMOBJ>
-</FMP>
+</FMP></property>
 
+<property xml:id="union_prop_5">
 <CMP>
 for all sets A,B and C
 union(A,intersect(B,C)) = intersect(union(A,B),union(A,C))
@@ -402,10 +425,10 @@ union(A,intersect(B,C)) = intersect(union(A,B),union(A,C))
     </OMA>    
   </OMBIND>
 </OMOBJ>
-</FMP>
+</FMP></property>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="setdiff">
 <Name>setdiff</Name>
   <Pragmatic>
     <Token>setdiff</Token>
@@ -418,6 +441,24 @@ multiset that contains all the elements that occur in the first
 multiset with strictly greater multiplicity than in the second.
 The multiplicity in the result is the difference of the two.
 </Description>
+
+<!-- new part -->
+ <description>
+          <p>The setdiff element is the operator element for a set-theoretic difference of
+          two sets.</p>
+        </description>
+	<discussion>
+	  <p>The <el>setdiff</el> element is the operator element for a set-theoretic
+	  difference of two sets.</p>
+	</discussion>
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><setdiff/>
+  <ci type="set"> A</ci>
+  <ci type="set"> B</ci>
+</apply>
+</math></MMLexample>
+<!-- end new part -->
+
+<property xml:id="setdiff_prop_6">
 <CMP>
   the difference of A and B is a subset of A
 </CMP>
@@ -431,10 +472,10 @@ The multiplicity in the result is the difference of the two.
     </OMA>
     <OMV name="A"/>
   </OMA>
-</OMOBJ></FMP>
+</OMOBJ></FMP></property>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="subset">
 <Name>subset</Name>
   <Pragmatic>
     <Token>subset</Token>
@@ -446,6 +487,41 @@ that the first set is a subset of the second, i.e. every element
 of the first occurs with multiplicity at least as much in the 
 second.
 </Description>
+
+<!-- new part -->
+<description>
+          <p>The subset element is the n-ary relational operator element for a
+          set-theoretic containment ('is a subset of').</p>
+	</description>
+	<discussion>
+	  <p>The <el>subset</el> element is the relational operator element for a
+	  set-theoretic containment (<quote>is a subset of</quote>).</p>
+	  <p>The <el>subset</el> element is an <emph>n-ary set relation</emph>.  As an
+	  n-ary operator, its operands may also be generated as described in <specref
+	  ref="contm_naryopwithqual"/> Therefore it may take qualifiers.</p>
+	</discussion>
+
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><subset/>
+  <ci type="set"> A</ci>
+  <ci type="set"> B</ci>
+</apply>
+</math></MMLexample>
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply>
+  <subset/>
+  <subset/>
+  <bvar><ci type="set">S</ci></bvar>
+  <condition>
+    <apply><in/>
+      <ci>S</ci>
+      <ci type="list">T</ci>
+    </apply>
+  </condition>
+  <ci>S</ci>
+</apply>
+</math></MMLexample>
+<!-- end new part -->
+
+<property xml:id="subset_prop_7">
 <CMP>
   if B is a subset of A and C is a subset of B 
     then C is a subset of A
@@ -472,10 +548,10 @@ second.
       <OMV name="A"/>
     </OMA>
   </OMA>
-</OMOBJ></FMP>
+</OMOBJ></FMP></property>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="in">
 <Name>in</Name>
   <Pragmatic>
     <Token>in</Token>
@@ -485,6 +561,24 @@ second.
 This symbol has two arguments, an element and a multiset. It is 
 used to denote that the element is in the given multiset.
 </Description>
+
+<!-- new part -->
+ <description>
+          <p>The in element is the relational operator used for a set-theoretic inclusion
+          ('is in' or 'is a member of').</p>
+        </description>
+	<discussion>
+	  <p>The <el>in</el> element is the relational operator used for a set-theoretic
+	  inclusion (<quote>is in</quote> or <quote>is a member of</quote>).</p>
+	</discussion>
+
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><in/>
+  <ci>a</ci>
+  <ci type="set"> A</ci>
+</apply></math></MMLexample>
+<!-- end new part -->
+
+<property xml:id="in_prop_8">
 <CMP>
   if a is in A and a is in B then a is in A intersection B
 </CMP>
@@ -514,10 +608,10 @@ used to denote that the element is in the given multiset.
       </OMA>
     </OMA>
   </OMA>
-</OMOBJ></FMP>
+</OMOBJ></FMP></property>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="notin">
 <Name>notin</Name>
   <Pragmatic>
     <Token>notin</Token>
@@ -527,6 +621,24 @@ used to denote that the element is in the given multiset.
 This symbol has two arguments, an element and a multiset. It is 
 used to denote that the element is not in the given multiset.
 </Description>
+
+<!-- new part -->
+  <description>
+          <p>The notin element is the relational operator element used 
+to construct set-theoretic exclusion ('is not in' or 'is not a member of').</p>
+	</description>
+	<discussion>
+	  <p>The <el>notin</el> element is the relational operator element used for
+	  set-theoretic exclusion (<quote>is not in</quote> or <quote>is not a member
+	  of</quote>).</p>
+	</discussion>
+
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><notin/>
+  <ci>a</ci>
+  <ci type="set"> A</ci>
+</apply></math></MMLexample>
+<!-- end new part -->
+
 <Example>
   4 is not in {1,1,2,3}
 
@@ -546,7 +658,7 @@ used to denote that the element is not in the given multiset.
 </Example>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="prsubset">
 <Name>prsubset</Name>
   <Pragmatic>
     <Token>prsubset</Token>
@@ -557,6 +669,38 @@ This symbol has two (multiset) arguments. It is used to denote
 that the first multiset is a proper subset of the second, that is 
 a subset of the second multiset but not actually equal to it.
 </Description>
+
+<!-- new part -->
+<description>
+          <p>The <el>prsubset</el> element is the n-ary relational operator element for
+          set-theoretic proper containment ('is a proper subset of').</p>
+        </description>
+	<discussion>
+	  <p>The <el>prsubset</el> element is the relational operator element for
+	  set-theoretic proper containment (<quote>is a proper subset of</quote>).</p>
+	  <p>The <el>prsubset</el> element is an <emph>n-ary set relation</emph>.  As an
+	  n-ary operator, its operands may also be generated as described in <specref
+	  ref="contm_naryopwithqual"/> Therefore it may take qualifiers.</p>
+	</discussion>
+
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><prsubset/>
+  <ci type="set"> A</ci>
+  <ci type="set"> B</ci>
+</apply>
+</math></MMLexample>
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply>
+  <prsubset/>
+  <bvar><ci type="integer">i</ci></bvar>
+  <lowlimit><cn>0</cn></lowlimit>
+  <uplimit><cn>10</cn></uplimit>
+  <apply><selector/>
+    <ci type="vector_of_sets">S</ci>
+    <ci>i</ci>
+  </apply>
+</apply>
+</math></MMLexample>
+<!-- end new part -->
+
 <Example>
   {2,3} is a proper subset of {2,2,3}
 
@@ -579,7 +723,7 @@ a subset of the second multiset but not actually equal to it.
 </Example>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="notsubset">
 <Name>notsubset</Name>
   <Pragmatic>
     <Token>notsubset</Token>
@@ -589,6 +733,24 @@ a subset of the second multiset but not actually equal to it.
 This symbol has two (multiset) arguments. It is used to denote 
 that the first multiset is not a subset of the second.
 </Description>
+
+<!-- new part -->
+<description>
+          <p>The notsubset element is the relational operator element for the 
+set-theoretic relation 'is not a subset of'.</p>
+        </description>
+	<discussion>
+	  <p>The <el>notsubset</el> element is the relational operator element for the
+	  set-theoretic relation <quote>is not a subset of</quote>.</p>
+	</discussion>
+
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><notsubset/>
+  <ci type="set"> A</ci>
+  <ci type="set"> B</ci>
+</apply>
+</math></MMLexample>
+<!-- end new part -->
+
 <Example>
   {2,3,3} is not a subset of {1,2,3}
 
@@ -612,7 +774,7 @@ that the first multiset is not a subset of the second.
 </Example>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="notprsubset">
 <Name>notprsubset</Name>
   <Pragmatic>
     <Token>notprsubset</Token>
@@ -624,6 +786,24 @@ that the first multiset is not a proper subset of the second. A
 proper subset of a multiset is a subset of the multiset but not 
 actually equal to it.
 </Description>
+
+<!-- new part -->
+<description>
+          <p>The notprsubset element is the element for constructing the set-theoretic
+          relation 'is not a proper subset of'.</p>
+        </description>
+	<discussion>
+	  <p>The <el>notprsubset</el> element is the operator element for the
+	  set-theoretic relation <quote>is not a proper subset of</quote>.</p>
+	</discussion>
+
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><notprsubset/>
+  <ci type="set"> A</ci>
+  <ci type="set"> B</ci>
+</apply>
+</math></MMLexample>
+<!-- end new part -->
+
 <Example>
 {1,2,1} is not a proper subset of {1,2,1}
 
