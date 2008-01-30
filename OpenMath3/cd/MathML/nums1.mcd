@@ -2,114 +2,21 @@
 <mcd>
 	  <MMLdefinition id="cds_exponentiale" cdrole="constant">
         <name>exponentiale</name>
-        <description>
-          <p>exponentiale represents the mathematical constant which is the exponential
-          base of the natural logarithms, commonly written e .  It is approximately
-          2.718281828.. </p>
-        </description>
-	<discussion>
-	  <p><el>exponentiale</el> represents the mathematical constant which is the
-	  exponential base of the natural logarithms, commonly written <emph>e</emph>. It
-	  is approximately 2.718281828..</p>
-	</discussion>
-
-        <property>
-          <description><p>ln(e) = 1</p></description>
-	  <![CDATA[<apply><eq/>
-  <apply><ln/><exponentiale/></apply>
-  <cn>1</cn>
-</apply>]]></property>
-        <property>
-          <description>
-            <p>e  is approximately 2.718281828</p>
-          </description><![CDATA[<apply><approx/>
-  <exponentiale/>
-  <cn>2.718281828</cn>
-</apply>]]></property>
-        <property>
-          <description>
-            <p>e = the sum as j ranges from 0 to infinity of 1/(j!)</p>
-          </description>
-        </property>
-        <MMLexample><![CDATA[<apply> <eq/>
-  <apply><ln/><exponentiale/></apply>
-  <cn>1</cn>
-</apply>
-]]></MMLexample>
+        
       </MMLdefinition>
 
       <MMLdefinition id="cds_imaginaryi"  cdrole="constant">
         <name>imaginaryi</name>
-        <description>
-          <p>imaginaryi represents the mathematical constant which is the square root of
-          -1, commonly written i</p>
-        </description>
-	<discussion>
-	  <p><el>imaginaryi</el> represents the mathematical constant which is the square
-	  root of -1, commonly written <emph>i</emph>.</p>
-	</discussion>
-
-        <property>
-          <description>
-            <p>sqrt(-1) = i</p>
-          </description><![CDATA[
-<apply><eq/>
-  <imaginaryi/>
-  <apply><root/><degree><cn>2</cn></degree><cn>-1</cn></apply>
-</apply>]]></property>
-        <MMLexample><![CDATA[<apply> <eq/>
-  <apply><power/>
-    <imaginaryi/>
-    <cn>2</cn>
-  </apply>
-  <cn>-1</cn>
-</apply>
-]]></MMLexample>
+       
       </MMLdefinition>
       <MMLdefinition id="cds_notanumber"  cdrole="constant">
         <name>notanumber</name>
-        <description>
-          <p>notanumber represents the result of an ill-defined floating point operation,
-          sometimes also called NaN.</p>
-        </description>
-	<discussion>
-	  <p><el>notanumber</el> represents the result of an ill-defined floating point
-	  operation, sometimes also called <emph>NaN</emph>.</p>
-	</discussion>
-
-        <MMLexample><![CDATA[<apply><eq/>
-  <apply><divide/><cn>0</cn><cn>0</cn></apply>
-  <notanumber/>
-</apply>]]></MMLexample>
+        	
       </MMLdefinition>
 
       <MMLdefinition id="cds_pi"  cdrole="constant">
         <name>pi</name>
-        <description>
-          <p>pi represents the mathematical constant which is the ratio of a circle's 
-circumference to its diameter, approximately 3.141592653.</p>
-        </description>
-	<discussion>
-	  <p><el>pi</el> represents the mathematical constant which is the ratio of a
-	  circle&apos;s circumference to its diameter, approximately 3.141592653.</p>
-	</discussion>
-       <property><![CDATA[
-<apply><approx/>
-  <cn>pi</cn>
-  <cn>3.141592654</cn>
-</apply>
-]]></property>
-        <property>
-          <description>
-            <p>
-pi = 4 * the sum as j ranges from 0 to infinity of ((1/(4j+1))-(1/(4j+3))) </p>
-          </description><![CDATA[
-]]></property>
-        <MMLexample><![CDATA[<apply><approx/>
-  <pi/>
-  <cn type = "rational">22<sep/>7</cn>
-</apply>
-]]></MMLexample>
+       
       </MMLdefinition>
  
       <MMLdefinition id="cds_eulergamma"  cdrole="constant">
@@ -149,45 +56,7 @@ gamma  is approx. 0.5772156649</p>
       
 	  <MMLdefinition id="cds_infinity"  cdrole="constant">
         <name>infinity</name>
-        <description>
-          <p>Infinity.  Interpretation depends on the context.
-The default value is the positive infinity used to extend the
-real number line.  The "type" attribute can be use to indicate
-that this is a "complex" infinity.</p>
-        </description>
-		<discussion>
-			<p><el>infinity</el> represents the concept of
-			infinity. Proper interpretation depends on context.</p>
-		</discussion>
-        <property>
-          <description>
-            <p>
-infinity/infinity is not defined.</p>
-          </description><![CDATA[
-<apply><eq/>
-  <apply><divide/><infinity/><infinity/></apply>
-  <notanumber/>
-</apply>]]></property>
-        <property>
-          <description>
-            <p>
-for all reals x, x \lt infinity </p>
-          </description><![CDATA[
-<apply><forall/>
-  <bvar><ci>n</ci></bvar>
-  <condition><apply><in/><ci>n</ci><reals/></apply></condition>
-  <apply><lt/><ci>n</ci><infinity/></apply>
-</apply>]]></property>
         
-<MMLexample><![CDATA[<infinity/>]]></MMLexample>
-<MMLexample><![CDATA[<apply><eq/>
-  <apply><limit/>
-    <bvar><ci>x</ci></bvar>
-    <condition><apply><tendsto/><ci>x</ci><infinity/></apply></condition>
-    <apply><divide/><cn>1</cn><ci>x</ci></apply>
-  </apply>
-  <cn>0</cn>
-</apply>]]></MMLexample>
       </MMLdefinition>
       
 </mcd>
