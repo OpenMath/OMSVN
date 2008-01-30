@@ -50,7 +50,7 @@
     some defined constants (i.e. nullary constructors).
 </Description>
 
-<CDDefinition>
+<CDDefinition xml:id="based_integer">
 <Name>based_integer</Name>
   <Pragmatic>
     <Token>based_integer</Token>
@@ -79,7 +79,7 @@ covered in the encodings of integers.
 </Example>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="rational">
 <Name>rational</Name>
   <Pragmatic>
     <Token>rational</Token>
@@ -101,7 +101,7 @@ A representation of the rational number 1/2
 </Example>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="infinity">
 <Name>infinity</Name>
   <Pragmatic>
     <Token>infinity</Token>
@@ -111,6 +111,49 @@ A representation of the rational number 1/2
 A symbol to represent the notion of infinity.
 </Description>
 
+<!-- new part -->
+<description>
+          <p>Infinity.  Interpretation depends on the context.
+The default value is the positive infinity used to extend the
+real number line.  The "type" attribute can be use to indicate
+that this is a "complex" infinity.</p>
+        </description>
+		<discussion>
+			<p><el>infinity</el> represents the concept of
+			infinity. Proper interpretation depends on context.</p>
+		</discussion>
+        <property>
+          <description>
+            <p>
+infinity/infinity is not defined.</p>
+          </description><math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply><eq/>
+  <apply><divide/><infinity/><infinity/></apply>
+  <notanumber/>
+</apply></math></property>
+        <property>
+          <description>
+            <p>
+for all reals x, x \lt infinity </p>
+          </description><math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply><forall/>
+  <bvar><ci>n</ci></bvar>
+  <condition><apply><in/><ci>n</ci><reals/></apply></condition>
+  <apply><lt/><ci>n</ci><infinity/></apply>
+</apply></math></property>
+        
+<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><infinity/></math></MMLexample>
+<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><eq/>
+  <apply><limit/>
+    <bvar><ci>x</ci></bvar>
+    <condition><apply><tendsto/><ci>x</ci><infinity/></apply></condition>
+    <apply><divide/><cn>1</cn><ci>x</ci></apply>
+  </apply>
+  <cn>0</cn>
+</apply></math></MMLexample>
+<!-- end new part -->
+
+<property xml:id="infinity_prop_1">
 <CMP> if x is a real number then x &lt; infinity </CMP>
 
 <FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
@@ -127,10 +170,10 @@ A symbol to represent the notion of infinity.
     <OMS cd="nums1" name="infinity"/>
   </OMA>
 </OMA>
-</OMOBJ></FMP>
+</OMOBJ></FMP></property>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="e">
 <Name>e</Name>
   <Pragmatic>
     <Token>exponentiale</Token>
@@ -141,6 +184,45 @@ This symbol represents the base of the natural logarithm, approximately 2.718.
 See Abramowitz and Stegun, Handbook of Mathematical Functions,
 section 4.1.
 </Description>
+
+<!-- new part -->
+<description>
+          <p>exponentiale represents the mathematical constant which is the exponential
+          base of the natural logarithms, commonly written e .  It is approximately
+          2.718281828.. </p>
+        </description>
+	<discussion>
+	  <p><el>exponentiale</el> represents the mathematical constant which is the
+	  exponential base of the natural logarithms, commonly written <emph>e</emph>. It
+	  is approximately 2.718281828..</p>
+	</discussion>
+
+        <property>
+          <description><p>ln(e) = 1</p></description>
+	  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><eq/>
+  <apply><ln/><exponentiale/></apply>
+  <cn>1</cn>
+</apply></math></property>
+        <property>
+          <description>
+            <p>e  is approximately 2.718281828</p>
+          </description><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><approx/>
+  <exponentiale/>
+  <cn>2.718281828</cn>
+</apply></math></property>
+        <property>
+          <description>
+            <p>e = the sum as j ranges from 0 to infinity of 1/(j!)</p>
+          </description>
+        </property>
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply> <eq/>
+  <apply><ln/><exponentiale/></apply>
+  <cn>1</cn>
+</apply>
+</math></MMLexample>
+<!-- end new part -->
+
+<property xml:id="e_prop_2">
 <CMP> e = the sum as j ranges  from 0 to infinity of 1/(j!) </CMP>
 
 <FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
@@ -170,7 +252,7 @@ section 4.1.
     </OMBIND>
   </OMA>
 </OMA>
-</OMOBJ></FMP>
+</OMOBJ></FMP></property>
 
 <Example> 2.718 = The decimal approximation to 3 significant places of e
   <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
@@ -183,7 +265,7 @@ section 4.1.
 </Example>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="i">
 <Name>i</Name>
   <Pragmatic>
     <Token>imaginaryi</Token>
@@ -192,6 +274,36 @@ section 4.1.
 <Description> 
 This symbol represents the square root of -1.
 </Description>
+
+<!-- new part -->
+ <description>
+          <p>imaginaryi represents the mathematical constant which is the square root of
+          -1, commonly written i</p>
+        </description>
+	<discussion>
+	  <p><el>imaginaryi</el> represents the mathematical constant which is the square
+	  root of -1, commonly written <emph>i</emph>.</p>
+	</discussion>
+
+        <property>
+          <description>
+            <p>sqrt(-1) = i</p>
+          </description><math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply><eq/>
+  <imaginaryi/>
+  <apply><root/><degree><cn>2</cn></degree><cn>-1</cn></apply>
+</apply></math></property>
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply> <eq/>
+  <apply><power/>
+    <imaginaryi/>
+    <cn>2</cn>
+  </apply>
+  <cn>-1</cn>
+</apply>
+</math></MMLexample>
+<!-- end new part -->
+
+<property xml:id="i_prop_2">
 <CMP>
 i^2 = -1
 </CMP>
@@ -210,10 +322,10 @@ i^2 = -1
       </OMA>
     </OMA>
   </OMOBJ>
-</FMP>
+</FMP></property>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="pi">
 <Name>pi</Name>
   <Pragmatic>
     <Token>pi</Token>
@@ -224,6 +336,35 @@ A symbol to convey the notion of pi, approximately 3.142.
 The ratio of the circumference of a circle to its diameter.
 </Description>
 
+<!-- new part -->
+ <description>
+          <p>pi represents the mathematical constant which is the ratio of a circle's 
+circumference to its diameter, approximately 3.141592653.</p>
+        </description>
+	<discussion>
+	  <p><el>pi</el> represents the mathematical constant which is the ratio of a
+	  circle&apos;s circumference to its diameter, approximately 3.141592653.</p>
+	</discussion>
+       <property><math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply><approx/>
+  <cn>pi</cn>
+  <cn>3.141592654</cn>
+</apply>
+</math></property>
+        <property>
+          <description>
+            <p>
+pi = 4 * the sum as j ranges from 0 to infinity of ((1/(4j+1))-(1/(4j+3))) </p>
+          </description><math xmlns="http://www.w3.org/1998/Math/MathML">
+</math></property>
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><approx/>
+  <pi/>
+  <cn type = "rational">22<sep/>7</cn>
+</apply>
+</math></MMLexample>
+<!-- end new part -->
+
+<property xml:id="pi_prop_3">
 <CMP> 
 pi = 4 * the sum as j ranges from 0 to infinity of ((1/(4j+1))-(1/(4j+3))) 
 </CMP>
@@ -280,7 +421,7 @@ pi = 4 * the sum as j ranges from 0 to infinity of ((1/(4j+1))-(1/(4j+3)))
     </OMA>
   </OMA>
 </OMA>
-</OMOBJ></FMP>
+</OMOBJ></FMP></property>
 
 <Example> 3.142 = The decimal approximation to 3 significant places of pi
   <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
@@ -293,7 +434,7 @@ pi = 4 * the sum as j ranges from 0 to infinity of ((1/(4j+1))-(1/(4j+3)))
 </Example>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="gamma">
 <Name>gamma</Name>
   <Pragmatic>
     <Token>eulergamma</Token>
@@ -307,6 +448,7 @@ Functions, section 6.1.3. It is the limit of
 as m tends to infinity, this is approximately 0.5772 15664.
 </Description>
 
+<property xml:id="gamma_prop_4">
 <CMP> 
   gamma = limit_(m -&gt; infinity)(sum_(j ranges from 1 to m)(1/j) - ln m) 
 </CMP>
@@ -353,7 +495,7 @@ as m tends to infinity, this is approximately 0.5772 15664.
     </OMBIND>
   </OMA>
 </OMA>
-</OMOBJ></FMP>
+</OMOBJ></FMP></property>
 
 <Example> 0.577 = The decimal approximation to 3 significant places of gamma
   <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
@@ -366,7 +508,7 @@ as m tends to infinity, this is approximately 0.5772 15664.
 </Example>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="NaN">
 <Name>NaN</Name>
   <Pragmatic>
     <Token>notanumber</Token>
@@ -377,6 +519,24 @@ A symbol to convey the notion of not-a-number.
 The result of an ill-posed floating computation.
 See IEEE standard for floating point representations.
 </Description>
+
+<!-- new part -->
+<description>
+          <p>notanumber represents the result of an ill-defined floating point operation,
+          sometimes also called NaN.</p>
+        </description>
+	<discussion>
+	  <p><el>notanumber</el> represents the result of an ill-defined floating point
+	  operation, sometimes also called <emph>NaN</emph>.</p>
+	</discussion>
+
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><eq/>
+  <apply><divide/><cn>0</cn><cn>0</cn></apply>
+  <notanumber/>
+</apply></math></MMLexample>
+<!-- end new part -->
+
+<property xml:id="NaN_prop_5">
 <CMP> NaN is not equal to NaN </CMP>
 <FMP>
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
@@ -386,7 +546,7 @@ See IEEE standard for floating point representations.
     <OMS cd="nums1" name="NaN"/>
   </OMA>
 </OMOBJ>
-</FMP>
+</FMP></math>
 </CDDefinition>
 
 </CD>
