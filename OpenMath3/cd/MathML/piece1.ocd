@@ -49,7 +49,7 @@
     In this CD we give a set of operators for piece-wise defined expressions.
 </Description>
 
-<CDDefinition>
+<CDDefinition xml:id="piecewise">
 <Name>piecewise</Name>
   <Pragmatic>
     <Token>piecewise</Token>
@@ -60,6 +60,86 @@ This operator heads an expression that is being defined piecewise. Its
 arguments are n objects built with the piece constructor, optionally
 followed by one built with otherwise constructor.
 </Description>
+
+<!-- new part -->
+<description>
+          <p>The piecewise, piece, and otherwise elements are used to support 'piecewise'
+          declarations of the form H(x) = 0 if x less than 0, H(x) = 1 otherwise.  The
+          piece and otherwise elements describe evaluation rules.  If no rule applies or
+          if more than one rule applies but they give different answers then the
+          expression is undefined.</p>
+        </description>
+	<discussion>
+	  <p>The <el>piecewise</el>, <el>piece</el>, and <el>otherwise</el> elements are
+	  used to support <quote>piecewise</quote> declarations of the form <quote>
+	  <var>H</var>(<var>x</var>) = 0 if <var>x</var> less than 0,
+	  <var>H</var>(<var>x</var>) = 1 otherwise</quote>.</p>
+
+	  <p> The declaration is constructed using the <el>piecewise</el> element.  This
+	  contains zero or more <el>piece</el> elements, and optionally one
+	  <el>otherwise</el> element. Each <el>piece</el> element contains exactly two
+	  children. The first child defines the value taken by the <el>piecewise</el>
+	  expression when the condition specified in the associated second child of the
+	  <el>piece</el> is true.  The degenerate case of no <el>piece</el> elements and
+	  no <el>otherwise</el> element is treated as undefined for all values of the
+	  domain.</p>
+
+	  <p> <el>otherwise</el> allows the specification of a value to be taken by the
+	  <el>piecewise</el> function when none of the conditions (second child elements
+	  of the <el>piece</el> elements) is true, i.e. a default value.</p>
+
+	  <p>It should be noted that no <quote>order of execution</quote> is implied by
+	  the ordering of the <el>piece</el> child elements within <el>piecewise</el>. It
+	  is the responsibility of the author to ensure that the subsets of the function
+	  domain defined by the second children of the <el>piece</el> elements are
+	  disjoint, or that, where they overlap, the values of the corresponding first
+	  children of the <el>piece</el> elements coincide. If this is not the case, the
+	  meaning of the expression is undefined.</p>
+
+	  <p>The <el>piecewise</el> elements are <emph>constructors</emph>.</p>
+
+	<p>The <el>piecewise</el>, <el>piece</el>, <el>otherwise</el> elements are used to
+	support <quote>piecewise</quote> declarations of the form <quote>
+	<var>H</var>(<var>x</var>) = 0 if <var>x</var> less than 0,
+	<var>H</var>(<var>x</var>) = x otherwise</quote>.
+
+<eg role = "mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><piecewise>
+  <piece>
+      <cn>0</cn>
+      <apply><lt/><ci>x</ci><cn>0</cn></apply>
+  </piece>
+  <otherwise><ci>x</ci></otherwise>
+</piecewise></math></eg></p>
+
+	</discussion>
+
+        <property>
+          <description>
+            <p>ForAll( x, x in domain(f), the evaluation rules collectively produce at most one 
+value in codomain(f) )</p></description></property>
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><piecewise>
+  <piece><cn>0</cn><apply><lt/><ci>x</ci> <cn>0</cn></apply></piece>
+  <otherwise><ci>x</ci></otherwise>
+</piecewise></math></MMLexample>
+        <MMLexample>
+          <description>
+	    <p>The value of the abs function evaluated at x can be written as:</p>
+	  </description>
+<math xmlns="http://www.w3.org/1998/Math/MathML"><piecewise>
+  <piece>
+    <apply><minus/><ci>x</ci></apply>
+    <apply><lt/><ci>x</ci><cn>0</cn></apply>
+  </piece>
+  <piece>
+    <cn>0</cn>
+    <apply><eq/><ci>x</ci><cn>0</cn></apply>
+  </piece>
+  <piece>
+    <ci>x</ci>
+    <apply><gt/><ci>x</ci><cn>0</cn></apply>
+  </piece>
+</piecewise></math></MMLexample>
+<!-- end new part -->
 
 <Example>
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
@@ -87,7 +167,7 @@ followed by one built with otherwise constructor.
 </Example>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="piece">
 <Name>piece</Name>
   <Pragmatic>
     <Token>piece</Token>
@@ -100,6 +180,19 @@ precisely two arguments: the first is the value, and the second is a Boolean
 provide the value of the piecewise construct.
 </Description>
 
+<!-- new part -->
+<description>
+          <p>The piece element is used to construct the conditionally defined values as
+          part of a piecewise object.</p>
+        </description>
+
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><piecewise>
+  <piece><cn>0</cn><apply><lt/><ci>x</ci> <cn>0</cn></apply></piece>
+  <otherwise><ci>x</ci></otherwise>
+</piecewise></math></MMLexample>
+
+<!-- end new part -->
+
 <Example>
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
 <OMA>
@@ -126,7 +219,7 @@ provide the value of the piecewise construct.
 </Example>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="otherwise">
 <Name>otherwise</Name>
   <Pragmatic>
     <Token>otherwise</Token>
@@ -137,6 +230,17 @@ This symbol introduces the 'default' value of a piecewise construct.
 If none of the previous piece constructs can provide the value, this will.
 It has a single child, the value.
 </Description>
+
+<!-- new part -->
+<description>
+          <p>The otherwise element is used to describe the value of a piecewise construct
+          when none of the conditions of the associated pieces are satisfied.</p>
+        </description>
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><piecewise>
+  <piece><cn>0</cn><apply><lt/><ci>x</ci> <cn>0</cn></apply></piece>
+  <otherwise><ci>x</ci></otherwise>
+</piecewise></math></MMLexample>
+<!-- end new part -->
 
 <Example>
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
