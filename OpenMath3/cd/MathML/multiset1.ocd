@@ -35,9 +35,7 @@
 
 <CDName>multiset1</CDName>
 <CDBase>http://www.openmath.org/cd</CDBase>
-<CDURL> 
-http://www.openmath.org/cd/multiset1.ocd 
-</CDURL>
+<CDURL>http://www.openmath.org/cd/multiset1.ocd</CDURL>
 <CDReviewDate>2006-03-30</CDReviewDate>
 <CDDate>2004-03-30</CDDate>
 <CDVersion>3</CDVersion>
@@ -134,7 +132,7 @@ multisets: AxBxC.
 </Example>
 </CDDefinition>
 
-<CDDefinition xml:="emptyset">
+<CDDefinition xml:id="emptyset">
 <Name>emptyset</Name>
   <Pragmatic>
     <Token>emptyset</Token>
@@ -157,12 +155,12 @@ contains no members. It takes no parameters.
             <p>
 for all sets S,   intersect(S,emptyset) = emptyset</p>
           </description><math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply><forall/><bvar><ci type="set">S</ci></bvar>
+<bind><forall/><bvar><ci type="set">S</ci></bvar>
   <apply><eq/>
     <apply><intersect/><emptyset/><ci>S</ci></apply>
     <emptyset/>
   </apply>
-</apply></math></property>
+</bind></math></property>
         <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><neq/>
   <integers/>
   <emptyset/>
@@ -170,7 +168,7 @@ for all sets S,   intersect(S,emptyset) = emptyset</p>
 </math></MMLexample>
 <!-- end new part -->
 
-<property xml:id"emptyset_prop_1">
+<property xml:id="emptyset_prop_1">
 <CMP> The intersection of A with the empty (multi) set is the empty
 (multi) set </CMP>
 <FMP>
@@ -269,12 +267,12 @@ in all multisets.
 </apply>
 </math></MMLexample>
 <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply>
+<bind>
   <intersect/>
   <bvar><ci type="set"> S</ci></bvar>
   <domainofapplication><ci type="list">L</ci></domainofapplication>
   <ci type="set"> S</ci>
-</apply>
+</bind>
 </math></MMLexample>
 <!-- end new part -->
 
@@ -343,13 +341,14 @@ arguments.
 
         <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><union/><ci>A</ci><ci>B</ci></apply></math></MMLexample>
 	<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML">
-		<apply>
-		  <union/>
-		  <bvar><ci type="set"> S</ci></bvar>
-		  <domainofapplication><ci type="list">L</ci></domainofapplication>
-		  <ci type="set"> S</ci>
-		</apply>
-		</math></MMLexample>
+	  <bind>
+	    <union/>
+	    <bvar><ci type="set"> S</ci></bvar>
+	    <domainofapplication><ci type="list">L</ci></domainofapplication>
+	    <ci type="set"> S</ci>
+	  </bind>
+	</math>
+</MMLexample>
 <!-- end new part -->
 
 <property xml:id="union_prop_4">
@@ -506,9 +505,10 @@ second.
   <ci type="set"> B</ci>
 </apply>
 </math></MMLexample>
+
         <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply>
   <subset/>
-  <subset/>
+  <set/>
   <bvar><ci type="set">S</ci></bvar>
   <condition>
     <apply><in/>
