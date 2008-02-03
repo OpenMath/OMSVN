@@ -1,20 +1,24 @@
 <xsl:stylesheet 
-  version="1.0"
+  version="2.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:om="http://www.openmath.org/OpenMath"
   xmlns:m="http://www.w3.org/1998/Math/MathML"
   xmlns:cd="http://www.openmath.org/OpenMathCD"
-  xmlns="http://www.w3.org/1999/xhtml">
+  xmlns="http://www.w3.org/1999/xhtml"
+  exclude-result-prefixes="om m cd">
 
 <xsl:import href="verb.xsl"/>
+<xsl:import href="om2pmml.xsl"/>
+<xsl:import href="om2cmml.xsl"/>
+<xsl:import href="cmml2om.xsl"/>
 <xsl:output method="xml" />
 
 <xsl:strip-space elements="cd:Name"/>
 
 
 <!-- for debugging -->
-<xsl:template match="*">
-  <xsl:message>warning: template for element <xsl:value-of select="local-name()"/> undefined</xsl:message>
+<xsl:template match="cd:*" priority="-1">
+  <xsl:message>cd2html warning: template for CD element <xsl:value-of select="local-name()"/> undefined</xsl:message>
 </xsl:template>
 
 <xsl:template match="cd:CD">
@@ -94,7 +98,7 @@
 <xsl:if test="not(document(concat(.,'.ocd'),.))">../../../cd/</xsl:if>
     </xsl:variable>
     <xsl:variable name="n" select="normalize-space(.)"/>
-    <a href="{$p}{$n}.html"><xsl:value-of select="$n"/></a>
+    <a href="{$p}{$n}.xhtml"><xsl:value-of select="$n"/></a>
     <xsl:if test="position() &lt; last()">, </xsl:if>
   </xsl:for-each></dd>
   </xsl:if></dl>
@@ -124,24 +128,23 @@
                     cd:CDVersion|cd:CDRevision|cd:CDUses"/>
 
 <xsl:template match="cd:CDDefinition">
-  <hr/>
+  <div class="cddefinition">
+  <xsl:apply-templates select="cd:Name"/>
   <dl>
-    <xsl:apply-templates/>
+    <xsl:apply-templates select="* except cd:Name"/>
     <dt><span class="dt">Signatures:</span></dt>
     <dd>
       <xsl:element name="a">
 	<xsl:attribute name="href">../sts/<xsl:value-of 
-	select="normalize-space(/cd:CD/cd:CDName)"/>.html#<xsl:value-of
+	select="normalize-space(/cd:CD/cd:CDName)"/>.xhtml#<xsl:value-of
 	select="normalize-space(cd:Name)"/></xsl:attribute>
 	sts
       </xsl:element>
     </dd>
   </dl>
-  <hr/>
-  
-  <table width="100%">
-    <tr>
-      <td align="right"><font size="-1">
+  </div>
+
+ <div>
 	<xsl:variable name="n" select="normalize-space(following-sibling::cd:CDDefinition[1]/cd:Name)"/>
 	<xsl:choose>
 	  <xsl:when test="''=$n">
@@ -150,6 +153,7 @@
 	  </xsl:when>
 	  <xsl:otherwise>[Next: <a href="#{$n}"><xsl:value-of select="$n"/></a>]</xsl:otherwise>
 	</xsl:choose>
+	   [This: <a href="#{normalize-space(cd:Name)}"><xsl:value-of select="normalize-space(cd:Name)"/></a>]
 	<xsl:variable name="p" select="normalize-space(preceding-sibling::cd:CDDefinition[1]/cd:Name)"/>
 	<xsl:choose>
 	  <xsl:when test="''=$p">
@@ -158,15 +162,14 @@
 	  </xsl:when>
 	  <xsl:otherwise>[Previous: <a href="#{$p}"><xsl:value-of select="$p"/></a>]</xsl:otherwise>
 	</xsl:choose>
-      [<a href="#top">Top</a>]</font></td>
-    </tr>
-  </table>
+      [<a href="#top">Top</a>]
+ </div>
+
 </xsl:template>
 
 
 <xsl:template match="cd:CDDefinition/cd:Name">
-  <dt><u><b><span class="dt">Symbol:</span></b></u></dt>
-  <dd><a name="{normalize-space(.)}"><xsl:apply-templates/></a></dd>
+  <h2><a name="{normalize-space(.)}">Symbol Definition: <xsl:apply-templates/></a></h2>
 </xsl:template>
 
 
@@ -239,26 +242,53 @@
   <dd><xsl:apply-templates/></dd>
 </xsl:template>
 
-<xsl:template match="om:OMOBJ|m:math">
-  <div>
-    <button id="{generate-id()}xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('{generate-id()}xml')">xml</button>
-    <xsl:text>&#160;</xsl:text>
-    <button id="{generate-id()}prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('{generate-id()}pref')">prefix</button>
-    <xsl:text>&#160;</xsl:text>
-    <button id="{generate-id()}mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('{generate-id()}mml')">mathml</button>
-  </div>
+<xsl:template match="om:OMOBJ">
+    <div><button id="{generate-id()}xmla" style="width:10em; background-color:#CCCCCC" onclick="divfold('{generate-id()}xml')">XML (OpenMath)</button></div>
   <pre id="{generate-id()}xml" style="display:none">
     <xsl:apply-templates mode="verb" select="."/>
   </pre>
+        <div><button id="{generate-id()}cmmla" style="width:10em; background-color:#CCCCCC" onclick="divfold('{generate-id()}cmml')">Content MathML</button></div>
+  <pre id="{generate-id()}cmml" style="display:none; margin-top: 0.5em">
+    <xsl:variable name="c">
+      <xsl:apply-templates  mode="om2cmml" select="."/>
+    </xsl:variable>
+    <xsl:apply-templates mode="verb" select="$c"/>
+  </pre>
+        <div><button id="{generate-id()}prefa" style="width:10em; background-color:#CCCCCC" onclick="divfold('{generate-id()}pref')">Prefix form</button></div>
   <div id="{generate-id()}pref" style="display:none; margin-top: 0.5em">
     <xsl:apply-templates mode="term" select="."/>
   </div>
-<!-- @CL change the MathML here
+       <div> <button id="{generate-id()}mmla" style="width:10em; background-color:#AAFFAA" onclick="divfold('{generate-id()}mml')">MathML</button></div>
   <div id="{generate-id()}mml" style="display:block; margin-top: 0.5em">
-    <math   xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <m:math   xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
       <xsl:apply-templates/>
-    </math>
-  </div> -->
+    </m:math>
+  </div>
+</xsl:template>
+
+<xsl:template match="m:math">
+  <xsl:variable name="o">
+    <xsl:apply-templates mode="cmml2om" select="."/>
+  </xsl:variable>
+<div><button id="{generate-id()}xmla" style="width:10em; background-color:#CCCCCC" onclick="divfold('{generate-id()}xml')">XML (MathML)</button></div>
+  <pre id="{generate-id()}xml" style="display:none">
+    <xsl:apply-templates mode="verb" select="."/>
+  </pre>
+<div><button id="{generate-id()}cmmla" style="width:10em; background-color:#CCCCCC" onclick="divfold('{generate-id()}cmml')">OpenMath</button>
+</div>
+  <pre id="{generate-id()}cmml" style="display:none; margin-top: 0.5em">
+    <xsl:apply-templates mode="verb" select="$o"/>
+  </pre>
+<div><button id="{generate-id()}prefa" style="width:10em; background-color:#CCCCCC" onclick="divfold('{generate-id()}pref')">Prefix form</button></div>
+  <div id="{generate-id()}pref" style="display:none; margin-top: 0.5em">
+    <xsl:apply-templates mode="term" select="$o"/>
+  </div>
+    <div><button id="{generate-id()}mmla" style="width:10em; background-color:#AAFFAA" onclick="divfold('{generate-id()}mml')">MathML</button></div>
+  <div id="{generate-id()}mml" style="display:block; margin-top: 0.5em">
+    <m:math   xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+      <xsl:apply-templates select="$o/*/*"/>
+    </m:math>
+  </div>
 </xsl:template>
 
 
@@ -270,17 +300,17 @@
 
 
 <xsl:template mode="term" match="om:OMSTR">
-<tt>"<xsl:apply-templates mode="term"/>"</tt>
+<tt> "<xsl:apply-templates mode="term"/>" </tt>
 </xsl:template>
 
 <xsl:template mode="term" match="om:OMA|m:apply">
-<xsl:apply-templates mode="term" select="*[1]"/>
-<xsl:text>(</xsl:text>
-<xsl:for-each  select="*[position()>1]">
+<xsl:apply-templates mode="term" select="./*[position()=1]"/>
+(<xsl:for-each  select="./*[position()>1]">
   <xsl:apply-templates mode="term" select="."/>
-  <xsl:if test="position()&lt;last()"><xsl:text>, </xsl:text></xsl:if>
-</xsl:for-each>
-<xsl:text>)</xsl:text>
+  <xsl:if test="position()&lt;last()">
+    <xsl:text>, </xsl:text>
+  </xsl:if>
+</xsl:for-each>)
 </xsl:template>
 
 <xsl:template mode="term" match="om:OMBIND|m:bind">
@@ -290,37 +320,23 @@
 </xsl:template>
 
 
-<xsl:template mode="term" match="om:OMV">
+<xsl:template mode="term" match="om:OMV|m:ci">
+  <xsl:text> </xsl:text>
   <i><xsl:value-of select="@name"/></i>
 </xsl:template>
 
-<xsl:template mode="term" match="m:ci">
-  <i><xsl:value-of select="text()"/></i>
-</xsl:template>
-
-<!-- token elements -->
-<xsl:template mode="term" match="m:*[not(child::*) and not(child::text())]">
-  <xsl:value-of select="local-name()"/>
-</xsl:template>
 
 <xsl:template mode="term" match="om:OMF">
-  <xsl:value-of select="@*"/>
+<xsl:text> </xsl:text>
+  <xsl:value-of select="@*"/><xsl:text> </xsl:text>
 </xsl:template>
 
 
-<xsl:template mode="term" match="om:OMS">
+<xsl:template mode="term" match="om:OMS|m:csymbol">
     <xsl:variable name="p">
-      <xsl:if test="not(document(concat(@cd,'.ocd'),.))">../../../cd/</xsl:if>
+    <!--  <xsl:if test="not(document(concat(@cd,'.ocd'),.))">../../../cd/</xsl:if>-->
     </xsl:variable>
-    <a href="{$p}{@cd}.html#{@name}"><xsl:value-of select="@name"/></a>
-</xsl:template>
-
-
-<xsl:template mode="term" match="om:csymbol">
-    <xsl:variable name="p">
-      <xsl:if test="not(document(concat(@cd,'.ocd'),.))">../../../cd/</xsl:if>
-    </xsl:variable>
-    <a href="{$p}{@cd}.html#{@name}"><xsl:value-of select="text()"/></a>
+    <a href="{$p}{@cd}.xhtml#{@name}"><xsl:value-of select="@name"/></a>
 </xsl:template>
 
 <xsl:template mode="term" match="om:OMATP">
@@ -352,6 +368,33 @@
     </xsl:when>
     <xsl:otherwise><p><xsl:value-of select="$string"/></p></xsl:otherwise>
   </xsl:choose>
+</xsl:template>
+
+
+
+<xsl:template name="ns">
+<xsl:variable name="a" select="../namespace::*"/>
+<xsl:variable name="b" select="namespace::*"/>
+<xsl:for-each select="$b[not(name()='xml')]">
+<xsl:variable name="n" select="name()"/>
+<xsl:variable name="v" select="."/>
+<xsl:if test="not($n) or starts-with(name(..),concat($n,':'))">
+<xsl:if test="not($a[name()=$n and . = $v])">
+<xsl:text/> xmlns<xsl:if test="$n">:</xsl:if><xsl:value-of
+  select="$n"/>="<xsl:value-of select="$v"/>"<xsl:text/>
+</xsl:if>
+</xsl:if>
+</xsl:for-each>
+<!--
+ This should work (and does with saxon, but not with xalan) so instead do the above.
+
+  <xsl:for-each select="namespace::*[not(name()='xml')]">
+  <xsl:if test="not(../../namespace::*[name()=name(current()) and (. = current())])">
+  <xsl:text/> xmlns<xsl:if test="name()">:</xsl:if><xsl:value-of
+  select="name()"/>="<xsl:value-of select="."/>"<xsl:text/>
+  </xsl:if>
+  </xsl:for-each>
+-->
 </xsl:template>
 
 </xsl:stylesheet>
