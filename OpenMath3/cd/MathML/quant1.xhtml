@@ -1,6 +1,7 @@
-<?xml version="1.0"?>
-
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:cd="http://www.openmath.org/OpenMathCD"><head><script type="text/javascript"> function divfold(_Id){
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <script type="text/javascript"> function divfold(_Id){
      var thisLevel = document.getElementById(_Id);
      var thisLevela = document.getElementById(_Id.concat("a"))
      if(thisLevel.style.display != "none"){ 
@@ -10,13 +11,68 @@
       thisLevel.style.display = "block";
       thisLevela.style.backgroundColor = "#AAFFAA";}  
        }
-     </script><title>quant1</title><link rel="stylesheet" href="omcd.css" type="text/css"/></head><body><a name="top"/><h1>OpenMath Content Dictionary: quant1</h1><dl><dt><span class="dt">Canonical URL:</span></dt><dd><a href="http://www.openmath.org/cd/quant1.ocd">http://www.openmath.org/cd/quant1.ocd</a></dd><dt><span class="dt">CD Base:</span></dt><dd><a href="http://www.openmath.org/cd">http://www.openmath.org/cd</a></dd><dt><span class="dt">CD File:</span></dt><dd><a href="quant1.ocd">quant1.ocd
-  </a></dd><dt><span class="dt">CD as XML Encoded OpenMath:</span></dt><dd><a href="quant1.omcd">quant1.omcd
-  </a></dd><dt><span class="dt">Defines:</span></dt><dd><a href="#exists">exists</a>, <a href="#forall">forall</a></dd><dt><span class="dt">Date:</span></dt><dd>2004-05-11</dd><dt><span class="dt">Version:</span></dt><dd>3
+     </script>
+      <title>quant1</title>
+      <link rel="stylesheet" href="omcd.css" type="text/css"/>
+   </head>
+   <body>
+      <a name="top"/>
+      <h1>OpenMath Content Dictionary: quant1</h1>
+      <dl>
+         <dt>
+            <span class="dt">Canonical URL:</span>
+         </dt>
+         <dd>
+            <a href="http://www.openmath.org/cd/quant1.ocd">http://www.openmath.org/cd/quant1.ocd</a>
+         </dd>
+         <dt>
+            <span class="dt">CD Base:</span>
+         </dt>
+         <dd>
+            <a href="http://www.openmath.org/cd">http://www.openmath.org/cd</a>
+         </dd>
+         <dt>
+            <span class="dt">CD File:</span>
+         </dt>
+         <dd>
+            <a href="quant1.ocd">quant1.ocd
+  </a>
+         </dd>
+         <dt>
+            <span class="dt">CD as XML Encoded OpenMath:</span>
+         </dt>
+         <dd>
+            <a href="quant1.omcd">quant1.omcd
+  </a>
+         </dd>
+         <dt>
+            <span class="dt">Defines:</span>
+         </dt>
+         <dd>
+            <a href="#exists">exists</a>, <a href="#forall">forall</a>
+         </dd>
+         <dt>
+            <span class="dt">Date:</span>
+         </dt>
+         <dd>2004-05-11</dd>
+         <dt>
+            <span class="dt">Version:</span>
+         </dt>
+         <dd>3
   (Revision 1)
-  </dd><dt><span class="dt">Review Date:</span></dt><dd>2006-03-30</dd><dt><span class="dt">Status:</span></dt><dd>official</dd></dl><hr/>
+  </dd>
+         <dt>
+            <span class="dt">Review Date:</span>
+         </dt>
+         <dd>2006-03-30</dd>
+         <dt>
+            <span class="dt">Status:</span>
+         </dt>
+         <dd>official</dd>
+      </dl>
+      <hr/>
 
-<pre>
+      <pre>
 
      This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
@@ -57,7 +113,7 @@
 
 
 
-<p>
+      <p>
     This CD holds the definitions of the basic universal ("for all")
     quantifier and existential ("there exists") quantifier. It is
     intended to be `compatible' with the MathML elements representing
@@ -65,20 +121,430 @@
 </p>
 
 
-<hr/><dl>
-<dt><u><b><span class="dt">Symbol:</span></b></u></dt><dd><a name="forall">forall</a></dd>
-  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
-    <code>&lt;forall/&gt;</code>
-  </dd>
-<dt><span class="dt">Role:</span></dt><dd>binder</dd>
-<dt><span class="dt">Description:</span></dt><dd><p> 
+      <div class="cddefinition">
+         <h2>
+            <a name="forall">Symbol Definition: forall</a>
+         </h2>
+         <dl>
+            <dt>
+               <span class="dt">Pragmatic MathML:</span>
+            </dt>
+            <dd>
+               <code>&lt;forall/&gt;</code>
+            </dd>
+            <dt>
+               <span class="dt">Role:</span>
+            </dt>
+            <dd>binder</dd>
+            <dt>
+               <span class="dt">Description:</span>
+            </dt>
+            <dd>
+               <p> 
 This symbol represents the universal ("for all") quantifier which takes two
 arguments. It must be placed within an OMBIND element. The first argument is the
 bound variables (placed within an OMBVAR element), and the second is an expression. 
-</p></dd>
-<dt><span class="dt">Example:</span></dt><dd>
+</p>
+            </dd>
+            <dt>
+               <span class="dt">description:</span>
+            </dt>
+            <dd>
+               <p>
+          The forall operator is the logical "For all" quantifier.  The bound
+          variables, if any, appear first and are tagged using the bvar element.  Next
+          comes an optional condition on the bound variables.  The last argument is the
+          boolean expression that is asserted to be true for all values of the bound
+          variables that meet the specified conditions (if any).
+        </p>
+            </dd>
+            <dt>
+               <span class="dt">discussion:</span>
+            </dt>
+            <dd>
+               <p>
+	  The forall element represents the universal quantifier of logic. It
+	  is usually used in conjunction with one or more bound variables, an optional
+	  condition element, and an assertion. It may also be used with a domain
+	  of application and function as described in  in
+	  which case the assertion corresponds to applying the function to an element of
+	  the specified domain., which should take the form of an apply
+	  element.</p>
+               <p>	  The universal quantifier forall is used in conjunction with one or
+	  more bvar schemata to represent simple logical assertions. There are
+	  two main main ways of using the logical quantifier operators. The first usage is
+	  for representing a simple, quantified assertion.  For example, the statement
+	  there exists x &lt; 9 would be represented as:</p>
+               <p>
+  
+  x
+  x9</p>
+               <p>
+The second usage is for representing implications. Hypotheses are given by a
+condition element following the bound variables. For example the statement
+for all x &lt; 9, x &lt; 10 would be represented as:</p>
+               <p>
+  
+  x
+  x9
+  x10</p>
+               <p>
+Note that in both these usages one or more bvar qualifiers are mandatory.
+		</p>
+            </dd>
+            <dt>
+               <span class="dt">Example:</span>
+            </dt>
+            <dd>
+		             <p>The example encodes a simple identity.
+		</p>
+		             <div>
+                  <button id="d40e159xmla" style="width:10em; background-color:#CCCCCC"
+                          onclick="divfold('d40e159xml')">XML (MathML)</button>
+               </div>
+               <pre id="d40e159xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;bind&gt;
+		  &lt;forall/&gt;
+		  &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+		  &lt;apply&gt;&lt;eq/&gt;
+		    &lt;apply&gt;
+		      &lt;minus/&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;ci&gt;x&lt;/ci&gt;
+		    &lt;/apply&gt;
+		    &lt;cn&gt;0&lt;/cn&gt;
+		  &lt;/apply&gt;
+		&lt;/bind&gt;&lt;/math&gt;</pre>
+               <div>
+                  <button id="d40e159cmmla" style="width:10em; background-color:#CCCCCC"
+                          onclick="divfold('d40e159cmml')">OpenMath</button>
+               </div>
+               <pre id="d40e159cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMBIND&gt;&lt;OMS cd="quant1" name="forall"/&gt;&lt;OMBVAR&gt;&lt;OMV name="x"/&gt;&lt;/OMBVAR&gt;&lt;OMA&gt;&lt;OMS cd="relation1" name="eq"/&gt;
+		    &lt;OMA&gt;
+		      &lt;OMS cd="arith1" name="minus"/&gt;&lt;OMV name="x"/&gt;&lt;OMV name="x"/&gt;
+		    &lt;/OMA&gt;
+		    &lt;OMI&gt;0&lt;/OMI&gt;
+		  &lt;/OMA&gt;&lt;/OMBIND&gt;&lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d40e159prefa" style="width:10em; background-color:#CCCCCC"
+                          onclick="divfold('d40e159pref')">Prefix form</button>
+               </div>
+               <div id="d40e159pref" style="display:none; margin-top: 0.5em">
+                  <a href="quant1.xhtml#forall">forall</a>
+[ <i>x</i>] .
+(<a href="relation1.xhtml#eq">eq</a>
+(<a href="arith1.xhtml#minus">minus</a>
+( <i>x</i>,  <i>x</i>)
+, 0)
+)
+</div>
+               <div>
+                  <button id="d40e159mmla" style="width:10em; background-color:#AAFFAA"
+                          onclick="divfold('d40e159mml')">MathML</button>
+               </div>
+               <div id="d40e159mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mo>∀</mo>
+                        <mo> </mo>
+                        <mrow>
+                           <mi>x</mi>
+                        </mrow>
+                        <mo>.</mo>
+                        <mrow>
+                           <mrow>
+                              <mi>x</mi>
+                              <mo>-</mo>
+                              <mi>x</mi>
+                           </mrow>
+                           <mo>=</mo>
+                           <mn>0</mn>
+                        </mrow>
+                     </mrow>
+                  </m:math>
+               </div>
+            </dd>
+            <dt>
+               <span class="dt">Example:</span>
+            </dt>
+            <dd>
+		             <p>The example is more involved, and makes use of an optional condition element.
+		</p>
+		             <div>
+                  <button id="d40e195xmla" style="width:10em; background-color:#CCCCCC"
+                          onclick="divfold('d40e195xml')">XML (MathML)</button>
+               </div>
+               <pre id="d40e195xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+		&lt;bind&gt;
+		  &lt;forall/&gt;
+		  &lt;bvar&gt;&lt;ci&gt;p&lt;/ci&gt;&lt;/bvar&gt;
+		  &lt;bvar&gt;&lt;ci&gt;q&lt;/ci&gt;&lt;/bvar&gt;
+		  &lt;condition&gt;
+		    &lt;apply&gt;&lt;and/&gt;
+		      &lt;apply&gt;&lt;in/&gt;&lt;ci&gt;p&lt;/ci&gt;&lt;rationals/&gt;&lt;/apply&gt;
+		      &lt;apply&gt;&lt;in/&gt;&lt;ci&gt;q&lt;/ci&gt;&lt;rationals/&gt;&lt;/apply&gt;
+		      &lt;apply&gt;&lt;lt/&gt;&lt;ci&gt;p&lt;/ci&gt;&lt;ci&gt;q&lt;/ci&gt;&lt;/apply&gt;
+		    &lt;/apply&gt;
+		  &lt;/condition&gt;
+		  &lt;apply&gt;&lt;lt/&gt;
+		      &lt;ci&gt;p&lt;/ci&gt;
+		      &lt;apply&gt;
+		          &lt;power/&gt;
+		        &lt;ci&gt;q&lt;/ci&gt;
+		        &lt;cn&gt;2&lt;/cn&gt;
+		      &lt;/apply&gt;
+		  &lt;/apply&gt;
+		&lt;/bind&gt;
+		&lt;/math&gt;</pre>
+               <div>
+                  <button id="d40e195cmmla" style="width:10em; background-color:#CCCCCC"
+                          onclick="divfold('d40e195cmml')">OpenMath</button>
+               </div>
+               <pre id="d40e195cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
+		&lt;OMBIND&gt;&lt;OMS cd="quant1" name="forall"/&gt;&lt;OMBVAR&gt;&lt;OMV name="p"/&gt;&lt;OMV name="q"/&gt;&lt;/OMBVAR&gt;&lt;OMA&gt;&lt;OMS cd="relation1" name="lt"/&gt;
+		      &lt;OMV name="p"/&gt;
+		      &lt;OMA&gt;
+		          &lt;OMS cd="arith1" name="power"/&gt;
+		        &lt;OMV name="q"/&gt;
+		        &lt;OMI&gt;2&lt;/OMI&gt;
+		      &lt;/OMA&gt;
+		  &lt;/OMA&gt;&lt;/OMBIND&gt;
+		&lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d40e195prefa" style="width:10em; background-color:#CCCCCC"
+                          onclick="divfold('d40e195pref')">Prefix form</button>
+               </div>
+               <div id="d40e195pref" style="display:none; margin-top: 0.5em">
+		                <a href="quant1.xhtml#forall">forall</a>
+[ <i>p</i> 
+                  <i>q</i>] .
+(<a href="relation1.xhtml#lt">lt</a>
+( <i>p</i>, <a href="arith1.xhtml#power">power</a>
+( <i>q</i>, 2)
+)
+)
+
+		</div>
+               <div>
+                  <button id="d40e195mmla" style="width:10em; background-color:#AAFFAA"
+                          onclick="divfold('d40e195mml')">MathML</button>
+               </div>
+               <div id="d40e195mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mo>∀</mo>
+                        <mo> </mo>
+                        <mrow>
+                           <mi>p</mi>
+                           <mo>,</mo>
+                           <mi>q</mi>
+                        </mrow>
+                        <mo>.</mo>
+                        <mrow>
+                           <mi>p</mi>
+                           <mo>&lt;</mo>
+                           <msup>
+                              <mi>q</mi>
+                              <mn>2</mn>
+                           </msup>
+                        </mrow>
+                     </mrow>
+                  </m:math>
+               </div>
+            </dd>
+            <dt>
+               <span class="dt">Example:</span>
+            </dt>
+            <dd>
+		             <p>The example uses both the forall and
+exists quantifiers.
+		</p>
+		             <div>
+                  <button id="d40e268xmla" style="width:10em; background-color:#CCCCCC"
+                          onclick="divfold('d40e268xml')">XML (MathML)</button>
+               </div>
+               <pre id="d40e268xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+		&lt;bind&gt;
+		  &lt;forall/&gt;
+		  &lt;bvar&gt;&lt;ci&gt;n&lt;/ci&gt;&lt;/bvar&gt;
+		  &lt;condition&gt;
+		    &lt;apply&gt;&lt;and/&gt;
+		      &lt;apply&gt;&lt;gt/&gt;&lt;ci&gt;n&lt;/ci&gt;&lt;cn&gt;0&lt;/cn&gt;&lt;/apply&gt;
+		      &lt;apply&gt;&lt;in/&gt;&lt;ci&gt;n&lt;/ci&gt;&lt;integers/&gt;&lt;/apply&gt;
+		    &lt;/apply&gt;
+		  &lt;/condition&gt;
+		  &lt;bind&gt;
+		    &lt;exists/&gt;
+		    &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+		    &lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/bvar&gt;
+		    &lt;bvar&gt;&lt;ci&gt;z&lt;/ci&gt;&lt;/bvar&gt;
+		    &lt;condition&gt;
+		      &lt;apply&gt;&lt;and/&gt;
+		        &lt;apply&gt;&lt;in/&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;integers/&gt;&lt;/apply&gt;
+		        &lt;apply&gt;&lt;in/&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;integers/&gt;&lt;/apply&gt;
+		        &lt;apply&gt;&lt;in/&gt;&lt;ci&gt;z&lt;/ci&gt;&lt;integers/&gt;&lt;/apply&gt;
+		      &lt;/apply&gt;
+		    &lt;/condition&gt;
+		    &lt;apply&gt;
+		      &lt;eq/&gt;
+		      &lt;apply&gt;
+		        &lt;plus/&gt;
+		        &lt;apply&gt;&lt;power/&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;ci&gt;n&lt;/ci&gt;&lt;/apply&gt;
+		        &lt;apply&gt;&lt;power/&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;ci&gt;n&lt;/ci&gt;&lt;/apply&gt;
+		      &lt;/apply&gt;
+		      &lt;apply&gt;&lt;power/&gt;&lt;ci&gt;z&lt;/ci&gt;&lt;ci&gt;n&lt;/ci&gt;&lt;/apply&gt;
+		    &lt;/apply&gt;
+		  &lt;/bind&gt;
+		&lt;/bind&gt;
+		&lt;/math&gt;</pre>
+               <div>
+                  <button id="d40e268cmmla" style="width:10em; background-color:#CCCCCC"
+                          onclick="divfold('d40e268cmml')">OpenMath</button>
+               </div>
+               <pre id="d40e268cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
+		&lt;OMBIND&gt;&lt;OMS cd="quant1" name="forall"/&gt;&lt;OMBVAR&gt;&lt;OMV name="n"/&gt;&lt;/OMBVAR&gt;&lt;OMBIND&gt;&lt;OMS cd="quant1" name="exists"/&gt;&lt;OMBVAR&gt;&lt;OMV name="x"/&gt;&lt;OMV name="y"/&gt;&lt;OMV name="z"/&gt;&lt;/OMBVAR&gt;&lt;OMA&gt;
+		      &lt;OMS cd="relation1" name="eq"/&gt;
+		      &lt;OMA&gt;
+		        &lt;OMS cd="arith1" name="plus"/&gt;
+		        &lt;OMA&gt;&lt;OMS cd="arith1" name="power"/&gt;&lt;OMV name="x"/&gt;&lt;OMV name="n"/&gt;&lt;/OMA&gt;
+		        &lt;OMA&gt;&lt;OMS cd="arith1" name="power"/&gt;&lt;OMV name="y"/&gt;&lt;OMV name="n"/&gt;&lt;/OMA&gt;
+		      &lt;/OMA&gt;
+		      &lt;OMA&gt;&lt;OMS cd="arith1" name="power"/&gt;&lt;OMV name="z"/&gt;&lt;OMV name="n"/&gt;&lt;/OMA&gt;
+		    &lt;/OMA&gt;&lt;/OMBIND&gt;&lt;/OMBIND&gt;
+		&lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d40e268prefa" style="width:10em; background-color:#CCCCCC"
+                          onclick="divfold('d40e268pref')">Prefix form</button>
+               </div>
+               <div id="d40e268pref" style="display:none; margin-top: 0.5em">
+		                <a href="quant1.xhtml#forall">forall</a>
+[ <i>n</i>] .
+(<a href="quant1.xhtml#exists">exists</a>
+[ <i>x</i> 
+                  <i>y</i> 
+                  <i>z</i>] .
+(<a href="relation1.xhtml#eq">eq</a>
+(<a href="arith1.xhtml#plus">plus</a>
+(<a href="arith1.xhtml#power">power</a>
+( <i>x</i>,  <i>n</i>)
+, <a href="arith1.xhtml#power">power</a>
+( <i>y</i>,  <i>n</i>)
+)
+, <a href="arith1.xhtml#power">power</a>
+( <i>z</i>,  <i>n</i>)
+)
+)
+)
+
+		</div>
+               <div>
+                  <button id="d40e268mmla" style="width:10em; background-color:#AAFFAA"
+                          onclick="divfold('d40e268mml')">MathML</button>
+               </div>
+               <div id="d40e268mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mo>∀</mo>
+                        <mo> </mo>
+                        <mrow>
+                           <mi>n</mi>
+                        </mrow>
+                        <mo>.</mo>
+                        <mrow>
+                           <mo>∃</mo>
+                           <mo> </mo>
+                           <mrow>
+                              <mi>x</mi>
+                              <mo>,</mo>
+                              <mi>y</mi>
+                              <mo>,</mo>
+                              <mi>z</mi>
+                           </mrow>
+                           <mo>.</mo>
+                           <mrow>
+                              <mrow>
+                                 <msup>
+                                    <mi>x</mi>
+                                    <mi>n</mi>
+                                 </msup>
+                                 <mo>+</mo>
+                                 <msup>
+                                    <mi>y</mi>
+                                    <mi>n</mi>
+                                 </msup>
+                              </mrow>
+                              <mo>=</mo>
+                              <msup>
+                                 <mi>z</mi>
+                                 <mi>n</mi>
+                              </msup>
+                           </mrow>
+                        </mrow>
+                     </mrow>
+                  </m:math>
+               </div>
+            </dd>
+            <dt>
+               <span class="dt">Example:</span>
+            </dt>
+            <dd>
+               <div>
+                  <button id="d40e375xmla" style="width:10em; background-color:#CCCCCC"
+                          onclick="divfold('d40e375xml')">XML (MathML)</button>
+               </div>
+               <pre id="d40e375xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;bind&gt;
+		  &lt;forall/&gt;
+		  &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+		  &lt;condition&gt;&lt;apply&gt;&lt;lt/&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;cn&gt;0
+		 &lt;/cn&gt;&lt;/apply&gt;&lt;/condition&gt;
+		  &lt;ci&gt;x&lt;/ci&gt;
+&lt;/bind&gt;
+&lt;/math&gt;</pre>
+               <div>
+                  <button id="d40e375cmmla" style="width:10em; background-color:#CCCCCC"
+                          onclick="divfold('d40e375cmml')">OpenMath</button>
+               </div>
+               <pre id="d40e375cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMBIND&gt;&lt;OMS cd="quant1" name="forall"/&gt;&lt;OMBVAR&gt;&lt;OMV name="x"/&gt;&lt;/OMBVAR&gt;&lt;OMV name="x"/&gt;&lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d40e375prefa" style="width:10em; background-color:#CCCCCC"
+                          onclick="divfold('d40e375pref')">Prefix form</button>
+               </div>
+               <div id="d40e375pref" style="display:none; margin-top: 0.5em">
+                  <a href="quant1.xhtml#forall">forall</a>
+[ <i>x</i>] .
+( <i>x</i>)
+
+</div>
+               <div>
+                  <button id="d40e375mmla" style="width:10em; background-color:#AAFFAA"
+                          onclick="divfold('d40e375mml')">MathML</button>
+               </div>
+               <div id="d40e375mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mo>∀</mo>
+                        <mo> </mo>
+                        <mrow>
+                           <mi>x</mi>
+                        </mrow>
+                        <mo>.</mo>
+                        <mi>x</mi>
+                     </mrow>
+                  </m:math>
+               </div>
+            </dd>
+            <dt>
+               <span class="dt">Example:</span>
+            </dt>
+            <dd>
 An example to represent the statement for all real x, |sin(x)| &lt;= 1
-<div><button id="id73285xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73285xml')">xml</button> <button id="id73285prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73285pref')">prefix</button> <button id="id73285mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73285mml')">mathml</button></div><pre id="id73285xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+<div>
+                  <button id="d40e402xmla" style="width:10em; background-color:#CCCCCC"
+                          onclick="divfold('d40e402xml')">XML (OpenMath)</button>
+               </div>
+               <pre id="d40e402xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMBIND&gt;
     &lt;OMS cd="quant1" name="forall"/&gt;
     &lt;OMBVAR&gt;
@@ -104,40 +570,361 @@ An example to represent the statement for all real x, |sin(x)| &lt;= 1
     &lt;/OMA&gt;
     &lt;/OMA&gt;
   &lt;/OMBIND&gt;
-&lt;/OMOBJ&gt;</pre><div id="id73285pref" style="display:none; margin-top: 0.5em">
-  <a href="quant1.html#forall">forall</a>
+&lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d40e402cmmla" style="width:10em; background-color:#CCCCCC"
+                          onclick="divfold('d40e402cmml')">Content MathML</button>
+               </div>
+               <pre id="d40e402cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+  &lt;bind&gt;
+    &lt;csymbol cd="quant1"&gt;forall&lt;/csymbol&gt;
+    &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+    &lt;apply&gt;
+    &lt;csymbol cd="logic1"&gt;implies&lt;/csymbol&gt;
+    &lt;apply&gt;
+      &lt;csymbol cd="set1"&gt;in&lt;/csymbol&gt;
+      &lt;ci&gt;x&lt;/ci&gt;
+      &lt;csymbol cd="setname1"&gt;R&lt;/csymbol&gt;
+    &lt;/apply&gt;
+    &lt;apply&gt;
+      &lt;csymbol cd="relation1"&gt;leq&lt;/csymbol&gt;
+      &lt;apply&gt;
+        &lt;csymbol cd="arith1"&gt;abs&lt;/csymbol&gt;
+        &lt;apply&gt;
+          &lt;csymbol cd="transc1"&gt;sin&lt;/csymbol&gt;
+          &lt;ci&gt;x&lt;/ci&gt;
+        &lt;/apply&gt;
+      &lt;/apply&gt;
+      
+    &lt;/apply&gt;
+    &lt;/apply&gt;
+  &lt;/bind&gt;
+&lt;/math&gt;</pre>
+               <div>
+                  <button id="d40e402prefa" style="width:10em; background-color:#CCCCCC"
+                          onclick="divfold('d40e402pref')">Prefix form</button>
+               </div>
+               <div id="d40e402pref" style="display:none; margin-top: 0.5em">
+                  <a href="quant1.xhtml#forall">forall</a>
 [
-      <i>x</i>
+       <i>x</i>
     ] .
-(<a href="logic1.html#implies">implies</a>(<a href="set1.html#in">in</a>(<i>x</i>, <a href="setname1.html#R">R</a>), <a href="relation1.html#leq">leq</a>(<a href="arith1.html#abs">abs</a>(<a href="transc1.html#sin">sin</a>(<i>x</i>)), 1.0)))
+(<a href="logic1.xhtml#implies">implies</a>
+(<a href="set1.xhtml#in">in</a>
+( <i>x</i>, <a href="setname1.xhtml#R">R</a>)
+, <a href="relation1.xhtml#leq">leq</a>
+(<a href="arith1.xhtml#abs">abs</a>
+(<a href="transc1.xhtml#sin">sin</a>
+( <i>x</i>)
+)
+,  1.0 )
+)
+)
 
 </div>
-</dd>
-<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/quant1.html#forall">
+               <div>
+                  <button id="d40e402mmla" style="width:10em; background-color:#AAFFAA"
+                          onclick="divfold('d40e402mml')">MathML</button>
+               </div>
+               <div id="d40e402mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mo>∀</mo>
+                        <mo> </mo>
+                        <mrow>
+                           <mi>x</mi>
+                        </mrow>
+                        <mo>.</mo>
+                        <mrow>
+                           <mrow>
+                              <mi>x</mi>
+                              <mo>∈</mo>
+                              <mi mathvariant="double-struck">R</mi>
+                           </mrow>
+                           <mo>⇒</mo>
+                           <mrow>
+                              <mrow>
+                                 <mo>|</mo>
+                                 <mrow>
+                                    <mi>sin</mi>
+                                    <mo>⁡</mo>
+                                    <mrow>
+                                       <mo>(</mo>
+                                       <mi>x</mi>
+                                       <mo>)</mo>
+                                    </mrow>
+                                 </mrow>
+                                 <mo>|</mo>
+                              </mrow>
+                              <mo>≤</mo>
+                              <mn>1.0</mn>
+                           </mrow>
+                        </mrow>
+                     </mrow>
+                  </m:math>
+               </div>
+            </dd>
+            <dt>
+               <span class="dt">Signatures:</span>
+            </dt>
+            <dd>
+               <a href="../sts/quant1.xhtml#forall">
 	sts
-      </a></dd></dl><hr/><table width="100%"><tr><td align="right"><font size="-1">[Next: <a href="#exists">exists</a>]
+      </a>
+            </dd>
+         </dl>
+      </div>
+      <div>[Next: <a href="#exists">exists</a>]
+	   [This: <a href="#forall">forall</a>]
+	
 	    [Last: <a href="#exists">exists</a>]
 	  
-      [<a href="#top">Top</a>]</font></td></tr></table>
+      [<a href="#top">Top</a>]
+ </div>
 
-<hr/><dl>
-<dt><u><b><span class="dt">Symbol:</span></b></u></dt><dd><a name="exists">exists</a></dd>
-  <dt><span class="dt">Pragmatic MathML:</span></dt><dd>
-    <code>&lt;exists/&gt;</code>
-  </dd>
-<dt><span class="dt">Role:</span></dt><dd>binder</dd>
-<dt><span class="dt">Description:</span></dt><dd><p> 
+      <div class="cddefinition">
+         <h2>
+            <a name="exists">Symbol Definition: exists</a>
+         </h2>
+         <dl>
+            <dt>
+               <span class="dt">Pragmatic MathML:</span>
+            </dt>
+            <dd>
+               <code>&lt;exists/&gt;</code>
+            </dd>
+            <dt>
+               <span class="dt">Role:</span>
+            </dt>
+            <dd>binder</dd>
+            <dt>
+               <span class="dt">Description:</span>
+            </dt>
+            <dd>
+               <p> 
 This symbol represents the existential ("there exists") quantifier
 which takes two arguments. It must be placed within an OMBIND element. The first
 argument is the bound variables (placed within an OMBVAR element), and the second
 is an expression.
-</p></dd>
-<dt><span class="dt">Example:</span></dt><dd>
+</p>
+            </dd>
+            <dt>
+               <span class="dt">description:</span>
+            </dt>
+            <dd>
+               <p>
+          This is the MathML operator that is used to assert existence, as in "There
+          exists an x such that x is real and x is positive."
+          - The first argument indicates the bound variable,
+          - The second optional argument places conditions on that
+bound variable. 
+          - The last argument is the expression
+that is asserted to be true.
+        </p>
+            </dd>
+            <dt>
+               <span class="dt">discussion:</span>
+            </dt>
+            <dd>
+               <p>
+	  The exists element represents the existential quantifier of
+	  logic. Typically, it is used in conjunction with one or more bound variables, an
+	  optional condition element, and an assertion, which may take the form
+	  of either an apply or reln element.The exists element
+	  may also be used with a general domain of application and function as described
+	  in .  For such uses the assertion is obtained
+	  by applying the function to an element of the specified domain.
+	  The universal quantifier forall is used in conjunction with one or
+	  more bvar schemata to represent simple logical assertions. There are
+	  two main main ways of using the logical quantifier operators. The first usage is
+	  for representing a simple, quantified assertion.  For example, the statement
+	  there exists x &lt; 9 would be represented as:</p>
+               <p>
+  
+  x
+  x9</p>
+               <p>
+The second usage is for representing implications. Hypotheses are given by a
+condition element following the bound variables. For example the statement
+for all x &lt; 9, x &lt; 10 would be represented as:</p>
+               <p>
+  
+  x
+  x9
+  x10</p>
+               <p>
+Note that in both these usages one or more bvar qualifiers are mandatory.
+	</p>
+            </dd>
+            <dt>
+               <span class="dt">Example:</span>
+            </dt>
+            <dd>
+		             <p>The following example encodes the sense of the expression there exists an x such that f(x) = 0.
+		</p>
+		             <div>
+                  <button id="d40e604xmla" style="width:10em; background-color:#CCCCCC"
+                          onclick="divfold('d40e604xml')">XML (MathML)</button>
+               </div>
+               <pre id="d40e604xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+		&lt;bind&gt;&lt;exists/&gt;
+		  &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+		  &lt;apply&gt;&lt;eq/&gt;
+		    &lt;apply&gt;&lt;ci&gt;f&lt;/ci&gt;
+		      &lt;ci&gt;x&lt;/ci&gt;
+		    &lt;/apply&gt;
+		    &lt;cn&gt;0&lt;/cn&gt;
+		  &lt;/apply&gt;
+		&lt;/bind&gt;
+&lt;/math&gt;</pre>
+               <div>
+                  <button id="d40e604cmmla" style="width:10em; background-color:#CCCCCC"
+                          onclick="divfold('d40e604cmml')">OpenMath</button>
+               </div>
+               <pre id="d40e604cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
+		&lt;OMBIND&gt;&lt;OMS cd="quant1" name="exists"/&gt;&lt;OMBVAR&gt;&lt;OMV name="x"/&gt;&lt;/OMBVAR&gt;&lt;OMA&gt;&lt;OMS cd="relation1" name="eq"/&gt;
+		    &lt;OMA&gt;&lt;OMV name="f"/&gt;
+		      &lt;OMV name="x"/&gt;
+		    &lt;/OMA&gt;
+		    &lt;OMI&gt;0&lt;/OMI&gt;
+		  &lt;/OMA&gt;&lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d40e604prefa" style="width:10em; background-color:#CCCCCC"
+                          onclick="divfold('d40e604pref')">Prefix form</button>
+               </div>
+               <div id="d40e604pref" style="display:none; margin-top: 0.5em">
+		                <a href="quant1.xhtml#exists">exists</a>
+[ <i>x</i>] .
+(<a href="relation1.xhtml#eq">eq</a>
+( <i>f</i>
+( <i>x</i>)
+, 0)
+)
+
+</div>
+               <div>
+                  <button id="d40e604mmla" style="width:10em; background-color:#AAFFAA"
+                          onclick="divfold('d40e604mml')">MathML</button>
+               </div>
+               <div id="d40e604mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mo>∃</mo>
+                        <mo> </mo>
+                        <mrow>
+                           <mi>x</mi>
+                        </mrow>
+                        <mo>.</mo>
+                        <mrow>
+                           <mrow>
+                              <mi>f</mi>
+                              <mo>⁡</mo>
+                              <mrow>
+                                 <mo>(</mo>
+                                 <mi>x</mi>
+                                 <mo>)</mo>
+                              </mrow>
+                           </mrow>
+                           <mo>=</mo>
+                           <mn>0</mn>
+                        </mrow>
+                     </mrow>
+                  </m:math>
+               </div>
+            </dd>
+            <dt>
+               <span class="dt">Example:</span>
+            </dt>
+            <dd>
+               <div>
+                  <button id="d40e631xmla" style="width:10em; background-color:#CCCCCC"
+                          onclick="divfold('d40e631xml')">XML (MathML)</button>
+               </div>
+               <pre id="d40e631xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;bind&gt;
+  &lt;exists/&gt;
+  &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+  &lt;domainofapplication&gt;
+    &lt;ci type="set"&gt;C&lt;/ci&gt;
+  &lt;/domainofapplication&gt;
+  &lt;apply&gt;
+    &lt;eq/&gt;
+    &lt;apply&gt;
+      &lt;power/&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;cn&gt;2&lt;/cn&gt;
+    &lt;/apply&gt;
+    &lt;cn&gt;4&lt;/cn&gt;
+  &lt;/apply&gt;
+&lt;/bind&gt;
+&lt;/math&gt;</pre>
+               <div>
+                  <button id="d40e631cmmla" style="width:10em; background-color:#CCCCCC"
+                          onclick="divfold('d40e631cmml')">OpenMath</button>
+               </div>
+               <pre id="d40e631cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
+&lt;OMBIND&gt;&lt;OMS cd="quant1" name="exists"/&gt;&lt;OMBVAR&gt;&lt;OMV name="x"/&gt;&lt;/OMBVAR&gt;&lt;OMA&gt;
+    &lt;OMS cd="relation1" name="eq"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="arith1" name="power"/&gt;&lt;OMV name="x"/&gt;&lt;OMI&gt;2&lt;/OMI&gt;
+    &lt;/OMA&gt;
+    &lt;OMI&gt;4&lt;/OMI&gt;
+  &lt;/OMA&gt;&lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d40e631prefa" style="width:10em; background-color:#CCCCCC"
+                          onclick="divfold('d40e631pref')">Prefix form</button>
+               </div>
+               <div id="d40e631pref" style="display:none; margin-top: 0.5em">
+                  <a href="quant1.xhtml#exists">exists</a>
+[ <i>x</i>] .
+(<a href="relation1.xhtml#eq">eq</a>
+(<a href="arith1.xhtml#power">power</a>
+( <i>x</i>, 2)
+, 4)
+)
+
+</div>
+               <div>
+                  <button id="d40e631mmla" style="width:10em; background-color:#AAFFAA"
+                          onclick="divfold('d40e631mml')">MathML</button>
+               </div>
+               <div id="d40e631mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mo>∃</mo>
+                        <mo> </mo>
+                        <mrow>
+                           <mi>x</mi>
+                        </mrow>
+                        <mo>.</mo>
+                        <mrow>
+                           <msup>
+                              <mi>x</mi>
+                              <mn>2</mn>
+                           </msup>
+                           <mo>=</mo>
+                           <mn>4</mn>
+                        </mrow>
+                     </mrow>
+                  </m:math>
+               </div>
+            </dd>
+            <dt>
+               <span class="dt">Example:</span>
+            </dt>
+            <dd>
 An example  which represents the statement that there is no solution
 to x^n+y^n=z^n for n&gt;2, that is:
 it is not true that there exists x,y,z,n | n&gt;2 and x^n+y^n=z^n
 
-<div><button id="id73415xmla" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73415xml')">xml</button> <button id="id73415prefa" style="width:6em; background-color:#CCCCCC" onclick="divfold('id73415pref')">prefix</button> <button id="id73415mmla" style="width:6em; background-color:#AAFFAA" onclick="divfold('id73415mml')">mathml</button></div><pre id="id73415xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+<div>
+                  <button id="d40e670xmla" style="width:10em; background-color:#CCCCCC"
+                          onclick="divfold('d40e670xml')">XML (OpenMath)</button>
+               </div>
+               <pre id="d40e670xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMA&gt;
     &lt;OMS cd="logic1" name="not"/&gt;
     &lt;OMBIND&gt;
@@ -199,23 +986,201 @@ it is not true that there exists x,y,z,n | n&gt;2 and x^n+y^n=z^n
       &lt;/OMA&gt;
     &lt;/OMBIND&gt;
   &lt;/OMA&gt;
-&lt;/OMOBJ&gt;</pre><div id="id73415pref" style="display:none; margin-top: 0.5em">
-  <a href="logic1.html#not">not</a>(<a href="quant1.html#exists">exists</a>
+&lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d40e670cmmla" style="width:10em; background-color:#CCCCCC"
+                          onclick="divfold('d40e670cmml')">Content MathML</button>
+               </div>
+               <pre id="d40e670cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+  &lt;apply&gt;
+    &lt;csymbol cd="logic1"&gt;not&lt;/csymbol&gt;
+    &lt;bind&gt;
+      &lt;csymbol cd="quant1"&gt;exists&lt;/csymbol&gt;
+      &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;z&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;n&lt;/ci&gt;&lt;/bvar&gt;
+      &lt;apply&gt;
+        &lt;csymbol cd="logic1"&gt;and&lt;/csymbol&gt;
+        &lt;apply&gt;
+          &lt;csymbol cd="set1"&gt;in&lt;/csymbol&gt;
+          &lt;ci&gt;x&lt;/ci&gt;
+          &lt;csymbol cd="setname1"&gt;Z&lt;/csymbol&gt;
+        &lt;/apply&gt;
+        &lt;apply&gt;
+          &lt;csymbol cd="set1"&gt;in&lt;/csymbol&gt;
+          &lt;ci&gt;y&lt;/ci&gt;
+          &lt;csymbol cd="setname1"&gt;Z&lt;/csymbol&gt;
+        &lt;/apply&gt;
+        &lt;apply&gt;
+          &lt;csymbol cd="set1"&gt;in&lt;/csymbol&gt;
+          &lt;ci&gt;z&lt;/ci&gt;
+          &lt;csymbol cd="setname1"&gt;Z&lt;/csymbol&gt;
+        &lt;/apply&gt;
+        &lt;apply&gt;
+          &lt;csymbol cd="set1"&gt;in&lt;/csymbol&gt;
+          &lt;ci&gt;n&lt;/ci&gt;
+          &lt;csymbol cd="setname1"&gt;Z&lt;/csymbol&gt;
+        &lt;/apply&gt;
+        &lt;apply&gt;
+          &lt;csymbol cd="relation1"&gt;gt&lt;/csymbol&gt;
+          &lt;ci&gt;n&lt;/ci&gt;
+          &lt;cn&gt; 2 &lt;/cn&gt;
+        &lt;/apply&gt;
+        &lt;apply&gt;
+          &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
+          &lt;apply&gt;
+            &lt;csymbol cd="arith1"&gt;plus&lt;/csymbol&gt;
+            &lt;apply&gt;
+               &lt;csymbol cd="arith1"&gt;power&lt;/csymbol&gt;
+               &lt;ci&gt;x&lt;/ci&gt;
+               &lt;ci&gt;n&lt;/ci&gt;
+            &lt;/apply&gt;
+            &lt;apply&gt;
+               &lt;csymbol cd="arith1"&gt;power&lt;/csymbol&gt;
+               &lt;ci&gt;y&lt;/ci&gt;
+               &lt;ci&gt;n&lt;/ci&gt;
+            &lt;/apply&gt;
+          &lt;/apply&gt;
+          &lt;apply&gt;
+             &lt;csymbol cd="arith1"&gt;power&lt;/csymbol&gt;
+             &lt;ci&gt;z&lt;/ci&gt;
+             &lt;ci&gt;n&lt;/ci&gt;
+          &lt;/apply&gt;
+        &lt;/apply&gt;
+      &lt;/apply&gt;
+    &lt;/bind&gt;
+  &lt;/apply&gt;
+&lt;/math&gt;</pre>
+               <div>
+                  <button id="d40e670prefa" style="width:10em; background-color:#CCCCCC"
+                          onclick="divfold('d40e670pref')">Prefix form</button>
+               </div>
+               <div id="d40e670pref" style="display:none; margin-top: 0.5em">
+                  <a href="logic1.xhtml#not">not</a>
+(<a href="quant1.xhtml#exists">exists</a>
 [
-        <i>x</i>
-        <i>y</i>
-        <i>z</i>
-        <i>n</i>
+         <i>x</i>
+                  <i>y</i>
+                  <i>z</i>
+                  <i>n</i>
       ] .
-(<a href="logic1.html#and">and</a>(<a href="set1.html#in">in</a>(<i>x</i>, <a href="setname1.html#Z">Z</a>), <a href="set1.html#in">in</a>(<i>y</i>, <a href="setname1.html#Z">Z</a>), <a href="set1.html#in">in</a>(<i>z</i>, <a href="setname1.html#Z">Z</a>), <a href="set1.html#in">in</a>(<i>n</i>, <a href="setname1.html#Z">Z</a>), <a href="relation1.html#gt">gt</a>(<i>n</i>,  2 ), <a href="relation1.html#eq">eq</a>(<a href="arith1.html#plus">plus</a>(<a href="arith1.html#power">power</a>(<i>x</i>, <i>n</i>), <a href="arith1.html#power">power</a>(<i>y</i>, <i>n</i>)), <a href="arith1.html#power">power</a>(<i>z</i>, <i>n</i>))))
+(<a href="logic1.xhtml#and">and</a>
+(<a href="set1.xhtml#in">in</a>
+( <i>x</i>, <a href="setname1.xhtml#Z">Z</a>)
+, <a href="set1.xhtml#in">in</a>
+( <i>y</i>, <a href="setname1.xhtml#Z">Z</a>)
+, <a href="set1.xhtml#in">in</a>
+( <i>z</i>, <a href="setname1.xhtml#Z">Z</a>)
+, <a href="set1.xhtml#in">in</a>
+( <i>n</i>, <a href="setname1.xhtml#Z">Z</a>)
+, <a href="relation1.xhtml#gt">gt</a>
+( <i>n</i>,  2 )
+, <a href="relation1.xhtml#eq">eq</a>
+(<a href="arith1.xhtml#plus">plus</a>
+(<a href="arith1.xhtml#power">power</a>
+( <i>x</i>,  <i>n</i>)
+, <a href="arith1.xhtml#power">power</a>
+( <i>y</i>,  <i>n</i>)
 )
-</div>
-</dd>
-<dt><span class="dt">Signatures:</span></dt><dd><a href="../sts/quant1.html#exists">
-	sts
-      </a></dd></dl><hr/><table width="100%"><tr><td align="right"><font size="-1">
-	    [First: <a href="#forall">forall</a>]
-	  [Previous: <a href="#forall">forall</a>]
-      [<a href="#top">Top</a>]</font></td></tr></table>
+, <a href="arith1.xhtml#power">power</a>
+( <i>z</i>,  <i>n</i>)
+)
+)
+)
+)
 
-</body></html>
+</div>
+               <div>
+                  <button id="d40e670mmla" style="width:10em; background-color:#AAFFAA"
+                          onclick="divfold('d40e670mml')">MathML</button>
+               </div>
+               <div id="d40e670mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mo xmlns="http://www.w3.org/1998/Math/MathML"
+                         xmlns:om="http://www.openmath.org/OpenMath">¬</mo>
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mo>∃</mo>
+                        <mo> </mo>
+                        <mrow>
+                           <mi>x</mi>
+                           <mo>,</mo>
+                           <mi>y</mi>
+                           <mo>,</mo>
+                           <mi>z</mi>
+                           <mo>,</mo>
+                           <mi>n</mi>
+                        </mrow>
+                        <mo>.</mo>
+                        <mrow>
+                           <mrow>
+                              <mi>x</mi>
+                              <mo>∈</mo>
+                              <mi mathvariant="double-struck">Z</mi>
+                           </mrow>
+                           <mo>∧</mo>
+                           <mrow>
+                              <mi>y</mi>
+                              <mo>∈</mo>
+                              <mi mathvariant="double-struck">Z</mi>
+                           </mrow>
+                           <mo>∧</mo>
+                           <mrow>
+                              <mi>z</mi>
+                              <mo>∈</mo>
+                              <mi mathvariant="double-struck">Z</mi>
+                           </mrow>
+                           <mo>∧</mo>
+                           <mrow>
+                              <mi>n</mi>
+                              <mo>∈</mo>
+                              <mi mathvariant="double-struck">Z</mi>
+                           </mrow>
+                           <mo>∧</mo>
+                           <mrow>
+                              <mi>n</mi>
+                              <mo>&gt;</mo>
+                              <mn> 2 </mn>
+                           </mrow>
+                           <mo>∧</mo>
+                           <mrow>
+                              <mrow>
+                                 <msup>
+                                    <mi>x</mi>
+                                    <mi>n</mi>
+                                 </msup>
+                                 <mo>+</mo>
+                                 <msup>
+                                    <mi>y</mi>
+                                    <mi>n</mi>
+                                 </msup>
+                              </mrow>
+                              <mo>=</mo>
+                              <msup>
+                                 <mi>z</mi>
+                                 <mi>n</mi>
+                              </msup>
+                           </mrow>
+                        </mrow>
+                     </mrow>
+                  </m:math>
+               </div>
+            </dd>
+            <dt>
+               <span class="dt">Signatures:</span>
+            </dt>
+            <dd>
+               <a href="../sts/quant1.xhtml#exists">
+	sts
+      </a>
+            </dd>
+         </dl>
+      </div>
+      <div>
+	    [First: <a href="#forall">forall</a>]
+	  
+	   [This: <a href="#exists">exists</a>]
+	[Previous: <a href="#forall">forall</a>]
+      [<a href="#top">Top</a>]
+ </div>
+
+   </body>
+</html>
