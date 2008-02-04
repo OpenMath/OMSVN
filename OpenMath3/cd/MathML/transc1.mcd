@@ -49,226 +49,47 @@
 
   <MMLdefinition id="cds_exp" cdrole="application" arity="2">
     <name>exp</name>
-    <description>
-      <p>This element represents the exponentiation function as described in
-      Abramowitz and Stegun, section 4.2.  It takes one argument. </p>
-    </description>
-    <discussion>
-      <p>The <el>exp</el> element represents the exponential
-      function associated with the inverse of the <el>ln</el>
-      function. In particular, exp(1) is approximately 2.718281828.</p>
-    </discussion>
-    <property><![CDATA[<apply><eq/>
-  <apply><exp/><cn>0</cn></apply>
-  <cn>1</cn>
-</apply>]]></property>
-
-    <property>
-          <description>
-            <p>for all k if k is an integer then e^(z+2*pi*k*i)=e^z </p>
-          </description>
-        </property>
-        <MMLexample><![CDATA[<apply><exp/><ci>x</ci></apply>]]></MMLexample>
+    
       </MMLdefinition>
       
 	  <MMLdefinition id="cds_ln" cdrole="application" arity="1">
         <name>ln</name>
-        <description>
-          <p>This element represents the ln function (natural logarithm) as described in
-          Abramowitz and Stegun, section 4.1.  It takes one argument.</p>
-        </description>
-	<discussion>
-	  <p>The <el>ln</el> element represents the natural logarithm
-	  function.</p>
-	</discussion>
-        <property>
-          <description>
-            <p>-pi lt Im ln x leq pi </p>
-          </description>
-        </property>
-        <MMLexample>
-		<description>
-        <p>If <var>a</var> = <var>e</var>, (where <var>e</var> is the base of the natural logarithms) this will yield the value 1.</p>
-        </description>
-		<![CDATA[<apply><ln/><ci>a</ci></apply>]]></MMLexample>
+        
       </MMLdefinition>
       
       <MMLdefinition id="cds_log" cdrole="application" arity="2">
         <name>log</name>
-        <description>
-          <p>This element represents the log function.  It is defined in Abramowitz and
-          Stegun, Handbook of Mathematical Functions, section 4.1 If its first argument is
-          a logbase element, it specifies the base and the second argument is the argument
-          to which the function is applied using that base.  If no logbase element is
-          present, the base is assumed to be 10.</p>
-        </description>
-	<discussion>
-	  <p>The <el>log</el> element is the operator that returns a logarithm to a given
-	  base. The base may be specified using a <el>logbase</el> element, which should
-	  be the first element following <el>log</el>, i.e. the second child of the
-	  containing <el>apply</el> element. If the <el>logbase</el> element is not
-	  present, a default base of 10 is assumed.</p>
-
-	  <p>The <el>log</el> function accepts only the <el>logbase</el> schema. If
-	  present, the <el>logbase</el> schema denotes the base with respect to which the
-	  logarithm is being taken. Otherwise, the log is assumed to be base 10. When used
-	  with <el>log</el>, the <el>logbase</el> schema is expected to contain a single
-	  child schema; otherwise an error is generated.</p>
-	</discussion>
-        <property>
-          <description>
-            <p>a^b = c implies log_a c = b </p>
-          </description>
-        </property>
-        <MMLexample>
-		<description>
-        <p>This markup represents <quote>the base 3 logarithm of x</quote>. For natural logarithms base e, the <el>ln</el> element should be used instead.</p>
-        </description>
-		<![CDATA[<apply><log/>
-  <logbase><cn>3</cn></logbase>
-  <ci>x</ci>
-</apply>
-]]></MMLexample>
-        <MMLexample><![CDATA[<apply><log/><ci>x</ci></apply>]]></MMLexample>
+       
       </MMLdefinition>
       
 	  <MMLdefinition id="cds_sin" cdrole="application" arity="1">
         <name>sin</name>
-        <description>
-          <p>This element represents the sin function as described in Abramowitz and
-          Stegun, section 4.3. It takes one argument. </p>
-        </description>
-
-        <property>
-          <description>
-            <p> sin(0) = 0 </p>
-          </description>
-        </property>
-        <property>
-          <description>
-            <p> sin(integer*Pi) = 0</p>
-          </description><![CDATA[ ]]></property>
-        <property>
-          <description>
-            <p>sin(x) = (exp(ix)-exp(-ix))/2i </p>
-          </description>
-        </property>
-        <MMLexample><![CDATA[<apply><sin/><ci>x</ci></apply>]]></MMLexample>
-	<MMLexample><![CDATA[
-<apply>
-  <sin/>
-  <apply>
-    <plus/>
-    <apply><cos/>
-      <ci>x</ci>
-    </apply>
-    <apply>
-      <power/>
-      <ci>x</ci>
-      <cn>3</cn>
-    </apply>
-  </apply>
-</apply>
-]]>
-</MMLexample>
+       
       </MMLdefinition>
 
       <MMLdefinition id="cds_cos" cdrole="application" arity="1">
         <name>cos</name>
-        <description>
-          <p>This element represents the cos function as described in
-Abramowitz and Stegun, section 4.3. It takes one argument. 
-It takes one argument.   </p>
-        </description>
-        <property>
-          <description>
-            <p> cos(0) = 1</p>
-          </description><![CDATA[ ]]></property>
-        <property>
-          <description>
-            <p> cos(integer*Pi+Pi/2) = 0 </p>
-          </description>
-        </property>
-        <property>
-          <description>
-            <p>cos(x) = (exp(ix)+exp(-ix))/2 </p>
-          </description>
-        </property>
-        <MMLexample><![CDATA[<apply><cos/><ci>x</ci></apply>]]></MMLexample>
+        
       </MMLdefinition>
 
       <MMLdefinition id="cds_tan" cdrole="application"  arity="1">
         <name>tan</name>
-        <description>
-          <p>This element represents the tan function as described in 
-Abramowitz and Stegun, section 4.3. It takes one argument. </p>
-        </description>
-        <property>
-          <description>
-            <p> tan(integer*Pi) = 0 </p>
-          </description>
-        </property>
-        <property>
-          <description>
-            <p> tan(x) = sin(x)/cos(x)</p>
-          </description><![CDATA[ ]]></property>
-        <MMLexample><![CDATA[<apply><tan/><ci>x</ci></apply>]]></MMLexample>
+        
       </MMLdefinition>
 
       <MMLdefinition id="cds_sec" cdrole="application"  arity="1">
         <name>sec</name>
-        <description>
-          <p>This element represents the sec function 
-as described in Abramowitz and Stegun, section 4.3. 
-It takes one argument. </p>
-        </description>
-        <property>
-          <description>
-            <p> sec(x) = 1/cos(x) </p>
-          </description>
-        </property>
-        <MMLexample><![CDATA[<apply><sec/><ci>x</ci></apply>]]></MMLexample>
+        
       </MMLdefinition>
 
       <MMLdefinition id="cds_csc" cdrole="application"  arity="1">
         <name>csc</name>
-        <description>
-          <p>This element represents the csc function as 
-described in Abramowitz and Stegun, section 4.3. 
-It takes one argument. </p>
-        </description>
-
-        <property>
-          <description>
-            <p> csc(x) = 1/sin(x) </p>
-          </description>
-        </property>
-        <MMLexample><![CDATA[<apply><csc/><ci>x</ci></apply>]]></MMLexample>
+        
       </MMLdefinition>
 
       <MMLdefinition id="cds_cot" cdrole="application"  arity="1">
         <name>cot</name>
-        <description>
-          <p>This element represents the cot function as described in 
-Abramowitz and Stegun, section 4.3. It takes one argument.  
-It takes one argument.  </p>
-        </description>
-
-        <property>
-          <description>
-            <p> cot(integer*Pi+Pi/2) = 0</p>
-          </description><![CDATA[ ]]></property>
-        <property>
-          <description>
-            <p> cot(x) = cos(x)/sin(x) </p>
-          </description>
-        </property>
-        <property>
-          <description>
-            <p>cot A = 1/tan A </p>
-          </description>
-        </property>
-        <MMLexample><![CDATA[<apply><cot/><ci>x</ci></apply>]]></MMLexample>
+       
       </MMLdefinition>
 
       <MMLdefinition id="cds_sinh" cdrole="application"  arity="1">
