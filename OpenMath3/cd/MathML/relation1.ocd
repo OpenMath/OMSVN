@@ -47,7 +47,7 @@
     to be `compatible' with the appropriate MathML elements.
 </Description>
 
-<CDDefinition>
+<CDDefinition xml:id="eq">
 <Name>eq</Name>
   <Pragmatic>
     <Token>eq</Token>
@@ -56,6 +56,41 @@
 <Description> 
 This symbol represents the binary equality function.
 </Description>
+
+<!-- new part -->
+<description>
+      <p>This n-ary function is used to indicate that two or more quantities are
+      equal.  There must be at least two arguments.</p>
+    </description>
+    <discussion>
+      <p>The <el>eq</el> element is the relational operator
+      <quote>equals</quote>.</p>
+      <p>As an n-ary operator, its operands may also be generated as described in <specref
+      ref="contm_naryopwithqual"/> Therefore it may take qualifiers.
+      </p>
+    </discussion>
+
+    <property>
+      <description><p>Symmetric</p></description>
+    </property>
+    <property>
+      <description><p>Transitive</p></description>
+    </property>
+    <property>
+      <description><p>Reflexive</p></description>
+    </property>
+    <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><eq/>
+  <cn type="rational">2<sep/>4</cn><cn type="rational">1<sep/>2</cn>
+</apply></math></MMLexample>
+    <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><eq/><ci type="set">A</ci><ci type="set">B</ci></apply></math></MMLexample>
+    <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><eq/><ci type="multiset">A</ci><ci type="multiset">B</ci></apply></math></MMLexample>
+    <MMLexample>
+      <description><p>If this were tested at <var>a</var> = 5.5 and <var>b</var> = 6 it
+      would yield the truth value <kw>false</kw>.</p>
+      </description><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><eq/><ci>a</ci><ci>b</ci></apply></math></MMLexample>
+<!-- end new part -->
+
+<property xml:id="eq_prop_1">
 <CMP>
 a=b and b=c implies a=c
 </CMP>
@@ -81,7 +116,7 @@ a=b and b=c implies a=c
     <OMV name="c"/>
   </OMA>
 </OMA>
-</OMOBJ></FMP>
+</OMOBJ></FMP></property>
 
 <Example>
 An example which represents the statement 1 + 2 = 3.
@@ -99,7 +134,7 @@ An example which represents the statement 1 + 2 = 3.
 </Example>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="lt">
 <Name>lt</Name>
   <Pragmatic>
     <Token>lt</Token>
@@ -110,6 +145,40 @@ This symbol represents the binary less than function which returns
 true if the first argument is less than the second, it returns false
 otherwise.
 </Description>
+
+<!-- new part -->
+<description>
+          <p>This n-ary function represents the relation "less than" which returns true if
+          each argument in turn is less than the one following it.  There must be at least
+          two arguments. </p>
+        </description>
+	<discussion>
+	  <p>The <el>lt</el> element is the <quote>less than</quote> relational
+	  operator.</p>
+	  <p>The <el>lt</el> element is an <emph>n-ary relation</emph>.  As an n-ary
+	  operator, its operands may also be generated as described in <specref
+	  ref="contm_naryopwithqual"/> Therefore it may take qualifiers.</p>
+	</discussion>
+        <property>
+          <description>
+            <p>Transitive</p>
+          </description>
+        </property>
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><lt/><cn>2</cn><cn>3</cn><cn>4</cn></apply></math></MMLexample>
+		<MMLexample>
+		<description>
+        <p>If this were tested at <var>a</var> = 5.5 and <var>b</var> = 6 it would yield the truth value <quote>true</quote>.</p>
+        </description>
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+		<apply>
+		  <lt/>
+		  <ci>a</ci>
+		  <ci>b</ci>
+		</apply>
+		</math></MMLexample>
+<!-- end new part -->
+
+<property xml:id="lt_prop_2">
 <CMP>
 a&lt;b and b&lt;c implies a&lt;c
 </CMP>
@@ -135,7 +204,7 @@ a&lt;b and b&lt;c implies a&lt;c
     <OMV name="c"/>
   </OMA>
 </OMA>
-</OMOBJ></FMP>
+</OMOBJ></FMP></property>
 
 <Example>
 An example which represents the statement 1 + 2 &lt; 4
@@ -153,7 +222,7 @@ An example which represents the statement 1 + 2 &lt; 4
 </Example>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="gt">
 <Name>gt</Name>
   <Pragmatic>
     <Token>gt</Token>
@@ -164,6 +233,36 @@ This symbol represents the binary greater than function which returns
 true if the first argument is greater than the second, it returns false
 otherwise.
 </Description>
+
+<!-- new part -->
+<description>
+          <p>This n-ary function represents the relation "greater than" which returns true
+          if each argument in turn is greater than the one following it.  There must be at
+          least two arguments. </p>
+        </description>
+	<discussion>
+	  <p>The <el>gt</el> element is the <quote>greater than</quote> relational
+	  operator.</p>
+	  <p>The <el>gt</el> element is an <emph>n-ary relation</emph>.  As an n-ary
+	  operator, its operands may also be generated as described in <specref
+	  ref="contm_naryopwithqual"/> Therefore it may take qualifiers.
+	  </p>
+	</discussion>
+        <property>
+          <description>
+            <p>Transitive</p>
+          </description>
+        </property>
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><gt/><cn>3</cn><cn>2</cn></apply></math></MMLexample>
+	<MMLexample>
+	  <description>
+	    <p>If this were tested at <var>a</var> = 5.5 and <var>b</var> = 6 it would
+	    yield the truth value <kw>false</kw>.</p>
+	  </description>
+	<math xmlns="http://www.w3.org/1998/Math/MathML"><apply><gt/><ci>a</ci><ci>b</ci></apply></math></MMLexample>
+<!-- end new part -->
+
+<property xml:id="gt_prop_3">
 <CMP>
 a&gt;b and b&gt;c implies a&gt;c
 </CMP>
@@ -189,7 +288,7 @@ a&gt;b and b&gt;c implies a&gt;c
     <OMV name="c"/>
   </OMA>
 </OMA>
-</OMOBJ></FMP>
+</OMOBJ></FMP></math>
 
 <Example>
 An example which represents the statement 1 + 2 &gt; 2
@@ -207,7 +306,7 @@ An example which represents the statement 1 + 2 &gt; 2
 </Example>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="neq">
 <Name>neq</Name>
   <Pragmatic>
     <Token>neq</Token>
@@ -217,6 +316,35 @@ An example which represents the statement 1 + 2 &gt; 2
 This symbol represents the binary inequality function.
 </Description>
 
+<!-- new part -->
+ <description>
+      <p>This binary relation represents the relation "not equal to" which returns true
+      unless the two arguments are equal.</p>
+    </description>
+    <discussion>
+      <p>The <el>neq</el> element is the <quote>not equal to</quote> relational
+      operator.</p>
+    </discussion>
+        <property>
+          <description>
+            <p> Symmetric</p>
+          </description>
+        </property>
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><neq/><cn>3</cn><cn>4</cn></apply></math></MMLexample>
+		<MMLexample>
+		<description>
+        <p>If this were tested at <var>a</var> = 5.5 and <var>b</var> = 6 it would yield the truth value <kw>true</kw>.</p>
+        </description>
+		  <math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply>
+			  <neq/>
+			  <ci>a</ci>
+			  <ci>b</ci>
+			</apply>
+			</math></MMLexample>
+<!-- end new part -->
+
+<property xml:id="neq_prop_4">
 <CMP> it is not true that a=/b and b=/c implies a=/c </CMP>
 
 <FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
@@ -244,7 +372,7 @@ This symbol represents the binary inequality function.
     </OMA>
   </OMA>
 </OMA>
-</OMOBJ></FMP>
+</OMOBJ></FMP></property>
 <Example>
 An example which represents the statement 1 + 2 not = 2
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
@@ -261,7 +389,7 @@ An example which represents the statement 1 + 2 not = 2
 </Example>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="leq">
 <Name>leq</Name>
   <Pragmatic>
     <Token>leq</Token>
@@ -272,6 +400,45 @@ This symbol represents the binary less than or equal to function which returns
 true if the first argument is less than or equal to the second, it
 returns false otherwise.
 </Description>
+
+<!-- new part -->
+<description>
+          <p>This n-ary function represents the relation "less than or equal to" which
+          returns true if each argument in turn is less or equal to the one following
+          it. There must be at least two arguments. </p>
+        </description>
+	<discussion>
+	  <p>The <el>leq</el> element is the relational operator <quote>less than or
+	  equal</quote>.</p>
+	  <p>The <el>leq</el> element is an <emph>n-ary relation</emph>.  As an n-ary
+	  operator, its operands may also be generated as described in <specref
+	  ref="contm_naryopwithqual"/> Therefore it may take qualifiers.</p>
+	</discussion>
+        <property>
+          <description>
+            <p>Transitive</p>
+          </description>
+        </property>
+        <property>
+          <description>
+            <p>Reflexive</p>
+          </description>
+        </property>
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><leq/><cn>3</cn><cn>3</cn><cn>4</cn></apply></math></MMLexample>
+		<MMLexample>
+		<description>
+        <p>If <var>a</var> = 5.4 and <var>b</var> = 5.5 this will yield the truth value <kw>true</kw>.</p>  
+        </description>
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+		<apply>
+		  <leq/>
+		  <ci>a</ci>
+		  <ci>b</ci>
+		</apply>
+		</math></MMLexample>
+<!-- end new part -->
+
+<property xml:id="leq_prop_5">
 <CMP>
 a&lt;=b and b&lt;=c implies a&lt;=c
 </CMP>
@@ -297,7 +464,7 @@ a&lt;=b and b&lt;=c implies a&lt;=c
     <OMV name="c"/>
   </OMA>
 </OMA>
-</OMOBJ></FMP>
+</OMOBJ></FMP></property>
 
 <Example>
 An example which represents the statement 1 + 2 &lt;= 4
@@ -315,7 +482,7 @@ An example which represents the statement 1 + 2 &lt;= 4
 </Example>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="geq">
 <Name>geq</Name>
   <Pragmatic>
     <Token>geq</Token>
@@ -326,6 +493,46 @@ This symbol represents the binary greater than or equal to function
 which returns true if the first argument is greater than or equal to
 the second, it returns false otherwise.
 </Description>
+
+<!-- new part -->
+ <description>
+          <p>This element represents the n-ary greater than or equal to function.  which
+          returns true if each argument in turn is greater than or equal to the one
+          following it. . There must be at least two arguments. </p>
+        </description>
+	<discussion>
+	  <p>The <el>geq</el> element is the relational operator <quote>greater than or
+	  equal</quote>.</p>
+	  <p>The <el>geq</el> element is an <emph>n-ary relation</emph>.  As an n-ary
+	  operator, its operands may also be generated as described in <specref
+	  ref="contm_naryopwithqual"/> Therefore it may take qualifiers.
+	  </p>
+	</discussion>
+        <property>
+          <description>
+            <p>Transitive</p>
+          </description>
+        </property>
+        <property>
+          <description>
+            <p>Reflexive</p>
+          </description>
+        </property>
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><geq/><cn>4</cn><cn>3</cn><cn>3</cn></apply></math></MMLexample>
+		<MMLexample>
+		<description>
+        <p>If this were tested for <var>a</var> = 5.5 and <var>b</var> = 5.5 it would yield the truth value <kw>true</kw>.</p>
+        </description>
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+		<apply>
+		  <geq/>
+		  <ci>a</ci>
+		  <ci>b</ci>
+		</apply>
+		</math></MMLexample>
+<!-- end new part -->
+
+<property xml:id="geq_prop_6">
 <CMP>
 a&gt;=b and b&gt;=c implies a&gt;=c
 </CMP>
@@ -351,7 +558,7 @@ a&gt;=b and b&gt;=c implies a&gt;=c
     <OMV name="c"/>
   </OMA>
 </OMA>
-</OMOBJ></FMP>
+</OMOBJ></FMP></property>
 
 <Example>
 An example which represents the statement 1 + 2 &gt;= 3
@@ -369,7 +576,7 @@ An example which represents the statement 1 + 2 &gt;= 3
 </Example>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="approx">
 <Name>approx</Name>
   <Pragmatic>
     <Token>approx</Token>
@@ -378,6 +585,39 @@ An example which represents the statement 1 + 2 &gt;= 3
 <Description> 
 This symbol is used to denote the approximate equality of its two arguments.
 </Description>
+
+<!-- new part -->
+<description>
+          <p>This element is used to indicate that two or more quantities are
+          approximately equal.  If a more precise definition of approximately equal is
+          required the definintionURL should be used to identify a suitable
+          definition.</p>
+        </description>
+	<discussion>
+	  <p>The <el>approx</el> element is the relational operator <quote>approximately
+	  equal</quote>. This is a generic relational operator and no specific arithmetic
+	  precision is implied</p>
+
+	</discussion>
+        
+ <property>
+          <description>
+            <p> Symmetric</p>
+          </description>
+        </property>
+        <property>
+          <description>
+            <p>Transitive</p>
+          </description>
+        </property>
+        <property>
+          <description>
+            <p>Reflexive</p>
+          </description>
+        </property>
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><approx/><pi/><cn type="rational">22<sep/>7</cn></apply></math></MMLexample>
+     
+<!-- end new part -->
 
 <Example>
 \pi is approximately 355/113
