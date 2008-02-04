@@ -56,7 +56,7 @@
     Some additional functions are in the CD transc2.    
 </Description>
 
-<CDDefinition>
+<CDDefinition xml:id="log">
 <Name>log</Name>
   <Pragmatic>
     <Token>log</Token>
@@ -68,6 +68,46 @@ to which the second argument is log'ed.
 It is defined in Abramowitz and Stegun, Handbook of Mathematical
 Functions, section 4.1
 </Description>
+
+<!-- new part -->
+ <description>
+          <p>This element represents the log function.  It is defined in Abramowitz and
+          Stegun, Handbook of Mathematical Functions, section 4.1 If its first argument is
+          a logbase element, it specifies the base and the second argument is the argument
+          to which the function is applied using that base.  If no logbase element is
+          present, the base is assumed to be 10.</p>
+        </description>
+	<discussion>
+	  <p>The <el>log</el> element is the operator that returns a logarithm to a given
+	  base. The base may be specified using a <el>logbase</el> element, which should
+	  be the first element following <el>log</el>, i.e. the second child of the
+	  containing <el>apply</el> element. If the <el>logbase</el> element is not
+	  present, a default base of 10 is assumed.</p>
+
+	  <p>The <el>log</el> function accepts only the <el>logbase</el> schema. If
+	  present, the <el>logbase</el> schema denotes the base with respect to which the
+	  logarithm is being taken. Otherwise, the log is assumed to be base 10. When used
+	  with <el>log</el>, the <el>logbase</el> schema is expected to contain a single
+	  child schema; otherwise an error is generated.</p>
+	</discussion>
+        <property>
+          <description>
+            <p>a^b = c implies log_a c = b </p>
+          </description>
+        </property>
+        <MMLexample>
+		<description>
+        <p>This markup represents <quote>the base 3 logarithm of x</quote>. For natural logarithms base e, the <el>ln</el> element should be used instead.</p>
+        </description>
+		<math xmlns="http://www.w3.org/1998/Math/MathML"><apply><log/>
+  <logbase><cn>3</cn></logbase>
+  <ci>x</ci>
+</apply>
+</math></MMLexample>
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><log/><ci>x</ci></apply></math></MMLexample>
+<!-- end new part -->
+
+<property xml:id="log_prop_1">
 <CMP>
   a^b = c implies log_a c = b
 </CMP>
@@ -95,7 +135,7 @@ Functions, section 4.1
       </OMA>
     </OMA>
   </OMOBJ>
-</FMP>
+</FMP></property>
 
 <Example>
 log 100 to base 10 (which is 2).
@@ -109,7 +149,7 @@ log 100 to base 10 (which is 2).
 </Example>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="ln">
 <Name>ln</Name>
   <Pragmatic>
     <Token>ln</Token>
@@ -122,6 +162,28 @@ argument.  Note the description in the CMP/FMP of the branch cut.  If
 signed zeros are in use, the inequality needs to be non-strict.
 </Description>
 
+<!-- new part -->
+<description>
+          <p>This element represents the ln function (natural logarithm) as described in
+          Abramowitz and Stegun, section 4.1.  It takes one argument.</p>
+        </description>
+	<discussion>
+	  <p>The <el>ln</el> element represents the natural logarithm
+	  function.</p>
+	</discussion>
+        <property>
+          <description>
+            <p>-pi lt Im ln x leq pi </p>
+          </description>
+        </property>
+        <MMLexample>
+		<description>
+        <p>If <var>a</var> = <var>e</var>, (where <var>e</var> is the base of the natural logarithms) this will yield the value 1.</p>
+        </description>
+		<math xmlns="http://www.w3.org/1998/Math/MathML"><apply><ln/><ci>a</ci></apply></math></MMLexample>
+<!-- end new part -->
+
+<property xml:id="ln_prop_2">
 <CMP>
 -pi &lt; Im ln x &lt;= pi
 </CMP>
@@ -156,7 +218,7 @@ signed zeros are in use, the inequality needs to be non-strict.
       </OMA>
     </OMA>
   </OMOBJ>
-</FMP>
+</FMP></property>
 
 <Example>
 ln 1 (which is 0).
@@ -169,7 +231,7 @@ ln 1 (which is 0).
 </Example>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="exp">
 <Name>exp</Name>
   <Pragmatic>
     <Token>exp</Token>
@@ -179,6 +241,31 @@ ln 1 (which is 0).
 This symbol represents the exponentiation function as described in
 Abramowitz and Stegun, section 4.2. It takes one argument.
 </Description>
+
+<!-- new part -->
+<description>
+      <p>This element represents the exponentiation function as described in
+      Abramowitz and Stegun, section 4.2.  It takes one argument. </p>
+    </description>
+    <discussion>
+      <p>The <el>exp</el> element represents the exponential
+      function associated with the inverse of the <el>ln</el>
+      function. In particular, exp(1) is approximately 2.718281828.</p>
+    </discussion>
+    <property><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><eq/>
+  <apply><exp/><cn>0</cn></apply>
+  <cn>1</cn>
+</apply></math></property>
+
+    <property>
+          <description>
+            <p>for all k if k is an integer then e^(z+2*pi*k*i)=e^z </p>
+          </description>
+        </property>
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><exp/><ci>x</ci></apply></math></MMLexample>
+<!-- end new part -->
+
+<property xml:id="exp_prop_3">
 <CMP> for all k if k is an integer then e^(z+2*pi*k*i)=e^z </CMP>
 <FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
 <OMBIND>
@@ -216,10 +303,10 @@ Abramowitz and Stegun, section 4.2. It takes one argument.
     </OMA>
   </OMA>
 </OMBIND>
-</OMOBJ></FMP>
+</OMOBJ></FMP></property>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="sin">
 <Name>sin</Name>
   <Pragmatic>
     <Token>sin</Token>
@@ -230,6 +317,47 @@ This symbol represents the sin function as described in Abramowitz and
 Stegun, section 4.3. It takes one argument.
 </Description>
 
+<!-- new part -->
+ <description>
+          <p>This element represents the sin function as described in Abramowitz and
+          Stegun, section 4.3. It takes one argument. </p>
+        </description>
+
+        <property>
+          <description>
+            <p> sin(0) = 0 </p>
+          </description>
+        </property>
+        <property>
+          <description>
+            <p> sin(integer*Pi) = 0</p>
+          </description><math xmlns="http://www.w3.org/1998/Math/MathML"></math></property>
+        <property>
+          <description>
+            <p>sin(x) = (exp(ix)-exp(-ix))/2i </p>
+          </description>
+        </property>
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><sin/><ci>x</ci></apply></math></MMLexample>
+	<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+  <sin/>
+  <apply>
+    <plus/>
+    <apply><cos/>
+      <ci>x</ci>
+    </apply>
+    <apply>
+      <power/>
+      <ci>x</ci>
+      <cn>3</cn>
+    </apply>
+  </apply>
+</apply>
+</math>
+</MMLexample>
+<!-- end new part -->
+
+<property xml:id="sin_prop_4">
 <CMP>
 sin(x) = (exp(ix)-exp(-ix))/2i
 </CMP>
@@ -274,8 +402,9 @@ sin(x) = (exp(ix)-exp(-ix))/2i
       </OMA>
     </OMA>
   </OMOBJ>
-</FMP>
+</FMP></property>
 
+<property xml:id="sin_prop_5">
 <CMP>
 sin(A + B) = sin A cos B + cos A sin B
 </CMP>
@@ -318,8 +447,9 @@ sin(A + B) = sin A cos B + cos A sin B
       </OMA>
     </OMA>
   </OMOBJ>
-</FMP>
+</FMP></property>
 
+<property xml:id="sin_prop_6">
 <CMP>
 sin A = - sin(-A)
 </CMP>
@@ -343,10 +473,10 @@ sin A = - sin(-A)
       </OMA>
     </OMA>
   </OMOBJ>
-</FMP>
+</FMP></property>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="cos">
 <Name>cos</Name>
   <Pragmatic>
     <Token>cos</Token>
@@ -357,6 +487,30 @@ This symbol represents the cos function as described in Abramowitz and
 Stegun, section 4.3. It takes one argument.
 </Description>
 
+<!-- new part -->
+<description>
+          <p>This element represents the cos function as described in
+Abramowitz and Stegun, section 4.3. It takes one argument. 
+It takes one argument.   </p>
+        </description>
+        <property>
+          <description>
+            <p> cos(0) = 1</p>
+          </description><math xmlns="http://www.w3.org/1998/Math/MathML"></math></property>
+        <property>
+          <description>
+            <p> cos(integer*Pi+Pi/2) = 0 </p>
+          </description>
+        </property>
+        <property>
+          <description>
+            <p>cos(x) = (exp(ix)+exp(-ix))/2 </p>
+          </description>
+        </property>
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><cos/><ci>x</ci></apply></math></MMLexample>
+<!-- end new part -->
+
+<property xml:id="cos_prop_7">
 <CMP>
 cos(x) = (exp(ix)+exp(-ix))/2
 </CMP>
@@ -397,8 +551,9 @@ cos(x) = (exp(ix)+exp(-ix))/2
       </OMA>
     </OMA>
   </OMOBJ>
-</FMP>
+</FMP></property>
 
+<property xml:id="cos_prop_8">
 <CMP>
 cos 2A = cos^2 A - sin^2 A
 </CMP>
@@ -436,7 +591,8 @@ cos 2A = cos^2 A - sin^2 A
     </OMA>
   </OMA>
 </OMOBJ>
-</FMP>
+</FMP></property>
+<property xml:id="cos_prop_9">
 <CMP>
 cos A = cos(-A)
 </CMP>
@@ -457,10 +613,10 @@ cos A = cos(-A)
     </OMA>
   </OMA>
 </OMOBJ>
-</FMP>
+</FMP></property>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="tan">
 <Name>tan</Name>
   <Pragmatic>
     <Token>tan</Token>
@@ -470,6 +626,25 @@ cos A = cos(-A)
 This symbol represents the tan function as described in Abramowitz and
 Stegun, section 4.3. It takes one argument.
 </Description>
+
+<!-- new part -->
+<description>
+          <p>This element represents the tan function as described in 
+Abramowitz and Stegun, section 4.3. It takes one argument. </p>
+        </description>
+        <property>
+          <description>
+            <p> tan(integer*Pi) = 0 </p>
+          </description>
+        </property>
+        <property>
+          <description>
+            <p> tan(x) = sin(x)/cos(x)</p>
+          </description><math xmlns="http://www.w3.org/1998/Math/MathML"></math></property>
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><tan/><ci>x</ci></apply></math></MMLexample>
+<!-- end new part -->
+
+<property xml:id="tan_prop_10">
 <CMP>
 tan A = sin A / cos A
 </CMP>
@@ -492,10 +667,10 @@ tan A = sin A / cos A
     </OMA>
   </OMA>
 </OMA>
-</OMOBJ></FMP>
+</OMOBJ></FMP></property>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="sec">
 <Name>sec</Name>
   <Pragmatic>
     <Token>sec</Token>
@@ -505,6 +680,22 @@ tan A = sin A / cos A
 This symbol represents the sec function as described in Abramowitz and
 Stegun, section 4.3. It takes one argument.
 </Description>
+
+<!-- new part -->
+<description>
+          <p>This element represents the sec function 
+as described in Abramowitz and Stegun, section 4.3. 
+It takes one argument. </p>
+        </description>
+        <property>
+          <description>
+            <p> sec(x) = 1/cos(x) </p>
+          </description>
+        </property>
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><sec/><ci>x</ci></apply></math></MMLexample>
+<!-- end new part -->
+
+<property xml:id="sec_prop_11">
 <CMP>
 sec A = 1/cos A
 </CMP>
@@ -525,10 +716,10 @@ sec A = 1/cos A
   </OMA>
 </OMA>
 </OMOBJ>
-</FMP>
+</FMP></property>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="csc">
 <Name>csc</Name>
   <Pragmatic>
     <Token>csc</Token>
@@ -538,6 +729,23 @@ sec A = 1/cos A
 This symbol represents the csc function as described in Abramowitz and
 Stegun, section 4.3. It takes one argument.
 </Description>
+
+<!-- new part -->
+<description>
+          <p>This element represents the csc function as 
+described in Abramowitz and Stegun, section 4.3. 
+It takes one argument. </p>
+        </description>
+
+        <property>
+          <description>
+            <p> csc(x) = 1/sin(x) </p>
+          </description>
+        </property>
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><csc/><ci>x</ci></apply></math></MMLexample>
+<!-- end new part -->
+
+<property xml:id="csc_prop_12">
 <CMP>
 csc A = 1/sin A
 </CMP>
@@ -558,10 +766,10 @@ csc A = 1/sin A
   </OMA>
 </OMA>
 </OMOBJ>
-</FMP>
+</FMP></property>
 </CDDefinition>
 
-<CDDefinition>
+<CDDefinition xml:id="cot">
 <Name>cot</Name>
   <Pragmatic>
     <Token>cot</Token>
@@ -571,6 +779,32 @@ csc A = 1/sin A
 This symbol represents the cot function as described in Abramowitz and
 Stegun, section 4.3. It takes one argument.
 </Description>
+
+<!-- new part -->
+ <description>
+          <p>This element represents the cot function as described in 
+Abramowitz and Stegun, section 4.3. It takes one argument.  
+It takes one argument.  </p>
+        </description>
+
+        <property>
+          <description>
+            <p> cot(integer*Pi+Pi/2) = 0</p>
+          </description><math xmlns="http://www.w3.org/1998/Math/MathML"></math></property>
+        <property>
+          <description>
+            <p> cot(x) = cos(x)/sin(x) </p>
+          </description>
+        </property>
+        <property>
+          <description>
+            <p>cot A = 1/tan A </p>
+          </description>
+        </property>
+        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><cot/><ci>x</ci></apply></math></MMLexample>
+<!-- end new part -->
+
+<property xml:id="cot_prop_13">
 <CMP>
 cot A = 1/tan A
 </CMP>
@@ -591,7 +825,7 @@ cot A = 1/tan A
   </OMA>
 </OMA>
 </OMOBJ>
-</FMP>
+</FMP></property>
 </CDDefinition>
 
 <CDDefinition>
