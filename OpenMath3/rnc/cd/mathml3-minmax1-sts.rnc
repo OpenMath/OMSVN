@@ -57,13 +57,95 @@ official
 
 
 min
+Minimum
   
     min
+        
+          type
+          MathMLType
+          real
+        
   
 application
  
  This symbol denotes the unary minimum function which takes a set as
  its argument and returns the minimum element in that set.
+
+
+
+ 
+          This is the n-ary operator used to represent the minimum of a set of
+          elements.  The elements may be listed explicitly or they may be described by a
+          condition, e.g., the minimum over all x in the set A.
+          The elements must all be comparable if the result is to be well defined.
+
+	The min operator is a are n-ary operators may use the domain of
+	application qualifiers as described in .  For
+	example, the min and max functions accept a bvar schema
+	in cases where the maximum or minimum is being taken over a set of values
+	specified by a condition schema together with an expression to be
+	evaluated on that set.  In MathML1.0, the bvar element was optional when
+	using a condition; if a condition element containing a single
+	variable was given by itself following a min or max operator,
+	the variable was implicitly assumed to be bound, and the expression to be
+	maximized or minimized (if absent) was assumed to be the single bound variable.
+	This usage is deprecated in MathML 2.0 in
+	favor of explicitly stating the bound variable(s) and the expression to be
+	maximized or minimized in all cases.
+
+	The min and max elements may also be applied to a list of
+	values in which case no qualifier schemata are used.
+	
+	
+	  The element min is used to compare the values of its arguments. It
+	  returns the minimum of these values respectively.
+	
+
+ 
+          
+            
+Minimum of a finite listing of elements
+          
+235
+
+        
+          
+            
+min(y^2,  y in (0,1)) 
+          
+
+  
+  y
+  
+    y01
+  
+  y2
+
+
+
+  
+    The elements to be compared may also be described using bound
+    variables with a condition element and an expression to
+    be minimized, as in:
+    Note that the bound variable must be stated even if it might be
+    implicit in conventional notation. 
+    
+    
+      
+	
+	x
+	
+	  x B
+	
+	
+	  
+	  x
+	  2
+	
+      
+    
+
+
 
 
 Representation of the equation minimum{1,9,5} = 1.
@@ -87,13 +169,105 @@ Representation of the equation minimum{1,9,5} = 1.
 
 
 max
+Maximum
   
     max
+       
+          type
+          MathMLType
+          real
+        
   
 application
  
  This symbol denotes the unary maximum function which takes a set as
  its argument and returns the maximum element in that set.
+
+
+
+
+	  This is the n-ary operator used to represent the maximum of a set of
+	  elements. The elements may be listed explicitly or they may be described by a
+	  domainofapplication, for example, the maximum over all x in the set A. The
+	  domainofapplication is often abbreviated by placing a condition directly on a
+	  bound variable.
+
+	The max operator is a n-ary operators may use the domain of
+	application qualifiers as described in .  For
+	example, the min and max functions accept a bvar schema
+	in cases where the maximum or minimum is being taken over a set of values
+	specified by a condition schema together with an expression to be
+	evaluated on that set.  In MathML1.0, the bvar element was optional when
+	using a condition; if a condition element containing a single
+	variable was given by itself following a min or max operator,
+	the variable was implicitly assumed to be bound, and the expression to be
+	maximized or minimized (if absent) was assumed to be the single bound variable.
+	This usage is deprecated in MathML 2.0 in
+	favor of explicitly stating the bound variable(s) and the expression to be
+	maximized or minimized in all cases.
+
+	The min and max elements may also be applied to a list of
+	values in which case no qualifier schemata are used.
+        
+
+
+          
+            ForAll( x in S,  max(y in S,y) \geq x )
+          
+        
+        
+		
+          
+            Maximum of a finite listing of elements
+          
+235
+
+        
+            Max(y^3,  y in (0,1)) 
+          
+          
+
+  
+  y
+  
+y01
+
+  
+  y3
+
+
+		
+		
+		When the objects are to be compared explicitly they are listed as arguments to the function as in:
+		
+		
+		  
+		  a
+		  b
+		
+		
+		
+		
+		  
+		    In MathML1.0, the bound variable and expression to be evaluated
+		    (x) could be omitted in the example below: this usage is
+		    deprecated in MathML2.0 in favor of explicitly stating the bound
+		    variable and expression in all cases: 
+		  
+			
+			
+			  
+			  x
+			  
+			    
+			      xB
+			      xC
+			    
+			  
+			  x
+			
+			
+
 
 
 Representation of the equation maximum{1,9,5} = 9.
