@@ -115,6 +115,18 @@
    <xsl:template match="m:partialdiff" mode="cmml2om">
       <OMS cd="calculus1" name="partialdiff"/>
    </xsl:template>
+
+<!-- to be done...
+   <xsl:template match="m:*[self::m:apply or self::m:bind][*[1][self::m:partialdiff]]" mode="cmml2om">
+     <OMA>
+       <OMS cd="calculus1" name="partialdif"/>
+      <OMA>
+        <OMS cd="list1" name="list"/>
+       <xsl:apply-templates select="*[2]" mode="cmml2om"/>
+     </OMA>
+   </xsl:template>
+-->
+
    <xsl:template match="m:int" mode="cmml2om">
       <OMS cd="calculus1" name="int"/>
    </xsl:template>
@@ -127,8 +139,8 @@
    <xsl:template match="m:real" mode="cmml2om">
       <OMS cd="complex1" name="real"/>
    </xsl:template>
-   <xsl:template match="m:imaginary" mode="cmml2om">
-      <OMS cd="complex1" name="imaginary"/>
+   <xsl:template match="m:imaginaryi" mode="cmml2om">
+      <OMS cd="complex1" name="imaginaryi"/>
    </xsl:template>
    <xsl:template match="m:complex_polar" mode="cmml2om">
       <OMS cd="complex1" name="complex_polar"/>
@@ -184,7 +196,7 @@
    <xsl:template match="m:quotient" mode="cmml2om">
       <OMS cd="integer1" name="quotient"/>
    </xsl:template>
-   <xsl:template match="m:remainder" mode="cmml2om">
+   <xsl:template match="m:rem" mode="cmml2om">
       <OMS cd="integer1" name="remainder"/>
    </xsl:template>
    <xsl:template match="m:integer_interval" mode="cmml2om">
@@ -325,43 +337,43 @@
    <xsl:template match="m:max" mode="cmml2om">
       <OMS cd="minmax1" name="max"/>
    </xsl:template>
-   <xsl:template match="m:size" mode="cmml2om">
+   <xsl:template match="m:size[@type='multiset']" mode="cmml2om">
       <OMS cd="multiset1" name="size"/>
    </xsl:template>
-   <xsl:template match="m:cartesian_product" mode="cmml2om">
+   <xsl:template match="m:cartesian_product[@type='multiset']" mode="cmml2om">
       <OMS cd="multiset1" name="cartesian_product"/>
    </xsl:template>
-   <xsl:template match="m:emptyset" mode="cmml2om">
+   <xsl:template match="m:emptyset[@type='multiset']" mode="cmml2om">
       <OMS cd="multiset1" name="emptyset"/>
    </xsl:template>
    <xsl:template match="m:multiset" mode="cmml2om">
       <OMS cd="multiset1" name="multiset"/>
    </xsl:template>
-   <xsl:template match="m:intersect" mode="cmml2om">
+   <xsl:template match="m:intersect[@type='multiset']" mode="cmml2om">
       <OMS cd="multiset1" name="intersect"/>
    </xsl:template>
-   <xsl:template match="m:union" mode="cmml2om">
+   <xsl:template match="m:union[@type='multiset']" mode="cmml2om">
       <OMS cd="multiset1" name="union"/>
    </xsl:template>
-   <xsl:template match="m:setdiff" mode="cmml2om">
+   <xsl:template match="m:setdiff[@type='multiset']" mode="cmml2om">
       <OMS cd="multiset1" name="setdiff"/>
    </xsl:template>
-   <xsl:template match="m:subset" mode="cmml2om">
+   <xsl:template match="m:subset[@type='multiset']" mode="cmml2om">
       <OMS cd="multiset1" name="subset"/>
    </xsl:template>
-   <xsl:template match="m:in" mode="cmml2om">
+   <xsl:template match="m:in[@type='multiset']" mode="cmml2om">
       <OMS cd="multiset1" name="in"/>
    </xsl:template>
-   <xsl:template match="m:notin" mode="cmml2om">
+   <xsl:template match="m:notin[@type='multiset']" mode="cmml2om">
       <OMS cd="multiset1" name="notin"/>
    </xsl:template>
-   <xsl:template match="m:prsubset" mode="cmml2om">
+   <xsl:template match="m:prsubset[@type='multiset']" mode="cmml2om">
       <OMS cd="multiset1" name="prsubset"/>
    </xsl:template>
-   <xsl:template match="m:notsubset" mode="cmml2om">
+   <xsl:template match="m:notsubset[@type='multiset']" mode="cmml2om">
       <OMS cd="multiset1" name="notsubset"/>
    </xsl:template>
-   <xsl:template match="m:notprsubset" mode="cmml2om">
+   <xsl:template match="m:notprsubset[@type='multiset']" mode="cmml2om">
       <OMS cd="multiset1" name="notprsubset"/>
    </xsl:template>
    <xsl:template match="m:based_integer" mode="cmml2om">
