@@ -243,22 +243,22 @@
 </xsl:template>
 
 <xsl:template match="om:OMOBJ">
-    <div><button id="{generate-id()}xmla" style="width:10em; background-color:#CCCCCC" onclick="divfold('{generate-id()}xml')">XML (OpenMath)</button></div>
+    <div><button id="{generate-id()}xmla" style="width:15em; background-color:#CCCCCC" onclick="divfold('{generate-id()}xml')">XML (OpenMath)</button></div>
   <pre id="{generate-id()}xml" style="display:none">
     <xsl:apply-templates mode="verb" select="."/>
   </pre>
-        <div><button id="{generate-id()}cmmla" style="width:10em; background-color:#CCCCCC" onclick="divfold('{generate-id()}cmml')">Content MathML</button></div>
+        <div><button id="{generate-id()}cmmla" style="width:15em; background-color:#CCCCCC" onclick="divfold('{generate-id()}cmml')">Content MathML</button></div>
   <pre id="{generate-id()}cmml" style="display:none; margin-top: 0.5em">
     <xsl:variable name="c">
       <xsl:apply-templates  mode="om2cmml" select="."/>
     </xsl:variable>
     <xsl:apply-templates mode="verb" select="$c"/>
   </pre>
-        <div><button id="{generate-id()}prefa" style="width:10em; background-color:#CCCCCC" onclick="divfold('{generate-id()}pref')">Prefix form</button></div>
+        <div><button id="{generate-id()}prefa" style="width:15em; background-color:#CCCCCC" onclick="divfold('{generate-id()}pref')">Prefix form</button></div>
   <div id="{generate-id()}pref" style="display:none; margin-top: 0.5em">
     <xsl:apply-templates mode="term" select="."/>
   </div>
-       <div> <button id="{generate-id()}mmla" style="width:10em; background-color:#AAFFAA" onclick="divfold('{generate-id()}mml')">MathML</button></div>
+       <div> <button id="{generate-id()}mmla" style="width:15em; background-color:#AAFFAA" onclick="divfold('{generate-id()}mml')">Presentation MathML</button></div>
   <div id="{generate-id()}mml" style="display:block; margin-top: 0.5em">
     <m:math   xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
       <xsl:apply-templates/>
@@ -270,20 +270,30 @@
   <xsl:variable name="o">
     <xsl:apply-templates mode="cmml2om" select="."/>
   </xsl:variable>
-<div><button id="{generate-id()}xmla" style="width:10em; background-color:#CCCCCC" onclick="divfold('{generate-id()}xml')">XML (MathML)</button></div>
+    <xsl:variable name="c">
+      <xsl:apply-templates  mode="om2cmml" select="$o"/>
+    </xsl:variable>
+    <xsl:variable name="strict" select="deep-equal($c/m:math,.)"/>
+<div><button id="{generate-id()}xmla" style="width:15em; background-color:#CCCCCC" onclick="divfold('{generate-id()}xml')">XML (<xsl:if test="$strict">Strict </xsl:if>MathML)</button></div>
   <pre id="{generate-id()}xml" style="display:none">
     <xsl:apply-templates mode="verb" select="."/>
   </pre>
-<div><button id="{generate-id()}cmmla" style="width:10em; background-color:#CCCCCC" onclick="divfold('{generate-id()}cmml')">OpenMath</button>
+<xsl:if test="not($strict)">
+        <div><button id="{generate-id()}stricta" style="width:15em; background-color:#CCCCCC" onclick="divfold('{generate-id()}strict')">Strict Content MathML</button></div>
+  <pre id="{generate-id()}strict" style="display:none; margin-top: 0.5em">
+    <xsl:apply-templates mode="verb" select="$c"/>
+  </pre>  
+</xsl:if>
+<div><button id="{generate-id()}cmmla" style="width:15em; background-color:#CCCCCC" onclick="divfold('{generate-id()}cmml')">OpenMath</button>
 </div>
   <pre id="{generate-id()}cmml" style="display:none; margin-top: 0.5em">
     <xsl:apply-templates mode="verb" select="$o"/>
   </pre>
-<div><button id="{generate-id()}prefa" style="width:10em; background-color:#CCCCCC" onclick="divfold('{generate-id()}pref')">Prefix form</button></div>
+<div><button id="{generate-id()}prefa" style="width:15em; background-color:#CCCCCC" onclick="divfold('{generate-id()}pref')">Prefix form</button></div>
   <div id="{generate-id()}pref" style="display:none; margin-top: 0.5em">
     <xsl:apply-templates mode="term" select="$o"/>
   </div>
-    <div><button id="{generate-id()}mmla" style="width:10em; background-color:#AAFFAA" onclick="divfold('{generate-id()}mml')">MathML</button></div>
+    <div><button id="{generate-id()}mmla" style="width:15em; background-color:#AAFFAA" onclick="divfold('{generate-id()}mml')">Presentation MathML</button></div>
   <div id="{generate-id()}mml" style="display:block; margin-top: 0.5em">
     <m:math   xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
       <xsl:apply-templates select="$o/*/*"/>
