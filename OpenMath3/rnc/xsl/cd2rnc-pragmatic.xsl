@@ -54,25 +54,41 @@
     <xsl:variable name="container" select="normalize-space(omcd:Pragmatic/omcd:Container)"/>
     <xsl:variable name="role" select="normalize-space(omcd:Role)"/>
     <xsl:variable name="elt" select="concat($name,'_',$cd,'_elt')"/>
+    <xsl:variable name="attrib">
+      <xsl:for-each select="omcd:Pragmatic/omcd:Attribute">
+	<xsl:message>hey</xsl:message>
+      <xsl:value-of select="concat(',attribute ',normalize-space(omcd:Name),' {')"/>
+      <xsl:choose>
+	<xsl:when test="omcd:Prescribed">
+	  <xsl:value-of select="concat('&quot;',normalize-space(omcd:Prescribed),'&quot;}')"/>
+	</xsl:when>
+	<xsl:when test="omcd:Model">
+	  <xsl:value-of select="concat(normalize-space(omcd:Model),'}?')"/>
+	</xsl:when>
+      </xsl:choose>
+      </xsl:for-each>
+    </xsl:variable>
     <xsl:value-of select="concat('token.',$role,' |= ',$elt,'&#xA;')"/>
     <xsl:choose>
       <xsl:when test="$token!=''">
 	<xsl:value-of select="concat($name,'_',$cd,'_elt',
-			             ' |= element m:',$token,' {MathML.Common.attrib,Definition.attrib?}&#xA;')"/>
+			             ' |= element m:',$token,
+				     ' {MathML.Common.attrib,Definition.attrib?',
+				     $attrib,
+				     '}&#xA;')"/>
       </xsl:when>
-      <xsl:when test="$container!='' and $role='application'">
+      <!-- containers can be used as binders, and applications always -->
+      <xsl:when test="$container!=''">
 	<xsl:value-of select="concat($name,'_',$cd,'_elt',
 			             ' |= element m:',$container,
-				     ' {MathML.Common.attrib,Definition.attrib?,ContExp*}&#xA;')"/>
-	<xsl:value-of select="concat('container |= ',$elt,'&#xA;')"/>
-      </xsl:when>
-      <xsl:when test="$container!='' and $role='binder'">
+				     ' {MathML.Common.attrib,Definition.attrib?,',
+				     $attrib,
+				     'ContExp*}&#xA;')"/>
 	<xsl:value-of select="concat($name,'_',$cd,'_elt',
 			             ' |= element m:',$container,
-				     ' {MathML.Common.attrib,Definition.attrib?}&#xA;')"/>
-	<xsl:value-of select="concat($name,'_',$cd,'_elt',
-			             ' |= element m:',$container,
-				     ' {MathML.Common.attrib,Definition.attrib?,bvar*,qualifier?,ContExp}&#xA;')"/>
+				     ' {MathML.Common.attrib,Definition.attrib?,',
+				     $attrib,
+				     'bvar*,qualifier?,ContExp}&#xA;')"/>
 	<xsl:value-of select="concat('container |= ',$elt,'&#xA;')"/>
       </xsl:when>
       <xsl:otherwise><xsl:message>undefined pragmatic/role</xsl:message></xsl:otherwise>
