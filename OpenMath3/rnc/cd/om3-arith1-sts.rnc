@@ -11,7 +11,6 @@ namespace om = "http://www.openmath.org/OpenMath"
 
 
 
-
      This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -57,13 +56,13 @@ This CD defines symbols for common arithmetic functions.
 
 
 
-lcm
-
   lcm
+  
+    lcm
     
       type
-      Real
-      "real"
+      MathMLType
+      integer
     
   
   application
@@ -237,12 +236,13 @@ lcm
 
 
 gcd
+Greatest Common Divisor
   
     gcd
     
       type
-      Real
-      "real"
+      MathMLType
+      integer
     
   
   application
@@ -368,8 +368,14 @@ gcd(6,9) = 3
 
 
 plus
+Addition
   
     plus
+
+          type
+          MathMLType
+          real
+        
   
 application
 
@@ -393,11 +399,12 @@ application
           To use different type coercion rules different from those indicated by the
           signatures, use the definitionURL attribute to identify a new definition.
         
+
       
-          
-            an sum of no terms is 0
-          
-	  
+	
+	  a sum of no terms is 0
+	
+	
 
   
   0
@@ -482,8 +489,14 @@ application
 
 
 unary_minus
+Additive Inversion
   
     unary_minus
+	
+          type
+          MathMLType
+          real
+        
   
 application
 
@@ -527,8 +540,14 @@ application
 
 
 minus
+Subtraction
   
     minus
+	
+          type
+          MathMLType
+          real
+        
   
 application
  
@@ -604,8 +623,14 @@ adding the additive inverse.
 
 
 times
+Multiplication
   
     times
+
+          type
+          MathMLType
+          real
+        
   
 application
  
@@ -828,8 +853,14 @@ The symbol representing an n-ary multiplication function.
 
 
 divide
+  Division
   
     divide
+  
+     type 
+    MathMLType
+     real 
+  
   
 application
 
@@ -919,8 +950,14 @@ inverse of the multiplication function defined by the symbol times in this CD.
 
 
 power
+Exponentiation
   
     power
+  
+          type
+          MathMLType
+          real
+        
   
 application
 
@@ -1142,8 +1179,14 @@ x\in C implies x^a = exp(a ln x)
 
 
 abs
+Absolute Value
   
-    abs
+    abs     
+        
+          type
+          MathMLType
+          real
+        
   
 application
  
@@ -1213,8 +1256,14 @@ x
 
 
 root
+Root
   
     root
+
+           type 
+           real | complex | principal_branch | MathMLType 
+          real
+        
   
 application
  
@@ -1233,32 +1282,35 @@ CMP is not valid in general.
 
 
  
-          This is the binary operator used to construct the nth root of an expression.
-          The first argument "a" is the expression and the second object "n" denotes the
-          root, as in ( a ) ^ (1/n)
-        
-	
-	  The root element is used to construct roots. The kind of root to be
-	  taken is specified by a degree child, which should be given as
-	  the second child of the apply element enclosing the root
-	  element. Thus, square roots correspond to the case where degree
-	  contains the value 2, cube roots correspond to 3, and so on.
+   This is the binary operator used to construct the nth root of an expression.
+   The first argument "a" is the expression and the second object "n" denotes the
+   root, as in ( a ) ^ (1/n)
+ 
+ 
+   The root element is used to construct roots. The kind of root to be
+   taken is specified by a degree child, which should be given as the
+   second child of the apply element enclosing the root
+   element. Thus, square roots correspond to the case where degree contains
+   the value 2, cube roots correspond to 3, and so on.
 	  
-	  Note that Pragmatic MathML3 supports a degree element in the legacy container representation (see  for details). If no degree is present, a default
-	  value of 2 is used.
-	
+   Note that Pragmatic MathML3 supports a degree element in the legacy
+   container representation If no degree is present, a default value of 2 is
+   used.
+ 
 
 
-          
-            ForAll( bvars(a,n), root(degree(n),a) = a^(1/n) )
-            
-        
-          
-            The nth root of a is is given by
-          
-	
-	  na
+  
+    ForAll( bvars(a,n), root(degree(n),a) = a^(1/n) )
 
+
+
+
+  
+    The nth root of a is is given by
+  
+  
+    na
+  
 
 
 
@@ -1365,14 +1417,18 @@ summed. Note that the sum may be over an infinite interval.
 
 
   
-  i
-  0
-  100
   
     
-    x
     i
+    0
+    100
+    
+      
+      x
+      i
+    
   
+
 
 
 When used with sum or product, each qualifier schema is expected to
@@ -1381,36 +1437,40 @@ contain a single child schema; otherwise an error is generated.
 
         
 	  
-
-   x
-  a
-  b
-  fx
-
-
-
-
-  
-
-  x
-   xB
-   fx
-
-
-
-
-	
+	    
+	      
+	      
+		
+		 x
+		a
+		b
+		fx
+	      
+	    
 	  
+	
+	
   
+    
+      
+      
+	
+	x
+	 xB
+	 fx
+      
+    
   
-     B
+
+
+
   
-   f
-
-
-
-
-
+    
+      
+      B
+       f
+    
+  
 
 
 
@@ -1486,19 +1546,27 @@ be multiplied. Note that the product may be over an infinite interval.
         
 
 
-  x
-   a
-  b
-   fx
+  
+  
+    
+    x
+     a
+    b
+     fx
+  
 
 
 
 
         
 
-  x
-   xB
-  fx
+  
+  
+    
+    x
+     xB
+    fx
+  
 
 
 

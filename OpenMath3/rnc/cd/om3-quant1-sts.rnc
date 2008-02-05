@@ -61,14 +61,150 @@ official
 
 
 forall
+Universal Quantification
   
     forall
+        
+          type
+          MathMLType
+          boolean
+        
   
 binder
  
 This symbol represents the universal ("for all") quantifier which takes two
 arguments. It must be placed within an OMBIND element. The first argument is the
 bound variables (placed within an OMBVAR element), and the second is an expression. 
+
+
+
+
+          The forall operator is the logical "For all" quantifier.  The bound
+          variables, if any, appear first and are tagged using the bvar element.  Next
+          comes an optional condition on the bound variables.  The last argument is the
+          boolean expression that is asserted to be true for all values of the bound
+          variables that meet the specified conditions (if any).
+        
+	
+	  The forall element represents the universal quantifier of logic. It
+	  is usually used in conjunction with one or more bound variables, an optional
+	  condition element, and an assertion. It may also be used with a domain
+	  of application and function as described in  in
+	  which case the assertion corresponds to applying the function to an element of
+	  the specified domain., which should take the form of an apply
+	  element.
+
+	  The universal quantifier forall is used in conjunction with one or
+	  more bvar schemata to represent simple logical assertions. There are
+	  two main main ways of using the logical quantifier operators. The first usage is
+	  for representing a simple, quantified assertion.  For example, the statement
+	  there exists x < 9 would be represented as:
+
+
+  
+  x
+  x9
+
+
+The second usage is for representing implications. Hypotheses are given by a
+condition element following the bound variables. For example the statement
+for all x < 9, x < 10 would be represented as:
+
+
+  
+  x
+  x9
+  x10
+
+
+Note that in both these usages one or more bvar qualifiers are mandatory.
+		
+
+ 
+		The example encodes a simple identity.
+		
+		
+		  
+		  x
+		  
+		    
+		      xx
+		    
+		    0
+		  
+		
+		
+		The example is more involved, and makes use of an optional condition element.
+		
+		
+		
+		  
+		  p
+		  q
+		  
+		    
+		      p
+		      q
+		      pq
+		    
+		  
+		  
+		      p
+		      
+		          
+		        q
+		        2
+		      
+		  
+		
+		
+		
+		The example uses both the forall and
+exists quantifiers.
+		
+		
+		
+		  
+		  n
+		  
+		    
+		      n0
+		      n
+		    
+		  
+		  
+		    
+		    x
+		    y
+		    z
+		    
+		      
+		        x
+		        y
+		        z
+		      
+		    
+		    
+		      
+		      
+		        
+		        xn
+		        yn
+		      
+		      zn
+		    
+		  
+		
+		
+        
+		  
+		  x
+		  x0
+		 
+		  x
+
+
+
 
 
 An example to represent the statement for all real x, |sin(x)| <= 1
@@ -104,8 +240,14 @@ An example to represent the statement for all real x, |sin(x)| <= 1
 
 
 exists
+Existential Quantification
   
     exists
+        
+          type
+          MathMLType
+          boolean
+        
   
 binder
  
@@ -113,6 +255,83 @@ This symbol represents the existential ("there exists") quantifier
 which takes two arguments. It must be placed within an OMBIND element. The first
 argument is the bound variables (placed within an OMBVAR element), and the second
 is an expression.
+
+
+
+
+          This is the MathML operator that is used to assert existence, as in "There
+          exists an x such that x is real and x is positive."
+          - The first argument indicates the bound variable,
+          - The second optional argument places conditions on that
+bound variable. 
+          - The last argument is the expression
+that is asserted to be true.
+        
+	
+	  The exists element represents the existential quantifier of
+	  logic. Typically, it is used in conjunction with one or more bound variables, an
+	  optional condition element, and an assertion, which may take the form
+	  of either an apply or reln element.The exists element
+	  may also be used with a general domain of application and function as described
+	  in .  For such uses the assertion is obtained
+	  by applying the function to an element of the specified domain.
+	  The universal quantifier forall is used in conjunction with one or
+	  more bvar schemata to represent simple logical assertions. There are
+	  two main main ways of using the logical quantifier operators. The first usage is
+	  for representing a simple, quantified assertion.  For example, the statement
+	  there exists x < 9 would be represented as:
+
+
+  
+  x
+  x9
+
+
+The second usage is for representing implications. Hypotheses are given by a
+condition element following the bound variables. For example the statement
+for all x < 9, x < 10 would be represented as:
+
+
+  
+  x
+  x9
+  x10
+
+
+Note that in both these usages one or more bvar qualifiers are mandatory.
+	
+
+		The following example encodes the sense of the expression there exists an x such that f(x) = 0.
+		
+		
+		
+		  x
+		  
+		    f
+		      x
+		    
+		    0
+		  
+		
+
+
+       
+
+  
+  x
+  
+    C
+  
+  
+    
+    
+      x2
+    
+    4
+  
+
+
+
 
 
 An example  which represents the statement that there is no solution
