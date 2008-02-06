@@ -6,13 +6,26 @@
 >
 
   <xsl:template match="*" mode="cmml2om">
-    <xsl:message>cmml2om: <xsl:value-of select="name()"/></xsl:message>
+    <xsl:message>cmml2om: <xsl:value-of select="name()"/>
+[[
+    <xsl:copy-of select="ancestor::m:math[1]"/>
+]]
+</xsl:message>
   </xsl:template>
 
   <xsl:template match="m:apply" mode="cmml2om">
     <OMA>
       <xsl:apply-templates mode="cmml2om"/>
     </OMA>
+  </xsl:template>
+
+  <xsl:template match="m:apply[m:bvar]" mode="cmml2om" priority="10">
+    <xsl:variable name="b" as="element()">
+      <m:bind>
+	<xsl:copy-of select="node()"/>
+      </m:bind>
+    </xsl:variable>
+    <xsl:apply-templates select="$b" mode="cmml2om"/>
   </xsl:template>
 
   <xsl:template match="m:math" mode="cmml2om">
@@ -48,6 +61,14 @@
       <xsl:apply-templates select="*[last()]" mode="cmml2om"/>
     </OMBIND>
   </xsl:template>
+
+
+  <xsl:template match="m:cerror" mode="cmml2om">
+    <OME>
+     	<xsl:apply-templates mode="cmml2om"/>
+    </OME>
+  </xsl:template>
+
 
 
 
@@ -97,7 +118,7 @@
    <xsl:template match="m:apply[*[1][self::m:root]][m:degree]" mode="cmml2om">
      <OMA>
        <OMS cd="arith1" name="root"/>
-       <xsl:apply-templates select="*[position()!=1 and not(self::degree)],m:degree/*" mode="cmml2om"/>
+       <xsl:apply-templates select="*[position()!=1 and not(self::m:degree)],m:degree/*" mode="cmml2om"/>
      </OMA>
    </xsl:template>
    <xsl:template match="m:sum" mode="cmml2om">
