@@ -107,7 +107,9 @@
 
 <xsl:template match="om:OME">
   <merror>
-    <xsl:apply-templates/>
+    <xsl:apply-templates select="*[1]"/>
+    <mtext>:&#160;</mtext>
+    <xsl:apply-templates select="*[position()!=1]"/>
   </merror>
 </xsl:template>
 
@@ -142,8 +144,8 @@
 
 
 <xsl:template match="om:OMS">
-<xsl:message>[<xsl:value-of select="@cd"/>:<xsl:value-of
-select="@name"/>]</xsl:message>
+<!--<xsl:message>[<xsl:value-of select="@cd"/>:<xsl:value-of
+select="@name"/>]</xsl:message>-->
   <xsl:call-template name="prefix">
     <xsl:with-param name="mo"><mi><xsl:value-of select="@name"/></mi></xsl:with-param>
   </xsl:call-template>
