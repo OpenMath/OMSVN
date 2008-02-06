@@ -66,9 +66,9 @@
   </xsl:template>
 
   <xsl:template match="om:OME" mode="om2cmml">
-    <merror>
+    <cerror>
       <xsl:apply-templates mode="om2cmml"/>
-    </merror>
+    </cerror>
   </xsl:template>
 
 
