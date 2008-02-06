@@ -35,7 +35,6 @@ bind.content |= bind-head,bvar*,qualifier?,ContExp
 semantics-bind   = element semantics {semantics.attribs,bind-head, semantics-annotation*}
 
 bvar-head = ci|semantics-bvar
-bvar.content |= (bvar-head)
 semantics-bvar   = element semantics {semantics.attribs,bvar-head, semantics-annotation*}
 
 cerror-head = csymbol|apply|semantics-cerror
@@ -51,6 +50,15 @@ cerror-head |= token.error
 
 ## allow all functions and constants to be OM objects on their own
 ContExp |= token.constant|token.application
+
+## the MathML Types;  generate these somehow
+MathMLType |= Real
+Real |= notAllowed
+real |= notAllowed
+complex |= notAllowed
+principal_branch  |= notAllowed
+function |= notAllowed
+algebraic |= notAllowed
 
 #include "mathml3-arity.rnc"
 #include "mathml3-deprecated.rnc"

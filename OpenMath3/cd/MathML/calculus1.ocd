@@ -75,7 +75,7 @@ function. The single argument is the unary function.
 	  If <el>diff</el> is given a number <var>n</var> as a second argument, then it is
 	  interpreted as a <var>n</var>-fold differentiation operator.
 	  
-	  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><ndiff/><cn>2</cn><ci type="function">f</ci></apply></math></p>
+	  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><diff/><cn>2</cn><ci type="function">f</ci></apply></math></p>
 	</discussion>
 	<MMLexample>
           <description>
@@ -84,7 +84,7 @@ function. The single argument is the unary function.
 	<math xmlns="http://www.w3.org/1998/Math/MathML"><apply><eq/><apply><diff/><sin/></apply><cos/></apply></math></MMLexample>
 	<MMLexample>
           <description><p>diff (2,sin) = sin</p></description>
-	<math xmlns="http://www.w3.org/1998/Math/MathML"><apply><eq/><apply><ndiff/><cn>2</cn><sin/></apply><sin/></apply></math></MMLexample>
+	<math xmlns="http://www.w3.org/1998/Math/MathML"><apply><eq/><apply><diff/><cn>2</cn><sin/></apply><sin/></apply></math></MMLexample>
 <!-- end new part -->
 
 <property xml:id="diff_prop_1">
@@ -331,11 +331,11 @@ a unary function. The first argument is n, and the second the unary function.
 <Name>partialdiff</Name>
   <Pragmatic>
     <Token>partialdiff</Token>
-        <MMLattribute>
-          <attname>type</attname>
-          <attvalue>function | algebraic </attvalue>
-          <attdefault>algebraic</attdefault>
-        </MMLattribute>
+        <Attribute>
+          <Name>type</Name>
+          <Model>function | algebraic </Model>
+          <Default>algebraic</Default>
+        </Attribute>
   </Pragmatic>
 <Role>application</Role>
 <Description>
@@ -398,16 +398,22 @@ integers which index the variables of the function, the second is the function.
 	  <el>degree</el> schema used with <el>partialdiff</el> is expected to contain a
 	  single child schema. For example,
 
-<math xmlns="http://www.w3.org/1998/Math/MathML"><bind><partialdiff/>
-  <bvar>
-    <degree><cn>2</cn></degree>
-    <ci>x</ci>
-  </bvar>
-  <bvar><ci>y</ci></bvar>
-  <bvar><ci>x</ci></bvar>
-  <degree><cn>4</cn></degree>
-  <ci type="function">f</ci>
-</bind></math>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <partialdiff/>
+    <bind>
+      <lambda/>
+      <bvar>
+	<degree><cn>2</cn></degree>
+	<ci>x</ci>
+      </bvar>
+      <bvar><ci>y</ci></bvar>
+      <bvar><ci>x</ci></bvar>
+      <degree><cn>4</cn></degree>
+      <ci type="function">f</ci>
+    </bind>
+  </apply>
+</math>
 
             denotes the mixed partial derivative ( d<sup>4</sup> / d<sup>2</sup><var>x</var>
 	  d<var>y</var> d<var>x</var> ) <var>f</var>.</p>
@@ -426,13 +432,19 @@ integers which index the variables of the function, the second is the function.
             <p>d^k/(dx^m dy^n) f(x,y)</p>
           </description>
 	  <math xmlns="http://www.w3.org/1998/Math/MathML">
-<bind><partialdiff/>
-  <bvar><ci>x</ci><degree><ci>m</ci></degree></bvar>
-  <bvar><ci>y</ci><degree><ci>n</ci></degree></bvar>
-  <degree><ci>k</ci></degree>
-  <apply><ci type="function">f</ci><ci>x</ci><ci>y</ci></apply>
-</bind></math></MMLexample>
-
+<apply>
+  <partialdiff/>
+  <bind>
+    <lambda/>
+    <bvar><ci>x</ci><degree><ci>m</ci></degree></bvar>
+    <bvar><ci>y</ci><degree><ci>n</ci></degree></bvar>
+    <degree><ci>k</ci></degree>
+    <apply><ci type="function">f</ci><ci>x</ci><ci>y</ci></apply>
+  </bind>
+</apply>
+</math>
+</MMLexample>
+  
         <MMLexample>
           <description>
             <p>d^2/(dx dy) f(x,y)</p>
