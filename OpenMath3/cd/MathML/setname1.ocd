@@ -371,44 +371,51 @@ or -z is a natural number are equivalent
 </CDDefinition>
 
 <CDDefinition xml:id="Q">
-<Name>Q</Name>
-<Role>constant</Role>
+  <Name>rationials</Name>
+  <Role>constant</Role>
   <Pragmatic>
     <Token>rationals</Token>
   </Pragmatic>
-<Description> 
-This  symbol represents the set of rational numbers.
-</Description>
+  <Description> 
+    This  symbol represents the set of rational numbers.
+  </Description>
 
 <!-- new part -->
 <description>
-          <p>rationals represents the set of all rational numbers.</p>
-        </description>
-		<discussion>
-			<p><el>rationals</el> represents the set of all rational numbers.</p>
-		</discussion>
-        <property>
-          <description>
-            <p>for all z where z is a rational, there exists integers p and q with  p/q = z </p>
-          </description><math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply><forall/>
-  <bvar><ci>z</ci></bvar>
-  <condition><apply><in/><ci>z</ci><rationals/></apply></condition>
-  <apply><exists/>
-    <bvar><ci>p</ci></bvar>
-    <bvar><ci>q</ci></bvar>
-    <apply><and/>
-      <apply><in/><ci>p</ci><integers/></apply>
-      <apply><in/><ci>q</ci><integers/></apply>
-      <apply><eq/>
-        <apply><divide/><ci>p</ci><ci>q</ci></apply>]]><![CDATA[<integers/></apply>]]><![CDATA[
-        <ci>z</ci>
+  <p>rationals represents the set of all rational numbers.</p>
+</description>
+<discussion>
+  <p><el>rationals</el> represents the set of all rational numbers.</p>
+</discussion>
+<property>
+  <description>
+    <p>for all z where z is a rational, there exists integers p and q with  p/q = z </p>
+  </description>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply>
+      <forall/>
+      <bvar><ci>z</ci></bvar>
+      <condition><apply><in/><ci>z</ci><rationals/></apply></condition>
+      <apply>
+	<exists/>
+	<bvar><ci>p</ci></bvar>
+	<bvar><ci>q</ci></bvar>
+	<apply>
+	  <and/>
+	  <apply><in/><ci>p</ci><integers/></apply>
+	  <apply><in/><ci>q</ci><integers/></apply>
+	  <apply>
+	    <eq/>
+	    <apply><divide/><ci>p</ci><ci>q</ci></apply>
+	    <integers/>
+	  </apply>
+	  <ci>z</ci>
+	</apply>
       </apply>
     </apply>
-  </apply>
-</math>
+  </math>
 </property>
-        <property>
+<property>
           <description>
             <p>ForAll( [a,b], a and b are rational, a &lt; b implies there exists c such that a &lt; c and c &lt; b )</p>
           </description>
@@ -700,35 +707,36 @@ exists z in R such that
 </CDDefinition>
 
 <CDDefinition xml:id="C">
-<Name>C</Name>
+  <Name>complexes</Name>
   <Pragmatic>
     <Token>complexes</Token>
   </Pragmatic>
-<Role>constant</Role>
-<Description> 
-This  symbol represents the set of complex numbers.
-</Description>
-
-<!-- new part -->
-<description>
-          <p>complexes represents the set of all complex numbers, i.e., numbers 
-which may have a real and an imaginary part.</p>
-        </description>
-		<discussion>
-			<p><el>complexes</el> represents the set of all complex
-			numbers, i.e. numbers which may have a real and an imaginary part.</p>
-		</discussion>
-        <property>
-          <description>
-            <p><math xmlns="http://www.w3.org/1998/Math/MathML">for all z | if z is complex then there exist 
-reals x,y s.t. z = x + i * y </math></p>
-          </description>
-        </property>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><in/>
+  <Role>constant</Role>
+  <Description> 
+    This  symbol represents the set of complex numbers.
+  </Description>
+  
+  <!-- new part -->
+  <description>
+    <p>complexes represents the set of all complex numbers, i.e., numbers 
+    which may have a real and an imaginary part.</p>
+  </description>
+  <discussion>
+    <p><el>complexes</el> represents the set of all complex
+    numbers, i.e. numbers which may have a real and an imaginary part.</p>
+  </discussion>
+  <property>
+    <description>
+      <p><math xmlns="http://www.w3.org/1998/Math/MathML">for all z | if z is complex then there exist 
+      reals x,y s.t. z = x + i * y </math></p>
+    </description>
+  </property>
+  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><in/>
   <cn type="complex">17<sep/>29</cn>
   <complexes/>
 </apply>
-</math></MMLexample>
+</math>
+  </MMLexample>
 <!-- end new part -->
 
 <property xml:id="C_prop_7">
