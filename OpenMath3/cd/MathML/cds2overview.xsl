@@ -24,8 +24,8 @@
       <ednote>
         <name>MiKo</name>
         <edtext>
-          The list is generated from the MathML3 Content Dictionaries at 
-          <loc href="http://svn.openmath.org/OpenMath3/cd/MathML/">http://svn.openmath.org/OpenMath3/cd/MathML/</loc>. These are the result of merging material from the MathML2 and OpenMath2 content dictionaries, they are under review. The presentation here will improve with the content dictionary editorial process. 
+	  The list is generated from the MathML3 Content Dictionaries at 
+	  <loc href="http://svn.openmath.org/OpenMath3/cd/MathML/">http://svn.openmath.org/OpenMath3/cd/MathML/</loc>. These are the result of merging material from the MathML2 and OpenMath2 content dictionaries, they are under review. The presentation here will improve with the content dictionary editorial process.  
         </edtext>
       </ednote>
       <xsl:apply-templates select="mathml-cds/cd"/>
@@ -61,14 +61,15 @@
     <xsl:param name="cdname"/>
     <xsl:variable name="def" select="."/>
     <xsl:variable name="token" select="ocd:Pragmatic/ocd:Token"/>
-    <xsl:if test="not(contains($prune,$token))"> 
-    <div4 id="contm.{$token}">
-      <head>
-        <el><xsl:value-of select="$token"/></el>
-        (<code>&lt;csymbol cd=&quot;<xsl:value-of select="$cdname"/>&quot; name=&quot;<xsl:value-of select="ocd:Name"/>&quot;&gt;</code>)</head>
-      <p><xsl:apply-templates select="ocd:Description"/></p>
-      <xsl:for-each select="$copy">
-        <xsl:variable name="id" select="./text()"/>
+    <xsl:if test="not($token) or not(contains($prune,$token))"> 
+      <div4 id="contm.{$token}">
+	<head>
+	  <code>&lt;csymbol cd=&quot;<xsl:value-of select="$cdname"/>&quot;&gt;<xsl:value-of select="ocd:Name"/>&lt;/csymbol&gt;</code>
+	  <xsl:if test="$token">(<el><xsl:value-of select="$token"/></el>)</xsl:if>
+	</head>
+	<p><xsl:apply-templates select="ocd:Description"/></p>
+	<xsl:for-each select="$copy">
+	  <xsl:variable name="id" select="./text()"/>
         <xsl:apply-templates select="$def//*[@id=$id]" mode="speccopy"/>
       </xsl:for-each>
     </div4>
