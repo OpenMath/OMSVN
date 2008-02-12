@@ -14,8 +14,10 @@ CDUses = element CDUses { CDName* }
 CDURL = element CDURL { xsd:anyURI }
 CDBase = element CDBase { xsd:anyURI }
 
-mobj = (external "openmath3.rnc" | external "mathml3.rnc")
-#mobj = external "om3-sts.rnc"
+mmobj = external "mathml3.rnc"
+omobj = external "openmath3.rnc"
+#omobj = external "om3-sts.rnc"
+mobj = (omobj | mmobj)
 
 text-or-om = (text | mobj | code | var | quote | intref | specref | el | att | attval | sup | sub |
 graphic | eg | emph | kw )*
@@ -54,7 +56,7 @@ Role = element Role {
    "error" |
    "application" |
    "constant" }
-Pragmatic = element Pragmatic {(Token|Container),Attribute*}
+Pragmatic = element Pragmatic {(Token|Container),Attribute*,description?}
 Token  = element Token { text }
 Container = element Container { text}
 Attribute = element Attribute {Name,((Model,Default)|Prescribed)}
@@ -71,7 +73,8 @@ FMP = element FMP {
 # allow embedded OM
 Example = element Example { text-or-om }
 MMLexample = element MMLexample {id.att?,description?,mobj}
-description = element description {p*}
+description = element description {p|pseq*}
+pseq = element pseq {mobj,mobj}	    
 discussion = element discussion {p*}
 p = element p { text-or-om }
 id.att = attribute xml:id {xsd:ID}
