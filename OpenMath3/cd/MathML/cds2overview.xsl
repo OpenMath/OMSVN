@@ -25,7 +25,13 @@
         <name>MiKo</name>
         <edtext>
 	  The list is generated from the MathML3 Content Dictionaries at 
-	  <loc href="http://svn.openmath.org/OpenMath3/cd/MathML/">http://svn.openmath.org/OpenMath3/cd/MathML/</loc>. These are the result of merging material from the MathML2 and OpenMath2 content dictionaries, they are under review. The presentation here will improve with the content dictionary editorial process.  
+	  <loc href="http://svn.openmath.org/OpenMath3/cd/MathML/">http://svn.openmath.org/OpenMath3/cd/MathML/</loc>. 
+	  These are the result of merging material from the MathML2 and 
+	  OpenMath2 content dictionaries, they are under review. We have 
+	  already done some work on the <code>arith1</code> CD to show how 
+	  the extracted material will look in the MathML3 specification. The 
+	  presentation of the other CDs will improve with the content dictionary 
+	  editorial process.  
         </edtext>
       </ednote>
       <xsl:apply-templates select="mathml-cds/cd"/>
@@ -60,14 +66,27 @@
     <xsl:param name="prune"/>
     <xsl:param name="cdname"/>
     <xsl:variable name="def" select="."/>
-    <xsl:variable name="token" select="ocd:Pragmatic/ocd:Token"/>
-    <xsl:if test="not($token) or not(contains($prune,$token))"> 
-      <div4 id="contm.{$token}">
+    <xsl:variable name="pragmatic">
+      <xsl:choose>
+	<xsl:when test="ocd:Pragmatic/ocd:Token">
+	  <xsl:value-of select="ocd:Pragmatic/ocd:Token"/>
+	</xsl:when>
+	<xsl:when test="ocd:Pragmatic/ocd:Container">
+	  <xsl:value-of select="ocd:Pragmatic/ocd:Container"/>
+	</xsl:when>
+	<xsl:otherwise>
+	  <xsl:value-of select="ocd:Name"/>
+	</xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:if test="not($pragmatic) or not(contains($prune,$pragmatic))"> 
+      <div4 id="contm.{$pragmatic}">
 	<head>
 	  <code>&lt;csymbol cd=&quot;<xsl:value-of select="$cdname"/>&quot;&gt;<xsl:value-of select="ocd:Name"/>&lt;/csymbol&gt;</code>
-	  <xsl:if test="$token">(<el><xsl:value-of select="$token"/></el>)</xsl:if>
+	  <xsl:if test="$pragmatic"> (<el><xsl:value-of select="$pragmatic"/></el>)</xsl:if>
 	</head>
 	<p><xsl:apply-templates select="ocd:Description"/></p>
+	<xsl:apply-templates select="ocd:Pragmatic/ocd:description" mode="speccopy"/>
 	<xsl:for-each select="$copy">
 	  <xsl:variable name="id" select="./text()"/>
         <xsl:apply-templates select="$def//*[@id=$id]" mode="speccopy"/>
@@ -76,6 +95,15 @@
   </xsl:if>
   </xsl:template>
 
+  <xsl:template match="ocd:pseq" mode="speccopy">
+    <p>The pragmatic Content MathML expression
+    <eg role="pragmatic-mathml"><xsl:apply-templates mode="tostring" select="*[1]"/></eg>
+    is equivalent to the strict Content MathML expression
+    <eg role="pragmatic-mathml"><xsl:apply-templates mode="tostring" select="*[2]"/></eg>
+    </p>
+  </xsl:template>
+    
+
   <!-- copying CD elements for the MathML3 spec -->
 
   <xsl:template match="ocd:MMLexample" mode="speccopy">
@@ -83,7 +111,14 @@
   </xsl:template>
 
   <xsl:template match="ocd:description" mode="speccopy">
-    <p><xsl:apply-templates mode="speccopy"/></p>
+    <xsl:apply-templates mode="speccopy"/>
+  </xsl:template>
+
+  <xsl:template match="ocd:*" mode="speccopy">
+    <xsl:element name="{local-name()}">
+      <xsl:copy-of select="@*"/>
+      <xsl:apply-templates mode="speccopy"/>
+    </xsl:element>
   </xsl:template>
 
   <xsl:template match="m:math" mode="speccopy">
