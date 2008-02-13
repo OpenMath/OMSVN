@@ -83,7 +83,16 @@
       <div4 id="contm.{$pragmatic}">
 	<head>
 	  <code>&lt;csymbol cd=&quot;<xsl:value-of select="$cdname"/>&quot;&gt;<xsl:value-of select="ocd:Name"/>&lt;/csymbol&gt;</code>
-	  <xsl:if test="$pragmatic"> (<el><xsl:value-of select="$pragmatic"/></el>)</xsl:if>
+	  <xsl:choose>
+	    <xsl:when test="ocd:Pragmatic/ocd:Container">
+	      <xsl:text> (container element </xsl:text>
+	      <el><xsl:value-of select="$pragmatic"/></el>)
+	    </xsl:when>
+	    <xsl:when test="ocd:Pragmatic/ocd:Token">
+	      <xsl:text> (token element </xsl:text>
+	      <el><xsl:value-of select="$pragmatic"/></el>)
+	    </xsl:when>
+	  </xsl:choose>
 	</head>
 	<p><xsl:apply-templates select="ocd:Description"/></p>
 	<xsl:apply-templates select="ocd:Pragmatic/ocd:description" mode="speccopy"/>
@@ -135,7 +144,14 @@
     <xsl:value-of select="'&gt;'"/>
     <xsl:apply-templates select="*|text()" mode="tostring"/>
     <xsl:value-of select="concat('&lt;/',name(),'&gt;')"/>
+  </xsl:template>
 
+  <xsl:template match="m:*[not(*|text())]" mode="tostring">
+    <xsl:value-of select="concat('&lt;',name())"/>
+    <xsl:for-each select="@*">
+      <xsl:value-of select="concat(' ',name(),'=&quot;',.,'&quot;')"/>
+    </xsl:for-each>
+    <xsl:value-of select="'/&gt;'"/>
   </xsl:template>
 
   <xsl:template match="text()" mode="tostring">
