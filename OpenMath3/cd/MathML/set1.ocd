@@ -76,8 +76,16 @@ may be repeated if elements in the base sets are repeated.</p>
 	  <p>As an n-ary operator, its operands may also be generated as described in
 	  <specref ref="contm_naryopwithqual"/> Therefore it may take qualifiers.</p>
 	</discussion>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><cartesianproduct/><ci>A</ci><ci>B</ci></apply></math></MMLexample>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><cartesianproduct/><reals/><reals/><reals/></apply></math></MMLexample>
+        <MMLexample>
+	<math xmlns="http://www.w3.org/1998/Math/MathML">
+	<apply><cartesianproduct/><ci>A</ci><ci>B</ci></apply>
+	</math>
+	</MMLexample>
+        <MMLexample>
+	  <math xmlns="http://www.w3.org/1998/Math/MathML">
+	    <apply><cartesianproduct/><reals/><reals/><reals/></apply>
+	  </math>
+	</MMLexample>
 <!-- end new part -->
 
 <Example>
@@ -116,12 +124,12 @@ contains no members. It takes no parameters.
             <p>
 for all sets S,   intersect(S,emptyset) = emptyset</p>
           </description><math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply><forall/><bvar><ci type="set">S</ci></bvar>
+<bind><forall/><bvar><ci type="set">S</ci></bvar>
   <apply><eq/>
     <apply><intersect/><emptyset/><ci>S</ci></apply>
     <emptyset/>
   </apply>
-</apply></math></property>
+</bind></math></property>
         <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><neq/>
   <integers/>
   <emptyset/>
@@ -430,16 +438,34 @@ The set {3, 6, 9}
   </OMA>
 </OMOBJ>
 </Example>
-
-
 </CDDefinition>
 
 
 <CDDefinition xml:id="intersect">
 <Name>intersect</Name>
-<Pragmatic>
-  <Token>intersect</Token>
-</Pragmatic>
+  <Pragmatic>
+    <Token>intersect</Token>
+    <description>
+      <p>The <el>intersect</el> token element can be used as a binding operator in
+      pragmatic Content MathML. This role is taken over by the <code>big_intersect</code>
+      symbol in strict Content MathML.</p>
+<pseq>
+  <apply xmlns="http://www.w3.org/1998/Math/MathML">
+    <intersect type="set"/>
+    <bvar><ci>x</ci></bvar>
+    <apply><interval type="integer"/><cn>0</cn><ci>x</ci></apply>
+  </apply>
+  <apply xmlns="http://www.w3.org/1998/Math/MathML">
+    <csymbol cd="set1">big_intersect</csymbol>
+    <bind>
+      <csymbol cd="fns1">lambda</csymbol>
+      <bvar><ci>x</ci></bvar>
+      <apply><csymbol cd="interval1">integer_interval</csymbol><cn>0</cn><ci>x</ci></apply>
+    </bind>
+  </apply>
+</pseq>
+    </description>
+  </Pragmatic>
 <Role>application</Role>
 <Description> 
 This symbol is used to denote the n-ary intersection of sets. It takes
@@ -470,10 +496,13 @@ elements that occur in all of them.
 </math></MMLexample>
 <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML">
 <apply>
-  <intersect/>
-  <bvar><ci type="set"> S</ci></bvar>
-  <domainofapplication><ci type="list">L</ci></domainofapplication>
-  <ci type="set"> S</ci>
+  <big_intersect/>
+  <ci type="list">L</ci>
+  <bind>
+    <lambda/>
+    <bvar><ci type="set"> S</ci></bvar>
+    <ci type="set"> S</ci>
+  </bind>
 </apply>
 </math></MMLexample>
 <!-- end new part -->
@@ -509,11 +538,41 @@ elements that occur in all of them.
 </FMP></property>
 </CDDefinition>
 
+<CDDefinition xml:id="big_intersect">
+  <Name>big_intersect</Name>
+  <Role>binder</Role>
+  <Title>Intersection over a set of expressions</Title>
+  <Description>
+    This n-ary operator is used to construct the intersection over a collection of sets.
+  </Description>
+</CDDefinition>
+
+
 <CDDefinition xml:id="union">
 <Name>union</Name>
-<Pragmatic>
-  <Token>union</Token>
-</Pragmatic>
+  <Pragmatic>
+    <Token>union</Token>
+    <description>
+      <p>The <el>union</el> token element can be used as a binding operator in
+      pragmatic Content MathML. This role is taken over by the <code>big_union</code>
+      symbol in strict Content MathML.</p>
+<pseq>
+  <apply xmlns="http://www.w3.org/1998/Math/MathML">
+    <union type="set"/>
+    <bvar><ci>x</ci></bvar>
+    <apply><interval type="integer"/><cn>0</cn><ci>x</ci></apply>
+  </apply>
+  <apply xmlns="http://www.w3.org/1998/Math/MathML">
+    <csymbol cd="set1">big_union</csymbol>
+    <bind>
+      <csymbol cd="fns1">lambda</csymbol>
+      <bvar><ci>x</ci></bvar>
+      <apply><csymbol cd="interval1">integer_interval</csymbol><cn>0</cn><ci>x</ci></apply>
+    </bind>
+  </apply>
+</pseq>
+    </description>
+  </Pragmatic>
 <Role>application</Role>
 <Description> 
 This symbol is used to denote the n-ary union of sets. It takes
@@ -521,7 +580,6 @@ sets as arguments, and denotes the set that contains all the
 elements that occur in any of them.
 </Description>
 
-<!-- new part -->
 <description>
           <p>This is the set-theoretic operation of union of sets.  This n-ary operator
           generalizes to operations on multisets by tracking the frequency of occurrence
@@ -628,11 +686,22 @@ union(A,intersect(B,C)) = intersect(union(A,B),union(A,C))
 </FMP></property>
 </CDDefinition>
 
+
+<CDDefinition xml:id="big_union">
+  <Name>big_union</Name>
+  <Role>binder</Role>
+  <Title>Union over a Set of expressions</Title>
+  <Description>
+    This n-ary operator is used to construct the union over a collection of sets.
+  </Description>
+</CDDefinition>
+
+
 <CDDefinition xml:id="setdiff">
 <Name>setdiff</Name>
-<Pragmatic>
-  <Token>setdiff</Token>
-</Pragmatic>
+  <Pragmatic>
+    <Token>setdiff</Token>
+  </Pragmatic>
 <Role>application</Role>
 <Description> 
 This symbol is used to denote the set difference of two sets. It takes
@@ -641,7 +710,7 @@ elements that occur in the first set, but not in the second.
 </Description>
 
 <!-- new part -->
-<description>
+ <description>
           <p>The setdiff element is the operator element for a set-theoretic difference of
           two sets.</p>
         </description>
@@ -675,9 +744,9 @@ elements that occur in the first set, but not in the second.
 
 <CDDefinition xml:id="subset">
 <Name>subset</Name>
-<Pragmatic>
-  <Token>subset</Token>
-</Pragmatic>
+  <Pragmatic>
+    <Token>subset</Token>
+  </Pragmatic>
 <Role>application</Role>
 <Description>
 This symbol has two (set) arguments. It is used to denote that the
@@ -696,24 +765,29 @@ first set is a subset of the second.
 	  n-ary operator, its operands may also be generated as described in <specref
 	  ref="contm_naryopwithqual"/> Therefore it may take qualifiers.</p>
 	</discussion>
+
         <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><subset/>
   <ci type="set"> A</ci>
   <ci type="set"> B</ci>
 </apply>
-</math></MMLexample>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply>
-  <subset/>
-  <subset/>
-  <bvar><ci type="set">S</ci></bvar>
-  <condition>
-    <apply><in/>
+</math>
+</MMLexample>
+
+<MMLexample>
+  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply>
+    <subset/>
+    <set/>
+    <bvar><ci type="set">S</ci></bvar>
+    <condition>
+      <apply><in/>
       <ci>S</ci>
       <ci type="list">T</ci>
-    </apply>
-  </condition>
-  <ci>S</ci>
-</apply>
-</math></MMLexample>
+      </apply>
+    </condition>
+    <ci>S</ci>
+  </apply>
+  </math>
+</MMLexample>
 <!-- end new part -->
 
 <property xml:id="subset_prop_8">
@@ -747,9 +821,9 @@ first set is a subset of the second.
 
 <CDDefinition xml:id="in">
 <Name>in</Name>
-<Pragmatic>
-  <Token>in</Token>
-</Pragmatic>
+  <Pragmatic>
+    <Token>in</Token>
+  </Pragmatic>
 <Role>application</Role>
 <Description> 
 This symbol has two arguments, an element and a set. It is used to

@@ -47,15 +47,35 @@
 </Description>
 
 <CDDefinition xml:id="min">
-<Name>min</Name>
-<title>Minimum</title>
+  <Name>min</Name>
+  <title>Minimum</title>
   <Pragmatic>
     <Token>min</Token>
-        <MMLattribute>
-          <attname>type</attname>
-          <attvalue>MathMLType</attvalue>
-          <attdefault>real</attdefault>
-        </MMLattribute>
+    <MMLattribute>
+      <attname>type</attname>
+      <attvalue>MathMLType</attvalue>
+      <attdefault>real</attdefault>
+    </MMLattribute>
+    <description>
+      <p>The <el>min</el> token element can be used as a binding operator in pragmatic
+      Content MathML. This role is taken over by the <code>big_min</code> symbol in strict
+      Content MathML.</p>
+<pseq>
+  <apply xmlns="http://www.w3.org/1998/Math/MathML">
+    <min/>
+    <bvar><ci>x</ci></bvar>
+    <apply><power/><ci>x</ci></apply>
+  </apply>
+  <apply xmlns="http://www.w3.org/1998/Math/MathML">
+    <csymbol cd="arith1">big_min</csymbol>
+    <bind>
+      <csymbol cd="fns1">lambda</csymbol>
+      <bvar><ci>x</ci></bvar>
+      <apply><csymbol cd="arith1">power</csymbol><ci>x</ci></apply>
+    </bind>
+  </apply>
+</pseq>
+    </description>
   </Pragmatic>
 <Role>application</Role>
 <Description> 
@@ -63,26 +83,25 @@
  its argument and returns the minimum element in that set.
 </Description>
 
-<!-- new part -->
- <description>
-          <p>This is the n-ary operator used to represent the minimum of a set of
-          elements.  The elements may be listed explicitly or they may be described by a
-          <code>condition</code>, e.g., the minimum over all x in the set A.</p>
-          <p>The elements must all be comparable if the result is to be well defined.</p>
+<description>
+   <p>This is the n-ary operator used to represent the minimum of a set of elements.  The
+   elements may be listed explicitly or they may be described by a <code>condition</code>,
+   e.g., the minimum over all x in the set A.</p>
+   <p>The elements must all be comparable if the result is to be well defined.</p>
 
-	<p>The <code>min</code> operator is a are n-ary operators may use the domain of
-	application qualifiers as described in <specref ref="contm_naryopwithqual"/>.  For
-	example, the <code>min</code> and <code>max</code> functions accept a <code>bvar</code> schema
-	in cases where the maximum or minimum is being taken over a set of values
-	specified by a <code>condition</code> schema together with an expression to be
-	evaluated on that set.  In MathML1.0, the <code>bvar</code> element was optional when
-	using a <code>condition</code>; if a <code>condition</code> element containing a single
-	variable was given by itself following a <code>min</code> or <code>max</code> operator,
-	the variable was implicitly assumed to be bound, and the expression to be
-	maximized or minimized (if absent) was assumed to be the single bound variable.
-	This usage is <intref ref="interf_deprec">deprecated</intref> in MathML 2.0 in
-	favor of explicitly stating the bound variable(s) and the expression to be
-	maximized or minimized in all cases.</p>
+   <p>The <code>min</code> operator is a are n-ary operators may use the domain of
+   application qualifiers as described in <specref ref="contm_naryopwithqual"/>.  For
+   example, the <code>min</code> and <code>max</code> functions accept a <code>bvar</code>
+   schema in cases where the maximum or minimum is being taken over a set of values
+   specified by a <code>condition</code> schema together with an expression to be
+   evaluated on that set.  In MathML1.0, the <code>bvar</code> element was optional when
+   using a <code>condition</code>; if a <code>condition</code> element containing a single
+   variable was given by itself following a <code>min</code> or <code>max</code> operator,
+   the variable was implicitly assumed to be bound, and the expression to be maximized or
+   minimized (if absent) was assumed to be the single bound variable.  This usage is
+   <intref ref="interf_deprec">deprecated</intref> in MathML 2.0 in favor of explicitly
+   stating the bound variable(s) and the expression to be maximized or minimized in all
+   cases.</p>
 
 	<p>The <code>min</code> and <code>max</code> elements may also be applied to a list of
 	values in which case no qualifier schemata are used.</p>
@@ -136,7 +155,6 @@ min(y^2,  y in (0,1)) </p>
       </apply>
     </math>
 </MMLexample>
-<!-- end new part -->
 
 <Example>
 Representation of the equation minimum{1,9,5} = 1.
@@ -158,107 +176,137 @@ Representation of the equation minimum{1,9,5} = 1.
 </Example>
 </CDDefinition>
 
+<CDDefinition xml:id="big_min">
+  <Name>big_min</Name>
+  <Role>binder</Role>
+  <Title>Minimum over a Set of expressions</Title>
+  <Description>
+    This n-ary operator is used to construct the minimum over a set of objects.
+  </Description>
+</CDDefinition>
+
 <CDDefinition xml:id="max">
-<Name>max</Name>
-<title>Maximum</title>
+  <Name>max</Name>
+  <title>Maximum</title>
   <Pragmatic>
     <Token>max</Token>
-       <MMLattribute>
-          <attname>type</attname>
-          <attvalue>MathMLType</attvalue>
-          <attdefault>real</attdefault>
-        </MMLattribute>
+    <MMLattribute>
+      <attname>type</attname>
+      <attvalue>MathMLType</attvalue>
+      <attdefault>real</attdefault>
+    </MMLattribute>
+    <description>
+      <p>The <el>max</el> token element can be used as a binding operator in pragmatic
+      Content MathML. This role is taken over by the <code>big_max</code> symbol in strict
+      Content MathML.</p>
+<pseq>
+  <apply xmlns="http://www.w3.org/1998/Math/MathML">
+    <max/>
+    <bvar><ci>x</ci></bvar>
+    <apply><power/><ci>x</ci></apply>
+  </apply>
+  <apply xmlns="http://www.w3.org/1998/Math/MathML">
+    <csymbol cd="arith1">big_max</csymbol>
+    <bind>
+      <csymbol cd="fns1">lambda</csymbol>
+      <bvar><ci>x</ci></bvar>
+      <apply><csymbol cd="arith1">power</csymbol><ci>x</ci></apply>
+    </bind>
+  </apply>
+</pseq>
+    </description>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
- This symbol denotes the unary maximum function which takes a set as
- its argument and returns the maximum element in that set.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol denotes the unary maximum function which takes a set as its argument and
+    returns the maximum element in that set.
+  </Description>
 
-<!-- new part -->
-<description>
-	  <p>This is the n-ary operator used to represent the maximum of a set of
-	  elements. The elements may be listed explicitly or they may be described by a
-	  <code>domainofapplication</code>, for example, the maximum over all x in the set A. The
-	  <code>domainofapplication</code> is often abbreviated by placing a condition directly on a
-	  bound variable.</p>
+  <description>
+    <p>This is the n-ary operator used to represent the maximum of a set of elements. The
+    elements may be listed explicitly or they may be described by a
+    <code>domainofapplication</code>, for example, the maximum over all x in the set
+    A. The <code>domainofapplication</code> is often abbreviated by placing a condition
+    directly on a bound variable.</p>
 
-	<p>The <code>max</code> operator is a n-ary operators may use the domain of
-	application qualifiers as described in <specref ref="contm_naryopwithqual"/>.  For
-	example, the <code>min</code> and <code>max</code> functions accept a <code>bvar</code> schema
-	in cases where the maximum or minimum is being taken over a set of values
-	specified by a <code>condition</code> schema together with an expression to be
-	evaluated on that set.  In MathML1.0, the <code>bvar</code> element was optional when
-	using a <code>condition</code>; if a <code>condition</code> element containing a single
-	variable was given by itself following a <code>min</code> or <code>max</code> operator,
-	the variable was implicitly assumed to be bound, and the expression to be
-	maximized or minimized (if absent) was assumed to be the single bound variable.
-	This usage is <intref ref="interf_deprec">deprecated</intref> in MathML 2.0 in
-	favor of explicitly stating the bound variable(s) and the expression to be
-	maximized or minimized in all cases.</p>
+    <p>The <code>max</code> operator is a n-ary operators may use the domain of
+    application qualifiers as described in <specref ref="contm_naryopwithqual"/>.  For
+    example, the <code>min</code> and <code>max</code> functions accept a
+    <code>bvar</code> schema in cases where the maximum or minimum is being taken over a
+    set of values specified by a <code>condition</code> schema together with an expression
+    to be evaluated on that set.  In MathML1.0, the <code>bvar</code> element was optional
+    when using a <code>condition</code>; if a <code>condition</code> element containing a
+    single variable was given by itself following a <code>min</code> or <code>max</code>
+    operator, the variable was implicitly assumed to be bound, and the expression to be
+    maximized or minimized (if absent) was assumed to be the single bound variable.  This
+    usage is <intref ref="interf_deprec">deprecated</intref> in MathML 2.0 in favor of
+    explicitly stating the bound variable(s) and the expression to be maximized or
+    minimized in all cases.</p>
 
-	<p>The <code>min</code> and <code>max</code> elements may also be applied to a list of
-	values in which case no qualifier schemata are used.</p>
-        </description>
+    <p>The <code>min</code> and <code>max</code> elements may also be applied to a list of
+    values in which case no qualifier schemata are used.</p>
+  </description>
 
 <property>
-          <description>
-            <p>ForAll( x in S,  max(y in S,y) \geq x )</p>
-          </description>
-        </property>
-        
-		<MMLexample>
-          <description>
-            <p>Maximum of a finite listing of elements</p>
-          </description><math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply><max/><cn>2</cn><cn>3</cn><cn>5</cn></apply>
-</math></MMLexample>
-        <MMLexample><description>
-            <p>Max(y^3,  y in (0,1)) </p>
-          </description>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply>
-  <max/>
-  <bvar><ci>y</ci></bvar>
-  <condition>
-<apply><in/><ci>y</ci><interval><cn>0</cn><cn>1</cn>
-</interval></apply>
-  </condition>
-  <apply><power/><ci>y</ci><cn>3</cn></apply>
-</apply>
+  <description>
+    <p>ForAll( x in S,  max(y in S,y) \geq x )</p>
+  </description>
+</property>
+
+<MMLexample>
+  <description>
+    <p>Maximum of a finite listing of elements</p>
+    </description><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><max/><cn>2</cn><cn>3</cn><cn>5</cn></apply>
+  </math>
+</MMLexample>
+
+<MMLexample>
+  <description>
+    <p>Max(y^3, y in (0,1)) </p>
+  </description>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply>
+      <max/>
+      <bvar><ci>y</ci></bvar>
+      <condition>
+	<apply><in/><ci>y</ci><interval><cn>0</cn><cn>1</cn>
+	</interval>
+	</apply>
+      </condition>
+      <apply><power/><ci>y</ci><cn>3</cn></apply>
+    </apply>
+  </math>
+</MMLexample>
+
+<MMLexample>
+  <description><p>When the objects are to be compared explicitly they are listed as
+  arguments to the function as in:</p> </description>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><max/><ci>a</ci><ci>b</ci></apply>
+  </math>
+</MMLexample>
+
+<MMLexample>
+  <description>
+    <p>In MathML1.0, the bound variable and expression to be evaluated (<var>x</var>)
+    could be omitted in the example below: this usage is deprecated in MathML2.0 in favor
+    of explicitly stating the bound variable and expression in all cases: </p>
+  </description>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply>
+      <max/>
+      <bvar><ci>x</ci></bvar>
+      <condition>
+	<apply><and/>
+	<apply><in/><ci>x</ci><ci type="set">B</ci></apply>
+	<apply><notin/><ci>x</ci><ci type="set">C</ci></apply>
+	</apply>
+      </condition>
+      <ci>x</ci>
+    </apply>
 </math>
-		</MMLexample>
-		<MMLexample>
-		<description><p>When the objects are to be compared explicitly they are listed as arguments to the function as in:</p>
-		</description><math xmlns="http://www.w3.org/1998/Math/MathML">
-		<apply>
-		  <max/>
-		  <ci>a</ci>
-		  <ci>b</ci>
-		</apply>
-		</math></MMLexample>
-		
-		<MMLexample>
-		  <description>
-		    <p>In MathML1.0, the bound variable and expression to be evaluated
-		    (<var>x</var>) could be omitted in the example below: this usage is
-		    deprecated in MathML2.0 in favor of explicitly stating the bound
-		    variable and expression in all cases: </p>
-		  </description>
-			<math xmlns="http://www.w3.org/1998/Math/MathML">
-			<apply>
-			  <max/>
-			  <bvar><ci>x</ci></bvar>
-			  <condition>
-			    <apply><and/>
-			      <apply><in/><ci>x</ci><ci type="set">B</ci></apply>
-			      <apply><notin/><ci>x</ci><ci type="set">C</ci></apply>
-			    </apply>
-			  </condition>
-			  <ci>x</ci>
-			</apply>
-			</math></MMLexample>
-<!-- end new part -->
+</MMLexample>
 
 <Example>
 Representation of the equation maximum{1,9,5} = 9.
@@ -278,6 +326,15 @@ Representation of the equation maximum{1,9,5} = 9.
   </OMA>
 </OMOBJ>
 </Example>
+</CDDefinition>
+
+<CDDefinition xml:id="big_max">
+  <Name>big_max</Name>
+  <Role>binder</Role>
+  <Title>Maximum over a Set of expressions</Title>
+  <Description>
+    This n-ary operator is used to construct the maximum over a set of objects.
+  </Description>
 </CDDefinition>
 
 </CD>
