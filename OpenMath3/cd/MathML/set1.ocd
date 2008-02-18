@@ -61,33 +61,32 @@ construct their Cartesian product.
 
 <!-- new part -->
 <description>
-          <p>The cartesianproduct element is the operator for a set-theoretic 
-cartesian product of two (or more) sets.  The cartesian 
-product of multisets produces a multiset since n-tuples
-may be repeated if elements in the base sets are repeated.</p>
-        </description>
-	<discussion>
-	  <p>The <el>cartesianproduct</el> element is the operator element for the
-	  Cartesian product of two or more sets. If <var>A</var> and <var>B</var> are two
-	  sets, then the Cartesian product of <var>A</var> and <var>B</var> is the set of
-	  all pairs <var>(a,b)</var> with <var>a</var> in <var>A</var> and <var>b</var> in
-	  <var>B</var>. </p>
+  <p>The cartesianproduct element is the operator for a set-theoretic cartesian product of
+  two (or more) sets.  The cartesian product of multisets produces a multiset since
+  n-tuples may be repeated if elements in the base sets are repeated.</p>
+</description>
+<discussion>
+  <p>The <el>cartesianproduct</el> element is the operator element for the Cartesian
+  product of two or more sets. If <var>A</var> and <var>B</var> are two sets, then the
+  Cartesian product of <var>A</var> and <var>B</var> is the set of all pairs
+  <var>(a,b)</var> with <var>a</var> in <var>A</var> and <var>b</var> in
+  <var>B</var>. </p>
 	  
-	  <p>As an n-ary operator, its operands may also be generated as described in
-	  <specref ref="contm_naryopwithqual"/> Therefore it may take qualifiers.</p>
-	</discussion>
-        <MMLexample>
-	<math xmlns="http://www.w3.org/1998/Math/MathML">
-	<apply><cartesianproduct/><ci>A</ci><ci>B</ci></apply>
-	</math>
-	</MMLexample>
-        <MMLexample>
-	  <math xmlns="http://www.w3.org/1998/Math/MathML">
-	    <apply><cartesianproduct/><reals/><reals/><reals/></apply>
-	  </math>
-	</MMLexample>
-<!-- end new part -->
+  <p>As an n-ary operator, its operands may also be generated as described in
+  <specref ref="contm_naryopwithqual"/> Therefore it may take qualifiers.</p>
+</discussion>
 
+<MMLexample>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><cartesianproduct/><ci>A</ci><ci>B</ci></apply>
+  </math>
+</MMLexample>
+
+<MMLexample>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><cartesianproduct/><reals/><reals/><reals/></apply>
+  </math>
+</MMLexample>
 <Example>
 An example to show the representation of the Cartesian product of sets: AxBxC.
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
@@ -226,17 +225,17 @@ x ranges over the integral interval [0,10].
 </CDDefinition>
 
 <CDDefinition xml:id="size">
-<Name>size</Name>
-<Pragmatic>
-  <Token>size</Token>
-</Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol is used to denote the number of elements in a set. It is
-either a non-negative integer, or an infinite cardinal number. The
-symbol infinity may be used for an unspecified infinite cardinal.
-</Description>
-
+ <Name>size</Name>
+ <Pragmatic>
+   <Token>size</Token>
+ </Pragmatic>
+ <Role>application</Role>
+ <Description> 
+   This symbol is used to denote the number of elements in a set. It is either a
+   non-negative integer, or an infinite cardinal number. The symbol infinity may be used
+   for an unspecified infinite cardinal.
+ </Description>
+ 
 <Example>
 The size of the set{3,6,9} = 3
 
@@ -271,6 +270,19 @@ The size of the set of integers is infinite
   </OMA>
 </OMOBJ>
 </Example>
+
+<MMLexample>
+  <description><p>where A is a set with 5 elements.</p>
+  </description>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><eq/>
+    <apply><card/><ci>A</ci></apply>
+    <ci>5</ci>
+    </apply>
+  </math>
+</MMLexample>
+
+
 </CDDefinition>
 
 <CDDefinition xml:id="suchthat">
@@ -314,20 +326,19 @@ the suchthat constructor.
 </CDDefinition>
 
 <CDDefinition xml:id="set">
-<Name>set</Name>
-<Pragmatic>
-  <Token>set</Token>
-	<MMLattribute>
+  <Name>set</Name>
+  <Pragmatic>
+    <Token>set</Token>
+    <MMLattribute>
       <attname>order</attname>
       <attvalue> lexicographic | numeric </attvalue>
       <attdefault>none</attdefault>
     </MMLattribute>
-</Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the set construct. It is an n-ary function. The
-set entries are given explicitly. There is no implied ordering to the
-elements of a set. 
+  </Pragmatic>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents the set construct. It is an n-ary function. The set entries are
+    given explicitly. There is no implied ordering to the elements of a set.
 </Description>
 
 <!-- new part -->
@@ -338,27 +349,10 @@ elements of a set.
       provided by means of one of the shortcut notations.</p>
     </description>
     <discussion>
-      <p><ednote><name>MiKo</name>
-      <edtext>Take the <el>list</el> and <el>set</el> parts of the discussion apart and
-      make the <el>MMLdefinition</el>s selfcontained, maybe move some of the discussion
-      into the CD description</edtext>
-      </ednote>
-
-      The <el>set</el> element is the container element that constructs a set of
-      elements. The elements of a set can be defined either by explicitly listing the
-      elements, or by evaluating a function over a domain of application as described in
-      <specref ref="contm_qualifiers"/>.</p>
-
       <p>The <att>type</att> attribute indicates type of the set. Predefined values:
       <attval>normal</attval>, <attval>multiset</attval>.  <attval>multiset</attval>
       indicates that repetitions are allowed. The default value is
       <attval>normal</attval>.</p>
-
-      <issue role="open" id="type_on_set">
-	<head>Keep <att>type</att> attribute on <el>set</el>?</head>
-	<p>It seems very awkward to keep this, it would probably be better to have an
-	<code>multiset</code> content dictionary as OpenMath does.</p>
-      </issue>
 
       <p>The child elements of a possibly empty <el>list</el> element are the actual
       components of an ordered <emph>list</emph>. For example, an ordered list of the
@@ -417,15 +411,22 @@ elements of a set.
       construct a list of equations, or of inequalities.</p>
     </discussion>
 
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><list><ci>a</ci><ci>b</ci><ci>c</ci></list></math></MMLexample>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><list order="numeric">
-  <bvar><ci>x</ci></bvar>
-  <condition>
-    <apply><lt/><ci>x</ci><cn>5</cn></apply>
-  </condition>
-</list>
-</math></MMLexample>
-<!-- end new part -->
+    <MMLexample>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+	<list><ci>a</ci><ci>b</ci><ci>c</ci></list>
+      </math>
+    </MMLexample>
+
+    <MMLexample>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+	<list order="numeric">
+	  <bvar><ci>x</ci></bvar>
+	  <condition>
+	    <apply><lt/><ci>x</ci><cn>5</cn></apply>
+	  </condition>
+	</list>
+    </math>
+    </MMLexample>
 
 <Example>
 The set {3, 6, 9}

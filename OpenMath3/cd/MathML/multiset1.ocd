@@ -56,12 +56,12 @@ Based on set1.ocd
   <Pragmatic>
     <Token>size</Token>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol is used to denote the number of elements in a multiset. It is
-either a non-negative integer, or an infinite cardinal number. The
-symbol infinity may be used for an unspecified infinite cardinal.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol is used to denote the number of elements in a multiset. It is
+    either a non-negative integer, or an infinite cardinal number. The
+    symbol infinity may be used for an unspecified infinite cardinal.
+  </Description>
 
 <Example>
 The size of the multiset{3,3,9} = 3
@@ -82,53 +82,62 @@ The size of the multiset{3,3,9} = 3
   </OMA>
 </OMOBJ>
 </Example>
+
+<MMLexample>
+  <description><p>where A is a multiset with 5 elements.</p>
+  </description>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><eq/>
+    <apply><card/><ci>A</ci></apply>
+    <ci>5</ci>
+    </apply>
+  </math>
+</MMLexample>
+
 </CDDefinition>
 
 
 <CDDefinition xml:id="cartesian_product">
-<Name>cartesian_product</Name>
-<Pragmatic>
-  <Token>cartesianproduct</Token>
-</Pragmatic>
-<Role>application</Role>
-<Description>
-This symbol represents an n-ary construction function for constructing
-the Cartesian product of multisets. It takes n multiset arguments in order to
-construct their Cartesian product.
-</Description>
+  <Name>cartesian_product</Name>
+  <Pragmatic>
+    <Token>cartesianproduct</Token>
+  </Pragmatic>
+  <Role>application</Role>
+  <Description>
+    This symbol represents an n-ary construction function for constructing the Cartesian
+    product of multisets. It takes n multiset arguments in order to construct their
+    Cartesian product.
+  </Description>
 
-<!-- new part -->
-<description>
-          <p>The cartesianproduct element is the operator for a set-theoretic 
-cartesian product of two (or more) sets.  The cartesian 
-product of multisets produces a multiset since n-tuples
-may be repeated if elements in the base sets are repeated.</p>
-        </description>
-	<discussion>
-	  <p>The <el>cartesianproduct</el> element is the operator element for the
-	  Cartesian product of two or more sets. If <var>A</var> and <var>B</var> are two
-	  sets, then the Cartesian product of <var>A</var> and <var>B</var> is the set of
-	  all pairs <var>(a,b)</var> with <var>a</var> in <var>A</var> and <var>b</var> in
-	  <var>B</var>. </p>
+  <description>
+    <p>The cartesianproduct element is the operator for a set-theoretic cartesian product
+    of two (or more) sets.  The cartesian product of multisets produces a multiset since
+    n-tuples may be repeated if elements in the base sets are repeated.</p>
+  </description>
+  <discussion>
+    <p>The <el>cartesianproduct</el> element is the operator element for the Cartesian
+    product of two or more sets. If <var>A</var> and <var>B</var> are two sets, then the
+    Cartesian product of <var>A</var> and <var>B</var> is the set of all pairs
+    <var>(a,b)</var> with <var>a</var> in <var>A</var> and <var>b</var> in
+    <var>B</var>. </p>
 	  
-	  <p>As an n-ary operator, its operands may also be generated as described in
-	  <specref ref="contm_naryopwithqual"/> Therefore it may take qualifiers.</p>
-	</discussion>
-        <MMLexample>
-	<math xmlns="http://www.w3.org/1998/Math/MathML">
-	<apply><cartesianproduct/><ci>A</ci><ci>B</ci></apply>
-	</math>
-	</MMLexample>
-        <MMLexample>
-	  <math xmlns="http://www.w3.org/1998/Math/MathML">
-	    <apply><cartesianproduct/><reals/><reals/><reals/></apply>
-	  </math>
-	</MMLexample>
-<!-- end new part -->
+    <p>As an n-ary operator, its operands may also be generated as described in
+    <specref ref="contm_naryopwithqual"/> Therefore it may take qualifiers.</p>
+  </discussion>
+  <MMLexample>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><cartesianproduct/><ci>A</ci><ci>B</ci></apply>
+    </math>
+  </MMLexample>
 
-<Example>
-An example to show the representation of the Cartesian product of
-multisets: AxBxC.
+  <MMLexample>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><cartesianproduct/><reals/><reals/><reals/></apply>
+    </math>
+  </MMLexample>
+
+  <Example>
+    An example to show the representation of the Cartesian product of multisets: AxBxC.
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
   <OMA>
     <OMS cd="multiset1" name="cartesian_product"/>
@@ -141,40 +150,40 @@ multisets: AxBxC.
 </CDDefinition>
 
 <CDDefinition xml:id="emptyset">
-<Name>emptyset</Name>
+  <Name>emptyset</Name>
   <Pragmatic>
     <Token>emptyset</Token>
   </Pragmatic>
-<Role>constant</Role>
-<Description>
-This symbol is used to represent the empty multiset, that is the multiset which
-contains no members. It takes no parameters.
-</Description>
-
-<!-- new part -->
-<description>
-          <p>emptyset represents the empty set.</p>
-        </description>
-	<discussion>
-	  <p><el>emptyset</el> represents the empty set.</p>
-	</discussion>
-        <property>
-          <description>
-            <p>
-for all sets S,   intersect(S,emptyset) = emptyset</p>
-          </description><math xmlns="http://www.w3.org/1998/Math/MathML">
+  <Role>constant</Role>
+  <Description>
+    This symbol is used to represent the empty multiset, that is the multiset which
+    contains no members. It takes no parameters.
+  </Description>
+  
+  <description>
+    <p>emptyset represents the empty set.</p>
+  </description>
+  <discussion>
+    <p><el>emptyset</el> represents the empty set.</p>
+  </discussion>
+  <property>
+    <description>
+      <p>for all sets S,   intersect(S,emptyset) = emptyset</p>
+      </description>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
 <bind><forall/><bvar><ci type="set">S</ci></bvar>
   <apply><eq/>
     <apply><intersect/><emptyset/><ci>S</ci></apply>
     <emptyset/>
   </apply>
 </bind></math></property>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><neq/>
+
+<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><neq/>
   <integers/>
   <emptyset/>
 </apply>
-</math></MMLexample>
-<!-- end new part -->
+</math>
+</MMLexample>
 
 <property xml:id="emptyset_prop_1">
 <CMP> The intersection of A with the empty (multi) set is the empty
@@ -216,16 +225,17 @@ for all sets S,   intersect(S,emptyset) = emptyset</p>
   <Pragmatic>
     <Token>multiset</Token>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the multiset construct. It is either an
-n-ary function, in which case the multiset entries are given 
-explicitly, or it works on an elements construct. There is no 
-implied ordering to the elements of a multiset.
-</Description>
-<Example>
-The multiset {4, 1, 0, 1 4}
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
+  <Role>application</Role>
+
+  <Description> 
+    This symbol represents the multiset construct. It is either an n-ary function, in
+    which case the multiset entries are given explicitly, or it works on an elements
+    construct. There is no implied ordering to the elements of a multiset.
+  </Description>
+
+  <Example>
+    The multiset {4, 1, 0, 1 4}
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
   <OMA>
     <OMS cd="multiset1" name="multiset"/>
     <OMI> 4 </OMI>
@@ -237,7 +247,6 @@ The multiset {4, 1, 0, 1 4}
 </OMOBJ>
 </Example>
 </CDDefinition>
-
 
 <CDDefinition xml:id="intersect">
 <Name>intersect</Name>
