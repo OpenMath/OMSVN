@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+      This is the Mathematical Markup Language (MathML) 3.0, an XML
+      application for describing mathematical notation and capturing
+      both its structure and content.
+  
+      Copyright 1998-2007 World Wide Web Consortium
+         (Massachusetts Institute of Technology, Institut National de
+          Recherche en Informatique et en Automatique, Keio University).
+          All Rights Reserved.
+  
+      Permission to use, copy, modify and distribute the RelaxNG schema for MathML3
+      and its accompanying documentation for any purpose and without fee is
+      hereby granted in perpetuity, provided that the above copyright notice
+      and this paragraph appear in all copies.  The copyright holders make
+      no representation about the suitability of the Schema for any purpose.
+  
+      This file contains the grammar rules for pragmatic content MathML3
+      It is provided "as is" without expressed or implied warranty.
+  
+      Revision:   $Id: mathml3-pragmatic.rnc 580 2008-01-27 06:02:14Z kohlhase $
+      Author: Michael Kohlhase http://kwarc.info/kohlhase
+-->
+<grammar xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" ns="http://www.w3.org/1998/Math/MathML" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <!--  This is the RelaxNG schema module for the pragmatic content part of MathML. -->
+  <!-- we also allow pMathML in tokens -->
+  <define name="Content-token.content" combine="choice">
+    <ref name="PresExp"/>
+  </define>
+  <!-- the content of "cn" may have <sep> elements in it -->
+  <define name="sep">
+    <element name="sep">
+      <empty/>
+    </element>
+  </define>
+  <define name="cn.content" combine="choice">
+    <ref name="sep"/>
+  </define>
+  <define name="cn.type.vals" combine="choice">
+    <value>constant</value>
+  </define>
+  <!-- allow degree in bvar -->
+  <define name="degree">
+    <element name="degree">
+      <ref name="MathML.Common.attrib"/>
+      <oneOrMore>
+        <ref name="ContExp"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="bvar.content" combine="choice">
+    <optional>
+      <ref name="degree"/>
+    </optional>
+  </define>
+  <define name="domainofapplication">
+    <element name="domainofapplication">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="cdbase.attrib"/>
+      </optional>
+      <ref name="ContExp"/>
+    </element>
+  </define>
+  <define name="lowlimit">
+    <element name="lowlimit">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="cdbase.attrib"/>
+      </optional>
+      <oneOrMore>
+        <ref name="ContExp"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="uplimit">
+    <element name="uplimit">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="cdbase.attrib"/>
+      </optional>
+      <oneOrMore>
+        <ref name="ContExp"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="qualifier" combine="choice">
+    <a:documentation>allow the non-strict qualifiers</a:documentation>
+    <choice>
+      <ref name="domainofapplication"/>
+      <group>
+        <ref name="uplimit"/>
+        <optional>
+          <ref name="lowlimit"/>
+        </optional>
+      </group>
+      <group>
+        <ref name="lowlimit"/>
+        <optional>
+          <ref name="uplimit"/>
+        </optional>
+      </group>
+      <ref name="degree"/>
+    </choice>
+  </define>
+  <define name="token.constant">
+    <a:documentation>we collect the tokens by role</a:documentation>
+    <notAllowed/>
+  </define>
+  <define name="token.binder">
+    <notAllowed/>
+  </define>
+  <define name="token.application">
+    <notAllowed/>
+  </define>
+  <define name="token.semantic-attribution">
+    <notAllowed/>
+  </define>
+  <define name="token.attribution">
+    <notAllowed/>
+  </define>
+  <define name="token.error">
+    <notAllowed/>
+  </define>
+  <define name="tokens">
+    <choice>
+      <ref name="token.constant"/>
+      <ref name="token.binder"/>
+      <ref name="token.application"/>
+      <ref name="token.semantic-attribution"/>
+      <ref name="token.attribution"/>
+      <ref name="token.error"/>
+    </choice>
+  </define>
+  <define name="container">
+    <notAllowed/>
+  </define>
+  <!-- allow closure attributes and two content elements in intervals -->
+  <define name="interval.content" combine="interleave">
+    <optional>
+      <attribute name="closure">
+        <choice>
+          <value>closed</value>
+          <value>open</value>
+          <value>open-closed</value>
+          <value>closed-open</value>
+        </choice>
+      </attribute>
+    </optional>
+    <ref name="ContExp"/>
+    <ref name="ContExp"/>
+  </define>
+  <!--
+    extend sets and lists by attributes
+    ednote(rnc:set-type) "set" ("type" could be "multiset" or "normal" or anything else) 
+  -->
+  <define name="set.content" combine="interleave">
+    <optional>
+      <attribute name="type">
+        <data type="string"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="lst.content" combine="interleave">
+    <optional>
+      <attribute name="order">
+        <choice>
+          <value>lexicographic</value>
+          <value>numeric</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <define name="diff.content" combine="interleave">
+    <optional>
+      <attribute name="type">
+        <choice>
+          <value>function</value>
+          <value>algebraic</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <define name="declare">
+    <element name="declare">
+      <optional>
+        <attribute name="type">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="scope">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="nargs">
+          <data type="nonNegativeInteger"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="occurrence">
+          <choice>
+            <value>prefix</value>
+            <value>infix</value>
+            <value>function-model</value>
+          </choice>
+        </attribute>
+      </optional>
+      <ref name="Definition.attrib"/>
+      <optional>
+        <ref name="cdbase.attrib"/>
+      </optional>
+      <oneOrMore>
+        <ref name="ContExp"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <!-- include the relevant content dictionaries -->
+  <include href="mathml3-pragmatic.rng"/>
+  <define name="ContExp" combine="choice">
+    <ref name="container"/>
+  </define>
+</grammar>

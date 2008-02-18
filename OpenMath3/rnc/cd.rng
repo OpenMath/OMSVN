@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  *********************************************
+  
+  Relax NG Schema for OpenMath CD
+  
+  *********************************************
+-->
+<grammar xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" ns="http://www.openmath.org/OpenMathCD" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <start>
+    <ref name="CD"/>
+  </start>
+  <define name="CDComment">
+    <element name="CDComment">
+      <text/>
+    </element>
+  </define>
+  <define name="CDName">
+    <element name="CDName">
+      <data type="NCName"/>
+    </element>
+  </define>
+  <define name="CDUses">
+    <element name="CDUses">
+      <zeroOrMore>
+        <ref name="CDName"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="CDURL">
+    <element name="CDURL">
+      <data type="anyURI"/>
+    </element>
+  </define>
+  <define name="CDBase">
+    <element name="CDBase">
+      <data type="anyURI"/>
+    </element>
+  </define>
+  <define name="mobj">
+    <choice>
+      <externalRef href="openmath3.rng"/>
+      <externalRef href="mathml3.rng"/>
+    </choice>
+  </define>
+  <!-- mobj = external "om3-sts.rnc" -->
+  <define name="text-or-om">
+    <zeroOrMore>
+      <choice>
+        <text/>
+        <ref name="mobj"/>
+        <ref name="code"/>
+        <ref name="var"/>
+        <ref name="quote"/>
+        <ref name="intref"/>
+        <ref name="specref"/>
+        <ref name="el"/>
+        <ref name="att"/>
+        <ref name="attval"/>
+        <ref name="sup"/>
+        <ref name="sub"/>
+        <ref name="graphic"/>
+        <ref name="eg"/>
+        <ref name="emph"/>
+        <ref name="kw"/>
+      </choice>
+    </zeroOrMore>
+  </define>
+  <define name="code">
+    <a:documentation>eliminate or substitute these in the final version</a:documentation>
+    <element name="code">
+      <text/>
+    </element>
+  </define>
+  <define name="var">
+    <element name="var">
+      <text/>
+    </element>
+  </define>
+  <define name="quote">
+    <element name="quote">
+      <ref name="text-or-om"/>
+    </element>
+  </define>
+  <define name="intref">
+    <element name="intref">
+      <attribute name="ref">
+        <data type="anyURI"/>
+      </attribute>
+      <text/>
+    </element>
+  </define>
+  <define name="specref">
+    <element name="specref">
+      <attribute name="ref">
+        <data type="anyURI"/>
+      </attribute>
+    </element>
+  </define>
+  <define name="el">
+    <element name="el">
+      <text/>
+    </element>
+  </define>
+  <define name="att">
+    <element name="att">
+      <text/>
+    </element>
+  </define>
+  <define name="attval">
+    <element name="attval">
+      <text/>
+    </element>
+  </define>
+  <define name="sub">
+    <element name="sub">
+      <text/>
+    </element>
+  </define>
+  <define name="sup">
+    <element name="sup">
+      <text/>
+    </element>
+  </define>
+  <define name="emph">
+    <element name="emph">
+      <text/>
+    </element>
+  </define>
+  <define name="kw">
+    <element name="kw">
+      <text/>
+    </element>
+  </define>
+  <define name="graphic">
+    <element name="graphic">
+      <optional>
+        <attribute name="role">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <attribute name="source">
+        <data type="anyURI"/>
+      </attribute>
+      <attribute name="alt">
+        <data type="string"/>
+      </attribute>
+    </element>
+  </define>
+  <define name="eg">
+    <element name="eg">
+      <optional>
+        <attribute name="role">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <ref name="mobj"/>
+    </element>
+  </define>
+  <define name="CDReviewDate">
+    <a:documentation>end eliminate</a:documentation>
+    <element name="CDReviewDate">
+      <data type="date"/>
+    </element>
+  </define>
+  <define name="CDDate">
+    <element name="CDDate">
+      <data type="date"/>
+    </element>
+  </define>
+  <define name="CDVersion">
+    <element name="CDVersion">
+      <data type="nonNegativeInteger"/>
+    </element>
+  </define>
+  <define name="CDRevision">
+    <element name="CDRevision">
+      <data type="nonNegativeInteger"/>
+    </element>
+  </define>
+  <define name="CDStatus">
+    <element name="CDStatus">
+      <choice>
+        <value>official</value>
+        <value>experimental</value>
+        <value>private</value>
+        <value>obsolete</value>
+      </choice>
+    </element>
+  </define>
+  <define name="Description">
+    <element name="Description">
+      <text/>
+    </element>
+  </define>
+  <define name="Name">
+    <element name="Name">
+      <data type="NCName"/>
+    </element>
+  </define>
+  <define name="Role">
+    <element name="Role">
+      <choice>
+        <value>binder</value>
+        <value>attribution</value>
+        <value>semantic-attribution</value>
+        <value>error</value>
+        <value>application</value>
+        <value>constant</value>
+      </choice>
+    </element>
+  </define>
+  <define name="Pragmatic">
+    <element name="Pragmatic">
+      <choice>
+        <ref name="Token"/>
+        <ref name="Container"/>
+      </choice>
+      <zeroOrMore>
+        <ref name="Attribute"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="Token">
+    <element name="Token">
+      <text/>
+    </element>
+  </define>
+  <define name="Container">
+    <element name="Container">
+      <text/>
+    </element>
+  </define>
+  <define name="Attribute">
+    <element name="Attribute">
+      <ref name="Name"/>
+      <choice>
+        <group>
+          <ref name="Model"/>
+          <ref name="Default"/>
+        </group>
+        <ref name="Prescribed"/>
+      </choice>
+    </element>
+  </define>
+  <define name="Model">
+    <element name="Model">
+      <text/>
+    </element>
+  </define>
+  <define name="Default">
+    <element name="Default">
+      <text/>
+    </element>
+  </define>
+  <define name="Prescribed">
+    <element name="Prescribed">
+      <text/>
+    </element>
+  </define>
+  <define name="Title">
+    <element name="Title">
+      <text/>
+    </element>
+  </define>
+  <define name="property">
+    <element name="property">
+      <optional>
+        <ref name="id.att"/>
+      </optional>
+      <optional>
+        <choice>
+          <ref name="CMP"/>
+          <ref name="description"/>
+        </choice>
+      </optional>
+      <optional>
+        <choice>
+          <ref name="FMP"/>
+          <ref name="mobj"/>
+        </choice>
+      </optional>
+    </element>
+  </define>
+  <define name="CMP">
+    <element name="CMP">
+      <text/>
+    </element>
+  </define>
+  <define name="FMP">
+    <element name="FMP">
+      <optional>
+        <attribute name="kind">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <ref name="mobj"/>
+    </element>
+  </define>
+  <!-- allow embedded OM -->
+  <define name="Example">
+    <element name="Example">
+      <ref name="text-or-om"/>
+    </element>
+  </define>
+  <define name="MMLexample">
+    <element name="MMLexample">
+      <optional>
+        <ref name="id.att"/>
+      </optional>
+      <optional>
+        <ref name="description"/>
+      </optional>
+      <ref name="mobj"/>
+    </element>
+  </define>
+  <define name="description">
+    <element name="description">
+      <zeroOrMore>
+        <ref name="p"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="discussion">
+    <element name="discussion">
+      <zeroOrMore>
+        <ref name="p"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="p">
+    <element name="p">
+      <ref name="text-or-om"/>
+    </element>
+  </define>
+  <define name="id.att">
+    <attribute name="xml:id">
+      <data type="ID"/>
+    </attribute>
+  </define>
+  <define name="CDDefinition">
+    <element name="CDDefinition">
+      <ref name="id.att"/>
+      <zeroOrMore>
+        <ref name="CDComment"/>
+      </zeroOrMore>
+      <interleave>
+        <ref name="Name"/>
+        <optional>
+          <ref name="Role"/>
+        </optional>
+        <optional>
+          <ref name="Pragmatic"/>
+        </optional>
+        <optional>
+          <ref name="Title"/>
+        </optional>
+        <ref name="Description"/>
+        <optional>
+          <ref name="description"/>
+        </optional>
+        <optional>
+          <ref name="discussion"/>
+        </optional>
+      </interleave>
+      <zeroOrMore>
+        <choice>
+          <ref name="CDComment"/>
+          <ref name="Example"/>
+          <ref name="MMLexample"/>
+          <ref name="property"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="CD">
+    <element name="CD">
+      <interleave>
+        <zeroOrMore>
+          <ref name="CDComment"/>
+        </zeroOrMore>
+        <optional>
+          <ref name="Description"/>
+        </optional>
+        <ref name="CDName"/>
+        <optional>
+          <ref name="CDURL"/>
+        </optional>
+        <optional>
+          <ref name="CDBase"/>
+        </optional>
+        <optional>
+          <ref name="CDReviewDate"/>
+        </optional>
+        <ref name="CDDate"/>
+        <ref name="CDStatus"/>
+        <optional>
+          <ref name="CDUses"/>
+        </optional>
+        <ref name="CDVersion"/>
+        <ref name="CDRevision"/>
+      </interleave>
+      <oneOrMore>
+        <ref name="CDDefinition"/>
+        <zeroOrMore>
+          <ref name="CDComment"/>
+        </zeroOrMore>
+      </oneOrMore>
+    </element>
+  </define>
+</grammar>

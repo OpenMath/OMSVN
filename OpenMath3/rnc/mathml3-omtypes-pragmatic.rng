@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+      This file contains the token element definitions for the symbols
+      generated from the content dictionary omtypes
+      It is provided "as is" without expressed or implied warranty.
+  
+      Revision:   $Id: sts2rnc-sts.xsl 529 2008-01-15 10:07:01Z kohlhase $
+     $HeadURL: https://svn.openmath.org/OpenMath3/rnc/cd/sts2rnc-sts.xsl $ 
+-->
+<grammar xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://relaxng.org/ns/structure/1.0">
+  <define name="token.constant" combine="choice">
+    <ref name="omtype_omtypes_elt"/>
+  </define>
+  <define name="omtype_omtypes_elt" combine="choice">
+    <element name="m:omtype">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="Definition.attrib"/>
+      </optional>
+    </element>
+  </define>
+  <define name="token.constant" combine="choice">
+    <ref name="symtype_omtypes_elt"/>
+  </define>
+  <define name="token.constant" combine="choice">
+    <ref name="integer_omtypes_elt"/>
+  </define>
+  <define name="integer_omtypes_elt" combine="choice">
+    <element name="m:integer">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="Definition.attrib"/>
+      </optional>
+    </element>
+  </define>
+  <define name="token.constant" combine="choice">
+    <ref name="float_omtypes_elt"/>
+  </define>
+  <define name="float_omtypes_elt" combine="choice">
+    <element name="m:float">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="Definition.attrib"/>
+      </optional>
+    </element>
+  </define>
+  <define name="token.constant" combine="choice">
+    <ref name="string_omtypes_elt"/>
+  </define>
+  <define name="string_omtypes_elt" combine="choice">
+    <element name="m:string">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="Definition.attrib"/>
+      </optional>
+    </element>
+  </define>
+  <define name="token.constant" combine="choice">
+    <ref name="bytearray_omtypes_elt"/>
+  </define>
+  <define name="bytearray_omtypes_elt" combine="choice">
+    <element name="m:bytearray">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="Definition.attrib"/>
+      </optional>
+    </element>
+  </define>
+</grammar>

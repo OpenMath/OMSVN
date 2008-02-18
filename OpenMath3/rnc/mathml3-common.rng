@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+      This is the Mathematical Markup Language (MathML) 3.0, an XML
+      application for describing mathematical notation and capturing
+      both its structure and content.
+  
+      Copyright 1998-2007 World Wide Web Consortium
+         (Massachusetts Institute of Technology, Institut National de
+          Recherche en Informatique et en Automatique, Keio University).
+          All Rights Reserved.
+  
+      Permission to use, copy, modify and distribute the RelaxNG schema for MathML3
+      and its accompanying documentation for any purpose and without fee is
+      hereby granted in perpetuity, provided that the above copyright notice
+      and this paragraph appear in all copies.  The copyright holders make
+      no representation about the suitability of the Schema for any purpose.
+  
+      This file contains the grammar driver for MathML3
+      It is provided "as is" without expressed or implied warranty.
+  
+      Revision:   $Id: mathml3.rnc 516 2008-01-09 07:22:41Z kohlhase $
+      Author: Michael Kohlhase http://kwarc.info/kohlhase
+-->
+<grammar ns="http://www.w3.org/1998/Math/MathML" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <define name="non-mathml-attribs">
+    <attribute>
+      <anyName>
+        <except>
+          <nsName ns=""/>
+        </except>
+      </anyName>
+      <data type="string"/>
+    </attribute>
+  </define>
+  <define name="MathML.Common.attrib">
+    <optional>
+      <attribute name="class">
+        <data type="NMTOKENS"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="style">
+        <data type="string"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="id">
+        <data type="ID"/>
+      </attribute>
+    </optional>
+    <zeroOrMore>
+      <ref name="non-mathml-attribs"/>
+    </zeroOrMore>
+  </define>
+  <define name="Browser-interface.attrib">
+    <optional>
+      <attribute name="baseline">
+        <data type="string"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="overflow">
+        <choice>
+          <value>scroll</value>
+          <value>elide</value>
+          <value>truncate</value>
+          <value>scale</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="altimg">
+        <data type="anyURI"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="alttext">
+        <data type="string"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="type">
+        <data type="string"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="name">
+        <data type="string"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="height">
+        <data type="string"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="width">
+        <data type="string"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="math.attlist">
+    <ref name="Browser-interface.attrib"/>
+    <optional>
+      <attribute name="macros">
+        <data type="string"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="display">
+        <choice>
+          <value>block</value>
+          <value>inline</value>
+        </choice>
+      </attribute>
+    </optional>
+    <ref name="MathML.Common.attrib"/>
+  </define>
+  <define name="math.content">
+    <choice>
+      <ref name="PresExp"/>
+      <ref name="ContExp"/>
+    </choice>
+  </define>
+  <define name="math">
+    <element name="math">
+      <ref name="math.attlist"/>
+      <zeroOrMore>
+        <ref name="math.content"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <start>
+    <ref name="math"/>
+  </start>
+</grammar>

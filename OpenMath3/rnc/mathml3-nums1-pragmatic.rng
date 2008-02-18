@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+      This file contains the token element definitions for the symbols
+      generated from the content dictionary nums1
+      It is provided "as is" without expressed or implied warranty.
+  
+      Revision:   $Id: sts2rnc-sts.xsl 529 2008-01-15 10:07:01Z kohlhase $
+     $HeadURL: https://svn.openmath.org/OpenMath3/rnc/cd/sts2rnc-sts.xsl $ 
+-->
+<grammar xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://relaxng.org/ns/structure/1.0">
+  <define name="token.application" combine="choice">
+    <ref name="based_integer_nums1_elt"/>
+  </define>
+  <define name="based_integer_nums1_elt" combine="choice">
+    <element name="m:based_integer">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="Definition.attrib"/>
+      </optional>
+    </element>
+  </define>
+  <define name="token.application" combine="choice">
+    <ref name="rational_nums1_elt"/>
+  </define>
+  <define name="rational_nums1_elt" combine="choice">
+    <element name="m:rational">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="Definition.attrib"/>
+      </optional>
+    </element>
+  </define>
+  <define name="token.constant" combine="choice">
+    <ref name="infinity_nums1_elt"/>
+  </define>
+  <define name="infinity_nums1_elt" combine="choice">
+    <element name="m:infinity">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="Definition.attrib"/>
+      </optional>
+    </element>
+  </define>
+  <define name="token.constant" combine="choice">
+    <ref name="e_nums1_elt"/>
+  </define>
+  <define name="e_nums1_elt" combine="choice">
+    <element name="m:exponentiale">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="Definition.attrib"/>
+      </optional>
+    </element>
+  </define>
+  <define name="token.constant" combine="choice">
+    <ref name="i_nums1_elt"/>
+  </define>
+  <define name="i_nums1_elt" combine="choice">
+    <element name="m:imaginaryi">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="Definition.attrib"/>
+      </optional>
+    </element>
+  </define>
+  <define name="token.constant" combine="choice">
+    <ref name="pi_nums1_elt"/>
+  </define>
+  <define name="pi_nums1_elt" combine="choice">
+    <element name="m:pi">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="Definition.attrib"/>
+      </optional>
+    </element>
+  </define>
+  <define name="token.constant" combine="choice">
+    <ref name="gamma_nums1_elt"/>
+  </define>
+  <define name="gamma_nums1_elt" combine="choice">
+    <element name="m:eulergamma">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="Definition.attrib"/>
+      </optional>
+    </element>
+  </define>
+  <define name="token.constant" combine="choice">
+    <ref name="NaN_nums1_elt"/>
+  </define>
+  <define name="NaN_nums1_elt" combine="choice">
+    <element name="m:notanumber">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="Definition.attrib"/>
+      </optional>
+    </element>
+  </define>
+</grammar>

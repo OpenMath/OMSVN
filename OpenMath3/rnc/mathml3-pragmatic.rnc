@@ -33,7 +33,7 @@ cn.type.vals |= "constant"
 
 # allow degree in bvar
 degree = element degree {MathML.Common.attrib,ContExp+}
-bvar-head |= degree?,ci|ci,degree?
+bvar-head |= (degree?,ci)|(ci,degree?)
 # allow degree to modify <root/>
 apply.content |= root_arith1_elt,degree,ContExp*
 

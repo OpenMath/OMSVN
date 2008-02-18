@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- RELAX NG Schema for OpenMath 3 -->
+<grammar xmlns="http://relaxng.org/ns/structure/1.0">
+  <start>
+    <ref name="OMOBJ"/>
+  </start>
+  <include href="om3-common.rng"/>
+  <!-- the content models -->
+  <define name="OMA.content" combine="choice">
+    <oneOrMore>
+      <ref name="omel"/>
+    </oneOrMore>
+  </define>
+  <define name="OMBIND.content" combine="choice">
+    <ref name="omel"/>
+    <ref name="OMBVAR"/>
+    <ref name="omel"/>
+  </define>
+</grammar>

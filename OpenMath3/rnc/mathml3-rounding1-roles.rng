@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+      This file contains the role checking rules for the symbols
+      from the the content dictionary 
+      It is provided "as is" without expressed or implied warranty.
+  
+      Revision:   $Id: sts2rnc-sts.xsl 529 2008-01-15 10:07:01Z kohlhase $
+     $HeadURL: https://svn.openmath.org/OpenMath3/rnc/cd/sts2rnc-sts.xsl $ 
+-->
+<grammar xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://relaxng.org/ns/structure/1.0">
+  <define name="ceiling_rounding1_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>rounding1</value>
+      </attribute>
+      <attribute name="name">
+        <value>ceiling</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.application" combine="choice">
+    <ref name="ceiling_rounding1_elt"/>
+  </define>
+  <define name="floor_rounding1_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>rounding1</value>
+      </attribute>
+      <attribute name="name">
+        <value>floor</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.application" combine="choice">
+    <ref name="floor_rounding1_elt"/>
+  </define>
+  <define name="trunc_rounding1_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>rounding1</value>
+      </attribute>
+      <attribute name="name">
+        <value>trunc</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.application" combine="choice">
+    <ref name="trunc_rounding1_elt"/>
+  </define>
+  <define name="round_rounding1_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>rounding1</value>
+      </attribute>
+      <attribute name="name">
+        <value>round</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.application" combine="choice">
+    <ref name="round_rounding1_elt"/>
+  </define>
+</grammar>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+      This file contains the token element definitions for the symbols
+      generated from the content dictionary linalg3
+      It is provided "as is" without expressed or implied warranty.
+  
+      Revision:   $Id: sts2rnc-sts.xsl 529 2008-01-15 10:07:01Z kohlhase $
+     $HeadURL: https://svn.openmath.org/OpenMath3/rnc/cd/sts2rnc-sts.xsl $ 
+-->
+<grammar xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://relaxng.org/ns/structure/1.0">
+  <define name="token.application" combine="choice">
+    <ref name="vector_linalg3_elt"/>
+  </define>
+  <define name="vector_linalg3_elt" combine="choice">
+    <element name="m:vector">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="Definition.attrib"/>
+      </optional>
+      <zeroOrMore>
+        <ref name="ContExp"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="vector_linalg3_elt" combine="choice">
+    <element name="m:vector">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="Definition.attrib"/>
+      </optional>
+      <zeroOrMore>
+        <ref name="bvar"/>
+      </zeroOrMore>
+      <optional>
+        <ref name="qualifier"/>
+      </optional>
+      <ref name="ContExp"/>
+    </element>
+  </define>
+  <define name="container" combine="choice">
+    <ref name="vector_linalg3_elt"/>
+  </define>
+  <define name="token.application" combine="choice">
+    <ref name="matrixcolumn_linalg3_elt"/>
+  </define>
+  <define name="matrixcolumn_linalg3_elt" combine="choice">
+    <element name="m:matrixcolumn">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="Definition.attrib"/>
+      </optional>
+    </element>
+  </define>
+  <define name="token.application" combine="choice">
+    <ref name="matrix_linalg3_elt"/>
+  </define>
+  <define name="matrix_linalg3_elt" combine="choice">
+    <element name="m:matrix">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="Definition.attrib"/>
+      </optional>
+    </element>
+  </define>
+</grammar>

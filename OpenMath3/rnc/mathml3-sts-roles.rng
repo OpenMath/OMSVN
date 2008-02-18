@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+      This file contains the role checking rules for the symbols
+      from the the content dictionary 
+      It is provided "as is" without expressed or implied warranty.
+  
+      Revision:   $Id: sts2rnc-sts.xsl 529 2008-01-15 10:07:01Z kohlhase $
+     $HeadURL: https://svn.openmath.org/OpenMath3/rnc/cd/sts2rnc-sts.xsl $ 
+-->
+<grammar xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://relaxng.org/ns/structure/1.0">
+  <define name="type_sts_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>sts</value>
+      </attribute>
+      <attribute name="name">
+        <value>type</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.semantic-attribution" combine="choice">
+    <ref name="type_sts_elt"/>
+  </define>
+  <define name="mapsto_sts_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>sts</value>
+      </attribute>
+      <attribute name="name">
+        <value>mapsto</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.application" combine="choice">
+    <ref name="mapsto_sts_elt"/>
+  </define>
+  <define name="nary_sts_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>sts</value>
+      </attribute>
+      <attribute name="name">
+        <value>nary</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.application" combine="choice">
+    <ref name="nary_sts_elt"/>
+  </define>
+  <define name="nassoc_sts_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>sts</value>
+      </attribute>
+      <attribute name="name">
+        <value>nassoc</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.application" combine="choice">
+    <ref name="nassoc_sts_elt"/>
+  </define>
+  <define name="error_sts_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>sts</value>
+      </attribute>
+      <attribute name="name">
+        <value>error</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.constant" combine="choice">
+    <ref name="error_sts_elt"/>
+  </define>
+  <define name="structure_sts_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>sts</value>
+      </attribute>
+      <attribute name="name">
+        <value>structure</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.application" combine="choice">
+    <ref name="structure_sts_elt"/>
+  </define>
+  <define name="binder_sts_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>sts</value>
+      </attribute>
+      <attribute name="name">
+        <value>binder</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.constant" combine="choice">
+    <ref name="binder_sts_elt"/>
+  </define>
+  <define name="attribution_sts_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>sts</value>
+      </attribute>
+      <attribute name="name">
+        <value>attribution</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.constant" combine="choice">
+    <ref name="attribution_sts_elt"/>
+  </define>
+  <define name="Object_sts_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>sts</value>
+      </attribute>
+      <attribute name="name">
+        <value>Object</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.constant" combine="choice">
+    <ref name="Object_sts_elt"/>
+  </define>
+  <define name="NumericalValue_sts_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>sts</value>
+      </attribute>
+      <attribute name="name">
+        <value>NumericalValue</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.constant" combine="choice">
+    <ref name="NumericalValue_sts_elt"/>
+  </define>
+  <define name="SetNumericalValue_sts_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>sts</value>
+      </attribute>
+      <attribute name="name">
+        <value>SetNumericalValue</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.constant" combine="choice">
+    <ref name="SetNumericalValue_sts_elt"/>
+  </define>
+</grammar>

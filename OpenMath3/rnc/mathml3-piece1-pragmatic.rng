@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+      This file contains the token element definitions for the symbols
+      generated from the content dictionary piece1
+      It is provided "as is" without expressed or implied warranty.
+  
+      Revision:   $Id: sts2rnc-sts.xsl 529 2008-01-15 10:07:01Z kohlhase $
+     $HeadURL: https://svn.openmath.org/OpenMath3/rnc/cd/sts2rnc-sts.xsl $ 
+-->
+<grammar xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://relaxng.org/ns/structure/1.0">
+  <define name="token.application" combine="choice">
+    <ref name="piecewise_piece1_elt"/>
+  </define>
+  <define name="piecewise_piece1_elt" combine="choice">
+    <element name="m:piecewise">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="Definition.attrib"/>
+      </optional>
+    </element>
+  </define>
+  <define name="token.application" combine="choice">
+    <ref name="piece_piece1_elt"/>
+  </define>
+  <define name="piece_piece1_elt" combine="choice">
+    <element name="m:piece">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="Definition.attrib"/>
+      </optional>
+    </element>
+  </define>
+  <define name="token.application" combine="choice">
+    <ref name="otherwise_piece1_elt"/>
+  </define>
+  <define name="otherwise_piece1_elt" combine="choice">
+    <element name="m:otherwise">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="Definition.attrib"/>
+      </optional>
+    </element>
+  </define>
+</grammar>
