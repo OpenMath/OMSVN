@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+      This is the Mathematical Markup Language (MathML) 3.0, an XML
+      application for describing mathematical notation and capturing
+      both its structure and content.
+  
+      Copyright 1998-2007 World Wide Web Consortium
+         (Massachusetts Institute of Technology, Institut National de
+          Recherche en Informatique et en Automatique, Keio University).
+          All Rights Reserved.
+  
+      Permission to use, copy, modify and distribute the RelaxNG schema for MathML3
+      and its accompanying documentation for any purpose and without fee is
+      hereby granted in perpetuity, provided that the above copyright notice
+      and this paragraph appear in all copies.  The copyright holders make
+      no representation about the suitability of the Schema for any purpose.
+  
+      This file contains the grammar rules for strict content MathML3
+      It is provided "as is" without expressed or implied warranty.
+  
+      Revision:   $Id: mathml3-strict.rnc 580 2008-01-27 06:02:14Z kohlhase $
+      Author: Michael Kohlhase http://kwarc.info/kohlhase
+-->
+<!--  This is the RelaxNG schema module for the strict content part of MathML. -->
+<grammar ns="http://www.w3.org/1998/Math/MathML" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <define name="Definition.attrib">
+    <optional>
+      <attribute name="encoding">
+        <data type="string"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="definitionURL">
+        <data type="anyURI"/>
+      </attribute>
+    </optional>
+  </define>
+  <!-- ednote(rnc:token-content) What is the content of a token, currently all text? -->
+  <define name="Content-token.content">
+    <text/>
+  </define>
+  <!-- we want to extend this in pragmatic CMathML, so we introduce abbrevs here. -->
+  <define name="cn.content">
+    <ref name="Content-token.content"/>
+  </define>
+  <define name="cn.type.vals">
+    <choice>
+      <value>e-notation</value>
+      <value>integer</value>
+      <value>rational</value>
+      <value>real</value>
+      <value>complex-cartesian</value>
+      <value>complex-polar</value>
+    </choice>
+  </define>
+  <!-- ednote(rnc:cn) cn needs to be totally reworked once the spec is fixed -->
+  <define name="cn">
+    <element name="cn">
+      <optional>
+        <!-- attribute base {xsd:positiveInteger [1,...,36]}, -->
+        <attribute name="type">
+          <ref name="cn.type.vals"/>
+        </attribute>
+      </optional>
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+      <zeroOrMore>
+        <ref name="cn.content"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="ci">
+    <element name="ci">
+      <optional>
+        <attribute name="type">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="nargs">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="occurrence">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+      <ref name="Content-token.content"/>
+    </element>
+  </define>
+  <define name="cdbase.attrib">
+    <attribute name="cdbase">
+      <data type="anyURI"/>
+    </attribute>
+  </define>
+  <define name="cdname.attrib">
+    <attribute name="cd">
+      <data type="NCName"/>
+    </attribute>
+  </define>
+  <define name="csymbol">
+    <element name="csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <ref name="Definition.attrib"/>
+      <optional>
+        <ref name="cdname.attrib"/>
+      </optional>
+      <optional>
+        <ref name="cdbase.attrib"/>
+      </optional>
+      <ref name="Content-token.content"/>
+    </element>
+  </define>
+  <!-- the content of the apply element, leave it empty and extend it later -->
+  <define name="apply.content">
+    <notAllowed/>
+  </define>
+  <define name="apply">
+    <element name="apply">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="cdbase.attrib"/>
+      </optional>
+      <ref name="apply.content"/>
+    </element>
+  </define>
+  <define name="qualifier">
+    <ref name="condition"/>
+  </define>
+  <!-- the content of the bind element, leave it empty and extend it later -->
+  <define name="bind.content">
+    <notAllowed/>
+  </define>
+  <define name="bind">
+    <element name="bind">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="cdbase.attrib"/>
+      </optional>
+      <ref name="bind.content"/>
+    </element>
+  </define>
+  <define name="bvar.content">
+    <notAllowed/>
+  </define>
+  <define name="bvar">
+    <element name="bvar">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="cdbase.attrib"/>
+      </optional>
+      <ref name="bvar.content"/>
+    </element>
+  </define>
+  <define name="condition">
+    <element name="condition">
+      <ref name="Definition.attrib"/>
+      <optional>
+        <ref name="cdbase.attrib"/>
+      </optional>
+      <ref name="ContExp"/>
+    </element>
+  </define>
+  <define name="share">
+    <element name="share">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="href">
+        <data type="anyURI"/>
+      </attribute>
+    </element>
+  </define>
+  <!-- the content of the cerror element, leave it empty and extend it later -->
+  <define name="cerror.content">
+    <notAllowed/>
+  </define>
+  <define name="cerror">
+    <element name="cerror">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="cdbase.attrib"/>
+      </optional>
+      <ref name="cerror.content"/>
+    </element>
+  </define>
+  <define name="annotation">
+    <element name="annotation">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+      <text/>
+    </element>
+  </define>
+  <define name="annotation-xml.model">
+    <ref name="anyElement"/>
+  </define>
+  <define name="anyElement">
+    <element>
+      <anyName/>
+      <zeroOrMore>
+        <choice>
+          <attribute>
+            <anyName/>
+          </attribute>
+          <text/>
+          <ref name="anyElement"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="annotation-xml">
+    <element name="annotation-xml">
+      <ref name="MathML.Common.attrib"/>
+      <ref name="cdname.attrib"/>
+      <optional>
+        <ref name="cdbase.attrib"/>
+      </optional>
+      <ref name="Definition.attrib"/>
+      <ref name="annotation-xml.model"/>
+    </element>
+  </define>
+  <define name="semantics.attribs">
+    <ref name="Definition.attrib"/>
+    <ref name="MathML.Common.attrib"/>
+    <optional>
+      <ref name="cdbase.attrib"/>
+    </optional>
+  </define>
+  <define name="semantics-annotation">
+    <choice>
+      <ref name="annotation"/>
+      <ref name="annotation-xml"/>
+    </choice>
+  </define>
+  <!-- semantics element wrapped around various token -->
+  <define name="semantics-cmml">
+    <element name="semantics">
+      <ref name="semantics.attribs"/>
+      <ref name="ContExp"/>
+      <zeroOrMore>
+        <ref name="semantics-annotation"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="ContExp">
+    <choice>
+      <ref name="cn"/>
+      <ref name="ci"/>
+      <ref name="csymbol"/>
+      <ref name="apply"/>
+      <ref name="bind"/>
+      <ref name="share"/>
+      <ref name="cerror"/>
+      <ref name="semantics-cmml"/>
+    </choice>
+  </define>
+</grammar>

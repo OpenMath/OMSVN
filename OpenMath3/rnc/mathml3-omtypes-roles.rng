@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+      This file contains the role checking rules for the symbols
+      from the the content dictionary 
+      It is provided "as is" without expressed or implied warranty.
+  
+      Revision:   $Id: sts2rnc-sts.xsl 529 2008-01-15 10:07:01Z kohlhase $
+     $HeadURL: https://svn.openmath.org/OpenMath3/rnc/cd/sts2rnc-sts.xsl $ 
+-->
+<grammar xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://relaxng.org/ns/structure/1.0">
+  <define name="omtype_omtypes_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>omtypes</value>
+      </attribute>
+      <attribute name="name">
+        <value>omtype</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.constant" combine="choice">
+    <ref name="omtype_omtypes_elt"/>
+  </define>
+  <define name="symtype_omtypes_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>omtypes</value>
+      </attribute>
+      <attribute name="name">
+        <value>symtype</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.constant" combine="choice">
+    <ref name="symtype_omtypes_elt"/>
+  </define>
+  <define name="integer_omtypes_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>omtypes</value>
+      </attribute>
+      <attribute name="name">
+        <value>integer</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.constant" combine="choice">
+    <ref name="integer_omtypes_elt"/>
+  </define>
+  <define name="float_omtypes_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>omtypes</value>
+      </attribute>
+      <attribute name="name">
+        <value>float</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.constant" combine="choice">
+    <ref name="float_omtypes_elt"/>
+  </define>
+  <define name="string_omtypes_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>omtypes</value>
+      </attribute>
+      <attribute name="name">
+        <value>string</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.constant" combine="choice">
+    <ref name="string_omtypes_elt"/>
+  </define>
+  <define name="bytearray_omtypes_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>omtypes</value>
+      </attribute>
+      <attribute name="name">
+        <value>bytearray</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.constant" combine="choice">
+    <ref name="bytearray_omtypes_elt"/>
+  </define>
+</grammar>

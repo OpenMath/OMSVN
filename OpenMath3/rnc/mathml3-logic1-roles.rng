@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+      This file contains the role checking rules for the symbols
+      from the the content dictionary 
+      It is provided "as is" without expressed or implied warranty.
+  
+      Revision:   $Id: sts2rnc-sts.xsl 529 2008-01-15 10:07:01Z kohlhase $
+     $HeadURL: https://svn.openmath.org/OpenMath3/rnc/cd/sts2rnc-sts.xsl $ 
+-->
+<grammar xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://relaxng.org/ns/structure/1.0">
+  <define name="equivalent_logic1_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>logic1</value>
+      </attribute>
+      <attribute name="name">
+        <value>equivalent</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.application" combine="choice">
+    <ref name="equivalent_logic1_elt"/>
+  </define>
+  <define name="not_logic1_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>logic1</value>
+      </attribute>
+      <attribute name="name">
+        <value>not</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.application" combine="choice">
+    <ref name="not_logic1_elt"/>
+  </define>
+  <define name="and_logic1_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>logic1</value>
+      </attribute>
+      <attribute name="name">
+        <value>and</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.application" combine="choice">
+    <ref name="and_logic1_elt"/>
+  </define>
+  <define name="xor_logic1_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>logic1</value>
+      </attribute>
+      <attribute name="name">
+        <value>xor</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.application" combine="choice">
+    <ref name="xor_logic1_elt"/>
+  </define>
+  <define name="or_logic1_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>logic1</value>
+      </attribute>
+      <attribute name="name">
+        <value>or</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.application" combine="choice">
+    <ref name="or_logic1_elt"/>
+  </define>
+  <define name="implies_logic1_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>logic1</value>
+      </attribute>
+      <attribute name="name">
+        <value>implies</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.application" combine="choice">
+    <ref name="implies_logic1_elt"/>
+  </define>
+  <define name="true_logic1_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>logic1</value>
+      </attribute>
+      <attribute name="name">
+        <value>true</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.constant" combine="choice">
+    <ref name="true_logic1_elt"/>
+  </define>
+  <define name="false_logic1_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>logic1</value>
+      </attribute>
+      <attribute name="name">
+        <value>false</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.constant" combine="choice">
+    <ref name="false_logic1_elt"/>
+  </define>
+</grammar>

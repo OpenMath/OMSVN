@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+      This file contains the role checking rules for the symbols
+      from the the content dictionary 
+      It is provided "as is" without expressed or implied warranty.
+  
+      Revision:   $Id: sts2rnc-sts.xsl 529 2008-01-15 10:07:01Z kohlhase $
+     $HeadURL: https://svn.openmath.org/OpenMath3/rnc/cd/sts2rnc-sts.xsl $ 
+-->
+<grammar xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://relaxng.org/ns/structure/1.0">
+  <define name="piecewise_piece1_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>piece1</value>
+      </attribute>
+      <attribute name="name">
+        <value>piecewise</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.application" combine="choice">
+    <ref name="piecewise_piece1_elt"/>
+  </define>
+  <define name="piece_piece1_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>piece1</value>
+      </attribute>
+      <attribute name="name">
+        <value>piece</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.application" combine="choice">
+    <ref name="piece_piece1_elt"/>
+  </define>
+  <define name="otherwise_piece1_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>piece1</value>
+      </attribute>
+      <attribute name="name">
+        <value>otherwise</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.application" combine="choice">
+    <ref name="otherwise_piece1_elt"/>
+  </define>
+</grammar>

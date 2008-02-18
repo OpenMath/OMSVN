@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+      This file contains the role checking rules for the symbols
+      from the the content dictionary 
+      It is provided "as is" without expressed or implied warranty.
+  
+      Revision:   $Id: sts2rnc-sts.xsl 529 2008-01-15 10:07:01Z kohlhase $
+     $HeadURL: https://svn.openmath.org/OpenMath3/rnc/cd/sts2rnc-sts.xsl $ 
+-->
+<grammar xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://relaxng.org/ns/structure/1.0">
+  <define name="unhandled_symbol_error1_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>error1</value>
+      </attribute>
+      <attribute name="name">
+        <value>unhandled_symbol</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.error" combine="choice">
+    <ref name="unhandled_symbol_error1_elt"/>
+  </define>
+  <define name="unexpected_symbol_error1_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>error1</value>
+      </attribute>
+      <attribute name="name">
+        <value>unexpected_symbol</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.error" combine="choice">
+    <ref name="unexpected_symbol_error1_elt"/>
+  </define>
+  <define name="unsupported_CD_error1_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>error1</value>
+      </attribute>
+      <attribute name="name">
+        <value>unsupported_CD</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.error" combine="choice">
+    <ref name="unsupported_CD_error1_elt"/>
+  </define>
+</grammar>

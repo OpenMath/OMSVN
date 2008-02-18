@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+      This file contains the role checking rules for the symbols
+      from the the content dictionary 
+      It is provided "as is" without expressed or implied warranty.
+  
+      Revision:   $Id: sts2rnc-sts.xsl 529 2008-01-15 10:07:01Z kohlhase $
+     $HeadURL: https://svn.openmath.org/OpenMath3/rnc/cd/sts2rnc-sts.xsl $ 
+-->
+<grammar xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://relaxng.org/ns/structure/1.0">
+  <define name="based_integer_nums1_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>nums1</value>
+      </attribute>
+      <attribute name="name">
+        <value>based_integer</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.application" combine="choice">
+    <ref name="based_integer_nums1_elt"/>
+  </define>
+  <define name="rational_nums1_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>nums1</value>
+      </attribute>
+      <attribute name="name">
+        <value>rational</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.application" combine="choice">
+    <ref name="rational_nums1_elt"/>
+  </define>
+  <define name="infinity_nums1_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>nums1</value>
+      </attribute>
+      <attribute name="name">
+        <value>infinity</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.constant" combine="choice">
+    <ref name="infinity_nums1_elt"/>
+  </define>
+  <define name="e_nums1_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>nums1</value>
+      </attribute>
+      <attribute name="name">
+        <value>e</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.constant" combine="choice">
+    <ref name="e_nums1_elt"/>
+  </define>
+  <define name="i_nums1_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>nums1</value>
+      </attribute>
+      <attribute name="name">
+        <value>i</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.constant" combine="choice">
+    <ref name="i_nums1_elt"/>
+  </define>
+  <define name="pi_nums1_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>nums1</value>
+      </attribute>
+      <attribute name="name">
+        <value>pi</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.constant" combine="choice">
+    <ref name="pi_nums1_elt"/>
+  </define>
+  <define name="gamma_nums1_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>nums1</value>
+      </attribute>
+      <attribute name="name">
+        <value>gamma</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.constant" combine="choice">
+    <ref name="gamma_nums1_elt"/>
+  </define>
+  <define name="NaN_nums1_elt">
+    <element name="m:csymbol">
+      <ref name="MathML.Common.attrib"/>
+      <attribute name="cd">
+        <value>nums1</value>
+      </attribute>
+      <attribute name="name">
+        <value>NaN</value>
+      </attribute>
+    </element>
+  </define>
+  <define name="cd.constant" combine="choice">
+    <ref name="NaN_nums1_elt"/>
+  </define>
+</grammar>
