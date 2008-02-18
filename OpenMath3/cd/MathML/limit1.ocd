@@ -49,70 +49,74 @@
 
 
 <CDDefinition xml:id="limit">
-<Name>limit</Name>
-<Role>application</Role>
+  <Name>limit</Name>
+  <Role>application</Role>
   <Pragmatic>
     <Token>limit</Token>
   </Pragmatic>
-<Description>
-This symbol is used to denote the limit of a unary function. It
-takes 3 arguments: the limiting value of the argument, the method of
-approach (either null, above, below or both_sides) and the function.
-</Description>
+  <Description>
+    This symbol is used to denote the limit of a unary function. It takes 3 arguments: the
+    limiting value of the argument, the method of approach (either null, above, below or
+    both_sides) and the function.
+  </Description>
 
-<!-- new part -->
-        <description>
-          <p>The limit element represents the operation of taking a limit of a
-          sequence. The limit point is expressed by specifying a lowlimit and a bvar, or
-	  by specifying a condition on one or more bound variables.</p>
-	</description>
-	<discussion>
-	  <p>The <el>limit</el> element represents the operation of taking a limit of a
-	  sequence. The limit point is expressed by specifying a <el>lowlimit</el> and a
-	  <el>bvar</el>, or by specifying a <el>condition</el> on one or more bound
-	  variables.</p>
-
-	  <p>The <el>limit</el> function accepts zero or more <el>bvar</el> schemata, and
-	  optional <el>condition</el> and <el>lowlimit</el> schemata. A <el>condition</el>
-	  may be used to place constraints on the <el>bvar</el>. The <el>bvar</el> schema
-	  denotes the variable with respect to which the limit is being taken. The
-	  <el>lowlimit</el> schema denotes the limit point. When used with <el>limit</el>,
-	  the <el>bvar</el> and <el>lowlimit</el> schemata are expected to contain a
-	  single child schema; otherwise an error is generated.</p>
-	</discussion>
-
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply>
-  <limit/>
-  <bvar><ci>x</ci></bvar>
-  <lowlimit><cn>0</cn></lowlimit>
-  <apply><sin/><ci>x</ci></apply>
-</apply>
-</math></MMLexample>
-        <!-- fixed to HERE JSD -->
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply><limit/>
-  <bvar><ci>x</ci></bvar>
-  <condition>
-    <apply><tendsto/><ci>x</ci><cn>0</cn></apply>
-  </condition>
-  <apply><sin/><ci>x</ci></apply>
-</apply>
-</math></MMLexample>
-<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply>
-  <limit/>
-  <bvar><ci>x</ci></bvar>
-  <condition>
-    <apply><tendsto type="above"/><ci>x</ci><ci>a</ci></apply>
-  </condition>
-  <apply><sin/>
-     <ci>x</ci>
-  </apply>
-</apply>
-</math>
+  <description>
+    <p>The limit element represents the operation of taking a limit of a sequence. The
+    limit point is expressed by specifying a lowlimit and a bvar, or by specifying a
+    condition on one or more bound variables.</p>
+  </description>
+  <discussion>
+    <p>The <el>limit</el> element represents the operation of taking a limit of a
+    sequence. The limit point is expressed by specifying a <el>lowlimit</el> and a
+    <el>bvar</el>, or by specifying a <el>condition</el> on one or more bound
+    variables.</p>
+    
+    <p>The <el>limit</el> function accepts zero or more <el>bvar</el> schemata, and
+    optional <el>condition</el> and <el>lowlimit</el> schemata. A <el>condition</el>
+    may be used to place constraints on the <el>bvar</el>. The <el>bvar</el> schema
+    denotes the variable with respect to which the limit is being taken. The
+    <el>lowlimit</el> schema denotes the limit point. When used with <el>limit</el>,
+    the <el>bvar</el> and <el>lowlimit</el> schemata are expected to contain a
+    single child schema; otherwise an error is generated.</p>
+  </discussion>
+  
+  <MMLexample>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+	<limit/>
+	<bvar><ci>x</ci></bvar>
+	<lowlimit><cn>0</cn></lowlimit>
+	<apply><sin/><ci>x</ci></apply>
+      </apply>
+    </math>
+  </MMLexample>
+  <!-- fixed to HERE JSD -->
+  <MMLexample>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><limit/>
+      <bvar><ci>x</ci></bvar>
+      <condition>
+	<apply><tendsto/><ci>x</ci><cn>0</cn></apply>
+      </condition>
+      <apply><sin/><ci>x</ci></apply>
+      </apply>
+  </math>
 </MMLexample>
-<!-- end new part -->
+
+<MMLexample>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply>
+      <limit/>
+      <bvar><ci>x</ci></bvar>
+      <condition>
+	<apply><tendsto type="above"/><ci>x</ci><ci>a</ci></apply>
+      </condition>
+      <apply><sin/>
+      <ci>x</ci>
+      </apply>
+    </apply>
+  </math>
+</MMLexample>
 
 <Example>
 The limit of sin(x) as x tends to 0
@@ -204,15 +208,15 @@ The limit of sin(x) as x tends to 0 from above
 </CDDefinition>
 
 <CDDefinition xml:id="below">
-<Name>below</Name>
+  <Name>below</Name>
   <Pragmatic>
     <Token>below</Token>
   </Pragmatic>
-<Role>constant</Role>
-<Description>
-This symbol is used within a limit construct to show the limit is
-being approached from below. It takes no arguments.
-</Description>
+  <Role>constant</Role>
+  <Description>
+    This symbol is used within a limit construct to show the limit is being approached
+    from below. It takes no arguments.
+  </Description>
 
 <Example>
 The limit of sin(x) as x tends to 0 from below
@@ -267,6 +271,23 @@ The limit of sin(x) as x tends to 0
   </OMA>
 </OMOBJ>
 </Example>
+</CDDefinition>
+
+<CDDefinition xml:id="tendsto">
+  <Name>tendsto</Name>
+  <Pragmatic>
+    <Token>tendsto</Token>
+    <Attribute>
+      <Name>type</Name>
+      <Model>above | below | all | MathMLType </Model>
+      <Default>all</Default>
+    </Attribute>
+  </Pragmatic>
+  <Role>application</Role>
+  <Description>
+    This symbol is used within a limit construct to show the limit is being approached
+    from below. It takes no arguments.
+  </Description>
 </CDDefinition>
 
 </CD>

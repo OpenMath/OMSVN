@@ -87,9 +87,9 @@ The size of the multiset{3,3,9} = 3
 
 <CDDefinition xml:id="cartesian_product">
 <Name>cartesian_product</Name>
-  <Pragmatic>
-    <Token>cartesianprodct</Token>
-  </Pragmatic>
+<Pragmatic>
+  <Token>cartesianproduct</Token>
+</Pragmatic>
 <Role>application</Role>
 <Description>
 This symbol represents an n-ary construction function for constructing
@@ -236,7 +236,6 @@ The multiset {4, 1, 0, 1 4}
   </OMA>
 </OMOBJ>
 </Example>
-
 </CDDefinition>
 
 
@@ -244,43 +243,63 @@ The multiset {4, 1, 0, 1 4}
 <Name>intersect</Name>
   <Pragmatic>
     <Token>intersect</Token>
+    <description>
+      <p>The <el>intersect</el> token element can be used as a binding operator in
+      pragmatic Content MathML. This role is taken over by the <code>big_intersect</code>
+      symbol in strict Content MathML.</p>
+<pseq>
+  <apply xmlns="http://www.w3.org/1998/Math/MathML">
+    <intersect/>
+    <bvar><ci>x</ci></bvar>
+    <apply><interval type="integer"/><cn>0</cn><ci>x</ci></apply>
+  </apply>
+  <apply xmlns="http://www.w3.org/1998/Math/MathML">
+    <csymbol cd="arith1">big_intersect</csymbol>
+    <bind>
+      <csymbol cd="fns1">lambda</csymbol>
+      <bvar><ci>x</ci></bvar>
+      <apply><csymbol cd="interval1">integer_interval</csymbol><cn>0</cn><ci>x</ci></apply>
+    </bind>
+  </apply>
+</pseq>
+    </description>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol is used to denote the n-ary intersection of 
-multisets. It takes multisets as arguments, and denotes the 
-multiset that contains all the elements that occur in all of 
-them, with multiplicity the minimum of their multiplicities 
-in all multisets.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol is used to denote the n-ary intersection of multisets. It takes multisets
+    as arguments, and denotes the multiset that contains all the elements that occur in
+    all of them, with multiplicity the minimum of their multiplicities in all multisets.
+  </Description>
 
-<!-- new part -->
-<description>
-          <p> This n-ary operator indicates the intersection of two sets.  If the two sets
-          are multisets, the result is a multiset. in which each element is present with a
-          repetition determined by the smallest number of occurrences in any of the sets
-          (multisets) that occur as arguments.</p>
-        </description>
-	<discussion>
-	  <p>The <el>intersect</el> element is the operator for the set-theoretic
-	  intersection or meet of two (or more) sets.  The operands are usually listed
-	  explicitly.</p>
-	  <p>As an n-ary operator, its operands may also be generated as described in
-	  <specref ref="contm_naryopwithqual"/> Therefore it may take qualifiers.
-	  </p>
-	</discussion>
+  <description>
+    <p> This n-ary operator indicates the intersection of two sets.  If the two sets are
+    multisets, the result is a multiset. in which each element is present with a
+    repetition determined by the smallest number of occurrences in any of the sets
+    (multisets) that occur as arguments.</p>
+  </description>
+  <discussion>
+    <p>The <el>intersect</el> element is the operator for the set-theoretic intersection
+    or meet of two (or more) sets.  The operands are usually listed explicitly.</p>
+    <p>As an n-ary operator, its operands may also be generated as described in <specref
+    ref="contm_naryopwithqual"/> Therefore it may take qualifiers.
+    </p>
+  </discussion>
+
         <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><intersect/>
   <ci type="set"> A</ci>
   <ci type="set"> B</ci>
 </apply>
 </math></MMLexample>
 <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML">
-<bind>
-  <intersect/>
-  <bvar><ci type="set"> S</ci></bvar>
-  <domainofapplication><ci type="list">L</ci></domainofapplication>
-  <ci type="set"> S</ci>
-</bind>
+<apply>
+  <big_intersect/>
+  <ci type="list">L</ci>
+  <bind>
+    <lambda/>
+    <bvar><ci type="set"> S</ci></bvar>
+    <ci type="set"> S</ci>
+  </bind>
+</apply>
 </math></MMLexample>
 <!-- end new part -->
 
@@ -316,10 +335,40 @@ in all multisets.
 </FMP></property>
 </CDDefinition>
 
+<CDDefinition xml:id="big_intersect">
+  <Name>big_intersect</Name>
+  <Role>binder</Role>
+  <Title>Intersection over a multiset of expressions</Title>
+  <Description>
+    This n-ary operator is used to construct the intersection over a collection of sets.
+  </Description>
+</CDDefinition>
+
+
 <CDDefinition xml:id="union">
 <Name>union</Name>
   <Pragmatic>
     <Token>union</Token>
+    <description>
+      <p>The <el>union</el> token element can be used as a binding operator in
+      pragmatic Content MathML. This role is taken over by the <code>big_union</code>
+      symbol in strict Content MathML.</p>
+<pseq>
+  <apply xmlns="http://www.w3.org/1998/Math/MathML">
+    <union/>
+    <bvar><ci>x</ci></bvar>
+    <apply><interval type="integer"/><cn>0</cn><ci>x</ci></apply>
+  </apply>
+  <apply xmlns="http://www.w3.org/1998/Math/MathML">
+    <csymbol cd="arith1">big_union</csymbol>
+    <bind>
+      <csymbol cd="fns1">lambda</csymbol>
+      <bvar><ci>x</ci></bvar>
+      <apply><csymbol cd="interval1">integer_interval</csymbol><cn>0</cn><ci>x</ci></apply>
+    </bind>
+  </apply>
+</pseq>
+    </description>
   </Pragmatic>
 <Role>application</Role>
 <Description> 
@@ -435,6 +484,17 @@ union(A,intersect(B,C)) = intersect(union(A,B),union(A,C))
 </FMP></property>
 </CDDefinition>
 
+
+<CDDefinition xml:id="big_union">
+  <Name>big_union</Name>
+  <Role>binder</Role>
+  <Title>Union over a multiset of expressions</Title>
+  <Description>
+    This n-ary operator is used to construct the union over a collection of multisets.
+  </Description>
+</CDDefinition>
+
+
 <CDDefinition xml:id="setdiff">
 <Name>setdiff</Name>
   <Pragmatic>
@@ -514,19 +574,21 @@ second.
 </apply>
 </math></MMLexample>
 
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply>
-  <subset/>
-  <set/>
-  <bvar><ci type="set">S</ci></bvar>
-  <condition>
-    <apply><in/>
+<MMLexample>
+  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply>
+    <subset/>
+    <set/>
+    <bvar><ci type="set">S</ci></bvar>
+    <condition>
+      <apply><in/>
       <ci>S</ci>
       <ci type="list">T</ci>
-    </apply>
-  </condition>
-  <ci>S</ci>
-</apply>
-</math></MMLexample>
+      </apply>
+    </condition>
+    <ci>S</ci>
+  </apply>
+  </math>
+</MMLexample>
 <!-- end new part -->
 
 <property xml:id="subset_prop_7">

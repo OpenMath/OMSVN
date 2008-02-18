@@ -79,6 +79,11 @@
 	</xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
+    <xsl:variable name="attr">
+      <xsl:for-each select="ocd:Pragmatic/ocd:Attribute/ocd:Prescribed">
+	<xsl:value-of select="concat(' type=&quot;',.,'&quot;')"/>
+      </xsl:for-each>
+    </xsl:variable>      
     <xsl:if test="not($pragmatic) or not(contains($prune,$pragmatic))"> 
       <div4 id="contm.{$pragmatic}">
 	<head>
@@ -86,11 +91,13 @@
 	  <xsl:choose>
 	    <xsl:when test="ocd:Pragmatic/ocd:Container">
 	      <xsl:text> (container element </xsl:text>
-	      <el><xsl:value-of select="$pragmatic"/></el>)
+	      <code><xsl:value-of select="concat('&lt;',$pragmatic,$attr,'&gt;')"/></code>
+	      <xsl:text>)</xsl:text>
 	    </xsl:when>
 	    <xsl:when test="ocd:Pragmatic/ocd:Token">
 	      <xsl:text> (token element </xsl:text>
-	      <el><xsl:value-of select="$pragmatic"/></el>)
+	      <code><xsl:value-of select="concat('&lt;',$pragmatic,$attr,'&gt;')"/></code>
+	      <xsl:text>)</xsl:text>
 	    </xsl:when>
 	  </xsl:choose>
 	</head>
