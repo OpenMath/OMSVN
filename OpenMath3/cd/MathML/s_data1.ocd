@@ -326,32 +326,35 @@ This is an example to denote the variance of a set of data
   <Pragmatic>
     <Token>mode</Token>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents an n-ary function denoting the mode of its
-arguments. That is the value which occurs with the greatest frequency.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents an n-ary function denoting the mode of its arguments. That is
+    the value which occurs with the greatest frequency.
+  </Description>
+  
+  <description>
+    <p>This represents the mode of n data values. The mode is the data value that occurs
+    with the greatest frequency.  See CRC Standard Mathematical Tables and Formulae,
+    editor: Dan Zwillinger, CRC Press Inc., 1996, section 7.7.1</p>
+  </description>
+  <discussion>
+    <p><el>mode</el> is the operator element representing the statistical
+    <emph>mode</emph> operator.</p>
+  </discussion>
 
-<!-- new part -->
-<description>
-          <p>This represents the mode of  n data values. The mode is the data value that 
-			occurs with the greatest frequency.
-			See CRC Standard Mathematical Tables and Formulae, editor: Dan Zwillinger, 
-			CRC Press Inc., 1996, section 7.7.1</p>
-        </description>
-	<discussion>
-	  <p><el>mode</el> is the operator element representing the statistical
-	  <emph>mode</emph> operator.</p>
-	</discussion>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><mode/><cn>3</cn><cn>4</cn><cn>2</cn><cn>2</cn></apply></math></MMLexample>
-	<MMLexample>
-	  <description><p><el>mode</el> is an <emph>n-ary operator</emph>.</p></description>
-	  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply>
-  <mode/>
-  <ci>X</ci>
-</apply></math></MMLexample>
-<!-- end new part -->
+  <MMLexample>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><mode/><cn>3</cn><cn>4</cn><cn>2</cn><cn>2</cn></apply>
+    </math>
+  </MMLexample>
 
+  <MMLexample>
+    <description><p><el>mode</el> is an <emph>n-ary operator</emph>.</p></description>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><mode/><ci>X</ci></apply>
+    </math>
+  </MMLexample>
+  
 <property xml:id="mode_prop_4">
 <CMP>
 The mode of n arguments is that value which occurs with the greatest frequency.
@@ -375,38 +378,41 @@ The mode of n arguments is that value which occurs with the greatest frequency.
   <Pragmatic>
     <Token>median</Token>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents an n-ary function denoting the median of its
-arguments. That is, if the data were placed in ascending order then it
-denotes the middle one (in the case of an odd amount of data) or the
-average of the middle two (in the case of an even amount of data).
-</Description>
-
-<!-- new part -->
-<description>
-          <p>This symbol represents an n-ary function denoting the median of its
-          arguments.  That is, if the data were placed in ascending order then it denotes
-          the middle one (in the case of an odd amount of data) or the average of the
-          middle two (in the case of an even amount of data).  See CRC Standard
-          Mathematical Tables and Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996,
-          section 7.7.1</p>
-	</description>
-	<discussion>
-	  <p><el>median</el> is the operator element representing the statistical 
-	  <emph>median</emph> operator.</p>
-	</discussion>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><median/><cn>3</cn><cn>4</cn><cn>2</cn><cn>2</cn></apply></math></MMLexample>
-	<MMLexample>
-	  <description><p><el>median</el> is an <emph>n-ary operator</emph>.</p>
-		</description>
-		<math xmlns="http://www.w3.org/1998/Math/MathML">
-		<apply>
-		  <median/>
-		  <ci>X</ci>
-		</apply>
-		</math></MMLexample>
-<!-- end new part -->
+  <Role>application</Role>
+  <Description> 
+    This symbol represents an n-ary function denoting the median of its arguments. That
+    is, if the data were placed in ascending order then it denotes the middle one (in the
+    case of an odd amount of data) or the average of the middle two (in the case of an
+    even amount of data).
+  </Description>
+  
+  <description>
+    <p>This symbol represents an n-ary function denoting the median of its arguments.
+    That is, if the data were placed in ascending order then it denotes the middle one (in
+    the case of an odd amount of data) or the average of the middle two (in the case of an
+    even amount of data).  See CRC Standard Mathematical Tables and Formulae, editor: Dan
+    Zwillinger, CRC Press Inc., 1996, section 7.7.1</p>
+  </description>
+  <discussion>
+    <p><el>median</el> is the operator element representing the statistical
+    <emph>median</emph> operator.</p>
+  </discussion>
+  
+<MMLexample>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><median/><cn>3</cn><cn>4</cn><cn>2</cn><cn>2</cn></apply>
+  </math>
+</MMLexample>
+<MMLexample>
+  <description><p><el>median</el> is an <emph>n-ary operator</emph>.</p>
+  </description>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply>
+      <median/>
+      <ci>X</ci>
+    </apply>
+  </math>
+</MMLexample>
 
 <Example> The median of {1,2,3} is 2 
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
@@ -423,107 +429,103 @@ average of the middle two (in the case of an even amount of data).
 </CDDefinition>
 
 <CDDefinition xml:id="moment">
-<Name>moment</Name>
+  <Name>moment</Name>
   <Pragmatic>
     <Token>moment</Token>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol is used to denote the i'th moment of a set of data. The
-first argument should be the degree of the moment (that is, for the
-i'th moment the first argument should be i), the second argument
-should be the point about which the moment is being taken and the rest of the
-arguments are treated as the data. For n data values x_1, x_2, ...,
-x_n the i'th moment about c is (1/n) ((x_1-c)^i + (x_2-c)^i + ... + (x_n-c)^i).
-See CRC Standard Mathematical Tables and Formulae,
-editor: Dan Zwillinger, CRC Press Inc., 1996, section 7.7.1.
-</Description>
-
-<!-- new part -->
-<description>
-          <p>This symbol is used to denote the i'th moment of a set of data, or a random
-          variable.  Unless otherwise specified, the moment is about the origin.  For
-          example, the i'th moment of X about the origin is given by moment( i , 0 , x ).
-	  </p>
-
-	  <p>The first argument indicates which moment about that point is being
-	  specified.  For the i'th moment the first argument should be i.  The second
-	  argument specifies the point about which the moment is computed.  It is either
-	  an actual point ( e.g. 0 ), or a function which can be used on the data to
-	  compute that point.  To indicate a central moment, specify the element "mean".
-	  The third argument is either a discrete or continuous random variable, or the
-	  start of a sequence of data.  If there is a sequence of data then the i'th
-	  moment is (1/n) (x_1^i + x_2^i + ... + x_n^i).
-	  </p>
-
-	  <p>See CRC Standard Mathematical Tables and Formulae, editor: Dan Zwillinger,
-	  CRC Press Inc., 1996, section 7.7.1</p>
-        </description>
-	<discussion>
-	  <p>The <el>moment</el> element represents the statistical <emph>moment</emph>
-	  operator. Use the qualifier <el>degree</el> for the <var>n</var> in <quote>
-	  <var>n</var>-th moment</quote>. Use the qualifier <el>momentabout</el> for the
-	  <var>p</var> in <quote>moment about <var>p</var></quote>.</p>
-
-	  <p>The <el>moment</el> function accepts the <el>degree</el> and
-	  <el>momentabout</el> schema. If present, the <el>degree</el> schema denotes the
-	  order of the moment. Otherwise, the moment is assumed to be the first order
-	  moment. When used with <el>moment</el>, the <el>degree</el> schema is expected
-	  to contain a single child schema; otherwise an error is generated. If present,
-	  the <el>momentabout</el> schema denotes the point about which the moment is
-	  taken. Otherwise, the moment is assumed to be the moment about zero.</p>
-	</discussion>
-
-        <MMLexample>
-          <description>
-            <p> The third moment about the point p of a discrete random variable</p>
-	    <p><el>moment</el> is an <emph>operator taking qualifiers</emph> (see <specref
-	    ref="contm_qualifiers"/>). The third moment of the distribution <var>X</var> about
-	    the point <var>p</var> is written:</p>
-          </description>
-	  <math xmlns="http://www.w3.org/1998/Math/MathML">
-	    <apply>
-	      <moment/>
-	      <degree><cn>3</cn></degree>
-	      <momentabout><ci>p</ci></momentabout>
-	      <ci>X</ci>
-	    </apply>
-	  </math>
-	</MMLexample>
-	<MMLexample>
-	  <description>
-            <p>The 3rd central moment of a set of data. </p>
-          </description>
-	  <math xmlns="http://www.w3.org/1998/Math/MathML">
-	    <apply><moment/>
-	    <degree><cn>3</cn></degree>
-	    <momentabout><mean/></momentabout>
-	    <cn>6</cn><cn>4</cn><cn>2</cn><cn>2</cn><cn>5</cn>
-	    </apply>
-	  </math>
-	</MMLexample>
-
-<MMLexample>
+  <Role>application</Role>
+  <Description> 
+    This symbol is used to denote the i'th moment of a set of data. The first argument
+    should be the degree of the moment (that is, for the i'th moment the first argument
+    should be i), the second argument should be the point about which the moment is being
+    taken and the rest of the arguments are treated as the data. For n data values x_1,
+    x_2, ..., x_n the i'th moment about c is (1/n) ((x_1-c)^i + (x_2-c)^i + ... +
+    (x_n-c)^i).  See CRC Standard Mathematical Tables and Formulae, editor: Dan
+    Zwillinger, CRC Press Inc., 1996, section 7.7.1.
+  </Description>
+  
+  <!-- new part -->
   <description>
-    <p>The 3rd central moment of a discrete random variable. </p>
-    </description><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><moment/>
-    <degree><cn>3</cn></degree>
-    <momentabout><mean/></momentabout>
-    <ci type="discrete_random_variable"> X</ci>
-  </apply>
-</math>
-</MMLexample>
+    <p>This symbol is used to denote the i'th moment of a set of data, or a random
+    variable.  Unless otherwise specified, the moment is about the origin.  For example,
+    the i'th moment of X about the origin is given by moment( i , 0 , x ).
+    </p>
+    
+    <p>The first argument indicates which moment about that point is being specified.  For
+    the i'th moment the first argument should be i.  The second argument specifies the
+    point about which the moment is computed.  It is either an actual point ( e.g. 0 ), or
+    a function which can be used on the data to compute that point.  To indicate a central
+    moment, specify the element "mean".  The third argument is either a discrete or
+    continuous random variable, or the start of a sequence of data.  If there is a
+    sequence of data then the i'th moment is (1/n) (x_1^i + x_2^i + ... + x_n^i).
+    </p>
+    
+    <p>See CRC Standard Mathematical Tables and Formulae, editor: Dan Zwillinger,
+    CRC Press Inc., 1996, section 7.7.1</p>
+  </description>
+  <discussion>
+    <p>The <el>moment</el> element represents the statistical <emph>moment</emph>
+    operator. Use the qualifier <el>degree</el> for the <var>n</var> in <quote>
+    <var>n</var>-th moment</quote>. Use the qualifier <el>momentabout</el> for the
+    <var>p</var> in <quote>moment about <var>p</var></quote>.</p>
 
-        <MMLexample>
-          <description>
-            <p>The 3rd  moment about the origin of a set of data.</p>
-          </description><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><moment/>
-  <degree><cn>3</cn></degree>
-  <momentabout><cn>0</cn></momentabout>
-  <cn>6</cn><cn>4</cn><cn>2</cn><cn>2</cn>
-</apply></math></MMLexample>
-<!-- end new part -->
+    <p>The <el>moment</el> function accepts the <el>degree</el> and
+    <el>momentabout</el> schema. If present, the <el>degree</el> schema denotes the
+    order of the moment. Otherwise, the moment is assumed to be the first order
+    moment. When used with <el>moment</el>, the <el>degree</el> schema is expected
+    to contain a single child schema; otherwise an error is generated. If present,
+    the <el>momentabout</el> schema denotes the point about which the moment is
+    taken. Otherwise, the moment is assumed to be the moment about zero.</p>
+  </discussion>
 
+  <MMLexample>
+    <description>
+      <p>The third moment of the distribution <var>X</var> about
+      the point <var>p</var> is written:</p>
+    </description>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+	<moment/>
+	<degree><cn>3</cn></degree>
+	<momentabout><ci>p</ci></momentabout>
+	<ci>X</ci>
+      </apply>
+    </math>
+  </MMLexample>
+
+  <MMLexample>
+    <description>
+      <p>The 3rd central moment of a set of data. </p>
+    </description>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><moment/>
+      <degree><cn>3</cn></degree>
+      <momentabout><mean/></momentabout>
+      <cn>6</cn><cn>4</cn><cn>2</cn><cn>2</cn><cn>5</cn>
+      </apply>
+    </math>
+  </MMLexample>
+  
+  <MMLexample>
+    <description>
+      <p>The 3rd central moment of a discrete random variable. </p>
+      </description><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><moment/>
+      <degree><cn>3</cn></degree>
+      <momentabout><mean/></momentabout>
+      <ci type="discrete_random_variable"> X</ci>
+    </apply>
+  </math>
+  </MMLexample>
+
+  <MMLexample>
+    <description>
+      <p>The 3rd  moment about the origin of a set of data.</p>
+      </description><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><moment/>
+      <degree><cn>3</cn></degree>
+      <momentabout><cn>0</cn></momentabout>
+      <cn>6</cn><cn>4</cn><cn>2</cn><cn>2</cn>
+  </apply></math></MMLexample>
+  
 <Example>
 This is an example to denote the 2'nd moment of a set of data about
 the origin.
