@@ -53,6 +53,7 @@
     <div3 id="contm.{ocd:CDName}">
       <head>The MathML Content Dictionary <xsl:value-of select="ocd:CDName"/></head>
       <p><xsl:apply-templates select="ocd:Description"/></p>
+      <xsl:apply-templates select="ocd:discussion/*" mode="speccopy"/>
       <xsl:apply-templates select="ocd:CDDefinition">
         <xsl:with-param name="prune" select="$prune"/>
         <xsl:with-param name="copy" select="$copy"/>

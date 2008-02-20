@@ -52,43 +52,62 @@ http://www.openmath.org/cd/set1.ocd
 0
 official
 
-    This CD defines the set functions and constructors for basic
-    set theory. It is intended to be `compatible' with the
-    corresponding elements in MathML.
+    This CD defines the set functions and constructors for basic set theory. It is
+    intended to be `compatible' with the corresponding elements in MathML.
 
 
-
-cartesian_product
-
-  cartesianproduct
-
-application
-
-This symbol represents an n-ary construction function for constructing
-the Cartesian product of sets. It takes n set arguments in order to
-construct their Cartesian product.
+  The symbols introduced in this content dictionary have token elements that take a
+  type attribute indicates whehter the they pertain to a set or multilset
+  interpretation of the arguments. This attribute takes the values normal
+  and multiset, where normal is the default value.
+  multiset indicates that repetitions are allowed. The symbols defined in
+  the set1 content dictionary correspond to the set interpretation.
 
 
 
 
-          The cartesianproduct element is the operator for a set-theoretic 
-cartesian product of two (or more) sets.  The cartesian 
-product of multisets produces a multiset since n-tuples
-may be repeated if elements in the base sets are repeated.
-        
-	
-	  The cartesianproduct element is the operator element for the
-	  Cartesian product of two or more sets. If A and B are two
-	  sets, then the Cartesian product of A and B is the set of
-	  all pairs (a,b) with a in A and b in
-	  B. 
+  cartesian_product
+  
+    cartesianproduct
+    
+      type
+      "normal" | "multiset"
+      "normal"
+    
+  
+  application
+  
+    This symbol represents an n-ary construction function for constructing the Cartesian
+    product of sets. It takes n set arguments in order to construct their Cartesian
+    product.
+  
+
+
+  The cartesianproduct element is the operator for a set-theoretic cartesian product of
+  two (or more) sets.  The cartesian product of multisets produces a multiset since
+  n-tuples may be repeated if elements in the base sets are repeated.
+
+
+  The cartesianproduct element is the operator element for the Cartesian
+  product of two or more sets. If A and B are two sets, then the
+  Cartesian product of A and B is the set of all pairs
+  (a,b) with a in A and b in
+  B. 
 	  
-	  As an n-ary operator, its operands may also be generated as described in
-	   Therefore it may take qualifiers.
-	
-        AB
-        
+  As an n-ary operator, its operands may also be generated as described in
+   Therefore it may take qualifiers.
 
+
+
+  
+    AB
+  
+
+
+
+  
+    
+  
 
 
 An example to show the representation of the Cartesian product of sets: AxBxC.
@@ -104,17 +123,21 @@ An example to show the representation of the Cartesian product of sets: AxBxC.
 
 
 
-emptyset
-
   emptyset
-
-constant
-
-This symbol is used to represent the empty set, that is the set which
-contains no members. It takes no parameters.
-
-
-
+  
+    emptyset
+    
+      type
+      "normal" | "multiset"
+      "normal"
+    
+  
+  constant
+  
+    This symbol is used to represent the empty set, that is the set which contains no
+    members. It takes no parameters.
+  
+  
 
           emptyset represents the empty set.
         
@@ -135,7 +158,6 @@ S
         
   
   
-
 
 
 
@@ -189,12 +211,17 @@ S
 
 
 
-map
-
   map
-
-application
-
+  
+    map
+    
+      type
+      "normal" | "multiset"
+      "normal"
+    
+  
+  application
+  
 This symbol represents a mapping function which may be used to
 construct sets, it takes as arguments a function from X to Y and a
 set over X in that order. The value that is returned is a set of
@@ -228,17 +255,22 @@ x ranges over the integral interval [0,10].
 
 
 
-size
-
-  size
-
-application
+ size
  
-This symbol is used to denote the number of elements in a set. It is
-either a non-negative integer, or an infinite cardinal number. The
-symbol infinity may be used for an unspecified infinite cardinal.
-
-
+   card
+    
+      type
+      "normal" | "multiset"
+      "normal"
+    
+ 
+ application
+  
+   This symbol is used to denote the number of elements in a set. It is either a
+   non-negative integer, or an infinite cardinal number. The symbol infinity may be used
+   for an unspecified infinite cardinal.
+ 
+ 
 
 The size of the set{3,6,9} = 3
 
@@ -275,22 +307,40 @@ The size of the set of integers is infinite
 
 
 
+  where A is a set with 5 elements.
+  
+  
+    
+    A
+    5
+    
+  
 
-suchthat
+
+
+
+
 
   suchthat
-
-application
-
-This symbol represents the suchthat function which may be used to
-construct sets, it takes two arguments. The first argument should be the
-set which contains the elements of the set we wish to represent, the
-second argument should be a predicate, that is a function from the set
-to the booleans which describes if an element is to be in the set returned.
-
-
-This example shows how to construct the set of even integers, using
-the suchthat constructor.
+  
+    suchthat
+    
+      type
+      "normal" | "multiset"
+      "normal"
+    
+  
+  application
+  
+    This symbol represents the suchthat function which may be used to construct sets, it
+    takes two arguments. The first argument should be the set which contains the elements
+    of the set we wish to represent, the second argument should be a predicate, that is a
+    function from the set to the booleans which describes if an element is to be in the
+    set returned.
+  
+  
+    This example shows how to construct the set of even integers, using
+    the suchthat constructor.
 
   
     
@@ -316,57 +366,34 @@ the suchthat constructor.
 
 
 
-set
-
   set
-	
-      order
-       lexicographic | numeric 
-      none
+  
+    set
     
-
-application
- 
-This symbol represents the set construct. It is an n-ary function. The
-set entries are given explicitly. There is no implied ordering to the
-elements of a set. 
-
-
-
-
-      The set element is the container element that constructs a set of elements.  They
-      may be explicitly listed, or defined by expressions or functions evaluated over a
-      domain of application.  The domain of application may be given explicitly, or
-      provided by means of one of the shortcut notations.
+      type
+      "normal" | "multiset"
+      "normal"
     
-    
-      MiKo
-      Take the list and set parts of the discussion apart and
-      make the MMLdefinitions selfcontained, maybe move some of the discussion
-      into the CD description
-      
+  
+  application
+   
+    This symbol represents the set construct. It is an n-ary function. The set entries are
+    given explicitly. There is no implied ordering to the elements of a set.
+  
 
-      The set element is the container element that constructs a set of
-      elements. The elements of a set can be defined either by explicitly listing the
-      elements, or by evaluating a function over a domain of application as described in
-      .
+  
+    The set element is the container element that constructs a set of elements.  They
+    may be explicitly listed, or defined by expressions or functions evaluated over a
+    domain of application.  The domain of application may be given explicitly, or provided
+    by means of one of the shortcut notations.
+  
+  
 
-      The type attribute indicates type of the set. Predefined values:
-      normal, multiset.  multiset
-      indicates that repetitions are allowed. The default value is
-      normal.
+    The child elements of a possibly empty list element are the actual
+    components of an ordered list. For example, an ordered list of the three
+    symbols a, b, and c is encoded as
 
-      
-	Keep type attribute on set?
-	It seems very awkward to keep this, it would probably be better to have an
-	multiset content dictionary as OpenMath does.
-      
-
-      The child elements of a possibly empty list element are the actual
-      components of an ordered list. For example, an ordered list of the
-      three symbols a, b, and c is encoded as
-
-      abc
+    abc
 	
       Sets and lists can also be constructed by evaluating a function over a domain of
       application, each evaluation corresponding to a term of the set or list.  In the
@@ -419,15 +446,22 @@ elements of a set.
       construct a list of equations, or of inequalities.
     
 
-        abc
-        
-  x
-  
-    x5
-  
+    
+      
+	abc
+      
+    
 
-
-
+    
+      
+	
+	  x
+	  
+	    x5
+	  
+	
+    
+    
 
 
 The set {3, 6, 9}
@@ -444,18 +478,35 @@ The set {3, 6, 9}
 
 
 
-
-
 intersect
+  
+    intersect
+    
+      The intersect token element can be used as a binding operator in
+      pragmatic Content MathML. This role is taken over by the big_intersect
+      symbol in strict Content MathML.
 
-  intersect
+  
+    
+    x
+    0x
+  
+  
+    big_intersect
+    
+      lambda
+      x
+      integer_interval0x
+    
+  
 
+    
+  
 application
  
 This symbol is used to denote the n-ary intersection of sets. It takes
 sets as arguments, and denotes the set that contains all the
 elements that occur in all of them.
-
 
 
 
@@ -480,11 +531,14 @@ elements that occur in all of them.
 
 
 
-  
-   S
-  L
-   S
 
+  big_intersect
+  L
+  
+    
+     S
+     S
+  
 
 
 
@@ -520,47 +574,75 @@ elements that occur in all of them.
 
 
 
-union
+  big_intersect
+  binder
+  Intersection over a set of expressions
+  
+    This n-ary operator is used to construct the intersection over a collection of sets.
+  
+
+
+
 
   union
-
-application
- 
-This symbol is used to denote the n-ary union of sets. It takes
-sets as arguments, and denotes the set that contains all the
-elements that occur in any of them.
+  application
+   
+    This symbol is used to denote the n-ary union of sets. It takes sets as arguments, and
+    denotes the set that contains all the elements that occur in any of them.
 
 
+  
+    union
+    
+      The union token element can be used as a binding operator in
+      pragmatic Content MathML. This role is taken over by the big_union
+      symbol in strict Content MathML.
 
+  
+    
+    x
+    0x
+  
+  
+    big_union
+    
+      lambda
+      x
+      integer_interval0x
+    
+  
 
-          This is the set-theoretic operation of union of sets.  This n-ary operator
-          generalizes to operations on multisets by tracking the frequency of occurrence
-          of each element in the union. As an n-ary operation the operands can be
-          generated by allowing a function or expression to range over the elements of a
-          domain of application.  Thus it accepts qualifiers.
-	
-	
-	  The union element is the operator for a set-theoretic union or join
-	  of two (or more) sets.  The operands are usually listed explicitly.
+    
+  
+  
+    This is the set-theoretic operation of union of sets.  This n-ary operator
+    generalizes to operations on multisets by tracking the frequency of occurrence of each
+    element in the union. As an n-ary operation the operands can be generated by allowing
+    a function or expression to range over the elements of a domain of application.  Thus
+    it accepts qualifiers.
+  
+  
+    The union element is the operator for a set-theoretic union or join of two
+    (or more) sets.  The operands are usually listed explicitly.
 	  
-	  As an n-ary operator, its operands may also
-	  be generated as described in  Therefore it
-	  may take qualifiers.
-	
+    As an n-ary operator, its operands may also be generated as described in  Therefore it may take qualifiers.
+  
 
-        
-  A
-  B
-
-
-		
-		
-		  
-		   S
-		  L
-		   S
-		
-		
+  
+    
+      AB
+    
+  
+  
+  
+    
+    
+      
+       S
+      L
+       S
+    
+  
 
 
 
@@ -639,10 +721,21 @@ union(A,intersect(B,C)) = intersect(union(A,B),union(A,C))
 
 
 
+
+  big_union
+  binder
+  Union over a Set of expressions
+  
+    This n-ary operator is used to construct the union over a collection of sets.
+  
+
+
+
+
 setdiff
-
-  setdiff
-
+  
+    setdiff
+  
 application
  
 This symbol is used to denote the set difference of two sets. It takes
@@ -650,8 +743,7 @@ two sets as arguments, and denotes the set that contains all the
 elements that occur in the first set, but not in the second.
 
 
-
-
+ 
           The setdiff element is the operator element for a set-theoretic difference of
           two sets.
         
@@ -662,7 +754,6 @@ elements that occur in the first set, but not in the second.
         
    A
    B
-
 
 
 
@@ -685,14 +776,13 @@ elements that occur in the first set, but not in the second.
 
 
 subset
-
-  subset
-
+  
+    subset
+  
 application
 
 This symbol has two (set) arguments. It is used to denote that the
 first set is a subset of the second.
-
 
 
  
@@ -705,24 +795,25 @@ first set is a subset of the second.
 	  The subset element is an n-ary set relation.  As an
 	  n-ary operator, its operands may also be generated as described in  Therefore it may take qualifiers.
 	
+
         
    A
    B
 
 
-        
-  
-  
-  S
+
+
+
   
     
+      
       S
-      T
+      
+	ST
+      
+      S
     
   
-  S
-
-
 
 
 
@@ -756,14 +847,13 @@ first set is a subset of the second.
 
 
 in
-
-  in
-
+  
+    in
+  
 application
  
 This symbol has two arguments, an element and a set. It is used to
 denote that the element is in the given set.
-
 
 
 
@@ -777,7 +867,6 @@ denote that the element is in the given set.
         
   a
    A
-
 
 
 
@@ -824,7 +913,6 @@ This symbol has two arguments, an element and a set. It is used to
 denote that the element is not in the given set.
 
 
-
  
           The notin element is the relational operator element used 
 to construct set-theoretic exclusion ('is not in' or 'is not a member of').
@@ -837,7 +925,6 @@ to construct set-theoretic exclusion ('is not in' or 'is not a member of').
         
   a
    A
-
 
 
 
@@ -895,31 +982,32 @@ second set but not actually equal to it.
 
 
 
-
-          The prsubset element is the n-ary relational operator element for
-          set-theoretic proper containment ('is a proper subset of').
-        
-	
-	  The prsubset element is the relational operator element for
-	  set-theoretic proper containment (is a proper subset of).
-	  The prsubset element is an n-ary set relation.  As an
-	  n-ary operator, its operands may also be generated as described in  Therefore it may take qualifiers.
-	
-        
-   A
-   B
+  The prsubset element is the n-ary relational operator element for
+  set-theoretic proper containment ('is a proper subset of').
 
 
-        
+  The prsubset element is the relational operator element for set-theoretic
+  proper containment (is a proper subset of).
+  The prsubset element is an n-ary set relation.  As an n-ary
+  operator, its operands may also be generated as described in  Therefore it may take qualifiers.
+
+
   
-  i
-  0
-  10
+    
+     A
+     B
+    
   
-    S
+
+
+
+  
+    
     i
+    0
+    10
+    Si
   
-
 
 
 
@@ -986,7 +1074,6 @@ first set is not a subset of the second.
 
 
 
-
           The notsubset element is the relational operator element for the 
 set-theoretic relation 'is not a subset of'.
         
@@ -997,7 +1084,6 @@ set-theoretic relation 'is not a subset of'.
         
    A
    B
-
 
 
 
@@ -1073,7 +1159,6 @@ set is a subset of the set but not actually equal to it.
 
 
 
-
           The notprsubset element is the element for constructing the set-theoretic
           relation 'is not a proper subset of'.
         
@@ -1084,7 +1169,6 @@ set is a subset of the set but not actually equal to it.
         
    A
    B
-
 
 
 

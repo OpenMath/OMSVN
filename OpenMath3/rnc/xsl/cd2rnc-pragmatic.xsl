@@ -29,7 +29,7 @@
     <xsl:text>#     and this paragraph appear in all copies.  The copyright holders make&#xA;</xsl:text>
     <xsl:text>#     no representation about the suitability of the Schema for any purpose.&#xA;</xsl:text>
     <xsl:text>#&#xA;</xsl:text> -->
-    <xsl:text>#     This file contains the token element definitions for the symbols&#xA;</xsl:text>
+    <xsl:text>#     This file contains the pragmatic element definitions for the symbols&#xA;</xsl:text>
     <xsl:text>#     generated from the content dictionary </xsl:text> 
     <xsl:value-of select="/omcd:CD/omcd:CDName"/><xsl:text>&#xA;</xsl:text>
     <xsl:text>#     It is provided "as is" without expressed or implied warranty.&#xA;</xsl:text>
@@ -50,48 +50,57 @@
     <!-- make the element definition -->
     <xsl:param name="cd"/>
     <xsl:variable name="name" select="normalize-space(omcd:Name)"/>
-    <xsl:variable name="token" select="normalize-space(omcd:Pragmatic/omcd:Token)"/>
-    <xsl:variable name="container" select="normalize-space(omcd:Pragmatic/omcd:Container)"/>
+    <xsl:variable name="element" select="omcd:Pragmatic/omcd:Element"/>
+    <xsl:variable name="elname" select="normalize-space($element)"/>
     <xsl:variable name="role" select="normalize-space(omcd:Role)"/>
     <xsl:variable name="elt" select="concat($name,'_',$cd,'_elt')"/>
     <xsl:variable name="attrib">
       <xsl:for-each select="omcd:Pragmatic/omcd:Attribute">
-	<xsl:message>hey</xsl:message>
-      <xsl:value-of select="concat(',attribute ',normalize-space(omcd:Name),' {')"/>
-      <xsl:choose>
-	<xsl:when test="omcd:Prescribed">
-	  <xsl:value-of select="concat('&quot;',normalize-space(omcd:Prescribed),'&quot;}')"/>
-	</xsl:when>
-	<xsl:when test="omcd:Model">
-	  <xsl:value-of select="concat(normalize-space(omcd:Model),'}?')"/>
-	</xsl:when>
-      </xsl:choose>
+	<xsl:value-of select="concat(',attribute ',normalize-space(omcd:Name),' {')"/>
+	<xsl:choose>
+	  <xsl:when test="omcd:Prescribed">
+	    <xsl:value-of select="concat(normalize-space(omcd:Prescribed),'}')"/>
+	  </xsl:when>
+	  <xsl:when test="omcd:Model">
+	    <xsl:value-of select="concat(normalize-space(omcd:Model),'}?')"/>
+	  </xsl:when>
+	</xsl:choose>
       </xsl:for-each>
     </xsl:variable>
     <xsl:value-of select="concat('token.',$role,' |= ',$elt,'&#xA;')"/>
     <xsl:choose>
-      <xsl:when test="$token!=''">
+      <!-- tokens are empty elements -->
+      <xsl:when test="$element/@type='token'">
 	<xsl:value-of select="concat($name,'_',$cd,'_elt',
-			             ' |= element m:',$token,
+			             ' |= element m:',$elname,
 				     ' {MathML.Common.attrib,Definition.attrib?',
 				     $attrib,
 				     '}&#xA;')"/>
       </xsl:when>
       <!-- containers can be used as binders, and applications always -->
-      <xsl:when test="$container!=''">
+      <xsl:when test="$element/@type='container'">
 	<xsl:value-of select="concat($name,'_',$cd,'_elt',
-			             ' |= element m:',$container,
-				     ' {MathML.Common.attrib,Definition.attrib?,',
+			             ' |= element m:',$elname,
+				     ' {MathML.Common.attrib,Definition.attrib?',
 				     $attrib,
-				     'ContExp*}&#xA;')"/>
+				     ',ContExp*}&#xA;')"/>
 	<xsl:value-of select="concat($name,'_',$cd,'_elt',
-			             ' |= element m:',$container,
-				     ' {MathML.Common.attrib,Definition.attrib?,',
+			             ' |= element m:',$elname,
+				     ' {MathML.Common.attrib,Definition.attrib?',
 				     $attrib,
-				     'bvar*,qualifier?,ContExp}&#xA;')"/>
+				     ',bvar*,qualifier?,ContExp*}&#xA;')"/>
 	<xsl:value-of select="concat('container |= ',$elt,'&#xA;')"/>
+	<xsl:value-of select="concat('token.binder |= ',$elt,'&#xA;')"/>
       </xsl:when>
-      <xsl:otherwise><xsl:message>undefined pragmatic/role</xsl:message></xsl:otherwise>
+      <!-- big tokens are empty elements that can also be used as binders -->
+      <xsl:when test="$element/@type='token_big'">
+	<xsl:value-of select="concat($name,'_',$cd,'_elt',
+			             ' |= element m:',$elname,
+				     ' {MathML.Common.attrib,Definition.attrib?',
+				     $attrib,
+				     '}&#xA;')"/>
+	<xsl:value-of select="concat('token.binder |= ',$elt,'&#xA;')"/>
+      </xsl:when>
     </xsl:choose>
   </xsl:template>
 

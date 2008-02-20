@@ -1,4 +1,4 @@
-#     This file contains the token element definitions for the symbols
+#     This file contains the pragmatic element definitions for the symbols
 #     generated from the content dictionary set1
 #     It is provided "as is" without expressed or implied warranty.
 #
@@ -8,21 +8,29 @@
 
 namespace m  ="http://www.w3.org/1998/Math/MathML"
 token.application |= cartesian_product_set1_elt
-cartesian_product_set1_elt |= element m:cartesianproduct {MathML.Common.attrib,Definition.attrib?}
+cartesian_product_set1_elt |= element m:cartesianproduct {MathML.Common.attrib,Definition.attrib?,attribute type {"normal" | "multiset"}?}
+token.binder |= cartesian_product_set1_elt
 token.constant |= emptyset_set1_elt
-emptyset_set1_elt |= element m:emptyset {MathML.Common.attrib,Definition.attrib?}
+emptyset_set1_elt |= element m:emptyset {MathML.Common.attrib,Definition.attrib?,attribute type {"normal" | "multiset"}?}
 token.application |= map_set1_elt
-map_set1_elt |= element m:map {MathML.Common.attrib,Definition.attrib?}
+map_set1_elt |= element m:map {MathML.Common.attrib,Definition.attrib?,attribute type {"normal" | "multiset"}?}
 token.application |= size_set1_elt
-size_set1_elt |= element m:size {MathML.Common.attrib,Definition.attrib?}
+size_set1_elt |= element m:card {MathML.Common.attrib,Definition.attrib?,attribute type {"normal" | "multiset"}?}
 token.application |= suchthat_set1_elt
-suchthat_set1_elt |= element m:suchthat {MathML.Common.attrib,Definition.attrib?}
+suchthat_set1_elt |= element m:suchthat {MathML.Common.attrib,Definition.attrib?,attribute type {"normal" | "multiset"}?}
 token.application |= set_set1_elt
-set_set1_elt |= element m:set {MathML.Common.attrib,Definition.attrib?}
+set_set1_elt |= element m:set {MathML.Common.attrib,Definition.attrib?,attribute type {"normal" | "multiset"}?,ContExp*}
+set_set1_elt |= element m:set {MathML.Common.attrib,Definition.attrib?,attribute type {"normal" | "multiset"}?,bvar*,qualifier?,ContExp*}
+container |= set_set1_elt
+token.binder |= set_set1_elt
 token.application |= intersect_set1_elt
 intersect_set1_elt |= element m:intersect {MathML.Common.attrib,Definition.attrib?}
+token.binder |= intersect_set1_elt
+token.binder |= big_intersect_set1_elt
 token.application |= union_set1_elt
 union_set1_elt |= element m:union {MathML.Common.attrib,Definition.attrib?}
+token.binder |= union_set1_elt
+token.binder |= big_union_set1_elt
 token.application |= setdiff_set1_elt
 setdiff_set1_elt |= element m:setdiff {MathML.Common.attrib,Definition.attrib?}
 token.application |= subset_set1_elt
