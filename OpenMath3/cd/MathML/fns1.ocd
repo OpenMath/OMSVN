@@ -53,31 +53,31 @@
 </Description>
 
 <CDDefinition xml:id="domain">
-<Name>domain</Name>
-<Title>Domain</Title>
+  <Name>domain</Name>
+  <Title>Domain</Title>
   <Pragmatic>
-    <Token>domain</Token>
+    <Element type="token">domain</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol denotes the domain of a given function, which is the set of
-values it is defined over.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol denotes the domain of a given function, which is the set of values it is
+    defined over.
+  </Description>
 
-<!-- new part -->
-       <description>
-          <p>The domain element denotes the domain of a given function, which is the 
-set of values over which it is defined. 
-</p>
-        </description>
-	<discussion>
-	  <p>The <el>domain</el> element denotes the domain of a given function, which is
-	  the set of values over which it is defined. </p> </discussion>
+  <description>
+    <p>The domain element denotes the domain of a given function, which is the set of
+    values over which it is defined.
+    </p>
+  </description>
+  <discussion>
+    <p>The <el>domain</el> element denotes the domain of a given function, which is the
+    set of values over which it is defined. </p> 
+  </discussion>
 
-<MMLexample>
-
-<description><p>If <var>f</var> is a function from the reals to the rationals, then:</p></description>
-<math xmlns="http://www.w3.org/1998/Math/MathML"><apply>
+  <MMLexample>
+    <description><p>If <var>f</var> is a function from the reals to the rationals, then:</p></description>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
   <eq/>
   <apply><domain/>
     <ci>f</ci>
@@ -86,7 +86,6 @@ set of values over which it is defined.
 </apply>
 </math></MMLexample>
 
-<!-- end new part -->
 
 <property xml:id="domain_prop_1">
 <CMP>
@@ -140,7 +139,7 @@ there exists a y in the range of f and f(x) = y
 <CDDefinition xml:id="range">
 <Name>range</Name>
   <Pragmatic>
-    <Token>codomain</Token>
+    <Element type="token">codomain</Element>
   </Pragmatic>
 <Role>application</Role>
 <Description>
@@ -177,7 +176,7 @@ the range of f is a subset of the image of f
 <Name>image</Name>
 <Title>Image</Title>
   <Pragmatic>
-    <Token>image</Token>
+    <Element type="token">image</Element>
   </Pragmatic>
 <Role>application</Role>
 <Description> 
@@ -254,15 +253,15 @@ values the domain of the given function maps to.
 </CDDefinition>
 
 <CDDefinition xml:id="identity">
-<Name>identity</Name>
-<Title>Identity function</Title>
+  <Name>identity</Name>
+  <Title>Identity function</Title>
   <Pragmatic>
-    <Token>ident</Token>
+    <Element type="token">ident</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-  The identity function, it takes one argument and returns the same value.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    The identity function, it takes one argument and returns the same value.
+  </Description>
 
 <property xml:id="identity_prop_4">
 <CMP> for all x | identity(x)=x </CMP>
@@ -315,7 +314,7 @@ values the domain of the given function maps to.
   <Name>inverse</Name>
   <Title>Inverse Function</Title>
   <Pragmatic>
-    <Token>inverse</Token>
+    <Element type="token">inverse</Element>
   </Pragmatic>
   <Role>application</Role>
   <Description> 
@@ -526,7 +525,7 @@ f(inverse(f)(y)) = y
 <CDDefinition xml:id="left_compose">
   <Name>left_compose</Name>
   <Pragmatic>
-    <Token>compose</Token>
+    <Element type="token">compose</Element>
   </Pragmatic>
   <Role>application</Role>
   <Description> 
@@ -569,70 +568,75 @@ f(inverse(f)(y)) = y
 </CDDefinition>
 
 <CDDefinition xml:id="lambda">
-<Name>lambda</Name>
-<Title>Lambda</Title>
+  <Name>lambda</Name>
+  <Title>Lambda</Title>
   <Pragmatic>
-    <Container>lambda</Container>
+    <Element type="container">lambda</Element>
   </Pragmatic>
-<Role>binder</Role>
-<Description>
-This symbol is used to represent anonymous functions as lambda expansions. 
-It is used in a binder that takes two further arguments, the first of which
-is a list of variables, and the second of which is an expression, and it
-forms the function which is the lambda extraction of the expression
-</Description>
+  <Role>binder</Role>
+  <Description>
+    This symbol is used to represent anonymous functions as lambda expansions.  It is used
+    in a binder that takes two further arguments, the first of which is a list of
+    variables, and the second of which is an expression, and it forms the function which
+    is the lambda extraction of the expression
+  </Description>
 
-<!-- new part -->
- <description>
-          <p>This is the operation of lambda calculus that constructs a function from an
-          expression and a variable.  Lambda is an n-ary function, where all but an
-          optional domain of application and the last argument are bound variables and the
-          last argument is an expression possibly involving those variables.  The lambda
-          function can be viewed as the inverse of function application.
-	  </p>
+  <description>
+    <p>This is the operation of lambda calculus that constructs a function from an
+    expression and a variable.  Lambda is an n-ary function, where all but an optional
+    domain of application and the last argument are bound variables and the last argument
+    is an expression possibly involving those variables.  The lambda function can be
+    viewed as the inverse of function application.
+    </p>
 
-	  <p>For example, Lambda( x, F ) is written as \lambda x [F] in the lambda
-	  calculus literature.  The expression F may contain x but the full lambda
-	  expression is regarded to be free of x.  A computational application receiving a
-	  MathML lambda expression should not evaluate x or test for x.  Such an
-	  application may apply the lambda expression as a function to arguments in which
-	  case any result that is computed is computed through parameter substitutions
-	  into F.</p>
-          <p>
-	    Note that a lambda expression on an arbitrary function applied to a the bound
-	    variable is equivalent to that arbitrary function.  A domain of application
-	    can be used to restrict the defined function to a specific domain.</p>
-        </description>
-	<discussion>
-	  <p>The <el>lambda</el> element is used to construct a user-defined function from
-	  an expression, bound variables, and qualifiers. In a lambda construct with
-	  <var>n</var> (possibly 0) bound variables, the first <var>n</var> children are
-	  <el>bvar</el> elements that identify the variables that are used as placeholders
-	  in the last child for actual parameter values. The bound variables can be
-	  restricted by an optional <el>domainofapplication</el> qualifier or one of its
-	  shorthand notations. The meaning of the <el>lambda</el> construct is an
-	  <var>n</var>-ary function that returns the expression in the last child where
-	  the bound variables are replaced with the respective arguments.</p>
+    <p>For example, Lambda( x, F ) is written as \lambda x [F] in the lambda calculus
+    literature.  The expression F may contain x but the full lambda expression is regarded
+    to be free of x.  A computational application receiving a MathML lambda expression
+    should not evaluate x or test for x.  Such an application may apply the lambda
+    expression as a function to arguments in which case any result that is computed is
+    computed through parameter substitutions into F.</p>
+    <p>
+      Note that a lambda expression on an arbitrary function applied to a the bound
+      variable is equivalent to that arbitrary function.  A domain of application can be
+      used to restrict the defined function to a specific domain.</p>
+  </description>
+  <discussion>
+    <p>The <el>lambda</el> element is used to construct a user-defined function from an
+    expression, bound variables, and qualifiers. In a lambda construct with <var>n</var>
+    (possibly 0) bound variables, the first <var>n</var> children are <el>bvar</el>
+    elements that identify the variables that are used as placeholders in the last child
+    for actual parameter values. The bound variables can be restricted by an optional
+    <el>domainofapplication</el> qualifier or one of its shorthand notations. The meaning
+    of the <el>lambda</el> construct is an <var>n</var>-ary function that returns the
+    expression in the last child where the bound variables are replaced with the
+    respective arguments.</p>
+    
+    <p>The <el>lambda</el> element is used to construct a user-defined function from an
+    expression.  The last child is an expression defining the function in terms of the
+    bound variables declared by the <el>bvar</el> and any <el>domainofapplication</el>
+    (see <specref ref="contm_qualifiers"/>) elements coming before it.  The last element
+    is typically an <el>apply</el> element, but can also be any container element. The
+    following constructs
+    <graphic role = "inline" source = "image/f4002.gif" alt = "\lambda"/>
+    (<var>x</var>, sin <var>x</var>)
+    
+    <eg>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+	<lambda>
+	  <bvar><ci>x</ci></bvar>
+	  <apply><sin/><ci>x</ci></apply>
+	</lambda>
+      </math>
+    </eg>
+    The following constructs the constant function <graphic role="inline"
+    source="image/f4002.gif" alt="\lambda"/>(<var>x</var>, 3)
 
-	<p>The <el>lambda</el> element is used to construct a user-defined function from
-	an expression.  The last child is an expression defining the function in terms of
-	the bound variables declared by the <el>bvar</el> and any
-	<el>domainofapplication</el> (see <specref ref="contm_qualifiers"/>) elements
-	coming before it.  The last element is typically an <el>apply</el> element, but
-	can also be any container element. The following constructs
-	<graphic role = "inline" source = "image/f4002.gif" alt = "\lambda"/>
-	(<var>x</var>, sin <var>x</var>)
-
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<lambda>
-  <bvar><ci>x</ci></bvar>
-  <apply><sin/><ci>x</ci></apply>
-</lambda></math>
-
-      The following constructs the constant function <graphic role="inline"
-      source="image/f4002.gif" alt="\lambda"/>(<var>x</var>, 3)
-
-<math xmlns="http://www.w3.org/1998/Math/MathML"><bind><lambda/><bvar><ci>x</ci></bvar><cn>3</cn></bind></math></p>
+    <eg>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+	<bind><lambda/><bvar><ci>x</ci></bvar><cn>3</cn></bind>
+      </math>
+    </eg>
+    </p>
 
     <p>The lambda calculus allows a user to construct a function from a variable and an
     expression. For example, the lambda construct underlies the common mathematical idiom
@@ -669,59 +673,13 @@ forms the function which is the lambda extraction of the expression
     </apply>
   </apply>
 </bind></math></p>
+  </discussion>
 
-<p>To use <el>declare</el> and <el>lambda</el> to construct the function <var>f</var> for
-which <var>f</var>( <var>x</var>) = <var>x</var><sup>2</sup> + <var>x</var> + 3 use:
-
+  <property>
+    <description>
+      <p>ForAll( F, lambda(x,F(x)) = F )</p>
+      </description>
 <math xmlns="http://www.w3.org/1998/Math/MathML">
-<declare type="function">
-  <ci>f</ci>
-  <lambda>
-    <bvar><ci>x</ci></bvar>
-    <apply>
-      <plus/>
-      <apply>
-        <power/>
-        <ci>x</ci>
-        <cn>2</cn>
-      </apply>
-      <ci>x</ci>
-      <cn>3</cn>
-    </apply>
-  </lambda>
-</declare></math>
-
-The following markup declares and constructs the function <var>J</var> such that
-<var>J</var>(<var>x</var>, <var>y</var>) is the integral from <var>x</var> to <var>y</var>
-of <var>t</var><sup>4</sup> with respect to <var>t</var>.
-
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<declare type="function">
-  <ci>J</ci>
-  <lambda>
-    <bvar><ci>x</ci></bvar>
-    <bvar><ci>y</ci></bvar>
-    <apply> <int/>
-      <bvar><ci>t</ci></bvar>
-      <lowlimit><ci>x</ci></lowlimit>
-      <uplimit><ci>y</ci></uplimit>
-      <apply>
-        <power/>
-        <ci>t</ci>
-        <cn>4</cn>
-      </apply>
-    </apply>
-  </lambda>
-</declare></math>
-
-The function <var>J</var> can then in turn be applied to an argument pair.</p>
-
-	</discussion>
-
-	<property>
-          <description>
-            <p>ForAll( F, lambda(x,F(x)) = F )</p>
-          </description><math xmlns="http://www.w3.org/1998/Math/MathML">
 <bind><forall/>
   <bvar><ci>F</ci></bvar>
   <apply><eq/>
@@ -733,7 +691,8 @@ The function <var>J</var> can then in turn be applied to an argument pair.</p>
     <ci>F</ci>
   </apply>
 </bind>
-</math></property>
+</math>
+</property>
 
 <MMLexample>
 <description><p>a simple lambda construct.</p></description>
@@ -747,46 +706,57 @@ The function <var>J</var> can then in turn be applied to an argument pair.</p>
       <cn>1</cn>
     </apply>
   </apply>
-</bind></math></MMLexample>
+</bind>
+</math>
+</MMLexample>
+
 <MMLexample>
-<description><p>The next example constructs a one-argument function in which the argument 
-<var>b</var> specifies the upper bound of a specific definite integral.</p>
-</description>
+  <description><p>The next example constructs a one-argument function in which the argument 
+  <var>b</var> specifies the upper bound of a specific definite integral.</p>
+  </description>
 <math xmlns="http://www.w3.org/1998/Math/MathML">
-<bind><lambda/>
+<bind>
+  <lambda/>
   <bvar><ci>b</ci></bvar>
-  <bind>
+  <apply>
     <int/>
-    <bvar><ci>x</ci></bvar>
-    <lowlimit><ci>a</ci></lowlimit>
-    <uplimit><ci>b</ci></uplimit>
-    <apply><ci>f</ci><ci>x</ci></apply>
+    <bind>
+      <lambda/>
+      <bvar><ci>x</ci></bvar>
+      <lowlimit><ci>a</ci></lowlimit>
+      <uplimit><ci>b</ci></uplimit>
+      <apply><ci>f</ci><ci>x</ci></apply>
     </bind>
-  </bind>
-</math></MMLexample>
+  </apply>
+</bind>
+</math>
+</MMLexample>
+
 <MMLexample>
-<description><p>The <el>domainofapplication</el> child restricts the possible
-values of the arguments of the constructed function. For instance, the
-following two <el>lambda</el> constructs are representations of a function on
-the integers.
-</p></description>
+  <description>
+    <p>The <el>domainofapplication</el> child restricts the possible values of the
+    arguments of the constructed function. For instance, the following two <el>lambda</el>
+    constructs are representations of a function on the integers.  </p>
+  </description>
 <math xmlns="http://www.w3.org/1998/Math/MathML">
 <bind><lambda/>
   <bvar><ci>x</ci></bvar>
   <domainofapplication><integers/></domainofapplication>
   <apply><sin/><ci>x</ci></apply>
-</bind></math></MMLexample>
+</bind>
+</math>
+</MMLexample>
+
 <MMLexample>
-<description>
-<p>If a <el>lambda</el> construct does not contain bound variables, then the
-  arity of the constructed function is unchanged, and the <el>lambda</el>
-  construct is redundant, unless it also contains a
-  <el>domainofapplication</el> construct that restricts existing functional
-  arguments, as in this example, which is a variant representation for the
-  function above. In particular, if the last child of a <el>lambda</el> construct is not a
-function, say a number, then the <el>lambda</el> construct will not be a
-function, but the same number. Of course, in this case a
-  <el>domainofapplication</el> does not make sense</p>
+  <description>
+    <p>If a <el>lambda</el> construct does not contain bound variables, then the arity of
+    the constructed function is unchanged, and the <el>lambda</el> construct is redundant,
+    unless it also contains a <el>domainofapplication</el> construct that restricts
+    existing functional arguments, as in this example, which is a variant representation
+    for the function above. In particular, if the last child of a <el>lambda</el>
+    construct is not a function, say a number, then the <el>lambda</el> construct will not
+    be a function, but the same number. Of course, in this case a
+    <el>domainofapplication</el> does not make sense</p>
 </description>
 <math xmlns="http://www.w3.org/1998/Math/MathML">
 <bind><lambda/>
@@ -794,8 +764,6 @@ function, but the same number. Of course, in this case a
   <sin/>
 </bind></math>
 </MMLexample>
-
-<!-- end new part -->
 
 <Example>
 An example to show the connection between curried and uncurried

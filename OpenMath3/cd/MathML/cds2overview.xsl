@@ -66,17 +66,11 @@
     <xsl:param name="prune"/>
     <xsl:param name="cdname"/>
     <xsl:variable name="def" select="."/>
+    <xsl:variable name="elem" select="ocd:Pragmatic/ocd:Element"/>
     <xsl:variable name="pragmatic">
       <xsl:choose>
-	<xsl:when test="ocd:Pragmatic/ocd:Token">
-	  <xsl:value-of select="ocd:Pragmatic/ocd:Token"/>
-	</xsl:when>
-	<xsl:when test="ocd:Pragmatic/ocd:Container">
-	  <xsl:value-of select="ocd:Pragmatic/ocd:Container"/>
-	</xsl:when>
-	<xsl:otherwise>
-	  <xsl:value-of select="ocd:Name"/>
-	</xsl:otherwise>
+	<xsl:when test="$elem"><xsl:value-of select="$elem"/></xsl:when>
+	<xsl:otherwise><xsl:value-of select="ocd:Name"/></xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
     <xsl:variable name="attr">
@@ -85,21 +79,25 @@
       </xsl:for-each>
     </xsl:variable>      
     <xsl:if test="not($pragmatic) or not(contains($prune,$pragmatic))"> 
-      <div4 id="contm.{$pragmatic}">
+      <xsl:variable name="divid">
+	<xsl:value-of select="concat('contm.',$pragmatic)"/>
+	<xsl:if test="ocd:Pragmatic/ocd:Attribute/ocd:Prescribed">
+	  <xsl:value-of select="concat('.',translate(ocd:Pragmatic/ocd:Attribute/ocd:Prescribed,'&quot;',''))"/>
+	</xsl:if>
+      </xsl:variable>
+      <div4 id="{$divid}">
 	<head>
 	  <code>&lt;csymbol cd=&quot;<xsl:value-of select="$cdname"/>&quot;&gt;<xsl:value-of select="ocd:Name"/>&lt;/csymbol&gt;</code>
-	  <xsl:choose>
-	    <xsl:when test="ocd:Pragmatic/ocd:Container">
-	      <xsl:text> (container element </xsl:text>
-	      <code><xsl:value-of select="concat('&lt;',$pragmatic,$attr,'&gt;')"/></code>
-	      <xsl:text>)</xsl:text>
-	    </xsl:when>
-	    <xsl:when test="ocd:Pragmatic/ocd:Token">
-	      <xsl:text> (token element </xsl:text>
-	      <code><xsl:value-of select="concat('&lt;',$pragmatic,$attr,'&gt;')"/></code>
-	      <xsl:text>)</xsl:text>
-	    </xsl:when>
-	  </xsl:choose>
+	  <xsl:if test="$elem">
+	    <xsl:text> (</xsl:text>
+	    <xsl:choose>
+	      <xsl:when test="contains($elem/@type,'token')"><xsl:text>Token</xsl:text></xsl:when>
+	      <xsl:when test="$elem/@type='container'"><xsl:text>Container</xsl:text></xsl:when>
+	    </xsl:choose> 
+	    <xsl:text> element </xsl:text>
+	    <code><xsl:value-of select="concat('&lt;',$pragmatic,$attr,'&gt;')"/></code>
+	    <xsl:text>)</xsl:text>
+	  </xsl:if>
 	</head>
 	<p><xsl:apply-templates select="ocd:Description"/></p>
 	<xsl:apply-templates select="ocd:Pragmatic/ocd:description" mode="speccopy"/>

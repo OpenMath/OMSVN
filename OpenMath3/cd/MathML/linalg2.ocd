@@ -47,31 +47,30 @@
 </Description>
 
 <CDDefinition xml:id="vector">
-<Name>vector</Name>
+  <Name>vector</Name>
   <Pragmatic>
-    <Token>vector</Token>
-    <MMLattribute>
-      <attname> type </attname>
-      <attvalue>  row | column | MathMLType </attvalue>
-      <attdefault> column </attdefault>
-    </MMLattribute>
+    <Element type="token">vector</Element>
+	<Attribute>
+          <Name> type </Name>
+          <Model>  "row" | "column" | MathMLType </Model>
+          <Default> "column" </Default>
+        </Attribute>
   </Pragmatic>
-<Role>application</Role>
-<Description>
-This symbol represents an n-ary function used to construct (or describe)
-vectors.  Vectors in this CD are considered to be row vectors and must 
-therefore be transposed to be considered as column vectors.
-</Description>
+  <Role>application</Role>
+  <Description>
+    This symbol represents an n-ary function used to construct (or describe) vectors.
+    Vectors in this CD are considered to be row vectors and must therefore be transposed
+    to be considered as column vectors.
+  </Description>
 
-<!-- new part -->
-<description>
-      <p>A vector is an ordered n-tuple of values representing an element of an
-      n-dimensional vector space.  The "values" are all from the same ring, typically real
-      or complex.  Where orientation is important, such as for pre or post multiplication
-      by a matrix a vector is treated as if it were a column vector and its transpose is
-      treated a row vector.  The type attribute can be used to explicitly specify that a
-      vector is a "row" vector.  See CRC Standard Mathematical Tables and Formulae,
-      editor: Dan Zwillinger, CRC Press Inc., 1996, [2.4]</p>
+  <description>
+    <p>A vector is an ordered n-tuple of values representing an element of an
+    n-dimensional vector space.  The "values" are all from the same ring, typically real
+    or complex.  Where orientation is important, such as for pre or post multiplication by
+    a matrix a vector is treated as if it were a column vector and its transpose is
+    treated a row vector.  The type attribute can be used to explicitly specify that a
+    vector is a "row" vector.  See CRC Standard Mathematical Tables and Formulae, editor:
+    Dan Zwillinger, CRC Press Inc., 1996, [2.4]</p>
     </description>
 
     <discussion>
@@ -132,7 +131,7 @@ The specific vector constructed in this example is [3,6,9].
 <CDDefinition xml:id="matrixrow">
 <Name>matrixrow</Name>
   <Pragmatic>
-    <Container>matrixrow</Container>
+    <Element type="container">matrixrow</Element>
   </Pragmatic>
   <Role>application</Role>
   <Description> 
@@ -171,119 +170,92 @@ Representation of a row of a matrix of length two containing the integers
 <CDDefinition xml:id="matrix">
 <Name>matrix</Name>
   <Pragmatic>
-    <Container>matrix</Container>
-	<MMLattribute>
-          <attname>type</attname>
-          <attvalue> real  |  complex  |  integer  |  symbolic  | integer |  MathMLType </attvalue>
-          <attdefault> real </attdefault>
-        </MMLattribute>
+    <Element type="container">matrix</Element>
+    <Attribute>
+      <Name>type</Name>
+      <Model> "real"  |  "complex"  |  "integer"  |  "symbolic" |  MathMLType </Model>
+      <Default> real </Default>
+    </Attribute>
   </Pragmatic>
-<Role>application</Role>
-<Description>
-This symbol is an n-ary matrix constructor which requires matrixrow's
-as arguments. It is used to represent matrices.
-</Description>
+  <Role>application</Role>
+  <Description>
+    This symbol is an n-ary matrix constructor which requires matrixrow's as arguments. It
+    is used to represent matrices.
+  </Description>
 
-<!-- new part -->
-<description>
-          <p>This is the constructor for a matrix.  It requires matrixrow's as arguments.
-          It is used to represent matrices.  See CRC Standard Mathematical Tables and
-          Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996, [2.5.1].</p>
-        </description>
-	<discussion>
-	  <p>The <el>matrix</el> element is the container element for matrix rows, which
-	  are represented by <el>matrixrow</el>. The <el>matrixrow</el>s contain the
-	  elements of a matrix.</p>
+  <description>
+    <p>This is the constructor for a matrix.  It requires matrixrow's as arguments.  It is
+    used to represent matrices.  See CRC Standard Mathematical Tables and Formulae,
+    editor: Dan Zwillinger, CRC Press Inc., 1996, [2.5.1].</p>
+  </description>
+  <discussion>
+    <p>The <el>matrix</el> element is the container element for matrix rows, which are
+    represented by <el>matrixrow</el>. The <el>matrixrow</el>s contain the elements of a
+    matrix.</p>
 	  
-	  <p>In general a matrix can be constructed by providing a function and a
-	  2-dimensional domain of application.  The entries of the matrix correspond to
-	  the values obtained by evaluating the function at the points of the domain.  The
-	  qualifications defined by a <el>domainofapplication</el> element can also be
-	  abbreviated in several ways including a <el>condition</el> element placing
-	  constraints directly on bound variables and an expression in those variables.</p>
-	  <p>The <el>matrix</el> element is used to represent mathematical matrices. It
-	  has zero or more child elements, all of which are <el>matrixrow</el>
-	  elements. These in turn expect zero or more child elements that evaluate to
-	  algebraic expressions or numbers. These sub-elements are often real numbers, or
-	  symbols as in
+    <p>In general a matrix can be constructed by providing a function and a 2-dimensional
+    domain of application.  The entries of the matrix correspond to the values obtained by
+    evaluating the function at the points of the domain.  The qualifications defined by a
+    <el>domainofapplication</el> element can also be abbreviated in several ways including
+    a <el>condition</el> element placing constraints directly on bound variables and an
+    expression in those variables.</p>
+	
+    <p>The <el>matrix</el> element is used to represent mathematical matrices. It has zero
+    or more child elements, all of which are <el>matrixrow</el> elements. These in turn
+    expect zero or more child elements that evaluate to algebraic expressions or
+    numbers. These sub-elements are often real numbers, or symbols as in
 
 <eg role = "mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><matrix>
   <matrixrow> <cn>1</cn> <cn>2</cn> </matrixrow>
   <matrixrow> <cn>3</cn> <cn>4</cn> </matrixrow>
 </matrix></math></eg>
 
-        The <el>matrixrow</el> elements must always be contained inside of a matrix, and
-        all rows in a given matrix must have the same number of elements.</p>
+    The <el>matrixrow</el> elements must always be contained inside of a matrix, and all
+    rows in a given matrix must have the same number of elements.</p>
 
-	<p>Note that the behavior of the <el>matrix</el> and <el>matrixrow</el> elements
-	is substantially different from the <el>mtable</el> and <el>mtr</el> presentation
-	elements.</p>
+    <p>Note that the behavior of the <el>matrix</el> and <el>matrixrow</el> elements is
+    substantially different from the <el>mtable</el> and <el>mtr</el> presentation
+    elements.</p>
 
-	<p>A matrix can also be constructed by evaluating a bivariate function over a
-	specific domain of application, each evaluation corresponding to an entry in the
-	matrix.  In its most general form a domain of application is explicitly specified
-	by a <el>domainofapplication</el> element and a function which when evaluated at
-	points of the domain produces entries in the matrix. Optionally the
-	<el>domainofapplication</el> can be augmented by <el>bvar</el> elements and an
-	algebraic expression expressed in terms of them.</p>
-	</discussion>
+    <p>A matrix can also be constructed by evaluating a bivariate function over a specific
+    domain of application, each evaluation corresponding to an entry in the matrix.  In
+    its most general form a domain of application is explicitly specified by a
+    <el>domainofapplication</el> element and a function which when evaluated at points of
+    the domain produces entries in the matrix. Optionally the <el>domainofapplication</el>
+    can be augmented by <el>bvar</el> elements and an algebraic expression expressed in
+    terms of them.</p>
+  </discussion>
+  
+  <MMLexample>
+    <math xmlns="http://www.w3.org/1998/Math/MathML"><matrix>
+      <matrixrow><cn>0</cn> <cn>1</cn> <cn>0</cn></matrixrow>
+      <matrixrow><cn>0</cn> <cn>0</cn> <cn>1</cn></matrixrow>
+      <matrixrow><cn>1</cn> <cn>0</cn> <cn>0</cn></matrixrow>
+    </matrix>
+    </math>
+  </MMLexample>
 
-  <property>
-          <description>
-            <p>scalar multiplication</p>
-          </description>
-        </property>
-        <property>
-	  <description>
-	    <p>scalar multiplication</p>
-	  </description>
-	  <math xmlns="http://www.w3.org/1998/Math/MathML">Matrix*column vector</math>
-	</property>
-
-        <property>
-          <description>
-            <p>scalar multiplication</p>
-          </description>
-	  <math xmlns="http://www.w3.org/1998/Math/MathML">Addition</math>
-	</property>
-        <property>
-          <description>
-            <p>scalar multiplication</p>
-          </description>
-	  <math xmlns="http://www.w3.org/1998/Math/MathML">Matrix*Matrix</math>
-	</property>
-
-        <MMLexample>
-	  <math xmlns="http://www.w3.org/1998/Math/MathML"><matrix>
-  <matrixrow><cn>0</cn> <cn>1</cn> <cn>0</cn></matrixrow>
-  <matrixrow><cn>0</cn> <cn>0</cn> <cn>1</cn></matrixrow>
-  <matrixrow><cn>1</cn> <cn>0</cn> <cn>0</cn></matrixrow>
-</matrix></math></MMLexample>
-<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><matrix>
-  <bvar><ci type="integer">i</ci></bvar>
-  <bvar><ci type="integer">j</ci></bvar>
-  <condition>
-    <apply><and/>
+  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><matrix>
+    <bvar><ci type="integer">i</ci></bvar>
+    <bvar><ci type="integer">j</ci></bvar>
+    <condition>
+      <apply><and/>
       <apply><in/>
-        <ci>i</ci>
-        <interval><ci>1</ci><ci>5</ci></interval>
+      <ci>i</ci>
+      <interval><ci>1</ci><ci>5</ci></interval>
       </apply>
       <apply><in/>
-        <ci>j</ci>
-        <interval><ci>5</ci><ci>9</ci></interval>
+      <ci>j</ci>
+      <interval><ci>5</ci><ci>9</ci></interval>
       </apply>
-    </apply>
-  </condition>
-<vector>
-  <apply><power/>
-    <ci>i</ci>
-    <ci>j</ci>
-  </apply>
-</vector>
-</matrix>
-</math></MMLexample>
-
-<!-- end new part -->
+      </apply>
+    </condition>
+    <vector>
+      <apply><power/><ci>i</ci><ci>j</ci></apply>
+    </vector>
+  </matrix>
+</math>
+</MMLexample>
 
 <Example>
 Representation of a 2x2 identity matrix
