@@ -48,16 +48,21 @@
 </Description>
 
 <CDDefinition xml:id="cartesian_product">
-<Name>cartesian_product</Name>
-<Pragmatic>
-  <Token>cartesianproduct</Token>
-</Pragmatic>
-<Role>application</Role>
-<Description>
-This symbol represents an n-ary construction function for constructing
-the Cartesian product of sets. It takes n set arguments in order to
-construct their Cartesian product.
-</Description>
+  <Name>cartesian_product</Name>
+  <Pragmatic>
+    <Element type="token">cartesianproduct</Element>
+    <Attribute>
+      <Name>type</Name>
+      <Model>"normal" | "multiset"</Model>
+      <Default>"normal"</Default>
+    </Attribute>
+  </Pragmatic>
+  <Role>application</Role>
+  <Description>
+    This symbol represents an n-ary construction function for constructing the Cartesian
+    product of sets. It takes n set arguments in order to construct their Cartesian
+    product.
+  </Description>
 
 <!-- new part -->
 <description>
@@ -101,16 +106,21 @@ An example to show the representation of the Cartesian product of sets: AxBxC.
 </CDDefinition>
 
 <CDDefinition xml:id="emptyset">
-<Name>emptyset</Name>
-<Pragmatic>
-  <Token>emptyset</Token>
-</Pragmatic>
-<Role>constant</Role>
-<Description>
-This symbol is used to represent the empty set, that is the set which
-contains no members. It takes no parameters.
-</Description>
-
+  <Name>emptyset</Name>
+  <Pragmatic>
+    <Element type="token">emptyset</Element>
+    <Attribute>
+      <Name>type</Name>
+      <Model>"normal" | "multiset"</Model>
+      <Default>"normal"</Default>
+    </Attribute>
+  </Pragmatic>
+  <Role>constant</Role>
+  <Description>
+    This symbol is used to represent the empty set, that is the set which contains no
+    members. It takes no parameters.
+  </Description>
+  
 <!-- new part -->
 <description>
           <p>emptyset represents the empty set.</p>
@@ -186,12 +196,17 @@ for all sets S,   intersect(S,emptyset) = emptyset</p>
 </CDDefinition>
 
 <CDDefinition xml:id="map">
-<Name>map</Name>
-<Pragmatic>
-  <Token>map</Token>
-</Pragmatic>
-<Role>application</Role>
-<Description>
+  <Name>map</Name>
+  <Pragmatic>
+    <Element type="token">map</Element>
+    <Attribute>
+      <Name>type</Name>
+      <Model>"normal" | "multiset"</Model>
+      <Default>"normal"</Default>
+    </Attribute>
+  </Pragmatic>
+  <Role>application</Role>
+  <Description>
 This symbol represents a mapping function which may be used to
 construct sets, it takes as arguments a function from X to Y and a
 set over X in that order. The value that is returned is a set of
@@ -227,7 +242,12 @@ x ranges over the integral interval [0,10].
 <CDDefinition xml:id="size">
  <Name>size</Name>
  <Pragmatic>
-   <Token>size</Token>
+   <Element type="token">card</Element>
+    <Attribute>
+      <Name>type</Name>
+      <Model>"normal" | "multiset"</Model>
+      <Default>"normal"</Default>
+    </Attribute>
  </Pragmatic>
  <Role>application</Role>
  <Description> 
@@ -286,21 +306,26 @@ The size of the set of integers is infinite
 </CDDefinition>
 
 <CDDefinition xml:id="suchthat">
-<Name>suchthat</Name>
-<Pragmatic>
-  <Token>suchthat</Token>
-</Pragmatic>
-<Role>application</Role>
-<Description>
-This symbol represents the suchthat function which may be used to
-construct sets, it takes two arguments. The first argument should be the
-set which contains the elements of the set we wish to represent, the
-second argument should be a predicate, that is a function from the set
-to the booleans which describes if an element is to be in the set returned.
-</Description>
-<Example>
-This example shows how to construct the set of even integers, using
-the suchthat constructor.
+  <Name>suchthat</Name>
+  <Pragmatic>
+    <Element type="token">suchthat</Element>
+    <Attribute>
+      <Name>type</Name>
+      <Model>"normal" | "multiset"</Model>
+      <Default>"normal"</Default>
+    </Attribute>
+  </Pragmatic>
+  <Role>application</Role>
+  <Description>
+    This symbol represents the suchthat function which may be used to construct sets, it
+    takes two arguments. The first argument should be the set which contains the elements
+    of the set we wish to represent, the second argument should be a predicate, that is a
+    function from the set to the booleans which describes if an element is to be in the
+    set returned.
+  </Description>
+  <Example>
+    This example shows how to construct the set of even integers, using
+    the suchthat constructor.
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
   <OMA>
     <OMS cd="set1" name="suchthat"/>
@@ -328,12 +353,12 @@ the suchthat constructor.
 <CDDefinition xml:id="set">
   <Name>set</Name>
   <Pragmatic>
-    <Token>set</Token>
-    <MMLattribute>
-      <attname>order</attname>
-      <attvalue> lexicographic | numeric </attvalue>
-      <attdefault>none</attdefault>
-    </MMLattribute>
+    <Element type="token">set</Element>
+    <Attribute>
+      <Name>type</Name>
+      <Model>"normal" | "multiset"</Model>
+      <Default>"normal"</Default>
+    </Attribute>
   </Pragmatic>
   <Role>application</Role>
   <Description> 
@@ -445,14 +470,14 @@ The set {3, 6, 9}
 <CDDefinition xml:id="intersect">
 <Name>intersect</Name>
   <Pragmatic>
-    <Token>intersect</Token>
+    <Element type="token">intersect</Element>
     <description>
       <p>The <el>intersect</el> token element can be used as a binding operator in
       pragmatic Content MathML. This role is taken over by the <code>big_intersect</code>
       symbol in strict Content MathML.</p>
 <pseq>
   <apply xmlns="http://www.w3.org/1998/Math/MathML">
-    <intersect type="set"/>
+    <intersect/>
     <bvar><ci>x</ci></bvar>
     <apply><interval type="integer"/><cn>0</cn><ci>x</ci></apply>
   </apply>
@@ -495,9 +520,10 @@ elements that occur in all of them.
   <ci type="set"> B</ci>
 </apply>
 </math></MMLexample>
+
 <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML">
 <apply>
-  <big_intersect/>
+  <csymbol cd="set1">big_intersect</csymbol>
   <ci type="list">L</ci>
   <bind>
     <lambda/>
@@ -552,14 +578,14 @@ elements that occur in all of them.
 <CDDefinition xml:id="union">
 <Name>union</Name>
   <Pragmatic>
-    <Token>union</Token>
+    <Element type="token">union</Element>
     <description>
       <p>The <el>union</el> token element can be used as a binding operator in
       pragmatic Content MathML. This role is taken over by the <code>big_union</code>
       symbol in strict Content MathML.</p>
 <pseq>
   <apply xmlns="http://www.w3.org/1998/Math/MathML">
-    <union type="set"/>
+    <union/>
     <bvar><ci>x</ci></bvar>
     <apply><interval type="integer"/><cn>0</cn><ci>x</ci></apply>
   </apply>
@@ -601,15 +627,19 @@ elements that occur in any of them.
   <ci>A</ci>
   <ci>B</ci>
 </apply>
-</math></MMLexample>
-		<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML">
-		<apply>
-		  <union/>
-		  <bvar><ci type="set"> S</ci></bvar>
-		  <domainofapplication><ci type="list">L</ci></domainofapplication>
-		  <ci type="set"> S</ci>
-		</apply>
-		</math></MMLexample>
+</math>
+</MMLexample>
+
+<MMLexample>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply>
+      <union/>
+      <bvar><ci type="set"> S</ci></bvar>
+      <domainofapplication><ci type="list">L</ci></domainofapplication>
+      <ci type="set"> S</ci>
+    </apply>
+  </math>
+</MMLexample>
 <!-- end new part -->
 
 <property xml:id="union_prop_5">
@@ -701,7 +731,7 @@ union(A,intersect(B,C)) = intersect(union(A,B),union(A,C))
 <CDDefinition xml:id="setdiff">
 <Name>setdiff</Name>
   <Pragmatic>
-    <Token>setdiff</Token>
+    <Element type="token">setdiff</Element>
   </Pragmatic>
 <Role>application</Role>
 <Description> 
@@ -746,7 +776,7 @@ elements that occur in the first set, but not in the second.
 <CDDefinition xml:id="subset">
 <Name>subset</Name>
   <Pragmatic>
-    <Token>subset</Token>
+    <Element type="token">subset</Element>
   </Pragmatic>
 <Role>application</Role>
 <Description>
@@ -776,7 +806,6 @@ first set is a subset of the second.
 
 <MMLexample>
   <math xmlns="http://www.w3.org/1998/Math/MathML"><apply>
-    <subset/>
     <set/>
     <bvar><ci type="set">S</ci></bvar>
     <condition>
@@ -823,7 +852,7 @@ first set is a subset of the second.
 <CDDefinition xml:id="in">
 <Name>in</Name>
   <Pragmatic>
-    <Token>in</Token>
+    <Element type="token">in</Element>
   </Pragmatic>
 <Role>application</Role>
 <Description> 
@@ -882,7 +911,7 @@ denote that the element is in the given set.
 <CDDefinition xml:id="notin">
 <Name>notin</Name>
 <Pragmatic>
-  <Token>notin</Token>
+  <Element type="token">notin</Element>
 </Pragmatic>
 <Role>application</Role>
 <Description> 
@@ -951,7 +980,7 @@ to construct set-theoretic exclusion ('is not in' or 'is not a member of').</p>
 <CDDefinition xml:id="prsubset">
 <Name>prsubset</Name>
 <Pragmatic>
-  <Token>prsubset</Token>
+  <Element type="token">prsubset</Element>
 </Pragmatic>
 <Role>application</Role>
 <Description> 
@@ -962,32 +991,38 @@ second set but not actually equal to it.
 
 <!-- new part -->
 <description>
-          <p>The <el>prsubset</el> element is the n-ary relational operator element for
-          set-theoretic proper containment ('is a proper subset of').</p>
-        </description>
-	<discussion>
-	  <p>The <el>prsubset</el> element is the relational operator element for
-	  set-theoretic proper containment (<quote>is a proper subset of</quote>).</p>
-	  <p>The <el>prsubset</el> element is an <emph>n-ary set relation</emph>.  As an
-	  n-ary operator, its operands may also be generated as described in <specref
-	  ref="contm_naryopwithqual"/> Therefore it may take qualifiers.</p>
-	</discussion>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><prsubset/>
-  <ci type="set"> A</ci>
-  <ci type="set"> B</ci>
-</apply>
-</math></MMLexample>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply>
-  <prsubset/>
-  <bvar><ci type="integer">i</ci></bvar>
-  <lowlimit><cn>0</cn></lowlimit>
-  <uplimit><cn>10</cn></uplimit>
-  <apply><selector/>
+  <p>The <el>prsubset</el> element is the n-ary relational operator element for
+  set-theoretic proper containment ('is a proper subset of').</p>
+</description>
+<discussion>
+  <p>The <el>prsubset</el> element is the relational operator element for set-theoretic
+  proper containment (<quote>is a proper subset of</quote>).</p>
+  <p>The <el>prsubset</el> element is an <emph>n-ary set relation</emph>.  As an n-ary
+  operator, its operands may also be generated as described in <specref
+  ref="contm_naryopwithqual"/> Therefore it may take qualifiers.</p>
+</discussion>
+<MMLexample>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><prsubset/>
+    <ci type="set"> A</ci>
+    <ci type="set"> B</ci>
+    </apply>
+  </math>
+</MMLexample>
+
+<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <prsubset/>
+    <bvar><ci type="integer">i</ci></bvar>
+    <lowlimit><cn>0</cn></lowlimit>
+    <uplimit><cn>10</cn></uplimit>
+    <apply><selector/>
     <ci type="vector_of_sets">S</ci>
     <ci>i</ci>
+    </apply>
   </apply>
-</apply>
-</math></MMLexample>
+</math>
+</MMLexample>
 <!-- end new part -->
 
 <property xml:id="prsubset_prop_11">
@@ -1044,7 +1079,7 @@ A is a proper subset of B implies that A is a subset of B and A not= B
 <CDDefinition xml:id="notsubset">
 <Name>notsubset</Name>
 <Pragmatic>
-  <Token>notsubset</Token>
+  <Element type="token">notsubset</Element>
 </Pragmatic>
 <Role>application</Role>
 <Description> 
@@ -1130,7 +1165,7 @@ there exists an x in B s.t. x is not a member of B
 <CDDefinition xml:id="notprsubset">
 <Name>notprsubset</Name>
 <Pragmatic>
-  <Token>notprsubset</Token>
+  <Element type="token">notprsubset</Element>
 </Pragmatic>
 <Role>application</Role>
 <Description> 

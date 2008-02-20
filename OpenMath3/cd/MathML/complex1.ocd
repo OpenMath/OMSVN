@@ -49,7 +49,7 @@
 <CDDefinition xml:id="complex_cartesian">
 <Name>complex_cartesian</Name>
   <Pragmatic>
-    <Token>complex_cartesian</Token>
+    <Element type="token">complex_cartesian</Element>
   </Pragmatic>
 <Role>application</Role>
 <Description> 
@@ -98,7 +98,7 @@ for all x,y | complex_cartesian(x,y) = x + iy
 <Name>real</Name>
 <Title>Real Part</Title>
   <Pragmatic>
-    <Token>real</Token>
+    <Element type="token">real</Element>
   </Pragmatic>
 <Role>application</Role>
 <Description> 
@@ -119,7 +119,7 @@ representing the "real" part of a complex number. </p>
           <description>
             <p>ForAll( [x,y], x in R, Y in R, real(x+i*y)=x) )</p>
           </description><math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply><forall/>
+<bind><forall/>
   <bvar><ci>x</ci></bvar>
   <bvar><ci>y</ci></bvar>
   <condition>
@@ -137,13 +137,20 @@ representing the "real" part of a complex number. </p>
     </apply>
     <ci>x</ci>
   </apply>
-</apply>
-</math></property>
-        <MMLexample>
-		<description><p>The following example encodes the real operation on<var>x</var> + i<var>y</var>.A MathML-aware evaluation system would return the <var>x</var> component, suitably encoded.</p></description>
-		<math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply><real/>
-  <apply><plus/>
+</bind>
+</math>
+</property>
+
+
+<MMLexample>
+  <description>
+    <p>The following example encodes the real operation on<var>x</var> + i<var>y</var>.A
+    MathML-aware evaluation system would return the <var>x</var> component, suitably
+    encoded.</p>
+  </description>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><real/>
+    <apply><plus/>
     <ci>x</ci>
     <apply><times/><imaginaryi/><ci>y</ci></apply>
   </apply>
@@ -185,7 +192,7 @@ representing the "real" part of a complex number. </p>
 <Name>imaginary</Name>
 <Title>Imaginary Part</Title>
   <Pragmatic>
-    <Token>imaginary</Token>
+    <Element type="token">imaginary</Element>
   </Pragmatic>
 <Role>application</Role>
 <Description> 
@@ -207,7 +214,7 @@ This represents the imaginary part of a complex number
           <description>
             <p>ForAll( [x,y], Imaginary(x + i*y) = y )</p>
           </description><math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply><forall/>
+<bind><forall/>
   <bvar><ci type="real"> x</ci></bvar>
   <bvar><ci type="real"> y</ci></bvar>
   <apply><eq/>
@@ -219,7 +226,7 @@ This represents the imaginary part of a complex number
     </apply>
     <ci type="real"> y</ci>
   </apply>
-</apply>
+</bind>
 </math></property>
         <MMLexample>
 		<description><p>The following example encodes the imaginary operation on <var>x</var> + i<var>y</var>.A MathML-aware evaluation system would return the <var>y</var> component, suitably encoded.</p></description>
@@ -265,7 +272,7 @@ for all x,y | y = imaginary(x+iy)
 <CDDefinition xml:id="complex_polar">
 <Name>complex_polar</Name>
   <Pragmatic>
-    <Token>complex_polar</Token>
+    <Element type="token">complex_polar</Element>
   </Pragmatic>
 <Role>application</Role>
 <Description> 
@@ -448,7 +455,7 @@ complex_cartesian(x,y)
 <Name>argument</Name>
 <Title>Argument</Title>
   <Pragmatic>
-    <Token>arg</Token>
+    <Element type="token">arg</Element>
     <Attribute>
       <Name>type</Name>
       <Model>MathMLType</Model>
@@ -556,7 +563,7 @@ complex_cartesian(x,y)
 <Name>conjugate</Name>
 <Title>Complex Conjugate</Title>
   <Pragmatic>
-    <Token>conjugate</Token>
+    <Element type="token">conjugate</Element>
   </Pragmatic>
 <Role>application</Role>
 <Description> 
