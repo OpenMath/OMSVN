@@ -1,4 +1,4 @@
-#     This file contains the token element definitions for the symbols
+#     This file contains the pragmatic element definitions for the symbols
 #     generated from the content dictionary logic1
 #     It is provided "as is" without expressed or implied warranty.
 #
@@ -9,16 +9,23 @@
 namespace m  ="http://www.w3.org/1998/Math/MathML"
 token.application |= equivalent_logic1_elt
 equivalent_logic1_elt |= element m:equivalent {MathML.Common.attrib,Definition.attrib?}
+token.binder |= equivalent_logic1_elt
 token.application |= not_logic1_elt
-not_logic1_elt |= element m:not {MathML.Common.attrib,Definition.attrib?}
+not_logic1_elt |= element m:not {MathML.Common.attrib,Definition.attrib?,attribute type {MathMLType}?}
 token.application |= and_logic1_elt
-and_logic1_elt |= element m:and {MathML.Common.attrib,Definition.attrib?}
+and_logic1_elt |= element m:and {MathML.Common.attrib,Definition.attrib?,attribute type {MathMLType}?}
+token.binder |= and_logic1_elt
+token.binder |= big_and_logic1_elt
 token.application |= xor_logic1_elt
-xor_logic1_elt |= element m:xor {MathML.Common.attrib,Definition.attrib?}
+xor_logic1_elt |= element m:xor {MathML.Common.attrib,Definition.attrib?,attribute type {MathMLType}?}
+token.binder |= xor_logic1_elt
+token.binder |= big_xor_logic1_elt
 token.application |= or_logic1_elt
-or_logic1_elt |= element m:or {MathML.Common.attrib,Definition.attrib?}
+or_logic1_elt |= element m:or {MathML.Common.attrib,Definition.attrib?,attribute type {MathMLType}?}
+token.binder |= or_logic1_elt
+token.binder |= big_or_logic1_elt
 token.application |= implies_logic1_elt
-implies_logic1_elt |= element m:implies {MathML.Common.attrib,Definition.attrib?}
+implies_logic1_elt |= element m:implies {MathML.Common.attrib,Definition.attrib?,attribute type {MathMLType}?}
 token.constant |= true_logic1_elt
 true_logic1_elt |= element m:true {MathML.Common.attrib,Definition.attrib?}
 token.constant |= false_logic1_elt

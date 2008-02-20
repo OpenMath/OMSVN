@@ -18,6 +18,8 @@ mmobj = external "mathml3.rnc"
 omobj = external "openmath3.rnc"
 #omobj = external "om3-sts.rnc"
 mobj = (omobj | mmobj)
+ContExp = grammar {include "mathml3.rnc" {start = ContExp}}
+
 
 text-or-om = (text | mobj | code | var | quote | intref | specref | el | att | attval | sup | sub |
 graphic | eg | emph | kw )*
@@ -56,10 +58,9 @@ Role = element Role {
    "error" |
    "application" |
    "constant" }
-Pragmatic = element Pragmatic {(Token|Container),Attribute*,description?}
-Token  = element Token { text }
-Container = element Container { text}
-Attribute = element Attribute {Name,((Model,Default)|Prescribed)}
+Pragmatic = element Pragmatic {Element,Attribute*,description?}
+Element  = element Element {attribute type {"token" | "token_big" | "container"}?, text }
+Attribute = element Attribute {Name,((Model,Default?)|Prescribed)}
 Model = element Model { text }
 Default = element Default { text }
 Prescribed = element Prescribed { text }
@@ -74,8 +75,8 @@ FMP = element FMP {
 Example = element Example { text-or-om }
 MMLexample = element MMLexample {id.att?,description?,mobj}
 description = element description {(p|pseq)*}
-pseq = element pseq {mobj,mobj}	    
-discussion = element discussion {p*}
+pseq = element pseq {ContExp,ContExp}	    
+discussion = element discussion {attribute type {text}?,p*}
 p = element p { text-or-om }
 id.att = attribute xml:id {xsd:ID}
 CDDefinition =
@@ -86,7 +87,7 @@ CDDefinition =
   }
 CD =
   element CD {
-    (CDComment* & Description? &
+    (CDComment* & Description? & discussion? &
      CDName & CDURL? & CDBase? &
      CDReviewDate? & CDDate & CDStatus & 
      CDUses? & 

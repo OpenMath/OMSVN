@@ -61,7 +61,6 @@ scalar value. It should satisfy the defining relation:
  + \partial(F_(x_n))/\partial(x_n)
 </Description>
 
-<!-- new part -->
 <description>
           <p>This symbol is used to represent the divergence function.</p>
 	  <p>Given, one argument which is a vector of scalar valued functions defined on
@@ -135,7 +134,6 @@ scalar value. It should satisfy the defining relation:
   </apply>
 </apply></math>
 	</MMLexample>
-<!-- end new part -->
 
 <property xml:id="divergence_prop_1">
 <CMP>
@@ -158,7 +156,6 @@ vector of functions. It should satisfy the defining relation:
 grad(F) = (\partial(F)/\partial(x_1), ... ,\partial(F)/partial(x_n))
 </Description>
 
-<!-- new part -->
 <description>
           <p>The gradient element is the vector calculus gradient operator, often called
           grad.  It represents the operation that constructs a vector of partial
@@ -178,7 +175,6 @@ grad(F) = (\partial(F)/\partial(x_1), ... ,\partial(F)/partial(x_n))
   <apply><times/><ci>x</ci><ci>y</ci><ci>z</ci></apply>
 </apply></math>
 </MMLexample>
-<!-- end new part -->
 
 <property xml:id="grad_prop_2">
 <CMP> 
@@ -205,7 +201,6 @@ corresponding to the x,y,z axes respectively and the multiplication X
 is cross multiplication.
 </Description>
 
-<!-- new part -->
 <description>
           <p>This symbol is used to represent the curl operator. It requires both a
           coordinates and a vector of expressions defined over those coordinates. It
@@ -237,7 +232,6 @@ is cross multiplication.
 	  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><curl/><ci>a</ci></apply></math>
 	</MMLexample>
 	<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><curl/><ci type="vector">f</ci></apply></math></MMLexample>
-<!-- end new part -->
 
 <property xml:id="curl_prop_2">
 <CMP>
@@ -313,59 +307,67 @@ j X \partial(F)/\partial(Z)
 </CDDefinition>
 
 <CDDefinition xml:id="Laplacian">
-<Name>Laplacian</Name>
+  <Name>Laplacian</Name>
   <Pragmatic>
     <Element type="token">laplacian</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description>
-This symbol is used to represent the laplacian function. It takes one
-argument which should be a vector of scalar valued functions, intended
-to represent a vector valued function and returns a vector of
-functions. It should satisfy the defining relation:
-laplacian(F) = \partial^2(F)/\partial(x_1)^2 + ... +
-\partial^2(F)/\partial(x_n)^2
-</Description>
+  <Role>application</Role>
+  <Description>
+    This symbol is used to represent the laplacian function. It takes one argument which
+    should be a vector of scalar valued functions, intended to represent a vector valued
+    function and returns a vector of functions. It should satisfy the defining relation:
+    laplacian(F) = \partial^2(F)/\partial(x_1)^2 + ... + \partial^2(F)/\partial(x_n)^2
+  </Description>
 
-<!--  new part -->
-<description>
-  <p>This is the element used to indicate an application of the laplacian
-  operator.  It may be applied directly to expressions, in which case the
-  coordinate names are provided in order by use of bvar.  It may also be applied
-  directly to a function F in which case, the definition below is for F = F(x_1,
-  x_2, ... x_n) where x_1, x_2, ...  x_n are the coordinate names.
-  </p>
-  <p>laplacian(F) = \partial^2(F)/\partial(x_1)^2 + ... + \partial^2(F)/\partial(x_n)^2</p>
-</description>
-<discussion>
-  <p>The <el>laplacian</el> element is the vector calculus
-  laplacian operator.</p>
-</discussion>
-<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><laplacian/><ci type="vector"> E</ci></apply></math></MMLexample>
-<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><declare><ci>F</ci><vector><ci>f1</ci><ci>f2</ci><ci>f3</ci></vector></declare>
-<apply><laplacian/><ci>F</ci></apply></math></MMLexample>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><laplacian/>
-  <bvar><ci>x</ci></bvar><bvar><ci>y</ci></bvar><bvar><ci>z</ci></bvar>
-  <apply><ci>f</ci>
-    <ci>x</ci><ci>y</ci>
-  </apply>
-</apply></math></MMLexample>
-	<MMLexample>
-	<description><p>Where for example<var>f</var> is a scalar function of three real variables.</p>
-	</description><math xmlns="http://www.w3.org/1998/Math/MathML"><apply>
-  <eq/>
-  <apply><laplacian/>
-    <ci>f</ci>
-  </apply>
-  <apply>
-    <divergence/>
-    <apply><grad/>
-      <ci>f</ci>
-    </apply>
-  </apply>
-</apply></math></MMLexample>
-<!-- end new part -->
+  <description>
+    <p>This is the element used to indicate an application of the laplacian operator.  It
+    may be applied directly to expressions, in which case the coordinate names are
+    provided in order by use of bvar.  It may also be applied directly to a function F in
+    which case, the definition below is for F = F(x_1, x_2, ... x_n) where x_1, x_2, ...
+    x_n are the coordinate names.
+    </p>
+    <p>laplacian(F) = \partial^2(F)/\partial(x_1)^2 + ... + \partial^2(F)/\partial(x_n)^2</p>
+  </description>
 
+  <discussion>
+    <p>The <el>laplacian</el> element is the vector calculus laplacian operator.</p>
+  </discussion>
+
+  <MMLexample>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><laplacian/><ci type="vector"> E</ci></apply>
+    </math>
+  </MMLexample>
+
+  <MMLexample>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><laplacian/>
+        <bvar><ci>x</ci></bvar><bvar><ci>y</ci></bvar><bvar><ci>z</ci></bvar>
+	<apply><ci>f</ci><ci>x</ci><ci>y</ci></apply>
+      </apply>
+    </math>
+  </MMLexample>
+
+  <MMLexample>
+    <description>
+      <p>Where for example<var>f</var> is a scalar function of three real variables.</p>
+    </description>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+	<eq/>
+	<apply><laplacian/>
+	<ci>f</ci>
+	</apply>
+	<apply>
+	  <divergence/>
+	  <apply><grad/>
+	  <ci>f</ci>
+	  </apply>
+	</apply>
+      </apply>
+    </math>
+  </MMLexample>
+  
 <property xml:id="Laplacian_prop_3">
 <CMP>
 laplacian(F) = \partial^2(F)/\partial(x_1)^2 + ... +

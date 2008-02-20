@@ -42,15 +42,23 @@
 <CDRevision>0</CDRevision>
 <CDStatus>official</CDStatus>
 <Description>
-    This CD defines the set functions and constructors for basic
-    set theory. It is intended to be `compatible' with the
-    corresponding elements in MathML.
+    This CD defines the set functions and constructors for basic set theory. It is
+    intended to be `compatible' with the corresponding elements in MathML.
 </Description>
+<discussion type="pragmatic">
+  <p>The symbols introduced in this content dictionary have token elements that take a
+  <att>type</att> attribute indicates whehter the they pertain to a set or multilset
+  interpretation of the arguments. This attribute takes the values <attval>normal</attval>
+  and <attval>multiset</attval>, where <attval>normal</attval> is the default value.
+  <attval>multiset</attval> indicates that repetitions are allowed. The symbols defined in
+  the <code>set1</code> content dictionary correspond to the set interpretation.</p>
+</discussion>
+
 
 <CDDefinition xml:id="cartesian_product">
   <Name>cartesian_product</Name>
   <Pragmatic>
-    <Element type="token">cartesianproduct</Element>
+    <Element type="token_big">cartesianproduct</Element>
     <Attribute>
       <Name>type</Name>
       <Model>"normal" | "multiset"</Model>
@@ -64,7 +72,6 @@
     product.
   </Description>
 
-<!-- new part -->
 <description>
   <p>The cartesianproduct element is the operator for a set-theoretic cartesian product of
   two (or more) sets.  The cartesian product of multisets produces a multiset since
@@ -121,7 +128,6 @@ An example to show the representation of the Cartesian product of sets: AxBxC.
     members. It takes no parameters.
   </Description>
   
-<!-- new part -->
 <description>
           <p>emptyset represents the empty set.</p>
         </description>
@@ -144,7 +150,6 @@ for all sets S,   intersect(S,emptyset) = emptyset</p>
   <emptyset/>
 </apply>
 </math></MMLexample>
-<!-- end new part -->
 
 <property xml:id="emptyset_prop_1">
 <CMP> The intersection of A with the emptyset is the emptyset </CMP>
@@ -353,7 +358,7 @@ The size of the set of integers is infinite
 <CDDefinition xml:id="set">
   <Name>set</Name>
   <Pragmatic>
-    <Element type="token">set</Element>
+    <Element type="container">set</Element>
     <Attribute>
       <Name>type</Name>
       <Model>"normal" | "multiset"</Model>
@@ -364,26 +369,22 @@ The size of the set of integers is infinite
   <Description> 
     This symbol represents the set construct. It is an n-ary function. The set entries are
     given explicitly. There is no implied ordering to the elements of a set.
-</Description>
+  </Description>
 
-<!-- new part -->
-<description>
-      <p>The set element is the container element that constructs a set of elements.  They
-      may be explicitly listed, or defined by expressions or functions evaluated over a
-      domain of application.  The domain of application may be given explicitly, or
-      provided by means of one of the shortcut notations.</p>
-    </description>
-    <discussion>
-      <p>The <att>type</att> attribute indicates type of the set. Predefined values:
-      <attval>normal</attval>, <attval>multiset</attval>.  <attval>multiset</attval>
-      indicates that repetitions are allowed. The default value is
-      <attval>normal</attval>.</p>
+  <description>
+    <p>The set element is the container element that constructs a set of elements.  They
+    may be explicitly listed, or defined by expressions or functions evaluated over a
+    domain of application.  The domain of application may be given explicitly, or provided
+    by means of one of the shortcut notations.</p>
+  </description>
+  <discussion>
 
-      <p>The child elements of a possibly empty <el>list</el> element are the actual
-      components of an ordered <emph>list</emph>. For example, an ordered list of the
-      three symbols <var>a</var>, <var>b</var>, and <var>c</var> is encoded as
+    <p>The child elements of a possibly empty <el>list</el> element are the actual
+    components of an ordered <emph>list</emph>. For example, an ordered list of the three
+    symbols <var>a</var>, <var>b</var>, and <var>c</var> is encoded as
 
-      <eg role="mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><list><ci>a</ci><ci>b</ci><ci>c</ci></list></math></eg>
+    <eg role="mathml"><math
+    xmlns="http://www.w3.org/1998/Math/MathML"><list><ci>a</ci><ci>b</ci><ci>c</ci></list></math></eg>
 	
       Sets and lists can also be constructed by evaluating a function over a domain of
       application, each evaluation corresponding to a term of the set or list.  In the
@@ -470,7 +471,7 @@ The set {3, 6, 9}
 <CDDefinition xml:id="intersect">
 <Name>intersect</Name>
   <Pragmatic>
-    <Element type="token">intersect</Element>
+    <Element type="token_big">intersect</Element>
     <description>
       <p>The <el>intersect</el> token element can be used as a binding operator in
       pragmatic Content MathML. This role is taken over by the <code>big_intersect</code>
@@ -499,7 +500,6 @@ sets as arguments, and denotes the set that contains all the
 elements that occur in all of them.
 </Description>
 
-<!-- new part -->
 <description>
           <p> This n-ary operator indicates the intersection of two sets.  If the two sets
           are multisets, the result is a multiset. in which each element is present with a
@@ -532,7 +532,6 @@ elements that occur in all of them.
   </bind>
 </apply>
 </math></MMLexample>
-<!-- end new part -->
 
 <property xml:id="intersect_prop_4">
 <CMP>
@@ -576,9 +575,15 @@ elements that occur in all of them.
 
 
 <CDDefinition xml:id="union">
-<Name>union</Name>
+  <Name>union</Name>
+  <Role>application</Role>
+  <Description> 
+    This symbol is used to denote the n-ary union of sets. It takes sets as arguments, and
+    denotes the set that contains all the elements that occur in any of them.
+</Description>
+
   <Pragmatic>
-    <Element type="token">union</Element>
+    <Element type="token_big">union</Element>
     <description>
       <p>The <el>union</el> token element can be used as a binding operator in
       pragmatic Content MathML. This role is taken over by the <code>big_union</code>
@@ -600,38 +605,29 @@ elements that occur in all of them.
 </pseq>
     </description>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol is used to denote the n-ary union of sets. It takes
-sets as arguments, and denotes the set that contains all the
-elements that occur in any of them.
-</Description>
-
-<description>
-          <p>This is the set-theoretic operation of union of sets.  This n-ary operator
-          generalizes to operations on multisets by tracking the frequency of occurrence
-          of each element in the union. As an n-ary operation the operands can be
-          generated by allowing a function or expression to range over the elements of a
-          domain of application.  Thus it accepts qualifiers.</p>
-	</description>
-	<discussion>
-	  <p>The <el>union</el> element is the operator for a set-theoretic union or join
-	  of two (or more) sets.  The operands are usually listed explicitly.</p>
+  <description>
+    <p>This is the set-theoretic operation of union of sets.  This n-ary operator
+    generalizes to operations on multisets by tracking the frequency of occurrence of each
+    element in the union. As an n-ary operation the operands can be generated by allowing
+    a function or expression to range over the elements of a domain of application.  Thus
+    it accepts qualifiers.</p>
+  </description>
+  <discussion>
+    <p>The <el>union</el> element is the operator for a set-theoretic union or join of two
+    (or more) sets.  The operands are usually listed explicitly.</p>
 	  
-	  <p>As an n-ary operator, its operands may also
-	  be generated as described in <specref ref="contm_naryopwithqual"/> Therefore it
-	  may take qualifiers.</p>
-	</discussion>
+    <p>As an n-ary operator, its operands may also be generated as described in <specref
+    ref="contm_naryopwithqual"/> Therefore it may take qualifiers.</p>
+  </discussion>
 
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><union/>
-  <ci>A</ci>
-  <ci>B</ci>
-</apply>
-</math>
-</MMLexample>
-
-<MMLexample>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
+  <MMLexample>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><union/><ci>A</ci><ci>B</ci></apply>
+    </math>
+  </MMLexample>
+  
+  <MMLexample>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
     <apply>
       <union/>
       <bvar><ci type="set"> S</ci></bvar>
@@ -640,7 +636,6 @@ elements that occur in any of them.
     </apply>
   </math>
 </MMLexample>
-<!-- end new part -->
 
 <property xml:id="union_prop_5">
 <CMP> A is a subset of (A union B) and B is a subset of (A union B) </CMP>
@@ -740,7 +735,6 @@ two sets as arguments, and denotes the set that contains all the
 elements that occur in the first set, but not in the second.
 </Description>
 
-<!-- new part -->
  <description>
           <p>The setdiff element is the operator element for a set-theoretic difference of
           two sets.</p>
@@ -754,7 +748,6 @@ elements that occur in the first set, but not in the second.
   <ci type="set"> B</ci>
 </apply>
 </math></MMLexample>
-<!-- end new part -->
 
 <property xml:id="setdiff_prop_7">
 <CMP>
@@ -784,7 +777,6 @@ This symbol has two (set) arguments. It is used to denote that the
 first set is a subset of the second.
 </Description>
 
-<!-- new part -->
  <description>
           <p>The subset element is the n-ary relational operator element for a
           set-theoretic containment ('is a subset of').</p>
@@ -805,20 +797,17 @@ first set is a subset of the second.
 </MMLexample>
 
 <MMLexample>
-  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply>
-    <set/>
-    <bvar><ci type="set">S</ci></bvar>
-    <condition>
-      <apply><in/>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply>
+      <set/>
+      <bvar><ci type="set">S</ci></bvar>
+      <condition>
+	<apply><in/><ci>S</ci><ci type="list">T</ci></apply>
+      </condition>
       <ci>S</ci>
-      <ci type="list">T</ci>
-      </apply>
-    </condition>
-    <ci>S</ci>
-  </apply>
+    </apply>
   </math>
 </MMLexample>
-<!-- end new part -->
 
 <property xml:id="subset_prop_8">
 <CMP>
@@ -860,7 +849,6 @@ This symbol has two arguments, an element and a set. It is used to
 denote that the element is in the given set.
 </Description>
 
-<!-- new part -->
 <description>
           <p>The in element is the relational operator used for a set-theoretic inclusion
           ('is in' or 'is a member of').</p>
@@ -873,7 +861,6 @@ denote that the element is in the given set.
   <ci>a</ci>
   <ci type="set"> A</ci>
 </apply></math></MMLexample>
-<!-- end new part -->
 
 <property xml:id="in_prop_9">
 <CMP>
@@ -919,7 +906,6 @@ This symbol has two arguments, an element and a set. It is used to
 denote that the element is not in the given set.
 </Description>
 
-<!-- new part -->
  <description>
           <p>The notin element is the relational operator element used 
 to construct set-theoretic exclusion ('is not in' or 'is not a member of').</p>
@@ -933,7 +919,6 @@ to construct set-theoretic exclusion ('is not in' or 'is not a member of').</p>
   <ci>a</ci>
   <ci type="set"> A</ci>
 </apply></math></MMLexample>
-<!-- end new part -->
 
 <property xml:id="notin_prop_10">
 <CMP>
@@ -989,7 +974,6 @@ first set is a proper subset of the second, that is a subset of the
 second set but not actually equal to it.
 </Description>
 
-<!-- new part -->
 <description>
   <p>The <el>prsubset</el> element is the n-ary relational operator element for
   set-theoretic proper containment ('is a proper subset of').</p>
@@ -1016,14 +1000,10 @@ second set but not actually equal to it.
     <bvar><ci type="integer">i</ci></bvar>
     <lowlimit><cn>0</cn></lowlimit>
     <uplimit><cn>10</cn></uplimit>
-    <apply><selector/>
-    <ci type="vector_of_sets">S</ci>
-    <ci>i</ci>
-    </apply>
+    <apply><selector/><ci type="vector_of_sets">S</ci><ci>i</ci></apply>
   </apply>
 </math>
 </MMLexample>
-<!-- end new part -->
 
 <property xml:id="prsubset_prop_11">
 <CMP>
@@ -1087,7 +1067,6 @@ This symbol has two (set) arguments. It is used to denote that the
 first set is not a subset of the second.
 </Description>
 
-<!-- new part -->
 <description>
           <p>The notsubset element is the relational operator element for the 
 set-theoretic relation 'is not a subset of'.</p>
@@ -1101,7 +1080,6 @@ set-theoretic relation 'is not a subset of'.</p>
   <ci type="set"> B</ci>
 </apply>
 </math></MMLexample>
-<!-- end new part -->
 
 <property xml:id="notsubset_prop_12">
 <CMP>
@@ -1174,7 +1152,6 @@ first set is not a proper subset of the second. A proper subset of a
 set is a subset of the set but not actually equal to it.
 </Description>
 
-<!-- new part -->
 <description>
           <p>The notprsubset element is the element for constructing the set-theoretic
           relation 'is not a proper subset of'.</p>
@@ -1188,7 +1165,6 @@ set is a subset of the set but not actually equal to it.
   <ci type="set"> B</ci>
 </apply>
 </math></MMLexample>
-<!-- end new part -->
 
 <property xml:id="notprsubset_prop_13">
 <CMP>

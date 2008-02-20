@@ -1,4 +1,4 @@
-#     This file contains the token element definitions for the symbols
+#     This file contains the pragmatic element definitions for the symbols
 #     generated from the content dictionary list1
 #     It is provided "as is" without expressed or implied warranty.
 #
@@ -9,9 +9,11 @@
 namespace m  ="http://www.w3.org/1998/Math/MathML"
 token.application |= map_list1_elt
 map_list1_elt |= element m:map {MathML.Common.attrib,Definition.attrib?}
+token.binder |= map_list1_elt
 token.application |= suchthat_list1_elt
 suchthat_list1_elt |= element m:suchthat {MathML.Common.attrib,Definition.attrib?}
 token.application |= list_list1_elt
-list_list1_elt |= element m:list {MathML.Common.attrib,Definition.attrib?,ContExp*}
-list_list1_elt |= element m:list {MathML.Common.attrib,Definition.attrib?,bvar*,qualifier?,ContExp}
+list_list1_elt |= element m:list {MathML.Common.attrib,Definition.attrib?,attribute order {"lexicographic" | "numeric"}?,ContExp*}
+list_list1_elt |= element m:list {MathML.Common.attrib,Definition.attrib?,attribute order {"lexicographic" | "numeric"}?,bvar*,qualifier?,ContExp*}
 container |= list_list1_elt
+token.binder |= list_list1_elt

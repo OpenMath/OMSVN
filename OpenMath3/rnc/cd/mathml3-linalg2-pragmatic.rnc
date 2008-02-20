@@ -1,4 +1,4 @@
-#     This file contains the token element definitions for the symbols
+#     This file contains the pragmatic element definitions for the symbols
 #     generated from the content dictionary linalg2
 #     It is provided "as is" without expressed or implied warranty.
 #
@@ -8,12 +8,14 @@
 
 namespace m  ="http://www.w3.org/1998/Math/MathML"
 token.application |= vector_linalg2_elt
-vector_linalg2_elt |= element m:vector {MathML.Common.attrib,Definition.attrib?}
+vector_linalg2_elt |= element m:vector {MathML.Common.attrib,Definition.attrib?,attribute type {"row" | "column" | MathMLType}?}
 token.application |= matrixrow_linalg2_elt
 matrixrow_linalg2_elt |= element m:matrixrow {MathML.Common.attrib,Definition.attrib?,ContExp*}
-matrixrow_linalg2_elt |= element m:matrixrow {MathML.Common.attrib,Definition.attrib?,bvar*,qualifier?,ContExp}
+matrixrow_linalg2_elt |= element m:matrixrow {MathML.Common.attrib,Definition.attrib?,bvar*,qualifier?,ContExp*}
 container |= matrixrow_linalg2_elt
+token.binder |= matrixrow_linalg2_elt
 token.application |= matrix_linalg2_elt
-matrix_linalg2_elt |= element m:matrix {MathML.Common.attrib,Definition.attrib?,ContExp*}
-matrix_linalg2_elt |= element m:matrix {MathML.Common.attrib,Definition.attrib?,bvar*,qualifier?,ContExp}
+matrix_linalg2_elt |= element m:matrix {MathML.Common.attrib,Definition.attrib?,attribute type {"real" | "complex" | "integer" | "symbolic" | MathMLType}?,ContExp*}
+matrix_linalg2_elt |= element m:matrix {MathML.Common.attrib,Definition.attrib?,attribute type {"real" | "complex" | "integer" | "symbolic" | MathMLType}?,bvar*,qualifier?,ContExp*}
 container |= matrix_linalg2_elt
+token.binder |= matrix_linalg2_elt
