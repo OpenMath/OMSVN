@@ -325,9 +325,10 @@ The size of the multiset{3,3,9} = 3
   <ci type="set"> B</ci>
 </apply>
 </math></MMLexample>
+
 <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML">
 <apply>
-  <big_intersect/>
+  <intersect/>
   <ci type="list">L</ci>
   <bind>
     <lambda/>
@@ -376,6 +377,7 @@ The size of the multiset{3,3,9} = 3
   <Description>
     This n-ary operator is used to construct the intersection over a collection of sets.
   </Description>
+  <Pragmatic specref="big_intersect.multiset"/>
 </CDDefinition>
 
 
@@ -528,6 +530,7 @@ union(A,intersect(B,C)) = intersect(union(A,B),union(A,C))
   <Description>
     This n-ary operator is used to construct the union over a collection of multisets.
   </Description>
+  <Pragmatic specref="big_union.multiset"/>
 </CDDefinition>
 
 
@@ -583,7 +586,7 @@ The multiplicity in the result is the difference of the two.
 <CDDefinition xml:id="subset">
 <Name>subset</Name>
   <Pragmatic>
-    <Element type="token">subset</Element>
+    <Element type="token_big">subset</Element>
     <Attribute>
       <Name>type</Name>
       <Prescribed>"multiset"</Prescribed>
@@ -618,15 +621,12 @@ second.
 <MMLexample>
   <math xmlns="http://www.w3.org/1998/Math/MathML"><apply>
     <subset/>
-    <set/>
-    <bvar><ci type="set">S</ci></bvar>
-    <condition>
-      <apply><in/>
+    <bind>
+      <set/>
+      <bvar><ci type="set">S</ci></bvar>
+      <condition><apply><in/><ci>S</ci><ci type="list">T</ci></apply></condition>
       <ci>S</ci>
-      <ci type="list">T</ci>
-      </apply>
-    </condition>
-    <ci>S</ci>
+    </bind>
   </apply>
   </math>
 </MMLexample>
@@ -773,38 +773,41 @@ to construct set-theoretic exclusion ('is not in' or 'is not a member of').</p>
 </CDDefinition>
 
 <CDDefinition xml:id="prsubset">
-<Name>prsubset</Name>
+  <Name>prsubset</Name>
   <Pragmatic>
-    <Element type="token">prsubset</Element>
+    <Element type="token_big">prsubset</Element>
     <Attribute>
       <Name>type</Name>
       <Prescribed>"multiset"</Prescribed>
     </Attribute>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol has two (multiset) arguments. It is used to denote 
-that the first multiset is a proper subset of the second, that is 
-a subset of the second multiset but not actually equal to it.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol has two (multiset) arguments. It is used to denote that the first multiset
+    is a proper subset of the second, that is a subset of the second multiset but not
+    actually equal to it.
+  </Description>
 
-<description>
-          <p>The <el>prsubset</el> element is the n-ary relational operator element for
-          set-theoretic proper containment ('is a proper subset of').</p>
-        </description>
-	<discussion>
-	  <p>The <el>prsubset</el> element is the relational operator element for
-	  set-theoretic proper containment (<quote>is a proper subset of</quote>).</p>
-	  <p>The <el>prsubset</el> element is an <emph>n-ary set relation</emph>.  As an
-	  n-ary operator, its operands may also be generated as described in <specref
-	  ref="contm_naryopwithqual"/> Therefore it may take qualifiers.</p>
-	</discussion>
-
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><prsubset/>
-  <ci type="set">A</ci>
-  <ci type="set">B</ci>
-</apply>
-</math></MMLexample>
+  <description>
+    <p>The <el>prsubset</el> element is the n-ary relational operator element for
+    set-theoretic proper containment ('is a proper subset of').</p>
+  </description>
+  <discussion>
+    <p>The <el>prsubset</el> element is the relational operator element for set-theoretic
+    proper containment (<quote>is a proper subset of</quote>).</p>
+    <p>The <el>prsubset</el> element is an <emph>n-ary set relation</emph>.  As an n-ary
+    operator, its operands may also be generated as described in <specref
+    ref="contm_naryopwithqual"/> Therefore it may take qualifiers.</p>
+  </discussion>
+  
+  <MMLexample>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><prsubset/>
+      <ci type="set">A</ci>
+      <ci type="set">B</ci>
+      </apply>
+    </math>
+  </MMLexample>
 
 <MMLexample>
   <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -852,26 +855,30 @@ a subset of the second multiset but not actually equal to it.
       <Prescribed>"multiset"</Prescribed>
     </Attribute>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol has two (multiset) arguments. It is used to denote 
-that the first multiset is not a subset of the second.
-</Description>
-
-<description>
-          <p>The notsubset element is the relational operator element for the 
-set-theoretic relation 'is not a subset of'.</p>
-        </description>
-	<discussion>
-	  <p>The <el>notsubset</el> element is the relational operator element for the
-	  set-theoretic relation <quote>is not a subset of</quote>.</p>
-	</discussion>
-
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><notsubset/>
-  <ci type="set"> A</ci>
-  <ci type="set"> B</ci>
-</apply>
-</math></MMLexample>
+  <Role>application</Role>
+  <Description> 
+    This symbol has two (multiset) arguments. It is used to denote that the first multiset
+    is not a subset of the second.
+  </Description>
+  
+  <description>
+    <p>The notsubset element is the relational operator element for the set-theoretic
+    relation 'is not a subset of'.</p>
+  </description>
+  <discussion>
+    <p>The <el>notsubset</el> element is the relational operator element for the
+    set-theoretic relation <quote>is not a subset of</quote>.</p>
+  </discussion>
+  
+  <MMLexample>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+	<notsubset/>
+	<ci type="set"> A</ci>
+	<ci type="set"> B</ci>
+      </apply>
+    </math>
+  </MMLexample>
 
 <Example>
   {2,3,3} is not a subset of {1,2,3}

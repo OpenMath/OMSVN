@@ -236,8 +236,8 @@ This CD defines symbols for common arithmetic functions.
 </CDDefinition>
 
 <CDDefinition xml:id="gcd">
-<Name>gcd</Name>
-<Title>Greatest Common Divisor</Title>
+  <Name>gcd</Name>
+  <Title>Greatest Common Divisor</Title>
   <Role>application</Role>
   <Description>
     This is the n-ary operator used to construct an expression which represents
@@ -245,6 +245,12 @@ This CD defines symbols for common arithmetic functions.
     gcd is 0.  If one argument is provided, the gcd is that argument.
   </Description>
   <Pragmatic>
+    <Element type="token_big">gcd</Element>
+    <Attribute>
+      <Name>type</Name>
+      <Model>MathMLType</Model>
+      <Default>integer</Default>
+    </Attribute>
     <description>
       <p>The <el>gcd</el> symbol can be used as a binding operator in pragmatic Content
       MathML. This role is taken over by the <code>big_gcd</code> symbol in strict Content
@@ -1271,27 +1277,27 @@ The symbol representing an n-ary multiplication function.
     root is represented, however it is here to represent the general notion of taking n'th
     roots. As inferred by the signature relevant to this symbol, the function represented
     by this symbol is the single valued function, the specific root returned is the one
-    indicated by the first <el>CMP</el>. Note also that the converse of the second
-    <el>CMP</el> is not valid in general.
+    indicated by the first CMP. Note also that the converse of the second CMP is not valid
+    in general.
   </Description>
   <Pragmatic>
     <Element type="token">root</Element>
     <Attribute>
       <Name> type </Name>
       <Model> "real" | "complex" | "principal_branch" | MathMLType </Model>
-      <Default>real</Default>
+      <Default>"real"</Default>
     </Attribute>
-    <discussion>
+    <description>
       <p>The <code>root</code> element is used to construct roots. The kind of root to be
       taken is specified by a <quote>degree</quote> child, which should be given as the
       second child of the <code>apply</code> element enclosing the <code>root</code>
       element. Thus, square roots correspond to the case where <code>degree</code> contains
       the value 2, cube roots correspond to 3, and so on.</p>
       
-      <p>Note that Pragmatic MathML3 supports a <code>degree</code> element in the legacy
-      container representation. If no <code>degree</code> is present, a default value of 2 is
-      used.</p>
-    </discussion>
+      <p>Note that Pragmatic MathML3 supports a <code>degree</code> element in the
+      container representation. If no <code>degree</code> is present, a default value of 2
+      is used.</p>
+    </description>
   </Pragmatic>
 <property>
   <description>
@@ -1383,7 +1389,7 @@ The symbol representing an n-ary multiplication function.
   </Description>
   
   <Pragmatic>
-    <Element type="token">sum</Element>
+    <Element type="token_big">sum</Element>
     <description>
       <p>In pragmatic Content MathmL, the <el>sum</el> token may used as the first child
       of an <el>apply</el> element, which is qualified by providing a
@@ -1495,7 +1501,7 @@ The symbol representing an n-ary multiplication function.
   </Description>
 
   <Pragmatic>
-    <Element type="token">product</Element>
+    <Element type="token_big">product</Element>
     <description>
       <p>In pragmatic Content MathmL, the <el>product</el> token may used as the first
       child of an <el>apply</el> element, which is qualified by providing a

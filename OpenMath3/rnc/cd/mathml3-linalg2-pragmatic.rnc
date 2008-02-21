@@ -8,7 +8,10 @@
 
 namespace m  ="http://www.w3.org/1998/Math/MathML"
 token.application |= vector_linalg2_elt
-vector_linalg2_elt |= element m:vector {MathML.Common.attrib,Definition.attrib?,attribute type {"row" | "column" | MathMLType}?}
+vector_linalg2_elt |= element m:vector {MathML.Common.attrib,Definition.attrib?,attribute type {"row"|MathMLType}?,ContExp*}
+vector_linalg2_elt |= element m:vector {MathML.Common.attrib,Definition.attrib?,attribute type {"row"|MathMLType}?,bvar*,qualifier?,ContExp*}
+container |= vector_linalg2_elt
+token.binder |= vector_linalg2_elt
 token.application |= matrixrow_linalg2_elt
 matrixrow_linalg2_elt |= element m:matrixrow {MathML.Common.attrib,Definition.attrib?,ContExp*}
 matrixrow_linalg2_elt |= element m:matrixrow {MathML.Common.attrib,Definition.attrib?,bvar*,qualifier?,ContExp*}

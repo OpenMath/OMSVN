@@ -70,6 +70,9 @@
     <xsl:variable name="elem" select="ocd:Pragmatic/ocd:Element"/>
     <xsl:variable name="pragmatic">
       <xsl:choose>
+	<xsl:when test="ocd:Pragmatic/@specref">
+	  <xsl:value-of select="ocd:Pragmatic/@specref"/>
+	</xsl:when>
 	<xsl:when test="$elem"><xsl:value-of select="$elem"/></xsl:when>
 	<xsl:otherwise><xsl:value-of select="ocd:Name"/></xsl:otherwise>
       </xsl:choose>
