@@ -90,7 +90,6 @@
 				     $attrib,
 				     ',bvar*,qualifier?,ContExp*}&#xA;')"/>
 	<xsl:value-of select="concat('container |= ',$elt,'&#xA;')"/>
-	<xsl:value-of select="concat('token.binder |= ',$elt,'&#xA;')"/>
       </xsl:when>
       <!-- big tokens are empty elements that can also be used as binders -->
       <xsl:when test="$element/@type='token_big'">
