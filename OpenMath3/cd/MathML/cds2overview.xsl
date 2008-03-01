@@ -15,6 +15,8 @@
     cdata-section-elements="eg"/>
   <xsl:variable name="here" select="/"/>
 
+    <xsl:param name="speclevel" select="1"/>
+
   <xsl:template match="/">
     <div2 id="contm_operators">
       <head>The MathML3 Content Dictionaries and Operators</head>
@@ -81,7 +83,7 @@
       <xsl:for-each select="ocd:Pragmatic/ocd:Attribute/ocd:Prescribed">
 	<xsl:value-of select="concat(' type=&quot;',.,'&quot;')"/>
       </xsl:for-each>
-    </xsl:variable>      
+    </xsl:variable>   
     <xsl:if test="not($pragmatic) or not(contains($prune,$pragmatic))"> 
       <xsl:variable name="divid">
 	<xsl:value-of select="concat('contm.',$pragmatic)"/>
@@ -91,19 +93,33 @@
       </xsl:variable>
       <div4 id="{$divid}">
 	<head>
-	  <code>&lt;csymbol cd=&quot;<xsl:value-of select="$cdname"/>&quot;&gt;<xsl:value-of select="ocd:Name"/>&lt;/csymbol&gt;</code>
+	  <code><xsl:value-of select="ocd:Name"/></code>
 	  <xsl:if test="$elem">
 	    <xsl:text> (</xsl:text>
-	    <xsl:choose>
-	      <xsl:when test="contains($elem/@type,'token')"><xsl:text>Token</xsl:text></xsl:when>
-	      <xsl:when test="$elem/@type='container'"><xsl:text>Container</xsl:text></xsl:when>
-	    </xsl:choose> 
-	    <xsl:text> element </xsl:text>
 	    <code><xsl:value-of select="concat('&lt;',$pragmatic,$attr,'&gt;')"/></code>
 	    <xsl:text>)</xsl:text>
 	  </xsl:if>
 	</head>
-	<p><xsl:apply-templates select="ocd:Description"/></p>
+	<p><b>Description:</b><xsl:apply-templates select="ocd:Description"/></p>
+	<xsl:variable name="examples" select="ocd:MMLexample[@speclevel &lt;= $speclevel]"/>
+	<xsl:if test="$examples">
+	  <xsl:message><xsl:value-of select="count($examples)"/>examples</xsl:message>
+	  <p>Examples: <xsl:apply-templates select="$examples" mode="speccopy"/></p>
+	</xsl:if>
+	<xsl:choose>
+	  <xsl:when test="contains($elem/@type,'token')">
+	    <p><b>Usage in pragmatic Content MathML:</b>This symbol can be represented as the (empty) <intref ref="contm_token">token element</intref> 
+	    <el><xsl:value-of select="$pragmatic"/></el> 
+	    <xsl:if test="$attr!=''"> with attributes <code><xsl:value-of select="$attr"/></code></xsl:if>
+	     in pragmatic Content MathML.</p>
+	  </xsl:when>
+	  <xsl:when test="$elem/@type='container'">
+	    <p>This constructor symbol allows <intref ref="contm_container">container markup</intref> with with the element
+	    <el><xsl:value-of select="$pragmatic"/></el> 
+	    <xsl:if test="$attr!=''"> with attributes <code><xsl:value-of select="$attr"/></code></xsl:if> 
+	     in pragmatic Content MathML.</p>
+	  </xsl:when>
+	</xsl:choose> 
 	<xsl:apply-templates select="ocd:Pragmatic/ocd:description" mode="speccopy"/>
 	<xsl:for-each select="$copy">
 	  <xsl:variable name="id" select="./text()"/>

@@ -65,7 +65,7 @@ Model = element Model { text }
 Default = element Default { text }
 Prescribed = element Prescribed { text }
 Title = element Title { text }
-property = element property {id.att?,(CMP|description)?,(FMP|mobj)?}
+property = element property {id.att,(CMP|description)?,(FMP|mobj)?}
 CMP = element CMP { text }
 FMP = element FMP { 
   attribute kind {xsd:string}?,
@@ -73,12 +73,12 @@ FMP = element FMP {
   }
 # allow embedded OM
 Example = element Example { text-or-om }
-MMLexample = element MMLexample {id.att?,description?,mobj}
+MMLexample = element MMLexample {id.att,description?,mobj}
 description = element description {(p|pseq)*}
 pseq = element pseq {ContExp,ContExp}	    
 discussion = element discussion {attribute type {text}?,p*}
 p = element p { text-or-om }
-id.att = attribute xml:id {xsd:ID}
+id.att = attribute xml:id {xsd:ID}?,attribute speclevel {xsd:nonNegativeInteger}?
 CDDefinition =
   element CDDefinition {id.att,
     CDComment*,
