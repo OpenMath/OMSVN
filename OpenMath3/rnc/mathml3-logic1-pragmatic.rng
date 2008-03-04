@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-      This file contains the token element definitions for the symbols
+      This file contains the pragmatic element definitions for the symbols
       generated from the content dictionary logic1
       It is provided "as is" without expressed or implied warranty.
   
@@ -19,6 +19,9 @@
       </optional>
     </element>
   </define>
+  <define name="token.binder" combine="choice">
+    <ref name="equivalent_logic1_elt"/>
+  </define>
   <define name="token.application" combine="choice">
     <ref name="not_logic1_elt"/>
   </define>
@@ -27,6 +30,11 @@
       <ref name="MathML.Common.attrib"/>
       <optional>
         <ref name="Definition.attrib"/>
+      </optional>
+      <optional>
+        <attribute name="type">
+          <ref name="MathMLType"/>
+        </attribute>
       </optional>
     </element>
   </define>
@@ -39,7 +47,18 @@
       <optional>
         <ref name="Definition.attrib"/>
       </optional>
+      <optional>
+        <attribute name="type">
+          <ref name="MathMLType"/>
+        </attribute>
+      </optional>
     </element>
+  </define>
+  <define name="token.binder" combine="choice">
+    <ref name="and_logic1_elt"/>
+  </define>
+  <define name="token.binder" combine="choice">
+    <ref name="big_and_logic1_elt"/>
   </define>
   <define name="token.application" combine="choice">
     <ref name="xor_logic1_elt"/>
@@ -50,7 +69,18 @@
       <optional>
         <ref name="Definition.attrib"/>
       </optional>
+      <optional>
+        <attribute name="type">
+          <ref name="MathMLType"/>
+        </attribute>
+      </optional>
     </element>
+  </define>
+  <define name="token.binder" combine="choice">
+    <ref name="xor_logic1_elt"/>
+  </define>
+  <define name="token.binder" combine="choice">
+    <ref name="big_xor_logic1_elt"/>
   </define>
   <define name="token.application" combine="choice">
     <ref name="or_logic1_elt"/>
@@ -61,7 +91,18 @@
       <optional>
         <ref name="Definition.attrib"/>
       </optional>
+      <optional>
+        <attribute name="type">
+          <ref name="MathMLType"/>
+        </attribute>
+      </optional>
     </element>
+  </define>
+  <define name="token.binder" combine="choice">
+    <ref name="or_logic1_elt"/>
+  </define>
+  <define name="token.binder" combine="choice">
+    <ref name="big_or_logic1_elt"/>
   </define>
   <define name="token.application" combine="choice">
     <ref name="implies_logic1_elt"/>
@@ -71,6 +112,11 @@
       <ref name="MathML.Common.attrib"/>
       <optional>
         <ref name="Definition.attrib"/>
+      </optional>
+      <optional>
+        <attribute name="type">
+          <ref name="MathMLType"/>
+        </attribute>
       </optional>
     </element>
   </define>

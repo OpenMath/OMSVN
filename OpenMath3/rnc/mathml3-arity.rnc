@@ -31,14 +31,14 @@ apply.content |= (cd.unary,ContExp)|
 		 	   (cd.nary,ContExp+)
 
 
-# now we allow all tokens (except the binding symbols) to appear on their own
+# now we allow all operator elements (except the binding symbols) to appear on their own
 ContExp |= cd.unary|cd.binary|cd.nary|cd.ternary|cd.constant
 
 #now we allow the containers as well. 
 ContExp |= cd.container
 
-# we set the default content type for tokens
-Token.type = Definition.attrib, MathML.Common.attrib
+# we set the default content type for operator elements
+opel.type = Definition.attrib, MathML.Common.attrib
 
 # also set up MathMLtype, which is used in the CDs 
 #ednote(rnc:mathmltype) fudge it for now

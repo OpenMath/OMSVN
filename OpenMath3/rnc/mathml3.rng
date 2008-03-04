@@ -18,14 +18,17 @@
       This file contains the grammar driver for MathML3
       It is provided "as is" without expressed or implied warranty.
   
-      Revision:   $Id: mathml3.rnc 580 2008-01-27 06:02:14Z kohlhase $
+      Revision:   $Id: mathml3.rnc 708 2008-02-28 08:55:27Z kohlhase $
       Author: Michael Kohlhase http://kwarc.info/kohlhase
 -->
 <grammar xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" ns="http://www.w3.org/1998/Math/MathML" xmlns="http://relaxng.org/ns/structure/1.0">
+  <start>
+    <ref name="math"/>
+  </start>
   <include href="mathml3-common.rng"/>
   <include href="mathml3-presentation.rng"/>
   <include href="mathml3-strict.rng"/>
-  <!-- we instantiate the strict content model by structure checking -->
+  <!-- we inystantiate the strict content model by structure checking -->
   <define name="apply-head">
     <choice>
       <ref name="apply"/>
@@ -82,9 +85,6 @@
       <ref name="semantics-bvar"/>
     </choice>
   </define>
-  <define name="bvar.content" combine="choice">
-    <ref name="bvar-head"/>
-  </define>
   <define name="semantics-bvar">
     <element name="semantics">
       <ref name="semantics.attribs"/>
@@ -132,6 +132,16 @@
     <choice>
       <ref name="token.constant"/>
       <ref name="token.application"/>
+    </choice>
+  </define>
+  <define name="MathMLType" combine="choice">
+    <a:documentation>the values of the MathML type attributes;  </a:documentation>
+    <choice>
+      <value>real</value>
+      <value>complex</value>
+      <value>function</value>
+      <value>algebraic</value>
+      <value>integer</value>
     </choice>
   </define>
 </grammar>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-      This file contains the token element definitions for the symbols
+      This file contains the pragmatic element definitions for the symbols
       generated from the content dictionary interval1
       It is provided "as is" without expressed or implied warranty.
   
@@ -28,6 +28,21 @@
       <optional>
         <ref name="Definition.attrib"/>
       </optional>
+      <optional>
+        <attribute name="closure">
+          <choice>
+            <value>closed</value>
+            <value>open</value>
+            <value>open-closed</value>
+            <value>closed-open</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="type">
+          <ref name="MathMLType"/>
+        </attribute>
+      </optional>
       <zeroOrMore>
         <ref name="ContExp"/>
       </zeroOrMore>
@@ -39,13 +54,30 @@
       <optional>
         <ref name="Definition.attrib"/>
       </optional>
+      <optional>
+        <attribute name="closure">
+          <choice>
+            <value>closed</value>
+            <value>open</value>
+            <value>open-closed</value>
+            <value>closed-open</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="type">
+          <ref name="MathMLType"/>
+        </attribute>
+      </optional>
       <zeroOrMore>
         <ref name="bvar"/>
       </zeroOrMore>
       <optional>
         <ref name="qualifier"/>
       </optional>
-      <ref name="ContExp"/>
+      <zeroOrMore>
+        <ref name="ContExp"/>
+      </zeroOrMore>
     </element>
   </define>
   <define name="container" combine="choice">
@@ -61,7 +93,7 @@
         <ref name="Definition.attrib"/>
       </optional>
       <attribute name="closure">
-        <value>open-open</value>
+        <value>open</value>
       </attribute>
     </element>
   </define>
@@ -75,7 +107,7 @@
         <ref name="Definition.attrib"/>
       </optional>
       <attribute name="closure">
-        <value>closed-closed</value>
+        <value>closed</value>
       </attribute>
     </element>
   </define>

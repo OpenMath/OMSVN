@@ -26,11 +26,11 @@ default namespace m = "http://www.w3.org/1998/Math/MathML"
 Definition.attrib = attribute encoding {xsd:string}?,
                              attribute definitionURL {xsd:anyURI}?
 
-#ednote(rnc:token-content) What is the content of a token, currently all text?
-Content-token.content = text
+#ednote(rnc:opel-content) What is the content of a operator element, currently all text?
+Content-opel.content = text
 
 # we want to extend this in pragmatic CMathML, so we introduce abbrevs here.
-cn.content = Content-token.content
+cn.content = Content-opel.content
 cn.type.vals  = "e-notation"|"integer"|"rational"|"real" |
                          "complex-cartesian"|"complex-polar"
 
@@ -46,14 +46,14 @@ ci = element ci {attribute type {xsd:string}?,
 		 attribute occurrence {xsd:string}?,		
                  Definition.attrib,	
   		 MathML.Common.attrib,
-		 Content-token.content}
+		 Content-opel.content}
 
 cdbase.attrib = attribute cdbase {xsd:anyURI}
 cdname.attrib = attribute cd {xsd:NCName}
 
 csymbol       = element csymbol {MathML.Common.attrib,
 	                         Definition.attrib,cdname.attrib?,cdbase.attrib?, 
-				 Content-token.content}
+				 Content-opel.content}
 
 # the content of the apply element, leave it empty and extend it later
 apply.content = notAllowed
@@ -86,7 +86,6 @@ annotation-xml = element annotation-xml {MathML.Common.attrib,
 semantics.attribs = Definition.attrib,MathML.Common.attrib,cdbase.attrib?
 semantics-annotation = annotation|annotation-xml
 
-# semantics element wrapped around various token
 semantics-cmml = element semantics {semantics.attribs,ContExp, semantics-annotation*}
 
 ContExp = cn| ci | csymbol | apply | bind | share | cerror | semantics-cmml

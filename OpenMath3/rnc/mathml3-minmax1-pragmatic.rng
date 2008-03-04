@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-      This file contains the token element definitions for the symbols
+      This file contains the pragmatic element definitions for the symbols
       generated from the content dictionary minmax1
       It is provided "as is" without expressed or implied warranty.
   
@@ -17,7 +17,18 @@
       <optional>
         <ref name="Definition.attrib"/>
       </optional>
+      <optional>
+        <attribute name="type">
+          <ref name="MathMLType"/>
+        </attribute>
+      </optional>
     </element>
+  </define>
+  <define name="token.binder" combine="choice">
+    <ref name="min_minmax1_elt"/>
+  </define>
+  <define name="token.binder" combine="choice">
+    <ref name="big_min_minmax1_elt"/>
   </define>
   <define name="token.application" combine="choice">
     <ref name="max_minmax1_elt"/>
@@ -28,6 +39,17 @@
       <optional>
         <ref name="Definition.attrib"/>
       </optional>
+      <optional>
+        <attribute name="type">
+          <ref name="MathMLType"/>
+        </attribute>
+      </optional>
     </element>
+  </define>
+  <define name="token.binder" combine="choice">
+    <ref name="max_minmax1_elt"/>
+  </define>
+  <define name="token.binder" combine="choice">
+    <ref name="big_max_minmax1_elt"/>
   </define>
 </grammar>

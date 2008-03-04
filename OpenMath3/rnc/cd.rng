@@ -37,13 +37,28 @@
       <data type="anyURI"/>
     </element>
   </define>
+  <define name="mmobj">
+    <externalRef href="mathml3.rng"/>
+  </define>
+  <define name="omobj">
+    <externalRef href="openmath3.rng"/>
+  </define>
+  <!-- omobj = external "om3-sts.rnc" -->
   <define name="mobj">
     <choice>
-      <externalRef href="openmath3.rng"/>
-      <externalRef href="mathml3.rng"/>
+      <ref name="omobj"/>
+      <ref name="mmobj"/>
     </choice>
   </define>
-  <!-- mobj = external "om3-sts.rnc" -->
+  <define name="ContExp">
+    <grammar>
+      <include href="mathml3.rng">
+        <start>
+          <ref name="ContExp"/>
+        </start>
+      </include>
+    </grammar>
+  </define>
   <define name="text-or-om">
     <zeroOrMore>
       <choice>
@@ -212,22 +227,31 @@
   </define>
   <define name="Pragmatic">
     <element name="Pragmatic">
-      <choice>
-        <ref name="Token"/>
-        <ref name="Container"/>
-      </choice>
-      <zeroOrMore>
-        <ref name="Attribute"/>
-      </zeroOrMore>
+      <optional>
+        <attribute name="specref"/>
+      </optional>
+      <optional>
+        <ref name="Element"/>
+        <zeroOrMore>
+          <ref name="Attribute"/>
+        </zeroOrMore>
+      </optional>
+      <optional>
+        <ref name="description"/>
+      </optional>
     </element>
   </define>
-  <define name="Token">
-    <element name="Token">
-      <text/>
-    </element>
-  </define>
-  <define name="Container">
-    <element name="Container">
+  <define name="Element">
+    <element name="Element">
+      <optional>
+        <attribute name="type">
+          <choice>
+            <value>opel</value>
+            <value>opel_big</value>
+            <value>container</value>
+          </choice>
+        </attribute>
+      </optional>
       <text/>
     </element>
   </define>
@@ -237,7 +261,9 @@
       <choice>
         <group>
           <ref name="Model"/>
-          <ref name="Default"/>
+          <optional>
+            <ref name="Default"/>
+          </optional>
         </group>
         <ref name="Prescribed"/>
       </choice>
@@ -265,9 +291,7 @@
   </define>
   <define name="property">
     <element name="property">
-      <optional>
-        <ref name="id.att"/>
-      </optional>
+      <ref name="id.att"/>
       <optional>
         <choice>
           <ref name="CMP"/>
@@ -305,9 +329,7 @@
   </define>
   <define name="MMLexample">
     <element name="MMLexample">
-      <optional>
-        <ref name="id.att"/>
-      </optional>
+      <ref name="id.att"/>
       <optional>
         <ref name="description"/>
       </optional>
@@ -317,12 +339,24 @@
   <define name="description">
     <element name="description">
       <zeroOrMore>
-        <ref name="p"/>
+        <choice>
+          <ref name="p"/>
+          <ref name="pseq"/>
+        </choice>
       </zeroOrMore>
+    </element>
+  </define>
+  <define name="pseq">
+    <element name="pseq">
+      <ref name="ContExp"/>
+      <ref name="ContExp"/>
     </element>
   </define>
   <define name="discussion">
     <element name="discussion">
+      <optional>
+        <attribute name="type"/>
+      </optional>
       <zeroOrMore>
         <ref name="p"/>
       </zeroOrMore>
@@ -334,9 +368,16 @@
     </element>
   </define>
   <define name="id.att">
-    <attribute name="xml:id">
-      <data type="ID"/>
-    </attribute>
+    <optional>
+      <attribute name="xml:id">
+        <data type="ID"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="speclevel">
+        <data type="nonNegativeInteger"/>
+      </attribute>
+    </optional>
   </define>
   <define name="CDDefinition">
     <element name="CDDefinition">
@@ -381,6 +422,9 @@
         </zeroOrMore>
         <optional>
           <ref name="Description"/>
+        </optional>
+        <optional>
+          <ref name="discussion"/>
         </optional>
         <ref name="CDName"/>
         <optional>

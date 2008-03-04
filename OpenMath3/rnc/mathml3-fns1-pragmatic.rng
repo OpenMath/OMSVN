@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-      This file contains the token element definitions for the symbols
+      This file contains the pragmatic element definitions for the symbols
       generated from the content dictionary fns1
       It is provided "as is" without expressed or implied warranty.
   
@@ -8,17 +8,6 @@
      $HeadURL: https://svn.openmath.org/OpenMath3/rnc/cd/sts2rnc-sts.xsl $ 
 -->
 <grammar xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://relaxng.org/ns/structure/1.0">
-  <define name="token.application" combine="choice">
-    <ref name="domainofapplication_fns1_elt"/>
-  </define>
-  <define name="domainofapplication_fns1_elt" combine="choice">
-    <element name="m:domainofapplication">
-      <ref name="MathML.Common.attrib"/>
-      <optional>
-        <ref name="Definition.attrib"/>
-      </optional>
-    </element>
-  </define>
   <define name="token.application" combine="choice">
     <ref name="domain_fns1_elt"/>
   </define>
@@ -34,7 +23,7 @@
     <ref name="range_fns1_elt"/>
   </define>
   <define name="range_fns1_elt" combine="choice">
-    <element name="m:range">
+    <element name="m:codomain">
       <ref name="MathML.Common.attrib"/>
       <optional>
         <ref name="Definition.attrib"/>
@@ -56,7 +45,7 @@
     <ref name="identity_fns1_elt"/>
   </define>
   <define name="identity_fns1_elt" combine="choice">
-    <element name="m:identity">
+    <element name="m:ident">
       <ref name="MathML.Common.attrib"/>
       <optional>
         <ref name="Definition.attrib"/>
@@ -66,24 +55,8 @@
   <define name="token.application" combine="choice">
     <ref name="left_inverse_fns1_elt"/>
   </define>
-  <define name="left_inverse_fns1_elt" combine="choice">
-    <element name="m:left_inverse">
-      <ref name="MathML.Common.attrib"/>
-      <optional>
-        <ref name="Definition.attrib"/>
-      </optional>
-    </element>
-  </define>
   <define name="token.application" combine="choice">
     <ref name="right_inverse_fns1_elt"/>
-  </define>
-  <define name="right_inverse_fns1_elt" combine="choice">
-    <element name="m:right_inverse">
-      <ref name="MathML.Common.attrib"/>
-      <optional>
-        <ref name="Definition.attrib"/>
-      </optional>
-    </element>
   </define>
   <define name="token.application" combine="choice">
     <ref name="inverse_fns1_elt"/>
@@ -100,7 +73,7 @@
     <ref name="left_compose_fns1_elt"/>
   </define>
   <define name="left_compose_fns1_elt" combine="choice">
-    <element name="m:left_compose">
+    <element name="m:compose">
       <ref name="MathML.Common.attrib"/>
       <optional>
         <ref name="Definition.attrib"/>
@@ -133,7 +106,9 @@
       <optional>
         <ref name="qualifier"/>
       </optional>
-      <ref name="ContExp"/>
+      <zeroOrMore>
+        <ref name="ContExp"/>
+      </zeroOrMore>
     </element>
   </define>
   <define name="container" combine="choice">

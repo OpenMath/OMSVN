@@ -23,8 +23,8 @@ default namespace m = "http://www.w3.org/1998/Math/MathML"
 
 #  This is the RelaxNG schema module for the pragmatic content part of MathML.
 
-# we also allow pMathML in tokens 
-Content-token.content |= PresExp
+# we also allow pMathML in operator elements
+Content-opel.content |= PresExp
 
 # the content of "cn" may have <sep> elements in it
 sep = element sep {empty}
@@ -46,24 +46,24 @@ uplimit = element uplimit {Definition.attrib,MathML.Common.attrib,cdbase.attrib?
 ## allow the non-strict qualifiers
 qualifier |= domainofapplication|(uplimit,lowlimit?)|(lowlimit,uplimit?)|degree
 
-## we collect the tokens by role
-token.constant = notAllowed
-token.binder = notAllowed
-token.application = notAllowed
-token.semantic-attribution = notAllowed
-token.attribution = notAllowed
-token.error = notAllowed
+## we collect the operator elements by role
+opel.constant = notAllowed
+opel.binder = notAllowed
+opel.application = notAllowed
+opel.semantic-attribution = notAllowed
+opel.attribution = notAllowed
+opel.error = notAllowed
 
-tokens = token.constant | token.binder | token.application | 
-               token.semantic-attribution | token.attribution |
-	       token.error
+opels = opel.constant | opel.binder | opel.application | 
+        opel.semantic-attribution | opel.attribution |
+	opel.error
 container = notAllowed
 
 ## include the relevant content dictionaries
 include "cd/mathml3-pragmatic.rnc"
 
 ## we instantiate the strict content model by structure checking
-apply-binder-head = semantics-apply-binder|token.binder
+apply-binder-head = semantics-apply-binder|opel.binder
 apply.content |= apply-binder-head,bvar+,qualifier?,ContExp
 semantics-apply-binder = element semantics {semantics.attribs,apply-binder-head, semantics-annotation*}
 
