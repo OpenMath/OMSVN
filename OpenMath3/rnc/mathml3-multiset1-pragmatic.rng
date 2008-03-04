@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-      This file contains the token element definitions for the symbols
+      This file contains the pragmatic element definitions for the symbols
       generated from the content dictionary multiset1
       It is provided "as is" without expressed or implied warranty.
   
@@ -17,18 +17,27 @@
       <optional>
         <ref name="Definition.attrib"/>
       </optional>
+      <attribute name="type">
+        <value>multiset</value>
+      </attribute>
     </element>
   </define>
   <define name="token.application" combine="choice">
     <ref name="cartesian_product_multiset1_elt"/>
   </define>
   <define name="cartesian_product_multiset1_elt" combine="choice">
-    <element name="m:cartesian_prodct">
+    <element name="m:cartesianproduct">
       <ref name="MathML.Common.attrib"/>
       <optional>
         <ref name="Definition.attrib"/>
       </optional>
+      <attribute name="type">
+        <value>multiset</value>
+      </attribute>
     </element>
+  </define>
+  <define name="token.binder" combine="choice">
+    <ref name="cartesian_product_multiset1_elt"/>
   </define>
   <define name="token.constant" combine="choice">
     <ref name="emptyset_multiset1_elt"/>
@@ -39,6 +48,9 @@
       <optional>
         <ref name="Definition.attrib"/>
       </optional>
+      <attribute name="type">
+        <value>multiset</value>
+      </attribute>
     </element>
   </define>
   <define name="token.application" combine="choice">
@@ -50,7 +62,36 @@
       <optional>
         <ref name="Definition.attrib"/>
       </optional>
+      <attribute name="type">
+        <value>multiset</value>
+      </attribute>
+      <zeroOrMore>
+        <ref name="ContExp"/>
+      </zeroOrMore>
     </element>
+  </define>
+  <define name="multiset_multiset1_elt" combine="choice">
+    <element name="m:multiset">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="Definition.attrib"/>
+      </optional>
+      <attribute name="type">
+        <value>multiset</value>
+      </attribute>
+      <zeroOrMore>
+        <ref name="bvar"/>
+      </zeroOrMore>
+      <optional>
+        <ref name="qualifier"/>
+      </optional>
+      <zeroOrMore>
+        <ref name="ContExp"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="container" combine="choice">
+    <ref name="multiset_multiset1_elt"/>
   </define>
   <define name="token.application" combine="choice">
     <ref name="intersect_multiset1_elt"/>
@@ -61,7 +102,16 @@
       <optional>
         <ref name="Definition.attrib"/>
       </optional>
+      <attribute name="type">
+        <value>multiset</value>
+      </attribute>
     </element>
+  </define>
+  <define name="token.binder" combine="choice">
+    <ref name="intersect_multiset1_elt"/>
+  </define>
+  <define name="token.binder" combine="choice">
+    <ref name="big_intersect_multiset1_elt"/>
   </define>
   <define name="token.application" combine="choice">
     <ref name="union_multiset1_elt"/>
@@ -72,7 +122,16 @@
       <optional>
         <ref name="Definition.attrib"/>
       </optional>
+      <attribute name="type">
+        <value>multiset</value>
+      </attribute>
     </element>
+  </define>
+  <define name="token.binder" combine="choice">
+    <ref name="union_multiset1_elt"/>
+  </define>
+  <define name="token.binder" combine="choice">
+    <ref name="big_union_multiset1_elt"/>
   </define>
   <define name="token.application" combine="choice">
     <ref name="setdiff_multiset1_elt"/>
@@ -83,6 +142,9 @@
       <optional>
         <ref name="Definition.attrib"/>
       </optional>
+      <attribute name="type">
+        <value>multiset</value>
+      </attribute>
     </element>
   </define>
   <define name="token.application" combine="choice">
@@ -94,7 +156,13 @@
       <optional>
         <ref name="Definition.attrib"/>
       </optional>
+      <attribute name="type">
+        <value>multiset</value>
+      </attribute>
     </element>
+  </define>
+  <define name="token.binder" combine="choice">
+    <ref name="subset_multiset1_elt"/>
   </define>
   <define name="token.application" combine="choice">
     <ref name="in_multiset1_elt"/>
@@ -105,6 +173,9 @@
       <optional>
         <ref name="Definition.attrib"/>
       </optional>
+      <attribute name="type">
+        <value>multiset</value>
+      </attribute>
     </element>
   </define>
   <define name="token.application" combine="choice">
@@ -116,6 +187,9 @@
       <optional>
         <ref name="Definition.attrib"/>
       </optional>
+      <attribute name="type">
+        <value>multiset</value>
+      </attribute>
     </element>
   </define>
   <define name="token.application" combine="choice">
@@ -127,7 +201,13 @@
       <optional>
         <ref name="Definition.attrib"/>
       </optional>
+      <attribute name="type">
+        <value>multiset</value>
+      </attribute>
     </element>
+  </define>
+  <define name="token.binder" combine="choice">
+    <ref name="prsubset_multiset1_elt"/>
   </define>
   <define name="token.application" combine="choice">
     <ref name="notsubset_multiset1_elt"/>
@@ -138,6 +218,9 @@
       <optional>
         <ref name="Definition.attrib"/>
       </optional>
+      <attribute name="type">
+        <value>multiset</value>
+      </attribute>
     </element>
   </define>
   <define name="token.application" combine="choice">
@@ -149,6 +232,9 @@
       <optional>
         <ref name="Definition.attrib"/>
       </optional>
+      <attribute name="type">
+        <value>multiset</value>
+      </attribute>
     </element>
   </define>
 </grammar>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-      This file contains the token element definitions for the symbols
+      This file contains the pragmatic element definitions for the symbols
       generated from the content dictionary arith1
       It is provided "as is" without expressed or implied warranty.
   
@@ -17,18 +17,18 @@
       <optional>
         <ref name="Definition.attrib"/>
       </optional>
+      <optional>
+        <attribute name="type">
+          <ref name="MathMLType"/>
+        </attribute>
+      </optional>
     </element>
   </define>
   <define name="token.binder" combine="choice">
-    <ref name="big_lcm_arith1_elt"/>
+    <ref name="lcm_arith1_elt"/>
   </define>
-  <define name="big_lcm_arith1_elt" combine="choice">
-    <element name="m:big_lcm">
-      <ref name="MathML.Common.attrib"/>
-      <optional>
-        <ref name="Definition.attrib"/>
-      </optional>
-    </element>
+  <define name="token.binder" combine="choice">
+    <ref name="big_lcm_arith1_elt"/>
   </define>
   <define name="token.application" combine="choice">
     <ref name="gcd_arith1_elt"/>
@@ -39,18 +39,18 @@
       <optional>
         <ref name="Definition.attrib"/>
       </optional>
+      <optional>
+        <attribute name="type">
+          <ref name="MathMLType"/>
+        </attribute>
+      </optional>
     </element>
   </define>
   <define name="token.binder" combine="choice">
-    <ref name="big_gcd_arith1_elt"/>
+    <ref name="gcd_arith1_elt"/>
   </define>
-  <define name="big_gcd_arith1_elt" combine="choice">
-    <element name="m:big_gcd">
-      <ref name="MathML.Common.attrib"/>
-      <optional>
-        <ref name="Definition.attrib"/>
-      </optional>
-    </element>
+  <define name="token.binder" combine="choice">
+    <ref name="big_gcd_arith1_elt"/>
   </define>
   <define name="token.application" combine="choice">
     <ref name="plus_arith1_elt"/>
@@ -60,6 +60,11 @@
       <ref name="MathML.Common.attrib"/>
       <optional>
         <ref name="Definition.attrib"/>
+      </optional>
+      <optional>
+        <attribute name="type">
+          <ref name="MathMLType"/>
+        </attribute>
       </optional>
     </element>
   </define>
@@ -72,6 +77,11 @@
       <optional>
         <ref name="Definition.attrib"/>
       </optional>
+      <optional>
+        <attribute name="type">
+          <ref name="MathMLType"/>
+        </attribute>
+      </optional>
     </element>
   </define>
   <define name="token.application" combine="choice">
@@ -82,6 +92,11 @@
       <ref name="MathML.Common.attrib"/>
       <optional>
         <ref name="Definition.attrib"/>
+      </optional>
+      <optional>
+        <attribute name="type">
+          <ref name="MathMLType"/>
+        </attribute>
       </optional>
     </element>
   </define>
@@ -94,6 +109,11 @@
       <optional>
         <ref name="Definition.attrib"/>
       </optional>
+      <optional>
+        <attribute name="type">
+          <ref name="MathMLType"/>
+        </attribute>
+      </optional>
     </element>
   </define>
   <define name="token.application" combine="choice">
@@ -104,6 +124,11 @@
       <ref name="MathML.Common.attrib"/>
       <optional>
         <ref name="Definition.attrib"/>
+      </optional>
+      <optional>
+        <attribute name="type">
+          <ref name="MathMLType"/>
+        </attribute>
       </optional>
     </element>
   </define>
@@ -116,6 +141,11 @@
       <optional>
         <ref name="Definition.attrib"/>
       </optional>
+      <optional>
+        <attribute name="type">
+          <ref name="MathMLType"/>
+        </attribute>
+      </optional>
     </element>
   </define>
   <define name="token.application" combine="choice">
@@ -127,6 +157,11 @@
       <optional>
         <ref name="Definition.attrib"/>
       </optional>
+      <optional>
+        <attribute name="type">
+          <ref name="MathMLType"/>
+        </attribute>
+      </optional>
     </element>
   </define>
   <define name="token.application" combine="choice">
@@ -137,6 +172,16 @@
       <ref name="MathML.Common.attrib"/>
       <optional>
         <ref name="Definition.attrib"/>
+      </optional>
+      <optional>
+        <attribute name="type">
+          <choice>
+            <value>real</value>
+            <value>complex</value>
+            <value>principal_branch</value>
+            <ref name="MathMLType"/>
+          </choice>
+        </attribute>
       </optional>
     </element>
   </define>
@@ -151,6 +196,9 @@
       </optional>
     </element>
   </define>
+  <define name="token.binder" combine="choice">
+    <ref name="sum_arith1_elt"/>
+  </define>
   <define name="token.application" combine="choice">
     <ref name="product_arith1_elt"/>
   </define>
@@ -161,5 +209,8 @@
         <ref name="Definition.attrib"/>
       </optional>
     </element>
+  </define>
+  <define name="token.binder" combine="choice">
+    <ref name="product_arith1_elt"/>
   </define>
 </grammar>

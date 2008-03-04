@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-      This file contains the token element definitions for the symbols
+      This file contains the pragmatic element definitions for the symbols
       generated from the content dictionary limit1
       It is provided "as is" without expressed or implied warranty.
   
@@ -18,6 +18,9 @@
         <ref name="Definition.attrib"/>
       </optional>
     </element>
+  </define>
+  <define name="token.binder" combine="choice">
+    <ref name="limit_limit1_elt"/>
   </define>
   <define name="token.constant" combine="choice">
     <ref name="both_sides_limit1_elt"/>
@@ -60,6 +63,27 @@
       <ref name="MathML.Common.attrib"/>
       <optional>
         <ref name="Definition.attrib"/>
+      </optional>
+    </element>
+  </define>
+  <define name="token.application" combine="choice">
+    <ref name="tendsto_limit1_elt"/>
+  </define>
+  <define name="tendsto_limit1_elt" combine="choice">
+    <element name="m:tendsto">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="Definition.attrib"/>
+      </optional>
+      <optional>
+        <attribute name="type">
+          <choice>
+            <value>above</value>
+            <value>below</value>
+            <value>all</value>
+            <ref name="MathMLType"/>
+          </choice>
+        </attribute>
       </optional>
     </element>
   </define>

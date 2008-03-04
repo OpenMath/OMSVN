@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-      This file contains the token element definitions for the symbols
+      This file contains the pragmatic element definitions for the symbols
       generated from the content dictionary calculus1
       It is provided "as is" without expressed or implied warranty.
   
@@ -17,18 +17,21 @@
       <optional>
         <ref name="Definition.attrib"/>
       </optional>
+      <optional>
+        <attribute name="type">
+          <choice>
+            <value>function</value>
+            <value>algebraic</value>
+          </choice>
+        </attribute>
+      </optional>
     </element>
+  </define>
+  <define name="token.binder" combine="choice">
+    <ref name="diff_calculus1_elt"/>
   </define>
   <define name="token.application" combine="choice">
     <ref name="nthdiff_calculus1_elt"/>
-  </define>
-  <define name="nthdiff_calculus1_elt" combine="choice">
-    <element name="m:nthdiff">
-      <ref name="MathML.Common.attrib"/>
-      <optional>
-        <ref name="Definition.attrib"/>
-      </optional>
-    </element>
   </define>
   <define name="token.application" combine="choice">
     <ref name="partialdiff_calculus1_elt"/>
@@ -38,6 +41,14 @@
       <ref name="MathML.Common.attrib"/>
       <optional>
         <ref name="Definition.attrib"/>
+      </optional>
+      <optional>
+        <attribute name="type">
+          <choice>
+            <value>function</value>
+            <value>algebraic</value>
+          </choice>
+        </attribute>
       </optional>
     </element>
   </define>

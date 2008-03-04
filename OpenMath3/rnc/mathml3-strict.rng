@@ -18,7 +18,7 @@
       This file contains the grammar rules for strict content MathML3
       It is provided "as is" without expressed or implied warranty.
   
-      Revision:   $Id: mathml3-strict.rnc 580 2008-01-27 06:02:14Z kohlhase $
+      Revision:   $Id: mathml3-strict.rnc 686 2008-02-06 09:45:11Z kohlhase $
       Author: Michael Kohlhase http://kwarc.info/kohlhase
 -->
 <!--  This is the RelaxNG schema module for the strict content part of MathML. -->
@@ -143,16 +143,13 @@
       <ref name="bind.content"/>
     </element>
   </define>
-  <define name="bvar.content">
-    <notAllowed/>
-  </define>
   <define name="bvar">
     <element name="bvar">
       <ref name="MathML.Common.attrib"/>
       <optional>
         <ref name="cdbase.attrib"/>
       </optional>
-      <ref name="bvar.content"/>
+      <ref name="bvar-head"/>
     </element>
   </define>
   <define name="condition">

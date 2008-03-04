@@ -18,10 +18,10 @@
       This file contains the grammar rules for pragmatic content MathML3
       It is provided "as is" without expressed or implied warranty.
   
-      Revision:   $Id: mathml3-pragmatic.rnc 580 2008-01-27 06:02:14Z kohlhase $
+      Revision:   $Id: mathml3-pragmatic.rnc 708 2008-02-28 08:55:27Z kohlhase $
       Author: Michael Kohlhase http://kwarc.info/kohlhase
 -->
-<grammar xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" ns="http://www.w3.org/1998/Math/MathML" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+<grammar xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" ns="http://www.w3.org/1998/Math/MathML" xmlns="http://relaxng.org/ns/structure/1.0">
   <!--  This is the RelaxNG schema module for the pragmatic content part of MathML. -->
   <!-- we also allow pMathML in tokens -->
   <define name="Content-token.content" combine="choice">
@@ -48,10 +48,29 @@
       </oneOrMore>
     </element>
   </define>
-  <define name="bvar.content" combine="choice">
-    <optional>
-      <ref name="degree"/>
-    </optional>
+  <define name="bvar-head" combine="choice">
+    <choice>
+      <group>
+        <optional>
+          <ref name="degree"/>
+        </optional>
+        <ref name="ci"/>
+      </group>
+      <group>
+        <ref name="ci"/>
+        <optional>
+          <ref name="degree"/>
+        </optional>
+      </group>
+    </choice>
+  </define>
+  <!-- allow degree to modify <root/> -->
+  <define name="apply.content" combine="choice">
+    <ref name="root_arith1_elt"/>
+    <ref name="degree"/>
+    <zeroOrMore>
+      <ref name="ContExp"/>
+    </zeroOrMore>
   </define>
   <define name="domainofapplication">
     <element name="domainofapplication">
@@ -138,89 +157,35 @@
   <define name="container">
     <notAllowed/>
   </define>
-  <!-- allow closure attributes and two content elements in intervals -->
-  <define name="interval.content" combine="interleave">
+  <include href="mathml3-pragmatic.rng">
+    <a:documentation>include the relevant content dictionaries</a:documentation>
+  </include>
+  <define name="apply-binder-head">
+    <a:documentation>we instantiate the strict content model by structure checking</a:documentation>
+    <choice>
+      <ref name="semantics-apply-binder"/>
+      <ref name="token.binder"/>
+    </choice>
+  </define>
+  <define name="apply.content" combine="choice">
+    <ref name="apply-binder-head"/>
+    <oneOrMore>
+      <ref name="bvar"/>
+    </oneOrMore>
     <optional>
-      <attribute name="closure">
-        <choice>
-          <value>closed</value>
-          <value>open</value>
-          <value>open-closed</value>
-          <value>closed-open</value>
-        </choice>
-      </attribute>
+      <ref name="qualifier"/>
     </optional>
     <ref name="ContExp"/>
-    <ref name="ContExp"/>
   </define>
-  <!--
-    extend sets and lists by attributes
-    ednote(rnc:set-type) "set" ("type" could be "multiset" or "normal" or anything else) 
-  -->
-  <define name="set.content" combine="interleave">
-    <optional>
-      <attribute name="type">
-        <data type="string"/>
-      </attribute>
-    </optional>
-  </define>
-  <define name="lst.content" combine="interleave">
-    <optional>
-      <attribute name="order">
-        <choice>
-          <value>lexicographic</value>
-          <value>numeric</value>
-        </choice>
-      </attribute>
-    </optional>
-  </define>
-  <define name="diff.content" combine="interleave">
-    <optional>
-      <attribute name="type">
-        <choice>
-          <value>function</value>
-          <value>algebraic</value>
-        </choice>
-      </attribute>
-    </optional>
-  </define>
-  <define name="declare">
-    <element name="declare">
-      <optional>
-        <attribute name="type">
-          <data type="string"/>
-        </attribute>
-      </optional>
-      <optional>
-        <attribute name="scope">
-          <data type="string"/>
-        </attribute>
-      </optional>
-      <optional>
-        <attribute name="nargs">
-          <data type="nonNegativeInteger"/>
-        </attribute>
-      </optional>
-      <optional>
-        <attribute name="occurrence">
-          <choice>
-            <value>prefix</value>
-            <value>infix</value>
-            <value>function-model</value>
-          </choice>
-        </attribute>
-      </optional>
-      <ref name="Definition.attrib"/>
-      <optional>
-        <ref name="cdbase.attrib"/>
-      </optional>
-      <oneOrMore>
-        <ref name="ContExp"/>
-      </oneOrMore>
+  <define name="semantics-apply-binder">
+    <element name="semantics">
+      <ref name="semantics.attribs"/>
+      <ref name="apply-binder-head"/>
+      <zeroOrMore>
+        <ref name="semantics-annotation"/>
+      </zeroOrMore>
     </element>
   </define>
-  <!-- include the relevant content dictionaries -->
-  <include href="mathml3-pragmatic.rng"/>
   <define name="ContExp" combine="choice">
     <ref name="container"/>
   </define>

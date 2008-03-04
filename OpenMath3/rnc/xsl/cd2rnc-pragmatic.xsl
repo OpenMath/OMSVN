@@ -67,10 +67,10 @@
 	</xsl:choose>
       </xsl:for-each>
     </xsl:variable>
-    <xsl:value-of select="concat('token.',$role,' |= ',$elt,'&#xA;')"/>
+    <xsl:value-of select="concat('opel.',$role,' |= ',$elt,'&#xA;')"/>
     <xsl:choose>
-      <!-- tokens are empty elements -->
-      <xsl:when test="$element/@type='token'">
+      <!-- Operator elements are empty -->
+      <xsl:when test="$element/@type='opel'">
 	<xsl:value-of select="concat($name,'_',$cd,'_elt',
 			             ' |= element m:',$elname,
 				     ' {MathML.Common.attrib,Definition.attrib?',
@@ -91,14 +91,14 @@
 				     ',bvar*,qualifier?,ContExp*}&#xA;')"/>
 	<xsl:value-of select="concat('container |= ',$elt,'&#xA;')"/>
       </xsl:when>
-      <!-- big tokens are empty elements that can also be used as binders -->
-      <xsl:when test="$element/@type='token_big'">
+      <!-- big operator elements are empty and can also be used as binders -->
+      <xsl:when test="$element/@type='opel_big'">
 	<xsl:value-of select="concat($name,'_',$cd,'_elt',
 			             ' |= element m:',$elname,
 				     ' {MathML.Common.attrib,Definition.attrib?',
 				     $attrib,
 				     '}&#xA;')"/>
-	<xsl:value-of select="concat('token.binder |= ',$elt,'&#xA;')"/>
+	<xsl:value-of select="concat('opel.binder |= ',$elt,'&#xA;')"/>
       </xsl:when>
     </xsl:choose>
   </xsl:template>

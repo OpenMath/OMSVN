@@ -7,12 +7,9 @@
 
 
 namespace m  ="http://www.w3.org/1998/Math/MathML"
-token.application |= map_list1_elt
-map_list1_elt |= element m:map {MathML.Common.attrib,Definition.attrib?}
-token.binder |= map_list1_elt
-token.application |= suchthat_list1_elt
-suchthat_list1_elt |= element m:suchthat {MathML.Common.attrib,Definition.attrib?}
-token.application |= list_list1_elt
+opel.application |= map_list1_elt
+opel.application |= suchthat_list1_elt
+opel.application |= list_list1_elt
 list_list1_elt |= element m:list {MathML.Common.attrib,Definition.attrib?,attribute order {"lexicographic" | "numeric"}?,ContExp*}
 list_list1_elt |= element m:list {MathML.Common.attrib,Definition.attrib?,attribute order {"lexicographic" | "numeric"}?,bvar*,qualifier?,ContExp*}
 container |= list_list1_elt

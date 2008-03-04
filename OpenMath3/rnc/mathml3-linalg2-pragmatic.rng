@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-      This file contains the token element definitions for the symbols
+      This file contains the pragmatic element definitions for the symbols
       generated from the content dictionary linalg2
       It is provided "as is" without expressed or implied warranty.
   
@@ -17,7 +17,46 @@
       <optional>
         <ref name="Definition.attrib"/>
       </optional>
+      <optional>
+        <attribute name="type">
+          <choice>
+            <value>row</value>
+            <ref name="MathMLType"/>
+          </choice>
+        </attribute>
+      </optional>
+      <zeroOrMore>
+        <ref name="ContExp"/>
+      </zeroOrMore>
     </element>
+  </define>
+  <define name="vector_linalg2_elt" combine="choice">
+    <element name="m:vector">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="Definition.attrib"/>
+      </optional>
+      <optional>
+        <attribute name="type">
+          <choice>
+            <value>row</value>
+            <ref name="MathMLType"/>
+          </choice>
+        </attribute>
+      </optional>
+      <zeroOrMore>
+        <ref name="bvar"/>
+      </zeroOrMore>
+      <optional>
+        <ref name="qualifier"/>
+      </optional>
+      <zeroOrMore>
+        <ref name="ContExp"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="container" combine="choice">
+    <ref name="vector_linalg2_elt"/>
   </define>
   <define name="token.application" combine="choice">
     <ref name="matrixrow_linalg2_elt"/>
@@ -45,7 +84,9 @@
       <optional>
         <ref name="qualifier"/>
       </optional>
-      <ref name="ContExp"/>
+      <zeroOrMore>
+        <ref name="ContExp"/>
+      </zeroOrMore>
     </element>
   </define>
   <define name="container" combine="choice">
@@ -60,6 +101,17 @@
       <optional>
         <ref name="Definition.attrib"/>
       </optional>
+      <optional>
+        <attribute name="type">
+          <choice>
+            <value>real</value>
+            <value>complex</value>
+            <value>integer</value>
+            <value>symbolic</value>
+            <ref name="MathMLType"/>
+          </choice>
+        </attribute>
+      </optional>
       <zeroOrMore>
         <ref name="ContExp"/>
       </zeroOrMore>
@@ -71,13 +123,26 @@
       <optional>
         <ref name="Definition.attrib"/>
       </optional>
+      <optional>
+        <attribute name="type">
+          <choice>
+            <value>real</value>
+            <value>complex</value>
+            <value>integer</value>
+            <value>symbolic</value>
+            <ref name="MathMLType"/>
+          </choice>
+        </attribute>
+      </optional>
       <zeroOrMore>
         <ref name="bvar"/>
       </zeroOrMore>
       <optional>
         <ref name="qualifier"/>
       </optional>
-      <ref name="ContExp"/>
+      <zeroOrMore>
+        <ref name="ContExp"/>
+      </zeroOrMore>
     </element>
   </define>
   <define name="container" combine="choice">
