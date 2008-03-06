@@ -1,5 +1,11 @@
-This is a Subversion repository; use the 'svnadmin' tool to examine
-it.  Do not add, delete, or modify files here unless you know how
-to avoid corrupting the repository.
+This is the development repository for OpenMath3 content dictionaries
+For discussions about this see the issue tracker at  https://trac.kwarc.info/OM3. 
+For access contact Paul Libbrecht <paul@activemath.org>
 
-Visit http://subversion.tigris.org/ for more information.
+The directories are
+
+cd  		for content dictionaries
+standard 	for the OpenMath3 Standard
+rnc 		for the OpenMath3 and MathML3 RelaxNG Schemata
+sts		partially obsolete (leftovers from OpenMath2)
+xsl 		partially obsolete (leftovers from OpenMath2)
