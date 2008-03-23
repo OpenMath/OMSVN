@@ -4,8 +4,8 @@ For access contact Paul Libbrecht <paul@activemath.org>
 
 The directories are
 
-cd  		for content dictionaries
+MathML  	for the OM3/MathML3 Content Dictionaries
 standard 	for the OpenMath3 Standard
-rnc 		for the OpenMath3 and MathML3 RelaxNG Schemata
+Official 	the rest of the OM2 official CDs
 sts		partially obsolete (leftovers from OpenMath2)
 xsl 		partially obsolete (leftovers from OpenMath2)
