@@ -21,25 +21,29 @@
 
 default namespace m = "http://www.w3.org/1998/Math/MathML"
 
-start = math
-math = element math {math.attlist,(PresExp* | ContExp)}
-
 include "mathml3-common.rnc"
-include "mathml3-presentation.rnc"
-include "mathml3-strict.rnc"
+
+## Content Expressions now allow pMathML in ci and csymbol
+ContExp = grammar {include "mathml3-strict.rnc" {start=ContExp opel.content = text|parent PresExp}}
+
+## Presentation Expressions allow Content Expressions mixed in everywhere
+PresExp = grammar {include "mathml3-presentation.rnc" {start=PresExp ContInPres=PresExp|parent ContExp}}
+
+## the math element can contain one content element or several presentation elements
+math.content|=ContExp|PresExp+
 
 include "cd/mathml3-roles.rnc"
 include "mathml3-pragmatic.rnc"
 
-apply-head |= opel.application
-bind-head |= opel.binder
-cerror-head |= opel.error
+#apply-head |= opel.application
+#bind-head |= opel.binder
+#cerror-head |= opel.error
 
 ## allow all functions and constants to be OM objects on their own
-ContExp |= opel.constant|opel.application
+#ContExp |= opel.constant|opel.application
 
 ## the values of the MathML type attributes;  
-MathMLType |= "real" | "complex" | "function" | "algebraic" | "integer"
+#MathMLType |= "real" | "complex" | "function" | "algebraic" | "integer"
 
 #include "mathml3-arity.rnc"
 #include "mathml3-deprecated.rnc"

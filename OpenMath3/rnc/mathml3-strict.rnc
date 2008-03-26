@@ -28,10 +28,11 @@ include "mathml3-common.rnc"
 math.content |= ContExp
 
 #ednote(rnc:opel-content) What is the content of a operator element, currently all text?
-Content-opel.content = text
+opel.content = text
 
 # we want to extend this in pragmatic CMathML, so we introduce abbrevs here.
-cn.content = Content-opel.content
+#ednote(rnc:cn-content) What is the content of a cn?
+cn.content = text
 cn.type.vals  = "e-notation"|"integer"|"rational"|"real" |
                          "complex-cartesian"|"complex-polar"
 
@@ -47,14 +48,14 @@ ci = element ci {attribute type {xsd:string}?,
 		 attribute occurrence {xsd:string}?,		
                  Definition.attrib,	
   		 MathML.Common.attrib,
-		 Content-opel.content,
+		 opel.content,
 		 name.attrib?}
 
 cdname.attrib = attribute cd {xsd:NCName}
 
 csymbol       = element csymbol {MathML.Common.attrib,
 	                         Definition.attrib,cdname.attrib?,cdbase.attrib?, 
-				 Content-opel.content}
+				 opel.content}
 
 # the content of the apply element, leave it empty and extend it later
 apply = element apply {MathML.Common.attrib,cdbase.attrib?,apply.content}

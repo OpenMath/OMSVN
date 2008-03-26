@@ -1,6 +1,6 @@
 CD.dir = ../../cd/MathML
 XSL.dir = ../xsl
-CD = $(shell cd $(CD.dir);ls *.ocd)
+CD = $(filter-out mathmlkeys.ocd, $(shell cd $(CD.dir);ls *.ocd))
 CDs = $(shell ls $(CD.dir)/*.ocd)
 CD.OM.rnc-roles = $(CD:%.ocd=om3-%-roles.rnc)
 CD.OM.rnc-arity = $(CD:%.ocd=om3-%-arity.rnc)
