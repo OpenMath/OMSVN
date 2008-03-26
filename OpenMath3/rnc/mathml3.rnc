@@ -29,22 +29,6 @@ include "mathml3-common.rnc"
 include "mathml3-presentation.rnc"
 include "mathml3-strict.rnc"
 
-# we inystantiate the strict content model by structure checking
-apply-head = apply|bind|ci|csymbol|semantics-apply
-apply.content |= apply-head,ContExp*
-semantics-apply = element semantics {semantics.attribs,apply-head, semantics-annotation*}
-
-bind-head = apply|csymbol|semantics-bind
-bind.content |= bind-head,bvar*,qualifier?,ContExp
-semantics-bind   = element semantics {semantics.attribs,bind-head, semantics-annotation*}
-
-bvar-head = ci|semantics-bvar
-semantics-bvar   = element semantics {semantics.attribs,bvar-head, semantics-annotation*}
-
-cerror-head = csymbol|apply|semantics-cerror
-cerror.content |= cerror-head,ContExp*
-semantics-cerror = element semantics {semantics.attribs,cerror-head, semantics-annotation*}
-
 include "cd/mathml3-roles.rnc"
 include "mathml3-pragmatic.rnc"
 
