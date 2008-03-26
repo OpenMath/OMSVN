@@ -22,25 +22,28 @@
 default namespace m = "http://www.w3.org/1998/Math/MathML"
 namespace local = ""
 
+start = math
+math = element math {math.attlist,math.content}
+math.content = notAllowed
+
 non-mathml-attribs = attribute * - (local:*) {xsd:string} 
+MathML.Common.attrib = attribute id {xsd:ID}?,non-mathml-attribs*
+math.attlist = MathML.Common.attrib,attribute macros {xsd:string}?
 
-MathML.Common.attrib = attribute class {xsd:NMTOKENS}?,
-                attribute style {xsd:string}?,
-                attribute id {xsd:ID}?,
-                non-mathml-attribs*
+name.attrib = attribute name {xsd:NCName}
+cd.attrib = attribute cd {xsd:NCName}
+cdbase.attrib = attribute cdbase {xsd:anyURI}
+Definition.attrib = attribute encoding {xsd:string}?,
+                              attribute definitionURL {xsd:anyURI}?
 
-#ednote(rnc:browserinterface) this should probably only go into mathml3-presentation.rnc
-Browser-interface.attrib = attribute baseline {xsd:string}?,
-                           attribute overflow {"scroll" | "elide" | "truncate" | "scale"}?,
-                           attribute altimg {xsd:anyURI}?,
-                           attribute alttext {xsd:string}?,
-       			   attribute type {xsd:string}?,
-			   attribute name {xsd:string}?,	    
-			   attribute height {xsd:string}?,
-			   attribute width {xsd:string}?
+annotation = element annotation {Definition.attrib,MathML.Common.attrib,text}
 
-math.attlist = Browser-interface.attrib,
-	       attribute macros {xsd:string}?,
-	       attribute display {"block" | "inline"}?,
-	       MathML.Common.attrib
+annotation-xml.model = anyElement
+anyElement =  element * {(attribute * {text}|text| anyElement)*}
+annotation-xml = element annotation-xml {MathML.Common.attrib,
+	       cd.attrib?,name.attrib?,cdbase.attrib?,Definition.attrib,
+	       annotation-xml.model}
+
+semantics-annotation = annotation|annotation-xml
+semantics.attribs = Definition.attrib,MathML.Common.attrib,cdbase.attrib?,cd.attrib?,name.attrib?
 

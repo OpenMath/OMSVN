@@ -1,4 +1,4 @@
-     This is the Mathematical Markup Language (MathML) 3.0, an XML
+#     This is the Mathematical Markup Language (MathML) 3.0, an XML
 #     application for describing mathematical notation and capturing
 #     both its structure and content.
 #
@@ -13,7 +13,8 @@
 #     and this paragraph appear in all copies.  The copyright holders make
 #     no representation about the suitability of the Schema for any purpose.
 #
-#     This file contains the grammar rules for presentation MathML3
+#     This file contains the grammar rules for pure presentation MathML3, i.e. without
+#     content MathML mixed in. 
 #     It is provided "as is" without expressed or implied warranty.
 #
 #     Revision:   $Id$
@@ -21,7 +22,25 @@
 
 default namespace m = "http://www.w3.org/1998/Math/MathML"
 
-simple-size= "small" | "normal" | "big"
+include "mathml3-common.rnc"
+
+math.content |= ContInPres
+
+MathML.Common.attrib |= attribute class {xsd:NMTOKENS}?,attribute style {xsd:string}?
+
+#ednote(rnc:browserinterface) this should probably only go into mathml3-presentation.rnc
+Browser-interface.attrib = attribute baseline {xsd:string}?,
+                           attribute overflow {"scroll" | "elide" | "truncate" | "scale"}?,
+                           attribute altimg {xsd:anyURI}?,
+                           attribute alttext {xsd:string}?,
+       			   attribute type {xsd:string}?,
+			   attribute name {xsd:string}?,	    
+			   attribute height {xsd:string}?,
+			   attribute width {xsd:string}?
+
+math.attlist |= Browser-interface.attrib,attribute display {"block" | "inline"}?
+
+simple-size = "small" | "normal" | "big"
 
 centering.values = "left" | "center" | "right"
 
@@ -283,4 +302,4 @@ PresExp = Pres-token | Pres-layout | Pres-script | Pres-table
 	      |  mspace | mline | mcolumn |  maction | merror | mstyle
 	      | semantics-pmml
 
-ContInPres = PresExp|ContExp
+ContInPres = PresExp
