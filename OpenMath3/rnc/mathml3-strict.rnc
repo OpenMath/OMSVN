@@ -25,10 +25,7 @@ default namespace m = "http://www.w3.org/1998/Math/MathML"
 
 include "mathml3-common.rnc"
 
-start = math
-math = element math {math.attlist,ContExp}
-
-Definition.attrib = attribute encoding {xsd:string}?,attribute definitionURL {xsd:anyURI}?
+math.content = ContExp
 
 #ednote(rnc:opel-content) What is the content of a operator element, currently all text?
 Content-opel.content = text
@@ -50,9 +47,9 @@ ci = element ci {attribute type {xsd:string}?,
 		 attribute occurrence {xsd:string}?,		
                  Definition.attrib,	
   		 MathML.Common.attrib,
-		 Content-opel.content}
+		 Content-opel.content
+		 name.attrib?}
 
-cdbase.attrib = attribute cdbase {xsd:anyURI}
 cdname.attrib = attribute cd {xsd:NCName}
 
 csymbol       = element csymbol {MathML.Common.attrib,
@@ -86,17 +83,6 @@ cerror = element cerror {MathML.Common.attrib,cdbase.attrib?,cerror.content}
 cerror-head = csymbol|apply|semantics-cerror
 cerror.content = cerror-head,ContExp*
 semantics-cerror = element semantics {semantics.attribs,cerror-head, semantics-annotation*}
-
-annotation = element annotation {Definition.attrib,MathML.Common.attrib,text}
-
-annotation-xml.model = anyElement
-anyElement =  element * {(attribute * {text}|text| anyElement)*}
-annotation-xml = element annotation-xml {MathML.Common.attrib,
-	       cdname.attrib,cdbase.attrib?,Definition.attrib,
-	       annotation-xml.model}
-
-semantics.attribs = Definition.attrib,MathML.Common.attrib,cdbase.attrib?
-semantics-annotation = annotation|annotation-xml
 
 semantics-cmml = element semantics {semantics.attribs,ContExp, semantics-annotation*}
 
