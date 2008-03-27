@@ -3,7 +3,7 @@ RNG = $(RNC:%.rnc=%.rng)
 
 CD.rnc = mathml3-cds-pragmatic.rnc
 
-MathML.rnc = mathml3-strict.rnc mathml3.rnc mathml3-common.rnc mathml3-presentation.rnc mathml3+deprecated.rnc mathml3-pragmatic.rnc mathml3-cds-pragmatic.rnc 
+MathML.rnc = mathml3-strict.rnc mathml3.rnc mathml3-common.rnc mathml3-presentation.rnc mathml3-deprecated.rnc mathml3-pragmatic.rnc mathml3-cds-pragmatic.rnc 
 
 all: 	$(CD.rnc) rng
 
