@@ -25,6 +25,8 @@ all: $(INCL) $(RNC) #rng
 
 rng: $(RNG)
 
+pragmatic: $(CD.MathML.rnc-pragmatic)
+
 mathml3-roles.rnc: $(CDs)
 	rm -f $@
 	@for d in $(CD.MathML.rnc-roles); do  (echo "include \"$$d\"" >> $@) done
