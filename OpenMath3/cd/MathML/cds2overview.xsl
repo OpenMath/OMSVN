@@ -65,10 +65,10 @@
     <xsl:param name="prune"/>
     <xsl:variable name="cdname" select="normalize-space(ocd:CDName)"/>
     <div3 id="contm.{$cdname}">
-      <head>The MathML Content Dictionary <xsl:value-of select="$cdname"/></head>
+      <head><xsl:value-of select="$cdname"/></head>
       <p><xsl:apply-templates select="ocd:Description"/></p>
       <xsl:apply-templates select="ocd:discussion/*" mode="speccopy"/>
-      <p>For a full semantic description of the content dictionary see <loc href="{$baseuri}/{$cdname}.html"><xsl:value-of select="concat($baseuri,'/',$cdname,'.html')"/></loc>.</p>
+      <p>For a full semantic description of the content dictionary see <loc href="{$baseuri}/{$cdname}.xhtml"><xsl:value-of select="concat($baseuri,'/',$cdname,'.xhtml')"/></loc>.</p>
       <xsl:apply-templates select="ocd:CDDefinition">
 	<xsl:with-param name="speclevel" select="$speclevel"/>
 	<xsl:with-param name="prune" select="$prune"/>
@@ -122,7 +122,7 @@
 	</head>
 	<p><emph>Description:</emph><xsl:apply-templates select="ocd:Description"/></p>
 	<xsl:apply-templates select="ocd:MMLexample[@speclevel &lt;= $speclevel]" mode="speccopy"/>
-	<p>For a full semantic definition and more examples see <loc href="{$baseuri}/{$cdname}.html#{$name}"><xsl:value-of select="concat($baseuri,'/',$cdname,'.html#',$name)"/></loc>.</p>
+	<p>For a full semantic definition and more examples see <loc href="{$baseuri}/{$cdname}.xhtml#{$name}"><xsl:value-of select="concat($baseuri,'/',$cdname,'.xhtml#',$name)"/></loc>.</p>
 	<xsl:choose>
 	  <xsl:when test="contains($elem/@type,'opel')">
 	    <p><emph>Usage in pragmatic Content MathML:</emph> This symbol can be represented as the (empty) <intref ref="contm_opel">operator element</intref> 
