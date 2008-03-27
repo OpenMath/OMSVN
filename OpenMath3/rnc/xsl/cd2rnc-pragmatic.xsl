@@ -28,7 +28,7 @@
     <xsl:text>#     hereby granted in perpetuity, provided that the above copyright notice&#xA;</xsl:text>
     <xsl:text>#     and this paragraph appear in all copies.  The copyright holders make&#xA;</xsl:text>
     <xsl:text>#     no representation about the suitability of the Schema for any purpose.&#xA;</xsl:text>
-    <xsl:text>#&#xA;</xsl:text> -->
+    <xsl:text>#&#xA;</xsl:text>
     <xsl:text>#     This file contains the pragmatic element definitions for the symbols&#xA;</xsl:text>
     <xsl:text>#     generated from the content dictionary </xsl:text> 
     <xsl:value-of select="/omcd:CD/omcd:CDName"/><xsl:text>&#xA;</xsl:text>
@@ -36,7 +36,7 @@
     <xsl:text>#&#xA;</xsl:text>
     <xsl:text>#     Revision:   $Id: sts2rnc-sts.xsl 529 2008-01-15 10:07:01Z kohlhase $&#xA;</xsl:text>
     <xsl:text>#    $HeadURL: https://svn.openmath.org/OpenMath3/rnc/cd/sts2rnc-sts.xsl $ &#xA;&#xA;</xsl:text>
-    <xsl:text>&#xA;namespace m  ="http://www.w3.org/1998/Math/MathML"&#xA;</xsl:text>
+    <xsl:text>&#xA;namespace m  ="http://www.w3.org/1998/Math/MathML"&#xA;</xsl:text> -->
     <xsl:apply-templates/>
   </xsl:template>
 
