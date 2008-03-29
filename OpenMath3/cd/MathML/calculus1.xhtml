@@ -127,10 +127,10 @@
          </h2>
          <dl>
             <dt>
-               <span class="dt">Pragmatic MathML:</span>
+               <span class="dt">Title:</span>
             </dt>
             <dd>
-               <code>&lt;diff/&gt;</code>
+               <p>Differentiation</p>
             </dd>
             <dt>
                <span class="dt">Role:</span>
@@ -141,72 +141,126 @@
             </dt>
             <dd>
                <p>
-This symbol is used to express ordinary differentiation of a unary
-function. The single argument is the unary function.
-</p>
+    This symbol is used to express ordinary differentiation of a unary function. The
+    single argument is the unary function.
+  </p>
+            </dd>
+            <dt>
+               <span class="dt">Pragmatic MathML:</span>
+            </dt>
+            <dd>
+    
+     type : "function" | "algebraic"
+    <p>
+      In pragmatic Content MathML the diff operator can be applied to an
+      expression involving a single variable such as sin(x), or
+      cos(x). or a polynomial in x.  For the expression case the
+      actual variable is designated by a bvar element that is a child of the
+      containing apply element. To translate this usage to strict Content MathML,
+      we add a lambda construction.
+      </p>
+               <p>  
+    
+    x
+    x
+  
+  
+    
+    
+      lambda
+      x
+      x
+    
+  
+  </p>
+               <p>The bvar element may also contain a degree element, which specifies
+the order of the derivative to be taken. To achieve this effect in strict Content MathML,
+we use the nthdiff symbol.</p>
+               <p>
+  
+    
+    2x
+    x
+  
+  
+    
+    2
+    
+      lambda
+      x
+      x
+    
+  
+  
+    </p>      
             </dd>
             <dt>
                <span class="dt">description:</span>
             </dt>
             <dd>
                <p>
-	  The diff element is the differentiation operator element for
-	  functions of a single variable.
-	</p>
+    The diff element is the differentiation operator element for
+    functions of a single variable.
+  </p>
             </dd>
             <dt>
                <span class="dt">discussion:</span>
             </dt>
             <dd>
                <p>
-	   diff is applied directly to an actual function such as sine or
-	  cosine, thereby denoting a function which is the derivative of the original
-	  function, as in</p>
-               <p>	  f
-	  
-	  If diff is given a number n as a second argument, then it is
-	  interpreted as a n-fold differentiation operator.
-	  
-	  2f
-	</p>
+     diff is applied directly to an actual function such as sine or cosine,
+    thereby denoting a function which is the derivative of the original function, as in
+    
+    
+      f
+    
+    
+  </p>
             </dd>
             <dt>
                <span class="dt">Example:</span>
             </dt>
             <dd>
                <p>
-            diff(sin) = cos
-          </p>
-	              <div>
-                  <button id="d40e103xmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e103xml')">XML (MathML)</button>
-               </div>
-               <pre id="d40e103xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;eq/&gt;&lt;apply&gt;&lt;diff/&gt;&lt;sin/&gt;&lt;/apply&gt;&lt;cos/&gt;&lt;/apply&gt;&lt;/math&gt;</pre>
+      diff(sin) = cos
+    </p>
                <div>
-                  <button id="d40e103stricta" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e103strict')">Strict Content MathML</button>
+                  <button id="d40e221xmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e221xml')">XML (MathML)</button>
                </div>
-               <pre id="d40e103strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;&lt;apply&gt;&lt;csymbol cd="calculus1"&gt;diff&lt;/csymbol&gt;&lt;csymbol cd="transc1"&gt;sin&lt;/csymbol&gt;&lt;/apply&gt;&lt;csymbol cd="transc1"&gt;cos&lt;/csymbol&gt;&lt;/apply&gt;&lt;/math&gt;</pre>
+               <pre id="d40e221xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+      &lt;apply&gt;&lt;eq/&gt;&lt;apply&gt;&lt;diff/&gt;&lt;sin/&gt;&lt;/apply&gt;&lt;cos/&gt;&lt;/apply&gt;
+    &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e103cmmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e103cmml')">OpenMath</button>
+                  <button id="d40e221stricta" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e221strict')">Strict Content MathML</button>
                </div>
-               <pre id="d40e103cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMA&gt;&lt;OMS cd="relation1" name="eq"/&gt;&lt;OMA&gt;&lt;OMS cd="calculus1" name="diff"/&gt;&lt;OMS cd="transc1" name="sin"/&gt;&lt;/OMA&gt;&lt;OMS cd="transc1" name="cos"/&gt;&lt;/OMA&gt;&lt;/OMOBJ&gt;</pre>
+               <pre id="d40e221strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+      &lt;apply&gt;&lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;&lt;apply&gt;&lt;csymbol cd="calculus1"&gt;diff&lt;/csymbol&gt;&lt;csymbol cd="transc1"&gt;sin&lt;/csymbol&gt;&lt;/apply&gt;&lt;csymbol cd="transc1"&gt;cos&lt;/csymbol&gt;&lt;/apply&gt;
+    &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e103prefa" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e103pref')">Prefix form</button>
+                  <button id="d40e221cmmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e221cmml')">OpenMath</button>
                </div>
-               <div id="d40e103pref" style="display:none; margin-top: 0.5em">
+               <pre id="d40e221cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
+      &lt;OMA&gt;&lt;OMS cd="relation1" name="eq"/&gt;&lt;OMA&gt;&lt;OMS cd="calculus1" name="diff"/&gt;&lt;OMS cd="transc1" name="sin"/&gt;&lt;/OMA&gt;&lt;OMS cd="transc1" name="cos"/&gt;&lt;/OMA&gt;
+    &lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d40e221prefa" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e221pref')">Prefix form</button>
+               </div>
+               <div id="d40e221pref" style="display:none; margin-top: 0.5em">
                   <a href="relation1.xhtml#eq">eq</a>
 (<a href="calculus1.xhtml#diff">diff</a>
 (<a href="transc1.xhtml#sin">sin</a>)
 , <a href="transc1.xhtml#cos">cos</a>)
-</div>
+
+    </div>
                <div>
-                  <button id="d40e103mmla" style="width:15em; background-color:#AAFFAA"
-                          onclick="divfold('d40e103mml')">Presentation MathML</button>
+                  <button id="d40e221mmla" style="width:15em; background-color:#AAFFAA"
+                          onclick="divfold('d40e221mml')">Presentation MathML</button>
                </div>
-               <div id="d40e103mml" style="display:block; margin-top: 0.5em">
+               <div id="d40e221mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -223,56 +277,6 @@ function. The single argument is the unary function.
                </div>
             </dd>
             <dt>
-               <span class="dt">Example:</span>
-            </dt>
-            <dd>
-               <p>diff (2,sin) = sin</p>
-	              <div>
-                  <button id="d40e117xmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e117xml')">XML (MathML)</button>
-               </div>
-               <pre id="d40e117xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;eq/&gt;&lt;apply&gt;&lt;diff/&gt;&lt;cn&gt;2&lt;/cn&gt;&lt;sin/&gt;&lt;/apply&gt;&lt;sin/&gt;&lt;/apply&gt;&lt;/math&gt;</pre>
-               <div>
-                  <button id="d40e117stricta" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e117strict')">Strict Content MathML</button>
-               </div>
-               <pre id="d40e117strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;&lt;apply&gt;&lt;csymbol cd="calculus1"&gt;diff&lt;/csymbol&gt;&lt;cn&gt;2&lt;/cn&gt;&lt;csymbol cd="transc1"&gt;sin&lt;/csymbol&gt;&lt;/apply&gt;&lt;csymbol cd="transc1"&gt;sin&lt;/csymbol&gt;&lt;/apply&gt;&lt;/math&gt;</pre>
-               <div>
-                  <button id="d40e117cmmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e117cmml')">OpenMath</button>
-               </div>
-               <pre id="d40e117cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMA&gt;&lt;OMS cd="relation1" name="eq"/&gt;&lt;OMA&gt;&lt;OMS cd="calculus1" name="diff"/&gt;&lt;OMI&gt;2&lt;/OMI&gt;&lt;OMS cd="transc1" name="sin"/&gt;&lt;/OMA&gt;&lt;OMS cd="transc1" name="sin"/&gt;&lt;/OMA&gt;&lt;/OMOBJ&gt;</pre>
-               <div>
-                  <button id="d40e117prefa" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e117pref')">Prefix form</button>
-               </div>
-               <div id="d40e117pref" style="display:none; margin-top: 0.5em">
-                  <a href="relation1.xhtml#eq">eq</a>
-(<a href="calculus1.xhtml#diff">diff</a>
-(2, <a href="transc1.xhtml#sin">sin</a>)
-, <a href="transc1.xhtml#sin">sin</a>)
-</div>
-               <div>
-                  <button id="d40e117mmla" style="width:15em; background-color:#AAFFAA"
-                          onclick="divfold('d40e117mml')">Presentation MathML</button>
-               </div>
-               <div id="d40e117mml" style="display:block; margin-top: 0.5em">
-                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
-                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
-                           xmlns:om="http://www.openmath.org/OpenMath">
-                        <mo>D</mo>
-                        <mrow>
-                           <mo>(</mo>
-                           <mn>2</mn>
-                           <mo>)</mo>
-                        </mrow>
-                        <mo>=</mo>
-                        <mi>sin</mi>
-                     </mrow>
-                  </m:math>
-               </div>
-            </dd>
-            <dt>
                <span class="dt">Property:</span>
             </dt>
             <dd>
@@ -282,10 +286,10 @@ diff(lambda y:a(y) + b(y))(x) = diff(lambda y:a(y))(x) + diff(lambda y:b(y))(x)
 
 
 <div>
-                  <button id="d40e136xmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e136xml')">XML (OpenMath)</button>
+                  <button id="d40e239xmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e239xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d40e136xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d40e239xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMA&gt;
     &lt;OMS cd="relation1" name="eq"/&gt;
     &lt;OMA&gt;
@@ -349,10 +353,10 @@ diff(lambda y:a(y) + b(y))(x) = diff(lambda y:a(y))(x) + diff(lambda y:b(y))(x)
   &lt;/OMA&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d40e136cmmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e136cmml')">Content MathML</button>
+                  <button id="d40e239cmmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e239cmml')">Content MathML</button>
                </div>
-               <pre id="d40e136cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d40e239cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
   &lt;apply&gt;
     &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
     &lt;apply&gt;
@@ -410,10 +414,10 @@ diff(lambda y:a(y) + b(y))(x) = diff(lambda y:a(y))(x) + diff(lambda y:b(y))(x)
   &lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e136prefa" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e136pref')">Prefix form</button>
+                  <button id="d40e239prefa" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e239pref')">Prefix form</button>
                </div>
-               <div id="d40e136pref" style="display:none; margin-top: 0.5em">
+               <div id="d40e239pref" style="display:none; margin-top: 0.5em">
                   <a href="relation1.xhtml#eq">eq</a>
 (<a href="calculus1.xhtml#diff">diff</a>
 (<a href="fns1.xhtml#lambda">lambda</a>
@@ -458,10 +462,10 @@ diff(lambda y:a(y) + b(y))(x) = diff(lambda y:a(y))(x) + diff(lambda y:b(y))(x)
 
 </div>
                <div>
-                  <button id="d40e136mmla" style="width:15em; background-color:#AAFFAA"
-                          onclick="divfold('d40e136mml')">Presentation MathML</button>
+                  <button id="d40e239mmla" style="width:15em; background-color:#AAFFAA"
+                          onclick="divfold('d40e239mml')">Presentation MathML</button>
                </div>
-               <div id="d40e136mml" style="display:block; margin-top: 0.5em">
+               <div id="d40e239mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -598,10 +602,10 @@ diff(lambda y:a(y) * b(y))(x) = diff(lambda y:a(y))(x) * b(x) +
 
 
 <div>
-                  <button id="d40e251xmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e251xml')">XML (OpenMath)</button>
+                  <button id="d40e353xmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e353xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d40e251xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d40e353xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMA&gt;
     &lt;OMS cd="relation1" name="eq"/&gt;
     &lt;OMA&gt;
@@ -679,10 +683,10 @@ diff(lambda y:a(y) * b(y))(x) = diff(lambda y:a(y))(x) * b(x) +
   &lt;/OMA&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d40e251cmmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e251cmml')">Content MathML</button>
+                  <button id="d40e353cmmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e353cmml')">Content MathML</button>
                </div>
-               <pre id="d40e251cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d40e353cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
   &lt;apply&gt;
     &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
     &lt;apply&gt;
@@ -754,10 +758,10 @@ diff(lambda y:a(y) * b(y))(x) = diff(lambda y:a(y))(x) * b(x) +
   &lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e251prefa" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e251pref')">Prefix form</button>
+                  <button id="d40e353prefa" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e353pref')">Prefix form</button>
                </div>
-               <div id="d40e251pref" style="display:none; margin-top: 0.5em">
+               <div id="d40e353pref" style="display:none; margin-top: 0.5em">
                   <a href="relation1.xhtml#eq">eq</a>
 (<a href="calculus1.xhtml#diff">diff</a>
 (<a href="fns1.xhtml#lambda">lambda</a>
@@ -810,10 +814,10 @@ diff(lambda y:a(y) * b(y))(x) = diff(lambda y:a(y))(x) * b(x) +
 
 </div>
                <div>
-                  <button id="d40e251mmla" style="width:15em; background-color:#AAFFAA"
-                          onclick="divfold('d40e251mml')">Presentation MathML</button>
+                  <button id="d40e353mmla" style="width:15em; background-color:#AAFFAA"
+                          onclick="divfold('d40e353mml')">Presentation MathML</button>
                </div>
-               <div id="d40e251mml" style="display:block; margin-top: 0.5em">
+               <div id="d40e353mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -970,10 +974,10 @@ diff(lambda y:a(y) * b(y))(x) = diff(lambda y:a(y))(x) * b(x) +
 This represents the equation:
   derivative(x + 1.0) = 1.0
 <div>
-                  <button id="d40e384xmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e384xml')">XML (OpenMath)</button>
+                  <button id="d40e486xmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e486xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d40e384xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d40e486xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMA&gt;
     &lt;OMS cd="relation1" name="eq"/&gt;
     &lt;OMA&gt;
@@ -997,10 +1001,10 @@ This represents the equation:
   &lt;/OMA&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d40e384cmmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e384cmml')">Content MathML</button>
+                  <button id="d40e486cmmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e486cmml')">Content MathML</button>
                </div>
-               <pre id="d40e384cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d40e486cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
   &lt;apply&gt;
     &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
     &lt;apply&gt;
@@ -1022,10 +1026,10 @@ This represents the equation:
   &lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e384prefa" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e384pref')">Prefix form</button>
+                  <button id="d40e486prefa" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e486pref')">Prefix form</button>
                </div>
-               <div id="d40e384pref" style="display:none; margin-top: 0.5em">
+               <div id="d40e486pref" style="display:none; margin-top: 0.5em">
                   <a href="relation1.xhtml#eq">eq</a>
 (<a href="calculus1.xhtml#diff">diff</a>
 (<a href="fns1.xhtml#lambda">lambda</a>
@@ -1042,10 +1046,10 @@ This represents the equation:
 
 </div>
                <div>
-                  <button id="d40e384mmla" style="width:15em; background-color:#AAFFAA"
-                          onclick="divfold('d40e384mml')">Presentation MathML</button>
+                  <button id="d40e486mmla" style="width:15em; background-color:#AAFFAA"
+                          onclick="divfold('d40e486mml')">Presentation MathML</button>
                </div>
-               <div id="d40e384mml" style="display:block; margin-top: 0.5em">
+               <div id="d40e486mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -1109,12 +1113,6 @@ This represents the equation:
          </h2>
          <dl>
             <dt>
-               <span class="dt">Pragmatic MathML:</span>
-            </dt>
-            <dd>
-               <code>&lt;nthdiff/&gt;</code>
-            </dd>
-            <dt>
                <span class="dt">Role:</span>
             </dt>
             <dd>application</dd>
@@ -1123,9 +1121,9 @@ This represents the equation:
             </dt>
             <dd>
                <p>
-This symbol is used to express the nth-iterated ordinary differentiation of 
-a unary function. The first argument is n, and the second the unary function.
-</p>
+    This symbol is used to express the nth-iterated ordinary differentiation of a unary
+    function. The first argument is n, and the second the unary function.
+  </p>
             </dd>
             <dt>
                <span class="dt">Property:</span>
@@ -1133,10 +1131,10 @@ a unary function. The first argument is n, and the second the unary function.
             <dd>
 
                <div>
-                  <button id="d40e447xmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e447xml')">XML (OpenMath)</button>
+                  <button id="d40e543xmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e543xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d40e447xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d40e543xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMA&gt;
     &lt;OMS name="eq" cd="relation1"/&gt;
     &lt;OMA&gt;
@@ -1148,10 +1146,10 @@ a unary function. The first argument is n, and the second the unary function.
   &lt;/OMA&gt;
   &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d40e447cmmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e447cmml')">Content MathML</button>
+                  <button id="d40e543cmmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e543cmml')">Content MathML</button>
                </div>
-               <pre id="d40e447cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d40e543cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
   &lt;apply&gt;
     &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
     &lt;apply&gt;
@@ -1163,10 +1161,10 @@ a unary function. The first argument is n, and the second the unary function.
   &lt;/apply&gt;
   &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e447prefa" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e447pref')">Prefix form</button>
+                  <button id="d40e543prefa" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e543pref')">Prefix form</button>
                </div>
-               <div id="d40e447pref" style="display:none; margin-top: 0.5em">
+               <div id="d40e543pref" style="display:none; margin-top: 0.5em">
                   <a href="relation1.xhtml#eq">eq</a>
 (<a href="calculus1.xhtml#nthdiff">nthdiff</a>
 (<a href="alg1.xhtml#zero">zero</a>,  <i>f</i>)
@@ -1174,10 +1172,10 @@ a unary function. The first argument is n, and the second the unary function.
 
   </div>
                <div>
-                  <button id="d40e447mmla" style="width:15em; background-color:#AAFFAA"
-                          onclick="divfold('d40e447mml')">Presentation MathML</button>
+                  <button id="d40e543mmla" style="width:15em; background-color:#AAFFAA"
+                          onclick="divfold('d40e543mml')">Presentation MathML</button>
                </div>
-               <div id="d40e447mml" style="display:block; margin-top: 0.5em">
+               <div id="d40e543mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -1202,10 +1200,10 @@ a unary function. The first argument is n, and the second the unary function.
             <dd>
 
                <div>
-                  <button id="d40e472xmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e472xml')">XML (OpenMath)</button>
+                  <button id="d40e567xmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e567xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d40e472xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d40e567xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMA&gt;
     &lt;OMS name="eq" cd="relation1"/&gt;
     &lt;OMA&gt;
@@ -1228,10 +1226,10 @@ a unary function. The first argument is n, and the second the unary function.
   &lt;/OMA&gt;
   &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d40e472cmmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e472cmml')">Content MathML</button>
+                  <button id="d40e567cmmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e567cmml')">Content MathML</button>
                </div>
-               <pre id="d40e472cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d40e567cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
   &lt;apply&gt;
     &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
     &lt;apply&gt;
@@ -1254,10 +1252,10 @@ a unary function. The first argument is n, and the second the unary function.
   &lt;/apply&gt;
   &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e472prefa" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e472pref')">Prefix form</button>
+                  <button id="d40e567prefa" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e567pref')">Prefix form</button>
                </div>
-               <div id="d40e472pref" style="display:none; margin-top: 0.5em">
+               <div id="d40e567pref" style="display:none; margin-top: 0.5em">
                   <a href="relation1.xhtml#eq">eq</a>
 (<a href="calculus1.xhtml#nthdiff">nthdiff</a>
 (<a href="arith1.xhtml#plus">plus</a>
@@ -1271,10 +1269,10 @@ a unary function. The first argument is n, and the second the unary function.
 
   </div>
                <div>
-                  <button id="d40e472mmla" style="width:15em; background-color:#AAFFAA"
-                          onclick="divfold('d40e472mml')">Presentation MathML</button>
+                  <button id="d40e567mmla" style="width:15em; background-color:#AAFFAA"
+                          onclick="divfold('d40e567mml')">Presentation MathML</button>
                </div>
-               <div id="d40e472mml" style="display:block; margin-top: 0.5em">
+               <div id="d40e567mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -1309,6 +1307,7 @@ a unary function. The first argument is n, and the second the unary function.
                      </mrow>
                   </m:math>
                </div>
+
             </dd>
             <dt>
                <span class="dt">Signatures:</span>
@@ -1335,9 +1334,61 @@ a unary function. The first argument is n, and the second the unary function.
                <span class="dt">Pragmatic MathML:</span>
             </dt>
             <dd>
-               <code>&lt;partialdiff type : function | algebraic/&gt;</code>
-         type : function | algebraic
-  </dd>
+    
+     type : "function" | "algebraic"
+    <p>
+      In pragmatic Content MathML, the partialdiff operator can be applied to
+      an expression with bound variables given by bvar elements, which are
+      children of the containing apply element. The bvar elements may
+      also contain degree element, which specify the order of the partial
+      derivative to be taken in that variable. In strict Content MathML, the degrees are
+      given as a list in the first argument of the partialdiff symbol.</p>
+               <p>
+  
+  
+  
+    x
+    n
+  
+  
+    y
+    m
+  
+  xy
+  
+  
+    
+    listnm
+    
+      
+      x
+      y
+      xy
+    
+  </p>
+               <p>Where a total degree of differentiation must be specified, this is indicated by use of
+a degree element at the top level, i.e. without any associated bvar, as
+a child of the containing apply element. Each degree schema used with
+partialdiff is expected to contain a single child schema. For example,</p>
+               <p>
+  
+    
+    
+      2
+      x
+    
+    y
+    x
+    4
+    f
+  </p>
+               <p>
+denotes the mixed partial derivative ( d4 / d2x
+dy dx ) f. In strict Content MathML, the overall degree
+cannot be given.</p>
+               <p>MiKowhat do do about this?</p>
+               <p>    </p>
+            </dd>
             <dt>
                <span class="dt">Role:</span>
             </dt>
@@ -1347,113 +1398,62 @@ a unary function. The first argument is n, and the second the unary function.
             </dt>
             <dd>
                <p>
-This symbol is used to express partial differentiation of a function
-of more than one variable. It has two arguments, the first is a list of 
-integers which index the variables of the function, the second is the function.
-</p>
+    This symbol is used to express partial differentiation of a function of more than one
+    variable. It has two arguments, the first is a list of integers which index the
+    variables of the function, the second is the function.
+  </p>
             </dd>
             <dt>
                <span class="dt">description:</span>
             </dt>
             <dd>
                <p>
-          This symbol is used to express partial differentiation.  It occurs in two
-          forms: one form corresponding to the differentiation of algebraic expressions
-          (often displayed using the Leibnitz notation), and the other to express partial
-          derivatives of actual functions (often expressed as $D_{1,2} f $ )</p>
-               <p>	  For the first form, the arguments are the bound variables followed by the
-	  algebraic expression.  The result is an algebraic expression.  Repetitions of
-	  the bound variables are indicated using the degree element.  The total degree is
-	  indicated by use of a degree element at the top level.</p>
-               <p>          For the second form, there are two arguments: a list of indices indicating by
-          position which coordinates are involved in constructing the partial derivatives,
-          and the actual function.  The coordinates may be repeated.
-        </p>
+    This symbol is used to express partial differentiation. There are two arguments: a
+    list of indices indicating by position which coordinates are involved in constructing
+    the partial derivatives, and the actual function.  The coordinates may be repeated.
+    
+  </p>
             </dd>
             <dt>
                <span class="dt">discussion:</span>
             </dt>
             <dd>
                <p>
-	  The partialdiff element is the partial differentiation operator
-	  element for functions or algebraic expressions in several variables. </p>
-               <p>	  In the case of algebraic expressions, the bound variables are given by
-	  bvar elements, which are children of the containing apply
-	  element. The bvar elements may also contain degree element,
-	  which specify the order of the partial derivative to be taken in that
-	  variable.</p>
-               <p>	  For the expression case the actual variable is designated by a bvar
-	  element that is a child of the containing apply element. The
-	  bvar elements may also contain a degree element, which
-	  specifies the order of the derivative to be taken.</p>
-               <p>	  Where a total degree of differentiation must be specified, this is indicated
-	  by use of a degree element at the top level, i.e. without any
-	  associated bvar, as a child of the containing apply
-	  element.</p>
-               <p>	  For the case of partial differentiation of a function, the containing
-	  apply takes two child elements: firstly a list of indices indicating by
-	  position which coordinates are involved in constructing the partial derivatives,
-	  and secondly the actual function to be partially differentiated.  The
-	  coordinates may be repeated.</p>
-               <p>	  The partialdiff operator accepts zero or more bvar
-	  schemata, and an optional degree qualifier schema. The bvar
-	  schema specify, in order, the variables with respect to which the derivative is
-	  being taken. Each bvar element may contain a degree schema
-	  which is used to specify the order of the derivative being taken with respect to
-	  that variable. The optional degree schema qualifier associated with the
-	  partialdiff element itself (that is, appearing as a child of the
-	  enclosing apply element rather than of one of the bvar
-	  qualifiers) is used to represent the total degree of the differentiation. Each
-	  degree schema used with partialdiff is expected to contain a
-	  single child schema. For example,</p>
-               <p>
-  
-    
-    
-      
-      
-	2
-	x
-      
-      y
-      x
-      4
-      f
-    
+    For the case of partial differentiation of a function, the containing
+    apply takes two child elements: firstly a list of indices indicating by
+    position which coordinates are involved in constructing the partial derivatives, and
+    secondly the actual function to be partially differentiated.  The coordinates may be
+    repeated.
   </p>
-               <p>
-            denotes the mixed partial derivative ( d4 / d2x
-	  dy dx ) f.
-	</p>
             </dd>
             <dt>
                <span class="dt">Property:</span>
             </dt>
             <dd>
                <p>
-            ForAll( [x,y], partialdiff( x * y , x ) = partialdiff(x,x)*y + partialdiff(y,x)*x )
-          </p>
+      ForAll( [x,y], partialdiff( x * y , x ) = partialdiff(x,x)*y + partialdiff(y,x)*x )
+  </p>
             </dd>
             <dt>
                <span class="dt">Property:</span>
             </dt>
             <dd>
                <p>
-            ForAll( [x,a,b], partialdiff( a + b , x ) = partialdiff(a,x) + partialdiff(b,x) )
-          </p>
+      ForAll( [x,a,b], partialdiff( a + b , x ) = partialdiff(a,x) + partialdiff(b,x) )
+  </p>
             </dd>
             <dt>
                <span class="dt">Example:</span>
             </dt>
             <dd>
                <p>
-            d^k/(dx^m dy^n) f(x,y)
-          </p>
-	              <div>
-                  <button id="d40e736xmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e736xml')">XML (MathML)</button>
+      d^k/(dx^m dy^n) f(x,y)
+    </p>
+               <div>
+                  <button id="d40e852xmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e852xml')">XML (MathML)</button>
                </div>
-               <pre id="d40e736xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d40e852xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
 &lt;apply&gt;
   &lt;partialdiff/&gt;
   &lt;bind&gt;
@@ -1466,30 +1466,30 @@ integers which index the variables of the function, the second is the function.
 &lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e736stricta" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e736strict')">Strict Content MathML</button>
+                  <button id="d40e852stricta" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e852strict')">Strict Content MathML</button>
                </div>
-               <pre id="d40e736strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d40e852strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
 &lt;apply&gt;
   &lt;csymbol cd="calculus1"&gt;partialdiff&lt;/csymbol&gt;
   &lt;bind&gt;&lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;&lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/bvar&gt;&lt;apply&gt;&lt;ci&gt;f&lt;/ci&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/apply&gt;&lt;/bind&gt;
 &lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e736cmmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e736cmml')">OpenMath</button>
+                  <button id="d40e852cmmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e852cmml')">OpenMath</button>
                </div>
-               <pre id="d40e736cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
+               <pre id="d40e852cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
 &lt;OMA&gt;
   &lt;OMS cd="calculus1" name="partialdiff"/&gt;
   &lt;OMBIND&gt;&lt;OMS cd="fns1" name="lambda"/&gt;&lt;OMBVAR&gt;&lt;OMV name="x"/&gt;&lt;OMV name="y"/&gt;&lt;/OMBVAR&gt;&lt;OMA&gt;&lt;OMV name="f"/&gt;&lt;OMV name="x"/&gt;&lt;OMV name="y"/&gt;&lt;/OMA&gt;&lt;/OMBIND&gt;
 &lt;/OMA&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d40e736prefa" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e736pref')">Prefix form</button>
+                  <button id="d40e852prefa" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e852pref')">Prefix form</button>
                </div>
-               <div id="d40e736pref" style="display:none; margin-top: 0.5em">
+               <div id="d40e852pref" style="display:none; margin-top: 0.5em">
                   <a href="calculus1.xhtml#partialdiff">partialdiff</a>
 (<a href="fns1.xhtml#lambda">lambda</a>
 [ <i>x</i> 
@@ -1501,10 +1501,10 @@ integers which index the variables of the function, the second is the function.
 
 </div>
                <div>
-                  <button id="d40e736mmla" style="width:15em; background-color:#AAFFAA"
-                          onclick="divfold('d40e736mml')">Presentation MathML</button>
+                  <button id="d40e852mmla" style="width:15em; background-color:#AAFFAA"
+                          onclick="divfold('d40e852mml')">Presentation MathML</button>
                </div>
-               <div id="d40e736mml" style="display:block; margin-top: 0.5em">
+               <div id="d40e852mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mo xmlns="http://www.w3.org/1998/Math/MathML"
                          xmlns:om="http://www.openmath.org/OpenMath">∂</mo>
@@ -1542,78 +1542,91 @@ integers which index the variables of the function, the second is the function.
             </dt>
             <dd>
                <p>
-            d^2/(dx dy) f(x,y)
-          </p>
-	              <div>
-                  <button id="d40e784xmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e784xml')">XML (MathML)</button>
-               </div>
-               <pre id="d40e784xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-&lt;bind&gt;&lt;partialdiff/&gt;
-  &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
-  &lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/bvar&gt;
-  &lt;apply&gt;&lt;ci type="function"&gt;f&lt;/ci&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/apply&gt;
-&lt;/bind&gt;&lt;/math&gt;</pre>
+    d^2/(dx dy) f(x,y)
+  </p>
                <div>
-                  <button id="d40e784stricta" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e784strict')">Strict Content MathML</button>
+                  <button id="d40e900xmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e900xml')">XML (MathML)</button>
                </div>
-               <pre id="d40e784strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-&lt;bind&gt;&lt;csymbol cd="calculus1"&gt;partialdiff&lt;/csymbol&gt;&lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/bvar&gt;&lt;apply&gt;&lt;ci&gt;f&lt;/ci&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/apply&gt;&lt;/bind&gt;&lt;/math&gt;</pre>
+               <pre id="d40e900xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+    &lt;apply&gt;
+      &lt;partialdiff/&gt;
+      &lt;bind&gt;
+	&lt;lambda/&gt;
+	&lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+	&lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/bvar&gt;
+	&lt;apply&gt;&lt;ci type="function"&gt;f&lt;/ci&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/apply&gt;
+      &lt;/bind&gt;
+    &lt;/apply&gt;
+  &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e784cmmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e784cmml')">OpenMath</button>
+                  <button id="d40e900stricta" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e900strict')">Strict Content MathML</button>
                </div>
-               <pre id="d40e784cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
-&lt;OMBIND&gt;&lt;OMS cd="calculus1" name="partialdiff"/&gt;&lt;OMBVAR&gt;&lt;OMV name="x"/&gt;&lt;OMV name="y"/&gt;&lt;/OMBVAR&gt;&lt;OMA&gt;&lt;OMV name="f"/&gt;&lt;OMV name="x"/&gt;&lt;OMV name="y"/&gt;&lt;/OMA&gt;&lt;/OMBIND&gt;&lt;/OMOBJ&gt;</pre>
+               <pre id="d40e900strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+    &lt;apply&gt;
+      &lt;csymbol cd="calculus1"&gt;partialdiff&lt;/csymbol&gt;
+      &lt;bind&gt;&lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;&lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/bvar&gt;&lt;apply&gt;&lt;ci&gt;f&lt;/ci&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/apply&gt;&lt;/bind&gt;
+    &lt;/apply&gt;
+  &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e784prefa" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e784pref')">Prefix form</button>
+                  <button id="d40e900cmmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e900cmml')">OpenMath</button>
                </div>
-               <div id="d40e784pref" style="display:none; margin-top: 0.5em">
+               <pre id="d40e900cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="calculus1" name="partialdiff"/&gt;
+      &lt;OMBIND&gt;&lt;OMS cd="fns1" name="lambda"/&gt;&lt;OMBVAR&gt;&lt;OMV name="x"/&gt;&lt;OMV name="y"/&gt;&lt;/OMBVAR&gt;&lt;OMA&gt;&lt;OMV name="f"/&gt;&lt;OMV name="x"/&gt;&lt;OMV name="y"/&gt;&lt;/OMA&gt;&lt;/OMBIND&gt;
+    &lt;/OMA&gt;
+  &lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d40e900prefa" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e900pref')">Prefix form</button>
+               </div>
+               <div id="d40e900pref" style="display:none; margin-top: 0.5em">
                   <a href="calculus1.xhtml#partialdiff">partialdiff</a>
+(<a href="fns1.xhtml#lambda">lambda</a>
 [ <i>x</i> 
                   <i>y</i>] .
 ( <i>f</i>
 ( <i>x</i>,  <i>y</i>)
 )
-</div>
+)
+
+  </div>
                <div>
-                  <button id="d40e784mmla" style="width:15em; background-color:#AAFFAA"
-                          onclick="divfold('d40e784mml')">Presentation MathML</button>
+                  <button id="d40e900mmla" style="width:15em; background-color:#AAFFAA"
+                          onclick="divfold('d40e900mml')">Presentation MathML</button>
                </div>
-               <div id="d40e784mml" style="display:block; margin-top: 0.5em">
+               <div id="d40e900mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mo xmlns="http://www.w3.org/1998/Math/MathML"
+                         xmlns:om="http://www.openmath.org/OpenMath">∂</mo>
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
-                        <mo>∂</mo>
+                        <mo>(</mo>
                         <mrow>
-                           <mo>(</mo>
+                           <mo>λ</mo>
+                           <mo> </mo>
                            <mrow>
                               <mi>x</mi>
                               <mo>,</mo>
                               <mi>y</mi>
                            </mrow>
-                           <mo>)</mo>
-                        </mrow>
-                        <mo> </mo>
-                        <mrow>
-                           <mi>x</mi>
-                           <mo>,</mo>
-                           <mi>y</mi>
-                        </mrow>
-                        <mo>.</mo>
-                        <mrow>
-                           <mi>f</mi>
-                           <mo>⁡</mo>
+                           <mo>.</mo>
                            <mrow>
-                              <mo>(</mo>
-                              <mi>x</mi>
-                              <mo>,</mo>
-                              <mi>y</mi>
-                              <mo>)</mo>
+                              <mi>f</mi>
+                              <mo>⁡</mo>
+                              <mrow>
+                                 <mo>(</mo>
+                                 <mi>x</mi>
+                                 <mo>,</mo>
+                                 <mi>y</mi>
+                                 <mo>)</mo>
+                              </mrow>
                            </mrow>
                         </mrow>
+                        <mo>)</mo>
                      </mrow>
                   </m:math>
                </div>
@@ -1623,45 +1636,45 @@ integers which index the variables of the function, the second is the function.
             </dt>
             <dd>
                <p>
-            D_{1,1,3}(f) 
-          </p>
-	              <div>
-                  <button id="d40e815xmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e815xml')">XML (MathML)</button>
+    D_{1,1,3}(f) 
+  </p>
+               <div>
+                  <button id="d40e938xmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e938xml')">XML (MathML)</button>
                </div>
-               <pre id="d40e815xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;partialdiff/&gt;
+               <pre id="d40e938xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;partialdiff/&gt;
   &lt;list&gt;&lt;cn&gt;1&lt;/cn&gt;&lt;cn&gt;1&lt;/cn&gt;&lt;cn&gt;3&lt;/cn&gt;&lt;/list&gt;
   &lt;ci type="function"&gt;f&lt;/ci&gt;
 &lt;/apply&gt;&lt;/math&gt;</pre>
                <div>
-                  <button id="d40e815stricta" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e815strict')">Strict Content MathML</button>
+                  <button id="d40e938stricta" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e938strict')">Strict Content MathML</button>
                </div>
-               <pre id="d40e815strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;csymbol cd="calculus1"&gt;partialdiff&lt;/csymbol&gt;
+               <pre id="d40e938strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;csymbol cd="calculus1"&gt;partialdiff&lt;/csymbol&gt;
   &lt;csymbol cd="list1"&gt;list&lt;/csymbol&gt;
   &lt;ci&gt;f&lt;/ci&gt;
 &lt;/apply&gt;&lt;/math&gt;</pre>
                <div>
-                  <button id="d40e815cmmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e815cmml')">OpenMath</button>
+                  <button id="d40e938cmmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e938cmml')">OpenMath</button>
                </div>
-               <pre id="d40e815cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMA&gt;&lt;OMS cd="calculus1" name="partialdiff"/&gt;
+               <pre id="d40e938cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMA&gt;&lt;OMS cd="calculus1" name="partialdiff"/&gt;
   &lt;OMS cd="list1" name="list"/&gt;
   &lt;OMV name="f"/&gt;
 &lt;/OMA&gt;&lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d40e815prefa" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e815pref')">Prefix form</button>
+                  <button id="d40e938prefa" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e938pref')">Prefix form</button>
                </div>
-               <div id="d40e815pref" style="display:none; margin-top: 0.5em">
+               <div id="d40e938pref" style="display:none; margin-top: 0.5em">
                   <a href="calculus1.xhtml#partialdiff">partialdiff</a>
 (<a href="list1.xhtml#list">list</a>,  <i>f</i>)
 </div>
                <div>
-                  <button id="d40e815mmla" style="width:15em; background-color:#AAFFAA"
-                          onclick="divfold('d40e815mml')">Presentation MathML</button>
+                  <button id="d40e938mmla" style="width:15em; background-color:#AAFFAA"
+                          onclick="divfold('d40e938mml')">Presentation MathML</button>
                </div>
-               <div id="d40e815mml" style="display:block; margin-top: 0.5em">
+               <div id="d40e938mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mo xmlns="http://www.w3.org/1998/Math/MathML"
                          xmlns:om="http://www.openmath.org/OpenMath">∂</mo>
@@ -1678,13 +1691,12 @@ integers which index the variables of the function, the second is the function.
                <span class="dt">Example:</span>
             </dt>
             <dd>
-An example to represent the equation:
- \partial^2{xyz}/ \partial{x}\partial{z} = y
+An example to represent the equation: \partial^2{xyz}/ \partial{x}\partial{z} = y
 <div>
-                  <button id="d40e835xmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e835xml')">XML (OpenMath)</button>
+                  <button id="d40e957xmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e957xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d40e835xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d40e957xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
 &lt;OMA&gt;
   &lt;OMS cd="relation1" name="eq"/&gt;
   &lt;OMA&gt;
@@ -1716,10 +1728,10 @@ An example to represent the equation:
 &lt;/OMA&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d40e835cmmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e835cmml')">Content MathML</button>
+                  <button id="d40e957cmmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e957cmml')">Content MathML</button>
                </div>
-               <pre id="d40e835cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d40e957cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
 &lt;apply&gt;
   &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
   &lt;apply&gt;
@@ -1747,10 +1759,10 @@ An example to represent the equation:
 &lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e835prefa" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e835pref')">Prefix form</button>
+                  <button id="d40e957prefa" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e957pref')">Prefix form</button>
                </div>
-               <div id="d40e835pref" style="display:none; margin-top: 0.5em">
+               <div id="d40e957pref" style="display:none; margin-top: 0.5em">
                   <a href="relation1.xhtml#eq">eq</a>
 (<a href="calculus1.xhtml#partialdiff">partialdiff</a>
 (<a href="list1.xhtml#list">list</a>
@@ -1771,10 +1783,10 @@ An example to represent the equation:
 
 </div>
                <div>
-                  <button id="d40e835mmla" style="width:15em; background-color:#AAFFAA"
-                          onclick="divfold('d40e835mml')">Presentation MathML</button>
+                  <button id="d40e957mmla" style="width:15em; background-color:#AAFFAA"
+                          onclick="divfold('d40e957mml')">Presentation MathML</button>
                </div>
-               <div id="d40e835mml" style="display:block; margin-top: 0.5em">
+               <div id="d40e957mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -1848,8 +1860,8 @@ An example to represent the equation:
                <span class="dt">Pragmatic MathML:</span>
             </dt>
             <dd>
-               <code>&lt;int/&gt;</code>
-            </dd>
+    
+  </dd>
             <dt>
                <span class="dt">Role:</span>
             </dt>
@@ -1859,61 +1871,54 @@ An example to represent the equation:
             </dt>
             <dd>
                <p> 
-This symbol is used to represent indefinite integration of unary functions.
-The argument is the unary function.
-</p>
-            </dd>
-            <dt>
-               <span class="dt">description:</span>
-            </dt>
-            <dd>
-               <p>
-      The indefinite integral of a function.
-    </p>
-            </dd>
-            <dt>
-               <span class="dt">discussion:</span>
-            </dt>
-            <dd>
-               <p>
-      The int element is the operator element for an integral.
-    </p>
+    This symbol is used to represent indefinite integration of unary functions.  The
+    argument is the unary function.
+  </p>
             </dd>
             <dt>
                <span class="dt">Example:</span>
             </dt>
             <dd>
-               <p>The integral over the sine function is cosine function.</p>
+               <p>
+      The integral over the sine function is cosine function.
+    </p>
                <div>
-                  <button id="d40e934xmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e934xml')">XML (MathML)</button>
+                  <button id="d40e1040xmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e1040xml')">XML (MathML)</button>
                </div>
-               <pre id="d40e934xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;eq/&gt;&lt;apply&gt;&lt;int/&gt;&lt;sin/&gt;&lt;/apply&gt;&lt;cos/&gt;&lt;/apply&gt;&lt;/math&gt;</pre>
+               <pre id="d40e1040xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+      &lt;apply&gt;&lt;eq/&gt;&lt;apply&gt;&lt;int/&gt;&lt;sin/&gt;&lt;/apply&gt;&lt;cos/&gt;&lt;/apply&gt;
+    &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e934stricta" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e934strict')">Strict Content MathML</button>
+                  <button id="d40e1040stricta" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e1040strict')">Strict Content MathML</button>
                </div>
-               <pre id="d40e934strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;&lt;apply&gt;&lt;csymbol cd="calculus1"&gt;int&lt;/csymbol&gt;&lt;csymbol cd="transc1"&gt;sin&lt;/csymbol&gt;&lt;/apply&gt;&lt;csymbol cd="transc1"&gt;cos&lt;/csymbol&gt;&lt;/apply&gt;&lt;/math&gt;</pre>
+               <pre id="d40e1040strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+      &lt;apply&gt;&lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;&lt;apply&gt;&lt;csymbol cd="calculus1"&gt;int&lt;/csymbol&gt;&lt;csymbol cd="transc1"&gt;sin&lt;/csymbol&gt;&lt;/apply&gt;&lt;csymbol cd="transc1"&gt;cos&lt;/csymbol&gt;&lt;/apply&gt;
+    &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e934cmmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e934cmml')">OpenMath</button>
+                  <button id="d40e1040cmmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e1040cmml')">OpenMath</button>
                </div>
-               <pre id="d40e934cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMA&gt;&lt;OMS cd="relation1" name="eq"/&gt;&lt;OMA&gt;&lt;OMS cd="calculus1" name="int"/&gt;&lt;OMS cd="transc1" name="sin"/&gt;&lt;/OMA&gt;&lt;OMS cd="transc1" name="cos"/&gt;&lt;/OMA&gt;&lt;/OMOBJ&gt;</pre>
+               <pre id="d40e1040cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
+      &lt;OMA&gt;&lt;OMS cd="relation1" name="eq"/&gt;&lt;OMA&gt;&lt;OMS cd="calculus1" name="int"/&gt;&lt;OMS cd="transc1" name="sin"/&gt;&lt;/OMA&gt;&lt;OMS cd="transc1" name="cos"/&gt;&lt;/OMA&gt;
+    &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d40e934prefa" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e934pref')">Prefix form</button>
+                  <button id="d40e1040prefa" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e1040pref')">Prefix form</button>
                </div>
-               <div id="d40e934pref" style="display:none; margin-top: 0.5em">
+               <div id="d40e1040pref" style="display:none; margin-top: 0.5em">
                   <a href="relation1.xhtml#eq">eq</a>
 (<a href="calculus1.xhtml#int">int</a>
 (<a href="transc1.xhtml#sin">sin</a>)
 , <a href="transc1.xhtml#cos">cos</a>)
-</div>
+
+    </div>
                <div>
-                  <button id="d40e934mmla" style="width:15em; background-color:#AAFFAA"
-                          onclick="divfold('d40e934mml')">Presentation MathML</button>
+                  <button id="d40e1040mmla" style="width:15em; background-color:#AAFFAA"
+                          onclick="divfold('d40e1040mml')">Presentation MathML</button>
                </div>
-               <div id="d40e934mml" style="display:block; margin-top: 0.5em">
+               <div id="d40e1040mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -1941,10 +1946,10 @@ function, that is:
 
 
 <div>
-                  <button id="d40e952xmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e952xml')">XML (OpenMath)</button>
+                  <button id="d40e1059xmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e1059xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d40e952xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d40e1059xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMA&gt;
     &lt;OMS cd="relation1" name="eq"/&gt;
         &lt;OMA&gt;
@@ -1976,10 +1981,10 @@ function, that is:
   &lt;/OMA&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d40e952cmmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e952cmml')">Content MathML</button>
+                  <button id="d40e1059cmmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e1059cmml')">Content MathML</button>
                </div>
-               <pre id="d40e952cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d40e1059cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
   &lt;apply&gt;
     &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
         &lt;apply&gt;
@@ -2007,10 +2012,10 @@ function, that is:
   &lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e952prefa" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e952pref')">Prefix form</button>
+                  <button id="d40e1059prefa" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e1059pref')">Prefix form</button>
                </div>
-               <div id="d40e952pref" style="display:none; margin-top: 0.5em">
+               <div id="d40e1059pref" style="display:none; margin-top: 0.5em">
                   <a href="relation1.xhtml#eq">eq</a>
 (<a href="calculus1.xhtml#diff">diff</a>
 (<a href="fns1.xhtml#lambda">lambda</a>
@@ -2034,10 +2039,10 @@ function, that is:
 
 </div>
                <div>
-                  <button id="d40e952mmla" style="width:15em; background-color:#AAFFAA"
-                          onclick="divfold('d40e952mml')">Presentation MathML</button>
+                  <button id="d40e1059mmla" style="width:15em; background-color:#AAFFAA"
+                          onclick="divfold('d40e1059mml')">Presentation MathML</button>
                </div>
-               <div id="d40e952mml" style="display:block; margin-top: 0.5em">
+               <div id="d40e1059mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -2097,10 +2102,10 @@ function, that is:
 An example which represents the equation:
 integral(x +-&gt; sin(x)) w.r.t. x = x +-&gt; -cos(x)
 <div>
-                  <button id="d40e1007xmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e1007xml')">XML (OpenMath)</button>
+                  <button id="d40e1114xmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e1114xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d40e1007xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d40e1114xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMA&gt;
     &lt;OMS cd="relation1" name="eq"/&gt;
     &lt;OMA&gt;
@@ -2132,10 +2137,10 @@ integral(x +-&gt; sin(x)) w.r.t. x = x +-&gt; -cos(x)
   &lt;/OMA&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d40e1007cmmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e1007cmml')">Content MathML</button>
+                  <button id="d40e1114cmmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e1114cmml')">Content MathML</button>
                </div>
-               <pre id="d40e1007cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d40e1114cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
   &lt;apply&gt;
     &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
     &lt;apply&gt;
@@ -2163,10 +2168,10 @@ integral(x +-&gt; sin(x)) w.r.t. x = x +-&gt; -cos(x)
   &lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e1007prefa" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e1007pref')">Prefix form</button>
+                  <button id="d40e1114prefa" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e1114pref')">Prefix form</button>
                </div>
-               <div id="d40e1007pref" style="display:none; margin-top: 0.5em">
+               <div id="d40e1114pref" style="display:none; margin-top: 0.5em">
                   <a href="relation1.xhtml#eq">eq</a>
 (<a href="calculus1.xhtml#int">int</a>
 (<a href="fns1.xhtml#lambda">lambda</a>
@@ -2190,10 +2195,10 @@ integral(x +-&gt; sin(x)) w.r.t. x = x +-&gt; -cos(x)
 
 </div>
                <div>
-                  <button id="d40e1007mmla" style="width:15em; background-color:#AAFFAA"
-                          onclick="divfold('d40e1007mml')">Presentation MathML</button>
+                  <button id="d40e1114mmla" style="width:15em; background-color:#AAFFAA"
+                          onclick="divfold('d40e1114mml')">Presentation MathML</button>
                </div>
-               <div id="d40e1007mml" style="display:block; margin-top: 0.5em">
+               <div id="d40e1114mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -2265,8 +2270,8 @@ integral(x +-&gt; sin(x)) w.r.t. x = x +-&gt; -cos(x)
                <span class="dt">Pragmatic MathML:</span>
             </dt>
             <dd>
-               <code>&lt;defint/&gt;</code>
-            </dd>
+    
+  </dd>
             <dt>
                <span class="dt">Role:</span>
             </dt>
@@ -2276,10 +2281,10 @@ integral(x +-&gt; sin(x)) w.r.t. x = x +-&gt; -cos(x)
             </dt>
             <dd>
                <p> 
-This symbol is used to represent definite integration of unary
-functions. It takes two arguments; the first being the range (e.g. a
-set) of integration, and the second the function.
-</p>
+    This symbol is used to represent definite integration of unary functions. It takes two
+    arguments; the first being the range (e.g. a set) of integration, and the second the
+    function.
+  </p>
             </dd>
             <dt>
                <span class="dt">description:</span>
@@ -2293,46 +2298,69 @@ set) of integration, and the second the function.
                <span class="dt">Example:</span>
             </dt>
             <dd>
-               <p>This example specifies an interval of the real line as the domain of
-      integration with an interval element.  In this form the integrand is
-      provided as a function and no mention is made of a bound variable.
+               <p>
+	This example specifies an interval of the real line as the domain of
+	integration with an interval element.  In this form the integrand is
+	provided as a function and no mention is made of a bound variable.
       </p>
                <div>
-                  <button id="d40e1097xmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e1097xml')">XML (MathML)</button>
+                  <button id="d40e1203xmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e1203xml')">XML (MathML)</button>
                </div>
-               <pre id="d40e1097xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;defint/&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;ci&gt;b&lt;/ci&gt;&lt;cos/&gt;&lt;/apply&gt;&lt;/math&gt;</pre>
+               <pre id="d40e1203xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+	&lt;apply&gt;
+	  &lt;defint/&gt;
+	  &lt;apply&gt;&lt;interval/&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;ci&gt;b&lt;/ci&gt;&lt;/apply&gt;
+	  &lt;cos/&gt;
+	&lt;/apply&gt;
+      &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e1097stricta" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e1097strict')">Strict Content MathML</button>
+                  <button id="d40e1203stricta" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e1203strict')">Strict Content MathML</button>
                </div>
-               <pre id="d40e1097strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;csymbol cd="calculus1"&gt;defint&lt;/csymbol&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;ci&gt;b&lt;/ci&gt;&lt;csymbol cd="transc1"&gt;cos&lt;/csymbol&gt;&lt;/apply&gt;&lt;/math&gt;</pre>
+               <pre id="d40e1203strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+	&lt;apply&gt;
+	  &lt;csymbol cd="calculus1"&gt;defint&lt;/csymbol&gt;
+	  &lt;apply&gt;&lt;csymbol cd="interval1"&gt;interval&lt;/csymbol&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;ci&gt;b&lt;/ci&gt;&lt;/apply&gt;
+	  &lt;csymbol cd="transc1"&gt;cos&lt;/csymbol&gt;
+	&lt;/apply&gt;
+      &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e1097cmmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e1097cmml')">OpenMath</button>
+                  <button id="d40e1203cmmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e1203cmml')">OpenMath</button>
                </div>
-               <pre id="d40e1097cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMA&gt;&lt;OMS cd="calculus1" name="defint"/&gt;&lt;OMV name="a"/&gt;&lt;OMV name="b"/&gt;&lt;OMS cd="transc1" name="cos"/&gt;&lt;/OMA&gt;&lt;/OMOBJ&gt;</pre>
+               <pre id="d40e1203cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="calculus1" name="defint"/&gt;
+	  &lt;OMA&gt;&lt;OMS cd="interval1" name="interval"/&gt;&lt;OMV name="a"/&gt;&lt;OMV name="b"/&gt;&lt;/OMA&gt;
+	  &lt;OMS cd="transc1" name="cos"/&gt;
+	&lt;/OMA&gt;
+      &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d40e1097prefa" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e1097pref')">Prefix form</button>
+                  <button id="d40e1203prefa" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e1203pref')">Prefix form</button>
                </div>
-               <div id="d40e1097pref" style="display:none; margin-top: 0.5em">
-                  <a href="calculus1.xhtml#defint">defint</a>
-( <i>a</i>,  <i>b</i>, <a href="transc1.xhtml#cos">cos</a>)
-</div>
+               <div id="d40e1203pref" style="display:none; margin-top: 0.5em">
+	                 <a href="calculus1.xhtml#defint">defint</a>
+(<a href="interval1.xhtml#interval">interval</a>
+( <i>a</i>,  <i>b</i>)
+, <a href="transc1.xhtml#cos">cos</a>)
+
+      </div>
                <div>
-                  <button id="d40e1097mmla" style="width:15em; background-color:#AAFFAA"
-                          onclick="divfold('d40e1097mml')">Presentation MathML</button>
+                  <button id="d40e1203mmla" style="width:15em; background-color:#AAFFAA"
+                          onclick="divfold('d40e1203mml')">Presentation MathML</button>
                </div>
-               <div id="d40e1097mml" style="display:block; margin-top: 0.5em">
+               <div id="d40e1203mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
-                     <msub xmlns="http://www.w3.org/1998/Math/MathML"
-                           xmlns:om="http://www.openmath.org/OpenMath">
+                     <munderover xmlns="http://www.w3.org/1998/Math/MathML"
+                                 xmlns:om="http://www.openmath.org/OpenMath">
                         <mo>∫</mo>
                         <mi>a</mi>
-                     </msub>
+                        <mi>b</mi>
+                     </munderover>
                      <mi xmlns="http://www.w3.org/1998/Math/MathML"
-                         xmlns:om="http://www.openmath.org/OpenMath">b</mi>
+                         xmlns:om="http://www.openmath.org/OpenMath">cos</mi>
                   </m:math>
                </div>
             </dd>
@@ -2344,10 +2372,10 @@ set) of integration, and the second the function.
 
 
 <div>
-                  <button id="d40e1116xmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e1116xml')">XML (OpenMath)</button>
+                  <button id="d40e1228xmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e1228xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d40e1116xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d40e1228xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMBIND&gt;
     &lt;OMS cd="quant1" name="forall"/&gt;
     &lt;OMBVAR&gt;
@@ -2399,10 +2427,10 @@ set) of integration, and the second the function.
   &lt;/OMBIND&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d40e1116cmmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e1116cmml')">Content MathML</button>
+                  <button id="d40e1228cmmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e1228cmml')">Content MathML</button>
                </div>
-               <pre id="d40e1116cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d40e1228cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
   &lt;bind&gt;
     &lt;csymbol cd="quant1"&gt;forall&lt;/csymbol&gt;
     &lt;bvar&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;b&lt;/ci&gt;&lt;/bvar&gt;
@@ -2447,10 +2475,10 @@ set) of integration, and the second the function.
   &lt;/bind&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e1116prefa" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e1116pref')">Prefix form</button>
+                  <button id="d40e1228prefa" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e1228pref')">Prefix form</button>
                </div>
-               <div id="d40e1116pref" style="display:none; margin-top: 0.5em">
+               <div id="d40e1228pref" style="display:none; margin-top: 0.5em">
                   <a href="quant1.xhtml#forall">forall</a>
 [
        <i>a</i>
@@ -2486,10 +2514,10 @@ set) of integration, and the second the function.
 
 </div>
                <div>
-                  <button id="d40e1116mmla" style="width:15em; background-color:#AAFFAA"
-                          onclick="divfold('d40e1116mml')">Presentation MathML</button>
+                  <button id="d40e1228mmla" style="width:15em; background-color:#AAFFAA"
+                          onclick="divfold('d40e1228mml')">Presentation MathML</button>
                </div>
-               <div id="d40e1116mml" style="display:block; margin-top: 0.5em">
+               <div id="d40e1228mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -2566,10 +2594,10 @@ integral over [b,c]
 
 
 <div>
-                  <button id="d40e1211xmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e1211xml')">XML (OpenMath)</button>
+                  <button id="d40e1323xmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e1323xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d40e1211xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d40e1323xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMBIND&gt;
     &lt;OMS cd="quant1" name="forall"/&gt;
     &lt;OMBVAR&gt;
@@ -2656,10 +2684,10 @@ integral over [b,c]
   &lt;/OMBIND&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d40e1211cmmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e1211cmml')">Content MathML</button>
+                  <button id="d40e1323cmmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e1323cmml')">Content MathML</button>
                </div>
-               <pre id="d40e1211cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d40e1323cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
   &lt;bind&gt;
     &lt;csymbol cd="quant1"&gt;forall&lt;/csymbol&gt;
     &lt;bvar&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;b&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;c&lt;/ci&gt;&lt;/bvar&gt;
@@ -2736,10 +2764,10 @@ integral over [b,c]
   &lt;/bind&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e1211prefa" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e1211pref')">Prefix form</button>
+                  <button id="d40e1323prefa" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e1323pref')">Prefix form</button>
                </div>
-               <div id="d40e1211pref" style="display:none; margin-top: 0.5em">
+               <div id="d40e1323pref" style="display:none; margin-top: 0.5em">
                   <a href="quant1.xhtml#forall">forall</a>
 [
        <i>a</i>
@@ -2795,10 +2823,10 @@ integral over [b,c]
 
 </div>
                <div>
-                  <button id="d40e1211mmla" style="width:15em; background-color:#AAFFAA"
-                          onclick="divfold('d40e1211mml')">Presentation MathML</button>
+                  <button id="d40e1323mmla" style="width:15em; background-color:#AAFFAA"
+                          onclick="divfold('d40e1323mml')">Presentation MathML</button>
                </div>
-               <div id="d40e1211mml" style="display:block; margin-top: 0.5em">
+               <div id="d40e1323mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -2911,10 +2939,10 @@ integral over [b,c]
 An example to represent the definite integration of sin(x) between the points 
 -1.0 and 1.0.
 <div>
-                  <button id="d40e1362xmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e1362xml')">XML (OpenMath)</button>
+                  <button id="d40e1474xmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e1474xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d40e1362xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d40e1474xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMA&gt;
     &lt;OMS cd="calculus1" name="defint"/&gt;
     &lt;OMA&gt;
@@ -2935,10 +2963,10 @@ An example to represent the definite integration of sin(x) between the points
   &lt;/OMA&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d40e1362cmmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e1362cmml')">Content MathML</button>
+                  <button id="d40e1474cmmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e1474cmml')">Content MathML</button>
                </div>
-               <pre id="d40e1362cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d40e1474cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
   &lt;apply&gt;
     &lt;csymbol cd="calculus1"&gt;defint&lt;/csymbol&gt;
     &lt;apply&gt;
@@ -2957,10 +2985,10 @@ An example to represent the definite integration of sin(x) between the points
   &lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e1362prefa" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e1362pref')">Prefix form</button>
+                  <button id="d40e1474prefa" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e1474pref')">Prefix form</button>
                </div>
-               <div id="d40e1362pref" style="display:none; margin-top: 0.5em">
+               <div id="d40e1474pref" style="display:none; margin-top: 0.5em">
                   <a href="calculus1.xhtml#defint">defint</a>
 (<a href="interval1.xhtml#interval">interval</a>
 ( -1.0 ,  1.0 )
@@ -2975,10 +3003,10 @@ An example to represent the definite integration of sin(x) between the points
 
 </div>
                <div>
-                  <button id="d40e1362mmla" style="width:15em; background-color:#AAFFAA"
-                          onclick="divfold('d40e1362mml')">Presentation MathML</button>
+                  <button id="d40e1474mmla" style="width:15em; background-color:#AAFFAA"
+                          onclick="divfold('d40e1474mml')">Presentation MathML</button>
                </div>
-               <div id="d40e1362mml" style="display:block; margin-top: 0.5em">
+               <div id="d40e1474mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <munderover xmlns="http://www.w3.org/1998/Math/MathML"
                                  xmlns:om="http://www.openmath.org/OpenMath">
@@ -3015,10 +3043,10 @@ An example to represent the definite integration of sin(x) between the points
 An example to represent the definite integration of f(x), for x in the
 set C:
 <div>
-                  <button id="d40e1400xmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e1400xml')">XML (OpenMath)</button>
+                  <button id="d40e1511xmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e1511xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d40e1400xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d40e1511xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMA&gt;
     &lt;OMS name="defint" cd="calculus1"/&gt;
     &lt;OMV name="C"/&gt;
@@ -3035,10 +3063,10 @@ set C:
   &lt;/OMA&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d40e1400cmmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e1400cmml')">Content MathML</button>
+                  <button id="d40e1511cmmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e1511cmml')">Content MathML</button>
                </div>
-               <pre id="d40e1400cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d40e1511cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
   &lt;apply&gt;
     &lt;csymbol cd="calculus1"&gt;defint&lt;/csymbol&gt;
     &lt;ci&gt;C&lt;/ci&gt;
@@ -3053,10 +3081,10 @@ set C:
   &lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e1400prefa" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e1400pref')">Prefix form</button>
+                  <button id="d40e1511prefa" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e1511pref')">Prefix form</button>
                </div>
-               <div id="d40e1400pref" style="display:none; margin-top: 0.5em">
+               <div id="d40e1511pref" style="display:none; margin-top: 0.5em">
                   <a href="calculus1.xhtml#defint">defint</a>
 ( <i>C</i>, <a href="fns1.xhtml#lambda">lambda</a>
 [
@@ -3069,10 +3097,10 @@ set C:
 
 </div>
                <div>
-                  <button id="d40e1400mmla" style="width:15em; background-color:#AAFFAA"
-                          onclick="divfold('d40e1400mml')">Presentation MathML</button>
+                  <button id="d40e1511mmla" style="width:15em; background-color:#AAFFAA"
+                          onclick="divfold('d40e1511mml')">Presentation MathML</button>
                </div>
-               <div id="d40e1400mml" style="display:block; margin-top: 0.5em">
+               <div id="d40e1511mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <msub xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
