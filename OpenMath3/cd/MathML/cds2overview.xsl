@@ -30,7 +30,7 @@
       <name>MiKo</name>
       <edtext>
 	The list is generated from the MathML3 Content Dictionaries at 
-	<loc href="{@baseuri}"><xsl:value-of select="@baseuri"/></loc>. 
+	<loc href="{@baseuri}/"><xsl:value-of select="@baseuri"/>/</loc>. 
 	These are the result of merging material from the MathML2 and 
 	OpenMath2 content dictionaries, they are under review. We have 
 	already done some work on the <code>arith1</code> CD to show how 
