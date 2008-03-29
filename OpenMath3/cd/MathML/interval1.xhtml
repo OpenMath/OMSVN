@@ -127,8 +127,8 @@
                <span class="dt">Pragmatic MathML:</span>
             </dt>
             <dd>
-               <code>&lt;integer_interval/&gt;</code>
-            </dd>
+    
+  </dd>
             <dt>
                <span class="dt">Role:</span>
             </dt>
@@ -221,11 +221,34 @@ The integer interval 1, 2, ..., 10.
          </h2>
          <dl>
             <dt>
+               <span class="dt">Title:</span>
+            </dt>
+            <dd>
+               <p>Interval</p>
+            </dd>
+            <dt>
                <span class="dt">Pragmatic MathML:</span>
             </dt>
             <dd>
-               <code>&lt;interval&gt; ... &lt;/interval&gt;</code>
     
+     closure : "closed" | "open" | "open-closed" | "closed-open"
+     type : MathMLType
+    <p>
+       In pragmatic Content MathML, the interval element takes an attribute
+      closure, which can take on any of the values open,
+      closed, open-closed, or
+      closed-open, with a default value of closed.</p>
+               <p>      In strict Content MathML, the interval symbol is reserved for an
+      interval whose closure property is not specified. For with closure information, we
+      use the interval_oo, interval_oo,
+      interval_oo, and interval_oo symbols defined below.
+      
+	
+	interval_oo
+      
+      Moreover, the interval element can be used as a container element in pragmatic Content MathML.
+      </p>
+               <p>    </p>
             </dd>
             <dt>
                <span class="dt">Role:</span>
@@ -246,29 +269,25 @@ The integer interval 1, 2, ..., 10.
             </dt>
             <dd>
                <p>
-      
-	This is the MathML constructor element for building an interval on the real line.
-	While an interval can be expressed by combining relations appropriately, they
-	occur here explicitly because of the frequency of their use.
-      
-    </p>
+    
+      This is the MathML constructor element for building an interval on the real line.
+      While an interval can be expressed by combining relations appropriately, they
+      occur here explicitly because of the frequency of their use.
+    
+  </p>
             </dd>
             <dt>
                <span class="dt">discussion:</span>
             </dt>
             <dd>
                <p>
-      The interval element is used to represent simple mathematical intervals
-      of the real number line.  It takes an attribute closure, which can take
-      on any of the values open, closed,
-      open-closed, or closed-open, with a default value
-      of closed.
-      A single interval element occuring as the second child of an
-      apply element and preceded by one of the pre-defined n-ary operators is
-      interpreted as a shorthand notation for a domainofapplication.  All other
-      uses of an interval element as a child of an apply should be interpreted as
-      ordinary function arguments unless otherwise dictated by the function
-      definition.
+    The interval element is used to represent simple mathematical intervals of
+    the real number line. 
+    A single interval element occuring as the second child of an
+    apply element and preceded by one of the pre-defined n-ary operators is
+    interpreted as a shorthand notation for a domainofapplication.  All other
+    uses of an interval element as a child of an apply should be interpreted as
+    ordinary function arguments unless otherwise dictated by the function definition.
       More general domains should be constructed using a domainofapplication
       element or one of the other shortcut notations described in .
       The interval element expects two child elements that evaluate to real
@@ -277,11 +296,12 @@ The integer interval 1, 2, ..., 10.
                <p>      The interval element denotes an interval on the real line with the
       values represented by its children as end points. The closure attribute
       is used to qualify the type of interval being represented. For example,</p>
-               <p>
-  
-    ab</p>
-               <p>
-      represents the open-closed interval often written (a,b].
+               <p>      
+	
+	  ab
+	
+      </p>
+               <p>      represents the open-closed interval often written (a,b].
     </p>
             </dd>
             <dt>
@@ -289,41 +309,41 @@ The integer interval 1, 2, ..., 10.
             </dt>
             <dd>
                <div>
-                  <button id="d40e208xmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e208xml')">XML (MathML)</button>
+                  <button id="d40e258xmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e258xml')">XML (MathML)</button>
                </div>
-               <pre id="d40e208xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-&lt;interval closure="open"&gt;
-  &lt;ci&gt;x&lt;/ci&gt;
-  &lt;cn&gt;1&lt;/cn&gt;
-&lt;/interval&gt;
-&lt;/math&gt;</pre>
+               <pre id="d40e258xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+    &lt;interval closure="open"&gt;
+      &lt;ci&gt;x&lt;/ci&gt;
+      &lt;cn&gt;1&lt;/cn&gt;
+    &lt;/interval&gt;
+  &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e208stricta" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e208strict')">Strict Content MathML</button>
+                  <button id="d40e258stricta" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e258strict')">Strict Content MathML</button>
                </div>
-               <pre id="d40e208strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-&lt;csymbol cd="interval1"&gt;interval&lt;/csymbol&gt;
-&lt;/math&gt;</pre>
+               <pre id="d40e258strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+    &lt;csymbol cd="interval1"&gt;interval&lt;/csymbol&gt;
+  &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e208cmmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e208cmml')">OpenMath</button>
+                  <button id="d40e258cmmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e258cmml')">OpenMath</button>
                </div>
-               <pre id="d40e208cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
-&lt;OMS cd="interval1" name="interval"/&gt;
-&lt;/OMOBJ&gt;</pre>
+               <pre id="d40e258cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
+    &lt;OMS cd="interval1" name="interval"/&gt;
+  &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d40e208prefa" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e208pref')">Prefix form</button>
+                  <button id="d40e258prefa" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e258pref')">Prefix form</button>
                </div>
-               <div id="d40e208pref" style="display:none; margin-top: 0.5em">
+               <div id="d40e258pref" style="display:none; margin-top: 0.5em">
                   <a href="interval1.xhtml#interval">interval</a>
                </div>
                <div>
-                  <button id="d40e208mmla" style="width:15em; background-color:#AAFFAA"
-                          onclick="divfold('d40e208mml')">Presentation MathML</button>
+                  <button id="d40e258mmla" style="width:15em; background-color:#AAFFAA"
+                          onclick="divfold('d40e258mml')">Presentation MathML</button>
                </div>
-               <div id="d40e208mml" style="display:block; margin-top: 0.5em">
+               <div id="d40e258mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mi xmlns="http://www.w3.org/1998/Math/MathML"
                          xmlns:om="http://www.openmath.org/OpenMath">interval</mi>
@@ -335,41 +355,41 @@ The integer interval 1, 2, ..., 10.
             </dt>
             <dd>
                <div>
-                  <button id="d40e223xmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e223xml')">XML (MathML)</button>
+                  <button id="d40e273xmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e273xml')">XML (MathML)</button>
                </div>
-               <pre id="d40e223xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d40e273xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
 &lt;interval closure="open-closed"&gt;
   &lt;cn&gt;0&lt;/cn&gt;
   &lt;cn&gt;1&lt;/cn&gt;
 &lt;/interval&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e223stricta" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e223strict')">Strict Content MathML</button>
+                  <button id="d40e273stricta" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e273strict')">Strict Content MathML</button>
                </div>
-               <pre id="d40e223strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d40e273strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
 &lt;csymbol cd="interval1"&gt;interval&lt;/csymbol&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e223cmmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e223cmml')">OpenMath</button>
+                  <button id="d40e273cmmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e273cmml')">OpenMath</button>
                </div>
-               <pre id="d40e223cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
+               <pre id="d40e273cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
 &lt;OMS cd="interval1" name="interval"/&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d40e223prefa" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e223pref')">Prefix form</button>
+                  <button id="d40e273prefa" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e273pref')">Prefix form</button>
                </div>
-               <div id="d40e223pref" style="display:none; margin-top: 0.5em">
+               <div id="d40e273pref" style="display:none; margin-top: 0.5em">
                   <a href="interval1.xhtml#interval">interval</a>
                </div>
                <div>
-                  <button id="d40e223mmla" style="width:15em; background-color:#AAFFAA"
-                          onclick="divfold('d40e223mml')">Presentation MathML</button>
+                  <button id="d40e273mmla" style="width:15em; background-color:#AAFFAA"
+                          onclick="divfold('d40e273mml')">Presentation MathML</button>
                </div>
-               <div id="d40e223mml" style="display:block; margin-top: 0.5em">
+               <div id="d40e273mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mi xmlns="http://www.w3.org/1998/Math/MathML"
                          xmlns:om="http://www.openmath.org/OpenMath">interval</mi>
@@ -381,10 +401,10 @@ The integer interval 1, 2, ..., 10.
             </dt>
             <dd>
                <div>
-                  <button id="d40e238xmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e238xml')">XML (MathML)</button>
+                  <button id="d40e288xmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e288xml')">XML (MathML)</button>
                </div>
-               <pre id="d40e238xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d40e288xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
 &lt;interval&gt;
   &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
   &lt;condition&gt;
@@ -393,31 +413,31 @@ The integer interval 1, 2, ..., 10.
 &lt;/interval&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e238stricta" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e238strict')">Strict Content MathML</button>
+                  <button id="d40e288stricta" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e288strict')">Strict Content MathML</button>
                </div>
-               <pre id="d40e238strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d40e288strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
 &lt;csymbol cd="interval1"&gt;interval&lt;/csymbol&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e238cmmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e238cmml')">OpenMath</button>
+                  <button id="d40e288cmmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e288cmml')">OpenMath</button>
                </div>
-               <pre id="d40e238cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
+               <pre id="d40e288cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
 &lt;OMS cd="interval1" name="interval"/&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d40e238prefa" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e238pref')">Prefix form</button>
+                  <button id="d40e288prefa" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e288pref')">Prefix form</button>
                </div>
-               <div id="d40e238pref" style="display:none; margin-top: 0.5em">
+               <div id="d40e288pref" style="display:none; margin-top: 0.5em">
                   <a href="interval1.xhtml#interval">interval</a>
                </div>
                <div>
-                  <button id="d40e238mmla" style="width:15em; background-color:#AAFFAA"
-                          onclick="divfold('d40e238mml')">Presentation MathML</button>
+                  <button id="d40e288mmla" style="width:15em; background-color:#AAFFAA"
+                          onclick="divfold('d40e288mml')">Presentation MathML</button>
                </div>
-               <div id="d40e238mml" style="display:block; margin-top: 0.5em">
+               <div id="d40e288mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mi xmlns="http://www.w3.org/1998/Math/MathML"
                          xmlns:om="http://www.openmath.org/OpenMath">interval</mi>
@@ -429,42 +449,42 @@ The integer interval 1, 2, ..., 10.
             </dt>
             <dd>
                <div>
-                  <button id="d40e260xmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e260xml')">XML (MathML)</button>
+                  <button id="d40e310xmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e310xml')">XML (MathML)</button>
                </div>
-               <pre id="d40e260xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;int/&gt;
+               <pre id="d40e310xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;int/&gt;
   &lt;interval&gt;&lt;cn&gt;0&lt;/cn&gt;&lt;cn&gt;1&lt;/cn&gt;&lt;/interval&gt;
   &lt;ci type="function"&gt;f&lt;/ci&gt;
 &lt;/apply&gt;&lt;/math&gt;</pre>
                <div>
-                  <button id="d40e260stricta" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e260strict')">Strict Content MathML</button>
+                  <button id="d40e310stricta" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e310strict')">Strict Content MathML</button>
                </div>
-               <pre id="d40e260strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;csymbol cd="calculus1"&gt;int&lt;/csymbol&gt;
+               <pre id="d40e310strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;csymbol cd="calculus1"&gt;int&lt;/csymbol&gt;
   &lt;csymbol cd="interval1"&gt;interval&lt;/csymbol&gt;
   &lt;ci&gt;f&lt;/ci&gt;
 &lt;/apply&gt;&lt;/math&gt;</pre>
                <div>
-                  <button id="d40e260cmmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e260cmml')">OpenMath</button>
+                  <button id="d40e310cmmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e310cmml')">OpenMath</button>
                </div>
-               <pre id="d40e260cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMA&gt;&lt;OMS cd="calculus1" name="int"/&gt;
+               <pre id="d40e310cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMA&gt;&lt;OMS cd="calculus1" name="int"/&gt;
   &lt;OMS cd="interval1" name="interval"/&gt;
   &lt;OMV name="f"/&gt;
 &lt;/OMA&gt;&lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d40e260prefa" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e260pref')">Prefix form</button>
+                  <button id="d40e310prefa" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e310pref')">Prefix form</button>
                </div>
-               <div id="d40e260pref" style="display:none; margin-top: 0.5em">
+               <div id="d40e310pref" style="display:none; margin-top: 0.5em">
                   <a href="calculus1.xhtml#int">int</a>
 (<a href="interval1.xhtml#interval">interval</a>,  <i>f</i>)
 </div>
                <div>
-                  <button id="d40e260mmla" style="width:15em; background-color:#AAFFAA"
-                          onclick="divfold('d40e260mml')">Presentation MathML</button>
+                  <button id="d40e310mmla" style="width:15em; background-color:#AAFFAA"
+                          onclick="divfold('d40e310mml')">Presentation MathML</button>
                </div>
-               <div id="d40e260mml" style="display:block; margin-top: 0.5em">
+               <div id="d40e310mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mo xmlns="http://www.w3.org/1998/Math/MathML"
                          xmlns:om="http://www.openmath.org/OpenMath">∫</mo>
@@ -483,10 +503,10 @@ The integer interval 1, 2, ..., 10.
             <dd>
 The interval 1.0, ..., 10.0.
 <div>
-                  <button id="d40e279xmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e279xml')">XML (OpenMath)</button>
+                  <button id="d40e327xmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e327xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d40e279xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d40e327xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMA&gt;
     &lt;OMS cd="interval1" name="interval"/&gt;
     &lt;OMF dec="1.0"/&gt;
@@ -494,10 +514,10 @@ The interval 1.0, ..., 10.0.
   &lt;/OMA&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d40e279cmmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e279cmml')">Content MathML</button>
+                  <button id="d40e327cmmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e327cmml')">Content MathML</button>
                </div>
-               <pre id="d40e279cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d40e327cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
   &lt;apply&gt;
     &lt;csymbol cd="interval1"&gt;interval&lt;/csymbol&gt;
     &lt;cn type="real"&gt;1.0&lt;/cn&gt;
@@ -505,19 +525,19 @@ The interval 1.0, ..., 10.0.
   &lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e279prefa" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e279pref')">Prefix form</button>
+                  <button id="d40e327prefa" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e327pref')">Prefix form</button>
                </div>
-               <div id="d40e279pref" style="display:none; margin-top: 0.5em">
+               <div id="d40e327pref" style="display:none; margin-top: 0.5em">
                   <a href="interval1.xhtml#interval">interval</a>
 ( 1.0 ,  10.0 )
 
 </div>
                <div>
-                  <button id="d40e279mmla" style="width:15em; background-color:#AAFFAA"
-                          onclick="divfold('d40e279mml')">Presentation MathML</button>
+                  <button id="d40e327mmla" style="width:15em; background-color:#AAFFAA"
+                          onclick="divfold('d40e327mml')">Presentation MathML</button>
                </div>
-               <div id="d40e279mml" style="display:block; margin-top: 0.5em">
+               <div id="d40e327mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -555,8 +575,8 @@ The interval 1.0, ..., 10.0.
                <span class="dt">Pragmatic MathML:</span>
             </dt>
             <dd>
-               <code>&lt;interval closure="open-open"/&gt;</code>
-     closure="open-open"
+    
+     closure=""open""
   </dd>
             <dt>
                <span class="dt">Role:</span>
@@ -578,10 +598,10 @@ points of the interval in that order.
             <dd>
 The continuous open interval (1,10).
 <div>
-                  <button id="d40e321xmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e321xml')">XML (OpenMath)</button>
+                  <button id="d40e369xmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e369xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d40e321xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d40e369xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMA&gt;
     &lt;OMS cd="interval1" name="interval_oo"/&gt;
     &lt;OMI&gt; 1 &lt;/OMI&gt;
@@ -589,10 +609,10 @@ The continuous open interval (1,10).
   &lt;/OMA&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d40e321cmmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e321cmml')">Content MathML</button>
+                  <button id="d40e369cmmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e369cmml')">Content MathML</button>
                </div>
-               <pre id="d40e321cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d40e369cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
   &lt;apply&gt;
     &lt;csymbol cd="interval1"&gt;interval_oo&lt;/csymbol&gt;
     &lt;cn&gt; 1 &lt;/cn&gt;
@@ -600,19 +620,19 @@ The continuous open interval (1,10).
   &lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e321prefa" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e321pref')">Prefix form</button>
+                  <button id="d40e369prefa" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e369pref')">Prefix form</button>
                </div>
-               <div id="d40e321pref" style="display:none; margin-top: 0.5em">
+               <div id="d40e369pref" style="display:none; margin-top: 0.5em">
                   <a href="interval1.xhtml#interval_oo">interval_oo</a>
 ( 1 ,  10 )
 
 </div>
                <div>
-                  <button id="d40e321mmla" style="width:15em; background-color:#AAFFAA"
-                          onclick="divfold('d40e321mml')">Presentation MathML</button>
+                  <button id="d40e369mmla" style="width:15em; background-color:#AAFFAA"
+                          onclick="divfold('d40e369mml')">Presentation MathML</button>
                </div>
-               <div id="d40e321mml" style="display:block; margin-top: 0.5em">
+               <div id="d40e369mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -650,8 +670,8 @@ The continuous open interval (1,10).
                <span class="dt">Pragmatic MathML:</span>
             </dt>
             <dd>
-               <code>&lt;interval closure="closed-closed"/&gt;</code>
-     closure="closed-closed"
+    
+     closure=""closed""
   </dd>
             <dt>
                <span class="dt">Role:</span>
@@ -673,10 +693,10 @@ end points of the interval in that order.
             <dd>
 The continuous closed interval [1,10].
 <div>
-                  <button id="d40e365xmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e365xml')">XML (OpenMath)</button>
+                  <button id="d40e413xmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e413xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d40e365xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d40e413xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMA&gt;
     &lt;OMS cd="interval1" name="interval_cc"/&gt;
     &lt;OMI&gt; 1 &lt;/OMI&gt;
@@ -684,10 +704,10 @@ The continuous closed interval [1,10].
   &lt;/OMA&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d40e365cmmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e365cmml')">Content MathML</button>
+                  <button id="d40e413cmmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e413cmml')">Content MathML</button>
                </div>
-               <pre id="d40e365cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d40e413cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
   &lt;apply&gt;
     &lt;csymbol cd="interval1"&gt;interval_cc&lt;/csymbol&gt;
     &lt;cn&gt; 1 &lt;/cn&gt;
@@ -695,19 +715,19 @@ The continuous closed interval [1,10].
   &lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e365prefa" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e365pref')">Prefix form</button>
+                  <button id="d40e413prefa" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e413pref')">Prefix form</button>
                </div>
-               <div id="d40e365pref" style="display:none; margin-top: 0.5em">
+               <div id="d40e413pref" style="display:none; margin-top: 0.5em">
                   <a href="interval1.xhtml#interval_cc">interval_cc</a>
 ( 1 ,  10 )
 
 </div>
                <div>
-                  <button id="d40e365mmla" style="width:15em; background-color:#AAFFAA"
-                          onclick="divfold('d40e365mml')">Presentation MathML</button>
+                  <button id="d40e413mmla" style="width:15em; background-color:#AAFFAA"
+                          onclick="divfold('d40e413mml')">Presentation MathML</button>
                </div>
-               <div id="d40e365mml" style="display:block; margin-top: 0.5em">
+               <div id="d40e413mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -745,8 +765,8 @@ The continuous closed interval [1,10].
                <span class="dt">Pragmatic MathML:</span>
             </dt>
             <dd>
-               <code>&lt;interval closure="open-closed"/&gt;</code>
-     closure="open-closed"
+    
+     closure=""open-closed""
   </dd>
             <dt>
                <span class="dt">Role:</span>
@@ -769,10 +789,10 @@ are the start and the end points of the interval in that order.
 The continuous interval open at the lower bound and closed at the higher 
 bound (1,10].
 <div>
-                  <button id="d40e409xmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e409xml')">XML (OpenMath)</button>
+                  <button id="d40e457xmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e457xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d40e409xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d40e457xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMA&gt;
     &lt;OMS cd="interval1" name="interval_oc"/&gt;
     &lt;OMI&gt; 1 &lt;/OMI&gt;
@@ -780,10 +800,10 @@ bound (1,10].
   &lt;/OMA&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d40e409cmmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e409cmml')">Content MathML</button>
+                  <button id="d40e457cmmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e457cmml')">Content MathML</button>
                </div>
-               <pre id="d40e409cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d40e457cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
   &lt;apply&gt;
     &lt;csymbol cd="interval1"&gt;interval_oc&lt;/csymbol&gt;
     &lt;cn&gt; 1 &lt;/cn&gt;
@@ -791,19 +811,19 @@ bound (1,10].
   &lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e409prefa" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e409pref')">Prefix form</button>
+                  <button id="d40e457prefa" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e457pref')">Prefix form</button>
                </div>
-               <div id="d40e409pref" style="display:none; margin-top: 0.5em">
+               <div id="d40e457pref" style="display:none; margin-top: 0.5em">
                   <a href="interval1.xhtml#interval_oc">interval_oc</a>
 ( 1 ,  10 )
 
 </div>
                <div>
-                  <button id="d40e409mmla" style="width:15em; background-color:#AAFFAA"
-                          onclick="divfold('d40e409mml')">Presentation MathML</button>
+                  <button id="d40e457mmla" style="width:15em; background-color:#AAFFAA"
+                          onclick="divfold('d40e457mml')">Presentation MathML</button>
                </div>
-               <div id="d40e409mml" style="display:block; margin-top: 0.5em">
+               <div id="d40e457mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -841,8 +861,8 @@ bound (1,10].
                <span class="dt">Pragmatic MathML:</span>
             </dt>
             <dd>
-               <code>&lt;interval closure="closed-open"/&gt;</code>
-     closure="closed-open"
+    
+     closure=""closed-open""
   </dd>
             <dt>
                <span class="dt">Role:</span>
@@ -865,10 +885,10 @@ are the start and the end points of the interval in that order.
 The continuous interval closed at the lower bound and open at the higher 
 bound [1,10).
 <div>
-                  <button id="d40e453xmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e453xml')">XML (OpenMath)</button>
+                  <button id="d40e501xmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e501xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d40e453xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d40e501xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMA&gt;
     &lt;OMS cd="interval1" name="interval_co"/&gt;
     &lt;OMI&gt; 1 &lt;/OMI&gt;
@@ -876,10 +896,10 @@ bound [1,10).
   &lt;/OMA&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d40e453cmmla" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e453cmml')">Content MathML</button>
+                  <button id="d40e501cmmla" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e501cmml')">Content MathML</button>
                </div>
-               <pre id="d40e453cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d40e501cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
   &lt;apply&gt;
     &lt;csymbol cd="interval1"&gt;interval_co&lt;/csymbol&gt;
     &lt;cn&gt; 1 &lt;/cn&gt;
@@ -887,19 +907,19 @@ bound [1,10).
   &lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d40e453prefa" style="width:15em; background-color:#CCCCCC"
-                          onclick="divfold('d40e453pref')">Prefix form</button>
+                  <button id="d40e501prefa" style="width:15em; background-color:#CCCCCC"
+                          onclick="divfold('d40e501pref')">Prefix form</button>
                </div>
-               <div id="d40e453pref" style="display:none; margin-top: 0.5em">
+               <div id="d40e501pref" style="display:none; margin-top: 0.5em">
                   <a href="interval1.xhtml#interval_co">interval_co</a>
 ( 1 ,  10 )
 
 </div>
                <div>
-                  <button id="d40e453mmla" style="width:15em; background-color:#AAFFAA"
-                          onclick="divfold('d40e453mml')">Presentation MathML</button>
+                  <button id="d40e501mmla" style="width:15em; background-color:#AAFFAA"
+                          onclick="divfold('d40e501mml')">Presentation MathML</button>
                </div>
-               <div id="d40e453mml" style="display:block; margin-top: 0.5em">
+               <div id="d40e501mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
