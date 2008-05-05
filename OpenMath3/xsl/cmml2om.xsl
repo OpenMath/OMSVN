@@ -13,10 +13,14 @@
 </xsl:message>
   </xsl:template>
 
-  <xsl:template match="m:apply" mode="cmml2om">
+  <xsl:template match="m:apply|m:reln" mode="cmml2om">
     <OMA>
       <xsl:apply-templates mode="cmml2om"/>
     </OMA>
+  </xsl:template>
+
+  <xsl:template match="m:fn[count(*)=1]" mode="cmml2om">
+    <xsl:apply-templates mode="cmml2om"/>
   </xsl:template>
 
   <xsl:template match="m:apply[m:bvar]" mode="cmml2om" priority="10">
@@ -160,13 +164,13 @@
    <xsl:template match="m:real" mode="cmml2om">
       <OMS cd="complex1" name="real"/>
    </xsl:template>
-   <xsl:template match="m:imaginaryi" mode="cmml2om">
-      <OMS cd="complex1" name="imaginaryi"/>
+   <xsl:template match="m:imaginary" mode="cmml2om">
+      <OMS cd="complex1" name="imaginary"/>
    </xsl:template>
    <xsl:template match="m:complex_polar" mode="cmml2om">
       <OMS cd="complex1" name="complex_polar"/>
    </xsl:template>
-   <xsl:template match="m:argument" mode="cmml2om">
+   <xsl:template match="m:arg" mode="cmml2om">
       <OMS cd="complex1" name="argument"/>
    </xsl:template>
    <xsl:template match="m:conjugate" mode="cmml2om">
@@ -184,13 +188,13 @@
    <xsl:template match="m:domain" mode="cmml2om">
       <OMS cd="fns1" name="domain"/>
    </xsl:template>
-   <xsl:template match="m:range" mode="cmml2om">
+   <xsl:template match="m:codomain" mode="cmml2om">
       <OMS cd="fns1" name="range"/>
    </xsl:template>
    <xsl:template match="m:image" mode="cmml2om">
       <OMS cd="fns1" name="image"/>
    </xsl:template>
-   <xsl:template match="m:identity" mode="cmml2om">
+   <xsl:template match="m:ident" mode="cmml2om">
       <OMS cd="fns1" name="identity"/>
    </xsl:template>
    <xsl:template match="m:left_inverse" mode="cmml2om">
@@ -358,10 +362,10 @@
    <xsl:template match="m:max" mode="cmml2om">
       <OMS cd="minmax1" name="max"/>
    </xsl:template>
-   <xsl:template match="m:size[@type='multiset']" mode="cmml2om">
+   <xsl:template match="m:card[@type='multiset']" mode="cmml2om">
       <OMS cd="multiset1" name="size"/>
    </xsl:template>
-   <xsl:template match="m:cartesian_product[@type='multiset']" mode="cmml2om">
+   <xsl:template match="m:cartesianproduct[@type='multiset']" mode="cmml2om">
       <OMS cd="multiset1" name="cartesian_product"/>
    </xsl:template>
    <xsl:template match="m:emptyset[@type='multiset']" mode="cmml2om">
@@ -406,16 +410,16 @@
    <xsl:template match="m:infinity" mode="cmml2om">
       <OMS cd="nums1" name="infinity"/>
    </xsl:template>
-   <xsl:template match="m:e" mode="cmml2om">
+   <xsl:template match="m:exponentiale" mode="cmml2om">
       <OMS cd="nums1" name="e"/>
    </xsl:template>
-   <xsl:template match="m:i" mode="cmml2om">
+   <xsl:template match="m:imaginaryi" mode="cmml2om">
       <OMS cd="nums1" name="i"/>
    </xsl:template>
    <xsl:template match="m:pi" mode="cmml2om">
       <OMS cd="nums1" name="pi"/>
    </xsl:template>
-   <xsl:template match="m:gamma" mode="cmml2om">
+   <xsl:template match="m:eulergamma" mode="cmml2om">
       <OMS cd="nums1" name="gamma"/>
    </xsl:template>
    <xsl:template match="m:NaN" mode="cmml2om">
@@ -505,6 +509,22 @@
    <xsl:template match="m:moment" mode="cmml2om">
       <OMS cd="s_data1" name="moment"/>
    </xsl:template>
+   <xsl:template match="m:apply[*[1][self::m:moment]][not(m:degree)]" mode="cmml2om">
+     <OMA>
+       <xsl:apply-templates select="*[1]" mode="cmml2om"/>
+       <OMI>1</OMI>
+       <xsl:apply-templates select="*[position()!=1]" mode="cmml2om"/>
+     </OMA>
+   </xsl:template>
+
+   <xsl:template match="m:apply[*[1][self::m:moment]][m:degree]" mode="cmml2om">
+     <OMA>
+       <xsl:apply-templates select="*[1],m:degree/*" mode="cmml2om"/>
+       <xsl:apply-templates select="*[position()!=1]" mode="cmml2om"/>
+     </OMA>
+   </xsl:template>
+
+<!--
    <xsl:template match="m:mean" mode="cmml2om">
       <OMS cd="s_dist1" name="mean"/>
    </xsl:template>
@@ -517,7 +537,8 @@
    <xsl:template match="m:moment" mode="cmml2om">
       <OMS cd="s_dist1" name="moment"/>
    </xsl:template>
-   <xsl:template match="m:cartesian_product" mode="cmml2om">
+-->
+   <xsl:template match="m:cartesianproduct" mode="cmml2om">
       <OMS cd="set1" name="cartesian_product"/>
    </xsl:template>
    <xsl:template match="m:emptyset" mode="cmml2om">
@@ -526,7 +547,7 @@
    <xsl:template match="m:map" mode="cmml2om">
       <OMS cd="set1" name="map"/>
    </xsl:template>
-   <xsl:template match="m:size" mode="cmml2om">
+   <xsl:template match="m:card" mode="cmml2om">
       <OMS cd="set1" name="size"/>
    </xsl:template>
    <xsl:template match="m:suchthat" mode="cmml2om">
@@ -703,7 +724,7 @@
    <xsl:template match="m:curl" mode="cmml2om">
       <OMS cd="veccalc1" name="curl"/>
    </xsl:template>
-   <xsl:template match="m:Laplacian" mode="cmml2om">
+   <xsl:template match="m:laplacian" mode="cmml2om">
       <OMS cd="veccalc1" name="Laplacian"/>
    </xsl:template>
 
@@ -711,6 +732,31 @@
    <xsl:template match="m:notanumber" mode="cmml2om">
       <OMF dec="NaN"/>
    </xsl:template>
+
+   <xsl:template match="m:reals" mode="cmml2om">
+     <OMS cd="setname1" name="R"/>
+   </xsl:template>
+
+   <xsl:template match="m:complexes" mode="cmml2om">
+     <OMS cd="setname1" name="C"/>
+   </xsl:template>
+
+   <xsl:template match="m:integers" mode="cmml2om">
+     <OMS cd="setname1" name="Z"/>
+   </xsl:template>
+
+   <xsl:template match="m:naturalnumbers" mode="cmml2om">
+     <OMS cd="setname1" name="N"/>
+   </xsl:template>
+
+   <xsl:template match="m:primes" mode="cmml2om">
+     <OMS cd="setname1" name="P"/>
+   </xsl:template>
+
+   <xsl:template match="m:rationals" mode="cmml2om">
+     <OMS cd="setname1" name="Q"/>
+   </xsl:template>
+
 
 
 
