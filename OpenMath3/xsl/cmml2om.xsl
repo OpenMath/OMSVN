@@ -206,7 +206,7 @@
    <xsl:template match="m:inverse" mode="cmml2om">
       <OMS cd="fns1" name="inverse"/>
    </xsl:template>
-   <xsl:template match="m:left_compose" mode="cmml2om">
+   <xsl:template match="m:compose" mode="cmml2om">
       <OMS cd="fns1" name="left_compose"/>
    </xsl:template>
    <xsl:template match="m:lambda" mode="cmml2om">
@@ -520,7 +520,7 @@
    <xsl:template match="m:apply[*[1][self::m:moment]][m:degree]" mode="cmml2om">
      <OMA>
        <xsl:apply-templates select="*[1],m:degree/*" mode="cmml2om"/>
-       <xsl:apply-templates select="*[position()!=1]" mode="cmml2om"/>
+       <xsl:apply-templates select="*[position()!=1][not(self::m:degree)]" mode="cmml2om"/>
      </OMA>
    </xsl:template>
 
@@ -637,6 +637,20 @@
    <xsl:template match="m:log" mode="cmml2om">
       <OMS cd="transc1" name="log"/>
    </xsl:template>
+   <xsl:template match="m:apply[*[1][self::m:log]][m:logbase]" mode="cmml2om">
+     <OMA>
+       <OMS cd="transc1" name="log"/>
+       <xsl:apply-templates select="m:logbase/*,*[position()!=1] except m:logbase" mode="cmml2om"/>
+     </OMA>
+   </xsl:template>
+   <xsl:template match="m:apply[*[1][self::m:log]][not(m:logbase)]" mode="cmml2om">
+     <OMA>
+       <OMS cd="transc1" name="log"/>
+       <OMI>10</OMI>
+       <xsl:apply-templates select="*[position()!=1]" mode="cmml2om"/>
+     </OMA>
+   </xsl:template>
+
    <xsl:template match="m:ln" mode="cmml2om">
       <OMS cd="transc1" name="ln"/>
    </xsl:template>
@@ -758,7 +772,7 @@
    </xsl:template>
 
 
-
+   <xsl:template match="m:declare"/>
 
 
 </xsl:stylesheet>
