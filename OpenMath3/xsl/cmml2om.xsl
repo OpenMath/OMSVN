@@ -5,14 +5,22 @@
  
 >
 
-  <xsl:template match="*" mode="cmml2om">
-    <xsl:message>cmml2om: <xsl:value-of select="name()"/>
-[[
-    <xsl:copy-of select="ancestor::m:math[1]"/>
-]]
-</xsl:message>
-  </xsl:template>
+  <xsl:param name="warn" select="false()"/>
 
+  <xsl:template match="*" mode="cmml2om" priority="-1">
+    <xsl:if test="$warn">
+      <xsl:message>cmml2om: <xsl:value-of select="name()"/>
+      <xsl:text>[[</xsl:text>
+      <xsl:copy-of select="ancestor::m:math[1]"/>
+      <xsl:text>]]</xsl:text>
+      </xsl:message>
+    </xsl:if>
+    <xsl:copy>
+      <xsl:copy-of select="@*"/>
+      <xsl:apply-templates mode="cmml2om"/>
+    </xsl:copy>
+  </xsl:template>
+  
   <xsl:template match="m:apply|m:reln" mode="cmml2om">
     <OMA>
       <xsl:apply-templates mode="cmml2om"/>
@@ -62,7 +70,7 @@
       <OMBVAR>
 	<xsl:apply-templates select="m:bvar/*" mode="cmml2om"/>
       </OMBVAR>
-      <xsl:apply-templates select="*[last()]" mode="cmml2om"/>
+      <xsl:apply-templates select="*[last()][not(self::m:bvar)]" mode="cmml2om"/>
     </OMBIND>
   </xsl:template>
 
@@ -137,27 +145,127 @@
    <xsl:template match="m:nthdiff" mode="cmml2om">
       <OMS cd="calculus1" name="nthdiff"/>
    </xsl:template>
+
+
+
+
+   <xsl:template match="m:*[self::m:apply or self::m:bind][*[1][self::m:diff]]" mode="cmml2om">
+     <OMA>
+       <OMS cd="calculus1" name="diff"/>
+     <OMBIND>
+       <OMS cd="funs1" name="lambda"/>
+       <OMBVAR>
+	 <xsl:apply-templates select="m:bvar/m:ci" mode="cmml2om"/>
+       </OMBVAR>
+	 <xsl:apply-templates select="*[last()]" mode="cmml2om"/>
+     </OMBIND>
+     </OMA>
+   </xsl:template>
+
+
+   <xsl:template match="m:*[self::m:apply or self::m:bind][*[1][self::m:diff]][m:degree]" priority="2" mode="cmml2om">
+     <OMA>
+       <OMS cd="calculus1" name="nthdiff"/>
+       <xsl:apply-templates select="m:degree/*" mode="cmml2om"/>
+       <OMBIND>
+	 <OMS cd="funs1" name="lambda"/>
+	 <OMBVAR>
+	   <xsl:apply-templates select="m:bvar/m:ci" mode="cmml2om"/>
+	 </OMBVAR>
+	 <xsl:apply-templates select="*[last()]" mode="cmml2om"/>
+       </OMBIND>
+     </OMA>
+   </xsl:template>
+
+
+
    <xsl:template match="m:partialdiff" mode="cmml2om">
       <OMS cd="calculus1" name="partialdiff"/>
    </xsl:template>
 
-<!-- to be done...
+
    <xsl:template match="m:*[self::m:apply or self::m:bind][*[1][self::m:partialdiff]]" mode="cmml2om">
+     
      <OMA>
-       <OMS cd="calculus1" name="partialdif"/>
-      <OMA>
-        <OMS cd="list1" name="list"/>
-       <xsl:apply-templates select="*[2]" mode="cmml2om"/>
+       <OMS cd="calculus1" name="partialdiff"/>
+       <OMA>
+	 <OMS cd="list1" name="list"/>
+	 <xsl:apply-templates select="m:bvar" mode="cmml2ompd"/>
+       </OMA>
+       <OMBIND>
+	 <OMS cd="funs1" name="lambda"/>
+	 <OMBVAR>
+	   <xsl:apply-templates select="m:bvar/m:ci" mode="cmml2om"/>
+	 </OMBVAR>
+	 <xsl:apply-templates select="*[last()]" mode="cmml2om"/>
+       </OMBIND>
      </OMA>
    </xsl:template>
--->
+   
+   <xsl:template match="*" mode="cmml2ompd">
+     <xsl:message select="'partial diff ??? ',."/>
+   </xsl:template>
+
+   <xsl:template match="m:bvar[m:degree]" mode="cmml2ompd">
+     <xsl:apply-templates select="m:degree/*" mode="cmml2om"/>
+   </xsl:template>
+
+
+   <xsl:template match="m:bvar" mode="cmml2ompd">
+     <OMI>1</OMI>
+   </xsl:template>
+
 
    <xsl:template match="m:int" mode="cmml2om">
       <OMS cd="calculus1" name="int"/>
    </xsl:template>
-   <xsl:template match="m:defint" mode="cmml2om">
-      <OMS cd="calculus1" name="defint"/>
+
+
+
+   <xsl:template match="m:apply[*[1][self::m:int]][m:domainofapplication]" mode="cmml2om">
+     <OMA>
+       <OMS cd="calculus1" name="defint"/>
+	 <xsl:apply-templates select="m:domainofapplication/*" mode="cmml2om"/>
+	 <xsl:apply-templates select="*[last()]" mode="cmml2om"/>
+     </OMA>
    </xsl:template>
+
+
+   <xsl:template match="m:apply[*[1][self::m:int]][m:bvar][m:domainofapplication]" mode="cmml2om" priority="2">
+     <OMA>
+       <OMS cd="calculus1" name="defint"/>
+       <xsl:apply-templates select="m:domainofapplication/*" mode="cmml2om"/>
+       <OMBIND>
+	 <OMS cd="funs1" name="lambda"/>
+	 <OMBVAR>
+	   <xsl:apply-templates select="m:bvar/m:ci" mode="cmml2om"/>
+	 </OMBVAR>
+	 <xsl:apply-templates select="*[last()]" mode="cmml2om"/>
+       </OMBIND>
+     </OMA>
+   </xsl:template>
+   
+
+   <xsl:template match="m:apply[*[1][self::m:int]][m:bvar][m:lowlimit and m:uplimit]" mode="cmml2om" priority="2">
+     <OMA>
+       <OMS cd="calculus1" name="defint"/>
+       <OMA>
+	 <OMS name="interval" cd="interval1">
+	   <xsl:apply-templates select="m:lowlimit/*" mode="cmml2om"/>
+	   <xsl:apply-templates select="m:uplimit/*" mode="cmml2om"/>
+	 </OMS>
+       </OMA>
+       <OMBIND>
+	 <OMS cd="funs1" name="lambda"/>
+	 <OMBVAR>
+	   <xsl:apply-templates select="m:bvar/m:ci" mode="cmml2om"/>
+	 </OMBVAR>
+	 <xsl:apply-templates select="*[last()]" mode="cmml2om"/>
+       </OMBIND>
+     </OMA>
+   </xsl:template>
+   
+
    <xsl:template match="m:complex_cartesian" mode="cmml2om">
       <OMS cd="complex1" name="complex_cartesian"/>
    </xsl:template>
@@ -245,18 +353,27 @@
    <xsl:template match="m:limit" mode="cmml2om">
       <OMS cd="limit1" name="limit"/>
    </xsl:template>
-   <xsl:template match="m:both_sides" mode="cmml2om">
-      <OMS cd="limit1" name="both_sides"/>
+
+   <xsl:template match="m:tendsto" mode="cmml2om">
+      <OMS cd="limit1" name="{(@type,'null')[1]}"/>
    </xsl:template>
-   <xsl:template match="m:above" mode="cmml2om">
-      <OMS cd="limit1" name="above"/>
+
+   <xsl:template match="m:apply[*[1][self::m:limit]]" mode="cmml2om">
+     <OMA>
+       <xsl:apply-templates select="*[1]" mode="cmml2om"/>
+       <OMS cd="limit1" name="null"/>
+       <xsl:apply-templates select="*[last()]" mode="cmml2om"/>
+     </OMA>
    </xsl:template>
-   <xsl:template match="m:below" mode="cmml2om">
-      <OMS cd="limit1" name="below"/>
+
+   <xsl:template match="m:apply[*[1][self::m:limit]][m:condition]" priority="2" mode="cmml2om">
+     <OMA>
+       <xsl:apply-templates select="*[1]" mode="cmml2om"/>
+       <xsl:apply-templates select="m:condition/*" mode="cmml2om"/>
+       <xsl:apply-templates select="*[last()]" mode="cmml2om"/>
+     </OMA>
    </xsl:template>
-   <xsl:template match="m:null" mode="cmml2om">
-      <OMS cd="limit1" name="null"/>
-   </xsl:template>
+
    <xsl:template match="m:vectorproduct" mode="cmml2om">
       <OMS cd="linalg1" name="vectorproduct"/>
    </xsl:template>
@@ -272,8 +389,20 @@
    <xsl:template match="m:determinant" mode="cmml2om">
       <OMS cd="linalg1" name="determinant"/>
    </xsl:template>
-   <xsl:template match="m:vector_selector" mode="cmml2om">
+   <xsl:template match="m:selector" mode="cmml2om">
+      <OMS cd="linalg1" name="matrix_selector"/>
+   </xsl:template>
+   <xsl:template match="m:apply[*[1][self::m:selector]][count(*)=3]" mode="cmml2om">
+     <OMA>
       <OMS cd="linalg1" name="vector_selector"/>
+      <xsl:apply-templates select="*[3],*[2]" mode="cmml2om"/>
+     </OMA>
+   </xsl:template>
+   <xsl:template match="m:apply[*[1][self::m:selector]][count(*)=4]" mode="cmml2om">
+     <OMA>
+      <OMS a="" cd="linalg1" name="matrix_selector"/>
+      <xsl:apply-templates select="*[3],*[4],*[2]" mode="cmml2om"/>
+     </OMA>
    </xsl:template>
    <xsl:template match="m:matrix_selector" mode="cmml2om">
       <OMS cd="linalg1" name="matrix_selector"/>
@@ -507,20 +636,28 @@
       <OMS cd="s_data1" name="median"/>
    </xsl:template>
    <xsl:template match="m:moment" mode="cmml2om">
-      <OMS cd="s_data1" name="moment"/>
+      <OMS cd="s_dist1" name="moment"/>
    </xsl:template>
-   <xsl:template match="m:apply[*[1][self::m:moment]][not(m:degree)]" mode="cmml2om">
-     <OMA>
+   <xsl:template match="m:apply[*[1][self::m:moment]]" mode="cmml2om">
+     <OMA g="">
        <xsl:apply-templates select="*[1]" mode="cmml2om"/>
-       <OMI>1</OMI>
-       <xsl:apply-templates select="*[position()!=1]" mode="cmml2om"/>
-     </OMA>
-   </xsl:template>
-
-   <xsl:template match="m:apply[*[1][self::m:moment]][m:degree]" mode="cmml2om">
-     <OMA>
-       <xsl:apply-templates select="*[1],m:degree/*" mode="cmml2om"/>
-       <xsl:apply-templates select="*[position()!=1][not(self::m:degree)]" mode="cmml2om"/>
+       <xsl:choose>
+	 <xsl:when test="m:degree">
+	   <xsl:apply-templates select="m:degree/*" mode="cmml2om"/>
+	 </xsl:when>
+	 <xsl:otherwise>
+	   <OMI>1</OMI>
+	 </xsl:otherwise>
+       </xsl:choose>
+       <xsl:choose>
+	 <xsl:when test="m:momentabout">
+	   <xsl:apply-templates select="m:momentabout/*" mode="cmml2om"/>
+	 </xsl:when>
+	 <xsl:otherwise>
+	   <OMI>0</OMI>
+	 </xsl:otherwise>
+       </xsl:choose>
+       <xsl:apply-templates select="*[last()]" mode="cmml2om"/>
      </OMA>
    </xsl:template>
 

@@ -185,6 +185,16 @@
   <dd><xsl:apply-templates/></dd>
 </xsl:template>
 
+<xsl:template match="cd:Pragmatic/cd:Element">
+  <p>&lt;<xsl:value-of select="normalize-space(.)"/>/&gt;</p>
+</xsl:template>
+
+<xsl:template match="cd:Pragmatic/cd:Element[@type='container']" priority="2">
+  <p>&lt;<xsl:value-of select="normalize-space(.)"/>
+  <xsl:text>&gt;&#160;&lt;/</xsl:text>
+  <xsl:value-of select="normalize-space(.)"/>&gt;</p>
+</xsl:template>
+
 <xsl:template match="cd:CDDefinition/cd:MMLexample">
   <dt><span class="dt">Example:</span></dt>
   <dd><xsl:apply-templates/></dd>
@@ -208,6 +218,7 @@
 </xsl:template>
 
 <xsl:template match="cd:Attribute">
+  <p>
   <xsl:value-of select="concat(' ',normalize-space(cd:Name))"/>
   <xsl:choose>
     <xsl:when test="cd:Prescribed">
@@ -217,6 +228,7 @@
       <xsl:value-of select="concat(' : ',normalize-space(cd:Model))"/>
     </xsl:when>
   </xsl:choose>
+  </p>
 </xsl:template>
 
 <xsl:template match="cd:CDDefinition/cd:property">
