@@ -38,8 +38,38 @@
  <mspace width="0.1em"/>
  <xsl:apply-templates select="following-sibling::om:OMBIND/*[3]"/>
 </mrow>
-
 </xsl:template>
+
+<xsl:template match="om:OMS[@cd='limit1' and @name=('null','both-sides')]"  >
+  <xsl:param name="p"/>
+  <xsl:call-template name="infix">
+    <xsl:with-param name="mo"><mo>&#8594;</mo></xsl:with-param>
+    <xsl:with-param name="p" select="$p"/>
+    <xsl:with-param name="this-p" select="1"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template match="om:OMS[@cd='limit1' and @name='above']"  >
+  <xsl:param name="p"/>
+  <xsl:call-template name="infix">
+    <xsl:with-param name="mo"><mo>&#8600;<!--searrow--></mo></xsl:with-param>
+    <xsl:with-param name="p" select="$p"/>
+    <xsl:with-param name="this-p" select="1"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template match="om:OMS[@cd='limit1' and @name='below']"  >
+  <xsl:param name="p"/>
+  <xsl:call-template name="infix">
+    <xsl:with-param name="mo"><mo>&#8599;<!--nearrow--></mo></xsl:with-param>
+    <xsl:with-param name="p" select="$p"/>
+    <xsl:with-param name="this-p" select="1"/>
+  </xsl:call-template>
+</xsl:template>
+
+
+
+
 
 
 

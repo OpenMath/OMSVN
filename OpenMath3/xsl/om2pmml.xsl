@@ -4,7 +4,9 @@
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:om="http://www.openmath.org/OpenMath"
   xmlns="http://www.w3.org/1998/Math/MathML"
-  version="1.0"
+  xmlns:m="http://www.w3.org/1998/Math/MathML"
+  version="2.0"
+  exclude-result-prefixes="m om"
 >
 <xsl:output method="xml" indent="yes"/>
 
@@ -35,6 +37,7 @@
 <xsl:include href="linalg3.xsl"/>
 <xsl:include href="linalg5.xsl"/>
 <xsl:include href="set1.xsl"/>
+<xsl:include href="s_dist1.xsl"/>
 <xsl:include href="setname1.xsl"/>
 <xsl:include href="setname2.xsl"/>
 <xsl:include href="combinat1.xsl"/>
@@ -55,5 +58,13 @@
 <xsl:include href="permgp2.xsl"/>
 <xsl:include href="set3.xsl"/>
 <xsl:include href="integer2.xsl"/>
+
+
+<xsl:template match="m:*">
+  <xsl:copy>
+    <xsl:copy-of select="@*"/>
+    <xsl:apply-templates/>
+  </xsl:copy>
+</xsl:template>
 
 </xsl:stylesheet>
