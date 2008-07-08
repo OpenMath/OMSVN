@@ -136,6 +136,26 @@
   </xsl:choose>
 </xsl:template>
 
+
+<xsl:template match="om:OMS[@cd='complex1' and @name='imaginary']"  >
+  <xsl:call-template name="prefix">
+    <xsl:with-param name="mo">
+      <mo>&#8465;<!-- imaginary --></mo>
+    </xsl:with-param>
+  </xsl:call-template>
+</xsl:template>
+
+
+
+<xsl:template match="om:OMS[@cd='complex1' and @name='real']"  >
+  <xsl:call-template name="prefix">
+    <xsl:with-param name="mo">
+      <mo>&#8475;<!-- real --></mo>
+    </xsl:with-param>
+  </xsl:call-template>
+</xsl:template>
+
+
 </xsl:stylesheet>
 
 

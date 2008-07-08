@@ -24,6 +24,7 @@
 <xsl:include href="integer1.xsl"/>
 <xsl:include href="interval1.xsl"/>
 <xsl:include href="nums1.xsl"/>
+<xsl:include href="rounding1.xsl"/>
 <xsl:include href="relation1.xsl"/>
 <xsl:include href="calculus1.xsl"/>
 <xsl:include href="fns1.xsl"/>

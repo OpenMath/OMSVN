@@ -15,6 +15,13 @@
  </mrow>
 </xsl:template>
 
+<xsl:template match="om:OMS[@cd='transc1' and @name='exp']"  >
+  <msup>
+    <mi>e</mi>
+    <xsl:apply-templates select="following-sibling::*[1]"/>
+  </msup>
+</xsl:template>
+
 
 </xsl:stylesheet>
 

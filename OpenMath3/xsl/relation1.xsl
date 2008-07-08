@@ -46,7 +46,7 @@
 
 <xsl:template match="om:OMS[@cd='relation1' and @name='lt']" >
   <xsl:param name="p"/>
-  <xsl:call-template name="binary">
+  <xsl:call-template name="infix">
     <xsl:with-param name="mo"><mo>&lt;</mo></xsl:with-param>
     <xsl:with-param name="p" select="$p"/>
     <xsl:with-param name="this-p" select="2"/>
@@ -55,7 +55,7 @@
 
 <xsl:template match="om:OMS[@cd='relation1' and @name='gt']" >
   <xsl:param name="p"/>
-  <xsl:call-template name="binary">
+  <xsl:call-template name="infix">
     <xsl:with-param name="mo"><mo>&gt;</mo></xsl:with-param>
     <xsl:with-param name="p" select="$p"/>
     <xsl:with-param name="this-p" select="2"/>

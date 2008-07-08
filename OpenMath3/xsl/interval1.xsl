@@ -18,7 +18,10 @@
 
 
 <xsl:template match="om:OMS[@cd='interval1' and @name='interval']" >
-   <xsl:call-template name="fenced"/>
+   <xsl:call-template name="fenced">
+   <xsl:with-param name="open"><mo>[</mo></xsl:with-param>
+   <xsl:with-param name="close"><mo>]</mo></xsl:with-param>
+   </xsl:call-template>
 </xsl:template>
 
 

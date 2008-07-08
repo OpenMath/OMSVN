@@ -16,7 +16,7 @@
     </xsl:when>
     <xsl:otherwise>
       <msup>
-      <xsl:apply-templates select="following-sibling::*[2]"/>
+      <xsl:apply-templates select="following-sibling::*[3]"/>
       <xsl:apply-templates select="following-sibling::*[1]"/>
       </msup>
     </xsl:otherwise>
