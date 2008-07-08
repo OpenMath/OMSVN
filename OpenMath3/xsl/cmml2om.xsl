@@ -49,21 +49,68 @@
 
 
   <xsl:template match="m:csymbol" mode="cmml2om">
-    <OMS cd="{@cd}" name="{.}"/>
+    <OMS cd="{normalize-space(@cd)}" name="{normalize-space(.)}"/>
   </xsl:template>
 
   <xsl:template match="m:ci" mode="cmml2om">
-    <OMV name="{.}"/>
+    <OMV name="{normalize-space(.)}"/>
   </xsl:template>
 
 
 
-  <xsl:template match="m:cn" mode="cmml2om">
+  <xsl:template match="m:cn[not(m:sep)][matches(.,'^[ 0-9.,-]+$')]" mode="cmml2om">
     <OMI>
       <xsl:value-of select="."/>
     </OMI>
   </xsl:template>
 
+  <xsl:template match="m:cn[@type='rational']" mode="cmml2om">
+    <OMA>
+      <OMS cd="nums1" name="rational"/>
+      <xsl:apply-templates select="text()"  mode="cmml2om"/>
+    </OMA>
+  </xsl:template>
+
+  <xsl:template match="m:cn[@type='complex-polar']" mode="cmml2om">
+    <OMA>
+      <OMS cd="complex1" name="complex_polar"/>
+      <xsl:apply-templates select="text()"  mode="cmml2om"/>
+    </OMA>
+  </xsl:template>
+  <xsl:template match="m:cn[@type='complex-cartesian']" mode="cmml2om">
+    <OMA>
+      <OMS cd="complex1" name="complex_cartesian"/>
+      <xsl:apply-templates select="text()"  mode="cmml2om"/>
+    </OMA>
+  </xsl:template>
+  <xsl:template match="m:cn/text()[matches(.,'^[ &#10;0-9-]+$')]" mode="cmml2om">
+ <OMI>
+      <xsl:value-of select="normalize-space(.)"/>
+    </OMI>
+  </xsl:template>
+  <xsl:template match="m:cn/text()[matches(.,'^[ &#10;0-9.,-]+\.[ &#10;0-9.,-]+$')]" mode="cmml2om">
+    <OMF dec="{.}"/>
+  </xsl:template>
+  <xsl:template match="m:cn[normalize-space(.)='&#960;']" mode="cmml2om">
+    <OMS cd="nums1" name="pi"/>
+  </xsl:template>
+  <xsl:template match="m:cn[normalize-space(.)='&#8519;']" mode="cmml2om">
+    <OMS cd="nums1" name="e"/>
+  </xsl:template>
+  <xsl:template match="m:cn[normalize-space(.)='&#947;']" mode="cmml2om">
+    <OMS cd="nums1" name="gamma"/>
+  </xsl:template>
+  <xsl:template match="m:cn[normalize-space(.)='&#8520;']" mode="cmml2om">
+    <OMS cd="nums1" name="i"/>
+  </xsl:template>
+  <xsl:template match="m:cn[normalize-space(.)='&#8734;']" mode="cmml2om">
+    <OMS cd="nums1" name="infinity"/>
+  </xsl:template>
+
+  <xsl:template match="m:cn" mode="cmml2om">
+<!--    <xsl:message select="'cn: ',."/>-->
+    <OMV name="{.}"/>
+  </xsl:template>
   <xsl:template match="m:bind" mode="cmml2om">
     <OMBIND>
 	<xsl:apply-templates select="*[1]" mode="cmml2om"/>
@@ -99,12 +146,16 @@
    <xsl:template match="m:plus" mode="cmml2om">
       <OMS cd="arith1" name="plus"/>
    </xsl:template>
-   <xsl:template match="m:unary_minus" mode="cmml2om">
-      <OMS cd="arith1" name="unary_minus"/>
-   </xsl:template>
    <xsl:template match="m:minus" mode="cmml2om">
       <OMS cd="arith1" name="minus"/>
    </xsl:template>
+   <xsl:template match="m:apply[*[1][self::m:minus]][not(*[3])]" mode="cmml2om">
+     <OMA>
+       <OMS cd="arith1" name="unary_minus"/>
+       <xsl:apply-templates select="*[2]" mode="cmml2om"/>
+     </OMA>
+   </xsl:template>
+
    <xsl:template match="m:times" mode="cmml2om">
       <OMS cd="arith1" name="times"/>
    </xsl:template>
@@ -139,6 +190,27 @@
    <xsl:template match="m:product" mode="cmml2om">
       <OMS cd="arith1" name="product"/>
    </xsl:template>
+
+   <xsl:template match="m:apply[*[1][self::m:product]][m:bvar][m:lowlimit][m:uplimit]" mode="cmml2om" priority="26">
+     <OMA>
+       <OMS cd="arith1" name="product"/>
+       <OMA>
+	 <OMS cs="interval1" name="integer_interval"/>
+	 <xsl:apply-templates select="m:lowlimit/*" mode="cmml2om"/>
+	 <xsl:apply-templates select="m:uplimit/*" mode="cmml2om"/>
+       </OMA>
+       <OMBIND>
+	 <OMS cd="funs1" name="lambda"/>
+	 <OMBVAR>
+	   <xsl:apply-templates select="m:bvar/m:ci" mode="cmml2om"/>
+	 </OMBVAR>
+	 <xsl:apply-templates select="*[last()]" mode="cmml2om"/>
+       </OMBIND>
+     </OMA>
+   </xsl:template>
+   
+
+
    <xsl:template match="m:diff" mode="cmml2om">
       <OMS cd="calculus1" name="diff"/>
    </xsl:template>
@@ -222,7 +294,7 @@
 
 
 
-   <xsl:template match="m:apply[*[1][self::m:int]][m:domainofapplication]" mode="cmml2om">
+   <xsl:template match="m:apply[*[1][self::m:int]][m:domainofapplication]" mode="cmml2om" priority="15">
      <OMA>
        <OMS cd="calculus1" name="defint"/>
 	 <xsl:apply-templates select="m:domainofapplication/*" mode="cmml2om"/>
@@ -231,7 +303,7 @@
    </xsl:template>
 
 
-   <xsl:template match="m:apply[*[1][self::m:int]][m:bvar][m:domainofapplication]" mode="cmml2om" priority="2">
+   <xsl:template match="m:apply[*[1][self::m:int]][m:bvar][m:domainofapplication]" mode="cmml2om" priority="20">
      <OMA>
        <OMS cd="calculus1" name="defint"/>
        <xsl:apply-templates select="m:domainofapplication/*" mode="cmml2om"/>
@@ -246,14 +318,13 @@
    </xsl:template>
    
 
-   <xsl:template match="m:apply[*[1][self::m:int]][m:bvar][m:lowlimit and m:uplimit]" mode="cmml2om" priority="2">
+   <xsl:template match="m:apply[*[1][self::m:int]][m:bvar][m:lowlimit and m:uplimit]" mode="cmml2om" priority="25">
      <OMA>
        <OMS cd="calculus1" name="defint"/>
        <OMA>
-	 <OMS name="interval" cd="interval1">
-	   <xsl:apply-templates select="m:lowlimit/*" mode="cmml2om"/>
-	   <xsl:apply-templates select="m:uplimit/*" mode="cmml2om"/>
-	 </OMS>
+	 <OMS cd="interval1" name="interval"/>
+	 <xsl:apply-templates select="m:lowlimit/*" mode="cmml2om"/>
+	 <xsl:apply-templates select="m:uplimit/*" mode="cmml2om"/>
        </OMA>
        <OMBIND>
 	 <OMS cd="funs1" name="lambda"/>
@@ -318,8 +389,16 @@
       <OMS cd="fns1" name="left_compose"/>
    </xsl:template>
    <xsl:template match="m:lambda" mode="cmml2om">
+     <OMBIND>
       <OMS cd="fns1" name="lambda"/>
+      <OMBVAR>
+	<xsl:apply-templates select="m:bvar/*" mode="cmml2om"/>
+      </OMBVAR>
+      <xsl:apply-templates select="*[last()][not(self::m:bvar)]" mode="cmml2om"/>
+     </OMBIND>
    </xsl:template>
+
+
    <xsl:template match="m:factorof" mode="cmml2om">
       <OMS cd="integer1" name="factorof"/>
    </xsl:template>
@@ -332,24 +411,29 @@
    <xsl:template match="m:rem" mode="cmml2om">
       <OMS cd="integer1" name="remainder"/>
    </xsl:template>
-   <xsl:template match="m:integer_interval" mode="cmml2om">
-      <OMS cd="interval1" name="integer_interval"/>
-   </xsl:template>
+
    <xsl:template match="m:interval" mode="cmml2om">
-      <OMS cd="interval1" name="interval"/>
+     <OMA>
+      <OMS cd="interval1" name="interval">
+	<xsl:apply-templates select="@closure" mode="cmml2om"/>
+      </OMS>
+      <xsl:apply-templates select="*" mode="cmml2om"/>
+     </OMA>
    </xsl:template>
-   <xsl:template match="m:interval_oo" mode="cmml2om">
-      <OMS cd="interval1" name="interval_oo"/>
+
+   <xsl:template match="m:interval/@closure[.='open']" mode="cmml2om">
+     <xsl:attribute name="name" select="'interval_oo'"/>
    </xsl:template>
-   <xsl:template match="m:interval_cc" mode="cmml2om">
-      <OMS cd="interval1" name="interval_cc"/>
+   <xsl:template match="m:interval/@closure[.='closed']" mode="cmml2om">
+     <xsl:attribute name="name" select="'interval_cc'"/>
    </xsl:template>
-   <xsl:template match="m:interval_oc" mode="cmml2om">
-      <OMS cd="interval1" name="interval_oc"/>
+   <xsl:template match="m:interval/@closure[.='open-closed']" mode="cmml2om">
+     <xsl:attribute name="name" select="'interval_oc'"/>
    </xsl:template>
-   <xsl:template match="m:interval_co" mode="cmml2om">
-      <OMS cd="interval1" name="interval_co"/>
+   <xsl:template match="m:interval/@closure[.='closed-open']" mode="cmml2om">
+     <xsl:attribute name="name" select="'interval_co'"/>
    </xsl:template>
+
    <xsl:template match="m:limit" mode="cmml2om">
       <OMS cd="limit1" name="limit"/>
    </xsl:template>
@@ -366,12 +450,23 @@
      </OMA>
    </xsl:template>
 
-   <xsl:template match="m:apply[*[1][self::m:limit]][m:condition]" priority="2" mode="cmml2om">
+   <xsl:template match="m:apply[*[1][self::m:limit]][m:condition]" priority="92" mode="cmml2om">
      <OMA>
        <xsl:apply-templates select="*[1]" mode="cmml2om"/>
-       <xsl:apply-templates select="m:condition/*" mode="cmml2om"/>
+       <xsl:apply-templates select="m:condition" mode="cmml2om"/>
+              <OMBIND>
+	 <OMS cd="funs1" name="lambda"/>
+	 <OMBVAR>
+	   <xsl:apply-templates select="m:condition/m:apply/*[2]" mode="cmml2om"/>
+	 </OMBVAR>
        <xsl:apply-templates select="*[last()]" mode="cmml2om"/>
+	      </OMBIND>
      </OMA>
+   </xsl:template>
+
+   <xsl:template match="m:apply[*[1][self::m:limit]]/m:condition[m:apply/m:tendsto]" priority="42" mode="cmml2om">
+       <xsl:apply-templates select="m:apply/*[3]" mode="cmml2om"/>
+       <xsl:apply-templates select="m:apply/*[1]" mode="cmml2om"/>
    </xsl:template>
 
    <xsl:template match="m:vectorproduct" mode="cmml2om">
@@ -411,10 +506,16 @@
       <OMS cd="linalg2" name="vector"/>
    </xsl:template>
    <xsl:template match="m:matrixrow" mode="cmml2om">
+     <OMA>
       <OMS cd="linalg2" name="matrixrow"/>
+      <xsl:apply-templates select="*" mode="cmml2om"/>
+     </OMA>
    </xsl:template>
    <xsl:template match="m:matrix" mode="cmml2om">
+     <OMA>
       <OMS cd="linalg2" name="matrix"/>
+      <xsl:apply-templates select="*" mode="cmml2om"/>
+     </OMA>
    </xsl:template>
    <xsl:template match="m:map" mode="cmml2om">
       <OMS cd="list1" name="map"/>
@@ -423,7 +524,10 @@
       <OMS cd="list1" name="suchthat"/>
    </xsl:template>
    <xsl:template match="m:list" mode="cmml2om">
-      <OMS cd="list1" name="list"/>
+     <OMA>
+       <OMS cd="list1" name="list"/>
+       <xsl:apply-templates select="*" mode="cmml2om"/>
+     </OMA>
    </xsl:template>
    <xsl:template match="m:equivalent" mode="cmml2om">
       <OMS cd="logic1" name="equivalent"/>
@@ -573,13 +677,22 @@
       <OMS cd="omtypes" name="bytearray"/>
    </xsl:template>
    <xsl:template match="m:piecewise" mode="cmml2om">
-      <OMS cd="piece1" name="piecewise"/>
+     <OMA>
+       <OMS cd="piece1" name="piecewise"/>
+       <xsl:apply-templates select="*" mode="cmml2om"/>
+     </OMA>
    </xsl:template>
    <xsl:template match="m:piece" mode="cmml2om">
-      <OMS cd="piece1" name="piece"/>
+     <OMA>
+       <OMS cd="piece1" name="piece"/>
+       <xsl:apply-templates select="*" mode="cmml2om"/>
+     </OMA>
    </xsl:template>
    <xsl:template match="m:otherwise" mode="cmml2om">
-      <OMS cd="piece1" name="otherwise"/>
+     <OMA>
+       <OMS cd="piece1" name="otherwise"/>
+       <xsl:apply-templates select="*" mode="cmml2om"/>
+     </OMA>
    </xsl:template>
    <xsl:template match="m:forall" mode="cmml2om">
       <OMS cd="quant1" name="forall"/>

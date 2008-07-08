@@ -4,7 +4,7 @@
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:om="http://www.openmath.org/OpenMath"
   xmlns="http://www.w3.org/1998/Math/MathML"
-  version="1.0"
+  version="2.0"
 >
 
 
@@ -188,11 +188,40 @@ If the body is a lambda expression, use d^2/dx/dy otherwise use D_1,2
     <mfrac>
      <msup>
        <mi>&#x2202;</mi>
-       <mn><xsl:value-of select="count(following-sibling::*[1]/om:OMI)"/></mn>
+       <mrow>
+	 <xsl:variable name="i" select="sum(following-sibling::*[1]/om:OMI)"/>
+	 <xsl:for-each select="following-sibling::*[1]/*[position()!=1][not(self::om:OMI)]">
+	   <xsl:apply-templates select="."/>
+	   <xsl:if test="position()!=last() or $i!=0"><mo>+</mo></xsl:if>
+	 </xsl:for-each>
+	 <xsl:if test="$i!=0">
+	   <mn><xsl:value-of select="$i"/></mn>
+	 </xsl:if>
+       </mrow>
      </msup>
     <mrow>
+<!-- old bad? mode
       <xsl:apply-templates mode="dx" 
                            select="following-sibling::*[1]/om:OMI[1]"/>
+-->
+    <xsl:variable name="d" select="following-sibling::*[1]/*[position()!=1]"/>
+    <xsl:for-each select="following-sibling::om:OMBIND/om:OMBVAR/*">
+      <xsl:variable name="p" select="position()"/>
+      <mrow>
+	<mo>&#x2202;</mo>
+	<xsl:choose>
+	  <xsl:when test="$d[$p]='1'">
+	    <xsl:apply-templates select="."/>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <msup>
+	      <xsl:apply-templates select="."/>
+	      <xsl:apply-templates select="$d[$p]"/>
+	    </msup>
+	  </xsl:otherwise>
+	</xsl:choose>
+      </mrow>
+    </xsl:for-each>
     </mrow>
     </mfrac>
     <mrow>

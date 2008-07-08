@@ -8,8 +8,7 @@
 
 
 
-
-<xsl:template match="om:OMS[@cd='limit1' and @name='limit'][following-sibling::*[3][self::om:OMBIND]/om:OMS[@name='lambda']]" >
+<xsl:template match="om:OMS[@cd='limit1' and @name='limit'][following-sibling::*[3][self::om:OMBIND]/om:OMS[@name='lambda']]">
 <mrow>
 <munder>
 <mi>limit</mi>
