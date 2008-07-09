@@ -252,17 +252,20 @@
 
 
    <xsl:template match="m:partialdiff" mode="cmml2om">
-      <OMS cd="calculus1" name="partialdiff"/>
+      <OMS cd="calculus1" name="partialnthdiff"/>
    </xsl:template>
 
 
-   <xsl:template match="m:*[self::m:apply or self::m:bind][*[1][self::m:partialdiff]]" mode="cmml2om">
+   <xsl:template match="m:*[self::m:apply or self::m:bind][*[1][self::m:partialdiff]][m:bvar]" mode="cmml2om">
      
      <OMA>
-       <OMS cd="calculus1" name="partialdiff"/>
+       <OMS cd="calculus1" name="partialnthdiff"/>
        <OMA>
 	 <OMS cd="list1" name="list"/>
 	 <xsl:apply-templates select="m:bvar" mode="cmml2ompd"/>
+<!-- lose total degree for now
+	 <xsl:apply-templates select="m:degree/*" mode="cmml2om"/>
+-->
        </OMA>
        <OMBIND>
 	 <OMS cd="funs1" name="lambda"/>
@@ -287,7 +290,16 @@
      <OMI>1</OMI>
    </xsl:template>
 
-
+  <xsl:template match="m:*[self::m:apply or self::m:bind][*[1][self::m:partialdiff]][m:list]" mode="cmml2om">
+     
+     <OMA>
+       <OMS cd="calculus1" name="partialnthdiff"/>
+	 <xsl:apply-templates select="m:list" mode="cmml2om"/>
+	 <xsl:apply-templates select="*[last()]" mode="cmml2om"/>
+     </OMA>
+   </xsl:template>
+   
+ 
    <xsl:template match="m:int" mode="cmml2om">
       <OMS cd="calculus1" name="int"/>
    </xsl:template>
