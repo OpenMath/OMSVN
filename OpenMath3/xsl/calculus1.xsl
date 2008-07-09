@@ -179,7 +179,7 @@ else put range of summation at bottom
 
 
 
-<xsl:template match="om:OMS[@cd='calculus1' and @name='partialdiff']"  >
+<xsl:template match="om:OMS[@cd='calculus1' and @name='partialnthdiff']"  >
    <xsl:choose>
 <!--
 If the body is a lambda expression, use d^2/dx/dy otherwise use D_1,2
@@ -231,14 +231,56 @@ If the body is a lambda expression, use d^2/dx/dy otherwise use D_1,2
     </mrow>
    </xsl:when>
    <xsl:otherwise>
-   <mo>&#x2202;</mo>
-   <mrow>
-     <mo>(</mo>
-     <xsl:apply-templates select="following-sibling::*[1]"/>
-     <mo>)</mo>
-   </mrow>
+     <mrow>
+       <msub>
+	 <mi>D</mi>
+	 <mrow>
+	   <mo>(</mo>
+	   <xsl:apply-templates select="following-sibling::*[1]"/>
+	   <mo>)</mo>
+	 </mrow>
+       </msub>
+       <xsl:apply-templates select="following-sibling::*[last()]"/>
+     </mrow>
    </xsl:otherwise>
   </xsl:choose>
+</xsl:template>
+
+<xsl:template match="om:OMS[@cd='calculus1' and @name='partialdiff']"  >
+   <xsl:choose>
+<!--
+If the body is a lambda expression, use d^2/dx/dy otherwise use D_1,2
+-->
+   <xsl:when test="following-sibling::*[2]/self::om:OMBIND/*[1][self::om:OMS[@name='lambda']]">
+    <mfrac>
+     <msup>
+       <mi>&#x2202;</mi>
+       <mn><xsl:value-of select="count(following-sibling::*[1]/om:OMI)"/></mn>     
+     </msup>
+     <mrow>
+       <xsl:apply-templates mode="dx" 
+			    select="following-sibling::*[1]/om:OMI[1]"/>
+
+    </mrow>
+    </mfrac>
+    <mrow>
+     <mo>(</mo>
+     <xsl:apply-templates select="following-sibling::om:OMBIND/*[3]"/>
+     <mo>)</mo>
+    </mrow>
+   </xsl:when>
+   <xsl:otherwise>
+     <mrow>
+       <msub>
+	 <mi>D</mi>
+	 <mrow>
+	   <xsl:apply-templates select="following-sibling::*[1]"/>
+	 </mrow>
+       </msub>
+       <xsl:apply-templates select="following-sibling::*[1]"/>
+     </mrow>
+   </xsl:otherwise>
+   </xsl:choose>
 </xsl:template>
 
 <xsl:template mode="dx" match="om:OMI">
