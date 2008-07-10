@@ -7,7 +7,7 @@
   version="1.0"
 >
 
-<xsl:template match="om:OMS[@cd='transc1' and @name='log']"  >
+<xsl:template match="om:OMS[@cd='transc1' and @name='log']"  priority="2">
  <mrow>
   <msub><mi>log</mi><xsl:apply-templates select="following-sibling::*[1]"/></msub>
   <mo><!-- AF --></mo>
@@ -15,13 +15,22 @@
  </mrow>
 </xsl:template>
 
-<xsl:template match="om:OMS[@cd='transc1' and @name='exp']"  >
+<xsl:template match="om:OMS[@cd='transc1' and @name='exp']"  priority="2">
   <msup>
     <mi>e</mi>
     <xsl:apply-templates select="following-sibling::*[1]"/>
   </msup>
 </xsl:template>
 
+
+
+<xsl:template match="om:OMA[om:OMV|om:OMF]/om:OMS[@cd='transc1']"  >
+<mrow>
+  <mi><xsl:value-of  select="@name"/></mi>
+  <mo><!-- AF --></mo>
+ <xsl:apply-templates select="following-sibling::*"/>
+</mrow>
+</xsl:template>
 
 </xsl:stylesheet>
 
