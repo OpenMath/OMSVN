@@ -9,35 +9,48 @@
 
 
 <xsl:template match="om:OMS[@cd='limit1' and @name='limit'][following-sibling::*[3][self::om:OMBIND]/om:OMS[@name='lambda']]">
-<mrow>
-<munder>
-<mi>limit</mi>
-<mrow>
- <xsl:apply-templates select="following-sibling::om:OMBIND/om:OMBVAR"/>
- <mo>&#x2192;</mo>
- <xsl:choose>
- <xsl:when test="following-sibling::*[2][self::om:OMS[@name='above']]">
- <msup>
- <xsl:apply-templates select="following-sibling::*[1]"/>
- <mo>+</mo>
- </msup>
- </xsl:when>
- <xsl:when test="following-sibling::*[2][self::om:OMS[@name='below']]">
- <msub>
- <xsl:apply-templates select="following-sibling::*[1]"/>
- <mo>-</mo>
- </msub>
- </xsl:when>
- <xsl:otherwise>
- <xsl:apply-templates select="following-sibling::*[1]"/>
- </xsl:otherwise>
- </xsl:choose>
-</mrow>
-</munder>
- <mspace width="0.1em"/>
- <xsl:apply-templates select="following-sibling::om:OMBIND/*[3]"/>
-</mrow>
+  <mrow>
+    <munder>
+      <mi>limit</mi>
+      <mrow>
+	<xsl:apply-templates select="following-sibling::om:OMBIND/om:OMBVAR"/>
+	<mo>&#x2192;</mo>
+	<xsl:choose>
+	  <xsl:when test="following-sibling::*[2][self::om:OMS[@name='above']]">
+	    <msup>
+	      <xsl:apply-templates select="following-sibling::*[1]"/>
+	      <mo>+</mo>
+	    </msup>
+	  </xsl:when>
+	  <xsl:when test="following-sibling::*[2][self::om:OMS[@name='below']]">
+	    <msub>
+	      <xsl:apply-templates select="following-sibling::*[1]"/>
+	      <mo>-</mo>
+	    </msub>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:apply-templates select="following-sibling::*[1]"/>
+	  </xsl:otherwise>
+	</xsl:choose>
+      </mrow>
+    </munder>
+    <mrow>
+      <mo>(</mo>
+      <xsl:apply-templates select="following-sibling::om:OMBIND/*[3]"/>
+      <mo>)</mo>
+    </mrow>
+  </mrow>
 </xsl:template>
+
+<xsl:template match="om:OMS[@cd='limit1' and @name=('tendsto')]"  >
+  <xsl:param name="p"/>
+  <mrow>
+  <xsl:apply-templates select="following-sibling::*[2]"/>
+  <xsl:apply-templates select="following-sibling::*[1]"/>
+  <xsl:apply-templates select="following-sibling::*[3]"/>
+  </mrow>
+</xsl:template>
+
 
 <xsl:template match="om:OMS[@cd='limit1' and @name=('null','both-sides')]"  >
   <xsl:param name="p"/>
