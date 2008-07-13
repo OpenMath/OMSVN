@@ -64,6 +64,21 @@
     </OMI>
   </xsl:template>
 
+  <xsl:template match="m:cn[@type='integer'][@base]" mode="cmml2om" priority="2">
+    <OMA>
+      <OMS cd="nums1" name="based_integer"/>
+      <xsl:choose>
+	<xsl:when test="matches(@base,'^[ 0-9.,-]+$')">
+	  <OMI><xsl:value-of select="@base"/></OMI>
+	</xsl:when>
+	<xsl:otherwise>
+	  <OMV name="{@base}"/>
+	</xsl:otherwise>
+      </xsl:choose>
+      <OMSTR><xsl:value-of select="normalize-space(.)"/></OMSTR>
+    </OMA>
+  </xsl:template>
+
   <xsl:template match="m:cn[@type='rational']" mode="cmml2om">
     <OMA>
       <OMS cd="nums1" name="rational"/>
@@ -90,6 +105,9 @@
   </xsl:template>
   <xsl:template match="m:cn/text()[matches(.,'^[ &#10;0-9.,-]+\.[ &#10;0-9.,-]+$')]" mode="cmml2om">
     <OMF dec="{.}"/>
+  </xsl:template>
+  <xsl:template match="m:cn/text()[matches(.,'^[ 0-9.,-]+$')]" mode="cmml2om" priority="2">
+    <OMI><xsl:value-of select="."/></OMI>
   </xsl:template>
   <xsl:template match="m:cn[normalize-space(.)='&#960;']" mode="cmml2om">
     <OMS cd="nums1" name="pi"/>
@@ -612,43 +630,13 @@
    <xsl:template match="m:type" mode="cmml2om">
       <OMS cd="mathmltypes" name="type"/>
    </xsl:template>
-   <xsl:template match="m:integer_type" mode="cmml2om">
-      <OMS cd="mathmltypes" name="integer_type"/>
-   </xsl:template>
-   <xsl:template match="m:real_type" mode="cmml2om">
-      <OMS cd="mathmltypes" name="real_type"/>
-   </xsl:template>
-   <xsl:template match="m:rational_type" mode="cmml2om">
-      <OMS cd="mathmltypes" name="rational_type"/>
-   </xsl:template>
-   <xsl:template match="m:complex_cartesian_type" mode="cmml2om">
-      <OMS cd="mathmltypes" name="complex_cartesian_type"/>
-   </xsl:template>
-   <xsl:template match="m:complex_polar_type" mode="cmml2om">
-      <OMS cd="mathmltypes" name="complex_polar_type"/>
-   </xsl:template>
-   <xsl:template match="m:constant_type" mode="cmml2om">
-      <OMS cd="mathmltypes" name="constant_type"/>
-   </xsl:template>
-   <xsl:template match="m:vector_type" mode="cmml2om">
-      <OMS cd="mathmltypes" name="vector_type"/>
-   </xsl:template>
-   <xsl:template match="m:list_type" mode="cmml2om">
-      <OMS cd="mathmltypes" name="list_type"/>
-   </xsl:template>
-   <xsl:template match="m:set_type" mode="cmml2om">
-      <OMS cd="mathmltypes" name="set_type"/>
-   </xsl:template>
-   <xsl:template match="m:matrix_type" mode="cmml2om">
-      <OMS cd="mathmltypes" name="matrix_type"/>
-   </xsl:template>
-   <xsl:template match="m:fn_type" mode="cmml2om">
-      <OMS cd="mathmltypes" name="fn_type"/>
-   </xsl:template>
    <xsl:template match="m:min" mode="cmml2om">
       <OMS cd="minmax1" name="min"/>
    </xsl:template>
-   <xsl:template match="m:apply[*[1][self::m:min]][m:condition]" mode="cmml2om" priority="50">
+   <xsl:template match="m:max" mode="cmml2om">
+      <OMS cd="minmax1" name="max"/>
+   </xsl:template>
+   <xsl:template match="m:apply[*[1][self::m:min|self::m:max]][m:condition]" mode="cmml2om" priority="50">
      <OMA>
        <xsl:apply-templates select="*[1]" mode="cmml2om"/>
        <OMA>
@@ -702,9 +690,6 @@
    </xsl:template>
    <xsl:template match="m:notprsubset[@type='multiset']" mode="cmml2om">
       <OMS cd="multiset1" name="notprsubset"/>
-   </xsl:template>
-   <xsl:template match="m:based_integer" mode="cmml2om">
-      <OMS cd="nums1" name="based_integer"/>
    </xsl:template>
    <xsl:template match="m:rational" mode="cmml2om">
       <OMS cd="nums1" name="rational"/>
@@ -1094,7 +1079,24 @@
    </xsl:template>
 
 
-   <xsl:template match="m:declare"/>
+   <xsl:template match="m:declare" mode="cmml2om"/>
 
+   <xsl:template match="m:semantics" mode="cmml2om">
+     <OMATTR>
+     <OMATP>
+	 <xsl:apply-templates mode="cmml2om" select="m:annotation|m:annotation-xml"/>
+     </OMATP>
+       <xsl:apply-templates mode="cmml2om" select="*[1]"/>
+     </OMATTR>
+   </xsl:template>
+
+   <xsl:template match="m:annotation" mode="cmml2om">
+       <OMS name="{@encoding}"/>
+       <OMSTR><xsl:value-of select="."/></OMSTR>
+   </xsl:template>
+   <xsl:template match="m:annotation-xml" mode="cmml2om">
+       <OMS name="{@encoding}"/>
+       <OMFOREIGN><xsl:copy-of select="node()"/></OMFOREIGN>
+   </xsl:template>
 
 </xsl:stylesheet>
