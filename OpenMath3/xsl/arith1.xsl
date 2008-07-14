@@ -141,7 +141,7 @@
   <xsl:call-template name="infix">
     <xsl:with-param name="mo"><mo>-</mo></xsl:with-param>
     <xsl:with-param name="p" select="$p"/>
-    <xsl:with-param name="this-p" select="1"/>
+    <xsl:with-param name="this-p" select="1.5"/>
   </xsl:call-template>
 </xsl:template>
 
