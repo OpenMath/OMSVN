@@ -239,7 +239,7 @@
 
 
 
-   <xsl:template match="m:*[self::m:apply or self::m:bind][*[1][self::m:diff]]" mode="cmml2om">
+   <xsl:template match="m:*[self::m:apply or self::m:bind][m:bvar][*[1][self::m:diff]]" mode="cmml2om">
      <OMA>
        <OMS cd="calculus1" name="diff"/>
      <OMBIND>
@@ -339,19 +339,19 @@
 
 
 
-   <xsl:template match="m:apply[*[1][self::m:int]][m:domainofapplication]" mode="cmml2om" priority="15">
+   <xsl:template match="m:apply[*[1][self::m:int]][m:domainofapplication|m:interval]" mode="cmml2om" priority="15">
      <OMA>
        <OMS cd="calculus1" name="defint"/>
-	 <xsl:apply-templates select="m:domainofapplication/*" mode="cmml2om"/>
+	 <xsl:apply-templates select="m:domainofapplication/*|m:interval" mode="cmml2om"/>
 	 <xsl:apply-templates select="*[last()]" mode="cmml2om"/>
      </OMA>
    </xsl:template>
 
 
-   <xsl:template match="m:apply[*[1][self::m:int]][m:bvar][m:domainofapplication]" mode="cmml2om" priority="20">
+   <xsl:template match="m:apply[*[1][self::m:int]][m:bvar][m:domainofapplication|m:interval]" mode="cmml2om" priority="20">
      <OMA>
        <OMS cd="calculus1" name="defint"/>
-       <xsl:apply-templates select="m:domainofapplication/*" mode="cmml2om"/>
+       <xsl:apply-templates select="m:domainofapplication/*|m:interval" mode="cmml2om"/>
        <OMBIND>
 	 <OMS cd="funs1" name="lambda"/>
 	 <OMBVAR>
