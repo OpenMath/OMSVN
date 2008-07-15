@@ -1099,4 +1099,8 @@
        <OMFOREIGN><xsl:copy-of select="node()"/></OMFOREIGN>
    </xsl:template>
 
+   <xsl:template match="m:math//m:math" mode="cmml2om">
+     <OMS cd="error1" name="nested"/>
+   </xsl:template>
+
 </xsl:stylesheet>
