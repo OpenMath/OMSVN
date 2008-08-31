@@ -113,11 +113,8 @@
 
 
       <p>
-    This CD is intended to be `compatible' with the MathML view of
-    constructors for numbers (integers to an arbitrary base,
-    rationals) and symbols for some common numerical constants.</p>
-      <p>    This CD holds a set of symbols for creating numbers, including
-    some defined constants (i.e. nullary constructors).
+    This CD provides a set of symbols for creating numbers, including some defined number
+    constants.
 </p>
 
       <div class="cddefinition">
@@ -202,8 +199,8 @@ covered in the encodings of integers.
                         <mn> 8 </mn>
                         <mo>=</mo>
                         <msub>
-                           <mn> 8 </mn>
                            <mtext> 10 </mtext>
+                           <mn> 8 </mn>
                         </msub>
                      </mrow>
                   </m:math>
@@ -546,7 +543,7 @@ for all reals x, x \lt infinity
                           onclick="divfold('d42e198strict')">Strict Content MathML</button>
                </div>
                <pre id="d42e198strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
-  &lt;apply&gt;&lt;csymbol cd="limit1"&gt;limit&lt;/csymbol&gt;&lt;csymbol cd="nums1"&gt;infinity&lt;/csymbol&gt;&lt;csymbol cd="limit1"&gt;null&lt;/csymbol&gt;&lt;bind&gt;&lt;csymbol cd="funs1"&gt;lambda&lt;/csymbol&gt;&lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;&lt;apply&gt;&lt;csymbol cd="arith1"&gt;divide&lt;/csymbol&gt;&lt;cn&gt;1&lt;/cn&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/apply&gt;&lt;/bind&gt;&lt;/apply&gt;
+  &lt;apply&gt;&lt;csymbol cd="limit1"&gt;limit&lt;/csymbol&gt;&lt;csymbol cd="nums1"&gt;infinity&lt;/csymbol&gt;&lt;bind&gt;&lt;csymbol cd="funs1"&gt;lambda&lt;/csymbol&gt;&lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;&lt;apply&gt;&lt;csymbol cd="arith1"&gt;divide&lt;/csymbol&gt;&lt;cn&gt;1&lt;/cn&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/apply&gt;&lt;/bind&gt;&lt;/apply&gt;
   &lt;cn&gt;0&lt;/cn&gt;
 &lt;/apply&gt;&lt;/math&gt;</pre>
                <div>
@@ -554,7 +551,7 @@ for all reals x, x \lt infinity
                           onclick="divfold('d42e198cmml')">OpenMath</button>
                </div>
                <pre id="d42e198cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMA&gt;&lt;OMS cd="relation1" name="eq"/&gt;
-  &lt;OMA&gt;&lt;OMS cd="limit1" name="limit"/&gt;&lt;OMS cd="nums1" name="infinity"/&gt;&lt;OMS cd="limit1" name="null"/&gt;&lt;OMBIND&gt;&lt;OMS cd="funs1" name="lambda"/&gt;&lt;OMBVAR&gt;&lt;OMV name="x"/&gt;&lt;/OMBVAR&gt;&lt;OMA&gt;&lt;OMS cd="arith1" name="divide"/&gt;&lt;OMI&gt;1&lt;/OMI&gt;&lt;OMV name="x"/&gt;&lt;/OMA&gt;&lt;/OMBIND&gt;&lt;/OMA&gt;
+  &lt;OMA&gt;&lt;OMS cd="limit1" name="limit"/&gt;&lt;OMS cd="nums1" name="infinity"/&gt;&lt;tendsto xmlns="http://www.w3.org/1998/Math/MathML"/&gt;&lt;OMBIND&gt;&lt;OMS cd="funs1" name="lambda"/&gt;&lt;OMBVAR&gt;&lt;OMV name="x"/&gt;&lt;/OMBVAR&gt;&lt;OMA&gt;&lt;OMS cd="arith1" name="divide"/&gt;&lt;OMI&gt;1&lt;/OMI&gt;&lt;OMV name="x"/&gt;&lt;/OMA&gt;&lt;/OMBIND&gt;&lt;/OMA&gt;
   &lt;OMI&gt;0&lt;/OMI&gt;
 &lt;/OMA&gt;&lt;/OMOBJ&gt;</pre>
                <div>
@@ -564,7 +561,7 @@ for all reals x, x \lt infinity
                <div id="d42e198pref" style="display:none; margin-top: 0.5em">
                   <a href="relation1.xhtml#eq">eq</a>
 (<a href="limit1.xhtml#limit">limit</a>
-(<a href="nums1.xhtml#infinity">infinity</a>, <a href="limit1.xhtml#null">null</a>, <a href="funs1.xhtml#lambda">lambda</a>
+(<a href="nums1.xhtml#infinity">infinity</a>, , <a href="funs1.xhtml#lambda">lambda</a>
 [ <i>x</i>] .
 (<a href="arith1.xhtml#divide">divide</a>
 (1,  <i>x</i>)
@@ -591,11 +588,14 @@ for all reals x, x \lt infinity
                                  <mi>∞</mi>
                               </mrow>
                            </munder>
-                           <mspace width="0.1em"/>
-                           <mfrac>
-                              <mn>1</mn>
-                              <mi>x</mi>
-                           </mfrac>
+                           <mrow>
+                              <mo>(</mo>
+                              <mfrac>
+                                 <mn>1</mn>
+                                 <mi>x</mi>
+                              </mfrac>
+                              <mo>)</mo>
+                           </mrow>
                         </mrow>
                         <mo>=</mo>
                         <mn>0</mn>
@@ -2238,33 +2238,32 @@ gamma  is approx. 0.5772156649
                                  </msub>
                               </mrow>
                            </munder>
-                           <mspace width="0.1em"/>
                            <mrow>
-                              <munderover>
-                                 <mo>∑</mo>
-                                 <mrow>
-                                    <mrow>
-                                       <mi>j</mi>
-                                    </mrow>
-                                    <mo>=</mo>
-                                    <mn>1</mn>
-                                 </mrow>
-                                 <mi>m</mi>
-                              </munderover>
-                              <mfrac>
-                                 <mn> 1 </mn>
-                                 <mi>j</mi>
-                              </mfrac>
-                              <mo>-</mo>
+                              <mo>(</mo>
                               <mrow>
-                                 <mi>ln</mi>
-                                 <mo>⁡</mo>
-                                 <mrow>
-                                    <mo>(</mo>
+                                 <munderover>
+                                    <mo>∑</mo>
+                                    <mrow>
+                                       <mrow>
+                                          <mi>j</mi>
+                                       </mrow>
+                                       <mo>=</mo>
+                                       <mn>1</mn>
+                                    </mrow>
                                     <mi>m</mi>
-                                    <mo>)</mo>
+                                 </munderover>
+                                 <mfrac>
+                                    <mn> 1 </mn>
+                                    <mi>j</mi>
+                                 </mfrac>
+                                 <mo>-</mo>
+                                 <mrow>
+                                    <mi>ln</mi>
+                                    <mo/>
+                                    <mi>m</mi>
                                  </mrow>
                               </mrow>
+                              <mo>)</mo>
                            </mrow>
                         </mrow>
                      </mrow>
