@@ -6,16 +6,38 @@
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:omo="http://www.openmath.org/ontology#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" > 
+  <rdf:Description rdf:about="http://www.openmath.org/ontology#hasPragmaticGuidelines">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.openmath.org/ontology#hasDirectPart"/>
+    <rdfs:comment>OpenMath 3 transitional</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.openmath.org/ontology#SymbolDefinition"/>
+    <rdfs:range rdf:resource="http://www.openmath.org/ontology#PragmaticGuidelines"/>
+    <dc:description>The relationship of a symbol definition to its pragmatic usage guidelines</dc:description>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A0">
+    <owl:unionOf rdf:nodeID="A1"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.openmath.org/ontology#hasDirectPart">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.openmath.org/ontology#hasPart"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.openmath.org/ontology#comprisesDirectly"/>
+    <dc:description>This relation denotes that one concept A directly logically contains another concept B, and that B is not contained by any other concept than A, as reflected by child elements in OpenMath XML documents.</dc:description>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A2">
+    <rdf:first rdf:resource="http://www.openmath.org/ontology#Example"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#hasProperty">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:subPropertyOf rdf:resource="http://www.openmath.org/ontology#hasPart"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.openmath.org/ontology#hasDirectPart"/>
     <rdfs:domain rdf:resource="http://www.openmath.org/ontology#SymbolDefinition"/>
     <rdfs:range rdf:resource="http://www.openmath.org/ontology#Property"/>
     <dc:description>The relationship of a symbol definition to a CMP or FMP it contains</dc:description>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#reviewDate">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:domain rdf:nodeID="A0"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:nodeID="A3"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
     <dc:description>The review date of a content dictionary or signature dictionary, as described in section 4.3.2</dc:description>
   </rdf:Description>
@@ -26,15 +48,24 @@
     <rdfs:range rdf:resource="http://www.openmath.org/ontology#CommentedProperty"/>
     <dc:description>The relationship of a symbol definition to a CMP it contains</dc:description>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A4">
+    <rdf:first rdf:resource="http://www.openmath.org/ontology#SignatureDictionary"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A5">
+    <rdf:first rdf:resource="http://www.openmath.org/ontology#ContentDictionary"/>
+    <rdf:rest rdf:nodeID="A6"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#role">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
     <rdfs:domain rdf:resource="http://www.openmath.org/ontology#SymbolDefinition"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     <dc:description>The role of a symbol, as described in section 4.3.2</dc:description>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#NotationDictionary">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://www.openmath.org/ontology#OpenMathConcept"/>
+    <rdfs:subClassOf rdf:resource="http://www.openmath.org/ontology#OpenMathComposite"/>
     <dc:description>Note: This name was conceived in analogy to “Content Dictionaries” and “Signature Dictionaries”.</dc:description>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#CDBase">
@@ -42,41 +73,39 @@
     <rdfs:subClassOf rdf:resource="http://www.openmath.org/ontology#OpenMathConcept"/>
     <dc:description>An OpenMath Content Dictionary base URI, as described in sections 2.3 and 4.2</dc:description>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A1">
-    <rdf:first rdf:resource="http://www.openmath.org/ontology#ContentDictionary"/>
-    <rdf:rest rdf:nodeID="A2"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
-    <dc:title>OpenMath 2.0 content dictionary ontology</dc:title>
-    <dc:description>OpenMath 2.0 content dictionary ontology in OWL-DL, modeled after the OpenMath 2.0 specification.  All references to chapters and sections point to the OpenMath 2.0 standard.</dc:description>
+    <dc:title>OpenMath 2.0/3.0 content dictionary ontology</dc:title>
+    <dc:description>OpenMath 2.0/3.0 content dictionary ontology in OWL-DL, modeled after the OpenMath 2.0 specification and currently in transition towards OpenMath 3.0.  All references to chapters and sections point to the OpenMath 2.0 standard.</dc:description>
     <dc:creator>Christoph Lange &lt;ch.lange@jacobs-university.de&gt;</dc:creator>
     <dc:subject>Semantic Mathematical Markup</dc:subject>
-    <owl:versionInfo>0.1.1</owl:versionInfo>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A3">
-    <owl:unionOf rdf:nodeID="A4"/>
+    <owl:versionInfo>0.1.2</owl:versionInfo>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#revision">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:domain rdf:nodeID="A5"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:nodeID="A7"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
     <dc:description>The revision (= minor version) of a content dictionary or content dictionary group, as described in section 4.3.2 or 4.4.2.2, resp.</dc:description>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A6">
-    <rdf:first rdf:resource="http://www.openmath.org/ontology#ContentDictionaryGroup"/>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  <rdf:Description rdf:nodeID="A7">
+    <owl:unionOf rdf:nodeID="A8"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#OpenMathConcept">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <dc:description>The generic superclass of all concepts that can be expressed in OpenMath content/signature/notation dictionaries</dc:description>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A7">
+  <rdf:Description rdf:nodeID="A1">
+    <rdf:first rdf:resource="http://www.openmath.org/ontology#FormalProperty"/>
+    <rdf:rest rdf:nodeID="A2"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A9">
     <rdf:first rdf:resource="http://www.openmath.org/ontology#ContentDictionary"/>
-    <rdf:rest rdf:nodeID="A8"/>
+    <rdf:rest rdf:nodeID="A4"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#containsSignaturesFor">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
     <rdfs:domain rdf:resource="http://www.openmath.org/ontology#SignatureDictionary"/>
     <rdfs:range rdf:resource="http://www.openmath.org/ontology#ContentDictionary"/>
     <dc:description>The relationship of a signature dictionary to the content dictionary whose symbols it specifies</dc:description>
@@ -85,6 +114,16 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="http://www.openmath.org/ontology#OpenMathConcept"/>
     <dc:description>A notation definition for one symbol</dc:description>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.openmath.org/ontology#comprises">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:domain rdf:resource="http://www.openmath.org/ontology#OpenMathComposite"/>
+    <rdfs:range rdf:resource="http://www.openmath.org/ontology#OpenMathConcept"/>
+    <dc:description>This relation denotes that one concept A directly or indirectly comprises another concept B, but does not necessarily exclusively contain it.</dc:description>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A10">
+    <rdf:first rdf:resource="http://www.openmath.org/ontology#ContentDictionaryGroup"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#definedIn">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
@@ -98,7 +137,7 @@
   </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#hasExample">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:subPropertyOf rdf:resource="http://www.openmath.org/ontology#hasPart"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.openmath.org/ontology#hasDirectPart"/>
     <rdfs:domain rdf:resource="http://www.openmath.org/ontology#SymbolDefinition"/>
     <rdfs:range rdf:resource="http://www.openmath.org/ontology#Example"/>
     <dc:description>The relationship of a symbol definition to an example it contains</dc:description>
@@ -108,18 +147,22 @@
   </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#typeSystem">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
     <rdfs:domain rdf:resource="http://www.openmath.org/ontology#SignatureDictionary"/>
-    <rdfs:range rdf:nodeID="A3"/>
+    <rdfs:range rdf:nodeID="A11"/>
     <dc:description>The content dictionary [group] that serves as a type system for this signature dictionary, as specified in section 4.4.1.1</dc:description>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#SymbolDefinition">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://www.openmath.org/ontology#OpenMathConcept"/>
-    <dc:description>An OpenMath symbol definition, as described in section 4.3.  Some of the properties of symbols are defined as properties in this ontology, others are taken from Dublin Core and RDFS, with the following mapping: Name = dc:identifier, CDComment = rdfs:comment.</dc:description>
+    <rdfs:subClassOf rdf:resource="http://www.openmath.org/ontology#OpenMathComposite"/>
+    <rdfs:comment>OpenMath 3 transitional aspects: Title = dc:title</rdfs:comment>
+    <dc:description>An OpenMath symbol definition, as described in section 4.3.  Some of the properties of symbols are defined as properties in this ontology, others are taken from Dublin Core and RDFS, with the following mapping: Name = dc:identifier, Title = dc:title, CDComment = rdfs:comment.</dc:description>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A9">
-    <rdf:first rdf:resource="http://www.openmath.org/ontology#FormalProperty"/>
-    <rdf:rest rdf:nodeID="A10"/>
+  <rdf:Description rdf:nodeID="A12">
+    <owl:unionOf rdf:nodeID="A13"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/elements/1.1/creator">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#hasFormalProperty">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
@@ -130,37 +173,37 @@
   </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#usesSymbol">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:nodeID="A11"/>
+    <rdfs:domain rdf:nodeID="A0"/>
     <rdfs:range rdf:resource="http://www.openmath.org/ontology#SymbolDefinition"/>
     <dc:description>The relationship of some element to a symbol used in an OpenMath object inside the element</dc:description>
   </rdf:Description>
-  <rdf:Description rdf:about="http://purl.org/dc/elements/1.1/creator">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  <rdf:Description rdf:nodeID="A6">
+    <rdf:first rdf:resource="http://www.openmath.org/ontology#ContentDictionaryGroup"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A4">
-    <rdf:first rdf:resource="http://www.openmath.org/ontology#ContentDictionary"/>
-    <rdf:rest rdf:nodeID="A12"/>
+  <rdf:Description rdf:nodeID="A3">
+    <owl:unionOf rdf:nodeID="A9"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#url">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:nodeID="A13"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:nodeID="A14"/>
     <dc:description>The URL of a content dictionary or content dictionary group, as described in section 4.3.2 or 4.4.2.2, resp.</dc:description>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A14">
-    <owl:unionOf rdf:nodeID="A15"/>
+  <rdf:Description rdf:nodeID="A8">
+    <rdf:first rdf:resource="http://www.openmath.org/ontology#ContentDictionary"/>
+    <rdf:rest rdf:nodeID="A15"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#containsSymbolDefinition">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:subPropertyOf rdf:resource="http://www.openmath.org/ontology#hasPart"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.openmath.org/ontology#hasDirectPart"/>
     <rdfs:domain rdf:resource="http://www.openmath.org/ontology#ContentDictionary"/>
     <rdfs:range rdf:resource="http://www.openmath.org/ontology#SymbolDefinition"/>
     <owl:inverseOf rdf:resource="http://www.openmath.org/ontology#definedIn"/>
     <dc:description>The relationship of a content dictionary to a symbol definition it contains</dc:description>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A8">
-    <rdf:first rdf:resource="http://www.openmath.org/ontology#ContentDictionaryGroup"/>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  <rdf:Description rdf:nodeID="A14">
+    <owl:unionOf rdf:nodeID="A16"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#CommentedProperty">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -169,29 +212,30 @@
   </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#ContentDictionaryGroup">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://www.openmath.org/ontology#OpenMathConcept"/>
-    <dc:description>An OpenMath CD (Content Dictionary) Group, as described in section 4.4.2.  Some of the properties of content dictionaries are defined as properties in this ontology, others are taken from Dublin Core and RDFS, with the following mapping: CDGroupName = dc:identifier, CDGroupDescription = dc:description.</dc:description>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A2">
-    <rdf:first rdf:resource="http://www.openmath.org/ontology#SignatureDictionary"/>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdfs:subClassOf rdf:resource="http://www.openmath.org/ontology#OpenMathComposite"/>
+    <dc:description>An OpenMath CD (Content Dictionary) Group, as described in section 4.4.2.  Some of the properties of content dictionaries are defined as properties in this ontology, others are taken from Dublin Core and RDFS, with the following mapping: CDGroupName = dc:identifier, CDGroupDescription = dc:description, CDComment = rdfs:comment.</dc:description>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#containsNotationDefinition">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:subPropertyOf rdf:resource="http://www.openmath.org/ontology#hasPart"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.openmath.org/ontology#hasDirectPart"/>
     <rdfs:domain rdf:resource="http://www.openmath.org/ontology#NotationDictionary"/>
     <rdfs:range rdf:resource="http://www.openmath.org/ontology#NotationDefinition"/>
     <dc:description>The relationship of a notation dictionary to a notation definition it contains</dc:description>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#containsSignature">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:subPropertyOf rdf:resource="http://www.openmath.org/ontology#hasPart"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.openmath.org/ontology#hasDirectPart"/>
     <rdfs:domain rdf:resource="http://www.openmath.org/ontology#SignatureDictionary"/>
     <rdfs:range rdf:resource="http://www.openmath.org/ontology#Signature"/>
     <dc:description>The relationship of a signature dictionary to a type signature it contains</dc:description>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A17">
+    <rdf:first rdf:resource="http://www.openmath.org/ontology#ContentDictionary"/>
+    <rdf:rest rdf:nodeID="A10"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#containsNotationsFor">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
     <rdfs:domain rdf:resource="http://www.openmath.org/ontology#NotationDictionary"/>
     <rdfs:range rdf:resource="http://www.openmath.org/ontology#ContentDictionary"/>
     <dc:description>The relationship of a notation dictionary to the content dictionary whose symbols it specifies</dc:description>
@@ -199,70 +243,73 @@
   <rdf:Description rdf:about="http://purl.org/dc/elements/1.1/contributor">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A16">
-    <rdf:first rdf:resource="http://www.openmath.org/ontology#ContentDictionaryGroup"/>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#rendersSymbol">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
     <rdfs:domain rdf:resource="http://www.openmath.org/ontology#NotationDefinition"/>
     <rdfs:range rdf:resource="http://www.openmath.org/ontology#SymbolDefinition"/>
     <dc:description>The relationship of a type signature to the symbol it specifies</dc:description>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A15">
-    <rdf:first rdf:resource="http://www.openmath.org/ontology#ContentDictionary"/>
-    <rdf:rest rdf:nodeID="A16"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A10">
-    <rdf:first rdf:resource="http://www.openmath.org/ontology#Example"/>
+    <rdf:first rdf:resource="http://www.openmath.org/ontology#ContentDictionaryGroup"/>
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.openmath.org/ontology#comprisesDirectly">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.openmath.org/ontology#comprises"/>
+    <dc:description>This relation denotes that one concept A directly comprises another concept B, but does not necessarily exclusively contain it.</dc:description>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#Property">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <dc:description>The common superclass of commented and formal mathematical properties of symbols (CMP and FMP); cf. section 4.3</dc:description>
   </rdf:Description>
+  <rdf:Description rdf:about="http://www.openmath.org/ontology#OpenMathComposite">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.openmath.org/ontology#OpenMathConcept"/>
+    <dc:description>The generic superclass of all concepts that can be expressed in OpenMath content/signature/notation dictionaries and that can comprise subconcepts</dc:description>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#version">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:domain rdf:nodeID="A14"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:nodeID="A18"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
     <dc:description>The (major) version of a content dictionary or content dictionary group, as described in section 4.3.2 or 4.4.2.2, resp.</dc:description>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A5">
-    <owl:unionOf rdf:nodeID="A17"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A18">
+  <rdf:Description rdf:nodeID="A19">
     <rdf:first rdf:resource="http://www.openmath.org/ontology#SignatureDictionary"/>
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
+  <rdf:Description rdf:about="http://www.openmath.org/ontology#PragmaticGuidelines">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.openmath.org/ontology#OpenMathComposite"/>
+    <rdfs:comment>OpenMath 3 transitional</rdfs:comment>
+    <dc:description>Guidelines for using this symbol in pragmatic Content MathML</dc:description>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#containsContentDictionary">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:subPropertyOf rdf:resource="http://www.openmath.org/ontology#hasPart"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.openmath.org/ontology#comprisesDirectly"/>
     <rdfs:domain rdf:resource="http://www.openmath.org/ontology#ContentDictionaryGroup"/>
     <rdfs:range rdf:resource="http://www.openmath.org/ontology#ContentDictionary"/>
     <dc:description>The relationship of a content dictionary group to a content dictionary it contains</dc:description>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#typesSymbol">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
     <rdfs:domain rdf:resource="http://www.openmath.org/ontology#Signature"/>
     <rdfs:range rdf:resource="http://www.openmath.org/ontology#SymbolDefinition"/>
     <dc:description>The relationship of a type signature to the symbol it specifies</dc:description>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A0">
-    <owl:unionOf rdf:nodeID="A19"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://purl.org/dc/elements/1.1/title">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A12">
-    <rdf:first rdf:resource="http://www.openmath.org/ontology#ContentDictionaryGroup"/>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  <rdf:Description rdf:nodeID="A16">
+    <rdf:first rdf:resource="http://www.openmath.org/ontology#ContentDictionary"/>
+    <rdf:rest rdf:nodeID="A20"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#hasPart">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="http://www.openmath.org/ontology#OpenMathConcept"/>
-    <rdfs:range rdf:resource="http://www.openmath.org/ontology#OpenMathConcept"/>
-    <dc:description>This relation denotes that one concept A logically contains another concept B, as reflected by child elements in OpenMath XML documents.</dc:description>
+    <rdfs:subPropertyOf rdf:resource="http://www.openmath.org/ontology#comprises"/>
+    <dc:description>This relation denotes that one concept A, directly or indirectly, logically contains another concept B, and that B is not contained by any other concept than A, as reflected by child elements in OpenMath XML documents.</dc:description>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#uses">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
@@ -272,38 +319,40 @@
   </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#status">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:domain rdf:nodeID="A20"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:nodeID="A12"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     <dc:description>The status of a content dictionary or signature dictionary, as described in section 4.3.2</dc:description>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#ContentDictionary">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://www.openmath.org/ontology#OpenMathConcept"/>
-    <dc:description>An OpenMath Content Dictionary, as described in chapter 4.  Some of the properties of content dictionaries are defined as properties in this ontology, others are taken from Dublin Core and RDFS, with the following mapping: CDName = dc:identifier, Description = dc:description, CDDate = dc:date, CDComment = rdfs:comment.</dc:description>
+    <rdfs:subClassOf rdf:resource="http://www.openmath.org/ontology#OpenMathComposite"/>
+    <rdfs:comment>OpenMath 3 transitional aspects: Title = dc:title</rdfs:comment>
+    <dc:description>An OpenMath Content Dictionary, as described in chapter 4.  Some of the properties of content dictionaries are defined as properties in this ontology, others are taken from Dublin Core and RDFS, with the following mapping: CDName = dc:identifier, Title = dc:title, Description = dc:description, CDDate = dc:date, CDComment = rdfs:comment.</dc:description>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A20">
-    <owl:unionOf rdf:nodeID="A1"/>
+  <rdf:Description rdf:nodeID="A11">
+    <owl:unionOf rdf:nodeID="A17"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#Example">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="http://www.openmath.org/ontology#OpenMathConcept"/>
     <dc:description>An example for a symbol, as described in section 4.3</dc:description>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A13">
-    <owl:unionOf rdf:nodeID="A7"/>
+  <rdf:Description rdf:nodeID="A18">
+    <owl:unionOf rdf:nodeID="A5"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#FormalProperty">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="http://www.openmath.org/ontology#Property"/>
     <dc:description>A formal mathematical property (FMP) of a symbol, as described in section 4.3</dc:description>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A17">
+  <rdf:Description rdf:nodeID="A13">
     <rdf:first rdf:resource="http://www.openmath.org/ontology#ContentDictionary"/>
-    <rdf:rest rdf:nodeID="A6"/>
+    <rdf:rest rdf:nodeID="A19"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#SignatureDictionary">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://www.openmath.org/ontology#OpenMathConcept"/>
+    <rdfs:subClassOf rdf:resource="http://www.openmath.org/ontology#OpenMathComposite"/>
     <dc:description>An OpenMath Signature Dictionary, as described in section 4.4.  Some of the properties of signature dictionaries are defined as properties in this ontology, others are taken from Dublin Core and RDFS, with the following mapping: Name = dc:identifier</dc:description>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#Signature">
@@ -311,15 +360,13 @@
     <rdfs:subClassOf rdf:resource="http://www.openmath.org/ontology#OpenMathConcept"/>
     <dc:description>A type signature of a symbol, as described in section 4.4</dc:description>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A19">
-    <rdf:first rdf:resource="http://www.openmath.org/ontology#ContentDictionary"/>
-    <rdf:rest rdf:nodeID="A18"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A11">
-    <owl:unionOf rdf:nodeID="A9"/>
+  <rdf:Description rdf:nodeID="A20">
+    <rdf:first rdf:resource="http://www.openmath.org/ontology#ContentDictionaryGroup"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.openmath.org/ontology#base">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
     <rdfs:domain rdf:resource="http://www.openmath.org/ontology#ContentDictionary"/>
     <rdfs:range rdf:resource="http://www.openmath.org/ontology#CDBase"/>
     <dc:description>The CD base URI of a content dictionary, as described in section 4.3.2</dc:description>
