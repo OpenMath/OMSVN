@@ -234,7 +234,21 @@ omo:hasProperty
 	rdfs:subPropertyOf  omo:hasDirectPart ;
 	rdfs:domain omo:SymbolDefinition ;
 	rdfs:range  omo:Property ;
-	dc:description "The relationship of a symbol definition to a CMP or FMP it contains" .
+	dc:description "The relationship of a symbol definition to a CMP or FMP (OpenMath 2) or a property container that it contains" .
+
+omo:hasCommentedPart
+	a	owl:ObjectProperty ;
+	rdfs:subPropertyOf  omo:hasDirectPart ;
+	rdfs:domain	omo:Property ;
+	rdfs:range  omo:CommentedProperty ;
+	dc:description "The relationship of a property container to its commented part (CMP)." .
+
+omo:hasFormalPart
+	a	owl:ObjectProperty ;
+	rdfs:subPropertyOf  omo:hasDirectPart ;
+	rdfs:domain	omo:Property ;
+	rdfs:range  omo:FormalProperty ;
+	dc:description "The relationship of a property container to its formal part (FMP)." .
 
 omo:hasCommentedProperty
 	a	owl:ObjectProperty ;
