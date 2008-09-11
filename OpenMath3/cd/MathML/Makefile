@@ -9,7 +9,8 @@ CDS.omdoc = $(CDS.ocd:%.ocd=%.omdoc)
 CDS.ocd.back = $(CDS.ocd:%.ocd=%.ocd.back)
 
 
-all: cds-overview.xml $(CDS.xhtml) index.html
+# all: cds-overview.xml $(CDS.xhtml) index.html
+all: $(CDS.xhtml) index.html
 
 $(CDS.xhtml): %.xhtml: %.ocd $(XSLDIR)/cd2html.xsl
 	saxon -o $@ $(word 2, $^) $<
