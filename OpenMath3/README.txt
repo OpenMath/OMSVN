@@ -3,6 +3,7 @@ This is the development repository for OpenMath3.
 For discussions about this see the issue tracker at  https://trac.kwarc.info/OM3. 
 
 For access contact Paul Libbrecht <paul@activemath.org>
+To track changes see http://www.openmath.org/svnrss/openmath-svnlog.rss
 
 The directories are
 
