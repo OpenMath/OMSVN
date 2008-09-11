@@ -26,7 +26,7 @@
   xmlns:m="http://www.w3.org/1998/Math/MathML"
   xmlns:cd="http://www.openmath.org/OpenMathCD"
   xmlns:dc="http://purl.org/dc/elements/1.1/"
-  xmlns:omdoc="http://www.mathweb.org/omdoc"
+  xmlns:omdoc="http://omdoc.org/ns"
   xmlns:saxon="http://icl.com/saxon"
   extension-element-prefixes="saxon"
   version="1.0">
