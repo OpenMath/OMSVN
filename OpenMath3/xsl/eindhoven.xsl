@@ -9,9 +9,9 @@
 <xsl:output method="xml" indent="yes"/>
 
 <xsl:include href="cd.xsl"/>
-<xsl:include href="permgp2.xsl"/>
-<xsl:include href="set3.xsl"/>
-<xsl:include href="integer2.xsl"/>
+<xsl:include href="cd/permgp2.xsl"/>
+<xsl:include href="cd/set3.xsl"/>
+<xsl:include href="cd/integer2.xsl"/>
 
 <xsl:template match="om:OMS[@name='isomorphic']"  >
   <xsl:param name="p"/>
