@@ -43,67 +43,45 @@
 <CDStatus>draft</CDStatus>
 
 <Description>
-    This CD holds the definitions of many transcendental
-    functions. They are defined as in Abromowitz and Stegun (ninth 
-    printing on), with precise reductions to logs in the case of 
-    inverse functions.
+    This content dictionary holds the definitions of many transcendental functions. They
+    are defined as in Abromowitz and Stegun (ninth printing on), with precise reductions
+    to logs in the case of inverse functions.
 
-    Note that, if signed zeros are supported, some strict 
-    inequalities have to become weak
-.
-    It is intended to be `compatible' with the MathML elements
-    denoting trancendental functions.
-    Some additional functions are in the CD transc2.    
+    Note that, if signed zeros are supported, some strict inequalities have to become
+    weak.  It is intended to be `compatible' with the MathML elements denoting
+    trancendental functions.  Some additional functions are in the CD transc2.
 </Description>
 
 <CDDefinition xml:id="log">
 <Name>log</Name>
   <Pragmatic>
     <Element type="opel">log</Element>
+    <description>
+    <p>If its first argument is a logbase element, it specifies the base and the second
+    argument is the argument to which the function is applied using that base.  If no
+    logbase element is present, the base is assumed to be 10.</p>
+    </description>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents a binary log function; the first argument is the base,
-to which the second argument is log'ed.
-It is defined in Abramowitz and Stegun, Handbook of Mathematical
-Functions, section 4.1
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents a binary log function; the first argument is the base, to which
+    the second argument is log'ed.  It is defined in Abramowitz and Stegun, Handbook of
+    Mathematical Functions, section 4.1
+  </Description>
 
- <description>
-          <p>This element represents the log function.  It is defined in Abramowitz and
-          Stegun, Handbook of Mathematical Functions, section 4.1 If its first argument is
-          a logbase element, it specifies the base and the second argument is the argument
-          to which the function is applied using that base.  If no logbase element is
-          present, the base is assumed to be 10.</p>
-        </description>
-	<discussion>
-	  <p>The <el>log</el> element is the operator that returns a logarithm to a given
-	  base. The base may be specified using a <el>logbase</el> element, which should
-	  be the first element following <el>log</el>, i.e. the second child of the
-	  containing <el>apply</el> element. If the <el>logbase</el> element is not
-	  present, a default base of 10 is assumed.</p>
+  <MMLexample>
+    <description>
+      <p>This markup represents <quote>the base 3 logarithm of x</quote>. For natural
+      logarithms base e, the <el>ln</el> element should be used instead.</p>
+    </description>
+    <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><log/>
+    <logbase><cn>3</cn></logbase>
+    <ci>x</ci>
+  </apply>
+</math>
+</MMLexample>
 
-	  <p>The <el>log</el> function accepts only the <el>logbase</el> schema. If
-	  present, the <el>logbase</el> schema denotes the base with respect to which the
-	  logarithm is being taken. Otherwise, the log is assumed to be base 10. When used
-	  with <el>log</el>, the <el>logbase</el> schema is expected to contain a single
-	  child schema; otherwise an error is generated.</p>
-	</discussion>
-        <property>
-          <description>
-            <p>a^b = c implies log_a c = b </p>
-          </description>
-        </property>
-        <MMLexample>
-		<description>
-        <p>This markup represents <quote>the base 3 logarithm of x</quote>. For natural logarithms base e, the <el>ln</el> element should be used instead.</p>
-        </description>
-		<math xmlns="http://www.w3.org/1998/Math/MathML"><apply><log/>
-  <logbase><cn>3</cn></logbase>
-  <ci>x</ci>
-</apply>
-</math></MMLexample>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><log/><ci>x</ci></apply></math></MMLexample>
+<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><log/><ci>x</ci></apply></math></MMLexample>
 
 <property xml:id="log_prop_1">
 <CMP>
@@ -148,36 +126,23 @@ log 100 to base 10 (which is 2).
 </CDDefinition>
 
 <CDDefinition xml:id="ln">
-<Name>ln</Name>
+  <Name>ln</Name>
   <Pragmatic>
     <Element type="opel">ln</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the ln function (natural logarithm) as
-described in Abramowitz and Stegun, section 4.1. It takes one
-argument.  Note the description in the CMP/FMP of the branch cut.  If
-signed zeros are in use, the inequality needs to be non-strict.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents the ln function (natural logarithm) as described in Abramowitz
+    and Stegun, section 4.1. It takes one argument.  Note the description in the CMP/FMP
+    of the branch cut.  If signed zeros are in use, the inequality needs to be non-strict.
+  </Description>
 
-<description>
-          <p>This element represents the ln function (natural logarithm) as described in
-          Abramowitz and Stegun, section 4.1.  It takes one argument.</p>
-        </description>
-	<discussion>
-	  <p>The <el>ln</el> element represents the natural logarithm
-	  function.</p>
-	</discussion>
-        <property>
-          <description>
-            <p>-pi lt Im ln x leq pi </p>
-          </description>
-        </property>
-        <MMLexample>
-		<description>
-        <p>If <var>a</var> = <var>e</var>, (where <var>e</var> is the base of the natural logarithms) this will yield the value 1.</p>
-        </description>
-		<math xmlns="http://www.w3.org/1998/Math/MathML"><apply><ln/><ci>a</ci></apply></math></MMLexample>
+<MMLexample>
+  <description>
+    <p>If <var>a</var> = <var>e</var>, (where <var>e</var> is the base of the natural
+    logarithms) this will yield the value 1.</p>
+  </description>
+<math xmlns="http://www.w3.org/1998/Math/MathML"><apply><ln/><ci>a</ci></apply></math></MMLexample>
 
 <property xml:id="ln_prop_2">
 <CMP>
@@ -214,11 +179,12 @@ signed zeros are in use, the inequality needs to be non-strict.
       </OMA>
     </OMA>
   </OMOBJ>
-</FMP></property>
+</FMP>
+</property>
 
 <Example>
-ln 1 (which is 0).
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
+  ln 1 (which is 0).
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
   <OMA>
     <OMS cd="transc1" name="ln"/>
     <OMF dec="1"/>
@@ -232,32 +198,26 @@ ln 1 (which is 0).
   <Pragmatic>
     <Element type="opel">exp</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the exponentiation function as described in
-Abramowitz and Stegun, section 4.2. It takes one argument.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents the exponentiation function associated with the inverse of the
+    ln function as described in Abramowitz and Stegun, section 4.2. It takes one argument.
+  </Description>
 
-<description>
-      <p>This element represents the exponentiation function as described in
-      Abramowitz and Stegun, section 4.2.  It takes one argument. </p>
-    </description>
-    <discussion>
-      <p>The <el>exp</el> element represents the exponential
-      function associated with the inverse of the <el>ln</el>
-      function. In particular, exp(1) is approximately 2.718281828.</p>
-    </discussion>
-    <property><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><eq/>
-  <apply><exp/><cn>0</cn></apply>
-  <cn>1</cn>
-</apply></math></property>
+  <property>
+    <CMP>exp(1) is approximately 2.718281828.</CMP>
+  </property>
 
-    <property>
-          <description>
-            <p>for all k if k is an integer then e^(z+2*pi*k*i)=e^z </p>
-          </description>
-        </property>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><exp/><ci>x</ci></apply></math></MMLexample>
+  <property>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><eq/>
+        <apply><exp/><cn>0</cn></apply>
+        <cn>1</cn>
+      </apply>
+    </math>
+  </property>
+
+  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><exp/><ci>x</ci></apply></math></MMLexample>
 
 <property xml:id="exp_prop_3">
 <CMP> for all k if k is an integer then e^(z+2*pi*k*i)=e^z </CMP>
@@ -297,41 +257,43 @@ Abramowitz and Stegun, section 4.2. It takes one argument.
     </OMA>
   </OMA>
 </OMBIND>
-</OMOBJ></FMP></property>
+</OMOBJ>
+</FMP>
+</property>
 </CDDefinition>
 
 <CDDefinition xml:id="sin">
-<Name>sin</Name>
+  <Name>sin</Name>
   <Pragmatic>
     <Element type="opel">sin</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the sin function as described in Abramowitz and
-Stegun, section 4.3. It takes one argument.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents the sin function as described in Abramowitz and Stegun, section
+    4.3. It takes one argument.
+  </Description>
 
- <description>
-          <p>This element represents the sin function as described in Abramowitz and
-          Stegun, section 4.3. It takes one argument. </p>
-        </description>
+  <property>
+    <description>
+      <p>sin(0)=0</p>
+    </description>
+  </property>
 
-        <property>
-          <description>
-            <p> sin(0) = 0 </p>
-          </description>
-        </property>
-        <property>
-          <description>
-            <p> sin(integer*Pi) = 0</p>
-          </description><math xmlns="http://www.w3.org/1998/Math/MathML"></math></property>
-        <property>
-          <description>
-            <p>sin(x) = (exp(ix)-exp(-ix))/2i </p>
-          </description>
-        </property>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><sin/><ci>x</ci></apply></math></MMLexample>
-	<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML">
+  <property>
+    <description>
+      <p> sin(integer*Pi) = 0</p>
+  </description>
+</property>
+  
+<property>
+  <description>
+    <p>sin(x) = (exp(ix)-exp(-ix))/2i </p>
+  </description>
+</property>
+
+<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><sin/><ci>x</ci></apply></math></MMLexample>
+
+<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML">
 <apply>
   <sin/>
   <apply>
@@ -350,10 +312,7 @@ Stegun, section 4.3. It takes one argument.
 </MMLexample>
 
 <property xml:id="sin_prop_4">
-<CMP>
-sin(x) = (exp(ix)-exp(-ix))/2i
-</CMP>
-
+<CMP>sin(x) = (exp(ix)-exp(-ix))/2i</CMP>
 <FMP>
   <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
     <OMA>
@@ -397,9 +356,7 @@ sin(x) = (exp(ix)-exp(-ix))/2i
 </FMP></property>
 
 <property xml:id="sin_prop_5">
-<CMP>
-sin(A + B) = sin A cos B + cos A sin B
-</CMP>
+<CMP>sin(A + B) = sin A cos B + cos A sin B</CMP>
 <FMP>
   <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
     <OMA>
@@ -465,46 +422,37 @@ sin A = - sin(-A)
       </OMA>
     </OMA>
   </OMOBJ>
-</FMP></property>
+</FMP>
+</property>
 </CDDefinition>
 
 <CDDefinition xml:id="cos">
-<Name>cos</Name>
+  <Name>cos</Name>
   <Pragmatic>
     <Element type="opel">cos</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the cos function as described in Abramowitz and
-Stegun, section 4.3. It takes one argument.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents the cos function as described in Abramowitz and Stegun, section
+    4.3. It takes one argument.
+  </Description>
 
-<description>
-          <p>This element represents the cos function as described in
-Abramowitz and Stegun, section 4.3. It takes one argument. 
-It takes one argument.   </p>
-        </description>
-        <property>
-          <description>
-            <p> cos(0) = 1</p>
-          </description><math xmlns="http://www.w3.org/1998/Math/MathML"></math></property>
-        <property>
-          <description>
-            <p> cos(integer*Pi+Pi/2) = 0 </p>
-          </description>
-        </property>
-        <property>
-          <description>
-            <p>cos(x) = (exp(ix)+exp(-ix))/2 </p>
-          </description>
-        </property>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><cos/><ci>x</ci></apply></math></MMLexample>
+  <property>
+    <description>
+      <p> cos(0) = 1</p>
+  </description>
+</property>
+
+<property>
+  <description>
+    <p> cos(integer*Pi+Pi/2) = 0 </p>
+  </description>
+</property>
+
+<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><cos/><ci>x</ci></apply></math></MMLexample>
 
 <property xml:id="cos_prop_7">
-<CMP>
-cos(x) = (exp(ix)+exp(-ix))/2
-</CMP>
-
+<CMP>cos(x) = (exp(ix)+exp(-ix))/2</CMP>
 <FMP>
   <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
     <OMA>
@@ -544,10 +492,7 @@ cos(x) = (exp(ix)+exp(-ix))/2
 </FMP></property>
 
 <property xml:id="cos_prop_8">
-<CMP>
-cos 2A = cos^2 A - sin^2 A
-</CMP>
-
+<CMP>cos 2A = cos^2 A - sin^2 A</CMP>
 <FMP>
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
   <OMA>
@@ -581,11 +526,11 @@ cos 2A = cos^2 A - sin^2 A
     </OMA>
   </OMA>
 </OMOBJ>
-</FMP></property>
+</FMP>
+</property>
+
 <property xml:id="cos_prop_9">
-<CMP>
-cos A = cos(-A)
-</CMP>
+<CMP>cos A = cos(-A)</CMP>
 <FMP>
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
   <OMA>
@@ -603,39 +548,37 @@ cos A = cos(-A)
     </OMA>
   </OMA>
 </OMOBJ>
-</FMP></property>
+</FMP>
+</property>
 </CDDefinition>
 
 <CDDefinition xml:id="tan">
-<Name>tan</Name>
+  <Name>tan</Name>
   <Pragmatic>
     <Element type="opel">tan</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the tan function as described in Abramowitz and
-Stegun, section 4.3. It takes one argument.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents the tan function as described in Abramowitz and Stegun, section
+    4.3. It takes one argument.
+  </Description>
+  
+  <property>
+    <description>
+      <p> tan(integer*Pi) = 0 </p>
+    </description>
+  </property>
 
-<description>
-          <p>This element represents the tan function as described in 
-Abramowitz and Stegun, section 4.3. It takes one argument. </p>
-        </description>
-        <property>
-          <description>
-            <p> tan(integer*Pi) = 0 </p>
-          </description>
-        </property>
-        <property>
-          <description>
-            <p> tan(x) = sin(x)/cos(x)</p>
-          </description><math xmlns="http://www.w3.org/1998/Math/MathML"></math></property>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><tan/><ci>x</ci></apply></math></MMLexample>
+  <property>
+    <description>
+      <p> tan(x) = sin(x)/cos(x)</p>
+  </description>
+  </property>
+  
+<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><tan/><ci>x</ci></apply></math></MMLexample>
 
 <property xml:id="tan_prop_10">
-<CMP>
-tan A = sin A / cos A
-</CMP>
+<CMP>tan A = sin A / cos A</CMP>
 <FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
 <OMA>
   <OMS cd="relation1" name="eq"/>
@@ -655,35 +598,27 @@ tan A = sin A / cos A
     </OMA>
   </OMA>
 </OMA>
-</OMOBJ></FMP></property>
+</OMOBJ>
+</FMP>
+</property>
 </CDDefinition>
 
 <CDDefinition xml:id="sec">
-<Name>sec</Name>
+  <Name>sec</Name>
   <Pragmatic>
     <Element type="opel">sec</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the sec function as described in Abramowitz and
-Stegun, section 4.3. It takes one argument.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents the sec function as described in Abramowitz and Stegun, section
+    4.3. It takes one argument.
+  </Description>
 
-<description>
-          <p>This element represents the sec function 
-as described in Abramowitz and Stegun, section 4.3. 
-It takes one argument. </p>
-        </description>
-        <property>
-          <description>
-            <p> sec(x) = 1/cos(x) </p>
-          </description>
-        </property>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><sec/><ci>x</ci></apply></math></MMLexample>
+<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><sec/><ci>x</ci></apply></math></MMLexample>
 
 <property xml:id="sec_prop_11">
 <CMP>
-sec A = 1/cos A
+sec(A) = 1/cos(A)
 </CMP>
 <FMP>
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
@@ -706,33 +641,20 @@ sec A = 1/cos A
 </CDDefinition>
 
 <CDDefinition xml:id="csc">
-<Name>csc</Name>
+  <Name>csc</Name>
   <Pragmatic>
     <Element type="opel">csc</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the csc function as described in Abramowitz and
-Stegun, section 4.3. It takes one argument.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents the csc function as described in Abramowitz and Stegun, section
+    4.3. It takes one argument.
+  </Description>
 
-<description>
-          <p>This element represents the csc function as 
-described in Abramowitz and Stegun, section 4.3. 
-It takes one argument. </p>
-        </description>
-
-        <property>
-          <description>
-            <p> csc(x) = 1/sin(x) </p>
-          </description>
-        </property>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><csc/><ci>x</ci></apply></math></MMLexample>
+  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><csc/><ci>x</ci></apply></math></MMLexample>
 
 <property xml:id="csc_prop_12">
-<CMP>
-csc A = 1/sin A
-</CMP>
+<CMP>csc(A)= 1/sin(A)</CMP>
 <FMP>
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
 <OMA>
@@ -758,37 +680,29 @@ csc A = 1/sin A
   <Pragmatic>
     <Element type="opel">cot</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the cot function as described in Abramowitz and
-Stegun, section 4.3. It takes one argument.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents the cot function as described in Abramowitz and Stegun, section
+    4.3. It takes one argument.
+  </Description>
 
- <description>
-          <p>This element represents the cot function as described in 
-Abramowitz and Stegun, section 4.3. It takes one argument.  
-It takes one argument.  </p>
-        </description>
+  <property>
+    <description>
+      <p> cot(integer*Pi+Pi/2) = 0</p>
+  </description>
+</property>
 
-        <property>
-          <description>
-            <p> cot(integer*Pi+Pi/2) = 0</p>
-          </description><math xmlns="http://www.w3.org/1998/Math/MathML"></math></property>
-        <property>
-          <description>
-            <p> cot(x) = cos(x)/sin(x) </p>
-          </description>
-        </property>
-        <property>
-          <description>
-            <p>cot A = 1/tan A </p>
-          </description>
-        </property>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><cot/><ci>x</ci></apply></math></MMLexample>
+<property>
+  <description>
+    <p> cot(x) = cos(x)/sin(x) </p>
+  </description>
+</property>
+
+<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><cot/><ci>x</ci></apply></math></MMLexample>
 
 <property xml:id="cot_prop_13">
 <CMP>
-cot A = 1/tan A
+cot(A) = 1/tan(A)
 </CMP>
 <FMP>
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
@@ -811,27 +725,17 @@ cot A = 1/tan A
 </CDDefinition>
 
 <CDDefinition xml:id="sinh">
-<Name>sinh</Name>
+  <Name>sinh</Name>
   <Pragmatic>
     <Element type="opel">sinh</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the sinh function as described in Abramowitz
-and Stegun, section 4.5. It takes one argument.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents the sinh function as described in Abramowitz and Stegun,
+    section 4.5. It takes one argument.
+  </Description>
 
- <description>
-          <p>This element represents the sinh function as described in Abramowitz and
-          Stegun, section 4.5. It takes one argument. </p>
-        </description>
-
-        <property>
-          <description>
-            <p>sinh A = 1/2 * (e^A - e^(-A)) </p>
-          </description>
-        </property>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><sinh/><ci>x</ci></apply></math></MMLexample>
+  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><sinh/><ci>x</ci></apply></math></MMLexample>
 
 <property xml:id="sinh_prop_14">
 <CMP> sinh A = 1/2 * (e^A - e^(-A)) </CMP>
@@ -871,26 +775,17 @@ and Stegun, section 4.5. It takes one argument.
 </CDDefinition>
 
 <CDDefinition xml:id="cosh">
-<Name>cosh</Name>
+  <Name>cosh</Name>
   <Pragmatic>
     <Element type="opel">cosh</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the cosh function as described in Abramowitz
-and Stegun, section 4.5. It takes one argument.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents the cosh function as described in Abramowitz and Stegun,
+    section 4.5. It takes one argument.
+  </Description>
 
-<description>
-          <p>This symbol represents the cosh function as described in Abramowitz and
-          Stegun, section 4.5. It takes one argument.  It takes one argument.</p>
-        </description>
-        <property>
-          <description>
-            <p>cosh A = 1/2 * (e^A + e^(-A)) </p>
-          </description>
-        </property>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><cosh/><ci>x</ci></apply></math></MMLexample>
+  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><cosh/><ci>x</ci></apply></math></MMLexample>
 
 <property xml:id="cosh_prop_15">
 <CMP> cosh A = 1/2 * (e^A + e^(-A)) </CMP>
@@ -926,33 +821,26 @@ and Stegun, section 4.5. It takes one argument.
     </OMA>
   </OMA>
 </OMA>
-</OMOBJ></FMP></property>
+</OMOBJ>
+</FMP>
+</property>
 </CDDefinition>
 
 <CDDefinition xml:id="tanh">
-<Name>tanh</Name>
+  <Name>tanh</Name>
   <Pragmatic>
     <Element type="opel">tanh</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the tanh function as described in Abramowitz
-and Stegun, section 4.5. It takes one argument.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents the tanh function as described in Abramowitz and Stegun,
+    section 4.5. It takes one argument.
+  </Description>
 
-<description>
-          <p>This element represents the tanh function as described in 
-Abramowitz and Stegun, section 4.5. It takes one argument. </p>
-        </description>
-        <property>
-          <description>
-            <p>tanh A = sinh A / cosh A </p>
-          </description>
-        </property>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><tanh/><ci>x</ci></apply></math></MMLexample>
+  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><tanh/><ci>x</ci></apply></math></MMLexample>
 
 <property xml:id="tanh_prop_16">
-<CMP> tanh A = sinh A / cosh A </CMP>
+<CMP>tanh(A) = sinh(A)/cosh(A)</CMP>
 <FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
 <OMA>
   <OMS cd="relation1" name="eq"/>
@@ -976,30 +864,20 @@ Abramowitz and Stegun, section 4.5. It takes one argument. </p>
 </CDDefinition>
 
 <CDDefinition xml:id="sech">
-<Name>sech</Name>
+  <Name>sech</Name>
   <Pragmatic>
     <Element type="opel">sech</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the sech function as described in Abramowitz
-and Stegun, section 4.5. It takes one argument.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents the sech function as described in Abramowitz and Stegun,
+    section 4.5. It takes one argument.
+  </Description>
 
-<description>
-          <p>This element represents the sech function 
-as described in Abramowitz and Stegun, section 4.5. 
-It takes one argument. </p>
-        </description>
-        <property>
-          <description>
-            <p>sech A = 1/cosh A </p>
-          </description>
-        </property>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><sech/><ci>x</ci></apply></math></MMLexample>
+  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><sech/><ci>x</ci></apply></math></MMLexample>
 
 <property xml:id="sech_prop_17">
-<CMP> sech A = 1/cosh A </CMP>
+<CMP> sech(A) = 1/cosh(A) </CMP>
 <FMP>
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
 <OMA>
@@ -1017,32 +895,22 @@ It takes one argument. </p>
   </OMA>
 </OMA>
 </OMOBJ>
-</FMP></property>
+</FMP>
+</property>
 </CDDefinition>
 
 <CDDefinition xml:id="csch">
-<Name>csch</Name>
+  <Name>csch</Name>
   <Pragmatic>
     <Element type="opel">csch</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the csch function as described in Abramowitz
-and Stegun, section 4.5. It takes one argument.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents the csch function as described in Abramowitz and Stegun,
+    section 4.5. It takes one argument.
+  </Description>
 
- <description>
-          <p>This element represents the csch function 
-as described in Abramowitz and Stegun, section 4.5. 
-It takes one argument. </p>
-        </description>
-
-        <property>
-          <description>
-            <p>csch A = 1/sinh A </p>
-          </description>
-        </property>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><csch/><ci>x</ci></apply></math></MMLexample>
+  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><csch/><ci>x</ci></apply></math></MMLexample>
 
 <property xml:id="csch_prop_18">
 <CMP> csch A = 1/sinh A </CMP>
@@ -1063,35 +931,25 @@ It takes one argument. </p>
   </OMA>
 </OMA>
 </OMOBJ>
-</FMP></property>
-
+</FMP>
+</property>
 </CDDefinition>
 
 <CDDefinition xml:id="coth">
-<Name>coth</Name>
+  <Name>coth</Name>
   <Pragmatic>
     <Element type="opel">coth</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the coth function as described in Abramowitz
-and Stegun, section 4.5. It takes one argument.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents the coth function as described in Abramowitz and Stegun,
+    section 4.5. It takes one argument.
+  </Description>
 
-        <description>
-          <p>This element represents the coth function as described in 
-Abramowitz and Stegun, section 4.5. It takes one argument. </p>
-        </description>
-
-        <property>
-          <description>
-            <p>coth A = 1/tanh A </p>
-          </description>
-        </property>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><coth/><ci>x</ci></apply></math></MMLexample>
+  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><coth/><ci>x</ci></apply></math></MMLexample>
    
 <property xml:id="coth_prop_19">
-<CMP> coth A = 1/tanh A </CMP>
+<CMP>coth(A) = 1/tanh(A) </CMP>
 <FMP>
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
 <OMA>
@@ -1114,35 +972,21 @@ Abramowitz and Stegun, section 4.5. It takes one argument. </p>
 </CDDefinition>
 
 <CDDefinition xml:id="arcsin">
-<Name>arcsin</Name>
+  <Name>arcsin</Name>
   <Pragmatic>
     <Element type="opel">arcsin</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the arcsin function. This is the inverse of the
-sin function as described in Abramowitz and Stegun, section 4.4. It
-takes one argument.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents the arcsin function. This is the inverse of the
+    sin function as described in Abramowitz and Stegun, section 4.4. It
+    takes one argument.
+  </Description>
 
- <description>
-          <p>This element represents the arcsin function which 
-is the inverse of the sin function as described in 
-Abramowitz and Stegun, section 4.4. It takes one argument. </p>
-        </description>
-
-        <property>
-          <description>
-            <p>arcsin(z) = -i ln (sqrt(1-z^2)+iz) </p>
-          </description>
-        </property>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><arcsin/><ci>x</ci></apply></math></MMLexample>
-<!-- end  new part -->
-
+  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><arcsin/><ci>x</ci></apply></math></MMLexample>
+  
 <property xml:id="arcsin_prop_20">
-<CMP>
-arcsin(z) = -i ln (sqrt(1-z^2)+iz)
-</CMP>
+<CMP>arcsin(z) = -i ln (sqrt(1-z^2)+iz)</CMP>
 <FMP>
   <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
     <OMA>
@@ -1227,27 +1071,16 @@ arcsin(z) = -i ln (sqrt(1-z^2)+iz)
 </CDDefinition>
 
 <CDDefinition xml:id="arccos">
-<Name>arccos</Name>
+  <Name>arccos</Name>
   <Pragmatic>
     <Element type="opel">arccos</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the arccos function. This is the inverse of the
-cos function as described in Abramowitz and Stegun, section 4.4. It
-takes one argument. 
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents the arccos function. This is the inverse of the cos function as
+    described in Abramowitz and Stegun, section 4.4. It takes one argument.
+  </Description>
 
-<description>
-  <p> This element represents the arccos function which is the inverse of the cos function 
-  as described in Abramowitz and Stegun, section 4.4. It takes one argument. </p>
-</description>
-
-<property>
-  <description>
-    <p>arccos(z) = -i ln(z+i \sqrt(1-z^2)) </p>
-  </description>
-</property>
 <MMLexample>
   <math xmlns="http://www.w3.org/1998/Math/MathML">
     <apply><arccos/><ci>x</ci></apply>
@@ -1301,7 +1134,6 @@ takes one argument.
 
 <property xml:id="arccos_prop_23">
 <CMP> x in [0,pi] implies arccos(cos x) = x </CMP>
-
 <FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
 <OMA>
   <OMS cd="logic1" name="implies"/>
@@ -1330,27 +1162,16 @@ takes one argument.
 </CDDefinition>
 
 <CDDefinition xml:id="arctan">
-<Name>arctan</Name>
+  <Name>arctan</Name>
   <Pragmatic>
     <Element type="opel">arctan</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the arctan function. This is the inverse of the
-tan function as described in Abramowitz and Stegun, section 4.4. It
-takes one argument.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents the arctan function. This is the inverse of the tan function as
+    described in Abramowitz and Stegun, section 4.4. It takes one argument.
+  </Description>
 
- <description>
-   <p>This element represents the arctan function which is the inverse of the tan function 
-   as described in Abramowitz and Stegun, section 4.4. It takes one argument. </p>
- </description>
- 
- <property>
-   <description>
-     <p>arctan(z) = (ln(1+iz)-ln(1-iz))/2i </p>
-   </description>
- </property>
  <MMLexample>
    <math xmlns="http://www.w3.org/1998/Math/MathML">
      <apply><arctan/><ci>x</ci></apply>
@@ -1358,9 +1179,7 @@ takes one argument.
  </MMLexample>
 
 <property xml:id="arctan_prop_24">
-<CMP>
-arctan(z) = (i/2)ln((1-iz)/(1+iz))
-</CMP>
+<CMP>arctan(z) = (i/2)ln((1-iz)/(1+iz))</CMP>
 <FMP>
   <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
     <OMA>
@@ -1403,7 +1222,8 @@ arctan(z) = (i/2)ln((1-iz)/(1+iz))
       </OMA>
     </OMA>
   </OMOBJ>
-</FMP></property>
+</FMP>
+</property>
 
 <property xml:id="arctan_prop_25">
 <CMP> x in (-(pi/2),(pi/2)) implies arctan(tan x) = x </CMP>
@@ -1448,27 +1268,16 @@ arctan(z) = (i/2)ln((1-iz)/(1+iz))
 </CDDefinition>
 
 <CDDefinition xml:id="arcsec">
-<Name>arcsec</Name>
+  <Name>arcsec</Name>
   <Pragmatic>
     <Element type="opel">arcsec</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the arcsec function as described in Abramowitz
-and Stegun, section 4.4.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents the arcsec function as described in Abramowitz
+    and Stegun, section 4.4.
+  </Description>
 
-<description>
-  <p>This element represents the arcsec function as described 
-  in Abramowitz and Stegun, section 4.4.  
-  It takes one argument.  </p>
-</description>
-
-<property>
-  <description>
-    <p>arcsec(z) = -i ln(1/z + i \sqrt(1-1/z^2))</p>
-  </description>
-</property>
 <MMLexample>
   <math xmlns="http://www.w3.org/1998/Math/MathML">
     <apply><arcsec/><ci>x</ci></apply>
@@ -1558,27 +1367,16 @@ and Stegun, section 4.4.
 </CDDefinition>
 
 <CDDefinition xml:id="arccsc">
-<Name>arccsc</Name>
+  <Name>arccsc</Name>
   <Pragmatic>
     <Element type="opel">arccsc</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the arccsc function as described in Abramowitz
-and Stegun, section 4.4.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents the arccsc function as described in Abramowitz and Stegun,
+    section 4.4.
+  </Description>
 
-<description>
-  <p>This element represents the arccsc function as described 
-  in Abramowitz and Stegun, section 4.4.  
-  It takes one argument.  </p>
-</description>
-
-<property>
-  <description>
-    <p>arccsc(z) = -i ln(i/z + \sqrt(1 - 1/z^2)) </p>
-  </description>
-</property>
 <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><arccsc/><ci>x</ci></apply></math></MMLexample>
 
 <property xml:id="arccsc_prop_28">
@@ -1682,29 +1480,19 @@ and Stegun, section 4.4.
 </CDDefinition>
 
 <CDDefinition xml:id="arccot">
-<Name>arccot</Name>
+  <Name>arccot</Name>
   <Pragmatic>
     <Element type="opel">arccot</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the arccot function as described in Abramowitz
-and Stegun, section 4.4.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents the arccot function as described in Abramowitz and Stegun,
+    section 4.4.
+  </Description>
 
-<description>
-          <p>This element represents the arccot function as described in 
-Abramowitz and Stegun, section 4.4.  
-It takes one argument.  </p>
-        </description>
-
-        <property>
-          <description>
-            <p>arccot(-z) = - arccot(z) </p>
-          </description>
-	</property>
-        <MMLexample>
-	<math xmlns="http://www.w3.org/1998/Math/MathML"><apply><arccot/><ci>x</ci></apply></math></MMLexample>
+  <MMLexample>
+    <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><arccot/><ci>x</ci></apply></math>
+  </MMLexample>
 
 <property xml:id="arccot_prop_31">
 <CMP> arccot(-z) = - arccot(z) </CMP>
@@ -1731,7 +1519,6 @@ It takes one argument.  </p>
 
 <property xml:id="arccot_prop_32">
 <CMP> arccot(x) = (i/2) * ln ((x - i)/(x + i)) </CMP>
-
 <FMP>
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
   <OMA>
@@ -1770,28 +1557,17 @@ It takes one argument.  </p>
 </CDDefinition>
 
 <CDDefinition xml:id="arcsinh">
-<Name>arcsinh</Name>
+  <Name>arcsinh</Name>
   <Pragmatic>
     <Element type="opel">arcsinh</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the arcsinh function as described in Abramowitz
-and Stegun, section 4.6.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents the arcsinh function as described in Abramowitz and Stegun,
+    section 4.6.
+  </Description>
 
-<description>
-          <p>This element represents the arcsinh function 
-as described in Abramowitz and Stegun, section 4.6. 
-It takes one argument.</p>
-        </description>
-
-        <property>
-          <description>
-            <p>arcsinh z = ln(z + \sqrt(1+z^2)) </p>
-          </description>
-        </property>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><arcsinh/><ci>x</ci></apply></math></MMLexample>
+  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><arcsinh/><ci>x</ci></apply></math></MMLexample>
 
 <property xml:id="arcsinh_prop_33">
 <CMP> arcsinh z = ln(z + \sqrt(1+z^2)) </CMP>
@@ -1863,23 +1639,13 @@ It takes one argument.</p>
   <Pragmatic>
     <Element type="opel">arccosh</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the arccosh function as described in Abramowitz
-and Stegun, section 4.6.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents the arccosh function as described in Abramowitz and Stegun,
+    section 4.6.
+  </Description>
 
-<description>
-          <p> This symbol represents the arccosh function as described in Abramowitz and
-          Stegun, section 4.6.  It takes one argument.</p>
-        </description>
-
-        <property>
-          <description>
-            <p>arccosh(z) = 2*ln(\sqrt((z+1)/2) + \sqrt((z-1)/2)) </p>
-          </description>
-        </property>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><arccosh/><ci>x</ci></apply></math></MMLexample>
+<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><arccosh/><ci>x</ci></apply></math></MMLexample>
 
 <property xml:id="arccosh_prop_35">
 <CMP> arccosh(z) = 2*ln(\sqrt((z+1)/2) + \sqrt((z-1)/2)) </CMP>
@@ -1959,28 +1725,17 @@ and Stegun, section 4.6.
 </CDDefinition>
 
 <CDDefinition xml:id="arctanh">
-<Name>arctanh</Name>
+  <Name>arctanh</Name>
   <Pragmatic>
     <Element type="opel">arctanh</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the arctanh function as described in Abramowitz
-and Stegun, section 4.6.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents the arctanh function as described in Abramowitz and Stegun,
+    section 4.6.
+  </Description>
 
-<description>
-          <p>This element represents the arctanh function as 
-described in Abramowitz and Stegun, section 4.6.  
-It takes one argument.  </p>
-        </description>
-
-        <property>
-          <description>
-            <p>arctanh(z) = - i * arctan(i * z) </p>
-          </description>
-        </property>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><arctanh/><ci>x</ci></apply></math></MMLexample>
+  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><arctanh/><ci>x</ci></apply></math></MMLexample>
 
 <property xml:id="arctanh_prop_37">
 <CMP> arctanh(z) = - i * arctan(i * z) </CMP>
@@ -2080,32 +1835,20 @@ arctanh(x) = 1/2 * ln((1 + x)/(1 - x))
 </CDDefinition>
 
 <CDDefinition xml:id="arcsech">
-<Name>arcsech</Name>
+  <Name>arcsech</Name>
   <Pragmatic>
     <Element type="opel">arcsech</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the arcsech function as described in Abramowitz
-and Stegun, section 4.6.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents the arcsech function as described in Abramowitz and Stegun,
+    section 4.6.
+  </Description>
 
-  <description>
-          <p>This element represents the arcsech function 
-as described in Abramowitz and Stegun, section 4.6. 
-It takes one argument.   </p>
-        </description>
-
-        <property>
-          <description>
-            <p>arcsech(z) = 2 ln(\sqrt((1+z)/(2z)) + \sqrt((1-z)/(2z))) </p>
-          </description>
-        </property>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><arcsech/><ci>x</ci></apply></math></MMLexample>
-
+  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><arcsech/><ci>x</ci></apply></math></MMLexample>
+  
 <property xml:id="arcsech_prop_39">
 <CMP> arcsech(z) = 2 ln(\sqrt((1+z)/(2z)) + \sqrt((1-z)/(2z))) </CMP>
-
 <FMP>
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
   <OMA>
@@ -2160,7 +1903,8 @@ It takes one argument.   </p>
     </OMA>
   </OMA>
 </OMOBJ>
-</FMP></property>
+</FMP>
+</property>
 
 <property xml:id="arcsech_prop_40">
 <CMP> for all x in (0..1] | arcsech x = ln(1/x + (1/(x^2) - 1)^(1/2)) </CMP>
@@ -2221,36 +1965,26 @@ It takes one argument.   </p>
     </OMA>
   </OMA>
 </OMBIND>
-</OMOBJ></FMP></property>
+</OMOBJ>
+</FMP>
+</property>
 </CDDefinition>
 
 <CDDefinition xml:id="arccsch">
-<Name>arccsch</Name>
+  <Name>arccsch</Name>
   <Pragmatic>
     <Element type="opel">arccsch</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the arccsch function as described in Abramowitz
-and Stegun, section 4.6.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents the arccsch function as described in Abramowitz and Stegun,
+    section 4.6.
+  </Description>
 
-<description>
-          <p> This element represents the arccsch function as 
-described in Abramowitz and Stegun, section 4.6.  
-It takes one argument.  </p>
-        </description>
-
-        <property>
-          <description>
-            <p>arccsch(z) = ln(1/z + \sqrt(1+(1/z)^2)) </p>
-          </description>
-        </property>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><arccsch/><ci>x</ci></apply></math></MMLexample>
-
-<property xml:id="arccsch_prop_41">
-<CMP> arccsch(z) = ln(1/z + \sqrt(1+(1/z)^2)) </CMP>
-
+  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><arccsch/><ci>x</ci></apply></math></MMLexample>
+  
+  <property xml:id="arccsch_prop_41">
+    <CMP> arccsch(z) = ln(1/z + \sqrt(1+(1/z)^2)) </CMP>
 <FMP>
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
   <OMA>
@@ -2318,28 +2052,17 @@ It takes one argument.  </p>
 </CDDefinition>
 
 <CDDefinition xml:id="arccoth">
-<Name>arccoth</Name>
+  <Name>arccoth</Name>
   <Pragmatic>
     <Element type="opel">arccoth</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the arccoth function as described in Abramowitz
-and Stegun, section 4.6.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents the arccoth function as described in Abramowitz and Stegun,
+    section 4.6.
+  </Description>
 
-<description>
-          <p>This element represents the arccoth function as described 
-in Abramowitz and Stegun, section 4.6.  
-It takes one argument.  </p>
-        </description>
-
-        <property>
-          <description>
-            <p>arccoth(z) = (ln(-1-z)-ln(1-z))/2 </p>
-          </description>
-        </property>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><arccoth/><ci>x</ci></apply></math></MMLexample>
+  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><arccoth/><ci>x</ci></apply></math></MMLexample>
 
 <property xml:id="arccoth_prop_43">
 <CMP> arccoth(z) = (ln(-1-z)-ln(1-z))/2 </CMP>
@@ -2418,7 +2141,9 @@ It takes one argument.  </p>
     </OMA>
   </OMA>
 </OMBIND>
-</OMOBJ></FMP></property>
+</OMOBJ>
+</FMP>
+</property>
 </CDDefinition>
 
 </CD>
