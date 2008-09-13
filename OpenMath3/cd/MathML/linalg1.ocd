@@ -680,87 +680,9 @@ The determinant of an identity matrix is 1
     element is indexed by one.
   </Description>
 
-<discussion>
-  <p>The <el>selector</el> element is the operator for indexing into vectors matrices and
-  lists. It accepts one or more arguments. The first argument identifies the vector,
-  matrix or list from which the selection is taking place, and the second and subsequent
-  arguments, if any, indicate the kind of selection taking place.</p>
-
-  <p>When <el>selector</el> is used with a single argument, it should be interpreted as
-  giving the sequence of all elements in the list, vector or matrix given. The ordering of
-  elements in the sequence for a matrix is understood to be first by column, then by
-  row. That is, for a matrix ( <var>a</var><sub>i,j</sub>), where the indices denote row
-  and column, the ordering would be <var>a</var> <sub>1,1</sub>, <var>a</var>
-  <sub>1,2</sub>, ...  <var>a</var> <sub>2,1</sub>, <var>a</var><sub>2,2</sub>
-  ... etc.</p>
-
-  <p>When three arguments are given, the last one is ignored for a list or vector, and in
-  the case of a matrix, the second and third arguments specify the row and column of the
-  selected element.</p>
-
-  <p>When two arguments are given, and the first is a vector or list, the second argument
-  specifies an element in the list or vector. When a matrix and only one index
-  <var>i</var> is specified as in
-
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply>
-    <selector/>
-    <matrix>
-      <matrixrow>
-      <cn> 1 </cn> <cn> 2 </cn>
-      </matrixrow>
-      <matrixrow>
-	<cn> 3 </cn> <cn> 4 </cn>
-      </matrixrow>
-    </matrix>
-    <cn> 1 </cn>
-  </apply>
-</math>
-
-  it refers to the <var>i</var>-th matrixrow. Thus, the preceding example selects the
-  following row:
-
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <matrixrow> <cn> 1 </cn> <cn> 2 </cn> </matrixrow>
-</math>
-  </p>
-  <p>
-    <el>selector</el> takes the <att>definitionURL</att> and <att>encoding</att>
-    attributes, which can be used to override the default semantics.</p>
-    <p>
-    <el>selector</el> is classified as an n-ary linear algebra operator even though it
-      can take only one, two, or three arguments.
-
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply>
-  <selector/>
-  <ci type="matrix"> A </ci>
-  <cn> 3 </cn>
-  <cn> 2 </cn>
-</apply>
-</math>
-    </p>
-
-    <p>The <el>selector</el> construct renders in a manner that indicates which
-    sub-element of the parent object is selected.  For vectors and matrices this is
-    normally done by specifying the parent object together with subscripted indices.  For
-    example, the selection
-
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply>
-	<selector/>
-	<ci type="vector">V</ci>
-	<cn> 1 </cn>
-      </apply>
-    </math>
-
-    would have a default rendering of
-    <graphic role="display" source="image/selector.gif" alt="V_1"/>
-    </p>
-
-    <p>Selecting the (1,2) element of a 2 by 2 matrix would have a default rendering as
-    <graphic role="display" source="image/selector2.gif" alt="{\left[\begin{array}{cc}1&amp;2\\3&amp;4\end{array}\right]}_{1,2}"/>
-    </p>
+  <discussion>
+    <p>When <el>selector</el> is used with a single argument, it should be interpreted as
+    giving the sequence of all elements in the vector given.</p>
 </discussion>
 
   <Example>
@@ -780,6 +702,7 @@ The determinant of an identity matrix is 1
   </OMA>
 </OMOBJ>     
 </Example>
+
 <Example>
 Representation of a specification of selection of the second element of the
 specific matrixrow [0,1,0].
@@ -805,18 +728,51 @@ assumed
   <Pragmatic>
     <Element type="opel">matrix_selector</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description>
-This symbol represents the function which allows individual entries to
-be selected from a matrix. It takes three arguments, the first is the
-index of the row and the second is the index of the column of the
-required element, the third argument is the matrix in question. The
-indexing is one based, i.e. the element in the top left hand corner is
-indexed by (1,1).
-</Description>
-<Example>
-Representation of a specification of selection of the top left hand entry to
-the matrix M.
+  <Role>application</Role>
+  <Description>
+    This symbol represents the function which allows individual entries to be selected
+    from a matrix. It takes three arguments, the first is the index of the row and the
+    second is the index of the column of the required element, the third argument is the
+    matrix in question. The indexing is one based, i.e. the element in the top left hand
+    corner is indexed by (1,1).
+  </Description>
+
+  <discussion>
+  <p>When <el>selector</el> is used with a single argument, it should be interpreted as
+  giving the sequence of all elements in the matrix given. The ordering of elements in the
+  sequence for a matrix is understood to be first by column, then by row. That is, for a
+  matrix ( <var>a</var><sub>i,j</sub>), where the indices denote row and column, the
+  ordering would be <var>a</var> <sub>1,1</sub>, <var>a</var> <sub>1,2</sub>, ...
+  <var>a</var> <sub>2,1</sub>, <var>a</var><sub>2,2</sub> ... etc.</p>
+  <p>When a matrix and only one index <var>i</var> is specified as in
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <selector/>
+    <matrix>
+      <matrixrow>
+      <cn>1</cn><cn>2</cn>
+      </matrixrow>
+      <matrixrow>
+	<cn>3</cn><cn>4</cn>
+      </matrixrow>
+    </matrix>
+    <cn>1</cn>
+  </apply>
+</math>
+
+  it refers to the <var>i</var>-th matrixrow. Thus, the preceding example selects the
+  following row:
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <matrixrow><cn>1</cn><cn>2</cn></matrixrow>
+</math>
+  </p>
+  </discussion>
+
+  <Example>
+    Representation of a specification of selection of the top left hand entry to the
+    matrix M.
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
   <OMA>
     <OMS cd="linalg1" name="matrix_selector"/>
