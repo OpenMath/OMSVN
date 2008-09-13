@@ -1,7 +1,6 @@
 <CD xmlns="http://www.openmath.org/OpenMathCD">
 
 <CDComment>
-
      This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -42,42 +41,26 @@
 <CDVersion>3</CDVersion>
 <CDRevision>0</CDRevision>
 
-<CDDefinition xml:id="unhandled_symbol">
-<Name>unhandled_symbol</Name>
-<Title>Unhandled Symbol</Title>
-<Role>error</Role>
 <Description>
-This symbol represents the error which is raised when an application
-reads a symbol which is present in the mentioned content
-dictionary, but which it has not implemented.
-
-When receiving such a symbol, the application should act as if it had
-received the OpenMath error object constructed from unhandled_symbol
-and the unhandled symbol as in the example below.
+  This content dictionary provides basic error specifiers for the error element.
 </Description>
 
- <description>
-    <p>This symbol represents the error which is raised when an application reads a symbol
+<CDDefinition xml:id="unhandled_symbol">
+  <Name>unhandled_symbol</Name>
+  <Title>Unhandled Symbol</Title>
+  <Role>error</Role>
+  <Description>
+    This symbol represents the error which is raised when an application reads a symbol
     which is present in the mentioned content dictionary, but which it has not
-    implemented.</p>
+    implemented.
 
-    <p>When receiving such a symbol, the application should act as if it had received the
-    MathML error object constructed from <code>unhandled_symbol</code> and the unhandled symbol as in
-    the example below.</p>
-  </description>
-  <MMLexample>
-    <description><p>The application does not implement the Complex numbers:</p></description>
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <cerror>
-	<csymbol cd="error">unhandled_symbol</csymbol>
-	<csymbol cd="setname1">C</csymbol>
-    </cerror>
-    </math>
-</MMLexample>
+    When receiving such a symbol, the application should act as if it had received the
+    OpenMath error object constructed from unhandled_symbol and the unhandled symbol as in
+    the example below.
+  </Description>
 
-
-<Example>
-The application does not implement the Complex numbers:
+  <Example>
+    The application does not implement the Complex numbers:
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
   <OME>
     <OMS cd="error" name="unhandled_symbol"/>
@@ -99,26 +82,6 @@ The application does not implement the Complex numbers:
     OpenMath error object constructed from unexpected_symbol and the unexpected symbol as
     in the example below.
 </Description>
-
-  <description>
-    <p>This symbol represents the error which is raised when an application reads a symbol
-    which is not present in the mentioned content dictionary.</p>
-
-    <p>When receiving such a symbol, the application should act as if it had received the
-    MathML error object constructed from unexpected_symbol and the unexpected symbol as
-    in the example below.</p>
-  </description>
-
-  <MMLexample>
-    <description><p>The application received a mistyped symbol</p></description>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <cerror>
-    <csymbol cd="error">unexpected_symbol</csymbol>
-    <csymbol cd="arith1">plurse</csymbol>
-  </cerror>
-</math>
-</MMLexample>
-
 
 <Example>
 The application received a mistyped symbol
@@ -144,28 +107,9 @@ The application received a mistyped symbol
   unsupported Content Dictionary as in the example below.
 </Description>
 
-  <description>
-    <p>This symbol represents the error which is raised when an application reads a symbol
-    where the mentioned content dictionary is not present.</p>
-
-    <p>When receiving such a symbol, the application should act as if it had received the
-    MathML error object constructed from <code>unsupported_CD</code> and the symbol from
-    the unsupported Content Dictionary as in the example below.</p>
-  </description>
-  <MMLexample>
-    <description><p>The application does not know about the CD <code>specfun</code></p></description>
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <cerror>
-	<csymbol cd="error">unsupported_CD</csymbol>
-	<csymbol cd="specfun">BesselJ</csymbol>
-      </cerror>
-    </math>
-  </MMLexample>
-
-
 <Example>
-The application does not know about the CD specfun1
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
+  The application does not know about the CD specfun1
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
   <OME>
     <OMS cd="error" name="unsupported_CD"/>
     <OMS cd="specfun1" name="BesselJ"/>
