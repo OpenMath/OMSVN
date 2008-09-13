@@ -1,0 +1,1580 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../../xsl/pmathml.xsl"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <script type="text/javascript" src="divfold.js"/>
+      <title>list2</title>
+      <link rel="stylesheet" href="omcd.css" type="text/css"/>
+   </head>
+   <body>
+      <a name="top"/>
+      <h1>OpenMath Content Dictionary: list2</h1>
+      <dl>
+         <dt class="dt">Canonical URL:</dt>
+         <dd>
+            <a href="http://www.openmath.org/cd/list2.ocd">http://www.openmath.org/cd/list2.ocd</a>
+         </dd>
+         <dt class="dt">CD Base:</dt>
+         <dd>
+            <a href="http://www.openmath.org/cd">http://www.openmath.org/cd</a>
+         </dd>
+         <dt class="dt">CD File:</dt>
+         <dd>
+            <a href="list2.ocd">list2.ocd</a>
+         </dd>
+         <dt class="dt">CD as XML Encoded OpenMath:</dt>
+         <dd>
+            <a href="list2.omcd">list2.omcd</a>
+         </dd>
+         <dt class="dt">Defines:</dt>
+         <dd>
+            <a href="#cons">cons</a>, <a href="#in">in</a>, <a href="#nil">nil</a>, <a href="#rest">rest</a>, <a href="#append">append</a>, <a href="#first">first</a>, <a href="#list_selector">list_selector</a>, <a href="#reverse">reverse</a>, <a href="#size">size</a>
+         </dd>
+         <dt class="dt">Date:</dt>
+         <dd>
+            <CDDate xmlns="http://www.openmath.org/OpenMathCD">2004-03-30</CDDate>
+         </dd>
+         <dt class="dt">Version:</dt>
+         <dd>3</dd>
+         <dt class="dt">Review Date:</dt>
+         <dd>
+            <CDReviewDate xmlns="http://www.openmath.org/OpenMathCD">2006-03-30</CDReviewDate>
+         </dd>
+         <dt class="dt">Status:</dt>
+         <dd>
+            <CDStatus xmlns="http://www.openmath.org/OpenMathCD">draft</CDStatus>
+         </dd>
+      </dl>
+      <hr/>
+
+
+
+
+
+
+
+
+
+      <p>
+    Several basic list functions are given in this CD.
+</p>
+
+
+      <div class="cddefinition">
+         <h2>
+            <a name="list_selector">Symbol Definition: list_selector</a>
+         </h2>
+         <dl>
+            <dt class="dt">Pragmatic MathML:</dt>
+            <dd>
+               <p>&lt;selector/&gt;</p>
+            </dd>
+            <dt class="dt">Role:</dt>
+            <dd>application</dd>
+            <dt class="dt">Description:</dt>
+            <dd>
+               <p> 
+    This symbol takes a positive integer n and a list, and represents the n-th element of
+    that list.
+  </p>
+            </dd>
+            <dt class="dt">discussion:</dt>
+            <dd>
+               <p>
+    When selector is used with a single argument, it should be interpreted as
+    giving the sequence of all elements in the vector given.
+  </p>
+            </dd>
+            <dt class="dt">Example:</dt>
+            <dd>
+               <div>
+                  <button id="d43e60xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e60xml')">XML (OpenMath)</button>
+               </div>
+               <pre id="d43e60xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMA&gt;
+  &lt;OMS cd="relation1" name="eq"/&gt;
+  &lt;OMV name="b"/&gt;
+  &lt;OMA&gt;
+    &lt;OMS name="list_selector" cd="list2"/&gt;
+    &lt;OMI&gt; 2 &lt;/OMI&gt;
+    &lt;OMA&gt;
+      &lt;OMS name="list" cd="list1"/&gt;
+      &lt;OMV name="a"/&gt;
+      &lt;OMV name="b"/&gt;
+      &lt;OMV name="c"/&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d43e60cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e60cmml')">Content MathML</button>
+               </div>
+               <pre id="d43e60cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;apply&gt;
+  &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
+  &lt;ci&gt;b&lt;/ci&gt;
+  &lt;apply&gt;
+    &lt;csymbol cd="list2"&gt;list_selector&lt;/csymbol&gt;
+    &lt;cn&gt; 2 &lt;/cn&gt;
+    &lt;apply&gt;
+      &lt;csymbol cd="list1"&gt;list&lt;/csymbol&gt;
+      &lt;ci&gt;a&lt;/ci&gt;
+      &lt;ci&gt;b&lt;/ci&gt;
+      &lt;ci&gt;c&lt;/ci&gt;
+    &lt;/apply&gt;
+  &lt;/apply&gt;
+&lt;/apply&gt;
+&lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e60prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e60pref')">Prefix form</button>
+               </div>
+               <div id="d43e60pref" style="display:none; margin-top: 0.5em">
+                  <a href="relation1.xhtml#eq">eq</a>
+( <i>b</i>, <a href="list2.xhtml#list_selector">list_selector</a>
+( 2 , <a href="list1.xhtml#list">list</a>
+( <i>a</i>,  <i>b</i>,  <i>c</i>)
+)
+)
+
+</div>
+               <div>
+                  <button id="d43e60mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e60mml')">Presentation MathML</button>
+               </div>
+               <div id="d43e60mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mi>b</mi>
+                        <mo>=</mo>
+                        <msub>
+                           <mrow>
+                              <mo>(</mo>
+                              <mi>a</mi>
+                              <mo separator="true">,</mo>
+                              <mi>b</mi>
+                              <mo separator="true">,</mo>
+                              <mi>c</mi>
+                              <mo>)</mo>
+                           </mrow>
+                           <mn> 2 </mn>
+                        </msub>
+                     </mrow>
+                  </m:math>
+               </div>
+            </dd>
+            <dt class="dt">Property:</dt>
+            <dd>
+
+               <div>
+                  <button id="d43e94xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e94xml')">XML (OpenMath)</button>
+               </div>
+               <pre id="d43e94xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd"&gt;
+&lt;OMA&gt;
+  &lt;OMS cd="logic1" name="implies"/&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="relation1" name="gt"/&gt;
+    &lt;OMV name="n"/&gt;
+    &lt;OMI&gt; 1 &lt;/OMI&gt;
+  &lt;/OMA&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="relation1" name="eq"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS name="list_selector" cd="list2"/&gt;
+      &lt;OMV name="n"/&gt;
+      &lt;OMV name="l"/&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS name="list_selector" cd="list2"/&gt;
+      &lt;OMA&gt;
+	&lt;OMS name="minus" cd="arith1"/&gt;
+        &lt;OMV name="n"/&gt;
+        &lt;OMI&gt; 1 &lt;/OMI&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+	&lt;OMS name="rest" cd="list2"/&gt;
+        &lt;OMV name="l"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d43e94cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e94cmml')">Content MathML</button>
+               </div>
+               <pre id="d43e94cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;apply&gt;
+  &lt;csymbol cd="logic1"&gt;implies&lt;/csymbol&gt;
+  &lt;apply&gt;
+    &lt;csymbol cd="relation1"&gt;gt&lt;/csymbol&gt;
+    &lt;ci&gt;n&lt;/ci&gt;
+    &lt;cn&gt; 1 &lt;/cn&gt;
+  &lt;/apply&gt;
+  &lt;apply&gt;
+    &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
+    &lt;apply&gt;
+      &lt;csymbol cd="list2"&gt;list_selector&lt;/csymbol&gt;
+      &lt;ci&gt;n&lt;/ci&gt;
+      &lt;ci&gt;l&lt;/ci&gt;
+    &lt;/apply&gt;
+    &lt;apply&gt;
+      &lt;csymbol cd="list2"&gt;list_selector&lt;/csymbol&gt;
+      &lt;apply&gt;
+	&lt;csymbol cd="arith1"&gt;minus&lt;/csymbol&gt;
+        &lt;ci&gt;n&lt;/ci&gt;
+        &lt;cn&gt; 1 &lt;/cn&gt;
+      &lt;/apply&gt;
+      &lt;apply&gt;
+	&lt;csymbol cd="list2"&gt;rest&lt;/csymbol&gt;
+        &lt;ci&gt;l&lt;/ci&gt;
+      &lt;/apply&gt;
+    &lt;/apply&gt;
+  &lt;/apply&gt;
+&lt;/apply&gt;
+&lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e94prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e94pref')">Prefix form</button>
+               </div>
+               <div id="d43e94pref" style="display:none; margin-top: 0.5em">
+                  <a href="logic1.xhtml#implies">implies</a>
+(<a href="relation1.xhtml#gt">gt</a>
+( <i>n</i>,  1 )
+, <a href="relation1.xhtml#eq">eq</a>
+(<a href="list2.xhtml#list_selector">list_selector</a>
+( <i>n</i>,  <i>l</i>)
+, <a href="list2.xhtml#list_selector">list_selector</a>
+(<a href="arith1.xhtml#minus">minus</a>
+( <i>n</i>,  1 )
+, <a href="list2.xhtml#rest">rest</a>
+( <i>l</i>)
+)
+)
+)
+
+</div>
+               <div>
+                  <button id="d43e94mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e94mml')">Presentation MathML</button>
+               </div>
+               <div id="d43e94mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mrow>
+                           <mi>n</mi>
+                           <mo>&gt;</mo>
+                           <mn> 1 </mn>
+                        </mrow>
+                        <mo>⇒</mo>
+                        <mrow>
+                           <msub>
+                              <mi>l</mi>
+                              <mi>n</mi>
+                           </msub>
+                           <mo>=</mo>
+                           <msub>
+                              <mrow>
+                                 <mi>rest</mi>
+                                 <mo>⁡</mo>
+                                 <mrow>
+                                    <mo>(</mo>
+                                    <mi>l</mi>
+                                    <mo>)</mo>
+                                 </mrow>
+                              </mrow>
+                              <mrow>
+                                 <mi>n</mi>
+                                 <mo>-</mo>
+                                 <mn> 1 </mn>
+                              </mrow>
+                           </msub>
+                        </mrow>
+                     </mrow>
+                  </m:math>
+               </div>
+
+            </dd>
+            <dt class="dt">Signatures:</dt>
+            <dd>
+               <a href="../sts/list2.xhtml#list_selector">
+    sts
+      </a>
+            </dd>
+         </dl>
+      </div>
+      <div>[Next: <a href="#first">first</a>]
+	   [This: <a href="#list_selector">list_selector</a>]
+	
+	    [Last: <a href="#in">in</a>]
+	  
+      [<a href="#top">Top</a>]
+ </div>
+
+      <div class="cddefinition">
+         <h2>
+            <a name="first">Symbol Definition: first</a>
+         </h2>
+         <dl>
+            <dt class="dt">Role:</dt>
+            <dd>application</dd>
+            <dt class="dt">Description:</dt>
+            <dd>
+               <p> 
+    This symbol represents a function which returns the first elements of its argument,
+    which should be a list.
+  </p>
+            </dd>
+            <dt class="dt">Property:</dt>
+            <dd>
+
+               <div>
+                  <button id="d43e166xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e166xml')">XML (OpenMath)</button>
+               </div>
+               <pre id="d43e166xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd"&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="relation1" name="eq"/&gt;
+      &lt;OMV name="a"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="list2" name="first"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="list2" name="cons"/&gt;
+          &lt;OMV name="a"/&gt;
+          &lt;OMV name="b"/&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d43e166cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e166cmml')">Content MathML</button>
+               </div>
+               <pre id="d43e166cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+    &lt;apply&gt;
+      &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
+      &lt;ci&gt;a&lt;/ci&gt;
+      &lt;apply&gt;
+        &lt;csymbol cd="list2"&gt;first&lt;/csymbol&gt;
+        &lt;apply&gt;
+          &lt;csymbol cd="list2"&gt;cons&lt;/csymbol&gt;
+          &lt;ci&gt;a&lt;/ci&gt;
+          &lt;ci&gt;b&lt;/ci&gt;
+        &lt;/apply&gt;
+      &lt;/apply&gt;
+    &lt;/apply&gt;
+  &lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e166prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e166pref')">Prefix form</button>
+               </div>
+               <div id="d43e166pref" style="display:none; margin-top: 0.5em">
+                  <a href="relation1.xhtml#eq">eq</a>
+( <i>a</i>, <a href="list2.xhtml#first">first</a>
+(<a href="list2.xhtml#cons">cons</a>
+( <i>a</i>,  <i>b</i>)
+)
+)
+
+  </div>
+               <div>
+                  <button id="d43e166mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e166mml')">Presentation MathML</button>
+               </div>
+               <div id="d43e166mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mi>a</mi>
+                        <mo>=</mo>
+                        <mrow>
+                           <mi>first</mi>
+                           <mo>⁡</mo>
+                           <mrow>
+                              <mo>(</mo>
+                              <mrow>
+                                 <mi>cons</mi>
+                                 <mo>⁡</mo>
+                                 <mrow>
+                                    <mo>(</mo>
+                                    <mi>a</mi>
+                                    <mo>,</mo>
+                                    <mi>b</mi>
+                                    <mo>)</mo>
+                                 </mrow>
+                              </mrow>
+                              <mo>)</mo>
+                           </mrow>
+                        </mrow>
+                     </mrow>
+                  </m:math>
+               </div>
+
+            </dd>
+            <dt class="dt">Example:</dt>
+            <dd>
+Specification of the first element of the list [1,2,3]
+<div>
+                  <button id="d43e194xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e194xml')">XML (OpenMath)</button>
+               </div>
+               <pre id="d43e194xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="list2" name="first"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="list1" name="list"/&gt;
+      &lt;OMI&gt; 1 &lt;/OMI&gt;
+      &lt;OMI&gt; 2 &lt;/OMI&gt;
+      &lt;OMI&gt; 3 &lt;/OMI&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d43e194cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e194cmml')">Content MathML</button>
+               </div>
+               <pre id="d43e194cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+  &lt;apply&gt;
+    &lt;csymbol cd="list2"&gt;first&lt;/csymbol&gt;
+    &lt;apply&gt;
+      &lt;csymbol cd="list1"&gt;list&lt;/csymbol&gt;
+      &lt;cn&gt; 1 &lt;/cn&gt;
+      &lt;cn&gt; 2 &lt;/cn&gt;
+      &lt;cn&gt; 3 &lt;/cn&gt;
+    &lt;/apply&gt;
+  &lt;/apply&gt;
+&lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e194prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e194pref')">Prefix form</button>
+               </div>
+               <div id="d43e194pref" style="display:none; margin-top: 0.5em">
+                  <a href="list2.xhtml#first">first</a>
+(<a href="list1.xhtml#list">list</a>
+( 1 ,  2 ,  3 )
+)
+
+</div>
+               <div>
+                  <button id="d43e194mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e194mml')">Presentation MathML</button>
+               </div>
+               <div id="d43e194mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mi>first</mi>
+                        <mo>⁡</mo>
+                        <mrow>
+                           <mo>(</mo>
+                           <mrow>
+                              <mo>(</mo>
+                              <mn> 1 </mn>
+                              <mo separator="true">,</mo>
+                              <mn> 2 </mn>
+                              <mo separator="true">,</mo>
+                              <mn> 3 </mn>
+                              <mo>)</mo>
+                           </mrow>
+                           <mo>)</mo>
+                        </mrow>
+                     </mrow>
+                  </m:math>
+               </div>
+            </dd>
+            <dt class="dt">Signatures:</dt>
+            <dd>
+               <a href="../sts/list2.xhtml#first">
+    sts
+      </a>
+            </dd>
+         </dl>
+      </div>
+      <div>[Next: <a href="#rest">rest</a>]
+	   [This: <a href="#first">first</a>]
+	[Previous: <a href="#list_selector">list_selector</a>]
+      [<a href="#top">Top</a>]
+ </div>
+
+      <div class="cddefinition">
+         <h2>
+            <a name="rest">Symbol Definition:  rest </a>
+         </h2>
+         <dl>
+            <dt class="dt">Role:</dt>
+            <dd>application</dd>
+            <dt class="dt">Description:</dt>
+            <dd>
+               <p> 
+This symbol represents a function which returns a list made up of all
+the elements except the first of its argument, which should be a list.
+</p>
+            </dd>
+            <dt class="dt">Property:</dt>
+            <dd>
+
+               <div>
+                  <button id="d43e234xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e234xml')">XML (OpenMath)</button>
+               </div>
+               <pre id="d43e234xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd"&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="relation1" name="eq"/&gt;
+      &lt;OMV name="b"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="list2" name="rest"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="list2" name="cons"/&gt;
+          &lt;OMV name="a"/&gt;
+          &lt;OMV name="b"/&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d43e234cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e234cmml')">Content MathML</button>
+               </div>
+               <pre id="d43e234cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+    &lt;apply&gt;
+      &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
+      &lt;ci&gt;b&lt;/ci&gt;
+      &lt;apply&gt;
+        &lt;csymbol cd="list2"&gt;rest&lt;/csymbol&gt;
+        &lt;apply&gt;
+          &lt;csymbol cd="list2"&gt;cons&lt;/csymbol&gt;
+          &lt;ci&gt;a&lt;/ci&gt;
+          &lt;ci&gt;b&lt;/ci&gt;
+        &lt;/apply&gt;
+      &lt;/apply&gt;
+    &lt;/apply&gt;
+  &lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e234prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e234pref')">Prefix form</button>
+               </div>
+               <div id="d43e234pref" style="display:none; margin-top: 0.5em">
+                  <a href="relation1.xhtml#eq">eq</a>
+( <i>b</i>, <a href="list2.xhtml#rest">rest</a>
+(<a href="list2.xhtml#cons">cons</a>
+( <i>a</i>,  <i>b</i>)
+)
+)
+
+  </div>
+               <div>
+                  <button id="d43e234mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e234mml')">Presentation MathML</button>
+               </div>
+               <div id="d43e234mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mi>b</mi>
+                        <mo>=</mo>
+                        <mrow>
+                           <mi>rest</mi>
+                           <mo>⁡</mo>
+                           <mrow>
+                              <mo>(</mo>
+                              <mrow>
+                                 <mi>cons</mi>
+                                 <mo>⁡</mo>
+                                 <mrow>
+                                    <mo>(</mo>
+                                    <mi>a</mi>
+                                    <mo>,</mo>
+                                    <mi>b</mi>
+                                    <mo>)</mo>
+                                 </mrow>
+                              </mrow>
+                              <mo>)</mo>
+                           </mrow>
+                        </mrow>
+                     </mrow>
+                  </m:math>
+               </div>
+
+            </dd>
+            <dt class="dt">Example:</dt>
+            <dd>
+Specification of the list [1,2,3], apart from the first element
+<div>
+                  <button id="d43e262xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e262xml')">XML (OpenMath)</button>
+               </div>
+               <pre id="d43e262xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="list2" name="rest"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="list1" name="list"/&gt;
+      &lt;OMI&gt; 1 &lt;/OMI&gt;
+      &lt;OMI&gt; 2 &lt;/OMI&gt;
+      &lt;OMI&gt; 3 &lt;/OMI&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d43e262cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e262cmml')">Content MathML</button>
+               </div>
+               <pre id="d43e262cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+  &lt;apply&gt;
+    &lt;csymbol cd="list2"&gt;rest&lt;/csymbol&gt;
+    &lt;apply&gt;
+      &lt;csymbol cd="list1"&gt;list&lt;/csymbol&gt;
+      &lt;cn&gt; 1 &lt;/cn&gt;
+      &lt;cn&gt; 2 &lt;/cn&gt;
+      &lt;cn&gt; 3 &lt;/cn&gt;
+    &lt;/apply&gt;
+  &lt;/apply&gt;
+&lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e262prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e262pref')">Prefix form</button>
+               </div>
+               <div id="d43e262pref" style="display:none; margin-top: 0.5em">
+                  <a href="list2.xhtml#rest">rest</a>
+(<a href="list1.xhtml#list">list</a>
+( 1 ,  2 ,  3 )
+)
+
+</div>
+               <div>
+                  <button id="d43e262mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e262mml')">Presentation MathML</button>
+               </div>
+               <div id="d43e262mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mi>rest</mi>
+                        <mo>⁡</mo>
+                        <mrow>
+                           <mo>(</mo>
+                           <mrow>
+                              <mo>(</mo>
+                              <mn> 1 </mn>
+                              <mo separator="true">,</mo>
+                              <mn> 2 </mn>
+                              <mo separator="true">,</mo>
+                              <mn> 3 </mn>
+                              <mo>)</mo>
+                           </mrow>
+                           <mo>)</mo>
+                        </mrow>
+                     </mrow>
+                  </m:math>
+               </div>
+            </dd>
+            <dt class="dt">Signatures:</dt>
+            <dd>
+               <a href="../sts/list2.xhtml#rest">
+    sts
+      </a>
+            </dd>
+         </dl>
+      </div>
+      <div>[Next: <a href="#cons">cons</a>]
+	   [This: <a href="#rest">rest</a>]
+	[Previous: <a href="#first">first</a>]
+      [<a href="#top">Top</a>]
+ </div>
+
+      <div class="cddefinition">
+         <h2>
+            <a name="cons">Symbol Definition:  cons </a>
+         </h2>
+         <dl>
+            <dt class="dt">Role:</dt>
+            <dd>application</dd>
+            <dt class="dt">Description:</dt>
+            <dd>
+               <p> 
+This symbol represents the cons list function. It takes 2 arguments:
+the second must be a list, where the elements have the same type as
+the type of the first. The function denotes a new list which has
+the first argument as its first element followed by the elements of
+the second argument.
+</p>
+            </dd>
+            <dt class="dt">Property:</dt>
+            <dd>
+
+ cons(first(lst),rest(lst))=lst
+
+
+<div>
+                  <button id="d43e304xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e304xml')">XML (OpenMath)</button>
+               </div>
+               <pre id="d43e304xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMBIND&gt;
+    &lt;OMS cd="quant1" name="forall"/&gt;
+    &lt;OMBVAR&gt;
+      &lt;OMV name="lst"/&gt;
+    &lt;/OMBVAR&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="relation1" name="eq"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="list2" name="cons"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="list2" name="first"/&gt;
+          &lt;OMV name="lst"/&gt;
+        &lt;/OMA&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="list2" name="rest"/&gt;
+          &lt;OMV name="lst"/&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+      &lt;OMV name="lst"/&gt;
+    &lt;/OMA&gt;
+  &lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d43e304cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e304cmml')">Content MathML</button>
+               </div>
+               <pre id="d43e304cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+  &lt;bind&gt;
+    &lt;csymbol cd="quant1"&gt;forall&lt;/csymbol&gt;
+    &lt;bvar&gt;&lt;ci&gt;lst&lt;/ci&gt;&lt;/bvar&gt;
+    &lt;apply&gt;
+      &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
+      &lt;apply&gt;
+        &lt;csymbol cd="list2"&gt;cons&lt;/csymbol&gt;
+        &lt;apply&gt;
+          &lt;csymbol cd="list2"&gt;first&lt;/csymbol&gt;
+          &lt;ci&gt;lst&lt;/ci&gt;
+        &lt;/apply&gt;
+        &lt;apply&gt;
+          &lt;csymbol cd="list2"&gt;rest&lt;/csymbol&gt;
+          &lt;ci&gt;lst&lt;/ci&gt;
+        &lt;/apply&gt;
+      &lt;/apply&gt;
+      &lt;ci&gt;lst&lt;/ci&gt;
+    &lt;/apply&gt;
+  &lt;/bind&gt;
+&lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e304prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e304pref')">Prefix form</button>
+               </div>
+               <div id="d43e304pref" style="display:none; margin-top: 0.5em">
+                  <a href="quant1.xhtml#forall">forall</a>
+[
+       <i>lst</i>
+    ] .
+(<a href="relation1.xhtml#eq">eq</a>
+(<a href="list2.xhtml#cons">cons</a>
+(<a href="list2.xhtml#first">first</a>
+( <i>lst</i>)
+, <a href="list2.xhtml#rest">rest</a>
+( <i>lst</i>)
+)
+,  <i>lst</i>)
+)
+
+</div>
+               <div>
+                  <button id="d43e304mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e304mml')">Presentation MathML</button>
+               </div>
+               <div id="d43e304mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mo>∀</mo>
+                        <mo> </mo>
+                        <mrow>
+                           <mi>lst</mi>
+                        </mrow>
+                        <mo>.</mo>
+                        <mrow>
+                           <mrow>
+                              <mi>cons</mi>
+                              <mo>⁡</mo>
+                              <mrow>
+                                 <mo>(</mo>
+                                 <mrow>
+                                    <mi>first</mi>
+                                    <mo>⁡</mo>
+                                    <mrow>
+                                       <mo>(</mo>
+                                       <mi>lst</mi>
+                                       <mo>)</mo>
+                                    </mrow>
+                                 </mrow>
+                                 <mo>,</mo>
+                                 <mrow>
+                                    <mi>rest</mi>
+                                    <mo>⁡</mo>
+                                    <mrow>
+                                       <mo>(</mo>
+                                       <mi>lst</mi>
+                                       <mo>)</mo>
+                                    </mrow>
+                                 </mrow>
+                                 <mo>)</mo>
+                              </mrow>
+                           </mrow>
+                           <mo>=</mo>
+                           <mi>lst</mi>
+                        </mrow>
+                     </mrow>
+                  </m:math>
+               </div>
+
+            </dd>
+            <dt class="dt">Signatures:</dt>
+            <dd>
+               <a href="../sts/list2.xhtml#cons">
+    sts
+      </a>
+            </dd>
+         </dl>
+      </div>
+      <div>[Next: <a href="#nil">nil</a>]
+	   [This: <a href="#cons">cons</a>]
+	[Previous: <a href="#rest">rest</a>]
+      [<a href="#top">Top</a>]
+ </div>
+
+      <div class="cddefinition">
+         <h2>
+            <a name="nil">Symbol Definition:  nil </a>
+         </h2>
+         <dl>
+            <dt class="dt">Role:</dt>
+            <dd>constant</dd>
+            <dt class="dt">Description:</dt>
+            <dd>
+               <p>
+The empty list 
+</p>
+            </dd>
+            <dt class="dt">Signatures:</dt>
+            <dd>
+               <a href="../sts/list2.xhtml#nil">
+    sts
+      </a>
+            </dd>
+         </dl>
+      </div>
+      <div>[Next: <a href="#append">append</a>]
+	   [This: <a href="#nil">nil</a>]
+	[Previous: <a href="#cons">cons</a>]
+      [<a href="#top">Top</a>]
+ </div>
+
+      <div class="cddefinition">
+         <h2>
+            <a name="append">Symbol Definition: append</a>
+         </h2>
+         <dl>
+            <dt class="dt">Role:</dt>
+            <dd>application</dd>
+            <dt class="dt">Description:</dt>
+            <dd>
+               <p>
+    The operation of joining one list to another 
+  </p>
+            </dd>
+            <dt class="dt">Property:</dt>
+            <dd>
+
+               <div>
+                  <button id="d43e373xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e373xml')">XML (OpenMath)</button>
+               </div>
+               <pre id="d43e373xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMBIND&gt;
+    &lt;OMS cd="quant1" name="forall"/&gt;
+    &lt;OMBVAR&gt;
+      &lt;OMV name="a"/&gt;
+      &lt;OMV name="lst1"/&gt;
+      &lt;OMV name="lst2"/&gt;
+    &lt;/OMBVAR&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="relation1" name="eq"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="list2" name="cons"/&gt;
+        &lt;OMV name="a"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="list2" name="append"/&gt;
+          &lt;OMV name="lst1"/&gt;
+          &lt;OMV name="lst2"/&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="list2" name="append"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="list2" name="cons"/&gt;
+          &lt;OMV name="a"/&gt;
+          &lt;OMV name="lst1"/&gt;
+        &lt;/OMA&gt;
+        &lt;OMV name="lst2"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d43e373cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e373cmml')">Content MathML</button>
+               </div>
+               <pre id="d43e373cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+  &lt;bind&gt;
+    &lt;csymbol cd="quant1"&gt;forall&lt;/csymbol&gt;
+    &lt;bvar&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;lst1&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;lst2&lt;/ci&gt;&lt;/bvar&gt;
+    &lt;apply&gt;
+      &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
+      &lt;apply&gt;
+        &lt;csymbol cd="list2"&gt;cons&lt;/csymbol&gt;
+        &lt;ci&gt;a&lt;/ci&gt;
+        &lt;apply&gt;
+          &lt;csymbol cd="list2"&gt;append&lt;/csymbol&gt;
+          &lt;ci&gt;lst1&lt;/ci&gt;
+          &lt;ci&gt;lst2&lt;/ci&gt;
+        &lt;/apply&gt;
+      &lt;/apply&gt;
+      &lt;apply&gt;
+        &lt;csymbol cd="list2"&gt;append&lt;/csymbol&gt;
+        &lt;apply&gt;
+          &lt;csymbol cd="list2"&gt;cons&lt;/csymbol&gt;
+          &lt;ci&gt;a&lt;/ci&gt;
+          &lt;ci&gt;lst1&lt;/ci&gt;
+        &lt;/apply&gt;
+        &lt;ci&gt;lst2&lt;/ci&gt;
+      &lt;/apply&gt;
+    &lt;/apply&gt;
+  &lt;/bind&gt;
+&lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e373prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e373pref')">Prefix form</button>
+               </div>
+               <div id="d43e373pref" style="display:none; margin-top: 0.5em">
+                  <a href="quant1.xhtml#forall">forall</a>
+[
+       <i>a</i>
+                  <i>lst1</i>
+                  <i>lst2</i>
+    ] .
+(<a href="relation1.xhtml#eq">eq</a>
+(<a href="list2.xhtml#cons">cons</a>
+( <i>a</i>, <a href="list2.xhtml#append">append</a>
+( <i>lst1</i>,  <i>lst2</i>)
+)
+, <a href="list2.xhtml#append">append</a>
+(<a href="list2.xhtml#cons">cons</a>
+( <i>a</i>,  <i>lst1</i>)
+,  <i>lst2</i>)
+)
+)
+
+</div>
+               <div>
+                  <button id="d43e373mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e373mml')">Presentation MathML</button>
+               </div>
+               <div id="d43e373mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mo>∀</mo>
+                        <mo> </mo>
+                        <mrow>
+                           <mi>a</mi>
+                           <mo>,</mo>
+                           <msub>
+                              <mi>lst</mi>
+                              <mn>1</mn>
+                           </msub>
+                           <mo>,</mo>
+                           <msub>
+                              <mi>lst</mi>
+                              <mn>2</mn>
+                           </msub>
+                        </mrow>
+                        <mo>.</mo>
+                        <mrow>
+                           <mrow>
+                              <mi>cons</mi>
+                              <mo>⁡</mo>
+                              <mrow>
+                                 <mo>(</mo>
+                                 <mi>a</mi>
+                                 <mo>,</mo>
+                                 <mrow>
+                                    <mi>append</mi>
+                                    <mo>⁡</mo>
+                                    <mrow>
+                                       <mo>(</mo>
+                                       <msub>
+                                          <mi>lst</mi>
+                                          <mn>1</mn>
+                                       </msub>
+                                       <mo>,</mo>
+                                       <msub>
+                                          <mi>lst</mi>
+                                          <mn>2</mn>
+                                       </msub>
+                                       <mo>)</mo>
+                                    </mrow>
+                                 </mrow>
+                                 <mo>)</mo>
+                              </mrow>
+                           </mrow>
+                           <mo>=</mo>
+                           <mrow>
+                              <mi>append</mi>
+                              <mo>⁡</mo>
+                              <mrow>
+                                 <mo>(</mo>
+                                 <mrow>
+                                    <mi>cons</mi>
+                                    <mo>⁡</mo>
+                                    <mrow>
+                                       <mo>(</mo>
+                                       <mi>a</mi>
+                                       <mo>,</mo>
+                                       <msub>
+                                          <mi>lst</mi>
+                                          <mn>1</mn>
+                                       </msub>
+                                       <mo>)</mo>
+                                    </mrow>
+                                 </mrow>
+                                 <mo>,</mo>
+                                 <msub>
+                                    <mi>lst</mi>
+                                    <mn>2</mn>
+                                 </msub>
+                                 <mo>)</mo>
+                              </mrow>
+                           </mrow>
+                        </mrow>
+                     </mrow>
+                  </m:math>
+               </div>
+
+            </dd>
+            <dt class="dt">Property:</dt>
+            <dd>
+
+               <div>
+                  <button id="d43e433xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e433xml')">XML (OpenMath)</button>
+               </div>
+               <pre id="d43e433xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMBIND&gt;
+    &lt;OMS cd="quant1" name="forall"/&gt;
+    &lt;OMBVAR&gt;
+      &lt;OMV name="lst"/&gt;
+    &lt;/OMBVAR&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="relation1" name="eq"/&gt;
+      &lt;OMV name="lst"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="list2" name="append"/&gt;
+        &lt;OMS cd="list2" name="nil"/&gt;
+        &lt;OMV name="lst"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d43e433cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e433cmml')">Content MathML</button>
+               </div>
+               <pre id="d43e433cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+  &lt;bind&gt;
+    &lt;csymbol cd="quant1"&gt;forall&lt;/csymbol&gt;
+    &lt;bvar&gt;&lt;ci&gt;lst&lt;/ci&gt;&lt;/bvar&gt;
+    &lt;apply&gt;
+      &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
+      &lt;ci&gt;lst&lt;/ci&gt;
+      &lt;apply&gt;
+        &lt;csymbol cd="list2"&gt;append&lt;/csymbol&gt;
+        &lt;csymbol cd="list2"&gt;nil&lt;/csymbol&gt;
+        &lt;ci&gt;lst&lt;/ci&gt;
+      &lt;/apply&gt;
+    &lt;/apply&gt;
+  &lt;/bind&gt;
+&lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e433prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e433pref')">Prefix form</button>
+               </div>
+               <div id="d43e433pref" style="display:none; margin-top: 0.5em">
+                  <a href="quant1.xhtml#forall">forall</a>
+[
+       <i>lst</i>
+    ] .
+(<a href="relation1.xhtml#eq">eq</a>
+( <i>lst</i>, <a href="list2.xhtml#append">append</a>
+(<a href="list2.xhtml#nil">nil</a>,  <i>lst</i>)
+)
+)
+
+</div>
+               <div>
+                  <button id="d43e433mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e433mml')">Presentation MathML</button>
+               </div>
+               <div id="d43e433mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mo>∀</mo>
+                        <mo> </mo>
+                        <mrow>
+                           <mi>lst</mi>
+                        </mrow>
+                        <mo>.</mo>
+                        <mrow>
+                           <mi>lst</mi>
+                           <mo>=</mo>
+                           <mrow>
+                              <mi>append</mi>
+                              <mo>⁡</mo>
+                              <mrow>
+                                 <mo>(</mo>
+                                 <mi>nil</mi>
+                                 <mo>,</mo>
+                                 <mi>lst</mi>
+                                 <mo>)</mo>
+                              </mrow>
+                           </mrow>
+                        </mrow>
+                     </mrow>
+                  </m:math>
+               </div>
+
+            </dd>
+            <dt class="dt">Signatures:</dt>
+            <dd>
+               <a href="../sts/list2.xhtml#append">
+    sts
+      </a>
+            </dd>
+         </dl>
+      </div>
+      <div>[Next: <a href="#reverse">reverse</a>]
+	   [This: <a href="#append">append</a>]
+	[Previous: <a href="#nil">nil</a>]
+      [<a href="#top">Top</a>]
+ </div>
+
+      <div class="cddefinition">
+         <h2>
+            <a name="reverse">Symbol Definition: reverse</a>
+         </h2>
+         <dl>
+            <dt class="dt">Role:</dt>
+            <dd>application</dd>
+            <dt class="dt">Description:</dt>
+            <dd>
+               <p>
+    The reverse of a list 
+  </p>
+            </dd>
+            <dt class="dt">Property:</dt>
+            <dd>
+
+               <div>
+                  <button id="d43e480xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e480xml')">XML (OpenMath)</button>
+               </div>
+               <pre id="d43e480xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="relation1" name="eq"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="list2" name="reverse"/&gt;
+      &lt;OMS cd="list2" name="nil"/&gt;
+    &lt;/OMA&gt;
+    &lt;OMS cd="list2" name="nil"/&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d43e480cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e480cmml')">Content MathML</button>
+               </div>
+               <pre id="d43e480cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+  &lt;apply&gt;
+    &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
+    &lt;apply&gt;
+      &lt;csymbol cd="list2"&gt;reverse&lt;/csymbol&gt;
+      &lt;csymbol cd="list2"&gt;nil&lt;/csymbol&gt;
+    &lt;/apply&gt;
+    &lt;csymbol cd="list2"&gt;nil&lt;/csymbol&gt;
+  &lt;/apply&gt;
+&lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e480prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e480pref')">Prefix form</button>
+               </div>
+               <div id="d43e480pref" style="display:none; margin-top: 0.5em">
+                  <a href="relation1.xhtml#eq">eq</a>
+(<a href="list2.xhtml#reverse">reverse</a>
+(<a href="list2.xhtml#nil">nil</a>)
+, <a href="list2.xhtml#nil">nil</a>)
+
+</div>
+               <div>
+                  <button id="d43e480mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e480mml')">Presentation MathML</button>
+               </div>
+               <div id="d43e480mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mrow>
+                           <mi>reverse</mi>
+                           <mo>⁡</mo>
+                           <mrow>
+                              <mo>(</mo>
+                              <mi>nil</mi>
+                              <mo>)</mo>
+                           </mrow>
+                        </mrow>
+                        <mo>=</mo>
+                        <mi>nil</mi>
+                     </mrow>
+                  </m:math>
+               </div>
+
+            </dd>
+            <dt class="dt">Property:</dt>
+            <dd>
+
+               <div>
+                  <button id="d43e503xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e503xml')">XML (OpenMath)</button>
+               </div>
+               <pre id="d43e503xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMBIND&gt;
+    &lt;OMS cd="quant1" name="forall"/&gt;
+    &lt;OMBVAR&gt;
+      &lt;OMV name="lst"/&gt;
+      &lt;OMV name="a"/&gt;
+    &lt;/OMBVAR&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="relation1" name="eq"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="list2" name="reverse"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="list2" name="cons"/&gt;
+          &lt;OMV name="a"/&gt;
+          &lt;OMV name="lst"/&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="list2" name="append"/&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="list2" name="reverse"/&gt;
+          &lt;OMV name="lst"/&gt;
+        &lt;/OMA&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="list2" name="cons"/&gt;
+          &lt;OMV name="a"/&gt;
+          &lt;OMS cd="list2" name="nil"/&gt;
+        &lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d43e503cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e503cmml')">Content MathML</button>
+               </div>
+               <pre id="d43e503cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+  &lt;bind&gt;
+    &lt;csymbol cd="quant1"&gt;forall&lt;/csymbol&gt;
+    &lt;bvar&gt;&lt;ci&gt;lst&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;/bvar&gt;
+    &lt;apply&gt;
+      &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
+      &lt;apply&gt;
+        &lt;csymbol cd="list2"&gt;reverse&lt;/csymbol&gt;
+        &lt;apply&gt;
+          &lt;csymbol cd="list2"&gt;cons&lt;/csymbol&gt;
+          &lt;ci&gt;a&lt;/ci&gt;
+          &lt;ci&gt;lst&lt;/ci&gt;
+        &lt;/apply&gt;
+      &lt;/apply&gt;
+      &lt;apply&gt;
+        &lt;csymbol cd="list2"&gt;append&lt;/csymbol&gt;
+        &lt;apply&gt;
+          &lt;csymbol cd="list2"&gt;reverse&lt;/csymbol&gt;
+          &lt;ci&gt;lst&lt;/ci&gt;
+        &lt;/apply&gt;
+        &lt;apply&gt;
+          &lt;csymbol cd="list2"&gt;cons&lt;/csymbol&gt;
+          &lt;ci&gt;a&lt;/ci&gt;
+          &lt;csymbol cd="list2"&gt;nil&lt;/csymbol&gt;
+        &lt;/apply&gt;
+      &lt;/apply&gt;
+    &lt;/apply&gt;
+  &lt;/bind&gt;
+&lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e503prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e503pref')">Prefix form</button>
+               </div>
+               <div id="d43e503pref" style="display:none; margin-top: 0.5em">
+                  <a href="quant1.xhtml#forall">forall</a>
+[
+       <i>lst</i>
+                  <i>a</i>
+    ] .
+(<a href="relation1.xhtml#eq">eq</a>
+(<a href="list2.xhtml#reverse">reverse</a>
+(<a href="list2.xhtml#cons">cons</a>
+( <i>a</i>,  <i>lst</i>)
+)
+, <a href="list2.xhtml#append">append</a>
+(<a href="list2.xhtml#reverse">reverse</a>
+( <i>lst</i>)
+, <a href="list2.xhtml#cons">cons</a>
+( <i>a</i>, <a href="list2.xhtml#nil">nil</a>)
+)
+)
+)
+
+</div>
+               <div>
+                  <button id="d43e503mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e503mml')">Presentation MathML</button>
+               </div>
+               <div id="d43e503mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mo>∀</mo>
+                        <mo> </mo>
+                        <mrow>
+                           <mi>lst</mi>
+                           <mo>,</mo>
+                           <mi>a</mi>
+                        </mrow>
+                        <mo>.</mo>
+                        <mrow>
+                           <mrow>
+                              <mi>reverse</mi>
+                              <mo>⁡</mo>
+                              <mrow>
+                                 <mo>(</mo>
+                                 <mrow>
+                                    <mi>cons</mi>
+                                    <mo>⁡</mo>
+                                    <mrow>
+                                       <mo>(</mo>
+                                       <mi>a</mi>
+                                       <mo>,</mo>
+                                       <mi>lst</mi>
+                                       <mo>)</mo>
+                                    </mrow>
+                                 </mrow>
+                                 <mo>)</mo>
+                              </mrow>
+                           </mrow>
+                           <mo>=</mo>
+                           <mrow>
+                              <mi>append</mi>
+                              <mo>⁡</mo>
+                              <mrow>
+                                 <mo>(</mo>
+                                 <mrow>
+                                    <mi>reverse</mi>
+                                    <mo>⁡</mo>
+                                    <mrow>
+                                       <mo>(</mo>
+                                       <mi>lst</mi>
+                                       <mo>)</mo>
+                                    </mrow>
+                                 </mrow>
+                                 <mo>,</mo>
+                                 <mrow>
+                                    <mi>cons</mi>
+                                    <mo>⁡</mo>
+                                    <mrow>
+                                       <mo>(</mo>
+                                       <mi>a</mi>
+                                       <mo>,</mo>
+                                       <mi>nil</mi>
+                                       <mo>)</mo>
+                                    </mrow>
+                                 </mrow>
+                                 <mo>)</mo>
+                              </mrow>
+                           </mrow>
+                        </mrow>
+                     </mrow>
+                  </m:math>
+               </div>
+
+            </dd>
+            <dt class="dt">Signatures:</dt>
+            <dd>
+               <a href="../sts/list2.xhtml#reverse">
+    sts
+      </a>
+            </dd>
+         </dl>
+      </div>
+      <div>[Next: <a href="#size">size</a>]
+	   [This: <a href="#reverse">reverse</a>]
+	[Previous: <a href="#append">append</a>]
+      [<a href="#top">Top</a>]
+ </div>
+
+      <div class="cddefinition">
+         <h2>
+            <a name="size">Symbol Definition: size</a>
+         </h2>
+         <dl>
+            <dt class="dt">Role:</dt>
+            <dd>application</dd>
+            <dt class="dt">Description:</dt>
+            <dd>
+               <p> 
+    This symbol is used to denote the number of elements in a list. It is
+    either a non-negative integer.
+  </p>
+            </dd>
+            <dt class="dt">Example:</dt>
+            <dd>
+The size of the list (3,6,9) = 3
+
+<div>
+                  <button id="d43e574xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e574xml')">XML (OpenMath)</button>
+               </div>
+               <pre id="d43e574xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="relation1" name="eq"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="list2" name="size"/&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="list1" name="list"/&gt;
+        &lt;OMI&gt; 3 &lt;/OMI&gt;
+        &lt;OMI&gt; 6 &lt;/OMI&gt;
+        &lt;OMI&gt; 9 &lt;/OMI&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+    &lt;OMI&gt; 3 &lt;/OMI&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d43e574cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e574cmml')">Content MathML</button>
+               </div>
+               <pre id="d43e574cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+  &lt;apply&gt;
+    &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
+    &lt;apply&gt;
+      &lt;csymbol cd="list2"&gt;size&lt;/csymbol&gt;
+      &lt;apply&gt;
+        &lt;csymbol cd="list1"&gt;list&lt;/csymbol&gt;
+        &lt;cn&gt; 3 &lt;/cn&gt;
+        &lt;cn&gt; 6 &lt;/cn&gt;
+        &lt;cn&gt; 9 &lt;/cn&gt;
+      &lt;/apply&gt;
+    &lt;/apply&gt;
+    &lt;cn&gt; 3 &lt;/cn&gt;
+  &lt;/apply&gt;
+&lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e574prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e574pref')">Prefix form</button>
+               </div>
+               <div id="d43e574pref" style="display:none; margin-top: 0.5em">
+                  <a href="relation1.xhtml#eq">eq</a>
+(<a href="list2.xhtml#size">size</a>
+(<a href="list1.xhtml#list">list</a>
+( 3 ,  6 ,  9 )
+)
+,  3 )
+
+</div>
+               <div>
+                  <button id="d43e574mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e574mml')">Presentation MathML</button>
+               </div>
+               <div id="d43e574mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mrow>
+                           <mi>size</mi>
+                           <mo>⁡</mo>
+                           <mrow>
+                              <mo>(</mo>
+                              <mrow>
+                                 <mo>(</mo>
+                                 <mn> 3 </mn>
+                                 <mo separator="true">,</mo>
+                                 <mn> 6 </mn>
+                                 <mo separator="true">,</mo>
+                                 <mn> 9 </mn>
+                                 <mo>)</mo>
+                              </mrow>
+                              <mo>)</mo>
+                           </mrow>
+                        </mrow>
+                        <mo>=</mo>
+                        <mn> 3 </mn>
+                     </mrow>
+                  </m:math>
+               </div>
+            </dd>
+            <dt class="dt">Signatures:</dt>
+            <dd>
+               <a href="../sts/list2.xhtml#size">
+    sts
+      </a>
+            </dd>
+         </dl>
+      </div>
+      <div>[Next: <a href="#in">in</a>]
+	   [This: <a href="#size">size</a>]
+	[Previous: <a href="#reverse">reverse</a>]
+      [<a href="#top">Top</a>]
+ </div>
+
+      <div class="cddefinition">
+         <h2>
+            <a name="in">Symbol Definition:  in </a>
+         </h2>
+         <dl>
+            <dt class="dt">Role:</dt>
+            <dd>application</dd>
+            <dt class="dt">Description:</dt>
+            <dd>
+               <p> 
+    This symbol has two arguments, an element and a list. It is used to denote that the
+    element is in the given list.
+  </p>
+            </dd>
+            <dt class="dt">Signatures:</dt>
+            <dd>
+               <a href="../sts/list2.xhtml#in">
+    sts
+      </a>
+            </dd>
+         </dl>
+      </div>
+      <div>
+	    [First: <a href="#list_selector">list_selector</a>]
+	  
+	   [This: <a href="#in">in</a>]
+	[Previous: <a href="#size">size</a>]
+      [<a href="#top">Top</a>]
+ </div>
+   </body>
+</html>
