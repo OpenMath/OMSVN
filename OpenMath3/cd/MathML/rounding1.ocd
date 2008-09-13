@@ -42,16 +42,16 @@
 <CDVersion>3</CDVersion>
 <CDRevision>0</CDRevision>
 <Description> 
-A CD of basic rounding concepts
+A content dictionary of basic rounding funciotns
 </Description>
 <CDComment>
-Written by James Davenport, inspired by the need from bigfloat.ocd.
-Finished 1999-10-24.
+  Written by James Davenport, inspired by the need from bigfloat.ocd.
+  Finished 1999-10-24.
 </CDComment>
 
 <CDDefinition xml:id="ceiling">
-<Name>ceiling</Name>
-<Title>Ceiling</Title>
+  <Name>ceiling</Name>
+  <Title>Ceiling</Title>
   <Pragmatic>
     <Element type="opel">ceiling</Element>
         <Attribute>
@@ -60,18 +60,12 @@ Finished 1999-10-24.
           <Default>integer</Default>
         </Attribute>
   </Pragmatic>
-<Role>application</Role>
-<Description>
-The round up (to +infinity) operation.
-</Description>
+  <Role>application</Role>
+  <Description>
+    The ceiling function is used to round-up (towards positive infinity).  This function
+    takes one real number as an argument and retunrns an integer.
+  </Description>
 
-<description>
-  <p>The ceiling element is used to denote the round-up (towards +infinity) operator.</p>
-</description>
-<discussion>
-  <p>The <code>ceiling</code> element (introduced in MathML 2.0) is used
-  to denote the round-up (towards +infinity) operator.</p>
-</discussion>
 <property>
   <description>
     <p>ForAll( x, ceiling(x) &gt;= x )</p>
@@ -84,33 +78,39 @@ The round up (to +infinity) operation.
     <ci>x</ci>
     </apply>
 </apply></math></property>
+
 <MMLexample>
   <description><p>If this were evaluated at <var>a</var> = 15.015, it would yield 16.</p></description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply> <ceiling/>
-  <ci>a</ci>
-</apply></math></MMLexample>
-		<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML">
-		<apply> <forall/>
-		  <bvar><ci>a</ci></bvar>
-		  <apply><and/>
-		    <apply><lt/>
-		    <apply><minus/>
-		      <apply><ceiling/>
-		      <ci>a</ci>
-		    </apply>
-		    <cn>1</cn>
-		    </apply>
-		      <ci>a</ci>
-		  </apply>
-		    <apply><leq/>
-		    <ci>a</ci>
-		    <apply><ceiling/>
-		    <ci>a</ci>
-		    </apply>
-		  </apply>    
-		  </apply>
-		</apply>
-		</math></MMLexample>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><ceiling/><ci>a</ci></apply>
+</math>
+</MMLexample>
+
+<MMLexample>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <bind>
+    <forall/>
+    <bvar><ci>a</ci></bvar>
+    <apply><and/>
+      <apply><lt/>
+        <apply><minus/>
+          <apply><ceiling/>
+	    <ci>a</ci>
+	    </apply>
+	    <cn>1</cn>
+         </apply>
+         <ci>a</ci>
+       </apply>
+       <apply><leq/>
+         <ci>a</ci>
+         <apply><ceiling/>
+           <ci>a</ci>
+         </apply>
+      </apply>    
+    </apply>
+  </bind>
+</math>
+</MMLexample>
 
 <property xml:id="ceiling_prop_1">
 <CMP> for all x | ceiling(x)-1 &lt; x &lt;= ceiling x </CMP>
@@ -146,72 +146,70 @@ The round up (to +infinity) operation.
     </OMA>
   </OMBIND>
 </OMOBJ>
-</FMP></property>
+</FMP>
+</property>
 </CDDefinition>
 
 <CDDefinition xml:id="floor">
-<Name>floor</Name>
-<Title>Floor</Title>
+  <Name>floor</Name>
+  <Title>Floor</Title>
   <Pragmatic>
     <Element type="opel">floor</Element>
-	<Attribute>
-          <Name>type</Name>
-          <Model>MathMLType</Model>
-          <Default>integer</Default>
-        </Attribute>
+    <Attribute>
+      <Name>type</Name>
+      <Model>MathMLType</Model>
+      <Default>integer</Default>
+    </Attribute>
   </Pragmatic>
-<Role>application</Role>
-<Description>
-The round down (to -infinity) operation.
-</Description>
+  <Role>application</Role>
+  <Description>
+    The round down (towards negative infinity) operation.  This function takes one real
+    number as an argument and retunrns an integer.
+  </Description>
 
-<description>
-          <p>The floor element is used to denote the round-down (towards -infinity) operator.</p>
-        </description>
-	<discussion>
-	  <p>The <code>floor</code> element (introduced in MathML 2.0) is used to denote the
-	  round-down (towards -infinity) operator.</p>
-	</discussion>
 <property>
-          <description>
-            <p>ForAll( x, floor(x) &lt;= x )</p>
-          </description><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><forall/>
+  <description>
+    <p>ForAll( x, floor(x) &lt;= x )</p>
+  </description>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+<bind><forall/>
   <bvar><ci>x</ci></bvar>
   <apply><leq/>
-    <apply><floor/>
-      <ci>x</ci>
-    </apply>
+    <apply><floor/><ci>x</ci></apply>
     <ci>x</ci>
   </apply>
-</apply></math></property>
-        <MMLexample>
-		<description><p>If this were evaluated at <var>a</var> = 15.015, it would yield 15.</p>
-		</description>
-		<math xmlns="http://www.w3.org/1998/Math/MathML"><apply> <floor/>
-  <ci>a</ci>
-</apply></math></MMLexample>
-		<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML">
-		<apply> <forall/>
-		  <bvar><ci>a</ci></bvar>
-		  <apply><and/>
-		    <apply><leq/>
-		    <apply><floor/>
-		    <ci>a</ci>
-		    </apply>
-		    <ci>a</ci>
-		  </apply>    
-		    <apply><lt/>
-		      <ci>a</ci>
-		    <apply><plus/>
-		      <apply><floor/>
-		      <ci>a</ci>
-		    </apply>
-		    <cn>1</cn>
-		    </apply>
-		  </apply>
-		  </apply>
-		</apply>
-		</math></MMLexample>
+</bind>
+</math>
+</property>
+
+<MMLexample>
+  <description>
+    <p>If this were evaluated at <var>a</var> = 15.015, it would yield 15.</p>
+  </description>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><floor/><ci>a</ci></apply>
+  </math>
+</MMLexample>
+
+<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply> <forall/>
+    <bvar><ci>a</ci></bvar>
+    <apply><and/>
+      <apply><leq/>
+        <apply><floor/><ci>a</ci></apply>
+	<ci>a</ci>
+      </apply>    
+      <apply><lt/>
+        <ci>a</ci>
+	<apply><plus/>
+ 	  <apply><floor/><ci>a</ci></apply>
+	  <cn>1</cn>
+        </apply>
+      </apply>
+    </apply>
+  </apply>
+</math>
+</MMLexample>
 
 <property xml:id="floor_prop_2">
 <CMP> for all x | floor(x) &lt;= x &lt; floor(x)+1 </CMP>
@@ -252,19 +250,19 @@ The round down (to -infinity) operation.
 </CDDefinition>
 
 <CDDefinition xml:id="trunc">
-<Name>trunc</Name>
+  <Name>trunc</Name>
   <Pragmatic>
     <Element type="opel">trunc</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description>
-The round to zero operation.
-</Description>
+  <Role>application</Role>
+  <Description>
+    The operation of truncating a number. This function takes one real number as an
+    argument and returns an integer.
+  </Description>
 
-<property xml:id="trunc_prop_3">
-<CMP> for all x | trunc(x) &lt;= x &lt; trunc(x)+1 (x&gt;0) </CMP>
-
-<FMP>
+  <property xml:id="trunc_prop_3">
+    <CMP> for all x | trunc(x) &lt;= x &lt; trunc(x)+1 (x&gt;0) </CMP>
+    <FMP>
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
   <OMBIND>
     <OMS cd="quant1" name="forall"/>
@@ -349,18 +347,20 @@ The round to zero operation.
       </OMA>
   </OMBIND>
 </OMOBJ>
-</FMP></property>
+</FMP>
+</property>
 </CDDefinition>
 
 <CDDefinition xml:id="round">
-<Name>round</Name>
+  <Name>round</Name>
   <Pragmatic>
     <Element type="opel">round</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description>
-The round to nearest operation.
-</Description>
+  <Role>application</Role>
+  <Description>
+    The operation of rounding to nearest integer. This function takes one real number as
+    an argument and retunrns an integer.
+  </Description>
 
 <property xml:id="round_prop_5">
 <CMP> for all x | x &lt;= round(x)+1/2 and x &lt;= round(x)-1/2 </CMP>
@@ -409,11 +409,11 @@ The round to nearest operation.
     </OMA>
   </OMBIND>
 </OMOBJ>
-</FMP></property>
+</FMP>
+</property>
 
 <property xml:id="trunc_prop_6">
 <CMP> for all x | Also round to even in event of a tie </CMP>
-
 <FMP>
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
   <OMBIND>
@@ -458,7 +458,8 @@ The round to nearest operation.
     </OMA>
   </OMBIND>
 </OMOBJ>
-</FMP></property>
+</FMP>
+</property>
 
 </CDDefinition>
 
