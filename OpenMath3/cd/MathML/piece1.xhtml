@@ -90,9 +90,7 @@
 
 
       <p>
-    This CD is intended to be compatible with the corresponding
-    elements in Content MathML 2.</p>
-      <p>    In this CD we give a set of operators for piece-wise defined expressions.
+    This content dictionary provides set of operators for piece-wise defined expressions.
 </p>
 
       <div class="cddefinition">
@@ -113,53 +111,44 @@
             <dt class="dt">Description:</dt>
             <dd>
                <p> 
-This operator heads an expression that is being defined piecewise. Its 
-arguments are n objects built with the piece constructor, optionally
-followed by one built with otherwise constructor.
-</p>
-            </dd>
-            <dt class="dt">description:</dt>
-            <dd>
-               <p>
-          The piecewise, piece, and otherwise elements are used to support 'piecewise'
-          declarations of the form H(x) = 0 if x less than 0, H(x) = 1 otherwise.  The
-          piece and otherwise elements describe evaluation rules.  If no rule applies or
-          if more than one rule applies but they give different answers then the
-          expression is undefined.
-        </p>
+    This operator heads an expression that is being defined piecewise. Its arguments are n
+    objects built with the piece constructor, optionally followed by one built with
+    otherwise constructor.
+  </p>
             </dd>
             <dt class="dt">discussion:</dt>
             <dd>
                <p>
-	  The piecewise, piece, and otherwise elements are
-	  used to support piecewise declarations of the form 
-	  H(x) = 0 if x less than 0,
-	  H(x) = 1 otherwise.</p>
-               <p>	   The declaration is constructed using the piecewise element.  This
-	  contains zero or more piece elements, and optionally one
-	  otherwise element. Each piece element contains exactly two
-	  children. The first child defines the value taken by the piecewise
-	  expression when the condition specified in the associated second child of the
-	  piece is true.  The degenerate case of no piece elements and
-	  no otherwise element is treated as undefined for all values of the
-	  domain.</p>
-               <p>	   otherwise allows the specification of a value to be taken by the
-	  piecewise function when none of the conditions (second child elements
-	  of the piece elements) is true, i.e. a default value.</p>
-               <p>	  It should be noted that no order of execution is implied by
-	  the ordering of the piece child elements within piecewise. It
-	  is the responsibility of the author to ensure that the subsets of the function
-	  domain defined by the second children of the piece elements are
-	  disjoint, or that, where they overlap, the values of the corresponding first
-	  children of the piece elements coincide. If this is not the case, the
-	  meaning of the expression is undefined.</p>
-               <p>	  The piecewise elements are constructors.</p>
-               <p>	The piecewise, piece, otherwise elements are used to
-	support piecewise declarations of the form 
-	H(x) = 0 if x less than 0,
-	H(x) = x otherwise.</p>
-               <p>
-  
+    The piecewise, piece, and otherwise elements are
+    used to support piecewise declarations of the form 
+    
+      Hx
+      =
+      0
+     if 
+    
+      x
+      &lt;
+      0
+     
+    and 
+    
+      Hx
+      =
+      1
+    
+    otherwise.
+     The piece and otherwise elements describe evaluation rules.  If no rule applies or
+    if more than one rule applies but they give different answers then the expression is
+    undefined.</p>
+               <p>     The declaration is constructed using the piecewise element.  This
+    contains zero or more piece elements, and optionally one otherwise
+    element. Each piece element contains exactly two children. The first child
+    defines the value taken by the piecewise expression when the condition
+    specified in the associated second child of the piece is true.  The
+    degenerate case of no piece elements and no otherwise element is
+    treated as undefined for all values of the domain.</p>
+               <p>  
     
       
 	0
@@ -168,9 +157,18 @@ followed by one built with otherwise constructor.
       x
     
   
-	
-	
-	</p>
+    </p>
+               <p>     otherwise allows the specification of a value to be taken by the
+    piecewise function when none of the conditions (second child elements of the
+    piece elements) is true, i.e. a default value.</p>
+               <p>    It should be noted that no order of execution is implied by the
+    ordering of the piece child elements within piecewise. It is the
+    responsibility of the author to ensure that the subsets of the function domain defined
+    by the second children of the piece elements are disjoint, or that, where
+    they overlap, the values of the corresponding first children of the piece
+    elements coincide. If this is not the case, the meaning of the expression is
+    undefined.
+  </p>
             </dd>
             <dt class="dt">Property:</dt>
             <dd>
@@ -182,34 +180,34 @@ followed by one built with otherwise constructor.
             <dt class="dt">Example:</dt>
             <dd>
 	              <div>
-                  <button id="d43e235xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e235xml')">XML (MathML)</button>
+                  <button id="d43e215xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e215xml')">XML (MathML)</button>
                </div>
-               <pre id="d43e235xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e215xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
 	    &lt;piecewise&gt;
 	      &lt;piece&gt;&lt;cn&gt;0&lt;/cn&gt;&lt;apply&gt;&lt;lt/&gt;&lt;ci&gt;x&lt;/ci&gt; &lt;cn&gt;0&lt;/cn&gt;&lt;/apply&gt;&lt;/piece&gt;
 	      &lt;otherwise&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/otherwise&gt;
 	    &lt;/piecewise&gt;
 	  &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e235stricta" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e235strict')">Strict Content MathML</button>
+                  <button id="d43e215stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e215strict')">Strict Content MathML</button>
                </div>
-               <pre id="d43e235strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e215strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
 	    &lt;apply&gt;&lt;csymbol cd="piece1"&gt;piecewise&lt;/csymbol&gt;&lt;apply&gt;&lt;csymbol cd="piece1"&gt;piece&lt;/csymbol&gt;&lt;cn&gt;0&lt;/cn&gt;&lt;apply&gt;&lt;csymbol cd="relation1"&gt;lt&lt;/csymbol&gt;&lt;ci&gt;x&lt;/ci&gt; &lt;cn&gt;0&lt;/cn&gt;&lt;/apply&gt;&lt;/apply&gt;&lt;apply&gt;&lt;csymbol cd="piece1"&gt;otherwise&lt;/csymbol&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/apply&gt;&lt;/apply&gt;
 	  &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e235cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e235cmml')">OpenMath</button>
+                  <button id="d43e215cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e215cmml')">OpenMath</button>
                </div>
-               <pre id="d43e235cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
+               <pre id="d43e215cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
 	    &lt;OMA&gt;&lt;OMS cd="piece1" name="piecewise"/&gt;&lt;OMA&gt;&lt;OMS cd="piece1" name="piece"/&gt;&lt;OMI&gt;0&lt;/OMI&gt;&lt;OMA&gt;&lt;OMS cd="relation1" name="lt"/&gt;&lt;OMV name="x"/&gt; &lt;OMI&gt;0&lt;/OMI&gt;&lt;/OMA&gt;&lt;/OMA&gt;&lt;OMA&gt;&lt;OMS cd="piece1" name="otherwise"/&gt;&lt;OMV name="x"/&gt;&lt;/OMA&gt;&lt;/OMA&gt;
 	  &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e235prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e235pref')">Prefix form</button>
+                  <button id="d43e215prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e215pref')">Prefix form</button>
                </div>
-               <div id="d43e235pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e215pref" style="display:none; margin-top: 0.5em">
 	                 <a href="piece1.xhtml#piecewise">piecewise</a>
 (<a href="piece1.xhtml#piece">piece</a>
 (0, <a href="relation1.xhtml#lt">lt</a>
@@ -221,10 +219,10 @@ followed by one built with otherwise constructor.
 
 	  </div>
                <div>
-                  <button id="d43e235mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e235mml')">Presentation MathML</button>
+                  <button id="d43e215mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e215mml')">Presentation MathML</button>
                </div>
-               <div id="d43e235mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e215mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -261,10 +259,10 @@ followed by one built with otherwise constructor.
 	    The value of the abs function evaluated at x can be written as:
 	  </p>
                <div>
-                  <button id="d43e265xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e265xml')">XML (MathML)</button>
+                  <button id="d43e245xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e245xml')">XML (MathML)</button>
                </div>
-               <pre id="d43e265xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;piecewise&gt;
+               <pre id="d43e245xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;piecewise&gt;
   &lt;piece&gt;
     &lt;apply&gt;&lt;minus/&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/apply&gt;
     &lt;apply&gt;&lt;lt/&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;cn&gt;0&lt;/cn&gt;&lt;/apply&gt;
@@ -280,22 +278,22 @@ followed by one built with otherwise constructor.
 &lt;/piecewise&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e265stricta" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e265strict')">Strict Content MathML</button>
+                  <button id="d43e245stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e245strict')">Strict Content MathML</button>
                </div>
-               <pre id="d43e265strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;csymbol cd="piece1"&gt;piecewise&lt;/csymbol&gt;&lt;apply&gt;&lt;csymbol cd="piece1"&gt;piece&lt;/csymbol&gt;&lt;apply&gt;&lt;csymbol cd="arith1"&gt;unary_minus&lt;/csymbol&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/apply&gt;&lt;apply&gt;&lt;csymbol cd="relation1"&gt;lt&lt;/csymbol&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;cn&gt;0&lt;/cn&gt;&lt;/apply&gt;&lt;/apply&gt;&lt;apply&gt;&lt;csymbol cd="piece1"&gt;piece&lt;/csymbol&gt;&lt;cn&gt;0&lt;/cn&gt;&lt;apply&gt;&lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;cn&gt;0&lt;/cn&gt;&lt;/apply&gt;&lt;/apply&gt;&lt;apply&gt;&lt;csymbol cd="piece1"&gt;piece&lt;/csymbol&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;apply&gt;&lt;csymbol cd="relation1"&gt;gt&lt;/csymbol&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;cn&gt;0&lt;/cn&gt;&lt;/apply&gt;&lt;/apply&gt;&lt;/apply&gt;
+               <pre id="d43e245strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;csymbol cd="piece1"&gt;piecewise&lt;/csymbol&gt;&lt;apply&gt;&lt;csymbol cd="piece1"&gt;piece&lt;/csymbol&gt;&lt;apply&gt;&lt;csymbol cd="arith1"&gt;unary_minus&lt;/csymbol&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/apply&gt;&lt;apply&gt;&lt;csymbol cd="relation1"&gt;lt&lt;/csymbol&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;cn&gt;0&lt;/cn&gt;&lt;/apply&gt;&lt;/apply&gt;&lt;apply&gt;&lt;csymbol cd="piece1"&gt;piece&lt;/csymbol&gt;&lt;cn&gt;0&lt;/cn&gt;&lt;apply&gt;&lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;cn&gt;0&lt;/cn&gt;&lt;/apply&gt;&lt;/apply&gt;&lt;apply&gt;&lt;csymbol cd="piece1"&gt;piece&lt;/csymbol&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;apply&gt;&lt;csymbol cd="relation1"&gt;gt&lt;/csymbol&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;cn&gt;0&lt;/cn&gt;&lt;/apply&gt;&lt;/apply&gt;&lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e265cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e265cmml')">OpenMath</button>
+                  <button id="d43e245cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e245cmml')">OpenMath</button>
                </div>
-               <pre id="d43e265cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMA&gt;&lt;OMS cd="piece1" name="piecewise"/&gt;&lt;OMA&gt;&lt;OMS cd="piece1" name="piece"/&gt;&lt;OMA&gt;&lt;OMS cd="arith1" name="unary_minus"/&gt;&lt;OMV name="x"/&gt;&lt;/OMA&gt;&lt;OMA&gt;&lt;OMS cd="relation1" name="lt"/&gt;&lt;OMV name="x"/&gt;&lt;OMI&gt;0&lt;/OMI&gt;&lt;/OMA&gt;&lt;/OMA&gt;&lt;OMA&gt;&lt;OMS cd="piece1" name="piece"/&gt;&lt;OMI&gt;0&lt;/OMI&gt;&lt;OMA&gt;&lt;OMS cd="relation1" name="eq"/&gt;&lt;OMV name="x"/&gt;&lt;OMI&gt;0&lt;/OMI&gt;&lt;/OMA&gt;&lt;/OMA&gt;&lt;OMA&gt;&lt;OMS cd="piece1" name="piece"/&gt;&lt;OMV name="x"/&gt;&lt;OMA&gt;&lt;OMS cd="relation1" name="gt"/&gt;&lt;OMV name="x"/&gt;&lt;OMI&gt;0&lt;/OMI&gt;&lt;/OMA&gt;&lt;/OMA&gt;&lt;/OMA&gt;
+               <pre id="d43e245cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMA&gt;&lt;OMS cd="piece1" name="piecewise"/&gt;&lt;OMA&gt;&lt;OMS cd="piece1" name="piece"/&gt;&lt;OMA&gt;&lt;OMS cd="arith1" name="unary_minus"/&gt;&lt;OMV name="x"/&gt;&lt;/OMA&gt;&lt;OMA&gt;&lt;OMS cd="relation1" name="lt"/&gt;&lt;OMV name="x"/&gt;&lt;OMI&gt;0&lt;/OMI&gt;&lt;/OMA&gt;&lt;/OMA&gt;&lt;OMA&gt;&lt;OMS cd="piece1" name="piece"/&gt;&lt;OMI&gt;0&lt;/OMI&gt;&lt;OMA&gt;&lt;OMS cd="relation1" name="eq"/&gt;&lt;OMV name="x"/&gt;&lt;OMI&gt;0&lt;/OMI&gt;&lt;/OMA&gt;&lt;/OMA&gt;&lt;OMA&gt;&lt;OMS cd="piece1" name="piece"/&gt;&lt;OMV name="x"/&gt;&lt;OMA&gt;&lt;OMS cd="relation1" name="gt"/&gt;&lt;OMV name="x"/&gt;&lt;OMI&gt;0&lt;/OMI&gt;&lt;/OMA&gt;&lt;/OMA&gt;&lt;/OMA&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e265prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e265pref')">Prefix form</button>
+                  <button id="d43e245prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e245pref')">Prefix form</button>
                </div>
-               <div id="d43e265pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e245pref" style="display:none; margin-top: 0.5em">
                   <a href="piece1.xhtml#piecewise">piecewise</a>
 (<a href="piece1.xhtml#piece">piece</a>
 (<a href="arith1.xhtml#unary_minus">unary_minus</a>
@@ -315,10 +313,10 @@ followed by one built with otherwise constructor.
 
 </div>
                <div>
-                  <button id="d43e265mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e265mml')">Presentation MathML</button>
+                  <button id="d43e245mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e245mml')">Presentation MathML</button>
                </div>
-               <div id="d43e265mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e245mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -371,10 +369,10 @@ followed by one built with otherwise constructor.
             <dt class="dt">Example:</dt>
             <dd>
                <div>
-                  <button id="d43e314xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e314xml')">XML (OpenMath)</button>
+                  <button id="d43e294xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e294xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e314xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d43e294xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
 &lt;OMA&gt;
 &lt;OMS cd="relation1" name="eq"/&gt;
 &lt;OMA&gt;
@@ -397,10 +395,10 @@ followed by one built with otherwise constructor.
 &lt;/OMA&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e314cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e314cmml')">Content MathML</button>
+                  <button id="d43e294cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e294cmml')">Content MathML</button>
                </div>
-               <pre id="d43e314cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e294cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
 &lt;apply&gt;
 &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
 &lt;apply&gt;
@@ -423,10 +421,10 @@ followed by one built with otherwise constructor.
 &lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e314prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e314pref')">Prefix form</button>
+                  <button id="d43e294prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e294pref')">Prefix form</button>
                </div>
-               <div id="d43e314pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e294pref" style="display:none; margin-top: 0.5em">
                   <a href="relation1.xhtml#eq">eq</a>
 (<a href="arith1.xhtml#abs">abs</a>
 ( <i>x</i>)
@@ -448,10 +446,10 @@ followed by one built with otherwise constructor.
 
 </div>
                <div>
-                  <button id="d43e314mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e314mml')">Presentation MathML</button>
+                  <button id="d43e294mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e294mml')">Presentation MathML</button>
                </div>
-               <div id="d43e314mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e294mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -539,44 +537,43 @@ followed by one built with otherwise constructor.
             <dt class="dt">Description:</dt>
             <dd>
                <p> 
-This introduces an individual component of a piecewise definition. It has
-precisely two arguments: the first is the value, and the second is a Boolean
-(meant to be a predicate) which is true if and only if this piece is to
-provide the value of the piecewise construct.
-</p>
-            </dd>
-            <dt class="dt">description:</dt>
-            <dd>
-               <p>
-          The piece element is used to construct the conditionally defined values as
-          part of a piecewise object.
-        </p>
+    This introduces an individual component of a piecewise definition. It has precisely
+    two arguments: the first is the value, and the second is a Boolean (meant to be a
+    predicate) which is true if and only if this piece is to provide the value of the
+    piecewise construct.
+  </p>
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
                <div>
-                  <button id="d43e399xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e399xml')">XML (MathML)</button>
+                  <button id="d43e374xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e374xml')">XML (MathML)</button>
                </div>
-               <pre id="d43e399xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;piecewise&gt;
+               <pre id="d43e374xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;piecewise&gt;
   &lt;piece&gt;&lt;cn&gt;0&lt;/cn&gt;&lt;apply&gt;&lt;lt/&gt;&lt;ci&gt;x&lt;/ci&gt; &lt;cn&gt;0&lt;/cn&gt;&lt;/apply&gt;&lt;/piece&gt;
   &lt;otherwise&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/otherwise&gt;
-&lt;/piecewise&gt;&lt;/math&gt;</pre>
+&lt;/piecewise&gt;
+&lt;/math&gt;</pre>
                <div>
-                  <button id="d43e399stricta" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e399strict')">Strict Content MathML</button>
+                  <button id="d43e374stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e374strict')">Strict Content MathML</button>
                </div>
-               <pre id="d43e399strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;csymbol cd="piece1"&gt;piecewise&lt;/csymbol&gt;&lt;apply&gt;&lt;csymbol cd="piece1"&gt;piece&lt;/csymbol&gt;&lt;cn&gt;0&lt;/cn&gt;&lt;apply&gt;&lt;csymbol cd="relation1"&gt;lt&lt;/csymbol&gt;&lt;ci&gt;x&lt;/ci&gt; &lt;cn&gt;0&lt;/cn&gt;&lt;/apply&gt;&lt;/apply&gt;&lt;apply&gt;&lt;csymbol cd="piece1"&gt;otherwise&lt;/csymbol&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/apply&gt;&lt;/apply&gt;&lt;/math&gt;</pre>
+               <pre id="d43e374strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;apply&gt;&lt;csymbol cd="piece1"&gt;piecewise&lt;/csymbol&gt;&lt;apply&gt;&lt;csymbol cd="piece1"&gt;piece&lt;/csymbol&gt;&lt;cn&gt;0&lt;/cn&gt;&lt;apply&gt;&lt;csymbol cd="relation1"&gt;lt&lt;/csymbol&gt;&lt;ci&gt;x&lt;/ci&gt; &lt;cn&gt;0&lt;/cn&gt;&lt;/apply&gt;&lt;/apply&gt;&lt;apply&gt;&lt;csymbol cd="piece1"&gt;otherwise&lt;/csymbol&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/apply&gt;&lt;/apply&gt;
+&lt;/math&gt;</pre>
                <div>
-                  <button id="d43e399cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e399cmml')">OpenMath</button>
+                  <button id="d43e374cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e374cmml')">OpenMath</button>
                </div>
-               <pre id="d43e399cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMA&gt;&lt;OMS cd="piece1" name="piecewise"/&gt;&lt;OMA&gt;&lt;OMS cd="piece1" name="piece"/&gt;&lt;OMI&gt;0&lt;/OMI&gt;&lt;OMA&gt;&lt;OMS cd="relation1" name="lt"/&gt;&lt;OMV name="x"/&gt; &lt;OMI&gt;0&lt;/OMI&gt;&lt;/OMA&gt;&lt;/OMA&gt;&lt;OMA&gt;&lt;OMS cd="piece1" name="otherwise"/&gt;&lt;OMV name="x"/&gt;&lt;/OMA&gt;&lt;/OMA&gt;&lt;/OMOBJ&gt;</pre>
+               <pre id="d43e374cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
+&lt;OMA&gt;&lt;OMS cd="piece1" name="piecewise"/&gt;&lt;OMA&gt;&lt;OMS cd="piece1" name="piece"/&gt;&lt;OMI&gt;0&lt;/OMI&gt;&lt;OMA&gt;&lt;OMS cd="relation1" name="lt"/&gt;&lt;OMV name="x"/&gt; &lt;OMI&gt;0&lt;/OMI&gt;&lt;/OMA&gt;&lt;/OMA&gt;&lt;OMA&gt;&lt;OMS cd="piece1" name="otherwise"/&gt;&lt;OMV name="x"/&gt;&lt;/OMA&gt;&lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e399prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e399pref')">Prefix form</button>
+                  <button id="d43e374prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e374pref')">Prefix form</button>
                </div>
-               <div id="d43e399pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e374pref" style="display:none; margin-top: 0.5em">
                   <a href="piece1.xhtml#piecewise">piecewise</a>
 (<a href="piece1.xhtml#piece">piece</a>
 (0, <a href="relation1.xhtml#lt">lt</a>
@@ -585,12 +582,13 @@ provide the value of the piecewise construct.
 , <a href="piece1.xhtml#otherwise">otherwise</a>
 ( <i>x</i>)
 )
+
 </div>
                <div>
-                  <button id="d43e399mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e399mml')">Presentation MathML</button>
+                  <button id="d43e374mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e374mml')">Presentation MathML</button>
                </div>
-               <div id="d43e399mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e374mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -624,10 +622,10 @@ provide the value of the piecewise construct.
             <dt class="dt">Example:</dt>
             <dd>
                <div>
-                  <button id="d43e420xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e420xml')">XML (OpenMath)</button>
+                  <button id="d43e398xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e398xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e420xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d43e398xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
 &lt;OMA&gt;
 &lt;OMS cd="relation1" name="eq"/&gt;
 &lt;OMA&gt;
@@ -650,10 +648,10 @@ provide the value of the piecewise construct.
 &lt;/OMA&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e420cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e420cmml')">Content MathML</button>
+                  <button id="d43e398cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e398cmml')">Content MathML</button>
                </div>
-               <pre id="d43e420cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e398cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
 &lt;apply&gt;
 &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
 &lt;apply&gt;
@@ -676,10 +674,10 @@ provide the value of the piecewise construct.
 &lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e420prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e420pref')">Prefix form</button>
+                  <button id="d43e398prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e398pref')">Prefix form</button>
                </div>
-               <div id="d43e420pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e398pref" style="display:none; margin-top: 0.5em">
                   <a href="relation1.xhtml#eq">eq</a>
 (<a href="arith1.xhtml#abs">abs</a>
 ( <i>x</i>)
@@ -701,10 +699,10 @@ provide the value of the piecewise construct.
 
 </div>
                <div>
-                  <button id="d43e420mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e420mml')">Presentation MathML</button>
+                  <button id="d43e398mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e398mml')">Presentation MathML</button>
                </div>
-               <div id="d43e420mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e398mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -790,43 +788,42 @@ provide the value of the piecewise construct.
             <dt class="dt">Description:</dt>
             <dd>
                <p>
-This symbol introduces the 'default' value of a piecewise construct.
-If none of the previous piece constructs can provide the value, this will.
-It has a single child, the value.
-</p>
-            </dd>
-            <dt class="dt">description:</dt>
-            <dd>
-               <p>
-          The otherwise element is used to describe the value of a piecewise construct
-          when none of the conditions of the associated pieces are satisfied.
-        </p>
+    This symbol introduces the 'default' value of a piecewise construct.  If none of the
+    previous piece constructs can provide the value, this will.  It has a single child,
+    the value.
+  </p>
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
                <div>
-                  <button id="d43e504xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e504xml')">XML (MathML)</button>
+                  <button id="d43e477xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e477xml')">XML (MathML)</button>
                </div>
-               <pre id="d43e504xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;piecewise&gt;
+               <pre id="d43e477xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;piecewise&gt;
   &lt;piece&gt;&lt;cn&gt;0&lt;/cn&gt;&lt;apply&gt;&lt;lt/&gt;&lt;ci&gt;x&lt;/ci&gt; &lt;cn&gt;0&lt;/cn&gt;&lt;/apply&gt;&lt;/piece&gt;
   &lt;otherwise&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/otherwise&gt;
-&lt;/piecewise&gt;&lt;/math&gt;</pre>
+&lt;/piecewise&gt;
+&lt;/math&gt;</pre>
                <div>
-                  <button id="d43e504stricta" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e504strict')">Strict Content MathML</button>
+                  <button id="d43e477stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e477strict')">Strict Content MathML</button>
                </div>
-               <pre id="d43e504strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;csymbol cd="piece1"&gt;piecewise&lt;/csymbol&gt;&lt;apply&gt;&lt;csymbol cd="piece1"&gt;piece&lt;/csymbol&gt;&lt;cn&gt;0&lt;/cn&gt;&lt;apply&gt;&lt;csymbol cd="relation1"&gt;lt&lt;/csymbol&gt;&lt;ci&gt;x&lt;/ci&gt; &lt;cn&gt;0&lt;/cn&gt;&lt;/apply&gt;&lt;/apply&gt;&lt;apply&gt;&lt;csymbol cd="piece1"&gt;otherwise&lt;/csymbol&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/apply&gt;&lt;/apply&gt;&lt;/math&gt;</pre>
+               <pre id="d43e477strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;apply&gt;&lt;csymbol cd="piece1"&gt;piecewise&lt;/csymbol&gt;&lt;apply&gt;&lt;csymbol cd="piece1"&gt;piece&lt;/csymbol&gt;&lt;cn&gt;0&lt;/cn&gt;&lt;apply&gt;&lt;csymbol cd="relation1"&gt;lt&lt;/csymbol&gt;&lt;ci&gt;x&lt;/ci&gt; &lt;cn&gt;0&lt;/cn&gt;&lt;/apply&gt;&lt;/apply&gt;&lt;apply&gt;&lt;csymbol cd="piece1"&gt;otherwise&lt;/csymbol&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/apply&gt;&lt;/apply&gt;
+&lt;/math&gt;</pre>
                <div>
-                  <button id="d43e504cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e504cmml')">OpenMath</button>
+                  <button id="d43e477cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e477cmml')">OpenMath</button>
                </div>
-               <pre id="d43e504cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMA&gt;&lt;OMS cd="piece1" name="piecewise"/&gt;&lt;OMA&gt;&lt;OMS cd="piece1" name="piece"/&gt;&lt;OMI&gt;0&lt;/OMI&gt;&lt;OMA&gt;&lt;OMS cd="relation1" name="lt"/&gt;&lt;OMV name="x"/&gt; &lt;OMI&gt;0&lt;/OMI&gt;&lt;/OMA&gt;&lt;/OMA&gt;&lt;OMA&gt;&lt;OMS cd="piece1" name="otherwise"/&gt;&lt;OMV name="x"/&gt;&lt;/OMA&gt;&lt;/OMA&gt;&lt;/OMOBJ&gt;</pre>
+               <pre id="d43e477cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
+&lt;OMA&gt;&lt;OMS cd="piece1" name="piecewise"/&gt;&lt;OMA&gt;&lt;OMS cd="piece1" name="piece"/&gt;&lt;OMI&gt;0&lt;/OMI&gt;&lt;OMA&gt;&lt;OMS cd="relation1" name="lt"/&gt;&lt;OMV name="x"/&gt; &lt;OMI&gt;0&lt;/OMI&gt;&lt;/OMA&gt;&lt;/OMA&gt;&lt;OMA&gt;&lt;OMS cd="piece1" name="otherwise"/&gt;&lt;OMV name="x"/&gt;&lt;/OMA&gt;&lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e504prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e504pref')">Prefix form</button>
+                  <button id="d43e477prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e477pref')">Prefix form</button>
                </div>
-               <div id="d43e504pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e477pref" style="display:none; margin-top: 0.5em">
                   <a href="piece1.xhtml#piecewise">piecewise</a>
 (<a href="piece1.xhtml#piece">piece</a>
 (0, <a href="relation1.xhtml#lt">lt</a>
@@ -835,12 +832,13 @@ It has a single child, the value.
 , <a href="piece1.xhtml#otherwise">otherwise</a>
 ( <i>x</i>)
 )
+
 </div>
                <div>
-                  <button id="d43e504mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e504mml')">Presentation MathML</button>
+                  <button id="d43e477mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e477mml')">Presentation MathML</button>
                </div>
-               <div id="d43e504mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e477mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -874,10 +872,10 @@ It has a single child, the value.
             <dt class="dt">Example:</dt>
             <dd>
                <div>
-                  <button id="d43e525xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e525xml')">XML (OpenMath)</button>
+                  <button id="d43e501xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e501xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e525xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d43e501xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
 &lt;OMA&gt;
 &lt;OMS cd="relation1" name="eq"/&gt;
 &lt;OMA&gt;
@@ -900,10 +898,10 @@ It has a single child, the value.
 &lt;/OMA&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e525cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e525cmml')">Content MathML</button>
+                  <button id="d43e501cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e501cmml')">Content MathML</button>
                </div>
-               <pre id="d43e525cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e501cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
 &lt;apply&gt;
 &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
 &lt;apply&gt;
@@ -926,10 +924,10 @@ It has a single child, the value.
 &lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e525prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e525pref')">Prefix form</button>
+                  <button id="d43e501prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e501pref')">Prefix form</button>
                </div>
-               <div id="d43e525pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e501pref" style="display:none; margin-top: 0.5em">
                   <a href="relation1.xhtml#eq">eq</a>
 (<a href="arith1.xhtml#abs">abs</a>
 ( <i>x</i>)
@@ -951,10 +949,10 @@ It has a single child, the value.
 
 </div>
                <div>
-                  <button id="d43e525mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e525mml')">Presentation MathML</button>
+                  <button id="d43e501mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e501mml')">Presentation MathML</button>
                </div>
-               <div id="d43e525mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e501mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
