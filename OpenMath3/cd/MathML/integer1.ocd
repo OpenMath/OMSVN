@@ -42,10 +42,7 @@
 <CDRevision>0</CDRevision>
 <CDStatus>draft</CDStatus>
 <Description>
-    This CD holds a collection of basic integer functions.
-
-    This CD is intended to be `compatible' with the corresponding elements
-    in Content MathML.
+  This content dictionary provides a collection of basic integer functions.
 </Description>
 
 <CDDefinition xml:id="factorof">
@@ -60,34 +57,24 @@
   </Pragmatic>
   <Role>application</Role>
   <Description>
-   This is the binary OpenMath operator that is used to indicate the mathematical
-   relationship a "is a factor of" b, where a is the first argument and b is the
-   second. This relationship is true if and only if b mod a = 0.
+   This is the binary operator that is used to indicate the mathematical relationship a
+   "is a factor of" b, where a is the first argument and b is the second. This
+   relationship is true if and only if b mod a = 0.
   </Description>
 
-  <description>
-    <p>This is the binary MathML operator that is used indicate the mathematical
-    relationship a "is a factor of" b. This relationship is true just if b mod a = 0</p>
-  </description>
-  <discussion>
-    <p>The <el>factorof</el> element is the relational operator element on two
-    integers <var>a</var> and <var>b</var> specifying whether one is an integer
-    factor of the other.</p>
-  </discussion>
-  
-<property>
-          <description>
-            <p>ForAll( [a,b], a and b integers, a divides b  if there is an integer c such that a*c = b )</p>
-          </description>
-        </property>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><factorof/>
-  <ci>a</ci>
-  <ci>b</ci>
-</apply></math></MMLexample>
+  <property>
+    <description>
+      <p>ForAll( [a,b], a and b integers, a divides b  if there is an integer c such that a*c = b )</p>
+    </description>
+  </property>
+  <MMLexample>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><factorof/><ci>a</ci><ci>b</ci></apply>
+    </math>
+  </MMLexample>
 
 <property xml:id="factorof_prop_1">
 <CMP> b is a factor of a iff remainder of a divided by b = 0 </CMP>
-
 <FMP>
   <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
     <OMA>
@@ -112,23 +99,25 @@
 </CDDefinition>
 
 <CDDefinition xml:id="factorial">
-<Name>factorial</Name>
-<Title>Factorial</Title>
+  <Name>factorial</Name>
+  <Title>Factorial</Title>
   <Pragmatic>
     <Element type="opel">factorial</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-The symbol to represent a unary factorial function on non-negative integers.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    The symbol to represent a unary factorial function on non-negative integers.
+  </Description>
 
-<description>
-          <p>This is the unary operator used to construct factorials.  Factorials are
-          defined by n! = n*(n-1)* ... * 1</p>
-        </description>
-        <property>
-          <description>
-            <p>ForAll( n, n \gt 0, n! = n*(n-1)! )</p></description><math xmlns="http://www.w3.org/1998/Math/MathML">
+  <discussion>
+    <p>Factorials are defined by n! = n*(n-1)* ... * 1</p>
+  </discussion>
+  
+  <property>
+    <description>
+      <p>ForAll( n, n \gt 0, n! = n*(n-1)! )</p>
+    </description>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
 <bind><forall/>
   <bvar><ci>n</ci></bvar>
   <condition><apply><gt/><ci>n</ci><cn>0</cn></apply></condition>
@@ -142,20 +131,27 @@ The symbol to represent a unary factorial function on non-negative integers.
     </apply>
   </apply>
 </bind>
-</math></property>
-        <property>
-          <description>
-            <p>0! = 1</p></description><math xmlns="http://www.w3.org/1998/Math/MathML">
+</math>
+</property>
+
+<property>
+  <description>
+    <p>0! = 1</p>
+  </description>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
 <apply><eq/>
   <apply><factorial/><cn>0</cn></apply>
   <cn>1</cn>
 </apply>
-</math></property>
+</math>
+</property>
 
-	    <MMLexample>
-	      <description><p>If this were evaluated at <var>n</var> = 5 it would evaluate to 120.</p>
-	      </description>
-	    <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><factorial/><ci>n</ci></apply></math></MMLexample>
+<MMLexample>
+  <description>
+    <p>If this were evaluated at <var>n</var> = 5 it would evaluate to 120.</p>
+  </description>
+  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><factorial/><ci>n</ci></apply></math>
+</MMLexample>
 
 
 <property xml:id="factorial_prop_2">
@@ -201,28 +197,22 @@ factorial n = product [1..n]
       <Default> real </Default>
     </Attribute>
   </Pragmatic>
-<Role>application</Role>
-<Description>
-The symbol to represent the integer (binary) division operator. That is,
-for integers a and b, quotient(a,b) denotes q such that a=b*q+r, with |r|
-less than |b| and a*r positive.
+  <Role>application</Role>
+  <Description>
+    The symbol to represent the integer (binary) division operator. That is, for integers
+    a and b, quotient(a,b) denotes q such that a=b*q+r, with |r| less than |b| and a*r
+    positive.
 </Description>
 
-<description>
-      <p>quotient is the binary function used to represent the operation of integer
-	division.  quotient(a,b) denotes q such that a = b*q+r, with |r| less than |b| and
-	a*r non-negative. 
-      </p>
-    </description>
-    <discussion>
-      <p>The <code>quotient</code> element is the operator used for division modulo a
-      particular base. When the <code>quotient</code> operator is applied to integer arguments
-      <var>a</var> and <var>b</var>, the result is the <quote>quotient of <var>a</var>
-      divided by <var>b</var></quote>. That is, <code>quotient</code> returns the unique
-      integer <var>q</var> such that <var>a</var> = <var>q</var> <var>b</var> +
-      <var>r</var>. (In common usage, <var>q</var> is called the quotient and <var>r</var>
-      is the remainder.)</p>
-    </discussion>
+<discussion>
+  <p>The <code>quotient</code> element is the operator used for division modulo a
+  particular base. When the <code>quotient</code> operator is applied to integer arguments
+  <var>a</var> and <var>b</var>, the result is the <quote>quotient of <var>a</var>
+  divided by <var>b</var></quote>. That is, <code>quotient</code> returns the unique
+  integer <var>q</var> such that <var>a</var> = <var>q</var> <var>b</var> +
+  <var>r</var>. (In common usage, <var>q</var> is called the quotient and <var>r</var>
+  is the remainder.)</p>
+</discussion>
 
  <property>
    <description>
@@ -248,12 +238,12 @@ less than |b| and a*r positive.
 </property>
 
 <MMLexample>
-  <description><p>Various mathematical applications will use this data in different
-  ways. Editing applications might choose an image such as shown below, while a
-  computationally based application would evaluate it to 2 when<var>a</var>=13 and
-  <var>b</var>=5.</p>
+  <description>
+    <p>Various mathematical applications will use this data in different ways. Editing
+    applications might choose an image such as shown below, while a computationally based
+    application would evaluate it to 2 when<var>a</var>=13 and <var>b</var>=5.</p>
   </description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><quotient/> <ci>a</ci> <ci>b</ci> </apply> </math>
+  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><quotient/><ci>a</ci><ci>b</ci></apply></math>
 </MMLexample>
 
 <MMLexample>
@@ -354,8 +344,8 @@ a*remainder(a,b) &gt;= 0
 </CDDefinition>
 
 <CDDefinition xml:id="remainder">
-<Name>remainder</Name>
-<Title>Remainder</Title>
+  <Name>remainder</Name>
+  <Title>Remainder</Title>
   <Pragmatic>
     <Element type="opel">rem</Element>
 	<Attribute>
@@ -364,39 +354,36 @@ a*remainder(a,b) &gt;= 0
           <Default>integer</Default>
         </Attribute>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-The symbol to represent the integer remainder after (binary) division.
-For integers a and b, remainder(a,b) denotes r such that a=b*q+r, with |r| less
-than |b| and a*r positive.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    The symbol to represent the integer remainder after (binary) division.  For integers a
+    and b, remainder(a,b) denotes r such that a=b*q+r, with |r| less than |b| and a*r
+    positive.
+  </Description>
 
 
-<description>
-          <p>This is the binary operator used to represent the integer remainder a mod b.
-          For arguments a and b, such that a = b*q + r with |r| &lt; |b| it represents the
-          value r.</p>
-        </description>
-	<discussion>
-	  <p>The <code>rem</code> element is the operator that returns the
-	  <quote>remainder</quote> of a division modulo a particular base. When the
-	  <code>rem</code> operator is applied to integer arguments <var>a</var> and
-	  <var>b</var>, the result is the <quote>remainder of <var>a</var> divided by
-	  <var>b</var></quote>. That is, <code>rem</code> returns the unique integer,
-	  <var>r</var> such that <var>a</var> = <var>q</var> <var>b</var>+ <var>r</var>,
-	  where <var>r</var> &lt; <var>q</var>. (In common usage, <var>q</var> is called
-	  the quotient and <var>r</var> is the remainder.)</p>
-	</discussion>
+  <discussion>
+    <p>The <code>rem</code> element is the operator that returns the
+    <quote>remainder</quote> of a division modulo a particular base. When the
+    <code>rem</code> operator is applied to integer arguments <var>a</var> and
+    <var>b</var>, the result is the <quote>remainder of <var>a</var> divided by
+    <var>b</var></quote>. That is, <code>rem</code> returns the unique integer,
+    <var>r</var> such that <var>a</var> = <var>q</var> <var>b</var>+ <var>r</var>, where
+    <var>r</var> &lt; <var>q</var>. (In common usage, <var>q</var> is called the quotient
+    and <var>r</var> is the remainder.)</p>
+  </discussion>
+  
+  <property>
+    <description>
+      <p>rem(a, 0) is undefined</p>
+    </description>
+  </property>
 
-   <property>
-          <description>
-            <p>rem(a, 0) is undefined</p>
-          </description>
-        </property>
-        <property>
-          <description>
-            <p>ForAll( [a,b], b!=0, a = b*quotient(a,b) + rem(a,b))</p>
-          </description><math xmlns="http://www.w3.org/1998/Math/MathML">
+  <property>
+    <description>
+      <p>ForAll( [a,b], b!=0, a = b*quotient(a,b) + rem(a,b))</p>
+      </description>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
 <bind><forall/>
   <bvar><ci>a</ci></bvar>
   <bvar><ci>b</ci></bvar>
@@ -406,7 +393,7 @@ than |b| and a*r positive.
     <apply><plus/>
       <apply><times/>
         <ci>b</ci>
-  <apply><quotient/><ci>a</ci><ci>b</ci></apply>
+	<apply><quotient/><ci>a</ci><ci>b</ci></apply>
       </apply>
     <apply><rem/>
     <ci>a</ci>
