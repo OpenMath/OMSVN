@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../../xsl/pmathml.xsl"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <script type="text/javascript" src="divfold.js"/>
+      <title>linalg6</title>
+      <link rel="stylesheet" href="omcd.css" type="text/css"/>
+   </head>
+   <body>
+      <a name="top"/>
+      <h1>OpenMath Content Dictionary: linalg6</h1>
+      <dl>
+         <dt class="dt">Canonical URL:</dt>
+         <dd>
+            <a href="http://www.openmath.org/cd/linalg6.ocd">http://www.openmath.org/cd/linalg6.ocd</a>
+         </dd>
+         <dt class="dt">CD Base:</dt>
+         <dd>
+            <a href="http://www.openmath.org/cd">http://www.openmath.org/cd</a>
+         </dd>
+         <dt class="dt">CD File:</dt>
+         <dd>
+            <a href="linalg6.ocd">linalg6.ocd</a>
+         </dd>
+         <dt class="dt">CD as XML Encoded OpenMath:</dt>
+         <dd>
+            <a href="linalg6.omcd">linalg6.omcd</a>
+         </dd>
+         <dt class="dt">Defines:</dt>
+         <dd>
+            <a href="#matrix">matrix</a>, <a href="#vector">vector</a>
+         </dd>
+         <dt class="dt">Date:</dt>
+         <dd>
+            <CDDate xmlns="http://www.openmath.org/OpenMathCD">2004-03-30</CDDate>
+         </dd>
+         <dt class="dt">Version:</dt>
+         <dd>3</dd>
+         <dt class="dt">Review Date:</dt>
+         <dd>
+            <CDReviewDate xmlns="http://www.openmath.org/OpenMathCD">2006-03-30</CDReviewDate>
+         </dd>
+         <dt class="dt">Status:</dt>
+         <dd>
+            <CDStatus xmlns="http://www.openmath.org/OpenMathCD">draft</CDStatus>
+         </dd>
+      </dl>
+      <hr/>
+
+      <pre>
+
+     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+</pre>
+
+
+
+
+
+
+
+
+
+      <p>
+    This content dictionary treats matrices and vectors in a row oriented fashion (using
+    matrix rows).  Vectors in this CD are considered to be row vectors and must therefore
+    be transposed to be considered as column vectors.
+</p>
+
+      <div class="cddefinition">
+         <h2>
+            <a name="vector">Symbol Definition: vector</a>
+         </h2>
+         <dl>
+            <dt class="dt">Pragmatic MathML:</dt>
+            <dd>
+               <p>&lt;vector&gt; &lt;/vector&gt;</p>
+               <p> type : "row"|MathMLType</p>
+               <p>
+       The qualifications defined by a domainofapplication element can also be
+      abbreviated in several ways including a condition placed on a bound
+      variable and an expression involving that variable.
+    </p>
+            </dd>
+            <dt class="dt">Role:</dt>
+            <dd>application</dd>
+            <dt class="dt">Description:</dt>
+            <dd>
+               <p>
+    This symbol allows to construct a vector by providing a function and a 1-dimensional
+    domain of application.  The entries of the vector correspond to the values obtained by
+    evaluating the function at the points of the domain.
+  </p>
+            </dd>
+            <dt class="dt">Example:</dt>
+            <dd>
+    A 7-vector constructed by applying the identity function to the numbers from 1 to
+    7. It represents the vector [1,4,9,16,25,36,49].
+<div>
+                  <button id="d43e77xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e77xml')">XML (OpenMath)</button>
+               </div>
+               <pre id="d43e77xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="linalg6" name="vector"/&gt;
+    &lt;OMBIND&gt;
+      &lt;OMS cd="fns1" name="lambda"/&gt;
+      &lt;OMBVAR&gt;&lt;OMV name="x"/&gt;&lt;/OMBVAR&gt;
+      &lt;OMA&gt;&lt;OMS cd="arith1" name="power"/&gt;&lt;OMV name="x"/&gt;&lt;OMI&gt;2&lt;/OMI&gt;&lt;/OMA&gt;
+    &lt;/OMBIND&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="interval1" name="integer_interval"/&gt;
+      &lt;OMI&gt;1&lt;/OMI&gt;
+      &lt;OMI&gt;7&lt;/OMI&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d43e77cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e77cmml')">Content MathML</button>
+               </div>
+               <pre id="d43e77cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+  &lt;apply&gt;
+    &lt;csymbol cd="linalg6"&gt;vector&lt;/csymbol&gt;
+    &lt;bind&gt;
+      &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
+      &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+      &lt;apply&gt;&lt;csymbol cd="arith1"&gt;power&lt;/csymbol&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;cn&gt;2&lt;/cn&gt;&lt;/apply&gt;
+    &lt;/bind&gt;
+    &lt;apply&gt;
+      &lt;csymbol cd="interval1"&gt;integer_interval&lt;/csymbol&gt;
+      &lt;cn&gt;1&lt;/cn&gt;
+      &lt;cn&gt;7&lt;/cn&gt;
+    &lt;/apply&gt;
+  &lt;/apply&gt;
+&lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e77prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e77pref')">Prefix form</button>
+               </div>
+               <div id="d43e77pref" style="display:none; margin-top: 0.5em">
+                  <a href="linalg6.xhtml#vector">vector</a>
+(<a href="fns1.xhtml#lambda">lambda</a>
+[ <i>x</i>] .
+(<a href="arith1.xhtml#power">power</a>
+( <i>x</i>, 2)
+)
+, <a href="interval1.xhtml#integer_interval">integer_interval</a>
+(1, 7)
+)
+
+</div>
+               <div>
+                  <button id="d43e77mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e77mml')">Presentation MathML</button>
+               </div>
+               <div id="d43e77mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mi>vector</mi>
+                        <mo>⁡</mo>
+                        <mrow>
+                           <mo>(</mo>
+                           <mrow>
+                              <mo>λ</mo>
+                              <mo> </mo>
+                              <mrow>
+                                 <mi>x</mi>
+                              </mrow>
+                              <mo>.</mo>
+                              <msup>
+                                 <mi>x</mi>
+                                 <mn>2</mn>
+                              </msup>
+                           </mrow>
+                           <mo>,</mo>
+                           <mrow>
+                              <mo>[</mo>
+                              <mn>1</mn>
+                              <mo separator="true">,</mo>
+                              <mn>7</mn>
+                              <mo>]</mo>
+                           </mrow>
+                           <mo>)</mo>
+                        </mrow>
+                     </mrow>
+                  </m:math>
+               </div>
+            </dd>
+            <dt class="dt">Signatures:</dt>
+            <dd>
+               <a href="../sts/linalg6.xhtml#vector">
+    sts
+      </a>
+            </dd>
+         </dl>
+      </div>
+      <div>[Next: <a href="#matrix">matrix</a>]
+	   [This: <a href="#vector">vector</a>]
+	
+	    [Last: <a href="#matrix">matrix</a>]
+	  
+      [<a href="#top">Top</a>]
+ </div>
+
+      <div class="cddefinition">
+         <h2>
+            <a name="matrix">Symbol Definition: matrix</a>
+         </h2>
+         <dl>
+            <dt class="dt">Pragmatic MathML:</dt>
+            <dd>
+               <p>&lt;matrix&gt; &lt;/matrix&gt;</p>
+               <p> type : "real" | "complex" | "integer" | "symbolic" | MathMLType</p>
+               <p>
+    Note that the behavior of the matrix and matrixrow elements is
+    substantially different from the mtable and mtr presentation
+    elements.
+    </p>
+            </dd>
+            <dt class="dt">Role:</dt>
+            <dd>application</dd>
+            <dt class="dt">Description:</dt>
+            <dd>
+               <p>
+    This symbol allows to construct a matrix by providing a function and a 2-dimensional
+    domain of application.  The entries of the matrix correspond to the values obtained by
+    evaluating the function at the points of the domain. 
+  </p>
+            </dd>
+            <dt class="dt">Example:</dt>
+            <dd>
+    A 3x2-vector constructed by applying the addition function to the set {1,2,3}x{1,2}. 
+<div>
+                  <button id="d43e162xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e162xml')">XML (OpenMath)</button>
+               </div>
+               <pre id="d43e162xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="relation1" name="eq"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="linalg6" name="vector"/&gt;
+      &lt;OMS cd="arith1" name="plus"/&gt;
+      &lt;OMA&gt;
+	&lt;OMS cd="set1" name="cartesian_product"/&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="interval1" name="integer_interval"/&gt;
+	  &lt;OMI&gt;1&lt;/OMI&gt;
+	  &lt;OMI&gt;3&lt;/OMI&gt;
+	&lt;/OMA&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="interval1" name="integer_interval"/&gt;
+	  &lt;OMI&gt;1&lt;/OMI&gt;
+	  &lt;OMI&gt;2&lt;/OMI&gt;
+	&lt;/OMA&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="linalg2" name="matrix"/&gt;
+      &lt;OMA&gt;&lt;OMS cd="linalg2" name="matrixrow"/&gt;&lt;OMI&gt;2&lt;/OMI&gt;&lt;OMI&gt;3&lt;/OMI&gt;&lt;OMI&gt;4&lt;/OMI&gt;&lt;/OMA&gt;
+      &lt;OMA&gt;&lt;OMS cd="linalg2" name="matrixrow"/&gt;&lt;OMI&gt;3&lt;/OMI&gt;&lt;OMI&gt;4&lt;/OMI&gt;&lt;OMI&gt;5&lt;/OMI&gt;&lt;/OMA&gt;
+    &lt;/OMA&gt;	
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d43e162cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e162cmml')">Content MathML</button>
+               </div>
+               <pre id="d43e162cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+  &lt;apply&gt;
+    &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
+    &lt;apply&gt;
+      &lt;csymbol cd="linalg6"&gt;vector&lt;/csymbol&gt;
+      &lt;csymbol cd="arith1"&gt;plus&lt;/csymbol&gt;
+      &lt;apply&gt;
+	&lt;csymbol cd="set1"&gt;cartesian_product&lt;/csymbol&gt;
+	&lt;apply&gt;
+	  &lt;csymbol cd="interval1"&gt;integer_interval&lt;/csymbol&gt;
+	  &lt;cn&gt;1&lt;/cn&gt;
+	  &lt;cn&gt;3&lt;/cn&gt;
+	&lt;/apply&gt;
+	&lt;apply&gt;
+	  &lt;csymbol cd="interval1"&gt;integer_interval&lt;/csymbol&gt;
+	  &lt;cn&gt;1&lt;/cn&gt;
+	  &lt;cn&gt;2&lt;/cn&gt;
+	&lt;/apply&gt;
+      &lt;/apply&gt;
+    &lt;/apply&gt;
+    &lt;apply&gt;
+      &lt;csymbol cd="linalg2"&gt;matrix&lt;/csymbol&gt;
+      &lt;apply&gt;&lt;csymbol cd="linalg2"&gt;matrixrow&lt;/csymbol&gt;&lt;cn&gt;2&lt;/cn&gt;&lt;cn&gt;3&lt;/cn&gt;&lt;cn&gt;4&lt;/cn&gt;&lt;/apply&gt;
+      &lt;apply&gt;&lt;csymbol cd="linalg2"&gt;matrixrow&lt;/csymbol&gt;&lt;cn&gt;3&lt;/cn&gt;&lt;cn&gt;4&lt;/cn&gt;&lt;cn&gt;5&lt;/cn&gt;&lt;/apply&gt;
+    &lt;/apply&gt;	
+  &lt;/apply&gt;
+&lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e162prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e162pref')">Prefix form</button>
+               </div>
+               <div id="d43e162pref" style="display:none; margin-top: 0.5em">
+                  <a href="relation1.xhtml#eq">eq</a>
+(<a href="linalg6.xhtml#vector">vector</a>
+(<a href="arith1.xhtml#plus">plus</a>, <a href="set1.xhtml#cartesian_product">cartesian_product</a>
+(<a href="interval1.xhtml#integer_interval">integer_interval</a>
+(1, 3)
+, <a href="interval1.xhtml#integer_interval">integer_interval</a>
+(1, 2)
+)
+)
+, <a href="linalg2.xhtml#matrix">matrix</a>
+(<a href="linalg2.xhtml#matrixrow">matrixrow</a>
+(2, 3, 4)
+, <a href="linalg2.xhtml#matrixrow">matrixrow</a>
+(3, 4, 5)
+)
+)
+
+</div>
+               <div>
+                  <button id="d43e162mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e162mml')">Presentation MathML</button>
+               </div>
+               <div id="d43e162mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mrow>
+                           <mi>vector</mi>
+                           <mo>⁡</mo>
+                           <mrow>
+                              <mo>(</mo>
+                              <mo>+</mo>
+                              <mo>,</mo>
+                              <mrow>
+                                 <mrow>
+                                    <mo>[</mo>
+                                    <mn>1</mn>
+                                    <mo separator="true">,</mo>
+                                    <mn>3</mn>
+                                    <mo>]</mo>
+                                 </mrow>
+                                 <mo>×</mo>
+                                 <mrow>
+                                    <mo>[</mo>
+                                    <mn>1</mn>
+                                    <mo separator="true">,</mo>
+                                    <mn>2</mn>
+                                    <mo>]</mo>
+                                 </mrow>
+                              </mrow>
+                              <mo>)</mo>
+                           </mrow>
+                        </mrow>
+                        <mo>=</mo>
+                        <mfenced>
+                           <mtable>
+                              <mtr>
+                                 <mtd>
+                                    <mn>2</mn>
+                                 </mtd>
+                                 <mtd>
+                                    <mn>3</mn>
+                                 </mtd>
+                                 <mtd>
+                                    <mn>4</mn>
+                                 </mtd>
+                              </mtr>
+                              <mtr>
+                                 <mtd>
+                                    <mn>3</mn>
+                                 </mtd>
+                                 <mtd>
+                                    <mn>4</mn>
+                                 </mtd>
+                                 <mtd>
+                                    <mn>5</mn>
+                                 </mtd>
+                              </mtr>
+                           </mtable>
+                        </mfenced>
+                     </mrow>
+                  </m:math>
+               </div>
+            </dd>
+            <dt class="dt">Signatures:</dt>
+            <dd>
+               <a href="../sts/linalg6.xhtml#matrix">
+    sts
+      </a>
+            </dd>
+         </dl>
+      </div>
+      <div>
+	    [First: <a href="#vector">vector</a>]
+	  
+	   [This: <a href="#matrix">matrix</a>]
+	[Previous: <a href="#vector">vector</a>]
+      [<a href="#top">Top</a>]
+ </div>
+
+   </body>
+</html>
