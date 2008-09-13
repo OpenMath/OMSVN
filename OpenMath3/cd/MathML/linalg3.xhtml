@@ -42,7 +42,7 @@
          </dd>
          <dt class="dt">Status:</dt>
          <dd>
-            <CDStatus xmlns="http://www.openmath.org/OpenMathCD">experimental</CDStatus>
+            <CDStatus xmlns="http://www.openmath.org/OpenMathCD">draft</CDStatus>
          </dd>
       </dl>
       <hr/>
@@ -89,8 +89,9 @@
 
 
       <p>
-    This CD  treats matrices and vectors in a column oriented fashion
-    (using matrixcolumn's).
+    This content dictionary treats matrices and vectors in a column oriented fashion (using
+    matrix columns).  Vectors in this CD are considered to be column vectors and must
+    therefore be transposed to be considered as row vectors.
 </p>
 
       <div class="cddefinition">
@@ -102,28 +103,23 @@
             <dd>
                <p>&lt;vector&gt; &lt;/vector&gt;</p>
                <p> type : "column" | MathMLType</p>
+               <p>
+      The type attribute can be used to explicitly specify that a
+      vector is a "row" vector.
+    </p>
             </dd>
             <dt class="dt">Role:</dt>
             <dd>application</dd>
             <dt class="dt">Description:</dt>
             <dd>
                <p>
-This symbol represents an n-ary function used to construct (or describe)
-vectors.  Vectors in this CD are considered to be column vectors, and must 
-therefore be transposed to be considered as row vectors.
+  A vector is an ordered n-tuple of values representing an element of an n-dimensional
+  vector space.  The "values" are all from the same ring, typically real or complex.
+  Where orientation is important, such as for pre or post multiplication by a matrix a
+  vector is treated as a column vector and its transpose is treated a row
+  vector.  See CRC Standard Mathematical Tables and Formulae, editor: Dan Zwillinger, CRC
+  Press Inc., 1996, [2.4]
 </p>
-            </dd>
-            <dt class="dt">description:</dt>
-            <dd>
-               <p>
-      A vector is an ordered n-tuple of values representing an element of an
-      n-dimensional vector space.  The "values" are all from the same ring, typically real
-      or complex.  Where orientation is important, such as for pre or post multiplication
-      by a matrix a vector is treated as if it were a column vector and its transpose is
-      treated a row vector.  The type attribute can be used to explicitly specify that a
-      vector is a "row" vector.  See CRC Standard Mathematical Tables and Formulae,
-      editor: Dan Zwillinger, CRC Press Inc., 1996, [2.4]
-    </p>
             </dd>
             <dt class="dt">discussion:</dt>
             <dd>
@@ -206,33 +202,33 @@ A vector can also be constructed by evaluating a function over a specific domain
             <dt class="dt">Example:</dt>
             <dd>
 	              <div>
-                  <button id="d43e218xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e218xml')">XML (MathML)</button>
+                  <button id="d43e217xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e217xml')">XML (MathML)</button>
                </div>
-               <pre id="d43e218xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;vector&gt;&lt;cn&gt;1&lt;/cn&gt;&lt;cn&gt;2&lt;/cn&gt;&lt;cn&gt;3&lt;/cn&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/vector&gt;&lt;/math&gt;</pre>
+               <pre id="d43e217xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;vector&gt;&lt;cn&gt;1&lt;/cn&gt;&lt;cn&gt;2&lt;/cn&gt;&lt;cn&gt;3&lt;/cn&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/vector&gt;&lt;/math&gt;</pre>
                <div>
-                  <button id="d43e218stricta" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e218strict')">Strict Content MathML</button>
+                  <button id="d43e217stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e217strict')">Strict Content MathML</button>
                </div>
-               <pre id="d43e218strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;csymbol cd="linalg2"&gt;vector&lt;/csymbol&gt;&lt;cn&gt;1&lt;/cn&gt;&lt;cn&gt;2&lt;/cn&gt;&lt;cn&gt;3&lt;/cn&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/apply&gt;&lt;/math&gt;</pre>
+               <pre id="d43e217strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;csymbol cd="linalg2"&gt;vector&lt;/csymbol&gt;&lt;cn&gt;1&lt;/cn&gt;&lt;cn&gt;2&lt;/cn&gt;&lt;cn&gt;3&lt;/cn&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/apply&gt;&lt;/math&gt;</pre>
                <div>
-                  <button id="d43e218cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e218cmml')">OpenMath</button>
+                  <button id="d43e217cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e217cmml')">OpenMath</button>
                </div>
-               <pre id="d43e218cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMA&gt;&lt;OMS cd="linalg2" name="vector"/&gt;&lt;OMI&gt;1&lt;/OMI&gt;&lt;OMI&gt;2&lt;/OMI&gt;&lt;OMI&gt;3&lt;/OMI&gt;&lt;OMV name="x"/&gt;&lt;/OMA&gt;&lt;/OMOBJ&gt;</pre>
+               <pre id="d43e217cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMA&gt;&lt;OMS cd="linalg2" name="vector"/&gt;&lt;OMI&gt;1&lt;/OMI&gt;&lt;OMI&gt;2&lt;/OMI&gt;&lt;OMI&gt;3&lt;/OMI&gt;&lt;OMV name="x"/&gt;&lt;/OMA&gt;&lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e218prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e218pref')">Prefix form</button>
+                  <button id="d43e217prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e217pref')">Prefix form</button>
                </div>
-               <div id="d43e218pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e217pref" style="display:none; margin-top: 0.5em">
                   <a href="linalg2.xhtml#vector">vector</a>
 (1, 2, 3,  <i>x</i>)
 </div>
                <div>
-                  <button id="d43e218mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e218mml')">Presentation MathML</button>
+                  <button id="d43e217mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e217mml')">Presentation MathML</button>
                </div>
-               <div id="d43e218mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e217mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -377,7 +373,7 @@ A vector can also be constructed by evaluating a function over a specific domain
             <dt class="dt">Example:</dt>
             <dd>
 An example of vector using n arguments. 
-The specific vector constructed in this example is transpose of [3,6,9].
+The specific vector constructed in this example is the transpose of [3,6,9].
 <div>
                   <button id="d43e274xmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e274xml')">XML (OpenMath)</button>
@@ -471,9 +467,9 @@ The specific vector constructed in this example is transpose of [3,6,9].
             <dt class="dt">Description:</dt>
             <dd>
                <p> 
-This symbol is an n-ary constructor used to represent columns of
-matrices. Its arguments should be members of a ring.
-</p>
+    This symbol is an n-ary constructor used to represent columns of
+    matrices. Its arguments should be members of a ring.
+  </p>
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
@@ -556,24 +552,45 @@ Representation of a column of a matrix of length two containing the integers
             <dt class="dt">Pragmatic MathML:</dt>
             <dd>
                <p>&lt;matrix/&gt;</p>
+               <p>
+    Note that the behavior of the matrix and matrixrow elements is
+    substantially different from the mtable and mtr presentation
+    elements.
+    </p>
             </dd>
             <dt class="dt">Role:</dt>
             <dd>application</dd>
             <dt class="dt">Description:</dt>
             <dd>
                <p>
-This symbol is an n-ary matrix constructor which requires matrixcolumn's
-as arguments. It is used to represent matrices.
-</p>
+    This is the constructor for a matrix.  It takes an arbitrary number matrix rows as
+    arguments.  It is used to represent matrices.  See CRC Standard Mathematical Tables
+    and Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996, [2.5.1].
+  </p>
+            </dd>
+            <dt class="dt">discussion:</dt>
+            <dd>
+               <p>
+    The matrix element is used to represent mathematical matrices. It has zero
+    or more child elements, all of which are matrixrow elements. These in turn
+    expect zero or more child elements that evaluate to algebraic expressions or
+    numbers. These sub-elements are often real numbers, or symbols as in</p>
+               <p>
+   1 2 
+   3 4 </p>
+               <p>
+    The matrixrow elements must always be contained inside of a matrix, and all
+    rows in a given matrix must have the same number of elements.
+  </p>
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
 Representation of a 2x2 identity matrix
 <div>
-                  <button id="d43e348xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e348xml')">XML (OpenMath)</button>
+                  <button id="d43e405xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e405xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e348xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d43e405xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMA&gt;
     &lt;OMS cd="linalg3" name="matrix"/&gt;
     &lt;OMA&gt;
@@ -589,10 +606,10 @@ Representation of a 2x2 identity matrix
   &lt;/OMA&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e348cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e348cmml')">Content MathML</button>
+                  <button id="d43e405cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e405cmml')">Content MathML</button>
                </div>
-               <pre id="d43e348cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e405cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
   &lt;apply&gt;
     &lt;csymbol cd="linalg3"&gt;matrix&lt;/csymbol&gt;
     &lt;apply&gt;
@@ -608,10 +625,10 @@ Representation of a 2x2 identity matrix
   &lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e348prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e348pref')">Prefix form</button>
+                  <button id="d43e405prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e405pref')">Prefix form</button>
                </div>
-               <div id="d43e348pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e405pref" style="display:none; margin-top: 0.5em">
                   <a href="linalg3.xhtml#matrix">matrix</a>
 (<a href="linalg3.xhtml#matrixcolumn">matrixcolumn</a>
 ( 1 ,  0 )
@@ -621,10 +638,10 @@ Representation of a 2x2 identity matrix
 
 </div>
                <div>
-                  <button id="d43e348mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e348mml')">Presentation MathML</button>
+                  <button id="d43e405mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e405mml')">Presentation MathML</button>
                </div>
-               <div id="d43e348mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e405mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mfenced xmlns="http://www.w3.org/1998/Math/MathML"
                               xmlns:om="http://www.openmath.org/OpenMath">
