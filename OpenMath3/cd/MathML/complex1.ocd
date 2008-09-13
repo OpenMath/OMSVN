@@ -42,28 +42,27 @@
 <CDRevision>0</CDRevision>
 <CDStatus>draft</CDStatus>
 <Description>
-    This CD is intended to be `compatible' with the MathML view of
-    operations on and constructors for  complex numbers.
+  This content dictionary provides constructors for complex numbers.
 </Description>
 
 <CDDefinition xml:id="complex_cartesian">
-<Name>complex_cartesian</Name>
+  <Name>complex_cartesian</Name>
   <Pragmatic>
     <Element type="opel">complex_cartesian</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents a constructor function for complex numbers
-specified as the Cartesian coordinates of the relevant point on the
-complex plane. It takes two arguments, the first is a number x to
-denote the real part and the second a number y to denote the imaginary
-part of the complex number x + i y. (Where i is the square root of -1.)
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents a constructor function for complex numbers specified as the
+    Cartesian coordinates of the relevant point on the complex plane. It takes two
+    arguments, the first is a number x to denote the real part and the second a number y
+    to denote the imaginary part of the complex number x + i y. (Where i is the square
+    root of -1.)
+  </Description>
 
-<property xml:id="complex_cartesian_prop_1">
-<CMP>
-for all x,y | complex_cartesian(x,y) = x + iy
-</CMP>
+  <property xml:id="complex_cartesian_prop_1">
+    <CMP>
+      for all x,y | complex_cartesian(x,y) = x + iy
+    </CMP>
 <FMP>
   <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
     <OMBIND>
@@ -91,34 +90,28 @@ for all x,y | complex_cartesian(x,y) = x + iy
       </OMA>
     </OMBIND>
   </OMOBJ>
-</FMP></property>
+</FMP>
+</property>
 </CDDefinition>
 
 <CDDefinition xml:id="real">
-<Name>real</Name>
-<Title>Real Part</Title>
+  <Name>real</Name>
+  <Title>Real Part</Title>
   <Pragmatic>
     <Element type="opel">real</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This represents the real part of a complex number
-</Description> 
-
-<description>
-          <p>A unary operator used to construct an expression
-representing the "real" part of a complex number. </p>
-        </description>
-	<discussion>
-	  <p>The <code>real</code> operator (introduced in MathML 2.0) gives the real part of
-	  a complex number, that is the x component in <var>x</var> + i <var>y</var></p>
-	</discussion>
-
-   <property>
-          <description>
-            <p>ForAll( [x,y], x in R, Y in R, real(x+i*y)=x) )</p>
-          </description><math xmlns="http://www.w3.org/1998/Math/MathML">
-<bind><forall/>
+  <Role>application</Role>
+  <Description> 
+    This symbol is a unary operator used to construct an expression representing the
+    "real" part of a complex number, that is the x component in x + iy.
+  </Description> 
+  
+  <property>
+    <description>
+      <p>ForAll( [x,y], x in R, Y in R, real(x+i*y)=x) )</p>
+    </description>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+      <bind><forall/>
   <bvar><ci>x</ci></bvar>
   <bvar><ci>y</ci></bvar>
   <condition>
@@ -187,30 +180,22 @@ representing the "real" part of a complex number. </p>
 </CDDefinition>
 
 <CDDefinition xml:id="imaginary">
-<Name>imaginary</Name>
-<Title>Imaginary Part</Title>
+  <Name>imaginary</Name>
+  <Title>Imaginary Part</Title>
   <Pragmatic>
     <Element type="opel">imaginary</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This represents the imaginary part of a complex number
-</Description> 
-
-    <description>
-          <p>The unary function used to construct an expression which represents the
-          imaginary part of a complex number.  </p>
-        </description>
-	<discussion>
-	  <p>The <code>imaginary</code> operator (introduced in MathML 2.0)
-	  gives the imaginary part of a complex number, that is, the y
-	  component in <var>x</var> + i <var>y</var>.</p>
-	</discussion>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents unary function used to construct the imaginary part of a
+    complex number, i.e. the y component in x+iy.
+  </Description> 
 
  <property>
-          <description>
-            <p>ForAll( [x,y], Imaginary(x + i*y) = y )</p>
-          </description><math xmlns="http://www.w3.org/1998/Math/MathML">
+   <description>
+     <p>ForAll( [x,y], Imaginary(x + i*y) = y )</p>
+   </description>
+   <math xmlns="http://www.w3.org/1998/Math/MathML">
 <bind><forall/>
   <bvar><ci type="real"> x</ci></bvar>
   <bvar><ci type="real"> y</ci></bvar>
@@ -224,16 +209,23 @@ This represents the imaginary part of a complex number
     <ci type="real"> y</ci>
   </apply>
 </bind>
-</math></property>
-        <MMLexample>
-		<description><p>The following example encodes the imaginary operation on <var>x</var> + i<var>y</var>.A MathML-aware evaluation system would return the <var>y</var> component, suitably encoded.</p></description>
-		<math xmlns="http://www.w3.org/1998/Math/MathML"><apply><imaginary/>
+</math>
+</property>
+
+<MMLexample>
+  <description><p>The following example encodes the imaginary operation on <var>x</var> +
+  i<var>y</var>. A MathML-aware evaluation system would return the <var>y</var> component,
+  suitably encoded.</p>
+</description>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply><imaginary/>
   <apply><plus/>
     <ci>x</ci>
     <apply><times/><imaginaryi/><ci>y</ci></apply>
   </apply>
 </apply>
-</math></MMLexample>
+</math>
+</MMLexample>
 
 
 <property xml:id="imaginary_prop_3">
@@ -266,19 +258,17 @@ for all x,y | y = imaginary(x+iy)
 </CDDefinition>
 
 <CDDefinition xml:id="complex_polar">
-<Name>complex_polar</Name>
+  <Name>complex_polar</Name>
   <Pragmatic>
     <Element type="opel">complex_polar</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents a constructor function for complex numbers
-specified as the polar coordinates of the relevant point on the complex
-plane. It takes two arguments, the first is a nonnegative number r to
-denote the magnitude and the second a number theta (given in radians)
-to denote the argument of the complex number r e^(i theta). (i and
-e are defined as in this CD).
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents a constructor function for complex numbers specified as the
+    polar coordinates of the relevant point on the complex plane. It takes two arguments,
+    the first is a nonnegative number r to denote the magnitude and the second a number
+    theta (given in radians) to denote the argument of the complex number r e^(i theta).
+  </Description>
 
 <property xml:id="complex_polar_prop_4">
 <CMP>
@@ -323,8 +313,8 @@ for all x,y,r,a |
 (r sin a = y and r cos a = x) implies (complex_polar(r,a) = 
 complex_cartesian(x,y)
 </CMP>
-
-<FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
+<FMP>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
 <OMBIND>
   <OMS cd="quant1" name="forall"/>
   <OMBVAR>
@@ -383,7 +373,8 @@ complex_cartesian(x,y)
 <CMP> for all x | if a is a real number and k is an integer then
   complex_polar(x,a) = complex_polar(x,a+2*pi*k) </CMP>
 
-<FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
+<FMP>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
 <OMBIND>
   <OMS cd="quant1" name="forall"/>
   <OMBVAR>
@@ -448,8 +439,8 @@ complex_cartesian(x,y)
 </CDDefinition>
 
 <CDDefinition xml:id="argument">
-<Name>argument</Name>
-<Title>Argument</Title>
+  <Name>argument</Name>
+  <Title>Argument</Title>
   <Pragmatic>
     <Element type="opel">arg</Element>
     <Attribute>
@@ -466,9 +457,8 @@ complex_cartesian(x,y)
     number whos argument is being taken.
   </Description>
   
-<property xml:id="argument_prop_7">
-<CMP> for all r,a | argument(complex_polar(r,a)=a) </CMP>
-
+  <property xml:id="argument_prop_7">
+<CMP>for all r,a | argument(complex_polar(r,a)=a) </CMP>
 <FMP>
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
   <OMBIND>
@@ -556,30 +546,23 @@ complex_cartesian(x,y)
 </CDDefinition>
 
 <CDDefinition xml:id="conjugate">
-<Name>conjugate</Name>
-<Title>Complex Conjugate</Title>
+  <Name>conjugate</Name>
+  <Title>Complex Conjugate</Title>
   <Pragmatic>
     <Element type="opel">conjugate</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-A unary operator representing the complex conjugate of its argument.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    The unary "conjugate" arithmetic operator is used to represent the complex conjugate
+    of its argument.
+  </Description>
 
-     <description>
-          <p>The unary "conjugate" arithmetic operator is used to represent the complex
-          conjugate of its argument.</p>
-        </description>
-	<discussion>
-	  <p>The <code>conjugate</code> element represents the complex conjugate of a complex quantity.</p>
-	</discussion>
-
-
-        <MMLexample>
-	  <description>
-	    <p>The following example encodes the conjugate of <var>x</var> + i<var>y</var>.</p>
-	  </description>
-	  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><conjugate/>
+  <MMLexample>
+    <description>
+      <p>The following example encodes the conjugate of <var>x</var> + i<var>y</var>.</p>
+    </description>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply><conjugate/>
  <apply><plus/>
     <ci>x</ci>
     <apply><times/>
@@ -588,7 +571,8 @@ A unary operator representing the complex conjugate of its argument.
     </apply>
   </apply>
 </apply>
-</math></MMLexample>
+</math>
+</MMLexample>
 
 
 <property xml:id="conjugate_prop_10">
