@@ -43,66 +43,53 @@
 <CDStatus>draft</CDStatus>
 
 <Description>
-    This CD is intended to be compatible with the corresponding
-    elements in Content MathML 2.
-
-    In this CD we give a set of operators for piece-wise defined expressions.
+    This content dictionary provides set of operators for piece-wise defined expressions.
 </Description>
 
 <CDDefinition xml:id="piecewise">
-<Name>piecewise</Name>
-<Title>Piecewise declaration</Title>
+  <Name>piecewise</Name>
+  <Title>Piecewise declaration</Title>
   <Pragmatic>
     <Element type="container">piecewise</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This operator heads an expression that is being defined piecewise. Its 
-arguments are n objects built with the piece constructor, optionally
-followed by one built with otherwise constructor.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This operator heads an expression that is being defined piecewise. Its arguments are n
+    objects built with the piece constructor, optionally followed by one built with
+    otherwise constructor.
+  </Description>
 
-<description>
-          <p>The piecewise, piece, and otherwise elements are used to support 'piecewise'
-          declarations of the form H(x) = 0 if x less than 0, H(x) = 1 otherwise.  The
-          piece and otherwise elements describe evaluation rules.  If no rule applies or
-          if more than one rule applies but they give different answers then the
-          expression is undefined.</p>
-        </description>
-	<discussion>
-	  <p>The <el>piecewise</el>, <el>piece</el>, and <el>otherwise</el> elements are
-	  used to support <quote>piecewise</quote> declarations of the form <quote>
-	  <var>H</var>(<var>x</var>) = 0 if <var>x</var> less than 0,
-	  <var>H</var>(<var>x</var>) = 1 otherwise</quote>.</p>
+  <discussion>
+    <p>The <el>piecewise</el>, <el>piece</el>, and <el>otherwise</el> elements are
+    used to support <quote>piecewise</quote> declarations of the form 
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <mrow><mi>H</mi><mfenced open="(" close=")"><mi>x</mi></mfenced></mrow>
+      <mo>=</mo>
+      <mn>0</mn>
+    </math> if 
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <mi>x</mi>
+      <mo>&lt;</mo>
+      <mn>0</mn>
+    </math> 
+    and 
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <mrow><mi>H</mi><mfenced open="(" close=")"><mi>x</mi></mfenced></mrow>
+      <mo>=</mo>
+      <mn>1</mn>
+    </math>
+    otherwise.</p>
+    <p> The piece and otherwise elements describe evaluation rules.  If no rule applies or
+    if more than one rule applies but they give different answers then the expression is
+    undefined.</p>
 
-	  <p> The declaration is constructed using the <el>piecewise</el> element.  This
-	  contains zero or more <el>piece</el> elements, and optionally one
-	  <el>otherwise</el> element. Each <el>piece</el> element contains exactly two
-	  children. The first child defines the value taken by the <el>piecewise</el>
-	  expression when the condition specified in the associated second child of the
-	  <el>piece</el> is true.  The degenerate case of no <el>piece</el> elements and
-	  no <el>otherwise</el> element is treated as undefined for all values of the
-	  domain.</p>
-
-	  <p> <el>otherwise</el> allows the specification of a value to be taken by the
-	  <el>piecewise</el> function when none of the conditions (second child elements
-	  of the <el>piece</el> elements) is true, i.e. a default value.</p>
-
-	  <p>It should be noted that no <quote>order of execution</quote> is implied by
-	  the ordering of the <el>piece</el> child elements within <el>piecewise</el>. It
-	  is the responsibility of the author to ensure that the subsets of the function
-	  domain defined by the second children of the <el>piece</el> elements are
-	  disjoint, or that, where they overlap, the values of the corresponding first
-	  children of the <el>piece</el> elements coincide. If this is not the case, the
-	  meaning of the expression is undefined.</p>
-
-	  <p>The <el>piecewise</el> elements are <emph>constructors</emph>.</p>
-
-	<p>The <el>piecewise</el>, <el>piece</el>, <el>otherwise</el> elements are used to
-	support <quote>piecewise</quote> declarations of the form <quote>
-	<var>H</var>(<var>x</var>) = 0 if <var>x</var> less than 0,
-	<var>H</var>(<var>x</var>) = x otherwise</quote>.
-
+    <p> The declaration is constructed using the <el>piecewise</el> element.  This
+    contains zero or more <el>piece</el> elements, and optionally one <el>otherwise</el>
+    element. Each <el>piece</el> element contains exactly two children. The first child
+    defines the value taken by the <el>piecewise</el> expression when the condition
+    specified in the associated second child of the <el>piece</el> is true.  The
+    degenerate case of no <el>piece</el> elements and no <el>otherwise</el> element is
+    treated as undefined for all values of the domain.
 <eg role = "mathml">
   <math xmlns="http://www.w3.org/1998/Math/MathML">
     <piecewise>
@@ -113,9 +100,20 @@ followed by one built with otherwise constructor.
       <otherwise><ci>x</ci></otherwise>
     </piecewise>
   </math>
-	</eg></p>
-	
-	</discussion>
+    </eg></p>
+
+    <p> <el>otherwise</el> allows the specification of a value to be taken by the
+    <el>piecewise</el> function when none of the conditions (second child elements of the
+    <el>piece</el> elements) is true, i.e. a default value.</p>
+
+    <p>It should be noted that no <quote>order of execution</quote> is implied by the
+    ordering of the <el>piece</el> child elements within <el>piecewise</el>. It is the
+    responsibility of the author to ensure that the subsets of the function domain defined
+    by the second children of the <el>piece</el> elements are disjoint, or that, where
+    they overlap, the values of the corresponding first children of the <el>piece</el>
+    elements coincide. If this is not the case, the meaning of the expression is
+    undefined.</p>
+  </discussion>
 
 	<property>
 	  <description>
@@ -123,6 +121,7 @@ followed by one built with otherwise constructor.
 	    value in codomain(f) )</p>
 	  </description>
 	</property>
+
 	<MMLexample>
 	  <math xmlns="http://www.w3.org/1998/Math/MathML">
 	    <piecewise>
@@ -180,28 +179,28 @@ followed by one built with otherwise constructor.
 </CDDefinition>
 
 <CDDefinition xml:id="piece">
-<Name>piece</Name>
-<Title>Pieces</Title>
+  <Name>piece</Name>
+  <Title>Pieces</Title>
   <Pragmatic>
     <Element type="container">piece</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This introduces an individual component of a piecewise definition. It has
-precisely two arguments: the first is the value, and the second is a Boolean
-(meant to be a predicate) which is true if and only if this piece is to
-provide the value of the piecewise construct.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This introduces an individual component of a piecewise definition. It has precisely
+    two arguments: the first is the value, and the second is a Boolean (meant to be a
+    predicate) which is true if and only if this piece is to provide the value of the
+    piecewise construct.
+  </Description>
 
-<description>
-          <p>The piece element is used to construct the conditionally defined values as
-          part of a piecewise object.</p>
-        </description>
 
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><piecewise>
+  <MMLexample>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<piecewise>
   <piece><cn>0</cn><apply><lt/><ci>x</ci> <cn>0</cn></apply></piece>
   <otherwise><ci>x</ci></otherwise>
-</piecewise></math></MMLexample>
+</piecewise>
+</math>
+</MMLexample>
 
 
 <Example>
@@ -231,26 +230,26 @@ provide the value of the piecewise construct.
 </CDDefinition>
 
 <CDDefinition xml:id="otherwise">
-<Name>otherwise</Name>
-<Title>Leftover Pieces</Title>
+  <Name>otherwise</Name>
+  <Title>Leftover Pieces</Title>
   <Pragmatic>
     <Element type="container">otherwise</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description>
-This symbol introduces the 'default' value of a piecewise construct.
-If none of the previous piece constructs can provide the value, this will.
-It has a single child, the value.
-</Description>
+  <Role>application</Role>
+  <Description>
+    This symbol introduces the 'default' value of a piecewise construct.  If none of the
+    previous piece constructs can provide the value, this will.  It has a single child,
+    the value.
+  </Description>
 
-<description>
-          <p>The otherwise element is used to describe the value of a piecewise construct
-          when none of the conditions of the associated pieces are satisfied.</p>
-        </description>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><piecewise>
+  <MMLexample>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<piecewise>
   <piece><cn>0</cn><apply><lt/><ci>x</ci> <cn>0</cn></apply></piece>
   <otherwise><ci>x</ci></otherwise>
-</piecewise></math></MMLexample>
+</piecewise>
+</math>
+</MMLexample>
 
 <Example>
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
