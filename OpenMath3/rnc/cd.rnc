@@ -17,7 +17,9 @@ CDBase = element CDBase { xsd:anyURI }
 mmobj = external "mathml3.rnc"
 omobj = external "openmath3.rnc"
 #omobj = external "om3-sts.rnc"
+
 mobj = (omobj | mmobj)
+
 ContExp = grammar {include "mathml3.rnc" {start = ContExp}}
 
 
@@ -40,6 +42,7 @@ kw = element kw {text}
 graphic = element graphic {attribute role {xsd:string}?, attribute source {xsd:anyURI},attribute alt {xsd:string}}
 eg = element eg {attribute role {xsd:string}?,mobj}
 ############ end eliminate
+
 CDReviewDate = element CDReviewDate { xsd:date }
 CDDate = element CDDate { xsd:date }
 CDVersion = element CDVersion { xsd:nonNegativeInteger }
@@ -59,6 +62,7 @@ Role = element Role {
    "error" |
    "application" |
    "constant" }
+
 Pragmatic = element Pragmatic {attribute specref {text}?,(Element,Attribute*)?,description?}
 Element  = element Element {attribute type {"opel" | "opel_big" | "container"}?, text }
 Attribute = element Attribute {Name,((Model,Default?)|Prescribed)}
