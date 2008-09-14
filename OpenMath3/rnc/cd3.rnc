@@ -1,0 +1,24 @@
+################################################################
+# A RelaxNG schema for MathML Content Dictionaries
+#  $Id: ws.rnc 53 2007-12-09 07:23:25Z kohlhase $
+#  $HeadURL: https://svn.kwarc.info/repos/wsml/ws.rnc $
+# See the documentation and examples at http://www.kwarc.info/wsml
+# (c) 2008 Michael Kohlhase, released under the GNU Public License (GPL) 
+################################################################
+
+#
+# We want to allow a controlled subset of xhtml for 
+# 
+
+start = discussion
+
+include "xhtml/xhtml-datatypes.rnc"
+include "xhtml/xhtml-attribs.rnc"
+include "xhtml/xhtml-text.rnc" {Block.class = blockquote | \div | p}
+include "xhtml/xhtml-hypertext.rnc"
+include "xhtml/xhtml-list.rnc"
+include "xhtml/xhtml-image.rnc"
+include "xhtml/xhtml-inlstyle.rnc"
+include "xhtml/xhtml-table.rnc"
+
+discussion = element discussion {
