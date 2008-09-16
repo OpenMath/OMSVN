@@ -11,7 +11,6 @@
 <!-- Modes and templates used for rendering CDs to XHTML.  Rolled out of 
      cd2html.xsl for easier reuse. -->
 
-<xsl:import href="verb.xsl"/>
 <xsl:import href="om2cmml.xsl"/>
 <xsl:import href="cmml2om.xsl"/>
 <xsl:output method="xml" encoding="UTF-8"/>

@@ -12,6 +12,8 @@
 <xsl:import href="cd2html-util.xsl"/>
 <!-- Render OpenMath to Presentation MathML -->
 <xsl:import href="om2pmml.xsl"/>
+<!-- Render XML source of math object -->
+<xsl:import href="verb.xsl"/>
 
 <!-- This file only implements templates for the CD root element and for
      mathematical objects.  Anything else is imported -->
