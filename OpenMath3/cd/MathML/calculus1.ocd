@@ -54,8 +54,8 @@
   <Title>Differentiation</Title>
   <Role>application</Role>
   <Description>
-    This symbol is used to express ordinary differentiation of a unary function. The
-    single argument is the unary function.
+    This symbol is used to express ordinary differentiation of a function with a single variable. 
+    The only argument is the function.
   </Description>
 
   <Pragmatic>
@@ -124,7 +124,7 @@ we use the <code>nthdiff</code> symbol.</p>
     </math>
     </p>
   </discussion>
-  <MMLexample>
+  <MMLexample speclevel="1">
     <description>
       <p>diff(sin) = cos</p>
     </description>
@@ -133,8 +133,9 @@ we use the <code>nthdiff</code> symbol.</p>
     </math>
   </MMLexample>
 
-<property xml:id="diff_prop_1">
-<CMP> 
+<property xml:id="diff_prop_1" speclevel="1">
+<CMP> This property states the derivation rule for functions which are sums of functions.
+
 diff(lambda y:a(y) + b(y))(x) = diff(lambda y:a(y))(x) + diff(lambda y:b(y))(x)
 </CMP>
 
@@ -204,8 +205,10 @@ diff(lambda y:a(y) + b(y))(x) = diff(lambda y:a(y))(x) + diff(lambda y:b(y))(x)
 </OMOBJ>
 </FMP></property>
 
-<property xml:id="diff_prop_2">
-<CMP> 
+<property xml:id="diff_prop_2" speclevel="1">
+<CMP> This property states the derivation rule for functions 
+  which are multiplications of functions.
+  
 diff(lambda y:a(y) * b(y))(x) = diff(lambda y:a(y))(x) * b(x) + 
                                 a(x) * diff(lambda y:b(y))(x)
 </CMP>
@@ -290,9 +293,7 @@ diff(lambda y:a(y) * b(y))(x) = diff(lambda y:a(y))(x) * b(x) +
 </OMOBJ>
 </FMP></property>
 
-<Example>
-This represents the equation:
-  derivative(x + 1.0) = 1.0
+<Example> This example provides the derivative function of the function mapping x to x+1.
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
   <OMA>
     <OMS cd="relation1" name="eq"/>
@@ -323,11 +324,12 @@ This represents the equation:
   <Name>nthdiff</Name>
   <Role>application</Role>
   <Description>
-    This symbol is used to express the nth-iterated ordinary differentiation of a unary
-    function. The first argument is n, and the second the unary function.
+    This symbol is used to express the nth-iterated ordinary differentiation of a
+    function of one variable. The first argument is n, and the second the function.
   </Description>
 
-<property xml:id="nthdiff_prop_3">
+<property xml:id="nthdiff_prop_3" speclevel="1">
+<CMP>This property indicates that the zero-th derivation is the function itself</CMP>
 <FMP>
   <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
   <OMA>
@@ -342,7 +344,8 @@ This represents the equation:
   </OMOBJ>
 </FMP></property>
 
-<property xml:id="nthdiff_prop_4">
+<property xml:id="nthdiff_prop_4" speclevel="1">
+<CMP>This property relates the diff and nthdiff symbol.</CMP>
 <FMP>
   <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
   <OMA>
@@ -441,8 +444,8 @@ cannot be given.</p>
   <Role>application</Role>
   <Description>
     This symbol is used to express partial differentiation of a function of more than one
-    variable. It has two arguments, the first is a list of integers which index the
-    variables of the function, the second is the function.
+    variable. It has two arguments, the first is a list of integers which indicate the degree
+    of differentiation for each variable's index, the second is the function.
   </Description>
 
   <description>
@@ -459,13 +462,13 @@ cannot be given.</p>
     repeated.</p>
   </discussion>
 
-  <property>
+  <property speclevel="1">
     <description>
       <p>ForAll( [x,y], partialdiff( x * y , x ) = partialdiff(x,x)*y + partialdiff(y,x)*x )</p>
   </description>
 </property>
 
-  <property>
+  <property speclevel="1">
     <description>
       <p>ForAll( [x,a,b], partialdiff( a + b , x ) = partialdiff(a,x) + partialdiff(b,x) )</p>
   </description></property>
