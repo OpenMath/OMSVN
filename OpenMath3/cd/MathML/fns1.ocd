@@ -1,4 +1,4 @@
-<CD xmlns="http://www.openmath.org/OpenMathCD">
+           <CD xmlns="http://www.openmath.org/OpenMathCD">
 
 <CDComment>
 
@@ -60,8 +60,7 @@
   </Pragmatic>
   <Role>application</Role>
   <Description> 
-    This symbol denotes the domain of a given function, which is the set of values it is
-    defined over.
+    This is the domain of a function. It is a unary operation.
   </Description>
 
   <description>
@@ -134,6 +133,12 @@ there exists a y in the range of f and f(x) = y
 </OMOBJ>
 </FMP></property>
 
+<discussion>
+Old Description:
+    This symbol denotes the domain of a given function, which is the
+    set of values it is defined over.
+</discussion>
+
 </CDDefinition>
 
 <CDDefinition xml:id="range">
@@ -143,10 +148,7 @@ there exists a y in the range of f and f(x) = y
   </Pragmatic>
 <Role>application</Role>
 <Description>
-This symbol denotes the range of a function, that is a set that the
-function will map to. The single argument should be the function whos
-range is being queried. It should be noted that this is not necessarily
-equal to the image, it is merely required to contain the image.
+This is the codomain, or range, of a function. It is a unary function.
 </Description>
 
 <property xml:id="range_prop_2">
@@ -170,6 +172,15 @@ the range of f is a subset of the image of f
 </OMOBJ>
 </FMP></property>
 
+<discussion>
+Old Description:
+This symbol denotes the range of a function, that is a set that the
+function will map to. The single argument should be the function whos
+range is being queried. It should be noted that this is not necessarily
+equal to the image, it is merely required to contain the image.
+</discussion>
+
+
 </CDDefinition>
 
 <CDDefinition xml:id="image">
@@ -180,8 +191,7 @@ the range of f is a subset of the image of f
   </Pragmatic>
 <Role>application</Role>
 <Description> 
-This symbol denotes the image of a given function, which is the set of
-values the domain of the given function maps to.
+This is the image of a function. It is a unary operator.
 </Description>
 
 <description>
@@ -248,6 +258,13 @@ values the domain of the given function maps to.
 </OMOBJ>
 </FMP>
 </property>
+
+<discussion>
+Old Description:
+This symbol denotes the image of a given function, which is the set of
+values the domain of the given function maps to.
+</discussion>
+
 </CDDefinition>
 
 <CDDefinition xml:id="identity">
@@ -258,7 +275,7 @@ values the domain of the given function maps to.
   </Pragmatic>
   <Role>application</Role>
   <Description> 
-    The identity function, it takes one argument and returns the same value.
+    This is the identity function on a set.
   </Description>
 
 <property xml:id="identity_prop_4">
@@ -282,6 +299,12 @@ values the domain of the given function maps to.
   </OMBIND>
 </OMOBJ>
 </FMP></property>
+
+<discussion>
+Old Description:
+    The identity function, it takes one argument and returns the same value.
+</discussion>
+
 </CDDefinition>
 
 <CDDefinition xml:id="left_inverse">
@@ -294,6 +317,12 @@ values the domain of the given function maps to.
     without further stipulations. No other assumptions are made on the semantics of this
     left inverse.
   </Description>
+
+<discussion>
+  Should be omitted from MathML spec but mentioned in the Pragmatic
+  description of 'inverse'.
+</discussion>
+
 </CDDefinition>
 
 <CDDefinition xml:id="right_inverse">
@@ -306,6 +335,12 @@ values the domain of the given function maps to.
     ill-defined without further stipulations. No other assumptions are made on the
     semantics of this right inverse.
   </Description>
+
+<discussion>
+  Should be omitted from MathML spec but mentioned in the Pragmatic
+  description of 'inverse'.
+</discussion>
+
 </CDDefinition>
 
 <CDDefinition xml:id="inverse">
@@ -316,10 +351,7 @@ values the domain of the given function maps to.
   </Pragmatic>
   <Role>application</Role>
   <Description> 
-    This symbol is used to describe the inverse of its argument (a function). This inverse
-    may only be partially defined because the function may not have been surjective. If
-    the function is not surjective the inverse function is ill-defined without further
-    stipulations. No assumptions are made on the semantics of this inverse.
+    This is compositional inversion.  It is a unary operator on functions.
   </Description>
 
   <description>
@@ -518,6 +550,16 @@ f(inverse(f)(y)) = y
   </OMA>
 </OMOBJ>
 </FMP></property>
+
+<discussion>
+Old Description:
+This symbol is used to describe the inverse of its argument (a
+function). This inverse may only be partially defined because the
+function may not have been surjective. If the function is not
+surjective the inverse function is ill-defined without further
+stipulations. No assumptions are made on the semantics of this inverse.
+</discussion>
+
 </CDDefinition>
 
 <CDDefinition xml:id="left_compose">
@@ -563,7 +605,61 @@ f(inverse(f)(y)) = y
 </OMBIND>
 </OMOBJ>
 </FMP></property>
+
+
+<discussion>
+  Should be omitted from MathML spec, as it is replaced by 'compose',
+  but mentioned in the Pragmatic
+  description of 'compose'.
+</discussion>
+
 </CDDefinition>
+
+<CDDefinition xml:id="compose">
+  <Name>compose</Name>
+  <Pragmatic>
+    <Element type="opel">compose</Element>
+  </Pragmatic>
+  <Role>application</Role>
+  <Description> 
+    This is composition of functions. It is a binary operation.
+  </Description>
+
+<property xml:id="compose_prop_8a">
+<CMP> for all f,g,x | compose(f,g)(x) = f(g(x)) </CMP>
+<FMP>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
+<OMBIND>
+  <OMS cd="quant1" name="forall"/>
+  <OMBVAR>
+    <OMV name="f"/>
+    <OMV name="g"/>
+    <OMV name="x"/>
+  </OMBVAR>
+  <OMA>
+    <OMS cd="relation1" name="eq"/>
+    <OMA>
+      <OMA>
+        <OMS cd="fns1" name="compose"/>
+        <OMV name="f"/>
+        <OMV name="g"/>
+      </OMA>
+      <OMV name="x"/>
+    </OMA>
+    <OMA>
+      <OMV name="f"/>
+      <OMA>
+        <OMV name="g"/>
+        <OMV name="x"/>
+      </OMA>
+    </OMA>
+  </OMA>
+</OMBIND>
+</OMOBJ>
+</FMP></property>
+
+</CDDefinition>
+
 
 <CDDefinition xml:id="lambda">
   <Name>lambda</Name>
@@ -578,10 +674,8 @@ f(inverse(f)(y)) = y
   </Pragmatic>
   <Role>binder</Role>
   <Description>
-    This symbol is used to represent anonymous functions as lambda expansions.  It is used
-    in a binder that takes two further arguments, the first of which is a list of
-    variables, and the second of which is an expression, and it forms the function which
-    is the lambda extraction of the expression.
+    This is the function creator lambda used in lambda expansions. It
+    is a binary operator.
   </Description>
 
   <description>
@@ -596,6 +690,13 @@ f(inverse(f)(y)) = y
     variable is equivalent to that arbitrary function (&#x3AE;-equality). </p>
   </description>
   <discussion>
+    <p>Old Description:
+    This symbol is used to represent anonymous functions as
+    lambda expansions.  It is used in a binder that takes two further
+    arguments, the first of which is a list of variables, and the
+    second of which is an expression, and it forms the function which
+    is the lambda extraction of the expression.
+    </p>
     <p>The lambda calculus allows a user to construct a function from a variable and an
     expression. For example, the lambda construct underlies the common mathematical idiom
     illustrated here: Let <var>f</var> be the function taking <var>x</var> to
