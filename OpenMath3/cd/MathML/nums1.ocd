@@ -98,39 +98,37 @@ A representation of the rational number 1/2
 </CDDefinition>
 
 <CDDefinition xml:id="infinity">
-<Name>infinity</Name>
+  <Name>infinity</Name>
   <Pragmatic>
     <Element type="opel">infinity</Element>
   </Pragmatic>
-<Role>constant</Role>
-<Description> 
-A symbol to represent the notion of infinity.
-</Description>
+  <Role>constant</Role>
+  <Description> 
+    A symbol to represent the notion of infinity.
+  </Description>
 
-<description>
-          <p>Infinity.  Interpretation depends on the context.
-The default value is the positive infinity used to extend the
-real number line.  The "type" attribute can be use to indicate
-that this is a "complex" infinity.</p>
-        </description>
-		<discussion>
-			<p><el>infinity</el> represents the concept of
-			infinity. Proper interpretation depends on context.</p>
-		</discussion>
-        <property>
-          <description>
-            <p>
-infinity/infinity is not defined.</p>
-          </description><math xmlns="http://www.w3.org/1998/Math/MathML">
+  <discussion>
+    <p>Interpretation depends on the context.  The default value is the positive infinity
+    used to extend the real number line.  The "type" attribute can be use to indicate that
+    this is a "complex" infinity.</p>
+  </discussion>
+  <property>
+    <description>
+      <p>infinity/infinity is not defined.</p>
+    </description>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
 <apply><eq/>
   <apply><divide/><infinity/><infinity/></apply>
   <notanumber/>
-</apply></math></property>
-        <property>
-          <description>
-            <p>
-for all reals x, x \lt infinity </p>
-          </description><math xmlns="http://www.w3.org/1998/Math/MathML">
+</apply>
+</math>
+</property>
+
+<property>
+  <description>
+    <p>for all reals x, x \lt infinity</p>
+  </description>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
 <bind><forall/>
   <bvar><ci>n</ci></bvar>
   <condition><apply><in/><ci>n</ci><reals/></apply></condition>
@@ -139,7 +137,10 @@ for all reals x, x \lt infinity </p>
 </math>
 </property>
         
-<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><infinity/></math></MMLexample>
+<MMLexample speclevel="1" xml:id="infinity.ex1">
+  <math xmlns="http://www.w3.org/1998/Math/MathML"><infinity/></math>
+</MMLexample>
+
 <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><eq/>
   <apply><limit/>
     <bvar><ci>x</ci></bvar>
@@ -170,51 +171,49 @@ for all reals x, x \lt infinity </p>
 </CDDefinition>
 
 <CDDefinition xml:id="e">
-<Name>e</Name>
+  <Name>e</Name>
   <Pragmatic>
     <Element type="opel">exponentiale</Element>
   </Pragmatic>
-<Role>constant</Role>
-<Description> 
-This symbol represents the base of the natural logarithm, approximately 2.718.
-See Abramowitz and Stegun, Handbook of Mathematical Functions,
-section 4.1.
-</Description>
+  <Role>constant</Role>
+  <Description> 
+    This symbol represents the base of the natural logarithm, approximately 2.718.  See
+    Abramowitz and Stegun, Handbook of Mathematical Functions, section 4.1.
+  </Description>
 
-<description>
-          <p>exponentiale represents the mathematical constant which is the exponential
-          base of the natural logarithms, commonly written e .  It is approximately
-          2.718281828.. </p>
-        </description>
-	<discussion>
-	  <p><el>exponentiale</el> represents the mathematical constant which is the
-	  exponential base of the natural logarithms, commonly written <emph>e</emph>. It
-	  is approximately 2.718281828..</p>
-	</discussion>
-
-        <property>
-          <description><p>ln(e) = 1</p></description>
-	  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><eq/>
-  <apply><ln/><exponentiale/></apply>
-  <cn>1</cn>
-</apply></math></property>
-        <property>
-          <description>
-            <p>e  is approximately 2.718281828</p>
-          </description><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><approx/>
-  <exponentiale/>
-  <cn>2.718281828</cn>
-</apply></math></property>
-        <property>
-          <description>
-            <p>e = the sum as j ranges from 0 to infinity of 1/(j!)</p>
-          </description>
-        </property>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply> <eq/>
+  <property>
+    <description><p>ln(e) = 1</p></description>
+    <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><eq/>
   <apply><ln/><exponentiale/></apply>
   <cn>1</cn>
 </apply>
-</math></MMLexample>
+</math>
+</property>
+
+<property>
+  <description>
+    <p>e  is approximately 2.718281828</p>
+    </description><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><approx/>
+    <exponentiale/>
+  <cn>2.718281828</cn>
+</apply>
+</math>
+</property>
+
+<property>
+  <description>
+    <p>e = the sum as j ranges from 0 to infinity of 1/(j!)</p>
+  </description>
+</property>
+
+<MMLexample speclevel="1" xml:id="exponentiale.ex1">
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply><eq/>
+  <apply><ln/><exponentiale/></apply>
+  <cn>1</cn>
+</apply>
+</math>
+</MMLexample>
 
 <property xml:id="e_prop_2">
 <CMP> e = the sum as j ranges  from 0 to infinity of 1/(j!) </CMP>
@@ -260,40 +259,36 @@ section 4.1.
 </CDDefinition>
 
 <CDDefinition xml:id="i">
-<Name>i</Name>
+  <Name>i</Name>
   <Pragmatic>
     <Element type="opel">imaginaryi</Element>
   </Pragmatic>
-<Role>constant</Role>
-<Description> 
-This symbol represents the square root of -1.
-</Description>
+  <Role>constant</Role>
+  <Description> 
+   This symbol represents the mathematical constant which is the square root of -1,
+   commonly written i
+  </Description>
 
- <description>
-          <p>imaginaryi represents the mathematical constant which is the square root of
-          -1, commonly written i</p>
-        </description>
-	<discussion>
-	  <p><el>imaginaryi</el> represents the mathematical constant which is the square
-	  root of -1, commonly written <emph>i</emph>.</p>
-	</discussion>
+  <property>
+    <description>
+      <p>sqrt(-1) = i</p>
+    </description>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><eq/>
+        <imaginaryi/>
+        <apply><root/><degree><cn>2</cn></degree><cn>-1</cn></apply>
+      </apply>
+    </math>
+  </property>
 
-        <property>
-          <description>
-            <p>sqrt(-1) = i</p>
-          </description><math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply><eq/>
-  <imaginaryi/>
-  <apply><root/><degree><cn>2</cn></degree><cn>-1</cn></apply>
-	</apply></math></property>
-	<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply> <eq/>
-	<apply><power/>
-    <imaginaryi/>
-    <cn>2</cn>
-  </apply>
-  <cn>-1</cn>
-</apply>
-</math></MMLexample>
+  <MMLexample speclevel="1" xml:id="imaginaryi.ex1">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><eq/>
+        <apply><power/><imaginaryi/><cn>2</cn></apply>
+	<cn>-1</cn>
+      </apply>
+    </math>
+  </MMLexample>
 
 <property xml:id="i_prop_2">
 <CMP>
@@ -322,37 +317,32 @@ i^2 = -1
   <Pragmatic>
     <Element type="opel">pi</Element>
   </Pragmatic>
-<Role>constant</Role>
-<Description> 
-A symbol to convey the notion of pi, approximately 3.142.
-The ratio of the circumference of a circle to its diameter.
-</Description>
+  <Role>constant</Role>
+  <Description> 
+    A symbol to convey the notion of pi, approximately 3.142.
+    The ratio of the circumference of a circle to its diameter.
+  </Description>
 
- <description>
-          <p>pi represents the mathematical constant which is the ratio of a circle's 
-circumference to its diameter, approximately 3.141592653.</p>
-        </description>
-	<discussion>
-	  <p><el>pi</el> represents the mathematical constant which is the ratio of a
-	  circle&apos;s circumference to its diameter, approximately 3.141592653.</p>
-	</discussion>
-       <property><math xmlns="http://www.w3.org/1998/Math/MathML">
+  <property>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
 <apply><approx/>
   <cn>pi</cn>
   <cn>3.141592654</cn>
 </apply>
-</math></property>
-        <property>
-          <description>
-            <p>
-pi = 4 * the sum as j ranges from 0 to infinity of ((1/(4j+1))-(1/(4j+3))) </p>
-          </description><math xmlns="http://www.w3.org/1998/Math/MathML">
-</math></property>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><approx/>
-  <pi/>
-  <cn type = "rational">22<sep/>7</cn>
-</apply>
-</math></MMLexample>
+</math>
+</property>
+
+<property>
+  <description>
+    <p>pi = 4 * the sum as j ranges from 0 to infinity of ((1/(4j+1))-(1/(4j+3))) </p>
+  </description>
+</property>
+       
+<MMLexample speclevel="1" xml:id="pi.ex1">
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><approx/><pi/><cn type="rational">22<sep/>7</cn></apply>
+  </math>
+</MMLexample>
 
 <property xml:id="pi_prop_3">
 <CMP> 
@@ -429,46 +419,43 @@ pi = 4 * the sum as j ranges from 0 to infinity of ((1/(4j+1))-(1/(4j+3)))
   <Pragmatic>
     <Element type="opel">eulergamma</Element>
   </Pragmatic>
-<Role>constant</Role>
-<Description> 
-A symbol to convey the notion of the gamma constant
-as defined in Abramowitz and Stegun, Handbook of Mathematical
-Functions, section 6.1.3. It is the limit of
-1 + 1/2 + 1/3 + ... + 1/m - ln m
-as m tends to infinity, this is approximately 0.5772 15664.
+  <Role>constant</Role>
+  <Description> 
+    A symbol to convey the notion of the gamma constant
+    as defined in Abramowitz and Stegun, Handbook of Mathematical
+    Functions, section 6.1.3. It is the limit of
+    1 + 1/2 + 1/3 + ... + 1/m - ln m
+    as m tends to infinity, this is approximately 0.5772 15664.
 </Description>
 
- <description>
-          <p>A symbol to convey the notion of the gamma constant as defined in Abramowitz
-          and Stegun, Handbook of Mathematical Functions, section 6.1.3. It is the limit
-          of 1 + 1/2 + 1/3 + ... + 1/m - ln m as m tends to infinity, this is
-          approximately 0.5772 15664. </p>
-        </description>
-	<discussion>
-	  <p><el>eulergamma</el> represents Euler&apos;s constant, approximately
-	  0.5772156649</p>
-	</discussion>
-
-        <property>
-          <description>
-            <p>
-gamma  is approx. 0.5772156649</p>
-          </description><math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply><approx/>
+<property>
+  <description>
+    <p>gamma  is approx. 0.5772156649</p>
+  </description>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><approx/>
   <eulergamma/>
   <cn>.5772156649</cn>
-</apply></math></property>
-        <property>
-          <description>
-            <p>gamma = limit_(m -> infinity)(sum_(j ranges from 1 to m)(1/j) - ln m) </p>
-          </description><math xmlns="http://www.w3.org/1998/Math/MathML">
-</math></property>
-       <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML">
-	  <eulergamma/></math></MMLexample> 
-		<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><approx/>
-  <eulergamma/>
-  <cn>0.5772156649</cn>
-</apply></math></MMLexample>
+</apply>
+</math>
+</property>
+
+<property>
+  <description>
+    <p>gamma = limit_(m -> infinity)(sum_(j ranges from 1 to m)(1/j) - ln m) </p>
+    </description>
+</property>
+<MMLexample>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <eulergamma/>
+  </math>
+</MMLexample> 
+
+<MMLexample speclevel="1" xml:id="eulergamma.ex1">
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><approx/><eulergamma/><cn>0.5772156649</cn></apply>
+  </math>
+</MMLexample>
 
 <property xml:id="gamma_prop_4">
 <CMP> 
@@ -531,30 +518,24 @@ gamma  is approx. 0.5772156649</p>
 </CDDefinition>
 
 <CDDefinition xml:id="NaN">
-<Name>NaN</Name>
+  <Name>NaN</Name>
   <Pragmatic>
     <Element type="opel">notanumber</Element>
   </Pragmatic>
-<Role>constant</Role>
-<Description> 
-A symbol to convey the notion of not-a-number.
-The result of an ill-posed floating computation.
-See IEEE standard for floating point representations.
-</Description>
+  <Role>constant</Role>
+  <Description> 
+    A symbol to convey the notion of not-a-number.  The result of an ill-posed floating
+    computation.  See IEEE standard for floating point representations.
+  </Description>
 
-<description>
-          <p>notanumber represents the result of an ill-defined floating point operation,
-          sometimes also called NaN.</p>
-        </description>
-	<discussion>
-	  <p><el>notanumber</el> represents the result of an ill-defined floating point
-	  operation, sometimes also called <emph>NaN</emph>.</p>
-	</discussion>
-
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><eq/>
-  <apply><divide/><cn>0</cn><cn>0</cn></apply>
-  <notanumber/>
-</apply></math></MMLexample>
+  <MMLexample speclevel="1" xml:id="notanumer.ex1">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><eq/>
+        <apply><divide/><cn>0</cn><cn>0</cn></apply>
+	<notanumber/>
+      </apply>
+    </math>
+  </MMLexample>
 
 <property xml:id="NaN_prop_5">
 <CMP> NaN is not equal to NaN </CMP>
