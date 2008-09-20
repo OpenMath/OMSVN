@@ -76,20 +76,22 @@
       regarded as equivalent to a matrix consisting of a single column, and the transpose
       of a vector behaves the same as a matrix consisting of a single row. Note that
       vectors may be rendered either as a single column or row.</p>
+    </discussion>
 
-      <p>The <el>vector</el> element constructs vectors from an <var>n</var>-dimensional
-      vector space so that its <var>n</var> child elements typically represent real or
-      complex valued scalars as in the three-element vector
 
-<eg role = "mathml">
+<MMLexample speclevel="1">
+  <description>
+    <p>The <el>vector</el> element constructs vectors from an <var>n</var>-dimensional
+    vector space so that its <var>n</var> child elements typically represent real or
+    complex valued scalars as in the three-element vector</p>
+  </description>
   <math xmlns="http://www.w3.org/1998/Math/MathML">
 <vector>
   <apply><plus/><ci>x</ci><ci>y</ci></apply>
   <cn>3</cn>
   <cn>7</cn>
-</vector></math></eg></p>
-    </discussion>
-
+</vector></math>
+</MMLexample>
 
 <Example>
 An example of vector using n arguments. 
@@ -116,7 +118,10 @@ The specific vector constructed in this example is [3,6,9].
     matrices. Its arguments should be members of a ring.
   </Description>
 
- <MMLexample>
+ <MMLexample speclevel="1">
+   <description>
+     <p><el>matrixrow</el> is used as a constructor element in pragmatic MathML</p>
+   </description>
    <math xmlns="http://www.w3.org/1998/Math/MathML">
    <matrixrow><cn>1</cn><cn>2</cn></matrixrow></math>
  </MMLexample>
@@ -157,50 +162,21 @@ Representation of a row of a matrix of length two containing the integers
   </Description>
 
   <discussion>
-    <p>The <el>matrix</el> element is used to represent mathematical matrices. It has zero
-    or more child elements, all of which are <el>matrixrow</el> elements. These in turn
-    expect zero or more child elements that evaluate to algebraic expressions or
-    numbers. These sub-elements are often real numbers, or symbols as in
-
-<eg role = "mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><matrix>
-  <matrixrow> <cn>1</cn> <cn>2</cn> </matrixrow>
-  <matrixrow> <cn>3</cn> <cn>4</cn> </matrixrow>
-</matrix></math></eg>
-
-    The <el>matrixrow</el> elements must always be contained inside of a matrix, and all
-    rows in a given matrix must have the same number of elements.</p>
+    <p>The matrix constructor is used to represent mathematical matrices. It has zero or
+    more child elements, all of which are matrixrows. These in turn expect zero or more
+    child elements that evaluate to algebraic expressions or numbers. The
+    <el>matrixrow</el> elements must always be contained inside of a matrix, and all rows
+    in a given matrix must have the same number of elements.</p>
   </discussion>
   
-  <MMLexample>
+  <MMLexample speclevel="1" xml:id="matrix.ex1">
     <math xmlns="http://www.w3.org/1998/Math/MathML"><matrix>
-      <matrixrow><cn>0</cn> <cn>1</cn> <cn>0</cn></matrixrow>
-      <matrixrow><cn>0</cn> <cn>0</cn> <cn>1</cn></matrixrow>
-      <matrixrow><cn>1</cn> <cn>0</cn> <cn>0</cn></matrixrow>
+      <matrixrow><cn>0</cn><cn>1</cn><cn>0</cn></matrixrow>
+      <matrixrow><cn>0</cn><cn>0</cn><cn>1</cn></matrixrow>
+      <matrixrow><cn>1</cn><cn>0</cn><cn>0</cn></matrixrow>
     </matrix>
     </math>
   </MMLexample>
-
-  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><matrix>
-    <bvar><ci type="integer">i</ci></bvar>
-    <bvar><ci type="integer">j</ci></bvar>
-    <condition>
-      <apply><and/>
-      <apply><in/>
-      <ci>i</ci>
-      <interval><ci>1</ci><ci>5</ci></interval>
-      </apply>
-      <apply><in/>
-      <ci>j</ci>
-      <interval><ci>5</ci><ci>9</ci></interval>
-      </apply>
-      </apply>
-    </condition>
-    <vector>
-      <apply><power/><ci>i</ci><ci>j</ci></apply>
-    </vector>
-  </matrix>
-</math>
-</MMLexample>
 
 <Example>
 Representation of a 2x2 identity matrix
