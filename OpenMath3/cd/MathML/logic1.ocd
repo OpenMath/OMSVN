@@ -130,32 +130,27 @@ condition that (A implies B and B implies A) </CMP>
 </CDDefinition>
 
 <CDDefinition xml:id="not">
-<Name>not</Name>
-<Title>Negation</Title>
+  <Name>not</Name>
+  <Title>Negation</Title>
   <Pragmatic>
     <Element type="opel">not</Element>
-	<Attribute>
-          <Name>type</Name>
-          <Model>MathMLType</Model>
-          <Default>boolean</Default>
-        </Attribute>
+    <Attribute>
+      <Name>type</Name>
+      <Model>MathMLType</Model>
+      <Default>boolean</Default>
+    </Attribute>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the logical not function which takes one boolean
-argument, and returns the opposite boolean value.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents the logical not function which takes one boolean argument, and
+    returns the opposite boolean value.
+  </Description>
 
-<description>
-          <p>This is the unary logical "not" operator.  It negates the truth value of its
-          single argument.  e.g., not P is true when P is false and false when P is
-          true.</p>
-        </description>
-	<discussion>
-	  <p>The <code>not</code> operator is the Boolean<quote>not</quote> operator.</p>
-	</discussion>
-  
- <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><not/><ci>a</ci></apply></math></MMLexample>
+  <MMLexample speclevel="1" xml:id="not.ex1">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><not/><ci>a</ci></apply>
+    </math>
+  </MMLexample>
 
 <property xml:id="not_prop_2">
 <CMP> for all x | not(not(x))=x </CMP>
@@ -199,63 +194,36 @@ argument, and returns the opposite boolean value.
       <Model>MathMLType</Model>
       <Default>boolean</Default>
     </Attribute>
-    <description>
-      <p>The <el>and</el> operator element can be used as a binding operator in pragmatic
-      Content MathML. This role is taken over by the <code>big_and</code> symbol in strict
-      Content MathML.</p>
-<pseq>
-  <apply xmlns="http://www.w3.org/1998/Math/MathML">
-    <and/>
-    <bvar><ci>x</ci></bvar>
-    <apply><eq/><ci>x</ci><ci>x</ci></apply>
-  </apply>
-  <apply xmlns="http://www.w3.org/1998/Math/MathML">
-    <csymbol cd="arith1">big_and</csymbol>
-    <bind>
-      <csymbol cd="fns1">lambda</csymbol>
-      <bvar><ci>x</ci></bvar>
-      <apply><csymbol cd="relation1">eq</csymbol><ci>x</ci><ci>x</ci></apply>
-    </bind>
-  </apply>
-</pseq>
-    </description>
   </Pragmatic>
-<description>
-          <p>This is the n-ary logical "and" operator.  It is used to construct the
-          logical expression which were it to be evaluated would have a value of "true"
-          when all of its operands have a truth value of "true", and "false"
-          otherwise.</p>
-        </description>
-	<discussion>
-	  <p>The <code>and</code> element is the Boolean <quote>and</quote> operator.</p>
-	  <p>As an n-ary operator, its operands may also be generated as described
-	  in<specref ref="contm_naryopwithqual"/> Therefore it may take qualifiers.</p>
-	</discussion>
 
  <property>
-          <description>
-            <p>ForAll( p, (true and p = p) )</p>
-          </description><math xmlns="http://www.w3.org/1998/Math/MathML"></math></property>
-        <property>
-          <description>
-            <p>ForAll( [p,q], (p and q = q and p) ) </p>
-          </description>
-        </property>
-        <property>
-          <description>
-            <p>x and not(x) = false</p>
-          </description>
-        </property>
-        <MMLexample>
-		<description>
-            <p>If this were evaluated and both <var>a</var> and 
-<var>b</var> had truth values of <attval>true</attval>, then the result would be <attval>true</attval>.</p>
-          </description>
-		<math xmlns="http://www.w3.org/1998/Math/MathML"><apply><and/>
-		  <ci>a</ci>
-		  <ci>b</ci>
-		  </apply></math>
-		</MMLexample>
+   <description>
+     <p>ForAll( p, (true and p = p) )</p>
+ </description>
+</property>
+
+ <property>
+   <description>
+     <p>ForAll( [p,q], (p and q = q and p) ) </p>
+   </description>
+ </property>
+
+ <property>
+   <description>
+     <p>x and not(x) = false</p>
+   </description>
+ </property>
+ 
+<MMLexample speclevel="1" xml:id="and.ex1">
+  <description>
+    <p>If this were evaluated and both <var>a</var> and <var>b</var> had truth values of
+    <attval>true</attval>, then the result would be <attval>true</attval>.</p>
+  </description>
+  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><and/>
+  <ci>a</ci>
+  <ci>b</ci>
+  </apply></math>
+</MMLexample>
 
 <property xml:id="and_prop_3">
 <CMP>
@@ -300,56 +268,31 @@ for all x | x and not(x) = false
       <Model>MathMLType</Model>
       <Default>boolean</Default>
     </Attribute>
-    <description>
-      <p>The <el>xor</el> operator element can be used as a binding operator in pragmatic
-      Content MathML. This role is taken over by the <code>big_xor</code> symbol in strict
-      Content MathML.</p>
-<pseq>
-  <apply xmlns="http://www.w3.org/1998/Math/MathML">
-    <xor/>
-    <bvar><ci>x</ci></bvar>
-    <apply><eq/><ci>x</ci><ci>x</ci></apply>
-  </apply>
-  <apply xmlns="http://www.w3.org/1998/Math/MathML">
-    <csymbol cd="arith1">big_xor</csymbol>
-    <bind>
-      <csymbol cd="fns1">lambda</csymbol>
-      <bvar><ci>x</ci></bvar>
-      <apply><csymbol cd="relation1">eq</csymbol><ci>x</ci><ci>x</ci></apply>
-    </bind>
-  </apply>
-</pseq>
-    </description>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the logical xor function which is an n-ary
-function taking boolean arguments and returning a boolean
-value. It is true if there are an odd number of true arguments or
-false otherwise.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents the logical xor function which is an n-ary function taking
+    boolean arguments and returning a boolean value. It is true if there are an odd number
+    of true arguments or false otherwise.
+  </Description>
 
-<description>
-          <p>The is the n-ary logical "xor" operator.  The constructed expression
-has a truth value of true if an odd number of its arguments
-are true.</p>
-        </description>
-	<discussion>
-	  <p>As an n-ary operator, its operands may also be generated as described
-	  in<specref ref="contm_naryopwithqual"/> Therefore it may take qualifiers.</p>
-	</discussion>
+  <property>
+    <description>
+      <p>x xor x = false </p>
+    </description>
+  </property>
 
-<property>
-          <description>
-            <p>x xor x = false </p>
-          </description>
-        </property>
-        <property>
-          <description>
-            <p>x xor not(x) = true </p>
-          </description>
-        </property>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><xor/><ci>a</ci><ci>b</ci></apply></math></MMLexample>
+  <property>
+    <description>
+      <p>x xor not(x) = true </p>
+    </description>
+  </property>
+
+  <MMLexample speclevel="1" xml:id="xor.ex1">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><xor/><ci>a</ci><ci>b</ci></apply>
+    </math>
+  </MMLexample>
 
 <property xml:id="xor_prop_4">
 <CMP>
@@ -416,26 +359,6 @@ for all x | x xor not(x) = true
       <Model>MathMLType</Model>
       <Default>boolean</Default>
     </Attribute>
-    <description>
-      <p>The <el>or</el> operator element can be used as a binding operator in pragmatic
-      Content MathML. This role is taken over by the <code>big_or</code> symbol in strict
-      Content MathML.</p>
-<pseq>
-  <apply xmlns="http://www.w3.org/1998/Math/MathML">
-    <or/>
-    <bvar><ci>x</ci></bvar>
-    <apply><eq/><ci>x</ci><ci>x</ci></apply>
-  </apply>
-  <apply xmlns="http://www.w3.org/1998/Math/MathML">
-    <csymbol cd="arith1">big_or</csymbol>
-    <bind>
-      <csymbol cd="fns1">lambda</csymbol>
-      <bvar><ci>x</ci></bvar>
-      <apply><csymbol cd="relation1">eq</csymbol><ci>x</ci><ci>x</ci></apply>
-    </bind>
-  </apply>
-</pseq>
-    </description>
   </Pragmatic>
   <Role>application</Role>
   <Description> 
@@ -444,22 +367,15 @@ for all x | x xor not(x) = true
     are true or false otherwise.
 </Description>
 
-<description>
-          <p>The is the n-ary logical "or" operator.  The constructed expression has a
-          truth value of true if at least one of its arguments is true.</p>
-        </description>
-	<discussion>
-	  <p>The <code>or</code> element is the Boolean <quote>or</quote> operator.</p>
-	  <p>As an n-ary operator, its operands may also be generated as described
-	  in<specref ref="contm_naryopwithqual"/> Therefore it may take qualifiers.</p>
-	</discussion>
 
-<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply>
-  <or/>
+<MMLexample speclevel="1" xml:id="or.ex1">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply><or/>
   <ci>a</ci>
   <ci>b</ci>
 </apply>
-</math></MMLexample>
+</math>
+</MMLexample>
 
 <property xml:id="or_prop_6">
 <CMP>
@@ -534,51 +450,43 @@ for all a,b | not(a and b)= (not(a) or not(b))
 </CDDefinition>
 
 <CDDefinition xml:id="implies">
-<Name>implies</Name>
-<Title>Implication</Title>
+  <Name>implies</Name>
+  <Title>Implication</Title>
   <Pragmatic>
     <Element type="opel">implies</Element>
-        <Attribute>
-          <Name>type</Name>
-          <Model>MathMLType</Model>
-          <Default>boolean</Default>
-        </Attribute>
+    <Attribute>
+      <Name>type</Name>
+      <Model>MathMLType</Model>
+      <Default>boolean</Default>
+    </Attribute>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents the logical implies function which takes two
-boolean expressions as arguments. It evaluates to false if the first
-argument is true and the second argument is false, otherwise it
-evaluates to true.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents the logical implies function which takes two boolean
+    expressions as arguments. It evaluates to false if the first argument is true and the
+    second argument is false, otherwise it evaluates to true.
+  </Description>
 
-<description>
-          <p>This is the binary "implies" operator.  It is used to construct the logical
-          expression "A implies B".</p>
-        </description>
-	<discussion>
-	  <p>The <code>implies</code> element is the Boolean relational operator
-	  <quote>implies</quote>.</p>
-	</discussion>
+  <property>
+    <description>
+      <p>false implies x</p>
+    </description>
+  </property>
 
-<property>
-          <description>
-            <p>false implies x 
-</p>
-          </description>
-        </property>
-        <MMLexample>
-		<description>
-           <p>Mathematical applications designed for the evaluation of such expressions would evaluate this to <attval>true</attval> when 
-<var>a</var> = <attval>false</attval> and <var>b</var> = <attval>true</attval>.</p>
-          </description>
-		<math xmlns="http://www.w3.org/1998/Math/MathML"><apply>
-  <implies/>
-  <ci>A</ci>
-  <ci>B</ci>
-</apply>
-		</math>
-</MMLexample>
+  <MMLexample speclevel="1" xml:id="implies.ex1">
+    <description>
+      <p>Mathematical applications designed for the evaluation of such expressions would
+      evaluate this to <attval>true</attval> when <var>a</var> = <attval>false</attval>
+      and <var>b</var> = <attval>true</attval>.</p>
+    </description>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+      <implies/>
+      <ci>A</ci>
+      <ci>B</ci>
+      </apply>
+    </math>
+  </MMLexample>
 
 <property xml:id="implies_prop_8">
 <CMP> for all x | false implies x </CMP>

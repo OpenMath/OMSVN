@@ -60,8 +60,8 @@
   </Description>
 
   <discussion>
-    <p>The <el>piecewise</el>, <el>piece</el>, and <el>otherwise</el> elements are
-    used to support <quote>piecewise</quote> declarations of the form 
+    <p>The <el>piecewise</el>, <el>piece</el>, and <el>otherwise</el> elements are used to
+    support <quote>piecewise</quote> declarations of the form
     <math xmlns="http://www.w3.org/1998/Math/MathML">
       <mrow><mi>H</mi><mfenced open="(" close=")"><mi>x</mi></mfenced></mrow>
       <mo>=</mo>
@@ -89,22 +89,7 @@
     defines the value taken by the <el>piecewise</el> expression when the condition
     specified in the associated second child of the <el>piece</el> is true.  The
     degenerate case of no <el>piece</el> elements and no <el>otherwise</el> element is
-    treated as undefined for all values of the domain.
-<eg role = "mathml">
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <piecewise>
-      <piece>
-	<cn>0</cn>
-	<apply><lt/><ci>x</ci><cn>0</cn></apply>
-      </piece>
-      <otherwise><ci>x</ci></otherwise>
-    </piecewise>
-  </math>
-    </eg></p>
-
-    <p> <el>otherwise</el> allows the specification of a value to be taken by the
-    <el>piecewise</el> function when none of the conditions (second child elements of the
-    <el>piece</el> elements) is true, i.e. a default value.</p>
+    treated as undefined for all values of the domain.</p>
 
     <p>It should be noted that no <quote>order of execution</quote> is implied by the
     ordering of the <el>piece</el> child elements within <el>piecewise</el>. It is the
@@ -115,27 +100,27 @@
     undefined.</p>
   </discussion>
 
-	<property>
-	  <description>
-	    <p>ForAll( x, x in domain(f), the evaluation rules collectively produce at most one 
-	    value in codomain(f) )</p>
-	  </description>
-	</property>
+  <property>
+    <description>
+      <p>ForAll( x, x in domain(f), the evaluation rules collectively produce at most one 
+      value in codomain(f) )</p>
+    </description>
+  </property>
+  
+  <MMLexample speclevel="1">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <piecewise>
+	<piece><cn>0</cn><apply><lt/><ci>x</ci> <cn>0</cn></apply></piece>
+	<otherwise><ci>x</ci></otherwise>
+      </piecewise>
+    </math>
+  </MMLexample>
 
-	<MMLexample>
-	  <math xmlns="http://www.w3.org/1998/Math/MathML">
-	    <piecewise>
-	      <piece><cn>0</cn><apply><lt/><ci>x</ci> <cn>0</cn></apply></piece>
-	      <otherwise><ci>x</ci></otherwise>
-	    </piecewise>
-	  </math>
-	</MMLexample>
-
-	<MMLexample>
-          <description>
-	    <p>The value of the abs function evaluated at x can be written as:</p>
-	  </description>
-<math xmlns="http://www.w3.org/1998/Math/MathML"><piecewise>
+  <MMLexample speclevel="1" xml:id="piecewise.ex1">
+    <description>
+      <p>The value of the abs function evaluated at x can be written as:</p>
+    </description>
+    <math xmlns="http://www.w3.org/1998/Math/MathML"><piecewise>
   <piece>
     <apply><minus/><ci>x</ci></apply>
     <apply><lt/><ci>x</ci><cn>0</cn></apply>
@@ -192,17 +177,6 @@
     piecewise construct.
   </Description>
 
-
-  <MMLexample>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<piecewise>
-  <piece><cn>0</cn><apply><lt/><ci>x</ci> <cn>0</cn></apply></piece>
-  <otherwise><ci>x</ci></otherwise>
-</piecewise>
-</math>
-</MMLexample>
-
-
 <Example>
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
 <OMA>
@@ -242,38 +216,27 @@
     the value.
   </Description>
 
-  <MMLexample>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<piecewise>
-  <piece><cn>0</cn><apply><lt/><ci>x</ci> <cn>0</cn></apply></piece>
-  <otherwise><ci>x</ci></otherwise>
-</piecewise>
-</math>
-</MMLexample>
-
 <Example>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-<OMA>
-<OMS cd="relation1" name="eq"/>
-<OMA>
-  <OMS cd="arith1" name="abs"/>
-  <OMV name="x"/>
-</OMA>
-<OMA><OMS cd="piece1" name="piecewise"/>
-  <OMA><OMS cd="piece1" name="piece"/>
-      <OMA><OMS cd="arith1" name="unary_minus"/><OMV name="x"/></OMA>
-      <OMA><OMS cd="relation1" name="lt"/><OMV name="x"/> <OMI> 0 </OMI></OMA>
-  </OMA>
-  <OMA><OMS cd="piece1" name="piece"/>
-      <OMI> 0 </OMI>
-      <OMA><OMS cd="relation1" name="eq"/><OMV name="x"/> <OMI> 0 </OMI></OMA>
-  </OMA>
-  <OMA><OMS cd="piece1" name="otherwise"/>
-      <OMV name="x"/>
-  </OMA>
-</OMA>
-</OMA>
-</OMOBJ>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
+    <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMA>
+	<OMS cd="arith1" name="abs"/>
+	<OMV name="x"/>
+      </OMA>
+      <OMA><OMS cd="piece1" name="piecewise"/>
+        <OMA><OMS cd="piece1" name="piece"/>
+          <OMA><OMS cd="arith1" name="unary_minus"/><OMV name="x"/></OMA>
+	  <OMA><OMS cd="relation1" name="lt"/><OMV name="x"/><OMI>0</OMI></OMA>
+	</OMA>
+	<OMA><OMS cd="piece1" name="piece"/>
+          <OMI>0</OMI>
+	  <OMA><OMS cd="relation1" name="eq"/><OMV name="x"/><OMI>0</OMI></OMA>
+	</OMA>
+	<OMA><OMS cd="piece1" name="otherwise"/><OMV name="x"/></OMA>
+      </OMA>
+    </OMA>
+  </OMOBJ>
 </Example>
 </CDDefinition>
 
