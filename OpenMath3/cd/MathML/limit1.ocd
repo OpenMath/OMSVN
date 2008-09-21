@@ -60,28 +60,7 @@
     both_sides) and the function.
   </Description>
 
-  <description>
-    <!-- this description and discussion are wrong... MathML limites where of sequences only --> 
-    <p>The limit element represents the operation of taking a limit of a sequence. The
-    limit point is expressed by specifying a lowlimit and a bvar, or by specifying a
-    condition on one or more bound variables.</p>
-  </description>
-  <discussion>
-    <p>The <el>limit</el> element represents the operation of taking a limit of a
-    sequence. The limit point is expressed by specifying a <el>lowlimit</el> and a
-    <el>bvar</el>, or by specifying a <el>condition</el> on one or more bound
-    variables.</p>
-    
-    <p>The <el>limit</el> function accepts zero or more <el>bvar</el> schemata, and
-    optional <el>condition</el> and <el>lowlimit</el> schemata. A <el>condition</el>
-    may be used to place constraints on the <el>bvar</el>. The <el>bvar</el> schema
-    denotes the variable with respect to which the limit is being taken. The
-    <el>lowlimit</el> schema denotes the limit point. When used with <el>limit</el>,
-    the <el>bvar</el> and <el>lowlimit</el> schemata are expected to contain a
-    single child schema; otherwise an error is generated.</p>
-  </discussion>
-  
-  <MMLexample>
+  <MMLexample speclevel="1" xml:id="limit.ex1">
     <math xmlns="http://www.w3.org/1998/Math/MathML">
       <apply>
 	<limit/>
@@ -92,19 +71,20 @@
     </math>
   </MMLexample>
   <!-- fixed to HERE JSD -->
-  <MMLexample>
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply><limit/>
+
+<MMLexample speclevel="1" xml:id="limit.ex2">
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><limit/>
       <bvar><ci>x</ci></bvar>
-      <condition>
-	<apply><tendsto/><ci>x</ci><cn>0</cn></apply>
-      </condition>
-      <apply><sin/><ci>x</ci></apply>
-      </apply>
+	<condition>
+	  <apply><tendsto/><ci>x</ci><cn>0</cn></apply>
+	</condition>
+	<apply><sin/><ci>x</ci></apply>
+    </apply>
   </math>
 </MMLexample>
 
-<MMLexample>
+<MMLexample speclevel="1" xml:id="limit.ex3">
   <math xmlns="http://www.w3.org/1998/Math/MathML">
     <apply>
       <limit/>
@@ -147,15 +127,15 @@ The limit of sin(x) as x tends to 0
   <Pragmatic>
     <Element type="opel">both_sides</Element>
   </Pragmatic>
-<Role>constant</Role>
-<Description> 
-This symbol is used within a limit construct to show the limit is
-being approached from both sides. It cannot be applied.
-</Description>
+  <Role>constant</Role>
+  <Description> 
+    This symbol is used within a limit construct to show the limit is being approached
+    from both sides. It cannot be applied.
+  </Description>
 
 <Example>
-The limit of sin(x) as x tends to 0 from either direction
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
+  The limit of sin(x) as x tends to 0 from either direction
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
   <OMA>
     <OMS cd="limit1" name="limit"/>
     <OMI> 0 </OMI>
@@ -176,15 +156,15 @@ The limit of sin(x) as x tends to 0 from either direction
 </CDDefinition>
 
 <CDDefinition xml:id="above">
-<Name>above</Name>
+  <Name>above</Name>
   <Pragmatic>
     <Element type="opel">above</Element>
   </Pragmatic>
-<Role>constant</Role>
-<Description> 
-This symbol is used within a limit construct to show the limit is
-being approached from above. It cannot be applied.
-</Description>
+  <Role>constant</Role>
+  <Description> 
+    This symbol is used within a limit construct to show the limit is being approached
+    from above. It cannot be applied.
+  </Description>
 
 <Example>
 The limit of sin(x) as x tends to 0 from above
@@ -242,22 +222,22 @@ The limit of sin(x) as x tends to 0 from below
 </CDDefinition>
 
 <CDDefinition xml:id="null">
-<Name>null</Name>
+  <Name>null</Name>
   <Pragmatic>
     <Element type="opel">null</Element>
   </Pragmatic>
-<Role>constant</Role>
-<Description>
-This symbol is used within a limit construct to avoid specifying the method of
-approach to the limit. It cannot be applied.
-</Description>
+  <Role>constant</Role>
+  <Description>
+    This symbol is used within a limit construct to avoid specifying the method of
+    approach to the limit. It cannot be applied.
+  </Description>
 
 <Example>
 The limit of sin(x) as x tends to 0
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
   <OMA>
     <OMS cd="limit1" name="limit"/>
-    <OMI> 0 </OMI>
+    <OMI>0</OMI>
     <OMS cd="limit1" name="null"/>
     <OMBIND>
       <OMS cd="fns1" name="lambda"/>
@@ -286,8 +266,39 @@ The limit of sin(x) as x tends to 0
   </Pragmatic>
   <Role>application</Role>
   <Description>
-    This symbol can be used to indicate the type of limit's approach that is used.
+    This symbol is also used to express the relation that a quantity is tending to a
+    specified value. While this is used primarily as part of the statement of a
+    mathematical limit, it exists as a construct on its own to allow one to capture
+    mathematical statements such as "As x tends to y," and to provide a building block to
+    construct more general kinds of limits.
   </Description>
+
+<MMLexample speclevel="1" xml:id="tendsto.ex1">
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><tendsto type="above"/>
+      <apply><power/><ci>x</ci><cn>2</cn></apply>
+	<apply><power/><ci>a</ci><cn>2</cn></apply>
+    </apply>
+  </math>
+</MMLexample>
+
+<MMLexample speclevel="1" xml:id="tendsto.ex2">
+  <description>
+    <p>To express that (<var>x</var>, <var>y</var>) tends to (<var>f</var>(<var>x</var>,
+    <var>y</var>), <var>g</var>(<var>x</var>, <var>y</var>)), one might use vectors, as
+    in:</p>
+  </description>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><tendsto/>
+      <vector><ci>x</ci><ci>y</ci></vector>
+	<vector>
+	  <apply><ci type="function">f</ci><ci>x</ci><ci>y</ci></apply>
+	  <apply><ci type="function">g</ci><ci>x</ci><ci>y</ci></apply>
+	</vector>
+    </apply>
+  </math>
+</MMLexample>
+
 </CDDefinition>
 
 </CD>

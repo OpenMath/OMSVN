@@ -1,0 +1,49 @@
+\documentclass[12pt]{article}
+\usepackage{a4wide,url}
+\usepackage[hyper]{acronyms}
+\usepackage{lstomdoc,xmlindex}
+\usepackage[show]{ed}
+\usepackage[eso-foot,today]{svninfo}
+\usepackage{hyperref}
+\svnInfo $Id: note.tex 7995 2008-09-06 05:18:41Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/blue/mmturis/note.tex $
+\lstset{language=OpenMath,basicstyle=\scriptsize}
+\def\llquote#1{\ensuremath{\langle\kern-.25em\langle\hbox{\sl{#1}}\rangle\kern-.25em\rangle}}
+
+\title{{\openmath3} without conditions: A Proposal for a MathML3/OM3 Calculus Content Dictionary}
+\author{Michael Kohlhase}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+  We propose a new way of encoding binding operators in {\openmath/\mathml} that
+  alleviates the need to introduce {\element{condition}} elements into {\openmath}3. We
+  evaluate these ideas by providing a content dictionary {\texttt{calculus?}} that is more
+  closely alingned with {\mathml2} representation intuitions as a replacement for the
+  {\openmath} standard CD {\texttt{calculus1}}.
+\end{abstract}
+
+\section{Introduction}
+We are currently reworking the {\openmath} content dictionaries from the ``MathML group''
+in an attempt to align the {\openmath3} and {\mathml3} languages. One area of contention
+is the fact that {\mathml} allows binding constructions where the bound variables are
+restricted by ``qualifier elements'', such as {\element{domainofapplication}},
+{\element{condition}}, {\element{uplimit}}, {\element{lowlimit}}, {\element{degree}}, and
+{\element{momentabout}}.
+
+Another bone of contention is that {\mathml} often expresses functionals using binding
+operators over expressions with bound variables (and qualifiers), whereas {\openmath}
+tends to apply the functionals themselves to functions represented with the help of the
+$\lambda$ operator. Probably the synchronized {\openmath3}/{\mathml3} content dictionaries
+should support both styles, since they appeal to different communities of mathematicians.
+
+\section{Acknowledgements}
+This proposal has been greatly influenced by discussions with Florian Rabe in the context
+of the developement of the {\omdocv{1.6}} notation definitions.
+
+\bibliographystyle{alphahurl} 
+\bibliography{kwarc}
+\end{document}
+
+% LocalWords:  ns attr xml byctx cd MMT cdbase mmt arith MMTWS mmtget saxon
+% LocalWords:  Sacerdoti Coen Zacchiroli kwarc

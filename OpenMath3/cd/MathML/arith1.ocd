@@ -439,14 +439,18 @@ gcd(6,9) = 3
 </property>
 
 <MMLexample>
-  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><plus/><cn>3</cn></apply></math>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><plus/><cn>3</cn></apply>
+  </math>
 </MMLexample>
 
 <MMLexample>
-<math xmlns="http://www.w3.org/1998/Math/MathML"><apply><plus/><cn>3</cn><cn>5</cn></apply></math>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><plus/><cn>3</cn><cn>5</cn></apply>
+  </math>
 </MMLexample>
 
-<MMLexample>
+<MMLexample speclevel="1" xml:id="plus.ex1">
   <description>
     <p>If this were evaluated at <var>x=5</var>, <var>y=2</var>, and <var>z=1</var> it
     would yield 8.</p>
@@ -502,8 +506,10 @@ gcd(6,9) = 3
   </Pragmatic>
 
   <MMLexample speclevel="1" xml:id="unary_minus.ex1">
-  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><minus/><cn>3</cn></apply></math>
-</MMLexample>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><minus/><cn>3</cn></apply>
+    </math>
+  </MMLexample>
 
 <property xml:id="unary_minus_prop_5">
 <CMP> for all a | a + (-a) = 0 </CMP>
@@ -687,9 +693,13 @@ gcd(6,9) = 3
 </property>
 
 <MMLexample speclevel="1" xml:id="times.ex1">
-  <description><p>If this were evaluated at 
-  <var>a</var> = 5.5 and <var>b</var> = 3 it would yield 16.5.</p></description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>a</ci><ci>b</ci></apply></math>
+  <description>
+    <p>If this were evaluated at <var>a</var> = 5.5 and <var>b</var> = 3 it would yield
+    16.5.</p>
+  </description>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><times/><ci>a</ci><ci>b</ci></apply>
+  </math>
 </MMLexample>
 
 <Example>
@@ -886,10 +896,13 @@ gcd(6,9) = 3
       example, when <var>a</var>=5 and <var>b</var>=2 some mathematical applications may
       evaluate this to 2.5 while others will treat is as a rational number.</p>
     </description>
-<math xmlns="http://www.w3.org/1998/Math/MathML"><apply><divide/>
-  <ci>a</ci>
-  <ci>b</ci>
-</apply></math></MMLexample>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><divide/>
+        <ci>a</ci>
+        <ci>b</ci>
+      </apply>
+    </math>
+  </MMLexample>
 
 
 <property xml:id="divide_prop_9">
@@ -990,13 +1003,15 @@ gcd(6,9) = 3
 </property>
 
 <MMLexample>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply><power/><cn>2</cn><ci>x</ci></apply>
-</math>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><power/><cn>2</cn><ci>x</ci></apply>
+  </math>
 </MMLexample>
 
 <MMLexample speclevel="1" xml:id="power.ex1">
-  <description><p>If this were evaluated at <var>x</var>= 5 it would yield 125.</p></description>
+  <description>
+    <p>If this were evaluated at <var>x</var>= 5 it would yield 125.</p>
+  </description>
   <math xmlns="http://www.w3.org/1998/Math/MathML">
     <apply>
       <power/>
@@ -1345,57 +1360,15 @@ gcd(6,9) = 3
   
   <Pragmatic>
     <Element type="opel_big">sum</Element>
-    <description>
-      <p>In pragmatic Content MathmL, the <el>sum</el> operator may used as the first child
-      of an <el>apply</el> element, which is qualified by providing a
-      <el>domainofapplication</el>, an <el>uplimit</el>, <el>lowlimit</el> pair,
-      <el>condition</el> element.  The index for the summation is specified by a
-      <el>bvar</el> element.</p>
-
-      <p>If no bound variables are specified then terms of the sum correspond to those
-      produced by evaluating the function that is provided at the points of the domain,
-      while if bound variables are present they are the index of summation and they take
-      on the values of points in the domain.  In this case the terms of the sum correspond
-      to the values of the expression that is provided, evaluated at those points.
-      Depending on the structure of the domain, the domain of summation can be abbreviated
-      by using <el>uplimit</el> and <el>lowlimit</el> to specify upper and lower limits
-      for the sum.</p>
-
-      <p>A <el>sum</el> in pragmatic Content MathML is turned into strict Content MathML
-      by supplying a <el>lambda</el> binder for the expression to make it into a
-      function. The range of integration is converted to an interval.</p>
-<pseq>
-  <apply xmlns="http://www.w3.org/1998/Math/MathML">
-    <sum/>
-    <bvar><ci>i</ci></bvar>
-    <lowlimit><cn>0</cn></lowlimit>
-    <uplimit><cn>100</cn></uplimit>
-    <apply><power/><ci>x</ci><ci>i</ci></apply>
-  </apply>
-  <apply xmlns="http://www.w3.org/1998/Math/MathML">
-    <sum/>
-    <apply>
-      <csymbol cd="interval1">integer_interval</csymbol>
-      <cn>0</cn>
-      <cn>100</cn>
-    </apply>
-    <bind>
-      <csymbol cd="fns1">lambda</csymbol>
-      <bvar><ci>i</ci></bvar>
-      <apply><power/><ci>x</ci><ci>i</ci></apply>
-    </bind>
-  </apply>
-</pseq>
-  </description>
   </Pragmatic>
 
-<MMLexample>
+<MMLexample speclevel="1" xml:id="sum.ex1"> 
   <math xmlns="http://www.w3.org/1998/Math/MathML">
     <apply>
       <sum/>
       <bind>
 	<lambda/>
-	<bvar> <ci>x</ci></bvar>
+	<bvar><ci>x</ci></bvar>
 	<lowlimit><ci>a</ci></lowlimit>
 	<uplimit><ci>b</ci></uplimit>
 	<apply><ci>f</ci><ci>x</ci></apply>
@@ -1404,7 +1377,7 @@ gcd(6,9) = 3
   </math>
 </MMLexample>
 
-<MMLexample>
+<MMLexample speclevel="1" xml:id="sum.ex2">
   <math xmlns="http://www.w3.org/1998/Math/MathML">
     <apply>
       <sum/>
@@ -1414,6 +1387,16 @@ gcd(6,9) = 3
 	<condition><apply> <in/><ci>x</ci><ci type="set">B</ci></apply></condition>
 	<apply><ci type="function"> f</ci><ci>x</ci></apply>
       </bind>
+    </apply>
+  </math>
+</MMLexample>
+
+<MMLexample speclevel="1" xml:id="sum.ex3">
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply>
+      <sum/>
+      <domainofapplication><ci type="set">B</ci></domainofapplication>
+      <ci type="function">f</ci>
     </apply>
   </math>
 </MMLexample>
@@ -1457,48 +1440,9 @@ gcd(6,9) = 3
 
   <Pragmatic>
     <Element type="opel_big">product</Element>
-    <description>
-      <p>In pragmatic Content MathmL, the <el>product</el> Operator may used as the first
-      child of an <el>apply</el> element, which is qualified by providing a
-      <el>domainofapplication</el>, an <el>uplimit</el>, <el>lowlimit</el> pair,
-      <el>condition</el> element.  The index is specified by a <el>bvar</el> element.</p>
-
-      <p>If no bound variables are specified then terms of the product correspond to those
-      produced by evaluating the function that is provided at the points of the domain,
-      while if bound variables are present they are the index and they take on the values
-      of points in the domain.  In this case the terms of the product correspond to the
-      values of the expression that is provided, evaluated at those points.  Depending on
-      the structure of the domain, the domain of multiplication can be abbreviated by
-      using <el>uplimit</el> and <el>lowlimit</el> to specify upper and lower limits for
-      the product.</p>
-
-      <p>A <el>product</el> in pragmatic Content MathML is turned into strict Content MathML
-      by supplying a <el>lambda</el> binder for the expression to make it into a
-      function. The range of integration is converted to an interval.</p>
-<pseq>
-  <apply xmlns="http://www.w3.org/1998/Math/MathML">
-    <product/>
-    <bvar><ci>i</ci></bvar>
-    <apply><power/><ci>x</ci><ci>i</ci></apply>
-  </apply>
-  <apply xmlns="http://www.w3.org/1998/Math/MathML">
-    <product/>
-    <apply>
-      <csymbol cd="interval1">integer_interval</csymbol>
-      <cn>0</cn>
-      <cn>100</cn>
-    </apply>
-    <bind>
-      <csymbol cd="fns1">lambda</csymbol>
-      <bvar><ci>i</ci></bvar>
-      <apply><power/><ci>x</ci><ci>i</ci></apply>
-    </bind>
-  </apply>
-</pseq>
-  </description>
   </Pragmatic>
 
-  <MMLexample>
+  <MMLexample  speclevel="1" xml:id="product.ex1">
 <math xmlns="http://www.w3.org/1998/Math/MathML">
 <apply>
   <product/>
@@ -1513,7 +1457,8 @@ gcd(6,9) = 3
 </math>
 </MMLexample>
 
-<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML">
+<MMLexample  speclevel="1" xml:id="product.ex2">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
 <apply>
   <product/>
   <bind>
