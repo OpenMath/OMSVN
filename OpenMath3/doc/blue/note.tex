@@ -19,7 +19,7 @@
   We propose a new way of encoding binding operators in {\openmath/\mathml} that
   alleviates the need to introduce {\element{condition}} elements into {\openmath}3. We
   evaluate these ideas by providing a content dictionary {\texttt{calculus3}} that is more
-  closely alingned with {\mathml2} representation intuitions as a replacement for the
+  closely aligned with {\mathml2} representation intuitions as a replacement for the
   {\openmath} standard CD {\texttt{calculus1}}.
 \end{abstract}
 
@@ -38,7 +38,7 @@ $\lambda$ operator. Probably the synchronized {\openmath3}/{\mathml3} content di
 should support both styles, since they appeal to different communities of
 mathematicians. We propose a new content dictionary
 {\texttt{calculus3}}\footnote{{\texttt{calculus2}} already exists as an experimental CD on
-  {\texttt{openmath.org}}} that is more closely alingned with {\mathml2} representation
+  {\texttt{openmath.org}}} that is more closely aligned with {\mathml2} representation
 intuitions as a replacement for the {\openmath} standard CD {\texttt{calculus1}}. The new
 content dictionary can be found on the {\openmath3} development repository as
 {\url{https://svn.openmath.org/OpenMath3/cd/MathML/calculu3.ocd}}.
@@ -218,7 +218,7 @@ structural similarity in the
 \\\hline
 \end{tabular}
 \end{center}
-We have used strict content MathML to highlight the correspondence for the parttial
+We have used strict content MathML to highlight the correspondence for the partial
 differentiation example we obtain 
 \begin{lstlisting}[language=OpenMath]
 <OMBIND>
@@ -232,7 +232,7 @@ differentiation example we obtain
 
 \section{Integrals}
 
-For integrals, the situtaion is similar, {\mathml} interprets derivatives as operators on
+For integrals, the situation is similar, {\mathml} interprets derivatives as operators on
 expressions in one bound variable and presents as paradigmatic examples the following
 three expressions, which differ in which ways the bound variables are handled.
 \begin{center}\lstset{frame=none,numbers=none,lineskip=-.7ex,aboveskip=-.5em,belowskip=-1em,language=MathML}
@@ -330,7 +330,7 @@ convention above in the {\texttt{calculus1}} CD is nonsensical and should be eli
 For example 4. we are also in trouble, as we have to construct a set from the
 {\element{condition}} in order to use {\texttt{int}} or {\texttt{defint}}. This would in
 principle be possible using the {\texttt{suchthat}} symbol from {\texttt{set1}}, but we
-need a base set for separation here. But this is not given in expample 3. and taking the
+need a base set for separation here. But this is not given in example 3. and taking the
 ``universal set'' is set-theoretically problematic.
 
 In this situation we propose to take the representational distinctions in examples 3. -
@@ -338,13 +338,12 @@ In this situation we propose to take the representational distinctions in exampl
 differentiation. Our new {\texttt{calculus3}} content dictionary supplies a symbol
 {\texttt{defint}} that takes two real numbers as arguments: the lower and upper limits of
 the range of integration, a symbol {\texttt{defintset}} that takes a set as an argument,
-and finally a symbol {\texttt{defintcond}} that takes an expression involing the bound
+and finally a symbol {\texttt{defintcond}} that takes an expression involving the bound
 variable as an argument. 
 
 With this, we directly get the following strict content MathML representations (we have
 abbreviated {\texttt{calculus3}} to {\texttt{calc3}} to save space):
-\begin{center}\lstset{frame=none,numbers=none,lineskip=-.7ex,aboveskip=-.5em,belowskip=-1em,language=MathML}
-\begin{tabular}{|p{7.5cm}|p{8cm}|}\hline
+\begin{center}\lstset{frame=none,numbers=none,lineskip=-.7ex,aboveskip=-.5em,belowskip=-1em,language=MathML}\begin{tabular}{|p{7.5cm}|p{7.8cm}|}\hline
   3: $\int_0^af(x) dx$ & 4: $\int_{x\in D}f(x) dx$ \\\hline
 \begin{lstlisting}
 <bind>
@@ -402,30 +401,31 @@ integration over functions in {\texttt{calculus1}} already takes the role analog
 
 \section{Conclusions}
 
-We propose a new content dictionary {\texttt{calculus3}}\footnote{{\texttt{calculus2}}
-  already exists as an experimental CD on {\texttt{openmath.org}}} that is more closely
-alingned with {\mathml2} representation intuitions as a replacement for the {\openmath}
-standard CD {\texttt{calculus1}}.
+We propose a new content dictionary {\texttt{calculus3}} that is more closely aligned with
+{\mathml2} representation intuitions as a replacement for the {\openmath} standard CD
+{\texttt{calculus1}}.
 
-For differentiation and integration over expressions with bound varaibles we should use
+For differentiation and integration over expressions with bound variables we should use
 the {\texttt{calculus3}} symbols, and for differentiation and integration over functions
 we should use {\texttt{calculus1}} symbols. This is directly analogous to the situation
-between the content dictionaries {\texttt{s_data1}} and {\texttt{s_dist1}}, where the
+between the content dictionaries {\texttt{s\_data1}} and {\texttt{s\_dist1}}, where the
 underspecified usage with data sets and random variables in {\mathml} has been specified
 into two different content dictionaries in {\openmath}.
 
 Finally, we remark that the use of binding constructors like we use them in the
-{\texttt{calculs3}} content dictionary allows us to move the {\mathml}
+{\texttt{calculus3}} content dictionary allows us to move the {\mathml}
 {\element{condition}} elements into (suitably defined) binding constructors, so that the
 core {\openmath} format need not be extended to achieve synchronization with {\mathml}. In
 particular note that an analog to the new symbol {\texttt{defintcond}} that takes an
-expression involing the bound variable as an argument cannot be added to
+expression involving the bound variable as an argument cannot be added to
 {\texttt{calculus1}}, since the bound variable in the condition cannot be accessed outside
 the $\lambda$ term that binds it.
 
 The only thing that has be be changed/clarified in the {\openmath3} standard is that scope
-of the bound variable (and thus replacement in $\alpha$-renaming) 
-
+of the bound variable (and thus replacement in $\alpha$-renaming) extends to the binding
+operator. As we have to clarify alpha renaming for attributions anyway, this seems like
+the lesser evil in comparison with extending the {\openmath} format with a condition
+element, in particular since existing {\openmath} only uses symbols as binding operators.
 
 % \section{The {\texttt{calculus3}} Content Dictionary}
 % \lstinputlisting[language=omCD,nolol]{../../cd/MathML/calculus3.ocd}
@@ -433,11 +433,15 @@ of the bound variable (and thus replacement in $\alpha$-renaming)
 
 \section{Acknowledgements}
 This proposal has been greatly influenced by discussions with Florian Rabe in the context
-of the developement of the {\omdocv{1.6}} notation definitions.
+of the development of the {\omdocv{1.6}} notation definitions.
 
 \bibliographystyle{alphahurl} 
 \bibliography{kwarc}
 \end{document}
 
-% LocalWords:  ns attr xml byctx cd MMT cdbase mmt arith MMTWS mmtget saxon
-% LocalWords:  Sacerdoti Coen Zacchiroli kwarc
+% LocalWords:  ns attr xml byctx cd MMT cdbase mmt arith MMTWS mmtget saxon ci
+% LocalWords:  Sacerdoti Coen Zacchiroli kwarc domainofapplication uplimit bvar
+% LocalWords:  lowlimit momentabout openmath cn eq OMA transc fns nthdiff OMV
+% LocalWords:  OMBIND OMBVAR OMI dx dy partialdiff pdiffdegree csymbol af Df
+% LocalWords:  defint FMP suchthat functionals defintset defintcond calc
+% LocalWords:  defintbounds
