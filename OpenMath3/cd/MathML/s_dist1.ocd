@@ -42,10 +42,8 @@
 <CDRevision>0</CDRevision>
 <CDStatus>draft</CDStatus>
 <Description>
-    This CD holds the definitions of the basic statistical functions
-    used on random variables. It is intended to be
-    `compatible' with the MathML elements representing statistical
-    functions.
+    This CD holds the definitions of the basic statistical functions used on random
+    variables. 
 </Description>
 
 
@@ -54,41 +52,20 @@
   <Pragmatic specref="mean.dist">
     <Element type="opel">mean</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents a unary function denoting the mean of a 
-distribution. The argument is a univariate function to describe the 
-distribution. That is, if f is the function describing the 
-distribution. The mean is the expression integrate(x*f(x)) w.r.t. x over the
-range (-infinity,infinity).
+  <Role>application</Role>
+  <Description> 
+    This symbol represents a unary function denoting the mean of a distribution. The
+    argument is a univariate function to describe the distribution. That is, if f is the
+    function describing the distribution. The mean is the expression integrate(x*f(x))
+    w.r.t. x over the range (-infinity,infinity).  See CRC Standard Mathematical Tables
+    and Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996, section 7.7.1
 </Description>
 
-<description>
-      <p>The mean value of a set of data, or of a random variable.  See CRC Standard
-      Mathematical Tables and Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996,
-      section 7.7.1</p>
-    </description>
-    <discussion>
-      <p><el>mean</el> is the operator element representing a <emph>mean</emph> or
-      average.</p>
-    </discussion>
-
-    <MMLexample>
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-	<apply><mean/><ci type="discrete_random_variable"> X</ci></apply>
-      </math>
-    </MMLexample>
-
-    <MMLexample>
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-	<apply><mean/><cn>3</cn><cn>4</cn><cn>3</cn><cn>7</cn><cn>4</cn></apply>
-      </math>
-    </MMLexample>
-    <MMLexample>
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply><mean/><ci>X</ci></apply>
-    </math>
-    </MMLexample>
+<MMLexample speclevel="1" xml:id="mean.ex1">
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><mean/><ci type="discrete_random_variable">X</ci></apply>
+  </math>
+</MMLexample>
 
 <property xml:id="mean_prop_1">
 <CMP>
@@ -138,43 +115,27 @@ mean(f(X)) = int(x*f(x)) w.r.t. x over the range [-infinity,infinity]
   <Pragmatic specref="sdev.dist">
     <Element type="opel">sdev</Element>
   </Pragmatic>
-<Role>application</Role>
-<Description> 
-This symbol represents a unary function denoting the standard
-deviation of a distribution. The argument is a univariate function
-to describe the distribution. The standard deviation of a distribution
-is the arithmetical mean of the squares of the deviation of the
-distribution from the mean.
-</Description>
+  <Role>application</Role>
+  <Description> 
+    This symbol represents a unary function denoting the standard deviation of a
+    distribution. The argument is a univariate function to describe the distribution. The
+    standard deviation of a distribution is the arithmetical mean of the squares of the
+    deviation of the distribution from the mean. See CRC Standard Mathematical Tables and
+    Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996, (7.7.11) section 7.7.1.
+  </Description>
 
-<description>
-      <p> This element represents a function denoting the sample standard deviation of its
-      arguments. The arguments are either all data, or a discrete random variable, or a
-      continuous random variable.</p>
-
-      <p>For numeric data at least two values are required and this is the square root of
-      (the sum of the squares of the deviations from the mean of the arguments, divided by
-      the number of arguments less one).  For a "discrete_random_variable", this is the
-      square root of the second moment about the mean.  This further generalizes to
-      identifiers of type continuous_random_variable.</p>
-
-      <p>See CRC Standard Mathematical Tables and Formulae, editor: Dan Zwillinger, CRC
-      Press Inc., 1996, (7.7.11) section 7.7.1.</p>
-    </description>
-    <discussion>
-      <p><el>sdev</el> is the operator element representing the statistical
-      <emph>standard deviation</emph> operator.</p>
-    </discussion>
-    <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><sdev/><cn>3</cn><cn>4</cn><cn>2</cn><cn>2</cn></apply></math></MMLexample>
-    <MMLexample>
-      <description><p><el>sdev</el> is an <emph>n-ary operator</emph>.</p></description>
-    <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><sdev/><ci type="discrete_random_variable"> X</ci></apply></math></MMLexample>
-
+<MMLexample speclevel="1" xml:id="sdev.ex1">
+  <description><p><el>sdev</el> is an <emph>n-ary operator</emph>.</p></description>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><sdev/><ci type="discrete_random_variable">X</ci></apply>
+  </math>
+</MMLexample>
+  
 <property xml:id="sdev_prop_2">
-<CMP> 
-The standard deviation of a distribution is the arithmetical mean of
-the squares of the deviation of the distribution from the mean. 
-</CMP>
+  <CMP> 
+    The standard deviation of a distribution is the arithmetical mean of the squares of
+    the deviation of the distribution from the mean.
+  </CMP>
 
 <FMP>
 <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
@@ -214,29 +175,12 @@ the squares of the deviation of the distribution from the mean.
     This symbol represents a unary function denoting the variance of a distribution. The
     argument is a function to describe the distribution.  That is if f is the function
     which describes the distribution.  The variance of a distribution is the square of the
-    standard deviation of the distribution.
+    standard deviation of the distribution.  See CRC Standard Mathematical Tables and
+    Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996, [7.1.2] and [7.7].
   </Description>
 
-<description>
-  <p>This symbol represents a function denoting the variance of its arguments, that is,
-  the square of the standard deviation.  The arguments are either all data in which case
-  there are two or more of them, or an identifier of type discrete_random_variable, or
-  continuous_random_variable.  See CRC Standard Mathematical Tables and Formulae, editor:
-  Dan Zwillinger, CRC Press Inc., 1996, [7.1.2] and [7.7].</p>
-</description>
-<discussion>
-  <p><el>variance</el> is the operator element representing the
-  statistical <emph>variance</emph> operator.</p>
-</discussion>
 
-<MMLexample>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply><variance/><cn>3</cn><cn>4</cn><cn>2</cn><cn>2</cn></apply>
-</math>
-</MMLexample>
-
-<MMLexample>
-  <description><p><el>variance</el> is an <emph>n-ary operator</emph>.</p></description>
+<MMLexample speclevel="1" xml:id="variance.ex1">
   <math xmlns="http://www.w3.org/1998/Math/MathML">
     <apply><variance/><ci type="discrete_random_variable"> X</ci></apply>
   </math>
@@ -282,43 +226,11 @@ of the distribution.
     which the moment is to be taken and the third argument is a univariate function to
     describe the distribution. That is, if f is the function which describe the
     distribution. The i'th moment of f about a is the integral of (x-a)^i*f(x) with
-    respect to x, over the interval (-infinity,infinity).
+    respect to x, over the interval (-infinity,infinity). See CRC Standard Mathematical
+    Tables and Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996, section 7.7.1
   </Description>
-
-    <description>
-    <p>This symbol is used to denote the i'th moment of a set of data, or a random
-    variable.  Unless otherwise specified, the moment is about the origin.  For example,
-    the i'th moment of X about the origin is given by moment( i , 0 , x ).
-    </p>
-
-    <p>The first argument indicates which moment about that point is being specified.  For
-    the i'th moment the first argument should be i.  The second argument specifies the
-    point about which the moment is computed.  It is either an actual point ( e.g. 0 ), or
-    a function which can be used on the data to compute that point.  To indicate a central
-    moment, specify the element "mean".  The third argument is either a discrete or
-    continuous random variable, or the start of a sequence of data.  If there is a
-    sequence of data then the i'th moment is (1/n) (x_1^i + x_2^i + ... + x_n^i).
-    </p>
-
-    <p>See CRC Standard Mathematical Tables and Formulae, editor: Dan Zwillinger,
-    CRC Press Inc., 1996, section 7.7.1</p>
-  </description>
-  <discussion>
-    <p>The <el>moment</el> element represents the statistical <emph>moment</emph>
-    operator. Use the qualifier <el>degree</el> for the <var>n</var> in <quote>
-    <var>n</var>-th moment</quote>. Use the qualifier <el>momentabout</el> for the
-    <var>p</var> in <quote>moment about <var>p</var></quote>.</p>
-
-    <p>The <el>moment</el> function accepts the <el>degree</el> and <el>momentabout</el>
-    schema. If present, the <el>degree</el> schema denotes the order of the
-    moment. Otherwise, the moment is assumed to be the first order moment. When used with
-    <el>moment</el>, the <el>degree</el> schema is expected to contain a single child
-    schema; otherwise an error is generated. If present, the <el>momentabout</el> schema
-    denotes the point about which the moment is taken. Otherwise, the moment is assumed to
-    be the moment about zero.</p>
-  </discussion>
   
-  <MMLexample>
+  <MMLexample speclevel="1" xml:id="moment.ex1">
     <description>
       <p> The third moment about the point p of a discrete random variable</p>
       <p><el>moment</el> is an <emph>operator taking qualifiers</emph> (see <specref
@@ -335,18 +247,8 @@ of the distribution.
     </math>
   </MMLexample>
   
-<MMLexample>
-  <description>
-    <p>The 3rd central moment of a set of data. </p>
-    </description><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><moment/>
-    <degree><cn>3</cn></degree>
-    <momentabout><mean/></momentabout>
-    <cn>6</cn><cn>4</cn><cn>2</cn><cn>2</cn><cn>5</cn>
-  </apply>
-</math>
-</MMLexample>
 
-<MMLexample>
+<MMLexample  speclevel="1" xml:id="moment.ex2">
   <description>
     <p>The 3rd central moment of a discrete random variable. </p>
   </description>
@@ -357,19 +259,6 @@ of the distribution.
     <ci type="discrete_random_variable"> X</ci>
     </apply>
   </math>
-</MMLexample>
-
-<MMLexample>
-  <description>
-    <p>The 3rd  moment about the origin of a set of data.</p>
-    </description>
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply><moment/>
-      <degree><cn>3</cn></degree>
-      <momentabout><cn>0</cn></momentabout>
-      <cn>6</cn><cn>4</cn><cn>2</cn><cn>2</cn>
-      </apply>
-    </math>
 </MMLexample>
 
 <property xml:id="moment_prop_4">

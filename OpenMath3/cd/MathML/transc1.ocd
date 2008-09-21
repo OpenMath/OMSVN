@@ -53,7 +53,7 @@
 </Description>
 
 <CDDefinition xml:id="log">
-<Name>log</Name>
+  <Name>log</Name>
   <Pragmatic>
     <Element type="opel">log</Element>
     <description>
@@ -69,19 +69,24 @@
     Mathematical Functions, section 4.1
   </Description>
 
-  <MMLexample>
+  <MMLexample speclevel="1" xml:id="log.ex1">
     <description>
       <p>This markup represents <quote>the base 3 logarithm of x</quote>. For natural
       logarithms base e, the <el>ln</el> element should be used instead.</p>
     </description>
-    <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><log/>
-    <logbase><cn>3</cn></logbase>
-    <ci>x</ci>
-  </apply>
-</math>
-</MMLexample>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><log/>
+        <logbase><cn>3</cn></logbase>
+	<ci>x</ci>
+      </apply>
+    </math>
+  </MMLexample>
 
-<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><log/><ci>x</ci></apply></math></MMLexample>
+  <MMLexample  speclevel="1" xml:id="log.ex2">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><log/><ci>x</ci></apply>
+    </math>
+  </MMLexample>
 
 <property xml:id="log_prop_1">
 <CMP>
@@ -137,12 +142,15 @@ log 100 to base 10 (which is 2).
     of the branch cut.  If signed zeros are in use, the inequality needs to be non-strict.
   </Description>
 
-<MMLexample>
+<MMLexample  speclevel="1" xml:id="ln.ex1">
   <description>
     <p>If <var>a</var> = <var>e</var>, (where <var>e</var> is the base of the natural
     logarithms) this will yield the value 1.</p>
   </description>
-<math xmlns="http://www.w3.org/1998/Math/MathML"><apply><ln/><ci>a</ci></apply></math></MMLexample>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><ln/><ci>a</ci></apply>
+  </math>
+</MMLexample>
 
 <property xml:id="ln_prop_2">
 <CMP>
@@ -194,7 +202,7 @@ log 100 to base 10 (which is 2).
 </CDDefinition>
 
 <CDDefinition xml:id="exp">
-<Name>exp</Name>
+  <Name>exp</Name>
   <Pragmatic>
     <Element type="opel">exp</Element>
   </Pragmatic>
@@ -217,7 +225,11 @@ log 100 to base 10 (which is 2).
     </math>
   </property>
 
-  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><exp/><ci>x</ci></apply></math></MMLexample>
+  <MMLexample speclevel="1" xml:id="exp.ex1">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><exp/><ci>x</ci></apply>
+    </math>
+  </MMLexample>
 
 <property xml:id="exp_prop_3">
 <CMP> for all k if k is an integer then e^(z+2*pi*k*i)=e^z </CMP>
@@ -291,21 +303,18 @@ log 100 to base 10 (which is 2).
   </description>
 </property>
 
-<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><sin/><ci>x</ci></apply></math></MMLexample>
+<MMLexample speclevel="1" xml:id="sin.ex1">
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><sin/><ci>x</ci></apply>
+  </math>
+</MMLexample>
 
-<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply>
-  <sin/>
-  <apply>
-    <plus/>
-    <apply><cos/>
-      <ci>x</ci>
-    </apply>
-    <apply>
-      <power/>
-      <ci>x</ci>
-      <cn>3</cn>
-    </apply>
+<MMLexample speclevel="1" xml:id="sin.ex2">
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply><sin/>
+  <apply><plus/>
+    <apply><cos/><ci>x</ci></apply>
+    <apply><power/><ci>x</ci><cn>3</cn></apply>
   </apply>
 </apply>
 </math>
@@ -449,7 +458,11 @@ sin A = - sin(-A)
   </description>
 </property>
 
-<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><cos/><ci>x</ci></apply></math></MMLexample>
+<MMLexample  speclevel="1" xml:id="cos.ex1">
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><cos/><ci>x</ci></apply>
+  </math>
+</MMLexample>
 
 <property xml:id="cos_prop_7">
 <CMP>cos(x) = (exp(ix)+exp(-ix))/2</CMP>
@@ -575,7 +588,12 @@ sin A = - sin(-A)
   </description>
   </property>
   
-<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><tan/><ci>x</ci></apply></math></MMLexample>
+
+<MMLexample speclevel="1" xml:id="tan.ex1">
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><tan/><ci>x</ci></apply>
+  </math>
+</MMLexample>
 
 <property xml:id="tan_prop_10">
 <CMP>tan A = sin A / cos A</CMP>
@@ -614,7 +632,11 @@ sin A = - sin(-A)
     4.3. It takes one argument.
   </Description>
 
-<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><sec/><ci>x</ci></apply></math></MMLexample>
+<MMLexample speclevel="1" xml:id="sec.ex1">
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><sec/><ci>x</ci></apply>
+  </math>
+</MMLexample>
 
 <property xml:id="sec_prop_11">
 <CMP>
@@ -651,7 +673,11 @@ sec(A) = 1/cos(A)
     4.3. It takes one argument.
   </Description>
 
-  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><csc/><ci>x</ci></apply></math></MMLexample>
+  <MMLexample speclevel="1" xml:id="csc.ex1">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><csc/><ci>x</ci></apply>
+    </math>
+  </MMLexample>
 
 <property xml:id="csc_prop_12">
 <CMP>csc(A)= 1/sin(A)</CMP>
@@ -676,7 +702,7 @@ sec(A) = 1/cos(A)
 </CDDefinition>
 
 <CDDefinition xml:id="cot">
-<Name>cot</Name>
+  <Name>cot</Name>
   <Pragmatic>
     <Element type="opel">cot</Element>
   </Pragmatic>
@@ -698,7 +724,11 @@ sec(A) = 1/cos(A)
   </description>
 </property>
 
-<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><cot/><ci>x</ci></apply></math></MMLexample>
+<MMLexample speclevel="1" xml:id="cot.ex1">
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><cot/><ci>x</ci></apply>
+  </math>
+</MMLexample>
 
 <property xml:id="cot_prop_13">
 <CMP>
@@ -735,7 +765,11 @@ cot(A) = 1/tan(A)
     section 4.5. It takes one argument.
   </Description>
 
-  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><sinh/><ci>x</ci></apply></math></MMLexample>
+  <MMLexample speclevel="1" xml:id="sinh.ex1">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><sinh/><ci>x</ci></apply>
+    </math>
+  </MMLexample>
 
 <property xml:id="sinh_prop_14">
 <CMP> sinh A = 1/2 * (e^A - e^(-A)) </CMP>
@@ -785,7 +819,11 @@ cot(A) = 1/tan(A)
     section 4.5. It takes one argument.
   </Description>
 
-  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><cosh/><ci>x</ci></apply></math></MMLexample>
+  <MMLexample speclevel="1" xml:id="cosh.ex1">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><cosh/><ci>x</ci></apply>
+    </math>
+  </MMLexample>
 
 <property xml:id="cosh_prop_15">
 <CMP> cosh A = 1/2 * (e^A + e^(-A)) </CMP>
@@ -837,7 +875,11 @@ cot(A) = 1/tan(A)
     section 4.5. It takes one argument.
   </Description>
 
-  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><tanh/><ci>x</ci></apply></math></MMLexample>
+  <MMLexample speclevel="1" xml:id="tanh.ex1">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><tanh/><ci>x</ci></apply>
+    </math>
+  </MMLexample>
 
 <property xml:id="tanh_prop_16">
 <CMP>tanh(A) = sinh(A)/cosh(A)</CMP>
@@ -874,7 +916,11 @@ cot(A) = 1/tan(A)
     section 4.5. It takes one argument.
   </Description>
 
-  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><sech/><ci>x</ci></apply></math></MMLexample>
+  <MMLexample speclevel="1" xml:id="sech.ex1">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><sech/><ci>x</ci></apply>
+    </math>
+  </MMLexample>
 
 <property xml:id="sech_prop_17">
 <CMP> sech(A) = 1/cosh(A) </CMP>
@@ -910,7 +956,11 @@ cot(A) = 1/tan(A)
     section 4.5. It takes one argument.
   </Description>
 
-  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><csch/><ci>x</ci></apply></math></MMLexample>
+  <MMLexample speclevel="1" xml:id="csch.ex1">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><csch/><ci>x</ci></apply>
+    </math>
+  </MMLexample>
 
 <property xml:id="csch_prop_18">
 <CMP> csch A = 1/sinh A </CMP>
@@ -946,7 +996,11 @@ cot(A) = 1/tan(A)
     section 4.5. It takes one argument.
   </Description>
 
-  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><coth/><ci>x</ci></apply></math></MMLexample>
+  <MMLexample speclevel="1" xml:id="coth.ex1">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><coth/><ci>x</ci></apply>
+    </math>
+  </MMLexample>
    
 <property xml:id="coth_prop_19">
 <CMP>coth(A) = 1/tanh(A) </CMP>
@@ -983,7 +1037,11 @@ cot(A) = 1/tan(A)
     takes one argument.
   </Description>
 
-  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><arcsin/><ci>x</ci></apply></math></MMLexample>
+  <MMLexample  speclevel="1" xml:id="arcsin.ex1">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><arcsin/><ci>x</ci></apply>
+    </math>
+  </MMLexample>
   
 <property xml:id="arcsin_prop_20">
 <CMP>arcsin(z) = -i ln (sqrt(1-z^2)+iz)</CMP>
@@ -1081,7 +1139,7 @@ cot(A) = 1/tan(A)
     described in Abramowitz and Stegun, section 4.4. It takes one argument.
   </Description>
 
-<MMLexample>
+<MMLexample speclevel="1" xml:id="arccos.ex1">
   <math xmlns="http://www.w3.org/1998/Math/MathML">
     <apply><arccos/><ci>x</ci></apply>
   </math>
@@ -1172,7 +1230,7 @@ cot(A) = 1/tan(A)
     described in Abramowitz and Stegun, section 4.4. It takes one argument.
   </Description>
 
- <MMLexample>
+ <MMLexample speclevel="1" xml:id="arctan.ex1">
    <math xmlns="http://www.w3.org/1998/Math/MathML">
      <apply><arctan/><ci>x</ci></apply>
    </math>
@@ -1278,7 +1336,7 @@ cot(A) = 1/tan(A)
     and Stegun, section 4.4.
   </Description>
 
-<MMLexample>
+<MMLexample speclevel="1" xml:id="arcsec.ex1">
   <math xmlns="http://www.w3.org/1998/Math/MathML">
     <apply><arcsec/><ci>x</ci></apply>
   </math>
@@ -1377,7 +1435,11 @@ cot(A) = 1/tan(A)
     section 4.4.
   </Description>
 
-<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><arccsc/><ci>x</ci></apply></math></MMLexample>
+<MMLexample speclevel="1" xml:id="arccsc.ex1">
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><arccsc/><ci>x</ci></apply>
+  </math>
+</MMLexample>
 
 <property xml:id="arccsc_prop_28">
 <CMP> arccsc(z) = -i ln(i/z + \sqrt(1 - 1/z^2)) </CMP>
@@ -1490,8 +1552,10 @@ cot(A) = 1/tan(A)
     section 4.4.
   </Description>
 
-  <MMLexample>
-    <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><arccot/><ci>x</ci></apply></math>
+  <MMLexample speclevel="1" xml:id="arccot.ex1">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><arccot/><ci>x</ci></apply>
+    </math>
   </MMLexample>
 
 <property xml:id="arccot_prop_31">
@@ -1567,7 +1631,11 @@ cot(A) = 1/tan(A)
     section 4.6.
   </Description>
 
-  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><arcsinh/><ci>x</ci></apply></math></MMLexample>
+  <MMLexample speclevel="1" xml:id="arcsinh.ex1">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><arcsinh/><ci>x</ci></apply>
+    </math>
+  </MMLexample>
 
 <property xml:id="arcsinh_prop_33">
 <CMP> arcsinh z = ln(z + \sqrt(1+z^2)) </CMP>
@@ -1635,7 +1703,7 @@ cot(A) = 1/tan(A)
 </CDDefinition>
 
 <CDDefinition xml:id="arccosh">
-<Name>arccosh</Name>
+  <Name>arccosh</Name>
   <Pragmatic>
     <Element type="opel">arccosh</Element>
   </Pragmatic>
@@ -1645,7 +1713,11 @@ cot(A) = 1/tan(A)
     section 4.6.
   </Description>
 
-<MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><arccosh/><ci>x</ci></apply></math></MMLexample>
+<MMLexample speclevel="1" xml:id="arccosh.ex1">
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><arccosh/><ci>x</ci></apply>
+  </math>
+</MMLexample>
 
 <property xml:id="arccosh_prop_35">
 <CMP> arccosh(z) = 2*ln(\sqrt((z+1)/2) + \sqrt((z-1)/2)) </CMP>
@@ -1735,7 +1807,11 @@ cot(A) = 1/tan(A)
     section 4.6.
   </Description>
 
-  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><arctanh/><ci>x</ci></apply></math></MMLexample>
+  <MMLexample speclevel="1" xml:id="arctanh.ex1">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><arctanh/><ci>x</ci></apply>
+    </math>
+  </MMLexample>
 
 <property xml:id="arctanh_prop_37">
 <CMP> arctanh(z) = - i * arctan(i * z) </CMP>
@@ -1845,7 +1921,11 @@ arctanh(x) = 1/2 * ln((1 + x)/(1 - x))
     section 4.6.
   </Description>
 
-  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><arcsech/><ci>x</ci></apply></math></MMLexample>
+  <MMLexample speclevel="1" xml:id="arcsech.ex1">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><arcsech/><ci>x</ci></apply>
+    </math>
+  </MMLexample>
   
 <property xml:id="arcsech_prop_39">
 <CMP> arcsech(z) = 2 ln(\sqrt((1+z)/(2z)) + \sqrt((1-z)/(2z))) </CMP>
@@ -1981,7 +2061,11 @@ arctanh(x) = 1/2 * ln((1 + x)/(1 - x))
     section 4.6.
   </Description>
 
-  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><arccsch/><ci>x</ci></apply></math></MMLexample>
+  <MMLexample speclevel="1" xml:id="arccsch.ex1">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><arccsch/><ci>x</ci></apply>
+    </math>
+  </MMLexample>
   
   <property xml:id="arccsch_prop_41">
     <CMP> arccsch(z) = ln(1/z + \sqrt(1+(1/z)^2)) </CMP>
@@ -2062,7 +2146,11 @@ arctanh(x) = 1/2 * ln((1 + x)/(1 - x))
     section 4.6.
   </Description>
 
-  <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><arccoth/><ci>x</ci></apply></math></MMLexample>
+  <MMLexample speclevel="1" xml:id="arccoth.ex1">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply><arccoth/><ci>x</ci></apply>
+    </math>
+  </MMLexample>
 
 <property xml:id="arccoth_prop_43">
 <CMP> arccoth(z) = (ln(-1-z)-ln(1-z))/2 </CMP>
