@@ -28,7 +28,7 @@
          </dd>
          <dt class="dt">Defines:</dt>
          <dd>
-            <a href="#big_intersect">big_intersect</a>, <a href="#big_union">big_union</a>, <a href="#cartesian_product">cartesian_product</a>, <a href="#emptyset">emptyset</a>, <a href="#in">in</a>, <a href="#intersect">intersect</a>, <a href="#multiset">multiset</a>, <a href="#notin">notin</a>, <a href="#notprsubset">notprsubset</a>, <a href="#notsubset">notsubset</a>, <a href="#prsubset">prsubset</a>, <a href="#setdiff">setdiff</a>, <a href="#size">size</a>, <a href="#subset">subset</a>, <a href="#union">union</a>
+            <a href="#big_intersect">big_intersect</a>, <a href="#big_union">big_union</a>, <a href="#cartesian_product">cartesian_product</a>, <a href="#emptyset">emptyset</a>, <a href="#in">in</a>, <a href="#intersect">intersect</a>, <a href="#map">map</a>, <a href="#multiset">multiset</a>, <a href="#notin">notin</a>, <a href="#notprsubset">notprsubset</a>, <a href="#notsubset">notsubset</a>, <a href="#prsubset">prsubset</a>, <a href="#setdiff">setdiff</a>, <a href="#size">size</a>, <a href="#subset">subset</a>, <a href="#suchthat">suchthat</a>, <a href="#union">union</a>
          </dd>
          <dt class="dt">Date:</dt>
          <dd>
@@ -89,12 +89,628 @@
 
 
       <p>
-    This CD defines the set functions and constructors for basic
-    multiset theory. It is intended to be `compatible' with the
-    corresponding elements in MathML i.e. set operations acting
-    on sets of type=multiset.
+    This CD defines the set functions and constructors for basic multiset theory. It is
+    intended to be `compatible' with the corresponding elements in MathML i.e. set
+    operations acting on sets of type=multiset.
 </p>
 
+
+
+      <div class="cddefinition">
+         <h2>
+            <a name="cartesian_product">Symbol Definition: cartesian_product</a>
+         </h2>
+         <dl>
+            <dt class="dt">Pragmatic MathML:</dt>
+            <dd>
+               <p>&lt;cartesianproduct/&gt;</p>
+               <p> type=""multiset""</p>
+            </dd>
+            <dt class="dt">Role:</dt>
+            <dd>application</dd>
+            <dt class="dt">Description:</dt>
+            <dd>
+               <p>
+    This symbol represents an n-ary construction function for constructing the Cartesian
+    product of multisets. It takes n multiset arguments in order to construct their
+    Cartesian product.
+  </p>
+            </dd>
+            <dt class="dt">Example:</dt>
+            <dd>
+               <div>
+                  <button id="d43e78xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e78xml')">XML (MathML)</button>
+               </div>
+               <pre id="d43e78xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+    &lt;apply&gt;&lt;cartesianproduct/&gt;&lt;ci&gt;A&lt;/ci&gt;&lt;ci&gt;B&lt;/ci&gt;&lt;/apply&gt;
+  &lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e78stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e78strict')">Strict Content MathML</button>
+               </div>
+               <pre id="d43e78strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+    &lt;apply&gt;&lt;csymbol cd="set1"&gt;cartesian_product&lt;/csymbol&gt;&lt;ci&gt;A&lt;/ci&gt;&lt;ci&gt;B&lt;/ci&gt;&lt;/apply&gt;
+  &lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e78cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e78cmml')">OpenMath</button>
+               </div>
+               <pre id="d43e78cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+    &lt;OMA&gt;&lt;OMS cd="set1" name="cartesian_product"/&gt;&lt;OMV name="A"/&gt;&lt;OMV name="B"/&gt;&lt;/OMA&gt;
+  &lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d43e78prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e78pref')">Prefix form</button>
+               </div>
+               <div id="d43e78pref" style="display:none; margin-top: 0.5em">
+                  <a href="set1.xhtml#cartesian_product">cartesian_product</a>
+( <i>A</i>,  <i>B</i>)
+
+  </div>
+               <div>
+                  <button id="d43e78mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e78mml')">Presentation MathML</button>
+               </div>
+               <div id="d43e78mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mi>A</mi>
+                        <mo>×</mo>
+                        <mi>B</mi>
+                     </mrow>
+                  </m:math>
+               </div>
+            </dd>
+            <dt class="dt">Example:</dt>
+            <dd>
+               <div>
+                  <button id="d43e92xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e92xml')">XML (MathML)</button>
+               </div>
+               <pre id="d43e92xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+    &lt;apply&gt;&lt;cartesianproduct/&gt;&lt;reals/&gt;&lt;reals/&gt;&lt;reals/&gt;&lt;/apply&gt;
+  &lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e92stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e92strict')">Strict Content MathML</button>
+               </div>
+               <pre id="d43e92strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+    &lt;apply&gt;&lt;csymbol cd="set1"&gt;cartesian_product&lt;/csymbol&gt;&lt;csymbol cd="setname1"&gt;R&lt;/csymbol&gt;&lt;csymbol cd="setname1"&gt;R&lt;/csymbol&gt;&lt;csymbol cd="setname1"&gt;R&lt;/csymbol&gt;&lt;/apply&gt;
+  &lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e92cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e92cmml')">OpenMath</button>
+               </div>
+               <pre id="d43e92cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+    &lt;OMA&gt;&lt;OMS cd="set1" name="cartesian_product"/&gt;&lt;OMS cd="setname1" name="R"/&gt;&lt;OMS cd="setname1" name="R"/&gt;&lt;OMS cd="setname1" name="R"/&gt;&lt;/OMA&gt;
+  &lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d43e92prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e92pref')">Prefix form</button>
+               </div>
+               <div id="d43e92pref" style="display:none; margin-top: 0.5em">
+                  <a href="set1.xhtml#cartesian_product">cartesian_product</a>
+(<a href="setname1.xhtml#R">R</a>, <a href="setname1.xhtml#R">R</a>, <a href="setname1.xhtml#R">R</a>)
+
+  </div>
+               <div>
+                  <button id="d43e92mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e92mml')">Presentation MathML</button>
+               </div>
+               <div id="d43e92mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mi mathvariant="double-struck">R</mi>
+                        <mo>×</mo>
+                        <mi mathvariant="double-struck">R</mi>
+                        <mo>×</mo>
+                        <mi mathvariant="double-struck">R</mi>
+                     </mrow>
+                  </m:math>
+               </div>
+            </dd>
+            <dt class="dt">Example:</dt>
+            <dd>
+    An example to show the representation of the Cartesian product of multisets: AxBxC.
+<div>
+                  <button id="d43e104xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e104xml')">XML (OpenMath)</button>
+               </div>
+               <pre id="d43e104xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="multiset1" name="cartesian_product"/&gt;
+    &lt;OMV name="A"/&gt;
+    &lt;OMV name="B"/&gt;
+    &lt;OMV name="C"/&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d43e104cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e104cmml')">Content MathML</button>
+               </div>
+               <pre id="d43e104cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+  &lt;apply&gt;
+    &lt;csymbol cd="multiset1"&gt;cartesian_product&lt;/csymbol&gt;
+    &lt;ci&gt;A&lt;/ci&gt;
+    &lt;ci&gt;B&lt;/ci&gt;
+    &lt;ci&gt;C&lt;/ci&gt;
+  &lt;/apply&gt;
+&lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e104prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e104pref')">Prefix form</button>
+               </div>
+               <div id="d43e104pref" style="display:none; margin-top: 0.5em">
+                  <a href="multiset1.xhtml#cartesian_product">cartesian_product</a>
+( <i>A</i>,  <i>B</i>,  <i>C</i>)
+
+</div>
+               <div>
+                  <button id="d43e104mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e104mml')">Presentation MathML</button>
+               </div>
+               <div id="d43e104mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mi>A</mi>
+                        <mo>×</mo>
+                        <mi>B</mi>
+                        <mo>×</mo>
+                        <mi>C</mi>
+                     </mrow>
+                  </m:math>
+               </div>
+            </dd>
+            <dt class="dt">Signatures:</dt>
+            <dd>
+               <a href="../sts/multiset1.xhtml#cartesian_product">
+    sts
+      </a>
+            </dd>
+         </dl>
+      </div>
+      <div>[Next: <a href="#emptyset">emptyset</a>]
+	   [This: <a href="#cartesian_product">cartesian_product</a>]
+	
+	    [Last: <a href="#notprsubset">notprsubset</a>]
+	  
+      [<a href="#top">Top</a>]
+ </div>
+
+      <div class="cddefinition">
+         <h2>
+            <a name="emptyset">Symbol Definition: emptyset</a>
+         </h2>
+         <dl>
+            <dt class="dt">Pragmatic MathML:</dt>
+            <dd>
+               <p>&lt;emptyset/&gt;</p>
+               <p> type=""multiset""</p>
+            </dd>
+            <dt class="dt">Role:</dt>
+            <dd>constant</dd>
+            <dt class="dt">Description:</dt>
+            <dd>
+               <p>
+    This symbol is used to represent the empty multiset, that is the multiset which
+    contains no members. It takes no parameters.
+  </p>
+            </dd>
+            <dt class="dt">Property:</dt>
+            <dd>
+               <p>
+      for all sets S,   intersect(S,emptyset) = emptyset
+    </p>
+               <div>
+                  <button id="d43e154xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e154xml')">XML (MathML)</button>
+               </div>
+               <pre id="d43e154xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;bind&gt;&lt;forall/&gt;&lt;bvar&gt;&lt;ci type="set"&gt;S&lt;/ci&gt;&lt;/bvar&gt;
+  &lt;apply&gt;&lt;eq/&gt;
+    &lt;apply&gt;&lt;intersect/&gt;&lt;emptyset/&gt;&lt;ci&gt;S&lt;/ci&gt;&lt;/apply&gt;
+    &lt;emptyset/&gt;
+  &lt;/apply&gt;
+&lt;/bind&gt;
+&lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e154stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e154strict')">Strict Content MathML</button>
+               </div>
+               <pre id="d43e154strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;bind&gt;&lt;csymbol cd="quant1"&gt;forall&lt;/csymbol&gt;&lt;bvar&gt;&lt;ci&gt;S&lt;/ci&gt;&lt;/bvar&gt;&lt;apply&gt;&lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
+    &lt;apply&gt;&lt;csymbol cd="set1"&gt;intersect&lt;/csymbol&gt;&lt;csymbol cd="set1"&gt;emptyset&lt;/csymbol&gt;&lt;ci&gt;S&lt;/ci&gt;&lt;/apply&gt;
+    &lt;csymbol cd="set1"&gt;emptyset&lt;/csymbol&gt;
+  &lt;/apply&gt;&lt;/bind&gt;
+&lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e154cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e154cmml')">OpenMath</button>
+               </div>
+               <pre id="d43e154cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+&lt;OMBIND&gt;&lt;OMS cd="quant1" name="forall"/&gt;&lt;OMBVAR&gt;&lt;OMV name="S"/&gt;&lt;/OMBVAR&gt;&lt;OMA&gt;&lt;OMS cd="relation1" name="eq"/&gt;
+    &lt;OMA&gt;&lt;OMS cd="set1" name="intersect"/&gt;&lt;OMS cd="set1" name="emptyset"/&gt;&lt;OMV name="S"/&gt;&lt;/OMA&gt;
+    &lt;OMS cd="set1" name="emptyset"/&gt;
+  &lt;/OMA&gt;&lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d43e154prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e154pref')">Prefix form</button>
+               </div>
+               <div id="d43e154pref" style="display:none; margin-top: 0.5em">
+                  <a href="quant1.xhtml#forall">forall</a>
+[ <i>S</i>] .
+(<a href="relation1.xhtml#eq">eq</a>
+(<a href="set1.xhtml#intersect">intersect</a>
+(<a href="set1.xhtml#emptyset">emptyset</a>,  <i>S</i>)
+, <a href="set1.xhtml#emptyset">emptyset</a>)
+)
+
+</div>
+               <div>
+                  <button id="d43e154mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e154mml')">Presentation MathML</button>
+               </div>
+               <div id="d43e154mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mo>∀</mo>
+                        <mo> </mo>
+                        <mrow>
+                           <mi>S</mi>
+                        </mrow>
+                        <mo>.</mo>
+                        <mrow>
+                           <mrow>
+                              <mi>∅</mi>
+                              <mo>∩</mo>
+                              <mi>S</mi>
+                           </mrow>
+                           <mo>=</mo>
+                           <mi>∅</mi>
+                        </mrow>
+                     </mrow>
+                  </m:math>
+               </div>
+            </dd>
+            <dt class="dt">Example:</dt>
+            <dd>
+               <div>
+                  <button id="d43e180xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e180xml')">XML (MathML)</button>
+               </div>
+               <pre id="d43e180xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+    &lt;apply&gt;&lt;neq/&gt;
+      &lt;integers/&gt;
+      &lt;emptyset/&gt;
+    &lt;/apply&gt;
+  &lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e180stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e180strict')">Strict Content MathML</button>
+               </div>
+               <pre id="d43e180strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+    &lt;apply&gt;&lt;csymbol cd="relation1"&gt;neq&lt;/csymbol&gt;
+      &lt;csymbol cd="setname1"&gt;Z&lt;/csymbol&gt;
+      &lt;csymbol cd="set1"&gt;emptyset&lt;/csymbol&gt;
+    &lt;/apply&gt;
+  &lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e180cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e180cmml')">OpenMath</button>
+               </div>
+               <pre id="d43e180cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+    &lt;OMA&gt;&lt;OMS cd="relation1" name="neq"/&gt;
+      &lt;OMS cd="setname1" name="Z"/&gt;
+      &lt;OMS cd="set1" name="emptyset"/&gt;
+    &lt;/OMA&gt;
+  &lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d43e180prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e180pref')">Prefix form</button>
+               </div>
+               <div id="d43e180pref" style="display:none; margin-top: 0.5em">
+                  <a href="relation1.xhtml#neq">neq</a>
+(<a href="setname1.xhtml#Z">Z</a>, <a href="set1.xhtml#emptyset">emptyset</a>)
+
+  </div>
+               <div>
+                  <button id="d43e180mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e180mml')">Presentation MathML</button>
+               </div>
+               <div id="d43e180mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mi mathvariant="double-struck">Z</mi>
+                        <mo>≠</mo>
+                        <mi>∅</mi>
+                     </mrow>
+                  </m:math>
+               </div>
+            </dd>
+            <dt class="dt">Property:</dt>
+            <dd>
+ The intersection of a multiset A with the empty multi set is the empty multi set
+
+
+<div>
+                  <button id="d43e199xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e199xml')">XML (OpenMath)</button>
+               </div>
+               <pre id="d43e199xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="relation1" name="eq"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="multiset1" name="intersect"/&gt;
+      &lt;OMV name="A"/&gt;
+      &lt;OMS cd="multiset1" name="emptyset"/&gt;
+    &lt;/OMA&gt;
+    &lt;OMS cd="multiset1" name="emptyset"/&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d43e199cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e199cmml')">Content MathML</button>
+               </div>
+               <pre id="d43e199cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+  &lt;apply&gt;
+    &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
+    &lt;apply&gt;
+      &lt;csymbol cd="multiset1"&gt;intersect&lt;/csymbol&gt;
+      &lt;ci&gt;A&lt;/ci&gt;
+      &lt;csymbol cd="multiset1"&gt;emptyset&lt;/csymbol&gt;
+    &lt;/apply&gt;
+    &lt;csymbol cd="multiset1"&gt;emptyset&lt;/csymbol&gt;
+  &lt;/apply&gt;
+&lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e199prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e199pref')">Prefix form</button>
+               </div>
+               <div id="d43e199pref" style="display:none; margin-top: 0.5em">
+                  <a href="relation1.xhtml#eq">eq</a>
+(<a href="multiset1.xhtml#intersect">intersect</a>
+( <i>A</i>, <a href="multiset1.xhtml#emptyset">emptyset</a>)
+, <a href="multiset1.xhtml#emptyset">emptyset</a>)
+
+</div>
+               <div>
+                  <button id="d43e199mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e199mml')">Presentation MathML</button>
+               </div>
+               <div id="d43e199mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mrow>
+                           <mi>A</mi>
+                           <mo>∩</mo>
+                           <mi>∅</mi>
+                        </mrow>
+                        <mo>=</mo>
+                        <mi>∅</mi>
+                     </mrow>
+                  </m:math>
+               </div>
+            </dd>
+            <dt class="dt">Property:</dt>
+            <dd>
+ The union of A with the empty (multi) set is A 
+
+<div>
+                  <button id="d43e226xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e226xml')">XML (OpenMath)</button>
+               </div>
+               <pre id="d43e226xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="relation1" name="eq"/&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="multiset1" name="union"/&gt;
+      &lt;OMV name="A"/&gt;
+      &lt;OMS cd="multiset1" name="emptyset"/&gt;
+    &lt;/OMA&gt;
+    &lt;OMV name="A"/&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d43e226cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e226cmml')">Content MathML</button>
+               </div>
+               <pre id="d43e226cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+  &lt;apply&gt;
+    &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
+    &lt;apply&gt;
+      &lt;csymbol cd="multiset1"&gt;union&lt;/csymbol&gt;
+      &lt;ci&gt;A&lt;/ci&gt;
+      &lt;csymbol cd="multiset1"&gt;emptyset&lt;/csymbol&gt;
+    &lt;/apply&gt;
+    &lt;ci&gt;A&lt;/ci&gt;
+  &lt;/apply&gt;
+&lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e226prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e226pref')">Prefix form</button>
+               </div>
+               <div id="d43e226pref" style="display:none; margin-top: 0.5em">
+                  <a href="relation1.xhtml#eq">eq</a>
+(<a href="multiset1.xhtml#union">union</a>
+( <i>A</i>, <a href="multiset1.xhtml#emptyset">emptyset</a>)
+,  <i>A</i>)
+
+</div>
+               <div>
+                  <button id="d43e226mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e226mml')">Presentation MathML</button>
+               </div>
+               <div id="d43e226mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mrow>
+                           <mi>A</mi>
+                           <mo>∪</mo>
+                           <mi>∅</mi>
+                        </mrow>
+                        <mo>=</mo>
+                        <mi>A</mi>
+                     </mrow>
+                  </m:math>
+               </div>
+            </dd>
+            <dt class="dt">Signatures:</dt>
+            <dd>
+               <a href="../sts/multiset1.xhtml#emptyset">
+    sts
+      </a>
+            </dd>
+         </dl>
+      </div>
+      <div>[Next: <a href="#map">map</a>]
+	   [This: <a href="#emptyset">emptyset</a>]
+	[Previous: <a href="#cartesian_product">cartesian_product</a>]
+      [<a href="#top">Top</a>]
+ </div>
+
+      <div class="cddefinition">
+         <h2>
+            <a name="map">Symbol Definition: map</a>
+         </h2>
+         <dl>
+            <dt class="dt">Pragmatic MathML:</dt>
+            <dd>
+               <p>&lt;map/&gt;</p>
+               <p> type=""multiset""</p>
+            </dd>
+            <dt class="dt">Role:</dt>
+            <dd>application</dd>
+            <dt class="dt">Description:</dt>
+            <dd>
+               <p>
+    This symbol represents a mapping function which may be used to construct multisets, it
+    takes as arguments a function from X to Y and a multiset over X in that order. The
+    value that is returned is a multiset of values in Y.
+  </p>
+            </dd>
+            <dt class="dt">Example:</dt>
+            <dd>
+    The set of even values between 0 and 20, that is the values 2x, where x ranges over
+    the integral interval [0,10].
+    <div>
+                  <button id="d43e275xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e275xml')">XML (OpenMath)</button>
+               </div>
+               <pre id="d43e275xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="set1" name="map"/&gt;
+    &lt;OMBIND&gt;
+      &lt;OMS cd="fns1" name="lambda"/&gt;
+      &lt;OMBVAR&gt;
+        &lt;OMV name="x"/&gt;
+      &lt;/OMBVAR&gt;
+      &lt;OMA&gt;
+        &lt;OMS cd="arith1" name="times"/&gt;
+        &lt;OMI&gt; 2 &lt;/OMI&gt;
+	&lt;OMV name="x"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMBIND&gt;
+    &lt;OMA&gt;
+      &lt;OMS cd="interval1" name="integer_interval"/&gt;
+      &lt;OMI&gt; 0 &lt;/OMI&gt;
+      &lt;OMI&gt; 10 &lt;/OMI&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d43e275cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e275cmml')">Content MathML</button>
+               </div>
+               <pre id="d43e275cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+  &lt;apply&gt;
+    &lt;csymbol cd="set1"&gt;map&lt;/csymbol&gt;
+    &lt;bind&gt;
+      &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
+      &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+      &lt;apply&gt;
+        &lt;csymbol cd="arith1"&gt;times&lt;/csymbol&gt;
+        &lt;cn&gt; 2 &lt;/cn&gt;
+	&lt;ci&gt;x&lt;/ci&gt;
+      &lt;/apply&gt;
+    &lt;/bind&gt;
+    &lt;apply&gt;
+      &lt;csymbol cd="interval1"&gt;integer_interval&lt;/csymbol&gt;
+      &lt;cn&gt; 0 &lt;/cn&gt;
+      &lt;cn&gt; 10 &lt;/cn&gt;
+    &lt;/apply&gt;
+  &lt;/apply&gt;
+&lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e275prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e275pref')">Prefix form</button>
+               </div>
+               <div id="d43e275pref" style="display:none; margin-top: 0.5em">
+                  <a href="set1.xhtml#map">map</a>
+(<a href="fns1.xhtml#lambda">lambda</a>
+[
+         <i>x</i>
+      ] .
+(<a href="arith1.xhtml#times">times</a>
+( 2 ,  <i>x</i>)
+)
+, <a href="interval1.xhtml#integer_interval">integer_interval</a>
+( 0 ,  10 )
+)
+
+</div>
+               <div>
+                  <button id="d43e275mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e275mml')">Presentation MathML</button>
+               </div>
+               <div id="d43e275mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mo>{</mo>
+                        <mrow>
+                           <mn> 2 </mn>
+                           <mo>⁢</mo>
+                           <mi>x</mi>
+                        </mrow>
+                        <mo>|</mo>
+                        <mrow>
+                           <mi>x</mi>
+                           <mo>∈</mo>
+                           <mrow>
+                              <mo>[</mo>
+                              <mn> 0 </mn>
+                              <mo separator="true">,</mo>
+                              <mn> 10 </mn>
+                              <mo>]</mo>
+                           </mrow>
+                        </mrow>
+                        <mo>}</mo>
+                     </mrow>
+                  </m:math>
+               </div>
+            </dd>
+            <dt class="dt">Signatures:</dt>
+            <dd>
+               <a href="../sts/multiset1.xhtml#map">
+    sts
+      </a>
+            </dd>
+         </dl>
+      </div>
+      <div>[Next: <a href="#size">size</a>]
+	   [This: <a href="#map">map</a>]
+	[Previous: <a href="#emptyset">emptyset</a>]
+      [<a href="#top">Top</a>]
+ </div>
 
       <div class="cddefinition">
          <h2>
@@ -103,11 +719,11 @@
          <dl>
             <dt class="dt">Title:</dt>
             <dd>
-               <p>The size of a multiset set</p>
+               <p>The size of a multiset</p>
             </dd>
             <dt class="dt">Pragmatic MathML:</dt>
             <dd>
-               <p>&lt;size/&gt;</p>
+               <p>&lt;card/&gt;</p>
                <p> type=""multiset""</p>
             </dd>
             <dt class="dt">Role:</dt>
@@ -125,10 +741,10 @@
 The size of the multiset{3,3,9} = 3
 
 <div>
-                  <button id="d43e82xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e82xml')">XML (OpenMath)</button>
+                  <button id="d43e348xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e348xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e82xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d43e348xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMA&gt;
     &lt;OMS cd="relation1" name="eq"/&gt;
     &lt;OMA&gt;
@@ -144,10 +760,10 @@ The size of the multiset{3,3,9} = 3
   &lt;/OMA&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e82cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e82cmml')">Content MathML</button>
+                  <button id="d43e348cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e348cmml')">Content MathML</button>
                </div>
-               <pre id="d43e82cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e348cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
   &lt;apply&gt;
     &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
     &lt;apply&gt;
@@ -163,10 +779,10 @@ The size of the multiset{3,3,9} = 3
   &lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e82prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e82pref')">Prefix form</button>
+                  <button id="d43e348prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e348pref')">Prefix form</button>
                </div>
-               <div id="d43e82pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e348pref" style="display:none; margin-top: 0.5em">
                   <a href="relation1.xhtml#eq">eq</a>
 (<a href="multiset1.xhtml#size">size</a>
 (<a href="multiset1.xhtml#multiset">multiset</a>
@@ -176,10 +792,10 @@ The size of the multiset{3,3,9} = 3
 
 </div>
                <div>
-                  <button id="d43e82mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e82mml')">Presentation MathML</button>
+                  <button id="d43e348mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e348mml')">Presentation MathML</button>
                </div>
-               <div id="d43e82mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e348mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -215,40 +831,40 @@ The size of the multiset{3,3,9} = 3
                <p>where A is a multiset with 5 elements.
   </p>
                <div>
-                  <button id="d43e120xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e120xml')">XML (MathML)</button>
+                  <button id="d43e386xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e386xml')">XML (MathML)</button>
                </div>
-               <pre id="d43e120xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e386xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
     &lt;apply&gt;&lt;eq/&gt;
     &lt;apply&gt;&lt;card/&gt;&lt;ci&gt;A&lt;/ci&gt;&lt;/apply&gt;
     &lt;ci&gt;5&lt;/ci&gt;
     &lt;/apply&gt;
   &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e120stricta" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e120strict')">Strict Content MathML</button>
+                  <button id="d43e386stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e386strict')">Strict Content MathML</button>
                </div>
-               <pre id="d43e120strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e386strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
     &lt;apply&gt;&lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
     &lt;apply&gt;&lt;csymbol cd="set1"&gt;size&lt;/csymbol&gt;&lt;ci&gt;A&lt;/ci&gt;&lt;/apply&gt;
     &lt;ci&gt;5&lt;/ci&gt;
     &lt;/apply&gt;
   &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e120cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e120cmml')">OpenMath</button>
+                  <button id="d43e386cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e386cmml')">OpenMath</button>
                </div>
-               <pre id="d43e120cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+               <pre id="d43e386cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
     &lt;OMA&gt;&lt;OMS cd="relation1" name="eq"/&gt;
     &lt;OMA&gt;&lt;OMS cd="set1" name="size"/&gt;&lt;OMV name="A"/&gt;&lt;/OMA&gt;
     &lt;OMV name="5"/&gt;
     &lt;/OMA&gt;
   &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e120prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e120pref')">Prefix form</button>
+                  <button id="d43e386prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e386pref')">Prefix form</button>
                </div>
-               <div id="d43e120pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e386pref" style="display:none; margin-top: 0.5em">
                   <a href="relation1.xhtml#eq">eq</a>
 (<a href="set1.xhtml#size">size</a>
 ( <i>A</i>)
@@ -256,10 +872,10 @@ The size of the multiset{3,3,9} = 3
 
   </div>
                <div>
-                  <button id="d43e120mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e120mml')">Presentation MathML</button>
+                  <button id="d43e386mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e386mml')">Presentation MathML</button>
                </div>
-               <div id="d43e120mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e386mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -289,23 +905,20 @@ The size of the multiset{3,3,9} = 3
             </dd>
          </dl>
       </div>
-      <div>[Next: <a href="#cartesian_product">cartesian_product</a>]
+      <div>[Next: <a href="#suchthat">suchthat</a>]
 	   [This: <a href="#size">size</a>]
-	
-	    [Last: <a href="#notprsubset">notprsubset</a>]
-	  
+	[Previous: <a href="#map">map</a>]
       [<a href="#top">Top</a>]
  </div>
 
-
       <div class="cddefinition">
          <h2>
-            <a name="cartesian_product">Symbol Definition: cartesian_product</a>
+            <a name="suchthat">Symbol Definition: suchthat</a>
          </h2>
          <dl>
             <dt class="dt">Pragmatic MathML:</dt>
             <dd>
-               <p>&lt;cartesianproduct/&gt;</p>
+               <p>&lt;suchthat/&gt;</p>
                <p> type=""multiset""</p>
             </dd>
             <dt class="dt">Role:</dt>
@@ -313,296 +926,77 @@ The size of the multiset{3,3,9} = 3
             <dt class="dt">Description:</dt>
             <dd>
                <p>
-    This symbol represents an n-ary construction function for constructing the Cartesian
-    product of multisets. It takes n multiset arguments in order to construct their
-    Cartesian product.
-  </p>
-            </dd>
-            <dt class="dt">description:</dt>
-            <dd>
-               <p>
-    The cartesianproduct element is the operator for a set-theoretic cartesian product
-    of two (or more) sets.  The cartesian product of multisets produces a multiset since
-    n-tuples may be repeated if elements in the base sets are repeated.
-  </p>
-            </dd>
-            <dt class="dt">discussion:</dt>
-            <dd>
-               <p>
-    The cartesianproduct element is the operator element for the Cartesian
-    product of two or more sets. If A and B are two sets, then the
-    Cartesian product of A and B is the set of all pairs
-    (a,b) with a in A and b in
-    B. 
-	  
-    As an n-ary operator, its operands may also be generated as described in
-     Therefore it may take qualifiers.
+    This symbol represents the suchthat function which may be used to construct multisets,
+    it takes two arguments. The first argument should be the multiset which contains the
+    elements of the multiset we wish to represent, the second argument should be a
+    predicate, that is a function from the set to the booleans which describes if an
+    element is to be in the multiset returned.
   </p>
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
                <div>
-                  <button id="d43e214xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e214xml')">XML (MathML)</button>
+                  <button id="d43e431xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e431xml')">XML (MathML)</button>
                </div>
-               <pre id="d43e214xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-      &lt;apply&gt;&lt;cartesianproduct/&gt;&lt;ci&gt;A&lt;/ci&gt;&lt;ci&gt;B&lt;/ci&gt;&lt;/apply&gt;
+               <pre id="d43e431xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+      &lt;set type="multiset"&gt;
+	&lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+	&lt;condition&gt;
+	  &lt;apply&gt;&lt;lt/&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;cn&gt;5&lt;/cn&gt;&lt;/apply&gt;
+	&lt;/condition&gt;
+      &lt;/set&gt;
     &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e214stricta" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e214strict')">Strict Content MathML</button>
+                  <button id="d43e431stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e431strict')">Strict Content MathML</button>
                </div>
-               <pre id="d43e214strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-      &lt;apply&gt;&lt;csymbol cd="set1"&gt;cartesian_product&lt;/csymbol&gt;&lt;ci&gt;A&lt;/ci&gt;&lt;ci&gt;B&lt;/ci&gt;&lt;/apply&gt;
+               <pre id="d43e431strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+      &lt;apply&gt;&lt;csymbol cd="set1"&gt;set&lt;/csymbol&gt;&lt;/apply&gt;
     &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e214cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e214cmml')">OpenMath</button>
+                  <button id="d43e431cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e431cmml')">OpenMath</button>
                </div>
-               <pre id="d43e214cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
-      &lt;OMA&gt;&lt;OMS cd="set1" name="cartesian_product"/&gt;&lt;OMV name="A"/&gt;&lt;OMV name="B"/&gt;&lt;/OMA&gt;
+               <pre id="d43e431cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+      &lt;OMA&gt;&lt;OMS cd="set1" name="set"/&gt;&lt;bvar xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;OMV xmlns="http://www.openmath.org/OpenMath" name="x"/&gt;&lt;/bvar&gt;&lt;condition xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+	  &lt;OMA xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMS cd="relation1" name="lt"/&gt;&lt;OMV name="x"/&gt;&lt;OMI&gt;5&lt;/OMI&gt;&lt;/OMA&gt;
+	&lt;/condition&gt;&lt;/OMA&gt;
     &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e214prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e214pref')">Prefix form</button>
+                  <button id="d43e431prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e431pref')">Prefix form</button>
                </div>
-               <div id="d43e214pref" style="display:none; margin-top: 0.5em">
-                  <a href="set1.xhtml#cartesian_product">cartesian_product</a>
-( <i>A</i>,  <i>B</i>)
+               <div id="d43e431pref" style="display:none; margin-top: 0.5em">
+                  <a href="set1.xhtml#set">set</a>
+( <i>x</i>, 
+	  <a href="relation1.xhtml#lt">lt</a>
+( <i>x</i>, 5)
+
+	)
 
     </div>
                <div>
-                  <button id="d43e214mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e214mml')">Presentation MathML</button>
+                  <button id="d43e431mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e431mml')">Presentation MathML</button>
                </div>
-               <div id="d43e214mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e431mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
-                        <mi>A</mi>
-                        <mo>×</mo>
-                        <mi>B</mi>
-                     </mrow>
-                  </m:math>
-               </div>
-            </dd>
-            <dt class="dt">Example:</dt>
-            <dd>
-               <div>
-                  <button id="d43e227xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e227xml')">XML (MathML)</button>
-               </div>
-               <pre id="d43e227xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-      &lt;apply&gt;&lt;cartesianproduct/&gt;&lt;reals/&gt;&lt;reals/&gt;&lt;reals/&gt;&lt;/apply&gt;
-    &lt;/math&gt;</pre>
-               <div>
-                  <button id="d43e227stricta" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e227strict')">Strict Content MathML</button>
-               </div>
-               <pre id="d43e227strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-      &lt;apply&gt;&lt;csymbol cd="set1"&gt;cartesian_product&lt;/csymbol&gt;&lt;csymbol cd="setname1"&gt;R&lt;/csymbol&gt;&lt;csymbol cd="setname1"&gt;R&lt;/csymbol&gt;&lt;csymbol cd="setname1"&gt;R&lt;/csymbol&gt;&lt;/apply&gt;
-    &lt;/math&gt;</pre>
-               <div>
-                  <button id="d43e227cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e227cmml')">OpenMath</button>
-               </div>
-               <pre id="d43e227cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
-      &lt;OMA&gt;&lt;OMS cd="set1" name="cartesian_product"/&gt;&lt;OMS cd="setname1" name="R"/&gt;&lt;OMS cd="setname1" name="R"/&gt;&lt;OMS cd="setname1" name="R"/&gt;&lt;/OMA&gt;
-    &lt;/OMOBJ&gt;</pre>
-               <div>
-                  <button id="d43e227prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e227pref')">Prefix form</button>
-               </div>
-               <div id="d43e227pref" style="display:none; margin-top: 0.5em">
-                  <a href="set1.xhtml#cartesian_product">cartesian_product</a>
-(<a href="setname1.xhtml#R">R</a>, <a href="setname1.xhtml#R">R</a>, <a href="setname1.xhtml#R">R</a>)
-
-    </div>
-               <div>
-                  <button id="d43e227mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e227mml')">Presentation MathML</button>
-               </div>
-               <div id="d43e227mml" style="display:block; margin-top: 0.5em">
-                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
-                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
-                           xmlns:om="http://www.openmath.org/OpenMath">
-                        <mi mathvariant="double-struck">R</mi>
-                        <mo>×</mo>
-                        <mi mathvariant="double-struck">R</mi>
-                        <mo>×</mo>
-                        <mi mathvariant="double-struck">R</mi>
-                     </mrow>
-                  </m:math>
-               </div>
-            </dd>
-            <dt class="dt">Example:</dt>
-            <dd>
-    An example to show the representation of the Cartesian product of multisets: AxBxC.
-<div>
-                  <button id="d43e239xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e239xml')">XML (OpenMath)</button>
-               </div>
-               <pre id="d43e239xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
-  &lt;OMA&gt;
-    &lt;OMS cd="multiset1" name="cartesian_product"/&gt;
-    &lt;OMV name="A"/&gt;
-    &lt;OMV name="B"/&gt;
-    &lt;OMV name="C"/&gt;
-  &lt;/OMA&gt;
-&lt;/OMOBJ&gt;</pre>
-               <div>
-                  <button id="d43e239cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e239cmml')">Content MathML</button>
-               </div>
-               <pre id="d43e239cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-  &lt;apply&gt;
-    &lt;csymbol cd="multiset1"&gt;cartesian_product&lt;/csymbol&gt;
-    &lt;ci&gt;A&lt;/ci&gt;
-    &lt;ci&gt;B&lt;/ci&gt;
-    &lt;ci&gt;C&lt;/ci&gt;
-  &lt;/apply&gt;
-&lt;/math&gt;</pre>
-               <div>
-                  <button id="d43e239prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e239pref')">Prefix form</button>
-               </div>
-               <div id="d43e239pref" style="display:none; margin-top: 0.5em">
-                  <a href="multiset1.xhtml#cartesian_product">cartesian_product</a>
-( <i>A</i>,  <i>B</i>,  <i>C</i>)
-
-</div>
-               <div>
-                  <button id="d43e239mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e239mml')">Presentation MathML</button>
-               </div>
-               <div id="d43e239mml" style="display:block; margin-top: 0.5em">
-                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
-                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
-                           xmlns:om="http://www.openmath.org/OpenMath">
-                        <mi>A</mi>
-                        <mo>×</mo>
-                        <mi>B</mi>
-                        <mo>×</mo>
-                        <mi>C</mi>
-                     </mrow>
-                  </m:math>
-               </div>
-            </dd>
-            <dt class="dt">Signatures:</dt>
-            <dd>
-               <a href="../sts/multiset1.xhtml#cartesian_product">
-    sts
-      </a>
-            </dd>
-         </dl>
-      </div>
-      <div>[Next: <a href="#emptyset">emptyset</a>]
-	   [This: <a href="#cartesian_product">cartesian_product</a>]
-	[Previous: <a href="#size">size</a>]
-      [<a href="#top">Top</a>]
- </div>
-
-      <div class="cddefinition">
-         <h2>
-            <a name="emptyset">Symbol Definition: emptyset</a>
-         </h2>
-         <dl>
-            <dt class="dt">Pragmatic MathML:</dt>
-            <dd>
-               <p>&lt;emptyset/&gt;</p>
-               <p> type=""multiset""</p>
-            </dd>
-            <dt class="dt">Role:</dt>
-            <dd>constant</dd>
-            <dt class="dt">Description:</dt>
-            <dd>
-               <p>
-    This symbol is used to represent the empty multiset, that is the multiset which
-    contains no members. It takes no parameters.
-  </p>
-            </dd>
-            <dt class="dt">description:</dt>
-            <dd>
-               <p>
-    emptyset represents the empty set.
-  </p>
-            </dd>
-            <dt class="dt">discussion:</dt>
-            <dd>
-               <p>
-    emptyset represents the empty set.
-  </p>
-            </dd>
-            <dt class="dt">Property:</dt>
-            <dd>
-               <p>
-      for all sets S,   intersect(S,emptyset) = emptyset
-      </p>
-               <div>
-                  <button id="d43e304xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e304xml')">XML (MathML)</button>
-               </div>
-               <pre id="d43e304xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-&lt;bind&gt;&lt;forall/&gt;&lt;bvar&gt;&lt;ci type="set"&gt;S&lt;/ci&gt;&lt;/bvar&gt;
-  &lt;apply&gt;&lt;eq/&gt;
-    &lt;apply&gt;&lt;intersect/&gt;&lt;emptyset/&gt;&lt;ci&gt;S&lt;/ci&gt;&lt;/apply&gt;
-    &lt;emptyset/&gt;
-  &lt;/apply&gt;
-&lt;/bind&gt;&lt;/math&gt;</pre>
-               <div>
-                  <button id="d43e304stricta" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e304strict')">Strict Content MathML</button>
-               </div>
-               <pre id="d43e304strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-&lt;bind&gt;&lt;csymbol cd="quant1"&gt;forall&lt;/csymbol&gt;&lt;bvar&gt;&lt;ci&gt;S&lt;/ci&gt;&lt;/bvar&gt;&lt;apply&gt;&lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
-    &lt;apply&gt;&lt;csymbol cd="set1"&gt;intersect&lt;/csymbol&gt;&lt;csymbol cd="set1"&gt;emptyset&lt;/csymbol&gt;&lt;ci&gt;S&lt;/ci&gt;&lt;/apply&gt;
-    &lt;csymbol cd="set1"&gt;emptyset&lt;/csymbol&gt;
-  &lt;/apply&gt;&lt;/bind&gt;&lt;/math&gt;</pre>
-               <div>
-                  <button id="d43e304cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e304cmml')">OpenMath</button>
-               </div>
-               <pre id="d43e304cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
-&lt;OMBIND&gt;&lt;OMS cd="quant1" name="forall"/&gt;&lt;OMBVAR&gt;&lt;OMV name="S"/&gt;&lt;/OMBVAR&gt;&lt;OMA&gt;&lt;OMS cd="relation1" name="eq"/&gt;
-    &lt;OMA&gt;&lt;OMS cd="set1" name="intersect"/&gt;&lt;OMS cd="set1" name="emptyset"/&gt;&lt;OMV name="S"/&gt;&lt;/OMA&gt;
-    &lt;OMS cd="set1" name="emptyset"/&gt;
-  &lt;/OMA&gt;&lt;/OMBIND&gt;&lt;/OMOBJ&gt;</pre>
-               <div>
-                  <button id="d43e304prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e304pref')">Prefix form</button>
-               </div>
-               <div id="d43e304pref" style="display:none; margin-top: 0.5em">
-                  <a href="quant1.xhtml#forall">forall</a>
-[ <i>S</i>] .
-(<a href="relation1.xhtml#eq">eq</a>
-(<a href="set1.xhtml#intersect">intersect</a>
-(<a href="set1.xhtml#emptyset">emptyset</a>,  <i>S</i>)
-, <a href="set1.xhtml#emptyset">emptyset</a>)
-)
-</div>
-               <div>
-                  <button id="d43e304mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e304mml')">Presentation MathML</button>
-               </div>
-               <div id="d43e304mml" style="display:block; margin-top: 0.5em">
-                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
-                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
-                           xmlns:om="http://www.openmath.org/OpenMath">
-                        <mo>∀</mo>
-                        <mo> </mo>
-                        <mrow>
-                           <mi>S</mi>
-                        </mrow>
-                        <mo>.</mo>
-                        <mrow>
-                           <mrow>
-                              <mi>∅</mi>
-                              <mo>∩</mo>
-                              <mi>S</mi>
+                        <mo>{</mo>
+                        <bvar>
+                           <mi>x</mi>
+                        </bvar>
+                        <mo separator="true">,</mo>
+                        <condition>
+	                          <mrow>
+                              <mi>x</mi>
+                              <mo>&lt;</mo>
+                              <mn>5</mn>
                            </mrow>
-                           <mo>=</mo>
-                           <mi>∅</mi>
-                        </mrow>
+	                       </condition>
+                        <mo>}</mo>
                      </mrow>
                   </m:math>
                </div>
@@ -610,198 +1004,88 @@ The size of the multiset{3,3,9} = 3
             <dt class="dt">Example:</dt>
             <dd>
                <div>
-                  <button id="d43e326xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e326xml')">XML (MathML)</button>
+                  <button id="d43e455xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e455xml')">XML (MathML)</button>
                </div>
-               <pre id="d43e326xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;neq/&gt;
-  &lt;integers/&gt;
-  &lt;emptyset/&gt;
-&lt;/apply&gt;
-&lt;/math&gt;</pre>
+               <pre id="d43e455xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+    &lt;set type="multiset"&gt;
+      &lt;bvar&gt;&lt;ci type="multiset"&gt;S&lt;/ci&gt;&lt;/bvar&gt;
+      &lt;condition&gt;
+	&lt;apply&gt;&lt;in/&gt;&lt;ci&gt;S&lt;/ci&gt;&lt;ci type="list"&gt;T&lt;/ci&gt;&lt;/apply&gt;
+      &lt;/condition&gt;
+      &lt;ci&gt;S&lt;/ci&gt;
+    &lt;/set&gt;
+  &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e326stricta" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e326strict')">Strict Content MathML</button>
+                  <button id="d43e455stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e455strict')">Strict Content MathML</button>
                </div>
-               <pre id="d43e326strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;csymbol cd="relation1"&gt;neq&lt;/csymbol&gt;
-  &lt;csymbol cd="setname1"&gt;Z&lt;/csymbol&gt;
-  &lt;csymbol cd="set1"&gt;emptyset&lt;/csymbol&gt;
-&lt;/apply&gt;
-&lt;/math&gt;</pre>
+               <pre id="d43e455strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+    &lt;apply&gt;&lt;csymbol cd="set1"&gt;set&lt;/csymbol&gt;&lt;ci&gt;S&lt;/ci&gt;&lt;/apply&gt;
+  &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e326cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e326cmml')">OpenMath</button>
+                  <button id="d43e455cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e455cmml')">OpenMath</button>
                </div>
-               <pre id="d43e326cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMA&gt;&lt;OMS cd="relation1" name="neq"/&gt;
-  &lt;OMS cd="setname1" name="Z"/&gt;
-  &lt;OMS cd="set1" name="emptyset"/&gt;
-&lt;/OMA&gt;
-&lt;/OMOBJ&gt;</pre>
+               <pre id="d43e455cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+    &lt;OMA&gt;&lt;OMS cd="set1" name="set"/&gt;&lt;bvar xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;OMV xmlns="http://www.openmath.org/OpenMath" name="S"/&gt;&lt;/bvar&gt;&lt;condition xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+	&lt;OMA xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMS cd="set1" name="in"/&gt;&lt;OMV name="S"/&gt;&lt;OMV name="T"/&gt;&lt;/OMA&gt;
+      &lt;/condition&gt;&lt;OMV name="S"/&gt;&lt;/OMA&gt;
+  &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e326prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e326pref')">Prefix form</button>
+                  <button id="d43e455prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e455pref')">Prefix form</button>
                </div>
-               <div id="d43e326pref" style="display:none; margin-top: 0.5em">
-                  <a href="relation1.xhtml#neq">neq</a>
-(<a href="setname1.xhtml#Z">Z</a>, <a href="set1.xhtml#emptyset">emptyset</a>)
+               <div id="d43e455pref" style="display:none; margin-top: 0.5em">
+                  <a href="set1.xhtml#set">set</a>
+( <i>S</i>, 
+	<a href="set1.xhtml#in">in</a>
+( <i>S</i>,  <i>T</i>)
 
-</div>
+      ,  <i>S</i>)
+
+  </div>
                <div>
-                  <button id="d43e326mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e326mml')">Presentation MathML</button>
+                  <button id="d43e455mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e455mml')">Presentation MathML</button>
                </div>
-               <div id="d43e326mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e455mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
-                        <mi mathvariant="double-struck">Z</mi>
-                        <mo>≠</mo>
-                        <mi>∅</mi>
-                     </mrow>
-                  </m:math>
-               </div>
-            </dd>
-            <dt class="dt">Property:</dt>
-            <dd>
- The intersection of A with the empty (multi) set is the empty
-(multi) set 
-
-<div>
-                  <button id="d43e344xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e344xml')">XML (OpenMath)</button>
-               </div>
-               <pre id="d43e344xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
-  &lt;OMA&gt;
-    &lt;OMS cd="relation1" name="eq"/&gt;
-    &lt;OMA&gt;
-      &lt;OMS cd="multiset1" name="intersect"/&gt;
-      &lt;OMV name="A"/&gt;
-      &lt;OMS cd="multiset1" name="emptyset"/&gt;
-    &lt;/OMA&gt;
-    &lt;OMS cd="multiset1" name="emptyset"/&gt;
-  &lt;/OMA&gt;
-&lt;/OMOBJ&gt;</pre>
-               <div>
-                  <button id="d43e344cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e344cmml')">Content MathML</button>
-               </div>
-               <pre id="d43e344cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-  &lt;apply&gt;
-    &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
-    &lt;apply&gt;
-      &lt;csymbol cd="multiset1"&gt;intersect&lt;/csymbol&gt;
-      &lt;ci&gt;A&lt;/ci&gt;
-      &lt;csymbol cd="multiset1"&gt;emptyset&lt;/csymbol&gt;
-    &lt;/apply&gt;
-    &lt;csymbol cd="multiset1"&gt;emptyset&lt;/csymbol&gt;
-  &lt;/apply&gt;
-&lt;/math&gt;</pre>
-               <div>
-                  <button id="d43e344prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e344pref')">Prefix form</button>
-               </div>
-               <div id="d43e344pref" style="display:none; margin-top: 0.5em">
-                  <a href="relation1.xhtml#eq">eq</a>
-(<a href="multiset1.xhtml#intersect">intersect</a>
-( <i>A</i>, <a href="multiset1.xhtml#emptyset">emptyset</a>)
-, <a href="multiset1.xhtml#emptyset">emptyset</a>)
-
-</div>
-               <div>
-                  <button id="d43e344mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e344mml')">Presentation MathML</button>
-               </div>
-               <div id="d43e344mml" style="display:block; margin-top: 0.5em">
-                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
-                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
-                           xmlns:om="http://www.openmath.org/OpenMath">
-                        <mrow>
-                           <mi>A</mi>
-                           <mo>∩</mo>
-                           <mi>∅</mi>
-                        </mrow>
-                        <mo>=</mo>
-                        <mi>∅</mi>
-                     </mrow>
-                  </m:math>
-               </div>
-            </dd>
-            <dt class="dt">Property:</dt>
-            <dd>
- The union of A with the empty (multi) set is A 
-
-<div>
-                  <button id="d43e371xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e371xml')">XML (OpenMath)</button>
-               </div>
-               <pre id="d43e371xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
-  &lt;OMA&gt;
-    &lt;OMS cd="relation1" name="eq"/&gt;
-    &lt;OMA&gt;
-      &lt;OMS cd="multiset1" name="union"/&gt;
-      &lt;OMV name="A"/&gt;
-      &lt;OMS cd="multiset1" name="emptyset"/&gt;
-    &lt;/OMA&gt;
-    &lt;OMV name="A"/&gt;
-  &lt;/OMA&gt;
-&lt;/OMOBJ&gt;</pre>
-               <div>
-                  <button id="d43e371cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e371cmml')">Content MathML</button>
-               </div>
-               <pre id="d43e371cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-  &lt;apply&gt;
-    &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
-    &lt;apply&gt;
-      &lt;csymbol cd="multiset1"&gt;union&lt;/csymbol&gt;
-      &lt;ci&gt;A&lt;/ci&gt;
-      &lt;csymbol cd="multiset1"&gt;emptyset&lt;/csymbol&gt;
-    &lt;/apply&gt;
-    &lt;ci&gt;A&lt;/ci&gt;
-  &lt;/apply&gt;
-&lt;/math&gt;</pre>
-               <div>
-                  <button id="d43e371prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e371pref')">Prefix form</button>
-               </div>
-               <div id="d43e371pref" style="display:none; margin-top: 0.5em">
-                  <a href="relation1.xhtml#eq">eq</a>
-(<a href="multiset1.xhtml#union">union</a>
-( <i>A</i>, <a href="multiset1.xhtml#emptyset">emptyset</a>)
-,  <i>A</i>)
-
-</div>
-               <div>
-                  <button id="d43e371mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e371mml')">Presentation MathML</button>
-               </div>
-               <div id="d43e371mml" style="display:block; margin-top: 0.5em">
-                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
-                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
-                           xmlns:om="http://www.openmath.org/OpenMath">
-                        <mrow>
-                           <mi>A</mi>
-                           <mo>∪</mo>
-                           <mi>∅</mi>
-                        </mrow>
-                        <mo>=</mo>
-                        <mi>A</mi>
+                        <mo>{</mo>
+                        <bvar>
+                           <mi>S</mi>
+                        </bvar>
+                        <mo separator="true">,</mo>
+                        <condition>
+	                          <mrow>
+                              <mi>S</mi>
+                              <mo>∈</mo>
+                              <mi>T</mi>
+                           </mrow>
+                        </condition>
+                        <mo separator="true">,</mo>
+                        <mi>S</mi>
+                        <mo>}</mo>
                      </mrow>
                   </m:math>
                </div>
             </dd>
             <dt class="dt">Signatures:</dt>
             <dd>
-               <a href="../sts/multiset1.xhtml#emptyset">
+               <a href="../sts/multiset1.xhtml#suchthat">
     sts
       </a>
             </dd>
          </dl>
       </div>
       <div>[Next: <a href="#multiset">multiset</a>]
-	   [This: <a href="#emptyset">emptyset</a>]
-	[Previous: <a href="#cartesian_product">cartesian_product</a>]
+	   [This: <a href="#suchthat">suchthat</a>]
+	[Previous: <a href="#size">size</a>]
       [<a href="#top">Top</a>]
  </div>
+
 
       <div class="cddefinition">
          <h2>
@@ -825,12 +1109,67 @@ The size of the multiset{3,3,9} = 3
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
+               <div>
+                  <button id="d43e508xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e508xml')">XML (MathML)</button>
+               </div>
+               <pre id="d43e508xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+      &lt;set type="multiset"&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;ci&gt;c&lt;/ci&gt;&lt;ci&gt;b&lt;/ci&gt;&lt;ci&gt;c&lt;/ci&gt;&lt;/set&gt;
+    &lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e508stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e508strict')">Strict Content MathML</button>
+               </div>
+               <pre id="d43e508strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+      &lt;apply&gt;&lt;csymbol cd="set1"&gt;set&lt;/csymbol&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;ci&gt;c&lt;/ci&gt;&lt;ci&gt;b&lt;/ci&gt;&lt;ci&gt;c&lt;/ci&gt;&lt;/apply&gt;
+    &lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e508cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e508cmml')">OpenMath</button>
+               </div>
+               <pre id="d43e508cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+      &lt;OMA&gt;&lt;OMS cd="set1" name="set"/&gt;&lt;OMV name="a"/&gt;&lt;OMV name="a"/&gt;&lt;OMV name="c"/&gt;&lt;OMV name="b"/&gt;&lt;OMV name="c"/&gt;&lt;/OMA&gt;
+    &lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d43e508prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e508pref')">Prefix form</button>
+               </div>
+               <div id="d43e508pref" style="display:none; margin-top: 0.5em">
+                  <a href="set1.xhtml#set">set</a>
+( <i>a</i>,  <i>a</i>,  <i>c</i>,  <i>b</i>,  <i>c</i>)
+
+    </div>
+               <div>
+                  <button id="d43e508mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e508mml')">Presentation MathML</button>
+               </div>
+               <div id="d43e508mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mo>{</mo>
+                        <mi>a</mi>
+                        <mo separator="true">,</mo>
+                        <mi>a</mi>
+                        <mo separator="true">,</mo>
+                        <mi>c</mi>
+                        <mo separator="true">,</mo>
+                        <mi>b</mi>
+                        <mo separator="true">,</mo>
+                        <mi>c</mi>
+                        <mo>}</mo>
+                     </mrow>
+                  </m:math>
+               </div>
+            </dd>
+            <dt class="dt">Example:</dt>
+            <dd>
     The multiset {4, 1, 0, 1 4}
     <div>
-                  <button id="d43e420xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e420xml')">XML (OpenMath)</button>
+                  <button id="d43e527xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e527xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e420xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d43e527xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMA&gt;
     &lt;OMS cd="multiset1" name="multiset"/&gt;
     &lt;OMI&gt; 4 &lt;/OMI&gt;
@@ -841,10 +1180,10 @@ The size of the multiset{3,3,9} = 3
   &lt;/OMA&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e420cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e420cmml')">Content MathML</button>
+                  <button id="d43e527cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e527cmml')">Content MathML</button>
                </div>
-               <pre id="d43e420cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e527cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
   &lt;apply&gt;
     &lt;csymbol cd="multiset1"&gt;multiset&lt;/csymbol&gt;
     &lt;cn&gt; 4 &lt;/cn&gt;
@@ -855,19 +1194,19 @@ The size of the multiset{3,3,9} = 3
   &lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e420prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e420pref')">Prefix form</button>
+                  <button id="d43e527prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e527pref')">Prefix form</button>
                </div>
-               <div id="d43e420pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e527pref" style="display:none; margin-top: 0.5em">
                   <a href="multiset1.xhtml#multiset">multiset</a>
 ( 4 ,  1 ,  0 ,  1 ,  4 )
 
 </div>
                <div>
-                  <button id="d43e420mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e420mml')">Presentation MathML</button>
+                  <button id="d43e527mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e527mml')">Presentation MathML</button>
                </div>
-               <div id="d43e420mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e527mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -900,7 +1239,7 @@ The size of the multiset{3,3,9} = 3
       </div>
       <div>[Next: <a href="#intersect">intersect</a>]
 	   [This: <a href="#multiset">multiset</a>]
-	[Previous: <a href="#emptyset">emptyset</a>]
+	[Previous: <a href="#suchthat">suchthat</a>]
       [<a href="#top">Top</a>]
  </div>
 
@@ -942,67 +1281,52 @@ The size of the multiset{3,3,9} = 3
     all of them, with multiplicity the minimum of their multiplicities in all multisets.
   </p>
             </dd>
-            <dt class="dt">description:</dt>
-            <dd>
-               <p>
-     This n-ary operator indicates the intersection of two sets.  If the two sets are
-    multisets, the result is a multiset. in which each element is present with a
-    repetition determined by the smallest number of occurrences in any of the sets
-    (multisets) that occur as arguments.
-  </p>
-            </dd>
-            <dt class="dt">discussion:</dt>
-            <dd>
-               <p>
-    The intersect element is the operator for the set-theoretic intersection
-    or meet of two (or more) sets.  The operands are usually listed explicitly.
-    As an n-ary operator, its operands may also be generated as described in  Therefore it may take qualifiers.
-    
-  </p>
-            </dd>
             <dt class="dt">Example:</dt>
             <dd>
                <div>
-                  <button id="d43e549xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e549xml')">XML (MathML)</button>
+                  <button id="d43e637xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e637xml')">XML (MathML)</button>
                </div>
-               <pre id="d43e549xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;intersect/&gt;
-  &lt;ci type="set"&gt; A&lt;/ci&gt;
-  &lt;ci type="set"&gt; B&lt;/ci&gt;
-&lt;/apply&gt;
-&lt;/math&gt;</pre>
+               <pre id="d43e637xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+    &lt;apply&gt;&lt;intersect type="multiset"/&gt;
+      &lt;ci type="multiset"&gt; A&lt;/ci&gt;
+      &lt;ci type="multiset"&gt; B&lt;/ci&gt;
+    &lt;/apply&gt;
+  &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e549stricta" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e549strict')">Strict Content MathML</button>
+                  <button id="d43e637stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e637strict')">Strict Content MathML</button>
                </div>
-               <pre id="d43e549strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;csymbol cd="set1"&gt;intersect&lt;/csymbol&gt;
-  &lt;ci&gt;A&lt;/ci&gt;
-  &lt;ci&gt;B&lt;/ci&gt;
-&lt;/apply&gt;
-&lt;/math&gt;</pre>
+               <pre id="d43e637strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+    &lt;apply&gt;&lt;csymbol cd="multiset1"&gt;intersect&lt;/csymbol&gt;
+      &lt;ci&gt;A&lt;/ci&gt;
+      &lt;ci&gt;B&lt;/ci&gt;
+    &lt;/apply&gt;
+  &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e549cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e549cmml')">OpenMath</button>
+                  <button id="d43e637cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e637cmml')">OpenMath</button>
                </div>
-               <pre id="d43e549cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMA&gt;&lt;OMS cd="set1" name="intersect"/&gt;
-  &lt;OMV name="A"/&gt;
-  &lt;OMV name="B"/&gt;
-&lt;/OMA&gt;
-&lt;/OMOBJ&gt;</pre>
+               <pre id="d43e637cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+    &lt;OMA&gt;&lt;OMS cd="multiset1" name="intersect"/&gt;
+      &lt;OMV name="A"/&gt;
+      &lt;OMV name="B"/&gt;
+    &lt;/OMA&gt;
+  &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e549prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e549pref')">Prefix form</button>
+                  <button id="d43e637prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e637pref')">Prefix form</button>
                </div>
-               <div id="d43e549pref" style="display:none; margin-top: 0.5em">
-                  <a href="set1.xhtml#intersect">intersect</a>
+               <div id="d43e637pref" style="display:none; margin-top: 0.5em">
+                  <a href="multiset1.xhtml#intersect">intersect</a>
 ( <i>A</i>,  <i>B</i>)
 
-</div>
+  </div>
                <div>
-                  <button id="d43e549mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e549mml')">Presentation MathML</button>
+                  <button id="d43e637mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e637mml')">Presentation MathML</button>
                </div>
-               <div id="d43e549mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e637mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -1013,100 +1337,17 @@ The size of the multiset{3,3,9} = 3
                   </m:math>
                </div>
             </dd>
-            <dt class="dt">Example:</dt>
-            <dd>
-               <div>
-                  <button id="d43e562xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e562xml')">XML (MathML)</button>
-               </div>
-               <pre id="d43e562xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-&lt;apply&gt;
-  &lt;intersect/&gt;
-  &lt;ci type="list"&gt;L&lt;/ci&gt;
-  &lt;bind&gt;
-    &lt;lambda/&gt;
-    &lt;bvar&gt;&lt;ci type="set"&gt; S&lt;/ci&gt;&lt;/bvar&gt;
-    &lt;ci type="set"&gt; S&lt;/ci&gt;
-  &lt;/bind&gt;
-&lt;/apply&gt;
-&lt;/math&gt;</pre>
-               <div>
-                  <button id="d43e562stricta" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e562strict')">Strict Content MathML</button>
-               </div>
-               <pre id="d43e562strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-&lt;apply&gt;
-  &lt;csymbol cd="set1"&gt;intersect&lt;/csymbol&gt;
-  &lt;ci&gt;L&lt;/ci&gt;
-  &lt;bind&gt;&lt;bind&gt;&lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;&lt;/bind&gt;&lt;bvar&gt;&lt;ci&gt;S&lt;/ci&gt;&lt;/bvar&gt;&lt;ci&gt;S&lt;/ci&gt;&lt;/bind&gt;
-&lt;/apply&gt;
-&lt;/math&gt;</pre>
-               <div>
-                  <button id="d43e562cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e562cmml')">OpenMath</button>
-               </div>
-               <pre id="d43e562cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
-&lt;OMA&gt;
-  &lt;OMS cd="set1" name="intersect"/&gt;
-  &lt;OMV name="L"/&gt;
-  &lt;OMBIND&gt;&lt;OMBIND&gt;&lt;OMS cd="fns1" name="lambda"/&gt;&lt;OMBVAR/&gt;&lt;/OMBIND&gt;&lt;OMBVAR&gt;&lt;OMV name="S"/&gt;&lt;/OMBVAR&gt;&lt;OMV name="S"/&gt;&lt;/OMBIND&gt;
-&lt;/OMA&gt;
-&lt;/OMOBJ&gt;</pre>
-               <div>
-                  <button id="d43e562prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e562pref')">Prefix form</button>
-               </div>
-               <div id="d43e562pref" style="display:none; margin-top: 0.5em">
-                  <a href="set1.xhtml#intersect">intersect</a>
-( <i>L</i>, <a href="fns1.xhtml#lambda">lambda</a>
-[] .
-()
-
-[ <i>S</i>] .
-( <i>S</i>)
-)
-
-</div>
-               <div>
-                  <button id="d43e562mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e562mml')">Presentation MathML</button>
-               </div>
-               <div id="d43e562mml" style="display:block; margin-top: 0.5em">
-                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
-                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
-                           xmlns:om="http://www.openmath.org/OpenMath">
-                        <mi>L</mi>
-                        <mo>∩</mo>
-                        <mrow>
-                           <mrow>
-                              <mo>λ</mo>
-                              <mo> </mo>
-                              <mrow/>
-                              <mo>.</mo>
-                           </mrow>
-                           <mo> </mo>
-                           <mrow>
-                              <mi>S</mi>
-                           </mrow>
-                           <mo>.</mo>
-                           <mi>S</mi>
-                        </mrow>
-                     </mrow>
-                  </m:math>
-               </div>
-            </dd>
             <dt class="dt">Property:</dt>
             <dd>
 
-  (A intersect B) is a subset of A and 
-    (A intersect B) is a subset of B
+  (A intersect B) is a subset of A and (A intersect B) is a subset of B
 
 
 <div>
-                  <button id="d43e592xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e592xml')">XML (OpenMath)</button>
+                  <button id="d43e659xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e659xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e592xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d43e659xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMA&gt;
     &lt;OMS cd="logic1" name="and"/&gt;
     &lt;OMA&gt;
@@ -1130,10 +1371,10 @@ The size of the multiset{3,3,9} = 3
   &lt;/OMA&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e592cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e592cmml')">Content MathML</button>
+                  <button id="d43e659cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e659cmml')">Content MathML</button>
                </div>
-               <pre id="d43e592cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e659cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
   &lt;apply&gt;
     &lt;csymbol cd="logic1"&gt;and&lt;/csymbol&gt;
     &lt;apply&gt;
@@ -1157,10 +1398,10 @@ The size of the multiset{3,3,9} = 3
   &lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e592prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e592pref')">Prefix form</button>
+                  <button id="d43e659prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e659pref')">Prefix form</button>
                </div>
-               <div id="d43e592pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e659pref" style="display:none; margin-top: 0.5em">
                   <a href="logic1.xhtml#and">and</a>
 (<a href="multiset1.xhtml#subset">subset</a>
 (<a href="multiset1.xhtml#intersect">intersect</a>
@@ -1174,10 +1415,10 @@ The size of the multiset{3,3,9} = 3
 
 </div>
                <div>
-                  <button id="d43e592mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e592mml')">Presentation MathML</button>
+                  <button id="d43e659mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e659mml')">Presentation MathML</button>
                </div>
-               <div id="d43e592mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e659mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -1235,8 +1476,88 @@ The size of the multiset{3,3,9} = 3
     This n-ary operator is used to construct the intersection over a collection of sets.
   </p>
             </dd>
-            <dt class="dt">Pragmatic MathML:</dt>
-            <dd/>
+            <dt class="dt">Example:</dt>
+            <dd>
+               <div>
+                  <button id="d43e717xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e717xml')">XML (MathML)</button>
+               </div>
+               <pre id="d43e717xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;apply&gt;
+  &lt;intersect/&gt;
+  &lt;ci type="list"&gt;L&lt;/ci&gt;
+  &lt;bind&gt;
+    &lt;lambda/&gt;
+    &lt;bvar&gt;&lt;ci type="set"&gt; S&lt;/ci&gt;&lt;/bvar&gt;
+    &lt;ci type="set"&gt; S&lt;/ci&gt;
+  &lt;/bind&gt;
+&lt;/apply&gt;
+&lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e717stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e717strict')">Strict Content MathML</button>
+               </div>
+               <pre id="d43e717strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;apply&gt;
+  &lt;csymbol cd="set1"&gt;intersect&lt;/csymbol&gt;
+  &lt;ci&gt;L&lt;/ci&gt;
+  &lt;bind&gt;&lt;bind&gt;&lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;&lt;/bind&gt;&lt;bvar&gt;&lt;ci&gt;S&lt;/ci&gt;&lt;/bvar&gt;&lt;ci&gt;S&lt;/ci&gt;&lt;/bind&gt;
+&lt;/apply&gt;
+&lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e717cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e717cmml')">OpenMath</button>
+               </div>
+               <pre id="d43e717cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+&lt;OMA&gt;
+  &lt;OMS cd="set1" name="intersect"/&gt;
+  &lt;OMV name="L"/&gt;
+  &lt;OMBIND&gt;&lt;OMBIND&gt;&lt;OMS cd="fns1" name="lambda"/&gt;&lt;OMBVAR/&gt;&lt;/OMBIND&gt;&lt;OMBVAR&gt;&lt;OMV name="S"/&gt;&lt;/OMBVAR&gt;&lt;OMV name="S"/&gt;&lt;/OMBIND&gt;
+&lt;/OMA&gt;
+&lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d43e717prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e717pref')">Prefix form</button>
+               </div>
+               <div id="d43e717pref" style="display:none; margin-top: 0.5em">
+                  <a href="set1.xhtml#intersect">intersect</a>
+( <i>L</i>, <a href="fns1.xhtml#lambda">lambda</a>
+[] .
+()
+
+[ <i>S</i>] .
+( <i>S</i>)
+)
+
+</div>
+               <div>
+                  <button id="d43e717mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e717mml')">Presentation MathML</button>
+               </div>
+               <div id="d43e717mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mi>L</mi>
+                        <mo>∩</mo>
+                        <mrow>
+                           <mrow>
+                              <mo>λ</mo>
+                              <mo> </mo>
+                              <mrow/>
+                              <mo>.</mo>
+                           </mrow>
+                           <mo> </mo>
+                           <mrow>
+                              <mi>S</mi>
+                           </mrow>
+                           <mo>.</mo>
+                           <mi>S</mi>
+                        </mrow>
+                     </mrow>
+                  </m:math>
+               </div>
+            </dd>
             <dt class="dt">Signatures:</dt>
             <dd>
                <a href="../sts/multiset1.xhtml#big_intersect">
@@ -1285,64 +1606,58 @@ The size of the multiset{3,3,9} = 3
             <dt class="dt">Description:</dt>
             <dd>
                <p> 
-This symbol is used to denote the n-ary union of multisets. It
-takes multisets as arguments, and denotes the multiset that 
-contains all the elements that occur in any of them, with 
-multiplicity the sum of all the multiplicities in the multiset 
-arguments.
-</p>
-            </dd>
-            <dt class="dt">description:</dt>
-            <dd>
-               <p>
-          This is the set-theoretic operation of union of sets.  This n-ary operator
-          generalizes to operations on multisets by tracking the frequency of occurrence
-          of each element in the union. As an n-ary operation the operands can be
-          generated by allowing a function or expression to range over the elements of a
-          domain of application.  Thus it accepts qualifiers.
-	</p>
-            </dd>
-            <dt class="dt">discussion:</dt>
-            <dd>
-               <p>
-	  The union element is the operator for a set-theoretic union or join
-	  of two (or more) sets.  The operands are usually listed explicitly.
-	  
-	  As an n-ary operator, its operands may also
-	  be generated as described in  Therefore it
-	  may take qualifiers.
-	</p>
+    This symbol is used to denote the n-ary union of multisets. It takes multisets as
+    arguments, and denotes the multiset that contains all the elements that occur in any
+    of them, with multiplicity the sum of all the multiplicities in the multiset
+    arguments.
+  </p>
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
                <div>
-                  <button id="d43e755xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e755xml')">XML (MathML)</button>
+                  <button id="d43e825xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e825xml')">XML (MathML)</button>
                </div>
-               <pre id="d43e755xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;union/&gt;&lt;ci&gt;A&lt;/ci&gt;&lt;ci&gt;B&lt;/ci&gt;&lt;/apply&gt;&lt;/math&gt;</pre>
+               <pre id="d43e825xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+      &lt;apply&gt;&lt;union type="multiset"/&gt;
+        &lt;ci type="multiset"&gt;A&lt;/ci&gt;
+        &lt;ci type="multiset"&gt;B&lt;/ci&gt;
+      &lt;/apply&gt;
+    &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e755stricta" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e755strict')">Strict Content MathML</button>
+                  <button id="d43e825stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e825strict')">Strict Content MathML</button>
                </div>
-               <pre id="d43e755strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;csymbol cd="set1"&gt;union&lt;/csymbol&gt;&lt;ci&gt;A&lt;/ci&gt;&lt;ci&gt;B&lt;/ci&gt;&lt;/apply&gt;&lt;/math&gt;</pre>
+               <pre id="d43e825strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+      &lt;apply&gt;&lt;csymbol cd="multiset1"&gt;union&lt;/csymbol&gt;
+        &lt;ci&gt;A&lt;/ci&gt;
+        &lt;ci&gt;B&lt;/ci&gt;
+      &lt;/apply&gt;
+    &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e755cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e755cmml')">OpenMath</button>
+                  <button id="d43e825cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e825cmml')">OpenMath</button>
                </div>
-               <pre id="d43e755cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMA&gt;&lt;OMS cd="set1" name="union"/&gt;&lt;OMV name="A"/&gt;&lt;OMV name="B"/&gt;&lt;/OMA&gt;&lt;/OMOBJ&gt;</pre>
+               <pre id="d43e825cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+      &lt;OMA&gt;&lt;OMS cd="multiset1" name="union"/&gt;
+        &lt;OMV name="A"/&gt;
+        &lt;OMV name="B"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e755prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e755pref')">Prefix form</button>
+                  <button id="d43e825prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e825pref')">Prefix form</button>
                </div>
-               <div id="d43e755pref" style="display:none; margin-top: 0.5em">
-                  <a href="set1.xhtml#union">union</a>
+               <div id="d43e825pref" style="display:none; margin-top: 0.5em">
+                  <a href="multiset1.xhtml#union">union</a>
 ( <i>A</i>,  <i>B</i>)
-</div>
+
+    </div>
                <div>
-                  <button id="d43e755mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e755mml')">Presentation MathML</button>
+                  <button id="d43e825mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e825mml')">Presentation MathML</button>
                </div>
-               <div id="d43e755mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e825mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -1353,75 +1668,16 @@ arguments.
                   </m:math>
                </div>
             </dd>
-            <dt class="dt">Example:</dt>
-            <dd>
-               <div>
-                  <button id="d43e764xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e764xml')">XML (MathML)</button>
-               </div>
-               <pre id="d43e764xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-	  &lt;bind&gt;
-	    &lt;union/&gt;
-	    &lt;bvar&gt;&lt;ci type="set"&gt; S&lt;/ci&gt;&lt;/bvar&gt;
-	    &lt;domainofapplication&gt;&lt;ci type="list"&gt;L&lt;/ci&gt;&lt;/domainofapplication&gt;
-	    &lt;ci type="set"&gt; S&lt;/ci&gt;
-	  &lt;/bind&gt;
-	&lt;/math&gt;</pre>
-               <div>
-                  <button id="d43e764stricta" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e764strict')">Strict Content MathML</button>
-               </div>
-               <pre id="d43e764strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-	  &lt;bind&gt;&lt;csymbol cd="set1"&gt;union&lt;/csymbol&gt;&lt;bvar&gt;&lt;ci&gt;S&lt;/ci&gt;&lt;/bvar&gt;&lt;ci&gt;S&lt;/ci&gt;&lt;/bind&gt;
-	&lt;/math&gt;</pre>
-               <div>
-                  <button id="d43e764cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e764cmml')">OpenMath</button>
-               </div>
-               <pre id="d43e764cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
-	  &lt;OMBIND&gt;&lt;OMS cd="set1" name="union"/&gt;&lt;OMBVAR&gt;&lt;OMV name="S"/&gt;&lt;/OMBVAR&gt;&lt;OMV name="S"/&gt;&lt;/OMBIND&gt;
-	&lt;/OMOBJ&gt;</pre>
-               <div>
-                  <button id="d43e764prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e764pref')">Prefix form</button>
-               </div>
-               <div id="d43e764pref" style="display:none; margin-top: 0.5em">
-	                 <a href="set1.xhtml#union">union</a>
-[ <i>S</i>] .
-( <i>S</i>)
-
-	</div>
-               <div>
-                  <button id="d43e764mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e764mml')">Presentation MathML</button>
-               </div>
-               <div id="d43e764mml" style="display:block; margin-top: 0.5em">
-                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
-                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
-                           xmlns:om="http://www.openmath.org/OpenMath">
-                        <mo>∪</mo>
-                        <mo> </mo>
-                        <mrow>
-                           <mi>S</mi>
-                        </mrow>
-                        <mo>.</mo>
-                        <mi>S</mi>
-                     </mrow>
-                  </m:math>
-               </div>
-            </dd>
             <dt class="dt">Property:</dt>
             <dd>
- 
-  A is a subset of (A union B) and B is a subset of (A union B) 
-
+ A is a subset of (A union B) and B is a subset of (A union B) 
 
 
 <div>
-                  <button id="d43e791xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e791xml')">XML (OpenMath)</button>
+                  <button id="d43e847xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e847xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e791xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d43e847xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMA&gt;
     &lt;OMS cd="logic1" name="and"/&gt;
     &lt;OMA&gt;
@@ -1445,10 +1701,10 @@ arguments.
   &lt;/OMA&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e791cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e791cmml')">Content MathML</button>
+                  <button id="d43e847cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e847cmml')">Content MathML</button>
                </div>
-               <pre id="d43e791cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e847cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
   &lt;apply&gt;
     &lt;csymbol cd="logic1"&gt;and&lt;/csymbol&gt;
     &lt;apply&gt;
@@ -1472,10 +1728,10 @@ arguments.
   &lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e791prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e791pref')">Prefix form</button>
+                  <button id="d43e847prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e847pref')">Prefix form</button>
                </div>
-               <div id="d43e791pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e847pref" style="display:none; margin-top: 0.5em">
                   <a href="logic1.xhtml#and">and</a>
 (<a href="multiset1.xhtml#subset">subset</a>
 ( <i>A</i>, <a href="multiset1.xhtml#union">union</a>
@@ -1489,10 +1745,10 @@ arguments.
 
 </div>
                <div>
-                  <button id="d43e791mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e791mml')">Presentation MathML</button>
+                  <button id="d43e847mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e847mml')">Presentation MathML</button>
                </div>
-               <div id="d43e791mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e847mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -1528,10 +1784,10 @@ union(A,intersect(B,C)) = intersect(union(A,B),union(A,C))
 
 
 <div>
-                  <button id="d43e839xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e839xml')">XML (OpenMath)</button>
+                  <button id="d43e895xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e895xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e839xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d43e895xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMBIND&gt;
     &lt;OMS cd="quant1" name="forall"/&gt;
     &lt;OMBVAR&gt;
@@ -1567,10 +1823,10 @@ union(A,intersect(B,C)) = intersect(union(A,B),union(A,C))
   &lt;/OMBIND&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e839cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e839cmml')">Content MathML</button>
+                  <button id="d43e895cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e895cmml')">Content MathML</button>
                </div>
-               <pre id="d43e839cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e895cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
   &lt;bind&gt;
     &lt;csymbol cd="quant1"&gt;forall&lt;/csymbol&gt;
     &lt;bvar&gt;&lt;ci&gt;A&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;B&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;C&lt;/ci&gt;&lt;/bvar&gt;
@@ -1602,10 +1858,10 @@ union(A,intersect(B,C)) = intersect(union(A,B),union(A,C))
   &lt;/bind&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e839prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e839pref')">Prefix form</button>
+                  <button id="d43e895prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e895pref')">Prefix form</button>
                </div>
-               <div id="d43e839pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e895pref" style="display:none; margin-top: 0.5em">
                   <a href="quant1.xhtml#forall">forall</a>
 [
        <i>A</i>
@@ -1628,10 +1884,10 @@ union(A,intersect(B,C)) = intersect(union(A,B),union(A,C))
 
 </div>
                <div>
-                  <button id="d43e839mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e839mml')">Presentation MathML</button>
+                  <button id="d43e895mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e895mml')">Presentation MathML</button>
                </div>
-               <div id="d43e839mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e895mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -1698,7 +1954,7 @@ union(A,intersect(B,C)) = intersect(union(A,B),union(A,C))
             <dd>binder</dd>
             <dt class="dt">Title:</dt>
             <dd>
-               <p>Union over a multiset of expressions</p>
+               <p>Multiset union over a set of expressions</p>
             </dd>
             <dt class="dt">Description:</dt>
             <dd>
@@ -1706,8 +1962,63 @@ union(A,intersect(B,C)) = intersect(union(A,B),union(A,C))
     This n-ary operator is used to construct the union over a collection of multisets.
   </p>
             </dd>
-            <dt class="dt">Pragmatic MathML:</dt>
-            <dd/>
+            <dt class="dt">Example:</dt>
+            <dd>
+               <div>
+                  <button id="d43e974xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e974xml')">XML (MathML)</button>
+               </div>
+               <pre id="d43e974xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+    &lt;apply&gt;
+      &lt;union type="multiset"/&gt;
+      &lt;bvar&gt;&lt;ci type="multiset"&gt;S&lt;/ci&gt;&lt;/bvar&gt;
+      &lt;domainofapplication&gt;&lt;ci type="list"&gt;L&lt;/ci&gt;&lt;/domainofapplication&gt;
+      &lt;ci type="multiset"&gt;S&lt;/ci&gt;
+    &lt;/apply&gt;
+  &lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e974stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e974strict')">Strict Content MathML</button>
+               </div>
+               <pre id="d43e974strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+    &lt;bind&gt;&lt;csymbol cd="multiset1"&gt;union&lt;/csymbol&gt;&lt;bvar&gt;&lt;ci&gt;S&lt;/ci&gt;&lt;/bvar&gt;&lt;ci&gt;S&lt;/ci&gt;&lt;/bind&gt;
+  &lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e974cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e974cmml')">OpenMath</button>
+               </div>
+               <pre id="d43e974cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+    &lt;OMBIND&gt;&lt;OMS cd="multiset1" name="union"/&gt;&lt;OMBVAR&gt;&lt;OMV name="S"/&gt;&lt;/OMBVAR&gt;&lt;OMV name="S"/&gt;&lt;/OMBIND&gt;
+  &lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d43e974prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e974pref')">Prefix form</button>
+               </div>
+               <div id="d43e974pref" style="display:none; margin-top: 0.5em">
+                  <a href="multiset1.xhtml#union">union</a>
+[ <i>S</i>] .
+( <i>S</i>)
+
+  </div>
+               <div>
+                  <button id="d43e974mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e974mml')">Presentation MathML</button>
+               </div>
+               <div id="d43e974mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mo>∪</mo>
+                        <mo> </mo>
+                        <mrow>
+                           <mi>S</mi>
+                        </mrow>
+                        <mo>.</mo>
+                        <mi>S</mi>
+                     </mrow>
+                  </m:math>
+               </div>
+            </dd>
             <dt class="dt">Signatures:</dt>
             <dd>
                <a href="../sts/multiset1.xhtml#big_union">
@@ -1738,70 +2049,58 @@ union(A,intersect(B,C)) = intersect(union(A,B),union(A,C))
             <dt class="dt">Description:</dt>
             <dd>
                <p> 
-This symbol is used to denote the multiset difference of two 
-multisets. It takes two multisets as arguments, and denotes the 
-multiset that contains all the elements that occur in the first 
-multiset with strictly greater multiplicity than in the second.
-The multiplicity in the result is the difference of the two.
-</p>
-            </dd>
-            <dt class="dt">description:</dt>
-            <dd>
-               <p>
-          The setdiff element is the operator element for a set-theoretic difference of
-          two sets.
-        </p>
-            </dd>
-            <dt class="dt">discussion:</dt>
-            <dd>
-               <p>
-	  The setdiff element is the operator element for a set-theoretic
-	  difference of two sets.
-	</p>
+    This symbol is used to denote the multiset difference of two multisets. It takes two
+    multisets as arguments, and denotes the multiset that contains all the elements that
+    occur in the first multiset with strictly greater multiplicity than in the second.
+    The multiplicity in the result is the difference of the two.
+  </p>
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
                <div>
-                  <button id="d43e962xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e962xml')">XML (MathML)</button>
+                  <button id="d43e1023xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1023xml')">XML (MathML)</button>
                </div>
-               <pre id="d43e962xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;setdiff/&gt;
-  &lt;ci type="set"&gt; A&lt;/ci&gt;
-  &lt;ci type="set"&gt; B&lt;/ci&gt;
-&lt;/apply&gt;
-&lt;/math&gt;</pre>
+               <pre id="d43e1023xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+     &lt;apply&gt;&lt;setdiff/&gt;
+       &lt;ci type="multiset"&gt;A&lt;/ci&gt;
+       &lt;ci type="multiset"&gt;B&lt;/ci&gt;
+     &lt;/apply&gt;
+   &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e962stricta" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e962strict')">Strict Content MathML</button>
+                  <button id="d43e1023stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1023strict')">Strict Content MathML</button>
                </div>
-               <pre id="d43e962strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;csymbol cd="set1"&gt;setdiff&lt;/csymbol&gt;
-  &lt;ci&gt;A&lt;/ci&gt;
-  &lt;ci&gt;B&lt;/ci&gt;
-&lt;/apply&gt;
-&lt;/math&gt;</pre>
+               <pre id="d43e1023strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+     &lt;apply&gt;&lt;csymbol cd="set1"&gt;setdiff&lt;/csymbol&gt;
+       &lt;ci&gt;A&lt;/ci&gt;
+       &lt;ci&gt;B&lt;/ci&gt;
+     &lt;/apply&gt;
+   &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e962cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e962cmml')">OpenMath</button>
+                  <button id="d43e1023cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1023cmml')">OpenMath</button>
                </div>
-               <pre id="d43e962cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMA&gt;&lt;OMS cd="set1" name="setdiff"/&gt;
-  &lt;OMV name="A"/&gt;
-  &lt;OMV name="B"/&gt;
-&lt;/OMA&gt;
-&lt;/OMOBJ&gt;</pre>
+               <pre id="d43e1023cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+     &lt;OMA&gt;&lt;OMS cd="set1" name="setdiff"/&gt;
+       &lt;OMV name="A"/&gt;
+       &lt;OMV name="B"/&gt;
+     &lt;/OMA&gt;
+   &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e962prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e962pref')">Prefix form</button>
+                  <button id="d43e1023prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1023pref')">Prefix form</button>
                </div>
-               <div id="d43e962pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e1023pref" style="display:none; margin-top: 0.5em">
                   <a href="set1.xhtml#setdiff">setdiff</a>
 ( <i>A</i>,  <i>B</i>)
 
-</div>
+   </div>
                <div>
-                  <button id="d43e962mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e962mml')">Presentation MathML</button>
+                  <button id="d43e1023mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e1023mml')">Presentation MathML</button>
                </div>
-               <div id="d43e962mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e1023mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -1818,10 +2117,10 @@ The multiplicity in the result is the difference of the two.
   the difference of A and B is a subset of A
 
 <div>
-                  <button id="d43e980xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e980xml')">XML (OpenMath)</button>
+                  <button id="d43e1044xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1044xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e980xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d43e1044xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMA&gt;
     &lt;OMS cd="multiset1" name="subset"/&gt;
     &lt;OMA&gt;
@@ -1833,10 +2132,10 @@ The multiplicity in the result is the difference of the two.
   &lt;/OMA&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e980cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e980cmml')">Content MathML</button>
+                  <button id="d43e1044cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1044cmml')">Content MathML</button>
                </div>
-               <pre id="d43e980cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e1044cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
   &lt;apply&gt;
     &lt;csymbol cd="multiset1"&gt;subset&lt;/csymbol&gt;
     &lt;apply&gt;
@@ -1848,10 +2147,10 @@ The multiplicity in the result is the difference of the two.
   &lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e980prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e980pref')">Prefix form</button>
+                  <button id="d43e1044prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1044pref')">Prefix form</button>
                </div>
-               <div id="d43e980pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e1044pref" style="display:none; margin-top: 0.5em">
                   <a href="multiset1.xhtml#subset">subset</a>
 (<a href="multiset1.xhtml#setdiff">setdiff</a>
 ( <i>A</i>,  <i>B</i>)
@@ -1859,10 +2158,10 @@ The multiplicity in the result is the difference of the two.
 
 </div>
                <div>
-                  <button id="d43e980mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e980mml')">Presentation MathML</button>
+                  <button id="d43e1044mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e1044mml')">Presentation MathML</button>
                </div>
-               <div id="d43e980mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e1044mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -1906,71 +2205,57 @@ The multiplicity in the result is the difference of the two.
             <dt class="dt">Description:</dt>
             <dd>
                <p>
-This symbol has two (multiset) arguments. It is used to denote 
-that the first set is a subset of the second, i.e. every element 
-of the first occurs with multiplicity at least as much in the 
-second.
-</p>
-            </dd>
-            <dt class="dt">description:</dt>
-            <dd>
-               <p>
-          The subset element is the n-ary relational operator element for a
-          set-theoretic containment ('is a subset of').
-	</p>
-            </dd>
-            <dt class="dt">discussion:</dt>
-            <dd>
-               <p>
-	  The subset element is the relational operator element for a
-	  set-theoretic containment (is a subset of).
-	  The subset element is an n-ary set relation.  As an
-	  n-ary operator, its operands may also be generated as described in  Therefore it may take qualifiers.
-	</p>
+    This symbol has two (multiset) arguments. It is used to denote that the first set is a
+    subset of the second, i.e. every element of the first occurs with multiplicity at
+    least as much in the second.
+  </p>
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
                <div>
-                  <button id="d43e1057xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1057xml')">XML (MathML)</button>
+                  <button id="d43e1092xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1092xml')">XML (MathML)</button>
                </div>
-               <pre id="d43e1057xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;subset/&gt;
-  &lt;ci type="set"&gt; A&lt;/ci&gt;
-  &lt;ci type="set"&gt; B&lt;/ci&gt;
-&lt;/apply&gt;
-&lt;/math&gt;</pre>
+               <pre id="d43e1092xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+     &lt;apply&gt;&lt;subset type="multiset"/&gt;
+       &lt;ci type="multiset"&gt;A&lt;/ci&gt;
+       &lt;ci type="multiset"&gt;B&lt;/ci&gt;
+     &lt;/apply&gt;
+   &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e1057stricta" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1057strict')">Strict Content MathML</button>
+                  <button id="d43e1092stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1092strict')">Strict Content MathML</button>
                </div>
-               <pre id="d43e1057strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;csymbol cd="set1"&gt;subset&lt;/csymbol&gt;
-  &lt;ci&gt;A&lt;/ci&gt;
-  &lt;ci&gt;B&lt;/ci&gt;
-&lt;/apply&gt;
-&lt;/math&gt;</pre>
+               <pre id="d43e1092strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+     &lt;apply&gt;&lt;csymbol cd="multiset1"&gt;subset&lt;/csymbol&gt;
+       &lt;ci&gt;A&lt;/ci&gt;
+       &lt;ci&gt;B&lt;/ci&gt;
+     &lt;/apply&gt;
+   &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e1057cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1057cmml')">OpenMath</button>
+                  <button id="d43e1092cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1092cmml')">OpenMath</button>
                </div>
-               <pre id="d43e1057cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMA&gt;&lt;OMS cd="set1" name="subset"/&gt;
-  &lt;OMV name="A"/&gt;
-  &lt;OMV name="B"/&gt;
-&lt;/OMA&gt;
-&lt;/OMOBJ&gt;</pre>
+               <pre id="d43e1092cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+     &lt;OMA&gt;&lt;OMS cd="multiset1" name="subset"/&gt;
+       &lt;OMV name="A"/&gt;
+       &lt;OMV name="B"/&gt;
+     &lt;/OMA&gt;
+   &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e1057prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1057pref')">Prefix form</button>
+                  <button id="d43e1092prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1092pref')">Prefix form</button>
                </div>
-               <div id="d43e1057pref" style="display:none; margin-top: 0.5em">
-                  <a href="set1.xhtml#subset">subset</a>
+               <div id="d43e1092pref" style="display:none; margin-top: 0.5em">
+                  <a href="multiset1.xhtml#subset">subset</a>
 ( <i>A</i>,  <i>B</i>)
 
-</div>
+   </div>
                <div>
-                  <button id="d43e1057mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e1057mml')">Presentation MathML</button>
+                  <button id="d43e1092mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e1092mml')">Presentation MathML</button>
                </div>
-               <div id="d43e1057mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e1092mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -1983,71 +2268,75 @@ second.
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
+               <p>***** what do we do with this?</p>
                <div>
-                  <button id="d43e1071xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1071xml')">XML (MathML)</button>
+                  <button id="d43e1113xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1113xml')">XML (MathML)</button>
                </div>
-               <pre id="d43e1071xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;
+               <pre id="d43e1113xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;
     &lt;subset/&gt;
-    &lt;bind&gt;
-      &lt;set/&gt;
-      &lt;bvar&gt;&lt;ci type="set"&gt;S&lt;/ci&gt;&lt;/bvar&gt;
-      &lt;condition&gt;&lt;apply&gt;&lt;in/&gt;&lt;ci&gt;S&lt;/ci&gt;&lt;ci type="list"&gt;T&lt;/ci&gt;&lt;/apply&gt;&lt;/condition&gt;
-      &lt;ci&gt;S&lt;/ci&gt;
-    &lt;/bind&gt;
-  &lt;/apply&gt;
+      &lt;set type="multiset"&gt;
+	&lt;bvar&gt;&lt;ci type="set"&gt;S&lt;/ci&gt;&lt;/bvar&gt;
+	&lt;condition&gt;&lt;apply&gt;&lt;in/&gt;&lt;ci&gt;S&lt;/ci&gt;&lt;ci type="list"&gt;T&lt;/ci&gt;&lt;/apply&gt;&lt;/condition&gt;
+	&lt;ci&gt;S&lt;/ci&gt;
+      &lt;/set&gt;
+    &lt;/apply&gt;
   &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e1071stricta" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1071strict')">Strict Content MathML</button>
+                  <button id="d43e1113stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1113strict')">Strict Content MathML</button>
                </div>
-               <pre id="d43e1071strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;
+               <pre id="d43e1113strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;
     &lt;csymbol cd="set1"&gt;subset&lt;/csymbol&gt;
-    &lt;bind&gt;&lt;apply&gt;&lt;csymbol cd="set1"&gt;set&lt;/csymbol&gt;&lt;/apply&gt;&lt;bvar&gt;&lt;ci&gt;S&lt;/ci&gt;&lt;/bvar&gt;&lt;ci&gt;S&lt;/ci&gt;&lt;/bind&gt;
-  &lt;/apply&gt;
+      &lt;apply&gt;&lt;csymbol cd="set1"&gt;set&lt;/csymbol&gt;&lt;ci&gt;S&lt;/ci&gt;&lt;/apply&gt;
+    &lt;/apply&gt;
   &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e1071cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1071cmml')">OpenMath</button>
+                  <button id="d43e1113cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1113cmml')">OpenMath</button>
                </div>
-               <pre id="d43e1071cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMA&gt;
+               <pre id="d43e1113cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMA&gt;
     &lt;OMS cd="set1" name="subset"/&gt;
-    &lt;OMBIND&gt;&lt;OMA&gt;&lt;OMS cd="set1" name="set"/&gt;&lt;/OMA&gt;&lt;OMBVAR&gt;&lt;OMV name="S"/&gt;&lt;/OMBVAR&gt;&lt;OMV name="S"/&gt;&lt;/OMBIND&gt;
-  &lt;/OMA&gt;
+      &lt;OMA&gt;&lt;OMS cd="set1" name="set"/&gt;&lt;bvar xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;OMV xmlns="http://www.openmath.org/OpenMath" name="S"/&gt;&lt;/bvar&gt;&lt;condition xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;OMA xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMS cd="set1" name="in"/&gt;&lt;OMV name="S"/&gt;&lt;OMV name="T"/&gt;&lt;/OMA&gt;&lt;/condition&gt;&lt;OMV name="S"/&gt;&lt;/OMA&gt;
+    &lt;/OMA&gt;
   &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e1071prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1071pref')">Prefix form</button>
+                  <button id="d43e1113prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1113pref')">Prefix form</button>
                </div>
-               <div id="d43e1071pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e1113pref" style="display:none; margin-top: 0.5em">
                   <a href="set1.xhtml#subset">subset</a>
 (<a href="set1.xhtml#set">set</a>
-()
-
-[ <i>S</i>] .
-( <i>S</i>)
+( <i>S</i>, <a href="set1.xhtml#in">in</a>
+( <i>S</i>,  <i>T</i>)
+,  <i>S</i>)
 )
 
   </div>
                <div>
-                  <button id="d43e1071mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e1071mml')">Presentation MathML</button>
+                  <button id="d43e1113mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e1113mml')">Presentation MathML</button>
                </div>
-               <div id="d43e1071mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e1113mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
                         <mrow>
-                           <mrow>
-                              <mo>{</mo>
-                              <mo>}</mo>
-                           </mrow>
-                           <mo> </mo>
-                           <mrow>
+                           <mo>{</mo>
+                           <bvar>
                               <mi>S</mi>
-                           </mrow>
-                           <mo>.</mo>
+                           </bvar>
+                           <mo separator="true">,</mo>
+                           <condition>
+                              <mrow>
+                                 <mi>S</mi>
+                                 <mo>∈</mo>
+                                 <mi>T</mi>
+                              </mrow>
+                           </condition>
+                           <mo separator="true">,</mo>
                            <mi>S</mi>
+                           <mo>}</mo>
                         </mrow>
                         <mo>⊂</mo>
                      </mrow>
@@ -2057,14 +2346,13 @@ second.
             <dt class="dt">Property:</dt>
             <dd>
 
-  if B is a subset of A and C is a subset of B 
-    then C is a subset of A
+  if B is a subset of A and C is a subset of B then C is a subset of A
 
 <div>
-                  <button id="d43e1105xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1105xml')">XML (OpenMath)</button>
+                  <button id="d43e1145xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1145xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e1105xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d43e1145xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMA&gt;
     &lt;OMS cd="logic1" name="implies"/&gt;
     &lt;OMA&gt;
@@ -2088,10 +2376,10 @@ second.
   &lt;/OMA&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e1105cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1105cmml')">Content MathML</button>
+                  <button id="d43e1145cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1145cmml')">Content MathML</button>
                </div>
-               <pre id="d43e1105cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e1145cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
   &lt;apply&gt;
     &lt;csymbol cd="logic1"&gt;implies&lt;/csymbol&gt;
     &lt;apply&gt;
@@ -2115,10 +2403,10 @@ second.
   &lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e1105prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1105pref')">Prefix form</button>
+                  <button id="d43e1145prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1145pref')">Prefix form</button>
                </div>
-               <div id="d43e1105pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e1145pref" style="display:none; margin-top: 0.5em">
                   <a href="logic1.xhtml#implies">implies</a>
 (<a href="logic1.xhtml#and">and</a>
 (<a href="multiset1.xhtml#subset">subset</a>
@@ -2132,10 +2420,10 @@ second.
 
 </div>
                <div>
-                  <button id="d43e1105mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e1105mml')">Presentation MathML</button>
+                  <button id="d43e1145mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e1145mml')">Presentation MathML</button>
                </div>
-               <div id="d43e1105mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e1145mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -2191,63 +2479,47 @@ second.
             <dt class="dt">Description:</dt>
             <dd>
                <p> 
-This symbol has two arguments, an element and a multiset. It is 
-used to denote that the element is in the given multiset.
-</p>
-            </dd>
-            <dt class="dt">description:</dt>
-            <dd>
-               <p>
-          The in element is the relational operator used for a set-theoretic inclusion
-          ('is in' or 'is a member of').
-        </p>
-            </dd>
-            <dt class="dt">discussion:</dt>
-            <dd>
-               <p>
-	  The in element is the relational operator used for a set-theoretic
-	  inclusion (is in or is a member of).
-	</p>
+    This symbol has two arguments, an element and a multiset. It is used to denote that
+    the element is in the given multiset.
+  </p>
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
                <div>
-                  <button id="d43e1195xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1195xml')">XML (MathML)</button>
+                  <button id="d43e1215xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1215xml')">XML (MathML)</button>
                </div>
-               <pre id="d43e1195xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;in/&gt;
-  &lt;ci&gt;a&lt;/ci&gt;
-  &lt;ci type="set"&gt; A&lt;/ci&gt;
-&lt;/apply&gt;&lt;/math&gt;</pre>
+               <pre id="d43e1215xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+      &lt;apply&gt;&lt;in type="multiset"/&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;ci type="multiset"&gt;A&lt;/ci&gt;&lt;/apply&gt;
+    &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e1195stricta" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1195strict')">Strict Content MathML</button>
+                  <button id="d43e1215stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1215strict')">Strict Content MathML</button>
                </div>
-               <pre id="d43e1195strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;csymbol cd="set1"&gt;in&lt;/csymbol&gt;
-  &lt;ci&gt;a&lt;/ci&gt;
-  &lt;ci&gt;A&lt;/ci&gt;
-&lt;/apply&gt;&lt;/math&gt;</pre>
+               <pre id="d43e1215strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+      &lt;apply&gt;&lt;csymbol cd="multiset1"&gt;in&lt;/csymbol&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;ci&gt;A&lt;/ci&gt;&lt;/apply&gt;
+    &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e1195cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1195cmml')">OpenMath</button>
+                  <button id="d43e1215cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1215cmml')">OpenMath</button>
                </div>
-               <pre id="d43e1195cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMA&gt;&lt;OMS cd="set1" name="in"/&gt;
-  &lt;OMV name="a"/&gt;
-  &lt;OMV name="A"/&gt;
-&lt;/OMA&gt;&lt;/OMOBJ&gt;</pre>
+               <pre id="d43e1215cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+      &lt;OMA&gt;&lt;OMS cd="multiset1" name="in"/&gt;&lt;OMV name="a"/&gt;&lt;OMV name="A"/&gt;&lt;/OMA&gt;
+    &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e1195prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1195pref')">Prefix form</button>
+                  <button id="d43e1215prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1215pref')">Prefix form</button>
                </div>
-               <div id="d43e1195pref" style="display:none; margin-top: 0.5em">
-                  <a href="set1.xhtml#in">in</a>
+               <div id="d43e1215pref" style="display:none; margin-top: 0.5em">
+                  <a href="multiset1.xhtml#in">in</a>
 ( <i>a</i>,  <i>A</i>)
-</div>
+
+    </div>
                <div>
-                  <button id="d43e1195mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e1195mml')">Presentation MathML</button>
+                  <button id="d43e1215mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e1215mml')">Presentation MathML</button>
                </div>
-               <div id="d43e1195mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e1215mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -2261,13 +2533,13 @@ used to denote that the element is in the given multiset.
             <dt class="dt">Property:</dt>
             <dd>
 
-  if a is in A and a is in B then a is in A intersection B
+  if a is in A and a is in B then a is in A intersect B
 
 <div>
-                  <button id="d43e1212xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1212xml')">XML (OpenMath)</button>
+                  <button id="d43e1233xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1233xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e1212xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d43e1233xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMA&gt;
     &lt;OMS cd="logic1" name="implies"/&gt;
     &lt;OMA&gt;
@@ -2295,10 +2567,10 @@ used to denote that the element is in the given multiset.
   &lt;/OMA&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e1212cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1212cmml')">Content MathML</button>
+                  <button id="d43e1233cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1233cmml')">Content MathML</button>
                </div>
-               <pre id="d43e1212cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e1233cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
   &lt;apply&gt;
     &lt;csymbol cd="logic1"&gt;implies&lt;/csymbol&gt;
     &lt;apply&gt;
@@ -2326,10 +2598,10 @@ used to denote that the element is in the given multiset.
   &lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e1212prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1212pref')">Prefix form</button>
+                  <button id="d43e1233prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1233pref')">Prefix form</button>
                </div>
-               <div id="d43e1212pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e1233pref" style="display:none; margin-top: 0.5em">
                   <a href="logic1.xhtml#implies">implies</a>
 (<a href="logic1.xhtml#and">and</a>
 (<a href="multiset1.xhtml#in">in</a>
@@ -2345,10 +2617,10 @@ used to denote that the element is in the given multiset.
 
 </div>
                <div>
-                  <button id="d43e1212mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e1212mml')">Presentation MathML</button>
+                  <button id="d43e1233mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e1233mml')">Presentation MathML</button>
                </div>
-               <div id="d43e1212mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e1233mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -2408,24 +2680,9 @@ used to denote that the element is in the given multiset.
             <dt class="dt">Description:</dt>
             <dd>
                <p> 
-This symbol has two arguments, an element and a multiset. It is 
-used to denote that the element is not in the given multiset.
-</p>
-            </dd>
-            <dt class="dt">description:</dt>
-            <dd>
-               <p>
-          The notin element is the relational operator element used 
-to construct set-theoretic exclusion ('is not in' or 'is not a member of').
-	</p>
-            </dd>
-            <dt class="dt">discussion:</dt>
-            <dd>
-               <p>
-	  The notin element is the relational operator element used for
-	  set-theoretic exclusion (is not in or is not a member
-	  of).
-	</p>
+    This symbol has two arguments, an element and a multiset. It is used to denote that
+    the element is not in the given multiset.
+  </p>
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
@@ -2433,34 +2690,32 @@ to construct set-theoretic exclusion ('is not in' or 'is not a member of').
                   <button id="d43e1309xmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e1309xml')">XML (MathML)</button>
                </div>
-               <pre id="d43e1309xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;notin/&gt;
-  &lt;ci&gt;a&lt;/ci&gt;
-  &lt;ci type="set"&gt; A&lt;/ci&gt;
-&lt;/apply&gt;&lt;/math&gt;</pre>
+               <pre id="d43e1309xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+     &lt;apply&gt;&lt;notin type="multiset"/&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;ci type="multiset"&gt;A&lt;/ci&gt;&lt;/apply&gt;
+   &lt;/math&gt;</pre>
                <div>
                   <button id="d43e1309stricta" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e1309strict')">Strict Content MathML</button>
                </div>
-               <pre id="d43e1309strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;csymbol cd="set1"&gt;notin&lt;/csymbol&gt;
-  &lt;ci&gt;a&lt;/ci&gt;
-  &lt;ci&gt;A&lt;/ci&gt;
-&lt;/apply&gt;&lt;/math&gt;</pre>
+               <pre id="d43e1309strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+     &lt;apply&gt;&lt;csymbol cd="multiset1"&gt;notin&lt;/csymbol&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;ci&gt;A&lt;/ci&gt;&lt;/apply&gt;
+   &lt;/math&gt;</pre>
                <div>
                   <button id="d43e1309cmmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e1309cmml')">OpenMath</button>
                </div>
-               <pre id="d43e1309cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMA&gt;&lt;OMS cd="set1" name="notin"/&gt;
-  &lt;OMV name="a"/&gt;
-  &lt;OMV name="A"/&gt;
-&lt;/OMA&gt;&lt;/OMOBJ&gt;</pre>
+               <pre id="d43e1309cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+     &lt;OMA&gt;&lt;OMS cd="multiset1" name="notin"/&gt;&lt;OMV name="a"/&gt;&lt;OMV name="A"/&gt;&lt;/OMA&gt;
+   &lt;/OMOBJ&gt;</pre>
                <div>
                   <button id="d43e1309prefa" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e1309pref')">Prefix form</button>
                </div>
                <div id="d43e1309pref" style="display:none; margin-top: 0.5em">
-                  <a href="set1.xhtml#notin">notin</a>
+                  <a href="multiset1.xhtml#notin">notin</a>
 ( <i>a</i>,  <i>A</i>)
-</div>
+
+   </div>
                <div>
                   <button id="d43e1309mmla" class="omcd_formula omcd_active"
                           onclick="omcd_divfold('d43e1309mml')">Presentation MathML</button>
@@ -2481,10 +2736,10 @@ to construct set-theoretic exclusion ('is not in' or 'is not a member of').
   4 is not in {1,1,2,3}
 
 <div>
-                  <button id="d43e1322xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1322xml')">XML (OpenMath)</button>
+                  <button id="d43e1323xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1323xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e1322xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d43e1323xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMA&gt;
     &lt;OMS cd="multiset1" name="notin"/&gt;
     &lt;OMI&gt; 4 &lt;/OMI&gt;
@@ -2498,10 +2753,10 @@ to construct set-theoretic exclusion ('is not in' or 'is not a member of').
   &lt;/OMA&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e1322cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1322cmml')">Content MathML</button>
+                  <button id="d43e1323cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1323cmml')">Content MathML</button>
                </div>
-               <pre id="d43e1322cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e1323cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
   &lt;apply&gt;
     &lt;csymbol cd="multiset1"&gt;notin&lt;/csymbol&gt;
     &lt;cn&gt; 4 &lt;/cn&gt;
@@ -2515,10 +2770,10 @@ to construct set-theoretic exclusion ('is not in' or 'is not a member of').
   &lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e1322prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1322pref')">Prefix form</button>
+                  <button id="d43e1323prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1323pref')">Prefix form</button>
                </div>
-               <div id="d43e1322pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e1323pref" style="display:none; margin-top: 0.5em">
                   <a href="multiset1.xhtml#notin">notin</a>
 ( 4 , <a href="multiset1.xhtml#multiset">multiset</a>
 ( 1 ,  1 ,  2 ,  3 )
@@ -2526,10 +2781,10 @@ to construct set-theoretic exclusion ('is not in' or 'is not a member of').
 
 </div>
                <div>
-                  <button id="d43e1322mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e1322mml')">Presentation MathML</button>
+                  <button id="d43e1323mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e1323mml')">Presentation MathML</button>
                </div>
-               <div id="d43e1322mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e1323mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -2588,68 +2843,52 @@ to construct set-theoretic exclusion ('is not in' or 'is not a member of').
     actually equal to it.
   </p>
             </dd>
-            <dt class="dt">description:</dt>
-            <dd>
-               <p>
-    The prsubset element is the n-ary relational operator element for
-    set-theoretic proper containment ('is a proper subset of').
-  </p>
-            </dd>
-            <dt class="dt">discussion:</dt>
-            <dd>
-               <p>
-    The prsubset element is the relational operator element for set-theoretic
-    proper containment (is a proper subset of).
-    The prsubset element is an n-ary set relation.  As an n-ary
-    operator, its operands may also be generated as described in  Therefore it may take qualifiers.
-  </p>
-            </dd>
             <dt class="dt">Example:</dt>
             <dd>
                <div>
-                  <button id="d43e1414xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1414xml')">XML (MathML)</button>
+                  <button id="d43e1381xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1381xml')">XML (MathML)</button>
                </div>
-               <pre id="d43e1414xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-      &lt;apply&gt;&lt;prsubset/&gt;
-      &lt;ci type="set"&gt;A&lt;/ci&gt;
-      &lt;ci type="set"&gt;B&lt;/ci&gt;
-      &lt;/apply&gt;
-    &lt;/math&gt;</pre>
+               <pre id="d43e1381xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+    &lt;apply&gt;&lt;prsubset type="multiset"/&gt;
+    &lt;ci type="multiset"&gt;A&lt;/ci&gt;
+    &lt;ci type="multiset"&gt;B&lt;/ci&gt;
+    &lt;/apply&gt;
+  &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e1414stricta" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1414strict')">Strict Content MathML</button>
+                  <button id="d43e1381stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1381strict')">Strict Content MathML</button>
                </div>
-               <pre id="d43e1414strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-      &lt;apply&gt;&lt;csymbol cd="set1"&gt;prsubset&lt;/csymbol&gt;
-      &lt;ci&gt;A&lt;/ci&gt;
-      &lt;ci&gt;B&lt;/ci&gt;
-      &lt;/apply&gt;
-    &lt;/math&gt;</pre>
+               <pre id="d43e1381strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+    &lt;apply&gt;&lt;csymbol cd="multiset1"&gt;prsubset&lt;/csymbol&gt;
+    &lt;ci&gt;A&lt;/ci&gt;
+    &lt;ci&gt;B&lt;/ci&gt;
+    &lt;/apply&gt;
+  &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e1414cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1414cmml')">OpenMath</button>
+                  <button id="d43e1381cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1381cmml')">OpenMath</button>
                </div>
-               <pre id="d43e1414cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
-      &lt;OMA&gt;&lt;OMS cd="set1" name="prsubset"/&gt;
-      &lt;OMV name="A"/&gt;
-      &lt;OMV name="B"/&gt;
-      &lt;/OMA&gt;
-    &lt;/OMOBJ&gt;</pre>
+               <pre id="d43e1381cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+    &lt;OMA&gt;&lt;OMS cd="multiset1" name="prsubset"/&gt;
+    &lt;OMV name="A"/&gt;
+    &lt;OMV name="B"/&gt;
+    &lt;/OMA&gt;
+  &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e1414prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1414pref')">Prefix form</button>
+                  <button id="d43e1381prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1381pref')">Prefix form</button>
                </div>
-               <div id="d43e1414pref" style="display:none; margin-top: 0.5em">
-                  <a href="set1.xhtml#prsubset">prsubset</a>
+               <div id="d43e1381pref" style="display:none; margin-top: 0.5em">
+                  <a href="multiset1.xhtml#prsubset">prsubset</a>
 ( <i>A</i>,  <i>B</i>)
 
-    </div>
+  </div>
                <div>
-                  <button id="d43e1414mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e1414mml')">Presentation MathML</button>
+                  <button id="d43e1381mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e1381mml')">Presentation MathML</button>
                </div>
-               <div id="d43e1414mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e1381mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -2662,53 +2901,51 @@ to construct set-theoretic exclusion ('is not in' or 'is not a member of').
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
+               <p>***** what do we do with this?</p>
                <div>
-                  <button id="d43e1430xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1430xml')">XML (MathML)</button>
+                  <button id="d43e1402xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1402xml')">XML (MathML)</button>
                </div>
-               <pre id="d43e1430xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-    &lt;apply&gt;
-      &lt;prsubset/&gt;
-      &lt;bvar&gt;&lt;ci type="integer"&gt;i&lt;/ci&gt;&lt;/bvar&gt;
-      &lt;lowlimit&gt;&lt;cn&gt;0&lt;/cn&gt;&lt;/lowlimit&gt;
-      &lt;uplimit&gt;&lt;cn&gt;10&lt;/cn&gt;&lt;/uplimit&gt;
-      &lt;apply&gt;&lt;selector/&gt;
-      &lt;ci type="vector_of_sets"&gt;S&lt;/ci&gt;
-      &lt;ci&gt;i&lt;/ci&gt;
-      &lt;/apply&gt;
-    &lt;/apply&gt;
-  &lt;/math&gt;</pre>
+               <pre id="d43e1402xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+  &lt;apply&gt;
+    &lt;prsubset type="multiset"/&gt;
+    &lt;bvar&gt;&lt;ci type="integer"&gt;i&lt;/ci&gt;&lt;/bvar&gt;
+    &lt;lowlimit&gt;&lt;cn&gt;0&lt;/cn&gt;&lt;/lowlimit&gt;
+    &lt;uplimit&gt;&lt;cn&gt;10&lt;/cn&gt;&lt;/uplimit&gt;
+    &lt;apply&gt;&lt;selector/&gt;&lt;ci type="vector_of_multisets"&gt;S&lt;/ci&gt;&lt;ci&gt;i&lt;/ci&gt;&lt;/apply&gt;
+  &lt;/apply&gt;
+&lt;/math&gt;</pre>
                <div>
-                  <button id="d43e1430stricta" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1430strict')">Strict Content MathML</button>
+                  <button id="d43e1402stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1402strict')">Strict Content MathML</button>
                </div>
-               <pre id="d43e1430strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-    &lt;bind&gt;&lt;csymbol cd="set1"&gt;prsubset&lt;/csymbol&gt;&lt;bvar&gt;&lt;ci&gt;i&lt;/ci&gt;&lt;/bvar&gt;&lt;apply&gt;&lt;csymbol cd="linalg1"&gt;vector_selector&lt;/csymbol&gt;&lt;ci&gt;i&lt;/ci&gt;&lt;ci&gt;S&lt;/ci&gt;&lt;/apply&gt;&lt;/bind&gt;
-  &lt;/math&gt;</pre>
+               <pre id="d43e1402strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+  &lt;bind&gt;&lt;csymbol cd="multiset1"&gt;prsubset&lt;/csymbol&gt;&lt;bvar&gt;&lt;ci&gt;i&lt;/ci&gt;&lt;/bvar&gt;&lt;apply&gt;&lt;csymbol cd="linalg1"&gt;vector_selector&lt;/csymbol&gt;&lt;ci&gt;i&lt;/ci&gt;&lt;ci&gt;S&lt;/ci&gt;&lt;/apply&gt;&lt;/bind&gt;
+&lt;/math&gt;</pre>
                <div>
-                  <button id="d43e1430cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1430cmml')">OpenMath</button>
+                  <button id="d43e1402cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1402cmml')">OpenMath</button>
                </div>
-               <pre id="d43e1430cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
-    &lt;OMBIND&gt;&lt;OMS cd="set1" name="prsubset"/&gt;&lt;OMBVAR&gt;&lt;OMV name="i"/&gt;&lt;/OMBVAR&gt;&lt;OMA&gt;&lt;OMS cd="linalg1" name="vector_selector"/&gt;&lt;OMV name="i"/&gt;&lt;OMV name="S"/&gt;&lt;/OMA&gt;&lt;/OMBIND&gt;
-  &lt;/OMOBJ&gt;</pre>
+               <pre id="d43e1402cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+  &lt;OMBIND&gt;&lt;OMS cd="multiset1" name="prsubset"/&gt;&lt;OMBVAR&gt;&lt;OMV name="i"/&gt;&lt;/OMBVAR&gt;&lt;OMA&gt;&lt;OMS cd="linalg1" name="vector_selector"/&gt;&lt;OMV name="i"/&gt;&lt;OMV name="S"/&gt;&lt;/OMA&gt;&lt;/OMBIND&gt;
+&lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e1430prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1430pref')">Prefix form</button>
+                  <button id="d43e1402prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1402pref')">Prefix form</button>
                </div>
-               <div id="d43e1430pref" style="display:none; margin-top: 0.5em">
-                  <a href="set1.xhtml#prsubset">prsubset</a>
+               <div id="d43e1402pref" style="display:none; margin-top: 0.5em">
+                  <a href="multiset1.xhtml#prsubset">prsubset</a>
 [ <i>i</i>] .
 (<a href="linalg1.xhtml#vector_selector">vector_selector</a>
 ( <i>i</i>,  <i>S</i>)
 )
 
-  </div>
+</div>
                <div>
-                  <button id="d43e1430mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e1430mml')">Presentation MathML</button>
+                  <button id="d43e1402mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e1402mml')">Presentation MathML</button>
                </div>
-               <div id="d43e1430mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e1402mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -2731,10 +2968,10 @@ to construct set-theoretic exclusion ('is not in' or 'is not a member of').
   {2,3} is a proper subset of {2,2,3}
 
 <div>
-                  <button id="d43e1463xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1463xml')">XML (OpenMath)</button>
+                  <button id="d43e1432xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1432xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e1463xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d43e1432xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMA&gt;
     &lt;OMS cd="multiset1" name="prsubset"/&gt;
     &lt;OMA&gt;
@@ -2751,10 +2988,10 @@ to construct set-theoretic exclusion ('is not in' or 'is not a member of').
   &lt;/OMA&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e1463cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1463cmml')">Content MathML</button>
+                  <button id="d43e1432cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1432cmml')">Content MathML</button>
                </div>
-               <pre id="d43e1463cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e1432cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
   &lt;apply&gt;
     &lt;csymbol cd="multiset1"&gt;prsubset&lt;/csymbol&gt;
     &lt;apply&gt;
@@ -2771,10 +3008,10 @@ to construct set-theoretic exclusion ('is not in' or 'is not a member of').
   &lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e1463prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1463pref')">Prefix form</button>
+                  <button id="d43e1432prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1432pref')">Prefix form</button>
                </div>
-               <div id="d43e1463pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e1432pref" style="display:none; margin-top: 0.5em">
                   <a href="multiset1.xhtml#prsubset">prsubset</a>
 (<a href="multiset1.xhtml#multiset">multiset</a>
 ( 2 ,  3 )
@@ -2784,10 +3021,10 @@ to construct set-theoretic exclusion ('is not in' or 'is not a member of').
 
 </div>
                <div>
-                  <button id="d43e1463mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e1463mml')">Presentation MathML</button>
+                  <button id="d43e1432mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e1432mml')">Presentation MathML</button>
                </div>
-               <div id="d43e1463mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e1432mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -2853,69 +3090,55 @@ to construct set-theoretic exclusion ('is not in' or 'is not a member of').
     is not a subset of the second.
   </p>
             </dd>
-            <dt class="dt">description:</dt>
-            <dd>
-               <p>
-    The notsubset element is the relational operator element for the set-theoretic
-    relation 'is not a subset of'.
-  </p>
-            </dd>
-            <dt class="dt">discussion:</dt>
-            <dd>
-               <p>
-    The notsubset element is the relational operator element for the
-    set-theoretic relation is not a subset of.
-  </p>
-            </dd>
             <dt class="dt">Example:</dt>
             <dd>
                <div>
-                  <button id="d43e1545xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1545xml')">XML (MathML)</button>
+                  <button id="d43e1495xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1495xml')">XML (MathML)</button>
                </div>
-               <pre id="d43e1545xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-      &lt;apply&gt;
-	&lt;notsubset/&gt;
-	&lt;ci type="set"&gt; A&lt;/ci&gt;
-	&lt;ci type="set"&gt; B&lt;/ci&gt;
-      &lt;/apply&gt;
-    &lt;/math&gt;</pre>
+               <pre id="d43e1495xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+    &lt;apply&gt;
+	&lt;notsubset type="multiset"/&gt;
+	&lt;ci type="multiset"&gt;A&lt;/ci&gt;
+	&lt;ci type="multiset"&gt;B&lt;/ci&gt;
+    &lt;/apply&gt;
+  &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e1545stricta" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1545strict')">Strict Content MathML</button>
+                  <button id="d43e1495stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1495strict')">Strict Content MathML</button>
                </div>
-               <pre id="d43e1545strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-      &lt;apply&gt;
-	&lt;csymbol cd="set1"&gt;notsubset&lt;/csymbol&gt;
+               <pre id="d43e1495strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+    &lt;apply&gt;
+	&lt;csymbol cd="multiset1"&gt;notsubset&lt;/csymbol&gt;
 	&lt;ci&gt;A&lt;/ci&gt;
 	&lt;ci&gt;B&lt;/ci&gt;
-      &lt;/apply&gt;
-    &lt;/math&gt;</pre>
+    &lt;/apply&gt;
+  &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e1545cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1545cmml')">OpenMath</button>
+                  <button id="d43e1495cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1495cmml')">OpenMath</button>
                </div>
-               <pre id="d43e1545cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
-      &lt;OMA&gt;
-	&lt;OMS cd="set1" name="notsubset"/&gt;
+               <pre id="d43e1495cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+    &lt;OMA&gt;
+	&lt;OMS cd="multiset1" name="notsubset"/&gt;
 	&lt;OMV name="A"/&gt;
 	&lt;OMV name="B"/&gt;
-      &lt;/OMA&gt;
-    &lt;/OMOBJ&gt;</pre>
+    &lt;/OMA&gt;
+  &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e1545prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1545pref')">Prefix form</button>
+                  <button id="d43e1495prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1495pref')">Prefix form</button>
                </div>
-               <div id="d43e1545pref" style="display:none; margin-top: 0.5em">
-                  <a href="set1.xhtml#notsubset">notsubset</a>
+               <div id="d43e1495pref" style="display:none; margin-top: 0.5em">
+                  <a href="multiset1.xhtml#notsubset">notsubset</a>
 ( <i>A</i>,  <i>B</i>)
 
-    </div>
+  </div>
                <div>
-                  <button id="d43e1545mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e1545mml')">Presentation MathML</button>
+                  <button id="d43e1495mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e1495mml')">Presentation MathML</button>
                </div>
-               <div id="d43e1545mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e1495mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -2931,10 +3154,10 @@ to construct set-theoretic exclusion ('is not in' or 'is not a member of').
   {2,3,3} is not a subset of {1,2,3}
 
 <div>
-                  <button id="d43e1562xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1562xml')">XML (OpenMath)</button>
+                  <button id="d43e1513xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1513xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e1562xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d43e1513xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMA&gt;
     &lt;OMS cd="multiset1" name="notsubset"/&gt;
     &lt;OMA&gt;
@@ -2952,10 +3175,10 @@ to construct set-theoretic exclusion ('is not in' or 'is not a member of').
   &lt;/OMA&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e1562cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1562cmml')">Content MathML</button>
+                  <button id="d43e1513cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1513cmml')">Content MathML</button>
                </div>
-               <pre id="d43e1562cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e1513cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
   &lt;apply&gt;
     &lt;csymbol cd="multiset1"&gt;notsubset&lt;/csymbol&gt;
     &lt;apply&gt;
@@ -2973,10 +3196,10 @@ to construct set-theoretic exclusion ('is not in' or 'is not a member of').
   &lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e1562prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1562pref')">Prefix form</button>
+                  <button id="d43e1513prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1513pref')">Prefix form</button>
                </div>
-               <div id="d43e1562pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e1513pref" style="display:none; margin-top: 0.5em">
                   <a href="multiset1.xhtml#notsubset">notsubset</a>
 (<a href="multiset1.xhtml#multiset">multiset</a>
 ( 2 ,  3 ,  3 )
@@ -2986,10 +3209,10 @@ to construct set-theoretic exclusion ('is not in' or 'is not a member of').
 
 </div>
                <div>
-                  <button id="d43e1562mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e1562mml')">Presentation MathML</button>
+                  <button id="d43e1513mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e1513mml')">Presentation MathML</button>
                </div>
-               <div id="d43e1562mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e1513mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -3053,69 +3276,57 @@ to construct set-theoretic exclusion ('is not in' or 'is not a member of').
             <dt class="dt">Description:</dt>
             <dd>
                <p> 
-This symbol has two (multiset) arguments. It is used to denote 
-that the first multiset is not a proper subset of the second. A 
-proper subset of a multiset is a subset of the multiset but not 
-actually equal to it.
-</p>
-            </dd>
-            <dt class="dt">description:</dt>
-            <dd>
-               <p>
-          The notprsubset element is the element for constructing the set-theoretic
-          relation 'is not a proper subset of'.
-        </p>
-            </dd>
-            <dt class="dt">discussion:</dt>
-            <dd>
-               <p>
-	  The notprsubset element is the operator element for the
-	  set-theoretic relation is not a proper subset of.
-	</p>
+    This symbol has two (multiset) arguments. It is used to denote that the first multiset
+    is not a proper subset of the second. A proper subset of a multiset is a subset of the
+    multiset but not actually equal to it.
+  </p>
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
                <div>
-                  <button id="d43e1646xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1646xml')">XML (MathML)</button>
+                  <button id="d43e1579xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1579xml')">XML (MathML)</button>
                </div>
-               <pre id="d43e1646xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;notprsubset/&gt;
-  &lt;ci type="set"&gt; A&lt;/ci&gt;
-  &lt;ci type="set"&gt; B&lt;/ci&gt;
-&lt;/apply&gt;
-&lt;/math&gt;</pre>
+               <pre id="d43e1579xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+    &lt;apply&gt;&lt;notprsubset type="multiset"/&gt;
+      &lt;ci type="multiset"&gt;A&lt;/ci&gt;
+      &lt;ci type="multiset"&gt;B&lt;/ci&gt;
+    &lt;/apply&gt;
+  &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e1646stricta" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1646strict')">Strict Content MathML</button>
+                  <button id="d43e1579stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1579strict')">Strict Content MathML</button>
                </div>
-               <pre id="d43e1646strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;csymbol cd="set1"&gt;notprsubset&lt;/csymbol&gt;
-  &lt;ci&gt;A&lt;/ci&gt;
-  &lt;ci&gt;B&lt;/ci&gt;
-&lt;/apply&gt;
-&lt;/math&gt;</pre>
+               <pre id="d43e1579strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+    &lt;apply&gt;&lt;csymbol cd="multiset1"&gt;notprsubset&lt;/csymbol&gt;
+      &lt;ci&gt;A&lt;/ci&gt;
+      &lt;ci&gt;B&lt;/ci&gt;
+    &lt;/apply&gt;
+  &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e1646cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1646cmml')">OpenMath</button>
+                  <button id="d43e1579cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1579cmml')">OpenMath</button>
                </div>
-               <pre id="d43e1646cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMA&gt;&lt;OMS cd="set1" name="notprsubset"/&gt;
-  &lt;OMV name="A"/&gt;
-  &lt;OMV name="B"/&gt;
-&lt;/OMA&gt;
-&lt;/OMOBJ&gt;</pre>
+               <pre id="d43e1579cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+    &lt;OMA&gt;&lt;OMS cd="multiset1" name="notprsubset"/&gt;
+      &lt;OMV name="A"/&gt;
+      &lt;OMV name="B"/&gt;
+    &lt;/OMA&gt;
+  &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e1646prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1646pref')">Prefix form</button>
+                  <button id="d43e1579prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1579pref')">Prefix form</button>
                </div>
-               <div id="d43e1646pref" style="display:none; margin-top: 0.5em">
-                  <a href="set1.xhtml#notprsubset">notprsubset</a>
+               <div id="d43e1579pref" style="display:none; margin-top: 0.5em">
+                  <a href="multiset1.xhtml#notprsubset">notprsubset</a>
 ( <i>A</i>,  <i>B</i>)
 
-</div>
+  </div>
                <div>
-                  <button id="d43e1646mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e1646mml')">Presentation MathML</button>
+                  <button id="d43e1579mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e1579mml')">Presentation MathML</button>
                </div>
-               <div id="d43e1646mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e1579mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -3131,65 +3342,65 @@ actually equal to it.
 {1,2,1} is not a proper subset of {1,2,1}
 
 <div>
-                  <button id="d43e1660xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1660xml')">XML (OpenMath)</button>
+                  <button id="d43e1596xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1596xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e1660xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d43e1596xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
   &lt;OMA&gt;
     &lt;OMS cd="multiset1" name="notprsubset"/&gt;
     &lt;OMA&gt;
       &lt;OMS cd="multiset1" name="multiset"/&gt;
-      &lt;OMI&gt; 1 &lt;/OMI&gt;
-      &lt;OMI&gt; 2 &lt;/OMI&gt;
-      &lt;OMI&gt; 1 &lt;/OMI&gt;
+      &lt;OMI&gt;1&lt;/OMI&gt;
+      &lt;OMI&gt;2&lt;/OMI&gt;
+      &lt;OMI&gt;1&lt;/OMI&gt;
     &lt;/OMA&gt;
     &lt;OMA&gt;
       &lt;OMS cd="multiset1" name="multiset"/&gt;
-      &lt;OMI&gt; 1 &lt;/OMI&gt;
-      &lt;OMI&gt; 2 &lt;/OMI&gt;
-      &lt;OMI&gt; 1 &lt;/OMI&gt;
+      &lt;OMI&gt;1&lt;/OMI&gt;
+      &lt;OMI&gt;2&lt;/OMI&gt;
+      &lt;OMI&gt;1&lt;/OMI&gt;
     &lt;/OMA&gt;
   &lt;/OMA&gt;
 &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e1660cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1660cmml')">Content MathML</button>
+                  <button id="d43e1596cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1596cmml')">Content MathML</button>
                </div>
-               <pre id="d43e1660cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e1596cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
   &lt;apply&gt;
     &lt;csymbol cd="multiset1"&gt;notprsubset&lt;/csymbol&gt;
     &lt;apply&gt;
       &lt;csymbol cd="multiset1"&gt;multiset&lt;/csymbol&gt;
-      &lt;cn&gt; 1 &lt;/cn&gt;
-      &lt;cn&gt; 2 &lt;/cn&gt;
-      &lt;cn&gt; 1 &lt;/cn&gt;
+      &lt;cn&gt;1&lt;/cn&gt;
+      &lt;cn&gt;2&lt;/cn&gt;
+      &lt;cn&gt;1&lt;/cn&gt;
     &lt;/apply&gt;
     &lt;apply&gt;
       &lt;csymbol cd="multiset1"&gt;multiset&lt;/csymbol&gt;
-      &lt;cn&gt; 1 &lt;/cn&gt;
-      &lt;cn&gt; 2 &lt;/cn&gt;
-      &lt;cn&gt; 1 &lt;/cn&gt;
+      &lt;cn&gt;1&lt;/cn&gt;
+      &lt;cn&gt;2&lt;/cn&gt;
+      &lt;cn&gt;1&lt;/cn&gt;
     &lt;/apply&gt;
   &lt;/apply&gt;
 &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e1660prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1660pref')">Prefix form</button>
+                  <button id="d43e1596prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1596pref')">Prefix form</button>
                </div>
-               <div id="d43e1660pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e1596pref" style="display:none; margin-top: 0.5em">
                   <a href="multiset1.xhtml#notprsubset">notprsubset</a>
 (<a href="multiset1.xhtml#multiset">multiset</a>
-( 1 ,  2 ,  1 )
+(1, 2, 1)
 , <a href="multiset1.xhtml#multiset">multiset</a>
-( 1 ,  2 ,  1 )
+(1, 2, 1)
 )
 
 </div>
                <div>
-                  <button id="d43e1660mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e1660mml')">Presentation MathML</button>
+                  <button id="d43e1596mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e1596mml')">Presentation MathML</button>
                </div>
-               <div id="d43e1660mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e1596mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -3198,11 +3409,11 @@ actually equal to it.
                            <mo>⁡</mo>
                            <mrow>
                               <mo>(</mo>
-                              <mn> 1 </mn>
+                              <mn>1</mn>
                               <mo>,</mo>
-                              <mn> 2 </mn>
+                              <mn>2</mn>
                               <mo>,</mo>
-                              <mn> 1 </mn>
+                              <mn>1</mn>
                               <mo>)</mo>
                            </mrow>
                         </mrow>
@@ -3212,11 +3423,11 @@ actually equal to it.
                            <mo>⁡</mo>
                            <mrow>
                               <mo>(</mo>
-                              <mn> 1 </mn>
+                              <mn>1</mn>
                               <mo>,</mo>
-                              <mn> 2 </mn>
+                              <mn>2</mn>
                               <mo>,</mo>
-                              <mn> 1 </mn>
+                              <mn>1</mn>
                               <mo>)</mo>
                            </mrow>
                         </mrow>
@@ -3233,7 +3444,7 @@ actually equal to it.
          </dl>
       </div>
       <div>
-	    [First: <a href="#size">size</a>]
+	    [First: <a href="#cartesian_product">cartesian_product</a>]
 	  
 	   [This: <a href="#notprsubset">notprsubset</a>]
 	[Previous: <a href="#notsubset">notsubset</a>]
