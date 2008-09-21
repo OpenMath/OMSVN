@@ -18,7 +18,7 @@
 \begin{abstract}
   We propose a new way of encoding binding operators in {\openmath/\mathml} that
   alleviates the need to introduce {\element{condition}} elements into {\openmath}3. We
-  evaluate these ideas by providing a content dictionary {\texttt{calculus?}} that is more
+  evaluate these ideas by providing a content dictionary {\texttt{calculus3}} that is more
   closely alingned with {\mathml2} representation intuitions as a replacement for the
   {\openmath} standard CD {\texttt{calculus1}}.
 \end{abstract}
@@ -35,7 +35,401 @@ Another bone of contention is that {\mathml} often expresses functionals using b
 operators over expressions with bound variables (and qualifiers), whereas {\openmath}
 tends to apply the functionals themselves to functions represented with the help of the
 $\lambda$ operator. Probably the synchronized {\openmath3}/{\mathml3} content dictionaries
-should support both styles, since they appeal to different communities of mathematicians.
+should support both styles, since they appeal to different communities of
+mathematicians. We propose a new content dictionary
+{\texttt{calculus3}}\footnote{{\texttt{calculus2}} already exists as an experimental CD on
+  {\texttt{openmath.org}}} that is more closely alingned with {\mathml2} representation
+intuitions as a replacement for the {\openmath} standard CD {\texttt{calculus1}}. The new
+content dictionary can be found on the {\openmath3} development repository as
+{\url{https://svn.openmath.org/OpenMath3/cd/MathML/calculu3.ocd}}.
+
+\section{Derivatives}
+
+{\mathml} interprets derivatives as operators on expressions in one bound variable and
+presents as paradigmatic examples:
+\begin{center}\lstset{frame=none,numbers=none,lineskip=-.7ex,aboveskip=-.5em,belowskip=-1em,language=MathML}
+\begin{tabular}{|p{4.5cm}|p{8cm}|}\hline
+  1: $diff_x(x^2)$ & 2: $diff^2_x(x^5)$\\\hline
+\begin{lstlisting}
+<apply><diff/>
+  <bvar><ci>x</ci></bvar>
+  <apply>
+    <power/>
+    <ci>x</ci>
+    <cn>2</cn>
+  </apply>
+</apply>
+\end{lstlisting}
+&
+\begin{lstlisting}[language=MathML]
+<apply><diff/>
+  <bvar>
+    <ci>x</ci>
+    <degree><cn>2</cn></degree>
+  </bvar>
+  <apply><power/><ci>x</ci><cn>5</cn></apply>
+</apply>
+\end{lstlisting}
+\\\hline
+\end{tabular}
+\end{center}
+but also allows differentiation over a function as in 
+\begin{lstlisting}[language=MathML]
+<apply><eq/><apply><diff/><sin/></apply><cos/></apply>
+\end{lstlisting}
+In this, we use the {\element{diff}} element as a functional that is applied to the $\sin$
+function. For {\openmath} the functional view is primary: the content dictionary
+{\texttt{calculus1}} supplies a symbol {\texttt{diff}} that is a functional so that the
+latter expression can be directly represented as 
+\begin{lstlisting}[language=OpenMath]
+<OMA><OMS cd="relation1" name="eq"/>
+  <OMA><OMS cd="calculus1" name="diff"/><OMS cd="transc1" name="sin"/></OMA>
+  <OMS cd="transc1" name="cos"/>
+</OMA>
+\end{lstlisting}
+For the left hand expression in the table above, we would use the {\texttt{lambda}} symbol
+from the {\texttt{fns1}} CD and a special symbol {\texttt{nthdiff}} from the
+{\texttt{calculus1}} CD.
+\begin{center}\lstset{frame=none,numbers=none,lineskip=-.7ex,aboveskip=-.5em,belowskip=-1em,language=OpenMath}
+\begin{tabular}{|p{6.8cm}|p{7.3cm}|}\hline
+  1: $diff_x(x^2)$ & 2: $diff^2_x(x^5)$\\\hline
+\begin{lstlisting}
+<OMA><OMS cd="calculus1" name="diff"/>
+  <OMBIND>
+    <OMS cd="fns1" name="lambda"/>
+    <OMBVAR><OMV name="x"/></OMBVAR>
+    <OMA>
+      <OMS cd="arith1" name="power"/>
+      <OMV name="x"/>
+      <OMI>2</OMI>
+    </OMA>
+  </OMBIND>
+</OMA>
+\end{lstlisting}
+&
+\begin{lstlisting}[language=OpenMath]
+<OMA><OMS cd="calculus1" name="nthdiff"/>
+  <OMI>2</OMI>
+  <OMBIND>
+    <OMS cd="fns1" name="lambda"/>
+    <OMBVAR><OMV name="x"/></OMBVAR>
+    <OMA><OMS cd="arith1" name="power"/>
+      <OMV name="x"/>
+      <OMI>5</OMI>
+    </OMA>
+  </OMBIND>
+</OMA>
+\end{lstlisting}
+\\\hline
+\end{tabular}
+\end{center}
+While we lose the directly structural correspondence, this is quite natural. But for a
+partial derivative like $\frac{d^k}{dx^m dy^n}f(x,y)$ which can be expressed in {\mathml}
+by
+
+\begin{lstlisting}[language=MathML]
+<apply>
+  <partialdiff/>
+    <bvar><ci>x</ci><degree><ci>m</ci></degree></bvar>
+    <bvar><ci>y</ci><degree><ci>n</ci></degree></bvar>
+    <degree><ci>k</ci></degree>
+    <apply><ci type="function">f</ci><ci>x</ci><ci>y</ci></apply>
+</apply>
+\end{lstlisting}
+we would obtain the following representation using a partial differentiation operator that
+takes a list of degrees and a total degree as an arguments.
+\begin{lstlisting}[language=OpenMath]
+<OMA>
+  <OMS cd="calculus1" name="pdiffdegree"/>
+  <OMA><OMS cd="list1" name="list"><OMV name="m"/><OMV name="m"/></OMA>
+  <OMV name="k"/>
+  <OMBIND>
+    <OMS cd="fns1" name="lambda"/>
+    <OMBVAR><OMV name="x"/><OMV name="y"/></OMBVAR>
+    <OMA><OMV name="f"><OMV name="x"/><OMV name="y"/></OMA>
+  </OMBIND>
+</OMA>
+\end{lstlisting}
+Note that we are using a variant {\texttt{pdiffdegree}} of the {\texttt{partialdiff}}
+symbol that allows to specify the total degree as an extra argument. We propose to add
+this to the {\texttt{calculus1}} CD.
+
+In the proposed {\texttt{calculus2}} CD, we would model the {\texttt{diff}} and
+{\texttt{partialdiff}} as binding operator constructors and thereby make use of the fact
+that {\openmath} allows the first child of an {\element{OMBIND}} to be an {\element{OMA}},
+not just an {\element{OMS}} as is predominantly used. This gives us a much better
+structural similarity in the
+
+\begin{center}\lstset{frame=none,numbers=none,lineskip=-.7ex,aboveskip=-.5em,belowskip=-1em,language=MathML}
+\begin{tabular}{|l|p{5.5cm}|p{8cm}|}\hline
+ &  {\mathml2} & strict c{\mathml3}\\\hline
+ 1 &
+\begin{lstlisting}
+<apply><diff/>
+  <bvar><ci>x</ci></bvar>
+  <apply>
+    <power/>
+    <ci>x</ci>
+    <cn>2</cn>
+  </apply>
+</apply>
+\end{lstlisting}
+&
+\begin{lstlisting}
+<bind><csymbol cd="calculus2">diff</csymbol>
+  <bvar><ci>x</ci></bvar>
+  <apply>
+    <csymbol cd="arith1">power</csymbol>
+    <ci>x</ci>
+    <cn>2</cn>
+  </apply>
+</apply>
+\end{lstlisting}
+\\\hline
+2 & 
+\begin{lstlisting}[language=MathML]
+<apply><diff/>
+  <bvar>
+    <ci>x</ci>
+    <degree><cn>2</cn></degree>
+  </bvar>
+  <apply>
+    <power/>
+    <ci>x</ci>
+    <cn>5</cn>
+  </apply>
+</apply>
+\end{lstlisting}
+&
+\begin{lstlisting}[language=MathML]
+<bind>
+  <apply>
+    <nthdiff/>
+    <cn>2</cn>
+  </apply>
+  <bvar><ci>x</ci></bvar>
+  <apply>
+    <power/>
+    <ci>x</ci>
+    <cn>5</cn>
+  </apply>
+</apply>
+\end{lstlisting}
+\\\hline
+\end{tabular}
+\end{center}
+We have used strict content MathML to highlight the correspondence for the parttial
+differentiation example we obtain 
+\begin{lstlisting}[language=OpenMath]
+<OMBIND>
+  <OMA><OMS cd="calculus3" name="pdiffdegree"/>
+    <OMV name="m"/><OMV name="m"/><OMV name="k"/>
+  </OMA>
+  <OMBVAR><OMV name="x"/><OMV name="y"/></OMBVAR>
+  <OMA><OMV name="f"><OMV name="x"/><OMV name="y"/></OMA>
+</OMBIND>
+\end{lstlisting}
+
+\section{Integrals}
+
+For integrals, the situtaion is similar, {\mathml} interprets derivatives as operators on
+expressions in one bound variable and presents as paradigmatic examples the following
+three expressions, which differ in which ways the bound variables are handled.
+\begin{center}\lstset{frame=none,numbers=none,lineskip=-.7ex,aboveskip=-.5em,belowskip=-1em,language=MathML}
+\begin{tabular}{|p{5.9cm}|p{4.4cm}|p{4.4cm}|}\hline
+  3: $\int_0^af(x) dx$ & 4: $\int_{x\in D}f(x) dx$ & 5: $\int_Df(x)dx$\\\hline
+\begin{lstlisting}
+<apply>
+  <int/>
+  <bvar><ci>x</ci></bvar>
+  <lowlimit><cn>0</cn></lowlimit>
+  <uplimit><ci>a</ci></uplimit>
+  <apply><ci>f</ci>
+    <ci>x</ci>
+  </apply>
+</apply>
+\end{lstlisting}
+&
+\begin{lstlisting}[language=MathML]
+<apply>
+  <int/>
+  <bvar><ci>x</ci></bvar>
+  <condition>
+    <apply><in/>
+      <ci>x</ci>
+      <ci>D</ci>
+    </apply>
+  </condition>
+  <apply><ci>f</ci>
+    <ci>x</ci>
+  </apply>
+</apply>
+\end{lstlisting}
+&
+\begin{lstlisting}[language=MathML]
+<apply>
+  <int/>
+  <bvar><ci>x</ci></bvar>
+  <domainofapplication>
+    <ci>D</ci>
+  </domainofapplication>
+  <apply><ci>f</ci>
+    <ci>x</ci>
+  </apply>
+</apply>
+\end{lstlisting}
+\\\hline
+\end{tabular}
+\end{center}
+Example 3. uses the {\element{lowlimit}} {\element{uplimit}} qualifiers that specify an
+ordered range of integration by allowing the bound variable to range from 0 to
+$a$. Example 4. uses a general {\element{condition}} qualifier that allows to place
+restrictions on the bound variable (this is possible on any binding operator), and finally
+example 5. uses the {\element{domainofapplication}} qualifier element that restricts the
+bound variable to range over a set. 
+
+{\mathml2} also allows integration over a function as in
+\begin{center}\lstset{frame=none,numbers=none,lineskip=-.7ex,aboveskip=-.5em,belowskip=-1em,language=MathML}
+\begin{tabular}{|p{7.7cm}|p{5.3cm}|}\hline
+  6: $\int_{[a,b]}\cos$ & 7: $\int\sin=\cos$\\\hline
+\begin{lstlisting}
+<apply>
+  <int/>
+  <interval><ci>a</ci><ci>b</ci></interval>
+  <cos/>
+</apply>
+\end{lstlisting}
+&
+\begin{lstlisting}
+<apply>
+  <eq/>
+  <apply><int/><sin/></apply>
+  <cos/>
+</apply>
+\end{lstlisting}
+\\\hline
+\end{tabular}
+\end{center}
+
+Examples 5. and 6. can be represented in {\openmath} using the {\texttt{defint}} symbol
+from the {\texttt{calculus1}} CD using similar representational intuitions as above: we
+apply {\texttt{defint}} symbol that takes a set and a function as arguments to the range
+of integration provided and construct a function as a $\lambda$-term. Example 7. works
+analogously using the {\texttt{int}} symbol for indefinite integration from
+{\texttt{calculus1}}.
+
+{\mathml2} claims that {\element{uplimit}} and {\element{lowlimit}} can be reduced to
+{\element{domainofapplication}} or {\element{condition}}, but the convention
+$\int_a^bf(x)dx=-\int_b^af(x)dx$ shows that this is not directly possible via the claimed
+intuition that $\int_a^b$ can be represented by $\int_{[a,b]}$, since either the interval
+$[a,b]$ or $[b,a]$ is nonsensical, or we would be forced to come up with a general notion
+of ``reversed interval'' only to fix the integration convention. Thus we have to do
+something else for example 3. In particular, the {\element{FMP}} representation of the
+convention above in the {\texttt{calculus1}} CD is nonsensical and should be eliminated.
+
+For example 4. we are also in trouble, as we have to construct a set from the
+{\element{condition}} in order to use {\texttt{int}} or {\texttt{defint}}. This would in
+principle be possible using the {\texttt{suchthat}} symbol from {\texttt{set1}}, but we
+need a base set for separation here. But this is not given in expample 3. and taking the
+``universal set'' is set-theoretically problematic.
+
+In this situation we propose to take the representational distinctions in examples 3. -
+6. seriously model the definite integrals as distinct binding constructor as we did for
+differentiation. Our new {\texttt{calculus3}} content dictionary supplies a symbol
+{\texttt{defint}} that takes two real numbers as arguments: the lower and upper limits of
+the range of integration, a symbol {\texttt{defintset}} that takes a set as an argument,
+and finally a symbol {\texttt{defintcond}} that takes an expression involing the bound
+variable as an argument. 
+
+With this, we directly get the following strict content MathML representations (we have
+abbreviated {\texttt{calculus3}} to {\texttt{calc3}} to save space):
+\begin{center}\lstset{frame=none,numbers=none,lineskip=-.7ex,aboveskip=-.5em,belowskip=-1em,language=MathML}
+\begin{tabular}{|p{7.5cm}|p{8cm}|}\hline
+  3: $\int_0^af(x) dx$ & 4: $\int_{x\in D}f(x) dx$ \\\hline
+\begin{lstlisting}
+<bind>
+  <apply>
+    <csymbol cd="calc3">defint</csymbol>
+    <cn>0</cn><ci>a</ci>
+  </apply>
+  <bvar><ci>x</ci></bvar>
+  <apply><ci>f</ci><ci>x</ci></apply>
+</bind>
+\end{lstlisting}
+&
+\begin{lstlisting}
+<bind>
+  <apply>
+    <csymbol cd="calc3">defintcond</csymbol>
+    <apply><in/>
+      <ci>x</ci>
+      <ci>D</ci>
+    </apply>
+  </apply>
+  <bvar><ci>x</ci></bvar>
+  <apply><ci>f</ci><ci>x</ci></apply>
+</bind>
+\end{lstlisting}
+\\\hline\hline
+ 5: $\int_Df(x)dx$ & 6: $\int_{[a,b]}\cos$\\\hline
+\begin{lstlisting}
+<bind>
+  <apply>
+    <csymbol cd="calc3>defintset</csymbol>
+    <ci>D</ci>
+  </apply>
+  <bvar><ci>x</ci></bvar>
+  <apply><ci>f</ci><ci>x</ci></apply>
+</bind>
+\end{lstlisting}
+& 
+\begin{lstlisting}
+<apply>
+  <csymbol cd="calc1">defint</csymbol>
+  <interval><ci>a</ci><ci>b</ci></interval>
+  <cos/>
+</apply>
+\end{lstlisting}
+\\\hline
+\end{tabular}
+\end{center}
+
+Note that we also propose to extend the old {\texttt{calculus1}} content dictionary with a
+symbol {\texttt{defintbounds}} that takes two real numbers as arguments: the lower and
+upper limits of the range of integration. The symbol {\texttt{defint}} for definite
+integration over functions in {\texttt{calculus1}} already takes the role analogous to
+{\texttt{{defintset}}} as example 6 shows. 
+
+\section{Conclusions}
+
+We propose a new content dictionary {\texttt{calculus3}}\footnote{{\texttt{calculus2}}
+  already exists as an experimental CD on {\texttt{openmath.org}}} that is more closely
+alingned with {\mathml2} representation intuitions as a replacement for the {\openmath}
+standard CD {\texttt{calculus1}}.
+
+For differentiation and integration over expressions with bound varaibles we should use
+the {\texttt{calculus3}} symbols, and for differentiation and integration over functions
+we should use {\texttt{calculus1}} symbols. This is directly analogous to the situation
+between the content dictionaries {\texttt{s_data1}} and {\texttt{s_dist1}}, where the
+underspecified usage with data sets and random variables in {\mathml} has been specified
+into two different content dictionaries in {\openmath}.
+
+Finally, we remark that the use of binding constructors like we use them in the
+{\texttt{calculs3}} content dictionary allows us to move the {\mathml}
+{\element{condition}} elements into (suitably defined) binding constructors, so that the
+core {\openmath} format need not be extended to achieve synchronization with {\mathml}. In
+particular note that an analog to the new symbol {\texttt{defintcond}} that takes an
+expression involing the bound variable as an argument cannot be added to
+{\texttt{calculus1}}, since the bound variable in the condition cannot be accessed outside
+the $\lambda$ term that binds it.
+
+The only thing that has be be changed/clarified in the {\openmath3} standard is that scope
+of the bound variable (and thus replacement in $\alpha$-renaming) 
+
+
+% \section{The {\texttt{calculus3}} Content Dictionary}
+% \lstinputlisting[language=omCD,nolol]{../../cd/MathML/calculus3.ocd}
+
 
 \section{Acknowledgements}
 This proposal has been greatly influenced by discussions with Florian Rabe in the context
