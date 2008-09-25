@@ -29,8 +29,36 @@ This is a CDComment
     <property xml:id="lcm_prop_1">
       <CMP>some informal text here</CMP>
       <FMP>
-        <span xmlns="http://www.w3.org/1999/xhtml" class="mceItemSentido" lang="x-qmath-en"
-              title="Syntax: QMath/English">lcm(a,b) ≠ 1+a*b/gcd(a,b)</span>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"
+               xmlns:cd="http://www.openmath.org/OpenMathCD"
+               xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+               version="3.0">
+          <OMA>
+            <OMS cd="relation1" name="neq"/>
+            <OMA>
+              <OMS cd="arith1" name="lcm"/>
+              <OMV name="a"/>
+              <OMV name="b"/>
+            </OMA>
+            <OMA>
+              <OMS cd="arith1" name="plus"/>
+              <OMI>1</OMI>
+              <OMA>
+                <OMS cd="arith1" name="divide"/>
+                <OMA>
+                  <OMS cd="arith1" name="times"/>
+                  <OMV name="a"/>
+                  <OMV name="b"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="arith1" name="gcd"/>
+                  <OMV name="a"/>
+                  <OMV name="b"/>
+                </OMA>
+              </OMA>
+            </OMA>
+          </OMA>
+        </OMOBJ>
       </FMP>
     </property>
   </CDDefinition>
