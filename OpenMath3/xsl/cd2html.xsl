@@ -49,31 +49,21 @@
 
 
 <dl>
-<xsl:call-template name="field">
-    <xsl:with-param name="key">Canonical URL</xsl:with-param>
-    <xsl:with-param name="value"><a href="{normalize-space(./cd:CDURL)}">
-<xsl:value-of select="normalize-space(./cd:CDURL)"/></a>
-    </xsl:with-param>
-</xsl:call-template>
-
-<xsl:if test="cd:CDBase">
-	<xsl:call-template name="field">
-	    <xsl:with-param name="key">CD Base</xsl:with-param>
-	    <xsl:with-param name="value" select="normalize-space(./cd:CDBase)"/>
-	    <xsl:with-param name="link" select="true()"/>
-	</xsl:call-template>
-</xsl:if>
+<xsl:apply-templates select="cd:CDURL"/>
+<xsl:apply-templates select="cd:CDBase"/>
 
 <xsl:call-template name="field">
     <xsl:with-param name="key">CD File</xsl:with-param>
     <xsl:with-param name="value" select="concat($cd, '.ocd')"/>
-    <xsl:with-param name="link" select="true()"/>
+    <xsl:with-param name="normalize-space" select="false()" tunnel="yes"/>
+    <xsl:with-param name="link" select="true()" tunnel="yes"/>
 </xsl:call-template>
 
 <xsl:call-template name="field">
     <xsl:with-param name="key">CD as XML Encoded OpenMath</xsl:with-param>
     <xsl:with-param name="value" select="concat($cd, '.omcd')"/>
-    <xsl:with-param name="link" select="true()"/>
+    <xsl:with-param name="normalize-space" select="false()" tunnel="yes"/>
+    <xsl:with-param name="link" select="true()" tunnel="yes"/>
 </xsl:call-template>
 
 <xsl:call-template name="field">
@@ -87,29 +77,10 @@
     </xsl:with-param>
 </xsl:call-template>
 
-<xsl:call-template name="field">
-    <xsl:with-param name="key">Date</xsl:with-param>
-    <xsl:with-param name="value" select="cd:CDDate"/>
-</xsl:call-template>
-
-<xsl:call-template name="field">
-    <xsl:with-param name="key">Version</xsl:with-param>
-    <xsl:with-param name="value"><xsl:value-of select="cd:CDVersion"/>
-    <xsl:if test="0 ne number(cd:CDRevision)">
-    (Revision <xsl:value-of select="normalize-space(cd:CDRevision)"/>)
-    </xsl:if>
-    </xsl:with-param>
-</xsl:call-template>
-
-<xsl:call-template name="field">
-    <xsl:with-param name="key">Review Date</xsl:with-param>
-    <xsl:with-param name="value" select="cd:CDReviewDate"/>
-</xsl:call-template>
-
-<xsl:call-template name="field">
-    <xsl:with-param name="key">Status</xsl:with-param>
-    <xsl:with-param name="value" select="cd:CDStatus"/>
-</xsl:call-template>
+<xsl:apply-templates select="cd:CDDate"/>
+<xsl:apply-templates select="cd:CDVersion"/>
+<xsl:apply-templates select="cd:CDReviewDate"/>
+<xsl:apply-templates select="cd:CDStatus"/>
 
   <xsl:if test="normalize-space(cd:CDUses) ne ''">
 <xsl:call-template name="field">
@@ -128,15 +99,62 @@
   </xsl:if>
 </dl>
   <hr/>
-  <xsl:apply-templates/>
+  <!-- we have already dealt with these -->
+  <xsl:apply-templates select="* except (cd:CDName|cd:CDURL|cd:CDBase|cd:CDDate|cd:CDVersion|cd:CDRevision|cd:CDReviewDate|cd:CDStatus|cd:CDUses)"/>
   </body>
   </html>
 </xsl:template>
 
-<!-- we have already dealt with these -->
+<xsl:template match="cd:CDVersion">
+    <xsl:call-template name="cd-version-and-revision"/>
+</xsl:template>
+
+<!--
+	some syntax sanity checks (cd2html-util.xsl doesn't do them, it allows
+	e.g. an example to occur everywhere, as that is needed for SWiM's document splitting)
+-->
+<xsl:template match="cd:CD/cd:Description|cd:CD/cd:discussion">
+    <xsl:apply-imports/>
+</xsl:template>
+<xsl:template match="cd:CDDefinition/cd:Description|cd:CDDefinition/cd:description|cd:CDDefinition/cd:discussion|cd:CDDefinition/cd:Title">
+    <xsl:apply-imports/>
+</xsl:template>
+<xsl:template match="cd:MMLexample/cd:description">
+    <xsl:apply-imports/>
+</xsl:template>
+<xsl:template match="cd:Pragmatic/cd:description">
+    <xsl:apply-imports/>
+</xsl:template>
+<xsl:template match="cd:property/cd:description">
+    <xsl:apply-imports/>
+</xsl:template>
+<xsl:template match="cd:Description|cd:description|cd:discussion|cd:Title"/>
+
+<xsl:template match="cd:CDDefinition/cd:Pragmatic">
+    <xsl:apply-imports/>
+</xsl:template>
+<xsl:template match="cd:Pragmatic"/>
+
+<xsl:template match="cd:CDDefinition/cd:MMLexample|cd:CDDefinition/cd:Example">
+    <xsl:apply-imports/>
+</xsl:template>
+<xsl:template match="cd:MMLexample|cd:Example"/>
+
+<xsl:template match="cd:property/cd:CMP|cd:property/cd:FMP">
+    <xsl:apply-imports/>
+</xsl:template>
+<xsl:template match="cd:CDDefinition/cd:CMP|cd:CDDefinition/cd:FMP">
+    <!-- abolish this template as soon as properties are universally used -->
+    <xsl:apply-imports/>
+</xsl:template>
+<xsl:template match="cd:CMP|cd:FMP"/>
+
+<!-- enforce them to be children of /cd:CD?
 <xsl:template match="cd:CDURL|cd:CDBase|cd:CDName|cd:CDDate|cd:CDReviewDate|cd:CDStatus|
                      cd:CDVersion|cd:CDRevision|cd:CDUses"/>
+-->    
 
+<!-- Math Objects -->
 <xsl:template match="om:OMOBJ">
     <xsl:call-template name="formula-button">
         <xsl:with-param name="id" select="concat(generate-id(), 'xml')"/>
@@ -174,7 +192,7 @@
   </div>
 </xsl:template>
 
-<xsl:template match="m:math">
+<xsl:template match="m:math[not(parent::cd:p)]">
   <xsl:variable name="o">
     <xsl:apply-templates mode="cmml2om" select="."/>
   </xsl:variable>
@@ -222,6 +240,17 @@
       <xsl:apply-templates select="$o/*/*"/>
     </m:math>
   </div>
+</xsl:template>
+
+<!-- override "field" subtemplates from cd2html-util.xsl -->
+<xsl:template name="field-value">
+    <xsl:param name="value" tunnel="yes"/>
+    <xsl:param name="normalize-space" select="true()" tunnel="yes"/>
+    <xsl:call-template name="field-value-impl">
+        <xsl:with-param name="value" select="if (not(*) and $normalize-space)
+            then normalize-space($value)
+            else $value" tunnel="yes"/>
+    </xsl:call-template>
 </xsl:template>
 
 </xsl:stylesheet>

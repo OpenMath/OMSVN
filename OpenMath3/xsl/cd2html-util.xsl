@@ -20,24 +20,104 @@
   <xsl:message>cd2html warning: template for CD element <xsl:value-of select="local-name()"/> undefined</xsl:message>
 </xsl:template>
 
+<xsl:template match="cd:CDURL">
+    <xsl:call-template name="field">
+        <xsl:with-param name="key">Canonical URL</xsl:with-param>
+        <xsl:with-param name="link" select="true()" tunnel="yes"/>
+    </xsl:call-template>
+</xsl:template>
+    
+<xsl:template match="cd:CDBase">
+    <xsl:call-template name="field">
+        <xsl:with-param name="key">CD Base</xsl:with-param>
+        <xsl:with-param name="link" select="true()" tunnel="yes"/>
+    </xsl:call-template>
+</xsl:template>
+
+<xsl:template match="cd:CDDate">
+        <xsl:call-template name="field">
+            <xsl:with-param name="key" select="'Date'"/>
+        </xsl:call-template>
+</xsl:template>
+    
+<xsl:template match="cd:CDReviewDate">
+    <xsl:call-template name="field">
+        <xsl:with-param name="key">Review Date</xsl:with-param>
+    </xsl:call-template>
+</xsl:template>
+
+<xsl:template match="cd:CDStatus">
+    <xsl:call-template name="field">
+        <xsl:with-param name="key">Status</xsl:with-param>
+    </xsl:call-template>
+</xsl:template>
+
 <xsl:template match="cd:CDComment">
   <pre><xsl:apply-templates/></pre>
 </xsl:template>
 
-<xsl:template match="cd:CDDefinition/cd:Description|cd:CDDefinition/cd:description|cd:CDDefinition/cd:discussion|cd:CDDefinition/cd:Title">
-	<xsl:call-template name="field">
-	    <xsl:with-param name="key" select="local-name()"/>
-	    <xsl:with-param name="value">
-	        <xsl:call-template name="grab-para">
-	            <xsl:with-param name="string" select="."/>
-	        </xsl:call-template>
-	    </xsl:with-param>
-	</xsl:call-template>
+<xsl:template match="cd:Description|cd:Title">
+    <xsl:choose>
+        <xsl:when test="parent::cd:CDDefinition">
+			<xsl:call-template name="field">
+			    <xsl:with-param name="grab-para" select="true()" tunnel="yes"/>
+			</xsl:call-template>
+		</xsl:when>
+		<xsl:otherwise>
+            <xsl:call-template name="grab-para">
+                <xsl:with-param name="string">
+		    <xsl:apply-templates/>
+		</xsl:with-param>
+            </xsl:call-template>
+		</xsl:otherwise>
+    </xsl:choose>
 </xsl:template>
 
-<xsl:template match="cd:Description|cd:description">
-  <xsl:call-template name="grab-para"><xsl:with-param name="string" select="."/></xsl:call-template>
+<xsl:template match="cd:description|cd:discussion">
+    <xsl:choose>
+	<xsl:when test="parent::cd:CDDefinition">
+	    <xsl:call-template name="field"/>
+	</xsl:when>
+	<xsl:otherwise>
+	    <xsl:apply-templates/>
+	</xsl:otherwise>
+    </xsl:choose>
 </xsl:template>
+
+<!-- TODO do something here -->
+<xsl:template match="cd:pseq">
+    <xsl:apply-templates/>
+</xsl:template>
+
+<!-- TODO remove these templates when the HTML-like markup will be eliminated (see ../rnc/cd.rnc) -->
+<xsl:template match="cd:p|cd:code|cd:var|cd:sup|cd:sub">
+    <xsl:element name="{local-name()}">
+	<xsl:apply-templates/>
+    </xsl:element>
+</xsl:template>
+
+<xsl:template match="cd:emph">
+    <em>
+	<xsl:apply-templates/>
+    </em>
+</xsl:template>
+
+<xsl:template match="cd:quote">
+    <q>
+	<xsl:apply-templates/>
+    </q>
+</xsl:template>
+
+<xsl:template match="cd:el|cd:att|cd:attval">
+    <code>
+	<xsl:apply-templates/>
+    </code>
+</xsl:template>
+
+<xsl:template match="cd:intref|cd:specref|cd:graphic|cd:eg|cd:kw|cd:ednote|cd:name|cd:edtext">
+    <xsl:apply-templates/>
+</xsl:template>
+<!-- end TODO remove -->
 
 <xsl:template match="cd:CDDefinition">
   <div class="cddefinition">
@@ -45,7 +125,7 @@
   <dl>
     <xsl:apply-templates select="* except cd:Name"/>
     <xsl:call-template name="field">
-        <xsl:with-param name="key" select="'Signatures'"/>
+        <xsl:with-param name="key">Signatures</xsl:with-param>
         <xsl:with-param name="value">
       <xsl:element name="a">
     <xsl:attribute name="href">../sts/<xsl:value-of 
@@ -88,20 +168,12 @@
 
 
 <xsl:template match="cd:CDDefinition/cd:Role">
-	<xsl:call-template name="field">
-	    <xsl:with-param name="key" select="'Role'"/>
-	    <xsl:with-param name="value">
-	        <xsl:apply-templates/>
-	    </xsl:with-param>
-	</xsl:call-template>
+	<xsl:call-template name="field"/>
 </xsl:template>
 
-<xsl:template match="cd:CDDefinition/cd:Pragmatic">
+<xsl:template match="cd:Pragmatic">
 	<xsl:call-template name="field">
-	    <xsl:with-param name="key" select="'Pragmatic MathML'"/>
-	    <xsl:with-param name="value">
-	        <xsl:apply-templates/>
-	    </xsl:with-param>
+	    <xsl:with-param name="key">Pragmatic MathML</xsl:with-param>
 	</xsl:call-template>
 </xsl:template>
 
@@ -115,12 +187,9 @@
   <xsl:value-of select="normalize-space(.)"/>&gt;</p>
 </xsl:template>
 
-<xsl:template match="cd:CDDefinition/cd:MMLexample">
+<xsl:template match="cd:MMLexample">
 	<xsl:call-template name="field">
-	    <xsl:with-param name="key" select="'Example'"/>
-	    <xsl:with-param name="value">
-            <xsl:apply-templates/>
-	    </xsl:with-param>
+	    <xsl:with-param name="key">Example</xsl:with-param>
 	</xsl:call-template>
 </xsl:template>
 
@@ -158,45 +227,30 @@
   </p>
 </xsl:template>
 
-<xsl:template match="cd:CDDefinition/cd:property">
+<xsl:template match="cd:property">
 	<xsl:call-template name="field">
-	    <xsl:with-param name="key" select="'Property'"/>
-	    <xsl:with-param name="value">
-	        <xsl:apply-templates/>
-	    </xsl:with-param>
+	    <xsl:with-param name="key">Property</xsl:with-param>
 	</xsl:call-template>
 </xsl:template>
 
-<xsl:template match="cd:property/cd:CMP"><xsl:apply-templates/></xsl:template>
-<xsl:template match="cd:property/cd:FMP"><xsl:apply-templates/></xsl:template>
-
-<!-- eliminate them as soon as properties are universally used -->
-<xsl:template match="cd:CDDefinition/cd:CMP">
-	<xsl:call-template name="field">
-	    <xsl:with-param name="key" select="'Commented Mathematical property (CMP)'"/>
-	    <xsl:with-param name="value">
-	        <xsl:apply-templates/>
-	    </xsl:with-param>
-	</xsl:call-template>
+<xsl:template match="cd:CMP|cd:FMP">
+    <xsl:choose>
+        <xsl:when test="parent::cd:CDDefinition">
+            <!-- eliminate this case as soon as properties are universally used -->
+			<xsl:call-template name="field">
+			    <xsl:with-param name="key" select="if (self::cd:CMP)
+			        then 'Commented Mathematical property (CMP)'
+			        else 'Formal Mathematical property (FMP)'"/>
+			</xsl:call-template>
+		</xsl:when>
+		<xsl:otherwise>
+		    <xsl:apply-templates/>
+		</xsl:otherwise>
+	</xsl:choose>
 </xsl:template>
 
-<xsl:template match="cd:CDDefinition/cd:FMP">
-	<xsl:call-template name="field">
-	    <xsl:with-param name="key" select="'Formal Mathematical property (FMP)'"/>
-	    <xsl:with-param name="value">
-	        <xsl:apply-templates/>
-	    </xsl:with-param>
-	</xsl:call-template>
-</xsl:template>
-
-
-<xsl:template match="cd:CDDefinition/cd:Example">
-	<xsl:call-template name="field">
-	    <xsl:with-param name="key" select="'Example'"/>
-	    <xsl:with-param name="value">
-            <xsl:apply-templates/>
-	    </xsl:with-param>
-	</xsl:call-template>
+<xsl:template match="cd:Example">
+	<xsl:call-template name="field"/>
 </xsl:template>
 
 <!--   term mode -->
@@ -279,15 +333,65 @@
   </xsl:choose>
 </xsl:template>
 
+<!-- Outputs CD version and revision -->
+<xsl:template name="cd-version-and-revision">
+    <xsl:param name="version" select="."/>
+    <xsl:param name="revision" select="../cd:CDRevision"/>
+    <xsl:call-template name="field">
+        <xsl:with-param name="key">Version</xsl:with-param>
+        <xsl:with-param name="value"><xsl:value-of select="$version"/>
+            <xsl:if test="0 ne number($revision)"> (Revision <xsl:value-of select="$revision"/>)</xsl:if> 
+        </xsl:with-param>
+        <xsl:with-param name="normalize-space" select="false()" tunnel="yes"/>
+    </xsl:call-template>
+</xsl:template>    
 
 <!-- Creates one item of an HTML <dl/> list, i.e. a <dt/><dd/> pair -->
 <xsl:template name="field">
-    <xsl:param name="key"/>
-    <xsl:param name="value"/>
-    <xsl:param name="link" select="false()"/>
-    <dt class="dt"><xsl:value-of select="$key"/>:</dt>
+    <xsl:param name="key" select="local-name()"/>
+    <xsl:param name="value">
+        <xsl:apply-templates/>
+    </xsl:param>
+    <xsl:call-template name="field-custom">
+        <xsl:with-param name="key" select="$key" tunnel="yes"/>
+        <xsl:with-param name="value" select="$value" tunnel="yes"/>
+    </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="field-custom">
+    <xsl:call-template name="field-impl"/>
+</xsl:template>
+
+<xsl:template name="field-impl">
+    <xsl:call-template name="field-key"/>
+    <xsl:call-template name="field-value"/>
+</xsl:template>
+
+<xsl:template name="field-key">
+    <xsl:call-template name="field-key-impl"/>
+</xsl:template>
+
+<xsl:template name="field-value">
+    <xsl:call-template name="field-value-impl"/>
+</xsl:template>
+
+<xsl:template name="field-key-impl">
+    <xsl:param name="key" tunnel="yes"/>
+    <dt class="dt"><xsl:value-of select="$key"/>
+    <xsl:text>:</xsl:text></dt>
+</xsl:template>
+
+<xsl:template name="field-value-impl">
+    <xsl:param name="value" tunnel="yes"/>
+    <xsl:param name="link" select="false()" tunnel="yes"/>
+    <xsl:param name="grab-para" select="false()" tunnel="yes"/>
     <dd><xsl:choose>
         <xsl:when test="$link"><a href="{$value}"><xsl:value-of select="$value"/></a></xsl:when>
+        <xsl:when test="$grab-para">
+            <xsl:call-template name="grab-para">
+                <xsl:with-param name="string" select="$value"/>
+            </xsl:call-template>
+        </xsl:when>
         <xsl:otherwise><xsl:copy-of select="$value"/></xsl:otherwise>
         </xsl:choose></dd>
 </xsl:template>
