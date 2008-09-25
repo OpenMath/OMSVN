@@ -31,22 +31,15 @@
             <a href="#matrix">matrix</a>, <a href="#matrixrow">matrixrow</a>, <a href="#vector">vector</a>
          </dd>
          <dt class="dt">Date:</dt>
-         <dd>
-            <CDDate xmlns="http://www.openmath.org/OpenMathCD">2004-03-30</CDDate>
-         </dd>
+         <dd>2004-03-30</dd>
          <dt class="dt">Version:</dt>
          <dd>3</dd>
          <dt class="dt">Review Date:</dt>
-         <dd>
-            <CDReviewDate xmlns="http://www.openmath.org/OpenMathCD">2006-03-30</CDReviewDate>
-         </dd>
+         <dd>2006-03-30</dd>
          <dt class="dt">Status:</dt>
-         <dd>
-            <CDStatus xmlns="http://www.openmath.org/OpenMathCD">draft</CDStatus>
-         </dd>
+         <dd>draft</dd>
       </dl>
       <hr/>
-
       <pre>
 
      This document is distributed in the hope that it will be useful, 
@@ -79,21 +72,11 @@
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 </pre>
-
-
-
-
-
-
-
-
-
       <p>
     This content dictionary treats matrices and vectors in a row oriented fashion (using
     matrix rows).  Vectors in this CD are considered to be row vectors and must therefore
     be transposed to be considered as column vectors.
 </p>
-
       <div class="cddefinition">
          <h2>
             <a name="vector">Symbol Definition: vector</a>
@@ -103,40 +86,31 @@
             <dd>
                <p>&lt;vector&gt; &lt;/vector&gt;</p>
                <p> type : "row"|MathMLType</p>
-               <p>
-      The type attribute can be used to explicitly specify that a
-      vector is a "column" vector.
-    </p>
+    
+               <p>The type attribute can be used to explicitly specify that a
+      vector is a "column" vector.</p>
+    
             </dd>
             <dt class="dt">Role:</dt>
             <dd>application</dd>
             <dt class="dt">Description:</dt>
             <dd>
-               <p>
-    A vector is an ordered n-tuple of values representing an element of an n-dimensional
-    vector space.  The "values" are all from the same ring, typically real or complex.
-    Where orientation is important, such as for pre or post multiplication by a matrix a
-    vector is treated as a row vector and its transpose is treated a column vector.  See
-    CRC Standard Mathematical Tables and Formulae, editor: Dan Zwillinger, CRC Press Inc.,
-    1996, [2.4]
-  </p>
+               <p>A vector is an ordered n-tuple of values representing an element of an n-dimensional vector space. The "values" are all from the same ring, typically real or complex. Where orientation is important, such as for pre or post multiplication by a matrix a vector is treated as a row vector and its transpose is treated a column vector. See CRC Standard Mathematical Tables and Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996, [2.4]</p>
             </dd>
             <dt class="dt">discussion:</dt>
             <dd>
-               <p>
-      For purposes of interaction with matrices and matrix multiplication, vectors are
+               <p>For purposes of interaction with matrices and matrix multiplication, vectors are
       regarded as equivalent to a matrix consisting of a single column, and the transpose
       of a vector behaves the same as a matrix consisting of a single row. Note that
-      vectors may be rendered either as a single column or row.
-    </p>
+      vectors may be rendered either as a single column or row.</p>
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
-               <p>
-    The vector element constructs vectors from an n-dimensional
-    vector space so that its n child elements typically represent real or
-    complex valued scalars as in the three-element vector
-  </p>
+  
+               <p>The <code>vector</code> element constructs vectors from an <var>n</var>-dimensional
+    vector space so that its <var>n</var> child elements typically represent real or
+    complex valued scalars as in the three-element vector</p>
+  
                <div>
                   <button id="d43e93xmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e93xml')">XML (MathML)</button>
@@ -263,7 +237,6 @@ The specific vector constructed in this example is [3,6,9].
 	  
       [<a href="#top">Top</a>]
  </div>
-
       <div class="cddefinition">
          <h2>
             <a name="matrixrow">Symbol Definition: matrixrow</a>
@@ -277,16 +250,14 @@ The specific vector constructed in this example is [3,6,9].
             <dd>application</dd>
             <dt class="dt">Description:</dt>
             <dd>
-               <p> 
-    This symbol is an n-ary constructor used to represent rows of
-    matrices. Its arguments should be members of a ring.
-  </p>
+               <p>This symbol is an n-ary constructor used to represent rows of matrices. Its arguments should be members of a ring.</p>
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
+   
                <p>
-     matrixrow is used as a constructor element in pragmatic MathML
-   </p>
+                  <code>matrixrow</code> is used as a constructor element in pragmatic MathML</p>
+   
                <div>
                   <button id="d43e161xmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e161xml')">XML (MathML)</button>
@@ -405,7 +376,6 @@ Representation of a row of a matrix of length two containing the integers
 	[Previous: <a href="#vector">vector</a>]
       [<a href="#top">Top</a>]
  </div>
-
       <div class="cddefinition">
          <h2>
             <a name="matrix">Symbol Definition: matrix</a>
@@ -415,31 +385,25 @@ Representation of a row of a matrix of length two containing the integers
             <dd>
                <p>&lt;matrix&gt; &lt;/matrix&gt;</p>
                <p> type : "real" | "complex" | "integer" | "symbolic" | MathMLType</p>
-               <p>
-    Note that the behavior of the matrix and matrixrow elements is
-    substantially different from the mtable and mtr presentation
-    elements.
-    </p>
+    
+               <p>Note that the behavior of the <code>matrix</code> and <code>matrixrow</code> elements is
+    substantially different from the <code>mtable</code> and <code>mtr</code> presentation
+    elements.</p>
+    
             </dd>
             <dt class="dt">Role:</dt>
             <dd>application</dd>
             <dt class="dt">Description:</dt>
             <dd>
-               <p>
-    This is the constructor for a matrix.  It takes an arbitrary number matrix rows as
-    arguments.  It is used to represent matrices.  See CRC Standard Mathematical Tables
-    and Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996, [2.5.1].
-  </p>
+               <p>This is the constructor for a matrix. It takes an arbitrary number matrix rows as arguments. It is used to represent matrices. See CRC Standard Mathematical Tables and Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996, [2.5.1].</p>
             </dd>
             <dt class="dt">discussion:</dt>
             <dd>
-               <p>
-    The matrix constructor is used to represent mathematical matrices. It has zero or
+               <p>The matrix constructor is used to represent mathematical matrices. It has zero or
     more child elements, all of which are matrixrows. These in turn expect zero or more
     child elements that evaluate to algebraic expressions or numbers. The
-    matrixrow elements must always be contained inside of a matrix, and all rows
-    in a given matrix must have the same number of elements.
-  </p>
+    <code>matrixrow</code> elements must always be contained inside of a matrix, and all rows
+    in a given matrix must have the same number of elements.</p>
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
@@ -626,6 +590,5 @@ Representation of a 2x2 identity matrix
 	[Previous: <a href="#matrixrow">matrixrow</a>]
       [<a href="#top">Top</a>]
  </div>
-
    </body>
 </html>
