@@ -1,7 +1,6 @@
-<CD xmlns="http://www.openmath.org/OpenMathCD">
-
-<CDComment>
-     This document is distributed in the hope that it will be useful, 
+<?xml version="1.0" encoding="UTF-8"?>
+<CD xmlns="http://www.openmath.org/OpenMathCD" xml:id="arith1">
+  <CDComment>     This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -31,211 +30,214 @@
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 </CDComment>
+  <CDName>arith1</CDName>
+  <CDBase>http://www.openmath.org/cd</CDBase>
+  <CDURL>http://www.openmath.org/cd/arith1.ocd</CDURL>
+  <CDReviewDate>2006-03-30</CDReviewDate>
+  <CDStatus>draft</CDStatus>
+  <CDDate>2008-09-25</CDDate>
+  <CDVersion>3</CDVersion>
+  <CDRevision>0</CDRevision>
+  <Description>This CD defines symbols for common arithmetic functions.</Description>
+  <CDDefinition xml:id="lcm">
+    <Name>lcm</Name>
+    <Role>application</Role>
+    <Title>Least Common Multiple</Title>
+    <Description>This n-ary operator is used to construct an expression which represents the least common multiple of its arguments. If no argument is provided, the lcm is 1. If one argument is provided, the lcm is that argument. The least common multiple of x and 1 is x.</Description>
+    <Pragmatic>
+      <Element type="opel_big">lcm</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Model>MathMLType</Model>
+        <Default>integer</Default>
+      </Attribute>
+    </Pragmatic>
 
-<CDName>arith1</CDName>
-<CDBase>http://www.openmath.org/cd</CDBase>
-<CDURL>http://www.openmath.org/cd/arith1.ocd</CDURL>
-<CDReviewDate>2006-03-30</CDReviewDate>
-<CDStatus>draft</CDStatus>
-<CDDate>2004-03-30</CDDate>
-<CDVersion>3</CDVersion>
-<CDRevision>0</CDRevision>
+    <property xml:id="lcm_prop_1">
+      <CMP> lcm(a,b) = a*b/gcd(a,b) </CMP>
 
-<Description> 
-  This CD defines symbols for common arithmetic functions.
-</Description>
-
-<CDDefinition xml:id="lcm">
-  <Name>lcm</Name>
-  <Role>application</Role>
-  <Title>Least Common Multiple</Title>
-  <Description>
-    This n-ary operator is used to construct an expression which represents the
-    least common multiple of its arguments.  If no argument is provided, the lcm is
-    1.  If one argument is provided, the lcm is that argument.  The least common
-    multiple of x and 1 is x.
-  </Description>
-  <Pragmatic>
-    <Element type="opel_big">lcm</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Model>MathMLType</Model>
-      <Default>integer</Default>
-    </Attribute>
-  </Pragmatic>
-
-<property xml:id="lcm_prop_1">
-<CMP> lcm(a,b) = a*b/gcd(a,b) </CMP>
-
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="relation1" name="eq"/>
-    <OMA>
-      <OMS cd="arith1" name="lcm"/>
-      <OMV name="a"/>
-      <OMV name="b"/>
-    </OMA>
-    <OMA>
-      <OMS cd="arith1" name="divide"/>
-      <OMA>
-        <OMS cd="arith1" name="times"/>
-	<OMV name="a"/>
-	<OMV name="b"/>
-      </OMA>
-      <OMA>
-        <OMS cd="arith1" name="gcd"/>
-        <OMV name="a"/>
-        <OMV name="b"/>
-      </OMA>
-    </OMA>
-  </OMA>
-</OMOBJ>
-</FMP>
-</property>
-
-<property xml:id="integers_prop_2">
-  <CMP>
-    for all integers a,b |
-    There does not exist a c&gt;0 such that c/a is an Integer and c/b is an
-    Integer and lcm(a,b) &gt; c.
-  </CMP>
-
-  <FMP>
-    <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-<OMBIND>
-  <OMS cd="quant1" name="forall"/>
-  <OMBVAR>
-    <OMV name="a"/>
-    <OMV name="b"/>
-  </OMBVAR>
-  <OMA>
-    <OMS cd="logic1" name="implies"/>
-    <OMA>
-      <OMS cd="logic1" name="and"/>
-      <OMA>
-        <OMS cd="set1" name="in"/>
-	<OMV name="a"/>
-	<OMS cd="setname1" name="Z"/>
-      </OMA>
-      <OMA>
-        <OMS cd="set1" name="in"/>
-	<OMV name="b"/>
-	<OMS cd="setname1" name="Z"/>
-      </OMA>
-    </OMA>
-    <OMA>
-      <OMS cd="logic1" name="not"/>
-      <OMBIND>
-        <OMS cd="quant1" name="exists"/>
-        <OMBVAR>
-          <OMV name="c"/>
-        </OMBVAR>
-        <OMA>
-          <OMS cd="logic1" name="and"/>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
           <OMA>
-            <OMS cd="relation1" name="gt"/>
-              <OMV name="c"/>
-              <OMI>0</OMI>
-          </OMA>
-          <OMA>
-            <OMS cd="integer1" name="factorof"/>
-              <OMV name="a"/>
-              <OMV name="c"/>
-          </OMA>
-          <OMA>
-            <OMS cd="integer1" name="factorof"/>
-              <OMV name="b"/>
-              <OMV name="c"/>
-          </OMA>
-          <OMA>
-            <OMS cd="relation1" name="lt"/>
-            <OMV name="c"/>
+            <OMS cd="relation1" name="eq"/>
             <OMA>
               <OMS cd="arith1" name="lcm"/>
               <OMV name="a"/>
               <OMV name="b"/>
             </OMA>
+            <OMA>
+              <OMS cd="arith1" name="divide"/>
+              <OMA>
+                <OMS cd="arith1" name="times"/>
+	               <OMV name="a"/>
+	               <OMV name="b"/>
+              </OMA>
+              <OMA>
+                <OMS cd="arith1" name="gcd"/>
+                <OMV name="a"/>
+                <OMV name="b"/>
+              </OMA>
+            </OMA>
           </OMA>
-        </OMA>
-      </OMBIND>
-    </OMA>
-  </OMA>
-</OMBIND>
-</OMOBJ>
-</FMP>
-</property>
+        </OMOBJ>
+      </FMP>
+    </property>
 
-<property>
-  <CMP>ForAll(x,lcm(x,1)=x)</CMP>
-  <FMP>
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <bind>
-	<forall/>
-	<bvar><ci>x</ci></bvar>
-	<apply>
-	  <eq/>
-	  <apply><lcm/><ci>x</ci><cn>1</cn></apply>
-	<ci>x</ci>
-      </apply> 
-    </bind>
-    </math>
-  </FMP>
-</property>
+    <property xml:id="integers_prop_2">
+      <CMP>
+    for all integers a,b |
+    There does not exist a c&gt;0 such that c/a is an Integer and c/b is an
+    Integer and lcm(a,b) &gt; c.
+  </CMP>
 
-<MMLexample>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><lcm/><cn>12</cn><cn>17</cn></apply>
-  </math>
-</MMLexample>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMBIND>
+            <OMS cd="quant1" name="forall"/>
+            <OMBVAR>
+              <OMV name="a"/>
+              <OMV name="b"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="logic1" name="implies"/>
+              <OMA>
+                <OMS cd="logic1" name="and"/>
+                <OMA>
+                  <OMS cd="set1" name="in"/>
+	                 <OMV name="a"/>
+	                 <OMS cd="setname1" name="Z"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="set1" name="in"/>
+	                 <OMV name="b"/>
+	                 <OMS cd="setname1" name="Z"/>
+                </OMA>
+              </OMA>
+              <OMA>
+                <OMS cd="logic1" name="not"/>
+                <OMBIND>
+                  <OMS cd="quant1" name="exists"/>
+                  <OMBVAR>
+                    <OMV name="c"/>
+                  </OMBVAR>
+                  <OMA>
+                    <OMS cd="logic1" name="and"/>
+                    <OMA>
+                      <OMS cd="relation1" name="gt"/>
+                      <OMV name="c"/>
+                      <OMI>0</OMI>
+                    </OMA>
+                    <OMA>
+                      <OMS cd="integer1" name="factorof"/>
+                      <OMV name="a"/>
+                      <OMV name="c"/>
+                    </OMA>
+                    <OMA>
+                      <OMS cd="integer1" name="factorof"/>
+                      <OMV name="b"/>
+                      <OMV name="c"/>
+                    </OMA>
+                    <OMA>
+                      <OMS cd="relation1" name="lt"/>
+                      <OMV name="c"/>
+                      <OMA>
+                        <OMS cd="arith1" name="lcm"/>
+                        <OMV name="a"/>
+                        <OMV name="b"/>
+                      </OMA>
+                    </OMA>
+                  </OMA>
+                </OMBIND>
+              </OMA>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </property>
 
-<MMLexample xml:id="lcm_simple">
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><lcm/><cn>3</cn><cn>5</cn><cn>7</cn></apply>
-</math>
-</MMLexample>
+    <property>
+      <CMP>ForAll(x,lcm(x,1)=x)</CMP>
+      <FMP>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <bind>
+	           <forall/>
+	           <bvar>
+              <ci>x</ci>
+            </bvar>
+	           <apply>
+	             <eq/>
+	             <apply>
+                <lcm/>
+                <ci>x</ci>
+                <cn>1</cn>
+              </apply>
+	             <ci>x</ci>
+            </apply> 
+          </bind>
+        </math>
+      </FMP>
+    </property>
 
-<MMLexample xml:id="eval" speclevel="1">
-  <description>
-    <p>If the following expression were evaluated at <var>a=2</var>, <var>b=4</var>, and
+    <MMLexample>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <lcm/>
+          <cn>12</cn>
+          <cn>17</cn>
+        </apply>
+      </math>
+    </MMLexample>
+
+    <MMLexample xml:id="lcm_simple">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <lcm/>
+          <cn>3</cn>
+          <cn>5</cn>
+          <cn>7</cn>
+        </apply>
+      </math>
+    </MMLexample>
+
+    <MMLexample speclevel="1" xml:id="eval">
+      <description>
+        <p>If the following expression were evaluated at <var>a=2</var>, <var>b=4</var>, and
     <var>c=6</var> it would yield 12.</p>
-  </description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><lcm/><ci>a</ci><ci>b</ci><ci>c</ci></apply>
-  </math>
-</MMLexample>
-</CDDefinition>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <lcm/>
+          <ci>a</ci>
+          <ci>b</ci>
+          <ci>c</ci>
+        </apply>
+      </math>
+    </MMLexample>
+  </CDDefinition>
+  <CDDefinition xml:id="big_lcm">
+    <Name>big_lcm</Name> 
+    <Role>binder</Role>
+    <Title>Least Common Multiple over a Set of expressions</Title>
+    <Description>This n-ary operator is used to construct the least common multiple over a set of expressions.</Description>
+  </CDDefinition>
+  <CDDefinition xml:id="gcd">
+    <Name>gcd</Name>
+    <Title>Greatest Common Divisor</Title>
+    <Role>application</Role>
+    <Description>This is the n-ary operator used to construct an expression which represents the greatest common divisor of its arguments. If no argument is provided, the gcd is 0. If one argument is provided, the gcd is that argument.</Description>
+    <Pragmatic>
+      <Element type="opel_big">gcd</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Model>MathMLType</Model>
+        <Default>integer</Default>
+      </Attribute>
+    </Pragmatic>
 
-<CDDefinition xml:id="big_lcm">
-  <Name>big_lcm</Name> 
-  <Role>binder</Role>
-  <Title>Least Common Multiple over a Set of expressions</Title>
-  <Description>
-    This n-ary operator is used to construct the least common multiple over a set of
-    expressions.
-  </Description>
-</CDDefinition>
-
-<CDDefinition xml:id="gcd">
-  <Name>gcd</Name>
-  <Title>Greatest Common Divisor</Title>
-  <Role>application</Role>
-  <Description>
-    This is the n-ary operator used to construct an expression which represents
-    the greatest common divisor of its arguments.  If no argument is provided, the
-    gcd is 0.  If one argument is provided, the gcd is that argument.
-  </Description>
-  <Pragmatic>
-    <Element type="opel_big">gcd</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Model>MathMLType</Model>
-      <Default>integer</Default>
-    </Attribute>
-  </Pragmatic>
-
-  <property xml:id="gcd_prop_3">
-    <CMP>
+    <property xml:id="gcd_prop_3">
+      <CMP>
 for all integers a,b |
 There does not exist a c such that a/c is an Integer and b/c is an
 Integer and c &gt; gcd(a,b).
@@ -243,1002 +245,1150 @@ Integer and c &gt; gcd(a,b).
 Note that this implies that gcd(a,b) &gt; 0
 </CMP>
 
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-<OMBIND>
-  <OMS cd="quant1" name="forall"/>
-  <OMBVAR>
-    <OMV name="a"/>
-    <OMV name="b"/>
-  </OMBVAR>
-  <OMA>
-    <OMS cd="logic1" name="implies"/>
-    <OMA>
-      <OMS cd="logic1" name="and"/>
-      <OMA>
-        <OMS cd="set1" name="in"/>
-	<OMV name="a"/>
-	<OMS cd="setname1" name="Z"/>
-      </OMA>
-      <OMA>
-        <OMS cd="set1" name="in"/>
-	<OMV name="b"/>
-	<OMS cd="setname1" name="Z"/>
-      </OMA>
-    </OMA>
-    <OMA>
-      <OMS cd="logic1" name="not"/>
-      <OMBIND>
-        <OMS cd="quant1" name="exists"/>
-        <OMBVAR>
-          <OMV name="c"/>
-        </OMBVAR>
-        <OMA>
-          <OMS cd="logic1" name="and"/>
-          <OMA>
-            <OMS cd="set1" name="in"/>
-            <OMA>
-              <OMS cd="arith1" name="divide"/>
-              <OMV name="a"/>
-              <OMV name="c"/>
-            </OMA>
-            <OMS cd="setname1" name="Z"/>
-          </OMA>
-          <OMA>
-            <OMS cd="set1" name="in"/>
-            <OMA>
-              <OMS cd="arith1" name="divide"/>
-              <OMV name="b"/>
-              <OMV name="c"/>
-            </OMA>
-            <OMS cd="setname1" name="Z"/>
-          </OMA>
-          <OMA>
-            <OMS cd="relation1" name="gt"/>
-            <OMV name="c"/>
-            <OMA>
-              <OMS cd="arith1" name="gcd"/>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMBIND>
+            <OMS cd="quant1" name="forall"/>
+            <OMBVAR>
               <OMV name="a"/>
               <OMV name="b"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="logic1" name="implies"/>
+              <OMA>
+                <OMS cd="logic1" name="and"/>
+                <OMA>
+                  <OMS cd="set1" name="in"/>
+	                 <OMV name="a"/>
+	                 <OMS cd="setname1" name="Z"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="set1" name="in"/>
+	                 <OMV name="b"/>
+	                 <OMS cd="setname1" name="Z"/>
+                </OMA>
+              </OMA>
+              <OMA>
+                <OMS cd="logic1" name="not"/>
+                <OMBIND>
+                  <OMS cd="quant1" name="exists"/>
+                  <OMBVAR>
+                    <OMV name="c"/>
+                  </OMBVAR>
+                  <OMA>
+                    <OMS cd="logic1" name="and"/>
+                    <OMA>
+                      <OMS cd="set1" name="in"/>
+                      <OMA>
+                        <OMS cd="arith1" name="divide"/>
+                        <OMV name="a"/>
+                        <OMV name="c"/>
+                      </OMA>
+                      <OMS cd="setname1" name="Z"/>
+                    </OMA>
+                    <OMA>
+                      <OMS cd="set1" name="in"/>
+                      <OMA>
+                        <OMS cd="arith1" name="divide"/>
+                        <OMV name="b"/>
+                        <OMV name="c"/>
+                      </OMA>
+                      <OMS cd="setname1" name="Z"/>
+                    </OMA>
+                    <OMA>
+                      <OMS cd="relation1" name="gt"/>
+                      <OMV name="c"/>
+                      <OMA>
+                        <OMS cd="arith1" name="gcd"/>
+                        <OMV name="a"/>
+                        <OMV name="b"/>
+                      </OMA>
+                    </OMA>
+                  </OMA>
+                </OMBIND>
+              </OMA>
             </OMA>
-          </OMA>
-        </OMA>
-      </OMBIND>
-    </OMA>
-  </OMA>
-</OMBIND>
-</OMOBJ>
-</FMP>
-</property>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </property>
 
-<MMLexample speclevel="1" xml:id="gcd.ex1">
-  <description>
-    <p>If this were evaluated at 
+    <MMLexample speclevel="1" xml:id="gcd.ex1">
+      <description>
+        <p>If this were evaluated at 
     <var>a</var> = 15, 
     <var>b</var> = 21, 
     <var>c</var> = 48, it would yield 3.</p>
-  </description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><gcd/><ci>a</ci><ci>b</ci><ci>c</ci></apply>
-  </math>
-</MMLexample>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <gcd/>
+          <ci>a</ci>
+          <ci>b</ci>
+          <ci>c</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
-<Example>
+    <Example>
 gcd(6,9) = 3
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="relation1" name="eq"/>
-    <OMA>
-      <OMS cd="arith1" name="gcd"/>
-      <OMI> 6 </OMI>
-      <OMI> 9 </OMI>
-    </OMA>
-    <OMI> 3 </OMI>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
+        <OMA>
+          <OMS cd="relation1" name="eq"/>
+          <OMA>
+            <OMS cd="arith1" name="gcd"/>
+            <OMI> 6 </OMI>
+            <OMI> 9 </OMI>
+          </OMA>
+          <OMI> 3 </OMI>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="big_gcd">
+    <Name>big_gcd</Name>
+    <Role>binder</Role>
+    <Title>Greatest Common Divisor over a Set of expressions</Title>
+    <Description>This n-ary operator is used to construct the greatest common divisor over a set of expressions.</Description>
+  </CDDefinition>
+  <CDDefinition xml:id="plus">
+    <Name>plus</Name>
+    <Role>application</Role>
+    <Title>Addition</Title>
+    <Description>The symbol representing an n-ary commutative function plus. If no operands are provided, the expression represents the additive identity. If one operand, a, is provided the expression evaluates to "a". If two or more operands are provided, the expression represents the (semi) group element corresponding to a left associative binary pairing of the operands. The meaning of mixed operand types not covered by the signatures shown here are left up to the target system.</Description>
+    <Pragmatic>
+      <Element type="opel">plus</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Model>MathMLType</Model>
+        <Default>real</Default>
+      </Attribute>
+    </Pragmatic>
 
-<CDDefinition xml:id="big_gcd">
-  <Name>big_gcd</Name>
-  <Role>binder</Role>
-  <Title>Greatest Common Divisor over a Set of expressions</Title>
-  <Description>
-    This n-ary operator is used to construct the greatest common divisor over a set of
-    expressions. 
-  </Description>
-</CDDefinition>
+    <property>
+      <description>
+        <p>a sum of no terms is 0</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <eq/>
+          <apply>
+            <plus/>
+          </apply>
+          <cn>0</cn>
+        </apply> 
+      </math>
+    </property>
+    <property>
+      <description>
+        <p>a sum of one term is equal to itself</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <bind>
+          <csymbol cd="quant1">forall</csymbol>
+          <bvar>
+            <ci>a</ci>
+          </bvar>
+          <apply>
+            <eq/>
+            <apply>
+              <plus/>
+              <ci>a</ci>
+            </apply>
+            <cn>a</cn>
+          </apply> 
+        </bind>
+      </math>
+    </property>
 
+    <property>
+      <description>
+        <p>Commutativity</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <bind>
+          <forall/>
+          <bvar>
+            <ci>a</ci>
+          </bvar>
+          <bvar>
+            <ci>b</ci>
+          </bvar>
+          <condition>
+            <apply>
+              <and/>
+              <apply>
+                <in/>
+                <ci>a</ci>
+                <reals/>
+              </apply>
+              <apply>
+                <in/>
+                <ci>b</ci>
+                <reals/>
+              </apply>
+            </apply>
+          </condition>
+          <apply>
+            <eq/>
+            <apply>
+              <plus/>
+              <ci>a</ci>
+              <ci>b</ci>
+            </apply>
+            <apply>
+              <plus/>
+              <ci>b</ci>
+              <ci>a</ci>
+            </apply>
+          </apply>
+        </bind>
+      </math>
+    </property>
 
+    <MMLexample>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <plus/>
+          <cn>3</cn>
+        </apply>
+      </math>
+    </MMLexample>
 
-<CDDefinition xml:id="plus">
-  <Name>plus</Name>
-  <Role>application</Role>
-  <Title>Addition</Title>
-  <Description>
-    The symbol representing an n-ary commutative function plus. If no operands are
-    provided, the expression represents the additive identity.  If one operand, a, is
-    provided the expression evaluates to "a".  If two or more operands are provided, the
-    expression represents the (semi) group element corresponding to a left associative
-    binary pairing of the operands.  The meaning of mixed operand types not covered by the
-    signatures shown here are left up to the target system.
-  </Description>
-  <Pragmatic>
-    <Element type="opel">plus</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Model>MathMLType</Model>
-      <Default>real</Default>
-    </Attribute>
-  </Pragmatic>
+    <MMLexample>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <plus/>
+          <cn>3</cn>
+          <cn>5</cn>
+        </apply>
+      </math>
+    </MMLexample>
 
-<property>
-  <description>
-    <p>a sum of no terms is 0</p>
-  </description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply><eq/>
-  <apply><plus/></apply>
-  <cn>0</cn>
-</apply> 
-</math></property>
-<property>
-  <description>
-    <p>a sum of one term is equal to itself</p>
-    </description><math xmlns="http://www.w3.org/1998/Math/MathML">
-<bind>
-  <csymbol cd="quant1">forall</csymbol>
-  <bvar><ci>a</ci></bvar>
-  <apply><eq/>
-    <apply><plus/><ci>a</ci></apply>
-    <cn>a</cn>
-  </apply> 
-</bind>
-</math>
-</property>
-
-<property>
-  <description>
-    <p>Commutativity</p>
-    </description><math xmlns="http://www.w3.org/1998/Math/MathML">
-<bind><forall/>
-  <bvar><ci>a</ci></bvar>
-  <bvar><ci>b</ci></bvar>
-  <condition>
-    <apply><and/>
-      <apply><in/><ci>a</ci><reals/></apply>
-      <apply><in/><ci>b</ci><reals/></apply>
-    </apply>
-  </condition>
-  <apply><eq/>
-    <apply><plus/><ci>a</ci><ci>b</ci></apply>
-    <apply><plus/><ci>b</ci><ci>a</ci></apply>
-  </apply>
-</bind>
-</math>
-</property>
-
-<MMLexample>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><plus/><cn>3</cn></apply>
-  </math>
-</MMLexample>
-
-<MMLexample>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><plus/><cn>3</cn><cn>5</cn></apply>
-  </math>
-</MMLexample>
-
-<MMLexample speclevel="1" xml:id="plus.ex1">
-  <description>
-    <p>If this were evaluated at <var>x=5</var>, <var>y=2</var>, and <var>z=1</var> it
+    <MMLexample speclevel="1" xml:id="plus.ex1">
+      <description>
+        <p>If this were evaluated at <var>x=5</var>, <var>y=2</var>, and <var>z=1</var> it
     would yield 8.</p>
-  </description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><plus/><ci>x</ci><ci>y</ci><ci>z</ci></apply>
-  </math>
-</MMLexample>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <plus/>
+          <ci>x</ci>
+          <ci>y</ci>
+          <ci>z</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
-<property xml:id="commutativity_prop_4">
-<CMP> for all a,b | a + b = b + a </CMP>
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMBIND>
-    <OMS cd="quant1" name="forall"/>
-    <OMBVAR>
-       <OMV name="a"/>
-       <OMV name="b"/>
-    </OMBVAR>
-    <OMA>
-      <OMS cd="relation1" name="eq"/>
-      <OMA>
-        <OMS cd="arith1" name="plus"/>
-        <OMV name="a"/>
-        <OMV name="b"/>
-      </OMA>
-      <OMA>
-        <OMS cd="arith1" name="plus"/>
-        <OMV name="b"/>
-        <OMV name="a"/>
-      </OMA>
-    </OMA>
-  </OMBIND>
-</OMOBJ>
-</FMP></property>
-</CDDefinition>
+    <property xml:id="commutativity_prop_4">
+      <CMP> for all a,b | a + b = b + a </CMP>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMBIND>
+            <OMS cd="quant1" name="forall"/>
+            <OMBVAR>
+              <OMV name="a"/>
+              <OMV name="b"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="relation1" name="eq"/>
+              <OMA>
+                <OMS cd="arith1" name="plus"/>
+                <OMV name="a"/>
+                <OMV name="b"/>
+              </OMA>
+              <OMA>
+                <OMS cd="arith1" name="plus"/>
+                <OMV name="b"/>
+                <OMV name="a"/>
+              </OMA>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
+  <CDDefinition xml:id="unary_minus">
+    <Name>unary_minus</Name>
+    <Role>application</Role>
+    <Title>Additive Inversion</Title>
+    <Description>This symbol denotes unary minus, i.e. the additive inverse for an additive group. It constructs the additive inverse of that group element.</Description>
+    <Pragmatic>
+      <Element type="opel">unary_minus</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Model>MathMLType</Model>
+        <Default>real</Default>
+      </Attribute>
+    </Pragmatic>
 
-<CDDefinition xml:id="unary_minus">
-  <Name>unary_minus</Name>
-  <Role>application</Role>
-  <Title>Additive Inversion</Title>
-  <Description>
-    This symbol denotes unary minus, i.e. the additive inverse for an additive group. It
-    constructs the additive inverse of that group element.
-  </Description>
-  <Pragmatic>
-    <Element type="opel">unary_minus</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Model>MathMLType</Model>
-      <Default>real</Default>
-    </Attribute>
-  </Pragmatic>
+    <MMLexample speclevel="1" xml:id="unary_minus.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <minus/>
+          <cn>3</cn>
+        </apply>
+      </math>
+    </MMLexample>
 
-  <MMLexample speclevel="1" xml:id="unary_minus.ex1">
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply><minus/><cn>3</cn></apply>
-    </math>
-  </MMLexample>
+    <property xml:id="unary_minus_prop_5">
+      <CMP> for all a | a + (-a) = 0 </CMP>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMBIND>
+            <OMS cd="quant1" name="forall"/>
+            <OMBVAR>
+              <OMV name="a"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="relation1" name="eq"/>
+              <OMA>
+                <OMS cd="arith1" name="plus"/>
+                <OMV name="a"/>
+                <OMA>
+                  <OMS cd="arith1" name="unary_minus"/>
+                  <OMV name="a"/>
+                </OMA>
+              </OMA>
+              <OMS cd="alg1" name="zero"/>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
+  <CDDefinition xml:id="minus">
+    <Name>minus</Name>
+    <Title>Subtraction</Title>
+    <Pragmatic>
+      <Element type="opel">minus</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Model>MathMLType</Model>
+        <Default>real</Default>
+      </Attribute>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>The symbol representing a binary minus function, the subtraction operator for an additive group. This is equivalent to adding the additive inverse.</Description>
 
-<property xml:id="unary_minus_prop_5">
-<CMP> for all a | a + (-a) = 0 </CMP>
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMBIND>
-    <OMS cd="quant1" name="forall"/>
-    <OMBVAR>
-       <OMV name="a"/>
-    </OMBVAR>
-    <OMA>
-      <OMS cd="relation1" name="eq"/>
-      <OMA>
-        <OMS cd="arith1" name="plus"/>
-        <OMV name="a"/>
-        <OMA>
-           <OMS cd="arith1" name="unary_minus"/>
-           <OMV name="a"/>
-        </OMA>
-      </OMA>
-      <OMS cd="alg1" name="zero"/>
-    </OMA>
-  </OMBIND>
-</OMOBJ>
-</FMP>
-</property>
-</CDDefinition>
+    <property>
+      <description>
+        <p>ForAll( x, x-x=0 )</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <bind>
+          <forall/>
+          <bvar>
+            <ci>x</ci>
+          </bvar>
+          <apply>
+            <eq/>
+            <apply>
+              <minus/>
+              <ci>x</ci>
+              <ci>x</ci>
+            </apply>
+            <cn>0</cn>
+          </apply>
+        </bind>
+      </math>
+    </property>
 
-<CDDefinition xml:id="minus">
-  <Name>minus</Name>
-  <Title>Subtraction</Title>
-  <Pragmatic>
-    <Element type="opel">minus</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Model>MathMLType</Model>
-      <Default>real</Default>
-    </Attribute>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    The symbol representing a binary minus function, the subtraction operator for an
-    additive group. This is equivalent to adding the additive inverse.
-  </Description>
+    <MMLexample speclevel="1" xml:id="minus.ex1">
+      <description>
+        <p>If this were evaluated at <var>x</var>=5 and 
+  <var>y</var>=2 it would yield 3.</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply> 
+          <minus/>
+          <ci>x</ci>
+          <ci>y</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
-  <property>
-  <description>
-    <p>ForAll( x, x-x=0 )</p>
-    </description>
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-<bind><forall/>
-  <bvar><ci>x</ci></bvar>
-  <apply><eq/>
-    <apply><minus/><ci>x</ci><ci>x</ci></apply>
-    <cn>0</cn>
-  </apply>
-</bind>
-</math>
-</property>
+    <property xml:id="minus_prop_6">
+      <CMP> for all a,b | a - b = a + (-b) </CMP>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMBIND>
+            <OMS cd="quant1" name="forall"/>
+            <OMBVAR>
+              <OMV name="a"/>
+              <OMV name="b"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="relation1" name="eq"/>
+              <OMA>
+                <OMS cd="arith1" name="minus"/>
+                <OMV name="a"/>
+                <OMV name="b"/>
+              </OMA>
+              <OMA>
+                <OMS cd="arith1" name="plus"/>
+                <OMV name="a"/>
+                <OMA>
+                  <OMS cd="arith1" name="unary_minus"/>
+                  <OMV name="b"/>
+                </OMA>
+              </OMA>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
+  <CDDefinition xml:id="times">
+    <Name>times</Name>
+    <Title>Multiplication</Title>
+    <Pragmatic>
+      <Element type="opel">times</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Model>MathMLType</Model>
+        <Default>real</Default>
+      </Attribute>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>The symbol representing an n-ary multiplication function.</Description>
 
-<MMLexample speclevel="1" xml:id="minus.ex1">
-  <description><p>If this were evaluated at <var>x</var>=5 and 
-  <var>y</var>=2 it would yield 3.</p></description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply> <minus/>
-  <ci>x</ci>
-  <ci>y</ci>
-</apply>
-</math>
-</MMLexample>
+    <property>
+      <description>
+        <p>ForAll( [a,b], condition(in({a,b}, Commutative)), a*b=b*a )</p>
+      </description>
+    </property>
+    <property>
+      <description>
+        <p>ForAll( [a,b,c], Associative, a*(b*c)=(a*b)*c ), associativity </p>
+      </description>
+    </property>
+    <property>
+      <description>
+        <p>multiplicative identity</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <bind>
+          <forall/>
+          <bvar>
+            <ci>a</ci>
+          </bvar>
+          <apply>
+            <eq/>
+            <apply>
+              <times/>
+              <cn>1</cn>
+              <ci>a</ci>
+            </apply>
+            <ci>a</ci>
+          </apply> 
+        </bind>
+      </math>
+    </property>
 
-<property xml:id="minus_prop_6">
-<CMP> for all a,b | a - b = a + (-b) </CMP>
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMBIND>
-    <OMS cd="quant1" name="forall"/>
-    <OMBVAR>
-       <OMV name="a"/>
-       <OMV name="b"/>
-    </OMBVAR>
-    <OMA>
-      <OMS cd="relation1" name="eq"/>
-      <OMA>
-        <OMS cd="arith1" name="minus"/>
-        <OMV name="a"/>
-        <OMV name="b"/>
-      </OMA>
-      <OMA>
-        <OMS cd="arith1" name="plus"/>
-        <OMV name="a"/>
-        <OMA>
-          <OMS cd="arith1" name="unary_minus"/>
-          <OMV name="b"/>
-        </OMA>
-      </OMA>
-    </OMA>
-  </OMBIND>
-</OMOBJ>
-</FMP></property>
-</CDDefinition>
+    <property>
+      <description>
+        <p> a*0=0 </p>
+      </description>
+    </property>
 
-<CDDefinition xml:id="times">
-  <Name>times</Name>
-  <Title>Multiplication</Title>
-  <Pragmatic>
-    <Element type="opel">times</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Model>MathMLType</Model>
-      <Default>real</Default>
-    </Attribute>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    The symbol representing an n-ary multiplication function.
-  </Description>
+    <property>
+      <description>
+        <p>Commutative property</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <bind>
+          <forall/>
+          <bvar>
+            <ci>a</ci>
+          </bvar>
+          <bvar>
+            <ci>b</ci>
+          </bvar>
+          <condition>
+            <apply>
+              <and/>
+              <apply>
+                <in/>
+                <ci>a</ci>
+                <reals/>
+              </apply>
+              <apply>
+                <in/>
+                <ci>b</ci>
+                <reals/>
+              </apply>
+            </apply>
+          </condition>
+          <apply>
+            <eq/>
+            <apply>
+              <times/>
+              <ci>a</ci>
+              <ci>b</ci>
+            </apply>
+            <apply>
+              <times/>
+              <ci>b</ci>
+              <ci>a</ci>
+            </apply>
+          </apply>
+        </bind>
+      </math>
+    </property>
 
-<property>
-  <description>
-    <p>ForAll( [a,b], condition(in({a,b}, Commutative)), a*b=b*a )</p>
-  </description>
-</property>
-<property>
-  <description>
-    <p>ForAll( [a,b,c], Associative, a*(b*c)=(a*b)*c ), associativity </p>
-  </description>
-</property>
-<property>
-  <description>
-    <p>multiplicative identity</p>
-    </description><math xmlns="http://www.w3.org/1998/Math/MathML">
-<bind><forall/>
-  <bvar><ci>a</ci></bvar>
-  <apply><eq/>
-    <apply><times/><cn>1</cn><ci>a</ci></apply>
-    <ci>a</ci>
-  </apply> 
-</bind>
-</math>
-</property>
+    <property>
+      <description>
+        <p>a*0=0</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <bind>
+          <forall/>
+          <bvar>
+            <ci>a</ci>
+          </bvar>
+          <apply>
+            <eq/>
+            <apply>
+              <times/>
+              <cn>0</cn>
+              <ci>a</ci>
+            </apply>
+            <cn>0</cn>
+          </apply> 
+        </bind>
+      </math>
+    </property>
 
-<property>
-  <description><p> a*0=0 </p></description>
-</property>
-
-<property>
-  <description>
-    <p>Commutative property</p>
-  </description>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<bind><forall/>
-  <bvar><ci>a</ci></bvar>
-  <bvar><ci>b</ci></bvar>
-  <condition>
-    <apply><and/>
-      <apply><in/><ci>a</ci><reals/></apply>
-      <apply><in/><ci>b</ci><reals/></apply>
-    </apply>
-  </condition>
-  <apply><eq/>
-    <apply><times/><ci>a</ci><ci>b</ci></apply>
-    <apply><times/><ci>b</ci><ci>a</ci></apply>
-  </apply>
-</bind>
-</math>
-</property>
-
-<property>
-  <description>
-    <p>a*0=0</p>
-  </description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML"><bind><forall/>
-  <bvar><ci>a</ci></bvar>
-  <apply><eq/>
-    <apply><times/><cn>0</cn><ci>a</ci></apply>
-    <cn>0</cn>
-  </apply> 
-</bind>
-</math>
-</property>
-
-<MMLexample speclevel="1" xml:id="times.ex1">
-  <description>
-    <p>If this were evaluated at <var>a</var> = 5.5 and <var>b</var> = 3 it would yield
+    <MMLexample speclevel="1" xml:id="times.ex1">
+      <description>
+        <p>If this were evaluated at <var>a</var> = 5.5 and <var>b</var> = 3 it would yield
     16.5.</p>
-  </description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><times/><ci>a</ci><ci>b</ci></apply>
-  </math>
-</MMLexample>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <times/>
+          <ci>a</ci>
+          <ci>b</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
-<Example>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-<OMA>
-  <OMS cd="relation1" name="eq"/>
-  <OMA>
-    <OMS cd="arith1" name="times"/>
-    <OMA>
-      <OMS cd="linalg2" name="matrix"/>
-      <OMA>
-        <OMS cd="linalg2" name="matrixrow"/>
-        <OMI> 1 </OMI>
-        <OMI> 2 </OMI>
-      </OMA>
-      <OMA>
-        <OMS cd="linalg2" name="matrixrow"/>
-        <OMI> 3 </OMI>
-        <OMI> 4 </OMI>
-      </OMA>
-    </OMA>
-    <OMA>
-      <OMS cd="linalg2" name="matrix"/>
-      <OMA>
-        <OMS cd="linalg2" name="matrixrow"/>
-        <OMI> 5 </OMI>
-        <OMI> 6 </OMI>
-      </OMA>
-      <OMA>
-        <OMS cd="linalg2" name="matrixrow"/>
-        <OMI> 7 </OMI>
-        <OMI> 8 </OMI>
-      </OMA>
-    </OMA>
-  </OMA>
-  <OMA>
-    <OMS cd="linalg2" name="matrix"/>
-    <OMA>
-      <OMS cd="linalg2" name="matrixrow"/>
-      <OMI> 19 </OMI>
-      <OMI> 22 </OMI>
-    </OMA>
-    <OMA>
-      <OMS cd="linalg2" name="matrixrow"/>
-      <OMI> 43 </OMI>
-      <OMI> 50 </OMI>
-    </OMA>
-  </OMA>
-</OMA>
-</OMOBJ>
-</Example>
+    <Example>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
+        <OMA>
+          <OMS cd="relation1" name="eq"/>
+          <OMA>
+            <OMS cd="arith1" name="times"/>
+            <OMA>
+              <OMS cd="linalg2" name="matrix"/>
+              <OMA>
+                <OMS cd="linalg2" name="matrixrow"/>
+                <OMI> 1 </OMI>
+                <OMI> 2 </OMI>
+              </OMA>
+              <OMA>
+                <OMS cd="linalg2" name="matrixrow"/>
+                <OMI> 3 </OMI>
+                <OMI> 4 </OMI>
+              </OMA>
+            </OMA>
+            <OMA>
+              <OMS cd="linalg2" name="matrix"/>
+              <OMA>
+                <OMS cd="linalg2" name="matrixrow"/>
+                <OMI> 5 </OMI>
+                <OMI> 6 </OMI>
+              </OMA>
+              <OMA>
+                <OMS cd="linalg2" name="matrixrow"/>
+                <OMI> 7 </OMI>
+                <OMI> 8 </OMI>
+              </OMA>
+            </OMA>
+          </OMA>
+          <OMA>
+            <OMS cd="linalg2" name="matrix"/>
+            <OMA>
+              <OMS cd="linalg2" name="matrixrow"/>
+              <OMI> 19 </OMI>
+              <OMI> 22 </OMI>
+            </OMA>
+            <OMA>
+              <OMS cd="linalg2" name="matrixrow"/>
+              <OMI> 43 </OMI>
+              <OMI> 50 </OMI>
+            </OMA>
+          </OMA>
+        </OMA>
+      </OMOBJ>
+    </Example>
 
-<property xml:id="times_prop_7">
-<CMP> for all a,b | a * 0 = 0 and a * b = a * (b - 1) + a </CMP>
+    <property xml:id="times_prop_7">
+      <CMP> for all a,b | a * 0 = 0 and a * b = a * (b - 1) + a </CMP>
 
-<FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-<OMBIND>
-  <OMS cd="quant1" name="forall"/>
-  <OMBVAR>
-    <OMV name="a"/>
-    <OMV name="b"/>
-  </OMBVAR>
-  <OMA>
-    <OMS cd="logic1" name="and"/>
-    <OMA>
-      <OMS cd="relation1" name="eq"/>
-      <OMA>
-        <OMS cd="arith1" name="times"/>
-        <OMV name="a"/>
-        <OMS cd="alg1" name="zero"/>
-      </OMA>
-      <OMS cd="alg1" name="zero"/>
-    </OMA>
-    <OMA>
-      <OMS cd="relation1" name="eq"/>
-      <OMA>
-        <OMS cd="arith1" name="times"/>
-	<OMV name="a"/>
-	<OMV name="b"/>
-      </OMA>
-      <OMA>
-        <OMS cd="arith1" name="plus"/>
-	<OMA>
-	  <OMS cd="arith1" name="times"/>
-	  <OMV name="a"/>
-	  <OMA>
-	    <OMS cd="arith1" name="minus"/>
-	    <OMV name="b"/>
-	    <OMS cd="alg1" name="one"/>
-	  </OMA>
-	</OMA>
-	<OMV name="a"/>
-      </OMA>
-    </OMA>
-  </OMA>
-</OMBIND>
-</OMOBJ>
-</FMP>
-</property>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMBIND>
+            <OMS cd="quant1" name="forall"/>
+            <OMBVAR>
+              <OMV name="a"/>
+              <OMV name="b"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="logic1" name="and"/>
+              <OMA>
+                <OMS cd="relation1" name="eq"/>
+                <OMA>
+                  <OMS cd="arith1" name="times"/>
+                  <OMV name="a"/>
+                  <OMS cd="alg1" name="zero"/>
+                </OMA>
+                <OMS cd="alg1" name="zero"/>
+              </OMA>
+              <OMA>
+                <OMS cd="relation1" name="eq"/>
+                <OMA>
+                  <OMS cd="arith1" name="times"/>
+	                 <OMV name="a"/>
+	                 <OMV name="b"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="arith1" name="plus"/>
+	                 <OMA>
+	                   <OMS cd="arith1" name="times"/>
+	                   <OMV name="a"/>
+	                   <OMA>
+	                     <OMS cd="arith1" name="minus"/>
+	                     <OMV name="b"/>
+	                     <OMS cd="alg1" name="one"/>
+	                   </OMA>
+	                 </OMA>
+	                 <OMV name="a"/>
+                </OMA>
+              </OMA>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </property>
 
-<property xml:id="distributivity_prop_8">
-<CMP> for all a,b,c | a*(b+c) = a*b + a*c </CMP>
-<FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-<OMBIND>
-  <OMS cd="quant1" name="forall"/>
-  <OMBVAR>
-    <OMV name="a"/>
-    <OMV name="b"/>
-    <OMV name="c"/>
-  </OMBVAR>
-  <OMA>
-    <OMS cd="relation1" name="eq"/>
-    <OMA>
-      <OMS cd="arith1" name="times"/>
-      <OMV name="a"/>
-      <OMA>
-        <OMS cd="arith1" name="plus"/>
-	<OMV name="b"/>
-	<OMV name="c"/>
-      </OMA>
-    </OMA>
-    <OMA>
-      <OMS cd="arith1" name="plus"/>
-      <OMA>
-        <OMS cd="arith1" name="times"/>
-	<OMV name="a"/>
-	<OMV name="b"/>
-      </OMA>
-      <OMA>
-        <OMS cd="arith1" name="times"/>
-	<OMV name="a"/>
-	<OMV name="c"/>
-      </OMA>
-    </OMA>
-  </OMA>
-</OMBIND>
-</OMOBJ></FMP></property>
-</CDDefinition>
+    <property xml:id="distributivity_prop_8">
+      <CMP> for all a,b,c | a*(b+c) = a*b + a*c </CMP>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMBIND>
+            <OMS cd="quant1" name="forall"/>
+            <OMBVAR>
+              <OMV name="a"/>
+              <OMV name="b"/>
+              <OMV name="c"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="relation1" name="eq"/>
+              <OMA>
+                <OMS cd="arith1" name="times"/>
+                <OMV name="a"/>
+                <OMA>
+                  <OMS cd="arith1" name="plus"/>
+	                 <OMV name="b"/>
+	                 <OMV name="c"/>
+                </OMA>
+              </OMA>
+              <OMA>
+                <OMS cd="arith1" name="plus"/>
+                <OMA>
+                  <OMS cd="arith1" name="times"/>
+	                 <OMV name="a"/>
+	                 <OMV name="b"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="arith1" name="times"/>
+	                 <OMV name="a"/>
+	                 <OMV name="c"/>
+                </OMA>
+              </OMA>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
+  <CDDefinition xml:id="divide">
+    <Name>divide</Name>
+    <Title>Division</Title>
+    <Role>application</Role>
+    <Pragmatic>
+      <Element type="opel">divide</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Model>MathMLType</Model>
+        <Default> real </Default>
+      </Attribute>
+    </Pragmatic>
+    <Description>This symbol represents a (binary) division function denoting the first argument right-divided by the second, i.e. divide(a,b)=a*inverse(b). It is the inverse of the multiplication function defined by the symbol times in this CD.</Description>
 
-<CDDefinition xml:id="divide">
-  <Name>divide</Name>
-  <Title>Division</Title>
-  <Role>application</Role>
-  <Pragmatic>
-    <Element type="opel">divide</Element>
-    <Attribute>
-      <Name> type </Name>
-      <Model>MathMLType</Model>
-      <Default> real </Default>
-    </Attribute>
-  </Pragmatic>
-  <Description>
-    This symbol represents a (binary) division function denoting the first argument
-    right-divided by the second, i.e. divide(a,b)=a*inverse(b). It is the inverse of the
-    multiplication function defined by the symbol times in this CD.
-  </Description>
+    <property>
+      <description>
+        <p>Division by Zero error</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <bind>
+          <forall/>
+          <bvar>
+            <ci>a</ci>
+          </bvar>
+          <apply>
+            <eq/>
+            <apply>
+              <divide/>
+              <ci>a</ci>
+              <cn>0</cn>
+            </apply>
+            <notanumber/>
+          </apply>
+        </bind>
+      </math>
+    </property>
 
-  <property>
-    <description>
-      <p>Division by Zero error</p>
-    </description>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<bind>
-  <forall/>
-  <bvar><ci>a</ci></bvar>
-  <apply><eq/>
-  <apply><divide/><ci>a</ci><cn>0</cn></apply>
-  <notanumber/>
-  </apply>
-</bind>
-</math>
-  </property>
+    <property>
+      <description>
+        <p>ForAll( a, a!= 0, a/a = 1 )</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <bind>
+	         <forall/>
+	         <bvar>
+            <ci>a</ci>
+          </bvar>
+	         <condition>
+            <apply>
+              <neq/>
+              <ci>a</ci>
+              <cn>0</cn>
+            </apply>
+          </condition>
+	         <apply>
+            <eq/>
+	           <apply>
+              <divide/>
+              <ci>a</ci>
+              <ci>a</ci>
+            </apply>
+	           <cn>1</cn>
+	         </apply>
+        </bind>
+      </math>
+    </property>
 
-  <property>
-    <description>
-      <p>ForAll( a, a!= 0, a/a = 1 )</p>
-      </description><math xmlns="http://www.w3.org/1998/Math/MathML">
-      <bind>
-	<forall/>
-	<bvar><ci>a</ci></bvar>
-	<condition><apply><neq/><ci>a</ci><cn>0</cn></apply></condition>
-	<apply><eq/>
-	<apply><divide/><ci>a</ci><ci>a</ci></apply>
-	<cn>1</cn>
-	</apply>
-      </bind>
-    </math>
-  </property>
-
-  <MMLexample speclevel="1" xml:id="divide.ex1">
-    <description>
-      <p>As a MathML expression, this does not evaluate. However, on receiving such an
+    <MMLexample speclevel="1" xml:id="divide.ex1">
+      <description>
+        <p>As a MathML expression, this does not evaluate. However, on receiving such an
       expression, some applications may attempt to evaluate and simplify the value. For
       example, when <var>a</var>=5 and <var>b</var>=2 some mathematical applications may
       evaluate this to 2.5 while others will treat is as a rational number.</p>
-    </description>
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply><divide/>
-        <ci>a</ci>
-        <ci>b</ci>
-      </apply>
-    </math>
-  </MMLexample>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <divide/>
+          <ci>a</ci>
+          <ci>b</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
 
-<property xml:id="divide_prop_9">
-<CMP> whenever not(a=0) then a/a = 1 </CMP>
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMBIND>
-    <OMS cd="quant1" name="forall"/>
-    <OMBVAR>
-       <OMV name="a"/>
-    </OMBVAR>
-    <OMA>
-      <OMS cd="logic1" name="implies"/>
-      <OMA>
-        <OMS cd="relation1" name="neq"/>
-        <OMV name="a"/>
-        <OMS cd="alg1" name="zero"/>
-      </OMA>
-      <OMA>
-        <OMS cd="relation1" name="eq"/>
-        <OMA>
-          <OMS cd="arith1" name="divide"/>
-          <OMV name="a"/>
-          <OMV name="a"/>
-        </OMA>
-        <OMS cd="alg1" name="one"/>
-      </OMA>
-    </OMA>
-  </OMBIND>
-</OMOBJ>
-</FMP>
-</property>
-</CDDefinition>
+    <property xml:id="divide_prop_9">
+      <CMP> whenever not(a=0) then a/a = 1 </CMP>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMBIND>
+            <OMS cd="quant1" name="forall"/>
+            <OMBVAR>
+              <OMV name="a"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="logic1" name="implies"/>
+              <OMA>
+                <OMS cd="relation1" name="neq"/>
+                <OMV name="a"/>
+                <OMS cd="alg1" name="zero"/>
+              </OMA>
+              <OMA>
+                <OMS cd="relation1" name="eq"/>
+                <OMA>
+                  <OMS cd="arith1" name="divide"/>
+                  <OMV name="a"/>
+                  <OMV name="a"/>
+                </OMA>
+                <OMS cd="alg1" name="one"/>
+              </OMA>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
+  <CDDefinition xml:id="power">
+    <Name>power</Name>
+    <Title>Exponentiation</Title>
+    <Pragmatic>
+      <Element type="opel">power</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Model>MathMLType</Model>
+        <Default>real</Default>
+      </Attribute>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol represents a power function. The first argument is raised to the power of the second argument. When the second argument is not an integer, powering is defined in terms of exponentials and logarithms for the complex and real numbers. This operator can represent general powering.</Description>
 
-<CDDefinition xml:id="power">
-  <Name>power</Name>
-  <Title>Exponentiation</Title>
-  <Pragmatic>
-    <Element type="opel">power</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Model>MathMLType</Model>
-      <Default>real</Default>
-    </Attribute>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description>
-    This symbol represents a power function. The first argument is raised to the power of
-    the second argument. When the second argument is not an integer, powering is defined
-    in terms of exponentials and logarithms for the complex and real numbers.  This
-    operator can represent general powering.
-</Description>
+    <property>
+      <description>
+        <p>ForAll( a, a!=0, a^0=1 )</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <bind>
+          <forall/>
+          <bvar>
+            <ci>a</ci>
+          </bvar>
+          <condition>
+            <apply>
+              <neq/>
+              <ci>a</ci>
+              <cn>0</cn>
+            </apply>
+          </condition>
+          <apply>
+            <eq/>
+            <apply>
+              <power/>
+              <ci>a</ci>
+              <cn>0</cn>
+            </apply>
+            <cn>1</cn>
+          </apply>
+        </bind>
+      </math>
+    </property>
 
-<property>
-  <description>
-    <p>ForAll( a, a!=0, a^0=1 )</p>
-  </description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <bind><forall/>
-  <bvar><ci>a</ci></bvar>
-  <condition><apply><neq/><ci>a</ci><cn>0</cn></apply></condition>
-  <apply><eq/>
-    <apply><power/><ci>a</ci><cn>0</cn></apply>
-    <cn>1</cn>
-  </apply>
-</bind>
-</math>
-</property>
+    <property>
+      <description>
+        <p>ForAll( a, a^1=a )</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <bind>
+          <forall/>
+          <bvar>
+            <ci>a</ci>
+          </bvar>
+          <apply>
+            <eq/>
+            <apply>
+              <power/>
+              <ci>a</ci>
+              <cn>1</cn>
+            </apply>
+            <ci>a</ci>
+          </apply>
+        </bind>
+      </math>
+    </property>
 
-<property>
-  <description>
-    <p>ForAll( a, a^1=a )</p>
-    </description>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<bind><forall/>
-  <bvar><ci>a</ci></bvar>
-  <apply><eq/>
-    <apply><power/><ci>a</ci><cn>1</cn></apply>
-    <ci>a</ci>
-  </apply>
-</bind>
-</math>
-</property>
+    <property>
+      <description>
+        <p>ForAll( a, 1^a=1 )</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <bind>
+          <forall/>
+          <bvar>
+            <ci>a</ci>
+          </bvar>
+          <apply>
+            <eq/>
+            <apply>
+              <power/>
+              <cn>1</cn>
+              <ci>a</ci>
+            </apply>
+            <cn>1</cn>
+          </apply>
+        </bind>
+      </math>
+    </property>
 
-<property>
-  <description>
-    <p>ForAll( a, 1^a=1 )</p>
-    </description>
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-<bind><forall/>
-  <bvar><ci>a</ci></bvar>
-  <apply><eq/>
-    <apply><power/><cn>1</cn><ci>a</ci></apply>
-    <cn>1</cn>
-  </apply>
-</bind>
-</math>
-</property>
+    <MMLexample>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <power/>
+          <cn>2</cn>
+          <ci>x</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
-<MMLexample>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><power/><cn>2</cn><ci>x</ci></apply>
-  </math>
-</MMLexample>
-
-<MMLexample speclevel="1" xml:id="power.ex1">
-  <description>
-    <p>If this were evaluated at <var>x</var>= 5 it would yield 125.</p>
-  </description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply>
-      <power/>
-      <ci>x</ci>
-      <cn>3</cn>
-    </apply>
-  </math>
-</MMLexample>
+    <MMLexample speclevel="1" xml:id="power.ex1">
+      <description>
+        <p>If this were evaluated at <var>x</var>= 5 it would yield 125.</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <power/>
+          <ci>x</ci>
+          <cn>3</cn>
+        </apply>
+      </math>
+    </MMLexample>
 
 
-<property xml:id="power_prop_10">
-  <CMP>
+    <property xml:id="power_prop_10">
+      <CMP>
     x\in C implies x^a = exp(a ln x)
   </CMP>
 
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="logic1" name="implies"/>
-    <OMA>
-      <OMS cd="set1" name="in"/>
-      <OMV name="x"/>
-      <OMS cd="setname1" name="C"/>
-    </OMA>
-    <OMA>
-      <OMS cd="relation1" name="eq"/>
-      <OMA>
-        <OMS name="power" cd="arith1"/>
-        <OMV name="x"/>
-        <OMV name="a"/>
-      </OMA>
-      <OMA>
-        <OMS name="exp" cd="transc1"/>
-        <OMA>
-          <OMS name="times" cd="arith1"/>
-          <OMV name="a"/>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
           <OMA>
-            <OMS name="ln" cd="transc1"/>
-            <OMV name="x"/>
+            <OMS cd="logic1" name="implies"/>
+            <OMA>
+              <OMS cd="set1" name="in"/>
+              <OMV name="x"/>
+              <OMS cd="setname1" name="C"/>
+            </OMA>
+            <OMA>
+              <OMS cd="relation1" name="eq"/>
+              <OMA>
+                <OMS cd="arith1" name="power"/>
+                <OMV name="x"/>
+                <OMV name="a"/>
+              </OMA>
+              <OMA>
+                <OMS cd="transc1" name="exp"/>
+                <OMA>
+                  <OMS cd="arith1" name="times"/>
+                  <OMV name="a"/>
+                  <OMA>
+                    <OMS cd="transc1" name="ln"/>
+                    <OMV name="x"/>
+                  </OMA>
+                </OMA>
+              </OMA>
+            </OMA>
           </OMA>
-        </OMA>
-      </OMA>
-    </OMA>
-  </OMA>
-</OMOBJ>
-</FMP></property>
+        </OMOBJ>
+      </FMP>
+    </property>
 
-<property xml:id="power_prop_11">
-<CMP>
+    <property xml:id="power_prop_11">
+      <CMP>
   if n is an integer then
   x^0 = 1,
   x^n = x * x^(n-1)
 </CMP>
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="logic1" name="implies"/>
-    <OMA>
-      <OMS cd="set1" name="in"/>
-      <OMV name="n"/>
-      <OMS cd="setname1" name="Z"/>
-    </OMA>
-    <OMA>
-      <OMS cd="logic1" name="and"/>
-      <OMA>
-        <OMS cd="relation1" name="eq"/>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMA>
+            <OMS cd="logic1" name="implies"/>
+            <OMA>
+              <OMS cd="set1" name="in"/>
+              <OMV name="n"/>
+              <OMS cd="setname1" name="Z"/>
+            </OMA>
+            <OMA>
+              <OMS cd="logic1" name="and"/>
+              <OMA>
+                <OMS cd="relation1" name="eq"/>
+                <OMA>
+                  <OMS cd="arith1" name="power"/>
+                  <OMV name="x"/>
+                  <OMI>0</OMI>
+                </OMA>
+                <OMS cd="alg1" name="one"/>
+              </OMA>
+              <OMA>
+                <OMS cd="relation1" name="eq"/>
+                <OMA>
+                  <OMS cd="arith1" name="power"/>
+                  <OMV name="x"/>
+                  <OMV name="n"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="arith1" name="times"/>
+                  <OMV name="x"/>
+                  <OMA>
+                    <OMS cd="arith1" name="power"/>
+                    <OMV name="x"/>
+                    <OMA>
+                      <OMS cd="arith1" name="minus"/>
+                      <OMV name="n"/>
+                      <OMI>1</OMI>
+                    </OMA>
+                  </OMA>
+                </OMA>
+              </OMA>
+            </OMA>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </property>
+
+    <Example>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
         <OMA>
-          <OMS cd="arith1" name="power"/>
-          <OMV name="x"/>
-          <OMI>0</OMI>
-        </OMA>
-        <OMS cd="alg1" name="one"/>
-      </OMA>
-      <OMA>
-        <OMS cd="relation1" name="eq"/>
-        <OMA>
-          <OMS cd="arith1" name="power"/>
-          <OMV name="x"/>
-          <OMV name="n"/>
-        </OMA>
-        <OMA>
-          <OMS cd="arith1" name="times"/>
-          <OMV name="x"/>
+          <OMS cd="relation1" name="eq"/>
           <OMA>
             <OMS cd="arith1" name="power"/>
-            <OMV name="x"/>
             <OMA>
-              <OMS cd="arith1" name="minus"/>
-              <OMV name="n"/>
-              <OMI>1</OMI>
+              <OMS cd="linalg2" name="matrix"/>
+              <OMA>
+                <OMS cd="linalg2" name="matrixrow"/>
+                <OMI> 1 </OMI>
+                <OMI> 2 </OMI>
+              </OMA>
+              <OMA>
+                <OMS cd="linalg2" name="matrixrow"/>
+                <OMI> 3 </OMI>
+                <OMI> 4 </OMI>
+              </OMA>
+            </OMA>
+            <OMI>3</OMI>
+          </OMA>
+          <OMA>
+            <OMS cd="linalg2" name="matrix"/>
+            <OMA>
+              <OMS cd="linalg2" name="matrixrow"/>
+              <OMI> 37 </OMI>
+              <OMI> 54 </OMI>
+            </OMA>
+            <OMA>
+              <OMS cd="linalg2" name="matrixrow"/>
+              <OMI> 81 </OMI>
+              <OMI> 118 </OMI>
             </OMA>
           </OMA>
         </OMA>
-      </OMA>
-    </OMA>
-  </OMA>
-</OMOBJ>
-</FMP>
-</property>
+      </OMOBJ>
+    </Example>
 
-<Example>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-<OMA>
-  <OMS cd="relation1" name="eq"/>
-  <OMA>
-    <OMS cd="arith1" name="power"/>
-    <OMA>
-      <OMS cd="linalg2" name="matrix"/>
-      <OMA>
-        <OMS cd="linalg2" name="matrixrow"/>
-        <OMI> 1 </OMI>
-        <OMI> 2 </OMI>
-      </OMA>
-      <OMA>
-        <OMS cd="linalg2" name="matrixrow"/>
-        <OMI> 3 </OMI>
-        <OMI> 4 </OMI>
-      </OMA>
-    </OMA>
-    <OMI>3</OMI>
-  </OMA>
-  <OMA>
-    <OMS cd="linalg2" name="matrix"/>
-    <OMA>
-      <OMS cd="linalg2" name="matrixrow"/>
-      <OMI> 37 </OMI>
-      <OMI> 54 </OMI>
-    </OMA>
-    <OMA>
-      <OMS cd="linalg2" name="matrixrow"/>
-      <OMI> 81 </OMI>
-      <OMI> 118 </OMI>
-    </OMA>
-  </OMA>
-</OMA>
-</OMOBJ>
-</Example>
-
-<Example>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-<OMA>
-  <OMS cd="relation1" name="eq"/>
-  <OMA>
-    <OMS cd="arith1" name="power"/>
-    <OMS cd="nums1" name="e"/>
-    <OMA>
-      <OMS cd="arith1" name="times"/>
-      <OMS cd="nums1" name="i"/>
-      <OMS cd="nums1" name="pi"/>
-    </OMA>
-  </OMA>
-  <OMA>
-    <OMS cd="arith1" name="unary_minus"/>
-    <OMS cd="alg1" name="one"/>
-  </OMA>
-</OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
-
-<CDDefinition xml:id="abs">
-  <Name>abs</Name>
-  <Title>Absolute Value</Title>
-  <Role>application</Role>
-  <Description> 
-    A unary operator which represents the absolute value of its argument. The argument
-    should be numerically valued.  In the complex case this is often referred to as the
-    modulus.
-  </Description>
-  <Pragmatic>
-    <Element type="opel">abs</Element>     
-    <Attribute>
-      <Name>type</Name>
-      <Model>MathMLType</Model>
-      <Default>real</Default>
-    </Attribute>
-  </Pragmatic>
-
-<property>
-  <description>
-    <p>for all x and y, abs(x) + abs(y) >= abs(x+y) </p>
-  </description>
-</property>
-
-<MMLexample speclevel="1" xml:id="abs.ex1">
-  <description>
-    <p>The following example encodes the absolute value of <var>x</var>.</p>
-  </description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><abs/><ci>x</ci></apply>
-  </math>
-</MMLexample>
-
-<property xml:id="abs_prop_12">
-<CMP> for all x,y | abs(x) + abs(y) &gt;= abs(x+y) </CMP>
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMBIND>
-    <OMS cd="quant1" name="forall"/>
-    <OMBVAR>
-      <OMV name="x"/>
-      <OMV name="y"/>
-    </OMBVAR>
-    <OMA>
-      <OMS cd="relation1" name="geq"/>
-      <OMA>
-        <OMS cd="arith1" name="plus"/>
+    <Example>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
         <OMA>
-          <OMS cd="arith1" name="abs"/>
-            <OMV name="x"/>
+          <OMS cd="relation1" name="eq"/>
+          <OMA>
+            <OMS cd="arith1" name="power"/>
+            <OMS cd="nums1" name="e"/>
+            <OMA>
+              <OMS cd="arith1" name="times"/>
+              <OMS cd="nums1" name="i"/>
+              <OMS cd="nums1" name="pi"/>
+            </OMA>
+          </OMA>
+          <OMA>
+            <OMS cd="arith1" name="unary_minus"/>
+            <OMS cd="alg1" name="one"/>
+          </OMA>
         </OMA>
-        <OMA>
-          <OMS cd="arith1" name="abs"/>
-            <OMV name="y"/>
-        </OMA>
-      </OMA>
-      <OMA>
-        <OMS cd="arith1" name="abs"/>
-        <OMA>
-          <OMS cd="arith1" name="plus"/>
-          <OMV name="x"/>
-          <OMV name="y"/>
-        </OMA>
-      </OMA>
-    </OMA>
-  </OMBIND>
-</OMOBJ>
-</FMP></property>
-</CDDefinition>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="abs">
+    <Name>abs</Name>
+    <Title>Absolute Value</Title>
+    <Role>application</Role>
+    <Description>A unary operator which represents the absolute value of its argument. The argument should be numerically valued. In the complex case this is often referred to as the modulus.</Description>
+    <Pragmatic>
+      <Element type="opel">abs</Element>     
+      <Attribute>
+        <Name>type</Name>
+        <Model>MathMLType</Model>
+        <Default>real</Default>
+      </Attribute>
+    </Pragmatic>
 
-<CDDefinition xml:id="root">
-  <Name>root</Name>
-  <Title>Root</Title>
-  <Pragmatic>
-    <Element type="opel">root</Element>
-    <Attribute>
-      <Name> type </Name>
-      <Model> "real" | "complex" | "principal_branch" | MathMLType </Model>
-      <Default>"real"</Default>
-    </Attribute>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    A binary operator which represents its first argument "lowered" to its n'th root where
-    n is the second argument. This is the inverse of the operation represented by the
-    power symbol defined in this CD.
-  </Description>
+    <property>
+      <description>
+        <p>for all x and y, abs(x) + abs(y) &gt;= abs(x+y) </p>
+      </description>
+    </property>
+
+    <MMLexample speclevel="1" xml:id="abs.ex1">
+      <description>
+        <p>The following example encodes the absolute value of <var>x</var>.</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <abs/>
+          <ci>x</ci>
+        </apply>
+      </math>
+    </MMLexample>
+
+    <property xml:id="abs_prop_12">
+      <CMP> for all x,y | abs(x) + abs(y) &gt;= abs(x+y) </CMP>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMBIND>
+            <OMS cd="quant1" name="forall"/>
+            <OMBVAR>
+              <OMV name="x"/>
+              <OMV name="y"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="relation1" name="geq"/>
+              <OMA>
+                <OMS cd="arith1" name="plus"/>
+                <OMA>
+                  <OMS cd="arith1" name="abs"/>
+                  <OMV name="x"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="arith1" name="abs"/>
+                  <OMV name="y"/>
+                </OMA>
+              </OMA>
+              <OMA>
+                <OMS cd="arith1" name="abs"/>
+                <OMA>
+                  <OMS cd="arith1" name="plus"/>
+                  <OMV name="x"/>
+                  <OMV name="y"/>
+                </OMA>
+              </OMA>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
+  <CDDefinition xml:id="root">
+    <Name>root</Name>
+    <Title>Root</Title>
+    <Pragmatic>
+      <Element type="opel">root</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Model> "real" | "complex" | "principal_branch" | MathMLType </Model>
+        <Default>"real"</Default>
+      </Attribute>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>A binary operator which represents its first argument "lowered" to its n'th root where n is the second argument. This is the inverse of the operation represented by the power symbol defined in this CD.</Description>
 
     <discussion>
       <p>Care should be taken as to the precise meaning of this operator, in particular
@@ -1249,236 +1399,277 @@ gcd(6,9) = 3
       second CMP is not valid in general.</p>
     </discussion>
 
-<property>
-  <description>
-    <p>ForAll( bvars(a,n), root(degree(n),a) = a^(1/n) )</p>
-</description>
-</property>
+    <property>
+      <description>
+        <p>ForAll( bvars(a,n), root(degree(n),a) = a^(1/n) )</p>
+      </description>
+    </property>
 
-<MMLexample speclevel="1" xml:id="root.ex1">
-  <description>
-    <p>The <var>n</var>th root of <var>a</var> is is given by</p>
-  </description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><root/><degree><ci>n</ci></degree><ci>a</ci></apply>
-  </math>
-</MMLexample>
+    <MMLexample speclevel="1" xml:id="root.ex1">
+      <description>
+        <p>The <var>n</var>th root of <var>a</var> is is given by</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <root/>
+          <degree>
+            <ci>n</ci>
+          </degree>
+          <ci>a</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
-<property xml:id="root_prop_13">
-<CMP> x\in C implies root(x,n) = exp(ln(x)/n) </CMP>
-<FMP>
-  <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-    <OMA>
-      <OMS cd="logic1" name="implies"/>
-      <OMA>
-        <OMS cd="set1" name="in"/>
-        <OMV name="x"/>
-        <OMS cd="setname1" name="C"/>
-      </OMA>
-      <OMA>
-        <OMS cd="relation1" name="eq"/>
-        <OMA>
-          <OMS cd="arith1" name="root"/>
-          <OMV name="x"/>
-          <OMV name="n"/>          
-        </OMA>
-        <OMA>
-          <OMS name="exp" cd="transc1"/>
+    <property xml:id="root_prop_13">
+      <CMP> x\in C implies root(x,n) = exp(ln(x)/n) </CMP>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
           <OMA>
-            <OMS name="divide" cd="arith1"/>
+            <OMS cd="logic1" name="implies"/>
             <OMA>
-              <OMS name="ln" cd="transc1"/>
+              <OMS cd="set1" name="in"/>
               <OMV name="x"/>
+              <OMS cd="setname1" name="C"/>
             </OMA>
-            <OMV name="n"/>          
+            <OMA>
+              <OMS cd="relation1" name="eq"/>
+              <OMA>
+                <OMS cd="arith1" name="root"/>
+                <OMV name="x"/>
+                <OMV name="n"/>          
+              </OMA>
+              <OMA>
+                <OMS cd="transc1" name="exp"/>
+                <OMA>
+                  <OMS cd="arith1" name="divide"/>
+                  <OMA>
+                    <OMS cd="transc1" name="ln"/>
+                    <OMV name="x"/>
+                  </OMA>
+                  <OMV name="n"/>          
+                </OMA>
+              </OMA>
+            </OMA>
           </OMA>
-        </OMA>
-      </OMA>
-    </OMA>
-  </OMOBJ>
-</FMP>
-</property>
+        </OMOBJ>
+      </FMP>
+    </property>
 
-<property xml:id="root_prop_14">
-<CMP> for all a,n | power(root(a,n),n) = a (if the root exists!) </CMP>
-<FMP>
-  <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-    <OMBIND>
-      <OMS cd="quant1" name="forall"/>
-      <OMBVAR>
-         <OMV name="a"/>
-         <OMV name="n"/>
-      </OMBVAR>
-      <OMA>
-        <OMS cd="relation1" name="eq"/>
-        <OMA>
-          <OMS cd="arith1" name="power"/>
-          <OMA>
-            <OMS cd="arith1" name="root"/>
-            <OMV name="a"/>
-            <OMV name="n"/>
-          </OMA>
-          <OMV name="n"/>
-        </OMA>
-        <OMV name="a"/>
-      </OMA>
-    </OMBIND>
-  </OMOBJ>
-</FMP>
-</property>
-</CDDefinition>
-
-<CDDefinition xml:id="sum">
-  <Name>sum</Name>
-  <Title>Summation</Title>
-  <Role>application</Role>
-  <Description>
-    An operator taking two arguments, the first being the range of summation, e.g. an
-    integral interval, the second being the function to be summed. Note that the sum may
-    be over an infinite interval.
-  </Description>
+    <property xml:id="root_prop_14">
+      <CMP> for all a,n | power(root(a,n),n) = a (if the root exists!) </CMP>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMBIND>
+            <OMS cd="quant1" name="forall"/>
+            <OMBVAR>
+              <OMV name="a"/>
+              <OMV name="n"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="relation1" name="eq"/>
+              <OMA>
+                <OMS cd="arith1" name="power"/>
+                <OMA>
+                  <OMS cd="arith1" name="root"/>
+                  <OMV name="a"/>
+                  <OMV name="n"/>
+                </OMA>
+                <OMV name="n"/>
+              </OMA>
+              <OMV name="a"/>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
+  <CDDefinition xml:id="sum">
+    <Name>sum</Name>
+    <Title>Summation</Title>
+    <Role>application</Role>
+    <Description>An operator taking two arguments, the first being the range of summation, e.g. an integral interval, the second being the function to be summed. Note that the sum may be over an infinite interval.</Description>
   
-  <Pragmatic>
-    <Element type="opel_big">sum</Element>
-  </Pragmatic>
+    <Pragmatic>
+      <Element type="opel_big">sum</Element>
+    </Pragmatic>
 
-<MMLexample speclevel="1" xml:id="sum.ex1"> 
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply>
-      <sum/>
-      <bind>
-	<lambda/>
-	<bvar><ci>x</ci></bvar>
-	<lowlimit><ci>a</ci></lowlimit>
-	<uplimit><ci>b</ci></uplimit>
-	<apply><ci>f</ci><ci>x</ci></apply>
-      </bind>
-    </apply>
-  </math>
-</MMLexample>
+    <MMLexample speclevel="1" xml:id="sum.ex1"> 
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <sum/>
+          <bind>
+	           <lambda/>
+	           <bvar>
+              <ci>x</ci>
+            </bvar>
+	           <lowlimit>
+              <ci>a</ci>
+            </lowlimit>
+	           <uplimit>
+              <ci>b</ci>
+            </uplimit>
+	           <apply>
+              <ci>f</ci>
+              <ci>x</ci>
+            </apply>
+          </bind>
+        </apply>
+      </math>
+    </MMLexample>
 
-<MMLexample speclevel="1" xml:id="sum.ex2">
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply>
-      <sum/>
-      <bind>
-	<lambda/>
-	<bvar><ci>x</ci></bvar>
-	<condition><apply> <in/><ci>x</ci><ci type="set">B</ci></apply></condition>
-	<apply><ci type="function"> f</ci><ci>x</ci></apply>
-      </bind>
-    </apply>
-  </math>
-</MMLexample>
+    <MMLexample speclevel="1" xml:id="sum.ex2">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <sum/>
+          <bind>
+	           <lambda/>
+	           <bvar>
+              <ci>x</ci>
+            </bvar>
+	           <condition>
+              <apply> 
+                <in/>
+                <ci>x</ci>
+                <ci type="set">B</ci>
+              </apply>
+            </condition>
+	           <apply>
+              <ci type="function"> f</ci>
+              <ci>x</ci>
+            </apply>
+          </bind>
+        </apply>
+      </math>
+    </MMLexample>
 
-<MMLexample speclevel="1" xml:id="sum.ex3">
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply>
-      <sum/>
-      <domainofapplication><ci type="set">B</ci></domainofapplication>
-      <ci type="function">f</ci>
-    </apply>
-  </math>
-</MMLexample>
+    <MMLexample speclevel="1" xml:id="sum.ex3">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <sum/>
+          <domainofapplication>
+            <ci type="set">B</ci>
+          </domainofapplication>
+          <ci type="function">f</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
-<Example>
+    <Example>
   This represents the summation of the reciprocals of all the integers between
   1 and 10 inclusive.
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="arith1" name="sum"/>
-      <OMA>
-        <OMS cd="interval1" name="integer_interval"/>
-        <OMI> 1 </OMI>
-        <OMI> 10 </OMI>
-      </OMA>
-    <OMBIND>
-      <OMS cd="fns1" name="lambda"/>
-        <OMBVAR>
-          <OMV name="x"/>
-        </OMBVAR>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
         <OMA>
-          <OMS cd="arith1" name="divide"/>
-          <OMI> 1 </OMI>
-          <OMV name="x"/>
+          <OMS cd="arith1" name="sum"/>
+          <OMA>
+            <OMS cd="interval1" name="integer_interval"/>
+            <OMI> 1 </OMI>
+            <OMI> 10 </OMI>
+          </OMA>
+          <OMBIND>
+            <OMS cd="fns1" name="lambda"/>
+            <OMBVAR>
+              <OMV name="x"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="arith1" name="divide"/>
+              <OMI> 1 </OMI>
+              <OMV name="x"/>
+            </OMA>
+          </OMBIND>
         </OMA>
-    </OMBIND>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="product">
+    <Name>product</Name>
+    <Title>Project</Title>
+    <Role>application</Role>
+    <Description>An operator taking two arguments, the first being the range of multiplication e.g. an integral interval, the second being the function to be multiplied. Note that the product may be over an infinite interval.</Description>
 
-<CDDefinition xml:id="product">
-  <Name>product</Name>
-  <Title>Project</Title>
-  <Role>application</Role>
-  <Description>
-    An operator taking two arguments, the first being the range of multiplication e.g. an
-    integral interval, the second being the function to be multiplied. Note that the
-    product may be over an infinite interval.
-  </Description>
+    <Pragmatic>
+      <Element type="opel_big">product</Element>
+    </Pragmatic>
 
-  <Pragmatic>
-    <Element type="opel_big">product</Element>
-  </Pragmatic>
+    <MMLexample speclevel="1" xml:id="product.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <product/>
+          <bind>
+            <lambda/>
+            <bvar>
+              <ci>x</ci>
+            </bvar>
+            <lowlimit> 
+              <ci>a</ci>
+            </lowlimit>
+            <uplimit>
+              <ci>b</ci>
+            </uplimit>
+            <apply>
+              <ci type="function"> f</ci>
+              <ci>x</ci>
+            </apply>
+          </bind>
+        </apply>
+      </math>
+    </MMLexample>
 
-  <MMLexample  speclevel="1" xml:id="product.ex1">
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply>
-  <product/>
-  <bind>
-    <lambda/>
-    <bvar><ci>x</ci></bvar>
-    <lowlimit> <ci>a</ci></lowlimit>
-    <uplimit><ci>b</ci></uplimit>
-    <apply><ci type="function"> f</ci><ci>x</ci></apply>
-  </bind>
-</apply>
-</math>
-</MMLexample>
+    <MMLexample speclevel="1" xml:id="product.ex2">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <product/>
+          <bind>
+            <lambda/>
+            <bvar>
+              <ci>x</ci>
+            </bvar>
+            <condition>
+              <apply> 
+                <in/>
+                <ci>x</ci>
+                <ci type="set">B</ci>
+              </apply>
+            </condition>
+            <apply>
+              <ci>f</ci>
+              <ci>x</ci>
+            </apply>
+          </bind>
+        </apply>
+      </math>
+    </MMLexample>
 
-<MMLexample  speclevel="1" xml:id="product.ex2">
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply>
-  <product/>
-  <bind>
-    <lambda/>
-    <bvar><ci>x</ci></bvar>
-    <condition><apply> <in/><ci>x</ci><ci type="set">B</ci></apply></condition>
-    <apply><ci>f</ci><ci>x</ci></apply>
-  </bind>
-</apply>
-</math>
-</MMLexample>
-
-<Example>
+    <Example>
   This represents the statement that the factorial of n is equal to the product of all the
   integers between 1 and n inclusive.
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="relation1" name="eq"/>
-    <OMA>
-      <OMS cd="integer1" name="factorial"/>
-      <OMV name="n"/>
-    </OMA>
-    <OMA>
-      <OMS cd="arith1" name="product"/>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
         <OMA>
-          <OMS cd="interval1" name="integer_interval"/>
-          <OMI> 1 </OMI>
-          <OMV name="n"/>
+          <OMS cd="relation1" name="eq"/>
+          <OMA>
+            <OMS cd="integer1" name="factorial"/>
+            <OMV name="n"/>
+          </OMA>
+          <OMA>
+            <OMS cd="arith1" name="product"/>
+            <OMA>
+              <OMS cd="interval1" name="integer_interval"/>
+              <OMI> 1 </OMI>
+              <OMV name="n"/>
+            </OMA>
+            <OMBIND>
+              <OMS cd="fns1" name="lambda"/>
+              <OMBVAR>
+                <OMV name="i"/>
+              </OMBVAR>
+              <OMV name="i"/>
+            </OMBIND>
+          </OMA>
         </OMA>
-      <OMBIND>
-        <OMS cd="fns1" name="lambda"/>
-          <OMBVAR>
-            <OMV name="i"/>
-          </OMBVAR>
-          <OMV name="i"/>
-      </OMBIND>
-    </OMA>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
-
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
 </CD>
