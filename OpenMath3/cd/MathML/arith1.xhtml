@@ -31,22 +31,15 @@
             <a href="#abs">abs</a>, <a href="#big_gcd">big_gcd</a>, <a href="#big_lcm">big_lcm</a>, <a href="#divide">divide</a>, <a href="#gcd">gcd</a>, <a href="#lcm">lcm</a>, <a href="#minus">minus</a>, <a href="#plus">plus</a>, <a href="#power">power</a>, <a href="#product">product</a>, <a href="#root">root</a>, <a href="#sum">sum</a>, <a href="#times">times</a>, <a href="#unary_minus">unary_minus</a>
          </dd>
          <dt class="dt">Date:</dt>
-         <dd>
-            <CDDate xmlns="http://www.openmath.org/OpenMathCD">2004-03-30</CDDate>
-         </dd>
+         <dd>2004-03-30</dd>
          <dt class="dt">Version:</dt>
          <dd>3</dd>
          <dt class="dt">Review Date:</dt>
-         <dd>
-            <CDReviewDate xmlns="http://www.openmath.org/OpenMathCD">2006-03-30</CDReviewDate>
-         </dd>
+         <dd>2006-03-30</dd>
          <dt class="dt">Status:</dt>
-         <dd>
-            <CDStatus xmlns="http://www.openmath.org/OpenMathCD">draft</CDStatus>
-         </dd>
+         <dd>draft</dd>
       </dl>
       <hr/>
-
       <pre>
      This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
@@ -78,20 +71,9 @@
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 </pre>
-
-
-
-
-
-
-
-
-
-
       <p> 
   This CD defines symbols for common arithmetic functions.
 </p>
-
       <div class="cddefinition">
          <h2>
             <a name="lcm">Symbol Definition: lcm</a>
@@ -105,35 +87,36 @@
             </dd>
             <dt class="dt">Description:</dt>
             <dd>
-               <p>
-    This n-ary operator is used to construct an expression which represents the
-    least common multiple of its arguments.  If no argument is provided, the lcm is
-    1.  If one argument is provided, the lcm is that argument.  The least common
-    multiple of x and 1 is x.
-  </p>
+               <p>This n-ary operator is used to construct an expression which represents the least common multiple of its arguments. If no argument is provided, the lcm is 1. If one argument is provided, the lcm is that argument. The least common multiple of x and 1 is x.</p>
             </dd>
             <dt class="dt">Pragmatic MathML:</dt>
             <dd>
                <p>&lt;lcm/&gt;</p>
                <p> type : MathMLType</p>
-               <p>
-      The lcm symbol can be used as a binding operator in pragmatic Content
-      MathML. This role is taken over by the big_lcm symbol in strict Content
+    
+               <p>The <code>lcm</code> symbol can be used as a binding operator in pragmatic Content
+      MathML. This role is taken over by the <code>big_lcm</code> symbol in strict Content
       MathML.</p>
-               <p>  
-    
-    x
-    x
-  
-  
+
+               <apply xmlns="http://www.w3.org/1998/Math/MathML">
+                  <lcm/>
+                  <bvar>
+                     <ci>x</ci>
+                  </bvar>
+                  <ci>x</ci>
+               </apply>
+               <apply xmlns="http://www.w3.org/1998/Math/MathML">
      
+                  <bind>
+                     <csymbol cd="fns1">lambda</csymbol>
+                     <bvar>
+                        <ci>x</ci>
+                     </bvar>
+                     <ci>x</ci>
+                  </bind>
+               </apply>
+
     
-      lambda
-      x
-      x
-    
-  </p>
-               <p>    </p>
             </dd>
             <dt class="dt">Property:</dt>
             <dd>
@@ -720,10 +703,10 @@
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
-               <p>
-    If the following expression were evaluated at a=2, b=4, and
-    c=6 it would yield 12.
-  </p>
+  
+               <p>If the following expression were evaluated at <var>a=2</var>, <var>b=4</var>, and
+    <var>c=6</var> it would yield 12.</p>
+  
                <div>
                   <button id="d43e356xmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e356xml')">XML (MathML)</button>
@@ -792,7 +775,6 @@
 	  
       [<a href="#top">Top</a>]
  </div>
-
       <div class="cddefinition">
          <h2>
             <a name="big_lcm">Symbol Definition: big_lcm</a>
@@ -806,10 +788,7 @@
             </dd>
             <dt class="dt">Description:</dt>
             <dd>
-               <p>
-    This n-ary operator is used to construct the least common multiple over a set of
-    expressions.
-  </p>
+               <p>This n-ary operator is used to construct the least common multiple over a set of expressions.</p>
             </dd>
             <dt class="dt">Signatures:</dt>
             <dd>
@@ -824,7 +803,6 @@
 	[Previous: <a href="#lcm">lcm</a>]
       [<a href="#top">Top</a>]
  </div>
-
       <div class="cddefinition">
          <h2>
             <a name="gcd">Symbol Definition: gcd</a>
@@ -838,11 +816,7 @@
             <dd>application</dd>
             <dt class="dt">Description:</dt>
             <dd>
-               <p>
-    This is the n-ary operator used to construct an expression which represents
-    the greatest common divisor of its arguments.  If no argument is provided, the
-    gcd is 0.  If one argument is provided, the gcd is that argument.
-  </p>
+               <p>This is the n-ary operator used to construct an expression which represents the greatest common divisor of its arguments. If no argument is provided, the gcd is 0. If one argument is provided, the gcd is that argument.</p>
             </dd>
             <dt class="dt">Pragmatic MathML:</dt>
             <dd>
@@ -1116,12 +1090,12 @@ Note that this implies that gcd(a,b) &gt; 0
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
-               <p>
-    If this were evaluated at 
-    a = 15, 
-    b = 21, 
-    c = 48, it would yield 3.
-  </p>
+  
+               <p>If this were evaluated at 
+    <var>a</var> = 15, 
+    <var>b</var> = 21, 
+    <var>c</var> = 48, it would yield 3.</p>
+  
                <div>
                   <button id="d43e556xmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e556xml')">XML (MathML)</button>
@@ -1257,7 +1231,6 @@ gcd(6,9) = 3
 	[Previous: <a href="#big_lcm">big_lcm</a>]
       [<a href="#top">Top</a>]
  </div>
-
       <div class="cddefinition">
          <h2>
             <a name="big_gcd">Symbol Definition: big_gcd</a>
@@ -1271,10 +1244,7 @@ gcd(6,9) = 3
             </dd>
             <dt class="dt">Description:</dt>
             <dd>
-               <p>
-    This n-ary operator is used to construct the greatest common divisor over a set of
-    expressions. 
-  </p>
+               <p>This n-ary operator is used to construct the greatest common divisor over a set of expressions.</p>
             </dd>
             <dt class="dt">Signatures:</dt>
             <dd>
@@ -1289,9 +1259,6 @@ gcd(6,9) = 3
 	[Previous: <a href="#gcd">gcd</a>]
       [<a href="#top">Top</a>]
  </div>
-
-
-
       <div class="cddefinition">
          <h2>
             <a name="plus">Symbol Definition: plus</a>
@@ -1305,14 +1272,7 @@ gcd(6,9) = 3
             </dd>
             <dt class="dt">Description:</dt>
             <dd>
-               <p>
-    The symbol representing an n-ary commutative function plus. If no operands are
-    provided, the expression represents the additive identity.  If one operand, a, is
-    provided the expression evaluates to "a".  If two or more operands are provided, the
-    expression represents the (semi) group element corresponding to a left associative
-    binary pairing of the operands.  The meaning of mixed operand types not covered by the
-    signatures shown here are left up to the target system.
-  </p>
+               <p>The symbol representing an n-ary commutative function plus. If no operands are provided, the expression represents the additive identity. If one operand, a, is provided the expression evaluates to "a". If two or more operands are provided, the expression represents the (semi) group element corresponding to a left associative binary pairing of the operands. The meaning of mixed operand types not covered by the signatures shown here are left up to the target system.</p>
             </dd>
             <dt class="dt">Pragmatic MathML:</dt>
             <dd>
@@ -1321,9 +1281,9 @@ gcd(6,9) = 3
             </dd>
             <dt class="dt">Property:</dt>
             <dd>
-               <p>
-    a sum of no terms is 0
-  </p>
+  
+               <p>a sum of no terms is 0</p>
+  
                <div>
                   <button id="d43e651xmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e651xml')">XML (MathML)</button>
@@ -1382,9 +1342,8 @@ gcd(6,9) = 3
             </dd>
             <dt class="dt">Property:</dt>
             <dd>
-               <p>
-    a sum of one term is equal to itself
-    </p>
+  
+               <p>a sum of one term is equal to itself</p>
                <div>
                   <button id="d43e671xmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e671xml')">XML (MathML)</button>
@@ -1460,9 +1419,8 @@ gcd(6,9) = 3
             </dd>
             <dt class="dt">Property:</dt>
             <dd>
-               <p>
-    Commutativity
-    </p>
+  
+               <p>Commutativity</p>
                <div>
                   <button id="d43e704xmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e704xml')">XML (MathML)</button>
@@ -1647,10 +1605,10 @@ gcd(6,9) = 3
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
-               <p>
-    If this were evaluated at x=5, y=2, and z=1 it
-    would yield 8.
-  </p>
+  
+               <p>If this were evaluated at <var>x=5</var>, <var>y=2</var>, and <var>z=1</var> it
+    would yield 8.</p>
+  
                <div>
                   <button id="d43e798xmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e798xml')">XML (MathML)</button>
@@ -1816,7 +1774,6 @@ gcd(6,9) = 3
 	[Previous: <a href="#big_gcd">big_gcd</a>]
       [<a href="#top">Top</a>]
  </div>
-
       <div class="cddefinition">
          <h2>
             <a name="unary_minus">Symbol Definition: unary_minus</a>
@@ -1830,10 +1787,7 @@ gcd(6,9) = 3
             </dd>
             <dt class="dt">Description:</dt>
             <dd>
-               <p>
-    This symbol denotes unary minus, i.e. the additive inverse for an additive group. It
-    constructs the additive inverse of that group element.
-  </p>
+               <p>This symbol denotes unary minus, i.e. the additive inverse for an additive group. It constructs the additive inverse of that group element.</p>
             </dd>
             <dt class="dt">Pragmatic MathML:</dt>
             <dd>
@@ -1995,7 +1949,6 @@ gcd(6,9) = 3
 	[Previous: <a href="#plus">plus</a>]
       [<a href="#top">Top</a>]
  </div>
-
       <div class="cddefinition">
          <h2>
             <a name="minus">Symbol Definition: minus</a>
@@ -2014,16 +1967,13 @@ gcd(6,9) = 3
             <dd>application</dd>
             <dt class="dt">Description:</dt>
             <dd>
-               <p> 
-    The symbol representing a binary minus function, the subtraction operator for an
-    additive group. This is equivalent to adding the additive inverse.
-  </p>
+               <p>The symbol representing a binary minus function, the subtraction operator for an additive group. This is equivalent to adding the additive inverse.</p>
             </dd>
             <dt class="dt">Property:</dt>
             <dd>
-               <p>
-    ForAll( x, x-x=0 )
-    </p>
+  
+               <p>ForAll( x, x-x=0 )</p>
+    
                <div>
                   <button id="d43e988xmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e988xml')">XML (MathML)</button>
@@ -2100,8 +2050,8 @@ gcd(6,9) = 3
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
-               <p>If this were evaluated at x=5 and 
-  y=2 it would yield 3.</p>
+               <p>If this were evaluated at <var>x</var>=5 and 
+  <var>y</var>=2 it would yield 3.</p>
                <div>
                   <button id="d43e1026xmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e1026xml')">XML (MathML)</button>
@@ -2282,7 +2232,6 @@ gcd(6,9) = 3
 	[Previous: <a href="#unary_minus">unary_minus</a>]
       [<a href="#top">Top</a>]
  </div>
-
       <div class="cddefinition">
          <h2>
             <a name="times">Symbol Definition: times</a>
@@ -2301,27 +2250,24 @@ gcd(6,9) = 3
             <dd>application</dd>
             <dt class="dt">Description:</dt>
             <dd>
-               <p> 
-    The symbol representing an n-ary multiplication function.
-  </p>
+               <p>The symbol representing an n-ary multiplication function.</p>
             </dd>
             <dt class="dt">Property:</dt>
             <dd>
-               <p>
-    ForAll( [a,b], condition(in({a,b}, Commutative)), a*b=b*a )
-  </p>
+  
+               <p>ForAll( [a,b], condition(in({a,b}, Commutative)), a*b=b*a )</p>
+  
             </dd>
             <dt class="dt">Property:</dt>
             <dd>
-               <p>
-    ForAll( [a,b,c], Associative, a*(b*c)=(a*b)*c ), associativity 
-  </p>
+  
+               <p>ForAll( [a,b,c], Associative, a*(b*c)=(a*b)*c ), associativity </p>
+  
             </dd>
             <dt class="dt">Property:</dt>
             <dd>
-               <p>
-    multiplicative identity
-    </p>
+  
+               <p>multiplicative identity</p>
                <div>
                   <button id="d43e1152xmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e1152xml')">XML (MathML)</button>
@@ -2402,9 +2348,9 @@ gcd(6,9) = 3
             </dd>
             <dt class="dt">Property:</dt>
             <dd>
-               <p>
-    Commutative property
-  </p>
+  
+               <p>Commutative property</p>
+  
                <div>
                   <button id="d43e1193xmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e1193xml')">XML (MathML)</button>
@@ -2497,9 +2443,9 @@ gcd(6,9) = 3
             </dd>
             <dt class="dt">Property:</dt>
             <dd>
-               <p>
-    a*0=0
-  </p>
+  
+               <p>a*0=0</p>
+  
                <div>
                   <button id="d43e1254xmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e1254xml')">XML (MathML)</button>
@@ -2573,10 +2519,10 @@ gcd(6,9) = 3
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
-               <p>
-    If this were evaluated at a = 5.5 and b = 3 it would yield
-    16.5.
-  </p>
+  
+               <p>If this were evaluated at <var>a</var> = 5.5 and <var>b</var> = 3 it would yield
+    16.5.</p>
+  
                <div>
                   <button id="d43e1294xmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e1294xml')">XML (MathML)</button>
@@ -3174,7 +3120,6 @@ gcd(6,9) = 3
 	[Previous: <a href="#minus">minus</a>]
       [<a href="#top">Top</a>]
  </div>
-
       <div class="cddefinition">
          <h2>
             <a name="divide">Symbol Definition: divide</a>
@@ -3193,17 +3138,13 @@ gcd(6,9) = 3
             </dd>
             <dt class="dt">Description:</dt>
             <dd>
-               <p>
-    This symbol represents a (binary) division function denoting the first argument
-    right-divided by the second, i.e. divide(a,b)=a*inverse(b). It is the inverse of the
-    multiplication function defined by the symbol times in this CD.
-  </p>
+               <p>This symbol represents a (binary) division function denoting the first argument right-divided by the second, i.e. divide(a,b)=a*inverse(b). It is the inverse of the multiplication function defined by the symbol times in this CD.</p>
             </dd>
             <dt class="dt">Property:</dt>
             <dd>
-               <p>
-      Division by Zero error
-    </p>
+    
+               <p>Division by Zero error</p>
+    
                <div>
                   <button id="d43e1592xmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e1592xml')">XML (MathML)</button>
@@ -3280,9 +3221,8 @@ gcd(6,9) = 3
             </dd>
             <dt class="dt">Property:</dt>
             <dd>
-               <p>
-      ForAll( a, a!= 0, a/a = 1 )
-      </p>
+    
+               <p>ForAll( a, a!= 0, a/a = 1 )</p>
                <div>
                   <button id="d43e1625xmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e1625xml')">XML (MathML)</button>
@@ -3360,12 +3300,12 @@ gcd(6,9) = 3
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
-               <p>
-      As a MathML expression, this does not evaluate. However, on receiving such an
+    
+               <p>As a MathML expression, this does not evaluate. However, on receiving such an
       expression, some applications may attempt to evaluate and simplify the value. For
-      example, when a=5 and b=2 some mathematical applications may
-      evaluate this to 2.5 while others will treat is as a rational number.
-    </p>
+      example, when <var>a</var>=5 and <var>b</var>=2 some mathematical applications may
+      evaluate this to 2.5 while others will treat is as a rational number.</p>
+    
                <div>
                   <button id="d43e1674xmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e1674xml')">XML (MathML)</button>
@@ -3547,7 +3487,6 @@ gcd(6,9) = 3
 	[Previous: <a href="#times">times</a>]
       [<a href="#top">Top</a>]
  </div>
-
       <div class="cddefinition">
          <h2>
             <a name="power">Symbol Definition: power</a>
@@ -3566,18 +3505,13 @@ gcd(6,9) = 3
             <dd>application</dd>
             <dt class="dt">Description:</dt>
             <dd>
-               <p>
-    This symbol represents a power function. The first argument is raised to the power of
-    the second argument. When the second argument is not an integer, powering is defined
-    in terms of exponentials and logarithms for the complex and real numbers.  This
-    operator can represent general powering.
-</p>
+               <p>This symbol represents a power function. The first argument is raised to the power of the second argument. When the second argument is not an integer, powering is defined in terms of exponentials and logarithms for the complex and real numbers. This operator can represent general powering.</p>
             </dd>
             <dt class="dt">Property:</dt>
             <dd>
-               <p>
-    ForAll( a, a!=0, a^0=1 )
-  </p>
+  
+               <p>ForAll( a, a!=0, a^0=1 )</p>
+  
                <div>
                   <button id="d43e1782xmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e1782xml')">XML (MathML)</button>
@@ -3654,9 +3588,9 @@ gcd(6,9) = 3
             </dd>
             <dt class="dt">Property:</dt>
             <dd>
-               <p>
-    ForAll( a, a^1=a )
-    </p>
+  
+               <p>ForAll( a, a^1=a )</p>
+    
                <div>
                   <button id="d43e1824xmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e1824xml')">XML (MathML)</button>
@@ -3732,9 +3666,9 @@ gcd(6,9) = 3
             </dd>
             <dt class="dt">Property:</dt>
             <dd>
-               <p>
-    ForAll( a, 1^a=1 )
-    </p>
+  
+               <p>ForAll( a, 1^a=1 )</p>
+    
                <div>
                   <button id="d43e1858xmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e1858xml')">XML (MathML)</button>
@@ -3856,9 +3790,9 @@ gcd(6,9) = 3
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
-               <p>
-    If this were evaluated at x= 5 it would yield 125.
-  </p>
+  
+               <p>If this were evaluated at <var>x</var>= 5 it would yield 125.</p>
+  
                <div>
                   <button id="d43e1908xmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e1908xml')">XML (MathML)</button>
@@ -4486,7 +4420,6 @@ gcd(6,9) = 3
 	[Previous: <a href="#divide">divide</a>]
       [<a href="#top">Top</a>]
  </div>
-
       <div class="cddefinition">
          <h2>
             <a name="abs">Symbol Definition: abs</a>
@@ -4500,11 +4433,7 @@ gcd(6,9) = 3
             <dd>application</dd>
             <dt class="dt">Description:</dt>
             <dd>
-               <p> 
-    A unary operator which represents the absolute value of its argument. The argument
-    should be numerically valued.  In the complex case this is often referred to as the
-    modulus.
-  </p>
+               <p>A unary operator which represents the absolute value of its argument. The argument should be numerically valued. In the complex case this is often referred to as the modulus.</p>
             </dd>
             <dt class="dt">Pragmatic MathML:</dt>
             <dd>
@@ -4513,15 +4442,15 @@ gcd(6,9) = 3
             </dd>
             <dt class="dt">Property:</dt>
             <dd>
-               <p>
-    for all x and y, abs(x) + abs(y) &gt;= abs(x+y) 
-  </p>
+  
+               <p>for all x and y, abs(x) + abs(y) &gt;= abs(x+y) </p>
+  
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
-               <p>
-    The following example encodes the absolute value of x.
-  </p>
+  
+               <p>The following example encodes the absolute value of <var>x</var>.</p>
+  
                <div>
                   <button id="d43e2229xmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e2229xml')">XML (MathML)</button>
@@ -4721,7 +4650,6 @@ gcd(6,9) = 3
 	[Previous: <a href="#power">power</a>]
       [<a href="#top">Top</a>]
  </div>
-
       <div class="cddefinition">
          <h2>
             <a name="root">Symbol Definition: root</a>
@@ -4740,34 +4668,28 @@ gcd(6,9) = 3
             <dd>application</dd>
             <dt class="dt">Description:</dt>
             <dd>
-               <p> 
-    A binary operator which represents its first argument "lowered" to its n'th root where
-    n is the second argument. This is the inverse of the operation represented by the
-    power symbol defined in this CD.
-  </p>
+               <p>A binary operator which represents its first argument "lowered" to its n'th root where n is the second argument. This is the inverse of the operation represented by the power symbol defined in this CD.</p>
             </dd>
             <dt class="dt">discussion:</dt>
             <dd>
-               <p>
-      Care should be taken as to the precise meaning of this operator, in particular
+               <p>Care should be taken as to the precise meaning of this operator, in particular
       which root is represented, however it is here to represent the general notion of
       taking n'th roots. As inferred by the signature relevant to this symbol, the
       function represented by this symbol is the single valued function, the specific root
       returned is the one indicated by the first CMP. Note also that the converse of the
-      second CMP is not valid in general.
-    </p>
+      second CMP is not valid in general.</p>
             </dd>
             <dt class="dt">Property:</dt>
             <dd>
-               <p>
-    ForAll( bvars(a,n), root(degree(n),a) = a^(1/n) )
-</p>
+  
+               <p>ForAll( bvars(a,n), root(degree(n),a) = a^(1/n) )</p>
+
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
-               <p>
-    The nth root of a is is given by
-  </p>
+  
+               <p>The <var>n</var>th root of <var>a</var> is is given by</p>
+  
                <div>
                   <button id="d43e2362xmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e2362xml')">XML (MathML)</button>
@@ -5057,7 +4979,6 @@ gcd(6,9) = 3
 	[Previous: <a href="#abs">abs</a>]
       [<a href="#top">Top</a>]
  </div>
-
       <div class="cddefinition">
          <h2>
             <a name="sum">Symbol Definition: sum</a>
@@ -5071,11 +4992,7 @@ gcd(6,9) = 3
             <dd>application</dd>
             <dt class="dt">Description:</dt>
             <dd>
-               <p>
-    An operator taking two arguments, the first being the range of summation, e.g. an
-    integral interval, the second being the function to be summed. Note that the sum may
-    be over an infinite interval.
-  </p>
+               <p>An operator taking two arguments, the first being the range of summation, e.g. an integral interval, the second being the function to be summed. Note that the sum may be over an infinite interval.</p>
             </dd>
             <dt class="dt">Pragmatic MathML:</dt>
             <dd>
@@ -5431,7 +5348,6 @@ gcd(6,9) = 3
 	[Previous: <a href="#root">root</a>]
       [<a href="#top">Top</a>]
  </div>
-
       <div class="cddefinition">
          <h2>
             <a name="product">Symbol Definition: product</a>
@@ -5445,11 +5361,7 @@ gcd(6,9) = 3
             <dd>application</dd>
             <dt class="dt">Description:</dt>
             <dd>
-               <p>
-    An operator taking two arguments, the first being the range of multiplication e.g. an
-    integral interval, the second being the function to be multiplied. Note that the
-    product may be over an infinite interval.
-  </p>
+               <p>An operator taking two arguments, the first being the range of multiplication e.g. an integral interval, the second being the function to be multiplied. Note that the product may be over an infinite interval.</p>
             </dd>
             <dt class="dt">Pragmatic MathML:</dt>
             <dd>
@@ -5756,6 +5668,5 @@ gcd(6,9) = 3
 	[Previous: <a href="#sum">sum</a>]
       [<a href="#top">Top</a>]
  </div>
-
    </body>
 </html>

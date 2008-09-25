@@ -31,22 +31,15 @@
             <a href="#otherwise">otherwise</a>, <a href="#piece">piece</a>, <a href="#piecewise">piecewise</a>
          </dd>
          <dt class="dt">Date:</dt>
-         <dd>
-            <CDDate xmlns="http://www.openmath.org/OpenMathCD">2004-03-30</CDDate>
-         </dd>
+         <dd>2004-03-30</dd>
          <dt class="dt">Version:</dt>
          <dd>2</dd>
          <dt class="dt">Review Date:</dt>
-         <dd>
-            <CDReviewDate xmlns="http://www.openmath.org/OpenMathCD">2006-03-30</CDReviewDate>
-         </dd>
+         <dd>2006-03-30</dd>
          <dt class="dt">Status:</dt>
-         <dd>
-            <CDStatus xmlns="http://www.openmath.org/OpenMathCD">draft</CDStatus>
-         </dd>
+         <dd>draft</dd>
       </dl>
       <hr/>
-
       <pre>
 
      This document is distributed in the hope that it will be useful, 
@@ -79,20 +72,9 @@
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 </pre>
-
-
-
-
-
-
-
-
-
-
       <p>
     This content dictionary provides set of operators for piece-wise defined expressions.
 </p>
-
       <div class="cddefinition">
          <h2>
             <a name="piecewise">Symbol Definition: piecewise</a>
@@ -110,59 +92,65 @@
             <dd>application</dd>
             <dt class="dt">Description:</dt>
             <dd>
-               <p> 
-    This operator heads an expression that is being defined piecewise. Its arguments are n
-    objects built with the piece constructor, optionally followed by one built with
-    otherwise constructor.
-  </p>
+               <p>This operator heads an expression that is being defined piecewise. Its arguments are n objects built with the piece constructor, optionally followed by one built with otherwise constructor.</p>
             </dd>
             <dt class="dt">discussion:</dt>
             <dd>
-               <p>
-    The piecewise, piece, and otherwise elements are used to
-    support piecewise declarations of the form
-    
-      Hx
-      =
-      0
-     if 
-    
-      x
-      &lt;
-      0
-     
+               <p>The <code>piecewise</code>, <code>piece</code>, and <code>otherwise</code> elements are used to
+    support <q>piecewise</q> declarations of the form
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                     <mrow>
+                        <mi>H</mi>
+                        <mfenced open="(" close=")">
+                           <mi>x</mi>
+                        </mfenced>
+                     </mrow>
+                     <mo>=</mo>
+                     <mn>0</mn>
+                  </math> if 
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                     <mi>x</mi>
+                     <mo>&lt;</mo>
+                     <mn>0</mn>
+                  </math> 
     and 
-    
-      Hx
-      =
-      1
-    
-    otherwise.
-     The piece and otherwise elements describe evaluation rules.  If no rule applies or
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                     <mrow>
+                        <mi>H</mi>
+                        <mfenced open="(" close=")">
+                           <mi>x</mi>
+                        </mfenced>
+                     </mrow>
+                     <mo>=</mo>
+                     <mn>1</mn>
+                  </math>
+    otherwise.</p>
+               <p> The piece and otherwise elements describe evaluation rules.  If no rule applies or
     if more than one rule applies but they give different answers then the expression is
     undefined.</p>
-               <p>     The declaration is constructed using the piecewise element.  This
-    contains zero or more piece elements, and optionally one otherwise
-    element. Each piece element contains exactly two children. The first child
-    defines the value taken by the piecewise expression when the condition
-    specified in the associated second child of the piece is true.  The
-    degenerate case of no piece elements and no otherwise element is
+
+               <p> The declaration is constructed using the <code>piecewise</code> element.  This
+    contains zero or more <code>piece</code> elements, and optionally one <code>otherwise</code>
+    element. Each <code>piece</code> element contains exactly two children. The first child
+    defines the value taken by the <code>piecewise</code> expression when the condition
+    specified in the associated second child of the <code>piece</code> is true.  The
+    degenerate case of no <code>piece</code> elements and no <code>otherwise</code> element is
     treated as undefined for all values of the domain.</p>
-               <p>    It should be noted that no order of execution is implied by the
-    ordering of the piece child elements within piecewise. It is the
+
+               <p>It should be noted that no <q>order of execution</q> is implied by the
+    ordering of the <code>piece</code> child elements within <code>piecewise</code>. It is the
     responsibility of the author to ensure that the subsets of the function domain defined
-    by the second children of the piece elements are disjoint, or that, where
-    they overlap, the values of the corresponding first children of the piece
+    by the second children of the <code>piece</code> elements are disjoint, or that, where
+    they overlap, the values of the corresponding first children of the <code>piece</code>
     elements coincide. If this is not the case, the meaning of the expression is
-    undefined.
-  </p>
+    undefined.</p>
             </dd>
             <dt class="dt">Property:</dt>
             <dd>
-               <p>
-      ForAll( x, x in domain(f), the evaluation rules collectively produce at most one 
-      value in codomain(f) )
-    </p>
+    
+               <p>ForAll( x, x in domain(f), the evaluation rules collectively produce at most one 
+      value in codomain(f) )</p>
+    
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
@@ -242,9 +230,9 @@
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
-               <p>
-      The value of the abs function evaluated at x can be written as:
-    </p>
+    
+               <p>The value of the abs function evaluated at x can be written as:</p>
+    
                <div>
                   <button id="d43e208xmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e208xml')">XML (MathML)</button>
@@ -505,7 +493,6 @@
 	  
       [<a href="#top">Top</a>]
  </div>
-
       <div class="cddefinition">
          <h2>
             <a name="piece">Symbol Definition: piece</a>
@@ -523,12 +510,7 @@
             <dd>application</dd>
             <dt class="dt">Description:</dt>
             <dd>
-               <p> 
-    This introduces an individual component of a piecewise definition. It has precisely
-    two arguments: the first is the value, and the second is a Boolean (meant to be a
-    predicate) which is true if and only if this piece is to provide the value of the
-    piecewise construct.
-  </p>
+               <p>This introduces an individual component of a piecewise definition. It has precisely two arguments: the first is the value, and the second is a Boolean (meant to be a predicate) which is true if and only if this piece is to provide the value of the piecewise construct.</p>
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
@@ -680,7 +662,6 @@
 	[Previous: <a href="#piecewise">piecewise</a>]
       [<a href="#top">Top</a>]
  </div>
-
       <div class="cddefinition">
          <h2>
             <a name="otherwise">Symbol Definition: otherwise</a>
@@ -698,11 +679,7 @@
             <dd>application</dd>
             <dt class="dt">Description:</dt>
             <dd>
-               <p>
-    This symbol introduces the 'default' value of a piecewise construct.  If none of the
-    previous piece constructs can provide the value, this will.  It has a single child,
-    the value.
-  </p>
+               <p>This symbol introduces the 'default' value of a piecewise construct. If none of the previous piece constructs can provide the value, this will. It has a single child, the value.</p>
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
@@ -852,6 +829,5 @@
 	[Previous: <a href="#piece">piece</a>]
       [<a href="#top">Top</a>]
  </div>
-
    </body>
 </html>
