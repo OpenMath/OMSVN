@@ -377,7 +377,7 @@
 
 <xsl:template name="field-key-impl">
     <xsl:param name="key" tunnel="yes"/>
-    <dt class="dt"><xsl:value-of select="$key"/>
+    <dt class="dt"><xsl:copy-of select="$key"/>
     <xsl:text>:</xsl:text></dt>
 </xsl:template>
 
