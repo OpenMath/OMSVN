@@ -1,8 +1,6 @@
-<CD xmlns="http://www.openmath.org/OpenMathCD">
-
-<CDComment>
-
-     This document is distributed in the hope that it will be useful, 
+<?xml version="1.0" encoding="UTF-8"?>
+<CD xmlns="http://www.openmath.org/OpenMathCD" xml:id="complex1">
+  <CDComment>     This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -32,593 +30,637 @@
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 </CDComment>
+  <CDName>complex1</CDName>
+  <CDBase>http://www.openmath.org/cd</CDBase>
+  <CDURL>http://www.openmath.org/cd/complex1.ocd</CDURL>
+  <CDReviewDate>2006-03-30</CDReviewDate>
+  <CDDate>2008-09-26</CDDate>
+  <CDVersion>3</CDVersion>
+  <CDRevision>0</CDRevision>
+  <CDStatus>draft</CDStatus>
+  <Description>This content dictionary provides constructors for complex numbers.</Description>
+  <CDDefinition xml:id="complex_cartesian">
+    <Name>complex_cartesian</Name>
+    <Pragmatic>
+      <Element type="opel">complex_cartesian</Element>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol represents a constructor function for complex numbers specified as the Cartesian coordinates of the relevant point on the complex plane. It takes two arguments, the first is a number x to denote the real part and the second a number y to denote the imaginary part of the complex number x + i y. (Where i is the square root of -1.)</Description>
 
-<CDName>complex1</CDName>
-<CDBase>http://www.openmath.org/cd</CDBase>
-<CDURL>http://www.openmath.org/cd/complex1.ocd </CDURL>
-<CDReviewDate>2006-03-30</CDReviewDate>
-<CDDate>2004-03-30</CDDate>
-<CDVersion>3</CDVersion>
-<CDRevision>0</CDRevision>
-<CDStatus>draft</CDStatus>
-<Description>
-  This content dictionary provides constructors for complex numbers.
-</Description>
-
-<CDDefinition xml:id="complex_cartesian">
-  <Name>complex_cartesian</Name>
-  <Pragmatic>
-    <Element type="opel">complex_cartesian</Element>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol represents a constructor function for complex numbers specified as the
-    Cartesian coordinates of the relevant point on the complex plane. It takes two
-    arguments, the first is a number x to denote the real part and the second a number y
-    to denote the imaginary part of the complex number x + i y. (Where i is the square
-    root of -1.)
-  </Description>
-
-  <property xml:id="complex_cartesian_prop_1">
-    <CMP>
+    <property xml:id="complex_cartesian_prop_1">
+      <CMP>
       for all x,y | complex_cartesian(x,y) = x + iy
     </CMP>
-<FMP>
-  <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-    <OMBIND>
-      <OMS cd="quant1" name="forall"/>
-      <OMBVAR>
-        <OMV name="x"/>
-        <OMV name="y"/>
-      </OMBVAR>
-      <OMA>
-        <OMS cd="relation1" name="eq"/>
-        <OMA>
-          <OMS cd="complex1" name="complex_cartesian"/>
-          <OMV name="x"/>
-          <OMV name="y"/>
-        </OMA>
-        <OMA>
-          <OMS cd="arith1" name="plus"/>
-          <OMV name="x"/>
-          <OMA>
-            <OMS cd="arith1" name="times"/>
-            <OMS cd="nums1" name="i"/>
-            <OMV name="y"/>
-          </OMA>
-        </OMA>
-      </OMA>
-    </OMBIND>
-  </OMOBJ>
-</FMP>
-</property>
-</CDDefinition>
-
-<CDDefinition xml:id="real">
-  <Name>real</Name>
-  <Title>Real Part</Title>
-  <Pragmatic>
-    <Element type="opel">real</Element>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol is a unary operator used to construct an expression representing the
-    "real" part of a complex number, that is the x component in x + iy.
-  </Description> 
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMBIND>
+            <OMS cd="quant1" name="forall"/>
+            <OMBVAR>
+              <OMV name="x"/>
+              <OMV name="y"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="relation1" name="eq"/>
+              <OMA>
+                <OMS cd="complex1" name="complex_cartesian"/>
+                <OMV name="x"/>
+                <OMV name="y"/>
+              </OMA>
+              <OMA>
+                <OMS cd="arith1" name="plus"/>
+                <OMV name="x"/>
+                <OMA>
+                  <OMS cd="arith1" name="times"/>
+                  <OMS cd="nums1" name="i"/>
+                  <OMV name="y"/>
+                </OMA>
+              </OMA>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
+  <CDDefinition xml:id="real">
+    <Name>real</Name>
+    <Title>Real Part</Title>
+    <Pragmatic>
+      <Element type="opel">real</Element>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol is a unary operator used to construct an expression representing the "real" part of a complex number, that is the x component in x + iy.</Description> 
   
-  <property>
-    <description>
-      <p>ForAll( [x,y], x in R, Y in R, real(x+i*y)=x) )</p>
-    </description>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-      <bind><forall/>
-  <bvar><ci>x</ci></bvar>
-  <bvar><ci>y</ci></bvar>
-  <condition>
-    <apply><and/>
-      <apply><in/><ci>x</ci><reals/></apply>
-      <apply><in/><ci>y</ci><reals/></apply>
-    </apply>
-  </condition>
-  <apply><eq/>
-    <apply><real/>
-      <apply><plus/>
-        <ci>x</ci>
-        <apply><times/><imaginaryi/><ci>y</ci></apply>
-      </apply>
-    </apply>
-    <ci>x</ci>
-  </apply>
-</bind>
-</math>
-</property>
+    <property>
+      <description>
+        <p>ForAll( [x,y], x in R, Y in R, real(x+i*y)=x) )</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <bind>
+          <forall/>
+          <bvar>
+            <ci>x</ci>
+          </bvar>
+          <bvar>
+            <ci>y</ci>
+          </bvar>
+          <condition>
+            <apply>
+              <and/>
+              <apply>
+                <in/>
+                <ci>x</ci>
+                <reals/>
+              </apply>
+              <apply>
+                <in/>
+                <ci>y</ci>
+                <reals/>
+              </apply>
+            </apply>
+          </condition>
+          <apply>
+            <eq/>
+            <apply>
+              <real/>
+              <apply>
+                <plus/>
+                <ci>x</ci>
+                <apply>
+                  <times/>
+                  <imaginaryi/>
+                  <ci>y</ci>
+                </apply>
+              </apply>
+            </apply>
+            <ci>x</ci>
+          </apply>
+        </bind>
+      </math>
+    </property>
 
 
-<MMLexample speclevel="1" xml:id="real.ex1">
-  <description>
-    <p>The following example encodes the real operation on<var>x</var> + i<var>y</var>.A
+    <MMLexample speclevel="1" xml:id="real.ex1">
+      <description>
+        <p>The following example encodes the real operation on<var>x</var> + i<var>y</var>.A
     MathML-aware evaluation system would return the <var>x</var> component, suitably
     encoded.</p>
-  </description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><real/>
-    <apply><plus/>
-    <ci>x</ci>
-    <apply><times/><imaginaryi/><ci>y</ci></apply>
-  </apply>
-</apply>
-</math></MMLexample>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <real/>
+          <apply>
+            <plus/>
+            <ci>x</ci>
+            <apply>
+              <times/>
+              <imaginaryi/>
+              <ci>y</ci>
+            </apply>
+          </apply>
+        </apply>
+      </math>
+    </MMLexample>
 
 
-<property xml:id="real_prop_2">
-<CMP>
+    <property xml:id="real_prop_2">
+      <CMP>
  for all x,y | x = real(x+iy)
 </CMP>
-<FMP>
-  <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-    <OMBIND>
-      <OMS cd="quant1" name="forall"/>
-      <OMBVAR>
-        <OMV name="x"/>
-        <OMV name="y"/>
-      </OMBVAR>
-      <OMA>
-        <OMS cd="relation1" name="eq"/>
-        <OMV name="x"/>
-        <OMA>
-          <OMS name="real" cd="complex1"/>
-          <OMA>
-            <OMS name="complex_cartesian" cd="complex1"/>
-            <OMV name="x"/>
-            <OMV name="y"/>
-          </OMA>
-        </OMA>
-      </OMA>
-    </OMBIND>
-  </OMOBJ>
-</FMP></property>
-</CDDefinition>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMBIND>
+            <OMS cd="quant1" name="forall"/>
+            <OMBVAR>
+              <OMV name="x"/>
+              <OMV name="y"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="relation1" name="eq"/>
+              <OMV name="x"/>
+              <OMA>
+                <OMS cd="complex1" name="real"/>
+                <OMA>
+                  <OMS cd="complex1" name="complex_cartesian"/>
+                  <OMV name="x"/>
+                  <OMV name="y"/>
+                </OMA>
+              </OMA>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
+  <CDDefinition xml:id="imaginary">
+    <Name>imaginary</Name>
+    <Title>Imaginary Part</Title>
+    <Pragmatic>
+      <Element type="opel">imaginary</Element>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol represents unary function used to construct the imaginary part of a complex number, i.e. the y component in x+iy.</Description> 
 
-<CDDefinition xml:id="imaginary">
-  <Name>imaginary</Name>
-  <Title>Imaginary Part</Title>
-  <Pragmatic>
-    <Element type="opel">imaginary</Element>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol represents unary function used to construct the imaginary part of a
-    complex number, i.e. the y component in x+iy.
-  </Description> 
+    <property>
+      <description>
+        <p>ForAll( [x,y], Imaginary(x + i*y) = y )</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <bind>
+          <forall/>
+          <bvar>
+            <ci type="real"> x</ci>
+          </bvar>
+          <bvar>
+            <ci type="real"> y</ci>
+          </bvar>
+          <apply>
+            <eq/>
+            <apply>
+              <imaginary/>
+              <apply>
+                <plus/>
+                <ci type="real"> x</ci>
+                <apply>
+                  <times/>
+                  <imaginaryi/>
+                  <ci>y</ci>
+                </apply>
+              </apply>
+            </apply>
+            <ci type="real"> y</ci>
+          </apply>
+        </bind>
+      </math>
+    </property>
 
- <property>
-   <description>
-     <p>ForAll( [x,y], Imaginary(x + i*y) = y )</p>
-   </description>
-   <math xmlns="http://www.w3.org/1998/Math/MathML">
-<bind><forall/>
-  <bvar><ci type="real"> x</ci></bvar>
-  <bvar><ci type="real"> y</ci></bvar>
-  <apply><eq/>
-    <apply><imaginary/>
-      <apply><plus/>
-        <ci type="real"> x</ci>
-        <apply><times/><imaginaryi/><ci>y</ci></apply>
-      </apply>
-    </apply>
-    <ci type="real"> y</ci>
-  </apply>
-</bind>
-</math>
-</property>
-
-<MMLexample speclevel="1" xml:id="imaginary.ex1">
-  <description><p>The following example encodes the imaginary operation on <var>x</var> +
+    <MMLexample speclevel="1" xml:id="imaginary.ex1">
+      <description>
+        <p>The following example encodes the imaginary operation on <var>x</var> +
   i<var>y</var>. A MathML-aware evaluation system would return the <var>y</var> component,
   suitably encoded.</p>
-</description>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply><imaginary/>
-  <apply><plus/>
-    <ci>x</ci>
-    <apply><times/><imaginaryi/><ci>y</ci></apply>
-  </apply>
-</apply>
-</math>
-</MMLexample>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <imaginary/>
+          <apply>
+            <plus/>
+            <ci>x</ci>
+            <apply>
+              <times/>
+              <imaginaryi/>
+              <ci>y</ci>
+            </apply>
+          </apply>
+        </apply>
+      </math>
+    </MMLexample>
 
 
-<property xml:id="imaginary_prop_3">
-<CMP>
+    <property xml:id="imaginary_prop_3">
+      <CMP>
 for all x,y | y = imaginary(x+iy)
 </CMP>
-<FMP>
-  <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-    <OMBIND>
-      <OMS cd="quant1" name="forall"/>
-      <OMBVAR>
-        <OMV name="x"/>
-        <OMV name="y"/>
-      </OMBVAR>
-      <OMA>
-        <OMS cd="relation1" name="eq"/>
-        <OMV name="y"/>
-        <OMA>
-          <OMS name="imaginary" cd="complex1"/>
-          <OMA>
-            <OMS name="complex_cartesian" cd="complex1"/>
-            <OMV name="x"/>
-            <OMV name="y"/>
-          </OMA>
-        </OMA>
-      </OMA>
-    </OMBIND>
-  </OMOBJ>
-</FMP></property>
-</CDDefinition>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMBIND>
+            <OMS cd="quant1" name="forall"/>
+            <OMBVAR>
+              <OMV name="x"/>
+              <OMV name="y"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="relation1" name="eq"/>
+              <OMV name="y"/>
+              <OMA>
+                <OMS cd="complex1" name="imaginary"/>
+                <OMA>
+                  <OMS cd="complex1" name="complex_cartesian"/>
+                  <OMV name="x"/>
+                  <OMV name="y"/>
+                </OMA>
+              </OMA>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
+  <CDDefinition xml:id="complex_polar">
+    <Name>complex_polar</Name>
+    <Pragmatic>
+      <Element type="opel">complex_polar</Element>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol represents a constructor function for complex numbers specified as the polar coordinates of the relevant point on the complex plane. It takes two arguments, the first is a nonnegative number r to denote the magnitude and the second a number theta (given in radians) to denote the argument of the complex number r e^(i theta).</Description>
 
-<CDDefinition xml:id="complex_polar">
-  <Name>complex_polar</Name>
-  <Pragmatic>
-    <Element type="opel">complex_polar</Element>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol represents a constructor function for complex numbers specified as the
-    polar coordinates of the relevant point on the complex plane. It takes two arguments,
-    the first is a nonnegative number r to denote the magnitude and the second a number
-    theta (given in radians) to denote the argument of the complex number r e^(i theta).
-  </Description>
-
-<property xml:id="complex_polar_prop_4">
-<CMP>
+    <property xml:id="complex_polar_prop_4">
+      <CMP>
 for all r,a | complex_polar(r,a) = r*e^(a*i)
 </CMP>
 
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMBIND>
-    <OMS cd="quant1" name="forall"/>
-    <OMBVAR>
-      <OMV name="r"/>
-      <OMV name="a"/>
-    </OMBVAR>
-    <OMA>
-      <OMS cd="relation1" name="eq"/>
-      <OMA>
-        <OMS cd="complex1" name="complex_polar"/>
-        <OMV name="r"/>
-        <OMV name="a"/>
-      </OMA>
-      <OMA>
-        <OMS cd="arith1" name="times"/>
-	<OMV name="r"/>
-	<OMA>
-	  <OMS cd="transc1" name="exp"/>
-	  <OMA>
-	    <OMS cd="arith1" name="times"/>
-	    <OMV name="a"/>
-	    <OMS cd="nums1" name="i"/>
-	  </OMA>
-	</OMA>
-      </OMA>
-    </OMA>
-  </OMBIND>
-</OMOBJ>
-</FMP></property>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMBIND>
+            <OMS cd="quant1" name="forall"/>
+            <OMBVAR>
+              <OMV name="r"/>
+              <OMV name="a"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="relation1" name="eq"/>
+              <OMA>
+                <OMS cd="complex1" name="complex_polar"/>
+                <OMV name="r"/>
+                <OMV name="a"/>
+              </OMA>
+              <OMA>
+                <OMS cd="arith1" name="times"/>
+	               <OMV name="r"/>
+	               <OMA>
+	                 <OMS cd="transc1" name="exp"/>
+	                 <OMA>
+	                   <OMS cd="arith1" name="times"/>
+	                   <OMV name="a"/>
+	                   <OMS cd="nums1" name="i"/>
+	                 </OMA>
+	               </OMA>
+              </OMA>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </property>
 
-<property xml:id="complex_polar_prop_5">
-<CMP>
+    <property xml:id="complex_polar_prop_5">
+      <CMP>
 for all x,y,r,a |
 (r sin a = y and r cos a = x) implies (complex_polar(r,a) = 
 complex_cartesian(x,y)
 </CMP>
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-<OMBIND>
-  <OMS cd="quant1" name="forall"/>
-  <OMBVAR>
-    <OMV name="x"/>
-    <OMV name="y"/>
-    <OMV name="r"/>
-    <OMV name="a"/>
-  </OMBVAR>
-  <OMA>
-    <OMS cd="logic1" name="implies"/>
-    <OMA>
-      <OMS cd="logic1" name="and"/>
-      <OMA>
-        <OMS cd="relation1" name="eq"/>
-        <OMA>
-          <OMS cd="arith1" name="times"/>
-	  <OMV name="r"/>
-	  <OMA>
-	    <OMS cd="transc1" name="sin"/>
-	    <OMV name="a"/>
-	  </OMA>
-        </OMA>
-	<OMV name="y"/>
-      </OMA>
-      <OMA>
-        <OMS cd="relation1" name="eq"/>
-        <OMA>
-          <OMS cd="arith1" name="times"/>
-	  <OMV name="r"/>
-	  <OMA>
-	    <OMS cd="transc1" name="cos"/>
-	    <OMV name="a"/>
-	  </OMA>
-        </OMA>
-	<OMV name="x"/>
-      </OMA>
-    </OMA>
-    <OMA>
-      <OMS cd="relation1" name="eq"/>
-      <OMA>
-        <OMS cd="complex1" name="complex_polar"/>
-        <OMV name="r"/>
-        <OMV name="a"/>
-      </OMA>
-      <OMA>
-        <OMS cd="complex1" name="complex_cartesian"/>
-        <OMV name="x"/>
-        <OMV name="y"/>
-      </OMA>
-    </OMA>
-  </OMA>
-</OMBIND>
-</OMOBJ></FMP></property>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMBIND>
+            <OMS cd="quant1" name="forall"/>
+            <OMBVAR>
+              <OMV name="x"/>
+              <OMV name="y"/>
+              <OMV name="r"/>
+              <OMV name="a"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="logic1" name="implies"/>
+              <OMA>
+                <OMS cd="logic1" name="and"/>
+                <OMA>
+                  <OMS cd="relation1" name="eq"/>
+                  <OMA>
+                    <OMS cd="arith1" name="times"/>
+	                   <OMV name="r"/>
+	                   <OMA>
+	                     <OMS cd="transc1" name="sin"/>
+	                     <OMV name="a"/>
+	                   </OMA>
+                  </OMA>
+	                 <OMV name="y"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="relation1" name="eq"/>
+                  <OMA>
+                    <OMS cd="arith1" name="times"/>
+	                   <OMV name="r"/>
+	                   <OMA>
+	                     <OMS cd="transc1" name="cos"/>
+	                     <OMV name="a"/>
+	                   </OMA>
+                  </OMA>
+	                 <OMV name="x"/>
+                </OMA>
+              </OMA>
+              <OMA>
+                <OMS cd="relation1" name="eq"/>
+                <OMA>
+                  <OMS cd="complex1" name="complex_polar"/>
+                  <OMV name="r"/>
+                  <OMV name="a"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="complex1" name="complex_cartesian"/>
+                  <OMV name="x"/>
+                  <OMV name="y"/>
+                </OMA>
+              </OMA>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </property>
 
-<property xml:id="complex_polar_prop_6">
-<CMP> for all x | if a is a real number and k is an integer then
+    <property xml:id="complex_polar_prop_6">
+      <CMP> for all x | if a is a real number and k is an integer then
   complex_polar(x,a) = complex_polar(x,a+2*pi*k) </CMP>
 
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-<OMBIND>
-  <OMS cd="quant1" name="forall"/>
-  <OMBVAR>
-    <OMV name="x"/>
-  </OMBVAR>
-  <OMA>
-    <OMS cd="logic1" name="implies"/>
-    <OMA>
-      <OMS cd="logic1" name="and"/>
-      <OMA>
-        <OMS cd="set1" name="in"/>
-	<OMV name="a"/>
-	<OMS cd="setname1" name="R"/>
-      </OMA>
-      <OMA>
-        <OMS cd="set1" name="in"/>
-	<OMV name="k"/>
-	<OMS cd="setname1" name="Z"/>
-      </OMA>
-    </OMA>
-    <OMA>
-      <OMS cd="relation1" name="eq"/>
-      <OMA>
-        <OMS cd="complex1" name="complex_polar"/>
-	<OMV name="x"/>
-	<OMV name="a"/>
-      </OMA>
-      <OMA>
-        <OMS cd="complex1" name="complex_polar"/>
-	<OMV name="x"/>
-	<OMA>
-	  <OMS cd="arith1" name="plus"/>
-	  <OMV name="a"/>
-	  <OMA>
-	    <OMS cd="arith1" name="times"/>
-	    <OMI> 2 </OMI>
-	    <OMS cd="nums1" name="pi"/>
-	    <OMV name="k"/>
-	  </OMA>
-	</OMA>
-      </OMA>
-    </OMA>
-  </OMA>
-</OMBIND>
-</OMOBJ></FMP></property>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMBIND>
+            <OMS cd="quant1" name="forall"/>
+            <OMBVAR>
+              <OMV name="x"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="logic1" name="implies"/>
+              <OMA>
+                <OMS cd="logic1" name="and"/>
+                <OMA>
+                  <OMS cd="set1" name="in"/>
+	                 <OMV name="a"/>
+	                 <OMS cd="setname1" name="R"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="set1" name="in"/>
+	                 <OMV name="k"/>
+	                 <OMS cd="setname1" name="Z"/>
+                </OMA>
+              </OMA>
+              <OMA>
+                <OMS cd="relation1" name="eq"/>
+                <OMA>
+                  <OMS cd="complex1" name="complex_polar"/>
+	                 <OMV name="x"/>
+	                 <OMV name="a"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="complex1" name="complex_polar"/>
+	                 <OMV name="x"/>
+	                 <OMA>
+	                   <OMS cd="arith1" name="plus"/>
+	                   <OMV name="a"/>
+	                   <OMA>
+	                     <OMS cd="arith1" name="times"/>
+	                     <OMI> 2 </OMI>
+	                     <OMS cd="nums1" name="pi"/>
+	                     <OMV name="k"/>
+	                   </OMA>
+	                 </OMA>
+                </OMA>
+              </OMA>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </property>
 
-<Example> i = complex_polar(1,pi/2) 
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"><OMA>
-  <OMS cd="relation1" name="eq"/>
-  <OMS cd="nums1" name="i"/>
-  <OMA>
-    <OMS cd="complex1" name="complex_polar"/>
-    <OMS cd="alg1" name="one"/>
-    <OMA>
-      <OMS cd="arith1" name="divide"/>
-      <OMS cd="nums1" name="pi"/>
-      <OMI> 2 </OMI>
-    </OMA>
-  </OMA>
-</OMA></OMOBJ>
-</Example>
-</CDDefinition>
-
-<CDDefinition xml:id="argument">
-  <Name>argument</Name>
-  <Title>Argument</Title>
-  <Pragmatic>
-    <Element type="opel">arg</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Model>MathMLType</Model>
-      <Default>real</Default>
-    </Attribute>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description>
-    This symbol represents the unary function which returns the argument of a complex
-    number, viz. the angle which a straight line drawn from the number to zero makes with
-    the Real line (measured anti-clockwise). The argument to the symbol is the complex
-    number whos argument is being taken.
-  </Description>
+    <Example> i = complex_polar(1,pi/2) 
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
+        <OMA>
+          <OMS cd="relation1" name="eq"/>
+          <OMS cd="nums1" name="i"/>
+          <OMA>
+            <OMS cd="complex1" name="complex_polar"/>
+            <OMS cd="alg1" name="one"/>
+            <OMA>
+              <OMS cd="arith1" name="divide"/>
+              <OMS cd="nums1" name="pi"/>
+              <OMI> 2 </OMI>
+            </OMA>
+          </OMA>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="argument">
+    <Name>argument</Name>
+    <Title>Argument</Title>
+    <Pragmatic>
+      <Element type="opel">arg</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Model>MathMLType</Model>
+        <Default>real</Default>
+      </Attribute>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol represents the unary function which returns the argument of a complex number, viz. the angle which a straight line drawn from the number to zero makes with the Real line (measured anti-clockwise). The argument to the symbol is the complex number whos argument is being taken.</Description>
   
-<MMLexample speclevel="1" xml:id="argument.ex1">
-  <description>
-    <p>The following example encodes the argument operation on <var>x</var> +
+    <MMLexample speclevel="1" xml:id="argument.ex1">
+      <description>
+        <p>The following example encodes the argument operation on <var>x</var> +
     i<var>y</var>.</p>
-  </description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply>
-  <arg/>
-  <apply><plus/>
-    <ci> x </ci>
-    <apply><times/><imaginaryi/><ci>y</ci></apply>
-  </apply>
-</apply>
-  </math>
-</MMLexample>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <arg/>
+          <apply>
+            <plus/>
+            <ci> x </ci>
+            <apply>
+              <times/>
+              <imaginaryi/>
+              <ci>y</ci>
+            </apply>
+          </apply>
+        </apply>
+      </math>
+    </MMLexample>
 
-  <property xml:id="argument_prop_7">
-<CMP>for all r,a | argument(complex_polar(r,a)=a) </CMP>
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMBIND>
-    <OMS cd="quant1" name="forall"/>
-    <OMBVAR>
-      <OMV name="r"/>
-      <OMV name="a"/>
-    </OMBVAR>
-    <OMA>
-      <OMS cd="relation1" name="eq"/>
-      <OMA>
-        <OMS cd="complex1" name="argument"/>
-        <OMA>
-          <OMS cd="complex1" name="complex_polar"/>
-          <OMV name="r"/>
-          <OMV name="a"/>
-        </OMA>
-      </OMA>
-      <OMV name="a"/>
-    </OMA>
-  </OMBIND>
-</OMOBJ>
-</FMP></property>
+    <property xml:id="argument_prop_7">
+      <CMP>for all r,a | argument(complex_polar(r,a)=a) </CMP>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMBIND>
+            <OMS cd="quant1" name="forall"/>
+            <OMBVAR>
+              <OMV name="r"/>
+              <OMV name="a"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="relation1" name="eq"/>
+              <OMA>
+                <OMS cd="complex1" name="argument"/>
+                <OMA>
+                  <OMS cd="complex1" name="complex_polar"/>
+                  <OMV name="r"/>
+                  <OMV name="a"/>
+                </OMA>
+              </OMA>
+              <OMV name="a"/>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </property>
 
-<property xml:id="argument_prop_8">
-<CMP> the argument of x+i*y = arctan(y/x) (if x is positive) </CMP>
+    <property xml:id="argument_prop_8">
+      <CMP> the argument of x+i*y = arctan(y/x) (if x is positive) </CMP>
 
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="logic1" name="implies"/>
-    <OMA>
-      <OMS cd="relation1" name="gt"/>
-      <OMV name="x"/>
-      <OMS cd="alg1" name="zero"/>
-    </OMA>
-    <OMA>
-      <OMS cd="relation1" name="eq"/>
-      <OMA>
-        <OMS cd="complex1" name="argument"/>
-        <OMA>
-          <OMS cd="complex1" name="complex_cartesian"/>
-          <OMV name="x"/>
-          <OMV name="y"/>
-        </OMA>
-      </OMA>
-      <OMA>
-        <OMS cd="transc1" name="arctan"/>
-        <OMA>
-          <OMS cd="arith1" name="divide"/>
-	  <OMV name="y"/>
-	  <OMV name="x"/>
-        </OMA>
-      </OMA>
-    </OMA>
-  </OMA>
-</OMOBJ>
-</FMP></property>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMA>
+            <OMS cd="logic1" name="implies"/>
+            <OMA>
+              <OMS cd="relation1" name="gt"/>
+              <OMV name="x"/>
+              <OMS cd="alg1" name="zero"/>
+            </OMA>
+            <OMA>
+              <OMS cd="relation1" name="eq"/>
+              <OMA>
+                <OMS cd="complex1" name="argument"/>
+                <OMA>
+                  <OMS cd="complex1" name="complex_cartesian"/>
+                  <OMV name="x"/>
+                  <OMV name="y"/>
+                </OMA>
+              </OMA>
+              <OMA>
+                <OMS cd="transc1" name="arctan"/>
+                <OMA>
+                  <OMS cd="arith1" name="divide"/>
+	                 <OMV name="y"/>
+	                 <OMV name="x"/>
+                </OMA>
+              </OMA>
+            </OMA>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </property>
 
-<property xml:id="argument_prop_9">
-<CMP>
+    <property xml:id="argument_prop_9">
+      <CMP>
   the argument of x+i*y = arctan(y,x) (two-argument arctan from transc2)
 </CMP>
 
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="relation1" name="eq"/>
-    <OMA>
-      <OMS cd="complex1" name="argument"/>
-      <OMA>
-        <OMS cd="complex1" name="complex_cartesian"/>
-        <OMV name="x"/>
-        <OMV name="y"/>
-      </OMA>
-    </OMA>
-    <OMA>
-      <OMS cd="transc2" name="arctan"/>
-      <OMV name="y"/>
-      <OMV name="x"/>
-    </OMA>
-  </OMA>
-</OMOBJ>
-</FMP></property>
-</CDDefinition>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMA>
+            <OMS cd="relation1" name="eq"/>
+            <OMA>
+              <OMS cd="complex1" name="argument"/>
+              <OMA>
+                <OMS cd="complex1" name="complex_cartesian"/>
+                <OMV name="x"/>
+                <OMV name="y"/>
+              </OMA>
+            </OMA>
+            <OMA>
+              <OMS cd="transc2" name="arctan"/>
+              <OMV name="y"/>
+              <OMV name="x"/>
+            </OMA>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
+  <CDDefinition xml:id="conjugate">
+    <Name>conjugate</Name>
+    <Title>Complex Conjugate</Title>
+    <Pragmatic>
+      <Element type="opel">conjugate</Element>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>The unary "conjugate" arithmetic operator is used to represent the complex conjugate of its argument.</Description> 
 
-<CDDefinition xml:id="conjugate">
-  <Name>conjugate</Name>
-  <Title>Complex Conjugate</Title>
-  <Pragmatic>
-    <Element type="opel">conjugate</Element>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    The unary "conjugate" arithmetic operator is used to represent the complex conjugate
-    of its argument.
-  </Description> 
-
-  <MMLexample speclevel="1" xml:id="conjugate.ex1">
-    <description>
-      <p>The following example encodes the conjugate of <var>x</var> + i<var>y</var>.</p>
-    </description>
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply><conjugate/>
- <apply><plus/>
-    <ci>x</ci>
-    <apply><times/>
-      <cn>&amp;ImaginaryI;</cn>
-    <ci>y</ci>
-    </apply>
-  </apply>
-</apply>
-</math>
-</MMLexample>
+    <MMLexample speclevel="1" xml:id="conjugate.ex1">
+      <description>
+        <p>The following example encodes the conjugate of <var>x</var> + i<var>y</var>.</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <conjugate/>
+          <apply>
+            <plus/>
+            <ci>x</ci>
+            <apply>
+              <times/>
+              <cn>&amp;ImaginaryI;</cn>
+              <ci>y</ci>
+            </apply>
+          </apply>
+        </apply>
+      </math>
+    </MMLexample>
 
 
-<property xml:id="conjugate_prop_10">
-<CMP>
+    <property xml:id="conjugate_prop_10">
+      <CMP>
  if a is a complex number then (conjugate(a) + a) is a real number
 </CMP>
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="logic1" name="implies"/>
-    <OMA>
-      <OMS cd="set1" name="in"/>
-      <OMV name="a"/>
-      <OMS cd="setname1" name="C"/>
-    </OMA>
-    <OMA>
-      <OMS cd="set1" name="in"/>
-      <OMA>
-        <OMS cd="arith1" name="plus"/>
-        <OMA>
-          <OMS cd="complex1" name="conjugate"/>
-          <OMV name="a"/>
-        </OMA>
-        <OMV name="a"/>
-      </OMA>
-      <OMS cd="setname1" name="R"/>
-    </OMA>
-  </OMA>
-</OMOBJ>
-</FMP></property>
-</CDDefinition>
-
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMA>
+            <OMS cd="logic1" name="implies"/>
+            <OMA>
+              <OMS cd="set1" name="in"/>
+              <OMV name="a"/>
+              <OMS cd="setname1" name="C"/>
+            </OMA>
+            <OMA>
+              <OMS cd="set1" name="in"/>
+              <OMA>
+                <OMS cd="arith1" name="plus"/>
+                <OMA>
+                  <OMS cd="complex1" name="conjugate"/>
+                  <OMV name="a"/>
+                </OMA>
+                <OMV name="a"/>
+              </OMA>
+              <OMS cd="setname1" name="R"/>
+            </OMA>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
 </CD>
