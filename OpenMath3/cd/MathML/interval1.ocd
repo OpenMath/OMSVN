@@ -1,6 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CD xmlns="http://www.openmath.org/OpenMathCD" xml:id="interval1">
-  <CDComment>     This document is distributed in the hope that it will be useful, 
+<CD xmlns="http://www.openmath.org/OpenMathCD">
+
+<CDComment>
+
+     This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -30,217 +32,243 @@
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 </CDComment>
-  <CDName>interval1</CDName>
-  <CDBase>http://www.openmath.org/cd</CDBase>
-  <CDURL>http://www.openmath.org/cd/interval1.ocd</CDURL>
-  <CDReviewDate>2006-03-30</CDReviewDate>
-  <CDDate>2008-09-26</CDDate>
-  <CDVersion>3</CDVersion>
-  <CDRevision>0</CDRevision>
-  <CDStatus>draft</CDStatus>
-  <Description>This CD holds symbols which describe both discrete and continuous 1-dimensional intervals (with open/closed end points).</Description>
-  <CDDefinition xml:id="integer_interval">
-    <Name>integer_interval</Name>
-    <Pragmatic>
-      <Element type="opel">integer_interval</Element>
-    </Pragmatic>
-    <Role>application</Role>
-    <Description>A symbol to denote a discrete 1 dimensional interval from the first argument to the second (inclusive), where the discretisation occurs at unit intervals. The arguments are the start and the end points of the interval in that order.</Description>
-    <Example>
+
+<CDName>interval1</CDName>
+<CDBase>http://www.openmath.org/cd</CDBase>
+<CDURL>http://www.openmath.org/cd/interval1.ocd </CDURL>
+<CDReviewDate>2006-03-30</CDReviewDate>
+<CDDate>2004-03-30</CDDate>
+<CDVersion>3</CDVersion>
+<CDRevision>0</CDRevision>
+<CDStatus>draft</CDStatus>
+<Description>
+    This CD holds symbols which describe both discrete and continuous
+    1-dimensional intervals (with open/closed end points).
+</Description>
+
+
+<CDDefinition xml:id="integer_interval">
+<Name>integer_interval</Name>
+  <Pragmatic>
+    <Element type="opel">integer_interval</Element>
+  </Pragmatic>
+  <Role>application</Role>
+  <Description> 
+    A symbol to denote a discrete 1 dimensional interval from the first argument to the
+    second (inclusive), where the discretisation occurs at unit intervals. The arguments
+    are the start and the end points of the interval in that order.
+  </Description>
+  <Example>
 The integer interval 1, 2, ..., 10.
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
-             version="3.0">
-        <OMA>
-          <OMS cd="interval1" name="integer_interval"/>
-          <OMI> 1 </OMI>
-          <OMI> 10 </OMI>
-        </OMA>
-      </OMOBJ>
-    </Example>
-  </CDDefinition>
-  <CDDefinition xml:id="interval">
-    <Name>interval</Name>
-    <Title>Interval</Title>
-    <Pragmatic>
-      <Element type="container">interval</Element>
-      <Attribute>
-        <Name>type</Name>
-        <Model> "closed" | "open" | "open-closed" | "closed-open" </Model>
-        <Default> closed </Default>
-      </Attribute>
-      <Attribute>
-        <Name>type</Name>
-        <Model> MathMLType </Model>
-        <Default> real </Default>
-      </Attribute>
-    </Pragmatic>
-    <Role>application</Role>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="interval1" name="integer_interval"/>
+    <OMI> 1 </OMI>
+    <OMI> 10 </OMI>
+  </OMA>
+</OMOBJ>
+</Example>
+</CDDefinition>
 
-    <Description>A symbol to denote a continuous 1-dimensional interval without any information about the character of the end points (used in definite integration). The arguments are the start and the end points of the interval in that order.</Description>
-    <discussion>
-      <p>The <el>interval</el> element expects two child elements that evaluate to real
+<CDDefinition xml:id="interval">
+  <Name>interval</Name>
+  <Title>Interval</Title>
+  <Pragmatic>
+    <Element type="container">interval</Element>
+    <Attribute>
+      <Name>closure</Name>
+      <Model> "closed" | "open" | "open-closed" | "closed-open" </Model>
+      <Default> closed </Default>
+    </Attribute>
+    <Attribute>
+      <Name>type</Name>
+      <Model> MathMLType </Model>
+      <Default> real </Default>
+    </Attribute>
+  </Pragmatic>
+  <Role>application</Role>
+
+  <Description> 
+    A symbol to denote a continuous 1-dimensional interval without any information about
+    the character of the end points (used in definite integration). The arguments are the
+    start and the end points of the interval in that order.
+  </Description>
+  <discussion>
+    <p>The <el>interval</el> element expects two child elements that evaluate to real
     numbers. </p>
-    </discussion>
+  </discussion>
   
-
-    <MMLexample>
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <apply>
-          <int/>
-          <interval>
-            <cn>0</cn>
-            <cn>1</cn>
-          </interval>
-          <ci type="function">f</ci>
-        </apply>
-      </math>
-    </MMLexample>
+<!-- ***** do this with strict -->
+<MMLexample>
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply><int/>
+  <interval><cn>0</cn><cn>1</cn></interval>
+  <ci type="function">f</ci>
+</apply>
+</math>
+</MMLexample>
 
 
-    <Example>
+<Example>
 The interval 1.0, ..., 10.0.
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
-             version="3.0">
-        <OMA>
-          <OMS cd="interval1" name="interval"/>
-          <OMF dec="1.0"/>
-          <OMF dec="10.0"/>
-        </OMA>
-      </OMOBJ>
-    </Example>
-  </CDDefinition>
-  <CDDefinition xml:id="interval_oo">
-    <Name>interval_oo</Name>
-    <Pragmatic>
-      <Element type="opel">interval</Element>
-      <Attribute>
-        <Name>closure</Name>
-        <Prescribed>"open"</Prescribed>
-      </Attribute>
-    </Pragmatic>
-    <Role>application</Role>
-    <Description>A symbol to denote a continuous 1-dimensional interval with both end points excluded from the interval. The arguments are the start and the end points of the interval in that order.</Description>
-    <Example>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="interval1" name="interval"/>
+    <OMF dec="1.0"/>
+    <OMF dec="10.0"/>
+  </OMA>
+</OMOBJ>
+</Example>
+</CDDefinition>
+
+<CDDefinition xml:id="interval_oo">
+  <Name>interval_oo</Name>
+  <Pragmatic>
+    <Element type="opel">interval</Element>
+    <Attribute>
+      <Name>closure</Name>
+      <Prescribed>"open"</Prescribed>
+    </Attribute>
+  </Pragmatic>
+  <Role>application</Role>
+  <Description> 
+    A symbol to denote a continuous 1-dimensional interval with both end points excluded
+    from the interval. The arguments are the start and the end points of the interval in
+    that order.
+  </Description>
+  <Example>
     The continuous open interval (1,10).
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
-             version="3.0">
-        <OMA>
-          <OMS cd="interval1" name="interval_oo"/>
-          <OMI> 1 </OMI>
-          <OMI> 10 </OMI>
-        </OMA>
-      </OMOBJ>
-    </Example>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="interval1" name="interval_oo"/>
+    <OMI> 1 </OMI>
+    <OMI> 10 </OMI>
+  </OMA>
+</OMOBJ>
+</Example>
 
-    <MMLexample speclevel="1" xml:id="interval_oo.ex1">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <interval closure="open">
-          <ci>x</ci>
-          <cn>1</cn>
-        </interval>
-      </math>
-    </MMLexample>
+<MMLexample speclevel="1" xml:id="interval_oo.ex1">
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <interval closure="open">
+      <ci>x</ci>
+      <cn>1</cn>
+    </interval>
+  </math>
+</MMLexample>
 
 
-  </CDDefinition>
-  <CDDefinition xml:id="interval_cc">
-    <Name>interval_cc</Name>
-    <Pragmatic>
-      <Element type="opel">interval</Element>
-      <Attribute>
-        <Name>closure</Name>
-        <Prescribed>"closed"</Prescribed>
-      </Attribute>
-    </Pragmatic>
-    <Role>application</Role>
-    <Description>A symbol to denote a continuous 1-dimensional interval with both end points included in the interval. The arguments are the start and the end points of the interval in that order.</Description>
-    <Example>
+</CDDefinition>
+
+<CDDefinition xml:id="interval_cc">
+  <Name>interval_cc</Name>
+  <Pragmatic>
+    <Element type="opel">interval</Element>
+    <Attribute>
+      <Name>closure</Name>
+      <Prescribed>"closed"</Prescribed>
+    </Attribute>
+  </Pragmatic>
+  <Role>application</Role>
+  <Description> 
+    A symbol to denote a continuous 1-dimensional interval with both end points included
+    in the interval. The arguments are the start and the end points of the interval in
+    that order.
+  </Description>
+  <Example>
     The continuous closed interval [1,10].
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
-             version="3.0">
-        <OMA>
-          <OMS cd="interval1" name="interval_cc"/>
-          <OMI> 1 </OMI>
-          <OMI> 10 </OMI>
-        </OMA>
-      </OMOBJ>
-    </Example>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="interval1" name="interval_cc"/>
+    <OMI> 1 </OMI>
+    <OMI> 10 </OMI>
+  </OMA>
+</OMOBJ>
+</Example>
 
-    <MMLexample speclevel="1" xml:id="interval_cc.ex1">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <interval closure="closed">
-          <cn>0</cn>
-          <cn>1</cn>
-        </interval>
-      </math>
-    </MMLexample>
-  </CDDefinition>
-  <CDDefinition xml:id="interval_oc">
-    <Name>interval_oc</Name>
-    <Pragmatic>
-      <Element type="opel">interval</Element>
-      <Attribute>
-        <Name>closure</Name>
-        <Prescribed>"open-closed"</Prescribed>
-      </Attribute>
-    </Pragmatic>
-    <Role>application</Role>
-    <Description>A symbol to denote a continuous 1-dimensional interval with the first point excluded from the interval, but the last included. The arguments are the start and the end points of the interval in that order.</Description>
-    <Example>
+<MMLexample speclevel="1" xml:id="interval_cc.ex1">
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <interval closure="closed">
+      <cn>0</cn>
+      <cn>1</cn>
+    </interval>
+  </math>
+</MMLexample>
+</CDDefinition>
+
+<CDDefinition xml:id="interval_oc">
+<Name>interval_oc</Name>
+  <Pragmatic>
+    <Element type="opel">interval</Element>
+    <Attribute>
+      <Name>closure</Name>
+      <Prescribed>"open-closed"</Prescribed>
+    </Attribute>
+  </Pragmatic>
+  <Role>application</Role>
+  <Description> 
+    A symbol to denote a continuous 1-dimensional interval with the first point excluded
+    from the interval, but the last included. The arguments are the start and the end
+    points of the interval in that order.
+  </Description>
+  <Example>
     The continuous interval open at the lower bound and closed at the higher 
     bound (1,10].
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
-             version="3.0">
-        <OMA>
-          <OMS cd="interval1" name="interval_oc"/>
-          <OMI> 1 </OMI>
-          <OMI> 10 </OMI>
-        </OMA>
-      </OMOBJ>
-    </Example>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="interval1" name="interval_oc"/>
+    <OMI> 1 </OMI>
+    <OMI> 10 </OMI>
+  </OMA>
+</OMOBJ>
+</Example>
 
-    <MMLexample speclevel="1" xml:id="interval_oc.ex1">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <interval closure="open-closed">
-          <cn>0</cn>
-          <cn>1</cn>
-        </interval>
-      </math>
-    </MMLexample>
+<MMLexample speclevel="1" xml:id="interval_oc.ex1">
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <interval closure="open-closed">
+      <cn>0</cn>
+      <cn>1</cn>
+    </interval>
+  </math>
+</MMLexample>
 
 
-  </CDDefinition>
-  <CDDefinition xml:id="interval_co">
-    <Name>interval_co</Name>
-    <Pragmatic>
-      <Element type="opel">interval</Element>
-      <Attribute>
-        <Name>closure</Name>
-        <Prescribed>"closed-open"</Prescribed>
-      </Attribute>
-    </Pragmatic>
-    <Role>application</Role>
-    <Description>A symbol to denote a continuous 1-dimensional interval with the first point included in the interval, but the last excluded. The arguments are the start and the end points of the interval in that order.</Description>
-    <Example>
+</CDDefinition>
+
+<CDDefinition xml:id="interval_co">
+  <Name>interval_co</Name>
+  <Pragmatic>
+    <Element type="opel">interval</Element>
+    <Attribute>
+      <Name>closure</Name>
+      <Prescribed>"closed-open"</Prescribed>
+    </Attribute>
+  </Pragmatic>
+  <Role>application</Role>
+  <Description> 
+    A symbol to denote a continuous 1-dimensional interval with the first point included
+    in the interval, but the last excluded. The arguments are the start and the end points
+    of the interval in that order.
+  </Description>
+  <Example>
     The continuous interval closed at the lower bound and open at the higher bound [1,10).
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
-             version="3.0">
-        <OMA>
-          <OMS cd="interval1" name="interval_co"/>
-          <OMI> 1 </OMI>
-          <OMI> 10 </OMI>
-        </OMA>
-      </OMOBJ>
-    </Example>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="interval1" name="interval_co"/>
+    <OMI> 1 </OMI>
+    <OMI> 10 </OMI>
+  </OMA>
+</OMOBJ>
+</Example>
 
-    <MMLexample speclevel="1" xml:id="interval_co.ex1">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <interval closure="closed-open">
-          <cn>0</cn>
-          <cn>1</cn>
-        </interval>
-      </math>
-    </MMLexample>
+<MMLexample speclevel="1" xml:id="interval_co.ex1">
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <interval closure="closed-open">
+      <cn>0</cn>
+      <cn>1</cn>
+    </interval>
+  </math>
+</MMLexample>
 
-  </CDDefinition>
+</CDDefinition>
+
 </CD>
