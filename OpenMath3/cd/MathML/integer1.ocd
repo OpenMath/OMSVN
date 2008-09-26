@@ -1,505 +1,567 @@
-<CD xmlns="http://www.openmath.org/OpenMathCD">
+<?xml version="1.0" encoding="UTF-8"?>
+<CD xmlns="http://www.openmath.org/OpenMathCD" xml:id="integer1">
+  <CDComment/>
+  <CDName/>
+  <CDBase/>
+  <CDURL/>
+  <CDReviewDate/>
+  <CDDate>2008-09-26</CDDate>
+  <CDVersion/>
+  <CDRevision/>
+  <CDStatus/>
+  <Description/>
+  <CDDefinition xml:id="factorof">
+    <Name/>
+    <Pragmatic>
+      <Element type="opel">factorof</Element>
+      <Attribute>
+        <Name/>
+        <Model> MathMLType </Model>
+        <Default> integer </Default>
+      </Attribute>
+    </Pragmatic>
+    <Role/>
+    <Description/>
 
-<CDComment>
-
-     This document is distributed in the hope that it will be useful, 
-     but WITHOUT ANY WARRANTY; without even the implied warranty of 
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
-     The copyright holder grants you permission to redistribute this 
-     document freely as a verbatim copy. Furthermore, the copyright
-     holder permits you to develop any derived work from this document
-     provided that the following conditions are met.
-       a) The derived work acknowledges the fact that it is derived from
-          this document, and maintains a prominent reference in the 
-          work to the original source.
-       b) The fact that the derived work is not the original OpenMath 
-          document is stated prominently in the derived work.  Moreover if
-          both this document and the derived work are Content Dictionaries
-          then the derived work must include a different CDName element,
-          chosen so that it cannot be confused with any works adopted by
-          the OpenMath Society.  In particular, if there is a Content 
-          Dictionary Group whose name is, for example, `math' containing
-          Content Dictionaries named `math1', `math2' etc., then you should 
-          not name a derived Content Dictionary `mathN' where N is an integer.
-          However you are free to name it `private_mathN' or some such.  This
-          is because the names `mathN' may be used by the OpenMath Society
-          for future extensions.
-       c) The derived work is distributed under terms that allow the
-          compilation of derived works, but keep paragraphs a) and b)
-          intact.  The simplest way to do this is to distribute the derived
-          work under the OpenMath license, but this is not a requirement.
-     If you have questions about this license please contact the OpenMath
-     society at http://www.openmath.org.
-</CDComment>
-
-<CDName>integer1</CDName>
-<CDBase>http://www.openmath.org/cd</CDBase>
-<CDURL>http://www.openmath.org/cd/integer1.ocd </CDURL>
-<CDReviewDate>2006-03-30</CDReviewDate>
-<CDDate>2004-03-30</CDDate>
-<CDVersion>3</CDVersion>
-<CDRevision>0</CDRevision>
-<CDStatus>draft</CDStatus>
-<Description>
-  This content dictionary provides a collection of basic integer functions.
-</Description>
-
-<CDDefinition xml:id="factorof">
-  <Name>factorof</Name>
-  <Pragmatic>
-    <Element type="opel">factorof</Element>
-    <Attribute>
-      <Name> type </Name>
-      <Model> MathMLType </Model>
-      <Default> integer </Default>
-    </Attribute>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description>
-   This is the binary operator that is used to indicate the mathematical relationship a
-   "is a factor of" b, where a is the first argument and b is the second. This
-   relationship is true if and only if b mod a = 0.
-  </Description>
-
-  <property>
     <description>
-      <p>ForAll( [a,b], a and b integers, a divides b  if there is an integer c such that a*c = b )</p>
+      <p>This is the binary MathML operator that is used indicate the mathematical
+    relationship a "is a factor of" b. This relationship is true just if b mod a = 0</p>
     </description>
-  </property>
-
-  <MMLexample  speclevel="1" xml:id="factorof.ex1">
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply><factorof/><ci>a</ci><ci>b</ci></apply>
-    </math>
-  </MMLexample>
-
-<property xml:id="factorof_prop_1">
-<CMP> b is a factor of a iff remainder of a divided by b = 0 </CMP>
-<FMP>
-  <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-    <OMA>
-      <OMS cd="logic1" name="implies"/>
-      <OMA>
-        <OMS cd="integer1" name="factorof"/>
-	<OMV name="b"/>
-	<OMV name="a"/>
-      </OMA>
-      <OMA>
-        <OMS cd="relation1" name="eq"/>
-	<OMA>
-	  <OMS cd="integer1" name="remainder"/>
-	  <OMV name="a"/>
-	  <OMV name="b"/>
-	</OMA>
-	<OMS cd="alg1" name="zero"/>
-      </OMA>
-    </OMA>
-  </OMOBJ>
-</FMP></property>
-</CDDefinition>
-
-<CDDefinition xml:id="factorial">
-  <Name>factorial</Name>
-  <Title>Factorial</Title>
-  <Pragmatic>
-    <Element type="opel">factorial</Element>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    The symbol to represent a unary factorial function on non-negative integers.
-  </Description>
-
-  <discussion>
-    <p>Factorials are defined by n! = n*(n-1)* ... * 1</p>
-  </discussion>
+    <discussion>
+      <p>The <el>factorof</el> element is the relational operator element on two
+    integers <var>a</var> and <var>b</var> specifying whether one is an integer
+    factor of the other.</p>
+    </discussion>
   
-  <property>
+    <property>
+          <description>
+            <p>ForAll( [a,b], a and b integers, a divides b  if there is an integer c such that a*c = b )</p>
+          </description>
+        </property>
+        <MMLexample>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <factorof/>
+          <ci>a</ci>
+          <ci>b</ci>
+        </apply>
+      </math>
+    </MMLexample>
+
+    <property xml:id="factorof_prop_1">
+      <CMP> b is a factor of a iff remainder of a divided by b = 0 </CMP>
+
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMA>
+            <OMS cd="logic1" name="implies"/>
+            <OMA>
+              <OMS cd="integer1" name="factorof"/>
+	             <OMV name="b"/>
+	             <OMV name="a"/>
+            </OMA>
+            <OMA>
+              <OMS cd="relation1" name="eq"/>
+	             <OMA>
+	               <OMS cd="integer1" name="remainder"/>
+	               <OMV name="a"/>
+	               <OMV name="b"/>
+	             </OMA>
+	             <OMS cd="alg1" name="zero"/>
+            </OMA>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
+  <CDDefinition xml:id="factorial">
+    <Name/>
+    <Title/>
+    <Pragmatic>
+      <Element type="opel">factorial</Element>
+    </Pragmatic>
+    <Role/>
+    <Description/>
+
     <description>
-      <p>ForAll( n, n \gt 0, n! = n*(n-1)! )</p>
-    </description>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<bind><forall/>
-  <bvar><ci>n</ci></bvar>
-  <condition><apply><gt/><ci>n</ci><cn>0</cn></apply></condition>
-  <apply><eq/>
-    <apply><factorial/><ci>n</ci></apply>
-    <apply><times/>
-      <ci>n</ci>
-      <apply><factorial/>
-        <apply><minus/><ci>n</ci><cn>1</cn></apply>
-      </apply>
-    </apply>
-  </apply>
-</bind>
-</math>
-</property>
+          <p>This is the unary operator used to construct factorials.  Factorials are
+          defined by n! = n*(n-1)* ... * 1</p>
+        </description>
+        <property>
+          <description>
+            <p>ForAll( n, n \gt 0, n! = n*(n-1)! )</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <bind>
+          <forall/>
+          <bvar>
+            <ci>n</ci>
+          </bvar>
+          <condition>
+            <apply>
+              <gt/>
+              <ci>n</ci>
+              <cn>0</cn>
+            </apply>
+          </condition>
+          <apply>
+            <eq/>
+            <apply>
+              <factorial/>
+              <ci>n</ci>
+            </apply>
+            <apply>
+              <times/>
+              <ci>n</ci>
+              <apply>
+                <factorial/>
+                <apply>
+                  <minus/>
+                  <ci>n</ci>
+                  <cn>1</cn>
+                </apply>
+              </apply>
+            </apply>
+          </apply>
+        </bind>
+      </math>
+    </property>
+        <property>
+          <description>
+            <p>0! = 1</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <eq/>
+          <apply>
+            <factorial/>
+            <cn>0</cn>
+          </apply>
+          <cn>1</cn>
+        </apply>
+      </math>
+    </property>
 
-<property>
-  <description>
-    <p>0! = 1</p>
-  </description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply><eq/>
-  <apply><factorial/><cn>0</cn></apply>
-  <cn>1</cn>
-</apply>
-</math>
-</property>
-
-<MMLexample speclevel="1" xml:id="factorial.ex1">
-  <description>
-    <p>If this were evaluated at <var>n</var> = 5 it would evaluate to 120.</p>
-  </description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply><factorial/><ci>n</ci></apply>
-  </math>
-</MMLexample>
+	    <MMLexample>
+	      <description>
+        <p>If this were evaluated at <var>n</var> = 5 it would evaluate to 120.</p>
+	      </description>
+	    <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <factorial/>
+          <ci>n</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
 
-<property xml:id="factorial_prop_2">
-<CMP>
+    <property xml:id="factorial_prop_2">
+      <CMP>
 factorial n = product [1..n]
 </CMP>
-<FMP>
-  <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-    <OMA>
-      <OMS cd="relation1" name="eq"/>
-      <OMA>
-        <OMS cd="integer1" name="factorial"/>
-        <OMV name="n"/>
-      </OMA>
-      <OMA>
-        <OMS cd="arith1" name="product"/>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
           <OMA>
-            <OMS cd="interval1" name="integer_interval"/>
-            <OMI> 1 </OMI>
-            <OMV name="n"/>
+            <OMS cd="relation1" name="eq"/>
+            <OMA>
+              <OMS cd="integer1" name="factorial"/>
+              <OMV name="n"/>
+            </OMA>
+            <OMA>
+              <OMS cd="arith1" name="product"/>
+              <OMA>
+                <OMS cd="interval1" name="integer_interval"/>
+                <OMI> 1 </OMI>
+                <OMV name="n"/>
+              </OMA>
+              <OMBIND>
+                <OMS cd="fns1" name="lambda"/>
+                <OMBVAR>
+                  <OMV name="i"/>
+                </OMBVAR>
+                <OMV name="i"/>
+              </OMBIND>
+            </OMA>
           </OMA>
-        <OMBIND>
-          <OMS cd="fns1" name="lambda"/>
-            <OMBVAR>
-              <OMV name="i"/>
-            </OMBVAR>
-            <OMV name="i"/>
-        </OMBIND>
-      </OMA>
-    </OMA>
-  </OMOBJ>
-</FMP></property>
-</CDDefinition>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
+  <CDDefinition xml:id="quotient">
+    <Name/>
+    <Title/>
+    <Pragmatic>
+      <Element type="opel">quotient</Element>
+      <Attribute>
+        <Name/>
+        <Model>MathMLType</Model>
+        <Default> real </Default>
+      </Attribute>
+    </Pragmatic>
+    <Role/>
+    <Description/>
 
-<CDDefinition xml:id="quotient">
-  <Name>quotient</Name>
-  <Title>Quotient</Title>
-  <Pragmatic>
-    <Element type="opel">quotient</Element>
-    <Attribute>
-      <Name> type </Name>
-      <Model>MathMLType</Model>
-      <Default> real </Default>
-    </Attribute>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description>
-    The symbol to represent the integer (binary) division operator. That is, for integers
-    a and b, quotient(a,b) denotes q such that a=b*q+r, with |r| less than |b| and a*r
-    positive.
-</Description>
+    <description>
+      <p>quotient is the binary function used to represent the operation of integer
+	division.  quotient(a,b) denotes q such that a = b*q+r, with |r| less than |b| and
+	a*r non-negative. 
+      </p>
+    </description>
+    <discussion>
+      <p>The <code>quotient</code> element is the operator used for division modulo a
+      particular base. When the <code>quotient</code> operator is applied to integer arguments
+      <var>a</var> and <var>b</var>, the result is the <quote>quotient of <var>a</var>
+      divided by <var>b</var>
+        </quote>. That is, <code>quotient</code> returns the unique
+      integer <var>q</var> such that <var>a</var> = <var>q</var> 
+        <var>b</var> +
+      <var>r</var>. (In common usage, <var>q</var> is called the quotient and <var>r</var>
+      is the remainder.)</p>
+    </discussion>
 
-<discussion>
-  <p>The <code>quotient</code> element is the operator used for division modulo a
-  particular base. When the <code>quotient</code> operator is applied to integer arguments
-  <var>a</var> and <var>b</var>, the result is the <quote>quotient of <var>a</var>
-  divided by <var>b</var></quote>. That is, <code>quotient</code> returns the unique
-  integer <var>q</var> such that <var>a</var> = <var>q</var> <var>b</var> +
-  <var>r</var>. (In common usage, <var>q</var> is called the quotient and <var>r</var>
-  is the remainder.)</p>
-</discussion>
+    <property>
+      <description>
+        <p>ForAll( [a,b], b != 0, a = b*quotient(a,b) + rem(a,b) )</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <bind>
+          <forall/>
+          <bvar>
+            <ci>a</ci>
+          </bvar>
+          <bvar>
+            <ci>b</ci>
+          </bvar>
+          <condition>
+            <apply>
+              <neq/>
+              <ci>b</ci>
+              <cn>0</cn>
+            </apply>
+          </condition>
+          <apply>
+            <eq/>
+            <ci>a</ci>
+            <apply>
+              <plus/>
+              <apply>
+                <times/>
+                <ci>b</ci>
+                <apply>
+                  <quotient/>
+                  <ci>a</ci>
+                  <ci>b</ci>
+                </apply>
+              </apply>
+              <apply>
+                <rem/>
+                <ci>a</ci>
+                <ci>b</ci>
+              </apply>
+            </apply>
+          </apply>
+        </bind>
+      </math>
+    </property>
 
- <property>
-   <description>
-     <p>ForAll( [a,b], b != 0, a = b*quotient(a,b) + rem(a,b) )</p>
-   </description>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<bind><forall/>
-  <bvar><ci>a</ci></bvar>
-  <bvar><ci>b</ci></bvar>
-  <condition><apply><neq/><ci>b</ci><cn>0</cn></apply></condition>
-  <apply><eq/>
-    <ci>a</ci>
-    <apply><plus/>
-      <apply><times/>
-          <ci>b</ci>
-          <apply><quotient/><ci>a</ci><ci>b</ci></apply>
-      </apply>
-      <apply><rem/><ci>a</ci><ci>b</ci></apply>
-    </apply>
-  </apply>
-</bind>
-</math>
-</property>
+    <MMLexample>
+      <description>
+        <p>Various mathematical applications will use this data in different
+  ways. Editing applications might choose an image such as shown below, while a
+  computationally based application would evaluate it to 2 when<var>a</var>=13 and
+  <var>b</var>=5.</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <quotient/> 
+          <ci>a</ci> 
+          <ci>b</ci> 
+        </apply> 
+      </math>
+    </MMLexample>
 
-<MMLexample speclevel="1" xml:id="quotient.ex1">
-  <description>
-    <p>Various mathematical applications will use this data in different ways. Editing
-    applications might choose an image such as shown below, while a computationally based
-    application would evaluate it to 2 when<var>a</var>=13 and <var>b</var>=5.</p>
-  </description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><quotient/><ci>a</ci><ci>b</ci></apply>
-  </math>
-</MMLexample>
+    <MMLexample>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <quotient/>
+          <cn>5</cn>
+          <cn>4</cn>
+        </apply>
+      </math>
+    </MMLexample>
 
-<MMLexample>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><quotient/><cn>5</cn><cn>4</cn></apply>
-  </math>
-</MMLexample>
-
-<property xml:id="quotient_prop_3">
-<CMP>
+    <property xml:id="quotient_prop_3">
+      <CMP>
 for all a,b with a,b Integers |
   a = b * quotient(a,b) + remainder(a,b) and abs(remainder(a,b)) is less than abs(b) and 
 a*remainder(a,b) &gt;= 0
 </CMP>
-<FMP>
-   <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-     <OMBIND>
-       <OMS cd="quant1" name="forall"/>
-       <OMBVAR>
-         <OMV name="a"/>
-         <OMV name="b"/>
-       </OMBVAR>
-       <OMA>
-         <OMS cd="logic1" name="implies"/>
-         <OMA>
-           <OMS cd="logic1" name="and"/>
-           <OMA>
-             <OMS cd="set1" name="in"/>
-             <OMV name="a"/>
-             <OMS cd="setname1" name="Z"/>
-           </OMA>
-           <OMA>
-             <OMS cd="set1" name="in"/>
-             <OMV name="b"/>
-             <OMS cd="setname1" name="Z"/>
-           </OMA>
-         </OMA>
-         <OMA>
-	   <OMS cd="logic1" name="and"/>
-	   <OMA>
-             <OMS cd="relation1" name="eq"/>
-             <OMV name="a"/>
-             <OMA>
-               <OMS cd="arith1" name="plus"/>
-               <OMA>
-                 <OMS cd="arith1" name="times"/>
-                 <OMV name="b"/>
-                 <OMA>
-                   <OMS cd="integer1" name="quotient"/>
-                   <OMV name="a"/>
-                   <OMV name="b"/>
-                 </OMA>
-               </OMA>
-               <OMA>
-                 <OMS cd="integer1" name="remainder"/>
-                 <OMV name="a"/>
-                 <OMV name="b"/>
-               </OMA>
-             </OMA>
-           </OMA>
-           <OMA>
-             <OMS cd="relation1" name="lt"/>
-             <OMA>
-               <OMS cd="arith1" name="abs"/>
-               <OMA>
-                 <OMS cd="integer1" name="remainder"/>
-                 <OMV name="a"/>
-                 <OMV name="b"/>
-               </OMA>
-             </OMA>
-             <OMA>
-               <OMS cd="arith1" name="abs"/>
-               <OMV name="b"/>
-             </OMA>
-           </OMA>
-           <OMA>
-             <OMS cd="relation1" name="geq"/>
-             <OMA>
-               <OMS cd="arith1" name="times"/>
-               <OMV name="a"/>
-	       <OMA>
-	         <OMS cd="integer1" name="remainder"/>
-		 <OMV name="a"/>
-		 <OMV name="b"/>
-	       </OMA>
-             </OMA>
-             <OMS cd="alg1" name="zero"/>
-           </OMA>
-         </OMA>
-       </OMA>
-     </OMBIND>
-   </OMOBJ>
-</FMP></property>
-</CDDefinition>
-
-<CDDefinition xml:id="remainder">
-  <Name>remainder</Name>
-  <Title>Remainder</Title>
-  <Pragmatic>
-    <Element type="opel">rem</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Model>MathMLType</Model>
-      <Default>integer</Default>
-    </Attribute>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    The symbol to represent the integer remainder after (binary) division.  For integers a
-    and b, remainder(a,b) denotes r such that a=b*q+r, with |r| less than |b| and a*r
-    positive.
-  </Description>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMBIND>
+            <OMS cd="quant1" name="forall"/>
+            <OMBVAR>
+              <OMV name="a"/>
+              <OMV name="b"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="logic1" name="implies"/>
+              <OMA>
+                <OMS cd="logic1" name="and"/>
+                <OMA>
+                  <OMS cd="set1" name="in"/>
+                  <OMV name="a"/>
+                  <OMS cd="setname1" name="Z"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="set1" name="in"/>
+                  <OMV name="b"/>
+                  <OMS cd="setname1" name="Z"/>
+                </OMA>
+              </OMA>
+              <OMA>
+	               <OMS cd="logic1" name="and"/>
+	               <OMA>
+                  <OMS cd="relation1" name="eq"/>
+                  <OMV name="a"/>
+                  <OMA>
+                    <OMS cd="arith1" name="plus"/>
+                    <OMA>
+                      <OMS cd="arith1" name="times"/>
+                      <OMV name="b"/>
+                      <OMA>
+                        <OMS cd="integer1" name="quotient"/>
+                        <OMV name="a"/>
+                        <OMV name="b"/>
+                      </OMA>
+                    </OMA>
+                    <OMA>
+                      <OMS cd="integer1" name="remainder"/>
+                      <OMV name="a"/>
+                      <OMV name="b"/>
+                    </OMA>
+                  </OMA>
+                </OMA>
+                <OMA>
+                  <OMS cd="relation1" name="lt"/>
+                  <OMA>
+                    <OMS cd="arith1" name="abs"/>
+                    <OMA>
+                      <OMS cd="integer1" name="remainder"/>
+                      <OMV name="a"/>
+                      <OMV name="b"/>
+                    </OMA>
+                  </OMA>
+                  <OMA>
+                    <OMS cd="arith1" name="abs"/>
+                    <OMV name="b"/>
+                  </OMA>
+                </OMA>
+                <OMA>
+                  <OMS cd="relation1" name="geq"/>
+                  <OMA>
+                    <OMS cd="arith1" name="times"/>
+                    <OMV name="a"/>
+	                   <OMA>
+	                     <OMS cd="integer1" name="remainder"/>
+		                    <OMV name="a"/>
+		                    <OMV name="b"/>
+	                   </OMA>
+                  </OMA>
+                  <OMS cd="alg1" name="zero"/>
+                </OMA>
+              </OMA>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
+  <CDDefinition xml:id="remainder">
+    <Name/>
+    <Title/>
+    <Pragmatic>
+      <Element type="opel">rem</Element>
+	     <Attribute>
+          <Name/>
+          <Model>MathMLType</Model>
+          <Default>integer</Default>
+        </Attribute>
+    </Pragmatic>
+    <Role/>
+    <Description/>
 
 
-  <discussion>
-    <p>The <code>rem</code> element is the operator that returns the
-    <quote>remainder</quote> of a division modulo a particular base. When the
-    <code>rem</code> operator is applied to integer arguments <var>a</var> and
-    <var>b</var>, the result is the <quote>remainder of <var>a</var> divided by
-    <var>b</var></quote>. That is, <code>rem</code> returns the unique integer,
-    <var>r</var> such that <var>a</var> = <var>q</var> <var>b</var>+ <var>r</var>, where
-    <var>r</var> &lt; <var>q</var>. (In common usage, <var>q</var> is called the quotient
-    and <var>r</var> is the remainder.)</p>
-  </discussion>
-  
-  <property>
     <description>
-      <p>rem(a, 0) is undefined</p>
-    </description>
-  </property>
+          <p>This is the binary operator used to represent the integer remainder a mod b.
+          For arguments a and b, such that a = b*q + r with |r| &lt; |b| it represents the
+          value r.</p>
+        </description>
+	   <discussion>
+	     <p>The <code>rem</code> element is the operator that returns the
+	  <quote>remainder</quote> of a division modulo a particular base. When the
+	  <code>rem</code> operator is applied to integer arguments <var>a</var> and
+	  <var>b</var>, the result is the <quote>remainder of <var>a</var> divided by
+	  <var>b</var>
+        </quote>. That is, <code>rem</code> returns the unique integer,
+	  <var>r</var> such that <var>a</var> = <var>q</var> 
+        <var>b</var>+ <var>r</var>,
+	  where <var>r</var> &lt; <var>q</var>. (In common usage, <var>q</var> is called
+	  the quotient and <var>r</var> is the remainder.)</p>
+	   </discussion>
 
-  <property>
-    <description>
-      <p>ForAll( [a,b], b!=0, a = b*quotient(a,b) + rem(a,b))</p>
+   <property>
+          <description>
+            <p>rem(a, 0) is undefined</p>
+          </description>
+        </property>
+        <property>
+          <description>
+            <p>ForAll( [a,b], b!=0, a = b*quotient(a,b) + rem(a,b))</p>
+          </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <bind>
+          <forall/>
+          <bvar>
+            <ci>a</ci>
+          </bvar>
+          <bvar>
+            <ci>b</ci>
+          </bvar>
+          <condition>
+            <apply>
+              <neq/>
+              <ci>b</ci>
+              <cn>0</cn>
+            </apply>
+          </condition>
+          <apply>
+            <eq/>
+            <ci>a</ci>
+            <apply>
+              <plus/>
+              <apply>
+                <times/>
+                <ci>b</ci>
+                <apply>
+                  <quotient/>
+                  <ci>a</ci>
+                  <ci>b</ci>
+                </apply>
+              </apply>
+              <apply>
+                <rem/>
+                <ci>a</ci>
+                <ci>b</ci>
+              </apply>
+            </apply>
+          </apply>
+        </bind>
+      </math>
+    </property>
+
+    <MMLexample>
+      <description>
+        <p>If this were evaluated at <var>a</var> = 15 and <var>b</var> = 8 it would yield 7.</p>
       </description>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<bind><forall/>
-  <bvar><ci>a</ci></bvar>
-  <bvar><ci>b</ci></bvar>
-  <condition><apply><neq/><ci>b</ci><cn>0</cn></apply></condition>
-  <apply><eq/>
-    <ci>a</ci>
-    <apply><plus/>
-      <apply><times/>
-        <ci>b</ci>
-	<apply><quotient/><ci>a</ci><ci>b</ci></apply>
-      </apply>
-    <apply><rem/>
-    <ci>a</ci>
-    <ci>b</ci>
-  </apply>
-</apply>
-</apply>
-</bind>
-</math>
-</property>
-
-<MMLexample speclevel="1" xml:id="remainder.ex1">
-  <description>
-    <p>If this were evaluated at <var>a</var> = 15 and <var>b</var> = 8 it would yield 7.</p>
-  </description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><rem/><ci>a</ci><ci>b</ci></apply>
-  </math>
-</MMLexample>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <rem/>
+          <ci>a</ci>
+          <ci>b</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
 
-<property xml:id="remainder_prop_4">
-<CMP>
+    <property xml:id="remainder_prop_4">
+      <CMP>
 for all a,b with a,b Integers | 
   a = b * quotient(a,b) + remainder(a,b) and abs(remainder(a,b)) is less than abs(b) and a*remainder(a,b) &gt;= 0
 </CMP>
-<FMP>
-   <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-     <OMBIND>
-       <OMS cd="quant1" name="forall"/>
-       <OMBVAR>
-         <OMV name="a"/>
-         <OMV name="b"/>
-       </OMBVAR>
-       <OMA>
-         <OMS cd="logic1" name="implies"/>
-         <OMA>
-           <OMS cd="logic1" name="and"/>
-           <OMA>
-             <OMS cd="set1" name="in"/>
-             <OMV name="a"/>
-             <OMS cd="setname1" name="Z"/>
-           </OMA>
-           <OMA>
-             <OMS cd="set1" name="in"/>
-             <OMV name="b"/>
-             <OMS cd="setname1" name="Z"/>
-           </OMA>
-         </OMA>
-         <OMA>
-	   <OMS cd="logic1" name="and"/>
-	   <OMA>
-             <OMS cd="relation1" name="eq"/>
-             <OMV name="a"/>
-             <OMA>
-               <OMS cd="arith1" name="plus"/>
-               <OMA>
-                 <OMS cd="arith1" name="times"/>
-                 <OMV name="b"/>
-                 <OMA>
-                   <OMS cd="integer1" name="quotient"/>
-                   <OMV name="a"/>
-                   <OMV name="b"/>
-                 </OMA>
-               </OMA>
-               <OMA>
-                 <OMS cd="integer1" name="remainder"/>
-                 <OMV name="a"/>
-                 <OMV name="b"/>
-               </OMA>
-             </OMA>
-           </OMA>
-           <OMA>
-             <OMS cd="relation1" name="lt"/>
-             <OMA>
-               <OMS cd="arith1" name="abs"/>
-               <OMA>
-                 <OMS cd="integer1" name="remainder"/>
-                 <OMV name="a"/>
-                 <OMV name="b"/>
-               </OMA>
-             </OMA>
-             <OMA>
-               <OMS cd="arith1" name="abs"/>
-               <OMV name="b"/>
-             </OMA>
-           </OMA>
-           <OMA>
-             <OMS cd="relation1" name="geq"/>
-             <OMA>
-               <OMS cd="arith1" name="times"/>
-               <OMV name="a"/>
-	       <OMA>
-	         <OMS cd="integer1" name="remainder"/>
-		 <OMV name="a"/>
-		 <OMV name="b"/>
-	       </OMA>
-             </OMA>
-             <OMS cd="alg1" name="zero"/>
-           </OMA>
-         </OMA>
-       </OMA>
-     </OMBIND>
-   </OMOBJ>
-</FMP></property>
-</CDDefinition>
-
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMBIND>
+            <OMS cd="quant1" name="forall"/>
+            <OMBVAR>
+              <OMV name="a"/>
+              <OMV name="b"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="logic1" name="implies"/>
+              <OMA>
+                <OMS cd="logic1" name="and"/>
+                <OMA>
+                  <OMS cd="set1" name="in"/>
+                  <OMV name="a"/>
+                  <OMS cd="setname1" name="Z"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="set1" name="in"/>
+                  <OMV name="b"/>
+                  <OMS cd="setname1" name="Z"/>
+                </OMA>
+              </OMA>
+              <OMA>
+	               <OMS cd="logic1" name="and"/>
+	               <OMA>
+                  <OMS cd="relation1" name="eq"/>
+                  <OMV name="a"/>
+                  <OMA>
+                    <OMS cd="arith1" name="plus"/>
+                    <OMA>
+                      <OMS cd="arith1" name="times"/>
+                      <OMV name="b"/>
+                      <OMA>
+                        <OMS cd="integer1" name="quotient"/>
+                        <OMV name="a"/>
+                        <OMV name="b"/>
+                      </OMA>
+                    </OMA>
+                    <OMA>
+                      <OMS cd="integer1" name="remainder"/>
+                      <OMV name="a"/>
+                      <OMV name="b"/>
+                    </OMA>
+                  </OMA>
+                </OMA>
+                <OMA>
+                  <OMS cd="relation1" name="lt"/>
+                  <OMA>
+                    <OMS cd="arith1" name="abs"/>
+                    <OMA>
+                      <OMS cd="integer1" name="remainder"/>
+                      <OMV name="a"/>
+                      <OMV name="b"/>
+                    </OMA>
+                  </OMA>
+                  <OMA>
+                    <OMS cd="arith1" name="abs"/>
+                    <OMV name="b"/>
+                  </OMA>
+                </OMA>
+                <OMA>
+                  <OMS cd="relation1" name="geq"/>
+                  <OMA>
+                    <OMS cd="arith1" name="times"/>
+                    <OMV name="a"/>
+	                   <OMA>
+	                     <OMS cd="integer1" name="remainder"/>
+		                    <OMV name="a"/>
+		                    <OMV name="b"/>
+	                   </OMA>
+                  </OMA>
+                  <OMS cd="alg1" name="zero"/>
+                </OMA>
+              </OMA>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
 </CD>
