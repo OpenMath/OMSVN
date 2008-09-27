@@ -1,8 +1,6 @@
-<CD xmlns="http://www.openmath.org/OpenMathCD">
-
-<CDComment>
-
-     This document is distributed in the hope that it will be useful, 
+<?xml version="1.0" encoding="UTF-8"?>
+<CD xmlns="http://www.openmath.org/OpenMathCD" xml:id="quant1">
+  <CDComment>     This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -32,278 +30,342 @@
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 </CDComment>
-
-<CDName>quant1</CDName>
-<CDBase>http://www.openmath.org/cd</CDBase>
-<CDURL>http://www.openmath.org/cd/quant1.ocd </CDURL>
-<CDReviewDate>2006-03-30</CDReviewDate>
-<CDDate>2004-05-11</CDDate>
-<CDVersion>3</CDVersion>
-<CDRevision>1</CDRevision>
-<CDStatus>draft</CDStatus>
-<Description>
-    This CD holds the definitions of the basic universal ("for all")
-    quantifier and existential ("there exists") quantifier. It is
-    intended to be `compatible' with the MathML elements representing
-    these quantifiers. 
-</Description>
-
-
-<CDDefinition xml:id="forall">
-  <Name>forall</Name>
-  <Title>Universal Quantification</Title>
-  <Pragmatic>
-    <Element type="opel">forall</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Model>MathMLType</Model>
-      <Default>boolean</Default>
-    </Attribute>
-  </Pragmatic>
-  <Role>binder</Role>
-  <Description> 
-    This symbol represents the universal ("for all") quantifier which takes two
-    arguments. It is usually used in conjunction with one or more bound variables, an
-    optional condition, and an assertion.
-  </Description>
+  <CDName>quant1</CDName>
+  <CDBase>http://www.openmath.org/cd</CDBase>
+  <CDURL>http://www.openmath.org/cd/quant1.ocd</CDURL>
+  <CDReviewDate>2006-03-30</CDReviewDate>
+  <CDDate>2008-09-27</CDDate>
+  <CDVersion>3</CDVersion>
+  <CDRevision>1</CDRevision>
+  <CDStatus>draft</CDStatus>
+  <Description>This CD holds the definitions of the basic universal ("for all") quantifier and existential ("there exists") quantifier. It is intended to be `compatible' with the MathML elements representing these quantifiers.</Description>
+  <CDDefinition xml:id="forall">
+    <Name>forall</Name>
+    <Title>Universal Quantification</Title>
+    <Pragmatic>
+      <Element type="opel">forall</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Model>MathMLType</Model>
+        <Default>boolean</Default>
+      </Attribute>
+    </Pragmatic>
+    <Role>binder</Role>
+    <Description>This symbol represents the universal ("for all") quantifier which takes two arguments. It is usually used in conjunction with one or more bound variables, an optional condition, and an assertion.</Description>
   
-  <MMLexample speclevel="1" xml:id="forall.ex1">
-    <description><p>The example encodes a simple identity.</p></description>
-    <math xmlns="http://www.w3.org/1998/Math/MathML"><bind>
-      <forall/>
-      <bvar><ci>x</ci></bvar>
-      <apply><eq/>
-      <apply>
-	<minus/><ci>x</ci><ci>x</ci>
-      </apply>
-      <cn>0</cn>
-      </apply>
-  </bind>
-  </math>
-</MMLexample>
+    <MMLexample speclevel="1" xml:id="forall.ex1">
+      <description>
+        <p>The example encodes a simple identity.</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <bind>
+          <forall/>
+          <bvar>
+            <ci>x</ci>
+          </bvar>
+          <apply>
+            <eq/>
+            <apply>
+	             <minus/>
+              <ci>x</ci>
+              <ci>x</ci>
+            </apply>
+            <cn>0</cn>
+          </apply>
+        </bind>
+      </math>
+    </MMLexample>
 
-<MMLexample speclevel="1"  xml:id="forall.ex2">
-  <description>
-    <p>The example is more involved, and makes use of an optional <code>condition</code> element.</p>
-  </description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <bind>
-      <forall/>
-      <bvar><ci>p</ci></bvar>
-      <bvar><ci>q</ci></bvar>
-      <condition>
-	<apply><and/>
-	<apply><in/><ci>p</ci><rationals/></apply>
-	<apply><in/><ci>q</ci><rationals/></apply>
-	<apply><lt/><ci>p</ci><ci>q</ci></apply>
-	</apply>
-      </condition>
-      <apply><lt/>
-      <ci>p</ci>
-      <apply>
-	<power/>
-	<ci>q</ci>
-	<cn>2</cn>
-      </apply>
-      </apply>
-    </bind>
-</math>
-</MMLexample>
+    <MMLexample speclevel="1" xml:id="forall.ex2">
+      <description>
+        <p>The example is more involved, and makes use of an optional <code>condition</code> element.</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <bind>
+          <forall/>
+          <bvar>
+            <ci>p</ci>
+          </bvar>
+          <bvar>
+            <ci>q</ci>
+          </bvar>
+          <condition>
+	           <apply>
+              <and/>
+	             <apply>
+                <in/>
+                <ci>p</ci>
+                <rationals/>
+              </apply>
+	             <apply>
+                <in/>
+                <ci>q</ci>
+                <rationals/>
+              </apply>
+	             <apply>
+                <lt/>
+                <ci>p</ci>
+                <ci>q</ci>
+              </apply>
+	           </apply>
+          </condition>
+          <apply>
+            <lt/>
+            <ci>p</ci>
+            <apply>
+	             <power/>
+	             <ci>q</ci>
+	             <cn>2</cn>
+            </apply>
+          </apply>
+        </bind>
+      </math>
+    </MMLexample>
 
-<MMLexample speclevel="1"  xml:id="forall.ex3">
-  <description><p>The example uses both the <code>forall</code> and
+    <MMLexample speclevel="1" xml:id="forall.ex3">
+      <description>
+        <p>The example uses both the <code>forall</code> and
   <code>exists</code> quantifiers.</p>
-  </description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <bind>
-      <forall/>
-      <bvar><ci>n</ci></bvar>
-      <condition>
-	<apply><and/>
-	<apply><gt/><ci>n</ci><cn>0</cn></apply>
-	<apply><in/><ci>n</ci><integers/></apply>
-	</apply>
-      </condition>
-      <bind>
-	<exists/>
-	<bvar><ci>x</ci></bvar>
-	<bvar><ci>y</ci></bvar>
-	<bvar><ci>z</ci></bvar>
-	<condition>
-	  <apply><and/>
-	  <apply><in/><ci>x</ci><integers/></apply>
-	  <apply><in/><ci>y</ci><integers/></apply>
-	  <apply><in/><ci>z</ci><integers/></apply>
-	  </apply>
-	</condition>
-	<apply>
-	  <eq/>
-	  <apply>
-	    <plus/>
-	    <apply><power/><ci>x</ci><ci>n</ci></apply>
-	    <apply><power/><ci>y</ci><ci>n</ci></apply>
-	  </apply>
-	  <apply><power/><ci>z</ci><ci>n</ci></apply>
-	</apply>
-      </bind>
-    </bind>
-  </math>
-</MMLexample>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <bind>
+          <forall/>
+          <bvar>
+            <ci>n</ci>
+          </bvar>
+          <condition>
+	           <apply>
+              <and/>
+	             <apply>
+                <gt/>
+                <ci>n</ci>
+                <cn>0</cn>
+              </apply>
+	             <apply>
+                <in/>
+                <ci>n</ci>
+                <integers/>
+              </apply>
+	           </apply>
+          </condition>
+          <bind>
+	           <exists/>
+	           <bvar>
+              <ci>x</ci>
+            </bvar>
+	           <bvar>
+              <ci>y</ci>
+            </bvar>
+	           <bvar>
+              <ci>z</ci>
+            </bvar>
+	           <condition>
+	             <apply>
+                <and/>
+	               <apply>
+                  <in/>
+                  <ci>x</ci>
+                  <integers/>
+                </apply>
+	               <apply>
+                  <in/>
+                  <ci>y</ci>
+                  <integers/>
+                </apply>
+	               <apply>
+                  <in/>
+                  <ci>z</ci>
+                  <integers/>
+                </apply>
+	             </apply>
+	           </condition>
+	           <apply>
+	             <eq/>
+	             <apply>
+	               <plus/>
+	               <apply>
+                  <power/>
+                  <ci>x</ci>
+                  <ci>n</ci>
+                </apply>
+	               <apply>
+                  <power/>
+                  <ci>y</ci>
+                  <ci>n</ci>
+                </apply>
+	             </apply>
+	             <apply>
+                <power/>
+                <ci>z</ci>
+                <ci>n</ci>
+              </apply>
+	           </apply>
+          </bind>
+        </bind>
+      </math>
+    </MMLexample>
 
-<Example>
+    <Example>
 An example to represent the statement for all real x, |sin(x)| &lt;= 1
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMBIND>
-    <OMS cd="quant1" name="forall"/>
-    <OMBVAR>
-      <OMV name="x"/>
-    </OMBVAR>
-    <OMA>
-    <OMS name="implies" cd="logic1"/>
-    <OMA>
-      <OMS name="in" cd="set1"/>
-      <OMV name="x"/>
-      <OMS name="R" cd="setname1"/>
-    </OMA>
-    <OMA>
-      <OMS cd="relation1" name="leq"/>
-      <OMA>
-        <OMS cd="arith1" name="abs"/>
-        <OMA>
-          <OMS cd="transc1" name="sin"/>
-          <OMV name="x"/>
-        </OMA>
-      </OMA>
-      <OMF dec="1.0"/>
-    </OMA>
-    </OMA>
-  </OMBIND>
-</OMOBJ>
-</Example>
-</CDDefinition>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
+        <OMBIND>
+          <OMS cd="quant1" name="forall"/>
+          <OMBVAR>
+            <OMV name="x"/>
+          </OMBVAR>
+          <OMA>
+            <OMS cd="logic1" name="implies"/>
+            <OMA>
+              <OMS cd="set1" name="in"/>
+              <OMV name="x"/>
+              <OMS cd="setname1" name="R"/>
+            </OMA>
+            <OMA>
+              <OMS cd="relation1" name="leq"/>
+              <OMA>
+                <OMS cd="arith1" name="abs"/>
+                <OMA>
+                  <OMS cd="transc1" name="sin"/>
+                  <OMV name="x"/>
+                </OMA>
+              </OMA>
+              <OMF dec="1.0"/>
+            </OMA>
+          </OMA>
+        </OMBIND>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="exists">
+    <Name>exists</Name>
+    <Title>Existential Quantification</Title>
+    <Pragmatic>
+      <Element type="opel">exists</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Model>MathMLType</Model>
+        <Default>boolean</Default>
+      </Attribute>
+    </Pragmatic>
+    <Role>binder</Role>
+    <Description>This symbol represents the existential ("there exists") quantifier which takes two arguments. It is used in conjunction with one or more bound variables, an optional condition, and an assertion.</Description>
 
-<CDDefinition xml:id="exists">
-  <Name>exists</Name>
-  <Title>Existential Quantification</Title>
-  <Pragmatic>
-    <Element type="opel">exists</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Model>MathMLType</Model>
-      <Default>boolean</Default>
-    </Attribute>
-  </Pragmatic>
-  <Role>binder</Role>
-  <Description> 
-    This symbol represents the existential ("there exists") quantifier which takes two
-    arguments. It is used in conjunction with one or more bound variables, an optional
-    condition, and an assertion.
-  </Description>
-
-  <MMLexample speclevel="1" xml:id="exists.ex1">
-    <description>
-      <p>The following example encodes the sense of the expression <quote>there exists an
+    <MMLexample speclevel="1" xml:id="exists.ex1">
+      <description>
+        <p>The following example encodes the sense of the expression <quote>there exists an
       <var>x</var> such that <var>f</var>(<var>x</var>) = 0</quote>.</p>
-    </description>
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <bind><exists/>
-        <bvar><ci>x</ci></bvar>
-	<apply><eq/>
-  	  <apply><ci>f</ci><ci>x</ci></apply>
-	  <cn>0</cn>
-	</apply>
-      </bind>
-    </math>
-  </MMLexample>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <bind>
+          <exists/>
+          <bvar>
+            <ci>x</ci>
+          </bvar>
+	         <apply>
+            <eq/>
+  	         <apply>
+              <ci>f</ci>
+              <ci>x</ci>
+            </apply>
+	           <cn>0</cn>
+	         </apply>
+        </bind>
+      </math>
+    </MMLexample>
 
-  <MMLexample speclevel="1" xml:id="exists.ex2">
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-<bind>
-  <exists/>
-  <bvar><ci>x</ci></bvar>
-  <domainofapplication>
-    <ci type="set">C</ci>
-  </domainofapplication>
-  <apply>
-    <eq/>
-    <apply>
-      <power/><ci>x</ci><cn>2</cn>
-    </apply>
-    <cn>4</cn>
-  </apply>
-</bind>
-</math>
-</MMLexample>
+    <MMLexample speclevel="1" xml:id="exists.ex2">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <bind>
+          <exists/>
+          <bvar>
+            <ci>x</ci>
+          </bvar>
+          <domainofapplication>
+            <ci type="set">C</ci>
+          </domainofapplication>
+          <apply>
+            <eq/>
+            <apply>
+              <power/>
+              <ci>x</ci>
+              <cn>2</cn>
+            </apply>
+            <cn>4</cn>
+          </apply>
+        </bind>
+      </math>
+    </MMLexample>
 
-<Example>
+    <Example>
 An example  which represents the statement that there is no solution
 to x^n+y^n=z^n for n&gt;2, that is:
 it is not true that there exists x,y,z,n | n&gt;2 and x^n+y^n=z^n
 
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="logic1" name="not"/>
-    <OMBIND>
-      <OMS cd="quant1" name="exists"/>
-      <OMBVAR>
-        <OMV name="x"/>
-        <OMV name="y"/>
-        <OMV name="z"/>
-        <OMV name="n"/>
-      </OMBVAR>
-      <OMA>
-        <OMS cd="logic1" name="and"/>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
         <OMA>
-          <OMS name="in" cd="set1"/>
-          <OMV name="x"/>
-          <OMS name="Z" cd="setname1"/>
-        </OMA>
-        <OMA>
-          <OMS name="in" cd="set1"/>
-          <OMV name="y"/>
-          <OMS name="Z" cd="setname1"/>
-        </OMA>
-        <OMA>
-          <OMS name="in" cd="set1"/>
-          <OMV name="z"/>
-          <OMS name="Z" cd="setname1"/>
-        </OMA>
-        <OMA>
-          <OMS name="in" cd="set1"/>
-          <OMV name="n"/>
-          <OMS name="Z" cd="setname1"/>
-        </OMA>
-        <OMA>
-          <OMS cd="relation1" name="gt"/>
-          <OMV name="n"/>
-          <OMI> 2 </OMI>
-        </OMA>
-        <OMA>
-          <OMS cd="relation1" name="eq"/>
-          <OMA>
-            <OMS cd="arith1" name="plus"/>
+          <OMS cd="logic1" name="not"/>
+          <OMBIND>
+            <OMS cd="quant1" name="exists"/>
+            <OMBVAR>
+              <OMV name="x"/>
+              <OMV name="y"/>
+              <OMV name="z"/>
+              <OMV name="n"/>
+            </OMBVAR>
             <OMA>
-               <OMS cd="arith1" name="power"/>
-               <OMV name="x"/>
-               <OMV name="n"/>
+              <OMS cd="logic1" name="and"/>
+              <OMA>
+                <OMS cd="set1" name="in"/>
+                <OMV name="x"/>
+                <OMS cd="setname1" name="Z"/>
+              </OMA>
+              <OMA>
+                <OMS cd="set1" name="in"/>
+                <OMV name="y"/>
+                <OMS cd="setname1" name="Z"/>
+              </OMA>
+              <OMA>
+                <OMS cd="set1" name="in"/>
+                <OMV name="z"/>
+                <OMS cd="setname1" name="Z"/>
+              </OMA>
+              <OMA>
+                <OMS cd="set1" name="in"/>
+                <OMV name="n"/>
+                <OMS cd="setname1" name="Z"/>
+              </OMA>
+              <OMA>
+                <OMS cd="relation1" name="gt"/>
+                <OMV name="n"/>
+                <OMI> 2 </OMI>
+              </OMA>
+              <OMA>
+                <OMS cd="relation1" name="eq"/>
+                <OMA>
+                  <OMS cd="arith1" name="plus"/>
+                  <OMA>
+                    <OMS cd="arith1" name="power"/>
+                    <OMV name="x"/>
+                    <OMV name="n"/>
+                  </OMA>
+                  <OMA>
+                    <OMS cd="arith1" name="power"/>
+                    <OMV name="y"/>
+                    <OMV name="n"/>
+                  </OMA>
+                </OMA>
+                <OMA>
+                  <OMS cd="arith1" name="power"/>
+                  <OMV name="z"/>
+                  <OMV name="n"/>
+                </OMA>
+              </OMA>
             </OMA>
-            <OMA>
-               <OMS cd="arith1" name="power"/>
-               <OMV name="y"/>
-               <OMV name="n"/>
-            </OMA>
-          </OMA>
-          <OMA>
-             <OMS cd="arith1" name="power"/>
-             <OMV name="z"/>
-             <OMV name="n"/>
-          </OMA>
+          </OMBIND>
         </OMA>
-      </OMA>
-    </OMBIND>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
-
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
 </CD>
