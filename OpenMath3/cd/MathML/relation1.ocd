@@ -1,8 +1,6 @@
-<CD xmlns="http://www.openmath.org/OpenMathCD">
-
-<CDComment>
-
-     This document is distributed in the hope that it will be useful, 
+<?xml version="1.0" encoding="UTF-8"?>
+<CD xmlns="http://www.openmath.org/OpenMathCD" xml:id="relation1">
+  <CDComment>     This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -32,602 +30,649 @@
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 </CDComment>
+  <CDName>relation1</CDName>
+  <CDBase>http://www.openmath.org/cd</CDBase>
+  <CDURL>http://www.openmath.org/cd/relation1.ocd</CDURL>
+  <CDReviewDate>2006-03-30</CDReviewDate>
+  <CDDate>2008-09-27</CDDate>
+  <CDVersion>3</CDVersion>
+  <CDRevision>0</CDRevision>
+  <CDStatus>draft</CDStatus>
+  <Description>This CD holds the common arithmetic relations. It is intended to be `compatible' with the appropriate MathML elements.</Description>
+  <CDDefinition xml:id="eq">
+    <Name>eq</Name>
+    <Pragmatic>
+      <Element type="opel">eq</Element>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol represents the binary equality function.</Description>
 
-<CDName>relation1</CDName>
-<CDBase>http://www.openmath.org/cd</CDBase>
-<CDURL>http://www.openmath.org/cd/relation1.ocd </CDURL>
-<CDReviewDate>2006-03-30</CDReviewDate>
-<CDDate>2004-03-30</CDDate>
-<CDVersion>3</CDVersion>
-<CDRevision>0</CDRevision>
-<CDStatus>draft</CDStatus>
-
-<Description>
-    This CD holds the common arithmetic relations. It is intended
-    to be `compatible' with the appropriate MathML elements.
-</Description>
-
-<CDDefinition xml:id="eq">
-<Name>eq</Name>
-  <Pragmatic>
-    <Element type="opel">eq</Element>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol represents the binary equality function.
-  </Description>
-
-  <discussion>
-    <p>This n-ary function is used to indicate that two or more quantities are equal.
+    <discussion>
+      <p>This n-ary function is used to indicate that two or more quantities are equal.
     There must be at least two arguments.</p>
-  </discussion>
+    </discussion>
 
-  <property>
-    <description><p>Symmetric</p></description>
-  </property>
-  <property>
-    <description><p>Transitive</p></description>
-  </property>
-  <property>
-    <description><p>Reflexive</p></description>
-  </property>
+    <property>
+      <description>
+        <p>Symmetric</p>
+      </description>
+    </property>
+    <property>
+      <description>
+        <p>Transitive</p>
+      </description>
+    </property>
+    <property>
+      <description>
+        <p>Reflexive</p>
+      </description>
+    </property>
 
-  <MMLexample speclevel="1" xml:id="eq.ex1">
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply><eq/>
-        <cn type="rational">2<sep/>4</cn><cn type="rational">1<sep/>2</cn>
-      </apply>
-    </math>
-  </MMLexample>
+    <MMLexample speclevel="1" xml:id="eq.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <eq/>
+          <cn type="rational">2<sep/>4</cn>
+          <cn type="rational">1<sep/>2</cn>
+        </apply>
+      </math>
+    </MMLexample>
 
-  <MMLexample speclevel="1" xml:id="eq.ex2">
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><eq/><ci type="set">A</ci><ci type="set">B</ci></apply>
-  </math>
-  </MMLexample>
+    <MMLexample speclevel="1" xml:id="eq.ex2">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <eq/>
+          <ci type="set">A</ci>
+          <ci type="set">B</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
-  <MMLexample speclevel="1" xml:id="eq.ex3">
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply><eq/><ci type="multiset">A</ci><ci type="multiset">B</ci></apply>
-    </math>
-  </MMLexample>
+    <MMLexample speclevel="1" xml:id="eq.ex3">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <eq/>
+          <ci type="multiset">A</ci>
+          <ci type="multiset">B</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
-  <MMLexample speclevel="1" xml:id="eq.ex4">
-    <description>
-      <p>If this were tested at <var>a</var> = 5.5 and <var>b</var> = 6 it
+    <MMLexample speclevel="1" xml:id="eq.ex4">
+      <description>
+        <p>If this were tested at <var>a</var> = 5.5 and <var>b</var> = 6 it
       would yield the truth value <kw>false</kw>.</p>
-    </description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><eq/><ci>a</ci><ci>b</ci></apply>
-  </math>
-</MMLexample>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <eq/>
+          <ci>a</ci>
+          <ci>b</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
-<property xml:id="eq_prop_1">
-<CMP>
+    <property xml:id="eq_prop_1">
+      <CMP>
 a=b and b=c implies a=c
 </CMP>
-<FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-<OMA>
-  <OMS cd="logic1" name="implies"/>
-  <OMA>
-    <OMS cd="logic1" name="and"/>
-    <OMA>
-      <OMS cd="relation1" name="eq"/>
-      <OMV name="a"/>
-      <OMV name="b"/>
-    </OMA>
-    <OMA>
-      <OMS cd="relation1" name="eq"/>
-      <OMV name="b"/>
-      <OMV name="c"/>
-    </OMA>
-  </OMA>
-  <OMA>
-    <OMS cd="relation1" name="eq"/>
-    <OMV name="a"/>
-    <OMV name="c"/>
-  </OMA>
-</OMA>
-</OMOBJ></FMP></property>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMA>
+            <OMS cd="logic1" name="implies"/>
+            <OMA>
+              <OMS cd="logic1" name="and"/>
+              <OMA>
+                <OMS cd="relation1" name="eq"/>
+                <OMV name="a"/>
+                <OMV name="b"/>
+              </OMA>
+              <OMA>
+                <OMS cd="relation1" name="eq"/>
+                <OMV name="b"/>
+                <OMV name="c"/>
+              </OMA>
+            </OMA>
+            <OMA>
+              <OMS cd="relation1" name="eq"/>
+              <OMV name="a"/>
+              <OMV name="c"/>
+            </OMA>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </property>
 
-<Example>
+    <Example>
 An example which represents the statement 1 + 2 = 3.
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="relation1" name="eq"/>
-    <OMA>
-      <OMS cd="arith1" name="plus"/>
-      <OMI> 1 </OMI>
-      <OMI> 2 </OMI>
-    </OMA>
-    <OMI> 3 </OMI>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
+        <OMA>
+          <OMS cd="relation1" name="eq"/>
+          <OMA>
+            <OMS cd="arith1" name="plus"/>
+            <OMI> 1 </OMI>
+            <OMI> 2 </OMI>
+          </OMA>
+          <OMI> 3 </OMI>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="lt">
+    <Name>lt</Name>
+    <Pragmatic>
+      <Element type="opel">lt</Element>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol represents the binary less than function which returns true if the first argument is less than the second, it returns false otherwise.</Description>
 
-<CDDefinition xml:id="lt">
-  <Name>lt</Name>
-  <Pragmatic>
-    <Element type="opel">lt</Element>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description>
-    This symbol represents the binary less than function which returns true if the first
-    argument is less than the second, it returns false otherwise.
-  </Description>
-
-  <discussion>
-    <p>This n-ary function represents the relation "less than" which returns true if each
+    <discussion>
+      <p>This n-ary function represents the relation "less than" which returns true if each
     argument in turn is less than the one following it.  There must be at least two
     arguments. </p>
-  </discussion>
-  <property>
-    <description>
-      <p>Transitive</p>
-    </description>
-  </property>
+    </discussion>
+    <property>
+      <description>
+        <p>Transitive</p>
+      </description>
+    </property>
 
-  <MMLexample speclevel="1" xml:id="lt.ex1">
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply><lt/><cn>2</cn><cn>3</cn><cn>4</cn></apply>
-    </math>
-  </MMLexample>
+    <MMLexample speclevel="1" xml:id="lt.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <lt/>
+          <cn>2</cn>
+          <cn>3</cn>
+          <cn>4</cn>
+        </apply>
+      </math>
+    </MMLexample>
  
- <MMLexample speclevel="1" xml:id="lt.ex2">
-    <description>
-      <p>If this were tested at <var>a</var> = 5.5 and <var>b</var> = 6 it would yield the
+    <MMLexample speclevel="1" xml:id="lt.ex2">
+      <description>
+        <p>If this were tested at <var>a</var> = 5.5 and <var>b</var> = 6 it would yield the
       truth value <quote>true</quote>.</p>
-    </description>
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply>
-	<lt/>
-	<ci>a</ci>
-	<ci>b</ci>
-      </apply>
-  </math>
- </MMLexample>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+	         <lt/>
+	         <ci>a</ci>
+	         <ci>b</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
-<property xml:id="lt_prop_2">
-<CMP>
+    <property xml:id="lt_prop_2">
+      <CMP>
 a&lt;b and b&lt;c implies a&lt;c
 </CMP>
-<FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-<OMA>
-  <OMS cd="logic1" name="implies"/>
-  <OMA>
-    <OMS cd="logic1" name="and"/>
-    <OMA>
-      <OMS cd="relation1" name="lt"/>
-      <OMV name="a"/>
-      <OMV name="b"/>
-    </OMA>
-    <OMA>
-      <OMS cd="relation1" name="lt"/>
-      <OMV name="b"/>
-      <OMV name="c"/>
-    </OMA>
-  </OMA>
-  <OMA>
-    <OMS cd="relation1" name="lt"/>
-    <OMV name="a"/>
-    <OMV name="c"/>
-  </OMA>
-</OMA>
-</OMOBJ></FMP></property>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMA>
+            <OMS cd="logic1" name="implies"/>
+            <OMA>
+              <OMS cd="logic1" name="and"/>
+              <OMA>
+                <OMS cd="relation1" name="lt"/>
+                <OMV name="a"/>
+                <OMV name="b"/>
+              </OMA>
+              <OMA>
+                <OMS cd="relation1" name="lt"/>
+                <OMV name="b"/>
+                <OMV name="c"/>
+              </OMA>
+            </OMA>
+            <OMA>
+              <OMS cd="relation1" name="lt"/>
+              <OMV name="a"/>
+              <OMV name="c"/>
+            </OMA>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </property>
 
-<Example>
+    <Example>
 An example which represents the statement 1 + 2 &lt; 4
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="relation1" name="lt"/>
-    <OMA>
-      <OMS cd="arith1" name="plus"/>
-      <OMI> 1 </OMI>
-      <OMI> 2 </OMI>
-    </OMA>
-    <OMI> 4 </OMI>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
+        <OMA>
+          <OMS cd="relation1" name="lt"/>
+          <OMA>
+            <OMS cd="arith1" name="plus"/>
+            <OMI> 1 </OMI>
+            <OMI> 2 </OMI>
+          </OMA>
+          <OMI> 4 </OMI>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="gt">
+    <Name>gt</Name>
+    <Pragmatic>
+      <Element type="opel">gt</Element>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol represents the binary greater than function which returns true if the first argument is greater than the second, it returns false otherwise.</Description>
 
-<CDDefinition xml:id="gt">
-  <Name>gt</Name>
-  <Pragmatic>
-    <Element type="opel">gt</Element>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol represents the binary greater than function which returns true if the
-    first argument is greater than the second, it returns false otherwise.
-  </Description>
-
-  <discussion>
-    <p>This n-ary function represents the relation "greater than" which returns true if
+    <discussion>
+      <p>This n-ary function represents the relation "greater than" which returns true if
     each argument in turn is greater than the one following it.  There must be at least
     two arguments. </p>
-  </discussion>
+    </discussion>
 
-  <property>
-    <description>
-      <p>Transitive</p>
-    </description>
-  </property>
+    <property>
+      <description>
+        <p>Transitive</p>
+      </description>
+    </property>
   
-  <MMLexample speclevel="1" xml:id="gt.ex1">
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><gt/><cn>3</cn><cn>2</cn></apply>
-  </math>
-  </MMLexample>
+    <MMLexample speclevel="1" xml:id="gt.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <gt/>
+          <cn>3</cn>
+          <cn>2</cn>
+        </apply>
+      </math>
+    </MMLexample>
 
-<MMLexample speclevel="1" xml:id="gt.ex2">
-  <description>
-    <p>If this were tested at <var>a</var> = 5.5 and <var>b</var> = 6 it would
+    <MMLexample speclevel="1" xml:id="gt.ex2">
+      <description>
+        <p>If this were tested at <var>a</var> = 5.5 and <var>b</var> = 6 it would
     yield the truth value <kw>false</kw>.</p>
-  </description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><gt/><ci>a</ci><ci>b</ci></apply>
-  </math>
-</MMLexample>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <gt/>
+          <ci>a</ci>
+          <ci>b</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
-<property xml:id="gt_prop_3">
-<CMP>
+    <property xml:id="gt_prop_3">
+      <CMP>
 a&gt;b and b&gt;c implies a&gt;c
 </CMP>
-<FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-<OMA>
-  <OMS cd="logic1" name="implies"/>
-  <OMA>
-    <OMS cd="logic1" name="and"/>
-    <OMA>
-      <OMS cd="relation1" name="gt"/>
-      <OMV name="a"/>
-      <OMV name="b"/>
-    </OMA>
-    <OMA>
-      <OMS cd="relation1" name="gt"/>
-      <OMV name="b"/>
-      <OMV name="c"/>
-    </OMA>
-  </OMA>
-  <OMA>
-    <OMS cd="relation1" name="gt"/>
-    <OMV name="a"/>
-    <OMV name="c"/>
-  </OMA>
-</OMA>
-</OMOBJ>
-</FMP>
-</property>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMA>
+            <OMS cd="logic1" name="implies"/>
+            <OMA>
+              <OMS cd="logic1" name="and"/>
+              <OMA>
+                <OMS cd="relation1" name="gt"/>
+                <OMV name="a"/>
+                <OMV name="b"/>
+              </OMA>
+              <OMA>
+                <OMS cd="relation1" name="gt"/>
+                <OMV name="b"/>
+                <OMV name="c"/>
+              </OMA>
+            </OMA>
+            <OMA>
+              <OMS cd="relation1" name="gt"/>
+              <OMV name="a"/>
+              <OMV name="c"/>
+            </OMA>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </property>
 
-<Example>
+    <Example>
 An example which represents the statement 1 + 2 &gt; 2
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="relation1" name="gt"/>
-    <OMA>
-      <OMS cd="arith1" name="plus"/>
-      <OMI> 1 </OMI>
-      <OMI> 2 </OMI>
-    </OMA>
-    <OMI> 2 </OMI>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
-
-<CDDefinition xml:id="neq">
-  <Name>neq</Name>
-  <Pragmatic>
-    <Element type="opel">neq</Element>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol represents the binary inequality relation, i.e. the relation "not equal
-    to" which returns true unless the two arguments are equal.
-  </Description>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
+        <OMA>
+          <OMS cd="relation1" name="gt"/>
+          <OMA>
+            <OMS cd="arith1" name="plus"/>
+            <OMI> 1 </OMI>
+            <OMI> 2 </OMI>
+          </OMA>
+          <OMI> 2 </OMI>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="neq">
+    <Name>neq</Name>
+    <Pragmatic>
+      <Element type="opel">neq</Element>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol represents the binary inequality relation, i.e. the relation "not equal to" which returns true unless the two arguments are equal.</Description>
   
-  <property>
-    <description>
-      <p> Symmetric</p>
-    </description>
-  </property>
+    <property>
+      <description>
+        <p> Symmetric</p>
+      </description>
+    </property>
   
-  <MMLexample speclevel="1" xml:id="neq.ex1">
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply><neq/><cn>3</cn><cn>4</cn></apply>
-    </math>
-  </MMLexample>
+    <MMLexample speclevel="1" xml:id="neq.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <neq/>
+          <cn>3</cn>
+          <cn>4</cn>
+        </apply>
+      </math>
+    </MMLexample>
 
-  <MMLexample speclevel="1" xml:id="neq.ex2">
-    <description>
-      <p>If this were tested at <var>a</var> = 5.5 and <var>b</var> = 6 it would yield the
+    <MMLexample speclevel="1" xml:id="neq.ex2">
+      <description>
+        <p>If this were tested at <var>a</var> = 5.5 and <var>b</var> = 6 it would yield the
       truth value <kw>true</kw>.</p>
-    </description>
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply>
-	<neq/>
-	<ci>a</ci>
-	<ci>b</ci>
-      </apply>
-    </math>
-  </MMLexample>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+	         <neq/>
+	         <ci>a</ci>
+	         <ci>b</ci>
+        </apply>
+      </math>
+    </MMLexample>
   
-<property xml:id="neq_prop_4">
-<CMP> it is not true that a=/b and b=/c implies a=/c </CMP>
+    <property xml:id="neq_prop_4">
+      <CMP> it is not true that a=/b and b=/c implies a=/c </CMP>
 
-<FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-<OMA>
-  <OMS cd="logic1" name="not"/>
-  <OMA>
-    <OMS cd="logic1" name="implies"/>
-    <OMA>
-      <OMS cd="logic1" name="and"/>
-      <OMA>
-        <OMS cd="relation1" name="neq"/>
-	<OMV name="a"/>
-	<OMV name="b"/>
-      </OMA>
-      <OMA>
-        <OMS cd="relation1" name="neq"/>
-	<OMV name="b"/>
-	<OMV name="c"/>
-      </OMA>
-    </OMA>
-    <OMA>
-      <OMS cd="relation1" name="neq"/>
-      <OMV name="a"/>
-      <OMV name="c"/>
-    </OMA>
-  </OMA>
-</OMA>
-</OMOBJ></FMP></property>
-<Example>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMA>
+            <OMS cd="logic1" name="not"/>
+            <OMA>
+              <OMS cd="logic1" name="implies"/>
+              <OMA>
+                <OMS cd="logic1" name="and"/>
+                <OMA>
+                  <OMS cd="relation1" name="neq"/>
+	                 <OMV name="a"/>
+	                 <OMV name="b"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="relation1" name="neq"/>
+	                 <OMV name="b"/>
+	                 <OMV name="c"/>
+                </OMA>
+              </OMA>
+              <OMA>
+                <OMS cd="relation1" name="neq"/>
+                <OMV name="a"/>
+                <OMV name="c"/>
+              </OMA>
+            </OMA>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </property>
+    <Example>
 An example which represents the statement 1 + 2 not = 2
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="relation1" name="neq"/>
-    <OMA>
-      <OMS cd="arith1" name="plus"/>
-      <OMI> 1 </OMI>
-      <OMI> 2 </OMI>
-    </OMA>
-    <OMI> 2 </OMI>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
+        <OMA>
+          <OMS cd="relation1" name="neq"/>
+          <OMA>
+            <OMS cd="arith1" name="plus"/>
+            <OMI> 1 </OMI>
+            <OMI> 2 </OMI>
+          </OMA>
+          <OMI> 2 </OMI>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="leq">
+    <Name>leq</Name>
+    <Pragmatic>
+      <Element type="opel">leq</Element>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol represents the binary less than or equal to function which returns true if the first argument is less than or equal to the second, it returns false otherwise.</Description>
 
-<CDDefinition xml:id="leq">
-  <Name>leq</Name>
-  <Pragmatic>
-    <Element type="opel">leq</Element>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol represents the binary less than or equal to function which returns true if
-    the first argument is less than or equal to the second, it returns false otherwise.
-  </Description>
+    <property>
+      <description>
+        <p>Transitive</p>
+      </description>
+    </property>
 
-  <property>
-    <description>
-      <p>Transitive</p>
-    </description>
-  </property>
+    <property>
+      <description>
+        <p>Reflexive</p>
+      </description>
+    </property>
 
-  <property>
-    <description>
-      <p>Reflexive</p>
-    </description>
-  </property>
+    <MMLexample speclevel="1" xml:id="leq.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <leq/>
+          <cn>3</cn>
+          <cn>3</cn>
+          <cn>4</cn>
+        </apply>
+      </math>
+    </MMLexample>
 
-  <MMLexample speclevel="1" xml:id="leq.ex1">
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply><leq/><cn>3</cn><cn>3</cn><cn>4</cn></apply>
-    </math>
-  </MMLexample>
-
-  <MMLexample  speclevel="1" xml:id="leq.ex2">
-    <description>
-      <p>If <var>a</var> = 5.4 and <var>b</var> = 5.5 this will yield the truth value
+    <MMLexample speclevel="1" xml:id="leq.ex2">
+      <description>
+        <p>If <var>a</var> = 5.4 and <var>b</var> = 5.5 this will yield the truth value
       <kw>true</kw>.</p>
-    </description>
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply>
-	<leq/>
-	<ci>a</ci>
-	<ci>b</ci>
-      </apply>
-  </math>
-</MMLexample>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+	         <leq/>
+	         <ci>a</ci>
+	         <ci>b</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
-<property xml:id="leq_prop_5">
-<CMP>
+    <property xml:id="leq_prop_5">
+      <CMP>
 a&lt;=b and b&lt;=c implies a&lt;=c
 </CMP>
-<FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-<OMA>
-  <OMS cd="logic1" name="implies"/>
-  <OMA>
-    <OMS cd="logic1" name="and"/>
-    <OMA>
-      <OMS cd="relation1" name="leq"/>
-      <OMV name="a"/>
-      <OMV name="b"/>
-    </OMA>
-    <OMA>
-      <OMS cd="relation1" name="leq"/>
-      <OMV name="b"/>
-      <OMV name="c"/>
-    </OMA>
-  </OMA>
-  <OMA>
-    <OMS cd="relation1" name="leq"/>
-    <OMV name="a"/>
-    <OMV name="c"/>
-  </OMA>
-</OMA>
-</OMOBJ></FMP></property>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMA>
+            <OMS cd="logic1" name="implies"/>
+            <OMA>
+              <OMS cd="logic1" name="and"/>
+              <OMA>
+                <OMS cd="relation1" name="leq"/>
+                <OMV name="a"/>
+                <OMV name="b"/>
+              </OMA>
+              <OMA>
+                <OMS cd="relation1" name="leq"/>
+                <OMV name="b"/>
+                <OMV name="c"/>
+              </OMA>
+            </OMA>
+            <OMA>
+              <OMS cd="relation1" name="leq"/>
+              <OMV name="a"/>
+              <OMV name="c"/>
+            </OMA>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </property>
 
-<Example>
+    <Example>
 An example which represents the statement 1 + 2 &lt;= 4
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="relation1" name="leq"/>
-    <OMA>
-      <OMS cd="arith1" name="plus"/>
-      <OMI> 1 </OMI>
-      <OMI> 2 </OMI>
-    </OMA>
-    <OMI> 4 </OMI>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
+        <OMA>
+          <OMS cd="relation1" name="leq"/>
+          <OMA>
+            <OMS cd="arith1" name="plus"/>
+            <OMI> 1 </OMI>
+            <OMI> 2 </OMI>
+          </OMA>
+          <OMI> 4 </OMI>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="geq">
+    <Name>geq</Name>
+    <Pragmatic>
+      <Element type="opel">geq</Element>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol represents the binary greater than or equal to function which returns true if the first argument is greater than or equal to the second, it returns false otherwise.</Description>
 
-<CDDefinition xml:id="geq">
-  <Name>geq</Name>
-  <Pragmatic>
-    <Element type="opel">geq</Element>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol represents the binary greater than or equal to function which returns true
-    if the first argument is greater than or equal to the second, it returns false
-    otherwise.
-  </Description>
-
-  <property>
-    <description>
-      <p>Transitive</p>
-    </description>
-  </property>
-  <property>
-    <description>
-      <p>Reflexive</p>
-    </description>
-  </property>
+    <property>
+      <description>
+        <p>Transitive</p>
+      </description>
+    </property>
+    <property>
+      <description>
+        <p>Reflexive</p>
+      </description>
+    </property>
   
-  <MMLexample speclevel="1" xml:id="geq.ex1">
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply><geq/><cn>4</cn><cn>3</cn><cn>3</cn></apply>
-    </math>
-  </MMLexample>
+    <MMLexample speclevel="1" xml:id="geq.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <geq/>
+          <cn>4</cn>
+          <cn>3</cn>
+          <cn>3</cn>
+        </apply>
+      </math>
+    </MMLexample>
 
-  <MMLexample speclevel="1" xml:id="geq.ex2">
-    <description>
-      <p>If this were tested for <var>a</var> = 5.5 and <var>b</var> = 5.5 it would yield
+    <MMLexample speclevel="1" xml:id="geq.ex2">
+      <description>
+        <p>If this were tested for <var>a</var> = 5.5 and <var>b</var> = 5.5 it would yield
       the truth value <kw>true</kw>.</p>
-    </description>
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply>
-	<geq/>
-	<ci>a</ci>
-	<ci>b</ci>
-      </apply>
-  </math>
-</MMLexample>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+	         <geq/>
+	         <ci>a</ci>
+	         <ci>b</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
-<property xml:id="geq_prop_6">
-<CMP>
+    <property xml:id="geq_prop_6">
+      <CMP>
 a&gt;=b and b&gt;=c implies a&gt;=c
 </CMP>
-<FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-<OMA>
-  <OMS cd="logic1" name="implies"/>
-  <OMA>
-    <OMS cd="logic1" name="and"/>
-    <OMA>
-      <OMS cd="relation1" name="geq"/>
-      <OMV name="a"/>
-      <OMV name="b"/>
-    </OMA>
-    <OMA>
-      <OMS cd="relation1" name="geq"/>
-      <OMV name="b"/>
-      <OMV name="c"/>
-    </OMA>
-  </OMA>
-  <OMA>
-    <OMS cd="relation1" name="geq"/>
-    <OMV name="a"/>
-    <OMV name="c"/>
-  </OMA>
-</OMA>
-</OMOBJ></FMP></property>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMA>
+            <OMS cd="logic1" name="implies"/>
+            <OMA>
+              <OMS cd="logic1" name="and"/>
+              <OMA>
+                <OMS cd="relation1" name="geq"/>
+                <OMV name="a"/>
+                <OMV name="b"/>
+              </OMA>
+              <OMA>
+                <OMS cd="relation1" name="geq"/>
+                <OMV name="b"/>
+                <OMV name="c"/>
+              </OMA>
+            </OMA>
+            <OMA>
+              <OMS cd="relation1" name="geq"/>
+              <OMV name="a"/>
+              <OMV name="c"/>
+            </OMA>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </property>
 
-<Example>
+    <Example>
 An example which represents the statement 1 + 2 &gt;= 3
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="relation1" name="geq"/>
-    <OMA>
-      <OMS cd="arith1" name="plus"/>
-      <OMI> 1 </OMI>
-      <OMI> 2 </OMI>
-    </OMA>
-    <OMI> 3 </OMI>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
+        <OMA>
+          <OMS cd="relation1" name="geq"/>
+          <OMA>
+            <OMS cd="arith1" name="plus"/>
+            <OMI> 1 </OMI>
+            <OMI> 2 </OMI>
+          </OMA>
+          <OMI> 3 </OMI>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="approx">
+    <Name>approx</Name>
+    <Pragmatic>
+      <Element type="opel">approx</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Model>MathMLType</Model>
+        <Default>real</Default>
+      </Attribute>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol is used to denote the approximate equality of its two arguments.</Description>
 
-<CDDefinition xml:id="approx">
-  <Name>approx</Name>
-  <Pragmatic>
-    <Element type="opel">approx</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Model>MathMLType</Model>
-      <Default>real</Default>
-    </Attribute>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol is used to denote the approximate equality of its two arguments.
-  </Description>
+    <property>
+      <description>
+        <p> Symmetric</p>
+      </description>
+    </property>
 
-  <property>
-    <description>
-      <p> Symmetric</p>
-    </description>
-  </property>
+    <property>
+      <description>
+        <p>Transitive</p>
+      </description>
+    </property>
 
-  <property>
-    <description>
-      <p>Transitive</p>
-    </description>
-  </property>
-
-  <property>
-    <description>
-      <p>Reflexive</p>
-    </description>
-  </property>
+    <property>
+      <description>
+        <p>Reflexive</p>
+      </description>
+    </property>
   
-  <MMLexample speclevel="1" xml:id="approx.ex1">
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply><approx/><pi/><cn type="rational">22<sep/>7</cn></apply>
-    </math>
-  </MMLexample>
+    <MMLexample speclevel="1" xml:id="approx.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <approx/>
+          <pi/>
+          <cn type="rational">22<sep/>7</cn>
+        </apply>
+      </math>
+    </MMLexample>
      
 
-<Example>
+    <Example>
 \pi is approximately 355/113
 
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="relation1" name="approx"/>
-    <OMS cd="nums1" name="pi"/>
-    <OMA>
-      <OMS cd="nums1" name="rational"/>
-      <OMI> 355 </OMI>
-      <OMI> 113 </OMI>
-    </OMA>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
-
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
+        <OMA>
+          <OMS cd="relation1" name="approx"/>
+          <OMS cd="nums1" name="pi"/>
+          <OMA>
+            <OMS cd="nums1" name="rational"/>
+            <OMI> 355 </OMI>
+            <OMI> 113 </OMI>
+          </OMA>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
 </CD>
