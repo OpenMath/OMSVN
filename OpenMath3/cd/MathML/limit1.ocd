@@ -1,8 +1,6 @@
-<CD xmlns="http://www.openmath.org/OpenMathCD">
-
-<CDComment>
-
-     This document is distributed in the hope that it will be useful, 
+<?xml version="1.0" encoding="UTF-8"?>
+<CD xmlns="http://www.openmath.org/OpenMathCD" xml:id="limit1">
+  <CDComment>     This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -32,273 +30,288 @@
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 </CDComment>
+  <CDName>limit1</CDName>
+  <CDBase>http://www.openmath.org/cd</CDBase>
+  <CDURL>http://www.openmath.org/cd/limit1.ocd</CDURL>
+  <CDReviewDate>2006-03-30</CDReviewDate>
+  <CDDate>2008-09-27</CDDate>
+  <CDVersion>3</CDVersion>
+  <CDRevision>0</CDRevision>
+  <CDStatus>draft</CDStatus>
+  <Description>This CD holds the basic notion of the limits functions of one variable whilst its variable tend (either from above, below or both sides) to a particular value.</Description>
+  <CDDefinition xml:id="limit">
+    <Name>limit</Name>
+    <Role>application</Role>
+    <Pragmatic>
+      <Element type="opel_big">limit</Element>
+    </Pragmatic>
+    <Description>This symbol is used to denote the limit of a function. It takes 3 arguments: the limiting value of the argument, the method of approach (either null, above, below or both_sides) and the function.</Description>
 
-<CDName>limit1</CDName>
-<CDBase>http://www.openmath.org/cd</CDBase>
-<CDURL>http://www.openmath.org/cd/limit1.ocd </CDURL>
-<CDReviewDate>2006-03-30</CDReviewDate>
-<CDDate>2004-03-30</CDDate>
-<CDVersion>3</CDVersion>
-<CDRevision>0</CDRevision>
-<CDStatus>draft</CDStatus>
-<Description>
-    This CD holds the basic notion of the limits functions of one variable
-    whilst its variable tend (either from above, below or both
-    sides) to a particular value.
-</Description>
+    <MMLexample speclevel="1" xml:id="limit.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+	         <limit/>
+	         <bvar>
+            <ci>x</ci>
+          </bvar>
+	         <lowlimit>
+            <cn>0</cn>
+          </lowlimit>
+	         <apply>
+            <sin/>
+            <ci>x</ci>
+          </apply>
+        </apply>
+      </math>
+    </MMLexample>
+  
 
+    <MMLexample speclevel="1" xml:id="limit.ex2">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <limit/>
+          <bvar>
+            <ci>x</ci>
+          </bvar>
+	         <condition>
+	           <apply>
+              <tendsto/>
+              <ci>x</ci>
+              <cn>0</cn>
+            </apply>
+	         </condition>
+	         <apply>
+            <sin/>
+            <ci>x</ci>
+          </apply>
+        </apply>
+      </math>
+    </MMLexample>
 
-<CDDefinition xml:id="limit">
-  <Name>limit</Name>
-  <Role>application</Role>
-  <Pragmatic>
-    <Element type="opel_big">limit</Element>
-  </Pragmatic>
-  <Description>
-    This symbol is used to denote the limit of a function. It takes 3 arguments: the
-    limiting value of the argument, the method of approach (either null, above, below or
-    both_sides) and the function.
-  </Description>
+    <MMLexample speclevel="1" xml:id="limit.ex3">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <limit/>
+          <bvar>
+            <ci>x</ci>
+          </bvar>
+          <condition>
+	           <apply>
+              <tendsto type="above"/>
+              <ci>x</ci>
+              <ci>a</ci>
+            </apply>
+          </condition>
+          <apply>
+            <sin/>
+            <ci>x</ci>
+          </apply>
+        </apply>
+      </math>
+    </MMLexample>
 
-  <MMLexample speclevel="1" xml:id="limit.ex1">
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply>
-	<limit/>
-	<bvar><ci>x</ci></bvar>
-	<lowlimit><cn>0</cn></lowlimit>
-	<apply><sin/><ci>x</ci></apply>
-      </apply>
-    </math>
-  </MMLexample>
-  <!-- fixed to HERE JSD -->
-
-<MMLexample speclevel="1" xml:id="limit.ex2">
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><limit/>
-      <bvar><ci>x</ci></bvar>
-	<condition>
-	  <apply><tendsto/><ci>x</ci><cn>0</cn></apply>
-	</condition>
-	<apply><sin/><ci>x</ci></apply>
-    </apply>
-  </math>
-</MMLexample>
-
-<MMLexample speclevel="1" xml:id="limit.ex3">
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply>
-      <limit/>
-      <bvar><ci>x</ci></bvar>
-      <condition>
-	<apply><tendsto type="above"/><ci>x</ci><ci>a</ci></apply>
-      </condition>
-      <apply><sin/>
-      <ci>x</ci>
-      </apply>
-    </apply>
-  </math>
-</MMLexample>
-
-<Example>
+    <Example>
 The limit of sin(x) as x tends to 0
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="limit1" name="limit"/>
-    <OMI>0</OMI>
-    <OMS cd="limit1" name="both_sides"/>
-    <OMBIND>
-      <OMS cd="fns1" name="lambda"/>
-        <OMBVAR>
-        <OMV name="x"/>
-        </OMBVAR>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
         <OMA>
-          <OMS cd="transc1" name="sin"/>
-          <OMV name="x"/>
+          <OMS cd="limit1" name="limit"/>
+          <OMI>0</OMI>
+          <OMS cd="limit1" name="both_sides"/>
+          <OMBIND>
+            <OMS cd="fns1" name="lambda"/>
+            <OMBVAR>
+              <OMV name="x"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="transc1" name="sin"/>
+              <OMV name="x"/>
+            </OMA>
+          </OMBIND>
         </OMA>
-    </OMBIND>
-  </OMA>
-</OMOBJ>
-</Example>
+      </OMOBJ>
+    </Example>
 
-</CDDefinition>
+  </CDDefinition>
+  <CDDefinition xml:id="both_sides">
+    <Name>both_sides</Name>
+    <Pragmatic>
+      <Element type="opel">both_sides</Element>
+    </Pragmatic>
+    <Role>constant</Role>
+    <Description>This symbol is used within a limit construct to show the limit is being approached from both sides. It cannot be applied.</Description>
 
-<CDDefinition xml:id="both_sides">
-<Name>both_sides</Name>
-  <Pragmatic>
-    <Element type="opel">both_sides</Element>
-  </Pragmatic>
-  <Role>constant</Role>
-  <Description> 
-    This symbol is used within a limit construct to show the limit is being approached
-    from both sides. It cannot be applied.
-  </Description>
-
-<Example>
+    <Example>
   The limit of sin(x) as x tends to 0 from either direction
-  <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="limit1" name="limit"/>
-    <OMI> 0 </OMI>
-    <OMS cd="limit1" name="both_sides"/>
-    <OMBIND>
-      <OMS cd="fns1" name="lambda"/>
-        <OMBVAR>
-        <OMV name="x"/>
-        </OMBVAR>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
         <OMA>
-          <OMS cd="transc1" name="sin"/>
-          <OMV name="x"/>
+          <OMS cd="limit1" name="limit"/>
+          <OMI> 0 </OMI>
+          <OMS cd="limit1" name="both_sides"/>
+          <OMBIND>
+            <OMS cd="fns1" name="lambda"/>
+            <OMBVAR>
+              <OMV name="x"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="transc1" name="sin"/>
+              <OMV name="x"/>
+            </OMA>
+          </OMBIND>
         </OMA>
-    </OMBIND>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="above">
+    <Name>above</Name>
+    <Pragmatic>
+      <Element type="opel">above</Element>
+    </Pragmatic>
+    <Role>constant</Role>
+    <Description>This symbol is used within a limit construct to show the limit is being approached from above. It cannot be applied.</Description>
 
-<CDDefinition xml:id="above">
-  <Name>above</Name>
-  <Pragmatic>
-    <Element type="opel">above</Element>
-  </Pragmatic>
-  <Role>constant</Role>
-  <Description> 
-    This symbol is used within a limit construct to show the limit is being approached
-    from above. It cannot be applied.
-  </Description>
-
-<Example>
+    <Example>
 The limit of sin(x) as x tends to 0 from above
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="limit1" name="limit"/>
-    <OMI> 0 </OMI>
-    <OMS cd="limit1" name="above"/>
-    <OMBIND>
-      <OMS cd="fns1" name="lambda"/>
-        <OMBVAR>
-        <OMV name="x"/>
-        </OMBVAR>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
         <OMA>
-          <OMS cd="transc1" name="sin"/>
-          <OMV name="x"/>
+          <OMS cd="limit1" name="limit"/>
+          <OMI> 0 </OMI>
+          <OMS cd="limit1" name="above"/>
+          <OMBIND>
+            <OMS cd="fns1" name="lambda"/>
+            <OMBVAR>
+              <OMV name="x"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="transc1" name="sin"/>
+              <OMV name="x"/>
+            </OMA>
+          </OMBIND>
         </OMA>
-    </OMBIND>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="below">
+    <Name>below</Name>
+    <Pragmatic>
+      <Element type="opel">below</Element>
+    </Pragmatic>
+    <Role>constant</Role>
+    <Description>This symbol is used within a limit construct to show the limit is being approached from below. It cannot be applied.</Description>
 
-<CDDefinition xml:id="below">
-  <Name>below</Name>
-  <Pragmatic>
-    <Element type="opel">below</Element>
-  </Pragmatic>
-  <Role>constant</Role>
-  <Description>
-    This symbol is used within a limit construct to show the limit is being approached
-    from below. It cannot be applied.
-  </Description>
-
-<Example>
+    <Example>
 The limit of sin(x) as x tends to 0 from below
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="limit1" name="limit"/>
-    <OMI> 0 </OMI>
-    <OMS cd="limit1" name="below"/>
-    <OMBIND>
-      <OMS cd="fns1" name="lambda"/>
-        <OMBVAR>
-        <OMV name="x"/>
-        </OMBVAR>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
         <OMA>
-          <OMS cd="transc1" name="sin"/>
-          <OMV name="x"/>
+          <OMS cd="limit1" name="limit"/>
+          <OMI> 0 </OMI>
+          <OMS cd="limit1" name="below"/>
+          <OMBIND>
+            <OMS cd="fns1" name="lambda"/>
+            <OMBVAR>
+              <OMV name="x"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="transc1" name="sin"/>
+              <OMV name="x"/>
+            </OMA>
+          </OMBIND>
         </OMA>
-    </OMBIND>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="null">
+    <Name>null</Name>
+    <Pragmatic>
+      <Element type="opel">null</Element>
+    </Pragmatic>
+    <Role>constant</Role>
+    <Description>This symbol is used within a limit construct to avoid specifying the method of approach to the limit. It cannot be applied.</Description>
 
-<CDDefinition xml:id="null">
-  <Name>null</Name>
-  <Pragmatic>
-    <Element type="opel">null</Element>
-  </Pragmatic>
-  <Role>constant</Role>
-  <Description>
-    This symbol is used within a limit construct to avoid specifying the method of
-    approach to the limit. It cannot be applied.
-  </Description>
-
-<Example>
+    <Example>
 The limit of sin(x) as x tends to 0
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="limit1" name="limit"/>
-    <OMI>0</OMI>
-    <OMS cd="limit1" name="null"/>
-    <OMBIND>
-      <OMS cd="fns1" name="lambda"/>
-      <OMBVAR>
-        <OMV name="x"/>
-      </OMBVAR>
-      <OMA>
-        <OMS cd="transc1" name="sin"/>
-        <OMV name="x"/>
-      </OMA>
-    </OMBIND>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
+        <OMA>
+          <OMS cd="limit1" name="limit"/>
+          <OMI>0</OMI>
+          <OMS cd="limit1" name="null"/>
+          <OMBIND>
+            <OMS cd="fns1" name="lambda"/>
+            <OMBVAR>
+              <OMV name="x"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="transc1" name="sin"/>
+              <OMV name="x"/>
+            </OMA>
+          </OMBIND>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="tendsto">
+    <Name>tendsto</Name>
+    <Pragmatic>
+      <Element type="opel">tendsto</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Model>"above" | "below" | "all" | MathMLType </Model>
+        <Default>all</Default>
+      </Attribute>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol is also used to express the relation that a quantity is tending to a specified value. While this is used primarily as part of the statement of a mathematical limit, it exists as a construct on its own to allow one to capture mathematical statements such as "As x tends to y," and to provide a building block to construct more general kinds of limits.</Description>
 
-<CDDefinition xml:id="tendsto">
-  <Name>tendsto</Name>
-  <Pragmatic>
-    <Element type="opel">tendsto</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Model>"above" | "below" | "all" | MathMLType </Model>
-      <Default>all</Default>
-    </Attribute>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description>
-    This symbol is also used to express the relation that a quantity is tending to a
-    specified value. While this is used primarily as part of the statement of a
-    mathematical limit, it exists as a construct on its own to allow one to capture
-    mathematical statements such as "As x tends to y," and to provide a building block to
-    construct more general kinds of limits.
-  </Description>
+    <MMLexample speclevel="1" xml:id="tendsto.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <tendsto type="above"/>
+          <apply>
+            <power/>
+            <ci>x</ci>
+            <cn>2</cn>
+          </apply>
+	         <apply>
+            <power/>
+            <ci>a</ci>
+            <cn>2</cn>
+          </apply>
+        </apply>
+      </math>
+    </MMLexample>
 
-<MMLexample speclevel="1" xml:id="tendsto.ex1">
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><tendsto type="above"/>
-      <apply><power/><ci>x</ci><cn>2</cn></apply>
-	<apply><power/><ci>a</ci><cn>2</cn></apply>
-    </apply>
-  </math>
-</MMLexample>
-
-<MMLexample speclevel="1" xml:id="tendsto.ex2">
-  <description>
-    <p>To express that (<var>x</var>, <var>y</var>) tends to (<var>f</var>(<var>x</var>,
+    <MMLexample speclevel="1" xml:id="tendsto.ex2">
+      <description>
+        <p>To express that (<var>x</var>, <var>y</var>) tends to (<var>f</var>(<var>x</var>,
     <var>y</var>), <var>g</var>(<var>x</var>, <var>y</var>)), one might use vectors, as
     in:</p>
-  </description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><tendsto/>
-      <vector><ci>x</ci><ci>y</ci></vector>
-	<vector>
-	  <apply><ci type="function">f</ci><ci>x</ci><ci>y</ci></apply>
-	  <apply><ci type="function">g</ci><ci>x</ci><ci>y</ci></apply>
-	</vector>
-    </apply>
-  </math>
-</MMLexample>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <tendsto/>
+          <vector>
+            <ci>x</ci>
+            <ci>y</ci>
+          </vector>
+	         <vector>
+	           <apply>
+              <ci type="function">f</ci>
+              <ci>x</ci>
+              <ci>y</ci>
+            </apply>
+	           <apply>
+              <ci type="function">g</ci>
+              <ci>x</ci>
+              <ci>y</ci>
+            </apply>
+	         </vector>
+        </apply>
+      </math>
+    </MMLexample>
 
-</CDDefinition>
-
+  </CDDefinition>
 </CD>
