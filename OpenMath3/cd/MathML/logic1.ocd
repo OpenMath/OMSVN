@@ -1,9 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<CD xmlns="http://www.openmath.org/OpenMathCD">
-
-<CDComment>
-
-     This document is distributed in the hope that it will be useful, 
+<?xml version="1.0" encoding="UTF-8"?>
+<CD xmlns="http://www.openmath.org/OpenMathCD" xml:id="logic1">
+  <CDComment>     This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -33,607 +30,639 @@
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 </CDComment>
+  <CDName>logic1</CDName>
+  <CDBase>http://www.openmath.org/cd</CDBase>
+  <CDURL>http://www.openmath.org/cd/logic1.ocd</CDURL>
+  <CDReviewDate>2006-03-30</CDReviewDate>
+  <CDDate>2008-09-27</CDDate>
+  <CDVersion>3</CDVersion>
+  <CDRevision>0</CDRevision>
+  <CDStatus>draft</CDStatus>
+  <Description>This CD holds the basic logic functions.</Description>
+  <CDDefinition xml:id="equivalent">
+    <Name>equivalent</Name>
+    <Pragmatic>
+      <Element type="opel_big">equivalent</Element>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol is used to show that two boolean expressions are logically equivalent, that is have the same boolean value for any inputs.</Description>
 
-<CDName>logic1</CDName>
-<CDBase>http://www.openmath.org/cd</CDBase>
-<CDURL>http://www.openmath.org/cd/logic1.ocd </CDURL>
-<CDReviewDate>2006-03-30</CDReviewDate>
-<CDDate>2004-03-30</CDDate>
-<CDVersion>3</CDVersion>
-<CDRevision>0</CDRevision>
-<CDStatus>draft</CDStatus>
-<Description>
-    This CD holds the basic logic functions.
-</Description>
-
-<CDDefinition xml:id="equivalent">
-  <Name>equivalent</Name>
-  <Pragmatic>
-    <Element type="opel_big">equivalent</Element>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol is used to show that two boolean expressions are logically equivalent,
-    that is have the same boolean value for any inputs.
-  </Description>
-
-  <discussion>
-    <p>This element represents the n-ary logical equivalence function in which two
+    <discussion>
+      <p>This element represents the n-ary logical equivalence function in which two
     boolean expressions are said to be equivalent if their truth values are equal
     for all choices of values of the boolean variables appearing in them.</p>
-  </discussion>
+    </discussion>
 
-  <property>
-    <description>
-      <p> Symmetric </p>
-    </description>
-  </property>
+    <property>
+      <description>
+        <p> Symmetric </p>
+      </description>
+    </property>
   
-  <property>
-    <description>
-      <p>Transitive </p>
-    </description>
-  </property>
+    <property>
+      <description>
+        <p>Transitive </p>
+      </description>
+    </property>
 
-  <property>
-    <description>
-      <p>Reflexive</p>
-    </description>
-  </property>
+    <property>
+      <description>
+        <p>Reflexive</p>
+      </description>
+    </property>
   
-  <MMLexample speclevel="1" xml:id="equivalent.ex1">
-    <description>
-      <p>This yields the truth value <kw>true</kw> for all values of <var>a</var>.</p>
-    </description>
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply>
-	<equivalent/>
-	<ci>a</ci>
-	<apply>
-	  <not/>
-	  <apply> <not/> <ci>a</ci> </apply>
-	</apply>
-      </apply>
-    </math>
-  </MMLexample>
+    <MMLexample speclevel="1" xml:id="equivalent.ex1">
+      <description>
+        <p>This yields the truth value <kw>true</kw> for all values of <var>a</var>.</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+	         <equivalent/>
+	         <ci>a</ci>
+	         <apply>
+	           <not/>
+	           <apply> 
+              <not/> 
+              <ci>a</ci> 
+            </apply>
+	         </apply>
+        </apply>
+      </math>
+    </MMLexample>
 
-<property xml:id="equivalent_prop_1">
-<CMP> The condition (A is equivalent to B) is equivalent to the
+    <property xml:id="equivalent_prop_1">
+      <CMP> The condition (A is equivalent to B) is equivalent to the
 condition that (A implies B and B implies A) </CMP>
 
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="logic1" name="equivalent"/>
-    <OMA>
-      <OMS cd="logic1" name="equivalent"/>
-      <OMV name="A"/>
-      <OMV name="B"/>
-    </OMA>
-    <OMA>
-      <OMS cd="logic1" name="and"/>
-      <OMA>
-        <OMS cd="logic1" name="implies"/>
-	<OMV name="A"/>
-	<OMV name="B"/>
-      </OMA>
-      <OMA>
-        <OMS cd="logic1" name="implies"/>
-	<OMV name="B"/>
-	<OMV name="A"/>
-      </OMA>
-    </OMA>
-  </OMA>
-</OMOBJ>
-</FMP></property>
-</CDDefinition>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMA>
+            <OMS cd="logic1" name="equivalent"/>
+            <OMA>
+              <OMS cd="logic1" name="equivalent"/>
+              <OMV name="A"/>
+              <OMV name="B"/>
+            </OMA>
+            <OMA>
+              <OMS cd="logic1" name="and"/>
+              <OMA>
+                <OMS cd="logic1" name="implies"/>
+	               <OMV name="A"/>
+	               <OMV name="B"/>
+              </OMA>
+              <OMA>
+                <OMS cd="logic1" name="implies"/>
+	               <OMV name="B"/>
+	               <OMV name="A"/>
+              </OMA>
+            </OMA>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
+  <CDDefinition xml:id="not">
+    <Name>not</Name>
+    <Title>Negation</Title>
+    <Pragmatic>
+      <Element type="opel">not</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Model>MathMLType</Model>
+        <Default>boolean</Default>
+      </Attribute>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol represents the logical not function which takes one boolean argument, and returns the opposite boolean value.</Description>
 
-<CDDefinition xml:id="not">
-  <Name>not</Name>
-  <Title>Negation</Title>
-  <Pragmatic>
-    <Element type="opel">not</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Model>MathMLType</Model>
-      <Default>boolean</Default>
-    </Attribute>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol represents the logical not function which takes one boolean argument, and
-    returns the opposite boolean value.
-  </Description>
+    <MMLexample speclevel="1" xml:id="not.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <not/>
+          <ci>a</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
-  <MMLexample speclevel="1" xml:id="not.ex1">
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply><not/><ci>a</ci></apply>
-    </math>
-  </MMLexample>
+    <property xml:id="not_prop_2">
+      <CMP> for all x | not(not(x))=x </CMP>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMBIND>
+            <OMS cd="quant1" name="forall"/>
+            <OMBVAR>
+              <OMV name="x"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="relation1" name="eq"/>
+              <OMA>
+                <OMS cd="logic1" name="not"/>
+                <OMA>
+                  <OMS cd="logic1" name="not"/>
+                  <OMV name="x"/>
+                </OMA>
+              </OMA>
+              <OMV name="x"/>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
+  <CDDefinition xml:id="and">
+    <Name>and</Name>
+    <Title>Conjunction</Title>
+    <Role>application</Role>
+    <Description>This symbol represents the logical and function which is an n-ary function taking boolean arguments and returning a boolean value. It is true if all arguments are true or false otherwise.</Description>
 
-<property xml:id="not_prop_2">
-<CMP> for all x | not(not(x))=x </CMP>
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-<OMBIND>
-  <OMS cd="quant1" name="forall"/>
-  <OMBVAR>
-    <OMV name="x"/>
-  </OMBVAR>
-  <OMA>
-    <OMS cd="relation1" name="eq"/>
-    <OMA>
-      <OMS cd="logic1" name="not"/>
-      <OMA>
-        <OMS cd="logic1" name="not"/>
-        <OMV name="x"/>
-      </OMA>
-    </OMA>
-    <OMV name="x"/>
-  </OMA>
-</OMBIND>
-</OMOBJ>
-</FMP></property>
-</CDDefinition>
+    <Pragmatic>
+      <Element type="opel_big">and</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Model>MathMLType</Model>
+        <Default>boolean</Default>
+      </Attribute>
+    </Pragmatic>
 
-<CDDefinition xml:id="and">
-  <Name>and</Name>
-  <Title>Conjunction</Title>
-  <Role>application</Role>
-  <Description> 
-    This symbol represents the logical and function which is an n-ary function taking
-    boolean arguments and returning a boolean value. It is true if all arguments are true
-    or false otherwise.
-  </Description>
+    <property>
+      <description>
+        <p>ForAll( p, (true and p = p) )</p>
+      </description>
+    </property>
 
-  <Pragmatic>
-    <Element type="opel_big">and</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Model>MathMLType</Model>
-      <Default>boolean</Default>
-    </Attribute>
-  </Pragmatic>
+    <property>
+      <description>
+        <p>ForAll( [p,q], (p and q = q and p) ) </p>
+      </description>
+    </property>
 
- <property>
-   <description>
-     <p>ForAll( p, (true and p = p) )</p>
- </description>
-</property>
-
- <property>
-   <description>
-     <p>ForAll( [p,q], (p and q = q and p) ) </p>
-   </description>
- </property>
-
- <property>
-   <description>
-     <p>x and not(x) = false</p>
-   </description>
- </property>
+    <property>
+      <description>
+        <p>x and not(x) = false</p>
+      </description>
+    </property>
  
-<MMLexample speclevel="1" xml:id="and.ex1">
-  <description>
-    <p>If this were evaluated and both <var>a</var> and <var>b</var> had truth values of
+    <MMLexample speclevel="1" xml:id="and.ex1">
+      <description>
+        <p>If this were evaluated and both <var>a</var> and <var>b</var> had truth values of
     <attval>true</attval>, then the result would be <attval>true</attval>.</p>
-  </description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><and/>
-  <ci>a</ci>
-  <ci>b</ci>
-  </apply></math>
-</MMLexample>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <and/>
+          <ci>a</ci>
+          <ci>b</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
-<property xml:id="and_prop_3">
-<CMP>
+    <property xml:id="and_prop_3">
+      <CMP>
 for all x | x and not(x) = false
 </CMP>
-<FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-<OMBIND>
-  <OMS cd="quant1" name="forall"/>
-  <OMBVAR>
-    <OMV name="x"/>
-  </OMBVAR>
-  <OMA>
-    <OMS cd="relation1" name="eq"/>
-    <OMA><OMS cd="logic1" name="and"/>
-      <OMV name="x"/>
-      <OMA><OMS cd="logic1" name="not"/>
-        <OMV name="x"/>
-      </OMA>
-    </OMA>
-    <OMS cd="logic1" name="false"/>
-  </OMA>
-</OMBIND>
-</OMOBJ></FMP></property>
-</CDDefinition>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMBIND>
+            <OMS cd="quant1" name="forall"/>
+            <OMBVAR>
+              <OMV name="x"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="relation1" name="eq"/>
+              <OMA>
+                <OMS cd="logic1" name="and"/>
+                <OMV name="x"/>
+                <OMA>
+                  <OMS cd="logic1" name="not"/>
+                  <OMV name="x"/>
+                </OMA>
+              </OMA>
+              <OMS cd="logic1" name="false"/>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
+  <CDDefinition xml:id="big_and">
+    <Name>big_and</Name>
+    <Role>binder</Role>
+    <Title>Conjunction over a set of formulae</Title>
+    <Description>This n-ary operator is used to construct the conjunction over a set of forumlae.</Description>
+  </CDDefinition>
+  <CDDefinition xml:id="xor">
+    <Name>xor</Name>
+    <Title>Exclusive Disjunction</Title>
+    <Pragmatic>
+      <Element type="opel_big">xor</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Model>MathMLType</Model>
+        <Default>boolean</Default>
+      </Attribute>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol represents the logical xor function which is an n-ary function taking boolean arguments and returning a boolean value. It is true if there are an odd number of true arguments or false otherwise.</Description>
 
-<CDDefinition xml:id="big_and">
-  <Name>big_and</Name>
-  <Role>binder</Role>
-  <Title>Conjunction over a set of formulae</Title>
-  <Description>
-    This n-ary operator is used to construct the conjunction over a set of forumlae.
-  </Description>
-</CDDefinition>
+    <property>
+      <description>
+        <p>x xor x = false </p>
+      </description>
+    </property>
 
-<CDDefinition xml:id="xor">
-  <Name>xor</Name>
-  <Title>Exclusive Disjunction</Title>
-  <Pragmatic>
-    <Element type="opel_big">xor</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Model>MathMLType</Model>
-      <Default>boolean</Default>
-    </Attribute>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol represents the logical xor function which is an n-ary function taking
-    boolean arguments and returning a boolean value. It is true if there are an odd number
-    of true arguments or false otherwise.
-  </Description>
+    <property>
+      <description>
+        <p>x xor not(x) = true </p>
+      </description>
+    </property>
 
-  <property>
-    <description>
-      <p>x xor x = false </p>
-    </description>
-  </property>
+    <MMLexample speclevel="1" xml:id="xor.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <xor/>
+          <ci>a</ci>
+          <ci>b</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
-  <property>
-    <description>
-      <p>x xor not(x) = true </p>
-    </description>
-  </property>
-
-  <MMLexample speclevel="1" xml:id="xor.ex1">
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply><xor/><ci>a</ci><ci>b</ci></apply>
-    </math>
-  </MMLexample>
-
-<property xml:id="xor_prop_4">
-<CMP>
+    <property xml:id="xor_prop_4">
+      <CMP>
 for all x | x xor x = false
 </CMP>
-<FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMBIND><OMS cd="quant1" name="forall"/>
-  <OMBVAR>
-    <OMV name="x"/>
-  </OMBVAR>
-  <OMA>
-    <OMS cd="relation1" name="eq"/>
-    <OMA><OMS cd="logic1" name="xor"/>
-      <OMV name="x"/>
-      <OMV name="x"/>
-    </OMA>
-    <OMS cd="logic1" name="false"/>
-  </OMA>
-</OMBIND>
-</OMOBJ></FMP></property>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMBIND>
+            <OMS cd="quant1" name="forall"/>
+            <OMBVAR>
+              <OMV name="x"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="relation1" name="eq"/>
+              <OMA>
+                <OMS cd="logic1" name="xor"/>
+                <OMV name="x"/>
+                <OMV name="x"/>
+              </OMA>
+              <OMS cd="logic1" name="false"/>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </property>
 
-<property xml:id="xor_prop_5">
-<CMP>
+    <property xml:id="xor_prop_5">
+      <CMP>
 for all x | x xor not(x) = true
 </CMP>
 
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMBIND>
-    <OMS cd="quant1" name="forall"/>
-    <OMBVAR>
-      <OMV name="x"/>
-    </OMBVAR>
-    <OMA>
-      <OMS cd="relation1" name="eq"/>
-      <OMA><OMS cd="logic1" name="xor"/>
-      <OMV name="x"/>
-      <OMA><OMS cd="logic1" name="not"/>
-      <OMV name="x"/>
-      </OMA>
-      </OMA>
-      <OMS cd="logic1" name="true"/>
-  </OMA>
-</OMBIND>
-</OMOBJ></FMP></property>
-</CDDefinition>
-
-<CDDefinition xml:id="big_xor">
-  <Name>big_xor</Name>
-  <Role>binder</Role>
-  <Title>Exclusive disjunction over a set of formulae</Title>
-  <Description>
-    This n-ary operator is used to construct the exclusive disjunction over a set of forumlae.
-  </Description>
-</CDDefinition>
-
-<CDDefinition xml:id="or">
-  <Name>or</Name>
-  <Title>Disjunction</Title>
-  <Pragmatic>
-    <Element type="opel_big">or</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Model>MathMLType</Model>
-      <Default>boolean</Default>
-    </Attribute>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol represents the logical or function which is an n-ary function taking
-    boolean arguments and returning a boolean value. It is true if any of the arguments
-    are true or false otherwise.
-</Description>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMBIND>
+            <OMS cd="quant1" name="forall"/>
+            <OMBVAR>
+              <OMV name="x"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="relation1" name="eq"/>
+              <OMA>
+                <OMS cd="logic1" name="xor"/>
+                <OMV name="x"/>
+                <OMA>
+                  <OMS cd="logic1" name="not"/>
+                  <OMV name="x"/>
+                </OMA>
+              </OMA>
+              <OMS cd="logic1" name="true"/>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
+  <CDDefinition xml:id="big_xor">
+    <Name>big_xor</Name>
+    <Role>binder</Role>
+    <Title>Exclusive disjunction over a set of formulae</Title>
+    <Description>This n-ary operator is used to construct the exclusive disjunction over a set of forumlae.</Description>
+  </CDDefinition>
+  <CDDefinition xml:id="or">
+    <Name>or</Name>
+    <Title>Disjunction</Title>
+    <Pragmatic>
+      <Element type="opel_big">or</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Model>MathMLType</Model>
+        <Default>boolean</Default>
+      </Attribute>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol represents the logical or function which is an n-ary function taking boolean arguments and returning a boolean value. It is true if any of the arguments are true or false otherwise.</Description>
 
 
-<MMLexample speclevel="1" xml:id="or.ex1">
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><or/>
-      <ci>a</ci>
-      <ci>b</ci>
-    </apply>
-  </math>
-</MMLexample>
+    <MMLexample speclevel="1" xml:id="or.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <or/>
+          <ci>a</ci>
+          <ci>b</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
-<property xml:id="or_prop_6">
-<CMP>
+    <property xml:id="or_prop_6">
+      <CMP>
 for all x | x or not(x) = true
 </CMP>
 
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"><OMBIND><OMS cd="quant1" name="forall"/>
-  <OMBVAR>
-    <OMV name="x"/>
-  </OMBVAR>
-  <OMA>
-    <OMS cd="relation1" name="eq"/>
-    <OMA><OMS cd="logic1" name="or"/>
-      <OMV name="x"/>
-      <OMA><OMS cd="logic1" name="not"/>
-        <OMV name="x"/>
-      </OMA>
-    </OMA>
-    <OMS cd="logic1" name="true"/>
-  </OMA>
-</OMBIND>
-</OMOBJ></FMP></property>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMBIND>
+            <OMS cd="quant1" name="forall"/>
+            <OMBVAR>
+              <OMV name="x"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="relation1" name="eq"/>
+              <OMA>
+                <OMS cd="logic1" name="or"/>
+                <OMV name="x"/>
+                <OMA>
+                  <OMS cd="logic1" name="not"/>
+                  <OMV name="x"/>
+                </OMA>
+              </OMA>
+              <OMS cd="logic1" name="true"/>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </property>
 
-<property xml:id="or_prop_7">
-<CMP>
+    <property xml:id="or_prop_7">
+      <CMP>
 for all a,b | not(a and b)= (not(a) or not(b))
 </CMP>
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-<OMBIND>
-  <OMS cd="quant1" name="forall"/>
-  <OMBVAR>
-    <OMV name="a"/>
-    <OMV name="b"/>
-  </OMBVAR>
-  <OMA>
-    <OMS cd="relation1" name="eq"/>
-    <OMA>
-      <OMS cd="logic1" name="not"/>
-      <OMA>
-        <OMS cd="logic1" name="and"/>
-        <OMV name="a"/>
-        <OMV name="b"/>
-      </OMA>
-    </OMA>
-    <OMA>
-      <OMS cd="logic1" name="or"/>
-      <OMA>
-        <OMS cd="logic1" name="not"/>
-        <OMV name="a"/>
-      </OMA>
-      <OMA>
-        <OMS cd="logic1" name="not"/>
-        <OMV name="b"/>
-      </OMA>
-    </OMA>
-  </OMA>
-</OMBIND>
-</OMOBJ>
-</FMP></property>
-</CDDefinition>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMBIND>
+            <OMS cd="quant1" name="forall"/>
+            <OMBVAR>
+              <OMV name="a"/>
+              <OMV name="b"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="relation1" name="eq"/>
+              <OMA>
+                <OMS cd="logic1" name="not"/>
+                <OMA>
+                  <OMS cd="logic1" name="and"/>
+                  <OMV name="a"/>
+                  <OMV name="b"/>
+                </OMA>
+              </OMA>
+              <OMA>
+                <OMS cd="logic1" name="or"/>
+                <OMA>
+                  <OMS cd="logic1" name="not"/>
+                  <OMV name="a"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="logic1" name="not"/>
+                  <OMV name="b"/>
+                </OMA>
+              </OMA>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
+  <CDDefinition xml:id="big_or">
+    <Name>big_or</Name>
+    <Role>binder</Role>
+    <Title>Disjunction over a set of formulae</Title>
+    <Description>This n-ary operator is used to construct the disjunction over a set of forumlae.</Description>
+  </CDDefinition>
+  <CDDefinition xml:id="implies">
+    <Name>implies</Name>
+    <Title>Implication</Title>
+    <Pragmatic>
+      <Element type="opel">implies</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Model>MathMLType</Model>
+        <Default>boolean</Default>
+      </Attribute>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol represents the logical implies function which takes two boolean expressions as arguments. It evaluates to false if the first argument is true and the second argument is false, otherwise it evaluates to true.</Description>
 
+    <property>
+      <description>
+        <p>false implies x</p>
+      </description>
+    </property>
 
-<CDDefinition xml:id="big_or">
-  <Name>big_or</Name>
-  <Role>binder</Role>
-  <Title>Disjunction over a set of formulae</Title>
-  <Description>
-    This n-ary operator is used to construct the disjunction over a set of forumlae.
-  </Description>
-</CDDefinition>
-
-<CDDefinition xml:id="implies">
-  <Name>implies</Name>
-  <Title>Implication</Title>
-  <Pragmatic>
-    <Element type="opel">implies</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Model>MathMLType</Model>
-      <Default>boolean</Default>
-    </Attribute>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol represents the logical implies function which takes two boolean
-    expressions as arguments. It evaluates to false if the first argument is true and the
-    second argument is false, otherwise it evaluates to true.
-  </Description>
-
-  <property>
-    <description>
-      <p>false implies x</p>
-    </description>
-  </property>
-
-  <MMLexample speclevel="1" xml:id="implies.ex1">
-    <description>
-      <p>Mathematical applications designed for the evaluation of such expressions would
+    <MMLexample speclevel="1" xml:id="implies.ex1">
+      <description>
+        <p>Mathematical applications designed for the evaluation of such expressions would
       evaluate this to <attval>true</attval> when <var>a</var> = <attval>false</attval>
       and <var>b</var> = <attval>true</attval>.</p>
-    </description>
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply>
-      <implies/>
-      <ci>A</ci>
-      <ci>B</ci>
-      </apply>
-    </math>
-  </MMLexample>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <implies/>
+          <ci>A</ci>
+          <ci>B</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
-<property xml:id="implies_prop_8">
-<CMP> for all x | false implies x </CMP>
+    <property xml:id="implies_prop_8">
+      <CMP> for all x | false implies x </CMP>
 
-<FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-<OMBIND>
-  <OMS cd="quant1" name="forall"/>
-  <OMBVAR>
-    <OMV name="x"/>
-  </OMBVAR>
-  <OMA>
-    <OMS cd="logic1" name="implies"/>
-    <OMS cd="logic1" name="false"/>
-    <OMV name="x"/>
-  </OMA>
-</OMBIND>
-</OMOBJ></FMP></property>
-</CDDefinition>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMBIND>
+            <OMS cd="quant1" name="forall"/>
+            <OMBVAR>
+              <OMV name="x"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="logic1" name="implies"/>
+              <OMS cd="logic1" name="false"/>
+              <OMV name="x"/>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
+  <CDDefinition xml:id="true">
+    <Name>true</Name>
+    <Pragmatic>
+      <Element type="opel">true</Element>
+    </Pragmatic>
+    <Role>constant</Role>
+    <Description>This symbol represents the boolean value true, i.e. the logical constant for truth.</Description>
 
-<CDDefinition xml:id="true">
-<Name>true</Name>
-  <Pragmatic>
-    <Element type="opel">true</Element>
-  </Pragmatic>
-  <Role>constant</Role>
-  <Description> 
-    This symbol represents the boolean value true, i.e. the logical constant for truth.
-  </Description>
+    <property>
+      <description>
+        <p>not true = false</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <eq/>
+          <apply>
+            <not/>
+            <true/>
+          </apply>
+	         <false/>
+        </apply>
+      </math>
+    </property>
 
-  <property>
-    <description><p>not true = false</p></description>
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply><eq/>
-        <apply><not/><true/></apply>
-	<false/>
-      </apply>
-    </math>
-  </property>
+    <property>
+      <description>
+        <p>For all boolean p,  p or true is true</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <bind>
+          <forall/>
+          <bvar>
+            <ci>p</ci>
+          </bvar>
+          <apply>
+            <eq/>
+            <apply>
+              <or/>
+              <ci>p</ci>
+              <true/>
+            </apply>
+            <true/>
+          </apply>
+        </bind>
+      </math>
+    </property>
 
-<property>
-  <description>
-    <p>For all boolean p,  p or true is true</p>
-  </description>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <bind><forall/>
-  <bvar><ci>p</ci></bvar>
-  <apply><eq/>
-    <apply><or/><ci>p</ci><true/></apply>
-    <true/>
-  </apply>
-</bind>
-</math>
-</property>
-
-<MMLexample speclevel="1" xml:id="true.ex1">
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><eq/>
-      <apply><or/>
-        <true/>
-	<ci type="boolean">P</ci>
-      </apply>
-      <true/>
-    </apply>
-  </math>
-</MMLexample>
+    <MMLexample speclevel="1" xml:id="true.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <eq/>
+          <apply>
+            <or/>
+            <true/>
+	           <ci type="boolean">P</ci>
+          </apply>
+          <true/>
+        </apply>
+      </math>
+    </MMLexample>
 
 
-<property xml:id="implies_prop_9">
-<CMP> not true = false </CMP>
-<FMP>
-  <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-    <OMA>
-      <OMS cd="relation1" name="eq"/>
-      <OMA>
-        <OMS cd="logic1" name="not"/>
-	<OMS cd="logic1" name="true"/>
-      </OMA>
-      <OMS cd="logic1" name="false"/>
-    </OMA>
-  </OMOBJ>
-</FMP></property>
-</CDDefinition>
+    <property xml:id="implies_prop_9">
+      <CMP> not true = false </CMP>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMA>
+            <OMS cd="relation1" name="eq"/>
+            <OMA>
+              <OMS cd="logic1" name="not"/>
+	             <OMS cd="logic1" name="true"/>
+            </OMA>
+            <OMS cd="logic1" name="false"/>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
+  <CDDefinition xml:id="false">
+    <Name>false</Name>
+    <Pragmatic>
+      <Element type="opel">false</Element>
+    </Pragmatic>
+    <Role>constant</Role>
+    <Description>This symbol represents the boolean value false, i.e. the logical constant for falsehood.</Description>
 
-<CDDefinition xml:id="false">
-  <Name>false</Name>
-  <Pragmatic>
-    <Element type="opel">false</Element>
-  </Pragmatic>
-  <Role>constant</Role>
-  <Description> 
-    This symbol represents the boolean value false, i.e. the logical constant for
-    falsehood.
-  </Description>
+    <property>
+      <description>
+        <p>not true = false</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <eq/>
+          <apply>
+            <not/>
+            <true/>
+          </apply>
+          <false/>
+        </apply>
+      </math>
+    </property>
 
-  <property>
-    <description>
-      <p>not true = false</p>
-    </description>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply><eq/>
-  <apply><not/><true/></apply>
-  <false/>
-  </apply>
-</math>
-</property>
+    <property>
+      <description>
+        <p>p and false = false</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <bind>
+          <forall/>
+          <bvar>
+            <ci>p</ci>
+          </bvar>
+          <apply>
+            <eq/>
+            <apply>
+              <and/>
+              <ci>p</ci>
+              <false/>
+            </apply>
+            <false/>
+          </apply>
+        </bind>
+      </math>
+    </property>
 
-<property>
-  <description>
-    <p>p and false = false</p>
-  </description>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<bind><forall/>
-  <bvar><ci>p</ci></bvar>
-  <apply>
-    <eq/>
-      <apply><and/><ci>p</ci><false/></apply>
-      <false/>
-  </apply>
-</bind>
-</math>
-</property>
+    <MMLexample speclevel="1" xml:id="false.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <eq/>
+          <apply>
+            <and/>
+            <false/>
+            <ci type="boolean">P</ci>
+          </apply>
+          <false/>
+        </apply>
+      </math>
+    </MMLexample>
 
-<MMLexample speclevel="1" xml:id="false.ex1">
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><eq/>
-      <apply><and/>
-        <false/>
-        <ci type = "boolean">P</ci>
-      </apply>
-      <false/>
-    </apply>
-  </math>
-</MMLexample>
-
-<property xml:id="false_prop_10">
-<CMP> not false = true </CMP>
-<FMP>
-  <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-    <OMA>
-      <OMS cd="relation1" name="eq"/>
-      <OMA>
-        <OMS cd="logic1" name="not"/>
-	<OMS cd="logic1" name="false"/>
-      </OMA>
-      <OMS cd="logic1" name="true"/>
-    </OMA>
-  </OMOBJ>
-</FMP></property>
-</CDDefinition>
-
+    <property xml:id="false_prop_10">
+      <CMP> not false = true </CMP>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMA>
+            <OMS cd="relation1" name="eq"/>
+            <OMA>
+              <OMS cd="logic1" name="not"/>
+	             <OMS cd="logic1" name="false"/>
+            </OMA>
+            <OMS cd="logic1" name="true"/>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
 </CD>
