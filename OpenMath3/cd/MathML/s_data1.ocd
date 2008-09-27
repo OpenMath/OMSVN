@@ -1,8 +1,6 @@
-<CD xmlns="http://www.openmath.org/OpenMathCD">
-
-<CDComment>
-
-     This document is distributed in the hope that it will be useful, 
+<?xml version="1.0" encoding="UTF-8"?>
+<CD xmlns="http://www.openmath.org/OpenMathCD" xml:id="s_data1">
+  <CDComment>     This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -32,367 +30,420 @@
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 </CDComment>
+  <CDName>s_data1</CDName>
+  <CDBase>http://www.openmath.org/cd</CDBase>
+  <CDURL>http://www.openmath.org/cd/s_data1.ocd</CDURL>
+  <CDReviewDate>2006-03-30</CDReviewDate>
+  <CDDate>2008-09-27</CDDate>
+  <CDVersion>3</CDVersion>
+  <CDRevision>0</CDRevision>
+  <CDStatus>draft</CDStatus>
+  <Description>This CD holds the definitions of the basic statistical functions used on sample data.</Description>
+  <CDDefinition xml:id="mean">
+    <Name>mean</Name>
+    <Pragmatic>
+      <Element type="opel">mean</Element>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol represents an n-ary function denoting the mean of its arguments. That is, their sum divided by their number. See CRC Standard Mathematical Tables and Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996, section 7.7.1</Description>
 
-<CDName>s_data1</CDName>
-<CDBase>http://www.openmath.org/cd</CDBase>
-<CDURL>http://www.openmath.org/cd/s_data1.ocd </CDURL>
-<CDReviewDate>2006-03-30</CDReviewDate>
-<CDDate>2004-03-30</CDDate>
-<CDVersion>3</CDVersion>
-<CDRevision>0</CDRevision>
-<CDStatus>draft</CDStatus>
-<Description>
-    This CD holds the definitions of the basic statistical functions
-    used on sample data. 
-</Description>
+    <MMLexample speclevel="1" xml:id="mean.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <mean/>
+          <cn>3</cn>
+          <cn>4</cn>
+          <cn>3</cn>
+          <cn>7</cn>
+          <cn>4</cn>
+        </apply>
+      </math>
+    </MMLexample>
 
-
-<CDDefinition xml:id="mean">
-  <Name>mean</Name>
-  <Pragmatic>
-    <Element type="opel">mean</Element>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol represents an n-ary function denoting the mean of its arguments. That is,
-    their sum divided by their number. See CRC Standard Mathematical Tables and Formulae,
-    editor: Dan Zwillinger, CRC Press Inc., 1996, section 7.7.1
-  </Description>
-
-<MMLexample speclevel="1" xml:id="mean.ex1">
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><mean/><cn>3</cn><cn>4</cn><cn>3</cn><cn>7</cn><cn>4</cn></apply>
-  </math>
-</MMLexample>
-
-<property xml:id="mean_prop_1">
-<CMP>
+    <property xml:id="mean_prop_1">
+      <CMP>
 The mean of n arguments is their sum divided by their number
 </CMP>
 
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="relation1" name="eq"/>
-    <OMA>
-      <OMS cd="fns2" name="apply_to_list"/>
-      <OMS cd="s_data1" name="mean"/>
-      <OMV name="L"/>
-    </OMA>
-    <OMA>
-      <OMS cd="arith1" name="divide"/>
-      <OMA>
-        <OMS cd="fns2" name="apply_to_list"/>
-	<OMS cd="arith1" name="plus"/>
-	<OMV name="L"/>
-      </OMA>
-      <OMA>
-        <OMS cd="set1" name="size"/>
-	<OMV name="L"/>
-      </OMA>
-    </OMA>
-  </OMA>
-</OMOBJ>
-</FMP></property>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMA>
+            <OMS cd="relation1" name="eq"/>
+            <OMA>
+              <OMS cd="fns2" name="apply_to_list"/>
+              <OMS cd="s_data1" name="mean"/>
+              <OMV name="L"/>
+            </OMA>
+            <OMA>
+              <OMS cd="arith1" name="divide"/>
+              <OMA>
+                <OMS cd="fns2" name="apply_to_list"/>
+	               <OMS cd="arith1" name="plus"/>
+	               <OMV name="L"/>
+              </OMA>
+              <OMA>
+                <OMS cd="set1" name="size"/>
+	               <OMV name="L"/>
+              </OMA>
+            </OMA>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </property>
 
-<Example> The mean of {1,2,3} is 3
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="relation1" name="eq"/>
-    <OMA>
-      <OMS cd="s_data1" name="mean"/>
-      <OMI> 1 </OMI> <OMI> 2 </OMI> <OMI> 3 </OMI>
-    </OMA>
-    <OMI> 3 </OMI>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
+    <Example> The mean of {1,2,3} is 3
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
+        <OMA>
+          <OMS cd="relation1" name="eq"/>
+          <OMA>
+            <OMS cd="s_data1" name="mean"/>
+            <OMI> 1 </OMI> 
+            <OMI> 2 </OMI> 
+            <OMI> 3 </OMI>
+          </OMA>
+          <OMI> 3 </OMI>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="sdev">
+    <Name>sdev</Name>
+    <Pragmatic>
+      <Element type="opel">sdev</Element>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol represents a function requiring two or more arguments, denoting the sample standard deviation of its arguments. That is, the square root of (the sum of the squares of the deviations from the mean of the arguments, divided by the number of arguments). See CRC Standard Mathematical Tables and Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996, (7.7.11) section 7.7.1.</Description>
 
-<CDDefinition xml:id="sdev">
-<Name>sdev</Name>
-  <Pragmatic>
-    <Element type="opel">sdev</Element>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol represents a function requiring two or more arguments, denoting the sample
-    standard deviation of its arguments. That is, the square root of (the sum of the
-    squares of the deviations from the mean of the arguments, divided by the number of
-    arguments).  See CRC Standard Mathematical Tables and Formulae, editor: Dan
-    Zwillinger, CRC Press Inc., 1996, (7.7.11) section 7.7.1.
-  </Description>
+    <MMLexample speclevel="1" xml:id="sdev.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <sdev/>
+          <cn>3</cn>
+          <cn>4</cn>
+          <cn>2</cn>
+          <cn>2</cn>
+        </apply>
+      </math>
+    </MMLexample>
 
-<MMLexample speclevel="1" xml:id="sdev.ex1">
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><sdev/><cn>3</cn><cn>4</cn><cn>2</cn><cn>2</cn></apply>
-  </math>
-</MMLexample>
-
-<property xml:id="sdev_prop_2">
-  <CMP>
+    <property xml:id="sdev_prop_2">
+      <CMP>
     The square of the standard deviation of n arguments is the sum of the squares of
     the differences from their mean divided by the number of arguments.
   </CMP>
 
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="relation1" name="eq"/>
-    <OMA>
-      <OMS cd="arith1" name="power"/>
-      <OMA>
-        <OMS cd="fns2" name="apply_to_list"/>
-	<OMA>
-	  <OMS cd="s_data1" name="sdev"/>
-	  <OMV name="L"/>
-	</OMA>
-      </OMA>
-      <OMI> 2 </OMI>
-    </OMA>
-    <OMA>
-      <OMS cd="arith1" name="divide"/>
-      <OMA>
-        <OMS cd="fns2" name="apply_to_list"/>
-	<OMS cd="arith1" name="plus"/>
-	<OMA>
-	  <OMS cd="list1" name="map"/>
-	  <OMBIND>
-	    <OMS cd="fns1" name="lambda"/>
-	    <OMBVAR>
-	      <OMV name="x"/>
-	    </OMBVAR>
-	    <OMA>
-	      <OMS cd="arith1" name="power"/>
-	      <OMA>
-	        <OMS cd="arith1" name="minus"/>
-		<OMV name="x"/>
-		<OMA>
-		  <OMS cd="s_data1" name="mean"/>
-		  <OMV name="L"/>
-		</OMA>
-	      </OMA>
-	      <OMI> 2 </OMI>
-	    </OMA>
-	  </OMBIND>
-	  <OMV name="L"/>
-	</OMA>
-      </OMA>
-      <OMA>
-        <OMS cd="set1" name="size"/>
-	<OMA>
-	  <OMS cd="fns2" name="apply_to_list"/>
-	  <OMS cd="set1" name="set"/>
-	  <OMV name="L"/>
-	</OMA>
-      </OMA>
-    </OMA>
-  </OMA>
-</OMOBJ>
-</FMP></property>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMA>
+            <OMS cd="relation1" name="eq"/>
+            <OMA>
+              <OMS cd="arith1" name="power"/>
+              <OMA>
+                <OMS cd="fns2" name="apply_to_list"/>
+	               <OMA>
+	                 <OMS cd="s_data1" name="sdev"/>
+	                 <OMV name="L"/>
+	               </OMA>
+              </OMA>
+              <OMI> 2 </OMI>
+            </OMA>
+            <OMA>
+              <OMS cd="arith1" name="divide"/>
+              <OMA>
+                <OMS cd="fns2" name="apply_to_list"/>
+	               <OMS cd="arith1" name="plus"/>
+	               <OMA>
+	                 <OMS cd="list1" name="map"/>
+	                 <OMBIND>
+	                   <OMS cd="fns1" name="lambda"/>
+	                   <OMBVAR>
+	                     <OMV name="x"/>
+	                   </OMBVAR>
+	                   <OMA>
+	                     <OMS cd="arith1" name="power"/>
+	                     <OMA>
+	                       <OMS cd="arith1" name="minus"/>
+		                      <OMV name="x"/>
+		                      <OMA>
+		                        <OMS cd="s_data1" name="mean"/>
+		                        <OMV name="L"/>
+		                      </OMA>
+	                     </OMA>
+	                     <OMI> 2 </OMI>
+	                   </OMA>
+	                 </OMBIND>
+	                 <OMV name="L"/>
+	               </OMA>
+              </OMA>
+              <OMA>
+                <OMS cd="set1" name="size"/>
+	               <OMA>
+	                 <OMS cd="fns2" name="apply_to_list"/>
+	                 <OMS cd="set1" name="set"/>
+	                 <OMV name="L"/>
+	               </OMA>
+              </OMA>
+            </OMA>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </property>
 
-<Example>
+    <Example>
 This is an example to denote the standard deviation of a set of data
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="s_data1" name="sdev"/>
-    <OMF dec="3.1"/> <OMF dec="2.2"/> <OMF dec="1.8"/> <OMF dec="1.1"/>
-    <OMF dec="3.3"/> <OMF dec="2.4"/> <OMF dec="5.5"/> <OMF dec="2.3"/>
-    <OMF dec="1.7"/> <OMF dec="1.8"/> <OMF dec="3.4"/> <OMF dec="4.0"/>
-    <OMF dec="3.3"/>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
+        <OMA>
+          <OMS cd="s_data1" name="sdev"/>
+          <OMF dec="3.1"/> 
+          <OMF dec="2.2"/> 
+          <OMF dec="1.8"/> 
+          <OMF dec="1.1"/>
+          <OMF dec="3.3"/> 
+          <OMF dec="2.4"/> 
+          <OMF dec="5.5"/> 
+          <OMF dec="2.3"/>
+          <OMF dec="1.7"/> 
+          <OMF dec="1.8"/> 
+          <OMF dec="3.4"/> 
+          <OMF dec="4.0"/>
+          <OMF dec="3.3"/>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="variance">
+    <Name>variance</Name>
+    <Pragmatic>
+      <Element type="opel">variance</Element>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol represents a function requiring two or more arguments, denoting the variance of its arguments. That is, the square of the standard deviation. See CRC Standard Mathematical Tables and Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996, [7.1.2] and [7.7].</Description>
 
-<CDDefinition xml:id="variance">
-<Name>variance</Name>
-  <Pragmatic>
-    <Element type="opel">variance</Element>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description>
-    This symbol represents a function requiring two or more arguments, denoting the
-    variance of its arguments. That is, the square of the standard deviation.  See CRC
-    Standard Mathematical Tables and Formulae, editor: Dan Zwillinger, CRC Press Inc.,
-    1996, [7.1.2] and [7.7].
-  </Description>
+    <MMLexample speclevel="1" xml:id="variance.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <variance/>
+          <cn>3</cn>
+          <cn>4</cn>
+          <cn>2</cn>
+          <cn>2</cn>
+        </apply>
+      </math>
+    </MMLexample>
 
-  <MMLexample speclevel="1" xml:id="variance.ex1">
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply><variance/><cn>3</cn><cn>4</cn><cn>2</cn><cn>2</cn></apply>
-    </math>
-  </MMLexample>
-
-<property xml:id="variance_prop_3">
-<CMP>
+    <property xml:id="variance_prop_3">
+      <CMP>
 The variance of n arguments is the square of the standard deviation of
 those arguments.
 </CMP>
 
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="relation1" name="eq"/>
-    <OMA>
-      <OMS cd="fns2" name="apply_to_list"/>
-      <OMA>
-        <OMS cd="s_data1" name="variance"/>
-	<OMV name="L"/>
-      </OMA>
-    </OMA>
-    <OMA>
-      <OMS cd="arith1" name="power"/>
-      <OMA>
-        <OMS cd="fns2" name="apply_to_list"/>
-	<OMA>
-	  <OMS cd="s_data1" name="sdev"/>
-	  <OMV name="L"/>
-	</OMA>
-      </OMA>
-      <OMI> 2 </OMI>
-    </OMA>
-  </OMA>
-</OMOBJ>
-</FMP></property>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+               version="3.0">
+          <OMA>
+            <OMS cd="relation1" name="eq"/>
+            <OMA>
+              <OMS cd="fns2" name="apply_to_list"/>
+              <OMA>
+                <OMS cd="s_data1" name="variance"/>
+	               <OMV name="L"/>
+              </OMA>
+            </OMA>
+            <OMA>
+              <OMS cd="arith1" name="power"/>
+              <OMA>
+                <OMS cd="fns2" name="apply_to_list"/>
+	               <OMA>
+	                 <OMS cd="s_data1" name="sdev"/>
+	                 <OMV name="L"/>
+	               </OMA>
+              </OMA>
+              <OMI> 2 </OMI>
+            </OMA>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </property>
 
-<Example>
+    <Example>
 This is an example to denote the variance of a set of data
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="s_data1" name="variance"/>
-    <OMF dec="3.1"/> <OMF dec="2.2"/> <OMF dec="1.8"/> <OMF dec="1.1"/>
-    <OMF dec="3.3"/> <OMF dec="2.4"/> <OMF dec="5.5"/> <OMF dec="2.3"/>
-    <OMF dec="1.7"/> <OMF dec="1.8"/> <OMF dec="3.4"/> <OMF dec="4.0"/>
-    <OMF dec="3.3"/>
-  </OMA>
-</OMOBJ> 
-</Example>
-</CDDefinition>
-
-<CDDefinition xml:id="mode">
-  <Name>mode</Name>
-  <Pragmatic>
-    <Element type="opel">mode</Element>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol represents an n-ary function denoting the mode of its arguments. That is
-    the value which occurs with the greatest frequency. See CRC Standard Mathematical
-    Tables and Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996, section 7.7.1
-  </Description>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
+        <OMA>
+          <OMS cd="s_data1" name="variance"/>
+          <OMF dec="3.1"/> 
+          <OMF dec="2.2"/> 
+          <OMF dec="1.8"/> 
+          <OMF dec="1.1"/>
+          <OMF dec="3.3"/> 
+          <OMF dec="2.4"/> 
+          <OMF dec="5.5"/> 
+          <OMF dec="2.3"/>
+          <OMF dec="1.7"/> 
+          <OMF dec="1.8"/> 
+          <OMF dec="3.4"/> 
+          <OMF dec="4.0"/>
+          <OMF dec="3.3"/>
+        </OMA>
+      </OMOBJ> 
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="mode">
+    <Name>mode</Name>
+    <Pragmatic>
+      <Element type="opel">mode</Element>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol represents an n-ary function denoting the mode of its arguments. That is the value which occurs with the greatest frequency. See CRC Standard Mathematical Tables and Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996, section 7.7.1</Description>
   
-  <MMLexample speclevel="1" xml:id="mode.ex1">
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply><mode/><cn>3</cn><cn>4</cn><cn>2</cn><cn>2</cn></apply>
-    </math>
-  </MMLexample>
+    <MMLexample speclevel="1" xml:id="mode.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <mode/>
+          <cn>3</cn>
+          <cn>4</cn>
+          <cn>2</cn>
+          <cn>2</cn>
+        </apply>
+      </math>
+    </MMLexample>
 
-<property xml:id="mode_prop_4">
-<CMP>
+    <property xml:id="mode_prop_4">
+      <CMP>
 The mode of n arguments is that value which occurs with the greatest frequency.
 </CMP>
-</property>
-<Example> The mode of {1,1,2} is 1
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="relation1" name="eq"/>
-    <OMA>
-      <OMS cd="s_data1" name="mode"/>
-      <OMI> 1 </OMI> <OMI> 1 </OMI> <OMI> 2 </OMI>
-    </OMA>
-    <OMI> 1 </OMI>
-  </OMA>
-</OMOBJ> </Example>
-</CDDefinition>
-
-<CDDefinition xml:id="median">
-<Name>median</Name>
-  <Pragmatic>
-    <Element type="opel">median</Element>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol represents an n-ary function denoting the median of its arguments. That
-    is, if the data were placed in ascending order then it denotes the middle one (in the
-    case of an odd amount of data) or the average of the middle two (in the case of an
-    even amount of data). See CRC Standard Mathematical Tables and Formulae, editor: Dan
-    Zwillinger, CRC Press Inc., 1996, section 7.7.1
-  </Description>
+    </property>
+    <Example> The mode of {1,1,2} is 1
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
+        <OMA>
+          <OMS cd="relation1" name="eq"/>
+          <OMA>
+            <OMS cd="s_data1" name="mode"/>
+            <OMI> 1 </OMI> 
+            <OMI> 1 </OMI> 
+            <OMI> 2 </OMI>
+          </OMA>
+          <OMI> 1 </OMI>
+        </OMA>
+      </OMOBJ> 
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="median">
+    <Name>median</Name>
+    <Pragmatic>
+      <Element type="opel">median</Element>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol represents an n-ary function denoting the median of its arguments. That is, if the data were placed in ascending order then it denotes the middle one (in the case of an odd amount of data) or the average of the middle two (in the case of an even amount of data). See CRC Standard Mathematical Tables and Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996, section 7.7.1</Description>
   
-<MMLexample speclevel="1" xml:id="median.ex1">
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><median/><cn>3</cn><cn>4</cn><cn>2</cn><cn>2</cn></apply>
-  </math>
-</MMLexample>
+    <MMLexample speclevel="1" xml:id="median.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <median/>
+          <cn>3</cn>
+          <cn>4</cn>
+          <cn>2</cn>
+          <cn>2</cn>
+        </apply>
+      </math>
+    </MMLexample>
 
-<Example> The median of {1,2,3} is 2 
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="relation1" name="eq"/>
-    <OMA>
-      <OMS cd="s_data1" name="median"/>
-      <OMI> 1 </OMI> <OMI> 2 </OMI> <OMI> 3 </OMI>
-    </OMA>
-    <OMI> 2 </OMI>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
+    <Example> The median of {1,2,3} is 2 
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
+        <OMA>
+          <OMS cd="relation1" name="eq"/>
+          <OMA>
+            <OMS cd="s_data1" name="median"/>
+            <OMI> 1 </OMI> 
+            <OMI> 2 </OMI> 
+            <OMI> 3 </OMI>
+          </OMA>
+          <OMI> 2 </OMI>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="moment">
+    <Name>moment</Name>
+    <Pragmatic>
+      <Element type="opel">moment</Element>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol is used to denote the i'th moment of a set of data. The first argument should be the degree of the moment (that is, for the i'th moment the first argument should be i), the second argument should be the point about which the moment is being taken and the rest of the arguments are treated as the data. For n data values x_1, x_2, ..., x_n the i'th moment about c is (1/n) ((x_1-c)^i + (x_2-c)^i + ... + (x_n-c)^i). See CRC Standard Mathematical Tables and Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996, section 7.7.1.</Description>
 
-<CDDefinition xml:id="moment">
-  <Name>moment</Name>
-  <Pragmatic>
-    <Element type="opel">moment</Element>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol is used to denote the i'th moment of a set of data. The first argument
-    should be the degree of the moment (that is, for the i'th moment the first argument
-    should be i), the second argument should be the point about which the moment is being
-    taken and the rest of the arguments are treated as the data. For n data values x_1,
-    x_2, ..., x_n the i'th moment about c is (1/n) ((x_1-c)^i + (x_2-c)^i + ... +
-    (x_n-c)^i).  See CRC Standard Mathematical Tables and Formulae, editor: Dan
-    Zwillinger, CRC Press Inc., 1996, section 7.7.1.
-  </Description>
-
-  <MMLexample speclevel="1" xml:id="moment.ex1">
-    <description>
-      <p>The 3rd central moment of a set of data. </p>
-    </description>
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply><moment/>
-      <degree><cn>3</cn></degree>
-      <momentabout><mean/></momentabout>
-      <cn>6</cn><cn>4</cn><cn>2</cn><cn>2</cn><cn>5</cn>
-      </apply>
-    </math>
-  </MMLexample>
+    <MMLexample speclevel="1" xml:id="moment.ex1">
+      <description>
+        <p>The 3rd central moment of a set of data. </p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <moment/>
+          <degree>
+            <cn>3</cn>
+          </degree>
+          <momentabout>
+            <mean/>
+          </momentabout>
+          <cn>6</cn>
+          <cn>4</cn>
+          <cn>2</cn>
+          <cn>2</cn>
+          <cn>5</cn>
+        </apply>
+      </math>
+    </MMLexample>
   
-  <MMLexample  speclevel="1" xml:id="moment.ex2">
-    <description>
-      <p>The 3rd  moment about the origin of a set of data.</p>
-      </description><math xmlns="http://www.w3.org/1998/Math/MathML"><apply><moment/>
-      <degree><cn>3</cn></degree>
-      <momentabout><cn>0</cn></momentabout>
-      <cn>6</cn><cn>4</cn><cn>2</cn><cn>2</cn>
-  </apply></math></MMLexample>
+    <MMLexample speclevel="1" xml:id="moment.ex2">
+      <description>
+        <p>The 3rd  moment about the origin of a set of data.</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <moment/>
+          <degree>
+            <cn>3</cn>
+          </degree>
+          <momentabout>
+            <cn>0</cn>
+          </momentabout>
+          <cn>6</cn>
+          <cn>4</cn>
+          <cn>2</cn>
+          <cn>2</cn>
+        </apply>
+      </math>
+    </MMLexample>
   
-<Example>
+    <Example>
 This is an example to denote the 2'nd moment of a set of data about
 the origin.
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="s_data1" name="moment"/>
-    <OMI> 2 </OMI>
-    <OMS cd="alg1" name="zero"/>
-    <OMF dec="3.1"/> <OMF dec="2.2"/> <OMF dec="1.8"/> <OMF dec="1.1"/>
-    <OMF dec="3.3"/> <OMF dec="2.4"/> <OMF dec="5.5"/> <OMF dec="2.3"/>
-    <OMF dec="1.7"/> <OMF dec="1.8"/> <OMF dec="3.4"/> <OMF dec="4.0"/>
-    <OMF dec="3.3"/>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
-
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
+        <OMA>
+          <OMS cd="s_data1" name="moment"/>
+          <OMI> 2 </OMI>
+          <OMS cd="alg1" name="zero"/>
+          <OMF dec="3.1"/> 
+          <OMF dec="2.2"/> 
+          <OMF dec="1.8"/> 
+          <OMF dec="1.1"/>
+          <OMF dec="3.3"/> 
+          <OMF dec="2.4"/> 
+          <OMF dec="5.5"/> 
+          <OMF dec="2.3"/>
+          <OMF dec="1.7"/> 
+          <OMF dec="1.8"/> 
+          <OMF dec="3.4"/> 
+          <OMF dec="4.0"/>
+          <OMF dec="3.3"/>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
 </CD>
