@@ -187,7 +187,7 @@ select="@name"/>]</xsl:message>-->
   <xsl:choose>
   <xsl:when test="parent::om:OMA and not(preceding-sibling::*)">
   <mrow>
-  <xsl:if test="$this-p &lt; $p"><mo>(</mo></xsl:if>
+  <xsl:if test="$this-p &lt;= $p"><mo>(</mo></xsl:if>
   <xsl:for-each select="following-sibling::*">
    <xsl:if test="position() &gt; 1">
     <xsl:copy-of select="$mo"/>
@@ -196,7 +196,7 @@ select="@name"/>]</xsl:message>-->
      <xsl:with-param name="p" select="$this-p"/>
    </xsl:apply-templates>
   </xsl:for-each>
-  <xsl:if test="$this-p &lt; $p"><mo>)</mo></xsl:if>
+  <xsl:if test="$this-p &lt;= $p"><mo>)</mo></xsl:if>
   </mrow>
   </xsl:when>
   <xsl:otherwise>
@@ -212,7 +212,7 @@ select="@name"/>]</xsl:message>-->
   <xsl:choose>
   <xsl:when test="parent::om:OMA and not(preceding-sibling::*)">
   <mrow>
-  <xsl:if test="$this-p &lt; $p"><mo>(</mo></xsl:if>
+  <xsl:if test="$this-p &lt;= $p"><mo>(</mo></xsl:if>
    <xsl:apply-templates select="following-sibling::*[1]">
      <xsl:with-param name="p" select="$this-p"/>
    </xsl:apply-templates>
@@ -220,7 +220,7 @@ select="@name"/>]</xsl:message>-->
    <xsl:apply-templates select="following-sibling::*[2]">
      <xsl:with-param name="p" select="$this-p"/>
    </xsl:apply-templates>
-  <xsl:if test="$this-p &lt; $p"><mo>)</mo></xsl:if>
+  <xsl:if test="$this-p &lt;= $p"><mo>)</mo></xsl:if>
   </mrow>
   </xsl:when>
   <xsl:otherwise>
