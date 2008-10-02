@@ -408,34 +408,33 @@ An example to represent the equation: \partial^2{xyz}/ \partial{x}\partial{z} = 
     This symbol is a binding operator for indefinite integration.
   </Description>
   
-<property xml:id="int_prop_5">
-<CMP>
-application of integrate followed by differentiate is the identity
-function, that is: 
- diff(lambda y:integral(lambda z:f(z))(y)) = f
-</CMP>
+  <property xml:id="int_prop_5">
+    <CMP>
+      application of integrate followed by differentiate is the identity function, that
+      is: diff(lambda y:integral(lambda z:f(z))(y)) = f
+    </CMP>
 
-<FMP>
-  <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-    <OMA>
-      <OMS cd="relation1" name="eq"/>
-      <OMBIND>
-  <OMS cd="calculus3" name="diff"/>
-  <OMBVAR><OMV name="y"/></OMBVAR>
-  <OMA>
-    <OMBIND>
-      <OMS cd="calculus3" name="int"/>
-      <OMBVAR><OMV name="z"/></OMBVAR>
-      <OMA><OMV name="f"/><OMV name="z"/></OMA>
-    </OMBIND>
-    <OMV name="y"/>
-  </OMA>
-      </OMBIND>
-      <OMV name="f"/>
-    </OMA>
-  </OMOBJ>
-</FMP>
-</property>
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
+	<OMA>
+	  <OMS cd="relation1" name="eq"/>
+	  <OMBIND>
+	    <OMS cd="calculus3" name="diff"/>
+	    <OMBVAR><OMV name="y"/></OMBVAR>
+	    <OMA>
+	      <OMBIND>
+		<OMS cd="calculus3" name="int"/>
+		<OMBVAR><OMV name="z"/></OMBVAR>
+		<OMA><OMV name="f"/><OMV name="z"/></OMA>
+	      </OMBIND>
+	      <OMV name="y"/>
+	    </OMA>
+	  </OMBIND>
+	  <OMV name="f"/>
+	</OMA>
+      </OMOBJ>
+    </FMP>
+  </property>
 
 <Example>
 An example which represents the equation:
@@ -472,21 +471,6 @@ integral(x +-&gt; sin(x)) w.r.t. x = x +-&gt; -cos(x)
     functions. It takes two arguments: the lower and upper bounds of the the range of integration.
   </Description>
   
-  <MMLexample>
-    <description>
-      <p>This example specifies an interval of the real line as the domain of
-      integration with an <el>interval</el> element.  In this form the integrand is
-      provided as a function and no mention is made of a bound variable.</p>
-    </description>
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <bind>
-  <defint/>
-  <bvar><ci>x</ci></bvar>
-  <apply><interval/><ci>a</ci><ci>b</ci></apply>
-  <apply><cos/><ci>x</ci></apply>
-      </bind>
-    </math>
-  </MMLexample>
     
 <property xml:id="defint_prop_6">
 <CMP> for all a,b | integral from a to b = -integral from b to a </CMP>
@@ -566,15 +550,15 @@ for all a &lt; b &lt; c | integral over [a,c] = integral over [a,b] + integral o
 </property>
 
 <Example>
-An example to represent the definite integration of sin(x) between the points 
--1.0 and 1.0.
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMBIND>
-    <OMA><OMS cd="calculus3" name="defint"/><OMF dec="-1.0"/><OMF dec="1.0"/></OMA>
-    <OMBVAR><OMV name="x"/></OMBVAR>
-    <OMA><OMS cd="transc1" name="sin"/><OMV name="x"/></OMA>
-  </OMBIND>
-</OMOBJ>
+  An example to represent the definite integration of sin(x) between the points -1.0 and
+  1.0.
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
+    <OMBIND>
+      <OMA><OMS cd="calculus3" name="defint"/><OMF dec="-1.0"/><OMF dec="1.0"/></OMA>
+      <OMBVAR><OMV name="x"/></OMBVAR>
+      <OMA><OMS cd="transc1" name="sin"/><OMV name="x"/></OMA>
+    </OMBIND>
+  </OMOBJ>
 </Example>
 </CDDefinition>
 
