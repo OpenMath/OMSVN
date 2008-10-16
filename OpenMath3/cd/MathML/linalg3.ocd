@@ -1,8 +1,6 @@
-<CD xmlns="http://www.openmath.org/OpenMathCD">
-
-<CDComment>
-
-     This document is distributed in the hope that it will be useful, 
+<?xml version="1.0" encoding="UTF-8"?>
+<CD xmlns="http://www.openmath.org/OpenMathCD" xml:id="linalg3">
+  <CDComment>     This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -32,44 +30,31 @@
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 </CDComment>
-
-<CDName>linalg3</CDName>
-<CDBase>http://www.openmath.org/cd</CDBase>
-<CDURL>http://www.openmath.org/cd/linalg3.ocd </CDURL>
-<CDReviewDate>2006-03-30</CDReviewDate>
-<CDDate>2004-03-30</CDDate>
-<CDVersion>3</CDVersion>
-<CDRevision>0</CDRevision>
-<CDStatus>draft</CDStatus>
-<Description>
-    This content dictionary treats matrices and vectors in a column oriented fashion (using
-    matrix columns).  Vectors in this CD are considered to be column vectors and must
-    therefore be transposed to be considered as row vectors.
-</Description>
-
-<CDDefinition xml:id="vector">
-<Name>vector</Name>
-  <Pragmatic specref="vector.column">
-    <Element type="container">vector</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Model>"column" | MathMLType </Model>
-      <Default>"column"</Default>
-    </Attribute>
-    <description>
-      <p>The type attribute can be used to explicitly specify that a
+  <CDName>linalg3</CDName>
+  <CDBase>http://www.openmath.org/cd</CDBase>
+  <CDURL>http://www.openmath.org/cd/linalg3.ocd</CDURL>
+  <CDReviewDate>2006-03-30</CDReviewDate>
+  <CDDate>2008-10-16</CDDate>
+  <CDVersion>3</CDVersion>
+  <CDRevision>0</CDRevision>
+  <CDStatus>draft</CDStatus>
+  <Description>This content dictionary treats matrices and vectors in a column oriented fashion (using matrix columns). Vectors in this CD are considered to be column vectors and must therefore be transposed to be considered as row vectors.</Description>
+  <CDDefinition xml:id="vector">
+    <Name>vector</Name>
+    <Pragmatic specref="vector.column">
+      <Element type="container">vector</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Model>"column" | MathMLType </Model>
+        <Default>"column"</Default>
+      </Attribute>
+      <description>
+        <p>The type attribute can be used to explicitly specify that a
       vector is a "row" vector.</p>
-    </description>
-  </Pragmatic>
-<Role>application</Role>
-<Description>
-  A vector is an ordered n-tuple of values representing an element of an n-dimensional
-  vector space.  The "values" are all from the same ring, typically real or complex.
-  Where orientation is important, such as for pre or post multiplication by a matrix a
-  vector is treated as a column vector and its transpose is treated a row
-  vector.  See CRC Standard Mathematical Tables and Formulae, editor: Dan Zwillinger, CRC
-  Press Inc., 1996, [2.4]
-</Description>
+      </description>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>A vector is an ordered n-tuple of values representing an element of an n-dimensional vector space. The "values" are all from the same ring, typically real or complex. Where orientation is important, such as for pre or post multiplication by a matrix a vector is treated as a column vector and its transpose is treated a row vector. See CRC Standard Mathematical Tables and Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996, [2.4]</Description>
 
     <discussion>
       <p>For purposes of interaction with matrices and matrix multiplication, vectors are
@@ -81,15 +66,22 @@
       vector space so that its <var>n</var> child elements typically represent real or
       complex valued scalars as in the three-element vector
 
-<eg role = "mathml">
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-<vector>
-  <apply><plus/><ci>x</ci><ci>y</ci></apply>
-  <cn>3</cn>
-  <cn>7</cn>
-</vector></math></eg></p>
+<eg role="mathml">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <vector>
+              <apply>
+                <plus/>
+                <ci>x</ci>
+                <ci>y</ci>
+              </apply>
+              <cn>3</cn>
+              <cn>7</cn>
+            </vector>
+          </math>
+        </eg>
+      </p>
 
-<p>A vector can also be constructed by evaluating a function over a specific domain
+      <p>A vector can also be constructed by evaluating a function over a specific domain
        of application, each evaluation corresponding to an entry in the vector.  In its
        most general form a domain is explicitly specified by a
        <el>domainofapplication</el> element and a function. Optionally the
@@ -97,147 +89,203 @@
        algebraic expression expressed in terms of it.  Qualifications defined by a
        <el>domainofapplication</el> element can be abbreviated in several ways as
        described in <specref ref="contm_qualifiers"/>.</p>
-  </discussion>
+    </discussion>
 
    <property>
-    <description><p>vector=column_vector</p></description>
+      <description>
+        <p>vector=column_vector</p>
+      </description>
         </property>
         <property>
-          <description><p>matrix * vector = vector</p></description>
+          <description>
+        <p>matrix * vector = vector</p>
+      </description>
         </property>
         <property>
-          <description><p>matrix * column_vector = column_ vector</p></description>
+          <description>
+        <p>matrix * column_vector = column_ vector</p>
+      </description>
         </property>
         <property>
-          <description><p>row_vector*matrix  = row_vector</p></description>
+          <description>
+        <p>row_vector*matrix  = row_vector</p>
+      </description>
         </property>
         <property>
-          <description><p>transpose(vector) = row_vector</p></description>
+          <description>
+        <p>transpose(vector) = row_vector</p>
+      </description>
         </property>
         <property>
-          <description><p>transpose(column_vector) = row_vector</p></description>
+          <description>
+        <p>transpose(column_vector) = row_vector</p>
+      </description>
         </property>
         <property>
-          <description><p>transpose(row_vector) = column_vector</p></description>
+          <description>
+        <p>transpose(row_vector) = column_vector</p>
+      </description>
         </property>
         <property>
-          <description><p>distributive over scalars</p></description>
+          <description>
+        <p>distributive over scalars</p>
+      </description>
         </property>
         <property>
-          <description><p>associativity.</p></description>
+          <description>
+        <p>associativity.</p>
+      </description>
         </property>
         <property>
-          <description><p>Matrix * column vector</p></description>
-  </property>
+          <description>
+        <p>Matrix * column vector</p>
+      </description>
+    </property>
         <property>
-          <description><p>row vector * Matrix</p></description></property>
+          <description>
+        <p>row vector * Matrix</p>
+      </description>
+    </property>
         <MMLexample>
-    <math xmlns="http://www.w3.org/1998/Math/MathML"><vector><cn>1</cn><cn>2</cn><cn>3</cn><ci>x</ci></vector></math>
-  </MMLexample>
-
-        <MMLexample>
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <vector type="column"><cn>1</cn><cn>2</cn><cn>3</cn><ci>x</ci></vector>
-    </math>
-  </MMLexample>
-        <MMLexample><math xmlns="http://www.w3.org/1998/Math/MathML"><vector>
-    <bvar><ci type="integer">i</ci></bvar>
-    <lowlimit><ci>1</ci></lowlimit>
-    <uplimit><ci>10</ci></uplimit>
-    <apply><power/><ci>x</ci><ci>i</ci></apply>
-  </vector>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <vector>
+          <cn>1</cn>
+          <cn>2</cn>
+          <cn>3</cn>
+          <ci>x</ci>
+        </vector>
       </math>
-  </MMLexample>
+    </MMLexample>
+
+        <MMLexample>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <vector type="column">
+          <cn>1</cn>
+          <cn>2</cn>
+          <cn>3</cn>
+          <ci>x</ci>
+        </vector>
+      </math>
+    </MMLexample>
+        <MMLexample>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <vector>
+          <bvar>
+            <ci type="integer">i</ci>
+          </bvar>
+          <lowlimit>
+            <ci>1</ci>
+          </lowlimit>
+          <uplimit>
+            <ci>10</ci>
+          </uplimit>
+          <apply>
+            <power/>
+            <ci>x</ci>
+            <ci>i</ci>
+          </apply>
+        </vector>
+      </math>
+    </MMLexample>
 
 
-<Example>
+    <Example>
 An example of vector using n arguments. 
 The specific vector constructed in this example is the transpose of [3,6,9].
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="linalg3" name="vector"/>
-    <OMI> 3 </OMI>
-    <OMI> 6 </OMI>
-    <OMI> 9 </OMI>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"
+             xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+             cdbase="http://www.openmath.org/cd">
+        <OMA>
+          <OMS cd="linalg3" name="vector"/>
+          <OMI> 3 </OMI>
+          <OMI> 6 </OMI>
+          <OMI> 9 </OMI>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="matrixcolumn">
+    <Name>matrixcolumn</Name>
+    <Pragmatic>
+      <Element type="opel">matrixcolumn</Element>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol is an n-ary constructor used to represent columns of matrices. Its arguments should be members of a ring.</Description>
 
-<CDDefinition xml:id="matrixcolumn">
-<Name>matrixcolumn</Name>
-  <Pragmatic>
-    <Element type="opel">matrixcolumn</Element>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol is an n-ary constructor used to represent columns of
-    matrices. Its arguments should be members of a ring.
-  </Description>
-
-<Example>
+    <Example>
 Representation of a column of a matrix of length two containing the integers
 [1,0]
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="linalg3" name="matrixcolumn"/>
-    <OMI> 1 </OMI>
-    <OMI> 0 </OMI>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
-
-<CDDefinition xml:id="matrix">
-<Name>matrix</Name>
-  <Pragmatic specref="matrix.column">
-    <Element type="opel">matrix</Element>
-    <description>
-    <p>Note that the behavior of the <el>matrix</el> and <el>matrixrow</el> elements is
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"
+             xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+             cdbase="http://www.openmath.org/cd">
+        <OMA>
+          <OMS cd="linalg3" name="matrixcolumn"/>
+          <OMI> 1 </OMI>
+          <OMI> 0 </OMI>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="matrix">
+    <Name>matrix</Name>
+    <Pragmatic specref="matrix.column">
+      <Element type="opel">matrix</Element>
+      <description>
+        <p>Note that the behavior of the <el>matrix</el> and <el>matrixrow</el> elements is
     substantially different from the <el>mtable</el> and <el>mtr</el> presentation
     elements.</p>
-    </description>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description>
-    This is the constructor for a matrix.  It takes an arbitrary number matrix rows as
-    arguments.  It is used to represent matrices.  See CRC Standard Mathematical Tables
-    and Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996, [2.5.1].
-  </Description>
+      </description>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This is the constructor for a matrix. It takes an arbitrary number matrix rows as arguments. It is used to represent matrices. See CRC Standard Mathematical Tables and Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996, [2.5.1].</Description>
 
-  <discussion>
-    <p>The <el>matrix</el> element is used to represent mathematical matrices. It has zero
+    <discussion>
+      <p>The <el>matrix</el> element is used to represent mathematical matrices. It has zero
     or more child elements, all of which are <el>matrixrow</el> elements. These in turn
     expect zero or more child elements that evaluate to algebraic expressions or
     numbers. These sub-elements are often real numbers, or symbols as in
 
-<eg role = "mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><matrix>
-  <matrixrow> <cn>1</cn> <cn>2</cn> </matrixrow>
-  <matrixrow> <cn>3</cn> <cn>4</cn> </matrixrow>
-</matrix></math></eg>
+<eg role="mathml">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <matrix>
+              <matrixrow> 
+                <cn>1</cn> 
+                <cn>2</cn> 
+              </matrixrow>
+              <matrixrow> 
+                <cn>3</cn> 
+                <cn>4</cn> 
+              </matrixrow>
+            </matrix>
+          </math>
+        </eg>
 
     The <el>matrixrow</el> elements must always be contained inside of a matrix, and all
     rows in a given matrix must have the same number of elements.</p>
-  </discussion>
+    </discussion>
 
-<Example>
+    <Example>
 Representation of a 2x2 identity matrix
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="linalg3" name="matrix"/>
-    <OMA>
-      <OMS cd="linalg3" name="matrixcolumn"/>
-      <OMI> 1 </OMI>
-      <OMI> 0 </OMI>
-    </OMA>
-    <OMA>
-      <OMS cd="linalg3" name="matrixcolumn"/>
-      <OMI> 0 </OMI>
-      <OMI> 1 </OMI>
-    </OMA>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
-
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"
+             xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+             cdbase="http://www.openmath.org/cd">
+        <OMA>
+          <OMS cd="linalg3" name="matrix"/>
+          <OMA>
+            <OMS cd="linalg3" name="matrixcolumn"/>
+            <OMI> 1 </OMI>
+            <OMI> 0 </OMI>
+          </OMA>
+          <OMA>
+            <OMS cd="linalg3" name="matrixcolumn"/>
+            <OMI> 0 </OMI>
+            <OMI> 1 </OMI>
+          </OMA>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
 </CD>
