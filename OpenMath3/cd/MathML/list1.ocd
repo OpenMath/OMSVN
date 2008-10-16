@@ -1,8 +1,6 @@
-<CD xmlns="http://www.openmath.org/OpenMathCD">
-
-<CDComment>
-
-     This document is distributed in the hope that it will be useful, 
+<?xml version="1.0" encoding="UTF-8"?>
+<CD xmlns="http://www.openmath.org/OpenMathCD" xml:id="list1">
+  <CDComment>     This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -32,151 +30,149 @@
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 </CDComment>
-
-<CDName>list1</CDName>
-<CDBase>http://www.openmath.org/cd</CDBase>
-<CDURL>http://www.openmath.org/cd/list1.ocd </CDURL>
-<CDReviewDate>2006-03-30</CDReviewDate>
-<CDDate>2004-03-30</CDDate>
-<CDVersion>3</CDVersion>
-<CDRevision>0</CDRevision>
-<CDStatus>draft</CDStatus>
-
-<Description>
-  This CD is intended to be `compatible' with MathML list constructs.
-</Description>
-
-<CDDefinition xml:id="map">
-  <Name>map</Name>
-  <Role>application</Role>
-  <Description>
-    This symbol represents a mapping function which may be used to construct lists, it
-    takes as arguments a function from X to Y and a list over X in that order. The value
-    that is returned is a list of values in Y. The argument list may be a set or an
-    integer_interval.
-  </Description>
-  <Pragmatic specref="contm_map.list"/>
-  <Example>
+  <CDName>list1</CDName>
+  <CDBase>http://www.openmath.org/cd</CDBase>
+  <CDURL>http://www.openmath.org/cd/list1.ocd</CDURL>
+  <CDReviewDate>2006-03-30</CDReviewDate>
+  <CDDate>2008-10-16</CDDate>
+  <CDVersion>3</CDVersion>
+  <CDRevision>0</CDRevision>
+  <CDStatus>draft</CDStatus>
+  <Description>This CD is intended to be `compatible' with MathML list constructs.</Description>
+  <CDDefinition xml:id="map">
+    <Name>map</Name>
+    <Role>application</Role>
+    <Description>This symbol represents a mapping function which may be used to construct lists, it takes as arguments a function from X to Y and a list over X in that order. The value that is returned is a list of values in Y. The argument list may be a set or an integer_interval.</Description>
+    <Pragmatic specref="contm_map.list"/>
+    <Example>
     The list of even values between 0 and 20 in ascending order, that is
     the values 2x in ascending order, where x ranges over the integral
     interval [0,10]. 
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="list1" name="map"/>
-    <OMBIND>
-      <OMS cd="fns1" name="lambda"/>
-      <OMBVAR>
-        <OMV name="x"/>
-      </OMBVAR>
-      <OMA>
-        <OMS cd="arith1" name="times"/>
-        <OMI> 2 </OMI>
-  <OMV name="x"/>
-      </OMA>
-    </OMBIND>
-    <OMA>
-      <OMS cd="interval1" name="integer_interval"/>
-      <OMI> 0 </OMI>
-      <OMI> 10 </OMI>
-    </OMA>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
-
-<CDDefinition xml:id="suchthat">
-  <Name>suchthat</Name>
-  <Role>application</Role>
-  <Description>
-    This symbol represents the suchthat function which may be used to construct lists, it
-    takes two arguments. The first argument should be the set which contains the elements
-    of the list, the second argument should be a predicate, that is a function from the
-    set to the booleans which describes if an element is to be in the list returned.
-  </Description>
-  <Pragmatic  specref="contm_suchthat.list"/>
-  <Example>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"
+             xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+             cdbase="http://www.openmath.org/cd">
+        <OMA>
+          <OMS cd="list1" name="map"/>
+          <OMBIND>
+            <OMS cd="fns1" name="lambda"/>
+            <OMBVAR>
+              <OMV name="x"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="arith1" name="times"/>
+              <OMI> 2 </OMI>
+              <OMV name="x"/>
+            </OMA>
+          </OMBIND>
+          <OMA>
+            <OMS cd="interval1" name="integer_interval"/>
+            <OMI> 0 </OMI>
+            <OMI> 10 </OMI>
+          </OMA>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="suchthat">
+    <Name>suchthat</Name>
+    <Role>application</Role>
+    <Description>This symbol represents the suchthat function which may be used to construct lists, it takes two arguments. The first argument should be the set which contains the elements of the list, the second argument should be a predicate, that is a function from the set to the booleans which describes if an element is to be in the list returned.</Description>
+    <Pragmatic specref="contm_suchthat.list"/>
+    <Example>
     This example shows how to construct the list of even positive integers less than 100,
     using the suchthat constructor.
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="list1" name="suchthat"/>
-    <OMS cd="setname1" name="Z"/>
-    <OMBIND>
-      <OMS cd="fns1" name="lambda"/>
-      <OMBVAR>
-        <OMV name="x"/>
-      </OMBVAR>
-      <OMA>
-        <OMS cd="logic1" name="and"/>
-  <OMA>
-    <OMS cd="relation1" name="geq"/>
-    <OMV name="x"/>
-    <OMS cd="alg1" name="zero"/>
-  </OMA>
-  <OMA>
-    <OMS cd="relation1" name="lt"/>
-    <OMV name="x"/>
-    <OMI> 100 </OMI>
-  </OMA>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"
+             xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+             cdbase="http://www.openmath.org/cd">
         <OMA>
-          <OMS cd="set1" name="in"/>
-    <OMA>
-      <OMS cd="arith1" name="divide"/>
-      <OMV name="x"/>
-      <OMI> 2 </OMI>
-    </OMA>
-    <OMS cd="setname1" name="Z"/>
+          <OMS cd="list1" name="suchthat"/>
+          <OMS cd="setname1" name="Z"/>
+          <OMBIND>
+            <OMS cd="fns1" name="lambda"/>
+            <OMBVAR>
+              <OMV name="x"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="logic1" name="and"/>
+              <OMA>
+                <OMS cd="relation1" name="geq"/>
+                <OMV name="x"/>
+                <OMS cd="alg1" name="zero"/>
+              </OMA>
+              <OMA>
+                <OMS cd="relation1" name="lt"/>
+                <OMV name="x"/>
+                <OMI> 100 </OMI>
+              </OMA>
+              <OMA>
+                <OMS cd="set1" name="in"/>
+                <OMA>
+                  <OMS cd="arith1" name="divide"/>
+                  <OMV name="x"/>
+                  <OMI> 2 </OMI>
+                </OMA>
+                <OMS cd="setname1" name="Z"/>
+              </OMA>
+            </OMA>
+          </OMBIND>
         </OMA>
-      </OMA>
-    </OMBIND>
-  </OMA>
-</OMOBJ>
-</Example>
+      </OMOBJ>
+    </Example>
 
-<MMLexample speclevel="1" xml:id="suchthat.ex1">
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <list order="numeric">
-    <bvar><ci>x</ci></bvar>
-    <condition>
-      <apply><lt/><ci>x</ci><cn>5</cn></apply>
-    </condition>
-  </list>
-</math>
-</MMLexample>
-</CDDefinition>
+    <MMLexample speclevel="1" xml:id="suchthat.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <list order="numeric">
+          <bvar>
+            <ci>x</ci>
+          </bvar>
+          <condition>
+            <apply>
+              <lt/>
+              <ci>x</ci>
+              <cn>5</cn>
+            </apply>
+          </condition>
+        </list>
+      </math>
+    </MMLexample>
+  </CDDefinition>
+  <CDDefinition xml:id="list">
+    <Name>list</Name>
+    <Pragmatic>
+      <Element type="container">list</Element>
+      <Attribute>
+        <Name>order</Name>
+        <Model> "lexicographic" | "numeric" </Model>
+      </Attribute>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol denotes the list construct which is an n-ary function. The list entries must be given explicitly.</Description>
 
-<CDDefinition xml:id="list">
-  <Name>list</Name>
-  <Pragmatic>
-    <Element type="container">list</Element>
-    <Attribute>
-      <Name>order</Name>
-      <Model> "lexicographic" | "numeric" </Model>
-    </Attribute>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol denotes the list construct which is an n-ary function. The list entries
-    must be given explicitly.
-</Description>
+    <MMLexample speclevel="1" xml:id="list.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <list>
+          <ci>a</ci>
+          <ci>b</ci>
+          <ci>c</ci>
+        </list>
+      </math>
+    </MMLexample>
 
-<MMLexample speclevel="1" xml:id="list.ex1">
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <list><ci>a</ci><ci>b</ci><ci>c</ci></list>
-  </math>
-</MMLexample>
-
-<Example>
+    <Example>
 The list 3, 6, 9.
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="list1" name="list"/>
-    <OMI> 3 </OMI>
-    <OMI> 6 </OMI>
-    <OMI> 9 </OMI>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
-
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"
+             xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+             cdbase="http://www.openmath.org/cd">
+        <OMA>
+          <OMS cd="list1" name="list"/>
+          <OMI> 3 </OMI>
+          <OMI> 6 </OMI>
+          <OMI> 9 </OMI>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
 </CD>
