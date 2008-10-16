@@ -1,8 +1,6 @@
-<CD xmlns="http://www.openmath.org/OpenMathCD">
-
-<CDComment>
-
-     This document is distributed in the hope that it will be useful, 
+<?xml version="1.0" encoding="UTF-8"?>
+<CD xmlns="http://www.openmath.org/OpenMathCD" xml:id="linalg6">
+  <CDComment>     This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -32,141 +30,165 @@
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 </CDComment>
-
-<CDName>linalg6</CDName>
-<CDBase>http://www.openmath.org/cd</CDBase>
-<CDURL>http://www.openmath.org/cd/linalg6.ocd </CDURL>
-<CDReviewDate>2006-03-30</CDReviewDate>
-<CDDate>2004-03-30</CDDate>
-<CDVersion>3</CDVersion>
-<CDRevision>0</CDRevision>
-<CDStatus>draft</CDStatus>
-<Description>
-    This content dictionary provides an infrastructure to contsruct matrices and vectors
-    from functions.
-</Description>
-
-<CDDefinition xml:id="vector">
-  <Name>vector</Name>
-  <Pragmatic specref="vector.row">
-    <Element type="container">vector</Element>
-    <Attribute>
-      <Name> type </Name>
-      <Model>"row"|MathMLType</Model>
-      <Default>"column"</Default>
-    </Attribute>
-    <description>
-      <p> The qualifications defined by a <el>domainofapplication</el> element can also be
+  <CDName>linalg6</CDName>
+  <CDBase>http://www.openmath.org/cd</CDBase>
+  <CDURL>http://www.openmath.org/cd/linalg6.ocd</CDURL>
+  <CDReviewDate>2006-03-30</CDReviewDate>
+  <CDDate>2008-10-16</CDDate>
+  <CDVersion>3</CDVersion>
+  <CDRevision>0</CDRevision>
+  <CDStatus>draft</CDStatus>
+  <Description>This content dictionary provides an infrastructure to contsruct matrices and vectors from functions.</Description>
+  <CDDefinition xml:id="vector">
+    <Name>vector</Name>
+    <Pragmatic specref="vector.row">
+      <Element type="container">vector</Element>
+      <Attribute>
+        <Name> type </Name>
+        <Model>"row"|MathMLType</Model>
+        <Default>"column"</Default>
+      </Attribute>
+      <description>
+        <p> The qualifications defined by a <el>domainofapplication</el> element can also be
       abbreviated in several ways including a <el>condition</el> placed on a bound
       variable and an expression involving that variable.</p>
-    </description>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description>
-    This symbol allows to construct a vector by providing a function and a 1-dimensional
-    domain of application.  The entries of the vector correspond to the values obtained by
-    evaluating the function at the points of the domain.
-  </Description>
+      </description>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol allows to construct a vector by providing a function and a 1-dimensional domain of application. The entries of the vector correspond to the values obtained by evaluating the function at the points of the domain.</Description>
 
-  <Example>
+    <Example>
     A vector constructed by applying the square function to the natural numbers from 1 to
     7. It represents the vector (1,4,9,16,25,36,49).
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="linalg6" name="vector"/>
-    <OMBIND>
-      <OMS cd="fns1" name="lambda"/>
-      <OMBVAR><OMV name="x"/></OMBVAR>
-      <OMA><OMS cd="arith1" name="power"/><OMV name="x"/><OMI>2</OMI></OMA>
-    </OMBIND>
-    <OMA>
-      <OMS cd="interval1" name="integer_interval"/>
-      <OMI>1</OMI>
-      <OMI>7</OMI>
-    </OMA>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
-
-<CDDefinition xml:id="matrix">
-<Name>matrix</Name>
-  <Pragmatic>
-    <Element type="container">matrix</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Model> "real"  |  "complex"  |  "integer"  |  "symbolic" |  MathMLType </Model>
-      <Default> real </Default>
-    </Attribute>
-    <description>
-    <p>Note that the behavior of the <el>matrix</el> and <el>matrixrow</el> elements is
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"
+             xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+             cdbase="http://www.openmath.org/cd">
+        <OMA>
+          <OMS cd="linalg6" name="vector"/>
+          <OMBIND>
+            <OMS cd="fns1" name="lambda"/>
+            <OMBVAR>
+              <OMV name="x"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="arith1" name="power"/>
+              <OMV name="x"/>
+              <OMI>2</OMI>
+            </OMA>
+          </OMBIND>
+          <OMA>
+            <OMS cd="interval1" name="integer_interval"/>
+            <OMI>1</OMI>
+            <OMI>7</OMI>
+          </OMA>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="matrix">
+    <Name>matrix</Name>
+    <Pragmatic>
+      <Element type="container">matrix</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Model> "real"  |  "complex"  |  "integer"  |  "symbolic" |  MathMLType </Model>
+        <Default> real </Default>
+      </Attribute>
+      <description>
+        <p>Note that the behavior of the <el>matrix</el> and <el>matrixrow</el> elements is
     substantially different from the <el>mtable</el> and <el>mtr</el> presentation
     elements.</p>
-    </description>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description>
-    This symbol allows to construct a matrix by providing a function and a 2-dimensional
-    domain of application.  The entries of the matrix correspond to the values obtained by
-    evaluating the function at the points of the domain. 
-  </Description>  
+      </description>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol allows to construct a matrix by providing a function and a 2-dimensional domain of application. The entries of the matrix correspond to the values obtained by evaluating the function at the points of the domain.</Description>  
   
-  <Example>
+    <Example>
     A 3x2-vector constructed by applying the addition function to the set {1,2,3}x{1,2}. 
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="relation1" name="eq"/>
-    <OMA>
-      <OMS cd="linalg6" name="vector"/>
-      <OMS cd="arith1" name="plus"/>
-      <OMA>
-  <OMS cd="set1" name="cartesian_product"/>
-  <OMA>
-    <OMS cd="interval1" name="integer_interval"/>
-    <OMI>1</OMI>
-    <OMI>3</OMI>
-  </OMA>
-  <OMA>
-    <OMS cd="interval1" name="integer_interval"/>
-    <OMI>1</OMI>
-    <OMI>2</OMI>
-  </OMA>
-      </OMA>
-    </OMA>
-    <OMA>
-      <OMS cd="linalg2" name="matrix"/>
-      <OMA><OMS cd="linalg2" name="matrixrow"/><OMI>2</OMI><OMI>3</OMI><OMI>4</OMI></OMA>
-      <OMA><OMS cd="linalg2" name="matrixrow"/><OMI>3</OMI><OMI>4</OMI><OMI>5</OMI></OMA>
-    </OMA>  
-  </OMA>
-</OMOBJ>
-</Example>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"
+             xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+             cdbase="http://www.openmath.org/cd">
+        <OMA>
+          <OMS cd="relation1" name="eq"/>
+          <OMA>
+            <OMS cd="linalg6" name="vector"/>
+            <OMS cd="arith1" name="plus"/>
+            <OMA>
+              <OMS cd="set1" name="cartesian_product"/>
+              <OMA>
+                <OMS cd="interval1" name="integer_interval"/>
+                <OMI>1</OMI>
+                <OMI>3</OMI>
+              </OMA>
+              <OMA>
+                <OMS cd="interval1" name="integer_interval"/>
+                <OMI>1</OMI>
+                <OMI>2</OMI>
+              </OMA>
+            </OMA>
+          </OMA>
+          <OMA>
+            <OMS cd="linalg2" name="matrix"/>
+            <OMA>
+              <OMS cd="linalg2" name="matrixrow"/>
+              <OMI>2</OMI>
+              <OMI>3</OMI>
+              <OMI>4</OMI>
+            </OMA>
+            <OMA>
+              <OMS cd="linalg2" name="matrixrow"/>
+              <OMI>3</OMI>
+              <OMI>4</OMI>
+              <OMI>5</OMI>
+            </OMA>
+          </OMA>  
+        </OMA>
+      </OMOBJ>
+    </Example>
 
-  <MMLexample speclevel="1">
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <matrix>
-    <bvar><ci type="integer">i</ci></bvar>
-    <bvar><ci type="integer">j</ci></bvar>
-    <condition>
-      <apply><and/>
-      <apply><in/>
-      <ci>i</ci>
-      <interval><ci>1</ci><ci>5</ci></interval>
-      </apply>
-      <apply><in/>
-      <ci>j</ci>
-      <interval><ci>5</ci><ci>9</ci></interval>
-      </apply>
-      </apply>
-    </condition>
-    <vector>
-      <apply><power/><ci>i</ci><ci>j</ci></apply>
-    </vector>
-  </matrix>
-</math>
-</MMLexample>
+    <MMLexample speclevel="1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <matrix>
+          <bvar>
+            <ci type="integer">i</ci>
+          </bvar>
+          <bvar>
+            <ci type="integer">j</ci>
+          </bvar>
+          <condition>
+            <apply>
+              <and/>
+              <apply>
+                <in/>
+                <ci>i</ci>
+                <interval>
+                  <ci>1</ci>
+                  <ci>5</ci>
+                </interval>
+              </apply>
+              <apply>
+                <in/>
+                <ci>j</ci>
+                <interval>
+                  <ci>5</ci>
+                  <ci>9</ci>
+                </interval>
+              </apply>
+            </apply>
+          </condition>
+          <vector>
+            <apply>
+              <power/>
+              <ci>i</ci>
+              <ci>j</ci>
+            </apply>
+          </vector>
+        </matrix>
+      </math>
+    </MMLexample>
 
 
-</CDDefinition>
-
+  </CDDefinition>
 </CD>
