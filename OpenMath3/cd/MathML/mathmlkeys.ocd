@@ -1,7 +1,6 @@
-<CD xmlns="http://www.openmath.org/OpenMathCD">
-
-<CDComment>
-     This document is distributed in the hope that it will be useful, 
+<?xml version="1.0" encoding="UTF-8"?>
+<CD xmlns="http://www.openmath.org/OpenMathCD" xml:id="mathmlkeys">
+  <CDComment>     This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -31,70 +30,60 @@
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 </CDComment>
-
-<CDName>mathmlkeys</CDName>
-<CDBase>http://www.openmath.org/cd</CDBase>
-<CDURL>http://www.openmath.org/cd/mathmlkeys1.ocd </CDURL>
-<CDReviewDate>2006-03-30</CDReviewDate>
-<CDDate>2004-03-30</CDDate>
-<CDVersion>3</CDVersion>
-<CDRevision>0</CDRevision>
-<CDStatus>draft</CDStatus>
-
-<Description>
-  MathML3 and OpenMath provide semantic annotation facilities where the relation of the
-  annotation to the annotated object is specified by special symols called keys. This
-  content dictionary provides some keys for specifying the relations in semantic
-  annotations.
-</Description>
-
-<CDDefinition xml:id="equiv">
-  <Title>Semantically Equivalent</Title>
-  <Role>attribution</Role>
-  <Name>equiv</Name>
-  <Description>
-    This key specifies that the corresponding value is equivalent to the annotated
-    element in some unspecified way.
-  </Description>
-  <discussion>
-    <p>This key is used as the default relation for <el>annotation</el> and
+  <CDName>mathmlkeys</CDName>
+  <CDBase>http://www.openmath.org/cd</CDBase>
+  <CDURL>http://www.openmath.org/cd/mathmlkeys1.ocd</CDURL>
+  <CDReviewDate>2006-03-30</CDReviewDate>
+  <CDDate>2008-10-17</CDDate>
+  <CDVersion>3</CDVersion>
+  <CDRevision>0</CDRevision>
+  <CDStatus>draft</CDStatus>
+  <Description>MathML3 and OpenMath provide semantic annotation facilities where the relation of the annotation to the annotated object is specified by special symols called keys. This content dictionary provides some keys for specifying the relations in semantic annotations.</Description>
+  <CDDefinition xml:id="equiv">
+    <Title>Semantically Equivalent</Title>
+    <Role>attribution</Role>
+    <Name>equiv</Name>
+    <Description>This key specifies that the corresponding value is equivalent to the annotated element in some unspecified way.</Description>
+    <discussion>
+      <p>This key is used as the default relation for <el>annotation</el> and
     <el>annotation-xml</el> elements that do not specify keys. It is mainly intended for
     MathML2 legacy documents</p>
-  </discussion>
-</CDDefinition>
-
-<CDDefinition xml:id="contentequiv">
-  <Title>Content Equivalent</Title>
-  <Role>attribution</Role>
-  <Name>contentequiv</Name>
-  <Description>
-    This key specifies that the corresponding value is the content MathML equivalent
-    of the annotated element.
-  </Description>
-  <MMLexample>
-    <description>
-      <p>Here a presentation MathML element is annotated by an equivalent content
+    </discussion>
+  </CDDefinition>
+  <CDDefinition xml:id="contentequiv">
+    <Title>Content Equivalent</Title>
+    <Role>attribution</Role>
+    <Name>contentequiv</Name>
+    <Description>This key specifies that the corresponding value is the content MathML equivalent of the annotated element.</Description>
+    <MMLexample>
+      <description>
+        <p>Here a presentation MathML element is annotated by an equivalent content
       representation. This relation is conveyed by the contentequiv symbol.</p>
-    </description>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <semantics>
-    <mrow>
-      <mrow>
-  <mo>sin</mo>
-  <mfenced open="(" close=")"><mi>x</mi></mfenced>
-      </mrow>
-      <mo>+</mo>
-      <mn>5</mn>
-    </mrow>
-    <annotation-xml cd="mathml" name="contentequiv" encoding="MathML-Content">
-      <apply>
-  <csymbol cd="arith1">plus</csymbol>
-  <apply><sin/><ci>x</ci></apply>
-  <cn>5</cn>
-      </apply>
-    </annotation-xml>
-  </semantics>
-</math>
-  </MMLexample>
-</CDDefinition>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <semantics>
+          <mrow>
+            <mrow>
+              <mo>sin</mo>
+              <mfenced close=")" open="(">
+                <mi>x</mi>
+              </mfenced>
+            </mrow>
+            <mo>+</mo>
+            <mn>5</mn>
+          </mrow>
+          <annotation-xml cd="mathml" encoding="MathML-Content" name="contentequiv">
+            <apply>
+              <csymbol cd="arith1">plus</csymbol>
+              <apply>
+                <sin/>
+                <ci>x</ci>
+              </apply>
+              <cn>5</cn>
+            </apply>
+          </annotation-xml>
+        </semantics>
+      </math>
+    </MMLexample>
+  </CDDefinition>
 </CD>
