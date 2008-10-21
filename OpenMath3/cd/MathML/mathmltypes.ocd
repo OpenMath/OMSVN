@@ -1,8 +1,6 @@
-<CD xmlns="http://www.openmath.org/OpenMathCD">
-
-<CDComment>
-
-     This document is distributed in the hope that it will be useful, 
+<?xml version="1.0" encoding="UTF-8"?>
+<CD xmlns="http://www.openmath.org/OpenMathCD" xml:id="mathmltypes">
+  <CDComment>     This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -32,327 +30,304 @@
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 </CDComment>
+  <CDName>mathmltypes</CDName>
+  <CDBase>http://www.openmath.org/cd</CDBase>
+  <CDURL>http://www.openmath.org/cd/mathmltypes.ocd</CDURL>
+  <CDReviewDate>2006-03-30</CDReviewDate>
+  <CDDate>2008-10-21</CDDate>
+  <CDVersion>3</CDVersion>
+  <CDRevision>0</CDRevision>
+  <CDStatus>draft</CDStatus>
+  <Description>This CD holds symbols denoting various types of numbers, vectors and similar constructs. Principally these are required for compatibility with MathML.</Description>
+  <CDDefinition xml:id="type">
+    <Name>type</Name>
+    <Pragmatic>
+      <Element type="opel">type</Element>
+    </Pragmatic>
+    <Role>semantic-attribution</Role>
+    <Description>A symbol to be used within an OpenMath attribute to specify the type of the object.</Description>
 
-<CDName>mathmltypes</CDName>
-<CDBase>http://www.openmath.org/cd</CDBase>
-<CDURL>http://www.openmath.org/cd/mathmltypes.ocd</CDURL>
-<CDReviewDate>2006-03-30</CDReviewDate>
-<CDDate>2004-03-30</CDDate>
-<CDVersion>3</CDVersion>
-<CDRevision>0</CDRevision>
-<CDStatus>draft</CDStatus>
-<Description>
-    This CD holds symbols denoting various types of numbers, vectors
-    and similar constructs. Principally these are required for
-    compatibility with MathML.
-</Description>
-
-<CDDefinition xml:id="type">
-<Name>type</Name>
-  <Pragmatic>
-    <Element type="opel">type</Element>
-  </Pragmatic>
-<Role>semantic-attribution</Role>
-<Description> 
-A symbol to be used within an OpenMath attribute to specify the type of
-the object.
-</Description>
-
-<Example>
+    <Example>
 The variable z is attributed with a type for complex numbers, to be
 represented in polar notation.
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMATTR>
-    <OMATP>
-       <OMS cd="mathmltypes" name="type"/>
-       <OMS cd="mathmltypes" name="complex_polar_type"/>
-    </OMATP>
-    <OMV name="z"/>
-  </OMATTR>
-</OMOBJ>
-</Example>
-</CDDefinition>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"
+             xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+             cdbase="http://www.openmath.org/cd">
+        <OMATTR>
+          <OMATP>
+            <OMS cd="mathmltypes" name="type"/>
+            <OMS cd="mathmltypes" name="complex_polar_type"/>
+          </OMATP>
+          <OMV name="z"/>
+        </OMATTR>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="integer_type">
+    <Name>integer_type</Name>
+    <Pragmatic>
+      <Element type="opel">integer_type</Element>
+    </Pragmatic>
+    <Role>constant</Role>
+    <Description>A symbol to be used as the argument of the type symbol to convey the type of an integer.</Description>
 
-<CDDefinition xml:id="integer_type">
-<Name>integer_type</Name>
-  <Pragmatic>
-    <Element type="opel">integer_type</Element>
-  </Pragmatic>
-<Role>constant</Role>
-<Description> 
-A symbol to be used as the argument of the type symbol to convey the
-type of an integer.
-</Description>
-
-<Example>
+    <Example>
 The variable z is attributed with a type for integers.
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMATTR>
-    <OMATP>
-       <OMS cd="mathmltypes" name="type"/>
-       <OMS cd="mathmltypes" name="integer_type"/>
-    </OMATP>
-    <OMV name="z"/>
-  </OMATTR>
-</OMOBJ>
-</Example>
-</CDDefinition>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"
+             xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+             cdbase="http://www.openmath.org/cd">
+        <OMATTR>
+          <OMATP>
+            <OMS cd="mathmltypes" name="type"/>
+            <OMS cd="mathmltypes" name="integer_type"/>
+          </OMATP>
+          <OMV name="z"/>
+        </OMATTR>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="real_type">
+    <Name>real_type</Name>
+    <Pragmatic>
+      <Element type="opel">real_type</Element>
+    </Pragmatic>
+    <Role>constant</Role>
+    <Description>A symbol to be used as the argument of the type symbol to convey the type of a real number.</Description>
 
-<CDDefinition xml:id="real_type">
-<Name>real_type</Name>
-  <Pragmatic>
-    <Element type="opel">real_type</Element>
-  </Pragmatic>
-<Role>constant</Role>
-<Description> 
-A symbol to be used as the argument of the type symbol to convey the
-type of a real number.
-</Description>
-
-<Example>
+    <Example>
 The variable z is attributed with a type for real numbers.
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMATTR>
-    <OMATP>
-       <OMS cd="mathmltypes" name="type"/>
-       <OMS cd="mathmltypes" name="real_type"/>
-    </OMATP>
-    <OMV name="z"/>
-  </OMATTR>
-</OMOBJ>
-</Example>
-</CDDefinition>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"
+             xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+             cdbase="http://www.openmath.org/cd">
+        <OMATTR>
+          <OMATP>
+            <OMS cd="mathmltypes" name="type"/>
+            <OMS cd="mathmltypes" name="real_type"/>
+          </OMATP>
+          <OMV name="z"/>
+        </OMATTR>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="rational_type">
+    <Name>rational_type</Name>
+    <Pragmatic>
+      <Element type="opel">rational_type</Element>
+    </Pragmatic>
+    <Role>constant</Role>
+    <Description>A symbol to be used as the argument of the type symbol to convey the type of a rational number.</Description>
 
-<CDDefinition xml:id="rational_type">
-<Name>rational_type</Name>
-  <Pragmatic>
-    <Element type="opel">rational_type</Element>
-  </Pragmatic>
-<Role>constant</Role>
-<Description> 
-A symbol to be used as the argument of the type symbol to convey the
-type of a rational number.
-</Description>
-
-<Example>
+    <Example>
 The variable z is attributed with a type for rational numbers.
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMATTR>
-    <OMATP>
-       <OMS cd="mathmltypes" name="type"/>
-       <OMS cd="mathmltypes" name="rational_type"/>
-    </OMATP>
-    <OMV name="z"/>
-  </OMATTR>
-</OMOBJ>
-</Example>
-</CDDefinition>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"
+             xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+             cdbase="http://www.openmath.org/cd">
+        <OMATTR>
+          <OMATP>
+            <OMS cd="mathmltypes" name="type"/>
+            <OMS cd="mathmltypes" name="rational_type"/>
+          </OMATP>
+          <OMV name="z"/>
+        </OMATTR>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="complex_cartesian_type">
+    <Name>complex_cartesian_type</Name>
+    <Pragmatic>
+      <Element type="opel">complex_cartesian_type</Element>
+    </Pragmatic>
+    <Role>constant</Role>
+    <Description>A symbol to be used as the argument of the type symbol to convey the type of a complex number specified in terms of its real and imaginary parts.</Description>
 
-<CDDefinition xml:id="complex_cartesian_type">
-<Name>complex_cartesian_type</Name>
-  <Pragmatic>
-    <Element type="opel">complex_cartesian_type</Element>
-  </Pragmatic>
-<Role>constant</Role>
-<Description> 
-A symbol to be used as the argument of the type symbol to convey the
-type of a complex number specified in terms of its real and imaginary
-parts.
-</Description>
-
-<Example>
+    <Example>
 The variable z is attributed with a type for complex numbers represented in 
 their Cartesian form.
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMATTR>
-    <OMATP>
-       <OMS cd="mathmltypes" name="type"/>
-       <OMS cd="mathmltypes" name="complex_cartesian_type"/>
-    </OMATP>
-    <OMV name="z"/>
-  </OMATTR>
-</OMOBJ>
-</Example>
-</CDDefinition>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"
+             xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+             cdbase="http://www.openmath.org/cd">
+        <OMATTR>
+          <OMATP>
+            <OMS cd="mathmltypes" name="type"/>
+            <OMS cd="mathmltypes" name="complex_cartesian_type"/>
+          </OMATP>
+          <OMV name="z"/>
+        </OMATTR>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="complex_polar_type">
+    <Name>complex_polar_type</Name>
+    <Pragmatic>
+      <Element type="opel">complex_polar_type</Element>
+    </Pragmatic>
+    <Role>constant</Role>
+    <Description>A symbol to be used as the argument of the type symbol to convey the type of a complex number specified in terms of its modulus and argument.</Description>
 
-<CDDefinition xml:id="complex_polar_type">
-<Name>complex_polar_type</Name>
-  <Pragmatic>
-    <Element type="opel">complex_polar_type</Element>
-  </Pragmatic>
-<Role>constant</Role>
-<Description> 
-A symbol to be used as the argument of the type symbol to convey the
-type of a complex number specified in terms of its modulus and argument.
-</Description>
-
-<Example>
+    <Example>
 The variable z is attributed with a type for complex numbers represented in 
 their polar form.
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMATTR>
-    <OMATP>
-       <OMS cd="mathmltypes" name="type"/>
-       <OMS cd="mathmltypes" name="complex_polar_type"/>
-    </OMATP>
-    <OMV name="z"/>
-  </OMATTR>
-</OMOBJ>
-</Example>
-</CDDefinition>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"
+             xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+             cdbase="http://www.openmath.org/cd">
+        <OMATTR>
+          <OMATP>
+            <OMS cd="mathmltypes" name="type"/>
+            <OMS cd="mathmltypes" name="complex_polar_type"/>
+          </OMATP>
+          <OMV name="z"/>
+        </OMATTR>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="constant_type">
+    <Name>constant_type</Name>
+    <Pragmatic>
+      <Element type="opel">constant_type</Element>
+    </Pragmatic>
+    <Role>constant</Role>
+    <Description>A symbol to be used as the argument of the type symbol to convey a type for the common constants, pi ~= 3.1415, e ~= 2.718, i = square root of -1, gamma ~= .5772, NaN, infinity (all in the nums cd), true and false (in the logic cd). Also for MathML variables declared to have type constant, as in &lt;ci type="constant"&gt;x&lt;/ci&gt;.</Description>
 
-<CDDefinition xml:id="constant_type">
-<Name>constant_type</Name>
-  <Pragmatic>
-    <Element type="opel">constant_type</Element>
-  </Pragmatic>
-<Role>constant</Role>
-<Description> 
-A symbol to be used as the argument of the type symbol to convey a
-type for the common constants, pi ~= 3.1415, e ~= 2.718, i = square
-root of -1, gamma ~= .5772, NaN, infinity (all in the nums cd), true
-and false (in the logic cd). Also for MathML variables declared to
-have type constant, as in &lt;ci type="constant"&gt;x&lt;/ci&gt;.
-</Description>
-
-<Example>
+    <Example>
 The variable z is attributed with a type for constants.
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMATTR>
-    <OMATP>
-       <OMS cd="mathmltypes" name="type"/>
-       <OMS cd="mathmltypes" name="constant_type"/>
-    </OMATP>
-    <OMV name="z"/>
-  </OMATTR>
-</OMOBJ>
-</Example>
-</CDDefinition>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"
+             xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+             cdbase="http://www.openmath.org/cd">
+        <OMATTR>
+          <OMATP>
+            <OMS cd="mathmltypes" name="type"/>
+            <OMS cd="mathmltypes" name="constant_type"/>
+          </OMATP>
+          <OMV name="z"/>
+        </OMATTR>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="vector_type">
+    <Name>vector_type</Name>
+    <Pragmatic>
+      <Element type="opel">vector_type</Element>
+    </Pragmatic>
+    <Role>constant</Role>
+    <Description>A symbol to be used as the argument of the type symbol to convey the type of a (column) vector, an n-tuple of entries.</Description>
 
-<CDDefinition xml:id="vector_type">
-<Name>vector_type</Name>
-  <Pragmatic>
-    <Element type="opel">vector_type</Element>
-  </Pragmatic>
-<Role>constant</Role>
-<Description> 
-A symbol to be used as the argument of the type symbol to convey the
-type of a (column) vector, an n-tuple of entries.
-</Description>
-
-<Example>
+    <Example>
 The variable z is attributed with a type for vectors.
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMATTR>
-    <OMATP>
-       <OMS cd="mathmltypes" name="type"/>
-       <OMS cd="mathmltypes" name="vector_type"/>
-    </OMATP>
-    <OMV name="z"/>
-  </OMATTR>
-</OMOBJ>
-</Example>
-</CDDefinition>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"
+             xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+             cdbase="http://www.openmath.org/cd">
+        <OMATTR>
+          <OMATP>
+            <OMS cd="mathmltypes" name="type"/>
+            <OMS cd="mathmltypes" name="vector_type"/>
+          </OMATP>
+          <OMV name="z"/>
+        </OMATTR>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="list_type">
+    <Name>list_type</Name>
+    <Pragmatic>
+      <Element type="opel">list_type</Element>
+    </Pragmatic>
+    <Role>constant</Role>
+    <Description>A symbol to be used as the argument of the type symbol to convey the type for a list.</Description>
 
-<CDDefinition xml:id="list_type">
-<Name>list_type</Name>
-  <Pragmatic>
-    <Element type="opel">list_type</Element>
-  </Pragmatic>
-<Role>constant</Role>
-<Description> 
-A symbol to be used as the argument of the type symbol to convey the
-type for a list.
-</Description>
-
-<Example>
+    <Example>
 The variable z is attributed with a type for lists.
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMATTR>
-    <OMATP>
-       <OMS cd="mathmltypes" name="type"/>
-       <OMS cd="mathmltypes" name="list_type"/>
-    </OMATP>
-    <OMV name="z"/>
-  </OMATTR>
-</OMOBJ>
-</Example>
-</CDDefinition>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"
+             xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+             cdbase="http://www.openmath.org/cd">
+        <OMATTR>
+          <OMATP>
+            <OMS cd="mathmltypes" name="type"/>
+            <OMS cd="mathmltypes" name="list_type"/>
+          </OMATP>
+          <OMV name="z"/>
+        </OMATTR>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="set_type">
+    <Name>set_type</Name>
+    <Pragmatic>
+      <Element type="opel">set_type</Element>
+    </Pragmatic>
+    <Role>constant</Role>
+    <Description>A symbol to be used as the argument of the type symbol to convey the type for a set.</Description>
 
-<CDDefinition xml:id="set_type">
-<Name>set_type</Name>
-  <Pragmatic>
-    <Element type="opel">set_type</Element>
-  </Pragmatic>
-<Role>constant</Role>
-<Description> 
-A symbol to be used as the argument of the type symbol to convey the
-type for a set.
-</Description>
-
-<Example>
+    <Example>
 The variable z is attributed with a type for sets.
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMATTR>
-    <OMATP>
-       <OMS cd="mathmltypes" name="type"/>
-       <OMS cd="mathmltypes" name="set_type"/>
-    </OMATP>
-    <OMV name="z"/>
-  </OMATTR>
-</OMOBJ>
-</Example>
-</CDDefinition>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"
+             xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+             cdbase="http://www.openmath.org/cd">
+        <OMATTR>
+          <OMATP>
+            <OMS cd="mathmltypes" name="type"/>
+            <OMS cd="mathmltypes" name="set_type"/>
+          </OMATP>
+          <OMV name="z"/>
+        </OMATTR>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="matrix_type">
+    <Name>matrix_type</Name>
+    <Pragmatic>
+      <Element type="opel">matrix_type</Element>
+    </Pragmatic>
+    <Role>constant</Role>
+    <Description>A symbol to be used as the argument of the type symbol to convey the type for a matrix (n tuple of rows, where each row is an m tuple for some m, it should be noted that each row must be the same length).</Description>
 
-<CDDefinition xml:id="matrix_type">
-<Name>matrix_type</Name>
-  <Pragmatic>
-    <Element type="opel">matrix_type</Element>
-  </Pragmatic>
-<Role>constant</Role>
-<Description>
-A symbol to be used as the argument of the type symbol to convey the
-type for a matrix (n tuple of rows, where each row is an m tuple for
-some m, it should be noted that each row must be the same length).
-</Description>
-
-<Example>
+    <Example>
 The variable z is attributed with a type for matrices.
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMATTR>
-    <OMATP>
-       <OMS cd="mathmltypes" name="type"/>
-       <OMS cd="mathmltypes" name="matrix_type"/>
-    </OMATP>
-    <OMV name="z"/>
-  </OMATTR>
-</OMOBJ>
-</Example>
-</CDDefinition>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"
+             xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+             cdbase="http://www.openmath.org/cd">
+        <OMATTR>
+          <OMATP>
+            <OMS cd="mathmltypes" name="type"/>
+            <OMS cd="mathmltypes" name="matrix_type"/>
+          </OMATP>
+          <OMV name="z"/>
+        </OMATTR>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="fn_type">
+    <Name>fn_type</Name>
+    <Pragmatic>
+      <Element type="opel">fn_type</Element>
+    </Pragmatic>
+    <Role>constant</Role>
+    <Description>A symbol to be used as the argument of the type symbol to convey the type for a function name.</Description>
 
-<CDDefinition xml:id="fn_type">
-<Name>fn_type</Name>
-  <Pragmatic>
-    <Element type="opel">fn_type</Element>
-  </Pragmatic>
-<Role>constant</Role>
-<Description> 
-A symbol to be used as the argument of the type symbol to convey the
-type for a function name.
-</Description>
-
-<Example>
+    <Example>
 The variable f is attributed to say it represents a function.
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMATTR>
-    <OMATP>
-       <OMS cd="mathmltypes" name="type"/>
-       <OMS cd="mathmltypes" name="fn_type"/>
-    </OMATP>
-    <OMV name="f"/>
-  </OMATTR>
-</OMOBJ>
-</Example>
-</CDDefinition>
-
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"
+             xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+             cdbase="http://www.openmath.org/cd">
+        <OMATTR>
+          <OMATP>
+            <OMS cd="mathmltypes" name="type"/>
+            <OMS cd="mathmltypes" name="fn_type"/>
+          </OMATP>
+          <OMV name="f"/>
+        </OMATTR>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
 </CD>
