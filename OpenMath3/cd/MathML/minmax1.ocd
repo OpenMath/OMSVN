@@ -1,8 +1,6 @@
-<CD xmlns="http://www.openmath.org/OpenMathCD">
-
-<CDComment>
-
-     This document is distributed in the hope that it will be useful, 
+<?xml version="1.0" encoding="UTF-8"?>
+<CD xmlns="http://www.openmath.org/OpenMathCD" xml:id="minmax1">
+  <CDComment>     This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -32,199 +30,233 @@
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 </CDComment>
+  <CDName>minmax1</CDName>
+  <CDBase>http://www.openmath.org/cd</CDBase>
+  <CDURL>http://www.openmath.org/cd/minmax1.ocd</CDURL>
+  <CDReviewDate>2006-03-30</CDReviewDate>
+  <CDDate>2008-10-21</CDDate>
+  <CDVersion>3</CDVersion>
+  <CDRevision>0</CDRevision>
+  <CDStatus>draft</CDStatus>
+  <Description>This CD holds the definitions of min and max.</Description>
+  <CDDefinition xml:id="min">
+    <Name>min</Name>
+    <Title>Minimum</Title>
+    <Pragmatic>
+      <Element type="opel_big">min</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Model>MathMLType</Model>
+        <Default>real</Default>
+      </Attribute>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol denotes the unary minimum function which takes a set as its argument and returns the minimum element in that set.</Description>
 
-<CDName>minmax1</CDName>
-<CDBase>http://www.openmath.org/cd</CDBase>
-<CDURL>http://www.openmath.org/cd/minmax1.ocd </CDURL>
-<CDReviewDate>2006-03-30</CDReviewDate>
-<CDDate>2004-03-30</CDDate>
-<CDVersion>3</CDVersion>
-<CDRevision>0</CDRevision>
-<CDStatus>draft</CDStatus>
-
-<Description>
-    This CD holds the definitions of min and max.
-</Description>
-
-<CDDefinition xml:id="min">
-  <Name>min</Name>
-  <Title>Minimum</Title>
-  <Pragmatic>
-    <Element type="opel_big">min</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Model>MathMLType</Model>
-      <Default>real</Default>
-    </Attribute>
-  </Pragmatic>
-<Role>application</Role>
-<Description> 
- This symbol denotes the unary minimum function which takes a set as
- its argument and returns the minimum element in that set.
-</Description>
-
-<MMLexample>
-  <description>
-    <p>Minimum of a finite listing of elements</p>
-  </description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><min/><cn>2</cn><cn>3</cn><cn>5</cn></apply>
-</math>
-</MMLexample>
+    <MMLexample>
+      <description>
+        <p>Minimum of a finite listing of elements</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <min/>
+          <cn>2</cn>
+          <cn>3</cn>
+          <cn>5</cn>
+        </apply>
+      </math>
+    </MMLexample>
 
 
-<Example>
+    <Example>
 Representation of the equation minimum{1,9,5} = 1.
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="relation1" name="eq"/>
-    <OMA>
-      <OMS cd="minmax1" name="min"/>
-      <OMA>
-        <OMS cd="set1" name="set"/>
-        <OMI> 1 </OMI>
-        <OMI> 9 </OMI>
-        <OMI> 5 </OMI>
-      </OMA>
-    </OMA>
-    <OMI> 1 </OMI>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"
+             xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+             cdbase="http://www.openmath.org/cd">
+        <OMA>
+          <OMS cd="relation1" name="eq"/>
+          <OMA>
+            <OMS cd="minmax1" name="min"/>
+            <OMA>
+              <OMS cd="set1" name="set"/>
+              <OMI> 1 </OMI>
+              <OMI> 9 </OMI>
+              <OMI> 5 </OMI>
+            </OMA>
+          </OMA>
+          <OMI> 1 </OMI>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="big_min">
+    <Name>big_min</Name>
+    <Role>binder</Role>
+    <Title>Minimum over a Set of expressions</Title>
+    <Description>This n-ary operator is used to construct the minimum over a set of objects.</Description>
 
-<CDDefinition xml:id="big_min">
-  <Name>big_min</Name>
-  <Role>binder</Role>
-  <Title>Minimum over a Set of expressions</Title>
-  <Description>
-    This n-ary operator is used to construct the minimum over a set of objects.
-  </Description>
+    <MMLexample speclevel="1" xml:id="big_min.ex1">
+      <description>
+        <p>min(y^2,  y in (0,1))</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <min/>
+          <bvar>
+            <ci>y</ci>
+          </bvar>
+          <condition>
+            <apply>
+              <in/>
+              <ci>y</ci>
+              <interval>
+                <cn>0</cn>
+                <cn>1</cn>
+              </interval>
+            </apply>
+          </condition>
+          <apply>
+            <power/>
+            <ci>y</ci>
+            <cn>2</cn>
+          </apply>
+        </apply>
+      </math>
+    </MMLexample>
 
-<MMLexample speclevel="1" xml:id="big_min.ex1">
-  <description>
-    <p>min(y^2,  y in (0,1))</p>
-  </description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply>
-  <min/>
-  <bvar><ci>y</ci></bvar>
-  <condition>
-    <apply><in/><ci>y</ci><interval><cn>0</cn><cn>1</cn></interval></apply>
-  </condition>
-  <apply><power/><ci>y</ci><cn>2</cn></apply>
-</apply>
-</math>
-</MMLexample>
-
-<MMLexample speclevel="1" xml:id="big_min.ex2">
-  <description>
-    <p>The elements to be compared may also be described using bound variables with a
+    <MMLexample speclevel="1" xml:id="big_min.ex2">
+      <description>
+        <p>The elements to be compared may also be described using bound variables with a
     <code>condition</code> element and an expression to be minimized, as in:</p>
-    <p>Note that the bound variable must be stated even if it might be implicit in
+        <p>Note that the bound variable must be stated even if it might be implicit in
     conventional notation.</p>
-    </description>
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply>
-  <min/>
-  <bvar><ci>x</ci></bvar>
-  <condition>
-    <apply><notin/><ci>x</ci><ci type="set"> B</ci></apply>
-  </condition>
-  <apply>
-    <power/>
-    <ci>x</ci>
-    <cn>2</cn>
-  </apply>
-      </apply>
-    </math>
-</MMLexample>
-</CDDefinition>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <min/>
+          <bvar>
+            <ci>x</ci>
+          </bvar>
+          <condition>
+            <apply>
+              <notin/>
+              <ci>x</ci>
+              <ci type="set"> B</ci>
+            </apply>
+          </condition>
+          <apply>
+            <power/>
+            <ci>x</ci>
+            <cn>2</cn>
+          </apply>
+        </apply>
+      </math>
+    </MMLexample>
+  </CDDefinition>
+  <CDDefinition xml:id="max">
+    <Name>max</Name>
+    <Title>Maximum</Title>
+    <Pragmatic>
+      <Element type="opel_big">max</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Model>MathMLType</Model>
+        <Default>real</Default>
+      </Attribute>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol denotes the unary maximum function which takes a set as its argument and returns the maximum element in that set.</Description>
 
-<CDDefinition xml:id="max">
-  <Name>max</Name>
-  <Title>Maximum</Title>
-  <Pragmatic>
-    <Element type="opel_big">max</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Model>MathMLType</Model>
-      <Default>real</Default>
-    </Attribute>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol denotes the unary maximum function which takes a set as its argument and
-    returns the maximum element in that set.
-  </Description>
+    <property>
+      <description>
+        <p>ForAll( x in S,  max(y in S,y) \geq x )</p>
+      </description>
+    </property>
 
-<property>
-  <description>
-    <p>ForAll( x in S,  max(y in S,y) \geq x )</p>
-  </description>
-</property>
+    <MMLexample speclevel="1" xml:id="max.ex1">
+      <description>
+        <p>Maximum of a finite listing of elements</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <max/>
+          <cn>2</cn>
+          <cn>3</cn>
+          <cn>5</cn>
+        </apply>
+      </math>
+    </MMLexample>
 
-<MMLexample speclevel="1" xml:id="max.ex1">
-  <description>
-    <p>Maximum of a finite listing of elements</p>
-    </description><math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><max/><cn>2</cn><cn>3</cn><cn>5</cn></apply>
-  </math>
-</MMLexample>
-
-<Example>
+    <Example>
 Representation of the equation maximum{1,9,5} = 9.
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="relation1" name="eq"/>
-    <OMA>
-      <OMS cd="minmax1" name="max"/>
-      <OMA>
-        <OMS cd="set1" name="set"/>
-        <OMI> 1 </OMI>
-        <OMI> 9 </OMI>
-        <OMI> 5 </OMI>
-      </OMA>
-    </OMA>
-    <OMI> 9 </OMI>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"
+             xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+             cdbase="http://www.openmath.org/cd">
+        <OMA>
+          <OMS cd="relation1" name="eq"/>
+          <OMA>
+            <OMS cd="minmax1" name="max"/>
+            <OMA>
+              <OMS cd="set1" name="set"/>
+              <OMI> 1 </OMI>
+              <OMI> 9 </OMI>
+              <OMI> 5 </OMI>
+            </OMA>
+          </OMA>
+          <OMI> 9 </OMI>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="big_max">
+    <Name>big_max</Name>
+    <Role>binder</Role>
+    <Title>Maximum over a Set of expressions</Title>
+    <Description>This n-ary operator is used to construct the maximum over a set of objects.</Description>
 
-<CDDefinition xml:id="big_max">
-  <Name>big_max</Name>
-  <Role>binder</Role>
-  <Title>Maximum over a Set of expressions</Title>
-  <Description>
-    This n-ary operator is used to construct the maximum over a set of objects.
-  </Description>
+    <MMLexample speclevel="1" xml:id="big_max.ex1">
+      <description>
+        <p>Max(y^3, y in (0,1)) </p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <max/>
+          <bvar>
+            <ci>y</ci>
+          </bvar>
+          <condition>
+            <apply>
+              <in/>
+              <ci>y</ci>
+              <interval>
+                <cn>0</cn>
+                <cn>1</cn>
+              </interval>
+            </apply>
+          </condition>
+          <apply>
+            <power/>
+            <ci>y</ci>
+            <cn>3</cn>
+          </apply>
+        </apply>
+      </math>
+    </MMLexample>
 
-<MMLexample speclevel="1" xml:id="big_max.ex1">
-  <description>
-    <p>Max(y^3, y in (0,1)) </p>
-  </description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply>
-      <max/>
-      <bvar><ci>y</ci></bvar>
-      <condition>
-  <apply><in/><ci>y</ci><interval><cn>0</cn><cn>1</cn>
-  </interval>
-  </apply>
-      </condition>
-      <apply><power/><ci>y</ci><cn>3</cn></apply>
-    </apply>
-  </math>
-</MMLexample>
-
-<MMLexample speclevel="1" xml:id="big_max.ex2">
-  <description><p>When the objects are to be compared explicitly they are listed as
-  arguments to the function as in:</p> </description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><max/><ci>a</ci><ci>b</ci></apply>
-  </math>
-</MMLexample>
-</CDDefinition>
-
+    <MMLexample speclevel="1" xml:id="big_max.ex2">
+      <description>
+        <p>When the objects are to be compared explicitly they are listed as
+  arguments to the function as in:</p> 
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <max/>
+          <ci>a</ci>
+          <ci>b</ci>
+        </apply>
+      </math>
+    </MMLexample>
+  </CDDefinition>
 </CD>
