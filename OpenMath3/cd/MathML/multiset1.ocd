@@ -1,8 +1,6 @@
- <CD xmlns="http://www.openmath.org/OpenMathCD">
-
-<CDComment>
-
-     This document is distributed in the hope that it will be useful, 
+<?xml version="1.0" encoding="UTF-8"?>
+<CD xmlns="http://www.openmath.org/OpenMathCD" xml:id="multiset1">
+  <CDComment>     This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -32,876 +30,942 @@
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 </CDComment>
-
-<CDName>multiset1</CDName>
-<CDBase>http://www.openmath.org/cd</CDBase>
-<CDURL>http://www.openmath.org/cd/multiset1.ocd</CDURL>
-<CDReviewDate>2006-03-30</CDReviewDate>
-<CDDate>2004-03-30</CDDate>
-<CDVersion>3</CDVersion>
-<CDRevision>0</CDRevision>
-<CDStatus>draft</CDStatus>
-<Description>
-    This CD defines the set functions and constructors for basic multiset theory. It is
-    intended to be `compatible' with the corresponding elements in MathML i.e. set
-    operations acting on sets of type=multiset.
-</Description>
-<discussion type="pragmatic">
-  <p>The symbols introduced in this content dictionary have operator elements in pragmatic
+  <CDName>multiset1</CDName>
+  <CDBase>http://www.openmath.org/cd</CDBase>
+  <CDURL>http://www.openmath.org/cd/multiset1.ocd</CDURL>
+  <CDReviewDate>2006-03-30</CDReviewDate>
+  <CDDate>2008-10-21</CDDate>
+  <CDVersion>3</CDVersion>
+  <CDRevision>0</CDRevision>
+  <CDStatus>draft</CDStatus>
+  <Description>This CD defines the set functions and constructors for basic multiset theory. It is intended to be `compatible' with the corresponding elements in MathML i.e. set operations acting on sets of type=multiset.</Description>
+  <discussion type="pragmatic">
+    <p>The symbols introduced in this content dictionary have operator elements in pragmatic
   Content MathML that take a <att>type</att> attribute indicates whehter the they pertain
   to a set or multilset interpretation of the arguments. The symbols defined in the
   <code>multiset1</code> content dictionary correspond to the multiset interpretatio,
   where repetitions of members are allowed. Therefore the value <attval>multiset</attval>
   is prescribed on these elements.</p>
-</discussion>
+  </discussion>
+  <CDDefinition xml:id="cartesian_product">
+    <Name>cartesian_product</Name>
+    <Pragmatic>
+      <Element type="opel_big">cartesianproduct</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Prescribed>"multiset"</Prescribed>
+      </Attribute>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol represents an n-ary construction function for constructing the Cartesian product of multisets. It takes n multiset arguments in order to construct their Cartesian product.</Description>
 
+    <MMLexample speclevel="1" xml:id="cartesianproduct.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <cartesianproduct/>
+          <ci>A</ci>
+          <ci>B</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
-<CDDefinition xml:id="cartesian_product">
-  <Name>cartesian_product</Name>
-  <Pragmatic>
-    <Element type="opel_big">cartesianproduct</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Prescribed>"multiset"</Prescribed>
-    </Attribute>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description>
-    This symbol represents an n-ary construction function for constructing the Cartesian
-    product of multisets. It takes n multiset arguments in order to construct their
-    Cartesian product.
-  </Description>
+    <MMLexample speclevel="1" xml:id="cartesianproduct.ex2">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <cartesianproduct/>
+          <reals/>
+          <reals/>
+          <reals/>
+        </apply>
+      </math>
+    </MMLexample>
 
-<MMLexample  speclevel="1" xml:id="cartesianproduct.ex1">
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><cartesianproduct/><ci>A</ci><ci>B</ci></apply>
-  </math>
-</MMLexample>
-
-<MMLexample  speclevel="1" xml:id="cartesianproduct.ex2">
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><cartesianproduct/><reals/><reals/><reals/></apply>
-  </math>
-</MMLexample>
-
-  <Example>
+    <Example>
     An example to show the representation of the Cartesian product of multisets: AxBxC.
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="multiset1" name="cartesian_product"/>
-    <OMV name="A"/>
-    <OMV name="B"/>
-    <OMV name="C"/>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
-
-<CDDefinition xml:id="emptyset">
-  <Name>emptyset</Name>
-  <Pragmatic>
-    <Element type="opel">emptyset</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Prescribed>"multiset"</Prescribed>
-    </Attribute>
-  </Pragmatic>
-  <Role>constant</Role>
-  <Description>
-    This symbol is used to represent the empty multiset, that is the multiset which
-    contains no members. It takes no parameters.
-  </Description>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"
+             xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+             cdbase="http://www.openmath.org/cd">
+        <OMA>
+          <OMS cd="multiset1" name="cartesian_product"/>
+          <OMV name="A"/>
+          <OMV name="B"/>
+          <OMV name="C"/>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="emptyset">
+    <Name>emptyset</Name>
+    <Pragmatic>
+      <Element type="opel">emptyset</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Prescribed>"multiset"</Prescribed>
+      </Attribute>
+    </Pragmatic>
+    <Role>constant</Role>
+    <Description>This symbol is used to represent the empty multiset, that is the multiset which contains no members. It takes no parameters.</Description>
   
-  <property>
-    <description>
-      <p>for all sets S,   intersect(S,emptyset) = emptyset</p>
-    </description>
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-<bind><forall/><bvar><ci type="set">S</ci></bvar>
-  <apply><eq/>
-    <apply><intersect/><emptyset/><ci>S</ci></apply>
-    <emptyset/>
-  </apply>
-</bind>
-</math>
-</property>
+    <property>
+      <description>
+        <p>for all sets S,   intersect(S,emptyset) = emptyset</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <bind>
+          <forall/>
+          <bvar>
+            <ci type="set">S</ci>
+          </bvar>
+          <apply>
+            <eq/>
+            <apply>
+              <intersect/>
+              <emptyset/>
+              <ci>S</ci>
+            </apply>
+            <emptyset/>
+          </apply>
+        </bind>
+      </math>
+    </property>
 
-<MMLexample speclevel="1" xml:id="emptyset.ex1">
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><neq/>
-      <integers/>
-      <emptyset/>
-    </apply>
-  </math>
-</MMLexample>
-
-<property xml:id="emptyset_prop_1">
-<CMP> The intersection of a multiset A with the empty multi set is the empty multi set
+    <property xml:id="emptyset_prop_1">
+      <CMP> The intersection of a multiset A with the empty multi set is the empty multi set
 </CMP>
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="relation1" name="eq"/>
-    <OMA>
-      <OMS cd="multiset1" name="intersect"/>
-      <OMV name="A"/>
-      <OMS cd="multiset1" name="emptyset"/>
-    </OMA>
-    <OMS cd="multiset1" name="emptyset"/>
-  </OMA>
-</OMOBJ>
-</FMP></property>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"
+               xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+               version="3.0"
+               cdbase="http://www.openmath.org/cd">
+          <OMA>
+            <OMS cd="relation1" name="eq"/>
+            <OMA>
+              <OMS cd="multiset1" name="intersect"/>
+              <OMV name="A"/>
+              <OMS cd="multiset1" name="emptyset"/>
+            </OMA>
+            <OMS cd="multiset1" name="emptyset"/>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </property>
 
-<property xml:id="emptyset_prop_2">
-<CMP> The union of A with the empty (multi) set is A </CMP>
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="relation1" name="eq"/>
-    <OMA>
-      <OMS cd="multiset1" name="union"/>
-      <OMV name="A"/>
-      <OMS cd="multiset1" name="emptyset"/>
-    </OMA>
-    <OMV name="A"/>
-  </OMA>
-</OMOBJ>
-</FMP></property>
+    <property xml:id="emptyset_prop_1">
+      <CMP> The intersection of a multiset A with the empty multi set is the empty multi set
+</CMP>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"
+               xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+               version="3.0"
+               cdbase="http://www.openmath.org/cd">
+          <OMA>
+            <OMS cd="relation1" name="eq"/>
+            <OMA>
+              <OMS cd="multiset1" name="intersect"/>
+              <OMV name="A"/>
+              <OMS cd="multiset1" name="emptyset"/>
+            </OMA>
+            <OMS cd="multiset1" name="emptyset"/>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </property>
 
-</CDDefinition>
+    <property xml:id="emptyset_prop_2">
+      <CMP> The union of A with the empty (multi) set is A </CMP>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"
+               xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+               version="3.0"
+               cdbase="http://www.openmath.org/cd">
+          <OMA>
+            <OMS cd="relation1" name="eq"/>
+            <OMA>
+              <OMS cd="multiset1" name="union"/>
+              <OMV name="A"/>
+              <OMS cd="multiset1" name="emptyset"/>
+            </OMA>
+            <OMV name="A"/>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </property>
 
-<CDDefinition xml:id="map">
-  <Name>map</Name>
-  <Pragmatic>
-    <Element type="opel">map</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Prescribed>"multiset"</Prescribed>
-    </Attribute>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description>
-    This symbol represents a mapping function which may be used to construct multisets, it
-    takes as arguments a function from X to Y and a multiset over X in that order. The
-    value that is returned is a multiset of values in Y.
-  </Description>
+  </CDDefinition>
+  <CDDefinition xml:id="map">
+    <Name>map</Name>
+    <Pragmatic>
+      <Element type="opel">map</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Prescribed>"multiset"</Prescribed>
+      </Attribute>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol represents a mapping function which may be used to construct multisets, it takes as arguments a function from X to Y and a multiset over X in that order. The value that is returned is a multiset of values in Y.</Description>
 
-  <Example>
+    <Example>
     The set of even values between 0 and 20, that is the values 2x, where x ranges over
     the integral interval [0,10].
-    <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="set1" name="map"/>
-    <OMBIND>
-      <OMS cd="fns1" name="lambda"/>
-      <OMBVAR>
-        <OMV name="x"/>
-      </OMBVAR>
-      <OMA>
-        <OMS cd="arith1" name="times"/>
-        <OMI> 2 </OMI>
-  <OMV name="x"/>
-      </OMA>
-    </OMBIND>
-    <OMA>
-      <OMS cd="interval1" name="integer_interval"/>
-      <OMI> 0 </OMI>
-      <OMI> 10 </OMI>
-    </OMA>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
-
-<CDDefinition xml:id="size">
-  <Name>size</Name>
-  <Title>The size of a multiset</Title>
-  <Pragmatic>
-    <Element type="opel">card</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Prescribed>"multiset"</Prescribed>
-    </Attribute>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol is used to denote the number of elements in a multiset. It is
-    either a non-negative integer, or an infinite cardinal number. The
-    symbol infinity may be used for an unspecified infinite cardinal.
-  </Description>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"
+             xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+             cdbase="http://www.openmath.org/cd">
+        <OMA>
+          <OMS cd="set1" name="map"/>
+          <OMBIND>
+            <OMS cd="fns1" name="lambda"/>
+            <OMBVAR>
+              <OMV name="x"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="arith1" name="times"/>
+              <OMI> 2 </OMI>
+              <OMV name="x"/>
+            </OMA>
+          </OMBIND>
+          <OMA>
+            <OMS cd="interval1" name="integer_interval"/>
+            <OMI> 0 </OMI>
+            <OMI> 10 </OMI>
+          </OMA>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="size">
+    <Name>size</Name>
+    <Title>The size of a multiset</Title>
+    <Pragmatic>
+      <Element type="opel">card</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Prescribed>"multiset"</Prescribed>
+      </Attribute>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol is used to denote the number of elements in a multiset. It is either a non-negative integer, or an infinite cardinal number. The symbol infinity may be used for an unspecified infinite cardinal.</Description>
  
-<Example>
+    <Example>
 The size of the multiset{3,3,9} = 3
 
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="relation1" name="eq"/>
-    <OMA>
-      <OMS cd="multiset1" name="size"/>
-      <OMA>
-        <OMS cd="multiset1" name="multiset"/>
-        <OMI> 3 </OMI>
-        <OMI> 3 </OMI>
-        <OMI> 9 </OMI>
-      </OMA>
-    </OMA>
-    <OMI> 3 </OMI>
-  </OMA>
-</OMOBJ>
-</Example>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"
+             xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+             cdbase="http://www.openmath.org/cd">
+        <OMA>
+          <OMS cd="relation1" name="eq"/>
+          <OMA>
+            <OMS cd="multiset1" name="size"/>
+            <OMA>
+              <OMS cd="multiset1" name="multiset"/>
+              <OMI> 3 </OMI>
+              <OMI> 3 </OMI>
+              <OMI> 9 </OMI>
+            </OMA>
+          </OMA>
+          <OMI> 3 </OMI>
+        </OMA>
+      </OMOBJ>
+    </Example>
 
-<MMLexample speclevel="1" xml:id="card.ex1">
-  <description><p>where A is a multiset with 5 elements.</p>
-  </description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><eq/>
-    <apply><card/><ci>A</ci></apply>
-    <ci>5</ci>
-    </apply>
-  </math>
-</MMLexample>
-</CDDefinition>
+    <MMLexample speclevel="1" xml:id="card.ex1">
+      <description>
+        <p>where A is a multiset with 5 elements.</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <eq/>
+          <apply>
+            <card/>
+            <ci>A</ci>
+          </apply>
+          <ci>5</ci>
+        </apply>
+      </math>
+    </MMLexample>
+  </CDDefinition>
+  <CDDefinition xml:id="suchthat">
+    <Name>suchthat</Name>
+    <Pragmatic>
+      <Element type="opel">suchthat</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Prescribed>"multiset"</Prescribed>
+      </Attribute>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol represents the suchthat function which may be used to construct multisets, it takes two arguments. The first argument should be the multiset which contains the elements of the multiset we wish to represent, the second argument should be a predicate, that is a function from the set to the booleans which describes if an element is to be in the multiset returned.</Description>
 
-<CDDefinition xml:id="suchthat">
-  <Name>suchthat</Name>
-  <Pragmatic>
-    <Element type="opel">suchthat</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Prescribed>"multiset"</Prescribed>
-    </Attribute>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description>
-    This symbol represents the suchthat function which may be used to construct multisets,
-    it takes two arguments. The first argument should be the multiset which contains the
-    elements of the multiset we wish to represent, the second argument should be a
-    predicate, that is a function from the set to the booleans which describes if an
-    element is to be in the multiset returned.
-  </Description>
+    <MMLexample speclevel="1" xml:id="suchthat.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <set type="multiset">
+          <bvar>
+            <ci>x</ci>
+          </bvar>
+          <condition>
+            <apply>
+              <lt/>
+              <ci>x</ci>
+              <cn>5</cn>
+            </apply>
+          </condition>
+        </set>
+      </math>
+    </MMLexample>
 
-  <MMLexample  speclevel="1" xml:id="suchthat.ex1">
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <set type="multiset">
-  <bvar><ci>x</ci></bvar>
-  <condition>
-    <apply><lt/><ci>x</ci><cn>5</cn></apply>
-  </condition>
-      </set>
-    </math>
-  </MMLexample>
+    <MMLexample speclevel="1" xml:id="suchthat.ex2">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <set type="multiset">
+          <bvar>
+            <ci type="multiset">S</ci>
+          </bvar>
+          <condition>
+            <apply>
+              <in/>
+              <ci>S</ci>
+              <ci type="list">T</ci>
+            </apply>
+          </condition>
+          <ci>S</ci>
+        </set>
+      </math>
+    </MMLexample>
+  </CDDefinition>
+  <CDDefinition xml:id="multiset">
+    <Name>multiset</Name>
+    <Pragmatic>
+      <Element type="container">multiset</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Prescribed>"multiset"</Prescribed>
+      </Attribute>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol represents the multiset construct. It is either an n-ary function, in which case the multiset entries are given explicitly, or it works on an elements construct. There is no implied ordering to the elements of a multiset.</Description>
 
-<MMLexample  speclevel="1" xml:id="suchthat.ex2">
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <set type="multiset">
-      <bvar><ci type="multiset">S</ci></bvar>
-      <condition>
-  <apply><in/><ci>S</ci><ci type="list">T</ci></apply>
-      </condition>
-      <ci>S</ci>
-    </set>
-  </math>
-</MMLexample>
-</CDDefinition>
-
-
-<CDDefinition xml:id="multiset">
-<Name>multiset</Name>
-  <Pragmatic>
-    <Element type="container">multiset</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Prescribed>"multiset"</Prescribed>
-    </Attribute>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol represents the multiset construct. It is either an n-ary function, in
-    which case the multiset entries are given explicitly, or it works on an elements
-    construct. There is no implied ordering to the elements of a multiset.
-  </Description>
-
-  <MMLexample  speclevel="1" xml:id="set.ex1">
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <set type="multiset"><ci>a</ci><ci>a</ci><ci>c</ci><ci>b</ci><ci>c</ci></set>
-    </math>
-  </MMLexample>
+    <MMLexample speclevel="1" xml:id="set.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <set type="multiset">
+          <ci>a</ci>
+          <ci>a</ci>
+          <ci>c</ci>
+          <ci>b</ci>
+          <ci>c</ci>
+        </set>
+      </math>
+    </MMLexample>
   
-  <Example>
+    <Example>
     The multiset {4, 1, 0, 1 4}
-    <OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="multiset1" name="multiset"/>
-    <OMI> 4 </OMI>
-    <OMI> 1 </OMI>
-    <OMI> 0 </OMI>
-    <OMI> 1 </OMI>
-    <OMI> 4 </OMI>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"
+             xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+             cdbase="http://www.openmath.org/cd">
+        <OMA>
+          <OMS cd="multiset1" name="multiset"/>
+          <OMI> 4 </OMI>
+          <OMI> 1 </OMI>
+          <OMI> 0 </OMI>
+          <OMI> 1 </OMI>
+          <OMI> 4 </OMI>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="intersect">
+    <Name>intersect</Name>
+    <Pragmatic>
+      <Element type="opel_big">intersect</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Prescribed>"multiset"</Prescribed>
+      </Attribute>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol is used to denote the n-ary intersection of multisets. It takes multisets as arguments, and denotes the multiset that contains all the elements that occur in all of them, with multiplicity the minimum of their multiplicities in all multisets.</Description>
 
-<CDDefinition xml:id="intersect">
-  <Name>intersect</Name>
-  <Pragmatic>
-    <Element type="opel_big">intersect</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Prescribed>"multiset"</Prescribed>
-    </Attribute>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol is used to denote the n-ary intersection of multisets. It takes multisets
-    as arguments, and denotes the multiset that contains all the elements that occur in
-    all of them, with multiplicity the minimum of their multiplicities in all multisets.
-  </Description>
+    <MMLexample speclevel="1" xml:id="intersect.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <intersect type="multiset"/>
+          <ci type="multiset"> A</ci>
+          <ci type="multiset"> B</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
-<MMLexample  speclevel="1" xml:id="intersect.ex1">
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><intersect type="multiset"/>
-      <ci type="multiset"> A</ci>
-      <ci type="multiset"> B</ci>
-    </apply>
-  </math>
-</MMLexample>
-
-<property xml:id="intersect_prop_4">
-<CMP>
+    <property xml:id="intersect_prop_4">
+      <CMP>
   (A intersect B) is a subset of A and (A intersect B) is a subset of B
 </CMP>
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="logic1" name="and"/>
-    <OMA>
-      <OMS cd="multiset1" name="subset"/>
-      <OMA>
-        <OMS cd="multiset1" name="intersect"/>
-  <OMV name="A"/>
-  <OMV name="B"/>
-      </OMA>
-      <OMV name="A"/>
-    </OMA>
-    <OMA>
-      <OMS cd="multiset1" name="subset"/>
-      <OMA>
-        <OMS cd="multiset1" name="intersect"/>
-  <OMV name="A"/>
-  <OMV name="B"/>
-      </OMA>
-      <OMV name="B"/>
-    </OMA>
-  </OMA>
-</OMOBJ>
-</FMP></property>
-</CDDefinition>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"
+               xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+               version="3.0"
+               cdbase="http://www.openmath.org/cd">
+          <OMA>
+            <OMS cd="logic1" name="and"/>
+            <OMA>
+              <OMS cd="multiset1" name="subset"/>
+              <OMA>
+                <OMS cd="multiset1" name="intersect"/>
+                <OMV name="A"/>
+                <OMV name="B"/>
+              </OMA>
+              <OMV name="A"/>
+            </OMA>
+            <OMA>
+              <OMS cd="multiset1" name="subset"/>
+              <OMA>
+                <OMS cd="multiset1" name="intersect"/>
+                <OMV name="A"/>
+                <OMV name="B"/>
+              </OMA>
+              <OMV name="B"/>
+            </OMA>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
+  <CDDefinition xml:id="big_intersect">
+    <Name>big_intersect</Name>
+    <Role>binder</Role>
+    <Title>Intersection over a multiset of expressions</Title>
+    <Description>This n-ary operator is used to construct the intersection over a collection of sets.</Description>
 
-<CDDefinition xml:id="big_intersect">
-  <Name>big_intersect</Name>
-  <Role>binder</Role>
-  <Title>Intersection over a multiset of expressions</Title>
-  <Description>
-    This n-ary operator is used to construct the intersection over a collection of sets.
-  </Description>
+    <MMLexample speclevel="1" xml:id="big_intersect.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <intersect/>
+          <ci type="list">L</ci>
+          <bind>
+            <lambda/>
+            <bvar>
+              <ci type="set"> S</ci>
+            </bvar>
+            <ci type="set"> S</ci>
+          </bind>
+        </apply>
+      </math>
+    </MMLexample>
+  </CDDefinition>
+  <CDDefinition xml:id="union">
+    <Name>union</Name>
+    <Pragmatic>
+      <Element type="opel_big">union</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Prescribed>"multiset"</Prescribed>
+      </Attribute>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol is used to denote the n-ary union of multisets. It takes multisets as arguments, and denotes the multiset that contains all the elements that occur in any of them, with multiplicity the sum of all the multiplicities in the multiset arguments.</Description>
 
-<MMLexample  speclevel="1" xml:id="big_intersect.ex1">
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply>
-  <intersect/>
-  <ci type="list">L</ci>
-  <bind>
-    <lambda/>
-    <bvar><ci type="set"> S</ci></bvar>
-    <ci type="set"> S</ci>
-  </bind>
-</apply>
-</math>
-</MMLexample>
-</CDDefinition>
-
-
-<CDDefinition xml:id="union">
-  <Name>union</Name>
-  <Pragmatic>
-    <Element type="opel_big">union</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Prescribed>"multiset"</Prescribed>
-    </Attribute>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol is used to denote the n-ary union of multisets. It takes multisets as
-    arguments, and denotes the multiset that contains all the elements that occur in any
-    of them, with multiplicity the sum of all the multiplicities in the multiset
-    arguments.
-  </Description>
-
-  <MMLexample  speclevel="1" xml:id="union.ex1">
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply><union type="multiset"/>
-        <ci type="multiset">A</ci>
-        <ci type="multiset">B</ci>
-      </apply>
-    </math>
-  </MMLexample>
+    <MMLexample speclevel="1" xml:id="union.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <union type="multiset"/>
+          <ci type="multiset">A</ci>
+          <ci type="multiset">B</ci>
+        </apply>
+      </math>
+    </MMLexample>
   
-<property xml:id="union_prop_5">
-<CMP> A is a subset of (A union B) and B is a subset of (A union B) </CMP>
+    <property xml:id="union_prop_5">
+      <CMP> A is a subset of (A union B) and B is a subset of (A union B) </CMP>
 
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="logic1" name="and"/>
-    <OMA>
-      <OMS cd="multiset1" name="subset"/>
-      <OMV name="A"/>
-      <OMA>
-        <OMS cd="multiset1" name="union"/>
-  <OMV name="A"/>
-  <OMV name="B"/>
-      </OMA>
-    </OMA>
-    <OMA>
-      <OMS cd="multiset1" name="subset"/>
-      <OMV name="B"/>
-      <OMA>
-        <OMS cd="multiset1" name="union"/>
-  <OMV name="A"/>
-  <OMV name="B"/>
-      </OMA>
-    </OMA>
-  </OMA>
-</OMOBJ>
-</FMP></property>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"
+               xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+               version="3.0"
+               cdbase="http://www.openmath.org/cd">
+          <OMA>
+            <OMS cd="logic1" name="and"/>
+            <OMA>
+              <OMS cd="multiset1" name="subset"/>
+              <OMV name="A"/>
+              <OMA>
+                <OMS cd="multiset1" name="union"/>
+                <OMV name="A"/>
+                <OMV name="B"/>
+              </OMA>
+            </OMA>
+            <OMA>
+              <OMS cd="multiset1" name="subset"/>
+              <OMV name="B"/>
+              <OMA>
+                <OMS cd="multiset1" name="union"/>
+                <OMV name="A"/>
+                <OMV name="B"/>
+              </OMA>
+            </OMA>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </property>
 
-<property xml:id="union_prop_6">
-<CMP>
+    <property xml:id="union_prop_6">
+      <CMP>
 for all sets A,B and C
 union(A,intersect(B,C)) = intersect(union(A,B),union(A,C))
 </CMP>
 
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMBIND>
-    <OMS cd="quant1" name="forall"/>
-    <OMBVAR>
-      <OMV name="A"/>
-      <OMV name="B"/>
-      <OMV name="C"/>
-    </OMBVAR>
-    <OMA>
-      <OMS cd="relation1" name="eq"/>
-      <OMA>
-        <OMS cd="multiset1" name="union"/>
-        <OMV name="A"/>
-        <OMA>
-          <OMS cd="multiset1" name="intersect"/>
-          <OMV name="B"/>
-          <OMV name="C"/>
-        </OMA>
-      </OMA>
-      <OMA>
-        <OMS cd="multiset1" name="intersect"/>
-        <OMA>
-          <OMS cd="multiset1" name="union"/>
-          <OMV name="A"/>
-          <OMV name="B"/>
-        </OMA>
-        <OMA>
-          <OMS cd="multiset1" name="union"/>
-          <OMV name="A"/>
-          <OMV name="C"/>
-        </OMA>
-      </OMA>
-    </OMA>    
-  </OMBIND>
-</OMOBJ>
-</FMP></property>
-</CDDefinition>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"
+               xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+               version="3.0"
+               cdbase="http://www.openmath.org/cd">
+          <OMBIND>
+            <OMS cd="quant1" name="forall"/>
+            <OMBVAR>
+              <OMV name="A"/>
+              <OMV name="B"/>
+              <OMV name="C"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="relation1" name="eq"/>
+              <OMA>
+                <OMS cd="multiset1" name="union"/>
+                <OMV name="A"/>
+                <OMA>
+                  <OMS cd="multiset1" name="intersect"/>
+                  <OMV name="B"/>
+                  <OMV name="C"/>
+                </OMA>
+              </OMA>
+              <OMA>
+                <OMS cd="multiset1" name="intersect"/>
+                <OMA>
+                  <OMS cd="multiset1" name="union"/>
+                  <OMV name="A"/>
+                  <OMV name="B"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="multiset1" name="union"/>
+                  <OMV name="A"/>
+                  <OMV name="C"/>
+                </OMA>
+              </OMA>
+            </OMA>    
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
+  <CDDefinition xml:id="big_union">
+    <Name>big_union</Name>
+    <Role>binder</Role>
+    <Title>Multiset union over a set of expressions</Title>
+    <Description>This n-ary operator is used to construct the union over a collection of multisets.</Description>
 
+    <MMLexample speclevel="1" xml:id="big_union.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <union type="multiset"/>
+          <bvar>
+            <ci type="multiset">S</ci>
+          </bvar>
+          <domainofapplication>
+            <ci type="list">L</ci>
+          </domainofapplication>
+          <ci type="multiset">S</ci>
+        </apply>
+      </math>
+    </MMLexample>
+  </CDDefinition>
+  <CDDefinition xml:id="setdiff">
+    <Name>setdiff</Name>
+    <Pragmatic>
+      <Element type="opel">setdiff</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Prescribed>"multiset"</Prescribed>
+      </Attribute>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol is used to denote the multiset difference of two multisets. It takes two multisets as arguments, and denotes the multiset that contains all the elements that occur in the first multiset with strictly greater multiplicity than in the second. The multiplicity in the result is the difference of the two.</Description>
 
-<CDDefinition xml:id="big_union">
-  <Name>big_union</Name>
-  <Role>binder</Role>
-  <Title>Multiset union over a set of expressions</Title>
-  <Description>
-    This n-ary operator is used to construct the union over a collection of multisets.
-  </Description>
+    <MMLexample speclevel="1" xml:id="setdiff.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <setdiff/>
+          <ci type="multiset">A</ci>
+          <ci type="multiset">B</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
-  <MMLexample  speclevel="1" xml:id="big_union.ex1">
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply>
-      <union type="multiset"/>
-      <bvar><ci type="multiset">S</ci></bvar>
-      <domainofapplication><ci type="list">L</ci></domainofapplication>
-      <ci type="multiset">S</ci>
-    </apply>
-  </math>
-</MMLexample>
-</CDDefinition>
-
-
-<CDDefinition xml:id="setdiff">
-  <Name>setdiff</Name>
-  <Pragmatic>
-    <Element type="opel">setdiff</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Prescribed>"multiset"</Prescribed>
-    </Attribute>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol is used to denote the multiset difference of two multisets. It takes two
-    multisets as arguments, and denotes the multiset that contains all the elements that
-    occur in the first multiset with strictly greater multiplicity than in the second.
-    The multiplicity in the result is the difference of the two.
-  </Description>
-
- <MMLexample speclevel="1" xml:id="setdiff.ex1">
-   <math xmlns="http://www.w3.org/1998/Math/MathML">
-     <apply><setdiff/>
-       <ci type="multiset">A</ci>
-       <ci type="multiset">B</ci>
-     </apply>
-   </math>
- </MMLexample>
-
-<property xml:id="setdiff_prop_7">
-<CMP>
+    <property xml:id="setdiff_prop_7">
+      <CMP>
   the difference of A and B is a subset of A
 </CMP>
-<FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="multiset1" name="subset"/>
-    <OMA>
-      <OMS cd="multiset1" name="setdiff"/>
-      <OMV name="A"/>
-      <OMV name="B"/>
-    </OMA>
-    <OMV name="A"/>
-  </OMA>
-</OMOBJ></FMP></property>
-</CDDefinition>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"
+               xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+               version="3.0"
+               cdbase="http://www.openmath.org/cd">
+          <OMA>
+            <OMS cd="multiset1" name="subset"/>
+            <OMA>
+              <OMS cd="multiset1" name="setdiff"/>
+              <OMV name="A"/>
+              <OMV name="B"/>
+            </OMA>
+            <OMV name="A"/>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
+  <CDDefinition xml:id="subset">
+    <Name>subset</Name>
+    <Pragmatic>
+      <Element type="opel_big">subset</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Prescribed>"multiset"</Prescribed>
+      </Attribute>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol has two (multiset) arguments. It is used to denote that the first set is a subset of the second, i.e. every element of the first occurs with multiplicity at least as much in the second.</Description>
 
-<CDDefinition xml:id="subset">
-  <Name>subset</Name>
-  <Pragmatic>
-    <Element type="opel_big">subset</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Prescribed>"multiset"</Prescribed>
-    </Attribute>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description>
-    This symbol has two (multiset) arguments. It is used to denote that the first set is a
-    subset of the second, i.e. every element of the first occurs with multiplicity at
-    least as much in the second.
-  </Description>
+    <MMLexample speclevel="1" xml:id="subset.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <subset type="multiset"/>
+          <ci type="multiset">A</ci>
+          <ci type="multiset">B</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
- <MMLexample  speclevel="1" xml:id="subset.ex1">
-   <math xmlns="http://www.w3.org/1998/Math/MathML">
-     <apply><subset type="multiset"/>
-       <ci type="multiset">A</ci>
-       <ci type="multiset">B</ci>
-     </apply>
-   </math>
- </MMLexample>
+    <MMLexample>
+      <description>
+        <p>***** what do we do with this?</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <subset/>
+          <set type="multiset">
+            <bvar>
+              <ci type="set">S</ci>
+            </bvar>
+            <condition>
+              <apply>
+                <in/>
+                <ci>S</ci>
+                <ci type="list">T</ci>
+              </apply>
+            </condition>
+            <ci>S</ci>
+          </set>
+        </apply>
+      </math>
+    </MMLexample>
 
-<MMLexample>
-  <description><p>***** what do we do with this?</p></description>
-  <math xmlns="http://www.w3.org/1998/Math/MathML"><apply>
-    <subset/>
-      <set type="multiset">
-  <bvar><ci type="set">S</ci></bvar>
-  <condition><apply><in/><ci>S</ci><ci type="list">T</ci></apply></condition>
-  <ci>S</ci>
-      </set>
-    </apply>
-  </math>
-</MMLexample>
-
-<property xml:id="subset_prop_8">
-<CMP>
+    <property xml:id="subset_prop_8">
+      <CMP>
   if B is a subset of A and C is a subset of B then C is a subset of A
 </CMP>
-<FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="logic1" name="implies"/>
-    <OMA>
-      <OMS cd="logic1" name="and"/>
-      <OMA>
-        <OMS cd="multiset1" name="subset"/>
-        <OMV name="B"/>
-        <OMV name="A"/>
-      </OMA>
-      <OMA>
-        <OMS cd="multiset1" name="subset"/>
-        <OMV name="C"/>
-        <OMV name="B"/>
-      </OMA>
-    </OMA>
-    <OMA>
-      <OMS cd="multiset1" name="subset"/>
-      <OMV name="C"/>
-      <OMV name="A"/>
-    </OMA>
-  </OMA>
-</OMOBJ></FMP></property>
-</CDDefinition>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"
+               xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+               version="3.0"
+               cdbase="http://www.openmath.org/cd">
+          <OMA>
+            <OMS cd="logic1" name="implies"/>
+            <OMA>
+              <OMS cd="logic1" name="and"/>
+              <OMA>
+                <OMS cd="multiset1" name="subset"/>
+                <OMV name="B"/>
+                <OMV name="A"/>
+              </OMA>
+              <OMA>
+                <OMS cd="multiset1" name="subset"/>
+                <OMV name="C"/>
+                <OMV name="B"/>
+              </OMA>
+            </OMA>
+            <OMA>
+              <OMS cd="multiset1" name="subset"/>
+              <OMV name="C"/>
+              <OMV name="A"/>
+            </OMA>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
+  <CDDefinition xml:id="in">
+    <Name>in</Name>
+    <Pragmatic>
+      <Element type="opel">in</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Prescribed>"multiset"</Prescribed>
+      </Attribute>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol has two arguments, an element and a multiset. It is used to denote that the element is in the given multiset.</Description>
 
-<CDDefinition xml:id="in">
-<Name>in</Name>
-  <Pragmatic>
-    <Element type="opel">in</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Prescribed>"multiset"</Prescribed>
-    </Attribute>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol has two arguments, an element and a multiset. It is used to denote that
-    the element is in the given multiset.
-  </Description>
+    <MMLexample speclevel="1" xml:id="in.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <in type="multiset"/>
+          <ci>a</ci>
+          <ci type="multiset">A</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
-  <MMLexample speclevel="1" xml:id="in.ex1">
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply><in type="multiset"/><ci>a</ci><ci type="multiset">A</ci></apply>
-    </math>
-  </MMLexample>
-
-<property xml:id="in_prop_9">
-<CMP>
+    <property xml:id="in_prop_9">
+      <CMP>
   if a is in A and a is in B then a is in A intersect B
 </CMP>
-<FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="logic1" name="implies"/>
-    <OMA>
-      <OMS cd="logic1" name="and"/>
-      <OMA>
-        <OMS cd="multiset1" name="in"/>
-        <OMV name="a"/>
-        <OMV name="A"/>
-      </OMA>
-      <OMA>
-        <OMS cd="multiset1" name="in"/>
-        <OMV name="a"/>
-        <OMV name="B"/>
-      </OMA>
-    </OMA>
-    <OMA>
-      <OMS cd="multiset1" name="in"/>
-      <OMV name="a"/>
-      <OMA>
-        <OMS cd="multiset1" name="intersect"/>
-        <OMV name="A"/>
-        <OMV name="B"/>
-      </OMA>
-    </OMA>
-  </OMA>
-</OMOBJ></FMP></property>
-</CDDefinition>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"
+               xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+               version="3.0"
+               cdbase="http://www.openmath.org/cd">
+          <OMA>
+            <OMS cd="logic1" name="implies"/>
+            <OMA>
+              <OMS cd="logic1" name="and"/>
+              <OMA>
+                <OMS cd="multiset1" name="in"/>
+                <OMV name="a"/>
+                <OMV name="A"/>
+              </OMA>
+              <OMA>
+                <OMS cd="multiset1" name="in"/>
+                <OMV name="a"/>
+                <OMV name="B"/>
+              </OMA>
+            </OMA>
+            <OMA>
+              <OMS cd="multiset1" name="in"/>
+              <OMV name="a"/>
+              <OMA>
+                <OMS cd="multiset1" name="intersect"/>
+                <OMV name="A"/>
+                <OMV name="B"/>
+              </OMA>
+            </OMA>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
+  <CDDefinition xml:id="notin">
+    <Name>notin</Name>
+    <Pragmatic>
+      <Element type="opel">notin</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Prescribed>"multiset"</Prescribed>
+      </Attribute>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol has two arguments, an element and a multiset. It is used to denote that the element is not in the given multiset.</Description>
 
-<CDDefinition xml:id="notin">
-  <Name>notin</Name>
-  <Pragmatic>
-    <Element type="opel">notin</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Prescribed>"multiset"</Prescribed>
-    </Attribute>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol has two arguments, an element and a multiset. It is used to denote that
-    the element is not in the given multiset.
-  </Description>
+    <MMLexample speclevel="1" xml:id="notin.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <notin type="multiset"/>
+          <ci>a</ci>
+          <ci type="multiset">A</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
- <MMLexample speclevel="1" xml:id="notin.ex1">
-   <math xmlns="http://www.w3.org/1998/Math/MathML">
-     <apply><notin type="multiset"/><ci>a</ci><ci type="multiset">A</ci></apply>
-   </math>
- </MMLexample>
-
-<Example>
+    <Example>
   4 is not in {1,1,2,3}
 
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="multiset1" name="notin"/>
-    <OMI> 4 </OMI>
-    <OMA>
-      <OMS cd="multiset1" name="multiset"/>
-      <OMI> 1 </OMI>
-      <OMI> 1 </OMI>
-      <OMI> 2 </OMI>
-      <OMI> 3 </OMI>
-    </OMA>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"
+             xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+             cdbase="http://www.openmath.org/cd">
+        <OMA>
+          <OMS cd="multiset1" name="notin"/>
+          <OMI> 4 </OMI>
+          <OMA>
+            <OMS cd="multiset1" name="multiset"/>
+            <OMI> 1 </OMI>
+            <OMI> 1 </OMI>
+            <OMI> 2 </OMI>
+            <OMI> 3 </OMI>
+          </OMA>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="prsubset">
+    <Name>prsubset</Name>
+    <Pragmatic>
+      <Element type="opel_big">prsubset</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Prescribed>"multiset"</Prescribed>
+      </Attribute>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol has two (multiset) arguments. It is used to denote that the first multiset is a proper subset of the second, that is a subset of the second multiset but not actually equal to it.</Description>
 
-<CDDefinition xml:id="prsubset">
-  <Name>prsubset</Name>
-  <Pragmatic>
-    <Element type="opel_big">prsubset</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Prescribed>"multiset"</Prescribed>
-    </Attribute>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol has two (multiset) arguments. It is used to denote that the first multiset
-    is a proper subset of the second, that is a subset of the second multiset but not
-    actually equal to it.
-  </Description>
+    <MMLexample speclevel="1" xml:id="prsubset.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <prsubset type="multiset"/>
+          <ci type="multiset">A</ci>
+          <ci type="multiset">B</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
-<MMLexample speclevel="1" xml:id="prsubset.ex1">
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><prsubset type="multiset"/>
-    <ci type="multiset">A</ci>
-    <ci type="multiset">B</ci>
-    </apply>
-  </math>
-</MMLexample>
+    <MMLexample speclevel="1" xml:id="prsubset.ex2">
+      <description>
+        <p>***** what do we do with this?</p>
+      </description>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <prsubset type="multiset"/>
+          <bvar>
+            <ci type="integer">i</ci>
+          </bvar>
+          <lowlimit>
+            <cn>0</cn>
+          </lowlimit>
+          <uplimit>
+            <cn>10</cn>
+          </uplimit>
+          <apply>
+            <selector/>
+            <ci type="vector_of_multisets">S</ci>
+            <ci>i</ci>
+          </apply>
+        </apply>
+      </math>
+    </MMLexample>
 
-<MMLexample speclevel="1" xml:id="prsubset.ex2">
-  <description><p>***** what do we do with this?</p></description>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply>
-    <prsubset type="multiset"/>
-    <bvar><ci type="integer">i</ci></bvar>
-    <lowlimit><cn>0</cn></lowlimit>
-    <uplimit><cn>10</cn></uplimit>
-    <apply><selector/><ci type="vector_of_multisets">S</ci><ci>i</ci></apply>
-  </apply>
-</math>
-</MMLexample>
-
-<Example>
+    <Example>
   {2,3} is a proper subset of {2,2,3}
 
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="multiset1" name="prsubset"/>
-    <OMA>
-      <OMS cd="multiset1" name="multiset"/>
-      <OMI> 2 </OMI>
-      <OMI> 3 </OMI>
-    </OMA>
-    <OMA>
-      <OMS cd="multiset1" name="multiset"/>
-      <OMI> 2 </OMI>
-      <OMI> 2 </OMI>
-      <OMI> 3 </OMI>
-    </OMA>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"
+             xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+             cdbase="http://www.openmath.org/cd">
+        <OMA>
+          <OMS cd="multiset1" name="prsubset"/>
+          <OMA>
+            <OMS cd="multiset1" name="multiset"/>
+            <OMI> 2 </OMI>
+            <OMI> 3 </OMI>
+          </OMA>
+          <OMA>
+            <OMS cd="multiset1" name="multiset"/>
+            <OMI> 2 </OMI>
+            <OMI> 2 </OMI>
+            <OMI> 3 </OMI>
+          </OMA>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="notsubset">
+    <Name>notsubset</Name>
+    <Pragmatic>
+      <Element type="opel">notsubset</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Prescribed>"multiset"</Prescribed>
+      </Attribute>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol has two (multiset) arguments. It is used to denote that the first multiset is not a subset of the second.</Description>
 
-<CDDefinition xml:id="notsubset">
-  <Name>notsubset</Name>
-  <Pragmatic>
-    <Element type="opel">notsubset</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Prescribed>"multiset"</Prescribed>
-    </Attribute>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol has two (multiset) arguments. It is used to denote that the first multiset
-    is not a subset of the second.
-  </Description>
+    <MMLexample speclevel="1" xml:id="notsubset.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <notsubset type="multiset"/>
+          <ci type="multiset">A</ci>
+          <ci type="multiset">B</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
-<MMLexample speclevel="1" xml:id="notsubset.ex1">
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply>
-  <notsubset type="multiset"/>
-  <ci type="multiset">A</ci>
-  <ci type="multiset">B</ci>
-    </apply>
-  </math>
-</MMLexample>
-
-<Example>
+    <Example>
   {2,3,3} is not a subset of {1,2,3}
 
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="multiset1" name="notsubset"/>
-    <OMA>
-      <OMS cd="multiset1" name="multiset"/>
-      <OMI> 2 </OMI>
-      <OMI> 3 </OMI>
-      <OMI> 3 </OMI>
-    </OMA>
-    <OMA>
-      <OMS cd="multiset1" name="multiset"/>
-      <OMI> 1 </OMI>
-      <OMI> 2 </OMI>
-      <OMI> 3 </OMI>
-    </OMA>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"
+             xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+             cdbase="http://www.openmath.org/cd">
+        <OMA>
+          <OMS cd="multiset1" name="notsubset"/>
+          <OMA>
+            <OMS cd="multiset1" name="multiset"/>
+            <OMI> 2 </OMI>
+            <OMI> 3 </OMI>
+            <OMI> 3 </OMI>
+          </OMA>
+          <OMA>
+            <OMS cd="multiset1" name="multiset"/>
+            <OMI> 1 </OMI>
+            <OMI> 2 </OMI>
+            <OMI> 3 </OMI>
+          </OMA>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+  <CDDefinition xml:id="notprsubset">
+    <Name>notprsubset</Name>
+    <Pragmatic>
+      <Element type="opel">notprsubset</Element>
+      <Attribute>
+        <Name>type</Name>
+        <Prescribed>"multiset"</Prescribed>
+      </Attribute>
+    </Pragmatic>
+    <Role>application</Role>
+    <Description>This symbol has two (multiset) arguments. It is used to denote that the first multiset is not a proper subset of the second. A proper subset of a multiset is a subset of the multiset but not actually equal to it.</Description>
 
-<CDDefinition xml:id="notprsubset">
-  <Name>notprsubset</Name>
-  <Pragmatic>
-    <Element type="opel">notprsubset</Element>
-    <Attribute>
-      <Name>type</Name>
-      <Prescribed>"multiset"</Prescribed>
-    </Attribute>
-  </Pragmatic>
-  <Role>application</Role>
-  <Description> 
-    This symbol has two (multiset) arguments. It is used to denote that the first multiset
-    is not a proper subset of the second. A proper subset of a multiset is a subset of the
-    multiset but not actually equal to it.
-  </Description>
+    <MMLexample speclevel="1" xml:id="notprsubset.ex1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <notprsubset type="multiset"/>
+          <ci type="multiset">A</ci>
+          <ci type="multiset">B</ci>
+        </apply>
+      </math>
+    </MMLexample>
 
-<MMLexample speclevel="1" xml:id="notprsubset.ex1">
-  <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <apply><notprsubset type="multiset"/>
-      <ci type="multiset">A</ci>
-      <ci type="multiset">B</ci>
-    </apply>
-  </math>
-</MMLexample>
-
-<Example>
+    <Example>
 {1,2,1} is not a proper subset of {1,2,1}
 
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="multiset1" name="notprsubset"/>
-    <OMA>
-      <OMS cd="multiset1" name="multiset"/>
-      <OMI>1</OMI>
-      <OMI>2</OMI>
-      <OMI>1</OMI>
-    </OMA>
-    <OMA>
-      <OMS cd="multiset1" name="multiset"/>
-      <OMI>1</OMI>
-      <OMI>2</OMI>
-      <OMI>1</OMI>
-    </OMA>
-  </OMA>
-</OMOBJ>
-</Example>
-</CDDefinition>
-
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"
+             xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+             cdbase="http://www.openmath.org/cd">
+        <OMA>
+          <OMS cd="multiset1" name="notprsubset"/>
+          <OMA>
+            <OMS cd="multiset1" name="multiset"/>
+            <OMI>1</OMI>
+            <OMI>2</OMI>
+            <OMI>1</OMI>
+          </OMA>
+          <OMA>
+            <OMS cd="multiset1" name="multiset"/>
+            <OMI>1</OMI>
+            <OMI>2</OMI>
+            <OMI>1</OMI>
+          </OMA>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
 </CD>
