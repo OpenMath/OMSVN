@@ -1,8 +1,6 @@
-<CD xmlns="http://www.openmath.org/OpenMathCD">
-
-<CDComment>
-
-     This document is distributed in the hope that it will be useful, 
+<?xml version="1.0" encoding="UTF-8"?>
+<CD xmlns="http://www.openmath.org/OpenMathCD" xml:id="bigfloat1">
+  <CDComment>     This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -32,107 +30,95 @@
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 </CDComment>
-
-<CDName> bigfloat1 </CDName>
-<CDBase>http://www.openmath.org/cd</CDBase>
-<CDURL>http://www.openmath.org/cd/bigfloat1.ocd</CDURL>
-<CDReviewDate>2006-03-30</CDReviewDate>
-<CDDate>2004-03-30</CDDate>
-<CDVersion>3</CDVersion>
-<CDRevision>0</CDRevision>
-<CDStatus> official </CDStatus>
-<Description>
-    This CD provides a common representation of "bigfloats" in a mantissa/
-    radix/exponent format.
-    There is a further version, which provides an opportunity to state a
-    precision (only required in a different radix).
-    No operations are defined here -- see arith and alg.
-</Description>
-<CDComment>
-Written by James Davenport on 1999-07-13.
+  <CDName>bigfloat1</CDName>
+  <CDBase>http://www.openmath.org/cd</CDBase>
+  <CDURL>http://www.openmath.org/cd/bigfloat1.ocd</CDURL>
+  <CDReviewDate>2006-03-30</CDReviewDate>
+  <CDDate>2008-10-28</CDDate>
+  <CDVersion>3</CDVersion>
+  <CDRevision>0</CDRevision>
+  <CDStatus>official</CDStatus>
+  <Description>This CD provides a common representation of "bigfloats" in a mantissa/ radix/exponent format. There is a further version, which provides an opportunity to state a precision (only required in a different radix). No operations are defined here -- see arith and alg.</Description>
+  <CDComment>Written by James Davenport on 1999-07-13.
 bigfloatprec added 1999-07-21.
 </CDComment>
-
-<CDDefinition>
-  <Name> bigfloat </Name>
-  <Role>application</Role>
-  <Description> 
-    The bigfloat constructor takes three arguments, a mantissa, a base and the exponent.
-  </Description>
-  <property>
-    <CMP> bigfloat(m,r,e)=m*r^e </CMP>
-    <FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="relation1" name="eq"/>
-    <OMA>
-      <OMS cd="bigfloat1" name="bigfloat"/>
-      <OMV name="m"/>
-      <OMV name="r"/>
-      <OMV name="e"/>
-    </OMA>
-    <OMA>
-      <OMS cd="arith1" name="times"/>
-      <OMV name="m"/>
-      <OMA>
-        <OMS cd="arith1" name="power"/>
-        <OMV name="r"/>
-        <OMV name="e"/>
-      </OMA>
-    </OMA>
-  </OMA>
-</OMOBJ>
-</FMP>
-</property>
-</CDDefinition>
-
-<CDDefinition>
-  <Name>bigfloatprec</Name>
-  <Role>application</Role>
-  <Description> 
-    The bigfloat "with precision specified in (another) radix" constructor. Takes 3
-    arguments, the first argument is a floating point number constructed with the bigfloat
-    constructor, the second is the new radix, whilst the third specifies how many digits
-    are significant.
-  </Description>
-  <property>
-    <CMP> bigfloatprec(f,r,p)=f However, if converted to radix r, only p digits in that
+  <CDDefinition>
+    <Name>bigfloat</Name>
+    <Role>application</Role>
+    <Description>The bigfloat constructor takes three arguments, a mantissa, a base and the exponent.</Description>
+    <property>
+      <CMP> bigfloat(m,r,e)=m*r^e </CMP>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"
+               xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+               version="3.0"
+               cdbase="http://www.openmath.org/cd">
+          <OMA>
+            <OMS cd="relation1" name="eq"/>
+            <OMA>
+              <OMS cd="bigfloat1" name="bigfloat"/>
+              <OMV name="m"/>
+              <OMV name="r"/>
+              <OMV name="e"/>
+            </OMA>
+            <OMA>
+              <OMS cd="arith1" name="times"/>
+              <OMV name="m"/>
+              <OMA>
+                <OMS cd="arith1" name="power"/>
+                <OMV name="r"/>
+                <OMV name="e"/>
+              </OMA>
+            </OMA>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
+  <CDDefinition>
+    <Name>bigfloatprec</Name>
+    <Role>application</Role>
+    <Description>The bigfloat "with precision specified in (another) radix" constructor. Takes 3 arguments, the first argument is a floating point number constructed with the bigfloat constructor, the second is the new radix, whilst the third specifies how many digits are significant.</Description>
+    <property>
+      <CMP> bigfloatprec(f,r,p)=f However, if converted to radix r, only p digits in that
     radix are significant.  This usually means that it originated in radix r, and has
     since (e.g. for display purposes) been converted into its current radix. For
     exposition, f = m*r^e.
     </CMP>
-<FMP>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS cd="relation1" name="eq"/>
-    <OMA>
-      <OMS cd="bigfloat1" name="bigfloatprec"/>
-      <OMA>
-        <OMS cd="bigfloat1" name="bigfloat"/>
-        <OMV name="m"/>
-        <OMV name="r"/>
-        <OMV name="e"/>
-      </OMA>
-      <OMV name="r"/>
-      <OMA>
-        <OMS cd="rounding1" name="ceiling"/>
-        <OMA>
-          <OMS cd="transc1" name="log"/>
-          <OMV name="r"/>
-          <OMV name="m"/>
-        </OMA>
-      </OMA>
-    </OMA>
-    <OMA>
-      <OMS cd="bigfloat1" name="bigfloat"/>
-      <OMV name="m"/>
-      <OMV name="r"/>
-      <OMV name="e"/>
-    </OMA>
-  </OMA>
-</OMOBJ>
-</FMP>
-</property>
-</CDDefinition>
-
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"
+               xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+               version="3.0"
+               cdbase="http://www.openmath.org/cd">
+          <OMA>
+            <OMS cd="relation1" name="eq"/>
+            <OMA>
+              <OMS cd="bigfloat1" name="bigfloatprec"/>
+              <OMA>
+                <OMS cd="bigfloat1" name="bigfloat"/>
+                <OMV name="m"/>
+                <OMV name="r"/>
+                <OMV name="e"/>
+              </OMA>
+              <OMV name="r"/>
+              <OMA>
+                <OMS cd="rounding1" name="ceiling"/>
+                <OMA>
+                  <OMS cd="transc1" name="log"/>
+                  <OMV name="r"/>
+                  <OMV name="m"/>
+                </OMA>
+              </OMA>
+            </OMA>
+            <OMA>
+              <OMS cd="bigfloat1" name="bigfloat"/>
+              <OMV name="m"/>
+              <OMV name="r"/>
+              <OMV name="e"/>
+            </OMA>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </property>
+  </CDDefinition>
 </CD>
