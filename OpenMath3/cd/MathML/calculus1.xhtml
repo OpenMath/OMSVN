@@ -8,6 +8,7 @@
    </head>
    <body>
       <a name="top"/>
+      <span class="link-to-this-fragment">[<a href="concat('http://wiki.openmath.org/?title=cd%3A', $title)">browse/edit/discuss this in the wiki</a>]</span>
       <h1>OpenMath Content Dictionary: calculus1</h1>
       <dl>
          <dt class="dt">Canonical URL:</dt>
@@ -31,7 +32,7 @@
             <a href="#defint">defint</a>, <a href="#diff">diff</a>, <a href="#int">int</a>, <a href="#nthdiff">nthdiff</a>, <a href="#partialdiff">partialdiff</a>
          </dd>
          <dt class="dt">Date:</dt>
-         <dd>2004-06-01</dd>
+         <dd>2008-09-26</dd>
          <dt class="dt">Version:</dt>
          <dd>4 (Revision 1)</dd>
          <dt class="dt">Review Date:</dt>
@@ -40,9 +41,7 @@
          <dd>draft</dd>
       </dl>
       <hr/>
-      <pre>
-
-     This document is distributed in the hope that it will be useful, 
+      <pre>     This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -73,12 +72,10 @@
      society at http://www.openmath.org.
 </pre>
       <p>
-    This CD is intended to be compatible with the calculus operations
-    in Content MathML.</p>
-      <p>    Integration is just for the univariate case and is either definite
-    or indefinite.
-</p>
+    This CD provides basic notions of calculus from a functional point of view.
+  </p>
       <div class="cddefinition">
+         <span class="link-to-this-fragment">[<a href="concat('http://wiki.openmath.org/?title=cd%3A', $title)">browse/edit/discuss this in the wiki</a>]</span>
          <h2>
             <a name="diff">Symbol Definition: diff</a>
          </h2>
@@ -97,136 +94,58 @@
             <dd>
                <p>&lt;diff/&gt;</p>
                <p> type : "function" | "algebraic"</p>
-    
-               <p>In pragmatic Content MathML the <code>diff</code> operator can be applied to an
-      expression involving a single variable such as sin(<var>x</var>), or
-      cos(<var>x</var>). or a polynomial in <var>x</var>.  For the expression case the
-      actual variable is designated by a <code>bvar</code> element that is a child of the
-      containing <code>apply</code> element. To translate this usage to strict Content MathML,
-      we add a <code>lambda</code> construction.</p>
-      
-
-               <apply xmlns="http://www.w3.org/1998/Math/MathML">
-                  <diff/>
-                  <bvar>
-                     <ci>x</ci>
-                  </bvar>
-                  <apply>
-                     <sin/>
-                     <ci>x</ci>
-                  </apply>
-               </apply>
-               <apply xmlns="http://www.w3.org/1998/Math/MathML">
-                  <diff/>
-                  <bind>
-                     <csymbol cd="fns1">lambda</csymbol>
-                     <bvar>
-                        <ci>x</ci>
-                     </bvar>
-                     <apply>
-                        <sin/>
-                        <ci>x</ci>
-                     </apply>
-                  </bind>
-               </apply>
-  
-
-               <p>The <code>bvar</code> element may also contain a <code>degree</code> element, which specifies
-the order of the derivative to be taken. To achieve this effect in strict Content MathML,
-we use the <code>nthdiff</code> symbol.</p>
-
-
-               <apply xmlns="http://www.w3.org/1998/Math/MathML">
-                  <diff/>
-                  <bvar>
-                     <degree>
-                        <cn>2</cn>
-                     </degree>
-                     <ci>x</ci>
-                  </bvar>
-                  <apply>
-                     <sin/>
-                     <ci>x</ci>
-                  </apply>
-               </apply>
-               <apply xmlns="http://www.w3.org/1998/Math/MathML">
-                  <nthdiff/>
-                  <cn>2</cn>
-                  <bind>
-                     <csymbol cd="fns1">lambda</csymbol>
-                     <bvar>
-                        <ci>x</ci>
-                     </bvar>
-                     <apply>
-                        <sin/>
-                        <ci>x</ci>
-                     </apply>
-                  </bind>
-               </apply>
-  
-          
-            </dd>
-            <dt class="dt">description:</dt>
-            <dd>
-               <p>The <code>diff</code> element is the differentiation operator element for
-    functions of a single variable.</p>
-            </dd>
-            <dt class="dt">discussion:</dt>
-            <dd>
-               <p> 
-                  <code>diff</code> is applied directly to an actual function such as sine or cosine,
-    thereby denoting a function which is the derivative of the original function, as in
-    
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-                     <apply>
-                        <diff/>
-                        <ci type="function">f</ci>
-                     </apply>
-                  </math>
-               </p>
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
-    
+      
                <p>diff(sin) = cos</p>
-    
+      
                <div>
-                  <button id="d43e221xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e221xml')">XML (MathML)</button>
+                  <button id="d43e75xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e75xml')">XML (MathML)</button>
                </div>
-               <pre id="d43e221xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-      &lt;apply&gt;&lt;eq/&gt;&lt;apply&gt;&lt;diff/&gt;&lt;sin/&gt;&lt;/apply&gt;&lt;cos/&gt;&lt;/apply&gt;
-    &lt;/math&gt;</pre>
+               <pre id="d43e75xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+        &lt;apply&gt;&lt;eq/&gt;
+          &lt;apply&gt;&lt;diff/&gt;&lt;sin/&gt;&lt;/apply&gt;
+          &lt;cos/&gt;
+        &lt;/apply&gt;
+      &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e221stricta" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e221strict')">Strict Content MathML</button>
+                  <button id="d43e75stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e75strict')">Strict Content MathML</button>
                </div>
-               <pre id="d43e221strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-      &lt;apply&gt;&lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;&lt;apply&gt;&lt;csymbol cd="calculus1"&gt;diff&lt;/csymbol&gt;&lt;csymbol cd="transc1"&gt;sin&lt;/csymbol&gt;&lt;/apply&gt;&lt;csymbol cd="transc1"&gt;cos&lt;/csymbol&gt;&lt;/apply&gt;
-    &lt;/math&gt;</pre>
+               <pre id="d43e75strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+        &lt;apply&gt;&lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
+          &lt;apply&gt;&lt;csymbol cd="calculus1"&gt;diff&lt;/csymbol&gt;&lt;csymbol cd="transc1"&gt;sin&lt;/csymbol&gt;&lt;/apply&gt;
+          &lt;csymbol cd="transc1"&gt;cos&lt;/csymbol&gt;
+        &lt;/apply&gt;
+      &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e221cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e221cmml')">OpenMath</button>
+                  <button id="d43e75cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e75cmml')">OpenMath</button>
                </div>
-               <pre id="d43e221cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
-      &lt;OMA&gt;&lt;OMS cd="relation1" name="eq"/&gt;&lt;OMA&gt;&lt;OMS cd="calculus1" name="diff"/&gt;&lt;OMS cd="transc1" name="sin"/&gt;&lt;/OMA&gt;&lt;OMS cd="transc1" name="cos"/&gt;&lt;/OMA&gt;
-    &lt;/OMOBJ&gt;</pre>
+               <pre id="d43e75cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+        &lt;OMA&gt;&lt;OMS cd="relation1" name="eq"/&gt;
+          &lt;OMA&gt;&lt;OMS cd="calculus1" name="diff"/&gt;&lt;OMS cd="transc1" name="sin"/&gt;&lt;/OMA&gt;
+          &lt;OMS cd="transc1" name="cos"/&gt;
+        &lt;/OMA&gt;
+      &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e221prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e221pref')">Prefix form</button>
+                  <button id="d43e75prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e75pref')">Prefix form</button>
                </div>
-               <div id="d43e221pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e75pref" style="display:none; margin-top: 0.5em">
                   <a href="relation1.xhtml#eq">eq</a>
 (<a href="calculus1.xhtml#diff">diff</a>
 (<a href="transc1.xhtml#sin">sin</a>)
 , <a href="transc1.xhtml#cos">cos</a>)
 
-    </div>
+      </div>
                <div>
-                  <button id="d43e221mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e221mml')">Presentation MathML</button>
+                  <button id="d43e75mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e75mml')">Presentation MathML</button>
                </div>
-               <div id="d43e221mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e75mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -242,153 +161,205 @@ we use the <code>nthdiff</code> symbol.</p>
                   </m:math>
                </div>
             </dd>
+            <dt class="dt">Example:</dt>
+            <dd>
+      
+	              <p> The derivative of a function <var>f</var> (often displayed as <em>f'</em>)
+	can be written as:</p>
+      
+               <div>
+                  <button id="d43e103xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e103xml')">XML (MathML)</button>
+               </div>
+               <pre id="d43e103xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+	&lt;apply&gt;&lt;diff/&gt;&lt;ci&gt;f&lt;/ci&gt;&lt;/apply&gt;
+      &lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e103stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e103strict')">Strict Content MathML</button>
+               </div>
+               <pre id="d43e103strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+	&lt;apply&gt;&lt;csymbol cd="calculus1"&gt;diff&lt;/csymbol&gt;&lt;ci&gt;f&lt;/ci&gt;&lt;/apply&gt;
+      &lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e103cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e103cmml')">OpenMath</button>
+               </div>
+               <pre id="d43e103cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+	&lt;OMA&gt;&lt;OMS cd="calculus1" name="diff"/&gt;&lt;OMV name="f"/&gt;&lt;/OMA&gt;
+      &lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d43e103prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e103pref')">Prefix form</button>
+               </div>
+               <div id="d43e103pref" style="display:none; margin-top: 0.5em">
+	                 <a href="calculus1.xhtml#diff">diff</a>
+( <i>f</i>)
+
+      </div>
+               <div>
+                  <button id="d43e103mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e103mml')">Presentation MathML</button>
+               </div>
+               <div id="d43e103mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mo xmlns="http://www.w3.org/1998/Math/MathML"
+                         xmlns:om="http://www.openmath.org/OpenMath">D</mo>
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mo>(</mo>
+                        <mi>f</mi>
+                        <mo>)</mo>
+                     </mrow>
+                  </m:math>
+               </div>
+            </dd>
             <dt class="dt">Property:</dt>
             <dd>
- This property states the derivation rule for functions which are sums of functions.
+       This property states the derivation rule for functions which are sums of functions.
+      diff(lambda y:a(y) + b(y))(x) = diff(lambda y:a(y))(x) + diff(lambda y:b(y))(x)
+      
 
-diff(lambda y:a(y) + b(y))(x) = diff(lambda y:a(y))(x) + diff(lambda y:b(y))(x)
-
-
-
-<div>
-                  <button id="d43e239xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e239xml')">XML (OpenMath)</button>
+      
+        <div>
+                  <button id="d43e119xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e119xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e239xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
-  &lt;OMA&gt;
-    &lt;OMS cd="relation1" name="eq"/&gt;
-    &lt;OMA&gt;
-      &lt;OMA&gt;
-        &lt;OMS cd="calculus1" name="diff"/&gt;
-        &lt;OMBIND&gt;
-          &lt;OMS cd="fns1" name="lambda"/&gt;
-          &lt;OMBVAR&gt;
-            &lt;OMV name="y"/&gt;
-          &lt;/OMBVAR&gt;
+               <pre id="d43e119xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd" version="3.0"&gt;
           &lt;OMA&gt;
-            &lt;OMS cd="arith1" name="plus"/&gt;
+            &lt;OMS cd="relation1" name="eq"/&gt;
             &lt;OMA&gt;
-              &lt;OMV name="a"/&gt;
-              &lt;OMV name="y"/&gt;
+              &lt;OMA&gt;
+                &lt;OMS cd="calculus1" name="diff"/&gt;
+                &lt;OMBIND&gt;
+                  &lt;OMS cd="fns1" name="lambda"/&gt;
+                  &lt;OMBVAR&gt;
+                    &lt;OMV name="y"/&gt;
+                  &lt;/OMBVAR&gt;
+                  &lt;OMA&gt;
+                    &lt;OMS cd="arith1" name="plus"/&gt;
+                    &lt;OMA&gt;
+                      &lt;OMV name="a"/&gt;
+                      &lt;OMV name="y"/&gt;
+                    &lt;/OMA&gt;
+                    &lt;OMA&gt;
+                      &lt;OMV name="b"/&gt;
+                      &lt;OMV name="y"/&gt;
+                    &lt;/OMA&gt;
+                  &lt;/OMA&gt;
+                &lt;/OMBIND&gt;
+              &lt;/OMA&gt;
+              &lt;OMV name="x"/&gt;
             &lt;/OMA&gt;
             &lt;OMA&gt;
-              &lt;OMV name="b"/&gt;
-              &lt;OMV name="y"/&gt;
+              &lt;OMS cd="arith1" name="plus"/&gt;
+              &lt;OMA&gt;
+                &lt;OMA&gt;
+                  &lt;OMS cd="calculus1" name="diff"/&gt;
+                  &lt;OMBIND&gt;
+                    &lt;OMS cd="fns1" name="lambda"/&gt;
+                    &lt;OMBVAR&gt;
+                      &lt;OMV name="y"/&gt;
+                    &lt;/OMBVAR&gt;
+                    &lt;OMA&gt;
+                      &lt;OMV name="a"/&gt;
+                      &lt;OMV name="y"/&gt;
+                    &lt;/OMA&gt;
+                  &lt;/OMBIND&gt;
+                &lt;/OMA&gt;
+                &lt;OMV name="x"/&gt;
+              &lt;/OMA&gt;
+              &lt;OMA&gt;
+                &lt;OMA&gt;
+                  &lt;OMS cd="calculus1" name="diff"/&gt;
+                  &lt;OMBIND&gt;
+                    &lt;OMS cd="fns1" name="lambda"/&gt;
+                    &lt;OMBVAR&gt;
+                      &lt;OMV name="y"/&gt;
+                    &lt;/OMBVAR&gt;
+                    &lt;OMA&gt;
+                      &lt;OMV name="b"/&gt;
+                      &lt;OMV name="y"/&gt;
+                    &lt;/OMA&gt;
+                  &lt;/OMBIND&gt;
+                &lt;/OMA&gt;
+                &lt;OMV name="x"/&gt;
+              &lt;/OMA&gt;
             &lt;/OMA&gt;
           &lt;/OMA&gt;
-        &lt;/OMBIND&gt;
-      &lt;/OMA&gt;
-      &lt;OMV name="x"/&gt;
-    &lt;/OMA&gt;
-    &lt;OMA&gt;
-      &lt;OMS cd="arith1" name="plus"/&gt;
-      &lt;OMA&gt;
-        &lt;OMA&gt;
-          &lt;OMS cd="calculus1" name="diff"/&gt;
-          &lt;OMBIND&gt;
-            &lt;OMS cd="fns1" name="lambda"/&gt;
-            &lt;OMBVAR&gt;
-              &lt;OMV name="y"/&gt;
-            &lt;/OMBVAR&gt;
-            &lt;OMA&gt;
-              &lt;OMV name="a"/&gt;
-              &lt;OMV name="y"/&gt;
-            &lt;/OMA&gt;
-          &lt;/OMBIND&gt;
-        &lt;/OMA&gt;
-        &lt;OMV name="x"/&gt;
-      &lt;/OMA&gt;
-      &lt;OMA&gt;
-        &lt;OMA&gt;
-          &lt;OMS cd="calculus1" name="diff"/&gt;
-          &lt;OMBIND&gt;
-            &lt;OMS cd="fns1" name="lambda"/&gt;
-            &lt;OMBVAR&gt;
-              &lt;OMV name="y"/&gt;
-            &lt;/OMBVAR&gt;
-            &lt;OMA&gt;
-              &lt;OMV name="b"/&gt;
-              &lt;OMV name="y"/&gt;
-            &lt;/OMA&gt;
-          &lt;/OMBIND&gt;
-        &lt;/OMA&gt;
-        &lt;OMV name="x"/&gt;
-      &lt;/OMA&gt;
-    &lt;/OMA&gt;
-  &lt;/OMA&gt;
-&lt;/OMOBJ&gt;</pre>
+        &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e239cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e239cmml')">Content MathML</button>
+                  <button id="d43e119cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e119cmml')">Content MathML</button>
                </div>
-               <pre id="d43e239cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-  &lt;apply&gt;
-    &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
-    &lt;apply&gt;
-      &lt;apply&gt;
-        &lt;csymbol cd="calculus1"&gt;diff&lt;/csymbol&gt;
-        &lt;bind&gt;
-          &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
-          &lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/bvar&gt;
+               <pre id="d43e119cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
           &lt;apply&gt;
-            &lt;csymbol cd="arith1"&gt;plus&lt;/csymbol&gt;
+            &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
             &lt;apply&gt;
-              &lt;ci&gt;a&lt;/ci&gt;
-              &lt;ci&gt;y&lt;/ci&gt;
+              &lt;apply&gt;
+                &lt;csymbol cd="calculus1"&gt;diff&lt;/csymbol&gt;
+                &lt;bind&gt;
+                  &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
+                  &lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/bvar&gt;
+                  &lt;apply&gt;
+                    &lt;csymbol cd="arith1"&gt;plus&lt;/csymbol&gt;
+                    &lt;apply&gt;
+                      &lt;ci&gt;a&lt;/ci&gt;
+                      &lt;ci&gt;y&lt;/ci&gt;
+                    &lt;/apply&gt;
+                    &lt;apply&gt;
+                      &lt;ci&gt;b&lt;/ci&gt;
+                      &lt;ci&gt;y&lt;/ci&gt;
+                    &lt;/apply&gt;
+                  &lt;/apply&gt;
+                &lt;/bind&gt;
+              &lt;/apply&gt;
+              &lt;ci&gt;x&lt;/ci&gt;
             &lt;/apply&gt;
             &lt;apply&gt;
-              &lt;ci&gt;b&lt;/ci&gt;
-              &lt;ci&gt;y&lt;/ci&gt;
+              &lt;csymbol cd="arith1"&gt;plus&lt;/csymbol&gt;
+              &lt;apply&gt;
+                &lt;apply&gt;
+                  &lt;csymbol cd="calculus1"&gt;diff&lt;/csymbol&gt;
+                  &lt;bind&gt;
+                    &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
+                    &lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/bvar&gt;
+                    &lt;apply&gt;
+                      &lt;ci&gt;a&lt;/ci&gt;
+                      &lt;ci&gt;y&lt;/ci&gt;
+                    &lt;/apply&gt;
+                  &lt;/bind&gt;
+                &lt;/apply&gt;
+                &lt;ci&gt;x&lt;/ci&gt;
+              &lt;/apply&gt;
+              &lt;apply&gt;
+                &lt;apply&gt;
+                  &lt;csymbol cd="calculus1"&gt;diff&lt;/csymbol&gt;
+                  &lt;bind&gt;
+                    &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
+                    &lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/bvar&gt;
+                    &lt;apply&gt;
+                      &lt;ci&gt;b&lt;/ci&gt;
+                      &lt;ci&gt;y&lt;/ci&gt;
+                    &lt;/apply&gt;
+                  &lt;/bind&gt;
+                &lt;/apply&gt;
+                &lt;ci&gt;x&lt;/ci&gt;
+              &lt;/apply&gt;
             &lt;/apply&gt;
           &lt;/apply&gt;
-        &lt;/bind&gt;
-      &lt;/apply&gt;
-      &lt;ci&gt;x&lt;/ci&gt;
-    &lt;/apply&gt;
-    &lt;apply&gt;
-      &lt;csymbol cd="arith1"&gt;plus&lt;/csymbol&gt;
-      &lt;apply&gt;
-        &lt;apply&gt;
-          &lt;csymbol cd="calculus1"&gt;diff&lt;/csymbol&gt;
-          &lt;bind&gt;
-            &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
-            &lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/bvar&gt;
-            &lt;apply&gt;
-              &lt;ci&gt;a&lt;/ci&gt;
-              &lt;ci&gt;y&lt;/ci&gt;
-            &lt;/apply&gt;
-          &lt;/bind&gt;
-        &lt;/apply&gt;
-        &lt;ci&gt;x&lt;/ci&gt;
-      &lt;/apply&gt;
-      &lt;apply&gt;
-        &lt;apply&gt;
-          &lt;csymbol cd="calculus1"&gt;diff&lt;/csymbol&gt;
-          &lt;bind&gt;
-            &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
-            &lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/bvar&gt;
-            &lt;apply&gt;
-              &lt;ci&gt;b&lt;/ci&gt;
-              &lt;ci&gt;y&lt;/ci&gt;
-            &lt;/apply&gt;
-          &lt;/bind&gt;
-        &lt;/apply&gt;
-        &lt;ci&gt;x&lt;/ci&gt;
-      &lt;/apply&gt;
-    &lt;/apply&gt;
-  &lt;/apply&gt;
-&lt;/math&gt;</pre>
+        &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e239prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e239pref')">Prefix form</button>
+                  <button id="d43e119prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e119pref')">Prefix form</button>
                </div>
-               <div id="d43e239pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e119pref" style="display:none; margin-top: 0.5em">
                   <a href="relation1.xhtml#eq">eq</a>
 (<a href="calculus1.xhtml#diff">diff</a>
 (<a href="fns1.xhtml#lambda">lambda</a>
 [
-             <i>y</i>
-          ] .
+                     <i>y</i>
+                  ] .
 (<a href="arith1.xhtml#plus">plus</a>
 ( <i>a</i>
 ( <i>y</i>)
@@ -403,8 +374,8 @@ diff(lambda y:a(y) + b(y))(x) = diff(lambda y:a(y))(x) + diff(lambda y:b(y))(x)
 (<a href="calculus1.xhtml#diff">diff</a>
 (<a href="fns1.xhtml#lambda">lambda</a>
 [
-               <i>y</i>
-            ] .
+                       <i>y</i>
+                    ] .
 ( <i>a</i>
 ( <i>y</i>)
 )
@@ -414,8 +385,8 @@ diff(lambda y:a(y) + b(y))(x) = diff(lambda y:a(y))(x) + diff(lambda y:b(y))(x)
 , <a href="calculus1.xhtml#diff">diff</a>
 (<a href="fns1.xhtml#lambda">lambda</a>
 [
-               <i>y</i>
-            ] .
+                       <i>y</i>
+                    ] .
 ( <i>b</i>
 ( <i>y</i>)
 )
@@ -425,12 +396,12 @@ diff(lambda y:a(y) + b(y))(x) = diff(lambda y:a(y))(x) + diff(lambda y:b(y))(x)
 )
 )
 
-</div>
+        </div>
                <div>
-                  <button id="d43e239mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e239mml')">Presentation MathML</button>
+                  <button id="d43e119mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e119mml')">Presentation MathML</button>
                </div>
-               <div id="d43e239mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e119mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -555,184 +526,184 @@ diff(lambda y:a(y) + b(y))(x) = diff(lambda y:a(y))(x) + diff(lambda y:b(y))(x)
                      </mrow>
                   </m:math>
                </div>
+      
             </dd>
             <dt class="dt">Property:</dt>
             <dd>
- This property states the derivation rule for functions 
-  which are multiplications of functions.
+       This property states the derivation rule for functions which are
+      multiplications of functions.
   
-diff(lambda y:a(y) * b(y))(x) = diff(lambda y:a(y))(x) * b(x) + 
-                                a(x) * diff(lambda y:b(y))(x)
+      diff(lambda y:a(y) * b(y))(x) = diff(lambda y:a(y))(x) * b(x) + a(x) * diff(lambda y:b(y))(x)
 
 
-
-<div>
-                  <button id="d43e353xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e353xml')">XML (OpenMath)</button>
+      
+        <div>
+                  <button id="d43e234xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e234xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e353xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
-  &lt;OMA&gt;
-    &lt;OMS cd="relation1" name="eq"/&gt;
-    &lt;OMA&gt;
-      &lt;OMA&gt;
-        &lt;OMS cd="calculus1" name="diff"/&gt;
-        &lt;OMBIND&gt;
-          &lt;OMS cd="fns1" name="lambda"/&gt;
-          &lt;OMBVAR&gt;
-            &lt;OMV name="y"/&gt;
-          &lt;/OMBVAR&gt;
+               <pre id="d43e234xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd" version="3.0"&gt;
           &lt;OMA&gt;
-            &lt;OMS cd="arith1" name="times"/&gt;
+            &lt;OMS cd="relation1" name="eq"/&gt;
             &lt;OMA&gt;
-              &lt;OMV name="a"/&gt;
-              &lt;OMV name="y"/&gt;
+              &lt;OMA&gt;
+                &lt;OMS cd="calculus1" name="diff"/&gt;
+                &lt;OMBIND&gt;
+                  &lt;OMS cd="fns1" name="lambda"/&gt;
+                  &lt;OMBVAR&gt;
+                    &lt;OMV name="y"/&gt;
+                  &lt;/OMBVAR&gt;
+                  &lt;OMA&gt;
+                    &lt;OMS cd="arith1" name="times"/&gt;
+                    &lt;OMA&gt;
+                      &lt;OMV name="a"/&gt;
+                      &lt;OMV name="y"/&gt;
+                    &lt;/OMA&gt;
+                    &lt;OMA&gt;
+                      &lt;OMV name="b"/&gt;
+                      &lt;OMV name="y"/&gt;
+                    &lt;/OMA&gt;
+                  &lt;/OMA&gt;
+                &lt;/OMBIND&gt;
+              &lt;/OMA&gt;
+              &lt;OMV name="x"/&gt;
             &lt;/OMA&gt;
             &lt;OMA&gt;
-              &lt;OMV name="b"/&gt;
-              &lt;OMV name="y"/&gt;
+              &lt;OMS cd="arith1" name="plus"/&gt;
+              &lt;OMA&gt;
+                &lt;OMS cd="arith1" name="times"/&gt;
+                &lt;OMA&gt;
+                  &lt;OMA&gt;
+                    &lt;OMS cd="calculus1" name="diff"/&gt;
+                    &lt;OMBIND&gt;
+                      &lt;OMS cd="fns1" name="lambda"/&gt;
+                      &lt;OMBVAR&gt;
+                        &lt;OMV name="y"/&gt;
+                      &lt;/OMBVAR&gt;
+                      &lt;OMA&gt;
+                        &lt;OMV name="a"/&gt;
+                        &lt;OMV name="y"/&gt;
+                      &lt;/OMA&gt;
+                    &lt;/OMBIND&gt;
+                  &lt;/OMA&gt;
+                  &lt;OMV name="x"/&gt;
+                &lt;/OMA&gt;
+                &lt;OMA&gt;
+                  &lt;OMV name="b"/&gt;
+                  &lt;OMV name="x"/&gt;
+                &lt;/OMA&gt;
+              &lt;/OMA&gt;
+              &lt;OMA&gt;
+                &lt;OMS cd="arith1" name="times"/&gt;
+                &lt;OMA&gt;
+                  &lt;OMV name="a"/&gt;
+                  &lt;OMV name="x"/&gt;
+                &lt;/OMA&gt;
+                &lt;OMA&gt;
+                  &lt;OMA&gt;
+                    &lt;OMS cd="calculus1" name="diff"/&gt;
+                    &lt;OMBIND&gt;
+                      &lt;OMS cd="fns1" name="lambda"/&gt;
+                      &lt;OMBVAR&gt;
+                        &lt;OMV name="y"/&gt;
+                      &lt;/OMBVAR&gt;
+                      &lt;OMA&gt;
+                        &lt;OMV name="b"/&gt;
+                        &lt;OMV name="y"/&gt;
+                      &lt;/OMA&gt;
+                    &lt;/OMBIND&gt;
+                  &lt;/OMA&gt;
+                  &lt;OMV name="x"/&gt;
+                &lt;/OMA&gt;
+              &lt;/OMA&gt;
             &lt;/OMA&gt;
           &lt;/OMA&gt;
-        &lt;/OMBIND&gt;
-      &lt;/OMA&gt;
-      &lt;OMV name="x"/&gt;
-    &lt;/OMA&gt;
-    &lt;OMA&gt;
-      &lt;OMS cd="arith1" name="plus"/&gt;
-      &lt;OMA&gt;
-        &lt;OMS cd="arith1" name="times"/&gt;
-        &lt;OMA&gt;
-          &lt;OMA&gt;
-            &lt;OMS cd="calculus1" name="diff"/&gt;
-            &lt;OMBIND&gt;
-              &lt;OMS cd="fns1" name="lambda"/&gt;
-              &lt;OMBVAR&gt;
-                &lt;OMV name="y"/&gt;
-              &lt;/OMBVAR&gt;
-              &lt;OMA&gt;
-                &lt;OMV name="a"/&gt;
-                &lt;OMV name="y"/&gt;
-              &lt;/OMA&gt;
-            &lt;/OMBIND&gt;
-          &lt;/OMA&gt;
-          &lt;OMV name="x"/&gt;
-        &lt;/OMA&gt;
-        &lt;OMA&gt;
-          &lt;OMV name="b"/&gt;
-          &lt;OMV name="x"/&gt;
-        &lt;/OMA&gt;
-      &lt;/OMA&gt;
-      &lt;OMA&gt;
-        &lt;OMS cd="arith1" name="times"/&gt;
-        &lt;OMA&gt;
-          &lt;OMV name="a"/&gt;
-          &lt;OMV name="x"/&gt;
-        &lt;/OMA&gt;
-        &lt;OMA&gt;
-          &lt;OMA&gt;
-            &lt;OMS cd="calculus1" name="diff"/&gt;
-            &lt;OMBIND&gt;
-              &lt;OMS cd="fns1" name="lambda"/&gt;
-              &lt;OMBVAR&gt;
-                &lt;OMV name="y"/&gt;
-              &lt;/OMBVAR&gt;
-              &lt;OMA&gt;
-                &lt;OMV name="b"/&gt;
-                &lt;OMV name="y"/&gt;
-              &lt;/OMA&gt;
-            &lt;/OMBIND&gt;
-          &lt;/OMA&gt;
-          &lt;OMV name="x"/&gt;
-        &lt;/OMA&gt;
-      &lt;/OMA&gt;
-    &lt;/OMA&gt;
-  &lt;/OMA&gt;
-&lt;/OMOBJ&gt;</pre>
+        &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e353cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e353cmml')">Content MathML</button>
+                  <button id="d43e234cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e234cmml')">Content MathML</button>
                </div>
-               <pre id="d43e353cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-  &lt;apply&gt;
-    &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
-    &lt;apply&gt;
-      &lt;apply&gt;
-        &lt;csymbol cd="calculus1"&gt;diff&lt;/csymbol&gt;
-        &lt;bind&gt;
-          &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
-          &lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/bvar&gt;
+               <pre id="d43e234cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
           &lt;apply&gt;
-            &lt;csymbol cd="arith1"&gt;times&lt;/csymbol&gt;
+            &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
             &lt;apply&gt;
-              &lt;ci&gt;a&lt;/ci&gt;
-              &lt;ci&gt;y&lt;/ci&gt;
+              &lt;apply&gt;
+                &lt;csymbol cd="calculus1"&gt;diff&lt;/csymbol&gt;
+                &lt;bind&gt;
+                  &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
+                  &lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/bvar&gt;
+                  &lt;apply&gt;
+                    &lt;csymbol cd="arith1"&gt;times&lt;/csymbol&gt;
+                    &lt;apply&gt;
+                      &lt;ci&gt;a&lt;/ci&gt;
+                      &lt;ci&gt;y&lt;/ci&gt;
+                    &lt;/apply&gt;
+                    &lt;apply&gt;
+                      &lt;ci&gt;b&lt;/ci&gt;
+                      &lt;ci&gt;y&lt;/ci&gt;
+                    &lt;/apply&gt;
+                  &lt;/apply&gt;
+                &lt;/bind&gt;
+              &lt;/apply&gt;
+              &lt;ci&gt;x&lt;/ci&gt;
             &lt;/apply&gt;
             &lt;apply&gt;
-              &lt;ci&gt;b&lt;/ci&gt;
-              &lt;ci&gt;y&lt;/ci&gt;
+              &lt;csymbol cd="arith1"&gt;plus&lt;/csymbol&gt;
+              &lt;apply&gt;
+                &lt;csymbol cd="arith1"&gt;times&lt;/csymbol&gt;
+                &lt;apply&gt;
+                  &lt;apply&gt;
+                    &lt;csymbol cd="calculus1"&gt;diff&lt;/csymbol&gt;
+                    &lt;bind&gt;
+                      &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
+                      &lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/bvar&gt;
+                      &lt;apply&gt;
+                        &lt;ci&gt;a&lt;/ci&gt;
+                        &lt;ci&gt;y&lt;/ci&gt;
+                      &lt;/apply&gt;
+                    &lt;/bind&gt;
+                  &lt;/apply&gt;
+                  &lt;ci&gt;x&lt;/ci&gt;
+                &lt;/apply&gt;
+                &lt;apply&gt;
+                  &lt;ci&gt;b&lt;/ci&gt;
+                  &lt;ci&gt;x&lt;/ci&gt;
+                &lt;/apply&gt;
+              &lt;/apply&gt;
+              &lt;apply&gt;
+                &lt;csymbol cd="arith1"&gt;times&lt;/csymbol&gt;
+                &lt;apply&gt;
+                  &lt;ci&gt;a&lt;/ci&gt;
+                  &lt;ci&gt;x&lt;/ci&gt;
+                &lt;/apply&gt;
+                &lt;apply&gt;
+                  &lt;apply&gt;
+                    &lt;csymbol cd="calculus1"&gt;diff&lt;/csymbol&gt;
+                    &lt;bind&gt;
+                      &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
+                      &lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/bvar&gt;
+                      &lt;apply&gt;
+                        &lt;ci&gt;b&lt;/ci&gt;
+                        &lt;ci&gt;y&lt;/ci&gt;
+                      &lt;/apply&gt;
+                    &lt;/bind&gt;
+                  &lt;/apply&gt;
+                  &lt;ci&gt;x&lt;/ci&gt;
+                &lt;/apply&gt;
+              &lt;/apply&gt;
             &lt;/apply&gt;
           &lt;/apply&gt;
-        &lt;/bind&gt;
-      &lt;/apply&gt;
-      &lt;ci&gt;x&lt;/ci&gt;
-    &lt;/apply&gt;
-    &lt;apply&gt;
-      &lt;csymbol cd="arith1"&gt;plus&lt;/csymbol&gt;
-      &lt;apply&gt;
-        &lt;csymbol cd="arith1"&gt;times&lt;/csymbol&gt;
-        &lt;apply&gt;
-          &lt;apply&gt;
-            &lt;csymbol cd="calculus1"&gt;diff&lt;/csymbol&gt;
-            &lt;bind&gt;
-              &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
-              &lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/bvar&gt;
-              &lt;apply&gt;
-                &lt;ci&gt;a&lt;/ci&gt;
-                &lt;ci&gt;y&lt;/ci&gt;
-              &lt;/apply&gt;
-            &lt;/bind&gt;
-          &lt;/apply&gt;
-          &lt;ci&gt;x&lt;/ci&gt;
-        &lt;/apply&gt;
-        &lt;apply&gt;
-          &lt;ci&gt;b&lt;/ci&gt;
-          &lt;ci&gt;x&lt;/ci&gt;
-        &lt;/apply&gt;
-      &lt;/apply&gt;
-      &lt;apply&gt;
-        &lt;csymbol cd="arith1"&gt;times&lt;/csymbol&gt;
-        &lt;apply&gt;
-          &lt;ci&gt;a&lt;/ci&gt;
-          &lt;ci&gt;x&lt;/ci&gt;
-        &lt;/apply&gt;
-        &lt;apply&gt;
-          &lt;apply&gt;
-            &lt;csymbol cd="calculus1"&gt;diff&lt;/csymbol&gt;
-            &lt;bind&gt;
-              &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
-              &lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/bvar&gt;
-              &lt;apply&gt;
-                &lt;ci&gt;b&lt;/ci&gt;
-                &lt;ci&gt;y&lt;/ci&gt;
-              &lt;/apply&gt;
-            &lt;/bind&gt;
-          &lt;/apply&gt;
-          &lt;ci&gt;x&lt;/ci&gt;
-        &lt;/apply&gt;
-      &lt;/apply&gt;
-    &lt;/apply&gt;
-  &lt;/apply&gt;
-&lt;/math&gt;</pre>
+        &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e353prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e353pref')">Prefix form</button>
+                  <button id="d43e234prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e234pref')">Prefix form</button>
                </div>
-               <div id="d43e353pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e234pref" style="display:none; margin-top: 0.5em">
                   <a href="relation1.xhtml#eq">eq</a>
 (<a href="calculus1.xhtml#diff">diff</a>
 (<a href="fns1.xhtml#lambda">lambda</a>
 [
-             <i>y</i>
-          ] .
+                     <i>y</i>
+                  ] .
 (<a href="arith1.xhtml#times">times</a>
 ( <i>a</i>
 ( <i>y</i>)
@@ -748,8 +719,8 @@ diff(lambda y:a(y) * b(y))(x) = diff(lambda y:a(y))(x) * b(x) +
 (<a href="calculus1.xhtml#diff">diff</a>
 (<a href="fns1.xhtml#lambda">lambda</a>
 [
-                 <i>y</i>
-              ] .
+                         <i>y</i>
+                      ] .
 ( <i>a</i>
 ( <i>y</i>)
 )
@@ -765,8 +736,8 @@ diff(lambda y:a(y) * b(y))(x) = diff(lambda y:a(y))(x) * b(x) +
 , <a href="calculus1.xhtml#diff">diff</a>
 (<a href="fns1.xhtml#lambda">lambda</a>
 [
-                 <i>y</i>
-              ] .
+                         <i>y</i>
+                      ] .
 ( <i>b</i>
 ( <i>y</i>)
 )
@@ -777,12 +748,12 @@ diff(lambda y:a(y) * b(y))(x) = diff(lambda y:a(y))(x) * b(x) +
 )
 )
 
-</div>
+        </div>
                <div>
-                  <button id="d43e353mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e353mml')">Presentation MathML</button>
+                  <button id="d43e234mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e234mml')">Presentation MathML</button>
                </div>
-               <div id="d43e353mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e234mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -931,72 +902,74 @@ diff(lambda y:a(y) * b(y))(x) = diff(lambda y:a(y))(x) * b(x) +
                      </mrow>
                   </m:math>
                </div>
+      
             </dd>
             <dt class="dt">Example:</dt>
-            <dd> This example provides the derivative function of the function mapping x to x+1.
-<div>
-                  <button id="d43e486xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e486xml')">XML (OpenMath)</button>
+            <dd>
+      This example provides the derivative function of the function mapping x to x+1.
+      <div>
+                  <button id="d43e368xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e368xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e486xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
-  &lt;OMA&gt;
-    &lt;OMS cd="relation1" name="eq"/&gt;
-    &lt;OMA&gt;
-      &lt;OMA&gt;
-        &lt;OMS cd="calculus1" name="diff"/&gt;
-        &lt;OMBIND&gt;
-          &lt;OMS cd="fns1" name="lambda"/&gt;
-          &lt;OMBVAR&gt;
-            &lt;OMV name="x"/&gt;
-          &lt;/OMBVAR&gt;
+               <pre id="d43e368xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd" version="3.0"&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="relation1" name="eq"/&gt;
           &lt;OMA&gt;
-            &lt;OMS cd="arith1" name="plus"/&gt;
-            &lt;OMV name="x"/&gt;
-            &lt;OMF dec="1.0"/&gt;
+            &lt;OMA&gt;
+              &lt;OMS cd="calculus1" name="diff"/&gt;
+              &lt;OMBIND&gt;
+                &lt;OMS cd="fns1" name="lambda"/&gt;
+                &lt;OMBVAR&gt;
+                  &lt;OMV name="x"/&gt;
+                &lt;/OMBVAR&gt;
+                &lt;OMA&gt;
+                  &lt;OMS cd="arith1" name="plus"/&gt;
+                  &lt;OMV name="x"/&gt;
+                  &lt;OMF dec="1.0"/&gt;
+                &lt;/OMA&gt;
+              &lt;/OMBIND&gt;
+            &lt;/OMA&gt;
+            &lt;OMV name="y"/&gt;
           &lt;/OMA&gt;
-        &lt;/OMBIND&gt;
-      &lt;/OMA&gt;
-      &lt;OMV name="y"/&gt;
-    &lt;/OMA&gt;
-    &lt;OMF dec="1.0"/&gt;
-  &lt;/OMA&gt;
-&lt;/OMOBJ&gt;</pre>
+          &lt;OMF dec="1.0"/&gt;
+        &lt;/OMA&gt;
+      &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e486cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e486cmml')">Content MathML</button>
+                  <button id="d43e368cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e368cmml')">Content MathML</button>
                </div>
-               <pre id="d43e486cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-  &lt;apply&gt;
-    &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
-    &lt;apply&gt;
-      &lt;apply&gt;
-        &lt;csymbol cd="calculus1"&gt;diff&lt;/csymbol&gt;
-        &lt;bind&gt;
-          &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
-          &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+               <pre id="d43e368cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+        &lt;apply&gt;
+          &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
           &lt;apply&gt;
-            &lt;csymbol cd="arith1"&gt;plus&lt;/csymbol&gt;
-            &lt;ci&gt;x&lt;/ci&gt;
-            &lt;cn type="real"&gt;1.0&lt;/cn&gt;
+            &lt;apply&gt;
+              &lt;csymbol cd="calculus1"&gt;diff&lt;/csymbol&gt;
+              &lt;bind&gt;
+                &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
+                &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+                &lt;apply&gt;
+                  &lt;csymbol cd="arith1"&gt;plus&lt;/csymbol&gt;
+                  &lt;ci&gt;x&lt;/ci&gt;
+                  &lt;cn type="real"&gt;1.0&lt;/cn&gt;
+                &lt;/apply&gt;
+              &lt;/bind&gt;
+            &lt;/apply&gt;
+            &lt;ci&gt;y&lt;/ci&gt;
           &lt;/apply&gt;
-        &lt;/bind&gt;
-      &lt;/apply&gt;
-      &lt;ci&gt;y&lt;/ci&gt;
-    &lt;/apply&gt;
-    &lt;cn type="real"&gt;1.0&lt;/cn&gt;
-  &lt;/apply&gt;
-&lt;/math&gt;</pre>
+          &lt;cn type="real"&gt;1.0&lt;/cn&gt;
+        &lt;/apply&gt;
+      &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e486prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e486pref')">Prefix form</button>
+                  <button id="d43e368prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e368pref')">Prefix form</button>
                </div>
-               <div id="d43e486pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e368pref" style="display:none; margin-top: 0.5em">
                   <a href="relation1.xhtml#eq">eq</a>
 (<a href="calculus1.xhtml#diff">diff</a>
 (<a href="fns1.xhtml#lambda">lambda</a>
 [
-             <i>x</i>
-          ] .
+                   <i>x</i>
+                ] .
 (<a href="arith1.xhtml#plus">plus</a>
 ( <i>x</i>,  1.0 )
 )
@@ -1005,12 +978,12 @@ diff(lambda y:a(y) * b(y))(x) = diff(lambda y:a(y))(x) * b(x) +
 ( <i>y</i>)
 ,  1.0 )
 
-</div>
+      </div>
                <div>
-                  <button id="d43e486mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e486mml')">Presentation MathML</button>
+                  <button id="d43e368mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e368mml')">Presentation MathML</button>
                </div>
-               <div id="d43e486mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e368mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -1066,6 +1039,7 @@ diff(lambda y:a(y) * b(y))(x) = diff(lambda y:a(y))(x) * b(x) +
       [<a href="#top">Top</a>]
  </div>
       <div class="cddefinition">
+         <span class="link-to-this-fragment">[<a href="concat('http://wiki.openmath.org/?title=cd%3A', $title)">browse/edit/discuss this in the wiki</a>]</span>
          <h2>
             <a name="nthdiff">Symbol Definition: nthdiff</a>
          </h2>
@@ -1078,54 +1052,54 @@ diff(lambda y:a(y) * b(y))(x) = diff(lambda y:a(y))(x) * b(x) +
             </dd>
             <dt class="dt">Property:</dt>
             <dd>
-This property indicates that the zero-th derivation is the function itself
-
-  <div>
-                  <button id="d43e546xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e546xml')">XML (OpenMath)</button>
+      This property indicates that the zero-th derivation is the function itself
+      
+        <div>
+                  <button id="d43e428xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e428xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e546xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
-  &lt;OMA&gt;
-    &lt;OMS name="eq" cd="relation1"/&gt;
-    &lt;OMA&gt;
-      &lt;OMS name="nthdiff" cd="calculus1"/&gt;
-      &lt;OMS name="zero" cd="alg1"/&gt;
-      &lt;OMV name="f"/&gt;
-    &lt;/OMA&gt;
-    &lt;OMV name="f"/&gt;
-  &lt;/OMA&gt;
-  &lt;/OMOBJ&gt;</pre>
+               <pre id="d43e428xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd" version="3.0"&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="relation1" name="eq"/&gt;
+            &lt;OMA&gt;
+              &lt;OMS cd="calculus1" name="nthdiff"/&gt;
+              &lt;OMS cd="alg1" name="zero"/&gt;
+              &lt;OMV name="f"/&gt;
+            &lt;/OMA&gt;
+            &lt;OMV name="f"/&gt;
+          &lt;/OMA&gt;
+        &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e546cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e546cmml')">Content MathML</button>
+                  <button id="d43e428cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e428cmml')">Content MathML</button>
                </div>
-               <pre id="d43e546cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-  &lt;apply&gt;
-    &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
-    &lt;apply&gt;
-      &lt;csymbol cd="calculus1"&gt;nthdiff&lt;/csymbol&gt;
-      &lt;csymbol cd="alg1"&gt;zero&lt;/csymbol&gt;
-      &lt;ci&gt;f&lt;/ci&gt;
-    &lt;/apply&gt;
-    &lt;ci&gt;f&lt;/ci&gt;
-  &lt;/apply&gt;
-  &lt;/math&gt;</pre>
+               <pre id="d43e428cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+          &lt;apply&gt;
+            &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
+            &lt;apply&gt;
+              &lt;csymbol cd="calculus1"&gt;nthdiff&lt;/csymbol&gt;
+              &lt;csymbol cd="alg1"&gt;zero&lt;/csymbol&gt;
+              &lt;ci&gt;f&lt;/ci&gt;
+            &lt;/apply&gt;
+            &lt;ci&gt;f&lt;/ci&gt;
+          &lt;/apply&gt;
+        &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e546prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e546pref')">Prefix form</button>
+                  <button id="d43e428prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e428pref')">Prefix form</button>
                </div>
-               <div id="d43e546pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e428pref" style="display:none; margin-top: 0.5em">
                   <a href="relation1.xhtml#eq">eq</a>
 (<a href="calculus1.xhtml#nthdiff">nthdiff</a>
 (<a href="alg1.xhtml#zero">zero</a>,  <i>f</i>)
 ,  <i>f</i>)
 
-  </div>
+        </div>
                <div>
-                  <button id="d43e546mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e546mml')">Presentation MathML</button>
+                  <button id="d43e428mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e428mml')">Presentation MathML</button>
                </div>
-               <div id="d43e546mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e428mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -1143,68 +1117,69 @@ This property indicates that the zero-th derivation is the function itself
                      </mrow>
                   </m:math>
                </div>
+      
             </dd>
             <dt class="dt">Property:</dt>
             <dd>
-This property relates the diff and nthdiff symbol.
-
-  <div>
-                  <button id="d43e573xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e573xml')">XML (OpenMath)</button>
+      This property relates the diff and nthdiff symbol.
+      
+        <div>
+                  <button id="d43e456xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e456xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e573xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
-  &lt;OMA&gt;
-    &lt;OMS name="eq" cd="relation1"/&gt;
-    &lt;OMA&gt;
-      &lt;OMS name="nthdiff" cd="calculus1"/&gt;
-      &lt;OMA&gt;
-        &lt;OMS name="plus" cd="arith1"/&gt;
-        &lt;OMV name="n"/&gt;
-        &lt;OMS name="one" cd="alg1"/&gt;
-      &lt;/OMA&gt;
-      &lt;OMV name="f"/&gt;
-    &lt;/OMA&gt;
-    &lt;OMA&gt;
-      &lt;OMS name="diff" cd="calculus1"/&gt;
-      &lt;OMA&gt;
-        &lt;OMS name="nthdiff" cd="calculus1"/&gt;
-        &lt;OMV name="n"/&gt;
-        &lt;OMV name="f"/&gt;
-      &lt;/OMA&gt;
-    &lt;/OMA&gt;
-  &lt;/OMA&gt;
-  &lt;/OMOBJ&gt;</pre>
+               <pre id="d43e456xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd" version="3.0"&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="relation1" name="eq"/&gt;
+            &lt;OMA&gt;
+              &lt;OMS cd="calculus1" name="nthdiff"/&gt;
+              &lt;OMA&gt;
+                &lt;OMS cd="arith1" name="plus"/&gt;
+                &lt;OMV name="n"/&gt;
+                &lt;OMS cd="alg1" name="one"/&gt;
+              &lt;/OMA&gt;
+              &lt;OMV name="f"/&gt;
+            &lt;/OMA&gt;
+            &lt;OMA&gt;
+              &lt;OMS cd="calculus1" name="diff"/&gt;
+              &lt;OMA&gt;
+                &lt;OMS cd="calculus1" name="nthdiff"/&gt;
+                &lt;OMV name="n"/&gt;
+                &lt;OMV name="f"/&gt;
+              &lt;/OMA&gt;
+            &lt;/OMA&gt;
+          &lt;/OMA&gt;
+        &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e573cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e573cmml')">Content MathML</button>
+                  <button id="d43e456cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e456cmml')">Content MathML</button>
                </div>
-               <pre id="d43e573cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-  &lt;apply&gt;
-    &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
-    &lt;apply&gt;
-      &lt;csymbol cd="calculus1"&gt;nthdiff&lt;/csymbol&gt;
-      &lt;apply&gt;
-        &lt;csymbol cd="arith1"&gt;plus&lt;/csymbol&gt;
-        &lt;ci&gt;n&lt;/ci&gt;
-        &lt;csymbol cd="alg1"&gt;one&lt;/csymbol&gt;
-      &lt;/apply&gt;
-      &lt;ci&gt;f&lt;/ci&gt;
-    &lt;/apply&gt;
-    &lt;apply&gt;
-      &lt;csymbol cd="calculus1"&gt;diff&lt;/csymbol&gt;
-      &lt;apply&gt;
-        &lt;csymbol cd="calculus1"&gt;nthdiff&lt;/csymbol&gt;
-        &lt;ci&gt;n&lt;/ci&gt;
-        &lt;ci&gt;f&lt;/ci&gt;
-      &lt;/apply&gt;
-    &lt;/apply&gt;
-  &lt;/apply&gt;
-  &lt;/math&gt;</pre>
+               <pre id="d43e456cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+          &lt;apply&gt;
+            &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
+            &lt;apply&gt;
+              &lt;csymbol cd="calculus1"&gt;nthdiff&lt;/csymbol&gt;
+              &lt;apply&gt;
+                &lt;csymbol cd="arith1"&gt;plus&lt;/csymbol&gt;
+                &lt;ci&gt;n&lt;/ci&gt;
+                &lt;csymbol cd="alg1"&gt;one&lt;/csymbol&gt;
+              &lt;/apply&gt;
+              &lt;ci&gt;f&lt;/ci&gt;
+            &lt;/apply&gt;
+            &lt;apply&gt;
+              &lt;csymbol cd="calculus1"&gt;diff&lt;/csymbol&gt;
+              &lt;apply&gt;
+                &lt;csymbol cd="calculus1"&gt;nthdiff&lt;/csymbol&gt;
+                &lt;ci&gt;n&lt;/ci&gt;
+                &lt;ci&gt;f&lt;/ci&gt;
+              &lt;/apply&gt;
+            &lt;/apply&gt;
+          &lt;/apply&gt;
+        &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e573prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e573pref')">Prefix form</button>
+                  <button id="d43e456prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e456pref')">Prefix form</button>
                </div>
-               <div id="d43e573pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e456pref" style="display:none; margin-top: 0.5em">
                   <a href="relation1.xhtml#eq">eq</a>
 (<a href="calculus1.xhtml#nthdiff">nthdiff</a>
 (<a href="arith1.xhtml#plus">plus</a>
@@ -1216,12 +1191,12 @@ This property relates the diff and nthdiff symbol.
 )
 )
 
-  </div>
+        </div>
                <div>
-                  <button id="d43e573mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e573mml')">Presentation MathML</button>
+                  <button id="d43e456mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e456mml')">Presentation MathML</button>
                </div>
-               <div id="d43e573mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e456mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -1256,7 +1231,7 @@ This property relates the diff and nthdiff symbol.
                      </mrow>
                   </m:math>
                </div>
-
+      
             </dd>
             <dt class="dt">Signatures:</dt>
             <dd>
@@ -1272,6 +1247,7 @@ This property relates the diff and nthdiff symbol.
       [<a href="#top">Top</a>]
  </div>
       <div class="cddefinition">
+         <span class="link-to-this-fragment">[<a href="concat('http://wiki.openmath.org/?title=cd%3A', $title)">browse/edit/discuss this in the wiki</a>]</span>
          <h2>
             <a name="partialdiff">Symbol Definition: partialdiff</a>
          </h2>
@@ -1280,100 +1256,7 @@ This property relates the diff and nthdiff symbol.
             <dd>
                <p>&lt;partialdiff/&gt;</p>
                <p> type : "function" | "algebraic"</p>
-    
-               <p>In pragmatic Content MathML, the <code>partialdiff</code> operator can be applied to
-      an expression with bound variables given by <code>bvar</code> elements, which are
-      children of the containing <code>apply</code> element. The <code>bvar</code> elements may
-      also contain <code>degree</code> element, which specify the order of the partial
-      derivative to be taken in that variable. In strict Content MathML, the degrees are
-      given as a list in the first argument of the <code>partialdiff</code> symbol.</p>
-
-
-               <apply xmlns="http://www.w3.org/1998/Math/MathML">
-                  <partialdiff/>
-                  <bvar>
-                     <ci>x</ci>
-                     <degree>
-                        <ci>n</ci>
-                     </degree>
-                  </bvar>
-                  <bvar>
-                     <ci>y</ci>
-                     <degree>
-                        <ci>m</ci>
-                     </degree>
-                  </bvar>
-                  <apply>
-                     <sin/>
-                     <apply>
-                        <times/>
-                        <ci>x</ci>
-                        <ci>y</ci>
-                     </apply>
-                  </apply>
-               </apply>
-               <apply xmlns="http://www.w3.org/1998/Math/MathML">
-                  <partialdiff/>
-                  <apply>
-                     <csymbol cd="list1">list</csymbol>
-                     <ci>n</ci>
-                     <ci>m</ci>
-                  </apply>
-                  <bind>
-                     <lambda/>
-                     <bvar>
-                        <ci>x</ci>
-                     </bvar>
-                     <bvar>
-                        <ci>y</ci>
-                     </bvar>
-                     <apply>
-                        <sin/>
-                        <apply>
-                           <times/>
-                           <ci>x</ci>
-                           <ci>y</ci>
-                        </apply>
-                     </apply>
-                  </bind>
-               </apply>
-
-               <p>Where a total degree of differentiation must be specified, this is indicated by use of
-a <code>degree</code> element at the top level, i.e. without any associated <code>bvar</code>, as
-a child of the containing <code>apply</code> element. Each <code>degree</code> schema used with
-<code>partialdiff</code> is expected to contain a single child schema. For example,
-
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-                     <apply>
-                        <partialdiff/>
-                        <bvar>
-                           <degree>
-                              <cn>2</cn>
-                           </degree>
-                           <ci>x</ci>
-                        </bvar>
-                        <bvar>
-                           <ci>y</ci>
-                        </bvar>
-                        <bvar>
-                           <ci>x</ci>
-                        </bvar>
-                        <degree>
-                           <cn>4</cn>
-                        </degree>
-                        <ci type="function">f</ci>
-                     </apply>
-                  </math>
-
-denotes the mixed partial derivative ( d<sup>4</sup> / d<sup>2</sup>
-                  <var>x</var>
-d<var>y</var> d<var>x</var> ) <var>f</var>. In strict Content MathML, the overall degree
-cannot be given.</p>
-
-MiKowhat do do about this?
-
-    
-  </dd>
+            </dd>
             <dt class="dt">Role:</dt>
             <dd>application</dd>
             <dt class="dt">Description:</dt>
@@ -1397,52 +1280,77 @@ MiKowhat do do about this?
             </dd>
             <dt class="dt">Property:</dt>
             <dd>
-    
+      
                <p>ForAll( [x,y], partialdiff( x * y , x ) = partialdiff(x,x)*y + partialdiff(y,x)*x )</p>
-  
+      
             </dd>
             <dt class="dt">Property:</dt>
             <dd>
-    
+      
                <p>ForAll( [x,a,b], partialdiff( a + b , x ) = partialdiff(a,x) + partialdiff(b,x) )</p>
+      
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
-    
+      
                <p>d^k/(dx^m dy^n) f(x,y)</p>
-    
+      
                <div>
-                  <button id="d43e858xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e858xml')">XML (MathML)</button>
+                  <button id="d43e568xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e568xml')">XML (MathML)</button>
                </div>
-               <pre id="d43e858xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-&lt;bind&gt;
-  &lt;partialdiff/&gt;
-    &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;degree&gt;&lt;ci&gt;m&lt;/ci&gt;&lt;/degree&gt;&lt;/bvar&gt;
-    &lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;degree&gt;&lt;ci&gt;n&lt;/ci&gt;&lt;/degree&gt;&lt;/bvar&gt;
-    &lt;degree&gt;&lt;ci&gt;k&lt;/ci&gt;&lt;/degree&gt;
-    &lt;apply&gt;&lt;ci type="function"&gt;f&lt;/ci&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/apply&gt;
-&lt;/bind&gt;
-&lt;/math&gt;</pre>
+               <pre id="d43e568xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+        &lt;apply&gt;
+          &lt;partialdiff/&gt;
+          &lt;bvar&gt;
+            &lt;ci&gt;x&lt;/ci&gt;
+            &lt;degree&gt;
+              &lt;ci&gt;m&lt;/ci&gt;
+            &lt;/degree&gt;
+          &lt;/bvar&gt;
+          &lt;bvar&gt;
+            &lt;ci&gt;y&lt;/ci&gt;
+            &lt;degree&gt;
+              &lt;ci&gt;n&lt;/ci&gt;
+            &lt;/degree&gt;
+          &lt;/bvar&gt;
+          &lt;degree&gt;
+            &lt;ci&gt;k&lt;/ci&gt;
+          &lt;/degree&gt;
+          &lt;apply&gt;
+            &lt;ci type="function"&gt;f&lt;/ci&gt;
+            &lt;ci&gt;x&lt;/ci&gt;
+            &lt;ci&gt;y&lt;/ci&gt;
+          &lt;/apply&gt;
+        &lt;/apply&gt;
+      &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e858stricta" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e858strict')">Strict Content MathML</button>
+                  <button id="d43e568stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e568strict')">Strict Content MathML</button>
                </div>
-               <pre id="d43e858strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-&lt;apply&gt;&lt;csymbol cd="calculus1"&gt;partialnthdiff&lt;/csymbol&gt;&lt;apply&gt;&lt;csymbol cd="list1"&gt;list&lt;/csymbol&gt;&lt;ci&gt;m&lt;/ci&gt;&lt;ci&gt;n&lt;/ci&gt;&lt;/apply&gt;&lt;bind&gt;&lt;csymbol cd="funs1"&gt;lambda&lt;/csymbol&gt;&lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/bvar&gt;&lt;apply&gt;&lt;ci&gt;f&lt;/ci&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/apply&gt;&lt;/bind&gt;&lt;/apply&gt;
-&lt;/math&gt;</pre>
+               <pre id="d43e568strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+        &lt;apply&gt;&lt;csymbol cd="calculus1"&gt;partialnthdiff&lt;/csymbol&gt;&lt;apply&gt;&lt;csymbol cd="list1"&gt;list&lt;/csymbol&gt;&lt;ci&gt;m&lt;/ci&gt;&lt;ci&gt;n&lt;/ci&gt;&lt;/apply&gt;&lt;bind&gt;&lt;csymbol cd="funs1"&gt;lambda&lt;/csymbol&gt;&lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/bvar&gt;&lt;apply&gt;
+            &lt;ci&gt;f&lt;/ci&gt;
+            &lt;ci&gt;x&lt;/ci&gt;
+            &lt;ci&gt;y&lt;/ci&gt;
+          &lt;/apply&gt;&lt;/bind&gt;&lt;/apply&gt;
+      &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e858cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e858cmml')">OpenMath</button>
+                  <button id="d43e568cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e568cmml')">OpenMath</button>
                </div>
-               <pre id="d43e858cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
-&lt;OMA&gt;&lt;OMS cd="calculus1" name="partialnthdiff"/&gt;&lt;OMA&gt;&lt;OMS cd="list1" name="list"/&gt;&lt;OMV name="m"/&gt;&lt;OMV name="n"/&gt;&lt;/OMA&gt;&lt;OMBIND&gt;&lt;OMS cd="funs1" name="lambda"/&gt;&lt;OMBVAR&gt;&lt;OMV name="x"/&gt;&lt;OMV name="y"/&gt;&lt;/OMBVAR&gt;&lt;OMA&gt;&lt;OMV name="f"/&gt;&lt;OMV name="x"/&gt;&lt;OMV name="y"/&gt;&lt;/OMA&gt;&lt;/OMBIND&gt;&lt;/OMA&gt;
-&lt;/OMOBJ&gt;</pre>
+               <pre id="d43e568cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+        &lt;OMA&gt;&lt;OMS cd="calculus1" name="partialnthdiff"/&gt;&lt;OMA&gt;&lt;OMS cd="list1" name="list"/&gt;&lt;OMV name="m"/&gt;&lt;OMV name="n"/&gt;&lt;/OMA&gt;&lt;OMBIND&gt;&lt;OMS cd="funs1" name="lambda"/&gt;&lt;OMBVAR&gt;&lt;OMV name="x"/&gt;&lt;OMV name="y"/&gt;&lt;/OMBVAR&gt;&lt;OMA&gt;
+            &lt;OMV name="f"/&gt;
+            &lt;OMV name="x"/&gt;
+            &lt;OMV name="y"/&gt;
+          &lt;/OMA&gt;&lt;/OMBIND&gt;&lt;/OMA&gt;
+      &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e858prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e858pref')">Prefix form</button>
+                  <button id="d43e568prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e568pref')">Prefix form</button>
                </div>
-               <div id="d43e858pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e568pref" style="display:none; margin-top: 0.5em">
                   <a href="calculus1.xhtml#partialnthdiff">partialnthdiff</a>
 (<a href="list1.xhtml#list">list</a>
 ( <i>m</i>,  <i>n</i>)
@@ -1454,12 +1362,12 @@ MiKowhat do do about this?
 )
 )
 
-</div>
+      </div>
                <div>
-                  <button id="d43e858mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e858mml')">Presentation MathML</button>
+                  <button id="d43e568mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e568mml')">Presentation MathML</button>
                </div>
-               <div id="d43e858mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e568mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mfrac xmlns="http://www.w3.org/1998/Math/MathML"
                             xmlns:om="http://www.openmath.org/OpenMath">
@@ -1509,40 +1417,56 @@ MiKowhat do do about this?
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
-  
+      
                <p>d^2/(dx dy) f(x,y)</p>
-  
+      
                <div>
-                  <button id="d43e901xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e901xml')">XML (MathML)</button>
+                  <button id="d43e627xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e627xml')">XML (MathML)</button>
                </div>
-               <pre id="d43e901xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-    &lt;bind&gt;
-      &lt;partialdiff/&gt;
-	&lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
-	&lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/bvar&gt;
-	&lt;apply&gt;&lt;ci type="function"&gt;f&lt;/ci&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/apply&gt;
-      &lt;/bind&gt;
-  &lt;/math&gt;</pre>
+               <pre id="d43e627xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+        &lt;apply&gt;
+          &lt;partialdiff/&gt;
+           &lt;bvar&gt;
+            &lt;ci&gt;x&lt;/ci&gt;
+          &lt;/bvar&gt;
+           &lt;bvar&gt;
+            &lt;ci&gt;y&lt;/ci&gt;
+          &lt;/bvar&gt;
+           &lt;apply&gt;
+            &lt;ci type="function"&gt;f&lt;/ci&gt;
+            &lt;ci&gt;x&lt;/ci&gt;
+            &lt;ci&gt;y&lt;/ci&gt;
+          &lt;/apply&gt;
+        &lt;/apply&gt;
+      &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e901stricta" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e901strict')">Strict Content MathML</button>
+                  <button id="d43e627stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e627strict')">Strict Content MathML</button>
                </div>
-               <pre id="d43e901strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-    &lt;apply&gt;&lt;csymbol cd="calculus1"&gt;partialnthdiff&lt;/csymbol&gt;&lt;apply&gt;&lt;csymbol cd="list1"&gt;list&lt;/csymbol&gt;&lt;cn&gt;1&lt;/cn&gt;&lt;cn&gt;1&lt;/cn&gt;&lt;/apply&gt;&lt;bind&gt;&lt;csymbol cd="funs1"&gt;lambda&lt;/csymbol&gt;&lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/bvar&gt;&lt;apply&gt;&lt;ci&gt;f&lt;/ci&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/apply&gt;&lt;/bind&gt;&lt;/apply&gt;
-  &lt;/math&gt;</pre>
+               <pre id="d43e627strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+        &lt;apply&gt;&lt;csymbol cd="calculus1"&gt;partialnthdiff&lt;/csymbol&gt;&lt;apply&gt;&lt;csymbol cd="list1"&gt;list&lt;/csymbol&gt;&lt;cn&gt;1&lt;/cn&gt;&lt;cn&gt;1&lt;/cn&gt;&lt;/apply&gt;&lt;bind&gt;&lt;csymbol cd="funs1"&gt;lambda&lt;/csymbol&gt;&lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/bvar&gt;&lt;apply&gt;
+            &lt;ci&gt;f&lt;/ci&gt;
+            &lt;ci&gt;x&lt;/ci&gt;
+            &lt;ci&gt;y&lt;/ci&gt;
+          &lt;/apply&gt;&lt;/bind&gt;&lt;/apply&gt;
+      &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e901cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e901cmml')">OpenMath</button>
+                  <button id="d43e627cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e627cmml')">OpenMath</button>
                </div>
-               <pre id="d43e901cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
-    &lt;OMA&gt;&lt;OMS cd="calculus1" name="partialnthdiff"/&gt;&lt;OMA&gt;&lt;OMS cd="list1" name="list"/&gt;&lt;OMI&gt;1&lt;/OMI&gt;&lt;OMI&gt;1&lt;/OMI&gt;&lt;/OMA&gt;&lt;OMBIND&gt;&lt;OMS cd="funs1" name="lambda"/&gt;&lt;OMBVAR&gt;&lt;OMV name="x"/&gt;&lt;OMV name="y"/&gt;&lt;/OMBVAR&gt;&lt;OMA&gt;&lt;OMV name="f"/&gt;&lt;OMV name="x"/&gt;&lt;OMV name="y"/&gt;&lt;/OMA&gt;&lt;/OMBIND&gt;&lt;/OMA&gt;
-  &lt;/OMOBJ&gt;</pre>
+               <pre id="d43e627cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+        &lt;OMA&gt;&lt;OMS cd="calculus1" name="partialnthdiff"/&gt;&lt;OMA&gt;&lt;OMS cd="list1" name="list"/&gt;&lt;OMI&gt;1&lt;/OMI&gt;&lt;OMI&gt;1&lt;/OMI&gt;&lt;/OMA&gt;&lt;OMBIND&gt;&lt;OMS cd="funs1" name="lambda"/&gt;&lt;OMBVAR&gt;&lt;OMV name="x"/&gt;&lt;OMV name="y"/&gt;&lt;/OMBVAR&gt;&lt;OMA&gt;
+            &lt;OMV name="f"/&gt;
+            &lt;OMV name="x"/&gt;
+            &lt;OMV name="y"/&gt;
+          &lt;/OMA&gt;&lt;/OMBIND&gt;&lt;/OMA&gt;
+      &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e901prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e901pref')">Prefix form</button>
+                  <button id="d43e627prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e627pref')">Prefix form</button>
                </div>
-               <div id="d43e901pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e627pref" style="display:none; margin-top: 0.5em">
                   <a href="calculus1.xhtml#partialnthdiff">partialnthdiff</a>
 (<a href="list1.xhtml#list">list</a>
 (1, 1)
@@ -1554,12 +1478,12 @@ MiKowhat do do about this?
 )
 )
 
-  </div>
+      </div>
                <div>
-                  <button id="d43e901mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e901mml')">Presentation MathML</button>
+                  <button id="d43e627mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e627mml')">Presentation MathML</button>
                </div>
-               <div id="d43e901mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e627mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mfrac xmlns="http://www.w3.org/1998/Math/MathML"
                             xmlns:om="http://www.openmath.org/OpenMath">
@@ -1601,42 +1525,54 @@ MiKowhat do do about this?
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
-  
+      
                <p>D_{1,1,3}(f) </p>
-  
+      
                <div>
-                  <button id="d43e934xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e934xml')">XML (MathML)</button>
+                  <button id="d43e668xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e668xml')">XML (MathML)</button>
                </div>
-               <pre id="d43e934xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;partialdiff/&gt;
-  &lt;list&gt;&lt;cn&gt;1&lt;/cn&gt;&lt;cn&gt;1&lt;/cn&gt;&lt;cn&gt;3&lt;/cn&gt;&lt;/list&gt;
-  &lt;ci type="function"&gt;f&lt;/ci&gt;
-&lt;/apply&gt;&lt;/math&gt;</pre>
+               <pre id="d43e668xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+        &lt;apply&gt;
+          &lt;partialdiff/&gt;
+          &lt;list&gt;
+            &lt;cn&gt;1&lt;/cn&gt;
+            &lt;cn&gt;1&lt;/cn&gt;
+            &lt;cn&gt;3&lt;/cn&gt;
+          &lt;/list&gt;
+          &lt;ci type="function"&gt;f&lt;/ci&gt;
+        &lt;/apply&gt;
+      &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e934stricta" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e934strict')">Strict Content MathML</button>
+                  <button id="d43e668stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e668strict')">Strict Content MathML</button>
                </div>
-               <pre id="d43e934strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;apply&gt;&lt;csymbol cd="calculus1"&gt;partialnthdiff&lt;/csymbol&gt;&lt;apply&gt;&lt;csymbol cd="list1"&gt;list&lt;/csymbol&gt;&lt;cn&gt;1&lt;/cn&gt;&lt;cn&gt;1&lt;/cn&gt;&lt;cn&gt;3&lt;/cn&gt;&lt;/apply&gt;&lt;ci&gt;f&lt;/ci&gt;&lt;/apply&gt;&lt;/math&gt;</pre>
+               <pre id="d43e668strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+        &lt;apply&gt;&lt;csymbol cd="calculus1"&gt;partialnthdiff&lt;/csymbol&gt;&lt;apply&gt;&lt;csymbol cd="list1"&gt;list&lt;/csymbol&gt;&lt;cn&gt;1&lt;/cn&gt;&lt;cn&gt;1&lt;/cn&gt;&lt;cn&gt;3&lt;/cn&gt;&lt;/apply&gt;&lt;ci&gt;f&lt;/ci&gt;&lt;/apply&gt;
+      &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e934cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e934cmml')">OpenMath</button>
+                  <button id="d43e668cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e668cmml')">OpenMath</button>
                </div>
-               <pre id="d43e934cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;&lt;OMA&gt;&lt;OMS cd="calculus1" name="partialnthdiff"/&gt;&lt;OMA&gt;&lt;OMS cd="list1" name="list"/&gt;&lt;OMI&gt;1&lt;/OMI&gt;&lt;OMI&gt;1&lt;/OMI&gt;&lt;OMI&gt;3&lt;/OMI&gt;&lt;/OMA&gt;&lt;OMV name="f"/&gt;&lt;/OMA&gt;&lt;/OMOBJ&gt;</pre>
+               <pre id="d43e668cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+        &lt;OMA&gt;&lt;OMS cd="calculus1" name="partialnthdiff"/&gt;&lt;OMA&gt;&lt;OMS cd="list1" name="list"/&gt;&lt;OMI&gt;1&lt;/OMI&gt;&lt;OMI&gt;1&lt;/OMI&gt;&lt;OMI&gt;3&lt;/OMI&gt;&lt;/OMA&gt;&lt;OMV name="f"/&gt;&lt;/OMA&gt;
+      &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e934prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e934pref')">Prefix form</button>
+                  <button id="d43e668prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e668pref')">Prefix form</button>
                </div>
-               <div id="d43e934pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e668pref" style="display:none; margin-top: 0.5em">
                   <a href="calculus1.xhtml#partialnthdiff">partialnthdiff</a>
 (<a href="list1.xhtml#list">list</a>
 (1, 1, 3)
 ,  <i>f</i>)
-</div>
+
+      </div>
                <div>
-                  <button id="d43e934mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e934mml')">Presentation MathML</button>
+                  <button id="d43e668mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e668mml')">Presentation MathML</button>
                </div>
-               <div id="d43e934mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e668mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -1663,88 +1599,88 @@ MiKowhat do do about this?
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
-An example to represent the equation: \partial^2{xyz}/ \partial{x}\partial{z} = y
-<div>
-                  <button id="d43e953xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e953xml')">XML (OpenMath)</button>
+      An example to represent the equation: \partial^2{xyz}/ \partial{x}\partial{z} = y
+      <div>
+                  <button id="d43e695xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e695xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e953xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
-&lt;OMA&gt;
-  &lt;OMS cd="relation1" name="eq"/&gt;
-  &lt;OMA&gt;
-    &lt;OMA&gt;
-      &lt;OMS cd="calculus1" name="partialdiff"/&gt;
-      &lt;OMA&gt;
-        &lt;OMS cd="list1" name="list"/&gt;
-        &lt;OMI&gt; 1 &lt;/OMI&gt;
-        &lt;OMI&gt; 3 &lt;/OMI&gt;
-      &lt;/OMA&gt;
-      &lt;OMBIND&gt;
-        &lt;OMS cd="fns1" name="lambda"/&gt;
-        &lt;OMBVAR&gt;
-          &lt;OMV name="x"/&gt;
-          &lt;OMV name="y"/&gt;
-          &lt;OMV name="z"/&gt;
-        &lt;/OMBVAR&gt;
+               <pre id="d43e695xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd" version="3.0"&gt;
         &lt;OMA&gt;
-          &lt;OMS cd="arith1" name="times"/&gt;
-          &lt;OMV name="x"/&gt;
+          &lt;OMS cd="relation1" name="eq"/&gt;
+          &lt;OMA&gt;
+            &lt;OMA&gt;
+              &lt;OMS cd="calculus1" name="partialdiff"/&gt;
+              &lt;OMA&gt;
+                &lt;OMS cd="list1" name="list"/&gt;
+                &lt;OMI&gt; 1 &lt;/OMI&gt;
+                &lt;OMI&gt; 3 &lt;/OMI&gt;
+              &lt;/OMA&gt;
+              &lt;OMBIND&gt;
+                &lt;OMS cd="fns1" name="lambda"/&gt;
+                &lt;OMBVAR&gt;
+                  &lt;OMV name="x"/&gt;
+                  &lt;OMV name="y"/&gt;
+                  &lt;OMV name="z"/&gt;
+                &lt;/OMBVAR&gt;
+                &lt;OMA&gt;
+                  &lt;OMS cd="arith1" name="times"/&gt;
+                  &lt;OMV name="x"/&gt;
+                  &lt;OMV name="y"/&gt;
+                  &lt;OMV name="z"/&gt;
+                &lt;/OMA&gt;
+              &lt;/OMBIND&gt;
+            &lt;/OMA&gt;
+            &lt;OMV name="y"/&gt;
+          &lt;/OMA&gt;
           &lt;OMV name="y"/&gt;
-          &lt;OMV name="z"/&gt;
         &lt;/OMA&gt;
-      &lt;/OMBIND&gt;
-    &lt;/OMA&gt;
-    &lt;OMV name="y"/&gt;
-  &lt;/OMA&gt;
-  &lt;OMV name="y"/&gt;
-&lt;/OMA&gt;
-&lt;/OMOBJ&gt;</pre>
+      &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e953cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e953cmml')">Content MathML</button>
+                  <button id="d43e695cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e695cmml')">Content MathML</button>
                </div>
-               <pre id="d43e953cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-&lt;apply&gt;
-  &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
-  &lt;apply&gt;
-    &lt;apply&gt;
-      &lt;csymbol cd="calculus1"&gt;partialdiff&lt;/csymbol&gt;
-      &lt;apply&gt;
-        &lt;csymbol cd="list1"&gt;list&lt;/csymbol&gt;
-        &lt;cn&gt; 1 &lt;/cn&gt;
-        &lt;cn&gt; 3 &lt;/cn&gt;
-      &lt;/apply&gt;
-      &lt;bind&gt;
-        &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
-        &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;z&lt;/ci&gt;&lt;/bvar&gt;
+               <pre id="d43e695cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
         &lt;apply&gt;
-          &lt;csymbol cd="arith1"&gt;times&lt;/csymbol&gt;
-          &lt;ci&gt;x&lt;/ci&gt;
+          &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
+          &lt;apply&gt;
+            &lt;apply&gt;
+              &lt;csymbol cd="calculus1"&gt;partialdiff&lt;/csymbol&gt;
+              &lt;apply&gt;
+                &lt;csymbol cd="list1"&gt;list&lt;/csymbol&gt;
+                &lt;cn&gt; 1 &lt;/cn&gt;
+                &lt;cn&gt; 3 &lt;/cn&gt;
+              &lt;/apply&gt;
+              &lt;bind&gt;
+                &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
+                &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;z&lt;/ci&gt;&lt;/bvar&gt;
+                &lt;apply&gt;
+                  &lt;csymbol cd="arith1"&gt;times&lt;/csymbol&gt;
+                  &lt;ci&gt;x&lt;/ci&gt;
+                  &lt;ci&gt;y&lt;/ci&gt;
+                  &lt;ci&gt;z&lt;/ci&gt;
+                &lt;/apply&gt;
+              &lt;/bind&gt;
+            &lt;/apply&gt;
+            &lt;ci&gt;y&lt;/ci&gt;
+          &lt;/apply&gt;
           &lt;ci&gt;y&lt;/ci&gt;
-          &lt;ci&gt;z&lt;/ci&gt;
         &lt;/apply&gt;
-      &lt;/bind&gt;
-    &lt;/apply&gt;
-    &lt;ci&gt;y&lt;/ci&gt;
-  &lt;/apply&gt;
-  &lt;ci&gt;y&lt;/ci&gt;
-&lt;/apply&gt;
-&lt;/math&gt;</pre>
+      &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e953prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e953pref')">Prefix form</button>
+                  <button id="d43e695prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e695pref')">Prefix form</button>
                </div>
-               <div id="d43e953pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e695pref" style="display:none; margin-top: 0.5em">
                   <a href="relation1.xhtml#eq">eq</a>
 (<a href="calculus1.xhtml#partialdiff">partialdiff</a>
 (<a href="list1.xhtml#list">list</a>
 ( 1 ,  3 )
 , <a href="fns1.xhtml#lambda">lambda</a>
 [
-           <i>x</i>
-                  <i>y</i>
-                  <i>z</i>
-        ] .
+                   <i>x</i>
+                   <i>y</i>
+                   <i>z</i>
+                ] .
 (<a href="arith1.xhtml#times">times</a>
 ( <i>x</i>,  <i>y</i>,  <i>z</i>)
 )
@@ -1753,12 +1689,12 @@ An example to represent the equation: \partial^2{xyz}/ \partial{x}\partial{z} = 
 ( <i>y</i>)
 ,  <i>y</i>)
 
-</div>
+      </div>
                <div>
-                  <button id="d43e953mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e953mml')">Presentation MathML</button>
+                  <button id="d43e695mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e695mml')">Presentation MathML</button>
                </div>
-               <div id="d43e953mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e695mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -1821,6 +1757,7 @@ An example to represent the equation: \partial^2{xyz}/ \partial{x}\partial{z} = 
       [<a href="#top">Top</a>]
  </div>
       <div class="cddefinition">
+         <span class="link-to-this-fragment">[<a href="concat('http://wiki.openmath.org/?title=cd%3A', $title)">browse/edit/discuss this in the wiki</a>]</span>
          <h2>
             <a name="int">Symbol Definition: int</a>
          </h2>
@@ -1837,46 +1774,55 @@ An example to represent the equation: \partial^2{xyz}/ \partial{x}\partial{z} = 
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
-    
+      
                <p>The integral over the sine function is cosine function.</p>
-    
+      
                <div>
-                  <button id="d43e1036xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1036xml')">XML (MathML)</button>
+                  <button id="d43e778xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e778xml')">XML (MathML)</button>
                </div>
-               <pre id="d43e1036xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-      &lt;apply&gt;&lt;eq/&gt;&lt;apply&gt;&lt;int/&gt;&lt;sin/&gt;&lt;/apply&gt;&lt;cos/&gt;&lt;/apply&gt;
-    &lt;/math&gt;</pre>
+               <pre id="d43e778xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+        &lt;apply&gt;&lt;eq/&gt;
+          &lt;apply&gt;&lt;int/&gt;&lt;sin/&gt;&lt;/apply&gt;
+          &lt;cos/&gt;
+        &lt;/apply&gt;
+      &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e1036stricta" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1036strict')">Strict Content MathML</button>
+                  <button id="d43e778stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e778strict')">Strict Content MathML</button>
                </div>
-               <pre id="d43e1036strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-      &lt;apply&gt;&lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;&lt;apply&gt;&lt;csymbol cd="calculus1"&gt;int&lt;/csymbol&gt;&lt;csymbol cd="transc1"&gt;sin&lt;/csymbol&gt;&lt;/apply&gt;&lt;csymbol cd="transc1"&gt;cos&lt;/csymbol&gt;&lt;/apply&gt;
-    &lt;/math&gt;</pre>
+               <pre id="d43e778strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+        &lt;apply&gt;&lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
+          &lt;apply&gt;&lt;csymbol cd="calculus1"&gt;int&lt;/csymbol&gt;&lt;csymbol cd="transc1"&gt;sin&lt;/csymbol&gt;&lt;/apply&gt;
+          &lt;csymbol cd="transc1"&gt;cos&lt;/csymbol&gt;
+        &lt;/apply&gt;
+      &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e1036cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1036cmml')">OpenMath</button>
+                  <button id="d43e778cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e778cmml')">OpenMath</button>
                </div>
-               <pre id="d43e1036cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
-      &lt;OMA&gt;&lt;OMS cd="relation1" name="eq"/&gt;&lt;OMA&gt;&lt;OMS cd="calculus1" name="int"/&gt;&lt;OMS cd="transc1" name="sin"/&gt;&lt;/OMA&gt;&lt;OMS cd="transc1" name="cos"/&gt;&lt;/OMA&gt;
-    &lt;/OMOBJ&gt;</pre>
+               <pre id="d43e778cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+        &lt;OMA&gt;&lt;OMS cd="relation1" name="eq"/&gt;
+          &lt;OMA&gt;&lt;OMS cd="calculus1" name="int"/&gt;&lt;OMS cd="transc1" name="sin"/&gt;&lt;/OMA&gt;
+          &lt;OMS cd="transc1" name="cos"/&gt;
+        &lt;/OMA&gt;
+      &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e1036prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1036pref')">Prefix form</button>
+                  <button id="d43e778prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e778pref')">Prefix form</button>
                </div>
-               <div id="d43e1036pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e778pref" style="display:none; margin-top: 0.5em">
                   <a href="relation1.xhtml#eq">eq</a>
 (<a href="calculus1.xhtml#int">int</a>
 (<a href="transc1.xhtml#sin">sin</a>)
 , <a href="transc1.xhtml#cos">cos</a>)
 
-    </div>
+      </div>
                <div>
-                  <button id="d43e1036mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e1036mml')">Presentation MathML</button>
+                  <button id="d43e778mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e778mml')">Presentation MathML</button>
                </div>
-               <div id="d43e1036mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e778mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -1894,95 +1840,94 @@ An example to represent the equation: \partial^2{xyz}/ \partial{x}\partial{z} = 
             </dd>
             <dt class="dt">Property:</dt>
             <dd>
+      
+	application of integrate followed by differentiate is the identity
+	function, that is: diff(lambda y:integral(lambda z:f(z))(y)) = f
+      
 
-application of integrate followed by differentiate is the identity
-function, that is: 
- diff(lambda y:integral(lambda z:f(z))(y)) = f
-
-
-
-<div>
-                  <button id="d43e1055xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1055xml')">XML (OpenMath)</button>
+      
+        <div>
+                  <button id="d43e800xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e800xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e1055xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
-  &lt;OMA&gt;
-    &lt;OMS cd="relation1" name="eq"/&gt;
-        &lt;OMA&gt;
-          &lt;OMS cd="calculus1" name="diff"/&gt;
-          &lt;OMBIND&gt;
-            &lt;OMS cd="fns1" name="lambda"/&gt;
-            &lt;OMBVAR&gt;
-              &lt;OMV name="y"/&gt;
-            &lt;/OMBVAR&gt;
+               <pre id="d43e800xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd" version="3.0"&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="relation1" name="eq"/&gt;
             &lt;OMA&gt;
-              &lt;OMA&gt;
-                &lt;OMS cd="calculus1" name="int"/&gt;
-                &lt;OMBIND&gt;
-                  &lt;OMS cd="fns1" name="lambda"/&gt;
-                  &lt;OMBVAR&gt;
-                    &lt;OMV name="z"/&gt;
-                  &lt;/OMBVAR&gt;
+              &lt;OMS cd="calculus1" name="diff"/&gt;
+              &lt;OMBIND&gt;
+                &lt;OMS cd="fns1" name="lambda"/&gt;
+                &lt;OMBVAR&gt;
+                  &lt;OMV name="y"/&gt;
+                &lt;/OMBVAR&gt;
+                &lt;OMA&gt;
                   &lt;OMA&gt;
-                    &lt;OMV name="f"/&gt;
-                    &lt;OMV name="z"/&gt;
+                    &lt;OMS cd="calculus1" name="int"/&gt;
+                    &lt;OMBIND&gt;
+                      &lt;OMS cd="fns1" name="lambda"/&gt;
+                      &lt;OMBVAR&gt;
+                        &lt;OMV name="z"/&gt;
+                      &lt;/OMBVAR&gt;
+                      &lt;OMA&gt;
+                        &lt;OMV name="f"/&gt;
+                        &lt;OMV name="z"/&gt;
+                      &lt;/OMA&gt;
+                    &lt;/OMBIND&gt;
                   &lt;/OMA&gt;
-                &lt;/OMBIND&gt;
-              &lt;/OMA&gt;
-              &lt;OMV name="y"/&gt;
+                  &lt;OMV name="y"/&gt;
+                &lt;/OMA&gt;
+              &lt;/OMBIND&gt;
             &lt;/OMA&gt;
-          &lt;/OMBIND&gt;
-        &lt;/OMA&gt;
-        &lt;OMV name="f"/&gt;
-  &lt;/OMA&gt;
-&lt;/OMOBJ&gt;</pre>
+            &lt;OMV name="f"/&gt;
+          &lt;/OMA&gt;
+        &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e1055cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1055cmml')">Content MathML</button>
+                  <button id="d43e800cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e800cmml')">Content MathML</button>
                </div>
-               <pre id="d43e1055cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-  &lt;apply&gt;
-    &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
-        &lt;apply&gt;
-          &lt;csymbol cd="calculus1"&gt;diff&lt;/csymbol&gt;
-          &lt;bind&gt;
-            &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
-            &lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/bvar&gt;
+               <pre id="d43e800cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+          &lt;apply&gt;
+            &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
             &lt;apply&gt;
-              &lt;apply&gt;
-                &lt;csymbol cd="calculus1"&gt;int&lt;/csymbol&gt;
-                &lt;bind&gt;
-                  &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
-                  &lt;bvar&gt;&lt;ci&gt;z&lt;/ci&gt;&lt;/bvar&gt;
+              &lt;csymbol cd="calculus1"&gt;diff&lt;/csymbol&gt;
+              &lt;bind&gt;
+                &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
+                &lt;bvar&gt;&lt;ci&gt;y&lt;/ci&gt;&lt;/bvar&gt;
+                &lt;apply&gt;
                   &lt;apply&gt;
-                    &lt;ci&gt;f&lt;/ci&gt;
-                    &lt;ci&gt;z&lt;/ci&gt;
+                    &lt;csymbol cd="calculus1"&gt;int&lt;/csymbol&gt;
+                    &lt;bind&gt;
+                      &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
+                      &lt;bvar&gt;&lt;ci&gt;z&lt;/ci&gt;&lt;/bvar&gt;
+                      &lt;apply&gt;
+                        &lt;ci&gt;f&lt;/ci&gt;
+                        &lt;ci&gt;z&lt;/ci&gt;
+                      &lt;/apply&gt;
+                    &lt;/bind&gt;
                   &lt;/apply&gt;
-                &lt;/bind&gt;
-              &lt;/apply&gt;
-              &lt;ci&gt;y&lt;/ci&gt;
+                  &lt;ci&gt;y&lt;/ci&gt;
+                &lt;/apply&gt;
+              &lt;/bind&gt;
             &lt;/apply&gt;
-          &lt;/bind&gt;
-        &lt;/apply&gt;
-        &lt;ci&gt;f&lt;/ci&gt;
-  &lt;/apply&gt;
-&lt;/math&gt;</pre>
+            &lt;ci&gt;f&lt;/ci&gt;
+          &lt;/apply&gt;
+        &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e1055prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1055pref')">Prefix form</button>
+                  <button id="d43e800prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e800pref')">Prefix form</button>
                </div>
-               <div id="d43e1055pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e800pref" style="display:none; margin-top: 0.5em">
                   <a href="relation1.xhtml#eq">eq</a>
 (<a href="calculus1.xhtml#diff">diff</a>
 (<a href="fns1.xhtml#lambda">lambda</a>
 [
-               <i>y</i>
-            ] .
+                   <i>y</i>
+                ] .
 (<a href="calculus1.xhtml#int">int</a>
 (<a href="fns1.xhtml#lambda">lambda</a>
 [
-                     <i>z</i>
-                  ] .
+                         <i>z</i>
+                      ] .
 ( <i>f</i>
 ( <i>z</i>)
 )
@@ -1993,12 +1938,12 @@ function, that is:
 )
 ,  <i>f</i>)
 
-</div>
+        </div>
                <div>
-                  <button id="d43e1055mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e1055mml')">Presentation MathML</button>
+                  <button id="d43e800mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e800mml')">Presentation MathML</button>
                </div>
-               <div id="d43e1055mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e800mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -2050,96 +1995,97 @@ function, that is:
                      </mrow>
                   </m:math>
                </div>
+      
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
-An example which represents the equation:
-integral(x +-&gt; sin(x)) w.r.t. x = x +-&gt; -cos(x)
-<div>
-                  <button id="d43e1110xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1110xml')">XML (OpenMath)</button>
+      An example which represents the equation:
+      integral(x +-&gt; sin(x)) w.r.t. x = x +-&gt; -cos(x)
+      <div>
+                  <button id="d43e856xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e856xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e1110xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
-  &lt;OMA&gt;
-    &lt;OMS cd="relation1" name="eq"/&gt;
-    &lt;OMA&gt;
-      &lt;OMS cd="calculus1" name="int"/&gt;
-      &lt;OMBIND&gt;
-        &lt;OMS cd="fns1" name="lambda"/&gt;
-        &lt;OMBVAR&gt;
-          &lt;OMV name="x"/&gt;
-        &lt;/OMBVAR&gt;
+               <pre id="d43e856xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd" version="3.0"&gt;
         &lt;OMA&gt;
-          &lt;OMS cd="transc1" name="sin"/&gt;
-          &lt;OMV name="x"/&gt;
+          &lt;OMS cd="relation1" name="eq"/&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="calculus1" name="int"/&gt;
+            &lt;OMBIND&gt;
+              &lt;OMS cd="fns1" name="lambda"/&gt;
+              &lt;OMBVAR&gt;
+                &lt;OMV name="x"/&gt;
+              &lt;/OMBVAR&gt;
+              &lt;OMA&gt;
+                &lt;OMS cd="transc1" name="sin"/&gt;
+                &lt;OMV name="x"/&gt;
+              &lt;/OMA&gt;
+            &lt;/OMBIND&gt;
+          &lt;/OMA&gt;
+          &lt;OMBIND&gt;
+            &lt;OMS cd="fns1" name="lambda"/&gt;
+            &lt;OMBVAR&gt;
+              &lt;OMV name="x"/&gt;
+            &lt;/OMBVAR&gt;
+            &lt;OMA&gt;
+              &lt;OMS cd="arith1" name="unary_minus"/&gt;
+              &lt;OMA&gt;
+                &lt;OMS cd="transc1" name="cos"/&gt;
+                &lt;OMV name="x"/&gt;
+              &lt;/OMA&gt;
+            &lt;/OMA&gt;
+          &lt;/OMBIND&gt;
         &lt;/OMA&gt;
-      &lt;/OMBIND&gt;
-    &lt;/OMA&gt;
-    &lt;OMBIND&gt;
-      &lt;OMS cd="fns1" name="lambda"/&gt;
-      &lt;OMBVAR&gt;
-        &lt;OMV name="x"/&gt;
-      &lt;/OMBVAR&gt;
-      &lt;OMA&gt;
-        &lt;OMS cd="arith1" name="unary_minus"/&gt;
-        &lt;OMA&gt;
-          &lt;OMS cd="transc1" name="cos"/&gt;
-          &lt;OMV name="x"/&gt;
-        &lt;/OMA&gt;
-      &lt;/OMA&gt;
-    &lt;/OMBIND&gt;
-  &lt;/OMA&gt;
-&lt;/OMOBJ&gt;</pre>
+      &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e1110cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1110cmml')">Content MathML</button>
+                  <button id="d43e856cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e856cmml')">Content MathML</button>
                </div>
-               <pre id="d43e1110cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-  &lt;apply&gt;
-    &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
-    &lt;apply&gt;
-      &lt;csymbol cd="calculus1"&gt;int&lt;/csymbol&gt;
-      &lt;bind&gt;
-        &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
-        &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+               <pre id="d43e856cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
         &lt;apply&gt;
-          &lt;csymbol cd="transc1"&gt;sin&lt;/csymbol&gt;
-          &lt;ci&gt;x&lt;/ci&gt;
+          &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
+          &lt;apply&gt;
+            &lt;csymbol cd="calculus1"&gt;int&lt;/csymbol&gt;
+            &lt;bind&gt;
+              &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
+              &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+              &lt;apply&gt;
+                &lt;csymbol cd="transc1"&gt;sin&lt;/csymbol&gt;
+                &lt;ci&gt;x&lt;/ci&gt;
+              &lt;/apply&gt;
+            &lt;/bind&gt;
+          &lt;/apply&gt;
+          &lt;bind&gt;
+            &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
+            &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+            &lt;apply&gt;
+              &lt;csymbol cd="arith1"&gt;unary_minus&lt;/csymbol&gt;
+              &lt;apply&gt;
+                &lt;csymbol cd="transc1"&gt;cos&lt;/csymbol&gt;
+                &lt;ci&gt;x&lt;/ci&gt;
+              &lt;/apply&gt;
+            &lt;/apply&gt;
+          &lt;/bind&gt;
         &lt;/apply&gt;
-      &lt;/bind&gt;
-    &lt;/apply&gt;
-    &lt;bind&gt;
-      &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
-      &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
-      &lt;apply&gt;
-        &lt;csymbol cd="arith1"&gt;unary_minus&lt;/csymbol&gt;
-        &lt;apply&gt;
-          &lt;csymbol cd="transc1"&gt;cos&lt;/csymbol&gt;
-          &lt;ci&gt;x&lt;/ci&gt;
-        &lt;/apply&gt;
-      &lt;/apply&gt;
-    &lt;/bind&gt;
-  &lt;/apply&gt;
-&lt;/math&gt;</pre>
+      &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e1110prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1110pref')">Prefix form</button>
+                  <button id="d43e856prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e856pref')">Prefix form</button>
                </div>
-               <div id="d43e1110pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e856pref" style="display:none; margin-top: 0.5em">
                   <a href="relation1.xhtml#eq">eq</a>
 (<a href="calculus1.xhtml#int">int</a>
 (<a href="fns1.xhtml#lambda">lambda</a>
 [
-           <i>x</i>
-        ] .
+                 <i>x</i>
+              ] .
 (<a href="transc1.xhtml#sin">sin</a>
 ( <i>x</i>)
 )
 )
 , <a href="fns1.xhtml#lambda">lambda</a>
 [
-         <i>x</i>
-      ] .
+               <i>x</i>
+            ] .
 (<a href="arith1.xhtml#unary_minus">unary_minus</a>
 (<a href="transc1.xhtml#cos">cos</a>
 ( <i>x</i>)
@@ -2147,12 +2093,12 @@ integral(x +-&gt; sin(x)) w.r.t. x = x +-&gt; -cos(x)
 )
 )
 
-</div>
+      </div>
                <div>
-                  <button id="d43e1110mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e1110mml')">Presentation MathML</button>
+                  <button id="d43e856mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e856mml')">Presentation MathML</button>
                </div>
-               <div id="d43e1110mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e856mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -2205,6 +2151,7 @@ integral(x +-&gt; sin(x)) w.r.t. x = x +-&gt; -cos(x)
       [<a href="#top">Top</a>]
  </div>
       <div class="cddefinition">
+         <span class="link-to-this-fragment">[<a href="concat('http://wiki.openmath.org/?title=cd%3A', $title)">browse/edit/discuss this in the wiki</a>]</span>
          <h2>
             <a name="defint">Symbol Definition: defint</a>
          </h2>
@@ -2226,49 +2173,49 @@ integral(x +-&gt; sin(x)) w.r.t. x = x +-&gt; -cos(x)
             <dt class="dt">Example:</dt>
             <dd>
       
-	              <p>This example specifies an interval of the real line as the domain of
-	integration with an <code>interval</code> element.  In this form the integrand is
-	provided as a function and no mention is made of a bound variable.</p>
+               <p>This example specifies an interval of the real line as the domain of
+         integration with an <code>interval</code> element.  In this form the integrand is
+         provided as a function and no mention is made of a bound variable.</p>
       
                <div>
-                  <button id="d43e1199xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1199xml')">XML (MathML)</button>
+                  <button id="d43e945xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e945xml')">XML (MathML)</button>
                </div>
-               <pre id="d43e1199xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-	&lt;apply&gt;
-	  &lt;defint/&gt;
-	  &lt;apply&gt;&lt;interval/&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;ci&gt;b&lt;/ci&gt;&lt;/apply&gt;
-	  &lt;cos/&gt;
-	&lt;/apply&gt;
+               <pre id="d43e945xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+         &lt;apply&gt;
+           &lt;defint/&gt;
+           &lt;apply&gt;&lt;interval/&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;ci&gt;b&lt;/ci&gt;&lt;/apply&gt;
+           &lt;cos/&gt;
+         &lt;/apply&gt;
       &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e1199stricta" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1199strict')">Strict Content MathML</button>
+                  <button id="d43e945stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e945strict')">Strict Content MathML</button>
                </div>
-               <pre id="d43e1199strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-	&lt;apply&gt;
-	  
-	  &lt;apply&gt;&lt;apply&gt;&lt;csymbol cd="interval1"&gt;interval&lt;/csymbol&gt;&lt;/apply&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;ci&gt;b&lt;/ci&gt;&lt;/apply&gt;
-	  &lt;csymbol cd="transc1"&gt;cos&lt;/csymbol&gt;
-	&lt;/apply&gt;
+               <pre id="d43e945strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+         &lt;apply&gt;
+           
+           &lt;apply&gt;&lt;apply&gt;&lt;csymbol cd="interval1"&gt;interval&lt;/csymbol&gt;&lt;/apply&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;ci&gt;b&lt;/ci&gt;&lt;/apply&gt;
+           &lt;csymbol cd="transc1"&gt;cos&lt;/csymbol&gt;
+         &lt;/apply&gt;
       &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e1199cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1199cmml')">OpenMath</button>
+                  <button id="d43e945cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e945cmml')">OpenMath</button>
                </div>
-               <pre id="d43e1199cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
-	&lt;OMA&gt;
-	  &lt;defint xmlns="http://www.w3.org/1998/Math/MathML"/&gt;
-	  &lt;OMA&gt;&lt;OMA&gt;&lt;OMS cd="interval1" name="interval"/&gt;&lt;/OMA&gt;&lt;OMV name="a"/&gt;&lt;OMV name="b"/&gt;&lt;/OMA&gt;
-	  &lt;OMS cd="transc1" name="cos"/&gt;
-	&lt;/OMA&gt;
+               <pre id="d43e945cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+         &lt;OMA&gt;
+           &lt;defint xmlns="http://www.w3.org/1998/Math/MathML"/&gt;
+           &lt;OMA&gt;&lt;OMA&gt;&lt;OMS cd="interval1" name="interval"/&gt;&lt;/OMA&gt;&lt;OMV name="a"/&gt;&lt;OMV name="b"/&gt;&lt;/OMA&gt;
+           &lt;OMS cd="transc1" name="cos"/&gt;
+         &lt;/OMA&gt;
       &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e1199prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1199pref')">Prefix form</button>
+                  <button id="d43e945prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e945pref')">Prefix form</button>
                </div>
-               <div id="d43e1199pref" style="display:none; margin-top: 0.5em">
-	
+               <div id="d43e945pref" style="display:none; margin-top: 0.5em">
+         
 (<a href="interval1.xhtml#interval">interval</a>
 ()
 
@@ -2277,10 +2224,10 @@ integral(x +-&gt; sin(x)) w.r.t. x = x +-&gt; -cos(x)
 
       </div>
                <div>
-                  <button id="d43e1199mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e1199mml')">Presentation MathML</button>
+                  <button id="d43e945mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e945mml')">Presentation MathML</button>
                </div>
-               <div id="d43e1199mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e945mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <defint xmlns="http://www.w3.org/1998/Math/MathML"/>
                   </m:math>
@@ -2288,130 +2235,130 @@ integral(x +-&gt; sin(x)) w.r.t. x = x +-&gt; -cos(x)
             </dd>
             <dt class="dt">Property:</dt>
             <dd>
- for all a,b | integral from a to b = -integral from b to a 
+       for all a,b | integral from a to b = -integral from b to a 
 
-
-<div>
-                  <button id="d43e1224xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1224xml')">XML (OpenMath)</button>
+      
+        <div>
+                  <button id="d43e970xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e970xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e1224xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
-  &lt;OMBIND&gt;
-    &lt;OMS cd="quant1" name="forall"/&gt;
-    &lt;OMBVAR&gt;
-      &lt;OMV name="a"/&gt;
-      &lt;OMV name="b"/&gt;
-    &lt;/OMBVAR&gt;
-    &lt;OMA&gt;
-      &lt;OMS cd="relation1" name="eq"/&gt;
-      &lt;OMA&gt;
-        &lt;OMS cd="calculus1" name="defint"/&gt;
-        &lt;OMA&gt;
-          &lt;OMS cd="interval1" name="interval"/&gt;
-          &lt;OMV name="a"/&gt;
-          &lt;OMV name="b"/&gt;
-        &lt;/OMA&gt;
-        &lt;OMBIND&gt;
-          &lt;OMS cd="fns1" name="lambda"/&gt;
-          &lt;OMBVAR&gt;
-            &lt;OMV name="x"/&gt;
-          &lt;/OMBVAR&gt;
-          &lt;OMA&gt;
-            &lt;OMV name="f"/&gt;
-            &lt;OMV name="x"/&gt;
-          &lt;/OMA&gt;
-        &lt;/OMBIND&gt;
-      &lt;/OMA&gt;
-      &lt;OMA&gt;
-        &lt;OMS cd="arith1" name="unary_minus"/&gt;
-        &lt;OMA&gt;
-          &lt;OMS cd="calculus1" name="defint"/&gt;
-          &lt;OMA&gt;
-            &lt;OMS cd="interval1" name="interval"/&gt;
-            &lt;OMV name="b"/&gt;
-            &lt;OMV name="a"/&gt;
-          &lt;/OMA&gt;
+               <pre id="d43e970xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd" version="3.0"&gt;
           &lt;OMBIND&gt;
-            &lt;OMS cd="fns1" name="lambda"/&gt;
+            &lt;OMS cd="quant1" name="forall"/&gt;
             &lt;OMBVAR&gt;
-              &lt;OMV name="x"/&gt;
+              &lt;OMV name="a"/&gt;
+              &lt;OMV name="b"/&gt;
             &lt;/OMBVAR&gt;
             &lt;OMA&gt;
-              &lt;OMV name="f"/&gt;
-              &lt;OMV name="x"/&gt;
+              &lt;OMS cd="relation1" name="eq"/&gt;
+              &lt;OMA&gt;
+                &lt;OMS cd="calculus1" name="defint"/&gt;
+                &lt;OMA&gt;
+                  &lt;OMS cd="interval1" name="interval"/&gt;
+                  &lt;OMV name="a"/&gt;
+                  &lt;OMV name="b"/&gt;
+                &lt;/OMA&gt;
+                &lt;OMBIND&gt;
+                  &lt;OMS cd="fns1" name="lambda"/&gt;
+                  &lt;OMBVAR&gt;
+                    &lt;OMV name="x"/&gt;
+                  &lt;/OMBVAR&gt;
+                  &lt;OMA&gt;
+                    &lt;OMV name="f"/&gt;
+                    &lt;OMV name="x"/&gt;
+                  &lt;/OMA&gt;
+                &lt;/OMBIND&gt;
+              &lt;/OMA&gt;
+              &lt;OMA&gt;
+                &lt;OMS cd="arith1" name="unary_minus"/&gt;
+                &lt;OMA&gt;
+                  &lt;OMS cd="calculus1" name="defint"/&gt;
+                  &lt;OMA&gt;
+                    &lt;OMS cd="interval1" name="interval"/&gt;
+                    &lt;OMV name="b"/&gt;
+                    &lt;OMV name="a"/&gt;
+                  &lt;/OMA&gt;
+                  &lt;OMBIND&gt;
+                    &lt;OMS cd="fns1" name="lambda"/&gt;
+                    &lt;OMBVAR&gt;
+                      &lt;OMV name="x"/&gt;
+                    &lt;/OMBVAR&gt;
+                    &lt;OMA&gt;
+                      &lt;OMV name="f"/&gt;
+                      &lt;OMV name="x"/&gt;
+                    &lt;/OMA&gt;
+                  &lt;/OMBIND&gt;
+                &lt;/OMA&gt;
+              &lt;/OMA&gt;
             &lt;/OMA&gt;
           &lt;/OMBIND&gt;
-        &lt;/OMA&gt;
-      &lt;/OMA&gt;
-    &lt;/OMA&gt;
-  &lt;/OMBIND&gt;
-&lt;/OMOBJ&gt;</pre>
+        &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e1224cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1224cmml')">Content MathML</button>
+                  <button id="d43e970cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e970cmml')">Content MathML</button>
                </div>
-               <pre id="d43e1224cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-  &lt;bind&gt;
-    &lt;csymbol cd="quant1"&gt;forall&lt;/csymbol&gt;
-    &lt;bvar&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;b&lt;/ci&gt;&lt;/bvar&gt;
-    &lt;apply&gt;
-      &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
-      &lt;apply&gt;
-        &lt;csymbol cd="calculus1"&gt;defint&lt;/csymbol&gt;
-        &lt;apply&gt;
-          &lt;csymbol cd="interval1"&gt;interval&lt;/csymbol&gt;
-          &lt;ci&gt;a&lt;/ci&gt;
-          &lt;ci&gt;b&lt;/ci&gt;
-        &lt;/apply&gt;
-        &lt;bind&gt;
-          &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
-          &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
-          &lt;apply&gt;
-            &lt;ci&gt;f&lt;/ci&gt;
-            &lt;ci&gt;x&lt;/ci&gt;
-          &lt;/apply&gt;
-        &lt;/bind&gt;
-      &lt;/apply&gt;
-      &lt;apply&gt;
-        &lt;csymbol cd="arith1"&gt;unary_minus&lt;/csymbol&gt;
-        &lt;apply&gt;
-          &lt;csymbol cd="calculus1"&gt;defint&lt;/csymbol&gt;
-          &lt;apply&gt;
-            &lt;csymbol cd="interval1"&gt;interval&lt;/csymbol&gt;
-            &lt;ci&gt;b&lt;/ci&gt;
-            &lt;ci&gt;a&lt;/ci&gt;
-          &lt;/apply&gt;
+               <pre id="d43e970cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
           &lt;bind&gt;
-            &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
-            &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+            &lt;csymbol cd="quant1"&gt;forall&lt;/csymbol&gt;
+            &lt;bvar&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;b&lt;/ci&gt;&lt;/bvar&gt;
             &lt;apply&gt;
-              &lt;ci&gt;f&lt;/ci&gt;
-              &lt;ci&gt;x&lt;/ci&gt;
+              &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
+              &lt;apply&gt;
+                &lt;csymbol cd="calculus1"&gt;defint&lt;/csymbol&gt;
+                &lt;apply&gt;
+                  &lt;csymbol cd="interval1"&gt;interval&lt;/csymbol&gt;
+                  &lt;ci&gt;a&lt;/ci&gt;
+                  &lt;ci&gt;b&lt;/ci&gt;
+                &lt;/apply&gt;
+                &lt;bind&gt;
+                  &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
+                  &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+                  &lt;apply&gt;
+                    &lt;ci&gt;f&lt;/ci&gt;
+                    &lt;ci&gt;x&lt;/ci&gt;
+                  &lt;/apply&gt;
+                &lt;/bind&gt;
+              &lt;/apply&gt;
+              &lt;apply&gt;
+                &lt;csymbol cd="arith1"&gt;unary_minus&lt;/csymbol&gt;
+                &lt;apply&gt;
+                  &lt;csymbol cd="calculus1"&gt;defint&lt;/csymbol&gt;
+                  &lt;apply&gt;
+                    &lt;csymbol cd="interval1"&gt;interval&lt;/csymbol&gt;
+                    &lt;ci&gt;b&lt;/ci&gt;
+                    &lt;ci&gt;a&lt;/ci&gt;
+                  &lt;/apply&gt;
+                  &lt;bind&gt;
+                    &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
+                    &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+                    &lt;apply&gt;
+                      &lt;ci&gt;f&lt;/ci&gt;
+                      &lt;ci&gt;x&lt;/ci&gt;
+                    &lt;/apply&gt;
+                  &lt;/bind&gt;
+                &lt;/apply&gt;
+              &lt;/apply&gt;
             &lt;/apply&gt;
           &lt;/bind&gt;
-        &lt;/apply&gt;
-      &lt;/apply&gt;
-    &lt;/apply&gt;
-  &lt;/bind&gt;
-&lt;/math&gt;</pre>
+        &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e1224prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1224pref')">Prefix form</button>
+                  <button id="d43e970prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e970pref')">Prefix form</button>
                </div>
-               <div id="d43e1224pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e970pref" style="display:none; margin-top: 0.5em">
                   <a href="quant1.xhtml#forall">forall</a>
 [
-       <i>a</i>
+               <i>a</i>
                   <i>b</i>
-    ] .
+            ] .
 (<a href="relation1.xhtml#eq">eq</a>
 (<a href="calculus1.xhtml#defint">defint</a>
 (<a href="interval1.xhtml#interval">interval</a>
 ( <i>a</i>,  <i>b</i>)
 , <a href="fns1.xhtml#lambda">lambda</a>
 [
-             <i>x</i>
-          ] .
+                     <i>x</i>
+                  ] .
 ( <i>f</i>
 ( <i>x</i>)
 )
@@ -2422,8 +2369,8 @@ integral(x +-&gt; sin(x)) w.r.t. x = x +-&gt; -cos(x)
 ( <i>b</i>,  <i>a</i>)
 , <a href="fns1.xhtml#lambda">lambda</a>
 [
-               <i>x</i>
-            ] .
+                       <i>x</i>
+                    ] .
 ( <i>f</i>
 ( <i>x</i>)
 )
@@ -2432,12 +2379,12 @@ integral(x +-&gt; sin(x)) w.r.t. x = x +-&gt; -cos(x)
 )
 )
 
-</div>
+        </div>
                <div>
-                  <button id="d43e1224mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e1224mml')">Presentation MathML</button>
+                  <button id="d43e970mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e970mml')">Presentation MathML</button>
                </div>
-               <div id="d43e1224mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e970mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -2502,196 +2449,197 @@ integral(x +-&gt; sin(x)) w.r.t. x = x +-&gt; -cos(x)
                      </mrow>
                   </m:math>
                </div>
+      
             </dd>
             <dt class="dt">Property:</dt>
             <dd>
+      
+	for all a &lt; b &lt; c | integral over [a,c] = integral over [a,b] + integral
+	over [b,c]
+      
 
-for all a &lt; b &lt; c | integral over [a,c] = integral over [a,b] + 
-integral over [b,c]
-
-
-
-<div>
-                  <button id="d43e1319xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1319xml')">XML (OpenMath)</button>
+      
+        <div>
+                  <button id="d43e1066xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1066xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e1319xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
-  &lt;OMBIND&gt;
-    &lt;OMS cd="quant1" name="forall"/&gt;
-    &lt;OMBVAR&gt;
-      &lt;OMV name="a"/&gt;
-      &lt;OMV name="b"/&gt;
-      &lt;OMV name="c"/&gt;
-    &lt;/OMBVAR&gt;
-    &lt;OMA&gt;
-      &lt;OMS cd="logic1" name="implies"/&gt;
-      &lt;OMA&gt;
-        &lt;OMS cd="logic1" name="and"/&gt;
-        &lt;OMA&gt;
-          &lt;OMS cd="relation1" name="lt"/&gt;
-          &lt;OMV name="a"/&gt;
-  	&lt;OMV name="b"/&gt;
-        &lt;/OMA&gt;
-        &lt;OMA&gt;
-          &lt;OMS cd="relation1" name="lt"/&gt;
-	  &lt;OMV name="b"/&gt;
-	  &lt;OMV name="c"/&gt;
-        &lt;/OMA&gt;
-      &lt;/OMA&gt;
-      &lt;OMA&gt;
-        &lt;OMS cd="relation1" name="eq"/&gt;
-	&lt;OMA&gt;
-	  &lt;OMS cd="calculus1" name="defint"/&gt;
-	  &lt;OMA&gt;
-	    &lt;OMS cd="interval1" name="interval"/&gt;
-	    &lt;OMV name="a"/&gt;
-	    &lt;OMV name="c"/&gt;
-	  &lt;/OMA&gt;
-	  &lt;OMBIND&gt;
-	    &lt;OMS cd="fns1" name="lambda"/&gt;
-	    &lt;OMBVAR&gt;
-	      &lt;OMV name="x"/&gt;
-	    &lt;/OMBVAR&gt;
-	    &lt;OMA&gt;
-	      &lt;OMV name="f"/&gt;
-	      &lt;OMV name="x"/&gt;
-	    &lt;/OMA&gt;
-	  &lt;/OMBIND&gt;
-	&lt;/OMA&gt;
-	&lt;OMA&gt;
-	  &lt;OMS cd="arith1" name="plus"/&gt;
-	  &lt;OMA&gt;
-	    &lt;OMS cd="calculus1" name="defint"/&gt;
-	    &lt;OMA&gt;
-	      &lt;OMS cd="interval1" name="interval"/&gt;
-	      &lt;OMV name="a"/&gt;
-	      &lt;OMV name="b"/&gt;
-	    &lt;/OMA&gt;
-	    &lt;OMBIND&gt;
-	      &lt;OMS cd="fns1" name="lambda"/&gt;
-	      &lt;OMBVAR&gt;
-	        &lt;OMV name="x"/&gt;
-	      &lt;/OMBVAR&gt;
-	      &lt;OMA&gt;
-	        &lt;OMV name="f"/&gt;
-	        &lt;OMV name="x"/&gt;
-	      &lt;/OMA&gt;
-	    &lt;/OMBIND&gt;
-	  &lt;/OMA&gt;
-	  &lt;OMA&gt;
-	    &lt;OMS cd="calculus1" name="defint"/&gt;
-	    &lt;OMA&gt;
-	      &lt;OMS cd="interval1" name="interval"/&gt;
-	      &lt;OMV name="b"/&gt;
-	      &lt;OMV name="c"/&gt;
-	    &lt;/OMA&gt;
-	    &lt;OMBIND&gt;
-	      &lt;OMS cd="fns1" name="lambda"/&gt;
-	      &lt;OMBVAR&gt;
-	        &lt;OMV name="x"/&gt;
-	      &lt;/OMBVAR&gt;
-	      &lt;OMA&gt;
-	        &lt;OMV name="f"/&gt;
-	        &lt;OMV name="x"/&gt;
-	      &lt;/OMA&gt;
-	    &lt;/OMBIND&gt;
-	  &lt;/OMA&gt;
-	&lt;/OMA&gt;
-      &lt;/OMA&gt;
-    &lt;/OMA&gt;
-  &lt;/OMBIND&gt;
-&lt;/OMOBJ&gt;</pre>
+               <pre id="d43e1066xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd" version="3.0"&gt;
+          &lt;OMBIND&gt;
+            &lt;OMS cd="quant1" name="forall"/&gt;
+            &lt;OMBVAR&gt;
+              &lt;OMV name="a"/&gt;
+              &lt;OMV name="b"/&gt;
+              &lt;OMV name="c"/&gt;
+            &lt;/OMBVAR&gt;
+            &lt;OMA&gt;
+              &lt;OMS cd="logic1" name="implies"/&gt;
+              &lt;OMA&gt;
+                &lt;OMS cd="logic1" name="and"/&gt;
+                &lt;OMA&gt;
+                  &lt;OMS cd="relation1" name="lt"/&gt;
+                  &lt;OMV name="a"/&gt;
+                   &lt;OMV name="b"/&gt;
+                &lt;/OMA&gt;
+                &lt;OMA&gt;
+                  &lt;OMS cd="relation1" name="lt"/&gt;
+                   &lt;OMV name="b"/&gt;
+                   &lt;OMV name="c"/&gt;
+                &lt;/OMA&gt;
+              &lt;/OMA&gt;
+              &lt;OMA&gt;
+                &lt;OMS cd="relation1" name="eq"/&gt;
+                 &lt;OMA&gt;
+                   &lt;OMS cd="calculus1" name="defint"/&gt;
+                   &lt;OMA&gt;
+                     &lt;OMS cd="interval1" name="interval"/&gt;
+                     &lt;OMV name="a"/&gt;
+                     &lt;OMV name="c"/&gt;
+                   &lt;/OMA&gt;
+                   &lt;OMBIND&gt;
+                     &lt;OMS cd="fns1" name="lambda"/&gt;
+                     &lt;OMBVAR&gt;
+                       &lt;OMV name="x"/&gt;
+                     &lt;/OMBVAR&gt;
+                     &lt;OMA&gt;
+                       &lt;OMV name="f"/&gt;
+                       &lt;OMV name="x"/&gt;
+                     &lt;/OMA&gt;
+                   &lt;/OMBIND&gt;
+                 &lt;/OMA&gt;
+                 &lt;OMA&gt;
+                   &lt;OMS cd="arith1" name="plus"/&gt;
+                   &lt;OMA&gt;
+                     &lt;OMS cd="calculus1" name="defint"/&gt;
+                     &lt;OMA&gt;
+                       &lt;OMS cd="interval1" name="interval"/&gt;
+                       &lt;OMV name="a"/&gt;
+                       &lt;OMV name="b"/&gt;
+                     &lt;/OMA&gt;
+                     &lt;OMBIND&gt;
+                       &lt;OMS cd="fns1" name="lambda"/&gt;
+                       &lt;OMBVAR&gt;
+                         &lt;OMV name="x"/&gt;
+                       &lt;/OMBVAR&gt;
+                       &lt;OMA&gt;
+                         &lt;OMV name="f"/&gt;
+                         &lt;OMV name="x"/&gt;
+                       &lt;/OMA&gt;
+                     &lt;/OMBIND&gt;
+                   &lt;/OMA&gt;
+                   &lt;OMA&gt;
+                     &lt;OMS cd="calculus1" name="defint"/&gt;
+                     &lt;OMA&gt;
+                       &lt;OMS cd="interval1" name="interval"/&gt;
+                       &lt;OMV name="b"/&gt;
+                       &lt;OMV name="c"/&gt;
+                     &lt;/OMA&gt;
+                     &lt;OMBIND&gt;
+                       &lt;OMS cd="fns1" name="lambda"/&gt;
+                       &lt;OMBVAR&gt;
+                         &lt;OMV name="x"/&gt;
+                       &lt;/OMBVAR&gt;
+                       &lt;OMA&gt;
+                         &lt;OMV name="f"/&gt;
+                         &lt;OMV name="x"/&gt;
+                       &lt;/OMA&gt;
+                     &lt;/OMBIND&gt;
+                   &lt;/OMA&gt;
+                 &lt;/OMA&gt;
+              &lt;/OMA&gt;
+            &lt;/OMA&gt;
+          &lt;/OMBIND&gt;
+        &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e1319cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1319cmml')">Content MathML</button>
+                  <button id="d43e1066cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1066cmml')">Content MathML</button>
                </div>
-               <pre id="d43e1319cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-  &lt;bind&gt;
-    &lt;csymbol cd="quant1"&gt;forall&lt;/csymbol&gt;
-    &lt;bvar&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;b&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;c&lt;/ci&gt;&lt;/bvar&gt;
-    &lt;apply&gt;
-      &lt;csymbol cd="logic1"&gt;implies&lt;/csymbol&gt;
-      &lt;apply&gt;
-        &lt;csymbol cd="logic1"&gt;and&lt;/csymbol&gt;
-        &lt;apply&gt;
-          &lt;csymbol cd="relation1"&gt;lt&lt;/csymbol&gt;
-          &lt;ci&gt;a&lt;/ci&gt;
-  	&lt;ci&gt;b&lt;/ci&gt;
-        &lt;/apply&gt;
-        &lt;apply&gt;
-          &lt;csymbol cd="relation1"&gt;lt&lt;/csymbol&gt;
-	  &lt;ci&gt;b&lt;/ci&gt;
-	  &lt;ci&gt;c&lt;/ci&gt;
-        &lt;/apply&gt;
-      &lt;/apply&gt;
-      &lt;apply&gt;
-        &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
-	&lt;apply&gt;
-	  &lt;csymbol cd="calculus1"&gt;defint&lt;/csymbol&gt;
-	  &lt;apply&gt;
-	    &lt;csymbol cd="interval1"&gt;interval&lt;/csymbol&gt;
-	    &lt;ci&gt;a&lt;/ci&gt;
-	    &lt;ci&gt;c&lt;/ci&gt;
-	  &lt;/apply&gt;
-	  &lt;bind&gt;
-	    &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
-	    &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
-	    &lt;apply&gt;
-	      &lt;ci&gt;f&lt;/ci&gt;
-	      &lt;ci&gt;x&lt;/ci&gt;
-	    &lt;/apply&gt;
-	  &lt;/bind&gt;
-	&lt;/apply&gt;
-	&lt;apply&gt;
-	  &lt;csymbol cd="arith1"&gt;plus&lt;/csymbol&gt;
-	  &lt;apply&gt;
-	    &lt;csymbol cd="calculus1"&gt;defint&lt;/csymbol&gt;
-	    &lt;apply&gt;
-	      &lt;csymbol cd="interval1"&gt;interval&lt;/csymbol&gt;
-	      &lt;ci&gt;a&lt;/ci&gt;
-	      &lt;ci&gt;b&lt;/ci&gt;
-	    &lt;/apply&gt;
-	    &lt;bind&gt;
-	      &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
-	      &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
-	      &lt;apply&gt;
-	        &lt;ci&gt;f&lt;/ci&gt;
-	        &lt;ci&gt;x&lt;/ci&gt;
-	      &lt;/apply&gt;
-	    &lt;/bind&gt;
-	  &lt;/apply&gt;
-	  &lt;apply&gt;
-	    &lt;csymbol cd="calculus1"&gt;defint&lt;/csymbol&gt;
-	    &lt;apply&gt;
-	      &lt;csymbol cd="interval1"&gt;interval&lt;/csymbol&gt;
-	      &lt;ci&gt;b&lt;/ci&gt;
-	      &lt;ci&gt;c&lt;/ci&gt;
-	    &lt;/apply&gt;
-	    &lt;bind&gt;
-	      &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
-	      &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
-	      &lt;apply&gt;
-	        &lt;ci&gt;f&lt;/ci&gt;
-	        &lt;ci&gt;x&lt;/ci&gt;
-	      &lt;/apply&gt;
-	    &lt;/bind&gt;
-	  &lt;/apply&gt;
-	&lt;/apply&gt;
-      &lt;/apply&gt;
-    &lt;/apply&gt;
-  &lt;/bind&gt;
-&lt;/math&gt;</pre>
+               <pre id="d43e1066cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+          &lt;bind&gt;
+            &lt;csymbol cd="quant1"&gt;forall&lt;/csymbol&gt;
+            &lt;bvar&gt;&lt;ci&gt;a&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;b&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;c&lt;/ci&gt;&lt;/bvar&gt;
+            &lt;apply&gt;
+              &lt;csymbol cd="logic1"&gt;implies&lt;/csymbol&gt;
+              &lt;apply&gt;
+                &lt;csymbol cd="logic1"&gt;and&lt;/csymbol&gt;
+                &lt;apply&gt;
+                  &lt;csymbol cd="relation1"&gt;lt&lt;/csymbol&gt;
+                  &lt;ci&gt;a&lt;/ci&gt;
+                   &lt;ci&gt;b&lt;/ci&gt;
+                &lt;/apply&gt;
+                &lt;apply&gt;
+                  &lt;csymbol cd="relation1"&gt;lt&lt;/csymbol&gt;
+                   &lt;ci&gt;b&lt;/ci&gt;
+                   &lt;ci&gt;c&lt;/ci&gt;
+                &lt;/apply&gt;
+              &lt;/apply&gt;
+              &lt;apply&gt;
+                &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
+                 &lt;apply&gt;
+                   &lt;csymbol cd="calculus1"&gt;defint&lt;/csymbol&gt;
+                   &lt;apply&gt;
+                     &lt;csymbol cd="interval1"&gt;interval&lt;/csymbol&gt;
+                     &lt;ci&gt;a&lt;/ci&gt;
+                     &lt;ci&gt;c&lt;/ci&gt;
+                   &lt;/apply&gt;
+                   &lt;bind&gt;
+                     &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
+                     &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+                     &lt;apply&gt;
+                       &lt;ci&gt;f&lt;/ci&gt;
+                       &lt;ci&gt;x&lt;/ci&gt;
+                     &lt;/apply&gt;
+                   &lt;/bind&gt;
+                 &lt;/apply&gt;
+                 &lt;apply&gt;
+                   &lt;csymbol cd="arith1"&gt;plus&lt;/csymbol&gt;
+                   &lt;apply&gt;
+                     &lt;csymbol cd="calculus1"&gt;defint&lt;/csymbol&gt;
+                     &lt;apply&gt;
+                       &lt;csymbol cd="interval1"&gt;interval&lt;/csymbol&gt;
+                       &lt;ci&gt;a&lt;/ci&gt;
+                       &lt;ci&gt;b&lt;/ci&gt;
+                     &lt;/apply&gt;
+                     &lt;bind&gt;
+                       &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
+                       &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+                       &lt;apply&gt;
+                         &lt;ci&gt;f&lt;/ci&gt;
+                         &lt;ci&gt;x&lt;/ci&gt;
+                       &lt;/apply&gt;
+                     &lt;/bind&gt;
+                   &lt;/apply&gt;
+                   &lt;apply&gt;
+                     &lt;csymbol cd="calculus1"&gt;defint&lt;/csymbol&gt;
+                     &lt;apply&gt;
+                       &lt;csymbol cd="interval1"&gt;interval&lt;/csymbol&gt;
+                       &lt;ci&gt;b&lt;/ci&gt;
+                       &lt;ci&gt;c&lt;/ci&gt;
+                     &lt;/apply&gt;
+                     &lt;bind&gt;
+                       &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
+                       &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+                       &lt;apply&gt;
+                         &lt;ci&gt;f&lt;/ci&gt;
+                         &lt;ci&gt;x&lt;/ci&gt;
+                       &lt;/apply&gt;
+                     &lt;/bind&gt;
+                   &lt;/apply&gt;
+                 &lt;/apply&gt;
+              &lt;/apply&gt;
+            &lt;/apply&gt;
+          &lt;/bind&gt;
+        &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e1319prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1319pref')">Prefix form</button>
+                  <button id="d43e1066prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1066pref')">Prefix form</button>
                </div>
-               <div id="d43e1319pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e1066pref" style="display:none; margin-top: 0.5em">
                   <a href="quant1.xhtml#forall">forall</a>
 [
-       <i>a</i>
+               <i>a</i>
                   <i>b</i>
                   <i>c</i>
-    ] .
+            ] .
 (<a href="logic1.xhtml#implies">implies</a>
 (<a href="logic1.xhtml#and">and</a>
 (<a href="relation1.xhtml#lt">lt</a>
@@ -2705,8 +2653,8 @@ integral over [b,c]
 ( <i>a</i>,  <i>c</i>)
 , <a href="fns1.xhtml#lambda">lambda</a>
 [
-	       <i>x</i>
-	    ] .
+                        <i>x</i>
+                     ] .
 ( <i>f</i>
 ( <i>x</i>)
 )
@@ -2717,8 +2665,8 @@ integral over [b,c]
 ( <i>a</i>,  <i>b</i>)
 , <a href="fns1.xhtml#lambda">lambda</a>
 [
-	         <i>x</i>
-	      ] .
+                          <i>x</i>
+                       ] .
 ( <i>f</i>
 ( <i>x</i>)
 )
@@ -2728,8 +2676,8 @@ integral over [b,c]
 ( <i>b</i>,  <i>c</i>)
 , <a href="fns1.xhtml#lambda">lambda</a>
 [
-	         <i>x</i>
-	      ] .
+                          <i>x</i>
+                       ] .
 ( <i>f</i>
 ( <i>x</i>)
 )
@@ -2739,12 +2687,12 @@ integral over [b,c]
 )
 )
 
-</div>
+        </div>
                <div>
-                  <button id="d43e1319mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e1319mml')">Presentation MathML</button>
+                  <button id="d43e1066mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e1066mml')">Presentation MathML</button>
                </div>
-               <div id="d43e1319mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e1066mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -2759,6 +2707,7 @@ integral over [b,c]
                         </mrow>
                         <mo>.</mo>
                         <mrow>
+                           <mo>(</mo>
                            <mrow>
                               <mrow>
                                  <mi>a</mi>
@@ -2845,84 +2794,86 @@ integral over [b,c]
                                  </mrow>
                               </mrow>
                            </mrow>
+                           <mo>)</mo>
                         </mrow>
                      </mrow>
                   </m:math>
                </div>
+      
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
-An example to represent the definite integration of sin(x) between the points 
--1.0 and 1.0.
-<div>
-                  <button id="d43e1470xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1470xml')">XML (OpenMath)</button>
+      An example to represent the definite integration of sin(x) between the points -1.0
+      and 1.0.
+      <div>
+                  <button id="d43e1218xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1218xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e1470xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
-  &lt;OMA&gt;
-    &lt;OMS cd="calculus1" name="defint"/&gt;
-    &lt;OMA&gt;
-      &lt;OMS cd="interval1" name="interval"/&gt;
-      &lt;OMF dec="-1.0"/&gt;
-      &lt;OMF dec="1.0"/&gt;
-    &lt;/OMA&gt;
-    &lt;OMBIND&gt;
-      &lt;OMS cd="fns1" name="lambda"/&gt;
-      &lt;OMBVAR&gt;
-        &lt;OMV name="x"/&gt;
-      &lt;/OMBVAR&gt;
-      &lt;OMA&gt;
-         &lt;OMS cd="transc1" name="sin"/&gt;
-	&lt;OMV name="x"/&gt;
-      &lt;/OMA&gt;
-    &lt;/OMBIND&gt;
-  &lt;/OMA&gt;
-&lt;/OMOBJ&gt;</pre>
+               <pre id="d43e1218xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd" version="3.0"&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="calculus1" name="defint"/&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="interval1" name="interval"/&gt;
+            &lt;OMF dec="-1.0"/&gt;
+            &lt;OMF dec="1.0"/&gt;
+          &lt;/OMA&gt;
+          &lt;OMBIND&gt;
+            &lt;OMS cd="fns1" name="lambda"/&gt;
+            &lt;OMBVAR&gt;
+              &lt;OMV name="x"/&gt;
+            &lt;/OMBVAR&gt;
+            &lt;OMA&gt;
+              &lt;OMS cd="transc1" name="sin"/&gt;
+               &lt;OMV name="x"/&gt;
+            &lt;/OMA&gt;
+          &lt;/OMBIND&gt;
+        &lt;/OMA&gt;
+      &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e1470cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1470cmml')">Content MathML</button>
+                  <button id="d43e1218cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1218cmml')">Content MathML</button>
                </div>
-               <pre id="d43e1470cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-  &lt;apply&gt;
-    &lt;csymbol cd="calculus1"&gt;defint&lt;/csymbol&gt;
-    &lt;apply&gt;
-      &lt;csymbol cd="interval1"&gt;interval&lt;/csymbol&gt;
-      &lt;cn type="real"&gt;-1.0&lt;/cn&gt;
-      &lt;cn type="real"&gt;1.0&lt;/cn&gt;
-    &lt;/apply&gt;
-    &lt;bind&gt;
-      &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
-      &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
-      &lt;apply&gt;
-         &lt;csymbol cd="transc1"&gt;sin&lt;/csymbol&gt;
-	&lt;ci&gt;x&lt;/ci&gt;
-      &lt;/apply&gt;
-    &lt;/bind&gt;
-  &lt;/apply&gt;
-&lt;/math&gt;</pre>
+               <pre id="d43e1218cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+        &lt;apply&gt;
+          &lt;csymbol cd="calculus1"&gt;defint&lt;/csymbol&gt;
+          &lt;apply&gt;
+            &lt;csymbol cd="interval1"&gt;interval&lt;/csymbol&gt;
+            &lt;cn type="real"&gt;-1.0&lt;/cn&gt;
+            &lt;cn type="real"&gt;1.0&lt;/cn&gt;
+          &lt;/apply&gt;
+          &lt;bind&gt;
+            &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
+            &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+            &lt;apply&gt;
+              &lt;csymbol cd="transc1"&gt;sin&lt;/csymbol&gt;
+               &lt;ci&gt;x&lt;/ci&gt;
+            &lt;/apply&gt;
+          &lt;/bind&gt;
+        &lt;/apply&gt;
+      &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e1470prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1470pref')">Prefix form</button>
+                  <button id="d43e1218prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1218pref')">Prefix form</button>
                </div>
-               <div id="d43e1470pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e1218pref" style="display:none; margin-top: 0.5em">
                   <a href="calculus1.xhtml#defint">defint</a>
 (<a href="interval1.xhtml#interval">interval</a>
 ( -1.0 ,  1.0 )
 , <a href="fns1.xhtml#lambda">lambda</a>
 [
-         <i>x</i>
-      ] .
+               <i>x</i>
+            ] .
 (<a href="transc1.xhtml#sin">sin</a>
 ( <i>x</i>)
 )
 )
 
-</div>
+      </div>
                <div>
-                  <button id="d43e1470mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e1470mml')">Presentation MathML</button>
+                  <button id="d43e1218mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e1218mml')">Presentation MathML</button>
                </div>
-               <div id="d43e1470mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e1218mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <munderover xmlns="http://www.w3.org/1998/Math/MathML"
                                  xmlns:om="http://www.openmath.org/OpenMath">
@@ -2950,67 +2901,66 @@ An example to represent the definite integration of sin(x) between the points
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
-An example to represent the definite integration of f(x), for x in the
-set C:
-<div>
-                  <button id="d43e1507xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1507xml')">XML (OpenMath)</button>
+      An example to represent the definite integration of f(x), for x in the set C:
+      <div>
+                  <button id="d43e1255xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1255xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e1507xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
-  &lt;OMA&gt;
-    &lt;OMS name="defint" cd="calculus1"/&gt;
-    &lt;OMV name="C"/&gt;
-    &lt;OMBIND&gt;
-      &lt;OMS name="lambda" cd="fns1"/&gt;
-      &lt;OMBVAR&gt;
-        &lt;OMV name="x"/&gt;
-      &lt;/OMBVAR&gt;
-      &lt;OMA&gt;
-        &lt;OMV name="f"/&gt;
-        &lt;OMV name="x"/&gt;
-      &lt;/OMA&gt;
-    &lt;/OMBIND&gt;
-  &lt;/OMA&gt;
-&lt;/OMOBJ&gt;</pre>
+               <pre id="d43e1255xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd" version="3.0"&gt;
+        &lt;OMA&gt;
+          &lt;OMS cd="calculus1" name="defint"/&gt;
+          &lt;OMV name="C"/&gt;
+          &lt;OMBIND&gt;
+            &lt;OMS cd="fns1" name="lambda"/&gt;
+            &lt;OMBVAR&gt;
+              &lt;OMV name="x"/&gt;
+            &lt;/OMBVAR&gt;
+            &lt;OMA&gt;
+              &lt;OMV name="f"/&gt;
+              &lt;OMV name="x"/&gt;
+            &lt;/OMA&gt;
+          &lt;/OMBIND&gt;
+        &lt;/OMA&gt;
+      &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e1507cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1507cmml')">Content MathML</button>
+                  <button id="d43e1255cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1255cmml')">Content MathML</button>
                </div>
-               <pre id="d43e1507cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-  &lt;apply&gt;
-    &lt;csymbol cd="calculus1"&gt;defint&lt;/csymbol&gt;
-    &lt;ci&gt;C&lt;/ci&gt;
-    &lt;bind&gt;
-      &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
-      &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
-      &lt;apply&gt;
-        &lt;ci&gt;f&lt;/ci&gt;
-        &lt;ci&gt;x&lt;/ci&gt;
-      &lt;/apply&gt;
-    &lt;/bind&gt;
-  &lt;/apply&gt;
-&lt;/math&gt;</pre>
+               <pre id="d43e1255cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+        &lt;apply&gt;
+          &lt;csymbol cd="calculus1"&gt;defint&lt;/csymbol&gt;
+          &lt;ci&gt;C&lt;/ci&gt;
+          &lt;bind&gt;
+            &lt;csymbol cd="fns1"&gt;lambda&lt;/csymbol&gt;
+            &lt;bvar&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/bvar&gt;
+            &lt;apply&gt;
+              &lt;ci&gt;f&lt;/ci&gt;
+              &lt;ci&gt;x&lt;/ci&gt;
+            &lt;/apply&gt;
+          &lt;/bind&gt;
+        &lt;/apply&gt;
+      &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e1507prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e1507pref')">Prefix form</button>
+                  <button id="d43e1255prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e1255pref')">Prefix form</button>
                </div>
-               <div id="d43e1507pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e1255pref" style="display:none; margin-top: 0.5em">
                   <a href="calculus1.xhtml#defint">defint</a>
 ( <i>C</i>, <a href="fns1.xhtml#lambda">lambda</a>
 [
-         <i>x</i>
-      ] .
+               <i>x</i>
+            ] .
 ( <i>f</i>
 ( <i>x</i>)
 )
 )
 
-</div>
+      </div>
                <div>
-                  <button id="d43e1507mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e1507mml')">Presentation MathML</button>
+                  <button id="d43e1255mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e1255mml')">Presentation MathML</button>
                </div>
-               <div id="d43e1507mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e1255mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <msub xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
