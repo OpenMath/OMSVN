@@ -306,7 +306,7 @@
   <xsl:param name="title" required="yes"/>
   <span class="link-to-this-fragment">
     <xsl:text>[</xsl:text>
-    <a href="concat('http://wiki.openmath.org/?title=cd%3A', $title)">
+    <a href="{concat('http://wiki.openmath.org/?title=cd%3A', $title)}">
       <xsl:text>browse/edit/discuss this in the wiki</xsl:text>
     </a>
     <xsl:text>]</xsl:text>
