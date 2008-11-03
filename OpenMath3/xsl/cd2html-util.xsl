@@ -36,7 +36,7 @@
 
 <xsl:template match="cd:CDDate">
         <xsl:call-template name="field">
-            <xsl:with-param name="key" select="'Date'"/>
+	    <xsl:with-param name="key">Date</xsl:with-param>
         </xsl:call-template>
 </xsl:template>
     
@@ -118,49 +118,6 @@
     <xsl:apply-templates/>
 </xsl:template>
 <!-- end TODO remove -->
-
-<xsl:template match="cd:CDDefinition">
-  <div class="cddefinition">
-  <xsl:apply-templates select="cd:Name"/>
-  <dl>
-    <xsl:apply-templates select="* except cd:Name"/>
-    <xsl:call-template name="field">
-        <xsl:with-param name="key">Signatures</xsl:with-param>
-        <xsl:with-param name="value">
-      <xsl:element name="a">
-    <xsl:attribute name="href">../sts/<xsl:value-of 
-    select="normalize-space(/cd:CD/cd:CDName)"/>.xhtml#<xsl:value-of
-    select="normalize-space(cd:Name)"/></xsl:attribute>
-    sts
-      </xsl:element>
-        </xsl:with-param>
-    </xsl:call-template>
-  </dl>
-  </div>
-
- <div>
-	<xsl:variable name="n" select="normalize-space(following-sibling::cd:CDDefinition[1]/cd:Name)"/>
-	<xsl:choose>
-	  <xsl:when test="''=$n">
-	    <xsl:variable name="n2" select="normalize-space(../cd:CDDefinition[1]/cd:Name)"/>
-	    [First: <a href="#{$n2}"><xsl:value-of select="$n2"/></a>]
-	  </xsl:when>
-	  <xsl:otherwise>[Next: <a href="#{$n}"><xsl:value-of select="$n"/></a>]</xsl:otherwise>
-	</xsl:choose>
-	   [This: <a href="#{normalize-space(cd:Name)}"><xsl:value-of select="normalize-space(cd:Name)"/></a>]
-	<xsl:variable name="p" select="normalize-space(preceding-sibling::cd:CDDefinition[1]/cd:Name)"/>
-	<xsl:choose>
-	  <xsl:when test="''=$p">
-	    <xsl:variable name="p2" select="normalize-space(../cd:CDDefinition[last()]/cd:Name)"/>
-	    [Last: <a href="#{$p2}"><xsl:value-of select="$p2"/></a>]
-	  </xsl:when>
-	  <xsl:otherwise>[Previous: <a href="#{$p}"><xsl:value-of select="$p"/></a>]</xsl:otherwise>
-	</xsl:choose>
-      [<a href="#top">Top</a>]
- </div>
-
-</xsl:template>
-
 
 <xsl:template match="cd:CDDefinition/cd:Name">
   <h2><a name="{normalize-space(.)}">Symbol Definition: <xsl:apply-templates/></a></h2>

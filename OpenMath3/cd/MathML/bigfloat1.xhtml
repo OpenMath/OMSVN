@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../../xsl/pmathml.xsl"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <script type="text/javascript" src="divfold.js"/>
+      <title>bigfloat1</title>
+      <link rel="stylesheet" href="omcd.css" type="text/css"/>
+   </head>
+   <body>
+      <a name="top"/>
+      <span class="link-to-this-fragment">[<a href="concat('http://wiki.openmath.org/?title=cd%3A', $title)">browse/edit/discuss this in the wiki</a>]</span>
+      <h1>OpenMath Content Dictionary: bigfloat1</h1>
+      <dl>
+         <dt class="dt">Canonical URL:</dt>
+         <dd>
+            <a href="http://www.openmath.org/cd/bigfloat1.ocd">http://www.openmath.org/cd/bigfloat1.ocd</a>
+         </dd>
+         <dt class="dt">CD Base:</dt>
+         <dd>
+            <a href="http://www.openmath.org/cd">http://www.openmath.org/cd</a>
+         </dd>
+         <dt class="dt">CD File:</dt>
+         <dd>
+            <a href="bigfloat1.ocd">bigfloat1.ocd</a>
+         </dd>
+         <dt class="dt">CD as XML Encoded OpenMath:</dt>
+         <dd>
+            <a href="bigfloat1.omcd">bigfloat1.omcd</a>
+         </dd>
+         <dt class="dt">Defines:</dt>
+         <dd>
+            <a href="#bigfloat">bigfloat</a>, <a href="#bigfloatprec">bigfloatprec</a>
+         </dd>
+         <dt class="dt">Date:</dt>
+         <dd>2008-10-28</dd>
+         <dt class="dt">Version:</dt>
+         <dd>3</dd>
+         <dt class="dt">Review Date:</dt>
+         <dd>2006-03-30</dd>
+         <dt class="dt">Status:</dt>
+         <dd>official</dd>
+      </dl>
+      <hr/>
+      <pre>     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+</pre>
+      <p>This CD provides a common representation of "bigfloats" in a mantissa/ radix/exponent format. There is a further version, which provides an opportunity to state a precision (only required in a different radix). No operations are defined here -- see arith and alg.</p>
+      <pre>Written by James Davenport on 1999-07-13.
+bigfloatprec added 1999-07-21.
+</pre>
+      <div class="cddefinition">
+         <span class="link-to-this-fragment">[<a href="concat('http://wiki.openmath.org/?title=cd%3A', $title)">browse/edit/discuss this in the wiki</a>]</span>
+         <h2>
+            <a name="bigfloat">Symbol Definition: bigfloat</a>
+         </h2>
+         <dl>
+            <dt class="dt">Role:</dt>
+            <dd>application</dd>
+            <dt class="dt">Description:</dt>
+            <dd>
+               <p>The bigfloat constructor takes three arguments, a mantissa, a base and the exponent.</p>
+            </dd>
+            <dt class="dt">Property:</dt>
+            <dd>
+       bigfloat(m,r,e)=m*r^e 
+      
+        <div>
+                  <button id="d43e56xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e56xml')">XML (OpenMath)</button>
+               </div>
+               <pre id="d43e56xml" style="display:none">&lt;OMOBJ xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core" xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="relation1" name="eq"/&gt;
+            &lt;OMA&gt;
+              &lt;OMS cd="bigfloat1" name="bigfloat"/&gt;
+              &lt;OMV name="m"/&gt;
+              &lt;OMV name="r"/&gt;
+              &lt;OMV name="e"/&gt;
+            &lt;/OMA&gt;
+            &lt;OMA&gt;
+              &lt;OMS cd="arith1" name="times"/&gt;
+              &lt;OMV name="m"/&gt;
+              &lt;OMA&gt;
+                &lt;OMS cd="arith1" name="power"/&gt;
+                &lt;OMV name="r"/&gt;
+                &lt;OMV name="e"/&gt;
+              &lt;/OMA&gt;
+            &lt;/OMA&gt;
+          &lt;/OMA&gt;
+        &lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d43e56cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e56cmml')">Content MathML</button>
+               </div>
+               <pre id="d43e56cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+          &lt;apply&gt;
+            &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
+            &lt;apply&gt;
+              &lt;csymbol cd="bigfloat1"&gt;bigfloat&lt;/csymbol&gt;
+              &lt;ci&gt;m&lt;/ci&gt;
+              &lt;ci&gt;r&lt;/ci&gt;
+              &lt;ci&gt;e&lt;/ci&gt;
+            &lt;/apply&gt;
+            &lt;apply&gt;
+              &lt;csymbol cd="arith1"&gt;times&lt;/csymbol&gt;
+              &lt;ci&gt;m&lt;/ci&gt;
+              &lt;apply&gt;
+                &lt;csymbol cd="arith1"&gt;power&lt;/csymbol&gt;
+                &lt;ci&gt;r&lt;/ci&gt;
+                &lt;ci&gt;e&lt;/ci&gt;
+              &lt;/apply&gt;
+            &lt;/apply&gt;
+          &lt;/apply&gt;
+        &lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e56prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e56pref')">Prefix form</button>
+               </div>
+               <div id="d43e56pref" style="display:none; margin-top: 0.5em">
+                  <a href="relation1.xhtml#eq">eq</a>
+(<a href="bigfloat1.xhtml#bigfloat">bigfloat</a>
+( <i>m</i>,  <i>r</i>,  <i>e</i>)
+, <a href="arith1.xhtml#times">times</a>
+( <i>m</i>, <a href="arith1.xhtml#power">power</a>
+( <i>r</i>,  <i>e</i>)
+)
+)
+
+        </div>
+               <div>
+                  <button id="d43e56mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e56mml')">Presentation MathML</button>
+               </div>
+               <div id="d43e56mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mrow>
+                           <mi>m</mi>
+                           <mo>×</mo>
+                           <msup>
+                              <mi>r</mi>
+                              <mi>e</mi>
+                           </msup>
+                        </mrow>
+                        <mo>=</mo>
+                        <mrow>
+                           <mi>m</mi>
+                           <mo>⁢</mo>
+                           <msup>
+                              <mi>r</mi>
+                              <mi>e</mi>
+                           </msup>
+                        </mrow>
+                     </mrow>
+                  </m:math>
+               </div>
+      
+            </dd>
+            <dt class="dt">Signatures:</dt>
+            <dd>
+               <a href="../sts/bigfloat1.xhtml#bigfloat">
+    sts
+      </a>
+            </dd>
+         </dl>
+      </div>
+      <div>[Next: <a href="#bigfloatprec">bigfloatprec</a>]
+	   [This: <a href="#bigfloat">bigfloat</a>]
+	
+	    [Last: <a href="#bigfloatprec">bigfloatprec</a>]
+	  
+      [<a href="#top">Top</a>]
+ </div>
+      <div class="cddefinition">
+         <span class="link-to-this-fragment">[<a href="concat('http://wiki.openmath.org/?title=cd%3A', $title)">browse/edit/discuss this in the wiki</a>]</span>
+         <h2>
+            <a name="bigfloatprec">Symbol Definition: bigfloatprec</a>
+         </h2>
+         <dl>
+            <dt class="dt">Role:</dt>
+            <dd>application</dd>
+            <dt class="dt">Description:</dt>
+            <dd>
+               <p>The bigfloat "with precision specified in (another) radix" constructor. Takes 3 arguments, the first argument is a floating point number constructed with the bigfloat constructor, the second is the new radix, whilst the third specifies how many digits are significant.</p>
+            </dd>
+            <dt class="dt">Property:</dt>
+            <dd>
+       bigfloatprec(f,r,p)=f However, if converted to radix r, only p digits in that
+    radix are significant.  This usually means that it originated in radix r, and has
+    since (e.g. for display purposes) been converted into its current radix. For
+    exposition, f = m*r^e.
+    
+      
+        <div>
+                  <button id="d43e112xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e112xml')">XML (OpenMath)</button>
+               </div>
+               <pre id="d43e112xml" style="display:none">&lt;OMOBJ xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core" xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+          &lt;OMA&gt;
+            &lt;OMS cd="relation1" name="eq"/&gt;
+            &lt;OMA&gt;
+              &lt;OMS cd="bigfloat1" name="bigfloatprec"/&gt;
+              &lt;OMA&gt;
+                &lt;OMS cd="bigfloat1" name="bigfloat"/&gt;
+                &lt;OMV name="m"/&gt;
+                &lt;OMV name="r"/&gt;
+                &lt;OMV name="e"/&gt;
+              &lt;/OMA&gt;
+              &lt;OMV name="r"/&gt;
+              &lt;OMA&gt;
+                &lt;OMS cd="rounding1" name="ceiling"/&gt;
+                &lt;OMA&gt;
+                  &lt;OMS cd="transc1" name="log"/&gt;
+                  &lt;OMV name="r"/&gt;
+                  &lt;OMV name="m"/&gt;
+                &lt;/OMA&gt;
+              &lt;/OMA&gt;
+            &lt;/OMA&gt;
+            &lt;OMA&gt;
+              &lt;OMS cd="bigfloat1" name="bigfloat"/&gt;
+              &lt;OMV name="m"/&gt;
+              &lt;OMV name="r"/&gt;
+              &lt;OMV name="e"/&gt;
+            &lt;/OMA&gt;
+          &lt;/OMA&gt;
+        &lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d43e112cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e112cmml')">Content MathML</button>
+               </div>
+               <pre id="d43e112cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+          &lt;apply&gt;
+            &lt;csymbol cd="relation1"&gt;eq&lt;/csymbol&gt;
+            &lt;apply&gt;
+              &lt;csymbol cd="bigfloat1"&gt;bigfloatprec&lt;/csymbol&gt;
+              &lt;apply&gt;
+                &lt;csymbol cd="bigfloat1"&gt;bigfloat&lt;/csymbol&gt;
+                &lt;ci&gt;m&lt;/ci&gt;
+                &lt;ci&gt;r&lt;/ci&gt;
+                &lt;ci&gt;e&lt;/ci&gt;
+              &lt;/apply&gt;
+              &lt;ci&gt;r&lt;/ci&gt;
+              &lt;apply&gt;
+                &lt;csymbol cd="rounding1"&gt;ceiling&lt;/csymbol&gt;
+                &lt;apply&gt;
+                  &lt;csymbol cd="transc1"&gt;log&lt;/csymbol&gt;
+                  &lt;ci&gt;r&lt;/ci&gt;
+                  &lt;ci&gt;m&lt;/ci&gt;
+                &lt;/apply&gt;
+              &lt;/apply&gt;
+            &lt;/apply&gt;
+            &lt;apply&gt;
+              &lt;csymbol cd="bigfloat1"&gt;bigfloat&lt;/csymbol&gt;
+              &lt;ci&gt;m&lt;/ci&gt;
+              &lt;ci&gt;r&lt;/ci&gt;
+              &lt;ci&gt;e&lt;/ci&gt;
+            &lt;/apply&gt;
+          &lt;/apply&gt;
+        &lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e112prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e112pref')">Prefix form</button>
+               </div>
+               <div id="d43e112pref" style="display:none; margin-top: 0.5em">
+                  <a href="relation1.xhtml#eq">eq</a>
+(<a href="bigfloat1.xhtml#bigfloatprec">bigfloatprec</a>
+(<a href="bigfloat1.xhtml#bigfloat">bigfloat</a>
+( <i>m</i>,  <i>r</i>,  <i>e</i>)
+,  <i>r</i>, <a href="rounding1.xhtml#ceiling">ceiling</a>
+(<a href="transc1.xhtml#log">log</a>
+( <i>r</i>,  <i>m</i>)
+)
+)
+, <a href="bigfloat1.xhtml#bigfloat">bigfloat</a>
+( <i>m</i>,  <i>r</i>,  <i>e</i>)
+)
+
+        </div>
+               <div>
+                  <button id="d43e112mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e112mml')">Presentation MathML</button>
+               </div>
+               <div id="d43e112mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mrow>
+                           <mi>bigfloatprec</mi>
+                           <mo>⁡</mo>
+                           <mrow>
+                              <mo>(</mo>
+                              <mrow>
+                                 <mi>m</mi>
+                                 <mo>×</mo>
+                                 <msup>
+                                    <mi>r</mi>
+                                    <mi>e</mi>
+                                 </msup>
+                              </mrow>
+                              <mo>,</mo>
+                              <mi>r</mi>
+                              <mo>,</mo>
+                              <mrow>
+                                 <mo>⌈</mo>
+                                 <mrow>
+                                    <msub>
+                                       <mi>log</mi>
+                                       <mi>r</mi>
+                                    </msub>
+                                    <mo/>
+                                    <mfenced>
+                                       <mi>m</mi>
+                                    </mfenced>
+                                 </mrow>
+                                 <mo>⌉</mo>
+                              </mrow>
+                              <mo>)</mo>
+                           </mrow>
+                        </mrow>
+                        <mo>=</mo>
+                        <mrow>
+                           <mi>m</mi>
+                           <mo>×</mo>
+                           <msup>
+                              <mi>r</mi>
+                              <mi>e</mi>
+                           </msup>
+                        </mrow>
+                     </mrow>
+                  </m:math>
+               </div>
+      
+            </dd>
+            <dt class="dt">Signatures:</dt>
+            <dd>
+               <a href="../sts/bigfloat1.xhtml#bigfloatprec">
+    sts
+      </a>
+            </dd>
+         </dl>
+      </div>
+      <div>
+	    [First: <a href="#bigfloat">bigfloat</a>]
+	  
+	   [This: <a href="#bigfloatprec">bigfloatprec</a>]
+	[Previous: <a href="#bigfloat">bigfloat</a>]
+      [<a href="#top">Top</a>]
+ </div>
+   </body>
+</html>

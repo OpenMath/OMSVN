@@ -44,6 +44,9 @@
   </head>
   <body>
   <a name="top"/>
+<xsl:call-template name="wiki-link">
+  <xsl:with-param name="title" select="$cd"/>
+</xsl:call-template>
   <h1>OpenMath Content Dictionary: <xsl:value-of select="$cd"/></h1>
 
 
@@ -108,6 +111,52 @@
 <xsl:template match="cd:CDVersion">
     <xsl:call-template name="cd-version-and-revision"/>
 </xsl:template>
+
+<xsl:template match="cd:CDDefinition">
+  <div class="cddefinition">
+  <xsl:call-template name="wiki-link">
+    <xsl:with-param name="title" select="concat(normalize-space(/cd:CD/cd:CDName), '%2B', normalize-space(cd:Name))"/>
+  </xsl:call-template>
+  <xsl:apply-templates select="cd:Name"/>
+  <dl>
+    <xsl:apply-templates select="* except cd:Name"/>
+    <xsl:call-template name="field">
+        <xsl:with-param name="key">Signatures</xsl:with-param>
+        <xsl:with-param name="value">
+      <xsl:element name="a">
+    <xsl:attribute name="href">../sts/<xsl:value-of 
+    select="normalize-space(/cd:CD/cd:CDName)"/>.xhtml#<xsl:value-of
+    select="normalize-space(cd:Name)"/></xsl:attribute>
+    sts
+      </xsl:element>
+        </xsl:with-param>
+    </xsl:call-template>
+  </dl>
+  </div>
+
+ <div>
+	<xsl:variable name="n" select="normalize-space(following-sibling::cd:CDDefinition[1]/cd:Name)"/>
+	<xsl:choose>
+	  <xsl:when test="''=$n">
+	    <xsl:variable name="n2" select="normalize-space(../cd:CDDefinition[1]/cd:Name)"/>
+	    [First: <a href="#{$n2}"><xsl:value-of select="$n2"/></a>]
+	  </xsl:when>
+	  <xsl:otherwise>[Next: <a href="#{$n}"><xsl:value-of select="$n"/></a>]</xsl:otherwise>
+	</xsl:choose>
+	   [This: <a href="#{normalize-space(cd:Name)}"><xsl:value-of select="normalize-space(cd:Name)"/></a>]
+	<xsl:variable name="p" select="normalize-space(preceding-sibling::cd:CDDefinition[1]/cd:Name)"/>
+	<xsl:choose>
+	  <xsl:when test="''=$p">
+	    <xsl:variable name="p2" select="normalize-space(../cd:CDDefinition[last()]/cd:Name)"/>
+	    [Last: <a href="#{$p2}"><xsl:value-of select="$p2"/></a>]
+	  </xsl:when>
+	  <xsl:otherwise>[Previous: <a href="#{$p}"><xsl:value-of select="$p"/></a>]</xsl:otherwise>
+	</xsl:choose>
+      [<a href="#top">Top</a>]
+ </div>
+
+</xsl:template>
+
 
 <!--
 	some syntax sanity checks (cd2html-util.xsl doesn't do them, it allows
@@ -251,6 +300,17 @@
             then normalize-space($value)
             else $value" tunnel="yes"/>
     </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="wiki-link">
+  <xsl:param name="title" required="yes"/>
+  <span class="link-to-this-fragment">
+    <xsl:text>[</xsl:text>
+    <a href="concat('http://wiki.openmath.org/?title=cd%3A', $title)">
+      <xsl:text>browse/edit/discuss this in the wiki</xsl:text>
+    </a>
+    <xsl:text>]</xsl:text>
+  </span>
 </xsl:template>
 
 </xsl:stylesheet>

@@ -8,6 +8,7 @@
    </head>
    <body>
       <a name="top"/>
+      <span class="link-to-this-fragment">[<a href="concat('http://wiki.openmath.org/?title=cd%3A', $title)">browse/edit/discuss this in the wiki</a>]</span>
       <h1>OpenMath Content Dictionary: mathmlkeys</h1>
       <dl>
          <dt class="dt">Canonical URL:</dt>
@@ -31,7 +32,7 @@
             <a href="#contentequiv">contentequiv</a>, <a href="#equiv">equiv</a>
          </dd>
          <dt class="dt">Date:</dt>
-         <dd>2004-03-30</dd>
+         <dd>2008-10-17</dd>
          <dt class="dt">Version:</dt>
          <dd>3</dd>
          <dt class="dt">Review Date:</dt>
@@ -40,8 +41,7 @@
          <dd>draft</dd>
       </dl>
       <hr/>
-      <pre>
-     This document is distributed in the hope that it will be useful, 
+      <pre>     This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -71,13 +71,9 @@
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 </pre>
-      <p>
-  MathML3 and OpenMath provide semantic annotation facilities where the relation of the
-  annotation to the annotated object is specified by special symols called keys. This
-  content dictionary provides some keys for specifying the relations in semantic
-  annotations.
-</p>
+      <p>MathML3 and OpenMath provide semantic annotation facilities where the relation of the annotation to the annotated object is specified by special symols called keys. This content dictionary provides some keys for specifying the relations in semantic annotations.</p>
       <div class="cddefinition">
+         <span class="link-to-this-fragment">[<a href="concat('http://wiki.openmath.org/?title=cd%3A', $title)">browse/edit/discuss this in the wiki</a>]</span>
          <h2>
             <a name="equiv">Symbol Definition: equiv</a>
          </h2>
@@ -114,6 +110,7 @@
       [<a href="#top">Top</a>]
  </div>
       <div class="cddefinition">
+         <span class="link-to-this-fragment">[<a href="concat('http://wiki.openmath.org/?title=cd%3A', $title)">browse/edit/discuss this in the wiki</a>]</span>
          <h2>
             <a name="contentequiv">Symbol Definition: contentequiv</a>
          </h2>
@@ -130,66 +127,79 @@
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
-    
+      
                <p>Here a presentation MathML element is annotated by an equivalent content
       representation. This relation is conveyed by the contentequiv symbol.</p>
-    
+      
                <div>
                   <button id="d43e84xmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e84xml')">XML (MathML)</button>
                </div>
                <pre id="d43e84xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-  &lt;semantics&gt;
-    &lt;mrow&gt;
-      &lt;mrow&gt;
-	&lt;mo&gt;sin&lt;/mo&gt;
-	&lt;mfenced open="(" close=")"&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;/mfenced&gt;
-      &lt;/mrow&gt;
-      &lt;mo&gt;+&lt;/mo&gt;
-      &lt;mn&gt;5&lt;/mn&gt;
-    &lt;/mrow&gt;
-    &lt;annotation-xml cd="mathml" name="contentequiv" encoding="MathML-Content"&gt;
-      &lt;apply&gt;
-	&lt;csymbol cd="arith1"&gt;plus&lt;/csymbol&gt;
-	&lt;apply&gt;&lt;sin/&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/apply&gt;
-	&lt;cn&gt;5&lt;/cn&gt;
-      &lt;/apply&gt;
-    &lt;/annotation-xml&gt;
-  &lt;/semantics&gt;
-&lt;/math&gt;</pre>
+        &lt;semantics&gt;
+          &lt;mrow&gt;
+            &lt;mrow&gt;
+              &lt;mo&gt;sin&lt;/mo&gt;
+              &lt;mfenced close=")" open="("&gt;
+                &lt;mi&gt;x&lt;/mi&gt;
+              &lt;/mfenced&gt;
+            &lt;/mrow&gt;
+            &lt;mo&gt;+&lt;/mo&gt;
+            &lt;mn&gt;5&lt;/mn&gt;
+          &lt;/mrow&gt;
+          &lt;annotation-xml cd="mathml" encoding="MathML-Content" name="contentequiv"&gt;
+            &lt;apply&gt;
+              &lt;csymbol cd="arith1"&gt;plus&lt;/csymbol&gt;
+              &lt;apply&gt;
+                &lt;sin/&gt;
+                &lt;ci&gt;x&lt;/ci&gt;
+              &lt;/apply&gt;
+              &lt;cn&gt;5&lt;/cn&gt;
+            &lt;/apply&gt;
+          &lt;/annotation-xml&gt;
+        &lt;/semantics&gt;
+      &lt;/math&gt;</pre>
                <div>
                   <button id="d43e84stricta" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e84strict')">Strict Content MathML</button>
                </div>
                <pre id="d43e84strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-  &lt;semantics&gt;&lt;attribution-xml cd="" encoding="MathML-Content"&gt;&lt;OMFOREIGN xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
-      &lt;apply xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-	&lt;csymbol cd="arith1"&gt;plus&lt;/csymbol&gt;
-	&lt;apply&gt;&lt;sin/&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/apply&gt;
-	&lt;cn&gt;5&lt;/cn&gt;
-      &lt;/apply&gt;
-    &lt;/OMFOREIGN&gt;&lt;/attribution-xml&gt;&lt;/semantics&gt;
-&lt;/math&gt;</pre>
+        &lt;semantics&gt;&lt;attribution-xml cd="" encoding="MathML-Content"&gt;&lt;OMFOREIGN xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+            &lt;apply xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+              &lt;csymbol cd="arith1"&gt;plus&lt;/csymbol&gt;
+              &lt;apply&gt;
+                &lt;sin/&gt;
+                &lt;ci&gt;x&lt;/ci&gt;
+              &lt;/apply&gt;
+              &lt;cn&gt;5&lt;/cn&gt;
+            &lt;/apply&gt;
+          &lt;/OMFOREIGN&gt;&lt;/attribution-xml&gt;&lt;/semantics&gt;
+      &lt;/math&gt;</pre>
                <div>
                   <button id="d43e84cmmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e84cmml')">OpenMath</button>
                </div>
                <pre id="d43e84cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
-  &lt;OMATTR&gt;&lt;OMATP&gt;&lt;OMS name="MathML-Content"/&gt;&lt;OMFOREIGN&gt;
-      &lt;apply xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-	&lt;csymbol cd="arith1"&gt;plus&lt;/csymbol&gt;
-	&lt;apply&gt;&lt;sin/&gt;&lt;ci&gt;x&lt;/ci&gt;&lt;/apply&gt;
-	&lt;cn&gt;5&lt;/cn&gt;
-      &lt;/apply&gt;
-    &lt;/OMFOREIGN&gt;&lt;/OMATP&gt;&lt;mrow xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-      &lt;mrow&gt;
-	&lt;mo&gt;sin&lt;/mo&gt;
-	&lt;mfenced open="(" close=")"&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;/mfenced&gt;
-      &lt;/mrow&gt;
-      &lt;mo&gt;+&lt;/mo&gt;
-      &lt;mn&gt;5&lt;/mn&gt;
-    &lt;/mrow&gt;&lt;/OMATTR&gt;
-&lt;/OMOBJ&gt;</pre>
+        &lt;OMATTR&gt;&lt;OMATP&gt;&lt;OMS name="MathML-Content"/&gt;&lt;OMFOREIGN&gt;
+            &lt;apply xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+              &lt;csymbol cd="arith1"&gt;plus&lt;/csymbol&gt;
+              &lt;apply&gt;
+                &lt;sin/&gt;
+                &lt;ci&gt;x&lt;/ci&gt;
+              &lt;/apply&gt;
+              &lt;cn&gt;5&lt;/cn&gt;
+            &lt;/apply&gt;
+          &lt;/OMFOREIGN&gt;&lt;/OMATP&gt;&lt;mrow xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+            &lt;mrow&gt;
+              &lt;mo&gt;sin&lt;/mo&gt;
+              &lt;mfenced close=")" open="("&gt;
+                &lt;mi&gt;x&lt;/mi&gt;
+              &lt;/mfenced&gt;
+            &lt;/mrow&gt;
+            &lt;mo&gt;+&lt;/mo&gt;
+            &lt;mn&gt;5&lt;/mn&gt;
+          &lt;/mrow&gt;&lt;/OMATTR&gt;
+      &lt;/OMOBJ&gt;</pre>
                <div>
                   <button id="d43e84prefa" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e84pref')">Prefix form</button>
@@ -201,17 +211,19 @@
 ( <i/>)
 , 5)
 
-    ],
+          ],
 
-      
-	sin
-	x
-      
-      +
-      5
-    )
+            
+              sin
+              
+                x
+              
+            
+            +
+            5
+          )
 
-</div>
+      </div>
                <div>
                   <button id="d43e84mmla" class="omcd_formula omcd_active"
                           onclick="omcd_divfold('d43e84mml')">Presentation MathML</button>
@@ -220,8 +232,8 @@
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML">
                         <mrow>
-	                          <mo>sin</mo>
-	                          <mfenced open="(" close=")">
+                           <mo>sin</mo>
+                           <mfenced close=")" open="(">
                               <mi>x</mi>
                            </mfenced>
                         </mrow>
