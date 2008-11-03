@@ -2,7 +2,7 @@
   version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-<xsl:import href="../../../stylesheets/html/om-page.xsl"/>
+<xsl:import href="../../stylesheets/html/om-page.xsl"/>
 
 <xsl:output method="html" indent="yes"/>
 <xsl:param name="logxmlfile"/>
