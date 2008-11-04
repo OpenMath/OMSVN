@@ -192,7 +192,7 @@
 
 <xsl:template match="cd:CMP|cd:FMP">
     <xsl:choose>
-        <xsl:when test="parent::cd:CDDefinition">
+        <xsl:when test="not(parent::cd:property)">
             <!-- eliminate this case as soon as properties are universally used -->
 			<xsl:call-template name="field">
 			    <xsl:with-param name="key" select="if (self::cd:CMP)
