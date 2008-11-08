@@ -817,11 +817,7 @@ f(inverse(f)(y)) = y
           </bvar>
           <apply>
             <sin/>
-            <apply>
-              <plus/>
-              <ci>x</ci>
-              <cn>1</cn>
-            </apply>
+            <apply><plus/><ci>x</ci><cn>1</cn></apply>
           </apply>
         </bind>
       </math>
@@ -835,26 +831,15 @@ f(inverse(f)(y)) = y
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <bind>
           <lambda/>
-          <bvar>
-            <ci>b</ci>
-          </bvar>
+          <bvar><ci>b</ci></bvar>
           <apply>
             <int/>
             <bind>
               <lambda/>
-              <bvar>
-                <ci>x</ci>
-              </bvar>
-              <lowlimit>
-                <ci>a</ci>
-              </lowlimit>
-              <uplimit>
-                <ci>b</ci>
-              </uplimit>
-              <apply>
-                <ci>f</ci>
-                <ci>x</ci>
-              </apply>
+              <bvar><ci>x</ci></bvar>
+              <lowlimit><ci>a</ci></lowlimit>
+              <uplimit><ci>b</ci></uplimit>
+              <apply><ci>f</ci><ci>x</ci></apply>
             </bind>
           </apply>
         </bind>
@@ -870,16 +855,9 @@ f(inverse(f)(y)) = y
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <bind>
           <lambda/>
-          <bvar>
-            <ci>x</ci>
-          </bvar>
-          <domainofapplication>
-            <integers/>
-          </domainofapplication>
-          <apply>
-            <sin/>
-            <ci>x</ci>
-          </apply>
+          <bvar><ci>x</ci></bvar>
+          <domainofapplication><integers/></domainofapplication>
+          <apply><sin/><ci>x</ci></apply>
         </bind>
       </math>
     </MMLexample>
@@ -969,5 +947,36 @@ f(inverse(f)(y)) = y
     <Role>application</Role>
     <Description>This is the general operator for restricting the domain of a bound
     variable in a binding object. It is a binary operator.</Description>
+
+    <Example>
+      If a used with a <el>lambda</el> binder, the condition element can be used to
+      construct partial functions e.g. 1/x-y that is defined off the diagnoal.
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
+	<OMBIND>
+	  <OMS cd="fns1" name="lambda"/>
+	  <OMBVAR>
+	    <OMV name="x"/>
+	    <OMV name="y"/>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS cd="fns1 name="condition"/>
+	    <OMA>
+	      <OMS cd="relation1" name="ne"/>
+	      <OMV name="x"/>
+	      <OMV name="y"/>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="arith1" name="divide"/>
+	      <OMA>
+		<OMS cd="arith1" name="minus"/>
+		<OMV name="x"/>
+		<OMV name="y"/>
+	      </OMA>
+	    </OMA>
+	  </OMA>
+	</OMBIND>
+      </OMOBJ>
+    </Example>
   </CDDefinition>
 </CD>
