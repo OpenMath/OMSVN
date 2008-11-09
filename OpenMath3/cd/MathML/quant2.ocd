@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CD xmlns="http://www.openmath.org/OpenMathCD" xml:id="quant2">
+  <CDComment>     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+</CDComment>
+  <CDName>quant2</CDName>
+  <CDBase>http://www.openmath.org/cd</CDBase>
+  <CDURL>http://www.openmath.org/cd/quant1.ocd</CDURL>
+  <CDReviewDate>2006-03-30</CDReviewDate>
+  <CDDate>2008-09-27</CDDate>
+  <CDVersion>3</CDVersion>
+  <CDRevision>1</CDRevision>
+  <CDStatus>draft</CDStatus>
+
+  <Description>This CD holds the definitions of the basic universal ("for all") quantifier
+  and existential ("there exists") quantifier where the range of bound variables are
+  restricted to a set.</Description>
+
+
+  <CDDefinition xml:id="every">
+    <Name>every</Name>
+    <Title>Restriced Universal Quantification</Title>
+    <Role>binder</Role>
+    <Description>This symbol is a binding constructor that when applied to a set
+    represents the universal ("for all") quantifier ranging over that set.</Description>
+  
+    <Example>
+      An example to represent the statement for all real x, |sin(x)| &lt;= 1
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
+        <OMBIND>
+	  <OMA><OMS cd="quant2" name="every"/><OMS cd="setname1" name="R"/></OMA>
+          <OMBVAR>
+            <OMV name="x"/>
+          </OMBVAR>
+	  <OMA>
+	    <OMS cd="relation1" name="leq"/>
+	    <OMA>
+	      <OMS cd="arith1" name="abs"/>
+	      <OMA>
+		<OMS cd="transc1" name="sin"/>
+		<OMV name="x"/>
+	      </OMA>
+	    </OMA>
+	    <OMF dec="1.0"/>
+	  </OMA>
+	</OMBIND>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+
+  <CDDefinition xml:id="some">
+    <Name>some</Name>
+    <Title>Restriced Universal Quantification</Title>
+    <Role>binder</Role>
+    <Description>This symbol is a binding constructor that when applied to a set
+    represents the existential ("there exists") quantifier ranging over that
+    set.</Description>
+  
+    <MMLexample speclevel="1" xml:id="some.ex2">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <bind>
+          <exists/>
+          <bvar>
+            <ci>x</ci>
+          </bvar>
+          <domainofapplication>
+            <ci type="set">C</ci>
+          </domainofapplication>
+          <apply>
+            <eq/>
+            <apply>
+              <power/>
+              <ci>x</ci>
+              <cn>2</cn>
+            </apply>
+            <cn>4</cn>
+          </apply>
+        </bind>
+      </math>
+    </MMLexample>
+  </CDDefinition>
+
+</CD>
