@@ -791,15 +791,138 @@ An example to represent the statement for all real x, |sin(x)| &lt;= 1
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
+      
+               <p>The example is more involved, and makes use of an optional <code>condition</code>
+        element.</p>
+      
+               <div>
+                  <button id="d43e509xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e509xml')">XML (MathML)</button>
+               </div>
+               <pre id="d43e509xml" style="display:none">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+        &lt;bind&gt;
+          &lt;exists/&gt;
+          &lt;bvar&gt;
+            &lt;ci&gt;p&lt;/ci&gt;
+          &lt;/bvar&gt;
+          &lt;bvar&gt;
+            &lt;ci&gt;q&lt;/ci&gt;
+          &lt;/bvar&gt;
+          &lt;condition&gt;
+             &lt;apply&gt;
+              &lt;and/&gt;
+               &lt;apply&gt;
+                &lt;in/&gt;
+                &lt;ci&gt;p&lt;/ci&gt;
+                &lt;rationals/&gt;
+              &lt;/apply&gt;
+               &lt;apply&gt;
+                &lt;in/&gt;
+                &lt;ci&gt;q&lt;/ci&gt;
+                &lt;rationals/&gt;
+              &lt;/apply&gt;
+               &lt;apply&gt;
+                &lt;lt/&gt;
+                &lt;ci&gt;p&lt;/ci&gt;
+                &lt;ci&gt;q&lt;/ci&gt;
+              &lt;/apply&gt;
+             &lt;/apply&gt;
+          &lt;/condition&gt;
+          &lt;apply&gt;
+            &lt;lt/&gt;
+            &lt;ci&gt;p&lt;/ci&gt;
+            &lt;apply&gt;
+               &lt;power/&gt;
+               &lt;ci&gt;q&lt;/ci&gt;
+               &lt;cn&gt;2&lt;/cn&gt;
+            &lt;/apply&gt;
+          &lt;/apply&gt;
+        &lt;/bind&gt;
+      &lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e509stricta" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e509strict')">Strict Content MathML</button>
+               </div>
+               <pre id="d43e509strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+        &lt;bind&gt;&lt;csymbol cd="quant1"&gt;exists&lt;/csymbol&gt;&lt;bvar&gt;&lt;ci&gt;p&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;q&lt;/ci&gt;&lt;/bvar&gt;&lt;apply&gt;
+            &lt;csymbol cd="relation1"&gt;lt&lt;/csymbol&gt;
+            &lt;ci&gt;p&lt;/ci&gt;
+            &lt;apply&gt;
+               &lt;csymbol cd="arith1"&gt;power&lt;/csymbol&gt;
+               &lt;ci&gt;q&lt;/ci&gt;
+               &lt;cn&gt;2&lt;/cn&gt;
+            &lt;/apply&gt;
+          &lt;/apply&gt;&lt;/bind&gt;
+      &lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e509cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e509cmml')">OpenMath</button>
+               </div>
+               <pre id="d43e509cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+        &lt;OMBIND&gt;&lt;OMS cd="quant1" name="exists"/&gt;&lt;OMBVAR&gt;&lt;OMV name="p"/&gt;&lt;OMV name="q"/&gt;&lt;/OMBVAR&gt;&lt;OMA&gt;
+            &lt;OMS cd="relation1" name="lt"/&gt;
+            &lt;OMV name="p"/&gt;
+            &lt;OMA&gt;
+               &lt;OMS cd="arith1" name="power"/&gt;
+               &lt;OMV name="q"/&gt;
+               &lt;OMI&gt;2&lt;/OMI&gt;
+            &lt;/OMA&gt;
+          &lt;/OMA&gt;&lt;/OMBIND&gt;
+      &lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d43e509prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e509pref')">Prefix form</button>
+               </div>
+               <div id="d43e509pref" style="display:none; margin-top: 0.5em">
+                  <a href="quant1.xhtml#exists">exists</a>
+[ <i>p</i> 
+                  <i>q</i>] .
+(<a href="relation1.xhtml#lt">lt</a>
+( <i>p</i>, <a href="arith1.xhtml#power">power</a>
+( <i>q</i>, 2)
+)
+)
+
+      </div>
+               <div>
+                  <button id="d43e509mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e509mml')">Presentation MathML</button>
+               </div>
+               <div id="d43e509mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+                     <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mo>∃</mo>
+                        <mo> </mo>
+                        <mrow>
+                           <mi>p</mi>
+                           <mo>,</mo>
+                           <mi>q</mi>
+                        </mrow>
+                        <mo>.</mo>
+                        <mrow>
+                           <mi>p</mi>
+                           <mo>&lt;</mo>
+                           <msup>
+                              <mi>q</mi>
+                              <mn>2</mn>
+                           </msup>
+                        </mrow>
+                     </mrow>
+                  </m:math>
+               </div>
+            </dd>
+            <dt class="dt">Example:</dt>
+            <dd>
       An example  which represents the statement that there is no solution
       to x^n+y^n=z^n for n&gt;2, that is:
       it is not true that there exists x,y,z,n | n&gt;2 and x^n+y^n=z^n
 
 <div>
-                  <button id="d43e500xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e500xml')">XML (OpenMath)</button>
+                  <button id="d43e590xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e590xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e500xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd" version="3.0"&gt;
+               <pre id="d43e590xml" style="display:none">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd" version="3.0"&gt;
         &lt;OMA&gt;
           &lt;OMS cd="logic1" name="not"/&gt;
           &lt;OMBIND&gt;
@@ -863,10 +986,10 @@ An example to represent the statement for all real x, |sin(x)| &lt;= 1
         &lt;/OMA&gt;
       &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e500cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e500cmml')">Content MathML</button>
+                  <button id="d43e590cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e590cmml')">Content MathML</button>
                </div>
-               <pre id="d43e500cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e590cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
         &lt;apply&gt;
           &lt;csymbol cd="logic1"&gt;not&lt;/csymbol&gt;
           &lt;bind&gt;
@@ -925,10 +1048,10 @@ An example to represent the statement for all real x, |sin(x)| &lt;= 1
         &lt;/apply&gt;
       &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e500prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e500pref')">Prefix form</button>
+                  <button id="d43e590prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e590pref')">Prefix form</button>
                </div>
-               <div id="d43e500pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e590pref" style="display:none; margin-top: 0.5em">
                   <a href="logic1.xhtml#not">not</a>
 (<a href="quant1.xhtml#exists">exists</a>
 [
@@ -964,10 +1087,10 @@ An example to represent the statement for all real x, |sin(x)| &lt;= 1
 
       </div>
                <div>
-                  <button id="d43e500mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e500mml')">Presentation MathML</button>
+                  <button id="d43e590mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e590mml')">Presentation MathML</button>
                </div>
-               <div id="d43e500mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e590mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mo xmlns="http://www.w3.org/1998/Math/MathML"
                          xmlns:om="http://www.openmath.org/OpenMath">¬</mo>
