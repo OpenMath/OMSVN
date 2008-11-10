@@ -22,6 +22,18 @@
       Author: Michael Kohlhase http://kwarc.info/kohlhase
 -->
 <grammar ns="http://www.w3.org/1998/Math/MathML" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <start>
+    <ref name="math"/>
+  </start>
+  <define name="math">
+    <element name="math">
+      <ref name="math.attlist"/>
+      <ref name="math.content"/>
+    </element>
+  </define>
+  <define name="math.content">
+    <notAllowed/>
+  </define>
   <define name="non-mathml-attribs">
     <attribute>
       <anyName>
@@ -34,16 +46,6 @@
   </define>
   <define name="MathML.Common.attrib">
     <optional>
-      <attribute name="class">
-        <data type="NMTOKENS"/>
-      </attribute>
-    </optional>
-    <optional>
-      <attribute name="style">
-        <data type="string"/>
-      </attribute>
-    </optional>
-    <optional>
       <attribute name="id">
         <data type="ID"/>
       </attribute>
@@ -52,82 +54,98 @@
       <ref name="non-mathml-attribs"/>
     </zeroOrMore>
   </define>
-  <define name="Browser-interface.attrib">
-    <optional>
-      <attribute name="baseline">
-        <data type="string"/>
-      </attribute>
-    </optional>
-    <optional>
-      <attribute name="overflow">
-        <choice>
-          <value>scroll</value>
-          <value>elide</value>
-          <value>truncate</value>
-          <value>scale</value>
-        </choice>
-      </attribute>
-    </optional>
-    <optional>
-      <attribute name="altimg">
-        <data type="anyURI"/>
-      </attribute>
-    </optional>
-    <optional>
-      <attribute name="alttext">
-        <data type="string"/>
-      </attribute>
-    </optional>
-    <optional>
-      <attribute name="type">
-        <data type="string"/>
-      </attribute>
-    </optional>
-    <optional>
-      <attribute name="name">
-        <data type="string"/>
-      </attribute>
-    </optional>
-    <optional>
-      <attribute name="height">
-        <data type="string"/>
-      </attribute>
-    </optional>
-    <optional>
-      <attribute name="width">
-        <data type="string"/>
-      </attribute>
-    </optional>
-  </define>
   <define name="math.attlist">
-    <ref name="Browser-interface.attrib"/>
+    <ref name="MathML.Common.attrib"/>
     <optional>
       <attribute name="macros">
         <data type="string"/>
       </attribute>
     </optional>
+  </define>
+  <define name="name.attrib">
+    <attribute name="name">
+      <data type="NCName"/>
+    </attribute>
+  </define>
+  <define name="cd.attrib">
+    <attribute name="cd">
+      <data type="NCName"/>
+    </attribute>
+  </define>
+  <define name="cdbase.attrib">
+    <attribute name="cdbase">
+      <data type="anyURI"/>
+    </attribute>
+  </define>
+  <define name="Definition.attrib">
     <optional>
-      <attribute name="display">
-        <choice>
-          <value>block</value>
-          <value>inline</value>
-        </choice>
+      <attribute name="encoding">
+        <data type="string"/>
       </attribute>
     </optional>
-    <ref name="MathML.Common.attrib"/>
+    <optional>
+      <attribute name="definitionURL">
+        <data type="anyURI"/>
+      </attribute>
+    </optional>
   </define>
-  <define name="math.content">
-    <choice>
-      <ref name="PresExp"/>
-      <ref name="ContExp"/>
-    </choice>
+  <define name="annotation">
+    <element name="annotation">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+      <text/>
+    </element>
   </define>
-  <define name="math">
-    <element name="math">
-      <ref name="math.attlist"/>
+  <define name="annotation-xml.model">
+    <ref name="anyElement"/>
+  </define>
+  <define name="anyElement">
+    <element>
+      <anyName/>
       <zeroOrMore>
-        <ref name="math.content"/>
+        <choice>
+          <attribute>
+            <anyName/>
+          </attribute>
+          <text/>
+          <ref name="anyElement"/>
+        </choice>
       </zeroOrMore>
     </element>
+  </define>
+  <define name="annotation-xml">
+    <element name="annotation-xml">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <ref name="cd.attrib"/>
+      </optional>
+      <optional>
+        <ref name="name.attrib"/>
+      </optional>
+      <optional>
+        <ref name="cdbase.attrib"/>
+      </optional>
+      <ref name="Definition.attrib"/>
+      <ref name="annotation-xml.model"/>
+    </element>
+  </define>
+  <define name="semantics-annotation">
+    <choice>
+      <ref name="annotation"/>
+      <ref name="annotation-xml"/>
+    </choice>
+  </define>
+  <define name="semantics.attribs">
+    <ref name="Definition.attrib"/>
+    <ref name="MathML.Common.attrib"/>
+    <optional>
+      <ref name="cdbase.attrib"/>
+    </optional>
+    <optional>
+      <ref name="cd.attrib"/>
+    </optional>
+    <optional>
+      <ref name="name.attrib"/>
+    </optional>
   </define>
 </grammar>

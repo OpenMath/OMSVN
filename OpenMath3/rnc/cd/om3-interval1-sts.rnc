@@ -9,10 +9,7 @@
 namespace om = "http://www.openmath.org/OpenMath"
 
 
-
-
-
-     This document is distributed in the hope that it will be useful, 
+       This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -42,274 +39,211 @@ namespace om = "http://www.openmath.org/OpenMath"
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 
-
-interval1
-http://www.openmath.org/cd
-http://www.openmath.org/cd/interval1.ocd 
-2006-03-30
-2004-03-30
-3
-0
-official
-
-    This CD holds symbols which describe both discrete and continuous
-    1-dimensional intervals (with open/closed end points).
-
-
-
-
-integer_interval
+  interval1
+  http://www.openmath.org/cd
+  http://www.openmath.org/cd/interval1.ocd
+  2006-03-30
+  2008-09-26
+  3
+  0
+  draft
+  This CD holds symbols which describe both discrete and continuous 1-dimensional intervals (with open/closed end points).
   
     integer_interval
-  
-application
- 
-A symbol to denote a discrete 1 dimensional interval from the first
-argument to the second (inclusive), where the discretisation occurs at unit 
-intervals. The arguments are the start and the end points of the interval
-in that order.
-
-
+    
+      integer_interval
+    
+    application
+    A symbol to denote a discrete 1 dimensional interval from the first argument to the second (inclusive), where the discretisation occurs at unit intervals. The arguments are the start and the end points of the interval in that order.
+    
 The integer interval 1, 2, ..., 10.
 
-  
+        
+          
+           1 
+           10 
+        
+      
     
-     1 
-     10 
   
-
-
-
-
-
-interval
-Interval
   
     interval
+    Interval
     
-      closure
-       "closed" | "open" | "open-closed" | "closed-open" 
-       closed 
-    
-    
-      type
-       MathMLType 
-       real 
-    
-    
-       In pragmatic Content MathML, the interval element takes an attribute
-      closure, which can take on any of the values open,
-      closed, open-closed, or
-      closed-open, with a default value of closed.
-
-      In strict Content MathML, the interval symbol is reserved for an
-      interval whose closure property is not specified. For with closure information, we
-      use the interval_oo, interval_oo,
-      interval_oo, and interval_oo symbols defined below.
+      interval
       
-	
-	interval_oo
+        type
+         "closed" | "open" | "open-closed" | "closed-open" 
+         closed 
       
-      Moreover, the interval element can be used as a container element in pragmatic Content MathML.
       
+        type
+         MathMLType 
+         real 
+      
+    
+    application
 
+    A symbol to denote a continuous 1-dimensional interval without any information about the character of the end points (used in definite integration). The arguments are the start and the end points of the interval in that order.
     
-  
-  application
-   
-    A symbol to denote a continuous 1-dimensional interval without any information about the
-    character of the end points (used in definite integration). The arguments are the start
-    and the end points of the interval in that order.
-  
-
-  
-    
-      This is the MathML constructor element for building an interval on the real line.
-      While an interval can be expressed by combining relations appropriately, they
-      occur here explicitly because of the frequency of their use.
-    
-  
-  
-    The interval element is used to represent simple mathematical intervals of
-    the real number line. 
-    A single interval element occuring as the second child of an
-    apply element and preceded by one of the pre-defined n-ary operators is
-    interpreted as a shorthand notation for a domainofapplication.  All other
-    uses of an interval element as a child of an apply should be interpreted as
-    ordinary function arguments unless otherwise dictated by the function definition.
-      More general domains should be constructed using a domainofapplication
-      element or one of the other shortcut notations described in .
       The interval element expects two child elements that evaluate to real
-      numbers.  or one or more bvar elements and a child element
-      that is a condition defining the interval.
+    numbers. 
+    
+  
 
-      The interval element denotes an interval on the real line with the
-      values represented by its children as end points. The closure attribute
-      is used to qualify the type of interval being represented. For example,
-
+    
+    
       
-	
-	  ab
-	
+        
+          
+          
+            0
+            1
+          
+          f
+        
       
-
-      represents the open-closed interval often written (a,b].
     
 
 
-  
     
-      x
-      1
-    
-  
-
-
-
-
-
-  0
-  1
-
-
-
-
-
-
-
-  x
-  
-    0x
-  
-
-
-
-
-
-  01
-  f
-
-
-
-
 The interval 1.0, ..., 10.0.
 
-  
-    
-    
-    
-  
-
-
-
-
-
-interval_oo
-  
-    interval
-    
-      closure
-      "open"
+        
+          
+          
+          
+        
+      
     
   
-application
- 
-A symbol to denote a continuous 1-dimensional interval with both end
-points excluded from the interval. The arguments are the start and the end 
-points of the interval in that order.
-
-
-The continuous open interval (1,10).
-
   
+    interval_oo
     
-     1 
-     10 
-  
-
-
-
-
-
-interval_cc
-  
-    interval
+      interval
+      
+        closure
+        "open"
+      
     
-      closure
-      "closed"
+    application
+    A symbol to denote a continuous 1-dimensional interval with both end points excluded from the interval. The arguments are the start and the end points of the interval in that order.
     
-  
-application
- 
-A symbol to denote a continuous 1-dimensional interval with both end
-points included in the interval. The arguments are the start and the
-end points of the interval in that order.
+    The continuous open interval (1,10).
 
-
-The continuous closed interval [1,10].
-
-  
+        
+          
+           1 
+           10 
+        
+      
     
-     1 
-     10 
-  
 
-
-
-
-
-interval_oc
-  
-    interval
     
-      closure
-      "open-closed"
+      
+        
+          x
+          1
+        
+      
     
-  
-application
- 
-A symbol to denote a continuous 1-dimensional interval with the first
-point excluded from the interval, but the last included. The arguments
-are the start and the end points of the interval in that order.
 
-
-The continuous interval open at the lower bound and closed at the higher 
-bound (1,10].
 
   
+  
+    interval_cc
     
-     1 
-     10 
-  
-
-
-
-
-
-interval_co
-  
-    interval
+      interval
+      
+        closure
+        "closed"
+      
     
-      closure
-      "closed-open"
+    application
+    A symbol to denote a continuous 1-dimensional interval with both end points included in the interval. The arguments are the start and the end points of the interval in that order.
+    
+    The continuous closed interval [1,10].
+
+        
+          
+           1 
+           10 
+        
+      
+    
+
+    
+      
+        
+          0
+          1
+        
+      
     
   
-application
- 
-A symbol to denote a continuous 1-dimensional interval with the first
-point included in the interval, but the last excluded. The arguments
-are the start and the end points of the interval in that order.
-
-
-The continuous interval closed at the lower bound and open at the higher 
-bound [1,10).
-
   
+    interval_oc
     
-     1 
-     10 
+      interval
+      
+        closure
+        "open-closed"
+      
+    
+    application
+    A symbol to denote a continuous 1-dimensional interval with the first point excluded from the interval, but the last included. The arguments are the start and the end points of the interval in that order.
+    
+    The continuous interval open at the lower bound and closed at the higher 
+    bound (1,10].
+
+        
+          
+           1 
+           10 
+        
+      
+    
+
+    
+      
+        
+          0
+          1
+        
+      
+    
+
+
   
+  
+    interval_co
+    
+      interval
+      
+        closure
+        "closed-open"
+      
+    
+    application
+    A symbol to denote a continuous 1-dimensional interval with the first point included in the interval, but the last excluded. The arguments are the start and the end points of the interval in that order.
+    
+    The continuous interval closed at the lower bound and open at the higher bound [1,10).
 
+        
+          
+           1 
+           10 
+        
+      
+    
 
+    
+      
+        
+          0
+          1
+        
+      
+    
 
-
+  

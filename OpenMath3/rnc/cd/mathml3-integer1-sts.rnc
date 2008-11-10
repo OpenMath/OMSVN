@@ -8,10 +8,7 @@
 
 namespace m  ="http://www.w3.org/1998/Math/MathML"
 
-
-
-
-     This document is distributed in the hope that it will be useful, 
+       This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -41,485 +38,539 @@ namespace m  ="http://www.w3.org/1998/Math/MathML"
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 
-
-integer1
-http://www.openmath.org/cd
-http://www.openmath.org/cd/integer1.ocd 
-2006-03-30
-2004-03-30
-3
-0
-official
-
-    This CD holds a collection of basic integer functions.
-
-    This CD is intended to be `compatible' with the corresponding elements
-    in Content MathML.
-
-
-
-  factorof
+  integer1
+  http://www.openmath.org/cd
+  http://www.openmath.org/cd/integer1.ocd
+  2006-03-30
+  2008-09-26
+  3
+  0
+  draft
+  This content dictionary provides a collection of basic integer functions.
   
     factorof
     
-       type 
-       MathMLType 
-       integer 
+      factorof
+      
+        type
+         MathMLType 
+         integer 
+      
     
-  
-  application
-  
-   This is the binary OpenMath operator that is used to indicate the mathematical
-   relationship a "is a factor of" b, where a is the first argument and b is the
-   second. This relationship is true if and only if b mod a = 0.
-  
-
-  
-    This is the binary MathML operator that is used indicate the mathematical
-    relationship a "is a factor of" b. This relationship is true just if b mod a = 0
-  
-  
-    The factorof element is the relational operator element on two
-    integers a and b specifying whether one is an integer
-    factor of the other.
-  
-  
-
+    application
+    This is the binary operator that is used to indicate the mathematical relationship a "is a factor of" b, where a is the first argument and b is the second. This relationship is true if and only if b mod a = 0.
+    
+      
+        ForAll( [a,b], a and b integers, a divides b  if there is an integer c such that a*c = b )
+      
+    
+    
+      
+        
           
-            ForAll( [a,b], a and b integers, a divides b  if there is an integer c such that a*c = b )
+          a
+          b
+        
+      
+    
+    
+       b is a factor of a iff remainder of a divided by b = 0 
+      
+        
+          
+            
+            
+              
+               
+               
+            
+            
+              
+               
+                 
+                 
+                 
+               
+               
+            
           
         
-        
-  a
-  b
-
-
-
- b is a factor of a iff remainder of a divided by b = 0 
-
-
-  
-    
-      
-      
-        
-	
-	
-      
-      
-        
-	
-	  
-	  
-	  
-	
-	
       
     
   
-
-
-
-
-factorial
-Factorial
   
     factorial
-  
-application
- 
-The symbol to represent a unary factorial function on non-negative integers.
-
-
-
-          This is the unary operator used to construct factorials.  Factorials are
-          defined by n! = n*(n-1)* ... * 1
-        
-        
-          
-            ForAll( n, n \gt 0, n! = n*(n-1)! )
-
-  n
-  n0
-  
-    n
+    Factorial
     
-      n
-      
-        n1
-      
+      factorial
     
-  
+    application
+    The symbol to represent a unary factorial function on non-negative integers.
 
-
-        
-          
-            0! = 1
-
-  0
-  1
-
-
-
-	    
-	      If this were evaluated at n = 5 it would evaluate to 120.
-	      
-	    n
-
-
-
-
-factorial n = product [1..n]
-
-
+    
+      Factorials are defined by n! = n*(n-1)* ... * 1
+    
   
     
       
-      
-        
-        
+        ForAll( n, n \gt 0, n! = n*(n-1)! )
       
       
         
           
-            
-             1 
-            
           
-        
+            n
+          
           
             
               
+              n
+              0
+            
+          
+          
             
             
+              
+              n
+            
+            
+              
+              n
+              
+                
+                
+                  
+                  n
+                  1
+                
+              
+            
+          
+        
+      
+    
+
+    
+      
+        0! = 1
+      
+      
+        
+          
+          
+            
+            0
+          
+          1
+        
+      
+    
+
+    
+      
+        If this were evaluated at n = 5 it would evaluate to 120.
+      
+      
+        
+          
+          n
+        
+      
+    
+
+
+    
+      
+factorial n = product [1..n]
+
+      
+        
+          
+            
+            
+              
+              
+            
+            
+              
+              
+                
+                 1 
+                
+              
+              
+                
+                
+                  
+                
+                
+              
+            
+          
         
       
     
   
-
-
-
-
-quotient
-Quotient
   
     quotient
+    Quotient
     
-       type 
-      MathMLType
-       real 
-    
-  
-application
-
-The symbol to represent the integer (binary) division operator. That is,
-for integers a and b, quotient(a,b) denotes q such that a=b*q+r, with |r|
-less than |b| and a*r positive.
-
-
-
-      quotient is the binary function used to represent the operation of integer
-	division.  quotient(a,b) denotes q such that a = b*q+r, with |r| less than |b| and
-	a*r non-negative. 
+      quotient
+      
+        type
+        MathMLType
+         real 
       
     
+    application
+    The symbol to represent the integer (binary) division operator. That is, for integers a and b, quotient(a,b) denotes q such that a=b*q+r, with |r| less than |b| and a*r positive.
+
     
       The quotient element is the operator used for division modulo a
-      particular base. When the quotient operator is applied to integer arguments
-      a and b, the result is the quotient of a
-      divided by b. That is, quotient returns the unique
-      integer q such that a = q b +
-      r. (In common usage, q is called the quotient and r
-      is the remainder.)
+  particular base. When the quotient operator is applied to integer arguments
+  a and b, the result is the quotient of a
+  divided by b
+        . That is, quotient returns the unique
+  integer q such that a = q 
+        b +
+  r. (In common usage, q is called the quotient and r
+  is the remainder.)
     
 
- 
-   
-     ForAll( [a,b], b != 0, a = b*quotient(a,b) + rem(a,b) )
-   
-
-
-  a
-  b
-  b0
-  
-    a
     
       
+        ForAll( [a,b], b != 0, a = b*quotient(a,b) + rem(a,b) )
+      
+      
+        
+          
+          
+            a
+          
+          
+            b
+          
+          
+            
+              
+              b
+              0
+            
+          
+          
+            
+            a
+            
+              
+              
+                
+                b
+                
+                  
+                  a
+                  b
+                
+              
+              
+                
+                a
+                b
+              
+            
+          
+        
+      
+    
+
+    
+      
+        Various mathematical applications will use this data in different ways. Editing
+    applications might choose an image such as shown below, while a computationally based
+    application would evaluate it to 2 whena=13 and b=5.
+      
+      
+        
+          
+          a
           b
-          ab
+        
       
-      ab
     
-  
 
+    
+      
+        
+          
+          5
+          4
+        
+      
+    
 
-
-
-
-  Various mathematical applications will use this data in different
-  ways. Editing applications might choose an image such as shown below, while a
-  computationally based application would evaluate it to 2 whena=13 and
-  b=5.
-  
-   a b  
-
-
-
-
-
-  
-  5
-  4
-
-
-
-
-
-
+    
+      
 for all a,b with a,b Integers |
   a = b * quotient(a,b) + remainder(a,b) and abs(remainder(a,b)) is less than abs(b) and 
 a*remainder(a,b) >= 0
 
-
-   
-     
-       
-       
-         
-         
-       
-       
-         
-         
-           
-           
-             
-             
-             
-           
-           
-             
-             
-             
-           
-         
-         
-	   
-	   
-             
-             
-             
-               
-               
-                 
-                 
-                 
-                   
-                   
-                   
-                 
-               
-               
-                 
-                 
-                 
-               
-             
-           
-           
-             
-             
-               
-               
-                 
-                 
-                 
-               
-             
-             
-               
-               
-             
-           
-           
-             
-             
-               
-               
-	       
-	         
-		 
-		 
-	       
-             
-             
-           
-         
-       
-     
-   
-
-
-
-
-remainder
-Remainder
-  
-    rem
-	
-          type
-          MathMLType
-          integer
-        
-  
-application
- 
-The symbol to represent the integer remainder after (binary) division.
-For integers a and b, remainder(a,b) denotes r such that a=b*q+r, with |r| less
-than |b| and a*r positive.
-
-
-
-
-          This is the binary operator used to represent the integer remainder a mod b.
-          For arguments a and b, such that a = b*q + r with |r| < |b| it represents the
-          value r.
-        
-	
-	  The rem element is the operator that returns the
-	  remainder of a division modulo a particular base. When the
-	  rem operator is applied to integer arguments a and
-	  b, the result is the remainder of a divided by
-	  b. That is, rem returns the unique integer,
-	  r such that a = q b+ r,
-	  where r < q. (In common usage, q is called
-	  the quotient and r is the remainder.)
-	
-
-   
-          
-            rem(a, 0) is undefined
-          
-        
-        
-          
-            ForAll( [a,b], b!=0, a = b*quotient(a,b) + rem(a,b))
-          
-
-  a
-  b
-  b0
-  
-    a
-    
       
-        b
-  ab
+        
+          
+            
+            
+              
+              
+            
+            
+              
+              
+                
+                
+                  
+                  
+                  
+                
+                
+                  
+                  
+                  
+                
+              
+              
+                 
+                 
+                  
+                  
+                  
+                    
+                    
+                      
+                      
+                      
+                        
+                        
+                        
+                      
+                    
+                    
+                      
+                      
+                      
+                    
+                  
+                
+                
+                  
+                  
+                    
+                    
+                      
+                      
+                      
+                    
+                  
+                  
+                    
+                    
+                  
+                
+                
+                  
+                  
+                    
+                    
+                     
+                       
+                        
+                        
+                     
+                  
+                  
+                
+              
+            
+          
+        
       
     
-    a
+  
+  
+    remainder
+    Remainder
+    
+      rem
+      
+        type
+        MathMLType
+        integer
+      
+    
+    application
+    The symbol to represent the integer remainder after (binary) division. For integers a and b, remainder(a,b) denotes r such that a=b*q+r, with |r| less than |b| and a*r positive.
+
+
+    
+      The rem element is the operator that returns the
+    remainder of a division modulo a particular base. When the
+    rem operator is applied to integer arguments a and
+    b, the result is the remainder of a divided by
     b
+        . That is, rem returns the unique integer,
+    r such that a = q 
+        b+ r, where
+    r < q. (In common usage, q is called the quotient
+    and r is the remainder.)
+    
   
+    
+      
+        rem(a, 0) is undefined
+      
+    
+
+    
+      
+        ForAll( [a,b], b!=0, a = b*quotient(a,b) + rem(a,b))
+      
+      
+        
+          
+          
+            a
+          
+          
+            b
+          
+          
+            
+              
+              b
+              0
+            
+          
+          
+            
+            a
+            
+              
+              
+                
+                b
+                 
+                  
+                  a
+                  b
+                
+              
+              
+                
+                a
+                b
+              
+            
+          
+        
+      
+    
+
+    
+      
+        If this were evaluated at a = 15 and b = 8 it would yield 7.
+      
+      
+        
+          
+          a
+          b
+        
+      
+    
 
 
-
-
-
-
-
-  
-    If this were evaluated at a = 15 and b = 8 it would yield 7.
-  
-
-  ab
-
-
-
-
-
-
+    
+      
 for all a,b with a,b Integers | 
   a = b * quotient(a,b) + remainder(a,b) and abs(remainder(a,b)) is less than abs(b) and a*remainder(a,b) >= 0
 
-
-   
-     
-       
-       
-         
-         
-       
-       
-         
-         
-           
-           
-             
-             
-             
-           
-           
-             
-             
-             
-           
-         
-         
-	   
-	   
-             
-             
-             
-               
-               
+      
+        
+          
+            
+            
+              
+              
+            
+            
+              
+              
+                
+                
+                  
+                  
+                  
+                
+                
+                  
+                  
+                  
+                
+              
+              
                  
                  
-                 
-                   
-                   
-                   
-                 
-               
-               
-                 
-                 
-                 
-               
-             
-           
-           
-             
-             
-               
-               
-                 
-                 
-                 
-               
-             
-             
-               
-               
-             
-           
-           
-             
-             
-               
-               
-	       
-	         
-		 
-		 
-	       
-             
-             
-           
-         
-       
-     
-   
-
-
-
+                  
+                  
+                  
+                    
+                    
+                      
+                      
+                      
+                        
+                        
+                        
+                      
+                    
+                    
+                      
+                      
+                      
+                    
+                  
+                
+                
+                  
+                  
+                    
+                    
+                      
+                      
+                      
+                    
+                  
+                  
+                    
+                    
+                  
+                
+                
+                  
+                  
+                    
+                    
+                     
+                       
+                        
+                        
+                     
+                  
+                  
+                
+              
+            
+          
+        
+      
+    
+  

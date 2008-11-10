@@ -15,13 +15,89 @@
       and this paragraph appear in all copies.  The copyright holders make
       no representation about the suitability of the Schema for any purpose.
   
-      This file contains the grammar rules for presentation MathML3
+      This file contains the grammar rules for pure presentation MathML3, i.e. without
+      content MathML mixed in. 
       It is provided "as is" without expressed or implied warranty.
   
-      Revision:   $Id: mathml3-presentation.rnc 516 2008-01-09 07:22:41Z kohlhase $
+      Revision:   $Id: mathml3-presentation.rnc 717 2008-03-26 13:58:34Z kohlhase $
       Author: Michael Kohlhase http://kwarc.info/kohlhase
 -->
 <grammar ns="http://www.w3.org/1998/Math/MathML" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <include href="mathml3-common.rng"/>
+  <define name="math.content" combine="choice">
+    <ref name="ContInPres"/>
+  </define>
+  <define name="MathML.Common.attrib" combine="choice">
+    <optional>
+      <attribute name="class">
+        <data type="NMTOKENS"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="style">
+        <data type="string"/>
+      </attribute>
+    </optional>
+  </define>
+  <!-- ednote(rnc:browserinterface) this should probably only go into mathml3-presentation.rnc -->
+  <define name="Browser-interface.attrib">
+    <optional>
+      <attribute name="baseline">
+        <data type="string"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="overflow">
+        <choice>
+          <value>scroll</value>
+          <value>elide</value>
+          <value>truncate</value>
+          <value>scale</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="altimg">
+        <data type="anyURI"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="alttext">
+        <data type="string"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="type">
+        <data type="string"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="name">
+        <data type="string"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="height">
+        <data type="string"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="width">
+        <data type="string"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="math.attlist" combine="choice">
+    <ref name="Browser-interface.attrib"/>
+    <optional>
+      <attribute name="display">
+        <choice>
+          <value>block</value>
+          <value>inline</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
   <define name="simple-size">
     <choice>
       <value>small</value>
@@ -1041,9 +1117,6 @@
     </choice>
   </define>
   <define name="ContInPres">
-    <choice>
-      <ref name="PresExp"/>
-      <ref name="ContExp"/>
-    </choice>
+    <ref name="PresExp"/>
   </define>
 </grammar>

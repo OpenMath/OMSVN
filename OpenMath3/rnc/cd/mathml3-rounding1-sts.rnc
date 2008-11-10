@@ -8,10 +8,7 @@
 
 namespace m  ="http://www.w3.org/1998/Math/MathML"
 
-
-
-
-     This document is distributed in the hope that it will be useful, 
+       This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -41,433 +38,460 @@ namespace m  ="http://www.w3.org/1998/Math/MathML"
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 
+  rounding1
+  http://www.openmath.org/cd
+  http://www.openmath.org/cd/rounding1.ocd
+  2006-03-30
+  draft
+  2008-10-22
+  3
+  0
+  A content dictionary of basic rounding funciotns
+    Written by James Davenport, inspired by the need from bigfloat.ocd.
+  Finished 1999-10-24.
 
-rounding1
-http://www.openmath.org/cd
-http://www.openmath.org/cd/rounding1.ocd 
-2006-03-30
-official
-2004-03-30
-3
-0
- 
-A CD of basic rounding concepts
-
-
-Written by James Davenport, inspired by the need from bigfloat.ocd.
-Finished 1999-10-24.
-
-
-
-ceiling
-Ceiling
   
     ceiling
-        
-          type
-          MathMLType
-          integer
-        
-  
-application
-
-The round up (to +infinity) operation.
-
-
-
-  The ceiling element is used to denote the round-up (towards +infinity) operator.
-
-
-  The ceiling element (introduced in MathML 2.0) is used
-  to denote the round-up (towards +infinity) operator.
-
-
-  
-    ForAll( x, ceiling(x) >= x )
+    Ceiling
     
-    x
+      ceiling
+      
+        type
+        MathMLType
+        integer
+      
     
-    
-    x
-    
-    x
-    
+    application
+    The ceiling function is used to round-up (towards positive infinity). This function takes one real number as an argument and retunrns an integer.
 
-
-  If this were evaluated at a = 15.015, it would yield 16.
-   
-  a
-
-		
-		 
-		  a
-		  
-		    
-		    
-		      
-		      a
-		    
-		    1
-		    
-		      a
-		  
-		    
-		    a
-		    
-		    a
-		    
-		      
-		  
-		
-		
-
-
- for all x | ceiling(x)-1 < x <= ceiling x 
-
-
-  
     
-    
-       
-    
-    
+      
+        ForAll( x, ceiling(x) >= x )
       
       
         
-        
+          
+          
+            x
           
           
             
             
-          
+              
+              x
+            
+            x
           
         
-        
+      
+    
+
+    
+      
+        If this were evaluated at a = 15.015, it would yield 16.
       
       
         
+          
+          a
         
+      
+    
+
+    
+      
         
           
+          
+            a
+          
+          
+            
+            
+              
+              
+                
+                
+                  
+                  a
+                
+                1
+              
+              a
+            
+            
+              
+              a
+              
+                
+                a
+              
+                
+          
+        
+      
+    
+
+    
+       for all x | ceiling(x)-1 < x <= ceiling x 
+      
+        
+          
+            
+            
+              
+            
+            
+              
+              
+                
+                
+                  
+                  
+                    
+                    
+                  
+                  
+                
+                
+              
+              
+                
+                
+                
+                  
+                  
+                
+              
+            
           
         
       
     
   
-
-
-
-
-
-floor
-Floor
   
     floor
-	
-          type
-          MathMLType
-          integer
-        
-  
-application
-
-The round down (to -infinity) operation.
-
-
-
-          The floor element is used to denote the round-down (towards -infinity) operator.
-        
-	
-	  The floor element (introduced in MathML 2.0) is used to denote the
-	  round-down (towards -infinity) operator.
-	
-
-          
-            ForAll( x, floor(x) <= x )
-          
-  x
-  
+    Floor
     
-      x
+      floor
+      
+        type
+        MathMLType
+        integer
+      
     
-    x
-  
+    application
+    The round down (towards negative infinity) operation. This function takes one real number as an argument and retunrns an integer.
 
-        
-		If this were evaluated at a = 15.015, it would yield 15.
-		
-		 
-  a
-
-		
-		 
-		  a
-		  
-		    
-		    
-		    a
-		    
-		    a
-		      
-		    
-		      a
-		    
-		      
-		      a
-		    
-		    1
-		    
-		  
-		  
-		
-		
-
-
- for all x | floor(x) <= x < floor(x)+1 
-
-
-  
     
-    
-       
-    
-    
+      
+        ForAll( x, floor(x) <= x )
       
       
         
-        
-        
+          
+          
+            x
           
           
             
             
-          
+              
+              x
+            
+            x
           
         
       
+    
+
+    
+      
+        If this were evaluated at a = 15.015, it would yield 15.
+      
       
         
+          
+          a
         
+      
+    
+
+    
+      
+         
           
           
+            a
+          
+          
+            
+            
+              
+              
+                
+                a
+              
+              a
+                
+            
+              
+              a
+              
+                
+                
+                  
+                  a
+                
+                1
+              
+            
+          
         
+      
+    
+
+    
+       for all x | floor(x) <= x < floor(x)+1 
+      
+        
+          
+            
+            
+              
+            
+            
+              
+              
+                
+                
+                
+                  
+                  
+                    
+                    
+                  
+                  
+                
+              
+              
+                
+                
+                  
+                  
+                
+                
+              
+            
+          
         
       
     
   
-
-
-
-
-
-
-trunc
   
     trunc
-  
-application
-
-The round to zero operation.
-
-
-
- for all x | trunc(x) <= x < trunc(x)+1 (x>0) 
-
-
-
-  
     
+      trunc
     
-       
+    application
+    The operation of truncating a number. This function takes one real number as an argument and returns an integer.
+
     
-    
-      
+       for all x | trunc(x) <= x < trunc(x)+1 (x>0) 
       
         
-        
-        
-      
-      
-        
-        
-          
-          
           
             
             
               
-              
-            
-            
-          
-        
-        
-          
-          
-            
-            
-          
-          
-        
-      
-    
-  
-
-
-
-
- for all x | trunc(x) >= x > trunc(x)-1 (x<0) 
-
-
-
-  
-    
-    
-       
-    
-      
-        
-        
-          
-          
-          
-        
-        
-          
-          
-            
             
             
               
               
                 
                 
+                
               
               
-            
-          
-          
-            
-            
+                
+                
+                  
+                  
+                  
+                    
+                    
+                      
+                      
+                    
+                    
+                  
+                
+                
+                  
+                  
+                    
+                    
+                  
+                  
+                
               
-              
-            
             
           
         
       
+    
+
+    
+       for all x | trunc(x) >= x > trunc(x)-1 (x<0) 
+
+      
+        
+          
+            
+            
+              
+            
+            
+              
+              
+                
+                
+                
+              
+              
+                
+                
+                  
+                  
+                  
+                    
+                    
+                      
+                      
+                    
+                    
+                  
+                
+                
+                  
+                  
+                    
+                    
+                  
+                  
+                
+              
+            
+          
+        
+      
+    
   
-
-
-
-
-
-round
   
     round
+    
+      round
+    
+    application
+    The operation of rounding to nearest integer. This function takes one real number as an argument and retunrns an integer.
+
+    
+       for all x | x <= round(x)+1/2 and x <= round(x)-1/2 
+
+      
+        
+          
+            
+            
+              
+            
+            
+              
+              
+                
+                
+                
+                  
+                  
+                    
+                    
+                  
+                  
+                    
+                    
+                     2 
+                  
+                
+              
+              
+                
+                
+                
+                  
+                  
+                    
+                    
+                  
+                  
+                    
+                    
+                     2 
+                  
+                
+              
+            
+          
+        
+      
+    
+
+    
+       for all x | Also round to even in event of a tie 
+      
+        
+          
+            
+            
+              
+            
+            
+              
+              
+                
+                
+                  
+                  
+                    
+                    
+                    
+                  
+                
+                
+                  
+                  
+                    
+                    
+                     2 
+                  
+                  
+                
+              
+              
+                
+                
+                  
+                  
+                    
+                    
+                  
+                   2 
+                
+                
+              
+            
+          
+        
+      
+    
+
   
-application
-
-The round to nearest operation.
-
-
-
- for all x | x <= round(x)+1/2 and x <= round(x)-1/2 
-
-
-
-  
-    
-    
-       
-    
-    
-      
-      
-        
-        
-        
-          
-          
-            
-            
-          
-          
-            
-            
-	     2 
-          
-        
-      
-      
-        
-        
-        
-          
-          
-            
-            
-          
-          
-            
-            
-	     2 
-          
-        
-      
-    
-  
-
-
-
-
- for all x | Also round to even in event of a tie 
-
-
-
-  
-    
-    
-       
-    
-    
-      
-      
-        
-	
-	  
-	  
-	    
-	    
-	    
-	  
-	
-        
-          
-          
-	    
-  	    
-	     2 
-  	  
-	  
-        
-      
-      
-        
-        
-          
-          
-            
-            
-          
-	   2 
-        
-        
-      
-    
-  
-
-
-
-
-

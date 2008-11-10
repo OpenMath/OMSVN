@@ -10,7 +10,6 @@ namespace m  ="http://www.w3.org/1998/Math/MathML"
 
 
 
-
      This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -46,47 +45,34 @@ error1
 http://www.openmath.org/cd
 http://www.openmath.org/cd/error.ocd 
 2006-03-30
-official
+draft
 2004-03-30
 3
 0
 
 
-unhandled_symbol
-Unhandled Symbol
-error
-
-This symbol represents the error which is raised when an application
-reads a symbol which is present in the mentioned content
-dictionary, but which it has not implemented.
-
-When receiving such a symbol, the application should act as if it had
-received the OpenMath error object constructed from unhandled_symbol
-and the unhandled symbol as in the example below.
+  MathML3 and OpenMath provide in situ error markup via the error element, which has two
+  children: the first one is a symbol that specifies the kind of error, and the second one
+  is the erraneous expression. This content dictionary provides basic error specifier
+  symbols for the error element.
 
 
- 
+
+  unhandled_symbol
+  Unhandled Symbol
+  error
+  
     This symbol represents the error which is raised when an application reads a symbol
     which is present in the mentioned content dictionary, but which it has not
     implemented.
 
     When receiving such a symbol, the application should act as if it had received the
-    MathML error object constructed from unhandled_symbol and the unhandled symbol as in
+    OpenMath error object constructed from unhandled_symbol and the unhandled symbol as in
     the example below.
   
+
   
     The application does not implement the Complex numbers:
-    
-      
-	unhandled_symbol
-	C
-    
-    
-
-
-
-
-The application does not implement the Complex numbers:
 
   
     
@@ -107,26 +93,6 @@ unexpected_symbol
     When receiving such a symbol, the application should act as if it had received the
     OpenMath error object constructed from unexpected_symbol and the unexpected symbol as
     in the example below.
-
-
-  
-    This symbol represents the error which is raised when an application reads a symbol
-    which is not present in the mentioned content dictionary.
-
-    When receiving such a symbol, the application should act as if it had received the
-    MathML error object constructed from unexpected_symbol and the unexpected symbol as
-    in the example below.
-  
-
-  
-    The application received a mistyped symbol
-
-  
-    unexpected_symbol
-    plurse
-  
-
-
 
 
 
@@ -153,28 +119,9 @@ error
   unsupported Content Dictionary as in the example below.
 
 
+
+  The application does not know about the CD specfun1
   
-    This symbol represents the error which is raised when an application reads a symbol
-    where the mentioned content dictionary is not present.
-
-    When receiving such a symbol, the application should act as if it had received the
-    MathML error object constructed from unsupported_CD and the symbol from
-    the unsupported Content Dictionary as in the example below.
-  
-  
-    The application does not know about the CD specfun
-    
-      
-	unsupported_CD
-	BesselJ
-      
-    
-  
-
-
-
-The application does not know about the CD specfun1
-
   
     
     

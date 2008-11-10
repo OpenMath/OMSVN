@@ -9,10 +9,7 @@
 namespace om = "http://www.openmath.org/OpenMath"
 
 
-
-
-
-     This document is distributed in the hope that it will be useful, 
+       This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -42,926 +39,882 @@ namespace om = "http://www.openmath.org/OpenMath"
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 
-
-multiset1
-http://www.openmath.org/cd
-http://www.openmath.org/cd/multiset1.ocd
-2006-03-30
-2004-03-30
-3
-0
-official
-
-    This CD defines the set functions and constructors for basic
-    multiset theory. It is intended to be `compatible' with the
-    corresponding elements in MathML i.e. set operations acting
-    on sets of type=multiset.
-
-
-  The symbols introduced in this content dictionary have operator elements in pragmatic
+  multiset1
+  http://www.openmath.org/cd
+  http://www.openmath.org/cd/multiset1.ocd
+  2006-03-30
+  2008-10-28
+  3
+  0
+  draft
+  This CD defines the set functions and constructors for basic multiset theory. It is intended to be `compatible' with the corresponding elements in MathML i.e. set operations acting on sets of type=multiset.
+  
+    The symbols introduced in this content dictionary have operator elements in pragmatic
   Content MathML that take a type attribute indicates whehter the they pertain
   to a set or multilset interpretation of the arguments. The symbols defined in the
   multiset1 content dictionary correspond to the multiset interpretatio,
   where repetitions of members are allowed. Therefore the value multiset
   is prescribed on these elements.
-
-
-
-  size
-  The size of a multiset set
   
-    size
-    
-      type
-      "multiset"
-    
   
-  application
-   
-    This symbol is used to denote the number of elements in a multiset. It is
-    either a non-negative integer, or an infinite cardinal number. The
-    symbol infinity may be used for an unspecified infinite cardinal.
-  
-
-
-The size of the multiset{3,3,9} = 3
-
-
-  
+    cartesian_product
     
-    
+      cartesianproduct
       
+        type
+        "multiset"
+      
+    
+    application
+    This symbol represents an n-ary construction function for constructing the Cartesian product of multisets. It takes n multiset arguments in order to construct their Cartesian product.
+
+    
       
         
-         3 
-         3 
-         9 
+          
+          A
+          B
+        
       
     
-     3 
-  
 
-
-
-
-  where A is a multiset with 5 elements.
-  
-  
-    
-    A
-    5
-    
-  
-
-
-
-
-
-
-  cartesian_product
-  
-    cartesianproduct
-    
-      type
-      "multiset"
-    
-  
-  application
-  
-    This symbol represents an n-ary construction function for constructing the Cartesian
-    product of multisets. It takes n multiset arguments in order to construct their
-    Cartesian product.
-  
-
-  
-    The cartesianproduct element is the operator for a set-theoretic cartesian product
-    of two (or more) sets.  The cartesian product of multisets produces a multiset since
-    n-tuples may be repeated if elements in the base sets are repeated.
-  
-  
-    The cartesianproduct element is the operator element for the Cartesian
-    product of two or more sets. If A and B are two sets, then the
-    Cartesian product of A and B is the set of all pairs
-    (a,b) with a in A and b in
-    B. 
-	  
-    As an n-ary operator, its operands may also be generated as described in
-     Therefore it may take qualifiers.
-  
-  
-    
-      AB
-    
-  
-
-  
     
       
+        
+          
+          
+          
+          
+        
+      
     
-  
 
-  
+    
     An example to show the representation of the Cartesian product of multisets: AxBxC.
 
+        
+          
+          
+          
+          
+        
+      
+    
   
-    
-    
-    
-    
-  
-
-
-
-
-
-  emptyset
   
     emptyset
     
-      type
-      "multiset"
-    
-  
-  constant
-  
-    This symbol is used to represent the empty multiset, that is the multiset which
-    contains no members. It takes no parameters.
-  
-  
-  
-    emptyset represents the empty set.
-  
-  
-    emptyset represents the empty set.
-  
-  
-    
-      for all sets S,   intersect(S,emptyset) = emptyset
+      emptyset
       
-
-S
-  
-    S
-    
-  
-
-
-
-  
-  
-
-
-
-
-
- The intersection of A with the empty (multi) set is the empty
-(multi) set 
-
-
-  
-    
-    
-      
-      
+        type
+        "multiset"
       
     
-    
-  
-
-
-
-
- The union of A with the empty (multi) set is A 
-
-
+    constant
+    This symbol is used to represent the empty multiset, that is the multiset which contains no members. It takes no parameters.
   
     
+      
+        for all sets S,   intersect(S,emptyset) = emptyset
+      
+      
+        
+          
+          
+            S
+          
+          
+            
+            
+              
+              
+              S
+            
+            
+          
+        
+      
+    
+
     
       
-      
+        
+          
+          
+          
+        
       
     
+
+    
+       The intersection of a multiset A with the empty multi set is the empty multi set
+
+      
+        
+          
+            
+            
+              
+              
+              
+            
+            
+          
+        
+      
+    
+
+    
+       The union of A with the empty (multi) set is A 
+      
+        
+          
+            
+            
+              
+              
+              
+            
+            
+          
+        
+      
+    
+
+  
+  
+    map
+    
+      map
+      
+        type
+        "multiset"
+      
+    
+    application
+    This symbol represents a mapping function which may be used to construct multisets, it takes as arguments a function from X to Y and a multiset over X in that order. The value that is returned is a multiset of values in Y.
+
+    
+    The set of even values between 0 and 20, that is the values 2x, where x ranges over
+    the integral interval [0,10].
+    
+        
+          
+          
+            
+            
+              
+            
+            
+              
+               2 
+              
+            
+          
+          
+            
+             0 
+             10 
+          
+        
+      
     
   
+  
+    size
+    The size of a multiset
+    
+      card
+      
+        type
+        "multiset"
+      
+    
+    application
+    This symbol is used to denote the number of elements in a multiset. It is either a non-negative integer, or an infinite cardinal number. The symbol infinity may be used for an unspecified infinite cardinal.
+ 
+    
+The size of the multiset{3,3,9} = 3
 
 
+        
+          
+          
+            
+            
+              
+               3 
+               3 
+               9 
+            
+          
+           3 
+        
+      
+    
 
+    
+      
+        where A is a multiset with 5 elements.
+      
+      
+        
+          
+          
+            
+            A
+          
+          5
+        
+      
+    
+  
+  
+    suchthat
+    
+      suchthat
+      
+        type
+        "multiset"
+      
+    
+    application
+    This symbol represents the suchthat function which may be used to construct multisets, it takes two arguments. The first argument should be the multiset which contains the elements of the multiset we wish to represent, the second argument should be a predicate, that is a function from the set to the booleans which describes if an element is to be in the multiset returned.
 
+    
+      
+        
+          
+            x
+          
+          
+            
+              
+              x
+              5
+            
+          
+        
+      
+    
 
-
-multiset
+    
+      
+        
+          
+            S
+          
+          
+            
+              
+              S
+              T
+            
+          
+          S
+        
+      
+    
+  
   
     multiset
     
-      type
-      "multiset"
+      multiset
+      
+        type
+        "multiset"
+      
+    
+    application
+    This symbol represents the multiset construct. It is either an n-ary function, in which case the multiset entries are given explicitly, or it works on an elements construct. There is no implied ordering to the elements of a multiset.
+
+    
+      
+        
+          a
+          a
+          c
+          b
+          c
+        
+      
     
   
-  application
-
-   
-    This symbol represents the multiset construct. It is either an n-ary function, in
-    which case the multiset entries are given explicitly, or it works on an elements
-    construct. There is no implied ordering to the elements of a multiset.
-  
-
-  
+    
     The multiset {4, 1, 0, 1 4}
     
-  
+        
+          
+           4 
+           1 
+           0 
+           1 
+           4 
+        
+      
     
-     4 
-     1 
-     0 
-     1 
-     4 
   
-
-
-
-
-
-  intersect
   
     intersect
     
-      type
-      "multiset"
+      intersect
+      
+        type
+        "multiset"
+      
     
-    
-      The intersect operator element can be used as a binding operator in
-      pragmatic Content MathML. This role is taken over by the big_intersect
-      symbol in strict Content MathML.
+    application
+    This symbol is used to denote the n-ary intersection of multisets. It takes multisets as arguments, and denotes the multiset that contains all the elements that occur in all of them, with multiplicity the minimum of their multiplicities in all multisets.
 
-  
     
-    x
-    0x
+      
+        
+          
+           A
+           B
+        
+      
+    
+
+    
+      
+  (A intersect B) is a subset of A and (A intersect B) is a subset of B
+
+      
+        
+          
+            
+            
+              
+              
+                
+                
+                
+              
+              
+            
+            
+              
+              
+                
+                
+                
+              
+              
+            
+          
+        
+      
+    
   
   
     big_intersect
-    
-      lambda
-      x
-      integer_interval0x
-    
-  
-
-    
-  
-  application
-   
-    This symbol is used to denote the n-ary intersection of multisets. It takes multisets
-    as arguments, and denotes the multiset that contains all the elements that occur in
-    all of them, with multiplicity the minimum of their multiplicities in all multisets.
-  
-
-  
-     This n-ary operator indicates the intersection of two sets.  If the two sets are
-    multisets, the result is a multiset. in which each element is present with a
-    repetition determined by the smallest number of occurrences in any of the sets
-    (multisets) that occur as arguments.
-  
-  
-    The intersect element is the operator for the set-theoretic intersection
-    or meet of two (or more) sets.  The operands are usually listed explicitly.
-    As an n-ary operator, its operands may also be generated as described in  Therefore it may take qualifiers.
-    
-  
-
-        
-   A
-   B
-
-
-
-
-
-  
-  L
-  
-    
-     S
-     S
-  
-
-
-
-
-
-  (A intersect B) is a subset of A and 
-    (A intersect B) is a subset of B
-
-
-
-  
-    
-    
-      
-      
-        
-	
-	
-      
-      
-    
-    
-      
-      
-        
-	
-	
-      
-      
-    
-  
-
-
-
-
-
-  big_intersect
-  binder
-  Intersection over a multiset of expressions
-  
+    binder
+    Intersection over a multiset of expressions
     This n-ary operator is used to construct the intersection over a collection of sets.
+
+    
+      
+        
+          
+          L
+          
+            
+            
+               S
+            
+             S
+          
+        
+      
+    
   
-  
-
-
-
-
-union
   
     union
     
-      type
-      "multiset"
-    
-    
-      The union operator element can be used as a binding operator in
-      pragmatic Content MathML. This role is taken over by the big_union
-      symbol in strict Content MathML.
-
-  
-    
-    x
-    0x
-  
-  
-    big_union
-    
-      lambda
-      x
-      integer_interval0x
-    
-  
-
-    
-  
-application
- 
-This symbol is used to denote the n-ary union of multisets. It
-takes multisets as arguments, and denotes the multiset that 
-contains all the elements that occur in any of them, with 
-multiplicity the sum of all the multiplicities in the multiset 
-arguments.
-
-
-
-          This is the set-theoretic operation of union of sets.  This n-ary operator
-          generalizes to operations on multisets by tracking the frequency of occurrence
-          of each element in the union. As an n-ary operation the operands can be
-          generated by allowing a function or expression to range over the elements of a
-          domain of application.  Thus it accepts qualifiers.
-	
-	
-	  The union element is the operator for a set-theoretic union or join
-	  of two (or more) sets.  The operands are usually listed explicitly.
-	  
-	  As an n-ary operator, its operands may also
-	  be generated as described in  Therefore it
-	  may take qualifiers.
-	
-
-        AB
-	
-	  
-	    
-	     S
-	    L
-	     S
-	  
-	
-
-
-
- 
-  A is a subset of (A union B) and B is a subset of (A union B) 
-
-
-
-
-  
-    
-    
+      union
       
+        type
+        "multiset"
       
+    
+    application
+    This symbol is used to denote the n-ary union of multisets. It takes multisets as arguments, and denotes the multiset that contains all the elements that occur in any of them, with multiplicity the sum of all the multiplicities in the multiset arguments.
+
+    
       
         
-	
-	
-      
-    
-    
-      
-      
-      
+          
+          A
+          B
         
-	
-	
       
     
   
+    
+       A is a subset of (A union B) and B is a subset of (A union B) 
 
+      
+        
+          
+            
+            
+              
+              
+              
+                
+                
+                
+              
+            
+            
+              
+              
+              
+                
+                
+                
+              
+            
+          
+        
+      
+    
 
-
-
-
+    
+      
 for all sets A,B and C
 union(A,intersect(B,C)) = intersect(union(A,B),union(A,C))
 
 
-
-
+      
+        
+          
+            
+            
+              
+              
+              
+            
+            
+              
+              
+                
+                
+                
+                  
+                  
+                  
+                
+              
+              
+                
+                
+                  
+                  
+                  
+                
+                
+                  
+                  
+                  
+                
+              
+                
+          
+        
+      
+    
   
-    
-    
-      
-      
-      
-    
-    
-      
-      
-        
-        
-        
-          
-          
-          
-        
-      
-      
-        
-        
-          
-          
-          
-        
-        
-          
-          
-          
-        
-      
-        
   
-
-
-
-
-
-
-  big_union
-  binder
-  Union over a multiset of expressions
-  
+    big_union
+    binder
+    Multiset union over a set of expressions
     This n-ary operator is used to construct the union over a collection of multisets.
+
+    
+      
+        
+          
+          
+            S
+          
+          
+            L
+          
+          S
+        
+      
+    
   
-  
-
-
-
-
-setdiff
   
     setdiff
     
-      type
-      "multiset"
+      setdiff
+      
+        type
+        "multiset"
+      
     
-  
-application
- 
-This symbol is used to denote the multiset difference of two 
-multisets. It takes two multisets as arguments, and denotes the 
-multiset that contains all the elements that occur in the first 
-multiset with strictly greater multiplicity than in the second.
-The multiplicity in the result is the difference of the two.
+    application
+    This symbol is used to denote the multiset difference of two multisets. It takes two multisets as arguments, and denotes the multiset that contains all the elements that occur in the first multiset with strictly greater multiplicity than in the second. The multiplicity in the result is the difference of the two.
 
-
- 
-          The setdiff element is the operator element for a set-theoretic difference of
-          two sets.
+    
+      
         
-	
-	  The setdiff element is the operator element for a set-theoretic
-	  difference of two sets.
-	
+          
+          A
+          B
         
-   A
-   B
+      
+    
 
-
-
-
-
+    
+      
   the difference of A and B is a subset of A
 
-
+      
+        
+          
+            
+            
+              
+              
+              
+            
+            
+          
+        
+      
+    
   
-    
-    
-      
-      
-      
-    
-    
-  
-
-
-
-
-subset
   
     subset
     
-      type
-      "multiset"
+      subset
+      
+        type
+        "multiset"
+      
+    
+    application
+    This symbol has two (multiset) arguments. It is used to denote that the first set is a subset of the second, i.e. every element of the first occurs with multiplicity at least as much in the second.
+
+    
+      
+        
+          
+          A
+          B
+        
+      
+    
+
+    
+      
+        ***** what do we do with this?
+      
+      
+        
+          
+          
+            
+              S
+            
+            
+              
+                
+                S
+                T
+              
+            
+            S
+          
+        
+      
+    
+
+    
+      
+  if B is a subset of A and C is a subset of B then C is a subset of A
+
+      
+        
+          
+            
+            
+              
+              
+                
+                
+                
+              
+              
+                
+                
+                
+              
+            
+            
+              
+              
+              
+            
+          
+        
+      
     
   
-application
-
-This symbol has two (multiset) arguments. It is used to denote 
-that the first set is a subset of the second, i.e. every element 
-of the first occurs with multiplicity at least as much in the 
-second.
-
-
-
-          The subset element is the n-ary relational operator element for a
-          set-theoretic containment ('is a subset of').
-	
-	
-	  The subset element is the relational operator element for a
-	  set-theoretic containment (is a subset of).
-	  The subset element is an n-ary set relation.  As an
-	  n-ary operator, its operands may also be generated as described in  Therefore it may take qualifiers.
-	
-
-        
-   A
-   B
-
-
-
-
-  
-    
-    
-      
-      S
-      ST
-      S
-    
-  
-  
-
-
-
-
-  if B is a subset of A and C is a subset of B 
-    then C is a subset of A
-
-
-  
-    
-    
-      
-      
-        
-        
-        
-      
-      
-        
-        
-        
-      
-    
-    
-      
-      
-      
-    
-  
-
-
-
-
-in
   
     in
     
-      type
-      "multiset"
+      in
+      
+        type
+        "multiset"
+      
+    
+    application
+    This symbol has two arguments, an element and a multiset. It is used to denote that the element is in the given multiset.
+
+    
+      
+        
+          
+          a
+          A
+        
+      
+    
+
+    
+      
+  if a is in A and a is in B then a is in A intersect B
+
+      
+        
+          
+            
+            
+              
+              
+                
+                
+                
+              
+              
+                
+                
+                
+              
+            
+            
+              
+              
+              
+                
+                
+                
+              
+            
+          
+        
+      
     
   
-application
- 
-This symbol has two arguments, an element and a multiset. It is 
-used to denote that the element is in the given multiset.
-
-
- 
-          The in element is the relational operator used for a set-theoretic inclusion
-          ('is in' or 'is a member of').
-        
-	
-	  The in element is the relational operator used for a set-theoretic
-	  inclusion (is in or is a member of).
-	
-
-        
-  a
-   A
-
-
-
-
-  if a is in A and a is in B then a is in A intersection B
-
-
-  
-    
-    
-      
-      
-        
-        
-        
-      
-      
-        
-        
-        
-      
-    
-    
-      
-      
-      
-        
-        
-        
-      
-    
-  
-
-
-
-
-notin
   
     notin
     
-      type
-      "multiset"
+      notin
+      
+        type
+        "multiset"
+      
     
-  
-application
- 
-This symbol has two arguments, an element and a multiset. It is 
-used to denote that the element is not in the given multiset.
+    application
+    This symbol has two arguments, an element and a multiset. It is used to denote that the element is not in the given multiset.
 
-
-  
-          The notin element is the relational operator element used 
-to construct set-theoretic exclusion ('is not in' or 'is not a member of').
-	
-	
-	  The notin element is the relational operator element used for
-	  set-theoretic exclusion (is not in or is not a member
-	  of).
-	
-
+    
+      
         
-  a
-   A
+          
+          a
+          A
+        
+      
+    
 
-
-
+    
   4 is not in {1,1,2,3}
 
 
-  
-    
-     4 
-    
+        
+          
+           4 
+          
+            
+             1 
+             1 
+             2 
+             3 
+          
+        
       
-       1 
-       1 
-       2 
-       3 
     
   
-
-
-
-
-
-  prsubset
   
     prsubset
     
-      type
-      "multiset"
-    
-  
-  application
-   
-    This symbol has two (multiset) arguments. It is used to denote that the first multiset
-    is a proper subset of the second, that is a subset of the second multiset but not
-    actually equal to it.
-  
-
-  
-    The prsubset element is the n-ary relational operator element for
-    set-theoretic proper containment ('is a proper subset of').
-  
-  
-    The prsubset element is the relational operator element for set-theoretic
-    proper containment (is a proper subset of).
-    The prsubset element is an n-ary set relation.  As an n-ary
-    operator, its operands may also be generated as described in  Therefore it may take qualifiers.
-  
-  
-  
-    
+      prsubset
       
-      A
-      B
+        type
+        "multiset"
       
     
-  
+    application
+    This symbol has two (multiset) arguments. It is used to denote that the first multiset is a proper subset of the second, that is a subset of the second multiset but not actually equal to it.
 
-
-  
     
       
-      i
-      0
-      10
-      
-      S
-      i
+        
+          
+          A
+          B
+        
       
     
-  
 
+    
+      
+        ***** what do we do with this?
+      
+      
+        
+          
+          
+            i
+          
+          
+            0
+          
+          
+            10
+          
+          
+            
+            S
+            i
+          
+        
+      
+    
 
-
+    
   {2,3} is a proper subset of {2,2,3}
 
 
-  
-    
-    
+        
+          
+          
+            
+             2 
+             3 
+          
+          
+            
+             2 
+             2 
+             3 
+          
+        
       
-       2 
-       3 
-    
-    
-      
-       2 
-       2 
-       3 
     
   
-
-
-
-
-
-notsubset
   
     notsubset
     
-      type
-      "multiset"
-    
-  
-  application
-   
-    This symbol has two (multiset) arguments. It is used to denote that the first multiset
-    is not a subset of the second.
-  
-  
-  
-    The notsubset element is the relational operator element for the set-theoretic
-    relation 'is not a subset of'.
-  
-  
-    The notsubset element is the relational operator element for the
-    set-theoretic relation is not a subset of.
-  
-  
-  
-    
+      notsubset
       
-	
-	 A
-	 B
+        type
+        "multiset"
       
     
-  
+    application
+    This symbol has two (multiset) arguments. It is used to denote that the first multiset is not a subset of the second.
 
+    
+      
+        
+          
+          A
+          B
+        
+      
+    
 
+    
   {2,3,3} is not a subset of {1,2,3}
 
 
-  
-    
-    
+        
+          
+          
+            
+             2 
+             3 
+             3 
+          
+          
+            
+             1 
+             2 
+             3 
+          
+        
       
-       2 
-       3 
-       3 
-    
-    
-      
-       1 
-       2 
-       3 
     
   
-
-
-
-
-
-notprsubset
   
     notprsubset
     
-      type
-      "multiset"
+      notprsubset
+      
+        type
+        "multiset"
+      
     
-  
-application
- 
-This symbol has two (multiset) arguments. It is used to denote 
-that the first multiset is not a proper subset of the second. A 
-proper subset of a multiset is a subset of the multiset but not 
-actually equal to it.
+    application
+    This symbol has two (multiset) arguments. It is used to denote that the first multiset is not a proper subset of the second. A proper subset of a multiset is a subset of the multiset but not actually equal to it.
 
-
-
-          The notprsubset element is the element for constructing the set-theoretic
-          relation 'is not a proper subset of'.
+    
+      
         
-	
-	  The notprsubset element is the operator element for the
-	  set-theoretic relation is not a proper subset of.
-	
-
+          
+          A
+          B
         
-   A
-   B
+      
+    
 
-
-
-
+    
 {1,2,1} is not a proper subset of {1,2,1}
 
 
-  
-    
-    
+        
+          
+          
+            
+            1
+            2
+            1
+          
+          
+            
+            1
+            2
+            1
+          
+        
       
-       1 
-       2 
-       1 
-    
-    
-      
-       1 
-       2 
-       1 
     
   
-
-
-
-

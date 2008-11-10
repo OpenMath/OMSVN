@@ -8,10 +8,7 @@
 
 namespace m  ="http://www.w3.org/1998/Math/MathML"
 
-
-
-
-     This document is distributed in the hope that it will be useful, 
+       This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -41,59 +38,58 @@ namespace m  ="http://www.w3.org/1998/Math/MathML"
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 
+  complex1
+  http://www.openmath.org/cd
+  http://www.openmath.org/cd/complex1.ocd
+  2006-03-30
+  2008-09-26
+  3
+  0
+  draft
+  This content dictionary provides constructors for complex numbers.
 
-complex1
-http://www.openmath.org/cd
-http://www.openmath.org/cd/complex1.ocd 
-2006-03-30
-2004-03-30
-3
-0
-official
-
-    This CD is intended to be `compatible' with the MathML view of
-    operations on and constructors for  complex numbers.
-
-
-
-complex_cartesian
   
     complex_cartesian
-  
-application
- 
-This symbol represents a constructor function for complex numbers
-specified as the Cartesian coordinates of the relevant point on the
-complex plane. It takes two arguments, the first is a number x to
-denote the real part and the second a number y to denote the imaginary
-part of the complex number x + i y. (Where i is the square root of -1.)
+    
+      complex_cartesian
+    
+    application
+    
+      This symbol represents a constructor function for complex numbers specified as the
+      Cartesian coordinates of the relevant point on the complex plane. It takes two
+      arguments, the first is a number x to denote the real part and the second a number y
+      to denote the imaginary part of the complex number x + i y. (Where i is the square
+      root of -1.)
+    
 
-
-
-
-for all x,y | complex_cartesian(x,y) = x + iy
-
-
-  
     
       
+      for all x,y | complex_cartesian(x,y) = x + iy
+    
       
         
-        
-      
-      
-        
-        
-          
-          
-          
-        
-        
-          
-          
           
             
             
+              
+              
+            
+            
+              
+              
+                
+                
+                
+              
+              
+                
+                
+                
+                  
+                  
+                  
+                
+              
             
           
         
@@ -101,532 +97,597 @@ for all x,y | complex_cartesian(x,y) = x + iy
     
   
 
-
-
-
-real
-Real Part
   
     real
+    Real Part
+    
+      real
+    
+    application
+    
+      This symbol is a unary operator used to construct an expression representing the
+      "real" part of a complex number, that is the x component in x + iy.
+    
   
-application
- 
-This represents the real part of a complex number
- 
-
-
-          A unary operator used to construct an expression
-representing the "real" part of a complex number. 
+    
+      
+        ForAll( [x,y], x in R, Y in R, real(x+i*y)=x) )
+      
+      
         
-	
-	  The real operator (introduced in MathML 2.0) gives the real part of
-	  a complex number, that is the x component in x + i y
-	
-
-   
           
-            ForAll( [x,y], x in R, Y in R, real(x+i*y)=x) )
           
+            x
+          
+          
+            y
+          
+          
+            
+              
+              
+                
+                x
+                
+              
+              
+                
+                y
+                
+              
+            
+          
+          
+            
+            
+              
+              
+                
+                x
+                
+                  
+                  
+                  y
+                
+              
+            
+            x
+          
+        
+      
+    
 
-  x
-  y
-  
-    
-      x
-      y
-    
-  
-  
+
     
       
-        x
-        y
+	The following example encodes the real operation onx +
+	iy.A MathML-aware evaluation system would return the x
+	component, suitably encoded.
+      
+      
+        
+          
+          
+            
+            x
+            
+              
+              
+              y
+            
+          
+        
       
     
-    x
-  
 
 
-
-
-
-
-  
-    The following example encodes the real operation onx + iy.A
-    MathML-aware evaluation system would return the x component, suitably
-    encoded.
-  
-  
     
-    
-    x
-    y
-  
-
-
-
-
-
-
+      
  for all x,y | x = real(x+iy)
 
-
-  
+      
+        
+          
+            
+            
+              
+              
+            
+            
+              
+              
+              
+                
+                
+                  
+                  
+                  
+                
+              
+            
+          
+        
+      
     
-      
-      
-        
-        
-      
-      
-        
-        
-        
-          
-          
-            
-            
-            
-          
-        
-      
-    
   
 
-
-
-
-imaginary
-Imaginary Part
   
     imaginary
-  
-application
- 
-This represents the imaginary part of a complex number
- 
-
+    Imaginary Part
     
-          The unary function used to construct an expression which represents the
-          imaginary part of a complex number.  
-        
-	
-	  The imaginary operator (introduced in MathML 2.0)
-	  gives the imaginary part of a complex number, that is, the y
-	  component in x + i y.
-	
+      imaginary
+    
+    application
+    
+      This symbol represents unary function used to construct the imaginary part of a
+      complex number, i.e. the y component in x+iy.
+    
 
- 
-          
-            ForAll( [x,y], Imaginary(x + i*y) = y )
-          
-
-   x
-   y
-  
     
       
-         x
-        y
+        ForAll( [x,y], Imaginary(x + i*y) = y )
+      
+      
+        
+          
+          
+             x
+          
+          
+             y
+          
+          
+            
+            
+              
+              
+                
+                 x
+                
+                  
+                  
+                  y
+                
+              
+            
+             y
+          
+        
       
     
-     y
-  
 
-
+    
+      
+        The following example encodes the imaginary operation on x +
+  iy. A MathML-aware evaluation system would return the y component,
+  suitably encoded.
+      
+      
         
-		The following example encodes the imaginary operation on x + iy.A MathML-aware evaluation system would return the y component, suitably encoded.
-		
-  
-    x
-    y
-  
+          
+          
+            
+            x
+            
+              
+              
+              y
+            
+          
+        
+      
+    
 
 
-
-
-
-
+    
+      
 for all x,y | y = imaginary(x+iy)
 
-
-  
+      
+        
+          
+            
+            
+              
+              
+            
+            
+              
+              
+              
+                
+                
+                  
+                  
+                  
+                
+              
+            
+          
+        
+      
     
-      
-      
-        
-        
-      
-      
-        
-        
-        
-          
-          
-            
-            
-            
-          
-        
-      
-    
   
 
-
-
-
-complex_polar
   
     complex_polar
-  
-application
- 
-This symbol represents a constructor function for complex numbers
-specified as the polar coordinates of the relevant point on the complex
-plane. It takes two arguments, the first is a nonnegative number r to
-denote the magnitude and the second a number theta (given in radians)
-to denote the argument of the complex number r e^(i theta). (i and
-e are defined as in this CD).
+    
+      complex_polar
+    
+    application
+    
+      This symbol represents a constructor function for complex numbers specified as the
+      polar coordinates of the relevant point on the complex plane. It takes two
+      arguments, the first is a nonnegative number r to denote the magnitude and the
+      second a number theta (given in radians) to denote the argument of the complex
+      number r e^(i theta).
+    
 
-
-
-
+    
+      
 for all r,a | complex_polar(r,a) = r*e^(a*i)
 
 
-
-
-  
-    
-    
-      
-      
-    
-    
-      
       
         
+          
+            
+            
+              
+              
+            
+            
+              
+              
+                
+                
+                
+              
+              
+                
+                 
+                 
+                   
+                   
+                     
+                     
+                     
+                   
+                 
+              
+            
+          
         
-        
-      
-      
-        
-	
-	
-	  
-	  
-	    
-	    
-	    
-	  
-	
       
     
-  
 
-
-
-
-
+    
+      
 for all x,y,r,a |
 (r sin a = y and r cos a = x) implies (complex_polar(r,a) = 
 complex_cartesian(x,y)
 
-
-
-
-  
-  
-    
-    
-    
-    
-  
-  
-    
-    
       
-      
-        
         
           
-	  
-	  
-	    
-	    
-	  
-        
-	
-      
-      
-        
-        
+            
+            
+              
+              
+              
+              
+            
+            
+              
+              
+                
+                
+                  
+                  
+                    
+                     
+                     
+                       
+                       
+                     
+                  
+                   
+                
+                
+                  
+                  
+                    
+                     
+                     
+                       
+                       
+                     
+                  
+                   
+                
+              
+              
+                
+                
+                  
+                  
+                  
+                
+                
+                  
+                  
+                  
+                
+              
+            
           
-	  
-	  
-	    
-	    
-	  
-        
-	
-      
-    
-    
-      
-      
-        
-        
-        
-      
-      
-        
-        
         
       
     
-  
 
-
-
-
- for all x | if a is a real number and k is an integer then
+    
+       for all x | if a is a real number and k is an integer then
   complex_polar(x,a) = complex_polar(x,a+2*pi*k) 
 
-
-
-  
-  
-    
-  
-  
-    
-    
-      
       
         
-	
-	
-      
-      
+          
+            
+            
+              
+            
+            
+              
+              
+                
+                
+                  
+                   
+                   
+                
+                
+                  
+                   
+                   
+                
+              
+              
+                
+                
+                  
+                   
+                   
+                
+                
+                  
+                   
+                   
+                     
+                     
+                     
+                       
+                        2 
+                       
+                       
+                     
+                   
+                
+              
+            
+          
         
-	
-	
       
     
-    
-      
-      
-        
-	
-	
-      
-      
-        
-	
-	
-	  
-	  
-	  
-	    
-	     2 
-	    
-	    
-	  
-	
-      
-    
-  
 
+     i = complex_polar(1,pi/2) 
 
-
- i = complex_polar(1,pi/2) 
-
-  
-  
-  
-    
-    
-    
-      
-      
-       2 
-    
-  
-
-
-
-
-
-argument
-Argument
-  
-    arg
-    
-      type
-      MathMLType
-      real
-    
-  
-  application
-  
-    This symbol represents the unary function which returns the argument of a complex
-    number, viz. the angle which a straight line drawn from the number to zero makes with
-    the Real line (measured anti-clockwise). The argument to the symbol is the complex
-    number whos argument is being taken.
-  
-  
-
- for all r,a | argument(complex_polar(r,a)=a) 
-
-
-
-  
-    
-    
-      
-      
-    
-    
-      
-      
-        
         
           
           
           
-        
-      
-      
-    
-  
-
-
-
-
- the argument of x+i*y = arctan(y/x) (if x is positive) 
-
-
-
-  
-    
-    
-      
-      
-      
-    
-    
-      
-      
-        
-        
+            
+            
+            
+              
+              
+               2 
+            
           
-          
-          
-        
-      
-      
-        
-        
-          
-	  
-	  
         
       
     
   
 
+  
+    argument
+    Argument
+    
+      arg
+      
+        type
+        MathMLType
+        real
+      
+    
+    application
+    
+      This symbol represents the unary function which returns the argument of a complex
+      number, viz. the angle which a straight line drawn from the number to zero makes
+      with the Real line (measured anti-clockwise). The argument to the symbol is the
+      complex number whos argument is being taken.
+    
+  
+    
+      
+        The following example encodes the argument operation on x +
+        iy.
+      
+      
+        
+          
+          
+            
+             x 
+            
+              
+              
+              y
+            
+          
+        
+      
+    
 
+    
+      for all r,a | argument(complex_polar(r,a)=a) 
+      
+        
+          
+            
+            
+              
+              
+            
+            
+              
+              
+                
+                
+                  
+                  
+                  
+                
+              
+              
+            
+          
+        
+      
+    
 
+    
+       the argument of x+i*y = arctan(y/x) (if x is positive) 
 
+      
+        
+          
+            
+            
+              
+              
+              
+            
+            
+              
+              
+                
+                
+                  
+                  
+                  
+                
+              
+              
+                
+                
+                  
+                   
+                   
+                
+              
+            
+          
+        
+      
+    
 
+    
+      
   the argument of x+i*y = arctan(y,x) (two-argument arctan from transc2)
 
 
-
-
+      
+        
+          
+            
+            
+              
+              
+                
+                
+                
+              
+            
+            
+              
+              
+              
+            
+          
+        
+      
+    
   
-    
-    
-      
-      
-        
-        
-        
-      
-    
-    
-      
-      
-      
-    
-  
 
-
-
-
-
-conjugate
-Complex Conjugate
   
     conjugate
-  
-application
- 
-A unary operator representing the complex conjugate of its argument.
-
-
-     
-          The unary "conjugate" arithmetic operator is used to represent the complex
-          conjugate of its argument.
-        
-	
-	  The conjugate element represents the complex conjugate of a complex quantity.
-	
-
-
-        
-	  
-	    The following example encodes the conjugate of x + iy.
-	  
-	  
- 
-    x
+    Complex Conjugate
     
-      &ImaginaryI;
-    y
+      conjugate
     
-  
-
-
-
-
-
-
- if a is a complex number then (conjugate(a) + a) is a real number
-
-
-
-  
+    application
     
+      The unary "conjugate" arithmetic operator is used to represent the complex conjugate
+      of its argument.
+    
+
     
       
+        The following example encodes the conjugate of x +
+        iy.
       
       
-    
-    
-      
-      
-        
         
           
           
-        
+            
+            x
+            
+              
+              ␘
+              y
+            
+          
         
       
+    
+
+
+    
+      if a is a complex number then (conjugate(a) + a) is a real number
+      
+        
+          
+            
+            
+              
+              
+              
+            
+            
+              
+              
+                
+                
+                  
+                  
+                
+                
+              
+              
+            
+          
+        
       
     
   
-
-
-
-
