@@ -8,10 +8,7 @@
 
 namespace m  ="http://www.w3.org/1998/Math/MathML"
 
-
-
-
-     This document is distributed in the hope that it will be useful, 
+       This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -41,246 +38,186 @@ namespace m  ="http://www.w3.org/1998/Math/MathML"
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 
+  sts
+  http://www.openmath.org/cd
+  http://www.openmath.org/cd/sts.ocd
+  2006-03-30
+  2008-10-22
+  4
+  0
+  draft
+  Definitions of the symbols used by the OpenMath Small Type System.
+  
+    type
+    semantic-attribution
+    A symbol to be used within an OpenMath attribute to specify the type of the object.
 
-sts
-http://www.openmath.org/cd
-http://www.openmath.org/cd/sts.ocd 
-2006-03-30
-2004-03-30
-4
-0
-official
-
- 
-Definitions of the symbols used by the OpenMath Small Type System.
-
-
-
-
-type
-semantic-attribution
- 
-A symbol to be used within an OpenMath attribute to specify the type of
-the object.
-
-
-
+    
 The variable z is attributed with a type for complex numbers.
 
-  
-    
-       
-       
-    
-    
-  
-
-
-
-
-
-
-mapsto
-application
-
-This symbol represents the construction of a function type.
-
-The first n-1 children denote the types of the arguments,
-the last denotes the return type.
-
-
-The signature of the power function: (Real , Integer) -> Real
-
-  
-    
-    
-    
-    
-  
-
-
-
-
-
-nary
-application
-
-Constructs a child of mapsto which denotes an arbitrary number of
-copies of the argument of nary.
-
-
-The signature for list, an n-ary function:
-
- 
-  
-   
-     
-     
-   
-  
- 
-
-
-
-
-
-
-nassoc
-application
- 
-Constructs a child of mapsto which denotes an arbitrary number of
-copies of the argument of nassoc. The operator is associative on these
-arguments which means that repeated uses may be flattened/unflattened.
-
-
-The signature for plus, an associative n-ary function:
-
-  
-    
-    
-       
+        
+          
+            
+            
+          
+          
+        
       
     
+  
+  
+    mapsto
+    application
+    This symbol represents the construction of a function type. The first n-1 children denote the types of the arguments, the last denotes the return type.
+    
+The signature of the power function: (Real , Integer) -> Real
+
+        
+          
+          
+          
+          
+        
+      
     
   
-
-
-
-
-
-error
-constant
-
-The error symbol is the 'return type' of error symbols in the error
-signature file.
-
-
-
   
+    nary
+    application
+    Constructs a child of mapsto which denotes an arbitrary number of copies of the argument of nary.
     
-    
+The signature for list, an n-ary function:
+
+        
+          
+          
+            
+            
+          
+          
+        
+      
     
   
+  
+    nassoc
+    application
+    Constructs a child of mapsto which denotes an arbitrary number of copies of the argument of nassoc. The operator is associative on these arguments which means that repeated uses may be flattened/unflattened.
+    
+The signature for plus, an associative n-ary function:
 
-
-
-
-
-structure
-application
- 
-The structure element is used to represent a structure of a particular
-(algebraic) type.
-
-
+        
+          
+          
+             
+            
+          
+          
+        
+      
+    
+  
+  
+    error
+    constant
+    The error symbol is the 'return type' of error symbols in the error signature file.
+    
+      
+        
+          
+          
+          
+        
+      
+    
+  
+  
+    structure
+    application
+    The structure element is used to represent a structure of a particular (algebraic) type.
+    
 The signature of a function which given a set will return an element
 of that set:
 
-  
-    
-    
+        
+          
+          
+            
+            
+          
+          
+        
       
-      
-    
     
   
-
-
-
-
-
-
-binder
-constant
-
-An `OMBIND' object has three parts: a "binder" such as "lambda" or
-"for all", a (list of) bound variables, and an expression.  The use of
-`binder' in a signature indicates that we are describing something
-which can only be used as the first child of an OMBIND construct.
-
-
+  
+    binder
+    constant
+    An `OMBIND' object has three parts: a "binder" such as "lambda" or "for all", a (list of) bound variables, and an expression. The use of `binder' in a signature indicates that we are describing something which can only be used as the first child of an OMBIND construct.
+    
 The signature of forall is:
 
- 
-
-
-
-
-
-attribution
-constant
-
-An `attribution' object consists of pairs of keys and values.  The use
-of the symbol `attribution' in a signature indicates that the symbol
-is to be used as a key.
-
-
-
- 
-
-
-
-
-
-
-Object
-constant
-
-Denotes any OpenMath object.
-
-
+        
+      
+    
+  
+  
+    attribution
+    constant
+    An `attribution' object consists of pairs of keys and values. The use of the symbol `attribution' in a signature indicates that the symbol is to be used as a key.
+    
+      
+        
+      
+    
+  
+  
+    Object
+    constant
+    Denotes any OpenMath object.
+    
 The signature for list, to show that list has the signature:
  Object* -> Object
 
- 
+        
+          
+          
+            
+            
+          
+          
+        
+      
+    
   
-   
-     
-     
-   
   
- 
-
-
-
-
-
-NumericalValue
-constant
-
-Denotes an OpenMath object that is to be thought of as something that
-represents a numerical value, or a numerical value.
-
-
+    NumericalValue
+    constant
+    Denotes an OpenMath object that is to be thought of as something that represents a numerical value, or a numerical value.
+    
 The generic signature for the function power:
 
- 
+        
+          
+           
+           
+           
+        
+      
+    
   
-   
-   
-   
- 
-
-
-
-
-
-SetNumericalValue
-constant
-
-Denotes an OpenMath object that is to be thought of as something that
-represents a set of numerical values, or a set of numerical values.
-
-
+  
+    SetNumericalValue
+    constant
+    Denotes an OpenMath object that is to be thought of as something that represents a set of numerical values, or a set of numerical values.
+    
 The generic signature for the function arctan from transc3:
 
- 
+        
+          
+           
+           
+        
+      
+    
   
-   
-   
- 
-
-
-
-
-

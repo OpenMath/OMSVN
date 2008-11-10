@@ -9,10 +9,7 @@
 namespace om = "http://www.openmath.org/OpenMath"
 
 
-
-
-
-     This document is distributed in the hope that it will be useful, 
+       This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -42,822 +39,785 @@ namespace om = "http://www.openmath.org/OpenMath"
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 
-
-linalg1
-http://www.openmath.org/cd
-http://www.openmath.org/cd/linalg1.ocd 
-2006-03-30
-2004-03-30
-3
-0
-official
-
-   Operations on Matrices (independent of the matrix representation).
-
-
-
-vectorproduct
+  linalg1
+  http://www.openmath.org/cd
+  http://www.openmath.org/cd/linalg1.ocd
+  2006-03-30
+  2008-09-27
+  3
+  0
+  draft
+  Operations on Matrices (independent of the matrix representation).
   
     vectorproduct
-  
-  application
-  
-    This symbol represents the vector product function. It takes two three dimensional
-    vector arguments and returns a three dimensional vector. It is defined as follows: if
-    we write a as [a_1,a_2,a_3] and b as [b_1,b_2,b_3] then the vector product denoted a x
-    b = [a_2b_3 - a_3b_2 , a_3b_1 - a_1b_3 , a_1b_2 - a_2b_1].  Note that the vector
-    product is often referred to as the cross product.
-  
+    
+      vectorproduct
+    
+    application
+    This symbol represents the vector product function. It takes two three dimensional vector arguments and returns a three dimensional vector.
 
-  
-    The vector or cross product of two nonzero three-dimensional vectors v1 and v2 is
-    defined by
-    v1 x v2 = n norm(v1) * norm(v2) sin(theta) where n is the unit normal vector
-    perpendicular to both, adhering to the right hand rule.  CRC Standard Mathematical
-    Tables and Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996, [2.4]
     
-  
+      The vector or cross product of two nonzero three-dimensional vectors v1 and v2 is
+    defined by v1 x v2 = n norm(v1) * norm(v2) sin(theta) where n is the unit normal
+    vector perpendicular to both, adhering to the right hand rule.  CRC Standard
+    Mathematical Tables and Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996, [2.4]
+    
+       It can be computed as follows: if we write a as [a_1,a_2,a_3] and b as [b_1,b_2,b_3]
+     then the vector product denoted a x b = [a_2b_3 - a_3b_2 , a_3b_1 - a_1b_3 , a_1b_2 -
+     a_2b_1].  Note that the vector product is often referred to as the cross product.
+    
 
-  
     
-      if v1 and v2 are parallel then their vector product is 0
-    
-  
-  
-  
-    
-      uv
+      
+        if v1 and v2 are parallel then their vector product is 0
+      
     
   
+    
+      
+        
+          
+          u
+          v
+        
+      
+    
 
-  
     
-      where A and B are vectors, N is a unit vector
+      
+        where A and B are vectors, N is a unit vector
       orthogonal to A and B, a, b are the
       magnitudes of A, B and is the angle between A and B.
+      
+      
+        
+           
+           
+            
+              A
+              B
+           
+           
+            
+             a
+             b
+             
+              
+               θ
+             
+              N
+           
+        
+      
     
+  
     
       
-	
-	
-	 A
-	 B
-	
-	
-	a
-	b
-	
-	θ
-	
-	 N
-	
-      
-    
-  
-  
-  
-    
       if we write a as [a_1,a_2,a_3] and b as [b_1,b_2,b_3] then the vector product
       denoted a x b = [a_2b_3 - a_3b_2 , a_3b_1 - a_1b_3 , a_1b_2 - a_2b_1]
     
-    
       
+        
+          
+            
+            
+              
+              
+              
+            
+            
+              
+              
+                
+                 
+                   
+                   
+                     
+                      2 
+                     
+                   
+                   
+                     
+                      3 
+                     
+                   
+                 
+                 
+                   
+                   
+                     
+                      3 
+                     
+                   
+                   
+                     
+                      2 
+                     
+                   
+                 
+              
+              
+                
+                 
+                   
+                   
+                     
+                      3 
+                     
+                   
+                   
+                     
+                      1 
+                     
+                   
+                 
+                 
+                   
+                   
+                     
+                      1 
+                     
+                   
+                   
+                     
+                      3 
+                     
+                   
+                 
+              
+              
+                
+                 
+                   
+                   
+                     
+                      1 
+                     
+                   
+                   
+                     
+                      2 
+                     
+                   
+                 
+                 
+                   
+                   
+                     
+                      2 
+                     
+                   
+                   
+                     
+                      1 
+                     
+                   
+                 
+              
+            
+          
+        
+      
+    
   
-    
-    
-      
-      
-      
-    
-    
-      
-      
-        
-	
-	  
-	  
-	    
-	     2 
-	    
-	  
-	  
-	    
-	     3 
-	    
-	  
-	
-	
-	  
-	  
-	    
-	     3 
-	    
-	  
-	  
-	    
-	     2 
-	    
-	  
-	
-      
-      
-        
-	
-	  
-	  
-	    
-	     3 
-	    
-	  
-	  
-	    
-	     1 
-	    
-	  
-	
-	
-	  
-	  
-	    
-	     1 
-	    
-	  
-	  
-	    
-	     3 
-	    
-	  
-	
-      
-      
-        
-	
-	  
-	  
-	    
-	     1 
-	    
-	  
-	  
-	    
-	     2 
-	    
-	  
-	
-	
-	  
-	  
-	    
-	     2 
-	    
-	  
-	  
-	    
-	     1 
-	    
-	  
-	
-      
-    
-  
-
-
-
-
-
-
-  scalarproduct
   
     scalarproduct
-  
-  application
-  
-    This symbol represents the scalar product function. It takes two vector arguments and
-    returns a scalar value. The scalar product of two vectors a, b is defined as |a| * |b|
-    * cos(\theta), where \theta is the angle between the two vectors and |.| is a
-    euclidean size function. Note that the scalar product is often referred to as the dot
-    product.
-  
+    
+      scalarproduct
+    
+    application
+    This symbol represents the scalar product function. It takes two vector arguments and returns a scalar value.
 
-  
-    This symbol represents the scalar product function. It takes two vector arguments
-    and returns a scalar value. The scalar product of two vectors a, b is defined as |a| *
+    
+      The scalar product of two vectors a, b is defined as |a| *
     |b| * cos(\theta), where \theta is the angle between the two vectors and |.| is a
     euclidean size function. Note that the scalar product is often referred to as the dot
     product. 
-  
-  
-    The scalarproduct is the operator element for deriving the scalar product
-    of two vectors.
-  
-  
-  
-    
-      if the scalar product of two vectors is 0 then they are orthogonal.
     
   
-  
+    
+      
+        if the scalar product of two vectors is 0 then they are orthogonal.
+      
+    
   
     
-      This symbol represents the scalar product function. It takes two vector
+      
+        This symbol represents the scalar product function. It takes two vector
       arguments and returns a scalar value. The scalar product of two vectors a, b
       is defined as |a| * |b| * cos(\theta), where \theta is the angle between the
       two vectors and |.| is a euclidean size function. Note that the scalar product
       is often referred to as the dot product. 
+      
     
   
-  
-  
     
-      if the scalar product of two vectors is 0 then they are orthogonal.
+      
+        if the scalar product of two vectors is 0 then they are orthogonal.
+      
     
-  
 
+    
+      
+        
+          
+          u
+          v
+        
+      
+    
   
     
-      uv
-    
-  
-	
-  
-    
-      where A and B are vectors, a, b are the magnitudes of A, B
+      
+        where A and B are vectors, a, b are the magnitudes of A, B
       and is the angle
       between A and B.
+      
+      
+        
+          
+          
+            
+             A
+            B
+          
+          
+            
+            a
+            b
+            
+              
+              θ
+            
+          
+        
+      
     
+
+    
+      
+        
+          
+          u
+          v
+        
+      
     
 
-  
-  
-     A
-    B
-  
-  
-    a
-    b
     
-      θ
-    
-  
-
-
-
-
-
-  
-    uv
-  
-
-
-
-  
-    where A and B are vectors, a, b are the magnitudes of A, B
+      
+        where A and B are vectors, a, b are the magnitudes of A, B
     and is the angle between
     A and B.
-  
-  
-  
-  
-     A
-    B
-  
-  
-    a
-    b
+      
+      
+        
+          
+          
+            
+             A
+            B
+          
+          
+            
+            a
+            b
+            
+              
+              θ
+            
+          
+        
+      
     
-      θ
+
+
     
-  
-
-
-
-
-
+      
 a.b = |a| * |b| * cos(\theta), where \theta is the angle between the
 two vectors
 that is |atan(a_2/a_1)-atan(b_2/b_1)|.
 N.B. The FMP displays the two dimensional case only.
 
-
-
+      
+        
+          
+            
+            
+              
+              
+              
+            
+            
+              
+              
+                
+                 
+                   
+                   
+                     
+                     
+                       
+                        1 
+                       
+                     
+                      2 
+                   
+                   
+                     
+                     
+                       
+                        2 
+                       
+                     
+                      2 
+                   
+                 
+                  2 
+              
+              
+                
+                 
+                   
+                   
+                     
+                     
+                       
+                        1 
+                       
+                     
+                      2 
+                   
+                   
+                     
+                     
+                       
+                        2 
+                       
+                     
+                      2 
+                   
+                 
+                  2 
+              
+              
+                
+                 
+                   
+                   
+                     
+                     
+                       
+                       
+                         
+                          
+                            
+                             2 
+                            
+                          
+                          
+                            
+                             1 
+                            
+                          
+                       
+                     
+                     
+                       
+                       
+                         
+                          
+                            
+                             2 
+                            
+                          
+                          
+                            
+                             1 
+                            
+                          
+                       
+                     
+                   
+                 
+              
+            
+          
+        
+      
+    
   
-    
-    
-      
-      
-      
-    
-    
-      
-      
-        
-	
-	  
-	  
-	    
-	    
-	      
-	       1 
-	      
-	    
-	     2 
-	  
-	  
-	    
-	    
-	      
-	       2 
-	      
-	    
-	     2 
-	  
-	
-	 2 
-      
-      
-        
-	
-	  
-	  
-	    
-	    
-	      
-	       1 
-	      
-	    
-	     2 
-	  
-	  
-	    
-	    
-	      
-	       2 
-	      
-	    
-	     2 
-	  
-	
-	 2 
-      
-      
-        
-	
-	  
-	  
-	    
-	    
-	      
-	      
-	        
-		
-		  
-		   2 
-		  
-		
-		
-		  
-		   1 
-		  
-		
-	      
-	    
-	    
-	      
-	      
-	        
-		
-		  
-		   2 
-		  
-		
-		
-		  
-		   1 
-		  
-		
-	      
-	    
-	  
-	
-      
-    
-  
-
-
-
-
-
-  outerproduct
   
     outerproduct
-  
-  application
-  
-    This symbol represents the outer product function. It takes two vector arguments and
-    returns a matrix. It is defined as follows: if we write the {i,j}'th element of the
+    
+      outerproduct
+    
+    application
+    This symbol represents the outer product function. It takes two vector arguments and returns a matrix.
+
+    
+      The outer product is defined as follows: if we write the {i,j}'th element of the
     matrix to be returned as m_{i,j}, then: m_{i,j}=a_i * b_j where a_i,b_j are the i'th
-    and j'th elements of a, b respectively.
-  
-
-  
-    This symbol represents the outer product function. It takes two vector arguments
-    and returns a matrix. It is defined as follows: if we write the {i,j}'th element of
-    the matrix to be returned as m_{i,j}, then: m_{i,j}=a_i * b_j where a_i,b_j are the
-    i'th and j'th elements of a, b respectively. 
-  
-  
-    The outerproduct is the operator element for deriving the outer product of
-    two vectors.
-  
-  
-  
-    
-      uv
+    and j'th elements of a, b respectively. 
     
   
-
-  
-    where A and B are vectors.
     
       
-      A
-      B
+        
+          
+          u
+          v
+        
+      
     
+
     
-  
+      
+        where A and B are vectors.
+      
+      
+        
+          
+          A
+          B
+        
+      
+    
   
 
-  
-
+    
+      
 outerproduct(a,b)_{i,j} = a_i * b_j
 
-
-
+      
+        
+          
+            
+            
+              
+              
+              
+              
+                
+                 
+                 
+              
+            
+            
+              
+              
+                
+                 
+                 
+              
+              
+                
+                 
+                 
+              
+            
+          
+        
+      
+    
   
-    
-    
-      
-      
-      
-      
-        
-	
-	
-      
-    
-    
-      
-      
-        
-	
-	
-      
-      
-        
-	
-	
-      
-    
-  
-
-
-
-
-
-  transpose
   
     transpose
+    
+      transpose
+    
+    application
+    This symbol represents a unary function that denotes the transpose of the given matrix or vector.
   
-  application
-   
-    This symbol represents a unary function that denotes the transpose of the given matrix
-    or vector
+    
+      The transpose element is the operator for constructing the transpose of a
+    matrix.  See CRC Standard Mathematical Tables and Formulae, editor: Dan Zwillinger,
+    CRC Press Inc., 1996, [2.4] and [2.5.1].
+    
   
-  
-  
-    The transpose of a matrix or vector.  See CRC Standard Mathematical Tables and
-    Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996, [2.4] and [2.5.1].
-  
+    
+      
+        transpose(transpose(A))= A
+      
+    
 
-  
-    The transpose element is the operator for constructing the transpose of a
-    matrix.
-  
-  
-  
     
-      transpose(transpose(A))= A
+      
+        transpose(transpose(V))= V
+      
     
-  
 
-  
     
-      transpose(transpose(V))= V
-    
-  
-
-  
-    
-      A
+      
+        
+          
+          A
+        
+      
     
   
-  
-  
     
-      V
+      
+        
+          
+          V
+        
+      
     
-  
 
 
-
+    
 A representation of the equation 
 transpose matrix([0,1],[2,3]) = matrix([0,2],[1,3])
 N.B. in this example the row oriented view of matrix construction is being 
 assumed.
 
-  
-    
-    
-      
-      
-        
         
           
-           0 
-           1 
-        
-        
           
-           2 
-           3 
+            
+            
+              
+              
+                
+                 0 
+                 1 
+              
+              
+                
+                 2 
+                 3 
+              
+            
+          
+          
+            
+            
+              
+               0 
+               2 
+            
+            
+              
+               1 
+               3 
+            
+          
         
-      
-    
-    
-      
-      
-        
-         0 
-         2 
-      
-      
-        
-         1 
-         3 
       
     
   
-
-
-
-
-
-  determinant
   
     determinant
-  
-  application
-   
-    This symbol denotes the unary function which returns the determinant of its argument,
-    the argument should be a square matrix.
-  
-
-  
-    The "determinant" of a matrix.  This is a unary function.  See CRC Standard
-    Mathematical Tables and Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996,
-    [2.5.4].
-  
-  
-    The determinant element is the operator for constructing the determinant
-    of a matrix.
-  
-  
-  
     
-      A
+      determinant
+    
+    application
+    This symbol denotes the unary function which returns the determinant of its argument, the argument should be a square matrix.
+
+    
+      The determinant element is the operator for constructing the determinant
+    of a matrix.  See CRC Standard Mathematical Tables and Formulae, editor: Dan
+    Zwillinger, CRC Press Inc., 1996, [2.5.4].
     
   
+    
+      
+        
+          
+          A
+        
+      
+    
 
-
-
+    
+      
 The determinant of an identity matrix is 1
 
 
-
-
-  
-    
-    
-      
       
         
-	
-	  
-	  
-	  
-	
-	
-	  
-	  
-	    
-	    
-	    
-	    
-	  
-	  
-	
-      
-      
+          
+            
+            
+              
+              
+                
+                 
+                   
+                   
+                   
+                 
+                 
+                   
+                   
+                     
+                     
+                     
+                     
+                   
+                   
+                 
+              
+              
+                
+                 
+                   
+                   
+                   
+                 
+                 
+                   
+                   
+                     
+                     
+                     
+                     
+                   
+                   
+                 
+              
+            
+            
+              
+              
+                
+                 
+              
+              
+            
+          
         
-	
-	  
-	  
-	  
-	
-	
-	  
-	  
-	    
-	    
-	    
-	    
-	  
-	  
-	
-      
-    
-    
-      
-      
-        
-	
-      
       
     
   
-
-
-
-
-
-  vector_selector
   
-    selector
-  
-  application
-  
-    This symbol represents the function which allows individual entries to be selected
-    from a vector, or a matrixrow. It takes two arguments. The first argument is the
-    position in the vector (or matrixrow) of the required entry, the second argument is
-    the vector (or matrixrow) in question. The indexing is one based, i.e. the first
-    element is indexed by one.
-  
-
-
-  The selector element is the operator for indexing into vectors matrices and
-  lists. It accepts one or more arguments. The first argument identifies the vector,
-  matrix or list from which the selection is taking place, and the second and subsequent
-  arguments, if any, indicate the kind of selection taking place.
-
-  When selector is used with a single argument, it should be interpreted as
-  giving the sequence of all elements in the list, vector or matrix given. The ordering of
-  elements in the sequence for a matrix is understood to be first by column, then by
-  row. That is, for a matrix ( ai,j), where the indices denote row
-  and column, the ordering would be a 1,1, a
-  1,2, ...  a 2,1, a2,2
-  ... etc.
-
-  When three arguments are given, the last one is ignored for a list or vector, and in
-  the case of a matrix, the second and third arguments specify the row and column of the
-  selected element.
-
-  When two arguments are given, and the first is a vector or list, the second argument
-  specifies an element in the list or vector. When a matrix and only one index
-  i is specified as in
-
-
-  
+    vector_selector
     
+      selector
     
-      
-       1   2 
-      
-      
-	 3   4 
-      
-    
-     1 
-  
-
-
-  it refers to the i-th matrixrow. Thus, the preceding example selects the
-  following row:
-
-
-    1   2  
-
-  
-  
-    selector takes the definitionURL and encoding
-    attributes, which can be used to override the default semantics.
-    
-    selector is classified as an n-ary linear algebra operator even though it
-      can take only one, two, or three arguments.
-
-
-
-  
-   A 
-   3 
-   2 
-
+    application
+    This symbol represents the function which allows individual entries to be selected from a vector, or a matrixrow. It takes two arguments. The first argument is the position in the vector (or matrixrow) of the required entry, the second argument is the vector (or matrixrow) in question. The indexing is one based, i.e. the first element is indexed by one.
 
     
-
-    The selector construct renders in a manner that indicates which
-    sub-element of the parent object is selected.  For vectors and matrices this is
-    normally done by specifying the parent object together with subscripted indices.  For
-    example, the selection
-
-    
-      
-	
-	V
-	 1 
-      
+      When selector is used with a single argument, it should be interpreted as
+    giving the sequence of all elements in the vector given.
     
 
-    would have a default rendering of
     
-    
-
-    Selecting the (1,2) element of a 2 by 2 matrix would have a default rendering as
-    
-    
-
-
-  
     Representation of a specification of selection of the second element of the specific
     vector [3,6,9].  N.B. in this example the row oriented view of vector construction is
     being assumed
     
-      
-  
-    2
+        
+          
+          2
+          
+            
+             3 
+             6 
+             9 
+               
+        
+           
     
+
     
-       3 
-       6 
-       9 
-         
-  
-     
-
-
 Representation of a specification of selection of the second element of the
 specific matrixrow [0,1,0].
 N.B. in this example the row oriented view of matrixrow construction is being 
 assumed
 
-  
-  
-    2
+        
+          
+          2
+          
+            
+             0 
+             1 
+             0 
+               
+        
+           
     
-    
-       0 
-       1 
-       0 
-         
   
-     
-
-
-
-
-matrix_selector
   
     matrix_selector
-  
-application
-
-This symbol represents the function which allows individual entries to
-be selected from a matrix. It takes three arguments, the first is the
-index of the row and the second is the index of the column of the
-required element, the third argument is the matrix in question. The
-indexing is one based, i.e. the element in the top left hand corner is
-indexed by (1,1).
-
-
-Representation of a specification of selection of the top left hand entry to
-the matrix M.
-
-  
     
-     1 
-     1 
+      matrix_selector
     
-       
+    application
+    This symbol represents the function which allows individual entries to be selected from a matrix. It takes three arguments, the first is the index of the row and the second is the index of the column of the required element, the third argument is the matrix in question. The indexing is one based, i.e. the element in the top left hand corner is indexed by (1,1).
+
+    
+      When selector is used with a single argument, it should be interpreted as
+  giving the sequence of all elements in the matrix given. The ordering of elements in the
+  sequence for a matrix is understood to be first by column, then by row. That is, for a
+  matrix ( a
+        i,j), where the indices denote row and column, the
+  ordering would be a 
+        1,1, a 
+        1,2, ...
+  a 
+        2,1, a
+        2,2 ... etc.
+    
+
      
+      
+        The selector construct renders in a manner that indicates which
+      sub-element of the parent object is selected.  For vectors and matrices this is
+      normally done by specifying the parent object together with subscripted indices.
+      
+      
+        
+           
+           V
+           1
+        
+      
+    
 
+     
+      
+        When a matrix and only one index i is specified it refers to the
+      i-th matrixrow. Thus, we have
+      
+      
+        
+          
+          
+            
+            
+              
+                1
+                2
+              
+              
+                 3
+                4
+              
+            
+            1
+          
+          
+            1
+            2
+          
+        
+      
+    
 
+    
+    Representation of a specification of selection of the top left hand entry to the
+    matrix M.
 
+        
+          
+           1 
+           1 
+          
+             
+           
+    
+  

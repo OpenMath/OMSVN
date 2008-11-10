@@ -9,10 +9,7 @@
 namespace om = "http://www.openmath.org/OpenMath"
 
 
-
-
-
-     This document is distributed in the hope that it will be useful, 
+       This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -42,310 +39,226 @@ namespace om = "http://www.openmath.org/OpenMath"
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 
-
-minmax1
-http://www.openmath.org/cd
-http://www.openmath.org/cd/minmax1.ocd 
-2006-03-30
-2004-03-30
-3
-0
-official
-
-
-    This CD holds the definitions of min and max.
-
-
-
-  min
-  Minimum
+  minmax1
+  http://www.openmath.org/cd
+  http://www.openmath.org/cd/minmax1.ocd
+  2006-03-30
+  2008-10-21
+  3
+  0
+  draft
+  This CD holds the definitions of min and max.
   
     min
+    Minimum
     
-      type
-      MathMLType
-      real
+      min
+      
+        type
+        MathMLType
+        real
+      
     
-    
-      The min operator element can be used as a binding operator in pragmatic
-      Content MathML. This role is taken over by the big_min symbol in strict
-      Content MathML.
+    application
+    This symbol denotes the unary minimum function which takes a set as its argument and returns the minimum element in that set.
 
-  
     
-    x
-    x
+      
+        Minimum of a finite listing of elements
+      
+      
+        
+          
+          2
+          3
+          5
+        
+      
+    
+
+
+    
+Representation of the equation minimum{1,9,5} = 1.
+
+        
+          
+          
+            
+            
+              
+               1 
+               9 
+               5 
+            
+          
+           1 
+        
+      
+    
   
   
     big_min
-    
-      lambda
-      x
-      powerx
-    
-  
-
-    
-  
-application
- 
- This symbol denotes the unary minimum function which takes a set as
- its argument and returns the minimum element in that set.
-
-
-
-   This is the n-ary operator used to represent the minimum of a set of elements.  The
-   elements may be listed explicitly or they may be described by a condition,
-   e.g., the minimum over all x in the set A.
-   The elements must all be comparable if the result is to be well defined.
-
-   The min operator is a are n-ary operators may use the domain of
-   application qualifiers as described in .  For
-   example, the min and max functions accept a bvar
-   schema in cases where the maximum or minimum is being taken over a set of values
-   specified by a condition schema together with an expression to be
-   evaluated on that set.  In MathML1.0, the bvar element was optional when
-   using a condition; if a condition element containing a single
-   variable was given by itself following a min or max operator,
-   the variable was implicitly assumed to be bound, and the expression to be maximized or
-   minimized (if absent) was assumed to be the single bound variable.  This usage is
-   deprecated in MathML 2.0 in favor of explicitly
-   stating the bound variable(s) and the expression to be maximized or minimized in all
-   cases.
-
-	The min and max elements may also be applied to a list of
-	values in which case no qualifier schemata are used.
-	
-	
-	  The element min is used to compare the values of its arguments. It
-	  returns the minimum of these values respectively.
-	
-
- 
-          
-            
-Minimum of a finite listing of elements
-          
-235
-
-        
-          
-            
-min(y^2,  y in (0,1)) 
-          
-
-  
-  y
-  
-    y01
-  
-  y2
-
-
-
-
-
-  
-    The elements to be compared may also be described using bound
-    variables with a condition element and an expression to
-    be minimized, as in:
-    Note that the bound variable must be stated even if it might be
-    implicit in conventional notation. 
-    
-    
-      
-	
-	x
-	
-	  x B
-	
-	
-	  
-	  x
-	  2
-	
-      
-    
-
-
-
-Representation of the equation minimum{1,9,5} = 1.
-
-  
-    
-    
-      
-      
-        
-         1 
-         9 
-         5 
-      
-    
-     1 
-  
-
-
-
-
-
-  big_min
-  binder
-  Minimum over a Set of expressions
-  
+    binder
+    Minimum over a Set of expressions
     This n-ary operator is used to construct the minimum over a set of objects.
+
+    
+      
+        min(y^2,  y in (0,1))
+      
+      
+        
+          
+          
+            y
+          
+          
+            
+              
+              y
+              
+                0
+                1
+              
+            
+          
+          
+            
+            y
+            2
+          
+        
+      
+    
+
+    
+      
+        The elements to be compared may also be described using bound variables with a
+    condition element and an expression to be minimized, as in:
+        Note that the bound variable must be stated even if it might be implicit in
+    conventional notation.
+      
+      
+        
+          
+          
+            x
+          
+          
+            
+              
+              x
+               B
+            
+          
+          
+            
+            x
+            2
+          
+        
+      
+    
   
-
-
-
-  max
-  Maximum
   
     max
+    Maximum
     
-      type
-      MathMLType
-      real
+      max
+      
+        type
+        MathMLType
+        real
+      
     
-    
-      The max operator element can be used as a binding operator in pragmatic
-      Content MathML. This role is taken over by the big_max symbol in strict
-      Content MathML.
+    application
+    This symbol denotes the unary maximum function which takes a set as its argument and returns the maximum element in that set.
 
-  
     
-    x
-    x
+      
+        ForAll( x in S,  max(y in S,y) \geq x )
+      
+    
+
+    
+      
+        Maximum of a finite listing of elements
+      
+      
+        
+          
+          2
+          3
+          5
+        
+      
+    
+
+    
+Representation of the equation maximum{1,9,5} = 9.
+
+        
+          
+          
+            
+            
+              
+               1 
+               9 
+               5 
+            
+          
+           9 
+        
+      
+    
   
   
     big_max
-    
-      lambda
-      x
-      powerx
-    
-  
+    binder
+    Maximum over a Set of expressions
+    This n-ary operator is used to construct the maximum over a set of objects.
 
-    
-  
-  application
-   
-    This symbol denotes the unary maximum function which takes a set as its argument and
-    returns the maximum element in that set.
-  
-
-  
-    This is the n-ary operator used to represent the maximum of a set of elements. The
-    elements may be listed explicitly or they may be described by a
-    domainofapplication, for example, the maximum over all x in the set
-    A. The domainofapplication is often abbreviated by placing a condition
-    directly on a bound variable.
-
-    The max operator is a n-ary operators may use the domain of
-    application qualifiers as described in .  For
-    example, the min and max functions accept a
-    bvar schema in cases where the maximum or minimum is being taken over a
-    set of values specified by a condition schema together with an expression
-    to be evaluated on that set.  In MathML1.0, the bvar element was optional
-    when using a condition; if a condition element containing a
-    single variable was given by itself following a min or max
-    operator, the variable was implicitly assumed to be bound, and the expression to be
-    maximized or minimized (if absent) was assumed to be the single bound variable.  This
-    usage is deprecated in MathML 2.0 in favor of
-    explicitly stating the bound variable(s) and the expression to be maximized or
-    minimized in all cases.
-
-    The min and max elements may also be applied to a list of
-    values in which case no qualifier schemata are used.
-  
-
-
-  
-    ForAll( x in S,  max(y in S,y) \geq x )
-  
-
-
-
-  
-    Maximum of a finite listing of elements
-    
-    235
-  
-
-
-
-  
-    Max(y^3, y in (0,1)) 
-  
-  
     
       
-      y
-      
-	y01
-	
-	
-      
-      y3
-    
-  
-
-
-
-  When the objects are to be compared explicitly they are listed as
-  arguments to the function as in: 
-  
-    ab
-  
-
-
-
-  
-    In MathML1.0, the bound variable and expression to be evaluated (x)
-    could be omitted in the example below: this usage is deprecated in MathML2.0 in favor
-    of explicitly stating the bound variable and expression in all cases: 
-  
-  
-    
-      
-      x
-      
-	
-	xB
-	xC
-	
-      
-      x
-    
-
-
-
-
-Representation of the equation maximum{1,9,5} = 9.
-
-  
-    
-    
+        Max(y^3, y in (0,1)) 
       
       
         
-         1 
-         9 
-         5 
+          
+          
+            y
+          
+          
+            
+              
+              y
+              
+                0
+                1
+              
+            
+          
+          
+            
+            y
+            3
+          
+        
       
     
-     9 
+
+    
+      
+        When the objects are to be compared explicitly they are listed as
+  arguments to the function as in: 
+      
+      
+        
+          
+          a
+          b
+        
+      
+    
   
-
-
-
-
-
-  big_max
-  binder
-  Maximum over a Set of expressions
-  
-    This n-ary operator is used to construct the maximum over a set of objects.
-  
-
-

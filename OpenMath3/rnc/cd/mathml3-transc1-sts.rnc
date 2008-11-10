@@ -8,10 +8,7 @@
 
 namespace m  ="http://www.w3.org/1998/Math/MathML"
 
-
-
-
-     This document is distributed in the hope that it will be useful, 
+       This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -41,348 +38,345 @@ namespace m  ="http://www.w3.org/1998/Math/MathML"
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 
-
-transc1
-http://www.openmath.org/cd
-http://www.openmath.org/cd/transc1.ocd 
-2006-03-30
-2004-03-30
-3
-0
-official
-
-
-    This CD holds the definitions of many transcendental
-    functions. They are defined as in Abromowitz and Stegun (ninth 
-    printing on), with precise reductions to logs in the case of 
-    inverse functions.
-
-    Note that, if signed zeros are supported, some strict 
-    inequalities have to become weak
-.
-    It is intended to be `compatible' with the MathML elements
-    denoting trancendental functions.
-    Some additional functions are in the CD transc2.    
-
-
-
-log
+  transc1
+  http://www.openmath.org/cd
+  http://www.openmath.org/cd/transc1.ocd
+  2006-03-30
+  2008-10-22
+  3
+  0
+  draft
+  This content dictionary holds the definitions of many transcendental functions. They are defined as in Abromowitz and Stegun (ninth printing on), with precise reductions to logs in the case of inverse functions. Note that, if signed zeros are supported, some strict inequalities have to become weak. It is intended to be `compatible' with the MathML elements denoting trancendental functions. Some additional functions are in the CD transc2.
   
     log
-  
-application
- 
-This symbol represents a binary log function; the first argument is the base,
-to which the second argument is log'ed.
-It is defined in Abramowitz and Stegun, Handbook of Mathematical
-Functions, section 4.1
+    
+      log
+      
+        If its first argument is a logbase element, it specifies the base and the second
+    argument is the argument to which the function is applied using that base.  If no
+    logbase element is present, the base is assumed to be 10.
+      
+    
+    application
+    This symbol represents a binary log function; the first argument is the base, to which the second argument is log'ed. It is defined in Abramowitz and Stegun, Handbook of Mathematical Functions, section 4.1
 
-
- 
-          This element represents the log function.  It is defined in Abramowitz and
-          Stegun, Handbook of Mathematical Functions, section 4.1 If its first argument is
-          a logbase element, it specifies the base and the second argument is the argument
-          to which the function is applied using that base.  If no logbase element is
-          present, the base is assumed to be 10.
-        
-	
-	  The log element is the operator that returns a logarithm to a given
-	  base. The base may be specified using a logbase element, which should
-	  be the first element following log, i.e. the second child of the
-	  containing apply element. If the logbase element is not
-	  present, a default base of 10 is assumed.
-
-	  The log function accepts only the logbase schema. If
-	  present, the logbase schema denotes the base with respect to which the
-	  logarithm is being taken. Otherwise, the log is assumed to be base 10. When used
-	  with log, the logbase schema is expected to contain a single
-	  child schema; otherwise an error is generated.
-	
+    
+      
+        This markup represents the base 3 logarithm of x. For natural
+      logarithms base e, the ln element should be used instead.
+      
+      
         
           
-            a^b = c implies log_a c = b 
           
+            3
+          
+          x
         
+      
+    
+
+    
+      
         
-		
-        This markup represents the base 3 logarithm of x. For natural logarithms base e, the ln element should be used instead.
+          
+          x
         
-		
-  3
-  x
+      
+    
 
-
-        x
-
-
-
+    
+      
   a^b = c implies log_a c = b
 
-
-  
+      
+        
+          
+            
+            
+              
+              
+                
+                
+                
+              
+              
+            
+            
+              
+              
+                
+                
+                
+              
+              
+            
+          
+        
+      
     
-      
-      
-        
-        
-          
-          
-          
-        
-        
-      
-      
-        
-        
-          
-          
-          
-        
-        
-      
+
     
-  
-
-
-
 log 100 to base 10 (which is 2).
 
+        
+          
+          
+          
+        
+      
+    
   
-    
-    
-    
-  
-
-
-
-
-
-ln
   
     ln
-  
-application
- 
-This symbol represents the ln function (natural logarithm) as
-described in Abramowitz and Stegun, section 4.1. It takes one
-argument.  Note the description in the CMP/FMP of the branch cut.  If
-signed zeros are in use, the inequality needs to be non-strict.
+    
+      ln
+    
+    application
+    This symbol represents the ln function (natural logarithm) as described in Abramowitz and Stegun, section 4.1. It takes one argument. Note the description in the CMP/FMP of the branch cut. If signed zeros are in use, the inequality needs to be non-strict.
 
-
-
-          This element represents the ln function (natural logarithm) as described in
-          Abramowitz and Stegun, section 4.1.  It takes one argument.
-        
-	
-	  The ln element represents the natural logarithm
-	  function.
-	
+    
+      
+        If a = e, (where e is the base of the natural
+    logarithms) this will yield the value 1.
+      
+      
         
           
-            -pi lt Im ln x leq pi 
-          
+          a
         
-        
-		
-        If a = e, (where e is the base of the natural logarithms) this will yield the value 1.
-        
-		a
+      
+    
 
-
-
+    
+      
 -pi < Im ln x <= pi
 
-
-  
-    
-      
       
         
-        
-          
-          
-        
-        
-          
           
             
             
-          
-        
-      
-      
-        
-        
-          
-          
+              
+              
+                
+                
+              
+              
+                
+                
+                  
+                  
+                
+              
             
             
+              
+              
+                
+                
+                  
+                  
+                
+              
+              
+            
           
         
+      
+    
+
+    
+  ln 1 (which is 0).
+  
+        
+          
+          
         
       
     
   
-
-
-
-ln 1 (which is 0).
-
-  
-    
-    
-  
-
-
-
-
-
-exp
   
     exp
-  
-application
- 
-This symbol represents the exponentiation function as described in
-Abramowitz and Stegun, section 4.2. It takes one argument.
-
-
-
-      This element represents the exponentiation function as described in
-      Abramowitz and Stegun, section 4.2.  It takes one argument. 
     
+      exp
     
-      The exp element represents the exponential
-      function associated with the inverse of the ln
-      function. In particular, exp(1) is approximately 2.718281828.
-    
-    
-  0
-  1
-
+    application
+    This symbol represents the exponentiation function associated with the inverse of the ln function as described in Abramowitz and Stegun, section 4.2. It takes one argument.
 
     
+      exp(1) is approximately 2.718281828.
+    
+
+    
+      
+        
           
-            for all k if k is an integer then e^(z+2*pi*k*i)=e^z 
+          
+            
+            0
+          
+          1
+        
+      
+    
+
+    
+      
+        
+          
+          x
+        
+      
+    
+
+    
+       for all k if k is an integer then e^(z+2*pi*k*i)=e^z 
+      
+        
+          
+            
+            
+              
+            
+            
+              
+              
+                
+                
+                
+              
+              
+                
+                
+                  
+                  
+                    
+                    
+                    
+                      
+                      2
+                      
+                      
+                      
+                    
+                  
+                
+                
+                  
+                  
+                
+              
+            
           
         
-        x
-
-
- for all k if k is an integer then e^(z+2*pi*k*i)=e^z 
-
-
-  
-  
-    
-  
-  
-    
-    
-      
-      
-      
-    
-    
-      
-      
-        
-	
-	  
-	  
-	  
-	    
-	    2
-	    
-	    
-	    
-	  
-	
-      
-      
-        
-	
       
     
   
-
-
-
-
-
-sin
   
     sin
-  
-application
- 
-This symbol represents the sin function as described in Abramowitz and
-Stegun, section 4.3. It takes one argument.
-
-
- 
-          This element represents the sin function as described in Abramowitz and
-          Stegun, section 4.3. It takes one argument. 
-        
-
-        
-          
-             sin(0) = 0 
-          
-        
-        
-          
-             sin(integer*Pi) = 0
-          
-        
-          
-            sin(x) = (exp(ix)-exp(-ix))/2i 
-          
-        
-        x
-	
-
-  
-  
     
+      sin
     
-      x
-    
+    application
+    This symbol represents the sin function as described in Abramowitz and Stegun, section 4.3. It takes one argument.
+
     
       
-      x
-      3
+        sin(0)=0
+      
     
-  
 
-
-
-
-
-
-sin(x) = (exp(ix)-exp(-ix))/2i
-
-
-
+    
+      
+         sin(integer*Pi) = 0
+      
+    
   
     
       
+        sin(x) = (exp(ix)-exp(-ix))/2i 
+      
+    
+
+    
       
         
+          
+          x
         
       
+    
+
+    
       
-        
         
           
           
             
             
               
+              x
+            
+            
+              
+              x
+              3
+            
+          
+        
+      
+    
+
+    
+      sin(x) = (exp(ix)-exp(-ix))/2i
+      
+        
+          
+            
+            
               
               
             
+            
+              
+              
+                
+                
+                  
+                  
+                    
+                    
+                    
+                  
+                
+                
+                  
+                  
+                    
+                    
+                      
+                      
+                    
+                    
+                  
+                
+              
+              
+                
+                2
+                
+              
+            
           
+        
+      
+    
+
+    
+      sin(A + B) = sin A cos B + cos A sin B
+      
+        
           
             
             
@@ -390,151 +384,183 @@ sin(x) = (exp(ix)-exp(-ix))/2i
               
                 
                 
+                
               
+            
+            
+              
+              
+                
+                
+                  
+                  
+                
+                
+                  
+                  
+                
+              
+              
+                
+                
+                  
+                  
+                
+                
+                  
+                  
+                
               
             
           
         
-        
-          
-          2
-          
-        
       
     
-  
 
-
-
-
-sin(A + B) = sin A cos B + cos A sin B
-
-
-  
     
       
-      
-        
-        
-	  
-	  
-    	  
-        
-      
-      
-	
-	
-	  
-	  
-	    
-	    
-	  
-	  
-	    
-	    
-	  
-	
-	
-	  
-	  
-	    
-	    
-	  
-	  
-	    
-	    
-	  
-	
-      
-    
-  
-
-
-
-
 sin A = - sin(-A)
 
-
-  
-    
-      
       
         
-	
-      
-      
+          
+            
+            
+              
+              
+            
+            
+              
+              
+                
+                
+                  
+                  
+                
+              
+            
+          
         
-	
-	  
-	  
-	    
-	    
-	  
-	
       
     
   
-
-
-
-
-cos
   
     cos
-  
-application
- 
-This symbol represents the cos function as described in Abramowitz and
-Stegun, section 4.3. It takes one argument.
+    
+      cos
+    
+    application
+    This symbol represents the cos function as described in Abramowitz and Stegun, section 4.3. It takes one argument.
 
-
-
-          This element represents the cos function as described in
-Abramowitz and Stegun, section 4.3. It takes one argument. 
-It takes one argument.   
-        
-        
-          
-             cos(0) = 1
-          
-        
-          
-             cos(integer*Pi+Pi/2) = 0 
-          
-        
-        
-          
-            cos(x) = (exp(ix)+exp(-ix))/2 
-          
-        
-        x
-
-
-
-cos(x) = (exp(ix)+exp(-ix))/2
-
-
-
-  
     
       
+         cos(0) = 1
       
-        
-        
+    
+
+    
       
+         cos(integer*Pi+Pi/2) = 0 
       
-        
+    
+
+    
+      
         
           
+          x
+        
+      
+    
+
+    
+      cos(x) = (exp(ix)+exp(-ix))/2
+      
+        
           
             
             
               
               
+            
+            
+              
+              
+                
+                
+                  
+                  
+                    
+                    
+                    
+                  
+                
+                
+                  
+                  
+                    
+                    
+                      
+                      
+                    
+                    
+                  
+                
+              
+              2
+            
+          
+        
+      
+    
+
+    
+      cos 2A = cos^2 A - sin^2 A
+      
+        
+          
+            
+            
+              
+              
+                
+                 2 
+                
+              
+            
+            
+              
+              
+                
+                
+                  
+                  
+                
+                 2 
+              
+              
+                
+                
+                  
+                  
+                
+                 2 
               
             
           
+        
+      
+    
+
+    
+      cos A = cos(-A)
+      
+        
           
+            
+            
+              
+              
             
             
               
@@ -542,638 +568,560 @@ cos(x) = (exp(ix)+exp(-ix))/2
                 
                 
               
-              
             
           
         
-        2
       
     
   
-
-
-
-
-cos 2A = cos^2 A - sin^2 A
-
-
-
-
-  
-    
-    
-      
-      
-        
-	 2 
-	
-      
-    
-    
-      
-      
-        
-	
-	  
-	  
-	
-	 2 
-      
-      
-        
-	
-	  
-	  
-	
-	 2 
-      
-    
-  
-
-
-
-
-cos A = cos(-A)
-
-
-
-  
-    
-    
-      
-      
-    
-    
-      
-      
-        
-	
-      
-    
-  
-
-
-
-
-
-tan
   
     tan
+    
+      tan
+    
+    application
+    This symbol represents the tan function as described in Abramowitz and Stegun, section 4.3. It takes one argument.
   
-application
- 
-This symbol represents the tan function as described in Abramowitz and
-Stegun, section 4.3. It takes one argument.
+    
+      
+         tan(integer*Pi) = 0 
+      
+    
 
+    
+      
+         tan(x) = sin(x)/cos(x)
+      
+    
+  
 
-
-          This element represents the tan function as described in 
-Abramowitz and Stegun, section 4.3. It takes one argument. 
-        
+    
+      
         
           
-             tan(integer*Pi) = 0 
-          
+          x
         
-        
-          
-             tan(x) = sin(x)/cos(x)
-          
-        x
-
-
-
-tan A = sin A / cos A
-
-
-
-  
-  
-    
-    
-  
-  
-    
-    
-      
       
     
+
     
+      tan A = sin A / cos A
       
-      
-    
-  
-
-
-
-
-
-sec
-  
-    sec
-  
-application
- 
-This symbol represents the sec function as described in Abramowitz and
-Stegun, section 4.3. It takes one argument.
-
-
-
-          This element represents the sec function 
-as described in Abramowitz and Stegun, section 4.3. 
-It takes one argument. 
-        
         
           
-             sec(x) = 1/cos(x) 
-          
-        
-        x
-
-
-
-sec A = 1/cos A
-
-
-
-
-  
-  
-    
-  
-  
-    
-    
-    
-      
-      
-    
-  
-
-
-
-
-
-
-csc
-  
-    csc
-  
-application
- 
-This symbol represents the csc function as described in Abramowitz and
-Stegun, section 4.3. It takes one argument.
-
-
-
-          This element represents the csc function as 
-described in Abramowitz and Stegun, section 4.3. 
-It takes one argument. 
-        
-
-        
-          
-             csc(x) = 1/sin(x) 
-          
-        
-        x
-
-
-
-csc A = 1/sin A
-
-
-
-
-  
-  
-    
-  
-  
-    
-    
-    
-      
-      
-    
-  
-
-
-
-
-
-
-cot
-  
-    cot
-  
-application
- 
-This symbol represents the cot function as described in Abramowitz and
-Stegun, section 4.3. It takes one argument.
-
-
- 
-          This element represents the cot function as described in 
-Abramowitz and Stegun, section 4.3. It takes one argument.  
-It takes one argument.  
-        
-
-        
-          
-             cot(integer*Pi+Pi/2) = 0
-          
-        
-          
-             cot(x) = cos(x)/sin(x) 
-          
-        
-        
-          
-            cot A = 1/tan A 
-          
-        
-        x
-
-
-
-cot A = 1/tan A
-
-
-
-
-  
-  
-    
-  
-  
-    
-    
-    
-      
-      
-    
-  
-
-
-
-
-
-
-sinh
-  
-    sinh
-  
-application
- 
-This symbol represents the sinh function as described in Abramowitz
-and Stegun, section 4.5. It takes one argument.
-
-
- 
-          This element represents the sinh function as described in Abramowitz and
-          Stegun, section 4.5. It takes one argument. 
-        
-
-        
-          
-            sinh A = 1/2 * (e^A - e^(-A)) 
-          
-        
-        x
-
-
- sinh A = 1/2 * (e^A - e^(-A)) 
-
-
-  
-  
-    
-    
-  
-  
-    
-    
-      
-      
-       2 
-    
-    
-      
-      
-        
-	
-	
-      
-      
-        
-	
-	
-	  
-	  
-	
-      
-    
-  
-
-
-
-
-
-cosh
-  
-    cosh
-  
-application
- 
-This symbol represents the cosh function as described in Abramowitz
-and Stegun, section 4.5. It takes one argument.
-
-
-
-          This symbol represents the cosh function as described in Abramowitz and
-          Stegun, section 4.5. It takes one argument.  It takes one argument.
-        
-        
-          
-            cosh A = 1/2 * (e^A + e^(-A)) 
-          
-        
-        x
-
-
- cosh A = 1/2 * (e^A + e^(-A)) 
-
-
-  
-  
-    
-    
-  
-  
-    
-    
-      
-      
-       2 
-    
-    
-      
-      
-        
-	
-	
-      
-      
-        
-	
-	
-	  
-	  
-	
-      
-    
-  
-
-
-
-
-
-tanh
-  
-    tanh
-  
-application
- 
-This symbol represents the tanh function as described in Abramowitz
-and Stegun, section 4.5. It takes one argument.
-
-
-
-          This element represents the tanh function as described in 
-Abramowitz and Stegun, section 4.5. It takes one argument. 
-        
-        
-          
-            tanh A = sinh A / cosh A 
-          
-        
-        x
-
-
- tanh A = sinh A / cosh A 
-
-
-  
-  
-    
-    
-  
-  
-    
-    
-      
-      
-    
-    
-      
-      
-    
-  
-
-
-
-
-
-sech
-  
-    sech
-  
-application
- 
-This symbol represents the sech function as described in Abramowitz
-and Stegun, section 4.5. It takes one argument.
-
-
-
-          This element represents the sech function 
-as described in Abramowitz and Stegun, section 4.5. 
-It takes one argument. 
-        
-        
-          
-            sech A = 1/cosh A 
-          
-        
-        x
-
-
- sech A = 1/cosh A 
-
-
-
-  
-  
-    
-  
-  
-    
-    
-    
-      
-      
-    
-  
-
-
-
-
-
-
-csch
-  
-    csch
-  
-application
- 
-This symbol represents the csch function as described in Abramowitz
-and Stegun, section 4.5. It takes one argument.
-
-
- 
-          This element represents the csch function 
-as described in Abramowitz and Stegun, section 4.5. 
-It takes one argument. 
-        
-
-        
-          
-            csch A = 1/sinh A 
-          
-        
-        x
-
-
- csch A = 1/sinh A 
-
-
-
-  
-  
-    
-  
-  
-    
-    
-    
-      
-      
-    
-  
-
-
-
-
-
-
-
-coth
-  
-    coth
-  
-application
- 
-This symbol represents the coth function as described in Abramowitz
-and Stegun, section 4.5. It takes one argument.
-
-
-        
-          This element represents the coth function as described in 
-Abramowitz and Stegun, section 4.5. It takes one argument. 
-        
-
-        
-          
-            coth A = 1/tanh A 
-          
-        
-        x
-   
-
- coth A = 1/tanh A 
-
-
-
-  
-  
-    
-  
-  
-    
-    
-    
-      
-      
-    
-  
-
-
-
-
-
-
-
-arcsin
-  
-    arcsin
-  
-application
- 
-This symbol represents the arcsin function. This is the inverse of the
-sin function as described in Abramowitz and Stegun, section 4.4. It
-takes one argument.
-
-
- 
-          This element represents the arcsin function which 
-is the inverse of the sin function as described in 
-Abramowitz and Stegun, section 4.4. It takes one argument. 
-        
-
-        
-          
-            arcsin(z) = -i ln (sqrt(1-z^2)+iz) 
-          
-        
-        x
-
-
-
-
-arcsin(z) = -i ln (sqrt(1-z^2)+iz)
-
-
-  
-    
-      
-      
-        
-        
-      
-      
-        
-        
-          
-          
-        
-        
-          
-          
+            
+            
+              
+              
             
             
               
               
                 
+                
+              
+              
+                
+                
+              
+            
+          
+        
+      
+    
+  
+  
+    sec
+    
+      sec
+    
+    application
+    This symbol represents the sec function as described in Abramowitz and Stegun, section 4.3. It takes one argument.
+
+    
+      
+        
+          
+          x
+        
+      
+    
+
+    
+      
+sec(A) = 1/cos(A)
+
+      
+        
+          
+            
+            
+              
+              
+            
+            
+              
+              
+              
+                
+                
+              
+            
+          
+        
+      
+    
+  
+  
+    csc
+    
+      csc
+    
+    application
+    This symbol represents the csc function as described in Abramowitz and Stegun, section 4.3. It takes one argument.
+
+    
+      
+        
+          
+          x
+        
+      
+    
+
+    
+      csc(A)= 1/sin(A)
+      
+        
+          
+            
+            
+              
+              
+            
+            
+              
+              
+              
+                
+                
+              
+            
+          
+        
+      
+    
+  
+  
+    cot
+    
+      cot
+    
+    application
+    This symbol represents the cot function as described in Abramowitz and Stegun, section 4.3. It takes one argument.
+
+    
+      
+         cot(integer*Pi+Pi/2) = 0
+      
+    
+
+    
+      
+         cot(x) = cos(x)/sin(x) 
+      
+    
+
+    
+      
+        
+          
+          x
+        
+      
+    
+
+    
+      
+cot(A) = 1/tan(A)
+
+      
+        
+          
+            
+            
+              
+              
+            
+            
+              
+              
+              
+                
+                
+              
+            
+          
+        
+      
+    
+  
+  
+    sinh
+    
+      sinh
+    
+    application
+    This symbol represents the sinh function as described in Abramowitz and Stegun, section 4.5. It takes one argument.
+
+    
+      
+        
+          
+          x
+        
+      
+    
+
+    
+       sinh A = 1/2 * (e^A - e^(-A)) 
+      
+        
+          
+            
+            
+              
+              
+            
+            
+              
+              
+                
+                
+                 2 
+              
+              
+                
+                
+                  
+                  
+                  
+                
+                
+                  
+                  
+                  
+                    
+                    
+                  
+                
+              
+            
+          
+        
+      
+    
+  
+  
+    cosh
+    
+      cosh
+    
+    application
+    This symbol represents the cosh function as described in Abramowitz and Stegun, section 4.5. It takes one argument.
+
+    
+      
+        
+          
+          x
+        
+      
+    
+
+    
+       cosh A = 1/2 * (e^A + e^(-A)) 
+      
+        
+          
+            
+            
+              
+              
+            
+            
+              
+              
+                
+                
+                 2 
+              
+              
+                
+                
+                  
+                  
+                  
+                
+                
+                  
+                  
+                  
+                    
+                    
+                  
+                
+              
+            
+          
+        
+      
+    
+  
+  
+    tanh
+    
+      tanh
+    
+    application
+    This symbol represents the tanh function as described in Abramowitz and Stegun, section 4.5. It takes one argument.
+
+    
+      
+        
+          
+          x
+        
+      
+    
+
+    
+      tanh(A) = sinh(A)/cosh(A)
+      
+        
+          
+            
+            
+              
+              
+            
+            
+              
+              
+                
+                
+              
+              
+                
+                
+              
+            
+          
+        
+      
+    
+  
+  
+    sech
+    
+      sech
+    
+    application
+    This symbol represents the sech function as described in Abramowitz and Stegun, section 4.5. It takes one argument.
+
+    
+      
+        
+          
+          x
+        
+      
+    
+
+    
+       sech(A) = 1/cosh(A) 
+      
+        
+          
+            
+            
+              
+              
+            
+            
+              
+              
+              
+                
+                
+              
+            
+          
+        
+      
+    
+  
+  
+    csch
+    
+      csch
+    
+    application
+    This symbol represents the csch function as described in Abramowitz and Stegun, section 4.5. It takes one argument.
+
+    
+      
+        
+          
+          x
+        
+      
+    
+
+    
+       csch A = 1/sinh A 
+      
+        
+          
+            
+            
+              
+              
+            
+            
+              
+              
+              
+                
+                
+              
+            
+          
+        
+      
+    
+  
+  
+    coth
+    
+      coth
+    
+    application
+    This symbol represents the coth function as described in Abramowitz and Stegun, section 4.5. It takes one argument.
+
+    
+      
+        
+          
+          x
+        
+      
+    
+   
+    
+      coth(A) = 1/tanh(A) 
+      
+        
+          
+            
+            
+              
+              
+            
+            
+              
+              
+              
+                
+                
+              
+            
+          
+        
+      
+    
+  
+  
+    arcsin
+    
+      arcsin
+    
+    application
+    This symbol represents the arcsin function. This is the inverse of the sin function as described in Abramowitz and Stegun, section 4.4. It takes one argument.
+
+    
+      
+        
+          
+          x
+        
+      
+    
+  
+    
+      arcsin(z) = -i ln (sqrt(1-z^2)+iz)
+      
+        
+          
+            
+            
+              
+              
+            
+            
+              
+              
+                
+                
+              
+              
+                
+                
+                  
+                  
+                    
+                    
+                      
+                      
+                      
+                        
+                        
+                         2 
+                      
+                    
+                     2 
+                  
+                  
+                    
+                    
+                    
+                  
+                
+              
+            
+          
+        
+      
+    
+
+    
+       x in [-(pi/2),(pi/2)] implies arcsin(sin x) = x 
+      
+        
+          
+            
+            
+              
+              
+              
+                
+                
+                  
+                  
+                    
+                    
+                     2 
+                  
                 
                 
                   
@@ -1181,10 +1129,15 @@ arcsin(z) = -i ln (sqrt(1-z^2)+iz)
                    2 
                 
               
-               2 
             
             
               
+              
+                
+                
+                  
+                  
+                
               
               
             
@@ -1193,217 +1146,156 @@ arcsin(z) = -i ln (sqrt(1-z^2)+iz)
       
     
   
-
-
-
- x in [-(pi/2),(pi/2)] implies arcsin(sin x) = x 
-
-
-  
-  
-    
-    
-    
-      
-      
-        
-	
-	  
-	  
-	   2 
-	
-      
-      
-        
-	
-	 2 
-      
-    
-  
-  
-    
-    
-      
-      
-        
-	
-      
-    
-    
-  
-
-
-
-
-
-arccos
   
     arccos
-  
-application
- 
-This symbol represents the arccos function. This is the inverse of the
-cos function as described in Abramowitz and Stegun, section 4.4. It
-takes one argument. 
-
-
-
-   This element represents the arccos function which is the inverse of the cos function 
-  as described in Abramowitz and Stegun, section 4.4. It takes one argument. 
-
-
-
-  
-    arccos(z) = -i ln(z+i \sqrt(1-z^2)) 
-  
-
-
-  
-    x
-  
-
-
-
- arccos(z) = -i ln(z+i \sqrt(1-z^2)) 
-
-
-  
     
+      arccos
     
-      
-      
+    application
+    This symbol represents the arccos function. This is the inverse of the cos function as described in Abramowitz and Stegun, section 4.4. It takes one argument.
+
     
-    
-      
       
         
-	
+          
+          x
+        
       
+    
+
+    
+       arccos(z) = -i ln(z+i \sqrt(1-z^2)) 
       
         
-	
-	  
-	  
-	  
-	    
-	    
-	    
-	      
-	      
-	        
-		
-		
-		  
-		  
-		   2 
-		
-	      
-	       2 
-	    
-	  
-	
+          
+            
+            
+              
+              
+            
+            
+              
+              
+                
+                
+              
+              
+                
+                
+                  
+                  
+                  
+                    
+                    
+                    
+                      
+                      
+                        
+                        
+                        
+                          
+                          
+                           2 
+                        
+                      
+                       2 
+                    
+                  
+                
+              
+            
+          
+        
       
     
-  
 
-
-
-
- x in [0,pi] implies arccos(cos x) = x 
-
-
-
-  
-  
     
-    
-    
-      
-      
-      
-    
-  
-  
-    
-    
-      
+       x in [0,pi] implies arccos(cos x) = x 
       
         
-	
+          
+            
+            
+              
+              
+              
+                
+                
+                
+              
+            
+            
+              
+              
+                
+                
+                  
+                  
+                
+              
+              
+            
+          
+        
       
     
-    
   
-
-
-
-
-
-arctan
   
     arctan
-  
-application
- 
-This symbol represents the arctan function. This is the inverse of the
-tan function as described in Abramowitz and Stegun, section 4.4. It
-takes one argument.
+    
+      arctan
+    
+    application
+    This symbol represents the arctan function. This is the inverse of the tan function as described in Abramowitz and Stegun, section 4.4. It takes one argument.
 
-
- 
-   This element represents the arctan function which is the inverse of the tan function 
-   as described in Abramowitz and Stegun, section 4.4. It takes one argument. 
- 
- 
- 
-   
-     arctan(z) = (ln(1+iz)-ln(1-iz))/2i 
-   
- 
- 
-   
-     x
-   
- 
-
-
-
-arctan(z) = (i/2)ln((1-iz)/(1+iz))
-
-
-  
     
       
-      
-        
-        
-      
-      
-        
         
           
-          
-           2 
+          x
         
+      
+    
+
+    
+      arctan(z) = (i/2)ln((1-iz)/(1+iz))
+      
         
           
-	  
             
             
               
-              
-              
-                
-                
-                
               
             
             
               
               
+                
+                
+                 2 
+              
               
                 
                 
+                  
+                  
+                    
+                    
+                    
+                      
+                      
+                      
+                    
+                  
+                  
+                    
+                    
+                    
+                      
+                      
+                      
+                    
+                  
                 
               
             
@@ -1411,1022 +1303,984 @@ arctan(z) = (i/2)ln((1-iz)/(1+iz))
         
       
     
-  
 
-
-
- x in (-(pi/2),(pi/2)) implies arctan(tan x) = x 
-
-
-  
-  
     
-    
-    
-      
+       x in (-(pi/2),(pi/2)) implies arctan(tan x) = x 
       
         
-	
-	  
-	  
-	   2 
-	
-      
-      
+          
+            
+            
+              
+              
+              
+                
+                
+                  
+                  
+                    
+                    
+                     2 
+                  
+                
+                
+                  
+                  
+                   2 
+                
+              
+            
+            
+              
+              
+                
+                
+                  
+                  
+                
+              
+              
+            
+          
         
-	
-	 2 
       
     
   
-  
-    
-    
-      
-      
-        
-	
-      
-    
-    
-  
-
-
-
-
-
-
-
-arcsec
   
     arcsec
-  
-application
- 
-This symbol represents the arcsec function as described in Abramowitz
-and Stegun, section 4.4.
-
-
-
-  This element represents the arcsec function as described 
-  in Abramowitz and Stegun, section 4.4.  
-  It takes one argument.  
-
-
-
-  
-    arcsec(z) = -i ln(1/z + i \sqrt(1-1/z^2))
-  
-
-
-  
-    x
-  
-
-
-
- arcsec(z) = -i ln(1/z + i \sqrt(1-1/z^2)) 
-
-
-
-  
     
+      arcsec
     
-      
-      
+    application
+    This symbol represents the arcsec function as described in Abramowitz and Stegun, section 4.4.
+
     
-    
-      
       
         
-	
+          
+          x
+        
       
+    
+
+    
+       arcsec(z) = -i ln(1/z + i \sqrt(1-1/z^2)) 
+
       
         
-	
-	  
-	  
-	    
-	    
-	    
-	  
-	  
-	    
-	    
-	    
-	      
-	      
-	        
-		
-		
-		  
-		  
-		  
-		    
-		    
-		     2 
-		  
-		
-	      
-	       2 
-	    
-	  
-	
+          
+            
+            
+              
+              
+            
+            
+              
+              
+                
+                
+              
+              
+                
+                
+                  
+                  
+                    
+                    
+                    
+                  
+                  
+                    
+                    
+                    
+                      
+                      
+                        
+                        
+                        
+                          
+                          
+                          
+                            
+                            
+                             2 
+                          
+                        
+                      
+                       2 
+                    
+                  
+                
+              
+            
+          
+        
       
     
-  
 
-
-
-
- for all z | arcsec z = i * arcsech z 
-
-
-
-  
-  
     
-  
-  
-    
-    
-      
-      
-    
-    
-      
-      
+       for all z | arcsec z = i * arcsech z 
+
       
         
-	
+          
+            
+            
+              
+            
+            
+              
+              
+                
+                
+              
+              
+                
+                
+                
+                  
+                  
+                
+              
+            
+          
+        
       
     
   
-
-
-
-
-
-arccsc
   
     arccsc
-  
-application
- 
-This symbol represents the arccsc function as described in Abramowitz
-and Stegun, section 4.4.
-
-
-
-  This element represents the arccsc function as described 
-  in Abramowitz and Stegun, section 4.4.  
-  It takes one argument.  
-
-
-
-  
-    arccsc(z) = -i ln(i/z + \sqrt(1 - 1/z^2)) 
-  
-
-x
-
-
- arccsc(z) = -i ln(i/z + \sqrt(1 - 1/z^2)) 
-
-
-
-  
     
+      arccsc
     
-      
-      
+    application
+    This symbol represents the arccsc function as described in Abramowitz and Stegun, section 4.4.
+
     
-    
-      
       
         
-	
+          
+          x
+        
       
+    
+
+    
+       arccsc(z) = -i ln(i/z + \sqrt(1 - 1/z^2)) 
+
       
         
-	
-	  
-	  
-	    
-	    
-	    
-	  
-	  
-	    
-	    
-	      
-	      
-	      
-		
-		
-		
-		  
-		  
-		   2 
-		
-	      
-	    
-	     2 
-	  
-	
+          
+            
+            
+              
+              
+            
+            
+              
+              
+                
+                
+              
+              
+                
+                
+                  
+                  
+                    
+                    
+                    
+                  
+                  
+                    
+                    
+                      
+                      
+                      
+                        
+                        
+                        
+                          
+                          
+                           2 
+                        
+                      
+                    
+                     2 
+                  
+                
+              
+            
+          
+        
       
     
-  
 
-
-
-
- arccsc(z) = i * arccsch(i * z) 
-
-
-
-  
-  
     
-    
-  
-  
-    
-    
-    
-      
+       arccsc(z) = i * arccsch(i * z) 
+
       
         
+          
+            
+            
+              
+              
+            
+            
+              
+              
+              
+                
+                
+                  
+                  
+                  
+                
+              
+            
+          
         
-	
       
     
-  
 
-
-
-
- arccsc(-z) = - arccsc(z) 
-
-
-
-  
-  
     
-    
+       arccsc(-z) = - arccsc(z) 
+
       
+        
+          
+            
+            
+              
+              
+                
+                
+              
+            
+            
+              
+              
+                
+                
+              
+            
+          
+        
       
     
+
   
-  
-    
-    
-      
-      
-    
-  
-
-
-
-
-
-
-arccot
   
     arccot
-  
-application
- 
-This symbol represents the arccot function as described in Abramowitz
-and Stegun, section 4.4.
+    
+      arccot
+    
+    application
+    This symbol represents the arccot function as described in Abramowitz and Stegun, section 4.4.
 
-
-
-          This element represents the arccot function as described in 
-Abramowitz and Stegun, section 4.4.  
-It takes one argument.  
-        
-
+    
+      
         
           
-            arccot(-z) = - arccot(z) 
-          
-	
+          x
         
-	x
-
-
- arccot(-z) = - arccot(z) 
-
-
-
-  
-  
-    
-    
-      
       
     
-  
-  
-    
-    
-      
-      
-    
-  
 
-
-
-
- arccot(x) = (i/2) * ln ((x - i)/(x + i)) 
-
-
-
-  
     
-    
+       arccot(-z) = - arccot(z) 
+
       
-      
-    
-    
-      
-      
-        
-	
-	 2 
-      
-      
-        
         
           
-	  
-	    
-	    
-	    
-	  
-	  
-	    
-	    
-	    
-	  
+            
+            
+              
+              
+                
+                
+              
+            
+            
+              
+              
+                
+                
+              
+            
+          
+        
+      
+    
+
+    
+       arccot(x) = (i/2) * ln ((x - i)/(x + i)) 
+      
+        
+          
+            
+            
+              
+              
+            
+            
+              
+              
+                
+                
+                 2 
+              
+              
+                
+                
+                  
+                  
+                    
+                    
+                    
+                  
+                  
+                    
+                    
+                    
+                  
+                
+              
+            
+          
         
       
     
   
-
-
-
-
-
-arcsinh
   
     arcsinh
-  
-application
- 
-This symbol represents the arcsinh function as described in Abramowitz
-and Stegun, section 4.6.
+    
+      arcsinh
+    
+    application
+    This symbol represents the arcsinh function as described in Abramowitz and Stegun, section 4.6.
 
-
-
-          This element represents the arcsinh function 
-as described in Abramowitz and Stegun, section 4.6. 
-It takes one argument.
-        
-
+    
+      
         
           
-            arcsinh z = ln(z + \sqrt(1+z^2)) 
+          x
+        
+      
+    
+
+    
+       arcsinh z = ln(z + \sqrt(1+z^2)) 
+
+      
+        
+          
+            
+            
+              
+              
+            
+            
+              
+              
+                
+                
+                
+                  
+                  
+                    
+                    
+                    
+                      
+                      
+                       2 
+                    
+                  
+                   2 
+                
+              
+            
           
         
-        x
-
-
- arcsinh z = ln(z + \sqrt(1+z^2)) 
-
-
-
-  
-    
-    
-      
       
     
+
     
-      
+       arcsinh(z) = - i * arcsin(i * z) 
+
       
         
-	
-	
-	  
-	  
-	    
-	    
-	    
-	      
-	      
-	       2 
-	    
-	  
-	   2 
-	
-      
-    
-  
-
-
-
-
- arcsinh(z) = - i * arcsin(i * z) 
-
-
-
-  
-  
-    
-    
-  
-  
-    
-    
-      
-      
-    
-    
-      
-      
+          
+            
+            
+              
+              
+            
+            
+              
+              
+                
+                
+              
+              
+                
+                
+                  
+                  
+                  
+                
+              
+            
+          
         
-	
-	
       
     
+
   
-
-
-
-
-
-
-arccosh
   
     arccosh
-  
-application
- 
-This symbol represents the arccosh function as described in Abramowitz
-and Stegun, section 4.6.
+    
+      arccosh
+    
+    application
+    This symbol represents the arccosh function as described in Abramowitz and Stegun, section 4.6.
 
-
-
-           This symbol represents the arccosh function as described in Abramowitz and
-          Stegun, section 4.6.  It takes one argument.
-        
-
+    
+      
         
           
-            arccosh(z) = 2*ln(\sqrt((z+1)/2) + \sqrt((z-1)/2)) 
+          x
+        
+      
+    
+
+    
+       arccosh(z) = 2*ln(\sqrt((z+1)/2) + \sqrt((z-1)/2)) 
+
+      
+        
+          
+            
+            
+              
+              
+            
+            
+              
+               2 
+              
+                
+                
+                  
+                  
+                    
+                    
+                      
+                      
+                        
+                        
+                        
+                      
+                       2 
+                    
+                     2 
+                  
+                  
+                    
+                    
+                      
+                      
+                        
+                        
+                        
+                      
+                       2 
+                    
+                     2 
+                  
+                
+              
+            
           
         
-        x
-
-
- arccosh(z) = 2*ln(\sqrt((z+1)/2) + \sqrt((z-1)/2)) 
-
-
-
-  
-    
-    
-      
       
     
+
     
-      
-       2 
+       arccosh z = i * (pi - arccos z) 
+
       
         
-	
-	  
-	  
-	    
-	    
-	      
-	      
-	        
-		
-		
-	      
-	       2 
-	    
-	     2 
-	  
-	  
-	    
-	    
-	      
-	      
-	        
-		
-		
-	      
-	       2 
-	    
-	     2 
-	  
-	
+          
+            
+            
+              
+              
+            
+            
+              
+              
+              
+                
+                
+                
+                  
+                  
+                
+              
+            
+          
+        
       
     
   
-
-
-
-
- arccosh z = i * (pi - arccos z) 
-
-
-
-  
-  
-    
-    
-  
-  
-    
-    
-    
-      
-      
-      
-	
-	
-      
-    
-  
-
-
-
-
-
-arctanh
   
     arctanh
-  
-application
- 
-This symbol represents the arctanh function as described in Abramowitz
-and Stegun, section 4.6.
+    
+      arctanh
+    
+    application
+    This symbol represents the arctanh function as described in Abramowitz and Stegun, section 4.6.
 
-
-
-          This element represents the arctanh function as 
-described in Abramowitz and Stegun, section 4.6.  
-It takes one argument.  
-        
-
+    
+      
         
           
-            arctanh(z) = - i * arctan(i * z) 
+          x
+        
+      
+    
+
+    
+       arctanh(z) = - i * arctan(i * z) 
+
+      
+        
+          
+            
+            
+              
+              
+            
+            
+              
+              
+                
+                
+              
+              
+                
+                
+                  
+                  
+                  
+                
+              
+            
           
         
-        x
-
-
- arctanh(z) = - i * arctan(i * z) 
-
-
-
-  
-  
-    
-    
-  
-  
-    
-    
-      
-	
-    
-    
-      
-      
-        
-	
-	
       
     
-  
 
-
-
-
- for all x where 0 <= x^2 < 1 |
+    
+       for all x where 0 <= x^2 < 1 |
 arctanh(x) = 1/2 * ln((1 + x)/(1 - x))
 
-
-
-  
-  
-    
-  
-  
-    
-    
-      
       
         
-	
-	
-	  
-	  
-	   2 
-	
-      
-      
-        
-	
-	  
-	  
-	   2 
-	
-	
-      
-    
-    
-      
-      
-        
-	
-      
-      
-        
-        
-          
-           1 
-           2 
-        
-        
-          
           
             
-	    
-	      
-	      
-	      
-	    
-	    
-	      
-	      
-	      
-	    
+            
+              
+            
+            
+              
+              
+                
+                
+                  
+                  
+                  
+                    
+                    
+                     2 
+                  
+                
+                
+                  
+                  
+                    
+                    
+                     2 
+                  
+                  
+                
+              
+              
+                
+                
+                  
+                  
+                
+                
+                  
+                  
+                    
+                     1 
+                     2 
+                  
+                  
+                    
+                    
+                      
+                      
+                        
+                        
+                        
+                      
+                      
+                        
+                        
+                        
+                      
+                    
+                  
+                
+              
+            
           
         
       
     
   
-
-
-
-
-
-arcsech
   
     arcsech
-  
-application
- 
-This symbol represents the arcsech function as described in Abramowitz
-and Stegun, section 4.6.
+    
+      arcsech
+    
+    application
+    This symbol represents the arcsech function as described in Abramowitz and Stegun, section 4.6.
 
-
-  
-          This element represents the arcsech function 
-as described in Abramowitz and Stegun, section 4.6. 
-It takes one argument.   
-        
-
+    
+      
         
           
-            arcsech(z) = 2 ln(\sqrt((1+z)/(2z)) + \sqrt((1-z)/(2z))) 
+          x
+        
+      
+    
+  
+    
+       arcsech(z) = 2 ln(\sqrt((1+z)/(2z)) + \sqrt((1-z)/(2z))) 
+      
+        
+          
+            
+            
+              
+              
+            
+            
+              
+               2 
+              
+                
+                
+                  
+                  
+                    
+                    
+                      
+                      
+                        
+                        
+                        
+                      
+                      
+                        
+                         2 
+                        
+                      
+                    
+                     2 
+                  
+                  
+                    
+                    
+                      
+                      
+                        
+                        
+                        
+                      
+                      
+                        
+                         2 
+                        
+                      
+                    
+                     2 
+                  
+                
+              
+            
           
         
-        x
-
-
- arcsech(z) = 2 ln(\sqrt((1+z)/(2z)) + \sqrt((1-z)/(2z))) 
-
-
-
-  
-    
-    
-      
       
     
+
     
-      
-       2 
+       for all x in (0..1] | arcsech x = ln(1/x + (1/(x^2) - 1)^(1/2)) 
+
       
         
-	
-	  
-	  
-	    
-	    
-	      
-	      
-	        
-		
-		
-	      
-	      
-	        
-		 2 
-		
-	      
-	    
-	     2 
-	  
-	  
-	    
-	    
-	      
-	      
-	        
-		
-		
-	      
-	      
-	        
-		 2 
-		
-	      
-	    
-	     2 
-	  
-	
-      
-    
-  
-
-
-
-
- for all x in (0..1] | arcsech x = ln(1/x + (1/(x^2) - 1)^(1/2)) 
-
-
-
-  
-  
-    
-  
-  
-    
-    
-      
-      
-      
+          
+            
+            
+              
+            
+            
+              
+              
+                
+                
+                
+                  
+                   0  
+                   1 
+                
+              
+              
+                
+                
+                  
+                  
+                
+                
+                  
+                  
+                    
+                    
+                      
+                      
+                      
+                    
+                    
+                      
+                      
+                        
+                        
+                          
+                          
+                          
+                            
+                            
+                             2 
+                          
+                        
+                        
+                      
+                      
+                        
+                         1  
+                         2 
+                      
+                    
+                  
+                
+              
+            
+          
         
-	 0   1 
-      
-    
-    
-      
-      
-        
-	
-      
-      
-        
-	
-	  
-	  
-	    
-	    
-	    
-	  
-	  
-	    
-	    
-	      
-	      
-	        
-		
-		
-		  
-		  
-		   2 
-		
-	      
-	      
-	    
-	    
-	      
-	       1   2 
-	    
-	  
-	
       
     
   
-
-
-
-
-
-arccsch
   
     arccsch
-  
-application
- 
-This symbol represents the arccsch function as described in Abramowitz
-and Stegun, section 4.6.
+    
+      arccsch
+    
+    application
+    This symbol represents the arccsch function as described in Abramowitz and Stegun, section 4.6.
 
-
-
-           This element represents the arccsch function as 
-described in Abramowitz and Stegun, section 4.6.  
-It takes one argument.  
-        
-
+    
+      
         
           
-            arccsch(z) = ln(1/z + \sqrt(1+(1/z)^2)) 
+          x
+        
+      
+    
+  
+    
+       arccsch(z) = ln(1/z + \sqrt(1+(1/z)^2)) 
+      
+        
+          
+            
+            
+              
+              
+            
+            
+              
+              
+                
+                
+                  
+                  
+                  
+                
+                
+                  
+                  
+                    
+                    
+                    
+                      
+                      
+                        
+                        
+                        
+                      
+                       2 
+                    
+                  
+                   2 
+                
+              
+            
           
         
-        x
-
-
- arccsch(z) = ln(1/z + \sqrt(1+(1/z)^2)) 
-
-
-
-  
-    
-    
-      
       
     
+
     
-      
+       arccsch(z) = i * arccsc(i * z) 
+
       
         
-	
-	  
-	  
-	  
-	
-	
-	  
-	  
-	    
-	    
-	    
-	      
-	      
-	        
-		
-		
-	      
-	       2 
-	    
-	  
-	   2 
-	
-      
-    
-  
-
-
-
-
- arccsch(z) = i * arccsc(i * z) 
-
-
-
-  
-  
-    
-    
-  
-  
-    
-    
-    
-      
-      
+          
+            
+            
+              
+              
+            
+            
+              
+              
+              
+                
+                
+                  
+                  
+                  
+                
+              
+            
+          
         
-	
-	
       
     
   
-
-
-
-
-
-arccoth
   
     arccoth
-  
-application
- 
-This symbol represents the arccoth function as described in Abramowitz
-and Stegun, section 4.6.
+    
+      arccoth
+    
+    application
+    This symbol represents the arccoth function as described in Abramowitz and Stegun, section 4.6.
 
-
-
-          This element represents the arccoth function as described 
-in Abramowitz and Stegun, section 4.6.  
-It takes one argument.  
-        
-
+    
+      
         
           
-            arccoth(z) = (ln(-1-z)-ln(1-z))/2 
-          
+          x
         
-        x
-
-
- arccoth(z) = (ln(-1-z)-ln(1-z))/2 
-
-
-
-  
-    
-    
-      
       
     
+
     
-      
+       arccoth(z) = (ln(-1-z)-ln(1-z))/2 
+
       
         
-        
-          
           
             
-	    
-	      
-	      
-	    
-	    
+            
+              
+              
+            
+            
+              
+              
+                
+                
+                  
+                  
+                    
+                    
+                      
+                      
+                    
+                    
+                  
+                
+                
+                  
+                  
+                    
+                    
+                    
+                  
+                
+              
+               2 
+            
           
         
+      
+    
+
+    
+       for all z | if z is not zero then arccoth(z) = i * arccot(i * z) 
+      
         
-          
           
             
-	    
-	    
-          
-        
-      
-       2 
-    
-  
-
-
-
-
- for all z | if z is not zero then arccoth(z) = i * arccot(i * z) 
-
-
-  
-  
-    
-  
-  
-    
-    
-      
-      
-      
-    
-    
-      
-      
-        
-	
-      
-      
-        
-	
-        
-          
-	  
             
-	    
-	    
+              
+            
+            
+              
+              
+                
+                
+                
+              
+              
+                
+                
+                  
+                  
+                
+                
+                  
+                  
+                  
+                    
+                    
+                      
+                      
+                      
+                    
+                  
+                 
+              
+            
           
         
-       
+      
     
   
-
-
-
-

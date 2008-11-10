@@ -9,10 +9,7 @@
 namespace om = "http://www.openmath.org/OpenMath"
 
 
-
-
-
-     This document is distributed in the hope that it will be useful, 
+       This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -42,76 +39,58 @@ namespace om = "http://www.openmath.org/OpenMath"
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 
-
-linalg3
-http://www.openmath.org/cd
-http://www.openmath.org/cd/linalg3.ocd 
-2006-03-30
-2004-03-30
-3
-0
-experimental
-
-    This CD  treats matrices and vectors in a column oriented fashion
-    (using matrixcolumn's).
-
-
-
-vector
+  linalg3
+  http://www.openmath.org/cd
+  http://www.openmath.org/cd/linalg3.ocd
+  2006-03-30
+  2008-10-16
+  3
+  0
+  draft
+  This content dictionary treats matrices and vectors in a column oriented fashion (using matrix columns). Vectors in this CD are considered to be column vectors and must therefore be transposed to be considered as row vectors.
   
     vector
     
-      type
-      "column" | MathMLType 
-      "column"
+      vector
+      
+        type
+        "column" | MathMLType 
+        "column"
+      
+      
+        The type attribute can be used to explicitly specify that a
+      vector is a "row" vector.
+      
     
-  
-application
-
-This symbol represents an n-ary function used to construct (or describe)
-vectors.  Vectors in this CD are considered to be column vectors, and must 
-therefore be transposed to be considered as row vectors.
-
-
- 
-      A vector is an ordered n-tuple of values representing an element of an
-      n-dimensional vector space.  The "values" are all from the same ring, typically real
-      or complex.  Where orientation is important, such as for pre or post multiplication
-      by a matrix a vector is treated as if it were a column vector and its transpose is
-      treated a row vector.  The type attribute can be used to explicitly specify that a
-      vector is a "row" vector.  See CRC Standard Mathematical Tables and Formulae,
-      editor: Dan Zwillinger, CRC Press Inc., 1996, [2.4]
-    
+    application
+    A vector is an ordered n-tuple of values representing an element of an n-dimensional vector space. The "values" are all from the same ring, typically real or complex. Where orientation is important, such as for pre or post multiplication by a matrix a vector is treated as a column vector and its transpose is treated a row vector. See CRC Standard Mathematical Tables and Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996, [2.4]
 
     
-      vector is the container element for a vector. The child elements form
-      the components of the vector.
-
       For purposes of interaction with matrices and matrix multiplication, vectors are
       regarded as equivalent to a matrix consisting of a single column, and the transpose
       of a vector behaves the same as a matrix consisting of a single row. Note that
       vectors may be rendered either as a single column or row.
-
-      In general a vector can be constructed by providing a function and a
-      1-dimensional domain of application.  The entries of the vector correspond to the
-      values obtained by evaluating the function at the points of the domain.  The
-      qualifications defined by a domainofapplication element can also be
-      abbreviated in several ways including a condition placed on a bound
-      variable and an expression involving that variable.
 
       The vector element constructs vectors from an n-dimensional
       vector space so that its n child elements typically represent real or
       complex valued scalars as in the three-element vector
 
 
-  
+          
+            
+              
+                
+                x
+                y
+              
+              3
+              7
+            
+          
+        
+      
 
-  xy
-  3
-  7
-
-
-A vector can also be constructed by evaluating a function over a specific domain
+      A vector can also be constructed by evaluating a function over a specific domain
        of application, each evaluation corresponding to an entry in the vector.  In its
        most general form a domain is explicitly specified by a
        domainofapplication element and a function. Optionally the
@@ -119,124 +98,193 @@ A vector can also be constructed by evaluating a function over a specific domain
        algebraic expression expressed in terms of it.  Qualifications defined by a
        domainofapplication element can be abbreviated in several ways as
        described in .
-	
+    
 
    
-	  vector=column_vector
-        
-        
-          matrix * vector = vector
-        
-        
-          matrix * column_vector = column_ vector
-        
-        
-          row_vector*matrix  = row_vector
-        
-        
-          transpose(vector) = row_vector
-        
-        
-          transpose(column_vector) = row_vector
-        
-        
-          transpose(row_vector) = column_vector
-        
-        
-          distributive over scalars
-        
-        
-          associativity.
-        
-        
-          Matrix * column vector
-	
-        
-          row vector * Matrix
-        
-	  123x
-	
-
-        
-	  
-	    123x
-	  
-	
-        
-	  i
-	  1
-	  10
-	  xi
-	
       
-	
-
-
-
-An example of vector using n arguments. 
-The specific vector constructed in this example is transpose of [3,6,9].
-
-  
+        vector=column_vector
+      
+        
+        
+          
+        matrix * vector = vector
+      
+        
+        
+          
+        matrix * column_vector = column_ vector
+      
+        
+        
+          
+        row_vector*matrix  = row_vector
+      
+        
+        
+          
+        transpose(vector) = row_vector
+      
+        
+        
+          
+        transpose(column_vector) = row_vector
+      
+        
+        
+          
+        transpose(row_vector) = column_vector
+      
+        
+        
+          
+        distributive over scalars
+      
+        
+        
+          
+        associativity.
+      
+        
+        
+          
+        Matrix * column vector
+      
     
-     3 
-     6 
-     9 
+        
+          
+        row vector * Matrix
+      
+    
+        
+      
+        
+          1
+          2
+          3
+          x
+        
+      
+    
+
+        
+      
+        
+          1
+          2
+          3
+          x
+        
+      
+    
+        
+      
+        
+          
+            i
+          
+          
+            1
+          
+          
+            10
+          
+          
+            
+            x
+            i
+          
+        
+      
+    
+
+
+    
+An example of vector using n arguments. 
+The specific vector constructed in this example is the transpose of [3,6,9].
+
+        
+          
+           3 
+           6 
+           9 
+        
+      
+    
   
-
-
-
-
-
-
-matrixcolumn
   
     matrixcolumn
-  
-application
- 
-This symbol is an n-ary constructor used to represent columns of
-matrices. Its arguments should be members of a ring.
+    
+      matrixcolumn
+    
+    application
+    This symbol is an n-ary constructor used to represent columns of matrices. Its arguments should be members of a ring.
 
-
+    
 Representation of a column of a matrix of length two containing the integers
 [1,0]
 
-  
+        
+          
+           1 
+           0 
+        
+      
     
-     1 
-     0 
   
-
-
-
-
-
-matrix
   
     matrix
-  
-application
+    
+      matrix
+      
+        Note that the behavior of the matrix and matrixrow elements is
+    substantially different from the mtable and mtr presentation
+    elements.
+      
+    
+    application
+    This is the constructor for a matrix. It takes an arbitrary number matrix rows as arguments. It is used to represent matrices. See CRC Standard Mathematical Tables and Formulae, editor: Dan Zwillinger, CRC Press Inc., 1996, [2.5.1].
 
-This symbol is an n-ary matrix constructor which requires matrixcolumn's
-as arguments. It is used to represent matrices.
+    
+      The matrix element is used to represent mathematical matrices. It has zero
+    or more child elements, all of which are matrixrow elements. These in turn
+    expect zero or more child elements that evaluate to algebraic expressions or
+    numbers. These sub-elements are often real numbers, or symbols as in
 
 
+          
+            
+               
+                1 
+                2 
+              
+               
+                3 
+                4 
+              
+            
+          
+        
+
+    The matrixrow elements must always be contained inside of a matrix, and all
+    rows in a given matrix must have the same number of elements.
+    
+
+    
 Representation of a 2x2 identity matrix
 
-  
-    
-    
+        
+          
+          
+            
+             1 
+             0 
+          
+          
+            
+             0 
+             1 
+          
+        
       
-       1 
-       0 
-    
-    
-      
-       0 
-       1 
     
   
-
-
-
-

@@ -8,10 +8,7 @@
 
 namespace m  ="http://www.w3.org/1998/Math/MathML"
 
-
-
-
-     This document is distributed in the hope that it will be useful, 
+       This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -41,326 +38,345 @@ namespace m  ="http://www.w3.org/1998/Math/MathML"
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 
+  fns1
+  http://www.openmath.org/cd
+  http://www.openmath.org/cd/fns1.ocd
+  2006-03-30
+  2008-09-26
+  3
+  0
+  draft
+  
+    This CD provides a set of functions concerning functions themselves. Functions can be
+    constructed from expressions via a lambda expression. Also there are basic function
+    functions like compose, etc.
+  
 
-fns1
-http://www.openmath.org/cd
-http://www.openmath.org/cd/fns1.ocd 
-2006-03-30
-2004-03-30
-3
-0
-official
-
-
-    This CD is intended to be `compatible' with the corresponding
-    elements in Content MathML.
-
-    In this CD we give a set of functions concerning functions
-    themselves. Functions can be constructed from expressions via a
-    lambda expression. Also there are basic function functions like
-    compose, etc.
-
-
-
-  domain
-  Domain
   
     domain
-  
-  application
-   
-    This symbol denotes the domain of a given function, which is the set of values it is
-    defined over.
-  
+    Domain
+    
+      domain
+    
+    application
+    This is the domain of a function. It is a unary operation.
 
-  
-    The domain element denotes the domain of a given function, which is the set of
+    
+      The domain element denotes the domain of a given function, which is the set of
     values over which it is defined.
     
-  
-  
-    The domain element denotes the domain of a given function, which is the
+    
+    
+      The domain element denotes the domain of a given function, which is the
     set of values over which it is defined.  
-  
-
-  
-    If f is a function from the reals to the rationals, then:
-
-
-  
-  
-    f
-  
-  
-
-
-
-
-
-
-x is in the domain of f if and only if 
-there exists a y in the range of f and f(x) = y
-
-
-
-
-  
     
+
     
       
+        If f is a function from the reals to the rationals, then:
       
       
-        
-	
-      
-    
-    
-      
-      
-        
-      
-      
-        
         
           
-	  
-	  
+          
             
-	    
-	  
+            f
+          
+          
         
-	
-	  
-	  
-	    
-	    
-	  
-	  
-	
+      
+    
+
+    
+      
+	x is in the domain of f if and only if 
+	there exists a y in the range of f and f(x) = y
+      
+
+      
+        
+          
+            
+            
+              
+              
+              
+                
+                 
+              
+            
+            
+              
+              
+                
+              
+              
+                
+                
+                  
+                   
+                   
+                    
+                     
+                   
+                
+                 
+                   
+                   
+                     
+                     
+                   
+                   
+                 
+              
+            
+          
+        
+      
+    
+
+  
+  
+    range
+    
+      codomain
+    
+    application
+    This is the codomain, or range, of a function. It is a unary function.
+  
+    
+      This symbol denotes the range of a function, that is a set that the function will
+    map to. The single argument should be the function whos range is being queried. It
+    should be noted that this is not necessarily equal to the image, it is merely required
+    to contain the image.
+    
+
+    
+      
+        
+          
+          
+            
+            f
+          
+          
+        
+      
+    
+
+    
+      the range of f is a subset of the image of f
+
+      
+        
+          
+            
+            
+              
+              
+            
+            
+              
+              
+            
+          
+        
       
     
   
-
-
-
-
-
-
-range
-  
-    codomain
-  
-application
-
-This symbol denotes the range of a function, that is a set that the
-function will map to. The single argument should be the function whos
-range is being queried. It should be noted that this is not necessarily
-equal to the image, it is merely required to contain the image.
-
-
-
-
-the range of f is a subset of the image of f
-
-
-
-
-  
-    
-    
-      
-      
-    
-    
-      
-      
-    
-  
-
-
-
-
-
-
-image
-Image
   
     image
-  
-application
- 
-This symbol denotes the image of a given function, which is the set of
-values the domain of the given function maps to.
+    Image
+    
+      image
+    
+    application
+    This is the image of a function. It is a unary operator.
+    
+      The image element denotes the image of a given function, which is the set
+  of values taken by the function. Every point in the image is generated by the function
+  applied to some point of the domain.
+    
 
+    
+      
+        ForAll( x, x in image(f), ThereExists(y,f(y)=x) )
+      
+    
 
-
-          The image element denotes the image of a given function, which is the set of
-          values taken by the function. Every point in the image is generated by the
-          function applied to some point of the domain.
+    
+      
+        The real sin function is a function from the reals to the reals, 
+    taking values between -1 and 1.
+      
+      
         
-	
-	  The image element denotes the image of a given function, which is
-	  the set of values taken by the function. Every point in the image is generated
-	  by the function applied to some point of the domain.
-	
+           
+           
+             
+             
+           
+           
+            -1
+            1
+          
+        
+      
+    
+  
 
+    
+       x in the domain of f implies f(x) is in the image f 
 
+      
         
           
-            ForAll( x, x in image(f), ThereExists(y,f(y)=x) )
-	  
-	
-
+            
+            
+              
+              
+              
+                 
+                 
+              
+            
+            
+              
+              
+                
+                 
+              
+              
+                
+                 
+              
+            
+          
         
-	  
-	    The real sin function is a function from the reals to the reals, 
-	    taking values between -1 and 1.
-	  
-	  
+      
+    
+
+
+  
+  
+    identity
+    Identity function
+    
+      ident
+    
+    application
+    This is the identity function on a set.
+
+    
+      This CD makes no assumption about the function space in which the identity function
+    resides. That is, proper interpretation of the domain (and hence codomain) of the
+    identity function depends on the context in which it is used.
+    
+
+    
+       for all x | identity(x)=x 
+
+      
+        
+          
+            
+            
+              
+            
+            
+              
+              
+                
+                
+              
+              
+            
+          
+        
+      
+    
+
+    
+      
+        
+          
+          
+            
+	    f
 	    
 	      
-	      
-		
-		
-	      
-	      -11
-	
-
-
-
- x in the domain of f implies f(x) is in the image f 
-
-
-
-  
-    
-    
-      
-      
-      
-	
-	
-      
-    
-    
-      
-      
-        
-	
-      
-      
-        
-	
-      
-    
-  
-
-
-
-
-
-
-  identity
-  Identity function
-  
-    ident
-  
-  application
-   
-    The identity function, it takes one argument and returns the same value.
-  
-
-
- for all x | identity(x)=x 
-
-
-
-  
-    
-    
-      
-    
-    
-      
-      
-        
+	      f
+	    
+          
+          
         
       
-      
     
   
-
-
-
-
-
-  left_inverse
-  application
-   
-    This symbol is used to describe the left inverse of its argument (a function). This
-    inverse may only be partially defined because the function may not have been
-    surjective. If the function is not surjective the left inverse function is ill-defined
-    without further stipulations. No other assumptions are made on the semantics of this
-    left inverse.
   
+    left_inverse
+    application
+    This symbol is used to describe the left inverse of its argument (a function). This inverse may only be partially defined because the function may not have been surjective. If the function is not surjective the left inverse function is ill-defined without further stipulations. No other assumptions are made on the semantics of this left inverse.
 
+    
+      Should be omitted from MathML spec but mentioned in the Pragmatic
+  description of 'inverse'.
+    
 
-
-  right_inverse
-  application
-   
-    This symbol is used to describe the right inverse of its argument (a function). This
-    inverse may only be partially defined because the function may not have been
-    surjective. If the function is not surjective the right inverse function is
-    ill-defined without further stipulations. No other assumptions are made on the
-    semantics of this right inverse.
   
+  
+    right_inverse
+    application
+    This symbol is used to describe the right inverse of its argument (a function). This inverse may only be partially defined because the function may not have been surjective. If the function is not surjective the right inverse function is ill-defined without further stipulations. No other assumptions are made on the semantics of this right inverse.
 
+    
+      Should be omitted from MathML spec but mentioned in the Pragmatic
+  description of 'inverse'.
+    
 
-
-  inverse
-  Inverse Function
+  
   
     inverse
-  
-  application
-   
-    This symbol is used to describe the inverse of its argument (a function). This inverse
-    may only be partially defined because the function may not have been surjective. If
-    the function is not surjective the inverse function is ill-defined without further
-    stipulations. No assumptions are made on the semantics of this inverse.
-  
+    Inverse Function
+    
+      inverse
+    
+    application
+    This is compositional inversion. It is a unary operator on functions.
 
-  
-    This MathML element is applied to a function in order to construct a new function
+    
+      This MathML element is applied to a function in order to construct a new function
     that is to be interpreted as the inverse function of the original function.  For a
     particular function F, inverse(F) composed with F behaves like the identity map on the
     domain of F and F composed with inverse(F) should be an identity function on a
     suitably restricted subset of the Range of F.  The MathML definitionURL attribute
     should be used to resolve notational ambiguities, or to restrict the inverse to a
     particular domain or to make it one-sided. 
-  
-  
-    The inverse element is applied to a function in order to construct a
+    
+
+    
+      The inverse element is applied to a function in order to construct a
     generic expression nfor the functional inverse of that function. As with other MathML
     functions, inverse may either be applied to arguments, or it may appear
     alone, in which case it represents an abstract inversion operator acting on other
     functions.
-    A typical use of the inverse element is in an HTML document discussing a
+      A typical use of the inverse element is in an HTML document discussing a
     number of alternative definitions for a particular function so that there is a need to
-    write and define f(-1)(x). To associate a particular definition
-    with f(-1), use the definitionURL and
+    write and define f
+        (-1)(x). To associate a particular definition
+    with f
+        (-1), use the definitionURL and
     encoding attributes.
     
-    Given functions, it is natural to have functional inverses. This is handled by the
+      Given functions, it is natural to have functional inverses. This is handled by the
     inverse element.
-    Functional inverses can be problematic from a mathematical point of view in that
+      Functional inverses can be problematic from a mathematical point of view in that
     they implicitly involve the definition of an inverse for an arbitrary function
     F. Even at the K-through-12 level the concept of an inverse F
-    -1 of many common functions F is not used in a uniform way. For
+        -1 of many common functions F is not used in a uniform way. For
     example, the definitions used for the inverse trigonometric functions may differ
     slightly depending on the choice of domain and/or branch cuts.
-    MathML adopts the view: if F is a function from a domain D to
+      MathML adopts the view: if F is a function from a domain D to
     D', then the inverse G of F is a function over
     D' such that G(F(x)) = x
     for x in D. This definition does not assert that such an inverse
@@ -369,383 +385,484 @@ values the domain of the given function maps to.
     F(G(y)) = y for y in
     D' may hold.
     
-    The inverse element is applied to a function whenever an inverse is
+      The inverse element is applied to a function whenever an inverse is
     required. For example, application of the inverse sine function to x,
     i.e. sin-1 (x), is encoded as: 
     <apply> <apply> <inverse/> <sin/> </apply> <ci>x</ci> </apply> While
     arcsin is one of the predefined MathML functions, an explicit reference to
     sin-1(x) might occur in a document discussing possible
     definitions of arcsin.
-	
+     
 
         
           
             ForAll( y, such y in domain( f^(-1) ), f( f^(-1)(y) ) = y 
-           
-
-  y
-  f
-  
-    
-      y
-      Domain
-        f
+          
+       
+        
+          
+          
+            y
+          
+          
+            f
+          
+          
+            
+              
+              y
+              
+                
+                  Domain
+                
+                
+                  
+                  f
+                
+              
+            
+          
+          
+            
+            
+              f
+              
+                
+                  
+                  f
+                
+                y
+              
+            
+            y
+          
+        
       
     
-  
-  
-    f
-      f
-        y
+
+    
+       
+        
+          
+          
+        
       
     
-    y
-  
 
-
-
-
-
-   
     
-  
-
-
-
-  
+      
+        
+          
+          
+        
+      
     
-  
 
+    
+      
+        
+          
+            
+            a
+          
+          A
+        
+      
+    
 
-
-
- 
-   a
-   A
- 
-
-
-
-
- 
+    
+       
 (inverse(f))(f(x)) = x if f is injective,
 that is
 (for all x,y | f(x) = f(y) implies x=y) implies (inverse(f))(f(z)) = z
 
 
-
-
-
-  
-  
-    
-    
       
-      
-    
-    
-      
-      
-        
         
           
-	  
-        
-        
+            
+            
+              
+              
+                
+                
+              
+              
+                
+                
+                  
+                  
+                    
+                     
+                  
+                  
+                    
+                    
+                  
+                
+                
+                  
+                  
+                  
+                
+              
+            
+            
+              
+              
+                
+                  
+                  
+                
+                
+                  
+                  
+                
+              
+              
+            
           
-          
-        
-      
-      
-        
-        
         
       
     
-  
-  
-    
+
     
       
-        
-        
-      
-      
-        
-        
-      
-    
-    
-  
-
-
-
-
-
-
 f(inverse(f(y))=y if f is defined at inverse(f)(y)
 that is, 
 if there exists an x s.t. inverse(f)(y) = x then this implies
 f(inverse(f)(y)) = y
 
 
-
-
-  
-    
-       
-        
-	
-	  
-	
-	
-	  
-	  
-	    
-	      
-	      
-	    
-	    
-	  
-	  
-	
-      
-    
-      
       
         
-	
-	  
-	    
-	    
-	  
-	  
-	
-      
+          
+            
+            
+              
+               
+                 
+               
+               
+                 
+                 
+                   
+                     
+                     
+                   
+                   
+                 
+                 
+               
+            
+            
+              
+              
+                
+                 
+                   
+                     
+                     
+                   
+                   
+                 
+              
+              
+            
+          
+        
       
     
   
 
+  
+    left_compose
+    
+      compose
+    
+    application
+    This symbol represents the function which forms the left-composition of its two (function) arguments.
 
+    
+       for all f,g,x | left_compose(f,g)(x) = f(g(x)) 
+      
+        
+          
+            
+            
+              
+              
+              
+            
+            
+              
+              
+                
+                  
+                  
+                  
+                
+                
+              
+              
+                
+                
+                  
+                  
+                
+              
+            
+          
+        
+      
+    
+  
 
-
-
-  left_compose
   
     compose
-  
-  application
-   
-    This symbol represents the function which forms the left-composition of its two
-    (function) arguments.
-  
-
-
- for all f,g,x | left_compose(f,g)(x) = f(g(x)) 
-
-
-
-  
-  
     
+      compose
     
+    application
+    This is composition of functions. It is a binary operation.
+
     
-  
-  
-    
-    
+       for all f,g,x | compose(f,g)(x) = f(g(x)) 
       
         
-        
-        
-      
-      
-    
-    
-      
-      
-        
+          
+            
+            
+              
+              
+              
+            
+            
+              
+              
+                
+                  
+                  
+                  
+                
+                
+              
+              
+                
+                
+                  
+                  
+                
+              
+            
+          
         
       
     
   
 
-
-
-
-
-
-  lambda
-  Lambda
   
     lambda
+    Lambda
     
-      In pragmatic Content MathML, the condition and
+      lambda
+      
+        In pragmatic Content MathML, the condition and
       domainofapplication elements can be used to restrict the defined function
       to a specific domain.
+      
     
-  
-  binder
-  
-    This symbol is used to represent anonymous functions as lambda expansions.  It is used
-    in a binder that takes two further arguments, the first of which is a list of
-    variables, and the second of which is an expression, and it forms the function which
-    is the lambda extraction of the expression.
-  
+    binder
+    This is the function creator lambda used in lambda expansions. It is a binary operator.
 
-  
-    For example, Lambda( x, F ) is written as \lambda x [F] in the lambda calculus
+    
+      For example, Lambda( x, F ) is written as \lambda x [F] in the lambda calculus
     literature.  The expression F may contain x but the full lambda expression is regarded
     to be free of x.  A computational application receiving a MathML lambda expression
     should not evaluate x or test for x.  Such an application may apply the lambda
     expression as a function to arguments in which case any result that is computed is
     computed through parameter substitutions into F.
 
-     Note that a lambda expression on an arbitrary function applied to a the bound
+       Note that a lambda expression on an arbitrary function applied to a the bound
     variable is equivalent to that arbitrary function (ή-equality). 
-  
-  
-    The lambda calculus allows a user to construct a function from a variable and an
+    
+    
+      Old Description:
+    This symbol is used to represent anonymous functions as
+    lambda expansions.  It is used in a binder that takes two further
+    arguments, the first of which is a list of variables, and the
+    second of which is an expression, and it forms the function which
+    is the lambda extraction of the expression.
+    
+      The lambda calculus allows a user to construct a function from a variable and an
     expression. For example, the lambda construct underlies the common mathematical idiom
     illustrated here: Let f be the function taking x to
-    x2 + 2
+    x
+        2 + 2
 
-    There are various notations for this concept in mathematical literature, such as
-    (x,
-    F(x)) = F or (x, [F]) =F,
-    where x is a free variable in F.
+      There are various notations for this concept in mathematical literature, such as
+      (x,
+      F(x)) = F or (x, [F]) =F, where
+      x is a free variable in F.
 
-    This concept is implemented in MathML with the lambda element. A lambda
-    construct with n (possibly 0) internal variables is encoded by a
-    lambda element, where the first n children are bvar
-    elements containing the identifiers of the internal variables. This is followed by an
-    optional domainofapplication qualifier (see ) and an expression defining the function. The defining
-    expression is typically an apply, but can also be any expression.
+      This concept is implemented in MathML with the lambda element. A lambda
+      construct with n (possibly 0) internal variables is encoded by a
+      lambda element, where the first n children are bvar
+      elements containing the identifiers of the internal variables. This is followed by
+      an optional domainofapplication qualifier (see ) and an expression defining the function. The defining
+      expression is typically an apply, but can also be any expression.
 
-    The lambda element is used to construct a user-defined function from an
+      The lambda element is used to construct a user-defined function from an
     expression, bound variables, and qualifiers. In a lambda construct with n
     bound variables, the first n children are bvar elements that
     identify the variables that are used as placeholders in the last child for actual
     parameter values. The meaning of the lambda construct is an n-ary
     function that returns the expression in the last child where the bound variables are
     replaced with the respective arguments.
-  
     
-  
-    
-      The d following constructs the identity function
-    
-      
-	
-	  x
-	  x
-	
-      
-  
-
-  
-    
-      The d following constructs the constant function
-    
-    
-      x3
-    
-  
-
-  
-    
-      The following constructs λx, sin(x+1)):
-    
-    
-
-  x
-  
     
     
       
-      x
-      1
-    
-  
-
-
-  
-
-  
-    
-      ForAll( F, lambda(x,F(x)) = F )
+        The d following constructs the identity function
       
-
-
-  F
-  
-    
       
-      x
-      Fx
+         
+           
+            x
+          
+           
+            
+            x
+          
+         
+      
     
-    F
-  
 
-
-
-
-
-a simple lambda construct.
-
-
-  x
-  
     
       
-      x
-      1
+        The d following constructs the constant function
+      
+      
+        
+          
+          
+            x
+          
+          3
+        
+      
     
-  
 
+    
+      
+        The following constructs λx, sin(x+1)):
+      
+      
+        
+          
+          
+            x
+          
+          
+            
+            
+              
+              x
+              1
+            
+          
+        
+      
+    
 
+    
+      
+        ForAll( F, lambda(x,F(x)) = F )
+      
+      
+        
+          
+          
+            F
+          
+          
+            
+            
+              
+              
+                x
+              
+              
+                F
+                x
+              
+            
+            F
+          
+        
+      
+    
 
+    
+      
+        a simple lambda construct.
+      
+      
+        
+          
+          
+            x
+          
+          
+            
+            x1
+          
+        
+      
+    
 
-
-  The next example constructs a one-argument function in which the argument 
+    
+      
+        The next example constructs a one-argument function in which the argument 
   b specifies the upper bound of a specific definite integral.
-  
-
-
-  
-  b
-  
+      
+      
+        
+          
+          b
+          
+            
+            
+              
+              x
+              a
+              b
+              fx
+            
+          
+        
+      
     
+
     
       
-      x
-      a
-      b
-      fx
-    
-  
-
-
-
-
-
-  
-    The domainofapplication child restricts the possible values of the
+        The domainofapplication child restricts the possible values of the
     arguments of the constructed function. For instance, the following two lambda
     constructs are representations of a function on the integers.  
-  
+      
+      
+        
+          
+          x
+          
+          x
+        
+      
+    
 
-
-  x
-  
-  x
-
-
-
-
-
-  
-    If a lambda construct does not contain bound variables, then the arity of
+    
+      
+        If a lambda construct does not contain bound variables, then the arity of
     the constructed function is unchanged, and the lambda construct is redundant,
     unless it also contains a domainofapplication construct that restricts
     existing functional arguments, as in this example, which is a variant representation
@@ -753,61 +870,108 @@ a simple lambda construct.
     construct is not a function, say a number, then the lambda construct will not
     be a function, but the same number. Of course, in this case a
     domainofapplication does not make sense
-
-
-
-  
-  
-
-
-
-
-An example to show the connection between curried and uncurried
-applications of a binary function f 
-(lambda(x,y).(f))(a,b)= (lambda(x).((lambda(y).(f))(b)))(a)
-
-
-  
-  
-    
-    
-  
-  
-    
-    
       
-        
+      
         
           
           
-        
-        
-      
-      
-      
-    
-    
-      
-        
-        
+            
+          
           
         
+      
+    
+
+    
+      An example to show the connection between curried and uncurried applications of a
+      binary function f (lambda(x,y).(f))(a,b)= (lambda(x).((lambda(y).(f))(b)))(a)
+
         
+          
+          
+            
+            
+          
           
             
             
               
+                
+                
+                  
+                  
+                
+                
+              
+              
+              
             
             
-          
+              
+                
+                
+                  
+                
+                
+                  
+                    
+                    
+                      
+                    
+                    
+                  
+                  
+                
+              
+              
+            
           
         
-      
       
     
   
 
+  
+    condition
+    Condition
+    
+      lambda
+      
+        In pragmatic Content MathML, the condition can be used to restrict the
+        range of a bound variable to to a specific domain.
+      
+    
+    application
+    This is the general operator for restricting the domain of a bound
+    variable in a binding object. It is a binary operator.
 
-
-
-
+    
+      If a used with a lambda binder, the condition element can be used to
+      construct partial functions e.g. 1/x-y that is defined off the diagnoal.
+      
+	
+	  
+	  
+	    
+	    
+	  
+	  
+	    
+	    
+	      
+	      
+	      
+	    
+	    
+	      
+	      
+		
+		
+		
+	      
+	    
+	  
+	
+      
+    
+  

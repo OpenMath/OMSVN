@@ -8,10 +8,7 @@
 
 namespace m  ="http://www.w3.org/1998/Math/MathML"
 
-
-
-
-     This document is distributed in the hope that it will be useful, 
+       This document is distributed in the hope that it will be useful, 
      but WITHOUT ANY WARRANTY; without even the implied warranty of 
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -41,249 +38,272 @@ namespace m  ="http://www.w3.org/1998/Math/MathML"
      If you have questions about this license please contact the OpenMath
      society at http://www.openmath.org.
 
-
-piece1
-http://www.openmath.org/cd
-http://www.openmath.org/cd/piece1.ocd 
-2006-03-30
-2004-03-30
-2
-0
-official
-
-
-    This CD is intended to be compatible with the corresponding
-    elements in Content MathML 2.
-
-    In this CD we give a set of operators for piece-wise defined expressions.
-
-
-
-piecewise
-Piecewise declaration
+  piece1
+  http://www.openmath.org/cd
+  http://www.openmath.org/cd/piece1.ocd
+  2006-03-30
+  2008-10-22
+  2
+  0
+  draft
+  This content dictionary provides set of operators for piece-wise defined expressions.
   
     piecewise
-  
-application
- 
-This operator heads an expression that is being defined piecewise. Its 
-arguments are n objects built with the piece constructor, optionally
-followed by one built with otherwise constructor.
-
-
-
-          The piecewise, piece, and otherwise elements are used to support 'piecewise'
-          declarations of the form H(x) = 0 if x less than 0, H(x) = 1 otherwise.  The
-          piece and otherwise elements describe evaluation rules.  If no rule applies or
-          if more than one rule applies but they give different answers then the
-          expression is undefined.
-        
-	
-	  The piecewise, piece, and otherwise elements are
-	  used to support piecewise declarations of the form 
-	  H(x) = 0 if x less than 0,
-	  H(x) = 1 otherwise.
-
-	   The declaration is constructed using the piecewise element.  This
-	  contains zero or more piece elements, and optionally one
-	  otherwise element. Each piece element contains exactly two
-	  children. The first child defines the value taken by the piecewise
-	  expression when the condition specified in the associated second child of the
-	  piece is true.  The degenerate case of no piece elements and
-	  no otherwise element is treated as undefined for all values of the
-	  domain.
-
-	   otherwise allows the specification of a value to be taken by the
-	  piecewise function when none of the conditions (second child elements
-	  of the piece elements) is true, i.e. a default value.
-
-	  It should be noted that no order of execution is implied by
-	  the ordering of the piece child elements within piecewise. It
-	  is the responsibility of the author to ensure that the subsets of the function
-	  domain defined by the second children of the piece elements are
-	  disjoint, or that, where they overlap, the values of the corresponding first
-	  children of the piece elements coincide. If this is not the case, the
-	  meaning of the expression is undefined.
-
-	  The piecewise elements are constructors.
-
-	The piecewise, piece, otherwise elements are used to
-	support piecewise declarations of the form 
-	H(x) = 0 if x less than 0,
-	H(x) = x otherwise.
-
-
-  
+    Piecewise declaration
     
-      
-	0
-	x0
-      
-      x
+      piecewise
     
-  
-	
-	
-	
+    application
+    This operator heads an expression that is being defined piecewise. Its arguments are n objects built with the piece constructor, optionally followed by one built with otherwise constructor.
 
-	
-	  
-	    ForAll( x, x in domain(f), the evaluation rules collectively produce at most one 
-	    value in codomain(f) )
-	  
-	
-	
-	  
-	    
-	      0x 0
-	      x
-	    
-	  
-	
-
-	
+    
+      The piecewise, piece, and otherwise elements are used to
+    support piecewise declarations of the form
+    
           
-	    The value of the abs function evaluated at x can be written as:
-	  
+            H
+            
+              x
+            
+          
+          =
+          0
+         if 
+    
+          x
+          <
+          0
+         
+    and 
+    
+          
+            H
+            
+              x
+            
+          
+          =
+          1
+        
+    otherwise.
+       The piece and otherwise elements describe evaluation rules.  If no rule applies or
+    if more than one rule applies but they give different answers then the expression is
+    undefined.
 
-  
-    x
-    x0
-  
-  
-    0
-    x0
-  
-  
-    x
-    x0
-  
+       The declaration is constructed using the piecewise element.  This
+    contains zero or more piece elements, and optionally one otherwise
+    element. Each piece element contains exactly two children. The first child
+    defines the value taken by the piecewise expression when the condition
+    specified in the associated second child of the piece is true.  The
+    degenerate case of no piece elements and no otherwise element is
+    treated as undefined for all values of the domain.
 
+      It should be noted that no order of execution is implied by the
+    ordering of the piece child elements within piecewise. It is the
+    responsibility of the author to ensure that the subsets of the function domain defined
+    by the second children of the piece elements are disjoint, or that, where
+    they overlap, the values of the corresponding first children of the piece
+    elements coincide. If this is not the case, the meaning of the expression is
+    undefined.
+    
 
-
-
-
-
-
-
-
-  
-  
-
-
-  
+    
       
-        0 
-  
-  
-       0 
-        0 
-  
-  
+        ForAll( x, x in domain(f), the evaluation rules collectively produce at most one 
+      value in codomain(f) )
       
+    
   
+    
+      
+        
+          
+            0
+            
+              
+              x 
+              0
+            
+          
+          
+            x
+          
+        
+      
+    
 
+    
+      
+        The value of the abs function evaluated at x can be written as:
+      
+      
+        
+          
+            
+              
+              x
+            
+            
+              
+              x
+              0
+            
+          
+          
+            0
+            
+              
+              x
+              0
+            
+          
+          
+            x
+            
+              
+              x
+              0
+            
+          
+        
+      
+    
 
-
-
-
-
-
-piece
-Pieces
+    
+      
+        
+          
+          
+            
+            
+          
+          
+            
+            
+              
+              
+                
+                
+              
+              
+                
+                 
+                 0 
+              
+            
+            
+              
+               0 
+              
+                
+                 
+                 0 
+              
+            
+            
+              
+              
+            
+          
+        
+      
+    
+  
   
     piece
-  
-application
- 
-This introduces an individual component of a piecewise definition. It has
-precisely two arguments: the first is the value, and the second is a Boolean
-(meant to be a predicate) which is true if and only if this piece is to
-provide the value of the piecewise construct.
+    Pieces
+    
+      piece
+    
+    application
+    This introduces an individual component of a piecewise definition. It has precisely two arguments: the first is the value, and the second is a Boolean (meant to be a predicate) which is true if and only if this piece is to provide the value of the piecewise construct.
 
-
-
-          The piece element is used to construct the conditionally defined values as
-          part of a piecewise object.
-        
-
-        
-  0x 0
-  x
-
-
-
-
-
-
-
-
-  
-  
-
-
-  
+    
       
-        0 
-  
-  
-       0 
-        0 
-  
-  
+        
+          
+          
+            
+            
+          
+          
+            
+            
+              
+              
+                
+                
+              
+              
+                
+                 
+                 0 
+              
+            
+            
+              
+               0 
+              
+                
+                 
+                 0 
+              
+            
+            
+              
+              
+            
+          
+        
       
+    
   
-
-
-
-
-
-
-
-otherwise
-Leftover Pieces
   
     otherwise
-  
-application
+    Leftover Pieces
+    
+      otherwise
+    
+    application
+    This symbol introduces the 'default' value of a piecewise construct. If none of the previous piece constructs can provide the value, this will. It has a single child, the value.
 
-This symbol introduces the 'default' value of a piecewise construct.
-If none of the previous piece constructs can provide the value, this will.
-It has a single child, the value.
-
-
-
-          The otherwise element is used to describe the value of a piecewise construct
-          when none of the conditions of the associated pieces are satisfied.
-        
-        
-  0x 0
-  x
-
-
-
-
-
-
-
-  
-  
-
-
-  
+    
       
-        0 
-  
-  
-       0 
-        0 
-  
-  
+        
+          
+          
+            
+            
+          
+          
+            
+            
+              
+              
+                
+                
+              
+              
+                
+                
+                0
+              
+            
+            
+              
+              0
+              
+                
+                
+                0
+              
+            
+            
+              
+              
+            
+          
+        
       
+    
   
-
-
-
-
-
-

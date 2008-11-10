@@ -18,134 +18,50 @@
       This file contains the grammar driver for MathML3
       It is provided "as is" without expressed or implied warranty.
   
-      Revision:   $Id: mathml3.rnc 708 2008-02-28 08:55:27Z kohlhase $
+      Revision:   $Id: mathml3.rnc 727 2008-03-27 13:00:05Z kohlhase $
       Author: Michael Kohlhase http://kwarc.info/kohlhase
 -->
-<grammar xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" ns="http://www.w3.org/1998/Math/MathML" xmlns="http://relaxng.org/ns/structure/1.0">
-  <start>
-    <ref name="math"/>
-  </start>
+<grammar xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns="http://relaxng.org/ns/structure/1.0">
   <include href="mathml3-common.rng"/>
-  <include href="mathml3-presentation.rng"/>
-  <include href="mathml3-strict.rng"/>
-  <!-- we inystantiate the strict content model by structure checking -->
-  <define name="apply-head">
-    <choice>
-      <ref name="apply"/>
-      <ref name="bind"/>
-      <ref name="ci"/>
-      <ref name="csymbol"/>
-      <ref name="semantics-apply"/>
-    </choice>
+  <define name="ContExp">
+    <a:documentation>Content Expressions now allow pMathML in ci and csymbol</a:documentation>
+    <grammar>
+      <include href="mathml3-pragmatic.rng">
+        <start>
+          <ref name="ContExp"/>
+        </start>
+        <define name="opel.content">
+          <choice>
+            <text/>
+            <parentRef name="PresExp"/>
+          </choice>
+        </define>
+      </include>
+    </grammar>
   </define>
-  <define name="apply.content" combine="choice">
-    <ref name="apply-head"/>
-    <zeroOrMore>
+  <define name="PresExp">
+    <a:documentation>Presentation Expressions allow Content Expressions mixed in everywhere</a:documentation>
+    <grammar>
+      <include href="mathml3-presentation.rng">
+        <start>
+          <ref name="PresExp"/>
+        </start>
+        <define name="ContInPres">
+          <choice>
+            <ref name="PresExp"/>
+            <parentRef name="ContExp"/>
+          </choice>
+        </define>
+      </include>
+    </grammar>
+  </define>
+  <define name="math.content" combine="choice">
+    <a:documentation>the math element can contain one content element or several presentation elements</a:documentation>
+    <choice>
       <ref name="ContExp"/>
-    </zeroOrMore>
-  </define>
-  <define name="semantics-apply">
-    <element name="semantics">
-      <ref name="semantics.attribs"/>
-      <ref name="apply-head"/>
-      <zeroOrMore>
-        <ref name="semantics-annotation"/>
-      </zeroOrMore>
-    </element>
-  </define>
-  <define name="bind-head">
-    <choice>
-      <ref name="apply"/>
-      <ref name="csymbol"/>
-      <ref name="semantics-bind"/>
-    </choice>
-  </define>
-  <define name="bind.content" combine="choice">
-    <ref name="bind-head"/>
-    <zeroOrMore>
-      <ref name="bvar"/>
-    </zeroOrMore>
-    <optional>
-      <ref name="qualifier"/>
-    </optional>
-    <ref name="ContExp"/>
-  </define>
-  <define name="semantics-bind">
-    <element name="semantics">
-      <ref name="semantics.attribs"/>
-      <ref name="bind-head"/>
-      <zeroOrMore>
-        <ref name="semantics-annotation"/>
-      </zeroOrMore>
-    </element>
-  </define>
-  <define name="bvar-head">
-    <choice>
-      <ref name="ci"/>
-      <ref name="semantics-bvar"/>
-    </choice>
-  </define>
-  <define name="semantics-bvar">
-    <element name="semantics">
-      <ref name="semantics.attribs"/>
-      <ref name="bvar-head"/>
-      <zeroOrMore>
-        <ref name="semantics-annotation"/>
-      </zeroOrMore>
-    </element>
-  </define>
-  <define name="cerror-head">
-    <choice>
-      <ref name="csymbol"/>
-      <ref name="apply"/>
-      <ref name="semantics-cerror"/>
-    </choice>
-  </define>
-  <define name="cerror.content" combine="choice">
-    <ref name="cerror-head"/>
-    <zeroOrMore>
-      <ref name="ContExp"/>
-    </zeroOrMore>
-  </define>
-  <define name="semantics-cerror">
-    <element name="semantics">
-      <ref name="semantics.attribs"/>
-      <ref name="cerror-head"/>
-      <zeroOrMore>
-        <ref name="semantics-annotation"/>
-      </zeroOrMore>
-    </element>
-  </define>
-  <include href="mathml3-roles.rng"/>
-  <include href="mathml3-pragmatic1.rng"/>
-  <define name="apply-head" combine="choice">
-    <ref name="token.application"/>
-  </define>
-  <define name="bind-head" combine="choice">
-    <ref name="token.binder"/>
-  </define>
-  <define name="cerror-head" combine="choice">
-    <ref name="token.error"/>
-  </define>
-  <define name="ContExp" combine="choice">
-    <a:documentation>allow all functions and constants to be OM objects on their own</a:documentation>
-    <choice>
-      <ref name="token.constant"/>
-      <ref name="token.application"/>
-    </choice>
-  </define>
-  <define name="MathMLType" combine="choice">
-    <a:documentation>the values of the MathML type attributes;  </a:documentation>
-    <choice>
-      <value>real</value>
-      <value>complex</value>
-      <value>function</value>
-      <value>algebraic</value>
-      <value>integer</value>
+      <oneOrMore>
+        <ref name="PresExp"/>
+      </oneOrMore>
     </choice>
   </define>
 </grammar>
-<!--
-  include "mathml3-arity.rnc"
-  include "mathml3-deprecated.rnc"
--->
