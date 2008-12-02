@@ -39,13 +39,13 @@
   <CDRevision>0</CDRevision>
   <CDStatus>draft</CDStatus>
   <Description>Definitions of the symbols used by the OpenMath Small Type System.</Description>
+
   <CDDefinition>
     <Name>type</Name>
     <Role>semantic-attribution</Role>
     <Description>A symbol to be used within an OpenMath attribute to specify the type of the object.</Description>
-
     <Example>
-The variable z is attributed with a type for complex numbers.
+      The variable z is attributed with a type for complex numbers.
 <OMOBJ xmlns="http://www.openmath.org/OpenMath"
              xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
              version="3.0"
@@ -60,6 +60,32 @@ The variable z is attributed with a type for complex numbers.
       </OMOBJ>
     </Example>
   </CDDefinition>
+
+  <CDDefinition>
+    <Name>oftype</Name>
+    <Role>application</Role>
+    <Description>A symbol to express that an object is of the type given in the second argument.</Description>
+    <Example>
+      The variable z is attributed with a type for complex numbers has that type.
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath"
+	     xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
+             version="3.0"
+	     cdbase="http://www.openmath.org/cd">
+	<OMA>
+	  <OMS cd="sts" name="oftype"/>
+	  <OMATTR>
+	    <OMATP>
+	      <OMS cd="sts" name="type"/>
+	      <OMS cd="setname1" name="C"/>
+	    </OMATP>
+	    <OMV name="z"/>
+	  </OMATTR>
+	  <OMS cd="setname1" name="C"/>
+	</OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+
   <CDDefinition>
     <Name>mapsto</Name>
     <Role>application</Role>
