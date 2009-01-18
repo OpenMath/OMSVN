@@ -313,6 +313,9 @@ q \stripPT\dimen0 \space 0 m \stripPT\dimen2 \space -2 \hwidth -2   2 0 c
 
 <xsl:template mode="pmml2tex" match="*">
 <xsl:message select="'tex: ',name()"/>
+<xsl:text>{{</xsl:text>
+<xsl:value-of select="name()"/>
+<xsl:text>}}</xsl:text>
 </xsl:template>
 
 
