@@ -218,7 +218,7 @@
 	 <xsl:apply-templates select="m:uplimit/*" mode="cmml2om"/>
        </OMA>
        <OMBIND>
-	 <OMS cd="funs1" name="lambda"/>
+	 <OMS cd="fns1" name="lambda"/>
 	 <OMBVAR>
 	   <xsl:apply-templates select="m:bvar/m:ci" mode="cmml2om"/>
 	 </OMBVAR>
@@ -243,7 +243,7 @@
      <OMA>
        <OMS cd="calculus1" name="diff"/>
      <OMBIND>
-       <OMS cd="funs1" name="lambda"/>
+       <OMS cd="fns1" name="lambda"/>
        <OMBVAR>
 	 <xsl:apply-templates select="m:bvar/m:ci" mode="cmml2om"/>
        </OMBVAR>
@@ -258,7 +258,7 @@
        <OMS cd="calculus1" name="nthdiff"/>
        <xsl:apply-templates select="m:degree/*" mode="cmml2om"/>
        <OMBIND>
-	 <OMS cd="funs1" name="lambda"/>
+	 <OMS cd="fns1" name="lambda"/>
 	 <OMBVAR>
 	   <xsl:apply-templates select="m:bvar/m:ci" mode="cmml2om"/>
 	 </OMBVAR>
@@ -273,7 +273,7 @@
        <OMS cd="calculus1" name="nthdiff"/>
        <xsl:apply-templates select="m:bvar/m:degree/*" mode="cmml2om"/>
        <OMBIND>
-	 <OMS cd="funs1" name="lambda"/>
+	 <OMS cd="fns1" name="lambda"/>
 	 <OMBVAR>
 	   <xsl:apply-templates select="m:bvar/m:ci" mode="cmml2om"/>
 	 </OMBVAR>
@@ -301,7 +301,7 @@
 -->
        </OMA>
        <OMBIND>
-	 <OMS cd="funs1" name="lambda"/>
+	 <OMS cd="fns1" name="lambda"/>
 	 <OMBVAR>
 	   <xsl:apply-templates select="m:bvar/m:ci" mode="cmml2om"/>
 	 </OMBVAR>
@@ -353,7 +353,7 @@
        <OMS cd="calculus1" name="defint"/>
        <xsl:apply-templates select="m:domainofapplication/*|m:interval" mode="cmml2om"/>
        <OMBIND>
-	 <OMS cd="funs1" name="lambda"/>
+	 <OMS cd="fns1" name="lambda"/>
 	 <OMBVAR>
 	   <xsl:apply-templates select="m:bvar/m:ci" mode="cmml2om"/>
 	 </OMBVAR>
@@ -368,7 +368,7 @@
        <OMS cd="calculus1" name="defint"/>
        <xsl:apply-templates select="m:condition/*" mode="cmml2om"/>
        <OMBIND>
-	 <OMS cd="funs1" name="lambda"/>
+	 <OMS cd="fns1" name="lambda"/>
 	 <OMBVAR>
 	   <xsl:apply-templates select="m:bvar/m:ci" mode="cmml2om"/>
 	 </OMBVAR>
@@ -387,7 +387,7 @@
 	 <xsl:apply-templates select="m:uplimit/*" mode="cmml2om"/>
        </OMA>
        <OMBIND>
-	 <OMS cd="funs1" name="lambda"/>
+	 <OMS cd="fns1" name="lambda"/>
 	 <OMBVAR>
 	   <xsl:apply-templates select="m:bvar/m:ci" mode="cmml2om"/>
 	 </OMBVAR>
@@ -510,7 +510,7 @@
        <xsl:apply-templates select="*[1]" mode="cmml2om"/>
        <xsl:apply-templates select="m:condition" mode="cmml2om"/>
               <OMBIND>
-	 <OMS cd="funs1" name="lambda"/>
+	 <OMS cd="fns1" name="lambda"/>
 	 <OMBVAR>
 	   <xsl:apply-templates select="m:condition/(m:apply|m:reln)/*[2]" mode="cmml2om"/>
 	 </OMBVAR>
@@ -530,7 +530,7 @@
        <xsl:apply-templates select="m:lowlimit/*" mode="cmml2om"/>
       <OMS cd="limit1" name="above"/>
               <OMBIND>
-	 <OMS cd="funs1" name="lambda"/>
+	 <OMS cd="fns1" name="lambda"/>
 	 <OMBVAR>
 	   <xsl:apply-templates select="m:bvar/*" mode="cmml2om"/>
 	 </OMBVAR>
