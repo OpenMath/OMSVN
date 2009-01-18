@@ -120,7 +120,7 @@
 <!-- end TODO remove -->
 
 <xsl:template match="cd:CDDefinition/cd:Name">
-  <h2><a name="{normalize-space(.)}">Symbol Definition: <xsl:apply-templates/></a></h2>
+  <h2><a name="{normalize-space(.)}" id="{normalize-space(.)}">Symbol Definition: <xsl:apply-templates/></a></h2>
 </xsl:template>
 
 
