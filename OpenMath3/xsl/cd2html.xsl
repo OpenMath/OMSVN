@@ -43,7 +43,7 @@
 
   </head>
   <body>
-  <a name="top"/>
+  <a name="top" id="top"/>
 <xsl:call-template name="wiki-link">
   <xsl:with-param name="title" select="$cd"/>
 </xsl:call-template>
