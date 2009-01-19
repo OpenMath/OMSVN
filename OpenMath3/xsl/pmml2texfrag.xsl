@@ -320,32 +320,31 @@ q \stripPT\dimen0 \space 0 m \stripPT\dimen2 \space -2 \hwidth -2   2 0 c
 
 
 <xsl:template mode="pmml2tex" match="m:msup">
-<xsl:text>{{</xsl:text>
+<xsl:text>\msup{</xsl:text>
 <xsl:apply-templates mode="pmml2tex" select="*[1]"/>
-<xsl:text>}\sp{</xsl:text>
+<xsl:text>}{</xsl:text>
 <xsl:apply-templates mode="pmml2tex" select="*[2]"/>
-<xsl:text>}}</xsl:text>
+<xsl:text>}</xsl:text>
 </xsl:template>
 
 <xsl:template mode="pmml2tex" match="m:msub">
-<xsl:text>{{</xsl:text>
+<xsl:text>\msub{</xsl:text>
 <xsl:apply-templates mode="pmml2tex" select="*[1]"/>
-<xsl:text>}\sb{</xsl:text>
+<xsl:text>}{</xsl:text>
 <xsl:apply-templates mode="pmml2tex" select="*[2]"/>
-<xsl:text>}}</xsl:text>
+<xsl:text>}</xsl:text>
 </xsl:template>
 
 <xsl:template mode="pmml2tex" match="m:msubsup">
-  <xsl:text>{</xsl:text>
+  <xsl:text>\msubsup</xsl:text>
   <xsl:text>{</xsl:text>
   <xsl:apply-templates mode="pmml2tex" select="*[1]"/>
   <xsl:text>}</xsl:text>
-  <xsl:text>\sb{</xsl:text>
+  <xsl:text>{</xsl:text>
   <xsl:apply-templates mode="pmml2tex" select="*[2]"/>
   <xsl:text>}</xsl:text>
-  <xsl:text>\sp{</xsl:text>
+  <xsl:text>{</xsl:text>
   <xsl:apply-templates mode="pmml2tex" select="*[3]"/>
-  <xsl:text>}</xsl:text>
   <xsl:text>}</xsl:text>
 </xsl:template>
 
