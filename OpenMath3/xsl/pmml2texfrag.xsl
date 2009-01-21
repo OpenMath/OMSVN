@@ -290,6 +290,16 @@ q \stripPT\dimen0 \space 0 m \stripPT\dimen2 \space -2 \hwidth -2   2 0 c
  return concat('\mo{',$n,'}')"/>
 -->
 
+
+<xsl:template  mode="pmml2tex" match="*[1][self::m:mi][following-sibling::*[1][self::m:mo='&#x2061;']]" priority="1000">
+<xsl:message select="'here'"/>
+  <xsl:text>\mathop{</xsl:text>
+  <xsl:next-match/>
+  <xsl:text>}</xsl:text>
+</xsl:template>
+
+<xsl:template  mode="pmml2tex" match="*[2][self::m:mo='&#x2061;'][preceding-sibling::*[1][self::m:mi]]" priority="1000"/>
+
 <xsl:template mode="pmml2tex" match="m:mi[not(@*) and string-length(normalize-space(.))=1]">
   <xsl:apply-templates mode="pmml2tex"/>
 </xsl:template>
@@ -309,6 +319,12 @@ q \stripPT\dimen0 \space 0 m \stripPT\dimen2 \space -2 \hwidth -2   2 0 c
   <xsl:apply-templates mode="pmml2tex" select="@*"/>
   <xsl:apply-templates mode="pmml2tex"/>
   <xsl:text>}}</xsl:text>
+</xsl:template>
+
+<xsl:template mode="pmml2tex" match="m:mn[empty((@*,*))][matches(.,'^[.0-9]+$')]" priority="2">
+  <xsl:text>{</xsl:text>
+  <xsl:value-of select="."/>
+  <xsl:text>}</xsl:text>
 </xsl:template>
 
 <xsl:template mode="pmml2tex" match="*">
