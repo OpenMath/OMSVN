@@ -292,7 +292,6 @@ q \stripPT\dimen0 \space 0 m \stripPT\dimen2 \space -2 \hwidth -2   2 0 c
 
 
 <xsl:template  mode="pmml2tex" match="*[1][self::m:mi][following-sibling::*[1][self::m:mo='&#x2061;']]" priority="1000">
-<xsl:message select="'here'"/>
   <xsl:text>\mathop{</xsl:text>
   <xsl:next-match/>
   <xsl:text>}</xsl:text>
@@ -351,11 +350,30 @@ q \stripPT\dimen0 \space 0 m \stripPT\dimen2 \space -2 \hwidth -2   2 0 c
 <xsl:text>}</xsl:text>
 </xsl:template>
 
+<xsl:template mode="pmml2tex" match="m:msub[*[1]=('&#8747;')]" priority="2">
+  <xsl:text>\mosub</xsl:text>
+  <xsl:text>\int</xsl:text>
+  <xsl:text>{</xsl:text>
+  <xsl:apply-templates mode="pmml2tex" select="*[2]"/>
+  <xsl:text>}</xsl:text>
+</xsl:template>
+
 <xsl:template mode="pmml2tex" match="m:msubsup">
   <xsl:text>\msubsup</xsl:text>
   <xsl:text>{</xsl:text>
   <xsl:apply-templates mode="pmml2tex" select="*[1]"/>
   <xsl:text>}</xsl:text>
+  <xsl:text>{</xsl:text>
+  <xsl:apply-templates mode="pmml2tex" select="*[2]"/>
+  <xsl:text>}</xsl:text>
+  <xsl:text>{</xsl:text>
+  <xsl:apply-templates mode="pmml2tex" select="*[3]"/>
+  <xsl:text>}</xsl:text>
+</xsl:template>
+
+<xsl:template mode="pmml2tex" match="m:msubsup[*[1]=('&#8747;')]" priority="2">
+  <xsl:text>\mosubsup</xsl:text>
+  <xsl:text>\int</xsl:text>
   <xsl:text>{</xsl:text>
   <xsl:apply-templates mode="pmml2tex" select="*[2]"/>
   <xsl:text>}</xsl:text>
