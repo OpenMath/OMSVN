@@ -274,6 +274,16 @@ q \stripPT\dimen0 \space 0 m \stripPT\dimen2 \space -2 \hwidth -2   2 0 c
   <xsl:text>}}}</xsl:text>
 </xsl:template>
 
+<xsl:template mode="pmml2tex" match="m:mo[string-length(normalize-space(.)) gt 1]
+				     [following-sibling::* and preceding-sibling::*]"
+	      priority="1.5">
+  <xsl:text>\mathbin{\mathrm{</xsl:text>
+  <xsl:apply-templates mode="pmml2tex" select="@*"/>
+  <xsl:apply-templates mode="pmml2tex"/>
+  <xsl:text>}}</xsl:text>
+</xsl:template>
+
+<xsl:template mode="pmml2tex" match="m:mo[.='{']" priority="2">\{</xsl:template>
 <xsl:template mode="pmml2tex" match="m:mo[.='{']" priority="2">\{</xsl:template>
 <xsl:template mode="pmml2tex" match="m:mo[.='}']" priority="2">\}</xsl:template>
 <xsl:template mode="pmml2tex" match="m:mo[.='^']" priority="2">\hat{}</xsl:template>
