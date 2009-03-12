@@ -274,16 +274,6 @@ q \stripPT\dimen0 \space 0 m \stripPT\dimen2 \space -2 \hwidth -2   2 0 c
   <xsl:text>}}}</xsl:text>
 </xsl:template>
 
-<xsl:template mode="pmml2tex" match="m:mo[string-length(normalize-space(.)) gt 1]
-				     [following-sibling::* and preceding-sibling::*]"
-	      priority="1.5">
-  <xsl:text>\mathbin{\mathrm{</xsl:text>
-  <xsl:apply-templates mode="pmml2tex" select="@*"/>
-  <xsl:apply-templates mode="pmml2tex"/>
-  <xsl:text>}}</xsl:text>
-</xsl:template>
-
-<xsl:template mode="pmml2tex" match="m:mo[.='{']" priority="2">\{</xsl:template>
 <xsl:template mode="pmml2tex" match="m:mo[.='{']" priority="2">\{</xsl:template>
 <xsl:template mode="pmml2tex" match="m:mo[.='}']" priority="2">\}</xsl:template>
 <xsl:template mode="pmml2tex" match="m:mo[.='^']" priority="2">\hat{}</xsl:template>
@@ -299,15 +289,6 @@ q \stripPT\dimen0 \space 0 m \stripPT\dimen2 \space -2 \hwidth -2   2 0 c
   <xsl:value-of select="for $n in string-to-codepoints(.)
  return concat('\mo{',$n,'}')"/>
 -->
-
-
-<xsl:template  mode="pmml2tex" match="*[1][self::m:mi][following-sibling::*[1][self::m:mo='&#x2061;']]" priority="1000">
-  <xsl:text>\mathop{</xsl:text>
-  <xsl:next-match/>
-  <xsl:text>}</xsl:text>
-</xsl:template>
-
-<xsl:template  mode="pmml2tex" match="*[2][self::m:mo='&#x2061;'][preceding-sibling::*[1][self::m:mi]]" priority="1000"/>
 
 <xsl:template mode="pmml2tex" match="m:mi[not(@*) and string-length(normalize-space(.))=1]">
   <xsl:apply-templates mode="pmml2tex"/>
@@ -330,65 +311,38 @@ q \stripPT\dimen0 \space 0 m \stripPT\dimen2 \space -2 \hwidth -2   2 0 c
   <xsl:text>}}</xsl:text>
 </xsl:template>
 
-<xsl:template mode="pmml2tex" match="m:mn[empty((@*,*))][matches(.,'^[.0-9]+$')]" priority="2">
-  <xsl:text>{</xsl:text>
-  <xsl:value-of select="."/>
-  <xsl:text>}</xsl:text>
-</xsl:template>
-
 <xsl:template mode="pmml2tex" match="*">
 <xsl:message select="'tex: ',name()"/>
-<xsl:text>{{</xsl:text>
-<xsl:value-of select="name()"/>
-<xsl:text>}}</xsl:text>
 </xsl:template>
 
 
 <xsl:template mode="pmml2tex" match="m:msup">
-<xsl:text>\msup{</xsl:text>
+<xsl:text>{{</xsl:text>
 <xsl:apply-templates mode="pmml2tex" select="*[1]"/>
-<xsl:text>}{</xsl:text>
+<xsl:text>}\sp{</xsl:text>
 <xsl:apply-templates mode="pmml2tex" select="*[2]"/>
-<xsl:text>}</xsl:text>
+<xsl:text>}}</xsl:text>
 </xsl:template>
 
 <xsl:template mode="pmml2tex" match="m:msub">
-<xsl:text>\msub{</xsl:text>
+<xsl:text>{{</xsl:text>
 <xsl:apply-templates mode="pmml2tex" select="*[1]"/>
-<xsl:text>}{</xsl:text>
+<xsl:text>}\sb{</xsl:text>
 <xsl:apply-templates mode="pmml2tex" select="*[2]"/>
-<xsl:text>}</xsl:text>
-</xsl:template>
-
-<xsl:template mode="pmml2tex" match="m:msub[*[1]=('&#8747;')]" priority="2">
-  <xsl:text>\mosub</xsl:text>
-  <xsl:text>\int</xsl:text>
-  <xsl:text>{</xsl:text>
-  <xsl:apply-templates mode="pmml2tex" select="*[2]"/>
-  <xsl:text>}</xsl:text>
+<xsl:text>}}</xsl:text>
 </xsl:template>
 
 <xsl:template mode="pmml2tex" match="m:msubsup">
-  <xsl:text>\msubsup</xsl:text>
+  <xsl:text>{</xsl:text>
   <xsl:text>{</xsl:text>
   <xsl:apply-templates mode="pmml2tex" select="*[1]"/>
   <xsl:text>}</xsl:text>
-  <xsl:text>{</xsl:text>
+  <xsl:text>\sb{</xsl:text>
   <xsl:apply-templates mode="pmml2tex" select="*[2]"/>
   <xsl:text>}</xsl:text>
-  <xsl:text>{</xsl:text>
+  <xsl:text>\sp{</xsl:text>
   <xsl:apply-templates mode="pmml2tex" select="*[3]"/>
   <xsl:text>}</xsl:text>
-</xsl:template>
-
-<xsl:template mode="pmml2tex" match="m:msubsup[*[1]=('&#8747;')]" priority="2">
-  <xsl:text>\mosubsup</xsl:text>
-  <xsl:text>\int</xsl:text>
-  <xsl:text>{</xsl:text>
-  <xsl:apply-templates mode="pmml2tex" select="*[2]"/>
-  <xsl:text>}</xsl:text>
-  <xsl:text>{</xsl:text>
-  <xsl:apply-templates mode="pmml2tex" select="*[3]"/>
   <xsl:text>}</xsl:text>
 </xsl:template>
 
@@ -467,10 +421,13 @@ q \stripPT\dimen0 \space 0 m \stripPT\dimen2 \space -2 \hwidth -2   2 0 c
 </xsl:template>
 
 <xsl:template mode="pmml2tex" match="m:mover">
-  <xsl:text>\mover{</xsl:text>
+  <xsl:text>{</xsl:text>
+  <xsl:text>\mathop{</xsl:text>
   <xsl:apply-templates mode="pmml2tex" select="*[1]"/>
-  <xsl:text>}{</xsl:text>
+  <xsl:text>}\limits</xsl:text>
+  <xsl:text>\sp{</xsl:text>
   <xsl:apply-templates mode="pmml2tex" select="*[2]"/>
+  <xsl:text>}</xsl:text>
   <xsl:text>}</xsl:text>
 </xsl:template>
 
@@ -483,21 +440,28 @@ q \stripPT\dimen0 \space 0 m \stripPT\dimen2 \space -2 \hwidth -2   2 0 c
 </xsl:template>
 
 <xsl:template mode="pmml2tex" match="m:munder">
-  <xsl:text>\munder{</xsl:text>
+  <xsl:text>{</xsl:text>
+  <xsl:text>\mathop{</xsl:text>
   <xsl:apply-templates mode="pmml2tex" select="*[1]"/>
-  <xsl:text>}{</xsl:text>
+  <xsl:text>}\limits</xsl:text>
+  <xsl:text>\sb{</xsl:text>
   <xsl:apply-templates mode="pmml2tex" select="*[2]"/>
+  <xsl:text>}</xsl:text>
   <xsl:text>}</xsl:text>
 </xsl:template>
 
 
 <xsl:template mode="pmml2tex" match="m:munderover">
-  <xsl:text>\munderover{</xsl:text>
+  <xsl:text>{</xsl:text>
+  <xsl:text>\mathop{</xsl:text>
   <xsl:apply-templates mode="pmml2tex" select="*[1]"/>
-  <xsl:text>}{</xsl:text>
+  <xsl:text>}\limits</xsl:text>
+  <xsl:text>\sb{</xsl:text>
   <xsl:apply-templates mode="pmml2tex" select="*[2]"/>
-  <xsl:text>}{</xsl:text>
+  <xsl:text>}</xsl:text>
+  <xsl:text>\sp{</xsl:text>
   <xsl:apply-templates mode="pmml2tex" select="*[3]"/>
+  <xsl:text>}</xsl:text>
   <xsl:text>}</xsl:text>
 </xsl:template>
 
