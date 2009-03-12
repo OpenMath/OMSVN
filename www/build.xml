@@ -2,7 +2,7 @@
 <project name="OpenMath Website" default="main" basedir=".">
   
   <target name="main" 
-          depends="link-others, general-xslt, cds-xslt, contrib-cds-xslt, standard-xslt, archive-cds-and-presentation"/>
+          depends="link-others,general-xslt, cds-xslt, contrib-cds-xslt, standard-xslt, archive-cds-and-presentation"/>
   <target name="light"
           depends="general-xslt, cds-xslt, contrib-cds-xslt, standard-xslt, archive-cds-and-presentation"/>
   
@@ -33,6 +33,7 @@
 				<exclude name="**/*.ocd"/>
 				<exclude name="**/*.xhtml"/>
 				<exclude name="**/*.sts"/>
+        <exclude name="target/**"/>
         <!-- <include name="**/*.jpg"/>
         <include name="**/*.jpeg"/>
         <include name="**/*.js"/>
@@ -55,12 +56,12 @@
         <include name="standard/*/openmath2rnc.xml"/>
         <include name="standard/*/omstd20.xml"/>
       </fileset>
-      <fileset dir="../wwwmass">
+      <!-- <fileset dir="../wwwmass">
 				<exclude name="**/*.xml"/>
 				<exclude name="**/*.ocd"/>
 				<exclude name="**/*.xhtml"/>
 				<exclude name="**/*.sts"/>
-      </fileset>
+      </fileset> -->
     </copy>
 		<copy tofile="${site}/.htaccess" file="dot_htaccess"/>
   </target>
