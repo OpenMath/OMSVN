@@ -124,7 +124,20 @@
   <xsl:template match="m:cn[normalize-space(.)='&#8734;']" mode="cmml2om">
     <OMS cd="nums1" name="infinity"/>
   </xsl:template>
-
+  <xsl:template match="m:cn[@type='e-notation']" mode="cmml2om">
+    <OMA>
+      <OMS cd="bigfloat1" name="bigfloat"/>
+      <OMF>
+	<xsl:attribute name="dec">
+	  <xsl:apply-templates select="text()[1]"  mode="cmml2om"/>
+	</xsl:attribute>
+      </OMF>
+      <OMI>10</OMI>
+      <OMI>
+	  <xsl:apply-templates select="text()[2]"  mode="cmml2om"/>
+      </OMI>
+    </OMA>
+  </xsl:template>
   <xsl:template match="m:cn" mode="cmml2om">
 <!--    <xsl:message select="'cn: ',."/>-->
     <OMV name="{.}"/>
