@@ -25,12 +25,14 @@
 
   <xsl:template match="om:OMS" mode="om2cmml">
     <csymbol cd="{@cd}">
+      <xsl:copy-of select="@id"/>
       <xsl:value-of select="@name"/>
     </csymbol>
   </xsl:template>
 
   <xsl:template match="om:OMV" mode="om2cmml">
     <ci>
+      <xsl:copy-of select="@id"/>
       <xsl:value-of select="@name"/>
     </ci>
   </xsl:template>
@@ -39,12 +41,14 @@
 
   <xsl:template match="om:OMI" mode="om2cmml">
     <cn>
+      <xsl:copy-of select="@id"/>
       <xsl:value-of select="."/>
     </cn>
   </xsl:template>
 
   <xsl:template match="om:OMBIND" mode="om2cmml">
     <bind>
+      <xsl:copy-of select="@id"/>
       <xsl:apply-templates mode="om2cmml"/>
     </bind>
   </xsl:template>
@@ -61,12 +65,14 @@
 
   <xsl:template match="om:OMA" mode="om2cmml">
     <apply>
+      <xsl:copy-of select="@id"/>
       <xsl:apply-templates mode="om2cmml"/>
     </apply>
   </xsl:template>
 
   <xsl:template match="om:OME" mode="om2cmml">
     <cerror>
+      <xsl:copy-of select="@id"/>
       <xsl:apply-templates mode="om2cmml"/>
     </cerror>
   </xsl:template>
@@ -86,14 +92,20 @@
   
   <xsl:template match="om:OMF[@dec]" mode="om2cmml">
     <cn type="real">
+      <xsl:copy-of select="@id"/>
       <xsl:value-of select="@dec"/>
     </cn>
   </xsl:template>
 
   <xsl:template match="om:OMF[@hex]" mode="om2cmml">
     <cn type="ieee-hex">
+      <xsl:copy-of select="@id"/>
       <xsl:value-of select="@hex"/>
     </cn>
+  </xsl:template>
+
+  <xsl:template match="om:OMR" mode="om2cmml">
+    <share href="{@href}"/>
   </xsl:template>
 
 </xsl:stylesheet>
