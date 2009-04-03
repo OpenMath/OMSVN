@@ -58,6 +58,14 @@
   </xsl:template>
 
 
+  <xsl:template match="m:cs" mode="cmml2om">
+    <OMSTR>
+      <xsl:copy-of select="@id"/>
+      <xsl:value-of select="."/>
+    </OMSTR>
+  </xsl:template>
+
+
 
   <xsl:template match="m:cn[not(m:sep)][matches(.,'^[ 0-9.,-]+$')]" mode="cmml2om">
     <OMI>
@@ -156,8 +164,16 @@
 
   <xsl:template match="m:cerror" mode="cmml2om">
     <OME>
+      <xsl:copy-of select="@id"/>
       <xsl:apply-templates mode="cmml2om"/>
     </OME>
+  </xsl:template>
+
+  <xsl:template match="m:cbytes" mode="cmml2om">
+    <OMB>
+      <xsl:copy-of select="@id"/>
+      <xsl:apply-templates mode="cmml2om"/>
+    </OMB>
   </xsl:template>
 
 

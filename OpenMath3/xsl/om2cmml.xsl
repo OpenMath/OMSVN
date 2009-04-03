@@ -37,6 +37,20 @@
     </ci>
   </xsl:template>
 
+  <xsl:template match="om:OMSTR" mode="om2cmml">
+    <cs>
+      <xsl:copy-of select="@id"/>
+      <xsl:value-of select="."/>
+    </cs>
+  </xsl:template>
+
+  <xsl:template match="om:OMB" mode="om2cmml">
+    <cbytes>
+      <xsl:copy-of select="@id"/>
+      <xsl:value-of select="@name"/>
+    </cbytes>
+  </xsl:template>
+
 
 
   <xsl:template match="om:OMI" mode="om2cmml">
