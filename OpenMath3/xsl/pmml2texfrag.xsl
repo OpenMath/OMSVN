@@ -28,13 +28,13 @@
 <xsl:text>\empty </xsl:text>
 </xsl:template>
 
-<xsl:template mode="pmml2tex" match="m:glyph[@src]" priority="2">
+<xsl:template mode="pmml2tex" match="m:mglyph[@src]" priority="2">
   <xsl:text>\includeraphics{</xsl:text>
   <xsl:value-of select="@src"/>
   <xsl:text>}</xsl:text>
 </xsl:template>
 
-<xsl:template mode="pmml2tex" match="m:glyph[@alt]" priority="1">
+<xsl:template mode="pmml2tex" match="m:glyph" priority="1">
   <xsl:text>\mathrm{</xsl:text>
   <xsl:value-of select="replace(@alt,' ','~')"/>
   <xsl:text>}</xsl:text>
@@ -294,7 +294,13 @@ q \stripPT\dimen0 \space 0 m \stripPT\dimen2 \space -2 \hwidth -2   2 0 c
   <xsl:apply-templates mode="pmml2tex"/>
 </xsl:template>
 
+<xsl:template mode="pmml2tex"
+	      match="m:mo[.='&#8289;'][preceding-sibling::*[1][self::m:mi]]"
+	      priority="3"/>
+
+
 <xsl:template mode="pmml2tex" match="m:mi">
+  <xsl:if test="following-sibling::*[1]='&#8289;'">\mathop</xsl:if>
   <xsl:text>{\mi</xsl:text>
   <xsl:value-of select="replace(@mathvariant,'-','')"/>
   <xsl:if test="not(@mathvariant) and string-length(.)&gt;1">normal</xsl:if>
@@ -311,15 +317,22 @@ q \stripPT\dimen0 \space 0 m \stripPT\dimen2 \space -2 \hwidth -2   2 0 c
   <xsl:text>}}</xsl:text>
 </xsl:template>
 
+<xsl:template mode="pmml2tex" match="m:mn[matches(.,'^[0-9]*$')]">
+  <xsl:text>{</xsl:text>
+  <xsl:apply-templates mode="pmml2tex" select="@*"/>
+  <xsl:apply-templates mode="pmml2tex"/>
+  <xsl:text>}</xsl:text>
+</xsl:template>
+
 <xsl:template mode="pmml2tex" match="*">
 <xsl:message select="'tex: ',name()"/>
 </xsl:template>
 
 
 <xsl:template mode="pmml2tex" match="m:msup">
-<xsl:text>{{</xsl:text>
+<xsl:text>{\msup{</xsl:text>
 <xsl:apply-templates mode="pmml2tex" select="*[1]"/>
-<xsl:text>}\sp{</xsl:text>
+<xsl:text>}{</xsl:text>
 <xsl:apply-templates mode="pmml2tex" select="*[2]"/>
 <xsl:text>}}</xsl:text>
 </xsl:template>
@@ -411,12 +424,12 @@ q \stripPT\dimen0 \space 0 m \stripPT\dimen2 \space -2 \hwidth -2   2 0 c
 
 
 <xsl:template mode="pmml2tex" match="m:ms">
-  <xsl:text>\mathrm{</xsl:text>
+  <xsl:text>\mbox{</xsl:text>
   <xsl:apply-templates mode="pmml2tex" select="@*"/>
-  <xsl:text>"</xsl:text>
+  <xsl:text>\textquotedbl </xsl:text>
   <xsl:variable name="t"><xsl:apply-templates mode="pmml2tex"/></xsl:variable>
-  <xsl:value-of select="replace($t,' ','~')"/>
-  <xsl:text>"</xsl:text>
+  <xsl:value-of select="replace($t,'&#160;','\\unicode{160}')"/>
+  <xsl:text>\textquotedbl </xsl:text>
   <xsl:text>}</xsl:text>
 </xsl:template>
 
@@ -606,15 +619,5 @@ q \stripPT\dimen0 \space 0 m \stripPT\dimen2 \space -2 \hwidth -2   2 0 c
   </xsl:for-each>
 </xsl:template>
 
-<xsl:template mode="pmml2tex" match="m:mglyph[@src]">
-  <xsl:text>{\includegraphics{</xsl:text>
-  <xsl:value-of select="@src"/>
-  <xsl:text>}}</xsl:text>
-</xsl:template>
-<xsl:template mode="pmml2tex" match="m:mglyph">
-  <xsl:text>{\mathrm{[</xsl:text>
-  <xsl:value-of select="@alt"/>
-  <xsl:text>]}}</xsl:text>
-</xsl:template>
 
 </xsl:stylesheet>
