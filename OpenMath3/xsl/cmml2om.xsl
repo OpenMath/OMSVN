@@ -2,7 +2,7 @@
 		xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 		xmlns="http://www.openmath.org/OpenMath"
 		xmlns:m="http://www.w3.org/1998/Math/MathML"
- 
+ 		exclude-result-prefixes="m"
 >
 
 
@@ -519,6 +519,7 @@
     <OMS cd="limit1" name="limit"/>
   </xsl:template>
 
+<!--
   <xsl:template match="m:apply[*[1][self::m:tendsto]]|m:reln[*[1][self::m:tendsto]]" mode="cmml2om">
     <OMA>
       <OMS cd="limit1" name="tendsto"/>
@@ -526,6 +527,18 @@
       <xsl:apply-templates select="*[position()!=1]" mode="cmml2om"/>
     </OMA>
   </xsl:template>
+-->
+<xsl:template match="m:tendsto"  mode="cmml2om">
+  <OMATTR>
+    <OMATP>
+      <OMS cd="altenc" name="MathML_encoding"/>
+      <OMFOREIGN encoding="MathML-Content">
+	<tendsto xmlns="http://www.w3.org/1998/Math/MathML"/>
+      </OMFOREIGN>
+    </OMATP>
+    <OMV name="tendsto"/>
+  </OMATTR>
+</xsl:template>
 
   <xsl:template match="m:apply[*[1][self::m:limit]]" mode="cmml2om">
     <OMA>

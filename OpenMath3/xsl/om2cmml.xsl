@@ -9,11 +9,12 @@
     <xsl:message>om2cmml: <xsl:value-of select="name()"/></xsl:message>
   </xsl:template>
 
+<!--
   <xsl:template match="om:OMATP/*" mode="om2cmml">
     <xsl:message>om2cmml: OMATP/* <xsl:value-of select="name()"/></xsl:message>
-    <xsl:copy-of select="."/>
+    <xsl:apply-templates  mode="om2cmml"/>>
   </xsl:template>
-
+-->
 
   <xsl:template match="om:OMOBJ" mode="om2cmml">
     <math>
@@ -96,9 +97,9 @@
     <semantics>
       <xsl:apply-templates select="*[last()]" mode="om2cmml"/>
       <xsl:for-each select="om:OMATP/*[position() mod 2 = 1]">
-	<attribution-xml cd="{@cd}"  encoding="{@name}">
+	<annotation-xml cd="{@cd}"  encoding="{@name}">
 	  <xsl:apply-templates select="following-sibling::*[1]" mode="om2cmml"/>
-	</attribution-xml>
+	</annotation-xml>
       </xsl:for-each>
     </semantics>
   </xsl:template>
@@ -121,5 +122,9 @@
   <xsl:template match="om:OMR" mode="om2cmml">
     <share href="{@href}"/>
   </xsl:template>
+
+<xsl:template match="om:OMFOREIGN"  mode="om2cmml">
+  <xsl:copy-of select="*"/>
+</xsl:template>
 
 </xsl:stylesheet>
