@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CD xmlns="http://www.openmath.org/OpenMathCD" xml:id="quant1">
+  <CDComment>     This document is distributed in the hope that it will be useful, 
+     but WITHOUT ANY WARRANTY; without even the implied warranty of 
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     The copyright holder grants you permission to redistribute this 
+     document freely as a verbatim copy. Furthermore, the copyright
+     holder permits you to develop any derived work from this document
+     provided that the following conditions are met.
+       a) The derived work acknowledges the fact that it is derived from
+          this document, and maintains a prominent reference in the 
+          work to the original source.
+       b) The fact that the derived work is not the original OpenMath 
+          document is stated prominently in the derived work.  Moreover if
+          both this document and the derived work are Content Dictionaries
+          then the derived work must include a different CDName element,
+          chosen so that it cannot be confused with any works adopted by
+          the OpenMath Society.  In particular, if there is a Content 
+          Dictionary Group whose name is, for example, `math' containing
+          Content Dictionaries named `math1', `math2' etc., then you should 
+          not name a derived Content Dictionary `mathN' where N is an integer.
+          However you are free to name it `private_mathN' or some such.  This
+          is because the names `mathN' may be used by the OpenMath Society
+          for future extensions.
+       c) The derived work is distributed under terms that allow the
+          compilation of derived works, but keep paragraphs a) and b)
+          intact.  The simplest way to do this is to distribute the derived
+          work under the OpenMath license, but this is not a requirement.
+     If you have questions about this license please contact the OpenMath
+     society at http://www.openmath.org.
+</CDComment>
+  <CDName>quant3</CDName>
+  <CDBase>http://www.openmath.org/cd</CDBase>
+  <CDURL>http://www.openmath.org/cd/quant1.ocd</CDURL>
+<!--   <CDReviewDate>2006-03-30</CDReviewDate> -->
+  <CDDate>2008-09-27</CDDate>
+  <CDVersion>3</CDVersion>
+  <CDRevision>1</CDRevision>
+  <CDStatus>draft</CDStatus>
+
+  <Description>This CD holds the definitions of the restricted universal ("for all")
+  quantifier and existential ("there exists") quantifier. It is intended to provide
+  symbols that are compatible with MathML quantifiers with qualifiers.</Description>
+
+  <CDDefinition xml:id="forall">
+    <Name>forallin</Name>
+    <Title>Restricted Universal Quantification</Title>
+    <Role>binder</Role>
+    <Description>
+      This symbol represents a binding operator constructor for the restricted universal
+      ("for all in ") quantifier. It takes n arguments that represent sets and constructs a
+      binding operator that can be used to universally bind n variables over these sets.
+    </Description>
+  
+    <Example>
+      An example to represent the statement for all real x, |sin(x)| &lt;= 1
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+	     version="3.0">
+	<OMBIND>
+	  <OMA>
+          <OMS cd="quant1" name="forallin"/>
+	  <OMS cd="setname1" name="R"/>
+	  </OMA>
+	  <OMBVAR><OMV name="x"/></OMBVAR>
+	  <OMA>
+	    <OMS cd="relation1" name="leq"/>
+	    <OMA>
+	      <OMS cd="arith1" name="abs"/>
+	      <OMA>
+		<OMS cd="transc1" name="sin"/>
+		<OMV name="x"/>
+	      </OMA>
+	    </OMA>
+	    <OMF dec="1.0"/>
+	  </OMA>
+	</OMBIND>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+
+  <CDDefinition xml:id="forallthat">
+    <Name>forallthat</Name>
+    <Title>Universal Quantification with Condition</Title>
+    <Role>binder</Role>
+    <Description>
+      This symbol represents a binding operator for the restricted universal ("for all
+      that ") quantifier. It can be used to universally bind n variables over these sets
+      in a binary binding object.
+    </Description>
+  
+    <Example>
+      An example to represent the statement for all x!=0 1/x in R. 
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+	     version="3.0">
+	<OMBIND>
+          <OMS cd="quant1" name="forallthat"/>
+	  <OMBVAR><OMV name="x"/></OMBVAR>
+	  <OMA>
+	    <OMS cd="set1" name="in"/>
+	    <OMA>
+	      <OMS cd="arith1" name="divide"/>
+	      <OMI>1</OMI>
+	      <OMV name="x"/>
+	    </OMA>
+	    <OMS cd="setname1" name="R"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="relation1" name="ne"/>
+	    <OMV name="x"/>
+	    <OMI>0</OMI>
+	  </OMA>
+	</OMBIND>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+
+  <CDDefinition xml:id="existsin">
+    <Name>existsin</Name>
+    <Title>Restricted Existential Quantification</Title>
+    <Role>binder</Role>
+    <Description>
+      This symbol represents a binding operator constructor for the restricted existential
+      ("exists in") quantifier. It takes n arguments that represent sets and constructs a
+      binding operator that can be used to existentially bind n variables over these sets.
+    </Description>
+  </CDDefinition>
+
+  <CDDefinition xml:id="existswith">
+    <Name>existswith</Name>
+    <Title>Existential Quantification with Condition</Title>
+    <Role>binder</Role>
+    <Description>
+      This symbol represents a binding operator constructor for the restricted existential
+      ("exists with") quantifier. It can be used to existentially bind n variables over
+      these sets in a binary bindig object; the last child acts as the condition.
+    </Description>
+    <Example>
+      An example  which represents the statement that there is no solution
+      to x^n+y^n=z^n for n&gt;2 in the natural numbers, that is:
+      it is not true that there exists x,y,z,n | n&gt;2 and x^n+y^n=z^n
+
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
+        <OMA>
+          <OMS cd="logic1" name="not"/>
+          <OMBIND>
+	    <OMA>
+	      <OMS cd="quant1" name="exists"/>
+	      <OMS cd="setname1" name="Z"/>
+	      <OMS cd="setname1" name="Z"/>
+	      <OMS cd="setname1" name="Z"/>
+	      <OMS cd="setname1" name="Z"/>
+	    </OMA>
+            <OMBVAR>
+              <OMV name="x"/>
+              <OMV name="y"/>
+              <OMV name="z"/>
+              <OMV name="n"/>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="logic1" name="and"/>
+              <OMA>
+                <OMS cd="relation1" name="gt"/>
+                <OMV name="n"/>
+                <OMI> 2 </OMI>
+              </OMA>
+              <OMA>
+                <OMS cd="relation1" name="eq"/>
+                <OMA>
+                  <OMS cd="arith1" name="plus"/>
+                  <OMA>
+                    <OMS cd="arith1" name="power"/>
+                    <OMV name="x"/>
+                    <OMV name="n"/>
+                  </OMA>
+                  <OMA>
+                    <OMS cd="arith1" name="power"/>
+                    <OMV name="y"/>
+                    <OMV name="n"/>
+                  </OMA>
+                </OMA>
+                <OMA>
+                  <OMS cd="arith1" name="power"/>
+                  <OMV name="z"/>
+                  <OMV name="n"/>
+                </OMA>
+              </OMA>
+            </OMA>
+          </OMBIND>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+
+  <CDDefinition xml:id="existsinwith">
+    <Name>existsinwith</Name>
+    <Title>Restricted Existential Quantification with conditions</Title>
+    <Role>binder</Role>
+    <Description>
+      This symbol represents a binding operator constructor for the restricted existential
+      ("exists in") quantifier. It takes n arguments that represent sets and constructs a
+      binding operator that can be used to existentially bind n variables over these sets.
+    </Description>
+  </CDDefinition>
+
+  <CDDefinition xml:id="existswith">
+    <Name>existswith</Name>
+    <Title>Existential Quantification with Condition</Title>
+    <Role>binder</Role>
+    <Description>
+      This symbol represents a binding operator constructor for the restricted existential
+      ("exists with") quantifier. It can be used to existentially bind n variables over
+      these sets in a binary bindig object; the last child acts as the condition.
+    </Description>
+    <Example>
+      An example  which represents the statement that there is no solution
+      to x^n+y^n=z^n for n&gt;2 in the natural numbers, that is:
+      it is not true that there exists x,y,z,n | n&gt;2 and x^n+y^n=z^n
+
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd"
+             version="3.0">
+        <OMA>
+          <OMS cd="logic1" name="not"/>
+          <OMBIND>
+	    <OMA>
+	      <OMS cd="quant1" name="existsinwith"/>
+	      <OMS cd="setname1" name="Z"/>
+	      <OMS cd="setname1" name="Z"/>
+	      <OMS cd="setname1" name="Z"/>
+	      <OMS cd="setname1" name="Z"/>
+	    </OMA>
+            <OMBVAR>
+              <OMV name="x"/>
+              <OMV name="y"/>
+              <OMV name="z"/>
+              <OMV name="n"/>
+            </OMBVAR>
+	    <OMA>
+	      <OMS cd="relation1" name="eq"/>
+	      <OMA>
+		<OMS cd="arith1" name="plus"/>
+		<OMA>
+		  <OMS cd="arith1" name="power"/>
+		  <OMV name="x"/>
+		  <OMV name="n"/>
+		</OMA>
+		<OMA>
+		  <OMS cd="arith1" name="power"/>
+		  <OMV name="y"/>
+		  <OMV name="n"/>
+		</OMA>
+	      </OMA>
+	      <OMA>
+		<OMS cd="arith1" name="power"/>
+		<OMV name="z"/>
+		<OMV name="n"/>
+	      </OMA>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="relation1" name="gt"/>
+	      <OMV name="n"/>
+	      <OMI> 2 </OMI>
+	    </OMA>
+          </OMBIND>
+        </OMA>
+      </OMOBJ>
+    </Example>
+  </CDDefinition>
+
+</CD>
