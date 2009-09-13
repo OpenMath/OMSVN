@@ -9,8 +9,15 @@
 
 <xsl:template match="om:OMS[@cd='nums1' and @name='based_integer']"  >
 <msub>
-  <xsl:apply-templates select="following-sibling::*[1]"/>
   <xsl:apply-templates select="following-sibling::*[2]"/>
+  <xsl:apply-templates select="following-sibling::*[1]"/>
+</msub>
+</xsl:template>
+
+<xsl:template match="om:OMS[@cd='nums1' and @name='based_float']"  >
+<msub>
+  <xsl:apply-templates select="following-sibling::*[2]"/>
+  <xsl:apply-templates select="following-sibling::*[1]"/>
 </msub>
 </xsl:template>
 

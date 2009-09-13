@@ -42,6 +42,26 @@
   </xsl:call-template>
 </xsl:template>
 
+<xsl:template match="om:OMS[@cd='fns1' and @name='restriction']">
+  <xsl:choose>
+    <xsl:when test="parent::om:OMA and not(preceding-sibling::*)">
+      <msub>
+	<mrow>
+	  <xsl:apply-templates select="following-sibling::*[1]"/>
+	  <mo>|</mo>
+	</mrow>
+	<mrow>
+	  <xsl:apply-templates select="following-sibling::*[2]"/>
+	</mrow>
+      </msub>
+    </xsl:when>
+    <xsl:otherwise>
+      <mi>restriction</mi>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+
 
 </xsl:stylesheet>
 

@@ -6,7 +6,7 @@
 
 
 <xsl:output
-  type="xml"
+  method="xml"
   indent="yes"
 />
 

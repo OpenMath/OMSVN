@@ -125,7 +125,7 @@ zap the lambda.
 If there is an explicit interval put limits top and bottom
 else put range of summation at bottom
 -->
-   <xsl:when test="following-sibling::*[1]/self::om:OMA/*[1][self::om:OMS[@name='interval']]">
+   <xsl:when test="following-sibling::*[1]/self::om:OMA/*[1][self::om:OMS[@name='interval' or @name='ordered_interval']]">
    <munderover>
      <mo>&#x222B;</mo>
    <xsl:apply-templates select="following-sibling::om:OMA/*[2]"/>
@@ -157,7 +157,7 @@ else put range of summation at bottom
 If there is an explicit interval put limits top and bottom
 else put range of summation at bottom
 -->
-   <xsl:when test="following-sibling::*[1]/self::om:OMA/*[1][self::om:OMS[@name='interval']]">
+   <xsl:when test="following-sibling::*[1]/self::om:OMA/*[1][self::om:OMS[@name='interval' or @name='ordered_interval']]">
    <munderover>
    <mo>&#x222B;</mo>
    <xsl:apply-templates select="following-sibling::om:OMA/*[2]"/>
@@ -210,6 +210,63 @@ If the body is a lambda expression, use d^2/dx/dy otherwise use D_1,2
    </mrow>
    </xsl:otherwise>
   </xsl:choose>
+</xsl:template>
+
+<xsl:template match="om:OMA[om:OMA/om:OMS[@cd='calculus1' and @name='partialdiffdegree']][*[position()!=1][self::om:OMV]]" priority="10">
+  <xsl:apply-templates select="om:OMA[1]/om:OMS[1]"/>
+</xsl:template>
+
+<xsl:template match="om:OMS[@cd='calculus1' and @name='partialdiffdegree']"  >
+   <xsl:choose>
+<!--
+If the body is a lambda expression, use d^2/dx/dy otherwise use D_1,2
+-->
+   <xsl:when test="following-sibling::*[3]/self::om:OMBIND/*[1][self::om:OMS[@name='lambda']]">
+     <mfrac>
+       <msup>
+	 <mi>&#x2202;</mi>
+	 <xsl:apply-templates select="following-sibling::*[2]"/>
+       </msup>
+       <mrow>
+	 <xsl:variable name="d" select="following-sibling::*[1]"/>
+	 <xsl:for-each select="following-sibling::om:OMBIND/om:OMBVAR/*">
+	   <xsl:variable name="p" select="position()"/>
+	   <xsl:choose>
+	     <xsl:when test="$d/*[$p+1]=0"/>
+	     <xsl:when test="$d/*[$p+1]=1">
+	       <mrow>
+		 <mi>&#x2202;</mi>
+		 <xsl:apply-templates select="."/>
+	       </mrow>
+	     </xsl:when>
+	     <xsl:otherwise>
+	       <mrow>
+		 <mi>&#x2202;</mi>
+		 <msup>
+		   <xsl:apply-templates select="."/>
+		   <xsl:apply-templates select="$d/*[$p+1]"/>
+		 </msup>
+	       </mrow>
+	     </xsl:otherwise>
+	   </xsl:choose>
+	 </xsl:for-each>
+       </mrow>
+     </mfrac>
+     <mrow>
+       <mo>(</mo>
+       <xsl:apply-templates select="following-sibling::om:OMBIND/*[3]"/>
+       <mo>)</mo>
+     </mrow>
+   </xsl:when>
+   <xsl:otherwise>
+     <mo>&#x2202;</mo>
+     <mrow>
+       <mo>(</mo>
+       <xsl:apply-templates select="following-sibling::*[1]"/>
+       <mo>)</mo>
+     </mrow>
+   </xsl:otherwise>
+   </xsl:choose>
 </xsl:template>
 
 <xsl:template mode="dx" match="om:OMI">
