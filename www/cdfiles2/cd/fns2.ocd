@@ -36,9 +36,9 @@
 <CDName> fns2 </CDName>
 <CDBase>http://www.openmath.org/cd</CDBase>
 <CDURL> http://www.openmath.org/cd/fns2.ocd </CDURL>
-<CDReviewDate>2006-03-30</CDReviewDate>
-<CDDate>2004-03-30</CDDate>
-<CDVersion>3</CDVersion>
+<CDReviewDate>2014-04-01</CDReviewDate>
+<CDDate>2009-04-19</CDDate>
+<CDVersion>4</CDVersion>
 <CDRevision>0</CDRevision>
 <CDStatus> official </CDStatus>
 
@@ -116,7 +116,7 @@ For all n 1 + 2 + ... + n = n(n+1)/2.
         <OMS cd="fns2" name="apply_to_list"/>
         <OMS cd="arith1" name="plus"/>
         <OMA>
-          <OMS cd="list1" name="make_list"/>
+          <OMS cd="list1" name="map"/>
           <OMI> 1 </OMI>
           <OMV name="n"/>
           <OMS cd="fns1" name="identity"/>
@@ -148,7 +148,7 @@ One may form a set in the following way. This gives the set {1^2, 2^2,
     <OMS cd="fns2" name="apply_to_list"/>
     <OMS cd="set1" name="set"/>
     <OMA>
-      <OMS cd="list1" name="make_list"/>
+      <OMS cd="list1" name="map"/>
       <OMI> 1 </OMI>
       <OMI> 10 </OMI>
       <OMBIND>
@@ -166,6 +166,106 @@ One may form a set in the following way. This gives the set {1^2, 2^2,
   </OMA>
 </OMOBJ>
 </Example>
+</CDDefinition>
+
+
+<CDDefinition>
+<Name> predicate_on_list </Name>
+<Role>application</Role>
+<Description> 
+This symbol is used to denote the chains of application
+or a binary predicate typified by a &lt; b &lt; c.
+In particular it is used to support the usage in MathML,
+where transative relations are classed as nary, but the underlying
+OpenMath symbols are binary.
+
+The symbol takes two arguments; the first of which is the binary
+predicate, the second a list. It is true if every application of
+the predicate on a pair of elements of the list, taken in order,
+returns true, otherwise it is false.
+</Description>
+<Example>
+a &lt; b &lt; c.
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+ <OMA>
+  <OMS cd="fns2" name="predicate_on_list"/>
+  <OMS cd="relation1" name="lt"/>
+  <OMA>
+    <OMS cd="list1" name="list"/>
+    <OMV name="a"/>
+    <OMV name="b"/>
+    <OMV name="c"/>
+  </OMA>
+ </OMA>
+</OMOBJ>
+</Example>
+<FMP>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="relation1" name="eq"/>
+    <OMA>
+      <OMS cd="fns2" name="predicate_on_list"/>
+      <OMV name="p"/>
+      <OMS cd="list2" name="nil"/>
+    </OMA>
+    <OMS cd="logic1" name="true"/>
+  </OMA>
+</OMOBJ>
+</FMP>
+<FMP>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="relation1" name="eq"/>
+    <OMA>
+      <OMS cd="fns2" name="predicate_on_list"/>
+      <OMV name="p"/>
+      <OMA>
+        <OMS cd="list2" name="append"/>
+        <OMV name="a"/>
+        <OMS cd="list2" name="nil"/>
+      </OMA>
+    </OMA>
+    <OMS cd="logic1" name="true"/>
+  </OMA>
+</OMOBJ>
+</FMP>
+<FMP>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="relation1" name="eq"/>
+    <OMA>
+      <OMS cd="fns2" name="predicate_on_list"/>
+      <OMV name="p"/>
+      <OMA>
+        <OMS cd="list2" name="append"/>
+        <OMV name="a"/>
+        <OMA>
+          <OMS cd="list2" name="append"/>
+          <OMV name="b"/>
+          <OMV name="l"/>
+        </OMA>
+      </OMA>
+    </OMA>
+    <OMA>
+      <OMS cd="logic1" name="and"/>
+      <OMA>
+        <OMV name="p"/>
+        <OMV name="a"/>
+        <OMV name="b"/>
+      </OMA>
+      <OMA>
+        <OMS cd="fns2" name="predicate_on_list"/>
+        <OMV name="p"/>
+        <OMA>
+          <OMS cd="list2" name="append"/>
+          <OMV name="b"/>
+          <OMV name="l"/>
+        </OMA>
+      </OMA>
+    </OMA>
+  </OMA>
+</OMOBJ>
+</FMP>
 </CDDefinition>
 
 <CDDefinition>

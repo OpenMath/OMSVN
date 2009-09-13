@@ -36,9 +36,9 @@
 <CDName> fns1 </CDName>
 <CDBase>http://www.openmath.org/cd</CDBase>
 <CDURL> http://www.openmath.org/cd/fns1.ocd </CDURL>
-<CDReviewDate>2006-03-30</CDReviewDate>
-<CDDate>2004-03-30</CDDate>
-<CDVersion>3</CDVersion>
+<CDReviewDate>2014-04-01</CDReviewDate>
+<CDDate>2009-04-01</CDDate>
+<CDVersion>4</CDVersion>
 <CDRevision>0</CDRevision>
 <CDStatus> official </CDStatus>
 
@@ -53,13 +53,49 @@
 </Description>
 
 <CDDefinition>
+<Name> restriction </Name>
+<Role>application</Role>
+<Description> 
+restriction takes two arguments, a function f, and a set S, which
+should be a subset of domain(f) and returns the function
+f restricted to S.
+</Description>
+<FMP>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA><OMS cd="relation1" name="eq"/>
+    <OMA><OMS cd="fns1" name="domain"/>
+      <OMA><OMS cd="fns1" name="restriction"/>
+        <OMV name="f"/>
+        <OMV name="S"/>
+      </OMA>
+    </OMA>
+    <OMV name="S"/>
+  </OMA>
+</OMOBJ>
+</FMP>
+<FMP>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA><OMS cd="relation1" name="eq"/>
+    <OMA><OMS cd="fns1" name="restriction"/>
+      <OMV name="f"/>
+      <OMA><OMS cd="fns1" name="domain"/>
+        <OMV name="f"/>
+      </OMA>
+    </OMA>
+    <OMV name="f"/>
+  </OMA>
+</OMOBJ>
+</FMP>
+</CDDefinition>
+
+<CDDefinition>
 <Name> domainofapplication </Name>
 <Role>application</Role>
 <Description> 
-The domainofapplication element denotes the domain over which a given 
-function is being applied. It is intended in MathML to be a more general 
-alternative to specification of this domain using
-such quantifier elements as bvar, lowlimit or condition. 
+Deprecated. This symbol was intended to model MathML 
+domainofapplication but as defined it is a synonym for 
+domain. In MathML3, MathML compatibility is defined to
+use the new restriction symbol.
 </Description>
 </CDDefinition>
 

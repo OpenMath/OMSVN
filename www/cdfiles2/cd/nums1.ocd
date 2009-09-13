@@ -36,9 +36,9 @@
 <CDName> nums1 </CDName>
 <CDBase>http://www.openmath.org/cd</CDBase>
 <CDURL> http://www.openmath.org/cd/nums1.ocd </CDURL>
-<CDReviewDate>2006-03-30</CDReviewDate>
-<CDDate>2004-03-30</CDDate>
-<CDVersion>3</CDVersion>
+<CDReviewDate>2014-04-01</CDReviewDate>
+<CDDate>2009-04-01</CDDate>
+<CDVersion>4</CDVersion>
 <CDRevision>0</CDRevision>
 <CDStatus> official </CDStatus>
 <Description>
@@ -59,7 +59,7 @@ specifying the base. It takes two arguments, the first is a positive
 integer to denote the base to which the number is represented, the
 second argument is a string which contains an optional sign and the
 digits of the integer, using 0-9a-z (as a consequence of this no radix
-greater than 35 is supported). Base 16 and base 10 are already
+greater than 36 is supported). Base 16 and base 10 are already
 covered in the encodings of integers.
 </Description>
 <Example> A representation of 8 (radix 10) base 8
@@ -75,6 +75,33 @@ covered in the encodings of integers.
 </OMA></OMOBJ>
 </Example>
 </CDDefinition>
+
+
+<CDDefinition>
+<Name> based_float </Name>
+<Role>application</Role>
+<Description> 
+This symbol represents the constructor function for floating point numbers,
+specifying the base. It takes two arguments, the first is a positive 
+integer to denote the base to which the number is represented, the
+second argument is a string which contains an optional sign and the
+digits of the number, using 0-9a-z and optionally a "." 
+(as a consequence of this no radix greater than 36 is supported).
+</Description>
+<Example> A representation of 8.5 (radix 10) base 8
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd"><OMA>
+  <OMS cd="relation1" name="eq"/>
+  <OMF dec="8.5"/>
+  <OMA>
+    <OMS cd="nums1" name="based_float"/>
+    <OMI> 8 </OMI>
+    <OMSTR> 10.4 </OMSTR>
+  </OMA>
+
+</OMA></OMOBJ>
+</Example>
+</CDDefinition>
+
 
 <CDDefinition>
 <Name> rational </Name>
