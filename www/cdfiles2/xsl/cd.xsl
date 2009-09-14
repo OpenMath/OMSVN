@@ -180,8 +180,8 @@
     <dd>
       <xsl:element name="a">
 	<xsl:attribute name="href">../sts/<xsl:value-of 
-	select="normalize-space(/cd:CD/cd:CDName)"/>.xhtml#<xsl:value-of
-	select="normalize-space(cd:Name)"/></xsl:attribute>
+	select="normalize-space((/cd:CD/cd:CDName)[1])"/>.xhtml#<xsl:value-of
+	select="normalize-space(cd:Name[1])"/></xsl:attribute>
 	sts
       </xsl:element>
       <!-- not many ecc files so far -->
@@ -208,7 +208,7 @@
     <tr>
       <td align="right"><font size="-1">
 	<xsl:variable name="n"
-		      select="normalize-space(following-sibling::cd:CDDefinition[1]/cd:Name)"/>
+		      select="normalize-space(following-sibling::cd:CDDefinition[1]/cd:Name[1])"/>
 	<xsl:choose>
 	  <xsl:when test="''=$n">
 	    <xsl:variable name="n2"
@@ -224,7 +224,7 @@
 	<xsl:choose>
 	  <xsl:when test="''=$p">
 	    <xsl:variable name="p2"
-			  select="normalize-space(../cd:CDDefinition[last()]/cd:Name)"/>
+			  select="normalize-space(../cd:CDDefinition[last()]/cd:Name[1])"/>
 	    [Last: <a href="#{$p2}"><xsl:value-of select="$p2"/></a>]
 	  </xsl:when>
 	  <xsl:otherwise>
