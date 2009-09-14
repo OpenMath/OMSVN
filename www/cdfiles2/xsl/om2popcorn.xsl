@@ -23,10 +23,10 @@ http://java.symcomp.org/FormalPopcorn.html
 
 <xsl:template match="/">
   <xsl:for-each select="//om:OMOBJ">
-======
- <xsl:apply-templates mode="pop" select="."/>
-^^^^^^
- </xsl:for-each>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:apply-templates mode="pop" select="."/>
+    <xsl:text>&#10;</xsl:text>
+  </xsl:for-each>
 </xsl:template>
 
 
