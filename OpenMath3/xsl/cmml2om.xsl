@@ -1190,5 +1190,58 @@
     </OMA>
   </xsl:template>
 
+  <xsl:template match="m:apply[*[1][self::m:forall]][m:bvar][m:condition]" mode="cmml2om" priority="20">
+    <OMBIND>
+      <OMS cd="quant1" name="forall"/>
+      <OMBVAR>
+	<xsl:apply-templates select="m:bvar/*" mode="cmml2om"/>
+      </OMBVAR>
+      <OMA>
+	<OMS cd="logic1" name="implies"/>
+	<xsl:apply-templates select="m:condition/*" mode="cmml2om"/>
+	<xsl:apply-templates select="(* except (m:condition|m:bvar))[last()]" mode="cmml2om"/>
+      </OMA>
+    </OMBIND>
+  </xsl:template>
+
+  <xsl:template match="m:apply[*[1][self::m:exists]][m:bvar][m:condition]" mode="cmml2om" priority="21">
+    <OMBIND>
+      <OMS cd="quant1" name="exists"/>
+      <OMBVAR>
+	<xsl:apply-templates select="m:bvar/*" mode="cmml2om"/>
+      </OMBVAR>
+      <OMA>
+	<OMS cd="logic1" name="and"/>
+	<xsl:apply-templates select="m:condition/*" mode="cmml2om"/>
+	<xsl:apply-templates select="(* except (m:condition|m:bvar))[last()]" mode="cmml2om"/>
+      </OMA>
+    </OMBIND>
+  </xsl:template>
+
+  <xsl:template match="m:list[m:bvar][m:condition]" mode="cmml2om" priority="21">
+    <OMA><OMS cd="list1" name="suchthat"/>
+    <xsl:apply-templates select="(* except (m:condition|m:bvar))[last()]" mode="cmml2om"/>
+    <OMBIND>
+      <OMS cd="fns1" name="lambda"/>
+      <OMBVAR>
+	<xsl:apply-templates select="m:bvar/*" mode="cmml2om"/>
+      </OMBVAR>
+      <xsl:apply-templates select="m:condition/*" mode="cmml2om"/>
+    </OMBIND>
+    </OMA>
+  </xsl:template>
+
+  <xsl:template match="m:set[m:bvar][m:condition]" mode="cmml2om" priority="21">
+    <OMA><OMS cd="set1" name="suchthat"/>
+    <xsl:apply-templates select="(* except (m:condition|m:bvar))[last()]" mode="cmml2om"/>
+    <OMBIND>
+      <OMS cd="fns1" name="lambda"/>
+      <OMBVAR>
+	<xsl:apply-templates select="m:bvar/*" mode="cmml2om"/>
+      </OMBVAR>
+      <xsl:apply-templates select="m:condition/*" mode="cmml2om"/>
+    </OMBIND>
+    </OMA>
+  </xsl:template>
 
 </xsl:stylesheet>
