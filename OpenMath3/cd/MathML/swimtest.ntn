@@ -1,14 +1,41 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<mcd:notations xmlns:mcd="http://www.w3.org/ns/mathml-cd"
-               xmlns:om="http://www.openmath.org/OpenMath"
-               xmlns:m="http://www.w3.org/1998/Math/MathML"
-               xmlns:iw="http://ikewiki.srfg.at/syntax/1.0/ext"
-               xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core"
-               xml:id="swimtest">
-   <mcd:notations xml:id="swimtest">
-      <notations xmlns="http://www.w3.org/ns/mathml-cd">
-         <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="swimtest+testop-notation-1"/>
-         <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="swimtest+testop-notation-2"/>
-      </notations>
-   </mcd:notations>
-</mcd:notations>
+<?xml version="1.0" encoding="UTF-8"?><notations xmlns="http://www.w3.org/ns/mathml-cd" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="swimtest" name="testop" mcd:cr="fun"/>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="swimtest" mcd:cr="fun">testop</m:csymbol>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <iterate name="args" precedence="500">
+          <separator><m:mo mcd:cr="fun">⊛</m:mo></separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation>
+    <prototype>
+      <om:OMS cd="swimtest" name="testop"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="swimtest">testop</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>⊛</m:mo>
+    </rendering>
+  </notation>
+</notations>
