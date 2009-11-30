@@ -91,7 +91,7 @@
 
 <!-- TODO remove these templates when the HTML-like markup will be eliminated (see ../rnc/cd.rnc) -->
 <xsl:template match="cd:p|cd:code|cd:var|cd:sup|cd:sub">
-    <xsl:element name="{local-name()}">
+    <xsl:element name="{local-name()}" namespace="http://www.w3.org/1999/xhtml">
 	<xsl:apply-templates/>
     </xsl:element>
 </xsl:template>
