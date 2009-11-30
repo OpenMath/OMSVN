@@ -1,41 +1,47 @@
-<?xml version="1.0" encoding="UTF-8"?><notations xmlns="http://www.w3.org/ns/mathml-cd" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
-  <notation>
-    <prototype>
-      <om:OMA>
-        <om:OMS cd="swimtest" name="testop" mcd:cr="fun"/>
-        <exprlist name="args">
-          <expr name="arg"/>
-        </exprlist>
-      </om:OMA>
-    </prototype>
-    <prototype>
-      <m:apply>
-        <m:csymbol cd="swimtest" mcd:cr="fun">testop</m:csymbol>
-        <exprlist name="args">
-          <expr name="arg"/>
-        </exprlist>
-      </m:apply>
-    </prototype>
-    <rendering>
-      <m:mrow>
-        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
-        <iterate name="args" precedence="500">
-          <separator><m:mo mcd:cr="fun">⊛</m:mo></separator>
-          <render name="arg"/>
-        </iterate>
-        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
-      </m:mrow>
-    </rendering>
-  </notation>
-  <notation>
-    <prototype>
-      <om:OMS cd="swimtest" name="testop"/>
-    </prototype>
-    <prototype>
-      <m:csymbol cd="swimtest">testop</m:csymbol>
-    </prototype>
-    <rendering>
-      <m:mo>⊛</m:mo>
-    </rendering>
-  </notation>
-</notations>
+<?xml version="1.0" encoding="UTF-8"?>
+<mcd:notations xmlns:mcd="http://www.w3.org/ns/mathml-cd" xml:id="swimtest">
+   <notations xmlns="http://www.w3.org/ns/mathml-cd"
+              xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core">
+      <mcd:notation>
+         <mcd:prototype>
+            <om:OMA xmlns:om="http://www.openmath.org/OpenMath">
+               <om:OMS cd="swimtest" mcd:cr="fun" name="testop"/>
+               <mcd:exprlist name="args">
+                  <mcd:expr name="arg"/>
+               </mcd:exprlist>
+            </om:OMA>
+         </mcd:prototype>
+         <mcd:prototype>
+            <m:apply xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:csymbol cd="swimtest" mcd:cr="fun">testop</m:csymbol>
+               <mcd:exprlist name="args">
+                  <mcd:expr name="arg"/>
+               </mcd:exprlist>
+            </m:apply>
+         </mcd:prototype>
+         <mcd:rendering>
+            <m:mrow xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:mo fence="true" mcd:egroup="fence">(</m:mo>
+               <mcd:iterate name="args" precedence="500">
+                  <mcd:separator>
+                     <m:mo mcd:cr="fun">⊛H</m:mo>
+                  </mcd:separator>
+                  <mcd:render name="arg"/>
+               </mcd:iterate>
+               <m:mo fence="true" mcd:egroup="fence">)</m:mo>
+            </m:mrow>
+         </mcd:rendering>
+      </mcd:notation>
+      <notation>
+         <prototype>
+            <om:OMS xmlns:om="http://www.openmath.org/OpenMath" cd="swimtest" name="testop"/>
+         </prototype>
+         <prototype>
+            <m:csymbol xmlns:m="http://www.w3.org/1998/Math/MathML" cd="swimtest">testop</m:csymbol>
+         </prototype>
+         <rendering>
+            <m:mo xmlns:m="http://www.w3.org/1998/Math/MathML">⊛</m:mo>
+         </rendering>
+      </notation>
+   </notations>
+</mcd:notations>
