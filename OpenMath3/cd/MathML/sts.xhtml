@@ -8,6 +8,7 @@
    </head>
    <body>
       <a name="top" id="top"/>
+      <span class="link-to-this-fragment">[<a href="http://wiki.openmath.org/?title=cd%3Asts">browse/edit/discuss this in the wiki</a>]</span>
       <h1>OpenMath Content Dictionary: sts</h1>
       <dl>
          <dt class="dt">Canonical URL:</dt>
@@ -28,7 +29,7 @@
          </dd>
          <dt class="dt">Defines:</dt>
          <dd>
-            <a href="#NumericalValue">NumericalValue</a>, <a href="#Object">Object</a>, <a href="#SetNumericalValue">SetNumericalValue</a>, <a href="#attribution">attribution</a>, <a href="#binder">binder</a>, <a href="#error">error</a>, <a href="#mapsto">mapsto</a>, <a href="#nary">nary</a>, <a href="#nassoc">nassoc</a>, <a href="#structure">structure</a>, <a href="#type">type</a>
+            <a href="#NumericalValue">NumericalValue</a>, <a href="#Object">Object</a>, <a href="#SetNumericalValue">SetNumericalValue</a>, <a href="#attribution">attribution</a>, <a href="#binder">binder</a>, <a href="#error">error</a>, <a href="#mapsto">mapsto</a>, <a href="#nary">nary</a>, <a href="#nassoc">nassoc</a>, <a href="#oftype">oftype</a>, <a href="#structure">structure</a>, <a href="#type">type</a>
          </dd>
          <dt class="dt">Date:</dt>
          <dd>2008-10-22</dd>
@@ -72,6 +73,7 @@
 </pre>
       <p>Definitions of the symbols used by the OpenMath Small Type System.</p>
       <div class="cddefinition">
+         <span class="link-to-this-fragment">[<a href="http://wiki.openmath.org/?title=cd%3Asts%2Btype">browse/edit/discuss this in the wiki</a>]</span>
          <h2>
             <a name="type" id="type">Symbol Definition: type</a>
          </h2>
@@ -84,7 +86,7 @@
             </dd>
             <dt class="dt">Example:</dt>
             <dd>
-The variable z is attributed with a type for complex numbers.
+      The variable z is attributed with a type for complex numbers.
 <div>
                   <button id="d43e47xmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e47xml')">XML (OpenMath)</button>
@@ -103,7 +105,7 @@ The variable z is attributed with a type for complex numbers.
                           onclick="omcd_divfold('d43e47cmml')">Content MathML</button>
                </div>
                <pre id="d43e47cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-        &lt;semantics&gt;&lt;ci&gt;z&lt;/ci&gt;&lt;attribution-xml cd="sts" encoding="type"&gt;&lt;OMS xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core" xmlns="http://www.openmath.org/OpenMath" cd="setname1" name="C"/&gt;&lt;/attribution-xml&gt;&lt;/semantics&gt;
+        &lt;semantics&gt;&lt;ci&gt;z&lt;/ci&gt;&lt;annotation-xml cd="sts" encoding="type"&gt;&lt;csymbol cd="setname1"&gt;C&lt;/csymbol&gt;&lt;/annotation-xml&gt;&lt;/semantics&gt;
       &lt;/math&gt;</pre>
                <div>
                   <button id="d43e47prefa" class="omcd_formula omcd_inactive"
@@ -136,7 +138,7 @@ The variable z is attributed with a type for complex numbers.
             </dd>
          </dl>
       </div>
-      <div>[Next: <a href="#mapsto">mapsto</a>]
+      <div>[Next: <a href="#oftype">oftype</a>]
 	   [This: <a href="#type">type</a>]
 	
 	    [Last: <a href="#SetNumericalValue">SetNumericalValue</a>]
@@ -144,6 +146,98 @@ The variable z is attributed with a type for complex numbers.
       [<a href="#top">Top</a>]
  </div>
       <div class="cddefinition">
+         <span class="link-to-this-fragment">[<a href="http://wiki.openmath.org/?title=cd%3Asts%2Boftype">browse/edit/discuss this in the wiki</a>]</span>
+         <h2>
+            <a name="oftype" id="oftype">Symbol Definition: oftype</a>
+         </h2>
+         <dl>
+            <dt class="dt">Role:</dt>
+            <dd>application</dd>
+            <dt class="dt">Description:</dt>
+            <dd>
+               <p>A symbol to express that an object is of the type given in the second argument.</p>
+            </dd>
+            <dt class="dt">Example:</dt>
+            <dd>
+      The variable z is attributed with a type for complex numbers has that type.
+      <div>
+                  <button id="d43e78xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e78xml')">XML (OpenMath)</button>
+               </div>
+               <pre id="d43e78xml" style="display:none">&lt;OMOBJ xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core" xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+	&lt;OMA&gt;
+	  &lt;OMS cd="sts" name="oftype"/&gt;
+	  &lt;OMATTR&gt;
+	    &lt;OMATP&gt;
+	      &lt;OMS cd="sts" name="type"/&gt;
+	      &lt;OMS cd="setname1" name="C"/&gt;
+	    &lt;/OMATP&gt;
+	    &lt;OMV name="z"/&gt;
+	  &lt;/OMATTR&gt;
+	  &lt;OMS cd="setname1" name="C"/&gt;
+	&lt;/OMA&gt;
+      &lt;/OMOBJ&gt;</pre>
+               <div>
+                  <button id="d43e78cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e78cmml')">Content MathML</button>
+               </div>
+               <pre id="d43e78cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+	&lt;apply&gt;
+	  &lt;csymbol cd="sts"&gt;oftype&lt;/csymbol&gt;
+	  &lt;semantics&gt;&lt;ci&gt;z&lt;/ci&gt;&lt;annotation-xml cd="sts" encoding="type"&gt;&lt;csymbol cd="setname1"&gt;C&lt;/csymbol&gt;&lt;/annotation-xml&gt;&lt;/semantics&gt;
+	  &lt;csymbol cd="setname1"&gt;C&lt;/csymbol&gt;
+	&lt;/apply&gt;
+      &lt;/math&gt;</pre>
+               <div>
+                  <button id="d43e78prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e78pref')">Prefix form</button>
+               </div>
+               <div id="d43e78pref" style="display:none; margin-top: 0.5em">
+	                 <a href="sts.xhtml#oftype">oftype</a>
+(<b>Attrib</b>([
+	      <a href="sts.xhtml#type">type</a>
+	                 <a href="setname1.xhtml#C">C</a>
+	    ],
+ <i>z</i>)
+, <a href="setname1.xhtml#C">C</a>)
+
+      </div>
+               <div>
+                  <button id="d43e78mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e78mml')">Presentation MathML</button>
+               </div>
+               <div id="d43e78mml" style="display:block; margin-top: 0.5em">
+                  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
+	                    <mrow xmlns="http://www.w3.org/1998/Math/MathML"
+                           xmlns:om="http://www.openmath.org/OpenMath">
+                        <mi>oftype</mi>
+                        <mo>⁡</mo>
+                        <mrow>
+                           <mo>(</mo>
+                           <mi>z</mi>
+                           <mo>,</mo>
+                           <mi mathvariant="double-struck">C</mi>
+                           <mo>)</mo>
+                        </mrow>
+                     </mrow>
+                  </m:math>
+               </div>
+            </dd>
+            <dt class="dt">Signatures:</dt>
+            <dd>
+               <a href="../sts/sts.xhtml#oftype">
+    sts
+      </a>
+            </dd>
+         </dl>
+      </div>
+      <div>[Next: <a href="#mapsto">mapsto</a>]
+	   [This: <a href="#oftype">oftype</a>]
+	[Previous: <a href="#type">type</a>]
+      [<a href="#top">Top</a>]
+ </div>
+      <div class="cddefinition">
+         <span class="link-to-this-fragment">[<a href="http://wiki.openmath.org/?title=cd%3Asts%2Bmapsto">browse/edit/discuss this in the wiki</a>]</span>
          <h2>
             <a name="mapsto" id="mapsto">Symbol Definition: mapsto</a>
          </h2>
@@ -158,10 +252,10 @@ The variable z is attributed with a type for complex numbers.
             <dd>
 The signature of the power function: (Real , Integer) -&gt; Real
 <div>
-                  <button id="d43e78xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e78xml')">XML (OpenMath)</button>
+                  <button id="d43e115xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e115xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e78xml" style="display:none">&lt;OMOBJ xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core" xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d43e115xml" style="display:none">&lt;OMOBJ xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core" xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
         &lt;OMA&gt;
           &lt;OMS cd="sts" name="mapsto"/&gt;
           &lt;OMS cd="setname1" name="R"/&gt;
@@ -170,10 +264,10 @@ The signature of the power function: (Real , Integer) -&gt; Real
         &lt;/OMA&gt;
       &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e78cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e78cmml')">Content MathML</button>
+                  <button id="d43e115cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e115cmml')">Content MathML</button>
                </div>
-               <pre id="d43e78cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e115cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
         &lt;apply&gt;
           &lt;csymbol cd="sts"&gt;mapsto&lt;/csymbol&gt;
           &lt;csymbol cd="setname1"&gt;R&lt;/csymbol&gt;
@@ -182,19 +276,19 @@ The signature of the power function: (Real , Integer) -&gt; Real
         &lt;/apply&gt;
       &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e78prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e78pref')">Prefix form</button>
+                  <button id="d43e115prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e115pref')">Prefix form</button>
                </div>
-               <div id="d43e78pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e115pref" style="display:none; margin-top: 0.5em">
                   <a href="sts.xhtml#mapsto">mapsto</a>
 (<a href="setname1.xhtml#R">R</a>, <a href="setname1.xhtml#Z">Z</a>, <a href="setname1.xhtml#R">R</a>)
 
       </div>
                <div>
-                  <button id="d43e78mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e78mml')">Presentation MathML</button>
+                  <button id="d43e115mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e115mml')">Presentation MathML</button>
                </div>
-               <div id="d43e78mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e115mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -218,10 +312,11 @@ The signature of the power function: (Real , Integer) -&gt; Real
       </div>
       <div>[Next: <a href="#nary">nary</a>]
 	   [This: <a href="#mapsto">mapsto</a>]
-	[Previous: <a href="#type">type</a>]
+	[Previous: <a href="#oftype">oftype</a>]
       [<a href="#top">Top</a>]
  </div>
       <div class="cddefinition">
+         <span class="link-to-this-fragment">[<a href="http://wiki.openmath.org/?title=cd%3Asts%2Bnary">browse/edit/discuss this in the wiki</a>]</span>
          <h2>
             <a name="nary" id="nary">Symbol Definition: nary</a>
          </h2>
@@ -236,10 +331,10 @@ The signature of the power function: (Real , Integer) -&gt; Real
             <dd>
 The signature for list, an n-ary function:
 <div>
-                  <button id="d43e107xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e107xml')">XML (OpenMath)</button>
+                  <button id="d43e144xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e144xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e107xml" style="display:none">&lt;OMOBJ xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core" xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d43e144xml" style="display:none">&lt;OMOBJ xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core" xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
         &lt;OMA&gt;
           &lt;OMS cd="sts" name="mapsto"/&gt;
           &lt;OMA&gt;
@@ -250,10 +345,10 @@ The signature for list, an n-ary function:
         &lt;/OMA&gt;
       &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e107cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e107cmml')">Content MathML</button>
+                  <button id="d43e144cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e144cmml')">Content MathML</button>
                </div>
-               <pre id="d43e107cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e144cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
         &lt;apply&gt;
           &lt;csymbol cd="sts"&gt;mapsto&lt;/csymbol&gt;
           &lt;apply&gt;
@@ -264,10 +359,10 @@ The signature for list, an n-ary function:
         &lt;/apply&gt;
       &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e107prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e107pref')">Prefix form</button>
+                  <button id="d43e144prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e144pref')">Prefix form</button>
                </div>
-               <div id="d43e107pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e144pref" style="display:none; margin-top: 0.5em">
                   <a href="sts.xhtml#mapsto">mapsto</a>
 (<a href="sts.xhtml#nary">nary</a>
 (<a href="sts.xhtml#Object">Object</a>)
@@ -275,10 +370,10 @@ The signature for list, an n-ary function:
 
       </div>
                <div>
-                  <button id="d43e107mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e107mml')">Presentation MathML</button>
+                  <button id="d43e144mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e144mml')">Presentation MathML</button>
                </div>
-               <div id="d43e107mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e144mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -313,6 +408,7 @@ The signature for list, an n-ary function:
       [<a href="#top">Top</a>]
  </div>
       <div class="cddefinition">
+         <span class="link-to-this-fragment">[<a href="http://wiki.openmath.org/?title=cd%3Asts%2Bnassoc">browse/edit/discuss this in the wiki</a>]</span>
          <h2>
             <a name="nassoc" id="nassoc">Symbol Definition: nassoc</a>
          </h2>
@@ -327,10 +423,10 @@ The signature for list, an n-ary function:
             <dd>
 The signature for plus, an associative n-ary function:
 <div>
-                  <button id="d43e139xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e139xml')">XML (OpenMath)</button>
+                  <button id="d43e176xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e176xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e139xml" style="display:none">&lt;OMOBJ xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core" xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d43e176xml" style="display:none">&lt;OMOBJ xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core" xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
         &lt;OMA&gt;
           &lt;OMS cd="sts" name="mapsto"/&gt;
           &lt;OMA&gt;
@@ -341,10 +437,10 @@ The signature for plus, an associative n-ary function:
         &lt;/OMA&gt;
       &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e139cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e139cmml')">Content MathML</button>
+                  <button id="d43e176cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e176cmml')">Content MathML</button>
                </div>
-               <pre id="d43e139cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e176cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
         &lt;apply&gt;
           &lt;csymbol cd="sts"&gt;mapsto&lt;/csymbol&gt;
           &lt;apply&gt;
@@ -355,10 +451,10 @@ The signature for plus, an associative n-ary function:
         &lt;/apply&gt;
       &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e139prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e139pref')">Prefix form</button>
+                  <button id="d43e176prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e176pref')">Prefix form</button>
                </div>
-               <div id="d43e139pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e176pref" style="display:none; margin-top: 0.5em">
                   <a href="sts.xhtml#mapsto">mapsto</a>
 (<a href="sts.xhtml#nassoc">nassoc</a>
 ( <i>AbelianSemiGroup</i>)
@@ -366,10 +462,10 @@ The signature for plus, an associative n-ary function:
 
       </div>
                <div>
-                  <button id="d43e139mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e139mml')">Presentation MathML</button>
+                  <button id="d43e176mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e176mml')">Presentation MathML</button>
                </div>
-               <div id="d43e139mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e176mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -404,6 +500,7 @@ The signature for plus, an associative n-ary function:
       [<a href="#top">Top</a>]
  </div>
       <div class="cddefinition">
+         <span class="link-to-this-fragment">[<a href="http://wiki.openmath.org/?title=cd%3Asts%2Berror">browse/edit/discuss this in the wiki</a>]</span>
          <h2>
             <a name="error" id="error">Symbol Definition: error</a>
          </h2>
@@ -417,10 +514,10 @@ The signature for plus, an associative n-ary function:
             <dt class="dt">Example:</dt>
             <dd>
                <div>
-                  <button id="d43e171xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e171xml')">XML (OpenMath)</button>
+                  <button id="d43e208xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e208xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e171xml" style="display:none">&lt;OMOBJ xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core" xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d43e208xml" style="display:none">&lt;OMOBJ xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core" xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
         &lt;OMA&gt;
           &lt;OMS cd="sts" name="mapsto"/&gt;
           &lt;OMV name="OMSymbol"/&gt;
@@ -428,10 +525,10 @@ The signature for plus, an associative n-ary function:
         &lt;/OMA&gt;
       &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e171cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e171cmml')">Content MathML</button>
+                  <button id="d43e208cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e208cmml')">Content MathML</button>
                </div>
-               <pre id="d43e171cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e208cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
         &lt;apply&gt;
           &lt;csymbol cd="sts"&gt;mapsto&lt;/csymbol&gt;
           &lt;ci&gt;OMSymbol&lt;/ci&gt;
@@ -439,19 +536,19 @@ The signature for plus, an associative n-ary function:
         &lt;/apply&gt;
       &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e171prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e171pref')">Prefix form</button>
+                  <button id="d43e208prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e208pref')">Prefix form</button>
                </div>
-               <div id="d43e171pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e208pref" style="display:none; margin-top: 0.5em">
                   <a href="sts.xhtml#mapsto">mapsto</a>
 ( <i>OMSymbol</i>, <a href="sts.xhtml#error">error</a>)
 
       </div>
                <div>
-                  <button id="d43e171mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e171mml')">Presentation MathML</button>
+                  <button id="d43e208mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e208mml')">Presentation MathML</button>
                </div>
-               <div id="d43e171mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e208mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -478,6 +575,7 @@ The signature for plus, an associative n-ary function:
       [<a href="#top">Top</a>]
  </div>
       <div class="cddefinition">
+         <span class="link-to-this-fragment">[<a href="http://wiki.openmath.org/?title=cd%3Asts%2Bstructure">browse/edit/discuss this in the wiki</a>]</span>
          <h2>
             <a name="structure" id="structure">Symbol Definition: structure</a>
          </h2>
@@ -493,10 +591,10 @@ The signature for plus, an associative n-ary function:
 The signature of a function which given a set will return an element
 of that set:
 <div>
-                  <button id="d43e198xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e198xml')">XML (OpenMath)</button>
+                  <button id="d43e235xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e235xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e198xml" style="display:none">&lt;OMOBJ xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core" xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d43e235xml" style="display:none">&lt;OMOBJ xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core" xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
         &lt;OMA&gt;
           &lt;OMS cd="sts" name="mapsto"/&gt;
           &lt;OMA&gt;
@@ -507,10 +605,10 @@ of that set:
         &lt;/OMA&gt;
       &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e198cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e198cmml')">Content MathML</button>
+                  <button id="d43e235cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e235cmml')">Content MathML</button>
                </div>
-               <pre id="d43e198cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e235cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
         &lt;apply&gt;
           &lt;csymbol cd="sts"&gt;mapsto&lt;/csymbol&gt;
           &lt;apply&gt;
@@ -521,10 +619,10 @@ of that set:
         &lt;/apply&gt;
       &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e198prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e198pref')">Prefix form</button>
+                  <button id="d43e235prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e235pref')">Prefix form</button>
                </div>
-               <div id="d43e198pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e235pref" style="display:none; margin-top: 0.5em">
                   <a href="sts.xhtml#mapsto">mapsto</a>
 (<a href="sts.xhtml#structure">structure</a>
 ( <i>set</i>)
@@ -532,10 +630,10 @@ of that set:
 
       </div>
                <div>
-                  <button id="d43e198mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e198mml')">Presentation MathML</button>
+                  <button id="d43e235mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e235mml')">Presentation MathML</button>
                </div>
-               <div id="d43e198mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e235mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -570,6 +668,7 @@ of that set:
       [<a href="#top">Top</a>]
  </div>
       <div class="cddefinition">
+         <span class="link-to-this-fragment">[<a href="http://wiki.openmath.org/?title=cd%3Asts%2Bbinder">browse/edit/discuss this in the wiki</a>]</span>
          <h2>
             <a name="binder" id="binder">Symbol Definition: binder</a>
          </h2>
@@ -584,31 +683,31 @@ of that set:
             <dd>
 The signature of forall is:
 <div>
-                  <button id="d43e230xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e230xml')">XML (OpenMath)</button>
+                  <button id="d43e268xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e268xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e230xml" style="display:none">&lt;OMOBJ xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core" xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d43e268xml" style="display:none">&lt;OMOBJ xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core" xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
         &lt;OMS cd="sts" name="binder"/&gt;
       &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e230cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e230cmml')">Content MathML</button>
+                  <button id="d43e268cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e268cmml')">Content MathML</button>
                </div>
-               <pre id="d43e230cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e268cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
         &lt;csymbol cd="sts"&gt;binder&lt;/csymbol&gt;
       &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e230prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e230pref')">Prefix form</button>
+                  <button id="d43e268prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e268pref')">Prefix form</button>
                </div>
-               <div id="d43e230pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e268pref" style="display:none; margin-top: 0.5em">
                   <a href="sts.xhtml#binder">binder</a>
                </div>
                <div>
-                  <button id="d43e230mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e230mml')">Presentation MathML</button>
+                  <button id="d43e268mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e268mml')">Presentation MathML</button>
                </div>
-               <div id="d43e230mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e268mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mi xmlns="http://www.w3.org/1998/Math/MathML"
                          xmlns:om="http://www.openmath.org/OpenMath">binder</mi>
@@ -629,6 +728,7 @@ The signature of forall is:
       [<a href="#top">Top</a>]
  </div>
       <div class="cddefinition">
+         <span class="link-to-this-fragment">[<a href="http://wiki.openmath.org/?title=cd%3Asts%2Battribution">browse/edit/discuss this in the wiki</a>]</span>
          <h2>
             <a name="attribution" id="attribution">Symbol Definition: attribution</a>
          </h2>
@@ -642,31 +742,31 @@ The signature of forall is:
             <dt class="dt">Example:</dt>
             <dd>
                <div>
-                  <button id="d43e251xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e251xml')">XML (OpenMath)</button>
+                  <button id="d43e288xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e288xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e251xml" style="display:none">&lt;OMOBJ xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core" xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d43e288xml" style="display:none">&lt;OMOBJ xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core" xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
         &lt;OMS cd="sts" name="attribution"/&gt;
       &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e251cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e251cmml')">Content MathML</button>
+                  <button id="d43e288cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e288cmml')">Content MathML</button>
                </div>
-               <pre id="d43e251cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e288cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
         &lt;csymbol cd="sts"&gt;attribution&lt;/csymbol&gt;
       &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e251prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e251pref')">Prefix form</button>
+                  <button id="d43e288prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e288pref')">Prefix form</button>
                </div>
-               <div id="d43e251pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e288pref" style="display:none; margin-top: 0.5em">
                   <a href="sts.xhtml#attribution">attribution</a>
                </div>
                <div>
-                  <button id="d43e251mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e251mml')">Presentation MathML</button>
+                  <button id="d43e288mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e288mml')">Presentation MathML</button>
                </div>
-               <div id="d43e251mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e288mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mi xmlns="http://www.w3.org/1998/Math/MathML"
                          xmlns:om="http://www.openmath.org/OpenMath">attribution</mi>
@@ -687,6 +787,7 @@ The signature of forall is:
       [<a href="#top">Top</a>]
  </div>
       <div class="cddefinition">
+         <span class="link-to-this-fragment">[<a href="http://wiki.openmath.org/?title=cd%3Asts%2BObject">browse/edit/discuss this in the wiki</a>]</span>
          <h2>
             <a name="Object" id="Object">Symbol Definition: Object</a>
          </h2>
@@ -702,10 +803,10 @@ The signature of forall is:
 The signature for list, to show that list has the signature:
  Object* -&gt; Object
 <div>
-                  <button id="d43e271xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e271xml')">XML (OpenMath)</button>
+                  <button id="d43e308xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e308xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e271xml" style="display:none">&lt;OMOBJ xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core" xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d43e308xml" style="display:none">&lt;OMOBJ xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core" xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
         &lt;OMA&gt;
           &lt;OMS cd="sts" name="mapsto"/&gt;
           &lt;OMA&gt;
@@ -716,10 +817,10 @@ The signature for list, to show that list has the signature:
         &lt;/OMA&gt;
       &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e271cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e271cmml')">Content MathML</button>
+                  <button id="d43e308cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e308cmml')">Content MathML</button>
                </div>
-               <pre id="d43e271cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e308cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
         &lt;apply&gt;
           &lt;csymbol cd="sts"&gt;mapsto&lt;/csymbol&gt;
           &lt;apply&gt;
@@ -730,10 +831,10 @@ The signature for list, to show that list has the signature:
         &lt;/apply&gt;
       &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e271prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e271pref')">Prefix form</button>
+                  <button id="d43e308prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e308pref')">Prefix form</button>
                </div>
-               <div id="d43e271pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e308pref" style="display:none; margin-top: 0.5em">
                   <a href="sts.xhtml#mapsto">mapsto</a>
 (<a href="sts.xhtml#nary">nary</a>
 (<a href="sts.xhtml#Object">Object</a>)
@@ -741,10 +842,10 @@ The signature for list, to show that list has the signature:
 
       </div>
                <div>
-                  <button id="d43e271mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e271mml')">Presentation MathML</button>
+                  <button id="d43e308mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e308mml')">Presentation MathML</button>
                </div>
-               <div id="d43e271mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e308mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -779,6 +880,7 @@ The signature for list, to show that list has the signature:
       [<a href="#top">Top</a>]
  </div>
       <div class="cddefinition">
+         <span class="link-to-this-fragment">[<a href="http://wiki.openmath.org/?title=cd%3Asts%2BNumericalValue">browse/edit/discuss this in the wiki</a>]</span>
          <h2>
             <a name="NumericalValue" id="NumericalValue">Symbol Definition: NumericalValue</a>
          </h2>
@@ -793,10 +895,10 @@ The signature for list, to show that list has the signature:
             <dd>
 The generic signature for the function power:
 <div>
-                  <button id="d43e303xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e303xml')">XML (OpenMath)</button>
+                  <button id="d43e340xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e340xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e303xml" style="display:none">&lt;OMOBJ xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core" xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d43e340xml" style="display:none">&lt;OMOBJ xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core" xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
         &lt;OMA&gt;
           &lt;OMS cd="sts" name="mapsto"/&gt;
           &lt;OMS cd="sts" name="NumericalValue"/&gt; 
@@ -805,10 +907,10 @@ The generic signature for the function power:
         &lt;/OMA&gt;
       &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e303cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e303cmml')">Content MathML</button>
+                  <button id="d43e340cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e340cmml')">Content MathML</button>
                </div>
-               <pre id="d43e303cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e340cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
         &lt;apply&gt;
           &lt;csymbol cd="sts"&gt;mapsto&lt;/csymbol&gt;
           &lt;csymbol cd="sts"&gt;NumericalValue&lt;/csymbol&gt; 
@@ -817,19 +919,19 @@ The generic signature for the function power:
         &lt;/apply&gt;
       &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e303prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e303pref')">Prefix form</button>
+                  <button id="d43e340prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e340pref')">Prefix form</button>
                </div>
-               <div id="d43e303pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e340pref" style="display:none; margin-top: 0.5em">
                   <a href="sts.xhtml#mapsto">mapsto</a>
 (<a href="sts.xhtml#NumericalValue">NumericalValue</a>, <a href="sts.xhtml#NumericalValue">NumericalValue</a>, <a href="sts.xhtml#NumericalValue">NumericalValue</a>)
 
       </div>
                <div>
-                  <button id="d43e303mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e303mml')">Presentation MathML</button>
+                  <button id="d43e340mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e340mml')">Presentation MathML</button>
                </div>
-               <div id="d43e303mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e340mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">
@@ -857,6 +959,7 @@ The generic signature for the function power:
       [<a href="#top">Top</a>]
  </div>
       <div class="cddefinition">
+         <span class="link-to-this-fragment">[<a href="http://wiki.openmath.org/?title=cd%3Asts%2BSetNumericalValue">browse/edit/discuss this in the wiki</a>]</span>
          <h2>
             <a name="SetNumericalValue" id="SetNumericalValue">Symbol Definition: SetNumericalValue</a>
          </h2>
@@ -871,10 +974,10 @@ The generic signature for the function power:
             <dd>
 The generic signature for the function arctan from transc3:
 <div>
-                  <button id="d43e332xmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e332xml')">XML (OpenMath)</button>
+                  <button id="d43e369xmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e369xml')">XML (OpenMath)</button>
                </div>
-               <pre id="d43e332xml" style="display:none">&lt;OMOBJ xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core" xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
+               <pre id="d43e369xml" style="display:none">&lt;OMOBJ xmlns:wif="http://ikewiki.srfg.at/syntax/1.0/core" xmlns="http://www.openmath.org/OpenMath" version="3.0" cdbase="http://www.openmath.org/cd"&gt;
         &lt;OMA&gt;
           &lt;OMS cd="sts" name="mapsto"/&gt;
           &lt;OMS cd="sts" name="NumericalValue"/&gt; 
@@ -882,10 +985,10 @@ The generic signature for the function arctan from transc3:
         &lt;/OMA&gt;
       &lt;/OMOBJ&gt;</pre>
                <div>
-                  <button id="d43e332cmmla" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e332cmml')">Content MathML</button>
+                  <button id="d43e369cmmla" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e369cmml')">Content MathML</button>
                </div>
-               <pre id="d43e332cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+               <pre id="d43e369cmml" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
         &lt;apply&gt;
           &lt;csymbol cd="sts"&gt;mapsto&lt;/csymbol&gt;
           &lt;csymbol cd="sts"&gt;NumericalValue&lt;/csymbol&gt; 
@@ -893,19 +996,19 @@ The generic signature for the function arctan from transc3:
         &lt;/apply&gt;
       &lt;/math&gt;</pre>
                <div>
-                  <button id="d43e332prefa" class="omcd_formula omcd_inactive"
-                          onclick="omcd_divfold('d43e332pref')">Prefix form</button>
+                  <button id="d43e369prefa" class="omcd_formula omcd_inactive"
+                          onclick="omcd_divfold('d43e369pref')">Prefix form</button>
                </div>
-               <div id="d43e332pref" style="display:none; margin-top: 0.5em">
+               <div id="d43e369pref" style="display:none; margin-top: 0.5em">
                   <a href="sts.xhtml#mapsto">mapsto</a>
 (<a href="sts.xhtml#NumericalValue">NumericalValue</a>, <a href="sts.xhtml#SetNumericalValue">SetNumericalValue</a>)
 
       </div>
                <div>
-                  <button id="d43e332mmla" class="omcd_formula omcd_active"
-                          onclick="omcd_divfold('d43e332mml')">Presentation MathML</button>
+                  <button id="d43e369mmla" class="omcd_formula omcd_active"
+                          onclick="omcd_divfold('d43e369mml')">Presentation MathML</button>
                </div>
-               <div id="d43e332mml" style="display:block; margin-top: 0.5em">
+               <div id="d43e369mml" style="display:block; margin-top: 0.5em">
                   <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="block">
                      <mrow xmlns="http://www.w3.org/1998/Math/MathML"
                            xmlns:om="http://www.openmath.org/OpenMath">

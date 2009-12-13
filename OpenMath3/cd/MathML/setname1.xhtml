@@ -8,6 +8,7 @@
    </head>
    <body>
       <a name="top" id="top"/>
+      <span class="link-to-this-fragment">[<a href="http://wiki.openmath.org/?title=cd%3Asetname1">browse/edit/discuss this in the wiki</a>]</span>
       <h1>OpenMath Content Dictionary: setname1</h1>
       <dl>
          <dt class="dt">Canonical URL:</dt>
@@ -76,6 +77,7 @@ Revised to add Zm, GFp, GFpn on 1999-11-09.
 Revised to add QuotientField and A on 1999-11-19.
 </pre>
       <div class="cddefinition">
+         <span class="link-to-this-fragment">[<a href="http://wiki.openmath.org/?title=cd%3Asetname1%2BP">browse/edit/discuss this in the wiki</a>]</span>
          <h2>
             <a name="P" id="P">Symbol Definition: P</a>
          </h2>
@@ -157,7 +159,19 @@ Revised to add QuotientField and A on 1999-11-19.
                           onclick="omcd_divfold('d43e73strict')">Strict Content MathML</button>
                </div>
                <pre id="d43e73strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-        &lt;bind&gt;&lt;csymbol cd="quant1"&gt;forall&lt;/csymbol&gt;&lt;bvar&gt;&lt;ci&gt;d&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;p&lt;/ci&gt;&lt;/bvar&gt;&lt;apply&gt;
+        &lt;bind&gt;&lt;csymbol cd="quant1"&gt;forall&lt;/csymbol&gt;&lt;bvar&gt;&lt;ci&gt;d&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;p&lt;/ci&gt;&lt;/bvar&gt;&lt;apply&gt;&lt;csymbol cd="logic1"&gt;implies&lt;/csymbol&gt;&lt;apply&gt;
+              &lt;csymbol cd="logic1"&gt;and&lt;/csymbol&gt;
+              &lt;apply&gt;
+                &lt;csymbol cd="set1"&gt;in&lt;/csymbol&gt;
+                &lt;ci&gt;p&lt;/ci&gt;
+                &lt;csymbol cd="setname1"&gt;P&lt;/csymbol&gt;
+              &lt;/apply&gt;
+              &lt;apply&gt;
+                &lt;csymbol cd="set1"&gt;in&lt;/csymbol&gt;
+                &lt;ci&gt;d&lt;/ci&gt;
+                &lt;csymbol cd="setname1"&gt;N&lt;/csymbol&gt;
+              &lt;/apply&gt;
+            &lt;/apply&gt;&lt;apply&gt;
             &lt;csymbol cd="logic1"&gt;implies&lt;/csymbol&gt;
             &lt;apply&gt;
               &lt;csymbol cd="integer1"&gt;factorof&lt;/csymbol&gt;
@@ -177,14 +191,26 @@ Revised to add QuotientField and A on 1999-11-19.
                 &lt;ci&gt;p&lt;/ci&gt;
               &lt;/apply&gt;
             &lt;/apply&gt;
-          &lt;/apply&gt;&lt;/bind&gt;
+          &lt;/apply&gt;&lt;/apply&gt;&lt;/bind&gt;
       &lt;/math&gt;</pre>
                <div>
                   <button id="d43e73cmmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e73cmml')">OpenMath</button>
                </div>
-               <pre id="d43e73cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
-        &lt;OMBIND&gt;&lt;OMS cd="quant1" name="forall"/&gt;&lt;OMBVAR&gt;&lt;OMV name="d"/&gt;&lt;OMV name="p"/&gt;&lt;/OMBVAR&gt;&lt;OMA&gt;
+               <pre id="d43e73cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
+        &lt;OMBIND&gt;&lt;OMS cd="quant1" name="forall"/&gt;&lt;OMBVAR&gt;&lt;OMV name="d"/&gt;&lt;OMV name="p"/&gt;&lt;/OMBVAR&gt;&lt;OMA&gt;&lt;OMS cd="logic1" name="implies"/&gt;&lt;OMA&gt;
+              &lt;OMS cd="logic1" name="and"/&gt;
+              &lt;OMA&gt;
+                &lt;OMS cd="set1" name="in"/&gt;
+                &lt;OMV name="p"/&gt;
+                &lt;OMS cd="setname1" name="P"/&gt;
+              &lt;/OMA&gt;
+              &lt;OMA&gt;
+                &lt;OMS cd="set1" name="in"/&gt;
+                &lt;OMV name="d"/&gt;
+                &lt;OMS cd="setname1" name="N"/&gt;
+              &lt;/OMA&gt;
+            &lt;/OMA&gt;&lt;OMA&gt;
             &lt;OMS cd="logic1" name="implies"/&gt;
             &lt;OMA&gt;
               &lt;OMS cd="integer1" name="factorof"/&gt;
@@ -204,7 +230,7 @@ Revised to add QuotientField and A on 1999-11-19.
                 &lt;OMV name="p"/&gt;
               &lt;/OMA&gt;
             &lt;/OMA&gt;
-          &lt;/OMA&gt;&lt;/OMBIND&gt;
+          &lt;/OMA&gt;&lt;/OMA&gt;&lt;/OMBIND&gt;
       &lt;/OMOBJ&gt;</pre>
                <div>
                   <button id="d43e73prefa" class="omcd_formula omcd_inactive"
@@ -215,6 +241,13 @@ Revised to add QuotientField and A on 1999-11-19.
 [ <i>d</i> 
                   <i>p</i>] .
 (<a href="logic1.xhtml#implies">implies</a>
+(<a href="logic1.xhtml#and">and</a>
+(<a href="set1.xhtml#in">in</a>
+( <i>p</i>, <a href="setname1.xhtml#P">P</a>)
+, <a href="set1.xhtml#in">in</a>
+( <i>d</i>, <a href="setname1.xhtml#N">N</a>)
+)
+, <a href="logic1.xhtml#implies">implies</a>
 (<a href="integer1.xhtml#factorof">factorof</a>
 ( <i>d</i>,  <i>p</i>)
 , <a href="logic1.xhtml#or">or</a>
@@ -222,6 +255,7 @@ Revised to add QuotientField and A on 1999-11-19.
 ( <i>d</i>, 1)
 , <a href="relation1.xhtml#eq">eq</a>
 ( <i>d</i>,  <i>p</i>)
+)
 )
 )
 )
@@ -246,33 +280,51 @@ Revised to add QuotientField and A on 1999-11-19.
                         <mrow>
                            <mo>(</mo>
                            <mrow>
-                              <mi>factorof</mi>
-                              <mo>⁡</mo>
                               <mrow>
-                                 <mo>(</mo>
-                                 <mi>d</mi>
-                                 <mo>,</mo>
                                  <mi>p</mi>
-                                 <mo>)</mo>
+                                 <mo>∈</mo>
+                                 <mi mathvariant="double-struck">P</mi>
+                              </mrow>
+                              <mo>∧</mo>
+                              <mrow>
+                                 <mi>d</mi>
+                                 <mo>∈</mo>
+                                 <mi mathvariant="double-struck">N</mi>
                               </mrow>
                            </mrow>
                            <mo>⇒</mo>
                            <mrow>
+                              <mo>(</mo>
                               <mrow>
-                                 <mo>(</mo>
-                                 <mi>d</mi>
-                                 <mo>=</mo>
-                                 <mn>1</mn>
-                                 <mo>)</mo>
+                                 <mi>factorof</mi>
+                                 <mo>⁡</mo>
+                                 <mrow>
+                                    <mo>(</mo>
+                                    <mi>d</mi>
+                                    <mo>,</mo>
+                                    <mi>p</mi>
+                                    <mo>)</mo>
+                                 </mrow>
                               </mrow>
-                              <mo>∨</mo>
+                              <mo>⇒</mo>
                               <mrow>
-                                 <mo>(</mo>
-                                 <mi>d</mi>
-                                 <mo>=</mo>
-                                 <mi>p</mi>
-                                 <mo>)</mo>
+                                 <mrow>
+                                    <mo>(</mo>
+                                    <mi>d</mi>
+                                    <mo>=</mo>
+                                    <mn>1</mn>
+                                    <mo>)</mo>
+                                 </mrow>
+                                 <mo>∨</mo>
+                                 <mrow>
+                                    <mo>(</mo>
+                                    <mi>d</mi>
+                                    <mo>=</mo>
+                                    <mi>p</mi>
+                                    <mo>)</mo>
+                                 </mrow>
                               </mrow>
+                              <mo>)</mo>
                            </mrow>
                            <mo>)</mo>
                         </mrow>
@@ -308,7 +360,7 @@ Revised to add QuotientField and A on 1999-11-19.
                   <button id="d43e167cmmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e167cmml')">OpenMath</button>
                </div>
-               <pre id="d43e167cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+               <pre id="d43e167cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
         &lt;OMA&gt;
           &lt;OMS cd="set1" name="in"/&gt;
           &lt;OMI&gt;17&lt;/OMI&gt;
@@ -701,6 +753,7 @@ n is a natural number and n &gt; 1 and
       [<a href="#top">Top</a>]
  </div>
       <div class="cddefinition">
+         <span class="link-to-this-fragment">[<a href="http://wiki.openmath.org/?title=cd%3Asetname1%2BN">browse/edit/discuss this in the wiki</a>]</span>
          <h2>
             <a name="N" id="N">Symbol Definition: N</a>
          </h2>
@@ -776,7 +829,7 @@ n is a natural number and n &gt; 1 and
                   <button id="d43e361cmmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e361cmml')">OpenMath</button>
                </div>
-               <pre id="d43e361cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+               <pre id="d43e361cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
         &lt;OMBIND&gt;&lt;OMS cd="quant1" name="forall"/&gt;&lt;OMBVAR&gt;&lt;OMV name="n"/&gt;&lt;/OMBVAR&gt;&lt;OMA&gt;
             &lt;OMS cd="logic1" name="implies"/&gt;
             &lt;OMA&gt;
@@ -883,7 +936,7 @@ n is a natural number and n &gt; 1 and
                   <button id="d43e418cmmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e418cmml')">OpenMath</button>
                </div>
-               <pre id="d43e418cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+               <pre id="d43e418cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
         &lt;OMA&gt;
           &lt;OMS cd="set1" name="in"/&gt;
           &lt;OMI&gt;0&lt;/OMI&gt;
@@ -949,7 +1002,7 @@ n is a natural number and n &gt; 1 and
                   <button id="d43e443cmmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e443cmml')">OpenMath</button>
                </div>
-               <pre id="d43e443cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+               <pre id="d43e443cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
         &lt;OMA&gt;
           &lt;OMS cd="set1" name="in"/&gt;
           &lt;OMI&gt;1729&lt;/OMI&gt;
@@ -1147,6 +1200,7 @@ n=0 or n-1 is a natural number
       [<a href="#top">Top</a>]
  </div>
       <div class="cddefinition">
+         <span class="link-to-this-fragment">[<a href="http://wiki.openmath.org/?title=cd%3Asetname1%2BZ">browse/edit/discuss this in the wiki</a>]</span>
          <h2>
             <a name="Z" id="Z">Symbol Definition: Z</a>
          </h2>
@@ -1216,7 +1270,7 @@ n=0 or n-1 is a natural number
                   <button id="d43e549cmmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e549cmml')">OpenMath</button>
                </div>
-               <pre id="d43e549cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+               <pre id="d43e549cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
         &lt;OMA&gt;
           &lt;OMS cd="logic1" name="implies"/&gt;
           &lt;OMA&gt;
@@ -1312,7 +1366,7 @@ n=0 or n-1 is a natural number
                   <button id="d43e595cmmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e595cmml')">OpenMath</button>
                </div>
-               <pre id="d43e595cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+               <pre id="d43e595cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
         &lt;OMA&gt;
           &lt;OMS cd="set1" name="in"/&gt;
           &lt;OMI&gt;0&lt;/OMI&gt;
@@ -1393,7 +1447,7 @@ n=0 or n-1 is a natural number
                   <button id="d43e617cmmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e617cmml')">OpenMath</button>
                </div>
-               <pre id="d43e617cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+               <pre id="d43e617cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
         &lt;OMA&gt;
           &lt;OMS cd="logic1" name="implies"/&gt;
           &lt;OMA&gt;
@@ -1479,7 +1533,7 @@ n=0 or n-1 is a natural number
                   <button id="d43e653cmmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e653cmml')">OpenMath</button>
                </div>
-               <pre id="d43e653cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+               <pre id="d43e653cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
         &lt;OMA&gt;
           &lt;OMS cd="set1" name="in"/&gt;
           &lt;OMI&gt; 42&lt;/OMI&gt;
@@ -1675,6 +1729,7 @@ or -z is a natural number are equivalent
       [<a href="#top">Top</a>]
  </div>
       <div class="cddefinition">
+         <span class="link-to-this-fragment">[<a href="http://wiki.openmath.org/?title=cd%3Asetname1%2Brationials">browse/edit/discuss this in the wiki</a>]</span>
          <h2>
             <a name="rationials" id="rationials">Symbol Definition: rationials</a>
          </h2>
@@ -1750,7 +1805,11 @@ or -z is a natural number are equivalent
                           onclick="omcd_divfold('d43e757strict')">Strict Content MathML</button>
                </div>
                <pre id="d43e757strict" style="display:none; margin-top: 0.5em">&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-        &lt;bind&gt;&lt;csymbol cd="quant1"&gt;forall&lt;/csymbol&gt;&lt;bvar&gt;&lt;ci&gt;z&lt;/ci&gt;&lt;/bvar&gt;&lt;bind&gt;&lt;csymbol cd="quant1"&gt;exists&lt;/csymbol&gt;&lt;bvar&gt;&lt;ci&gt;p&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;q&lt;/ci&gt;&lt;/bvar&gt;&lt;apply&gt;
+        &lt;bind&gt;&lt;csymbol cd="quant1"&gt;forall&lt;/csymbol&gt;&lt;bvar&gt;&lt;ci&gt;z&lt;/ci&gt;&lt;/bvar&gt;&lt;apply&gt;&lt;csymbol cd="logic1"&gt;implies&lt;/csymbol&gt;&lt;apply&gt;
+              &lt;csymbol cd="set1"&gt;in&lt;/csymbol&gt;
+              &lt;ci&gt;z&lt;/ci&gt;
+              &lt;csymbol cd="setname1"&gt;Q&lt;/csymbol&gt;
+            &lt;/apply&gt;&lt;bind&gt;&lt;csymbol cd="quant1"&gt;exists&lt;/csymbol&gt;&lt;bvar&gt;&lt;ci&gt;p&lt;/ci&gt;&lt;/bvar&gt;&lt;bvar&gt;&lt;ci&gt;q&lt;/ci&gt;&lt;/bvar&gt;&lt;apply&gt;
               &lt;csymbol cd="logic1"&gt;and&lt;/csymbol&gt;
               &lt;apply&gt;
                 &lt;csymbol cd="set1"&gt;in&lt;/csymbol&gt;
@@ -1772,14 +1831,18 @@ or -z is a natural number are equivalent
                 &lt;csymbol cd="setname1"&gt;Z&lt;/csymbol&gt;
               &lt;/apply&gt;
               &lt;ci&gt;z&lt;/ci&gt;
-            &lt;/apply&gt;&lt;/bind&gt;&lt;/bind&gt;
+            &lt;/apply&gt;&lt;/bind&gt;&lt;/apply&gt;&lt;/bind&gt;
       &lt;/math&gt;</pre>
                <div>
                   <button id="d43e757cmmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e757cmml')">OpenMath</button>
                </div>
-               <pre id="d43e757cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
-        &lt;OMBIND&gt;&lt;OMS cd="quant1" name="forall"/&gt;&lt;OMBVAR&gt;&lt;OMV name="z"/&gt;&lt;/OMBVAR&gt;&lt;OMBIND&gt;&lt;OMS cd="quant1" name="exists"/&gt;&lt;OMBVAR&gt;&lt;OMV name="p"/&gt;&lt;OMV name="q"/&gt;&lt;/OMBVAR&gt;&lt;OMA&gt;
+               <pre id="d43e757cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
+        &lt;OMBIND&gt;&lt;OMS cd="quant1" name="forall"/&gt;&lt;OMBVAR&gt;&lt;OMV name="z"/&gt;&lt;/OMBVAR&gt;&lt;OMA&gt;&lt;OMS cd="logic1" name="implies"/&gt;&lt;OMA&gt;
+              &lt;OMS cd="set1" name="in"/&gt;
+              &lt;OMV name="z"/&gt;
+              &lt;OMS cd="setname1" name="Q"/&gt;
+            &lt;/OMA&gt;&lt;OMBIND&gt;&lt;OMS cd="quant1" name="exists"/&gt;&lt;OMBVAR&gt;&lt;OMV name="p"/&gt;&lt;OMV name="q"/&gt;&lt;/OMBVAR&gt;&lt;OMA&gt;
               &lt;OMS cd="logic1" name="and"/&gt;
               &lt;OMA&gt;
                 &lt;OMS cd="set1" name="in"/&gt;
@@ -1801,7 +1864,7 @@ or -z is a natural number are equivalent
                 &lt;OMS cd="setname1" name="Z"/&gt;
               &lt;/OMA&gt;
               &lt;OMV name="z"/&gt;
-            &lt;/OMA&gt;&lt;/OMBIND&gt;&lt;/OMBIND&gt;
+            &lt;/OMA&gt;&lt;/OMBIND&gt;&lt;/OMA&gt;&lt;/OMBIND&gt;
       &lt;/OMOBJ&gt;</pre>
                <div>
                   <button id="d43e757prefa" class="omcd_formula omcd_inactive"
@@ -1810,7 +1873,10 @@ or -z is a natural number are equivalent
                <div id="d43e757pref" style="display:none; margin-top: 0.5em">
                   <a href="quant1.xhtml#forall">forall</a>
 [ <i>z</i>] .
-(<a href="quant1.xhtml#exists">exists</a>
+(<a href="logic1.xhtml#implies">implies</a>
+(<a href="set1.xhtml#in">in</a>
+( <i>z</i>, <a href="setname1.xhtml#Q">Q</a>)
+, <a href="quant1.xhtml#exists">exists</a>
 [ <i>p</i> 
                   <i>q</i>] .
 (<a href="logic1.xhtml#and">and</a>
@@ -1823,6 +1889,7 @@ or -z is a natural number are equivalent
 ( <i>p</i>,  <i>q</i>)
 , <a href="setname1.xhtml#Z">Z</a>)
 ,  <i>z</i>)
+)
 )
 )
 
@@ -1842,40 +1909,50 @@ or -z is a natural number are equivalent
                         </mrow>
                         <mo>.</mo>
                         <mrow>
-                           <mo>∃</mo>
-                           <mo> </mo>
+                           <mo>(</mo>
                            <mrow>
-                              <mi>p</mi>
-                              <mo>,</mo>
-                              <mi>q</mi>
+                              <mi>z</mi>
+                              <mo>∈</mo>
+                              <mi mathvariant="double-struck">Q</mi>
                            </mrow>
-                           <mo>.</mo>
+                           <mo>⇒</mo>
                            <mrow>
+                              <mo>∃</mo>
+                              <mo> </mo>
                               <mrow>
                                  <mi>p</mi>
-                                 <mo>∈</mo>
-                                 <mi mathvariant="double-struck">Z</mi>
-                              </mrow>
-                              <mo>∧</mo>
-                              <mrow>
+                                 <mo>,</mo>
                                  <mi>q</mi>
-                                 <mo>∈</mo>
-                                 <mi mathvariant="double-struck">Z</mi>
                               </mrow>
-                              <mo>∧</mo>
+                              <mo>.</mo>
                               <mrow>
-                                 <mo>(</mo>
-                                 <mfrac>
+                                 <mrow>
                                     <mi>p</mi>
+                                    <mo>∈</mo>
+                                    <mi mathvariant="double-struck">Z</mi>
+                                 </mrow>
+                                 <mo>∧</mo>
+                                 <mrow>
                                     <mi>q</mi>
-                                 </mfrac>
-                                 <mo>=</mo>
-                                 <mi mathvariant="double-struck">Z</mi>
-                                 <mo>)</mo>
+                                    <mo>∈</mo>
+                                    <mi mathvariant="double-struck">Z</mi>
+                                 </mrow>
+                                 <mo>∧</mo>
+                                 <mrow>
+                                    <mo>(</mo>
+                                    <mfrac>
+                                       <mi>p</mi>
+                                       <mi>q</mi>
+                                    </mfrac>
+                                    <mo>=</mo>
+                                    <mi mathvariant="double-struck">Z</mi>
+                                    <mo>)</mo>
+                                 </mrow>
+                                 <mo>∧</mo>
+                                 <mi>z</mi>
                               </mrow>
-                              <mo>∧</mo>
-                              <mi>z</mi>
                            </mrow>
+                           <mo>)</mo>
                         </mrow>
                      </mrow>
                   </m:math>
@@ -1915,7 +1992,7 @@ or -z is a natural number are equivalent
                   <button id="d43e860cmmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e860cmml')">OpenMath</button>
                </div>
-               <pre id="d43e860cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+               <pre id="d43e860cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
         &lt;OMA&gt;
           &lt;OMS cd="set1" name="in"/&gt;
           &lt;OMA&gt;&lt;OMS cd="nums1" name="rational"/&gt;&lt;OMI&gt; 22 &lt;/OMI&gt;&lt;OMI&gt;7&lt;/OMI&gt;&lt;/OMA&gt;
@@ -2408,6 +2485,7 @@ for all a,b | a,b rational with a&lt;b implies there exists rational a,c
       [<a href="#top">Top</a>]
  </div>
       <div class="cddefinition">
+         <span class="link-to-this-fragment">[<a href="http://wiki.openmath.org/?title=cd%3Asetname1%2BR">browse/edit/discuss this in the wiki</a>]</span>
          <h2>
             <a name="R" id="R">Symbol Definition: R</a>
          </h2>
@@ -2468,7 +2546,7 @@ rational a,c s.t. a&lt;c and c&lt;b
                   <button id="d43e1114cmmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e1114cmml')">OpenMath</button>
                </div>
-               <pre id="d43e1114cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+               <pre id="d43e1114cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
         &lt;OMA&gt;
           &lt;OMS cd="set1" name="in"/&gt;
           &lt;OMI&gt; 44.997&lt;/OMI&gt;
@@ -2937,6 +3015,7 @@ exists z in R such that
       [<a href="#top">Top</a>]
  </div>
       <div class="cddefinition">
+         <span class="link-to-this-fragment">[<a href="http://wiki.openmath.org/?title=cd%3Asetname1%2Bcomplexes">browse/edit/discuss this in the wiki</a>]</span>
          <h2>
             <a name="complexes" id="complexes">Symbol Definition: complexes</a>
          </h2>
@@ -2992,7 +3071,7 @@ exists z in R such that
                   <button id="d43e1359cmmla" class="omcd_formula omcd_inactive"
                           onclick="omcd_divfold('d43e1359cmml')">OpenMath</button>
                </div>
-               <pre id="d43e1359cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://www.openmath.org/OpenMath"&gt;
+               <pre id="d43e1359cmml" style="display:none; margin-top: 0.5em">&lt;OMOBJ xmlns="http://www.openmath.org/OpenMath"&gt;
         &lt;OMA&gt;
           &lt;OMS cd="set1" name="in"/&gt;
           &lt;OMV name="1729"/&gt;
