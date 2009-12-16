@@ -147,6 +147,18 @@
   </pre>
 </xsl:template>
 
+<xsl:template match="cd:CDComment/text()" name="url">
+  <xsl:param name="t" select="."/>
+  <xsl:analyze-string select="$t" regex="http://[a-zA-Z:/_\-%0-9\.]+[a-zA-Z:/_\-%0-9]">
+    <xsl:matching-substring>
+      <a href="{.}"><xsl:value-of select="."/></a>
+    </xsl:matching-substring>
+    <xsl:non-matching-substring>
+      <xsl:value-of select="."/>
+    </xsl:non-matching-substring>
+  </xsl:analyze-string>
+</xsl:template>
+
 <xsl:template match="cd:CDDefinition/cd:Description">
   <dl>
     <dt><span class="dt">Description:</span></dt>
@@ -404,7 +416,9 @@
   <xsl:choose>
     <xsl:when test="contains($string, '&#10;&#10;')">
       <p>
-	<xsl:value-of select="substring-before($string,'&#10;&#10;')"/>
+	<xsl:call-template name="url">
+	<xsl:with-param name="t" select="substring-before($string,'&#10;&#10;')"/>
+	</xsl:call-template>
       </p>
       <xsl:call-template name="grab-para">
 	<xsl:with-param name="string" select="substring-after($string,'&#10;&#10;')"/>
@@ -412,7 +426,9 @@
     </xsl:when>
     <xsl:otherwise>
       <p>
-	<xsl:value-of select="$string"/>
+	<xsl:call-template name="url">
+	<xsl:with-param name="t" select="$string"/>
+	</xsl:call-template>
       </p>
     </xsl:otherwise>
   </xsl:choose>
