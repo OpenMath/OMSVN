@@ -1,6 +1,7 @@
 # Note that namespace URIs must end with / or #
 @prefix dc:      <http://purl.org/dc/elements/1.1/> .
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix oo:     <http://omdoc.org/ontology#> .
 @prefix omo:     <http://www.openmath.org/ontology#> .
 @prefix owl:     <http://www.w3.org/2002/07/owl#> .
 # @prefix owl11:   <http://www.w3.org/2006/12/owl11#> .
@@ -31,7 +32,7 @@ omo:  a       owl:Ontology ;
 	# here. --Christoph Lange
 	# dc:contributor "Name <e-mail>";
 	dc:subject "Semantic Mathematical Markup" ;
-	owl:versionInfo "0.1.2" .
+	owl:versionInfo "0.2.0" ;
 	# As with other software projects:
 	# * leave version as is for very small changes (typo corrections) that
 	#   do not change the semantics
@@ -40,111 +41,192 @@ omo:  a       owl:Ontology ;
 	# * increase major version number for really big changes. This should
 	#   be discussed beforehand in the Trac or on the mailing list!
 	# Thanks! --Christoph Lange
+	owl:imports oo: .
 
 omo:OpenMathConcept
 	a	owl:Class ;
-	dc:description "The generic superclass of all concepts that can be expressed in OpenMath content/signature/notation dictionaries" .
+	rdfs:subClassOf	  oo:MathKnowledgeItem ;
+	dc:description "The generic superclass of all concepts that can be expressed in OpenMath content/signature/notation dictionaries" ;
+	rdfs:isDefinedBy omo: .
 
 omo:OpenMathComposite
 	a	owl:Class ;
 	rdfs:subClassOf omo:OpenMathConcept ;
-	dc:description "The generic superclass of all concepts that can be expressed in OpenMath content/signature/notation dictionaries and that can comprise subconcepts" .
+	dc:description "The generic superclass of all concepts that can be expressed in OpenMath content/signature/notation dictionaries and that can comprise subconcepts" ;
+	rdfs:isDefinedBy omo: .
 
 omo:ContentDictionaryGroup
 	a	owl:Class ;
 	rdfs:subClassOf	omo:OpenMathComposite ;
-	dc:description "An OpenMath CD (Content Dictionary) Group, as described in section 4.4.2.  Some of the properties of content dictionaries are defined as properties in this ontology, others are taken from Dublin Core and RDFS, with the following mapping: CDGroupName = dc:identifier, CDGroupDescription = dc:description, CDComment = rdfs:comment." .
+	dc:description "An OpenMath CD (Content Dictionary) Group, as described in section 4.4.2.  Some of the properties of content dictionaries are defined as properties in this ontology, others are taken from Dublin Core and RDFS, with the following mapping: CDGroupName = dc:identifier, CDGroupDescription = dc:description, CDComment = rdfs:comment." ;
+	rdfs:isDefinedBy omo: .
 
 omo:ContentDictionary
 	a	owl:Class ;
 	rdfs:subClassOf	omo:OpenMathComposite ;
 	rdfs:comment "OpenMath 3 transitional aspects: Title = dc:title" ;
-	dc:description "An OpenMath Content Dictionary, as described in chapter 4.  Some of the properties of content dictionaries are defined as properties in this ontology, others are taken from Dublin Core and RDFS, with the following mapping: CDName = dc:identifier, Title = dc:title, Description = dc:description, CDDate = dc:date, CDComment = rdfs:comment." .
+	dc:description "An OpenMath Content Dictionary, as described in chapter 4.  Some of the properties of content dictionaries are defined as properties in this ontology, others are taken from Dublin Core and RDFS, with the following mapping: CDName = dc:identifier, Title = dc:title, Description = dc:description, CDDate = dc:date, CDComment = rdfs:comment." ;
+	owl:disjointWith omo:ContentDictionaryGroup ;
+	rdfs:isDefinedBy omo: .
 
 # TODO reconsider the mapping CDName = dc:identifier (see archived discussion at the bottom)
 
 omo:CDBase
 	a	owl:Class ;
 	rdfs:subClassOf	omo:OpenMathConcept ;
-	dc:description "An OpenMath Content Dictionary base URI, as described in sections 2.3 and 4.2" .
+	dc:description "An OpenMath Content Dictionary base URI, as described in sections 2.3 and 4.2" ;
+	rdfs:isDefinedBy omo: .
 
 omo:SymbolDefinition
 	a	owl:Class ;
 	rdfs:subClassOf	omo:OpenMathComposite ;
 	rdfs:comment "OpenMath 3 transitional aspects: Title = dc:title" ;
-	dc:description "An OpenMath symbol definition, as described in section 4.3.  Some of the properties of symbols are defined as properties in this ontology, others are taken from Dublin Core and RDFS, with the following mapping: Name = dc:identifier, Title = dc:title, CDComment = rdfs:comment." .
+	dc:description "An OpenMath symbol definition, as described in section 4.3.  Some of the properties of symbols are defined as properties in this ontology, others are taken from Dublin Core and RDFS, with the following mapping: Name = dc:identifier, Title = dc:title, CDComment = rdfs:comment." ;
+	rdfs:isDefinedBy omo: .
+
+omo:Status
+	a	owl:Class ;
+	rdfs:subClassOf omo:OpenMathConcept ;
+	dc:description "The status of a CD, as described in sections 4.3.2 and 4.2.1" ;
+	owl:oneOf (omo:Official omo:Experimental omo:Private omo:Obsolete) ;
+	rdfs:isDefinedBy omo: .
+
+omo:Official
+	a	omo:Status ;
+	dc:description "The 'official' status of a CD, as described in section 4.2.1" ;
+	rdfs:isDefinedBy omo: .
+
+omo:Experimental
+	a	omo:Status ;
+	dc:description "The 'experimental' status of a CD, as described in section 4.2.1" ;
+	rdfs:isDefinedBy omo: .
+
+omo:Private
+	a	omo:Status ;
+	dc:description "The 'private' status of a CD, as described in section 4.2.1" ;
+	rdfs:isDefinedBy omo: .
+
+omo:Obsolete
+	a	omo:Status ;
+	dc:description "The 'obsolete' status of a CD, as described in section 4.2.1" ;
+	rdfs:isDefinedBy omo: .
+
+omo:Role
+	a	owl:Class ;
+	rdfs:subClassOf omo:OpenMathConcept ;
+	dc:description "The role of a symbol, as described in sections 4.3.2 and 2.1.4" ;
+	owl:oneOf (omo:Binder omo:Attribution omo:SemanticAttribution omo:Error omo:Application omo:Constant) ;
+	rdfs:isDefinedBy omo: .
+
+omo:Binder
+	a	omo:Role ;
+	dc:description "The 'binder' role of a symbol, as described in section 2.1.4" ;
+	rdfs:isDefinedBy omo: .
+
+omo:Attribution
+	a	omo:Role ;
+	dc:description "The 'attribution' role of a symbol, as described in section 2.1.4" ;
+	rdfs:isDefinedBy omo: .
+
+omo:SemanticAttribution
+	a	omo:Role ;
+	dc:description "The 'semantic attribution' role of a symbol, as described in section 2.1.4" ;
+	rdfs:isDefinedBy omo: .
+
+omo:Error
+	a	omo:Role ;
+	dc:description "The 'error' role of a symbol, as described in section 2.1.4" ;
+	rdfs:isDefinedBy omo: .
+
+omo:Application
+	a	omo:Role ;
+	dc:description "The 'application' role of a symbol, as described in section 2.1.4" ;
+	rdfs:isDefinedBy omo: .
+
+omo:Constant
+	a	omo:Role ;
+	dc:description "The 'constant' role of a symbol, as described in section 2.1.4" ;
+	rdfs:isDefinedBy omo: .
 
 omo:Property
 	a	owl:Class ;
 	rdfs:subClassOf	omo:OpenMathConcept ;
-	dc:description "The common superclass of commented and formal mathematical properties of symbols (CMP and FMP); cf. section 4.3" .
+	dc:description "The common superclass of commented and formal mathematical properties of symbols (CMP and FMP); cf. section 4.3" ;
+	rdfs:isDefinedBy omo: .
 
 omo:CommentedProperty
 	a	owl:Class ;
 	rdfs:subClassOf	omo:Property ;
-	dc:description "A commented mathematical property (CMP) of a symbol, as described in section 4.3" .
+	dc:description "A commented mathematical property (CMP) of a symbol, as described in section 4.3" ;
+	rdfs:isDefinedBy omo: .
 
 omo:FormalProperty
 	a	owl:Class ;
 	rdfs:subClassOf	omo:Property ;
-	dc:description "A formal mathematical property (FMP) of a symbol, as described in section 4.3" .
+	dc:description "A formal mathematical property (FMP) of a symbol, as described in section 4.3" ;
+	owl:disjointWith omo:CommentedProperty ;
+	rdfs:isDefinedBy omo: .
 
 omo:PragmaticGuidelines
 	a	owl:Class ;
 	rdfs:subClassOf	omo:OpenMathComposite ;
 	# OpenMath 3: we do not yet represent the subparts of this composite
 	rdfs:comment "OpenMath 3 transitional" ;
-	dc:description "Guidelines for using this symbol in pragmatic Content MathML" .
+	dc:description "Guidelines for using this symbol in pragmatic Content MathML" ;
+	rdfs:isDefinedBy omo: .
 
 omo:Example
 	a	owl:Class ;
 	# OpenMath 3: or is it a composite?
 	rdfs:subClassOf	omo:OpenMathConcept ;
-	dc:description "An example for a symbol, as described in section 4.3" .
+	dc:description "An example for a symbol, as described in section 4.3" ;
+	rdfs:isDefinedBy omo: .
 
 omo:SignatureDictionary
 	a	owl:Class ;
 	rdfs:subClassOf	omo:OpenMathComposite ;
-	dc:description "An OpenMath Signature Dictionary, as described in section 4.4.  Some of the properties of signature dictionaries are defined as properties in this ontology, others are taken from Dublin Core and RDFS, with the following mapping: Name = dc:identifier" .
+	dc:description "An OpenMath Signature Dictionary, as described in section 4.4.  Some of the properties of signature dictionaries are defined as properties in this ontology, others are taken from Dublin Core and RDFS, with the following mapping: Name = dc:identifier" ;
+	rdfs:isDefinedBy omo: .
 
 omo:Signature
 	a	owl:Class ;
 	rdfs:subClassOf	omo:OpenMathConcept ;
-	dc:description "A type signature of a symbol, as described in section 4.4" .
+	dc:description "A type signature of a symbol, as described in section 4.4" ;
+	rdfs:isDefinedBy omo: .
 
 omo:NotationDictionary
 	a	owl:Class ;
 	rdfs:subClassOf	omo:OpenMathComposite ;
-	dc:description "Note: This name was conceived in analogy to “Content Dictionaries” and “Signature Dictionaries”." .
+	dc:description "Note: This name was conceived in analogy to “Content Dictionaries” and “Signature Dictionaries”." ;
+	rdfs:isDefinedBy omo: .
 
 omo:NotationDefinition
 	a	owl:Class ;
 	# or should we declare it as a composite, as it contains prototype/rendering?
 	rdfs:subClassOf	omo:OpenMathConcept ;
-	dc:description "A notation definition for one symbol" .
+	dc:description "A notation definition for one symbol" ;
+	rdfs:isDefinedBy omo: .
 
 omo:comprises
-	a	owl:TransitiveProperty ;
-	rdfs:domain omo:OpenMathComposite ;
-	rdfs:range omo:OpenMathConcept ;
-	dc:description "This relation denotes that one concept A directly or indirectly comprises another concept B, but does not necessarily exclusively contain it." .  
-
-omo:comprisesDirectly
-	a	owl:ObjectProperty ;
+	a	owl:ObjectProperty, owl:TransitiveProperty ;
 	# Note: This is not an inverse functional property.  One resource can
 	# be comprised by many collections of resources
-	rdfs:subPropertyOf omo:comprises ;
-	dc:description "This relation denotes that one concept A directly comprises another concept B, but does not necessarily exclusively contain it." .  
+	rdfs:domain omo:OpenMathComposite ;
+	rdfs:range omo:OpenMathConcept ;
+	dc:description "This relation denotes that one concept A directly or indirectly comprises another concept B, but does not necessarily exclusively contain it." ;
+	rdfs:isDefinedBy omo: . 
 
 omo:hasPart
-	a	owl:TransitiveProperty ;
-	rdfs:subPropertyOf omo:comprises ;
-	dc:description "This relation denotes that one concept A, directly or indirectly, logically contains another concept B, and that B is not contained by any other concept than A, as reflected by child elements in OpenMath XML documents." .  
+	a	owl:TransitiveProperty, owl:ObjectProperty ;
+	rdfs:subPropertyOf omo:comprises, oo:hasPart ;
+	dc:description "This relation denotes that one concept A, directly or indirectly, logically contains another concept B, and that B is not contained by any other concept than A, as reflected by child elements in OpenMath XML documents." ;
+	rdfs:isDefinedBy omo: . 
 
 omo:hasDirectPart
-	a	owl:InverseFunctionalProperty ;
-	rdfs:subPropertyOf omo:hasPart, omo:comprisesDirectly ;
-	dc:description "This relation denotes that one concept A directly logically contains another concept B, and that B is not contained by any other concept than A, as reflected by child elements in OpenMath XML documents." .  
+	a	owl:InverseFunctionalProperty, owl:ObjectProperty ;
+	rdfs:subPropertyOf omo:hasPart ;
+	dc:description "This relation denotes that one concept A directly logically contains another concept B, and that B is not contained by any other concept than A, as reflected by child elements in OpenMath XML documents." ;
+	rdfs:isDefinedBy omo: .  
 
 omo:reviewDate
 	a	owl:DatatypeProperty, owl:FunctionalProperty ;
@@ -152,16 +234,17 @@ omo:reviewDate
 	    [ owl:unionOf (omo:ContentDictionary omo:SignatureDictionary)
 	    ] ;
 	rdfs:range  xsd:date ;
-	dc:description "The review date of a content dictionary or signature dictionary, as described in section 4.3.2" .
+	dc:description "The review date of a content dictionary or signature dictionary, as described in section 4.3.2" ;
+	rdfs:isDefinedBy omo: .
 
 omo:status
-	a	owl:DatatypeProperty, owl:FunctionalProperty ;
+	a	owl:ObjectProperty, owl:FunctionalProperty ;
 	rdfs:domain
 	    [ owl:unionOf (omo:ContentDictionary omo:SignatureDictionary)
 	    ] ;
-	# TODO actually it's an enumeration of "official", "experimental", "private", "obsolete"
-	rdfs:range  xsd:string ;
-	dc:description "The status of a content dictionary or signature dictionary, as described in section 4.3.2" .
+	rdfs:range  omo:Status ;
+	dc:description "The status of a content dictionary or signature dictionary, as described in section 4.3.2" ;
+	rdfs:isDefinedBy omo: .
 
 omo:version
 	a	owl:DatatypeProperty, owl:FunctionalProperty ;
@@ -169,7 +252,8 @@ omo:version
 	    [ owl:unionOf (omo:ContentDictionary omo:ContentDictionaryGroup)
 	    ] ;
 	rdfs:range  xsd:nonNegativeInteger ;
-	dc:description "The (major) version of a content dictionary or content dictionary group, as described in section 4.3.2 or 4.4.2.2, resp." .
+	dc:description "The (major) version of a content dictionary or content dictionary group, as described in section 4.3.2 or 4.4.2.2, resp." ;
+	rdfs:isDefinedBy omo: .
 
 omo:revision
 	a	owl:DatatypeProperty, owl:FunctionalProperty ;
@@ -177,43 +261,49 @@ omo:revision
 	    [ owl:unionOf (omo:ContentDictionary omo:ContentDictionaryGroup)
 	    ] ;
 	rdfs:range  xsd:nonNegativeInteger ;
-	dc:description "The revision (= minor version) of a content dictionary or content dictionary group, as described in section 4.3.2 or 4.4.2.2, resp." .
+	dc:description "The revision (= minor version) of a content dictionary or content dictionary group, as described in section 4.3.2 or 4.4.2.2, resp." ;
+	rdfs:isDefinedBy omo: .
 
 omo:url
 	a	owl:ObjectProperty, owl:FunctionalProperty ;
 	rdfs:domain
 	    [ owl:unionOf (omo:ContentDictionary omo:ContentDictionaryGroup)
 	    ] ;
-	dc:description "The URL of a content dictionary or content dictionary group, as described in section 4.3.2 or 4.4.2.2, resp." .
+	dc:description "The URL of a content dictionary or content dictionary group, as described in section 4.3.2 or 4.4.2.2, resp." ;
+	rdfs:isDefinedBy omo: .
 
 omo:uses
+	a	owl:ObjectProperty, owl:TransitiveProperty ;
+	rdfs:subPropertyOf oo:dependsOn ;
+	rdfs:isDefinedBy omo: .
+
+omo:usesDirectly
 	a	owl:ObjectProperty ;
+	rdfs:subPropertyOf omo:uses ;
 	rdfs:domain omo:ContentDictionary ;
 	rdfs:range  omo:ContentDictionary ;
-	dc:description "Other content dictionaries used by this one, as described in section 4.3.2" .
-
-# OWL 1.1 axioms for computing omo:uses (CDUses)
-#
-# Not yet updated for OpenMath 3
-# 
-# [ a owl11:SubObjectPropertyChain (omo:hasFormalProperty omo:usesSymbol omo:definedIn)]
-# owl11:subObjectPropertyOf omo:uses .
-# 
-# [ a owl11:SubObjectPropertyChain (omo:hasExample omo:usesSymbol omo:definedIn)]
-# owl11:subObjectPropertyOf omo:uses .
+	# uses via FMP (OpenMath 2 style)
+	owl:propertyChainAxiom (omo:containsSymbolDefinition omo:hasFormalProperty omo:usesSymbol omo:definedIn) ;
+	# uses via FMP (OpenMath 3 style)
+	owl:propertyChainAxiom (omo:containsSymbolDefinition omo:hasProperty omo:hasFormalPart omo:usesSymbol omo:definedIn) ;
+	# uses via example
+	owl:propertyChainAxiom (omo:containsSymbolDefinition omo:exemplifiedBy omo:usesSymbol omo:definedIn) ;
+	dc:description "Other content dictionaries directly used by this one, as described in section 4.3.2" ;
+	rdfs:isDefinedBy omo: .
 
 omo:base
 	a	owl:ObjectProperty, owl:FunctionalProperty ;
 	rdfs:domain omo:ContentDictionary ;
 	rdfs:range  omo:CDBase ;
-	dc:description "The CD base URI of a content dictionary, as described in section 4.3.2" .
+	dc:description "The CD base URI of a content dictionary, as described in section 4.3.2" ;
+	rdfs:isDefinedBy omo: .
 
 omo:role
-	a	owl:DatatypeProperty, owl:FunctionalProperty ;
+	a	owl:ObjectProperty, owl:FunctionalProperty ;
 	rdfs:domain omo:SymbolDefinition ;
-	# TODO actually it's an enumeration of "binder", "attribution", "semantic-attribution", "error", "application", "constant"
-	rdfs:range  xsd:string ;
-	dc:description "The role of a symbol, as described in section 4.3.2" .
+	rdfs:range  omo:Role ;
+	dc:description "The role of a symbol, as described in section 4.3.2" ;
+	rdfs:isDefinedBy omo: .
 
 omo:containsSymbolDefinition
 	a	owl:ObjectProperty ;
@@ -221,49 +311,56 @@ omo:containsSymbolDefinition
 	rdfs:domain omo:ContentDictionary ;
 	rdfs:range  omo:SymbolDefinition ;
 	owl:inverseOf	omo:definedIn ;
-	dc:description "The relationship of a content dictionary to a symbol definition it contains" .
+	dc:description "The relationship of a content dictionary to a symbol definition it contains" ;
+	rdfs:isDefinedBy omo: .
 
 omo:definedIn
 	a	owl:ObjectProperty ;
-	rdfs:domain omo:SymbolDefinition ;
-	rdfs:range  omo:ContentDictionary ;
 	owl:inverseOf	omo:containsSymbolDefinition ;
-	dc:description "The relationship of a symbol definition to its enclosing content dictionary" .
+	dc:description "The relationship of a symbol definition to its enclosing content dictionary" ;
+	rdfs:isDefinedBy omo: .
 
 omo:hasProperty
 	a	owl:ObjectProperty ;
 	rdfs:subPropertyOf  omo:hasDirectPart ;
 	rdfs:domain omo:SymbolDefinition ;
 	rdfs:range  omo:Property ;
-	dc:description "The relationship of a symbol definition to a CMP or FMP (OpenMath 2) or a property container that it contains" .
+	dc:description "The relationship of a symbol definition to a CMP or FMP (OpenMath 2) or a property container that it contains" ;
+	rdfs:isDefinedBy omo: .
 
 omo:hasCommentedPart
-	a	owl:ObjectProperty ;
+	a	owl:ObjectProperty, owl:FunctionalProperty ;
+	# via the superproperty omo:hasDirectPart, this is already inverse functional
 	rdfs:subPropertyOf  omo:hasDirectPart ;
 	rdfs:domain	omo:Property ;
 	rdfs:range  omo:CommentedProperty ;
-	dc:description "The relationship of a property container to its commented part (CMP)." .
+	dc:description "The relationship of a property container to its commented part (CMP)." ;
+	rdfs:isDefinedBy omo: .
 
 omo:hasFormalPart
-	a	owl:ObjectProperty ;
+	a	owl:ObjectProperty, owl:FunctionalProperty ;
+	# via the superproperty omo:hasDirectPart, this is already inverse functional
 	rdfs:subPropertyOf  omo:hasDirectPart ;
 	rdfs:domain	omo:Property ;
 	rdfs:range  omo:FormalProperty ;
-	dc:description "The relationship of a property container to its formal part (FMP)." .
+	dc:description "The relationship of a property container to its formal part (FMP)." ;
+	rdfs:isDefinedBy omo: .
 
 omo:hasCommentedProperty
 	a	owl:ObjectProperty ;
 	rdfs:subPropertyOf  omo:hasProperty ;
 	rdfs:domain omo:SymbolDefinition ;
 	rdfs:range  omo:CommentedProperty ;
-	dc:description "The relationship of a symbol definition to a CMP it contains" .
+	dc:description "The relationship of a symbol definition to a CMP it contains" ;
+	rdfs:isDefinedBy omo: .
 
 omo:hasFormalProperty
 	a	owl:ObjectProperty ;
 	rdfs:subPropertyOf  omo:hasProperty ;
 	rdfs:domain omo:SymbolDefinition ;
 	rdfs:range  omo:FormalProperty ;
-	dc:description "The relationship of a symbol definition to an FMP it contains" .
+	dc:description "The relationship of a symbol definition to an FMP it contains" ;
+	rdfs:isDefinedBy omo: .
 
 omo:hasPragmaticGuidelines
 	a	owl:ObjectProperty ;
@@ -271,14 +368,21 @@ omo:hasPragmaticGuidelines
 	rdfs:comment "OpenMath 3 transitional" ;
 	rdfs:domain omo:SymbolDefinition ;
 	rdfs:range  omo:PragmaticGuidelines ;
-	dc:description "The relationship of a symbol definition to its pragmatic usage guidelines" .
+	dc:description "The relationship of a symbol definition to its pragmatic usage guidelines" ;
+	rdfs:isDefinedBy omo: .
 
-omo:hasExample
+omo:exemplifiedBy
 	a	owl:ObjectProperty ;
 	rdfs:subPropertyOf  omo:hasDirectPart ;
 	rdfs:domain omo:SymbolDefinition ;
 	rdfs:range  omo:Example ;
-	dc:description "The relationship of a symbol definition to an example it contains" .
+	dc:description "The relationship of a symbol definition to an example it contains" ;
+	rdfs:isDefinedBy omo: .
+
+omo:exemplifies
+	a	owl:ObjectProperty, owl:FunctionalProperty ;
+	owl:inverseOf omo:exemplifiedBy ;
+	rdfs:isDefinedBy omo: .
 
 omo:usesSymbol
 	a	owl:ObjectProperty ;
@@ -286,14 +390,16 @@ omo:usesSymbol
 	    [ owl:unionOf (omo:FormalProperty omo:Example)
 	    ] ;
 	rdfs:range  omo:SymbolDefinition ;
-	dc:description "The relationship of some element to a symbol used in an OpenMath object inside the element" .
+	dc:description "The relationship of some element to a symbol used in an OpenMath object inside the element" ;
+	rdfs:isDefinedBy omo: .
 
 omo:containsContentDictionary
 	a	owl:ObjectProperty ;
-	rdfs:subPropertyOf  omo:comprisesDirectly ;
+	rdfs:subPropertyOf  omo:comprises ;
 	rdfs:domain omo:ContentDictionaryGroup ;
 	rdfs:range  omo:ContentDictionary ;
-	dc:description "The relationship of a content dictionary group to a content dictionary it contains" .
+	dc:description "The relationship of a content dictionary group to a content dictionary it contains" ;
+	rdfs:isDefinedBy omo: .
 
 omo:typeSystem
 	a	owl:ObjectProperty, owl:FunctionalProperty ;
@@ -301,45 +407,72 @@ omo:typeSystem
 	rdfs:range
 	    [ owl:unionOf (omo:ContentDictionary omo:ContentDictionaryGroup)
 	    ] ;
-	dc:description "The content dictionary [group] that serves as a type system for this signature dictionary, as specified in section 4.4.1.1" .
+	dc:description "The content dictionary [group] that serves as a type system for this signature dictionary, as specified in section 4.4.1.1" ;
+	rdfs:isDefinedBy omo: .
 
 omo:containsSignaturesFor
 	a	owl:ObjectProperty, owl:FunctionalProperty ;
 	rdfs:domain omo:SignatureDictionary ;
 	rdfs:range  omo:ContentDictionary ;
-	dc:description "The relationship of a signature dictionary to the content dictionary whose symbols it specifies" .
+	dc:description "The relationship of a signature dictionary to the content dictionary whose symbols it specifies" ;
+	rdfs:isDefinedBy omo: .
+
+omo:hasSignatureDictionary
+	a	owl:ObjectProperty, owl:InverseFunctionalProperty ;
+	owl:inverseOf omo:containsSignaturesFor ;
+	rdfs:isDefinedBy omo: .
 
 omo:typesSymbol
 	a	owl:ObjectProperty, owl:FunctionalProperty ;
 	rdfs:domain omo:Signature ;
 	rdfs:range  omo:SymbolDefinition ;
-	dc:description "The relationship of a type signature to the symbol it specifies" .
+	dc:description "The relationship of a type signature to the symbol it specifies" ;
+	rdfs:isDefinedBy omo: .
+
+omo:hasType
+	a	owl:ObjectProperty, owl:InverseFunctionalProperty ;
+	owl:inverseOf omo:typesSymbol ;
+	rdfs:isDefinedBy omo: .
 
 omo:containsSignature
 	a	owl:ObjectProperty ;
 	rdfs:subPropertyOf  omo:hasDirectPart ;
 	rdfs:domain omo:SignatureDictionary ;
 	rdfs:range  omo:Signature ;
-	dc:description "The relationship of a signature dictionary to a type signature it contains" .
+	dc:description "The relationship of a signature dictionary to a type signature it contains" ;
+	rdfs:isDefinedBy omo: .
 
 omo:containsNotationsFor
 	a	owl:ObjectProperty, owl:FunctionalProperty ;
 	rdfs:domain omo:NotationDictionary ;
 	rdfs:range  omo:ContentDictionary ;
-	dc:description "The relationship of a notation dictionary to the content dictionary whose symbols it specifies" .
+	dc:description "The relationship of a notation dictionary to the content dictionary whose symbols it specifies" ;
+	rdfs:isDefinedBy omo: .
+
+omo:hasNotationDictionary
+	a	owl:ObjectProperty, owl:InverseFunctionalProperty ;
+	owl:inverseOf omo:containsNotationsFor ;
+	rdfs:isDefinedBy omo: .
 
 omo:rendersSymbol
 	a	owl:ObjectProperty, owl:FunctionalProperty ;
 	rdfs:domain omo:NotationDefinition ;
 	rdfs:range  omo:SymbolDefinition ;
-	dc:description "The relationship of a type signature to the symbol it specifies" .
+	dc:description "The relationship of a notation definition to the symbol it renders" ;
+	rdfs:isDefinedBy omo: .
+
+omo:hasNotationDefinition
+	a	owl:ObjectProperty, owl:InverseFunctionalProperty ;
+	owl:inverseOf omo:rendersSymbol ;
+	rdfs:isDefinedBy omo: .
 
 omo:containsNotationDefinition
 	a	owl:ObjectProperty ;
 	rdfs:subPropertyOf  omo:hasDirectPart ;
 	rdfs:domain omo:NotationDictionary ;
 	rdfs:range  omo:NotationDefinition ;
-	dc:description "The relationship of a notation dictionary to a notation definition it contains" .
+	dc:description "The relationship of a notation dictionary to a notation definition it contains" ;
+	rdfs:isDefinedBy omo: .
 
 # Discussion about CDName <-> dc:identifier on the OM3 mailing list
 # * James Davenport (2008/02/26): This one I am slightly dubious about (for no
