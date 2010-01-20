@@ -32,7 +32,7 @@ omo:  a       owl:Ontology ;
 	# here. --Christoph Lange
 	# dc:contributor "Name <e-mail>";
 	dc:subject "Semantic Mathematical Markup" ;
-	owl:versionInfo "0.2.0" ;
+	owl:versionInfo "0.2.1" ;
 	# As with other software projects:
 	# * leave version as is for very small changes (typo corrections) that
 	#   do not change the semantics
@@ -150,21 +150,21 @@ omo:Constant
 
 omo:Property
 	a	owl:Class ;
+	rdfs:subClassOf	omo:OpenMathComposite ;
+	dc:description "A mathematical property of a symbol, can have a commented (CMP), a formal (FMP) part, or both; cf. section 4.3" ;
+	rdfs:isDefinedBy omo: .
+
+omo:CommentedPart
+	a	owl:Class ;
 	rdfs:subClassOf	omo:OpenMathConcept ;
-	dc:description "The common superclass of commented and formal mathematical properties of symbols (CMP and FMP); cf. section 4.3" ;
+	dc:description "A commented part of a mathematical property (CMP) of a symbol, as described in section 4.3" ;
 	rdfs:isDefinedBy omo: .
 
-omo:CommentedProperty
+omo:FormalPart
 	a	owl:Class ;
-	rdfs:subClassOf	omo:Property ;
-	dc:description "A commented mathematical property (CMP) of a symbol, as described in section 4.3" ;
-	rdfs:isDefinedBy omo: .
-
-omo:FormalProperty
-	a	owl:Class ;
-	rdfs:subClassOf	omo:Property ;
-	dc:description "A formal mathematical property (FMP) of a symbol, as described in section 4.3" ;
-	owl:disjointWith omo:CommentedProperty ;
+	rdfs:subClassOf	omo:OpenMathConcept ;
+	dc:description "A formal part of a mathematical property (FMP) of a symbol, as described in section 4.3" ;
+	owl:disjointWith omo:CommentedPart ;
 	rdfs:isDefinedBy omo: .
 
 omo:PragmaticGuidelines
@@ -282,9 +282,7 @@ omo:usesDirectly
 	rdfs:subPropertyOf omo:uses ;
 	rdfs:domain omo:ContentDictionary ;
 	rdfs:range  omo:ContentDictionary ;
-	# uses via FMP (OpenMath 2 style)
-	owl:propertyChainAxiom (omo:containsSymbolDefinition omo:hasFormalProperty omo:usesSymbol omo:definedIn) ;
-	# uses via FMP (OpenMath 3 style)
+	# uses via FMP
 	owl:propertyChainAxiom (omo:containsSymbolDefinition omo:hasProperty omo:hasFormalPart omo:usesSymbol omo:definedIn) ;
 	# uses via example
 	owl:propertyChainAxiom (omo:containsSymbolDefinition omo:exemplifiedBy omo:usesSymbol omo:definedIn) ;
@@ -333,7 +331,7 @@ omo:hasCommentedPart
 	# via the superproperty omo:hasDirectPart, this is already inverse functional
 	rdfs:subPropertyOf  omo:hasDirectPart ;
 	rdfs:domain	omo:Property ;
-	rdfs:range  omo:CommentedProperty ;
+	rdfs:range  omo:CommentedPart ;
 	dc:description "The relationship of a property container to its commented part (CMP)." ;
 	rdfs:isDefinedBy omo: .
 
@@ -342,24 +340,8 @@ omo:hasFormalPart
 	# via the superproperty omo:hasDirectPart, this is already inverse functional
 	rdfs:subPropertyOf  omo:hasDirectPart ;
 	rdfs:domain	omo:Property ;
-	rdfs:range  omo:FormalProperty ;
+	rdfs:range  omo:FormalPart ;
 	dc:description "The relationship of a property container to its formal part (FMP)." ;
-	rdfs:isDefinedBy omo: .
-
-omo:hasCommentedProperty
-	a	owl:ObjectProperty ;
-	rdfs:subPropertyOf  omo:hasProperty ;
-	rdfs:domain omo:SymbolDefinition ;
-	rdfs:range  omo:CommentedProperty ;
-	dc:description "The relationship of a symbol definition to a CMP it contains" ;
-	rdfs:isDefinedBy omo: .
-
-omo:hasFormalProperty
-	a	owl:ObjectProperty ;
-	rdfs:subPropertyOf  omo:hasProperty ;
-	rdfs:domain omo:SymbolDefinition ;
-	rdfs:range  omo:FormalProperty ;
-	dc:description "The relationship of a symbol definition to an FMP it contains" ;
 	rdfs:isDefinedBy omo: .
 
 omo:hasPragmaticGuidelines
@@ -387,7 +369,7 @@ omo:exemplifies
 omo:usesSymbol
 	a	owl:ObjectProperty ;
 	rdfs:domain
-	    [ owl:unionOf (omo:FormalProperty omo:Example)
+	    [ owl:unionOf (omo:FormalPart omo:Example)
 	    ] ;
 	rdfs:range  omo:SymbolDefinition ;
 	dc:description "The relationship of some element to a symbol used in an OpenMath object inside the element" ;
