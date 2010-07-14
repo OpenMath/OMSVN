@@ -12,7 +12,6 @@
            select="'http://openmath.nag.co.uk/openmath/cd/internal/cd/'"/>
 
 
-
 <xsl:template match="/">
   <xsl:apply-templates/>
 </xsl:template>
