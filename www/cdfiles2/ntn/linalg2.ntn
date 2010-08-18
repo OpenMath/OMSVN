@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><notations xmlns="http://www.w3.org/ns/mathml-cd" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="linalg2" name="vector" mcd:cr="fun"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="linalg2">vector</m:csymbol>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo/>
+        <m:mo fence="true" mcd:cr="fun">(</m:mo>
+        <iterate name="args">
+	  <separator><m:mo mcd:cr="fun" separator="true">,</m:mo></separator>
+	  <render name="arg"/>
+	</iterate>
+        <m:mo fence="true" mcd:cr="fun">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="linalg2" name="matrixrow" mcd:cr="fun"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+	<m:csymbol cd="linalg2" mcd:cr="fun">matrixrow</m:csymbol>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo/>
+        <m:mo fence="true" mcd:cr="fun">(</m:mo>
+        <iterate name="args">
+          <separator><m:mo separator="true">,</m:mo></separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo fence="true" mcd:cr="fun">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="linalg2" name="matrix" mcd:cr="mat"/>
+	<exprlist name="rows">
+	  <om:OMA>
+	    <om:OMS cd="linalg2" name="matrixrow" mcd:cr="row"/>
+	    <exprlist name="row"><expr name="elt"/></exprlist>
+	  </om:OMA>
+	</exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="linalg2" mcd:cr="mat">matrix</m:csymbol>
+	<exprlist name="rows">
+	  <m:apply>
+	    <m:csymbol cd="linalg2" mcd:cr="row">matrixrow</m:csymbol>
+	    <exprlist name="row"><expr name="elt"/></exprlist>
+	  </m:apply>
+	</exprlist>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+	<m:mo fence="true">(</m:mo>
+	<m:mtable mcd:cr="mat">
+	  <iterate name="rows">
+	    <separator/>
+	    <m:mtr mcd:cr="row">
+	      <iterate name="row">
+		<separator/>
+		<m:mtd><render name="elt"/></m:mtd>
+	      </iterate>
+	    </m:mtr>
+	  </iterate>
+	</m:mtable>
+	<m:mo fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  
+</notations>

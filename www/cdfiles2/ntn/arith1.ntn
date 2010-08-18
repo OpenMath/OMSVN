@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?><notations xmlns="http://www.w3.org/ns/mathml-cd" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+  <notation>
+    <prototype>
+      <om:OMS cd="arith1" name="lcm"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="arith1">lcm</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>lcm</m:mo>
+    </rendering>
+    <rendering xml:lang="de">
+      <m:mo>kgV</m:mo>
+    </rendering>
+  </notation>
+  
+  <notation>
+    <prototype>
+      <om:OMS cd="arith1" name="gcd"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="arith1">gcd</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>gcd</m:mo>
+    </rendering>
+    <rendering xml:lang="de">
+      <m:mo>ggT</m:mo>
+    </rendering>
+  </notation>
+  
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="arith1" name="plus" mcd:cr="fun"/>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="arith1" mcd:cr="fun">plus</m:csymbol>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <iterate name="args" precedence="500">
+          <separator><m:mo mcd:cr="fun">+</m:mo></separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation>
+    <prototype>
+      <om:OMS cd="arith1" name="plus"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="arith1">plus</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>+</m:mo>
+    </rendering>
+  </notation>
+  
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="arith1" name="unary_minus" mcd:cr="fun"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="arith1" mcd:cr="fun">unary_minus</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo mcd:cr="fun">-</m:mo>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation>
+    <prototype>
+      <om:OMS cd="arith1" name="unary_minus"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="arith1">unary_minus</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>-</m:mo>
+    </rendering>
+  </notation>
+  
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="arith1" name="minus" mcd:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="arith1" mcd:cr="fun">minus</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="500"/>
+        <m:mo mcd:cr="fun">-</m:mo>
+        <render name="arg2" precedence="500"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation>
+    <prototype>
+      <om:OMS cd="arith1" name="minus"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="arith1">minus</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>-</m:mo>
+    </rendering>
+  </notation>
+  
+
+  <notation>
+    <prototype>
+      <om:OMS cd="arith1" name="times"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="arith1">times</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>⁢</m:mo>
+    </rendering>
+  </notation>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="arith1" name="times" mcd:cr="fun"/>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="arith1" mcd:cr="fun">times</m:csymbol>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <iterate name="args" precedence="400">
+          <separator>
+            <m:mo mcd:cr="fun">⁢</m:mo>
+          </separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  
+  <notation>
+    <prototype>
+      <om:OMS cd="arith1" name="divide"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="arith1">divide</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>/</m:mo>
+    </rendering>
+  </notation>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="arith1" name="divide"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="arith1">divide</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mfrac>
+        <render name="arg1"/>
+        <render name="arg2"/>
+      </m:mfrac>
+    </rendering>
+  </notation>
+  
+
+  <notation>
+    <prototype>
+      <om:OMS cd="arith1" name="power"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="arith1">power</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>power</m:mo>
+    </rendering>
+  </notation>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="arith1" name="power"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="arith1">power</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:msup>
+        <render name="arg1"/>
+        <render name="arg2"/>
+      </m:msup>
+    </rendering>
+  </notation>
+  
+  <notation>
+    <prototype>
+      <om:OMS cd="arith1" name="abs"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="arith1">abs</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>abs</m:mo>
+    </rendering>
+  </notation>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="arith1" name="abs" mcd:cr="fun"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="arith1">abs</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow><m:mo>|</m:mo><render name="arg"/><m:mo>|</m:mo></m:mrow>
+    </rendering>
+  </notation>
+  
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="arith1" name="root"/>
+        <expr name="arg"/>
+        <expr name="n"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="arith1">root</m:csymbol>
+        <expr name="arg"/>
+        <expr name="n"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mroot>
+	<render name="arg"/>
+	<render name="n"/> 
+      </m:mroot>
+    </rendering>
+  </notation>
+  <notation>
+    <prototype>
+      <om:OMS cd="arith1" name="root"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="arith1">root</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>√</m:mo>
+    </rendering>
+  </notation>
+  
+  <notation>
+    <prototype>
+      <om:OMA>
+	<om:OMS cd="arith1" name="sum" mcd:cr="fun"/>
+	<om:OMA>
+	  <om:OMS cd="interval1" name="integer_interval"/>
+	  <expr name="low"/>
+	  <expr name="high"/>
+	</om:OMA>
+	<om:OMBIND>
+	  <om:OMS cd="fns1" name="lambda"/>
+	  <om:OMBVAR><expr name="var"/></om:OMBVAR>
+	  <expr name="scope"/>
+      </om:OMBIND>
+    </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+	<m:csymbol cd="arith1" mcd:cr="fun">sum</m:csymbol>
+	<m:apply>
+	  <m:csymbol cd="interval1">integer_interval</m:csymbol>
+	  <expr name="low"/>
+	  <expr name="high"/>
+	</m:apply>
+	<m:bind>
+	  <m:csymbol cd="fns1">lambda</m:csymbol>
+	  <m:bvar><expr name="var"/></m:bvar>
+	  <expr name="scope"/>
+	</m:bind>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+	<m:munderover>
+	  <m:mo mcd:cr="fun">∑</m:mo>
+	  <m:mrow>
+	    <render name="var"/>
+	    <m:mo>=</m:mo>
+	    <render name="low"/>
+	  </m:mrow>
+	  <render name="high"/>
+	</m:munderover>
+	<render name="scope"/>  
+      </m:mrow>
+    </rendering>
+  </notation>
+
+<!-- not over an interval -->
+  <notation>
+    <prototype>
+      <om:OMA>
+	<om:OMS cd="arith1" name="sum" mcd:cr="fun"/>
+	<expr name="range"/>
+	<om:OMBIND>
+	  <om:OMS cd="fns1" name="lambda"/>
+	  <om:OMBVAR><expr name="var"/></om:OMBVAR>
+	  <expr name="scope"/>
+	</om:OMBIND>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+	<m:csymbol cd="arith1" mcd:cr="fun">sum</m:csymbol>
+	<expr name="range"/>
+	<m:bind>
+	  <m:csymbol cd="fns1">lambda</m:csymbol>
+	  <m:bvar><expr name="var"/></m:bvar>
+	  <expr name="scope"/>
+	</m:bind>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+	<m:munder>
+	  <m:mo mcd:cr="fun">∑</m:mo>
+	  <m:mrow><render name="var"/><m:mo>&#x2208;</m:mo><render name="range"/></m:mrow>
+	</m:munder>
+	<render name="scope"/>  
+      </m:mrow>
+    </rendering>
+  </notation>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="arith1" name="sum"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="arith1">sum</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>∑</m:mo>
+    </rendering>
+  </notation>
+  
+
+  <notation>
+    <prototype>
+      <om:OMA>
+	<om:OMS cd="arith1" name="product" mcd:cr="fun"/>
+	<om:OMA>
+	  <om:OMS cd="interval1" name="integer_interval"/>
+	  <expr name="low"/>
+	  <expr name="high"/>
+	</om:OMA>
+	<om:OMBIND>
+	  <om:OMS cd="fns1" name="lambda"/>
+	  <om:OMBVAR><expr name="var"/></om:OMBVAR>
+	  <expr name="scope"/>
+	</om:OMBIND>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+	<m:csymbol cd="arith1" mcd:cr="fun">product</m:csymbol>
+	<m:apply>
+	  <m:csymbol cd="interval1">integer_interval</m:csymbol>
+	  <expr name="low"/>
+	  <expr name="high"/>
+	</m:apply>
+	<m:bind>
+	  <m:csymbol cd="fns1">lambda</m:csymbol>
+	  <m:bvar><expr name="var"/></m:bvar>
+	  <expr name="scope"/>
+	</m:bind>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+	<m:munderover>
+	  <m:mo mcd:cr="fun">∏</m:mo>
+	  <m:mrow>
+	    <render name="var"/>
+	    <m:mo>=</m:mo>
+	    <render name="low"/>
+	  </m:mrow>
+	  <render name="high"/>
+	</m:munderover>
+	<render name="scope"/>  
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation>
+    <prototype>
+      <om:OMS cd="arith1" name="product"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="arith1">product</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>∏</m:mo>
+    </rendering>
+  </notation>
+  
+</notations>
