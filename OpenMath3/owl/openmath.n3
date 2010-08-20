@@ -4,7 +4,6 @@
 @prefix oo:     <http://omdoc.org/ontology#> .
 @prefix omo:     <http://www.openmath.org/ontology#> .
 @prefix owl:     <http://www.w3.org/2002/07/owl#> .
-# @prefix owl11:   <http://www.w3.org/2006/12/owl11#> .
 @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
 
 # We add the OpenMath CD namespace (with a trailing slash) here so that the
@@ -20,6 +19,13 @@ dct:contributor
 	a	owl:AnnotationProperty .
 dct:title
 	a	owl:AnnotationProperty .
+# We need these as properties of CDs
+dct:identifier
+	a	owl:DatatypeProperty .
+dct:description
+	a	owl:DatatypeProperty .
+dct:date
+	a	owl:DatatypeProperty .
 
 omo:  a       owl:Ontology ;
 	dct:title "OpenMath 2.0/3.0 content dictionary ontology" ;
@@ -29,7 +35,7 @@ omo:  a       owl:Ontology ;
 	# here. --Christoph Lange
 	# dct:contributor "Name <e-mail>";
 	dct:subject "Semantic Mathematical Markup" ;
-	owl:versionInfo "0.2.1" ;
+	owl:versionInfo "0.3.0" ;
 	# As with other software projects:
 	# * leave version as is for very small changes (typo corrections) that
 	#   do not change the semantics
@@ -66,7 +72,37 @@ omo:Dictionary
 
 omo:ContentDictionary
 	a	owl:Class ;
-	rdfs:subClassOf	omo:Dictionary ;
+	rdfs:subClassOf	omo:Dictionary,
+        # CD must have a name (4.2 CD item 1)
+        [ a owl:Restriction ;
+            owl:onProperty dct:identifier ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ] ,
+        # CD must have a description (4.2 CD item 2)
+        [ a owl:Restriction ;
+            owl:onProperty dct:description ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ] ,
+        # CD must have a revision and review date (4.2 CD items 3, 4)
+        [ a owl:Restriction ;
+            owl:onProperty dct:date ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ] ,
+        [ a owl:Restriction ;
+            owl:onProperty omo:reviewDate ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ] ,
+        # CD must have a version and revision number (4.2 CD item 5)
+        [ a owl:Restriction ;
+            owl:onProperty omo:version ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ] ,
+        # CD must have a status (4.2 CD item 6)
+        [ a owl:Restriction ;
+            owl:onProperty omo:status ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ] ,
+        # CD must have a CDBase (4.2 CD item 7).  This is implicitly assumed in the RDF representation,
+        #   as we use the CDBase to mint a URI for the CD.
+        # CD must at least define one symbol (4.2 CD item 8; we could equivalently say 
+        #   owl:someValuesFrom omo:SymbolDefinition)
+        [ a owl:Restriction ;
+            owl:onProperty omo:definesSymbol ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
 	rdfs:comment "OpenMath 3 transitional aspects: Title = dct:title" ;
 	rdfs:comment "An OpenMath Content Dictionary, as described in chapter 4.  Some of the properties of content dictionaries are defined as properties in this ontology, others are taken from Dublin Core and RDFS, with the following mapping: CDName = dct:identifier, Title = dct:title, Description = dct:description, CDDate = dct:date, CDComment = rdfs:comment." ;
 	rdfs:isDefinedBy omo: .
@@ -81,15 +117,27 @@ omo:CDBase
 
 omo:SymbolDefinition
 	a	owl:Class ;
-	rdfs:subClassOf	omo:Composite ;
+	rdfs:subClassOf	omo:Composite ,
+        # symbol must have a name (4.2 SD item 1)
+        [ a owl:Restriction ;
+            owl:onProperty dct:identifier ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ] ,
+        # symbol must have a description (4.2 SD item 2)
+        [ a owl:Restriction ;
+            owl:onProperty dct:description ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+        # symbol may have a role (4.2 SD item 3)
+        # symbol may have CMPs (4.2 SD item 4)
+        # symbol may have FMPs (4.2 SD item 5)
+        # symbol may have Examples (4.2 SD item 6)
 	rdfs:comment "OpenMath 3 transitional aspects: Title = dct:title" ;
-	rdfs:comment "An OpenMath symbol definition, as described in section 4.3.  Some of the properties of symbols are defined as properties in this ontology, others are taken from Dublin Core and RDFS, with the following mapping: Name = dct:identifier, Title = dct:title, CDComment = rdfs:comment." ;
+	rdfs:comment "An OpenMath symbol definition, as described in section 4.2SD and 4.3.  Some of the properties of symbols are defined as properties in this ontology, others are taken from Dublin Core and RDFS, with the following mapping: Name = dct:identifier, Title = dct:title, CDComment = rdfs:comment." ;
 	rdfs:isDefinedBy omo: .
 
 omo:Status
 	a	owl:Class ;
 	rdfs:subClassOf omo:OpenMathConcept ;
-	rdfs:comment "The status of a CD, as described in sections 4.3.2 and 4.2.1" ;
+	rdfs:comment "The status of a CD, as described in sections 4.2.1 and 4.3.2" ;
 	owl:oneOf (omo:Official omo:Experimental omo:Private omo:Obsolete) ;
 	rdfs:isDefinedBy omo: .
 
@@ -116,7 +164,7 @@ omo:Obsolete
 omo:Role
 	a	owl:Class ;
 	rdfs:subClassOf omo:OpenMathConcept ;
-	rdfs:comment "The role of a symbol, as described in sections 4.3.2 and 2.1.4" ;
+	rdfs:comment "The role of a symbol, as described in sections 2.1.4 and 4.3.2" ;
 	owl:oneOf (omo:Binder omo:Attribution omo:SemanticAttribution omo:Error omo:Application omo:Constant) ;
 	rdfs:isDefinedBy omo: .
 
@@ -153,13 +201,13 @@ omo:Constant
 omo:Property
 	a	owl:Class ;
 	rdfs:subClassOf	omo:Composite ;
-	rdfs:comment "A mathematical property of a symbol, can have a commented (CMP), a formal (FMP) part, or both; cf. section 4.3" ;
+	rdfs:comment "A mathematical property of a symbol, can have a commented (CMP), a formal (FMP) part, or both; cf. sections 4.2 and 4.3" ;
 	rdfs:isDefinedBy omo: .
 
 omo:CommentedPart
 	a	owl:Class ;
 	rdfs:subClassOf	omo:OpenMathConcept ;
-	rdfs:comment "A commented part of a mathematical property (CMP) of a symbol, as described in section 4.3" ;
+	rdfs:comment "A commented part of a mathematical property (CMP) of a symbol, as described in sections 4.2 and 4.3" ;
 	rdfs:isDefinedBy omo: .
 
 omo:hasText
@@ -174,7 +222,7 @@ omo:hasText
 omo:FormalPart
 	a	owl:Class ;
 	rdfs:subClassOf	omo:OpenMathConcept ;
-	rdfs:comment "A formal part of a mathematical property (FMP) of a symbol, as described in section 4.3" ;
+	rdfs:comment "A formal part of a mathematical property (FMP) of a symbol, as described in sections 4.2 and 4.3" ;
 	owl:disjointWith omo:CommentedPart ;
 	rdfs:isDefinedBy omo: .
 
@@ -190,7 +238,7 @@ omo:Example
 	a	owl:Class ;
 	# OpenMath 3: or is it a composite?
 	rdfs:subClassOf	omo:OpenMathConcept ;
-	rdfs:comment "An example for a symbol, as described in section 4.3" ;
+	rdfs:comment "An example for a symbol, as described in sections 4.2 and 4.3" ;
 	rdfs:isDefinedBy omo: .
 
 omo:SignatureDictionary
@@ -209,7 +257,7 @@ omo:Signature
 omo:NotationDictionary
 	a	owl:Class ;
 	rdfs:subClassOf	omo:Dictionary ;
-	rdfs:comment "Note: This name was conceived in analogy to “Content Dictionaries” and “Signature Dictionaries”." ;
+	rdfs:comment "This is not (yet) an official part of the OpenMath standard.  This name was conceived in analogy to “Content Dictionaries” and “Signature Dictionaries”." ;
         owl:disjointWith omo:ContentDictionary, omo:SignatureDictionary ;
 	rdfs:isDefinedBy omo: .
 
@@ -245,14 +293,14 @@ omo:reviewDate
 	a	owl:DatatypeProperty, owl:FunctionalProperty ;
 	rdfs:domain omo:Dictionary ;
 	rdfs:range  xsd:date ;
-	rdfs:comment "The review date of a content dictionary or signature dictionary, as described in section 4.3.2" ;
+	rdfs:comment "The review date of a content dictionary or signature dictionary, as described in section 4.2 and 4.3.2" ;
 	rdfs:isDefinedBy omo: .
 
 omo:status
 	a	owl:ObjectProperty, owl:FunctionalProperty ;
 	rdfs:domain omo:Dictionary ;
 	rdfs:range  omo:Status ;
-	rdfs:comment "The status of a content dictionary or signature dictionary, as described in section 4.3.2" ;
+	rdfs:comment "The status of a content dictionary or signature dictionary, as described in section 4.2.1 and 4.3.2" ;
 	rdfs:isDefinedBy omo: .
 
 omo:version
@@ -260,17 +308,36 @@ omo:version
 	rdfs:domain
 	    [ owl:unionOf (omo:ContentDictionary omo:ContentDictionaryGroup)
 	    ] ;
-	rdfs:range  xsd:nonNegativeInteger ;
-	rdfs:comment "The (major) version of a content dictionary or content dictionary group, as described in section 4.3.2 or 4.4.2.2, resp." ;
+	rdfs:range  omo:Version ;
+	rdfs:comment "The version of a content dictionary or content dictionary group, as described in sections 4.2.2 and 4.3.2 or 4.4.2.2, resp." ;
 	rdfs:isDefinedBy omo: .
 
-omo:revision
+omo:Version
+        a       owl:Class ;
+        rdfs:subClassOf
+        # must have major part
+        [ a owl:Restriction ;
+            owl:onProperty omo:major ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ] ,
+        # must have minor part
+        [ a owl:Restriction ;
+            owl:onProperty omo:minor ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+	rdfs:comment "A version with major and minor part (both mandatory), as described in section 4.2, 4.3.2 or 4.4.2.2, resp." ;
+	rdfs:isDefinedBy omo: .
+
+omo:major
+        a       owl:DatatypeProperty, owl:FunctionalProperty ;
+        rdfs:domain omo:Version ;
+        rdfs:range xsd:nonNegativeInteger ;
+	rdfs:comment "Major part of a version number, as described in section 4.2.2" ;
+	rdfs:isDefinedBy omo: .
+      
+omo:minor
 	a	owl:DatatypeProperty, owl:FunctionalProperty ;
-	rdfs:domain
-	    [ owl:unionOf (omo:ContentDictionary omo:ContentDictionaryGroup)
-	    ] ;
-	rdfs:range  xsd:nonNegativeInteger ;
-	rdfs:comment "The revision (= minor version) of a content dictionary or content dictionary group, as described in section 4.3.2 or 4.4.2.2, resp." ;
+        rdfs:domain omo:Version ;
+        rdfs:range xsd:nonNegativeInteger ;
+	rdfs:comment "Minor part of a version number, as described in section 4.2.2" ;
 	rdfs:isDefinedBy omo: .
 
 omo:url
