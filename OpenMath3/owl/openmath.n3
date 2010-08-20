@@ -14,8 +14,6 @@
 # These must be declared explicitly for OWL-DL conformity --Christoph Lange
 dct:creator
 	a	owl:AnnotationProperty .
-rdfs:comment
-	a	owl:AnnotationProperty .
 dct:subject
 	a	owl:AnnotationProperty .
 dct:contributor
@@ -48,7 +46,7 @@ omo:OpenMathConcept
 	rdfs:comment "The generic superclass of all concepts that can be expressed in OpenMath content/signature/notation dictionaries" ;
 	rdfs:isDefinedBy omo: .
 
-omo:OpenMathComposite
+omo:Composite
 	a	owl:Class ;
 	rdfs:subClassOf omo:OpenMathConcept ;
 	rdfs:comment "The generic superclass of all concepts that can be expressed in OpenMath content/signature/notation dictionaries and that can comprise subconcepts" ;
@@ -56,16 +54,21 @@ omo:OpenMathComposite
 
 omo:ContentDictionaryGroup
 	a	owl:Class ;
-	rdfs:subClassOf	omo:OpenMathComposite ;
+	rdfs:subClassOf	omo:Composite ;
 	rdfs:comment "An OpenMath CD (Content Dictionary) Group, as described in section 4.4.2.  Some of the properties of content dictionaries are defined as properties in this ontology, others are taken from Dublin Core and RDFS, with the following mapping: CDGroupName = dct:identifier, CDGroupDescription = dct:description, CDComment = rdfs:comment." ;
 	rdfs:isDefinedBy omo: .
 
+omo:Dictionary
+        a       owl:Class ;
+        rdfs:subClassOf omo:Composite ;
+	owl:disjointWith omo:ContentDictionaryGroup ;
+        rdfs:isDefinedBy omo: .
+
 omo:ContentDictionary
 	a	owl:Class ;
-	rdfs:subClassOf	omo:OpenMathComposite ;
+	rdfs:subClassOf	omo:Dictionary ;
 	rdfs:comment "OpenMath 3 transitional aspects: Title = dct:title" ;
 	rdfs:comment "An OpenMath Content Dictionary, as described in chapter 4.  Some of the properties of content dictionaries are defined as properties in this ontology, others are taken from Dublin Core and RDFS, with the following mapping: CDName = dct:identifier, Title = dct:title, Description = dct:description, CDDate = dct:date, CDComment = rdfs:comment." ;
-	owl:disjointWith omo:ContentDictionaryGroup ;
 	rdfs:isDefinedBy omo: .
 
 # TODO reconsider the mapping CDName = dct:identifier (see archived discussion at the bottom)
@@ -78,7 +81,7 @@ omo:CDBase
 
 omo:SymbolDefinition
 	a	owl:Class ;
-	rdfs:subClassOf	omo:OpenMathComposite ;
+	rdfs:subClassOf	omo:Composite ;
 	rdfs:comment "OpenMath 3 transitional aspects: Title = dct:title" ;
 	rdfs:comment "An OpenMath symbol definition, as described in section 4.3.  Some of the properties of symbols are defined as properties in this ontology, others are taken from Dublin Core and RDFS, with the following mapping: Name = dct:identifier, Title = dct:title, CDComment = rdfs:comment." ;
 	rdfs:isDefinedBy omo: .
@@ -149,7 +152,7 @@ omo:Constant
 
 omo:Property
 	a	owl:Class ;
-	rdfs:subClassOf	omo:OpenMathComposite ;
+	rdfs:subClassOf	omo:Composite ;
 	rdfs:comment "A mathematical property of a symbol, can have a commented (CMP), a formal (FMP) part, or both; cf. section 4.3" ;
 	rdfs:isDefinedBy omo: .
 
@@ -161,7 +164,9 @@ omo:CommentedPart
 
 omo:hasText
         a       owl:DatatypeProperty ;
-        rdfs:domain omo:CommentedPart ;
+	rdfs:domain
+	    [ owl:unionOf (omo:CommentedPart omo:Example)
+	    ] ;
         rdfs:range rdfs:Literal ;
         rdfs:comment """The text of a property (usually an informal one)""" ;
         rdfs:isDefinedBy omo: .
@@ -175,7 +180,7 @@ omo:FormalPart
 
 omo:PragmaticSyntax
 	a	owl:Class ;
-	rdfs:subClassOf	omo:OpenMathComposite ;
+	rdfs:subClassOf	omo:Composite ;
 	# OpenMath 3: we do not yet represent the subparts of this composite
 	rdfs:comment "OpenMath 3 transitional" ;
 	rdfs:comment "Guidelines for using this symbol in pragmatic Content MathML" ;
@@ -190,8 +195,9 @@ omo:Example
 
 omo:SignatureDictionary
 	a	owl:Class ;
-	rdfs:subClassOf	omo:OpenMathComposite ;
+	rdfs:subClassOf	omo:Dictionary ;
 	rdfs:comment "An OpenMath Signature Dictionary, as described in section 4.4.  Some of the properties of signature dictionaries are defined as properties in this ontology, others are taken from Dublin Core and RDFS, with the following mapping: Name = dct:identifier" ;
+        owl:disjointWith omo:ContentDictionary ;
 	rdfs:isDefinedBy omo: .
 
 omo:Signature
@@ -202,8 +208,9 @@ omo:Signature
 
 omo:NotationDictionary
 	a	owl:Class ;
-	rdfs:subClassOf	omo:OpenMathComposite ;
+	rdfs:subClassOf	omo:Dictionary ;
 	rdfs:comment "Note: This name was conceived in analogy to “Content Dictionaries” and “Signature Dictionaries”." ;
+        owl:disjointWith omo:ContentDictionary, omo:SignatureDictionary ;
 	rdfs:isDefinedBy omo: .
 
 omo:NotationDefinition
@@ -217,7 +224,7 @@ omo:comprises
 	a	owl:ObjectProperty, owl:TransitiveProperty ;
 	# Note: This is not an inverse functional property.  One resource can
 	# be comprised by many collections of resources
-	rdfs:domain omo:OpenMathComposite ;
+	rdfs:domain omo:Composite ;
 	rdfs:range omo:OpenMathConcept ;
 	rdfs:comment "This relation denotes that one concept A directly or indirectly comprises another concept B, but does not necessarily exclusively contain it." ;
 	rdfs:isDefinedBy omo: . 
@@ -236,18 +243,14 @@ omo:hasDirectPart
 
 omo:reviewDate
 	a	owl:DatatypeProperty, owl:FunctionalProperty ;
-	rdfs:domain
-	    [ owl:unionOf (omo:ContentDictionary omo:SignatureDictionary)
-	    ] ;
+	rdfs:domain omo:Dictionary ;
 	rdfs:range  xsd:date ;
 	rdfs:comment "The review date of a content dictionary or signature dictionary, as described in section 4.3.2" ;
 	rdfs:isDefinedBy omo: .
 
 omo:status
 	a	owl:ObjectProperty, owl:FunctionalProperty ;
-	rdfs:domain
-	    [ owl:unionOf (omo:ContentDictionary omo:SignatureDictionary)
-	    ] ;
+	rdfs:domain omo:Dictionary ;
 	rdfs:range  omo:Status ;
 	rdfs:comment "The status of a content dictionary or signature dictionary, as described in section 4.3.2" ;
 	rdfs:isDefinedBy omo: .
@@ -417,7 +420,7 @@ omo:typesSymbol
 	rdfs:comment "The relationship of a type signature to the symbol it specifies" ;
 	rdfs:isDefinedBy omo: .
 
-omo:hasType
+omo:type
 	a	owl:ObjectProperty, owl:InverseFunctionalProperty ;
 	owl:inverseOf omo:typesSymbol ;
 	rdfs:isDefinedBy omo: .
