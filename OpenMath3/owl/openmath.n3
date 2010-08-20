@@ -292,9 +292,9 @@ omo:usesDirectly
 	rdfs:domain omo:ContentDictionary ;
 	rdfs:range  omo:ContentDictionary ;
 	# uses via FMP
-	owl:propertyChainAxiom (omo:containsSymbolDefinition omo:hasProperty omo:hasFormalPart omo:usesSymbol omo:definedIn) ;
+	owl:propertyChainAxiom (omo:definesSymbol omo:hasProperty omo:hasFormalPart omo:usesSymbol omo:definedIn) ;
 	# uses via example
-	owl:propertyChainAxiom (omo:containsSymbolDefinition omo:exemplifiedBy omo:usesSymbol omo:definedIn) ;
+	owl:propertyChainAxiom (omo:definesSymbol omo:exemplifiedBy omo:usesSymbol omo:definedIn) ;
 	rdfs:comment "Other content dictionaries directly used by this one, as described in section 4.3.2" ;
 	rdfs:isDefinedBy omo: .
 
@@ -312,18 +312,18 @@ omo:role
 	rdfs:comment "The role of a symbol, as described in section 4.3.2" ;
 	rdfs:isDefinedBy omo: .
 
-omo:containsSymbolDefinition
+omo:definesSymbol
 	a	owl:ObjectProperty ;
 	rdfs:subPropertyOf  omo:hasDirectPart ;
 	rdfs:domain omo:ContentDictionary ;
 	rdfs:range  omo:SymbolDefinition ;
 	owl:inverseOf	omo:definedIn ;
-	rdfs:comment "The relationship of a content dictionary to a symbol definition it contains" ;
+	rdfs:comment "The relationship of a content dictionary to a symbol it defines" ;
 	rdfs:isDefinedBy omo: .
 
 omo:definedIn
 	a	owl:ObjectProperty ;
-	owl:inverseOf	omo:containsSymbolDefinition ;
+	owl:inverseOf	omo:definesSymbol ;
 	rdfs:comment "The relationship of a symbol definition to its enclosing content dictionary" ;
 	rdfs:isDefinedBy omo: .
 
