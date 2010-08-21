@@ -35,7 +35,7 @@ omo:  a       owl:Ontology ;
 	# here. --Christoph Lange
 	# dct:contributor "Name <e-mail>";
 	dct:subject "Semantic Mathematical Markup" ;
-	owl:versionInfo "0.3.0" ;
+	owl:versionInfo "0.3.1" ;
 	# As with other software projects:
 	# * leave version as is for very small changes (typo corrections) that
 	#   do not change the semantics
@@ -139,7 +139,10 @@ omo:SymbolDefinition
         [ a owl:Restriction ;
             owl:onProperty dct:description ;
             owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
-        # symbol may have a role (4.2 SD item 3)
+        # symbol may have at most one role (4.2 SD item 3)
+        [ a owl:Restriction ;
+            owl:onProperty omo:role ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
         # symbol may have CMPs (4.2 SD item 4)
         # symbol may have FMPs (4.2 SD item 5)
         # symbol may have Examples (4.2 SD item 6)
