@@ -1,23 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?><notations xmlns="http://www.w3.org/ns/mathml-cd" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+<?xml version="1.0"?>
+<notations xmlns="http://omdoc.org/ns" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:o="http://omdoc.org/ns">
   <notation>
     <prototype>
       <om:OMA>
-        <om:OMS cd="multiset1" name="size" mcd:cr="fun"/>
+        <om:OMS cd="multiset1" name="size" o:cr="fun"/>
         <expr name="arg"/>
       </om:OMA>
     </prototype>
     <prototype>
       <m:apply>
-        <m:csymbol cd="multiset1" mcd:cr="fun">size</m:csymbol>
+        <m:csymbol cd="multiset1" o:cr="fun">size</m:csymbol>
         <expr name="arg"/>
       </m:apply>
     </prototype>
     <rendering>
       <m:mrow>
-        <m:mo mcd:cr="fun">#</m:mo>
-        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <m:mo o:cr="fun">#</m:mo>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
         <render name="arg"/>
-        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
       </m:mrow>
     </rendering>
   </notation>
@@ -36,24 +37,24 @@
   <notation>
     <prototype>
       <om:OMA>
-        <om:OMS cd="multiset1" name="cartesian_product" mcd:cr="fun"/>
+        <om:OMS cd="multiset1" name="cartesian_product" o:cr="fun"/>
         <exprlist name="args"><expr name="arg"/></exprlist>
       </om:OMA>
     </prototype>
     <prototype>
       <m:apply>
-        <m:csymbol cd="multiset1" mcd:cr="fun">cartesian_product</m:csymbol>
+        <m:csymbol cd="multiset1" o:cr="fun">cartesian_product</m:csymbol>
         <exprlist name="args"><expr name="arg"/></exprlist>
       </m:apply>
     </prototype>
     <rendering>
       <m:mrow>
-        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
         <iterate name="args">
-          <separator><m:mo mcd:cr="fun">×</m:mo></separator>
+          <separator><m:mo o:cr="fun">×</m:mo></separator>
           <render name="arg"/>
         </iterate>
-        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
       </m:mrow>
     </rendering>
   </notation>
@@ -84,24 +85,24 @@
   <notation>
     <prototype>
       <om:OMA>
-        <om:OMS cd="multiset1" name="multiset" mcd:cr="fun"/>
+        <om:OMS cd="multiset1" name="multiset" o:cr="fun"/>
         <exprlist name="args"><expr name="arg"/></exprlist>
       </om:OMA>
     </prototype>
     <prototype>
       <m:apply>
-        <m:csymbol cd="multiset1" mcd:cr="fun">multiset</m:csymbol>
+        <m:csymbol cd="multiset1" o:cr="fun">multiset</m:csymbol>
         <exprlist name="args"><expr name="arg"/></exprlist>
       </m:apply>
     </prototype>
     <rendering>
       <m:mrow>
-        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
         <iterate name="args">
-          <separator><m:mo mcd:cr="fun" separator="true">,</m:mo></separator>
+          <separator><m:mo o:cr="fun" separator="true">,</m:mo></separator>
           <render name="arg"/>
         </iterate>
-        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
       </m:mrow>
     </rendering>
   </notation>
@@ -109,7 +110,7 @@
   <notation>
     <prototype>
       <om:OMA>
-        <om:OMS cd="multiset1" name="intersect" mcd:cr="fun"/>
+        <om:OMS cd="multiset1" name="intersect" o:cr="fun"/>
         <exprlist name="args"><expr name="arg"/></exprlist>
       </om:OMA>
     </prototype>
@@ -119,14 +120,14 @@
         <exprlist name="args"><expr name="arg"/></exprlist>
       </m:apply>
     </prototype>
-    <rendering>
+    <rendering precedence="500">
       <m:mrow>
-        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
         <iterate name="args" precedence="500">
-          <separator><m:mo mcd:cr="fun">∩</m:mo></separator>
+          <separator><m:mo o:cr="fun">∩</m:mo></separator>
           <render name="arg"/>
         </iterate>
-        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
       </m:mrow>
     </rendering>
   </notation>
@@ -145,24 +146,24 @@
   <notation>
     <prototype>
       <om:OMA>
-        <om:OMS cd="multiset1" name="union" mcd:cr="fun"/>
+        <om:OMS cd="multiset1" name="union" o:cr="fun"/>
         <exprlist name="args"><expr name="arg"/></exprlist>
       </om:OMA>
     </prototype>
     <prototype>
       <m:apply>
-        <m:csymbol cd="multiset1" mcd:cr="fun">union</m:csymbol>
+        <m:csymbol cd="multiset1" o:cr="fun">union</m:csymbol>
         <exprlist name="args"><expr name="arg"/></exprlist>
       </m:apply>
     </prototype>
-    <rendering>
+    <rendering precedence="500">
       <m:mrow>
-        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
         <iterate name="args" precedence="500">
-          <separator><m:mo mcd:cr="fun">∪</m:mo></separator>
+          <separator><m:mo o:cr="fun">∪</m:mo></separator>
           <render name="arg"/>
         </iterate>
-        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
       </m:mrow>
     </rendering>
   </notation>
@@ -181,25 +182,25 @@
   <notation>
     <prototype>
       <om:OMA>
-        <om:OMS cd="multiset1" name="setdiff" mcd:cr="fun"/>
+        <om:OMS cd="multiset1" name="setdiff" o:cr="fun"/>
         <expr name="arg1"/>
         <expr name="arg2"/>
       </om:OMA>
     </prototype>
     <prototype>
       <m:apply>
-        <m:csymbol cd="multiset1" mcd:cr="fun">setdiff</m:csymbol>
+        <m:csymbol cd="multiset1" o:cr="fun">setdiff</m:csymbol>
         <expr name="arg1"/>
         <expr name="arg2"/>
       </m:apply>
     </prototype>
-    <rendering>
+    <rendering precedence="500">
       <m:mrow>
-        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
         <render name="arg1" precedence="500"/>
-        <m:mo mcd:cr="fun">∖</m:mo>
+        <m:mo o:cr="fun">∖</m:mo>
         <render name="arg2" precedence="500"/>
-        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
       </m:mrow>
     </rendering>
   </notation>
@@ -218,25 +219,25 @@
   <notation>
     <prototype>
       <om:OMA>
-        <om:OMS cd="multiset1" name="subset" mcd:cr="fun"/>
+        <om:OMS cd="multiset1" name="subset" o:cr="fun"/>
         <expr name="arg1"/>
         <expr name="arg2"/>
       </om:OMA>
     </prototype>
     <prototype>
       <m:apply>
-        <m:csymbol cd="multiset1" mcd:cr="fun">subset</m:csymbol>
+        <m:csymbol cd="multiset1" o:cr="fun">subset</m:csymbol>
         <expr name="arg1"/>
         <expr name="arg2"/>
       </m:apply>
     </prototype>
-    <rendering>
+    <rendering precedence="300">
       <m:mrow>
-        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
-        <render name="arg1" precedence="700"/>
-        <m:mo mcd:cr="fun">⊆</m:mo>
-        <render name="arg2" precedence="700"/>
-        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="300"/>
+        <m:mo o:cr="fun">⊆</m:mo>
+        <render name="arg2" precedence="300"/>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
       </m:mrow>
     </rendering>
   </notation>
@@ -255,25 +256,25 @@
   <notation>
     <prototype>
       <om:OMA>
-        <om:OMS cd="multiset1" name="in" mcd:cr="fun"/>
+        <om:OMS cd="multiset1" name="in" o:cr="fun"/>
         <expr name="arg1"/>
         <expr name="arg2"/>
       </om:OMA>
     </prototype>
     <prototype>
       <m:apply>
-        <m:csymbol cd="multiset1" mcd:cr="fun">in</m:csymbol>
+        <m:csymbol cd="multiset1" o:cr="fun">in</m:csymbol>
         <expr name="arg1"/>
         <expr name="arg2"/>
       </m:apply>
     </prototype>
-    <rendering>
+    <rendering precedence="450">
       <m:mrow>
-        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
-        <render name="arg1" precedence="550"/>
-        <m:mo mcd:cr="fun">∈</m:mo>
-        <render name="arg2" precedence="550"/>
-        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="450"/>
+        <m:mo o:cr="fun">∈</m:mo>
+        <render name="arg2" precedence="450"/>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
       </m:mrow>
     </rendering>
   </notation>
@@ -292,25 +293,25 @@
   <notation>
     <prototype>
       <om:OMA>
-        <om:OMS cd="multiset1" name="notin" mcd:cr="fun"/>
+        <om:OMS cd="multiset1" name="notin" o:cr="fun"/>
         <expr name="arg1"/>
         <expr name="arg2"/>
       </om:OMA>
     </prototype>
     <prototype>
       <m:apply>
-        <m:csymbol cd="multiset1" mcd:cr="fun">notin</m:csymbol>
+        <m:csymbol cd="multiset1" o:cr="fun">notin</m:csymbol>
         <expr name="arg1"/>
         <expr name="arg2"/>
       </m:apply>
     </prototype>
-    <rendering>
+    <rendering precedence="300">
       <m:mrow>
-        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
-        <render name="arg1" precedence="700"/>
-        <m:mo mcd:cr="fun">∉</m:mo>
-        <render name="arg2" precedence="700"/>
-        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="300"/>
+        <m:mo o:cr="fun">∉</m:mo>
+        <render name="arg2" precedence="300"/>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
       </m:mrow>
     </rendering>
   </notation>
@@ -329,25 +330,25 @@
   <notation>
     <prototype>
       <om:OMA>
-        <om:OMS cd="multiset1" name="prsubset" mcd:cr="fun"/>
+        <om:OMS cd="multiset1" name="prsubset" o:cr="fun"/>
         <expr name="arg1"/>
         <expr name="arg2"/>
       </om:OMA>
     </prototype>
     <prototype>
       <m:apply>
-        <m:csymbol cd="multiset1" mcd:cr="fun">prsubset</m:csymbol>
+        <m:csymbol cd="multiset1" o:cr="fun">prsubset</m:csymbol>
         <expr name="arg1"/>
         <expr name="arg2"/>
       </m:apply>
     </prototype>
-    <rendering>
+    <rendering precedence="300">
       <m:mrow>
-        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
-        <render name="arg1" precedence="700"/>
-        <m:mo mcd:cr="fun">⊊</m:mo>
-        <render name="arg2" precedence="700"/>
-        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="300"/>
+        <m:mo o:cr="fun">⊊</m:mo>
+        <render name="arg2" precedence="300"/>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
       </m:mrow>
     </rendering>
   </notation>
@@ -355,25 +356,25 @@
   <notation>
     <prototype>
       <om:OMA>
-        <om:OMS cd="multiset1" name="notsubset" mcd:cr="fun"/>
+        <om:OMS cd="multiset1" name="notsubset" o:cr="fun"/>
         <expr name="arg1"/>
         <expr name="arg2"/>
       </om:OMA>
     </prototype>
     <prototype>
       <m:apply>
-        <m:csymbol cd="multiset1" mcd:cr="fun">notsubset</m:csymbol>
+        <m:csymbol cd="multiset1" o:cr="fun">notsubset</m:csymbol>
         <expr name="arg1"/>
         <expr name="arg2"/>
       </m:apply>
     </prototype>
-    <rendering>
+    <rendering precedence="300">
       <m:mrow>
-        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
-        <render name="arg1" precedence="700"/>
-        <m:mo mcd:cr="fun">⊈</m:mo>
-        <render name="arg2" precedence="700"/>
-        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="300"/>
+        <m:mo o:cr="fun">⊈</m:mo>
+        <render name="arg2" precedence="300"/>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
       </m:mrow>
     </rendering>
   </notation>
@@ -381,25 +382,25 @@
   <notation>
     <prototype>
       <om:OMA>
-        <om:OMS cd="multiset1" name="notprsubset" mcd:cr="fun"/>
+        <om:OMS cd="multiset1" name="notprsubset" o:cr="fun"/>
         <expr name="arg1"/>
         <expr name="arg2"/>
       </om:OMA>
     </prototype>
     <prototype>
       <m:apply>
-        <m:csymbol cd="multiset1" mcd:cr="fun">notprsubset</m:csymbol>
+        <m:csymbol cd="multiset1" o:cr="fun">notprsubset</m:csymbol>
         <expr name="arg1"/>
         <expr name="arg2"/>
       </m:apply>
     </prototype>
-    <rendering>
+    <rendering precedence="300">
       <m:mrow>
-        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
-        <render name="arg1" precedence="700"/>
-        <m:mo mcd:cr="fun">⊄</m:mo>
-        <render name="arg2" precedence="700"/>
-        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="300"/>
+        <m:mo o:cr="fun">⊄</m:mo>
+        <render name="arg2" precedence="300"/>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
       </m:mrow>
     </rendering>
   </notation>

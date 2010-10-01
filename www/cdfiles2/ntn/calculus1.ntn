@@ -1,22 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?><notations xmlns="http://www.w3.org/ns/mathml-cd" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+<?xml version="1.0"?>
+<notations xmlns="http://omdoc.org/ns" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:o="http://omdoc.org/ns">
 
   <notation>
     <prototype>
       <om:OMA>
-        <om:OMS cd="calculus1" name="diff" mcd:cr="fun"/>
+        <om:OMS cd="calculus1" name="diff" o:cr="fun"/>
         <expr name="arg"/>
       </om:OMA>
     </prototype>
     <prototype>
       <m:apply>
-        <m:csymbol cd="calculus1" mcd:cr="fun">diff</m:csymbol>
+        <m:csymbol cd="calculus1" o:cr="fun">diff</m:csymbol>
         <expr name="arg"/>
       </m:apply>
     </prototype>
-    <rendering>
+    <rendering precedence="100">
       <m:msup>
-        <render name="arg" precedence="900"/>
-        <m:mo mcd:cr="fun">′</m:mo>
+        <render name="arg" precedence="100"/>
+        <m:mo o:cr="fun">′</m:mo>
       </m:msup>
     </rendering>
   </notation>
@@ -49,9 +50,9 @@
   <notation>
     <prototype>
       <om:OMA>
-	<om:OMS cd="calculus1" name="int" mcd:cr="fun"/>
+	<om:OMS cd="calculus1" name="int" o:cr="fun"/>
 	<om:OMBIND>
-	  <om:OMS cd="fns1" name="lambda" mcd:cr="lam"/>
+	  <om:OMS cd="fns1" name="lambda" o:cr="lam"/>
 	  <om:OMBVAR><expr name="var"/></om:OMBVAR>
 	  <expr name="scope"/>
 	</om:OMBIND>
@@ -59,7 +60,7 @@
     </prototype>
     <prototype>
       <m:apply>
-	<m:csymbol cd="calculus1" mcd:cr="fun">int</m:csymbol>
+	<m:csymbol cd="calculus1" o:cr="fun">int</m:csymbol>
 	<m:bind>
 	  <m:csymbol cd="fns1">lambda</m:csymbol>
 	  <m:bvar><expr name="var"/></m:bvar>
@@ -69,10 +70,10 @@
     </prototype>
     <rendering>
       <m:mrow>
-	<m:mo mcd:cr="fun"/>
+	<m:mo o:cr="fun"/>
 	<m:mo>∫</m:mo>
 	<render name="scope"/>
-	<m:mo mcd:cr="lam">d</m:mo>
+	<m:mo o:cr="lam">d</m:mo>
 	<render name="scope"/>
       </m:mrow>
     </rendering>
@@ -80,19 +81,19 @@
   <notation>
     <prototype>
       <om:OMA>
-        <om:OMS cd="calculus1" name="int" mcd:cr="fun"/>
+        <om:OMS cd="calculus1" name="int" o:cr="fun"/>
         <expr name="arg"/>
       </om:OMA>
     </prototype>
     <prototype>
       <m:apply>
-        <m:csymbol cd="calculus1" mcd:cr="fun">int</m:csymbol>
+        <m:csymbol cd="calculus1" o:cr="fun">int</m:csymbol>
         <expr name="arg"/>
       </m:apply>
     </prototype>
     <rendering>
       <m:mrow>
-	<m:mo mcd:cr="fun">∫</m:mo>
+	<m:mo o:cr="fun">∫</m:mo>
 	<render name="arg"/>
       </m:mrow>
     </rendering>
@@ -114,14 +115,14 @@
   <notation>
     <prototype>
       <om:OMA>
-	<om:OMS cd="calculus1" name="defint" mcd:cr="fun"/>
+	<om:OMS cd="calculus1" name="defint" o:cr="fun"/>
 	<om:OMA>
 	  <om:OMS cd="interval1" name="interval"/>
 	  <expr name="low"/>
 	  <expr name="high"/>
 	</om:OMA>
 	<om:OMBIND>
-	  <om:OMS cd="fns1" name="lambda" mcd:cr="lam"/>
+	  <om:OMS cd="fns1" name="lambda" o:cr="lam"/>
 	  <om:OMBVAR><expr name="var"/></om:OMBVAR>
 	  <expr name="scope"/>
 	</om:OMBIND>
@@ -129,14 +130,14 @@
     </prototype>
     <prototype>
       <m:apply>
-	<m:csymbol cd="calculus1" mcd:cr="fun">defint</m:csymbol>
+	<m:csymbol cd="calculus1" o:cr="fun">defint</m:csymbol>
 	<m:apply>
 	  <m:csymbol cd="interval1">interval</m:csymbol>
 	  <expr name="low"/>
 	  <expr name="high"/>
 	</m:apply>
 	<m:bind>
-	  <m:csymbol cd="fns1" mcd:cr="lam">lambda</m:csymbol>
+	  <m:csymbol cd="fns1" o:cr="lam">lambda</m:csymbol>
 	  <m:bvar><expr name="var"/></m:bvar>
 	  <expr name="scope"/>
 	</m:bind>
@@ -145,12 +146,12 @@
     <rendering>
       <m:mrow>
 	<m:munderover>
-	  <m:mo mcd:cr="fun">∫</m:mo>
+	  <m:mo o:cr="fun">∫</m:mo>
 	  <render name="low"/>
 	  <render name="high"/>
 	</m:munderover>
 	<render name="scope"/>
-	<m:mrow><m:mo mcd:cr="fun">d</m:mo><render name="var"/></m:mrow>
+	<m:mrow><m:mo o:cr="fun">d</m:mo><render name="var"/></m:mrow>
       </m:mrow>
     </rendering>
   </notation>
