@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><notations xmlns="http://www.w3.org/ns/mathml-cd" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+<?xml version="1.0"?>
+<notations xmlns="http://omdoc.org/ns" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:o="http://omdoc.org/ns">
   <notation>
     <prototype>
       <om:OMS cd="linalg1" name="vectorproduct"/>
@@ -38,20 +39,20 @@
   <notation>
     <prototype>
       <om:OMA>
-        <om:OMS cd="linalg1" name="transpose" mcd:cr="fun"/>
+        <om:OMS cd="linalg1" name="transpose" o:cr="fun"/>
         <expr name="arg"/>
       </om:OMA>
     </prototype>
     <prototype>
       <m:apply>
-        <m:csymbol cd="linalg1" mcd:cr="fun">transpose</m:csymbol>
+        <m:csymbol cd="linalg1" o:cr="fun">transpose</m:csymbol>
         <expr name="arg"/>
       </m:apply>
     </prototype>
-    <rendering>
+    <rendering precedence="750">
       <m:msup>
-        <render name="args" precedence="250"/>
-        <m:mo mcd:cr="fun">T</m:mo>
+        <render name="args" precedence="750"/>
+        <m:mo o:cr="fun">T</m:mo>
       </m:msup>
     </rendering>
   </notation>
@@ -70,22 +71,22 @@
   <notation>
     <prototype>
       <om:OMA>
-        <om:OMS cd="linalg1" name="determinant" mcd:cr="fun"/>
+        <om:OMS cd="linalg1" name="determinant" o:cr="fun"/>
         <expr name="arg"/>
       </om:OMA>
     </prototype>
     <prototype>
       <m:apply>
-        <m:csymbol cd="linalg1" mcd:cr="fun">determinant</m:csymbol>
+        <m:csymbol cd="linalg1" o:cr="fun">determinant</m:csymbol>
         <expr name="arg"/>
       </m:apply>
     </prototype>
     <rendering>
       <m:mrow>
-        <m:mo mcd:cr="fun">det</m:mo>
-        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <m:mo o:cr="fun">det</m:mo>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
 	<render name="arg"/>
-        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
       </m:mrow>
     </rendering>
   </notation>
@@ -116,26 +117,26 @@
   <notation>
     <prototype>
       <om:OMA>
-        <om:OMS cd="linalg1" name="vector_selector" mcd:cr="fun"/>
+        <om:OMS cd="linalg1" name="vector_selector" o:cr="fun"/>
         <expr name="num"/>
         <expr name="arg"/>
       </om:OMA>
     </prototype>
     <prototype>
       <m:apply>
-        <m:csymbol cd="linalg1" mcd:cr="fun">vector_selector</m:csymbol>
+        <m:csymbol cd="linalg1" o:cr="fun">vector_selector</m:csymbol>
         <expr name="num"/>
         <expr name="arg"/>
       </m:apply>
     </prototype>
     <rendering>
       <m:mrow>
-	<m:mo mcd:cr="fun">select</m:mo>
-	<m:mo mcd:egroup="fence" fence="true">(</m:mo>
+	<m:mo o:cr="fun">select</m:mo>
+	<m:mo o:egroup="fence" fence="true">(</m:mo>
 	<render name="num"/>
-	<m:mo mcd:egroup="separator" separator="true">,</m:mo>
+	<m:mo o:egroup="separator" separator="true">,</m:mo>
 	<render name="arg"/>
-	<m:mo mcd:egroup="fence" fence="true">)</m:mo>
+	<m:mo o:egroup="fence" fence="true">)</m:mo>
       </m:mrow>
     </rendering>
   </notation>
