@@ -1,0 +1,65 @@
+This is the OpenMath document ontology, a vocabulary for structures
+from OpenMath Content Dictionaries (CDs) that is suitable for use with
+Semantic Web tools.
+
+== Motivation ==
+
+This ontology is intended to represent knowledge from OpenMath CDs in
+a way that abstracts from the XML syntax of the CD language.
+Furthermore, it captures more of the semantics of the CD language than
+the Relax NG XML schema is capable of.
+
+The ontology is currently utilised internally by the OpenMath CD wiki
+at http://wiki.openmath.org.  Using it for publishing the OpenMath CDs
+as Linked Open Data, and interlinking them with other datasets on the
+Web of Data, is planned; see http://arxiv.org/abs/1006.4057.  For a
+complete coverage of the design of the ontology, see Christoph Lange's
+Ph.D. thesis (https://svn.kwarc.info/repos/swim/doc/phd/phd.pdf).
+
+== Status ==
+
+The current state (version 0.3.1 as of 2010/08/21) covers most of the
+OpenMath 2 abstract CD model.  Additionally, it includes notation
+dictionaries as planned for OpenMath 2+/3.  It does not currently
+cover any representation of OpenMath objects.  Further development
+will be done towards OpenMath 2+/3.
+
+== Contact ==
+
+Main author: Christoph Lange <ch.lange@jacobs-university.de>
+
+See source files for potential other authors.
+
+Please use the OpenMath Trac and the mailing lists for communication
+about this ontology:
+
+For concrete issues with the ontology:
+https://trac.mathweb.org/OM3
+
+For more general issues:
+Om@openmath.org
+http://openmath.org/mailman/listinfo/om
+
+For general issues that particularly concern the evolution of OpenMath
+2 into OpenMath 2+/3:
+Om3@openmath.org
+http://openmath.org/mailman/listinfo/om3
+
+== Files ==
+
+The *.n3 file is the authoritative source.  The *.owl file (RDF/XML)
+is generated from that.  The N3 syntax is easier to author for humans,
+whereas RDF/XML is more widely supported by software.  rdfcat from
+Jena (http://jena.sourceforge.net) is a tool that can do this
+conversion:
+
+$ rdfcat -out RDF/XML -n openmath.n3 > openmath.owl
+
+== Usage ==
+
+You can use this ontology in conjunction with OpenMath CDs or without.
+If used together with CDs, we recommend using the Krextor library
+(http://kwarc.info/projects/krextor/) for extracting RDF in terms of
+this ontology from your XML CD files.  If used without CD files, the
+ontology can serve as an alternative language for representing (part
+of) the knowledge that can be captured in CDs.
