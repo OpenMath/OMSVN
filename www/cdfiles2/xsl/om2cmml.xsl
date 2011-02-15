@@ -48,7 +48,7 @@
   <xsl:template match="om:OMB" mode="om2cmml">
     <cbytes>
       <xsl:copy-of select="@id"/>
-      <xsl:value-of select="@name"/>
+      <xsl:value-of select="."/>
     </cbytes>
   </xsl:template>
 
