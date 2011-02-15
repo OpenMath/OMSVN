@@ -5,8 +5,9 @@
   xmlns:om="http://www.openmath.org/OpenMath"
   xmlns:m="http://www.w3.org/1998/Math/MathML"
   xmlns:cd="http://www.openmath.org/OpenMathCD"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns="http://www.w3.org/1999/xhtml"
-  exclude-result-prefixes="om m cd">
+  exclude-result-prefixes="#all">
 
 <!-- Modes and templates used for rendering CDs to XHTML.  Rolled out of 
      cd2html.xsl for easier reuse. -->
@@ -53,7 +54,21 @@
 </xsl:template>
 
 <xsl:template match="cd:CDComment">
-  <pre><xsl:apply-templates/></pre>
+  <pre>
+    <xsl:apply-templates/>
+  </pre>
+</xsl:template>
+
+<xsl:template match="cd:CDComment/text()" name="url">
+  <xsl:param name="t" select="."/>
+  <xsl:analyze-string select="$t" regex="http://[a-zA-Z:/_\-%0-9\.]+[a-zA-Z:/_\-%0-9]">
+    <xsl:matching-substring>
+      <a href="{.}"><xsl:value-of select="."/></a>
+    </xsl:matching-substring>
+    <xsl:non-matching-substring>
+      <xsl:value-of select="."/>
+    </xsl:non-matching-substring>
+  </xsl:analyze-string>
 </xsl:template>
 
 <xsl:template match="cd:Description|cd:Title">
@@ -252,7 +267,7 @@
 
 <xsl:template mode="term" match="om:OMS|m:csymbol">
     <xsl:variable name="p">
-    <!--  <xsl:if test="not(document(concat(@cd,'.ocd'),.))">../../../cd/</xsl:if>-->
+    <xsl:if test="not(om:test-file-exists(concat(@cd,'.ocd'),.))">../../../cd/</xsl:if>
     </xsl:variable>
     <a href="{$p}{@cd}.xhtml#{@name}"><xsl:value-of select="@name"/></a>
 </xsl:template>
@@ -281,14 +296,37 @@
   <xsl:param name="string"/>
   <xsl:choose>
     <xsl:when test="contains($string, '&#10;&#10;')">
-      <p><xsl:value-of select="substring-before($string,'&#10;&#10;')"/></p>
+      <p>
+        <xsl:call-template name="url">
+          <xsl:with-param name="t" select="substring-before($string,'&#10;&#10;')"/>
+        </xsl:call-template>
+      </p>
       <xsl:call-template name="grab-para">
 	<xsl:with-param name="string" select="substring-after($string,'&#10;&#10;')"/>
       </xsl:call-template>
     </xsl:when>
-    <xsl:otherwise><p><xsl:value-of select="$string"/></p></xsl:otherwise>
+    <xsl:otherwise>
+      <p>
+	<xsl:call-template name="url">
+	<xsl:with-param name="t" select="$string"/>
+	</xsl:call-template>
+      </p>
+    </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
+
+<!-- Tests whether a file exists.  Tried to emulate it in XSLT, as the free version of Saxon no longer supports this way of calling Java. –Christoph Lange, 2011-02-15 -->
+<!--
+<xsl:function name="test-file-exists" xmlns:file="java.io.File">
+  <xsl:param name="filename"/>
+  <xsl:value-of select="file:exists(file:new(string($filename)))"/>
+</xsl:function>
+-->
+<xsl:function name="om:test-file-exists" as="xs:boolean">
+  <xsl:param name="filename"/>
+  <xsl:param name="context"/>
+  <xsl:value-of select="boolean(document($filename,$context))"/>
+</xsl:function>
 
 <!-- Outputs CD version and revision -->
 <xsl:template name="cd-version-and-revision">
@@ -387,4 +425,43 @@
 -->
 </xsl:template>
 
+<xsl:template match="*" mode="cleanc">
+  <xsl:copy>
+    <xsl:copy-of select="@*"/>
+    <xsl:apply-templates mode="cleanc"/>
+  </xsl:copy>
+</xsl:template>
+
+<xsl:template match="text()" mode="cleanc" priority="20">
+  <xsl:value-of select="normalize-space(.)"/>
+</xsl:template>
+
+<xsl:template match="m:cs/text()" mode="cleanc" priority="30">
+  <xsl:value-of select="."/>
+</xsl:template>
+
+
+
+<xsl:template match="*" mode="pindent">
+  <xsl:text>&#10;</xsl:text>
+  <xsl:for-each select="ancestor::*"><xsl:text> </xsl:text></xsl:for-each>
+  <xsl:copy>
+    <xsl:copy-of select="@*"/>
+    <xsl:choose>
+      <xsl:when test="not((descendant::*/(.,@*))[6]) or text()[normalize-space()]">
+	<xsl:copy-of select="*|text()[normalize-space()]"/>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:apply-templates mode="pindent"/>
+	<xsl:text>&#10;</xsl:text>
+	<xsl:for-each select="ancestor::*"><xsl:text> </xsl:text></xsl:for-each>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:copy>
+</xsl:template>
+
+
+<xsl:template match="m:csymbol[parent::m:apply or parent::m:bind][not(preceding-sibling::*)]" mode="pindent">
+  <xsl:copy-of select="."/>
+</xsl:template>
 </xsl:stylesheet>
