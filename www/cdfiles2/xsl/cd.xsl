@@ -125,9 +125,8 @@
   <xsl:if test="not(normalize-space(cd:CDUses)='')">
     <dt><span class="dt">Uses CD:</span></dt><dd>
     <xsl:for-each select="cd:CDUses/cd:CDName">
-      <xsl:variable name="ocdFileExists"><xsl:call-template name="test-file-exists"><xsl:with-param name="filename"><xsl:value-of select="."/>.ocd</xsl:with-param></xsl:call-template></xsl:variable>
-      <xsl:variable name="p"><xsl:text/>
-      <xsl:if test="$ocdFileExists = 'false'">../../../cd/</xsl:if>
+      <xsl:variable name="p">
+      <xsl:if test="not(doc-available(resolve-uri(concat(.,'.ocd'),base-uri(/))))">../../../cd/</xsl:if>
       </xsl:variable>
       <xsl:variable name="n" select="normalize-space(.)"/>
       <a href="{$p}{$n}.xhtml"><xsl:value-of select="$n"/></a>
@@ -386,9 +385,8 @@
 
 
 <xsl:template mode="term" match="om:OMS">
-  <xsl:variable name="ocdFileExists"><xsl:call-template name="test-file-exists"><xsl:with-param name="filename"><xsl:value-of select="."/>.ocd</xsl:with-param></xsl:call-template></xsl:variable>
   <xsl:variable name="p">
-    <xsl:if test="$ocdFileExists = 'false'">../../../cd/</xsl:if>
+    <xsl:if test="not(doc-available(resolve-uri(concat(.,'.ocd'),base-uri(/))))">../../../cd/</xsl:if>
   </xsl:variable>
   <a href="{$p}{@cd}.xhtml#{@name}"><xsl:value-of select="@name"/></a>
 </xsl:template>
@@ -433,17 +431,6 @@
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
-
-
-
-
-<xsl:template name="test-file-exists" xmlns:file="java.io.File">
-  <xsl:param name="filename" select="'x'"/>
-  <xsl:value-of select="file:exists(file:new(string($filename)))"/>
-</xsl:template>
-
-
-
 
 
 
