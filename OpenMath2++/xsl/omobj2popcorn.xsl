@@ -23,8 +23,6 @@ Christoph Lange, 2011
 
 <xsl:import href="verb.xsl"/>
 
-<xsl:output method="text"/>
-
 <xsl:template match="*" mode="pop">
   <xsl:message select="'@@@@',name()"/>
 </xsl:template>
