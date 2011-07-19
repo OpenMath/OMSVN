@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:ns1="http://www.openmath.org/ontology#"
+         xmlns:ns2="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:ns3="http://purl.org/dc/terms/"
+         xmlns:ns4="http://www.w3.org/2002/07/owl#">
+   <ns1:ContentDictionary rdf:about="http://www.openmath.org/cd/alg1">
+      <ns2:comment>This document is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. The copyright holder grants you permission to redistribute this document freely as a verbatim copy. Furthermore, the copyright holder permits you to develop any derived work from this document provided that the following conditions are met. a) The derived work acknowledges the fact that it is derived from this document, and maintains a prominent reference in the work to the original source. b) The fact that the derived work is not the original OpenMath document is stated prominently in the derived work. Moreover if both this document and the derived work are Content Dictionaries then the derived work must include a different CDName element, chosen so that it cannot be confused with any works adopted by the OpenMath Society. In particular, if there is a Content Dictionary Group whose name is, for example, `math' containing Content Dictionaries named `math1', `math2' etc., then you should not name a derived Content Dictionary `mathN' where N is an integer. However you are free to name it `private_mathN' or some such. This is because the names `mathN' may be used by the OpenMath Society for future extensions. c) The derived work is distributed under terms that allow the compilation of derived works, but keep paragraphs a) and b) intact. The simplest way to do this is to distribute the derived work under the OpenMath license, but this is not a requirement. If you have questions about this license please contact the OpenMath society at http://www.openmath.org.</ns2:comment>
+      <ns3:identifier>alg1</ns3:identifier>
+      <ns1:base>http://www.openmath.org/cd</ns1:base>
+      <ns1:url>http://www.openmath.org/cd/alg1.ocd</ns1:url>
+      <ns1:reviewDate>2006-03-30</ns1:reviewDate>
+      <ns1:status rdf:resource="http://www.openmath.org/ontology#Official"/>
+      <ns3:date>2004-03-30</ns3:date>
+      <ns1:version>3</ns1:version>
+      <ns1:revision>0</ns1:revision>
+      <ns3:description>A CD of basic algebraic concepts At present this CD only holds definitions of zero and one. They are deliberately defined here without specifying any particular structure (e.g. a group) to which they correspond.</ns3:description>
+      <ns1:definesSymbol rdf:resource="http://www.openmath.org/cd/alg1#zero"/>
+      <ns1:definesSymbol rdf:resource="http://www.openmath.org/cd/alg1#one"/>
+   </ns1:ContentDictionary>
+   <ns1:SymbolDefinition rdf:about="http://www.openmath.org/cd/alg1#zero">
+      <ns3:identifier>zero</ns3:identifier>
+      <ns1:role rdf:resource="http://www.openmath.org/ontology#Constant"/>
+      <ns3:description>This symbol represents the additive identity element.</ns3:description>
+      <ns1:hasProperty rdf:resource="http://www.openmath.org/cd/alg1#zero.prop0"/>
+      <ns1:hasProperty rdf:resource="http://www.openmath.org/cd/alg1#zero.prop2"/>
+      <ns1:hasProperty rdf:resource="http://www.openmath.org/cd/alg1#zero.prop4"/>
+      <ns4:sameAs rdf:resource="http://dbpedia.org/resource/Zero_element"/>
+   </ns1:SymbolDefinition>
+   <ns1:Property rdf:about="http://www.openmath.org/cd/alg1#zero.prop0">
+      <ns1:text>for all a | a + 0 = a</ns1:text>
+      <ns1:openMath rdf:parseType="Literal">
+         <OMOBJ xmlns="http://www.openmath.org/OpenMath"
+                xmlns:rxr="http://ilrt.org/discovery/2004/03/rxr/"
+                version="2.0"
+                cdbase="http://www.openmath.org/cd">
+            <OMBIND>
+               <OMS cd="quant1" name="forall"/>
+               <OMBVAR>
+                  <OMV name="a"/>
+               </OMBVAR>
+               <OMA>
+                  <OMS cd="relation1" name="eq"/>
+                  <OMA>
+                     <OMS cd="arith1" name="plus"/>
+                     <OMV name="a"/>
+                     <OMS cd="alg1" name="zero"/>
+                  </OMA>
+                  <OMV name="a"/>
+               </OMA>
+            </OMBIND>
+         </OMOBJ>
+      </ns1:openMath>
+      <ns1:contentMathML rdf:parseType="Literal">
+         <math xmlns="http://www.w3.org/1998/Math/MathML"
+               xmlns:rxr="http://ilrt.org/discovery/2004/03/rxr/">
+            <bind>
+               <csymbol cd="quant1">forall</csymbol>
+               <bvar>
+                  <ci>a</ci>
+               </bvar>
+               <apply>
+                  <csymbol cd="relation1">eq</csymbol>
+                  <apply>
+                     <csymbol cd="arith1">plus</csymbol>
+                     <ci>a</ci>
+                     <csymbol cd="alg1">zero</csymbol>
+                  </apply>
+                  <ci>a</ci>
+               </apply>
+            </bind>
+         </math>
+      </ns1:contentMathML>
+      <ns1:popcorn>quant1.forall[$a -&gt; $a + alg1.zero = $a]</ns1:popcorn>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/quant1#forall"/>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/relation1#eq"/>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/arith1#plus"/>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/alg1#zero"/>
+   </ns1:Property>
+   <ns1:Property rdf:about="http://www.openmath.org/cd/alg1#zero.prop2">
+      <ns1:text>for all a | 0 * a = 0</ns1:text>
+      <ns1:openMath rdf:parseType="Literal">
+         <OMOBJ xmlns="http://www.openmath.org/OpenMath"
+                xmlns:rxr="http://ilrt.org/discovery/2004/03/rxr/"
+                version="2.0"
+                cdbase="http://www.openmath.org/cd">
+            <OMBIND>
+               <OMS cd="quant1" name="forall"/>
+               <OMBVAR>
+                  <OMV name="a"/>
+               </OMBVAR>
+               <OMA>
+                  <OMS cd="relation1" name="eq"/>
+                  <OMA>
+                     <OMS cd="arith1" name="times"/>
+                     <OMS cd="alg1" name="zero"/>
+                     <OMV name="a"/>
+                  </OMA>
+                  <OMS cd="alg1" name="zero"/>
+               </OMA>
+            </OMBIND>
+         </OMOBJ>
+      </ns1:openMath>
+      <ns1:contentMathML rdf:parseType="Literal">
+         <math xmlns="http://www.w3.org/1998/Math/MathML"
+               xmlns:rxr="http://ilrt.org/discovery/2004/03/rxr/">
+            <bind>
+               <csymbol cd="quant1">forall</csymbol>
+               <bvar>
+                  <ci>a</ci>
+               </bvar>
+               <apply>
+                  <csymbol cd="relation1">eq</csymbol>
+                  <apply>
+                     <csymbol cd="arith1">times</csymbol>
+                     <csymbol cd="alg1">zero</csymbol>
+                     <ci>a</ci>
+                  </apply>
+                  <csymbol cd="alg1">zero</csymbol>
+               </apply>
+            </bind>
+         </math>
+      </ns1:contentMathML>
+      <ns1:popcorn>quant1.forall[$a -&gt; alg1.zero * $a = alg1.zero]</ns1:popcorn>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/quant1#forall"/>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/relation1#eq"/>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/arith1#times"/>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/alg1#zero"/>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/alg1#zero"/>
+   </ns1:Property>
+   <ns1:Property rdf:about="http://www.openmath.org/cd/alg1#zero.prop4">
+      <ns1:text>The zero of the integers is 0</ns1:text>
+      <ns1:openMath rdf:parseType="Literal">
+         <OMOBJ xmlns="http://www.openmath.org/OpenMath"
+                xmlns:rxr="http://ilrt.org/discovery/2004/03/rxr/"
+                version="2.0"
+                cdbase="http://www.openmath.org/cd">
+            <OMBIND>
+               <OMS cd="quant1" name="forall"/>
+               <OMBVAR>
+                  <OMV name="x"/>
+               </OMBVAR>
+               <OMA>
+                  <OMS cd="logic1" name="implies"/>
+                  <OMA>
+                     <OMS cd="logic1" name="and"/>
+                     <OMA>
+                        <OMS cd="set1" name="in"/>
+                        <OMV name="x"/>
+                        <OMS cd="setname1" name="Z"/>
+                     </OMA>
+                     <OMA>
+                        <OMS cd="relation1" name="eq"/>
+                        <OMV name="x"/>
+                        <OMS cd="alg1" name="zero"/>
+                     </OMA>
+                  </OMA>
+                  <OMA>
+                     <OMS cd="relation1" name="eq"/>
+                     <OMV name="x"/>
+                     <OMI>0</OMI>
+                  </OMA>
+               </OMA>
+            </OMBIND>
+         </OMOBJ>
+      </ns1:openMath>
+      <ns1:contentMathML rdf:parseType="Literal">
+         <math xmlns="http://www.w3.org/1998/Math/MathML"
+               xmlns:rxr="http://ilrt.org/discovery/2004/03/rxr/">
+            <bind>
+               <csymbol cd="quant1">forall</csymbol>
+               <bvar>
+                  <ci>x</ci>
+               </bvar>
+               <apply>
+                  <csymbol cd="logic1">implies</csymbol>
+                  <apply>
+                     <csymbol cd="logic1">and</csymbol>
+                     <apply>
+                        <csymbol cd="set1">in</csymbol>
+                        <ci>x</ci>
+                        <csymbol cd="setname1">Z</csymbol>
+                     </apply>
+                     <apply>
+                        <csymbol cd="relation1">eq</csymbol>
+                        <ci>x</ci>
+                        <csymbol cd="alg1">zero</csymbol>
+                     </apply>
+                  </apply>
+                  <apply>
+                     <csymbol cd="relation1">eq</csymbol>
+                     <ci>x</ci>
+                     <cn>0</cn>
+                  </apply>
+               </apply>
+            </bind>
+         </math>
+      </ns1:contentMathML>
+      <ns1:popcorn>quant1.forall[$x -&gt; set1.in($x, setname1.Z) and $x = alg1.zero ==&gt; $x = 0]</ns1:popcorn>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/quant1#forall"/>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/logic1#implies"/>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/logic1#and"/>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/set1#in"/>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/setname1#Z"/>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/relation1#eq"/>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/alg1#zero"/>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/relation1#eq"/>
+   </ns1:Property>
+   <ns1:SymbolDefinition rdf:about="http://www.openmath.org/cd/alg1#one">
+      <ns3:identifier>one</ns3:identifier>
+      <ns1:role rdf:resource="http://www.openmath.org/ontology#Constant"/>
+      <ns3:description>This symbol represents the multiplicative identity element.</ns3:description>
+      <ns1:hasProperty rdf:resource="http://www.openmath.org/cd/alg1#one.prop0"/>
+      <ns1:hasProperty rdf:resource="http://www.openmath.org/cd/alg1#one.prop2"/>
+      <ns1:hasProperty rdf:resource="http://www.openmath.org/cd/alg1#one.prop4"/>
+   </ns1:SymbolDefinition>
+   <ns1:Property rdf:about="http://www.openmath.org/cd/alg1#one.prop0">
+      <ns1:text>for all a | 1 * a = a</ns1:text>
+      <ns1:openMath rdf:parseType="Literal">
+         <OMOBJ xmlns="http://www.openmath.org/OpenMath"
+                xmlns:rxr="http://ilrt.org/discovery/2004/03/rxr/"
+                version="2.0"
+                cdbase="http://www.openmath.org/cd">
+            <OMBIND>
+               <OMS cd="quant1" name="forall"/>
+               <OMBVAR>
+                  <OMV name="a"/>
+               </OMBVAR>
+               <OMA>
+                  <OMS cd="relation1" name="eq"/>
+                  <OMA>
+                     <OMS cd="arith1" name="times"/>
+                     <OMS cd="alg1" name="one"/>
+                     <OMV name="a"/>
+                  </OMA>
+                  <OMV name="a"/>
+               </OMA>
+            </OMBIND>
+         </OMOBJ>
+      </ns1:openMath>
+      <ns1:contentMathML rdf:parseType="Literal">
+         <math xmlns="http://www.w3.org/1998/Math/MathML"
+               xmlns:rxr="http://ilrt.org/discovery/2004/03/rxr/">
+            <bind>
+               <csymbol cd="quant1">forall</csymbol>
+               <bvar>
+                  <ci>a</ci>
+               </bvar>
+               <apply>
+                  <csymbol cd="relation1">eq</csymbol>
+                  <apply>
+                     <csymbol cd="arith1">times</csymbol>
+                     <csymbol cd="alg1">one</csymbol>
+                     <ci>a</ci>
+                  </apply>
+                  <ci>a</ci>
+               </apply>
+            </bind>
+         </math>
+      </ns1:contentMathML>
+      <ns1:popcorn>quant1.forall[$a -&gt; alg1.one * $a = $a]</ns1:popcorn>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/quant1#forall"/>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/relation1#eq"/>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/arith1#times"/>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/alg1#one"/>
+   </ns1:Property>
+   <ns1:Property rdf:about="http://www.openmath.org/cd/alg1#one.prop2">
+      <ns1:text>for all a | a * 1 = a</ns1:text>
+      <ns1:openMath rdf:parseType="Literal">
+         <OMOBJ xmlns="http://www.openmath.org/OpenMath"
+                xmlns:rxr="http://ilrt.org/discovery/2004/03/rxr/"
+                version="2.0"
+                cdbase="http://www.openmath.org/cd">
+            <OMBIND>
+               <OMS cd="quant1" name="forall"/>
+               <OMBVAR>
+                  <OMV name="a"/>
+               </OMBVAR>
+               <OMA>
+                  <OMS cd="relation1" name="eq"/>
+                  <OMA>
+                     <OMS cd="arith1" name="times"/>
+                     <OMV name="a"/>
+                     <OMS cd="alg1" name="one"/>
+                  </OMA>
+                  <OMV name="a"/>
+               </OMA>
+            </OMBIND>
+         </OMOBJ>
+      </ns1:openMath>
+      <ns1:contentMathML rdf:parseType="Literal">
+         <math xmlns="http://www.w3.org/1998/Math/MathML"
+               xmlns:rxr="http://ilrt.org/discovery/2004/03/rxr/">
+            <bind>
+               <csymbol cd="quant1">forall</csymbol>
+               <bvar>
+                  <ci>a</ci>
+               </bvar>
+               <apply>
+                  <csymbol cd="relation1">eq</csymbol>
+                  <apply>
+                     <csymbol cd="arith1">times</csymbol>
+                     <ci>a</ci>
+                     <csymbol cd="alg1">one</csymbol>
+                  </apply>
+                  <ci>a</ci>
+               </apply>
+            </bind>
+         </math>
+      </ns1:contentMathML>
+      <ns1:popcorn>quant1.forall[$a -&gt; $a * alg1.one = $a]</ns1:popcorn>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/quant1#forall"/>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/relation1#eq"/>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/arith1#times"/>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/alg1#one"/>
+   </ns1:Property>
+   <ns1:Property rdf:about="http://www.openmath.org/cd/alg1#one.prop4">
+      <ns1:text>The one of the integers is 1</ns1:text>
+      <ns1:openMath rdf:parseType="Literal">
+         <OMOBJ xmlns="http://www.openmath.org/OpenMath"
+                xmlns:rxr="http://ilrt.org/discovery/2004/03/rxr/"
+                version="2.0"
+                cdbase="http://www.openmath.org/cd">
+            <OMBIND>
+               <OMS cd="quant1" name="forall"/>
+               <OMBVAR>
+                  <OMV name="x"/>
+               </OMBVAR>
+               <OMA>
+                  <OMS cd="logic1" name="implies"/>
+                  <OMA>
+                     <OMS cd="logic1" name="and"/>
+                     <OMA>
+                        <OMS cd="set1" name="in"/>
+                        <OMV name="x"/>
+                        <OMS cd="setname1" name="Z"/>
+                     </OMA>
+                     <OMA>
+                        <OMS cd="relation1" name="eq"/>
+                        <OMV name="x"/>
+                        <OMS cd="alg1" name="one"/>
+                     </OMA>
+                  </OMA>
+                  <OMA>
+                     <OMS cd="relation1" name="eq"/>
+                     <OMV name="x"/>
+                     <OMI>1</OMI>
+                  </OMA>
+               </OMA>
+            </OMBIND>
+         </OMOBJ>
+      </ns1:openMath>
+      <ns1:contentMathML rdf:parseType="Literal">
+         <math xmlns="http://www.w3.org/1998/Math/MathML"
+               xmlns:rxr="http://ilrt.org/discovery/2004/03/rxr/">
+            <bind>
+               <csymbol cd="quant1">forall</csymbol>
+               <bvar>
+                  <ci>x</ci>
+               </bvar>
+               <apply>
+                  <csymbol cd="logic1">implies</csymbol>
+                  <apply>
+                     <csymbol cd="logic1">and</csymbol>
+                     <apply>
+                        <csymbol cd="set1">in</csymbol>
+                        <ci>x</ci>
+                        <csymbol cd="setname1">Z</csymbol>
+                     </apply>
+                     <apply>
+                        <csymbol cd="relation1">eq</csymbol>
+                        <ci>x</ci>
+                        <csymbol cd="alg1">one</csymbol>
+                     </apply>
+                  </apply>
+                  <apply>
+                     <csymbol cd="relation1">eq</csymbol>
+                     <ci>x</ci>
+                     <cn>1</cn>
+                  </apply>
+               </apply>
+            </bind>
+         </math>
+      </ns1:contentMathML>
+      <ns1:popcorn>quant1.forall[$x -&gt; set1.in($x, setname1.Z) and $x = alg1.one ==&gt; $x = 1]</ns1:popcorn>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/quant1#forall"/>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/logic1#implies"/>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/logic1#and"/>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/set1#in"/>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/setname1#Z"/>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/relation1#eq"/>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/alg1#one"/>
+      <ns1:usesSymbol rdf:resource="http://www.openmath.org/cd/relation1#eq"/>
+   </ns1:Property>
+   <rdf:Description rdf:about="http://www.openmath.org/cd/transc1">
+      <ns3:subject rdf:resource="http://purl.org/ontology/mo/msc#08Axx"/>
+   </rdf:Description>
+</rdf:RDF>
