@@ -24,6 +24,20 @@
     </fileset>
   </path>
   
+  <!-- define processor that will be used for XSLT 2 tranformations -->
+  <property 
+    name='xslt2.processor'
+    value='trax'
+  />
+  <path id='xslt2.classpath'>
+    <fileset dir='libraries/saxon'>
+      <include name='*.jar'/>
+    </fileset>
+  </path>
+
+  <!-- OCD → RDF/XML translation for linked data publication -->
+  <property name="ocd-rdf-style" value="libraries/krextor-xslt/transform-ocd..rdf-xml.xsl"/>
+  
   <target name="link-others"
           description="Copies all static resources.">
     <mkdir dir="${site}"/>
@@ -31,6 +45,7 @@
       <fileset dir=".">
 				<exclude name="**/*.xml"/>
 				<exclude name="**/*.ocd"/>
+				<exclude name="**/*-merge.rdf"/>
 				<exclude name="**/*.xhtml"/>
 				<exclude name="**/*.sts"/>
         <exclude name="target/**"/>
@@ -142,6 +157,17 @@
       force="${doForceXSL}"
       processor='${xslt.processor}'
       classpathref='xslt.classpath'
+     >
+      <include name="*.ocd"/>
+    </xslt>
+    <!-- CD output: RDF/XML files -->
+    <xslt 
+      basedir="${cdfiles}/cd" 
+      destdir="${site}/cd"
+      style="${ocd-rdf-style}" 
+      extension=".rdf"
+      force="${doForceXSL}"
+      classpathref='xslt2.classpath'
      >
       <include name="*.ocd"/>
     </xslt>
