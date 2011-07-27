@@ -37,10 +37,11 @@ RewriteRule ^(.+)(?<!\.rdf)(?<!\.xhtml)(?<!\.ocd)$ $1.ocd [R=303,L]
 # ---------------------------
 
 # Rewrite rule to serve the RDF/XML content from the vocabulary URI by default
-RewriteRule ^(.+)(?<!\.rdf)(?<!\.xhtml)(?<!\.ocd)$ $1.rdf [R=303,L]
+RewriteRule ^(.+)(?<!\.rdf)(?<!\.xhtml)(?<!\.ocd)$ $1.ocd [R=303,L]
 
-# Rewrite rule to serve HTML content from the vocabulary URI by default (disabled)
-# (To enable this option, uncomment the rewrite rule below, and comment
-# out the rewrite rule directly above)
+# Alternative possibilities: default to RDF/XML or to XHTML:
+# Rewrite rule to serve the RDF/XML content from the vocabulary URI by default
+# RewriteRule ^(.+)(?<!\.rdf)(?<!\.xhtml)(?<!\.ocd)$ $1.rdf [R=303,L]
+# Rewrite rule to serve HTML content from the vocabulary URI by default
 # RewriteRule ^(.+)(?<!\.rdf)(?<!\.xhtml)(?<!\.ocd)$ $1.xhtml [R=303,L]
 </IfModule> 
