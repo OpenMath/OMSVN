@@ -44,7 +44,7 @@
 	<xd:detail><p>This stylesheet provides convenience functions and templates for an RDF extraction from XML languages.  It is independent of any RDF output notation.</p></xd:detail>
 	<xd:author>Christoph Lange</xd:author>
 	<xd:copyright>Christoph Lange, 2008</xd:copyright>
-	<xd:svnId>$Id: generic.xsl 2012 2011-07-22 21:47:18Z clange $</xd:svnId>
+	<xd:svnId>$Id: generic.xsl 2014 2011-07-27 16:48:43Z clange $</xd:svnId>
     </xd:doc>
 
     <include href="../extract/util/rdf-xml.xsl"/>
@@ -647,7 +647,7 @@
 	    <!-- we are not reusing the rewritten base URI ($krextor:base-uri()), as the objective here is to get access to a physical file, whereas the rewritten base URI is about serving nice cool URIs -->
 	    <variable name="merge-url" select="replace(base-uri(), $merge-url-pattern-match, $merge-url-pattern-replace)"/>
 	    <if test="doc-available($merge-url)">
-		<apply-templates select="document" mode="krextor:merge-rdf">
+		<apply-templates select="document($merge-url)" mode="krextor:merge-rdf">
 		    <!-- avoid infinite loop -->
 		    <with-param name="merging-rdf" select="false()" tunnel="yes"/>
 		</apply-templates>
@@ -666,6 +666,7 @@
 
 <!--
 Local Variables:
+mode: nxml
 nxml-child-indent: 4
 End:
 -->
