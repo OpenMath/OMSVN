@@ -19,3 +19,8 @@ RedirectMatch permanent /(.*)/cd/([^/]).html http://www.openmath.org/$1/cd/$2.xh
 Redirect /cdfiles/cdgroups/ http://www.openmath.org/cdgroups/
 Redirect /cdfiles2/cdgroups/ http://www.openmath.org/cdgroups/
 
+# Publishing the OpenMath CD ontology in conformance with best practices (cf. http://www.w3.org/TR/swbp-vocab-pub/#recipe1)
+RewriteEngine On
+# So far we make a simple redirect, as OWL (serialized as RDF/XML) is the only format in which we publish the ontology
+RewriteRule ^/ontology$ /ontology/openmath.owl [L]
+
