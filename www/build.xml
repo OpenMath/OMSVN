@@ -79,8 +79,9 @@
 				<exclude name="**/*.sts"/>
       </fileset> -->
     </copy>
-		<copy tofile="${site}/.htaccess" file="dot_htaccess"/>
-		<copy tofile="${site}/cd/.htaccess" file="dot_htaccess_cd"/>
+    <!-- copy .htaccess files (redirects etc.) -->
+    <copy tofile="${site}/.htaccess" file="dot_htaccess"/>
+    <copy tofile="${site}/cd/.htaccess" file="dot_htaccess_cd"/>
   </target>
   
   
@@ -327,7 +328,7 @@
         <include name="*.sts"/>
       </fileset>
     </copy>
-    
+
     <!-- contribution form -->
     <xslt 
       in="${cdfiles}/contrib/index.xml"
