@@ -11,7 +11,7 @@
 <xsl:strip-space elements="*"/>
 
 <xsl:param name="cdhome" 
-           select="'http://openmath.nag.co.uk/openmath/cd/internal/cd/'"/>
+           select="'http://openmath.org/cd/'"/>
 
 
 <xsl:template match="/">
