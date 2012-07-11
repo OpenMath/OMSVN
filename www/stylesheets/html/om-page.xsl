@@ -209,6 +209,16 @@
   </ul>
 </xsl:template>
 
+
+<xsl:template match="almnui-list">
+  <xsl:if test="not(@omitheading='yes')">
+    <div align="center"><H2>Alumni Members</H2></div>
+  </xsl:if>
+  <ul>
+    <xsl:apply-templates/>
+  </ul>
+</xsl:template>
+
 <!-- Templates to turn news elements into a bulleted list -->
 <xsl:template match="news-item">
   <li>
