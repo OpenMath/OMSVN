@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="iso-8859-1" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE xsl:stylesheet>
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.1">
@@ -37,7 +37,7 @@
   <xsl:call-template name="navigation"/>
   <br/>
   <i>
-  <div align="center">� The OpenMath Society 2001-2006</div> 
+  <div align="center">© The OpenMath Society 2001–2012</div> 
   <div align="center">Maintained by
        <a href="http://www.openmath.org/infrastructure/">the OpenMath Infrastructure Team</a></div> 
   </i>
