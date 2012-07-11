@@ -39,7 +39,7 @@
   <i>
   <div align="center">© The OpenMath Society 2001-2006</div> 
   <div align="center">Maintained by
-       <a href="mailto:paul@activemath.org">Paul Libbrecht</a></div> 
+       <a href="http://www.openmath.org/infrastructure/">the OpenMath Infrastructure Team</a></div> 
   </i>
 </xsl:template>
 
