@@ -158,9 +158,9 @@
       style="${cdfiles}/xsl/cd.xsl" 
       extension=".xhtml"
       force="${doForceXSL}"
-      processor='${xslt.processor}'
-      classpathref='xslt.classpath'
+      classpathref='xslt2.classpath'
      >
+      <factory name="net.sf.saxon.TransformerFactoryImpl"/>
       <include name="*.ocd"/>
     </xslt>
     <!-- CD output: RDF/XML files -->
@@ -172,6 +172,7 @@
       force="${doForceXSL}"
       classpathref='xslt2.classpath'
      >
+      <factory name="net.sf.saxon.TransformerFactoryImpl"/>
       <include name="*.ocd"/>
     </xslt>
     <!-- copy .ocd files -->
@@ -286,10 +287,10 @@
       destdir="${site}/cd/contrib/cd"
       style="${cdfiles}/xsl/cd.xsl"
       extension=".xhtml"
-      force="true"
-      processor='${xslt.processor}'
-      classpathref='xslt.classpath'
+      force="${doForceXSL}"
+      classpathref='xslt2.classpath'
     >
+      <factory name="net.sf.saxon.TransformerFactoryImpl"/>
       <include name="*.ocd"/>
       <param name="xsldir" expression="../../../xsl"/>
     </xslt>
