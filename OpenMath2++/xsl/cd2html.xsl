@@ -78,9 +78,12 @@
     <body>
       <xsl:call-template name="navigation"/>
       <a name="top" id="top"/>
+      <!-- Wiki no longer works, don't have resources to maintain this obsolete software.  –Christoph Lange, 2013-02-21 -->
+      <!--
       <xsl:call-template name="wiki-link">
         <xsl:with-param name="title" select="$cd"/>
       </xsl:call-template>
+      -->
       <h1>OpenMath Content Dictionary: <xsl:value-of select="$cd"/></h1>
 
 
@@ -148,9 +151,12 @@
 
 <xsl:template match="cd:CDDefinition">
   <div class="cddefinition">
+  <!-- Wiki no longer works, don't have resources to maintain this obsolete software.  –Christoph Lange, 2013-02-21 -->
+  <!--
   <xsl:call-template name="wiki-link">
     <xsl:with-param name="title" select="concat(normalize-space(/cd:CD/cd:CDName), '%2B', normalize-space(cd:Name))"/>
   </xsl:call-template>
+  -->
   <xsl:apply-templates select="cd:Name"/>
   <dl>
     <xsl:apply-templates select="* except cd:Name"/>
@@ -355,6 +361,8 @@
     </xsl:call-template>
 </xsl:template>
 
+<!-- Wiki no longer works, don't have resources to maintain this obsolete software.  –Christoph Lange, 2013-02-21 -->
+<!--
 <xsl:template name="wiki-link">
   <xsl:param name="title" required="yes"/>
   <span class="link-to-this-fragment">
@@ -365,5 +373,6 @@
     <xsl:text>]</xsl:text>
   </span>
 </xsl:template>
+-->
 
 </xsl:stylesheet>
