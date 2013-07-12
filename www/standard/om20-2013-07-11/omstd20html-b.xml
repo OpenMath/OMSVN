@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="pmathml.xsl"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:space="preserve">
+
+
+<head>
+<title>OpenMath Schema in Relax NG XML Syntax (Normative)</title>
+
+<style>
+
+body {
+margin-left: 1em;
+margin-right: 1em;
+}
+
+div.mdata {
+margin-top: .5em;
+margin-bottom: .5em;
+margin-left: 5em;
+}
+
+span.mdatahead {
+font-weight: bold;
+}
+
+div.minitoc {
+border-width: thin;
+border-style: solid;
+border-color: blue;
+font-size: 90%;
+margin-top: 1em;
+margin-bottom: 1em;
+padding: 1em 1em 1em 1em;
+}
+
+p {text-align:justify;	   
+  }
+code {font-size: 125%;
+      font-family: monospace; 
+     }
+.figure {
+border-width:thin;
+border-style: solid;
+border-color: black;
+margin: 0.5em 0.5em 0.5em 0.5em;
+padding: 0.5em 0.5em 0.5em 0.5em;
+}
+
+div.caption {
+margin-top: 1em;
+}
+
+.footnote{
+font-size: 75%;
+font-style: italic;
+}
+.delliteral {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+color: red;
+text-decoration: line-through;
+}
+.newliteral {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+color: green;
+}
+.literal {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+margin:bottom: 1em;
+}
+.del {
+color: red;
+text-decoration: line-through;
+}
+.new {
+color: green;
+}
+.chg {
+color: blue;
+}
+.changetoc {
+border-style: solid;
+border-color: black;
+border-width: 1px;
+margin: 2em 2em 2em 2em;
+background-color: yellow;
+}
+
+.lowerroman {
+list-style-type: lower-roman;
+}
+</style>
+</head>
+<body>
+  <div class="minitoc"><a href="omstd20html-0.xml">OpenMath 2</a> <a href="omstd20html-0.xml#toc">Table of Contents</a><br/><br/><a href="omstd20html-a.xml">Previous: A CD Files</a><br/><a href="#app_openmath.rng">This: B <i>OpenMath</i> Schema in Relax NG XML Syntax (Normative)</a><br/><a href="omstd20html-c.xml">Next: C Restricting the <i>OpenMath</i> Schema (Non-Normative)</a><br/></div>
+  <div><h1 name="app_openmath.rng" id="app_openmath.rng">
+  Appendix B<br/><i>OpenMath</i> Schema in Relax NG XML Syntax (Normative)</h1><p>This is the Relax NG Schema described in <a href="omstd20html-3.xml#sec_xml">Section 3.1</a>
+    expressed according to the Relax NG XML Syntax.
+  </p><div class="literal"><pre>
+    
+
+&lt;<span style="font-weight: bold; color: red">grammar</span>
+ xmlns="http://relaxng.org/ns/structure/1.0" ns="http://www.openmath.org/OpenMath" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"&gt;<a name="d2t13641"/>
+  &lt;<span style="font-weight: bold; color: red">start</span>&gt;<a name="d2t13643"/>
+    &lt;<span style="font-weight: bold; color: red">ref</span> name="OMOBJ"/&gt;<a name="d2t13645"/>
+  &lt;/<span style="font-weight: bold; color: red">start</span>&gt;<a name="d2t13646"/>
+  &lt;!-- OpenMath object constructor --&gt;<a name="d2t13648"/>
+  &lt;<span style="font-weight: bold; color: red">define</span> name="OMOBJ"&gt;<a name="d2t13650"/>
+    &lt;<span style="font-weight: bold; color: red">element</span> name="OMOBJ"&gt;<a name="d2t13652"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="compound.attributes"/&gt;<a name="d2t13654"/>
+      &lt;<span style="font-weight: bold; color: red">optional</span>&gt;<a name="d2t13656"/>
+        &lt;<span style="font-weight: bold; color: red">attribute</span> name="version"&gt;<a name="d2t13658"/>
+          &lt;<span style="font-weight: bold; color: red">data</span> type="string"/&gt;<a name="d2t13660"/>
+        &lt;/<span style="font-weight: bold; color: red">attribute</span>&gt;<a name="d2t13661"/>
+      &lt;/<span style="font-weight: bold; color: red">optional</span>&gt;<a name="d2t13662"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="omel"/&gt;<a name="d2t13664"/>
+    &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d2t13665"/>
+  &lt;/<span style="font-weight: bold; color: red">define</span>&gt;<a name="d2t13666"/>
+  &lt;!-- Elements which can appear inside an OpenMath object --&gt;<a name="d2t13668"/>
+  &lt;<span style="font-weight: bold; color: red">define</span> name="omel"&gt;<a name="d2t13670"/>
+    &lt;<span style="font-weight: bold; color: red">choice</span>&gt;<a name="d2t13672"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="OMS"/&gt;<a name="d2t13674"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="OMV"/&gt;<a name="d2t13676"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="OMI"/&gt;<a name="d2t13678"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="OMB"/&gt;<a name="d2t13680"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="OMSTR"/&gt;<a name="d2t13682"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="OMF"/&gt;<a name="d2t13685"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="OMA"/&gt;<a name="d2t13687"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="OMBIND"/&gt;<a name="d2t13689"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="OME"/&gt;<a name="d2t13691"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="OMATTR"/&gt;<a name="d2t13693"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="OMR"/&gt;<a name="d2t13695"/>
+    &lt;/<span style="font-weight: bold; color: red">choice</span>&gt;<a name="d2t13696"/>
+  &lt;/<span style="font-weight: bold; color: red">define</span>&gt;<a name="d2t13697"/>
+  &lt;!-- things which can be variables --&gt;<a name="d2t13699"/>
+  &lt;<span style="font-weight: bold; color: red">define</span> name="omvar"&gt;<a name="d2t13702"/>
+    &lt;<span style="font-weight: bold; color: red">choice</span>&gt;<a name="d2t13704"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="OMV"/&gt;<a name="d2t13706"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="attvar"/&gt;<a name="d2t13708"/>
+    &lt;/<span style="font-weight: bold; color: red">choice</span>&gt;<a name="d2t13709"/>
+  &lt;/<span style="font-weight: bold; color: red">define</span>&gt;<a name="d2t13710"/>
+  &lt;<span style="font-weight: bold; color: red">define</span> name="attvar"&gt;<a name="d2t13712"/>
+    &lt;<span style="font-weight: bold; color: red">element</span> name="OMATTR"&gt;<a name="d2t13714"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="common.attributes"/&gt;<a name="d2t13716"/>
+      &lt;<span style="font-weight: bold; color: red">group</span>&gt;<a name="d2t13718"/>
+        &lt;<span style="font-weight: bold; color: red">ref</span> name="OMATP"/&gt;<a name="d2t13720"/>
+        &lt;<span style="font-weight: bold; color: red">choice</span>&gt;<a name="d2t13722"/>
+          &lt;<span style="font-weight: bold; color: red">ref</span> name="OMV"/&gt;<a name="d2t13724"/>
+          &lt;<span style="font-weight: bold; color: red">ref</span> name="attvar"/&gt;<a name="d2t13726"/>
+        &lt;/<span style="font-weight: bold; color: red">choice</span>&gt;<a name="d2t13727"/>
+      &lt;/<span style="font-weight: bold; color: red">group</span>&gt;<a name="d2t13728"/>
+    &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d2t13729"/>
+  &lt;/<span style="font-weight: bold; color: red">define</span>&gt;<a name="d2t13730"/>
+  &lt;<span style="font-weight: bold; color: red">define</span> name="cdbase"&gt;<a name="d2t13732"/>
+    &lt;<span style="font-weight: bold; color: red">optional</span>&gt;<a name="d2t13734"/>
+      &lt;<span style="font-weight: bold; color: red">attribute</span> name="cdbase"&gt;<a name="d2t13736"/>
+        &lt;<span style="font-weight: bold; color: red">data</span> type="anyURI"/&gt;<a name="d2t13738"/>
+      &lt;/<span style="font-weight: bold; color: red">attribute</span>&gt;<a name="d2t13739"/>
+    &lt;/<span style="font-weight: bold; color: red">optional</span>&gt;<a name="d2t13740"/>
+  &lt;/<span style="font-weight: bold; color: red">define</span>&gt;<a name="d2t13741"/>
+  &lt;!-- attributes common to all elements --&gt;<a name="d2t13743"/>
+  &lt;<span style="font-weight: bold; color: red">define</span> name="common.attributes"&gt;<a name="d2t13745"/>
+    &lt;<span style="font-weight: bold; color: red">optional</span>&gt;<a name="d2t13747"/>
+      &lt;<span style="font-weight: bold; color: red">attribute</span> name="id"&gt;<a name="d2t13749"/>
+        &lt;<span style="font-weight: bold; color: red">data</span> type="ID"/&gt;<a name="d2t13751"/>
+      &lt;/<span style="font-weight: bold; color: red">attribute</span>&gt;<a name="d2t13752"/>
+    &lt;/<span style="font-weight: bold; color: red">optional</span>&gt;<a name="d2t13753"/>
+  &lt;/<span style="font-weight: bold; color: red">define</span>&gt;<a name="d2t13754"/>
+  &lt;!-- attributes common to all elements that construct compount OM objects. --&gt;<a name="d2t13756"/>
+  &lt;<span style="font-weight: bold; color: red">define</span> name="compound.attributes"&gt;<a name="d2t13759"/>
+    &lt;<span style="font-weight: bold; color: red">ref</span> name="common.attributes"/&gt;<a name="d2t13761"/>
+    &lt;<span style="font-weight: bold; color: red">ref</span> name="cdbase"/&gt;<a name="d2t13763"/>
+  &lt;/<span style="font-weight: bold; color: red">define</span>&gt;<a name="d2t13764"/>
+  &lt;!-- symbol --&gt;<a name="d2t13766"/>
+  &lt;<span style="font-weight: bold; color: red">define</span> name="OMS"&gt;<a name="d2t13768"/>
+    &lt;<span style="font-weight: bold; color: red">element</span> name="OMS"&gt;<a name="d2t13770"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="common.attributes"/&gt;<a name="d2t13772"/>
+      &lt;<span style="font-weight: bold; color: red">attribute</span> name="name"&gt;<a name="d2t13774"/>
+        &lt;<span style="font-weight: bold; color: red">data</span> type="NCName"/&gt;<a name="d2t13776"/>
+      &lt;/<span style="font-weight: bold; color: red">attribute</span>&gt;<a name="d2t13777"/>
+      &lt;<span style="font-weight: bold; color: red">attribute</span> name="cd"&gt;<a name="d2t13779"/>
+        &lt;<span style="font-weight: bold; color: red">data</span> type="NCName"/&gt;<a name="d2t13781"/>
+      &lt;/<span style="font-weight: bold; color: red">attribute</span>&gt;<a name="d2t13782"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="cdbase"/&gt;<a name="d2t13784"/>
+    &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d2t13785"/>
+  &lt;/<span style="font-weight: bold; color: red">define</span>&gt;<a name="d2t13786"/>
+  &lt;!-- variable --&gt;<a name="d2t13788"/>
+  &lt;<span style="font-weight: bold; color: red">define</span> name="OMV"&gt;<a name="d2t13790"/>
+    &lt;<span style="font-weight: bold; color: red">element</span> name="OMV"&gt;<a name="d2t13792"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="common.attributes"/&gt;<a name="d2t13794"/>
+      &lt;<span style="font-weight: bold; color: red">attribute</span> name="name"&gt;<a name="d2t13796"/>
+        &lt;<span style="font-weight: bold; color: red">data</span> type="NCName"/&gt;<a name="d2t13798"/>
+      &lt;/<span style="font-weight: bold; color: red">attribute</span>&gt;<a name="d2t13799"/>
+    &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d2t13800"/>
+  &lt;/<span style="font-weight: bold; color: red">define</span>&gt;<a name="d2t13801"/>
+  &lt;!-- integer --&gt;<a name="d2t13803"/>
+  &lt;<span style="font-weight: bold; color: red">define</span> name="OMI"&gt;<a name="d2t13806"/>
+    &lt;<span style="font-weight: bold; color: red">element</span> name="OMI"&gt;<a name="d2t13808"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="common.attributes"/&gt;<a name="d2t13810"/>
+      &lt;<span style="font-weight: bold; color: red">data</span> type="string"&gt;<a name="d2t13812"/>
+        &lt;<span style="font-weight: bold; color: red">param</span> name="pattern"&gt;<a name="d2t13814"/>\s*(-\s?)?[0-9]+(\s[0-9]+)*\s*&lt;/<span style="font-weight: bold; color: red">param</span>&gt;<a name="d2t13815"/>
+      &lt;/<span style="font-weight: bold; color: red">data</span>&gt;<a name="d2t13816"/>
+    &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d2t13817"/>
+  &lt;/<span style="font-weight: bold; color: red">define</span>&gt;<a name="d2t13818"/>
+  &lt;!-- byte array --&gt;<a name="d2t13820"/>
+  &lt;<span style="font-weight: bold; color: red">define</span> name="OMB"&gt;<a name="d2t13822"/>
+    &lt;<span style="font-weight: bold; color: red">element</span> name="OMB"&gt;<a name="d2t13824"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="common.attributes"/&gt;<a name="d2t13826"/>
+      &lt;<span style="font-weight: bold; color: red">data</span> type="base64Binary"/&gt;<a name="d2t13828"/>
+    &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d2t13829"/>
+  &lt;/<span style="font-weight: bold; color: red">define</span>&gt;<a name="d2t13830"/>
+  &lt;!-- string --&gt;<a name="d2t13832"/>
+  &lt;<span style="font-weight: bold; color: red">define</span> name="OMSTR"&gt;<a name="d2t13834"/>
+    &lt;<span style="font-weight: bold; color: red">element</span> name="OMSTR"&gt;<a name="d2t13836"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="common.attributes"/&gt;<a name="d2t13838"/>
+      &lt;<span style="font-weight: bold; color: red">text</span>/&gt;<a name="d2t13840"/>
+    &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d2t13841"/>
+  &lt;/<span style="font-weight: bold; color: red">define</span>&gt;<a name="d2t13842"/>
+  &lt;!-- IEEE floating point number --&gt;<a name="d2t13844"/>
+  &lt;<span style="font-weight: bold; color: red">define</span> name="OMF"&gt;<a name="d2t13847"/>
+    &lt;<span style="font-weight: bold; color: red">element</span> name="OMF"&gt;<a name="d2t13849"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="common.attributes"/&gt;<a name="d2t13851"/>
+      &lt;<span style="font-weight: bold; color: red">choice</span>&gt;<a name="d2t13853"/>
+        &lt;<span style="font-weight: bold; color: red">attribute</span> name="dec"&gt;<a name="d2t13855"/>
+          &lt;<span style="font-weight: bold; color: red">data</span> type="double"/&gt;<a name="d2t13857"/>
+        &lt;/<span style="font-weight: bold; color: red">attribute</span>&gt;<a name="d2t13858"/>
+        &lt;<span style="font-weight: bold; color: red">attribute</span> name="hex"&gt;<a name="d2t13860"/>
+          &lt;<span style="font-weight: bold; color: red">data</span> type="string"&gt;<a name="d2t13862"/>
+            &lt;<span style="font-weight: bold; color: red">param</span> name="pattern"&gt;<a name="d2t13864"/>[0-9A-F]+&lt;/<span style="font-weight: bold; color: red">param</span>&gt;<a name="d2t13865"/>
+          &lt;/<span style="font-weight: bold; color: red">data</span>&gt;<a name="d2t13866"/>
+        &lt;/<span style="font-weight: bold; color: red">attribute</span>&gt;<a name="d2t13867"/>
+      &lt;/<span style="font-weight: bold; color: red">choice</span>&gt;<a name="d2t13868"/>
+    &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d2t13869"/>
+  &lt;/<span style="font-weight: bold; color: red">define</span>&gt;<a name="d2t13870"/>
+  &lt;!-- apply constructor --&gt;<a name="d2t13872"/>
+  &lt;<span style="font-weight: bold; color: red">define</span> name="OMA"&gt;<a name="d2t13874"/>
+    &lt;<span style="font-weight: bold; color: red">element</span> name="OMA"&gt;<a name="d2t13876"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="compound.attributes"/&gt;<a name="d2t13878"/>
+      &lt;<span style="font-weight: bold; color: red">oneOrMore</span>&gt;<a name="d2t13880"/>
+        &lt;<span style="font-weight: bold; color: red">ref</span> name="omel"/&gt;<a name="d2t13882"/>
+      &lt;/<span style="font-weight: bold; color: red">oneOrMore</span>&gt;<a name="d2t13883"/>
+    &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d2t13884"/>
+  &lt;/<span style="font-weight: bold; color: red">define</span>&gt;<a name="d2t13885"/>
+  &lt;!-- binding constructor --&gt;<a name="d2t13887"/>
+  &lt;<span style="font-weight: bold; color: red">define</span> name="OMBIND"&gt;<a name="d2t13889"/>
+    &lt;<span style="font-weight: bold; color: red">element</span> name="OMBIND"&gt;<a name="d2t13891"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="compound.attributes"/&gt;<a name="d2t13893"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="omel"/&gt;<a name="d2t13895"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="OMBVAR"/&gt;<a name="d2t13897"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="omel"/&gt;<a name="d2t13899"/>
+    &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d2t13900"/>
+  &lt;/<span style="font-weight: bold; color: red">define</span>&gt;<a name="d2t13901"/>
+  &lt;!-- variables used in binding constructor --&gt;<a name="d2t13903"/>
+  &lt;<span style="font-weight: bold; color: red">define</span> name="OMBVAR"&gt;<a name="d2t13906"/>
+    &lt;<span style="font-weight: bold; color: red">element</span> name="OMBVAR"&gt;<a name="d2t13908"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="common.attributes"/&gt;<a name="d2t13910"/>
+      &lt;<span style="font-weight: bold; color: red">oneOrMore</span>&gt;<a name="d2t13912"/>
+        &lt;<span style="font-weight: bold; color: red">ref</span> name="omvar"/&gt;<a name="d2t13914"/>
+      &lt;/<span style="font-weight: bold; color: red">oneOrMore</span>&gt;<a name="d2t13915"/>
+    &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d2t13916"/>
+  &lt;/<span style="font-weight: bold; color: red">define</span>&gt;<a name="d2t13917"/>
+  &lt;!-- error constructor --&gt;<a name="d2t13919"/>
+  &lt;<span style="font-weight: bold; color: red">define</span> name="OME"&gt;<a name="d2t13921"/>
+    &lt;<span style="font-weight: bold; color: red">element</span> name="OME"&gt;<a name="d2t13923"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="common.attributes"/&gt;<a name="d2t13925"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="OMS"/&gt;<a name="d2t13927"/>
+      &lt;<span style="font-weight: bold; color: red">zeroOrMore</span>&gt;<a name="d2t13929"/>
+        &lt;<span style="font-weight: bold; color: red">choice</span>&gt;<a name="d2t13931"/>
+          &lt;<span style="font-weight: bold; color: red">ref</span> name="omel"/&gt;<a name="d2t13933"/>
+          &lt;<span style="font-weight: bold; color: red">ref</span> name="OMFOREIGN"/&gt;<a name="d2t13935"/>
+        &lt;/<span style="font-weight: bold; color: red">choice</span>&gt;<a name="d2t13936"/>
+      &lt;/<span style="font-weight: bold; color: red">zeroOrMore</span>&gt;<a name="d2t13937"/>
+    &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d2t13938"/>
+  &lt;/<span style="font-weight: bold; color: red">define</span>&gt;<a name="d2t13939"/>
+  &lt;!-- attribution constructor and attribute pair constructor --&gt;<a name="d2t13941"/>
+  &lt;<span style="font-weight: bold; color: red">define</span> name="OMATTR"&gt;<a name="d2t13943"/>
+    &lt;<span style="font-weight: bold; color: red">element</span> name="OMATTR"&gt;<a name="d2t13945"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="compound.attributes"/&gt;<a name="d2t13947"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="OMATP"/&gt;<a name="d2t13949"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="omel"/&gt;<a name="d2t13951"/>
+    &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d2t13952"/>
+  &lt;/<span style="font-weight: bold; color: red">define</span>&gt;<a name="d2t13953"/>
+  &lt;<span style="font-weight: bold; color: red">define</span> name="OMATP"&gt;<a name="d2t13955"/>
+    &lt;<span style="font-weight: bold; color: red">element</span> name="OMATP"&gt;<a name="d2t13957"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="compound.attributes"/&gt;<a name="d2t13959"/>
+      &lt;<span style="font-weight: bold; color: red">oneOrMore</span>&gt;<a name="d2t13961"/>
+        &lt;<span style="font-weight: bold; color: red">ref</span> name="OMS"/&gt;<a name="d2t13963"/>
+        &lt;<span style="font-weight: bold; color: red">choice</span>&gt;<a name="d2t13965"/>
+          &lt;<span style="font-weight: bold; color: red">ref</span> name="omel"/&gt;<a name="d2t13967"/>
+          &lt;<span style="font-weight: bold; color: red">ref</span> name="OMFOREIGN"/&gt;<a name="d2t13969"/>
+        &lt;/<span style="font-weight: bold; color: red">choice</span>&gt;<a name="d2t13970"/>
+      &lt;/<span style="font-weight: bold; color: red">oneOrMore</span>&gt;<a name="d2t13971"/>
+    &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d2t13972"/>
+  &lt;/<span style="font-weight: bold; color: red">define</span>&gt;<a name="d2t13973"/>
+  &lt;!-- foreign constructor --&gt;<a name="d2t13975"/>
+  &lt;<span style="font-weight: bold; color: red">define</span> name="OMFOREIGN"&gt;<a name="d2t13978"/>
+    &lt;<span style="font-weight: bold; color: red">element</span> name="OMFOREIGN"&gt;<a name="d2t13980"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="compound.attributes"/&gt;<a name="d2t13982"/>
+      &lt;<span style="font-weight: bold; color: red">optional</span>&gt;<a name="d2t13984"/>
+        &lt;<span style="font-weight: bold; color: red">attribute</span> name="encoding"&gt;<a name="d2t13986"/>
+          &lt;<span style="font-weight: bold; color: red">data</span> type="string"/&gt;<a name="d2t13988"/>
+        &lt;/<span style="font-weight: bold; color: red">attribute</span>&gt;<a name="d2t13989"/>
+      &lt;/<span style="font-weight: bold; color: red">optional</span>&gt;<a name="d2t13990"/>
+      &lt;<span style="font-weight: bold; color: red">zeroOrMore</span>&gt;<a name="d2t13992"/>
+        &lt;<span style="font-weight: bold; color: red">choice</span>&gt;<a name="d2t13994"/>
+          &lt;<span style="font-weight: bold; color: red">ref</span> name="omel"/&gt;<a name="d2t13996"/>
+          &lt;<span style="font-weight: bold; color: red">ref</span> name="notom"/&gt;<a name="d2t13998"/>
+        &lt;/<span style="font-weight: bold; color: red">choice</span>&gt;<a name="d2t13999"/>
+      &lt;/<span style="font-weight: bold; color: red">zeroOrMore</span>&gt;<a name="d2t14000"/>
+    &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d2t14001"/>
+  &lt;/<span style="font-weight: bold; color: red">define</span>&gt;<a name="d2t14002"/>
+  &lt;!--
+    Any elements not in the om namespace
+    (valid om is allowed as a descendant)
+  --&gt;<a name="d2t14004"/>
+  &lt;<span style="font-weight: bold; color: red">define</span> name="notom"&gt;<a name="d2t14006"/>
+    &lt;<span style="font-weight: bold; color: red">choice</span>&gt;<a name="d2t14008"/>
+      &lt;<span style="font-weight: bold; color: red">element</span>&gt;<a name="d2t14010"/>
+        &lt;<span style="font-weight: bold; color: red">anyName</span>&gt;<a name="d2t14012"/>
+          &lt;<span style="font-weight: bold; color: red">except</span>&gt;<a name="d2t14014"/>
+            &lt;<span style="font-weight: bold; color: red">nsName</span>/&gt;<a name="d2t14016"/>
+          &lt;/<span style="font-weight: bold; color: red">except</span>&gt;<a name="d2t14017"/>
+        &lt;/<span style="font-weight: bold; color: red">anyName</span>&gt;<a name="d2t14018"/>
+        &lt;<span style="font-weight: bold; color: red">zeroOrMore</span>&gt;<a name="d2t14020"/>
+          &lt;<span style="font-weight: bold; color: red">attribute</span>&gt;<a name="d2t14022"/>
+            &lt;<span style="font-weight: bold; color: red">anyName</span>/&gt;<a name="d2t14024"/>
+          &lt;/<span style="font-weight: bold; color: red">attribute</span>&gt;<a name="d2t14025"/>
+        &lt;/<span style="font-weight: bold; color: red">zeroOrMore</span>&gt;<a name="d2t14026"/>
+        &lt;<span style="font-weight: bold; color: red">zeroOrMore</span>&gt;<a name="d2t14028"/>
+          &lt;<span style="font-weight: bold; color: red">choice</span>&gt;<a name="d2t14030"/>
+            &lt;<span style="font-weight: bold; color: red">ref</span> name="omel"/&gt;<a name="d2t14032"/>
+            &lt;<span style="font-weight: bold; color: red">ref</span> name="notom"/&gt;<a name="d2t14034"/>
+          &lt;/<span style="font-weight: bold; color: red">choice</span>&gt;<a name="d2t14035"/>
+        &lt;/<span style="font-weight: bold; color: red">zeroOrMore</span>&gt;<a name="d2t14036"/>
+      &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d2t14037"/>
+      &lt;<span style="font-weight: bold; color: red">text</span>/&gt;<a name="d2t14039"/>
+    &lt;/<span style="font-weight: bold; color: red">choice</span>&gt;<a name="d2t14040"/>
+  &lt;/<span style="font-weight: bold; color: red">define</span>&gt;<a name="d2t14041"/>
+  &lt;!-- reference constructor --&gt;<a name="d2t14043"/>
+  &lt;<span style="font-weight: bold; color: red">define</span> name="OMR"&gt;<a name="d2t14045"/>
+    &lt;<span style="font-weight: bold; color: red">element</span> name="OMR"&gt;<a name="d2t14047"/>
+      &lt;<span style="font-weight: bold; color: red">ref</span> name="common.attributes"/&gt;<a name="d2t14049"/>
+      &lt;<span style="font-weight: bold; color: red">attribute</span> name="href"&gt;<a name="d2t14051"/>
+        &lt;<span style="font-weight: bold; color: red">data</span> type="anyURI"/&gt;<a name="d2t14053"/>
+      &lt;/<span style="font-weight: bold; color: red">attribute</span>&gt;<a name="d2t14054"/>
+    &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d2t14055"/>
+  &lt;/<span style="font-weight: bold; color: red">define</span>&gt;<a name="d2t14056"/>
+&lt;/<span style="font-weight: bold; color: red">grammar</span>&gt;
+
+  </pre></div></div>
+  <div class="minitoc"><a href="omstd20html-0.xml">OpenMath 2</a> <a href="omstd20html-0.xml#toc">Table of Contents</a><br/><br/><a href="omstd20html-a.xml">Previous: A CD Files</a><br/><a href="#app_openmath.rng">This: B <i>OpenMath</i> Schema in Relax NG XML Syntax (Normative)</a><br/><a href="omstd20html-c.xml">Next: C Restricting the <i>OpenMath</i> Schema (Non-Normative)</a><br/></div>
+</body>
+</html>
