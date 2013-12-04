@@ -37,7 +37,7 @@
   <xsl:call-template name="navigation"/>
   <br/>
   <i>
-  <div align="center">© The OpenMath Society 2001–2012</div> 
+  <div align="center">© The OpenMath Society 2001–2013</div> 
   <div align="center">Maintained by
        <a href="http://www.openmath.org/infrastructure/">the OpenMath Infrastructure Team</a></div> 
   </i>
