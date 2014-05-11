@@ -1,0 +1,54 @@
+#!/bin/sh -f
+
+echo "'${2}x'"
+if ((test "${1}x" == "x") || (test "${2}x" == "x") || (test "${3}x" == "x") || (test "${4}x" == "x") || (test "${5}x" == "x")) ; then 
+  echo ""
+  echo "usage: "`basename $0`" <your-mail-address> <subject> <cc-address> \ "
+  echo "            <mail-body-filename> <mailinglists-filename> <topic-key>?"
+  echo 
+  echo "If <topic-key> is ALL, then all email addresses are considered. Otherwise "
+  echo "it is send to only those with that topic."
+  echo 
+  echo "where <mailinglists-filename> is assumed to be of the form "
+  echo "  <mail-address>,<topic-key>?,<subject-prefix>?"
+  echo 
+else 
+PROTOKOLL=~/.multiple-mails-protokoll 
+ACCOUNT=$1
+SUBJECT="$2"
+CC=$3
+FILE=$4
+SELECTKEY=$6
+MAILINGLISTS=`cat $5| grep -v \#`
+
+SEPARATOR=\$
+
+export LANG=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+echo "================================================" | tee -a $PROTOKOLL
+echo "Sending subject $SUBJECT:" | tee -a $PROTOKOLL
+cat $FILE | tee -a $PROTOKOLL
+
+for ANNOTATEDADDR in $MAILINGLISTS ; do 
+        ADDR=`echo "$ANNOTATEDADDR$SEPARATOR$SEPARATOR$SEPARATOR" | cut -d$SEPARATOR -f1 - `
+        KEY=`echo "$ANNOTATEDADDR$SEPARATOR$SEPARATOR$SEPARATOR" | cut -d$SEPARATOR -f2 - `
+        PREFIX=`echo "$ANNOTATEDADDR$SEPARATOR$SEPARATOR$SEPARATOR" | cut -d$SEPARATOR -f3 - `
+        if test "${PREFIX}" != "" ; then
+	   PREFIX="$PREFIX: "
+	fi
+	if test "$SELECTKEY" == "$KEY" || test "$SELECTKEY" == "ALL"; then 
+           echo "Sending to $ADDR..." | tee -a $PROTOKOLL
+           echo "Sending for key $KEY..." | tee -a $PROTOKOLL
+           echo "Sending with prefix $PREFIX..." | tee -a $PROTOKOLL
+#	   mail -s "$PREFIX$SUBJECT $(echo "\nContent-Type: text/plain; charset=\"UTF-8\"\nFrom: $ACCOUNT")" -c $CC -F $ADDR < $FILE
+					 mail -s "$PREFIX$SUBJECT $(echo "\nContent-Type: text/plain; charset=\"UTF-8\"")" -c $CC $ADDR -r m.kohlhase@jacobs-university.de < $FILE
+	   echo "mail -s "$PREFIX$SUBJECT $(echo "\nContent-Type: text/plain; charset=\"UTF-8\"")" -c $CC $ADDR -r m.kohlhase@jacobs-university.de < $FILE" | tee -a  $PROTOKOLL
+           echo "Done." | tee -a $PROTOKOLL
+	   echo "."
+          sleep 5
+        fi
+done
+echo ""
+fi
