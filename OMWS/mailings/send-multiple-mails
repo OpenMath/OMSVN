@@ -43,8 +43,8 @@ for ANNOTATEDADDR in $MAILINGLISTS ; do
            echo "Sending for key $KEY..." | tee -a $PROTOKOLL
            echo "Sending with prefix $PREFIX..." | tee -a $PROTOKOLL
 #	   mail -s "$PREFIX$SUBJECT $(echo "\nContent-Type: text/plain; charset=\"UTF-8\"\nFrom: $ACCOUNT")" -c $CC -F $ADDR < $FILE
-					 mail -s "$PREFIX$SUBJECT $(echo "\nContent-Type: text/plain; charset=\"UTF-8\"")" -c $CC $ADDR -r m.kohlhase@jacobs-university.de < $FILE
-	   echo "mail -s "$PREFIX$SUBJECT $(echo "\nContent-Type: text/plain; charset=\"UTF-8\"")" -c $CC $ADDR -r m.kohlhase@jacobs-university.de < $FILE" | tee -a  $PROTOKOLL
+					 mail -s "$PREFIX$SUBJECT $(echo "\nContent-Type: text/plain; charset=\"UTF-8\"")" -c $CC $ADDR -r $ACCOUNT < $FILE
+	   echo "mail -s "$PREFIX$SUBJECT $(echo "\nContent-Type: text/plain; charset=\"UTF-8\"")" -c $CC $ADDR -r $ACCOUNT < $FILE" | tee -a  $PROTOKOLL
            echo "Done." | tee -a $PROTOKOLL
 	   echo "."
           sleep 5
