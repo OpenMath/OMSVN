@@ -1,11 +1,14 @@
 # http://benjaminrojas.net/configuring-postfix-to-send-mail-from-mac-os-x-mountain-lion/
-
-sudo postfix start
+# on my mac for a new mailing (with new account)
+# 1. adapt /etc/postfix/sasl-passwd
+# 2. sudo postmap /etc/postfix/sasl_passwd
+# 3. sudo postfix start (or reload)
+# 4. date | mail -s test m.kohlhase@jacobs-university.de -r m.kohlhase@jacobs-university.de (for testing) 
 
 ./send-multiple-mails m.kohlhase@jacobs-university.de "First Call for Papers: 26. OpenMath Workshop (at CICM 2014; July 7.  July 2014)" m.kohlhase@jacobs-university.de ../OMCFP.txt testmails ALL
 
+#./send-multiple-mails a.kohlhase@jacobs-university.de "Final Call for Papers: MathUI'14 (New Deadline: 2014/05/22)" a.kohlhase@jacobs-university.de mathui-cfp recipients_MathUI14.txt ALL
 
-./send-multiple-mails serge.autexier@dfki.de "2nd Call for Papers: Conf. Intelligent Computer Mathematics (CICM 2014)" serge.autexier@dfki.de ../www/2014/admin/second-cfp.txt testmailaddresses ALL
 
 
 		      			     
