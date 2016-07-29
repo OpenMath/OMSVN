@@ -39,7 +39,7 @@
   <i>
   <div align="center">© The OpenMath Society 2001–2016</div> 
   <div align="center">Maintained by
-       <a href="http://www.openmath.org/infrastructure/">the OpenMath Infrastructure Team</a></div> 
+       <a href="/infrastructure/">the OpenMath Infrastructure Team</a></div> 
   </i>
 </xsl:template>
 
